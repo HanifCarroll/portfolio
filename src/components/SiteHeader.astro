@@ -1,0 +1,188 @@
+---
+const siteTitle = "Hanif Carroll";
+---
+
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="logo">{siteTitle}</a>
+        <nav class="site-nav" id="main-nav" aria-label="Main Navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                {/* Create src/pages/about.astro later */}
+                <li><a href="/contact/">Contact</a></li>
+                {/* Create src/pages/contact.astro later */}
+            </ul>
+        </nav>
+        <button
+            class="mobile-toggle"
+            id="mobile-nav-toggle"
+            aria-label="Toggle Navigation"
+            aria-expanded="false"
+            aria-controls="main-nav"
+        >
+            <span class="visually-hidden">Menu</span>
+            {/* Simple hamburger icon using spans */}
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+    </div>
+</header>
+
+<style>
+    .site-header {
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        padding: 0.75rem 0;
+        position: relative;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.2rem;
+        z-index: 1001;
+    }
+
+    .site-nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-nav a {
+        text-decoration: none;
+    }
+    .site-nav a:hover {
+        text-decoration: underline;
+    }
+
+    .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hamburger-box {
+        display: inline-block;
+        position: relative;
+        width: 24px;
+        height: 18px;
+    }
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color);
+        border-radius: 2px;
+        left: 0;
+        transition:
+            transform 0.2s ease-in-out,
+            top 0.2s ease-in-out,
+            opacity 0.2s ease-in-out;
+    }
+    .hamburger-inner {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .hamburger-inner::before {
+        top: -8px;
+    }
+    .hamburger-inner::after {
+        top: 8px;
+    }
+
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 700px) {
+        .site-nav {
+            display: none; /* Hide nav by default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .site-nav.is-open {
+            display: block; /* Show when toggled */
+        }
+
+        .site-nav ul {
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .site-nav li {
+            width: 100%;
+            text-align: center;
+        }
+        .site-nav a {
+            padding: 0.75rem;
+            display: block; /* Make links take full width */
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: block; /* Show toggle button */
+        }
+
+        /* Hamburger animation when open */
+        .mobile-toggle[aria-expanded="true"] .hamburger-inner {
+            background-color: transparent; /* Middle line disappears */
+        }
+        .mobile-toggle[aria-expanded="true"] .hamburger-inner::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+        .mobile-toggle[aria-expanded="true"] .hamburger-inner::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+    }
+</style>
+
+<script>
+    const toggleButton = document.getElementById("mobile-nav-toggle");
+    const mainNav = document.getElementById("main-nav");
+
+    if (toggleButton && mainNav) {
+        toggleButton.addEventListener("click", () => {
+            const isOpen = mainNav.classList.toggle("is-open");
+            toggleButton.setAttribute("aria-expanded", isOpen.toString());
+        });
+    }
+</script>
