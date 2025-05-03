@@ -1,17 +1,15 @@
----
-const siteTitle = "Hanif Carroll";
----
-
 <header class="site-header">
-    <div class="container">
-        <a href="/" class="logo">{siteTitle}</a>
+    <div class="container nav-container">
+        <a href="/" class="logo">
+            <img src="/public/img/avatar.png" alt="Hanif smiling" /><span
+                >Hanif Carroll</span
+            >
+        </a>
         <nav class="site-nav" id="main-nav" aria-label="Main Navigation">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about/">About</a></li>
-                {/* Create src/pages/about.astro later */}
-                <li><a href="/contact/">Contact</a></li>
-                {/* Create src/pages/contact.astro later */}
+                <li><a href="/projects/">Projects</a></li>
+                <li><a class="btn cta" href="/contact/">Contact</a></li>
             </ul>
         </nav>
         <button
@@ -22,7 +20,6 @@ const siteTitle = "Hanif Carroll";
             aria-controls="main-nav"
         >
             <span class="visually-hidden">Menu</span>
-            {/* Simple hamburger icon using spans */}
             <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
             </span>
@@ -32,26 +29,27 @@ const siteTitle = "Hanif Carroll";
 
 <style>
     .site-header {
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-        padding: 0.75rem 0;
+        padding-block: 2rem;
         position: relative;
     }
 
-    .container {
+    .nav-container {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 1rem;
+        justify-content: space-between;
     }
 
     .logo {
-        font-weight: bold;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-weight: 600;
         text-decoration: none;
-        font-size: 1.2rem;
         z-index: 1001;
+    }
+
+    .site-nav {
+        border-radius: var(--border-radius);
     }
 
     .site-nav ul {
@@ -63,6 +61,7 @@ const siteTitle = "Hanif Carroll";
     }
 
     .site-nav a {
+        font-weight: 500;
         text-decoration: none;
     }
     .site-nav a:hover {
@@ -91,7 +90,7 @@ const siteTitle = "Hanif Carroll";
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: var(--text-color);
+        background-color: var(--primary-500);
         border-radius: 2px;
         left: 0;
         transition:
@@ -122,55 +121,76 @@ const siteTitle = "Hanif Carroll";
         border: 0;
     }
 
-    /* Responsive styles */
-    @media (max-width: 700px) {
+    /* Mobile-first styles */
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    .site-nav.is-open {
+        display: block; /* Show when toggled */
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .site-nav li {
+        width: 100%;
+        text-align: center;
+        display: flex;
+    }
+    .site-nav a {
+        padding: 0.75rem;
+        width: 100%;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    /* Hamburger animation when open */
+    .mobile-toggle[aria-expanded="true"] .hamburger-inner {
+        background-color: transparent; /* Middle line disappears */
+    }
+    .mobile-toggle[aria-expanded="true"] .hamburger-inner::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    .mobile-toggle[aria-expanded="true"] .hamburger-inner::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+    @media (min-width: 768px) {
         .site-nav {
-            display: none; /* Hide nav by default */
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: #fff;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            z-index: 1000;
+            display: block;
+            position: static;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
         }
-
-        .site-nav.is-open {
-            display: block; /* Show when toggled */
-        }
-
         .site-nav ul {
-            flex-direction: column;
-            gap: 0.5rem;
+            flex-direction: row;
+            gap: 1.5rem;
             align-items: center;
         }
         .site-nav li {
-            width: 100%;
-            text-align: center;
+            width: auto;
+            text-align: left;
         }
-        .site-nav a {
-            padding: 0.75rem;
-            display: block; /* Make links take full width */
-            width: 100%;
-        }
-
         .mobile-toggle {
-            display: block; /* Show toggle button */
-        }
-
-        /* Hamburger animation when open */
-        .mobile-toggle[aria-expanded="true"] .hamburger-inner {
-            background-color: transparent; /* Middle line disappears */
-        }
-        .mobile-toggle[aria-expanded="true"] .hamburger-inner::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-        .mobile-toggle[aria-expanded="true"] .hamburger-inner::after {
-            top: 0;
-            transform: rotate(-45deg);
+            display: none;
         }
     }
 </style>
