@@ -1,5 +1,115 @@
 <section class="about-me-section">
     <div class="container section-padding-block about-me-container">
         <h2>About Me</h2>
+        <div class="about-me-flex">
+            <div class="portrait-container">
+                <img
+                    src="/img/portrait-professional.webp"
+                    alt="Professional portrait"
+                    class="about-me-avatar"
+                    width="310"
+                    height="292"
+                    loading="lazy"
+                />
+                <img
+                    src="/img/portrait-professional-desktop.webp"
+                    alt="Professional portrait"
+                    class="about-me-avatar-desktop"
+                    loading="lazy"
+                />
+            </div>
+            <div class="about-me-content">
+                <p>
+                    With <span class="text-bold">7+ years of experience</span> combining
+                    design and development, I build websites and apps focused on
+                    achieving your business objectives.
+                </p>
+                <p>
+                    By handling your project from Figma concept to Webflow or
+                    custom code, you benefit from a <span class="text-bold"
+                        >seamless process with zero handoff delays</span
+                    >. You get a results-driven design that's not only visually
+                    engaging but also practical and built to perform for your
+                    specific needs.
+                </p>
+                <p>
+                    My experience, from large agencies (like Capgemini) to agile
+                    startups (like LeagueApps), means you get <span
+                        class="text-bold"
+                        >clear communication and a partner truly invested in
+                        your success</span
+                    >, not just another freelancer.
+                </p>
+                <p>
+                    My focus is helping small businesses, startups, and
+                    freelancers like you create digital solutions that deliver
+                    tangible value and help your business grow.
+                </p>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    .about-me-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .portrait-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 24px;
+    }
+    .about-me-avatar {
+        width: 310px;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+    .about-me-avatar-desktop {
+        display: none;
+    }
+    .about-me-content {
+        line-height: 1.7;
+        max-width: 60ch;
+    }
+    .about-me-content p:not(:last-of-type) {
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .about-me-flex {
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 2.5rem;
+        }
+        .portrait-container {
+            width: 165px;
+            height: 400px;
+            justify-content: flex-start;
+            align-items: stretch;
+            display: flex;
+            margin-bottom: 0;
+        }
+        .about-me-avatar {
+            display: none;
+        }
+        .about-me-avatar-desktop {
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    @media (min-width: 1268px) {
+        .portrait-container {
+            width: auto;
+            height: 520px;
+            margin-bottom: 0;
+        }
+    }
+</style>
