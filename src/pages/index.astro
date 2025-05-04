@@ -6,7 +6,7 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
 
 <BaseLayout title={pageTitle}>
     <section class="hero-section">
-        <div class="container hero-container">
+        <div class="container section-padding-block hero-container">
             <div class="img-container">
                 <img
                     src="/public/img/portrait.webp"
@@ -31,23 +31,36 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
     </section>
 
     <section id="featured-projects" class="featured-projects-section">
-        <div class="container featured-projects-container"></div>
+        <div
+            class="container section-padding-block featured-projects-container"
+        >
+            <h2>Featured Projects</h2>
+        </div>
     </section>
 
     <section class="about-me-section">
-        <div class="container about-me-container"></div>
+        <div class="container section-padding-block about-me-container">
+            <h2>About Me</h2>
+        </div>
     </section>
 
     <section class="services-section">
-        <div class="container about-me-container"></div>
+        <div class="container section-padding-block about-me-container">
+            <h2>My Services</h2>
+        </div>
     </section>
 
     <section class="cta-section">
-        <div class="container cta-container"></div>
+        <div class="container section-padding-block cta-container">
+            <h4>Ready to get started?</h4>
+            <a href="#contact" class="btn btn-secondary">Let's Chat</a>
+        </div>
     </section>
 
     <section class="process-section">
-        <div class="container process-container"></div>
+        <div class="container section-padding-block process-container">
+            <h2>My Process</h2>
+        </div>
     </section>
 </BaseLayout>
 
@@ -92,6 +105,19 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
 
     .hero-section a {
         text-decoration: none;
+    }
+
+    .cta-section {
+        background-color: var(--primary-500);
+        color: white;
+    }
+
+    .cta-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        justify-content: center;
+        align-items: center;
     }
 
     @media (min-width: 768px) {
