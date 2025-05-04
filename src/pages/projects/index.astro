@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = [
+    {
+        title: "Chat App Homepage",
+        imageUrl: "/img/chat-app.webp", // Assuming image exists
+        imageAlt: "Screenshot of Chat App Homepage",
+        tags: ["Website Design", "Webflow Development", "Concept"],
+        description:
+            "This is a homepage design and build for a concept project – a chat application. I designed the page first, then built a responsive web page using Webflow.",
+        projectUrl: "#", // Replace with actual project link
+    },
+    {
+        title: "Team App Homepage",
+        imageUrl: "/img/team-app.webp", // Assuming image exists
+        imageAlt: "Screenshot of Team App Homepage",
+        tags: ["Website Design", "Figma", "Concept"],
+        description:
+            "Website design for a concept team collaboration platform. This design also includes a beautiful blog.",
+        projectUrl: "#", // Replace with actual project link
+    },
+    // Add more project objects here...
+];
+
+const filters = [
+    "All",
+    "Concept",
+    "Figma",
+    "Webflow Development",
+    "Website Design",
+];
+---
+
+<BaseLayout title="Projects | Hanif Carroll">
+    <section class="featured-projects">
+        <div class="container section-padding-block">
+            <header class="projects-header">
+                <h2 class="projects-title">Projects</h2>
+                <div class="filter-section">
+                    <span class="filter-label">Filter by:</span>
+                    <div class="filter-tags">
+                        {
+                            filters.map((filter, index) => (
+                                <button
+                                    class={`filter-tag ${index === 0 ? "active" : ""}`}
+                                >
+                                    {filter}
+                                </button>
+                            ))
+                        }
+                    </div>
+                </div>
+            </header>
+
+            <section class="projects-grid">
+                {projects.map((project) => <ProjectCard {...project} />)}
+                {projects.map((project) => <ProjectCard {...project} />)}
+            </section>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .projects-header {
+        margin-bottom: var(--space-l);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-m);
+    }
+
+    .filter-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 60px;
+    }
+
+    .filter-label {
+        font-size: 20px;
+    }
+
+    .filter-tags {
+        display: flex;
+        flex-wrap: wrap; /* Allow tags to wrap */
+        gap: 4px;
+    }
+
+    .filter-tag {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: var(--font-size-body-small);
+        border: 1px solid var(--primary-500);
+        cursor: pointer;
+        transition:
+            background-color 0.2s,
+            box-shadow 0.15s;
+
+        &:hover,
+        &:focus-visible {
+            box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+            filter: brightness(1.15);
+        }
+
+        &:active {
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+            filter: brightness(0.95);
+        }
+
+        &.active {
+            background-color: var(--primary-500);
+            color: var(--secondary-500);
+            border-color: var(--primary-500);
+        }
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 40px;
+    }
+
+    @media (min-width: 768px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
