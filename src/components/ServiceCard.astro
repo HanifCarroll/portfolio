@@ -1,0 +1,78 @@
+---
+import CheckmarkIcon from "./CheckmarkIcon.astro";
+
+export interface Props {
+    title: string;
+    description: string;
+    features: string[];
+}
+
+const { title, description, features } = Astro.props as Props;
+---
+
+<div class="card">
+    <h5 class="card-title">{title}</h5>
+
+    <p class="card-description">
+        {description}
+    </p>
+
+    <ul class="features-list">
+        {
+            features.map((feature) => (
+                <li class="feature-item">
+                    <CheckmarkIcon />
+                    <span class="feature-text">{feature}</span>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    .card {
+        background-color: var(--secondary-100);
+        border-radius: var(--border-radius);
+        padding: 1.25rem;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 60ch;
+    }
+    .card-description {
+        color: #374151;
+        font-size: 1rem;
+        line-height: 1.625;
+        margin-bottom: 1.5rem;
+    }
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    .features-list li + li {
+        margin-top: 0.75rem;
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+    }
+    .feature-text {
+        color: #1f2937;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    @media (min-width: 768px) {
+        .card {
+            padding: 2.5rem;
+            gap: 1.75rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .card {
+            gap: 2.5rem;
+        }
+    }
+</style>

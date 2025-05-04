@@ -1,0 +1,49 @@
+---
+import ServiceCard from "./ServiceCard.astro";
+---
+
+<section class="services-section">
+    <div class="container section-padding-block about-me-container">
+        <h2>My Services</h2>
+        <div class="service-cards">
+            <ServiceCard
+                title="Design"
+                description="I design beautiful and effective websites that build trust with your customers and support your business goals. Using Figma, I create user-centered designs that not only look great but directly contribute to your bottom line."
+                features={[
+                    "Brand-aligned UI/UX design",
+                    "High-fidelity Figma prototypes",
+                    "User journey optimization",
+                    "Conversion focused layouts",
+                ]}
+            />
+            <ServiceCard
+                title="Development"
+                description="I transform designs into fully-functional websites using Webflow or custom code. With Webflow, you'll get a responsive site with an intuitive content editor that makes updates simple for you and your team."
+                features={[
+                    "Webflow development & CMS setup",
+                    "Custom coded solutions when needed",
+                    "Responsive and mobile-optimized builds",
+                    "Performance optimization",
+                ]}
+            />
+            <ServiceCard
+                title="Design + Development"
+                description="The complete package: from concept to launch with no handoff delays. I handle both design and development, ensuring a seamless process that saves you time, money, and prevents miscommunication."
+                features={[
+                    "End-to-end project management",
+                    "Seamless design-to-development workflow",
+                    "Faster launch timeline",
+                    "Consistent vision throughout",
+                ]}
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-cards {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+    }
+</style>

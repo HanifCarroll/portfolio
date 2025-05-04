@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import MyServicesSection from "../components/MyServicesSection.astro";
 
 const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
 ---
@@ -44,11 +45,7 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
         </div>
     </section>
 
-    <section class="services-section">
-        <div class="container section-padding-block about-me-container">
-            <h2>My Services</h2>
-        </div>
-    </section>
+    <MyServicesSection />
 
     <section class="cta-section">
         <div class="container section-padding-block cta-container">
@@ -312,19 +309,13 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
     }
     /* CTA SECTION END */
 
-    /* PROCESS SECTION START */
-    .process-section {
-        background-color: var(--secondary-100);
-    }
+    /* MY SERVICES  SECTION START */
 
+    /* MY SERVICES  SECTION END */
+
+    /* PROCESS SECTION START */
     .tab-break {
         display: block;
-    }
-
-    @media (min-width: 768px) {
-        .tab-break {
-            display: inline;
-        }
     }
 
     .process-tabs nav {
@@ -421,6 +412,10 @@ const pageTitle = "Home | Hanif Carroll Web Designer & Developer";
         /* HERO SECTION END */
 
         /* PROCESS SECTION START */
+        .tab-break {
+            display: inline;
+        }
+
         .process-tabs .tab-button {
             font-size: 1.25rem;
         }
