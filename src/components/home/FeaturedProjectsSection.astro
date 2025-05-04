@@ -1,0 +1,82 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import FeaturedProjectCard from "./FeaturedProjectCard.astro";
+
+const featuredProjects = (await getCollection("projects"))
+    .filter((project: CollectionEntry<"projects">) => project.data.isFeatured)
+    .sort(
+        (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
+            (a.data.order ?? 0) - (b.data.order ?? 0)
+    );
+---
+
+<section id="featured-projects" class="featured-projects-section">
+    <div class="container section-padding-block featured-projects-container">
+        <h2>Featured Projects</h2>
+
+        <div class="projects-grid">
+            {
+                featuredProjects.map((project: any) => {
+                    return (
+                        <FeaturedProjectCard
+                            title={project.data.title}
+                            description={project.data.description}
+                            tags={project.data.tags}
+                            imageUrl={
+                                project.data.imageUrl ?? "/img/placeholder.webp"
+                            }
+                            imageAlt={
+                                project.data.imageAlt ?? project.data.title
+                            }
+                            projectUrl={project.data.projectUrl ?? "#"}
+                        />
+                    );
+                })
+            }
+        </div>
+
+        <div class="view-all-projects-container">
+            <a href="/projects" class="btn btn-secondary view-all-projects-btn">
+                View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .featured-projects-section {
+        background-color: var(--primary-500);
+        color: var(--secondary-500);
+    }
+
+    .projects-grid {
+        display: grid;
+        gap: var(--section-gap);
+    }
+
+    .view-all-projects-container {
+        margin-top: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3.75rem;
+        }
+
+        .view-all-projects-container {
+            margin-top: 3.75rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 6.25rem;
+        }
+
+        .view-all-projects-container {
+            margin-top: 6.25rem;
+        }
+    }
+</style>

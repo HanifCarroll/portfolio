@@ -1,28 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
+import ProjectCard from "../../components/project-index/ProjectCard.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const projects = [
-    {
-        title: "Chat App Homepage",
-        imageUrl: "/img/chat-app.webp", // Assuming image exists
-        imageAlt: "Screenshot of Chat App Homepage",
-        tags: ["Website Design", "Webflow Development", "Concept"],
-        description:
-            "This is a homepage design and build for a concept project – a chat application. I designed the page first, then built a responsive web page using Webflow.",
-        projectUrl: "#", // Replace with actual project link
-    },
-    {
-        title: "Team App Homepage",
-        imageUrl: "/img/team-app.webp", // Assuming image exists
-        imageAlt: "Screenshot of Team App Homepage",
-        tags: ["Website Design", "Figma", "Concept"],
-        description:
-            "Website design for a concept team collaboration platform. This design also includes a beautiful blog.",
-        projectUrl: "#", // Replace with actual project link
-    },
-    // Add more project objects here...
-];
+const projects = (await getCollection("projects")).sort(
+    (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
+        (a.data.order ?? 0) - (b.data.order ?? 0)
+);
 
 const filters = [
     "All",
@@ -55,8 +39,7 @@ const filters = [
             </header>
 
             <section class="projects-grid">
-                {projects.map((project) => <ProjectCard {...project} />)}
-                {projects.map((project) => <ProjectCard {...project} />)}
+                {projects.map((project) => <ProjectCard {...project.data} />)}
             </section>
         </div>
     </section>
@@ -83,7 +66,7 @@ const filters = [
 
     .filter-tags {
         display: flex;
-        flex-wrap: wrap; /* Allow tags to wrap */
+        flex-wrap: wrap;
         gap: 4px;
     }
 
@@ -94,18 +77,16 @@ const filters = [
         font-size: var(--font-size-body-small);
         border: 1px solid var(--primary-500);
         cursor: pointer;
+        background-color: transparent;
         transition:
             background-color 0.2s,
-            box-shadow 0.15s;
 
         &:hover,
         &:focus-visible {
-            box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
             filter: brightness(1.15);
         }
 
         &:active {
-            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
             filter: brightness(0.95);
         }
 

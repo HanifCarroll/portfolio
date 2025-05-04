@@ -1,0 +1,46 @@
+---
+// Props: label (string), variant (string: 'primary-outline' | 'primary-solid' | 'secondary-outline' | 'secondary-solid')
+const { label, variant = "primary-outline" } = Astro.props;
+---
+
+<style>
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition:
+            background-color 0.2s,
+            color 0.2s,
+            border 0.2s;
+        font-weight: 400;
+        line-height: 1.2;
+        cursor: default;
+    }
+    .tag.primary-outline {
+        border-color: var(--primary-500);
+        color: var(--primary-500);
+        background-color: transparent;
+    }
+    .tag.primary-solid {
+        background-color: var(--primary-500);
+        color: var(--secondary-500);
+        border-color: var(--primary-500);
+    }
+    .tag.secondary-outline {
+        border-color: var(--secondary-500);
+        color: var(--secondary-500);
+        background-color: transparent;
+    }
+    .tag.secondary-solid {
+        background-color: var(--primary-400);
+        color: var(--secondary-400);
+        border-color: var(--primary-400);
+    }
+</style>
+
+<span class={`tag text-body-small ${variant}`}>
+    {label}
+</span>

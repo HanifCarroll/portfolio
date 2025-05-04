@@ -1,0 +1,164 @@
+---
+import Tag from "../Tag.astro";
+interface Props {
+    title: string;
+    imageUrl: string;
+    imageAlt: string;
+    tags: string[];
+    description: string;
+    projectUrl: string;
+}
+
+const { title, imageUrl, imageAlt, tags, description, projectUrl } =
+    Astro.props;
+---
+
+<div class="featured-project-card">
+    <img
+        src={imageUrl}
+        alt={imageAlt}
+        class="featured-project-card__image"
+        loading="lazy"
+    />
+    <div class="featured-project-card__content">
+        <div class="featured-project-card__header">
+            <h3 class="featured-project-card__title">{title}</h3>
+            <div class="featured-project-card__tags">
+                {
+                    tags.map((tag) => (
+                        <Tag label={tag} variant="secondary-solid" />
+                    ))
+                }
+            </div>
+        </div>
+        <p class="featured-project-card__description">{description}</p>
+        <a href={projectUrl} class="featured-project-card__link text-caption">
+            VIEW PROJECT <span aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+</div>
+
+<style>
+    .featured-project-card {
+        color: var(--secondary-500);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .featured-project-card__image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+
+    .featured-project-card__content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex-grow: 1;
+    }
+
+    .featured-project-card__title {
+        margin-bottom: 12px;
+    }
+
+    .featured-project-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+
+    .featured-project-card__description {
+        flex-grow: 1; /* Push link to the bottom */
+        margin-bottom: 12px; /* Space before button */
+        color: var(--secondary-600);
+    }
+
+    .featured-project-card__link {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3xs);
+        transition: color 0.3s ease;
+        align-self: flex-start; /* Align link to the start */
+        background-color: transparent; /* Override default btn background */
+        padding: 0; /* Remove default btn padding */
+        color: var(--secondary-500); /* Ensure link text is visible */
+        border-radius: 0; /* Remove button border-radius */
+        text-transform: uppercase;
+    }
+
+    .featured-project-card__link:hover,
+    .featured-project-card__link:focus-visible {
+        transform: none; /* Disable btn hover effect */
+        filter: brightness(1.2); /* Slight brightness on hover */
+        border-bottom: 1px solid var(--secondary-500);
+    }
+    .featured-project-card__linklink:active {
+        transform: none;
+        box-shadow: none;
+        filter: brightness(0.9);
+    }
+
+    .featured-project-card__link span {
+        transition: transform 0.3s ease;
+    }
+
+    .featured-project-card__link:hover span {
+        transform: translateX(4px);
+    }
+
+    .featured-project-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+        .featured-project-card__title {
+            margin-bottom: 8px;
+        }
+        .featured-project-card__tags {
+            gap: 8px;
+        }
+
+        .featured-project-card {
+            gap: 2rem;
+            padding: 1.25rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .featured-project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+            padding: 2.5rem;
+        }
+
+        .featured-project-card:nth-of-type(odd) .featured-project-card__image {
+            order: 1; /* Move image to the right for odd cards */
+        }
+        .project-image {
+            aspect-ratio: auto; /* Let height be determined by content */
+            height: 100%; /* Fill card height */
+        }
+        .project-content {
+            gap: 16px;
+        }
+        .project-description {
+            margin-bottom: 16px;
+        }
+
+        .featured-project-card__title {
+            margin-bottom: 12px;
+        }
+        .featured-project-card__tags {
+            gap: 12px;
+        }
+    }
+</style>

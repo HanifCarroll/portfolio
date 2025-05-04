@@ -1,5 +1,6 @@
 ---
-// src/components/ProjectCard.astro
+import Tag from "../Tag.astro";
+
 interface Props {
     title: string;
     imageUrl: string;
@@ -24,7 +25,11 @@ const { title, imageUrl, imageAlt, tags, description, projectUrl } =
         <div class="project-card__header">
             <h3 class="project-card__title">{title}</h3>
             <div class="project-card__tags">
-                {tags.map((tag) => <span class="tag tag-outline">{tag}</span>)}
+                {
+                    tags.map((tag) => (
+                        <Tag label={tag} variant="primary-outline" />
+                    ))
+                }
             </div>
         </div>
         <p class="project-card__description">{description}</p>
