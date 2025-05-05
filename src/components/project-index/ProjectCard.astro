@@ -82,20 +82,30 @@ const { title, imageUrl, imageAlt, tags, description, projectUrl } =
     }
 
     .project-card__link {
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-bold);
-        color: var(--color-primary);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: var(--space-3xs);
         transition: color 0.3s ease;
         align-self: flex-start; /* Align link to the start */
+        background-color: transparent; /* Override default btn background */
+        padding: 0; /* Remove default btn padding */
+        color: var(--primary-500); /* Ensure link text is visible */
+        border-radius: 0; /* Remove button border-radius */
+        text-transform: uppercase;
+        border-bottom: 1px solid transparent;
     }
 
-    .project-card__link:hover {
-        color: var(--color-primary-dark);
-        text-decoration: underline;
+    .project-card__link:hover,
+    .project-card__link:focus-visible {
+        transform: none; /* Disable btn hover effect */
+        filter: brightness(1.2); /* Slight brightness on hover */
+        border-bottom: 1px solid var(--primary-500);
+    }
+    .project-card__linklink:active {
+        transform: none;
+        box-shadow: none;
+        filter: brightness(0.9);
     }
 
     .project-card__link span {
