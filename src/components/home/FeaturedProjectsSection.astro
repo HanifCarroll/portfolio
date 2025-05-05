@@ -72,11 +72,19 @@ const featuredProjects = (await getCollection("projects"))
     @media (min-width: 1280px) {
         .projects-grid {
             grid-template-columns: 1fr;
-            gap: 6.25rem;
+            gap: 5rem;
         }
 
         .view-all-projects-container {
-            margin-top: 6.25rem;
+            margin-top: 5rem;
+        }
+
+        .projects-grid {
+            > :nth-child(even) {
+                .featured-project-card__image {
+                    order: 1;
+                }
+            }
         }
     }
 </style>

@@ -13,32 +13,36 @@ const { title, imageUrl, imageAlt, tags, description, projectUrl } =
     Astro.props;
 ---
 
-<div class="featured-project-card">
-    <img
-        src={imageUrl}
-        alt={imageAlt}
-        class="featured-project-card__image"
-        loading="lazy"
-    />
-    <div class="featured-project-card__content">
-        <div class="featured-project-card__header">
-            <h3 class="featured-project-card__title">{title}</h3>
-            <div class="featured-project-card__tags">
-                {
-                    tags.map((tag) => (
-                        <Tag label={tag} variant="secondary-solid" />
-                    ))
-                }
+<a class="link-container" href={projectUrl}>
+    <div class="featured-project-card">
+        <img
+            src={imageUrl}
+            alt={imageAlt}
+            class="featured-project-card__image"
+            loading="lazy"
+        />
+        <div class="featured-project-card__content">
+            <div class="featured-project-card__header">
+                <h3 class="featured-project-card__title">{title}</h3>
+                <div class="featured-project-card__tags">
+                    {
+                        tags.map((tag) => (
+                            <Tag label={tag} variant="secondary-solid" />
+                        ))
+                    }
+                </div>
             </div>
+            <p class="featured-project-card__description">{description}</p>
+            <span class="featured-project-card__link text-caption">
+                VIEW PROJECT <span aria-hidden="true">&rarr;</span>
+            </span>
         </div>
-        <p class="featured-project-card__description">{description}</p>
-        <a href={projectUrl} class="featured-project-card__link text-caption">
-            VIEW PROJECT <span aria-hidden="true">&rarr;</span>
-        </a>
     </div>
-</div>
-
+</a>
 <style>
+    .link-container {
+        display: block;
+    }
     .featured-project-card {
         color: var(--secondary-500);
         display: flex;
@@ -127,7 +131,6 @@ const { title, imageUrl, imageAlt, tags, description, projectUrl } =
 
         .featured-project-card {
             gap: 2rem;
-            padding: 1.25rem;
         }
     }
 
@@ -137,12 +140,8 @@ const { title, imageUrl, imageAlt, tags, description, projectUrl } =
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             align-items: center;
-            padding: 2.5rem;
         }
 
-        .featured-project-card:nth-of-type(odd) .featured-project-card__image {
-            order: 1; /* Move image to the right for odd cards */
-        }
         .project-image {
             aspect-ratio: auto; /* Let height be determined by content */
             height: 100%; /* Fill card height */
