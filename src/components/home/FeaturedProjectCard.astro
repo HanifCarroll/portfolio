@@ -6,14 +6,13 @@ interface Props {
     imageAlt: string;
     tags: string[];
     description: string;
-    projectUrl: string;
+    slug: string;
 }
 
-const { title, imageUrl, imageAlt, tags, description, projectUrl } =
-    Astro.props;
+const { title, imageUrl, imageAlt, tags, description, slug } = Astro.props;
 ---
 
-<a class="link-container" href={projectUrl}>
+<a class="link-container" href={`/projects/${slug}`}>
     <div class="featured-project-card">
         <img
             src={imageUrl}

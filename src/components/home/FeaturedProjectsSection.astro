@@ -28,7 +28,7 @@ const featuredProjects = (await getCollection("projects"))
                             imageAlt={
                                 project.data.imageAlt ?? project.data.title
                             }
-                            projectUrl={project.data.projectUrl ?? "#"}
+                            slug={project.slug}
                         />
                     );
                 })

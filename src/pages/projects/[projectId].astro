@@ -1,0 +1,88 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Tag from "../../components/Tag.astro";
+
+export function getStaticPaths() {
+    return [
+        { params: { projectId: "chat-app-homepage" } },
+        { params: { projectId: "team-app-design" } },
+    ];
+}
+const { projectId } = Astro.params;
+const project = await getEntry("projects", projectId);
+
+if (!project) {
+    throw new Error(`Project not found: ${projectId}`);
+}
+---
+
+<BaseLayout title={project.data.title}>
+    <section class="project-detail container section-padding-block">
+        <h2>{project.data.title}</h2>
+        <p class="project-detail__description">{project.data.description}</p>
+        {
+            project.data.imageUrl && (
+                <img
+                    src={project.data.imageUrl}
+                    alt={project.data.imageAlt ?? project.data.title}
+                    class="project-detail__image"
+                />
+            )
+        }
+        <div class="project-detail__summary">
+            <span class="text-caption">Project Type</span>
+            <div class="project-detail__tags">
+                {
+                    project.data.tags.map((tag) => (
+                        <Tag label={tag} variant="primary-outline" />
+                    ))
+                }
+            </div>
+
+            <span class="text-caption">Tools Used</span>
+            <p>{project.data.toolsUsed.join(", ")}</p>
+
+            <span class="text-caption">Project Link</span>
+            <p>{project.data.toolsUsed.join(", ")}</p>
+        </div>
+        <div class="project-detail__overview">
+            <h3>Project Overview</h3>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .project-detail {
+    }
+    .project-detail__image {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        margin-inline: auto;
+        margin-bottom: 2rem;
+    }
+    .project-detail__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 1rem;
+    }
+    .project-detail__tag {
+        background: var(--primary-100);
+        color: var(--primary-700);
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+    .project-detail__description {
+        max-width: 60ch;
+        margin-bottom: 2rem;
+    }
+    .project-detail__external-link {
+        display: inline-block;
+        color: var(--primary-500);
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>

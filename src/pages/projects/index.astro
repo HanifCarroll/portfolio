@@ -22,7 +22,7 @@ const filters = [
         <div class="container section-padding-block">
             <header class="projects-header">
                 <h2 class="projects-title">Projects</h2>
-                <div class="filter-section">
+                <!-- <div class="filter-section">
                     <span class="filter-label">Filter by:</span>
                     <div class="filter-tags">
                         {
@@ -35,11 +35,24 @@ const filters = [
                             ))
                         }
                     </div>
-                </div>
+                </div> -->
             </header>
 
             <section class="projects-grid">
-                {projects.map((project) => <ProjectCard {...project.data} />)}
+                {
+                    projects.map((project) => (
+                        <ProjectCard
+                            slug={project.slug}
+                            title={project.data.title}
+                            description={project.data.description}
+                            tags={project.data.tags}
+                            imageUrl={project.data.imageUrl}
+                            imageAlt={
+                                project.data.imageAlt ?? project.data.title
+                            }
+                        />
+                    ))
+                }
             </section>
         </div>
     </section>
@@ -99,7 +112,7 @@ const filters = [
 
     .projects-grid {
         display: grid;
-        grid-template-columns: 1fr; /* Single column on mobile */
+        grid-template-columns: 1fr;
         gap: 40px;
     }
 
@@ -107,11 +120,15 @@ const filters = [
         .projects-grid {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        .projects-grid {
+            > * {
+                height: 100%;
+                display: flex;
+            }
+        }
     }
 
     @media (min-width: 1280px) {
-        .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
     }
 </style>

@@ -8,4 +8,5 @@ projectUrl: "https://www.example.com"
 publishDate: 2024-02-20
 isFeatured: true
 order: 2
+toolsUsed: ["Figma, Webflow"]
 ---
