@@ -9,4 +9,8 @@ publishDate: 2024-02-20
 isFeatured: true
 order: 2
 toolsUsed: ["Figma, Webflow"]
+role: "Design"
+githubLink: "https://github.com"
+figmaLink: "https://figma.com"
+siteLink: https://example.com"
 ---

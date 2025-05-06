@@ -2,6 +2,7 @@
 import { getEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Tag from "../../components/Tag.astro";
+import { render } from "astro:content";
 
 export function getStaticPaths() {
     return [
@@ -15,6 +16,8 @@ const project = await getEntry("projects", projectId);
 if (!project) {
     throw new Error(`Project not found: ${projectId}`);
 }
+
+const { Content } = await render(project);
 ---
 
 <BaseLayout title={project.data.title}>
@@ -31,58 +34,136 @@ if (!project) {
             )
         }
         <div class="project-detail__summary">
-            <span class="text-caption">Project Type</span>
-            <div class="project-detail__tags">
-                {
-                    project.data.tags.map((tag) => (
-                        <Tag label={tag} variant="primary-outline" />
-                    ))
-                }
+            <div class="project-detail__property">
+                <span class="text-caption">Project Type</span>
+                <div class="project-detail__tags">
+                    {
+                        project.data.tags.map((tag) => (
+                            <Tag label={tag} variant="primary-outline" />
+                        ))
+                    }
+                </div>
             </div>
 
-            <span class="text-caption">Tools Used</span>
-            <p>{project.data.toolsUsed.join(", ")}</p>
+            <div class="project-detail__property">
+                <span class="text-caption">Role</span>
+                <p>{project.data.role}</p>
+            </div>
 
-            <span class="text-caption">Project Link</span>
-            <p>{project.data.toolsUsed.join(", ")}</p>
+            <div class="project-detail__property">
+                <span class="text-caption">Tools Used</span>
+                <p>{project.data.toolsUsed.join(", ")}</p>
+            </div>
+
+            {
+                (project.data.figmaLink ||
+                    project.data.githubLink ||
+                    project.data.siteLink) && (
+                    <div class="project-detail__property">
+                        <span class="text-caption">Links</span>
+                        <div class="project-detail__links">
+                            {project.data.figmaLink && (
+                                <a
+                                    href={project.data.figmaLink}
+                                    class="project-detail__external-link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Figma Design
+                                </a>
+                            )}
+                            {project.data.githubLink && (
+                                <a
+                                    href={project.data.githubLink}
+                                    class="project-detail__external-link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Code on GitHub
+                                </a>
+                            )}
+                            {project.data.siteLink && (
+                                <a
+                                    href={project.data.siteLink}
+                                    class="project-detail__external-link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Live Site
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                )
+            }
         </div>
         <div class="project-detail__overview">
-            <h3>Project Overview</h3>
+            <h3 class="text-h4">Project Overview</h3>
+            <div class="markdown-content">
+                <Content />
+            </div>
         </div>
     </section>
 </BaseLayout>
 
 <style>
+    h2 {
+        margin-bottom: 0;
+    }
     .project-detail {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
     }
     .project-detail__image {
         width: 100%;
         height: auto;
         max-width: 600px;
         margin-inline: auto;
-        margin-bottom: 2rem;
+    }
+    .project-detail__summary {
+        background-color: var(--secondary-100);
+        border-radius: var(--border-radius);
+        padding: 12px;
+    }
+    .project-detail__property:not(:last-of-type) {
+        margin-bottom: 1rem;
+    }
+    .project-detail__property span {
+        color: var(--primary-400);
     }
     .project-detail__tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 1rem;
-    }
-    .project-detail__tag {
-        background: var(--primary-100);
-        color: var(--primary-700);
-        padding: 4px 12px;
-        border-radius: 8px;
-        font-size: 0.9rem;
+        gap: 4px;
     }
     .project-detail__description {
         max-width: 60ch;
         margin-bottom: 2rem;
     }
+    .project-detail__links {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
     .project-detail__external-link {
-        display: inline-block;
         color: var(--primary-500);
-        text-decoration: underline;
-        font-weight: bold;
+        font-weight: medium;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .project-detail__overview h3 {
+        margin-bottom: 12px;
+    }
+    :global(.markdown-content p:not(:last-of-type)) {
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .project-detail__overview h3 {
+            margin-bottom: 20px;
+        }
     }
 </style>

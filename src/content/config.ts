@@ -14,6 +14,11 @@ const projectsCollection = defineCollection({
         isFeatured: z.boolean().default(false),
         order: z.number().optional(),
         toolsUsed: z.array(z.string()),
+        role: z.string(),
+        figmaLink: z.string().optional(),
+        githubLink: z.string().optional(),
+        siteLink: z.string().optional(),
+
     }),
 });
 
