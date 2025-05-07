@@ -104,15 +104,16 @@ const { Content } = await render(project);
             </div>
         </div>
         <div class="cta-section">
-            <div class="cta"></div>
+            <a href="/projects">
+                <div class="cta">
+                    <span class="text-h5">View More Projects</span>
+                </div>
+            </a>
         </div>
     </section>
 </BaseLayout>
 
 <style>
-    .cta {
-        background-color: var(--secondary-100);
-    }
     h2 {
         margin-bottom: 0;
     }
@@ -164,9 +165,36 @@ const { Content } = await render(project);
     }
     .markdown-content {
         max-width: 80ch;
+        margin-bottom: var(--section-gap);
     }
     :global(.markdown-content p:not(:last-of-type)) {
         margin-bottom: 1rem;
+    }
+    .cta {
+        border-radius: var(--border-radius);
+        background-color: var(--secondary-100);
+        max-width: min(90%, 600px);
+        margin-inline: auto;
+        text-align: center;
+        padding: 60px 100px;
+        color: var(--primary-400);
+        transition:
+            background-color 0.2s,
+            transform 0.15s,
+            box-shadow 0.15s;
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+            filter: brightness(1.35);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+            filter: brightness(0.95);
+        }
     }
 
     @media (min-width: 768px) {
