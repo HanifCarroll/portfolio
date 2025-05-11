@@ -8,8 +8,6 @@ const featuredProjects = (await getCollection("projects"))
         (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
             (a.data.order ?? 0) - (b.data.order ?? 0)
     );
-
-console.log("feat", featuredProjects);
 ---
 
 <section id="featured-projects" class="featured-projects-section">
