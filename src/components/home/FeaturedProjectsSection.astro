@@ -8,6 +8,8 @@ const featuredProjects = (await getCollection("projects"))
         (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
             (a.data.order ?? 0) - (b.data.order ?? 0)
     );
+
+console.log("feat", featuredProjects);
 ---
 
 <section id="featured-projects" class="featured-projects-section">
@@ -22,9 +24,7 @@ const featuredProjects = (await getCollection("projects"))
                             title={project.data.title}
                             description={project.data.description}
                             tags={project.data.tags}
-                            imageUrl={
-                                project.data.imageUrl ?? "/img/placeholder.webp"
-                            }
+                            image={project.data.image}
                             imageAlt={
                                 project.data.imageAlt ?? project.data.title
                             }

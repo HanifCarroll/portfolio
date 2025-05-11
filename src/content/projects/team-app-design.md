@@ -2,15 +2,11 @@
 title: "Team App Figma Design"
 description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
 tags: ["Website Design", "Figma", "Concept"]
-imageUrl: "/img/team-app.webp"
+image: "./team-app-design.png"
 imageAlt: "Team App Figma Design Screenshot"
-projectUrl: "https://www.example.com"
-publishDate: 2024-02-20
-isFeatured: true
-order: 2
-toolsUsed: ["Figma, Webflow"]
+order: 7
+toolsUsed: ["Figma"]
 role: "Design"
-githubLink: "https://github.com"
-figmaLink: "https://figma.com"
-siteLink: https://example.com"
+figmaLink: "https://www.figma.com/design/pvRbFzMm2PIP3ZTzSuoIRP/Team-App?node-id=68289-759&t=92W3MKNr5IPLasW0-1"
+isFeatured: false
 ---
