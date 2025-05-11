@@ -1,6 +1,6 @@
 ---
 title: "Dwell"
-description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
+description: "Landing page for an event organized by a US-based ministry organization."
 tags: ["Website Development", "Custom Code", "Landing Page"]
 image: "./dwell.png"
 imageAlt: "Dwell Screenshot"

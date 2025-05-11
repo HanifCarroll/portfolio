@@ -1,6 +1,6 @@
 ---
 title: "Team App Figma Design"
-description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
+description: "Website design for a concept team collaboration platform, including a blog."
 tags: ["Website Design", "Figma", "Concept"]
 image: "./team-app-design.png"
 imageAlt: "Team App Figma Design Screenshot"

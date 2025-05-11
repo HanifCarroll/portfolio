@@ -1,9 +1,9 @@
 ---
 title: "My Portfolio"
-description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
+description: "This very portfolio! Check out my process for creating it."
 tags: ["Website Design", "Website Development", "Portfolio"]
 image: "./my-portfolio.png"
-imageAlt: "Team App Figma Design Screenshot"
+imageAlt: "My Portfolio Screenshot"
 order: 5
 toolsUsed: ["Figma", "Astro", "HTML", "CSS", "JavaScript"]
 role: "Design & Development"

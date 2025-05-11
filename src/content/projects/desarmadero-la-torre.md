@@ -1,11 +1,11 @@
 ---
 title: "Desarmadero La Torre"
-description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
-tags: ["Website Design", "Figma", "Concept"]
+description: "Online catalogue for a seller of salvaged auto parts."
+tags: ["Website Design", "Webflow Development"]
 image: "./desarmadero-la-torre.png"
 imageAlt: "Desarmadero La Torre Screenshot"
 order: 2
-toolsUsed: ["Figma, Webflow"]
+toolsUsed: ["Figma, Webflow", "CSS", "JavaScript"]
 role: "Design"
 siteLink: https://desarmadero-la-torre.webflow.io"
 isFeatured: true

@@ -1,6 +1,6 @@
 ---
 title: "Chat App Homepage"
-description: "Homepage design and build for a concept project - a chat application. I designed the page first, then built a responsive web page using Webflow."
+description: "Homepage design and build for a concept project - a chat application."
 tags: ["Website Design", "Webflow Development", "Landing Page", "Concept"]
 image: "./chat-app.png"
 imageAlt: "Chat App Homepage Screenshot"

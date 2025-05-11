@@ -1,9 +1,9 @@
 ---
 title: "REDWRITER Comics"
-description: "Website design for a concept team collaboration platform. This design also includes a beautiful blog."
+description: "Portfolio for a comic book creator."
 tags: ["Website Development", "WordPress", "Custom Code", "Portfolio"]
 image: "./redwriter-comics.png"
-imageAlt: "Team App Figma Design Screenshot"
+imageAlt: "Redwriter Comics Screenshot"
 order: 1
 toolsUsed: ["WordPress", "HTML", "CSS", "JavaScript"]
 role: "Design"
