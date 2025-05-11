@@ -36,7 +36,7 @@ const { Content } = await render(project);
                     src={project.data.image}
                     alt={project.data.imageAlt ?? project.data.title}
                     class="project-detail__image"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                     format="webp"
                     quality="mid"
@@ -135,7 +135,7 @@ const { Content } = await render(project);
     .project-detail__image {
         width: 100%;
         height: auto;
-        max-width: 600px;
+        /* max-width: 800px; */
     }
     .project-detail__summary {
         background-color: var(--secondary-100);

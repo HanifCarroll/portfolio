@@ -8,5 +8,5 @@ order: 3
 toolsUsed: ["HTML", "CSS", "JavaScript", "PHP"]
 role: "Development"
 siteLink: "https://lightbearers.org/dwell"
-isFeatured: true
+isFeatured: false
 ---
