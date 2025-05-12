@@ -27,7 +27,7 @@ const { Content } = await render(project);
 const hasContent = !!project.body && project.body.trim().length > 0;
 ---
 
-<BaseLayout title={project.data.title}>
+<BaseLayout title={project.data.title} description={project.data.description}>
     <section class="project-detail container section-padding-block">
         <h2>{project.data.title}</h2>
         <p class="project-detail__description">{project.data.description}</p>
