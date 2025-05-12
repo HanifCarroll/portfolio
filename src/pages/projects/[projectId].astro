@@ -159,7 +159,7 @@ const hasContent = !!project.body && project.body.trim().length > 0;
         gap: 4px;
     }
     .project-detail__description {
-        max-width: 60ch;
+        max-width: 80ch;
         margin-bottom: 2rem;
     }
     .project-detail__links {
@@ -182,8 +182,21 @@ const hasContent = !!project.body && project.body.trim().length > 0;
         max-width: 80ch;
         margin-bottom: var(--section-gap);
     }
+    :global(.markdown-content h2) {
+        font-size: var(--font-size-h5);
+        font-weight: 600;
+        color: var(--primary-400);
+        margin-block: 1rem 0.5rem;
+    }
     :global(.markdown-content p:not(:last-of-type)) {
         margin-bottom: 1rem;
+    }
+    :global(.markdown-content li) {
+        line-height: 1.6;
+        list-style: inside;
+        &:not(:last-of-type) {
+            margin-bottom: 0.5rem;
+        }
     }
     .cta {
         border-radius: var(--border-radius);
