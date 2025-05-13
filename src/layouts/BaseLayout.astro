@@ -31,6 +31,8 @@ const { title, description } = Astro.props;
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/styles/global.css" />
+
+        <!-- Microsoft Clarity Heat Maps and Session Recordings -->
         <script type="text/javascript">
             (function (c, l, a, r, i, t, y) {
                 c[a] =
@@ -44,6 +46,21 @@ const { title, description } = Astro.props;
                 y = l.getElementsByTagName(r)[0];
                 y.parentNode.insertBefore(t, y);
             })(window, document, "clarity", "script", "rj1npp9vad");
+        </script>
+
+        <!-- Google tag (gtag.js) -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-XWNY8CX416"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-XWNY8CX416");
         </script>
     </head>
     <body>
