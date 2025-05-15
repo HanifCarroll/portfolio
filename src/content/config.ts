@@ -20,7 +20,7 @@ const projectsCollection = defineCollection({
     }),
 });
 
-const uxCritiquesCollection = defineCollection({
+const uxInsightsCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
         title: z.string(),
@@ -35,5 +35,5 @@ const uxCritiquesCollection = defineCollection({
 
 export const collections = {
     projects: projectsCollection,
-    uxCritiques: uxCritiquesCollection
+    uxInsights: uxInsightsCollection
 };
