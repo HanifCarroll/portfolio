@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { render } from "astro:content";
+import { getEntry } from "astro:content";
+
+export function getStaticPaths() {
+    return [{ params: { uxCritiqueId: "example" } }];
+}
+const { uxCritiqueId } = Astro.params;
+const uxCritique = await getEntry("uxCritiques", uxCritiqueId);
+
+if (!uxCritique) {
+    throw new Error(`UX Critique not found: ${uxCritiqueId}`);
+}
+
+const { Content } = await render(uxCritique);
+const hasContent = !!uxCritique.body && uxCritique.body.trim().length > 0;
+---
+
+<BaseLayout
+    title={uxCritique.data.title}
+    description={uxCritique.data.description}
+>
+    <section class="ux-critique-wrapper container section-padding-block">
+        <h2>{uxCritique.data.title}</h2>
+        <p class="ux-critique__description">{uxCritique.data.description}</p>
+
+        {
+            hasContent && (
+                <div class="project-detail__overview">
+                    <h3 class="text-h4">Project Overview</h3>
+                    <div class="markdown-content">
+                        <Content />
+                    </div>
+                </div>
+            )
+        }
+        <div class="cta-section">
+            <a href="/ux-critiques">
+                <div class="cta">
+                    <span class="text-h5">View More Projects</span>
+                </div>
+            </a>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .markdown-content {
+        max-width: 80ch;
+        margin-bottom: var(--section-gap);
+    }
+    .cta {
+        border-radius: var(--border-radius);
+        background-color: var(--primary-500);
+        max-width: min(90%, 400px);
+        margin-inline: auto;
+        text-align: center;
+        padding: 60px 100px;
+        color: var(--secondary-500);
+        transition:
+            background-color 0.2s,
+            transform 0.15s,
+            box-shadow 0.15s;
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+            filter: brightness(1.35);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+            filter: brightness(0.95);
+        }
+    }
+</style>

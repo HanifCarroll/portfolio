@@ -20,6 +20,20 @@ const projectsCollection = defineCollection({
     }),
 });
 
+const uxCritiquesCollection = defineCollection({
+    type: 'content',
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        description: z.string(),
+        image: image(),
+        imageAlt: z.string().optional(),
+        isFeatured: z.boolean().default(false),
+        order: z.number().optional(),
+
+    })
+})
+
 export const collections = {
     projects: projectsCollection,
+    uxCritiques: uxCritiquesCollection
 };
