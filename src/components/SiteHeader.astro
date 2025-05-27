@@ -1,3 +1,7 @@
+---
+const { url } = Astro;
+---
+
 <header class="site-header">
     <div class="container nav-container">
         <a href="/" class="logo">
@@ -7,9 +11,25 @@
         </a>
         <nav class="site-nav" id="main-nav" aria-label="Main Navigation">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/projects/">Projects</a></li>
-                <li><a href="/now/">Now</a></li>
+                <li>
+                    <a href="/" class={url.pathname === "/" ? "active" : ""}
+                        >Home</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/projects/"
+                        class={url.pathname.startsWith("/projects")
+                            ? "active"
+                            : ""}>Projects</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/now/"
+                        class={url.pathname === "/now/" ? "active" : ""}>Now</a
+                    >
+                </li>
                 <li><a href="#contact" class="btn cta">Let's Chat</a></li>
             </ul>
         </nav>
@@ -64,12 +84,22 @@
     .site-nav a {
         font-weight: 500;
         text-decoration: none;
+        transition:
+            border-color 0.2s,
+            color 0.2s;
+        border-bottom: 2px solid transparent;
+    }
+    .site-nav a.active {
+        font-weight: 700;
+        border-bottom: 2px solid var(--primary-500);
+        color: var(--primary-500);
     }
     .site-nav a:hover {
-        text-decoration: underline;
+        border-bottom: 2px solid var(--primary-500);
     }
     .site-nav a.cta:hover {
         text-decoration: none;
+        border-bottom: 2px solid var(--primary-500);
     }
 
     .mobile-toggle {
