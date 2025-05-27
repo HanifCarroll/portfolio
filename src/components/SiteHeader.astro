@@ -91,11 +91,7 @@ const { url } = Astro;
     }
     .site-nav a.active {
         font-weight: 700;
-        border-bottom: 2px solid var(--primary-500);
         color: var(--primary-500);
-    }
-    .site-nav a:hover {
-        border-bottom: 2px solid var(--primary-500);
     }
     .site-nav a.cta:hover {
         text-decoration: none;
@@ -204,6 +200,12 @@ const { url } = Astro;
         transform: rotate(-45deg);
     }
 
+    @media (max-width: 768px) {
+        .site-nav a:not(.active):hover {
+            font-weight: 600;
+        }
+    }
+
     @media (min-width: 768px) {
         .site-nav {
             display: block;
@@ -221,6 +223,13 @@ const { url } = Astro;
         .site-nav li {
             width: auto;
             text-align: left;
+        }
+
+        .site-nav a.active {
+            border-bottom: 2px solid var(--primary-500);
+        }
+        .site-nav a:hover {
+            border-bottom: 2px solid var(--primary-500);
         }
         .mobile-toggle {
             display: none;
