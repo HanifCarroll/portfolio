@@ -1,0 +1,59 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import Head from "../components/Head.astro";
+
+export interface Props {
+    title: string;
+    description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <Head {title} {description} />
+    <body>
+        <SiteHeader />
+        <main>
+            <section class="container section-padding-block">
+                <div class="markdown-content">
+                    <slot />
+                </div>
+            </section>
+        </main>
+        <SiteFooter />
+        <style is:global>
+            .markdown-content h1,
+            .markdown-content h2,
+            .markdown-content h3 {
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 600;
+            }
+            .markdown-content h3 {
+                font-size: var(--font-size-h5);
+            }
+            .markdown-content p {
+                line-height: 1.7;
+                margin-bottom: 1.25rem;
+            }
+            .markdown-content a {
+                color: var(--primary-500);
+                text-decoration: underline;
+            }
+            .markdown-content ul,
+            .markdown-content ol {
+                margin-left: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+            .markdown-content blockquote {
+                border-left: 4px solid var(--primary-200);
+                padding-left: 1rem;
+                color: var(--secondary-700);
+                margin: 1.5rem 0;
+                font-style: italic;
+            }
+        </style>
+    </body>
+</html>
