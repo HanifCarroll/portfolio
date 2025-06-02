@@ -10,7 +10,11 @@ location: Buenos Aires, Argentina
 
 (This is [a now page](https://nownownow.com/about), and if you have your own site, you should make one, too.)
 
-_Last Updated May 28th, 2025_
+_Last Updated June 2nd, 2025_
+
+### From Freelance to Product
+
+After careful reflection, I've decided to set my sights on a new career path. My long term goal is to create a software studio that makes consumer apps that connects people and makes their lives better. My shorter term goals are to follow the path of UX Engineer to Product Manager, all the while gaining valuable experience in making products that people love to use.
 
 ### Scheduling Virtual Coffee Chats
 
@@ -32,4 +36,4 @@ Every day, I dedicate a bit of time to practicing my Spanish by reading aloud an
 
 ### Eastern Philosophies
 
-I'm having a great time learning more about Eastern Philosophies, specifically Taoism and Buddhism. Currently reading Alan Watt's Tao: The Watercourse Way in Spanish.
+I'm having a great time learning more about Eastern Philosophies, specifically Taoism and Buddhism. Currently reading The Dhammapada in Spanish.
