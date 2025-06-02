@@ -1,10 +1,10 @@
 ---
 title: "Desarmadero La Torre"
-description: "From Figma design to Webflow CMS development: Launched an efficient online auto catalogue for Desarmadero La Torre."
+description: "Created an efficient browsing experience for auto parts discovery, designing clear information architecture and search functionality to help customers find specific vehicle components quickly."
 tags: ["Website Design", "Webflow Development"]
 image: "./desarmadero-la-torre.png"
 imageAlt: "Desarmadero La Torre Screenshot"
-order: 2
+order: 1
 toolsUsed: ["Figma, Webflow", "CSS", "JavaScript"]
 role: "Design & Development"
 siteLink: https://desarmadero-la-torre.webflow.io"

@@ -18,10 +18,10 @@ const { url } = Astro;
                 </li>
                 <li>
                     <a
-                        href="/projects/"
-                        class={url.pathname.startsWith("/projects")
+                        href="/about"
+                        class={url.pathname.startsWith("/about")
                             ? "active"
-                            : ""}>Projects</a
+                            : ""}>About</a
                     >
                 </li>
                 <li>
@@ -30,7 +30,7 @@ const { url } = Astro;
                         class={url.pathname === "/now/" ? "active" : ""}>Now</a
                     >
                 </li>
-                <li><a href="#contact" class="btn cta">Let's Chat</a></li>
+                <li><a href="#contact" class="btn cta">Contact</a></li>
             </ul>
         </nav>
         <button
@@ -87,7 +87,7 @@ const { url } = Astro;
         transition:
             border-color 0.2s,
             color 0.2s;
-        border-bottom: 2px solid transparent;
+        border-bottom: 3px solid transparent;
     }
     .site-nav a.active {
         font-weight: 700;
@@ -95,7 +95,7 @@ const { url } = Astro;
     }
     .site-nav a.cta:hover {
         text-decoration: none;
-        border-bottom: 2px solid var(--primary-500);
+        border-bottom: 3px solid var(--primary-500);
     }
 
     .mobile-toggle {
@@ -225,12 +225,11 @@ const { url } = Astro;
             text-align: left;
         }
 
-        .site-nav a.active {
-            border-bottom: 2px solid var(--primary-500);
-        }
+        .site-nav a.active,
         .site-nav a:hover {
-            border-bottom: 2px solid var(--primary-500);
+            border-bottom: 3px solid var(--primary-500);
         }
+
         .mobile-toggle {
             display: none;
         }

@@ -7,16 +7,24 @@
             />
         </div>
         <div class="hero-text">
-            <span class="tagline">Freelance Web Designer & Developer</span>
+            <span class="tagline">UX Engineer</span>
             <h1>Hi, I’m Hanif!</h1>
-            <p>
-                I partner with small businesses, startups, and freelancers to
-                design and build websites that achieve your business goals.
-            </p>
+            <div class="description-text">
+                <p>
+                    I'm a UX Engineer who bridges design and development to
+                    create digital products that users love.
+                </p>
+                <p>Currently seeking UX Engineer roles at Series A startups.</p>
+            </div>
             <div class="buttons-container">
-                <a href="#contact" class="btn">Let's Chat</a>
-                <a href="#featured-projects" class="btn btn-outline"
-                    >View Featured Projects</a
+                <a href="#featured-projects" class="btn">View My Work</a>
+                <a
+                    class="btn btn-outline"
+                    href="/download/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="Carroll, Hanif Resume - UX Engineer"
+                    aria-label="Download Resume">Download My Resume</a
                 >
             </div>
         </div>
@@ -34,7 +42,7 @@
     .hero-container {
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 20px;
     }
 
     .hero-section .img-container {
@@ -60,8 +68,11 @@
         color: var(--primary-300);
     }
 
-    .hero-section p {
+    .hero-section .description-text {
         margin-block: 8px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .hero-section .buttons-container {
@@ -75,11 +86,12 @@
     .hero-section a {
         text-decoration: none;
     }
+
     @media (min-width: 768px) {
         .hero-section .tagline {
             font-size: 16px;
         }
-        .hero-section p {
+        .hero-section .description-text {
             margin-block: 32px;
         }
         .hero-container {
@@ -96,6 +108,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            width: 150%;
         }
 
         .hero-section .buttons-container {

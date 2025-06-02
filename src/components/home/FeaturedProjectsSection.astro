@@ -12,7 +12,7 @@ const featuredProjects = (await getCollection("projects"))
 
 <section id="featured-projects" class="featured-projects-section">
     <div class="container section-padding-block featured-projects-container">
-        <h2>Featured Projects</h2>
+        <h2>Featured Work</h2>
 
         <div class="projects-grid">
             {
@@ -32,12 +32,6 @@ const featuredProjects = (await getCollection("projects"))
                 })
             }
         </div>
-
-        <div class="view-all-projects-container">
-            <a href="/projects" class="btn btn-secondary view-all-projects-btn">
-                View All Projects
-            </a>
-        </div>
     </div>
 </section>
 
@@ -52,18 +46,10 @@ const featuredProjects = (await getCollection("projects"))
         gap: var(--section-gap);
     }
 
-    .view-all-projects-container {
-        margin-top: 1rem;
-    }
-
     @media (min-width: 768px) {
         .projects-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 3.75rem;
-        }
-
-        .view-all-projects-container {
-            margin-top: 3.75rem;
         }
     }
 
@@ -71,10 +57,6 @@ const featuredProjects = (await getCollection("projects"))
         .projects-grid {
             grid-template-columns: 1fr;
             gap: 5rem;
-        }
-
-        .view-all-projects-container {
-            margin-top: 5rem;
         }
 
         .projects-grid {

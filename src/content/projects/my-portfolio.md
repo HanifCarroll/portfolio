@@ -4,7 +4,7 @@ description: "A look into the design thinking (Figma) and modern development (As
 tags: ["Website Design", "Website Development", "Portfolio"]
 image: "./my-portfolio.png"
 imageAlt: "My Portfolio Screenshot"
-order: 5
+order: 2
 toolsUsed: ["Figma", "Astro", "HTML", "CSS", "JavaScript"]
 role: "Design & Development"
 githubLink: "https://github.com/HanifCarroll/portfolio"
