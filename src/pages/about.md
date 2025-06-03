@@ -4,9 +4,9 @@ description: "Learn about Hanif Carroll's journey from frontend developer to UX 
 layout: ../layouts/MarkdownLayout.astro
 ---
 
-## About Me
+# About Me
 
-### My Journey
+## My Journey
 
 Most of my life has been spent in Florida, growing up in a small city on its west coast. My academic path led me to the University of South Florida, where I studied health sciences. The plan was to pursue physical therapy and eventually open a gym to help athletes perform better.
 
@@ -18,7 +18,7 @@ A long-standing desire to live in a big city inspired visits to some of the larg
 
 Nearly three years have passed in Buenos Aires, bringing countless reasons for gratitude. The city has been a powerful teacher, helping me to grow beyond expectations and offering connections with incredible people.
 
-### My Values
+## My Values
 
 My life is guided by Carl Jung's concept of individuation—the process of becoming a distinct, individual entity, separate from the collective. This philosophy inspires a search for personal potential and a deep belief in the power of tight-knit communities as sources of meaning. Strong communities, after all, are built by individuals who embrace what makes them unique.
 
@@ -26,7 +26,7 @@ I do things that make me feel good and avoid things that make me feel bad, but n
 
 Simplicity is another guiding principle of mine, both in life and in design. Lessons from software engineering reinforce the value of keeping things simple whenever possible. Gall’s law states that complex systems that work evolve from simple systems that worked, which serves as a reminder that complexity can’t be designed from scratch.
 
-### My Interests
+## My Interests
 
 Connecting with others and sharing ideas is a source of joy, as is teaching and learning. This mutual exchange supports self-discovery and growth for everyone involved.
 
@@ -38,6 +38,6 @@ User Experience is a topic that I often think about. Empathy has always been a s
 
 It wasn’t until about a year ago that I realized that I’ve been going through life trying to answer the question “how can I live a good life?” I’ve learned about philosophy, psychology, religion, and spirituality with this question burning in the back of my mind.
 
-### Now
+## Now
 
 [Check out my now page](/now) to see what I’ve been up to lately.

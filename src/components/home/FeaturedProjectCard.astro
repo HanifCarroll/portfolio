@@ -52,8 +52,8 @@ const { title, image, imageAlt, tags, description, slug } =
     .featured-project-card__image {
         width: 100%;
         height: auto;
-        object-fit: cover;
-        display: block;
+        object-fit: contain;
+        aspect-ratio: 4/3;
     }
 
     .featured-project-card__content {
@@ -142,7 +142,7 @@ const { title, image, imageAlt, tags, description, slug } =
         }
 
         .project-image {
-            aspect-ratio: auto; /* Let height be determined by content */
+            aspect-ratio: 16/9; /* Let height be determined by content */
             height: 100%; /* Fill card height */
         }
         .project-content {

@@ -10,7 +10,7 @@ role: "Design & Development"
 githubLink: "https://github.com/HanifCarroll/portfolio"
 figmaLink: "https://www.figma.com/design/nMjQuT7uhcvMVOP3ijKKUB/Portfolio?node-id=0-1&t=RmR1dA9WQgXUCMmA-1"
 siteLink: "https://www.hanifcarroll.com"
-isFeatured: true
+isFeatured: false
 ---
 
 ## Crafting My Digital Showcase: A Look Inside This Portfolio
