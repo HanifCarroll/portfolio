@@ -10,7 +10,7 @@ role: "Design & Development"
 githubLink: "https://github.com/HanifCarroll/portfolio"
 figmaLink: "https://www.figma.com/design/nMjQuT7uhcvMVOP3ijKKUB/Portfolio?node-id=0-1&t=RmR1dA9WQgXUCMmA-1"
 siteLink: "https://www.hanifcarroll.com"
-isFeatured: false
+isFeatured: true
 ---
 
 ## Crafting My Digital Showcase: A Look Inside This Portfolio
@@ -28,7 +28,3 @@ For the development, I selected Astro, a popular JavaScript framework known for 
 ## Showcasing End-to-End Capability
 
 This portfolio serves as a practical demonstration of my end-to-end process: from strategic user-interface design in Figma to clean, efficient development with modern frameworks. It embodies the same dedication to quality, detail, and user-centricity that I apply to all client collaborations.
-
-## Your Vision, Brought to Life
-
-If you have a unique vision for your website that goes beyond standard templates, I can help you translate it into a functional, engaging, and effective online presence. Let's discuss how we can bring your ideas to life.

@@ -22,7 +22,3 @@ Handling both design and development, the process began with industry research a
 ## Result: Streamlined Operations & Customer Experience
 
 The new Webflow site provides Desarmadero La Torre with a vital online sales tool. Customers now have a simple way to browse complex inventory, while the client benefits from an easily maintainable system and a professional digital storefront. This project demonstrates my expertise in delivering end-to-end design and Webflow development solutions, specifically tailored to solve business challenges like managing and presenting large inventories online effectively.
-
-## Your Vision, Brought to Life
-
-If you have a unique vision for your website that goes beyond standard templates, I can help you translate it into a functional, engaging, and effective online presence. Let's discuss how we can bring your ideas to life.
