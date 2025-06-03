@@ -8,7 +8,9 @@ layout: ../layouts/MarkdownLayout.astro
 
 ### My Journey
 
-Most of my life has been spent in Florida, growing up in a small city on its west coast. My academic path led me to the University of South Florida, where I studied health sciences. Initially, the plan was to pursue physical therapy and eventually open a gym to help athletes perform better. However, before entering a program, it became clear that this path wouldn’t bring true happiness. A bit later, programming entered the picture and quickly became a passion. Self-teaching led to a job in tech, and the industry has been home ever since.
+Most of my life has been spent in Florida, growing up in a small city on its west coast. My academic path led me to the University of South Florida, where I studied health sciences. The plan was to pursue physical therapy and eventually open a gym to help athletes perform better.
+
+However, before entering a program, it became clear that this wouldn't be a very fulfilling path for me. A bit later, programming entered the picture and quickly became a passion. Self-teaching led to a job in tech, and the industry has been home ever since.
 
 Spanish became a new pursuit during the pandemic. After almost two years of study, a two-month trip to Mexico City put those skills to the test and opened the door to a fascination with life in Latin America.
 
