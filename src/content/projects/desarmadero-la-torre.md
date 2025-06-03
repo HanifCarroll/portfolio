@@ -4,7 +4,7 @@ description: "Created an efficient browsing experience for auto parts discovery,
 tags: ["Website Design", "Webflow Development"]
 image: "./desarmadero-la-torre.png"
 imageAlt: "Desarmadero La Torre Screenshot"
-order: 1
+order: 2
 toolsUsed: ["Figma, Webflow", "CSS", "JavaScript"]
 role: "Design & Development"
 siteLink: https://desarmadero-la-torre.webflow.io"

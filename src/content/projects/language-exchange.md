@@ -4,7 +4,7 @@ description: "A user research-driven approach to solving language exchange UX ch
 tags: ["UX Research", "Product Design", "Prototyping"]
 image: "./language-exchange.jpeg"
 imageAlt: "Buenos Aires Language Connect screenshot"
-order: 2
+order: 1
 toolsUsed:
     [
         "User Interviews",
