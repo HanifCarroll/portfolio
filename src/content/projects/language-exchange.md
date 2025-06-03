@@ -15,7 +15,7 @@ toolsUsed:
     ]
 role: "UX Engineer (Solo Project)"
 figmaLink: "https://www.figma.com/design/qXhMH8P2ZuuoEhHRwykW5x/BA-Language-Connect?node-id=0-1&t=i7zRsP7Hcu2KsxSv-1"
-siteLink: "https://v0-language-exchange-prototype-dp.vercel.app/"
+prototypeLink: "https://v0-language-exchange-prototype-dp.vercel.app/"
 isFeatured: true
 ---
 
@@ -84,7 +84,9 @@ Users expressed frustration with:
 
 ### Carolina (The Social Connector)
 
-**Age:** 39 | **Location:** Palermo | **Goal:** English fluency + social connections
+-   **Age:** 39
+-   **Location:** Palermo
+-   **Goal:** English fluency + social connections
 
 Carolina prefers small group exchanges (3-4 people) where diverse perspectives create rich conversations. She's frustrated by the impersonal nature of large events and wants to build lasting connections through language practice.
 
@@ -96,7 +98,9 @@ Carolina prefers small group exchanges (3-4 people) where diverse perspectives c
 
 ### David (The Focused Practitioner)
 
-**Age:** 44 | **Location:** Belgrano | **Goal:** Advanced Spanish refinement
+-   **Age:** 44
+-   **Location:** Belgrano
+-   **Goal:** Advanced Spanish refinement
 
 David strictly prefers one-on-one exchanges for focused practice. As a financial analyst, he wants to improve professional terminology and make efficient use of his limited free time.
 
@@ -181,17 +185,14 @@ This lean approach allows for rapid user testing and iteration based on real usa
 
 ## Technical Implementation
 
-## Technical Implementation
-
 **Technology Stack:** React Native
 
 **Why React Native for MVP?**
 
 -   Cross-platform development for both iOS and Android from a single codebase
 -   Large component ecosystem accelerates development
--   Hot reloading enables rapid iteration and testing
 -   Native performance for smooth user experience
--   JavaScript familiarity makes onboarding new developers easier
+-   JavaScript familiarity makes development easier
 
 The technical architecture focuses on maximum platform reach with minimal development overhead, allowing for quick feature iteration based on user feedback.
 
@@ -226,10 +227,10 @@ The technical architecture focuses on maximum platform reach with minimal develo
 
 ### Key Questions to Validate
 
-1. **Do users understand the exchange-first model?**
-2. **Are filtering options necessary for a minimally useful product?**
-3. **Does the simplified messaging achieve coordination without becoming social media?**
-4. **How effective are auto-generated avatars at reducing dating app associations while giving users confidence?**
+1. Do users understand the exchange-first model?
+2. Are filtering options necessary for a minimally useful product?
+3. Does the simplified messaging achieve coordination without becoming social media?
+4. How effective are auto-generated avatars at reducing dating app associations while giving users confidence?
 
 ### Success Metrics
 
@@ -252,15 +253,19 @@ Based on testing results, priority improvements may include:
 This project reinforced several key principles for product development:
 
 **1. User Research Drives Everything**
+
 The insight about users preferring smaller exchanges over large events became the core differentiator, and it's something I wouldn't have discovered without direct user feedback.
 
 **2. Prototype Early and Often**
+
 AI-assisted prototyping allowed me to test assumptions quickly rather than building based on untested designs.
 
 **3. Constraints Spark Creativity**
+
 Limiting the MVP scope forced creative solutions and prevented feature creep that could dilute the core value proposition.
 
 **4. Technical Decisions Impact UX**
+
 Choosing React Native for multi-platform deployment was as much a UX decision as a technical one - more user feedback means more confidence that I'm developing the right features.
 
 ## Project Links

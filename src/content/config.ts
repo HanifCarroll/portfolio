@@ -16,6 +16,7 @@ const projectsCollection = defineCollection({
         figmaLink: z.string().optional(),
         githubLink: z.string().optional(),
         siteLink: z.string().optional(),
+        prototypeLink: z.string().optional(),
 
     }),
 });
