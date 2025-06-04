@@ -11,7 +11,7 @@ toolsUsed:
         "Google Forms",
         "Figma",
         "AI-Assisted Prototyping (v0)",
-        "React Native",
+        "Ruby on Rails (PWA)",
     ]
 role: "UX Engineer (Solo Project)"
 figmaLink: "https://www.figma.com/design/qXhMH8P2ZuuoEhHRwykW5x/BA-Language-Connect?node-id=0-1&t=i7zRsP7Hcu2KsxSv-1"
@@ -185,16 +185,16 @@ This lean approach allows for rapid user testing and iteration based on real usa
 
 ## Technical Implementation
 
-**Technology Stack:** React Native
+**Technology Stack**: Ruby on Rails PWA
 
-**Why React Native for MVP?**
+**Why Ruby on Rails PWA for the MVP?**
 
--   Cross-platform development for both iOS and Android from a single codebase
--   Large component ecosystem accelerates development
--   Native performance for smooth user experience
--   JavaScript familiarity makes development easier
+-   Fast development with Rails' convention over configuration philosophy
+-   Progressive Web App approach provides cross-platform availability without app stores
+-   Easier deployment and maintenance compared to native apps
+-   App store discoverability is not a concern for a local app in a small community
 
-The technical architecture focuses on maximum platform reach with minimal development overhead, allowing for quick feature iteration based on user feedback.
+The technical architecture prioritizes rapid development and iteration while ensuring accessibility across all devices, allowing for quick feature adjustments based on user feedback.
 
 ## Prototype Development
 
@@ -212,7 +212,7 @@ The technical architecture focuses on maximum platform reach with minimal develo
 -   Real form submissions and data flow
 -   Testable user interactions with actual feedback
 
-**Phase 3: React Native MVP Development**
+**Phase 3: Ruby on Rails PWA MVP Development**
 
 -   Converting learnings from prototype into production-ready code
 -   Adding data persistence and user authentication
@@ -266,7 +266,7 @@ Limiting the MVP scope forced creative solutions and prevented feature creep tha
 
 **4. Technical Decisions Impact UX**
 
-Choosing React Native for multi-platform deployment was as much a UX decision as a technical one - more user feedback means more confidence that I'm developing the right features.
+Choosing a Ruby on Rails PWA for multi-platform use was as much a UX decision as a technical one - more user feedback means more confidence that I'm developing the right features.
 
 ## Project Links
 
