@@ -231,6 +231,7 @@ The technical architecture prioritizes rapid development and iteration while ens
 2. Are filtering options necessary for a minimally useful product?
 3. Does the simplified messaging achieve coordination without becoming social media?
 4. How effective are auto-generated avatars at reducing dating app associations while giving users confidence?
+5. Does a Ruby on Rails PWA address the needs of users?
 
 ### Success Metrics
 
@@ -238,6 +239,7 @@ The technical architecture prioritizes rapid development and iteration while ens
 -   **User satisfaction** with matching quality
 -   **Conversion rate** from exchange creation to actual meetups
 -   **User retention** after first exchange experience
+-   **User feedback** on experience of the app compared with other native apps they use
 
 ### Iteration Plan
 
