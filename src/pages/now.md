@@ -14,7 +14,7 @@ _Last Updated June 2nd, 2025_
 
 ## From Freelance to Product
 
-After careful reflection, I've decided to set my sights on a new career path. My long term goal is to create a software studio that makes consumer apps that connects people and makes their lives better. My shorter term goals are to follow the path of UX Engineer to Product Manager, all the while gaining valuable experience in making products that people love to use.
+After careful reflection, I've decided to set my sights on a new career path. My long term goal is to create a software studio that makes consumer apps that connect people and make their lives better. My shorter term goal is to join an early-stage startup as a founding engineer, where I can learn the full product lifecycle—from user research to technical architecture—while contributing to building something people genuinely want to use.
 
 ## Scheduling Virtual Coffee Chats
 
