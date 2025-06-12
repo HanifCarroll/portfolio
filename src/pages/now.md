@@ -8,9 +8,9 @@ location: Buenos Aires, Argentina
 
 # What I'm Up To
 
-(This is [a now page](https://nownownow.com/about), and if you have your own site, you should make one, too.)
+(This is [a now page](https://nownownow.com/about), and if you have your own site, consider making one, too.)
 
-_Last Updated June 2nd, 2025_
+_Last Updated June 12th, 2025_
 
 ## From Freelance to Product
 
@@ -36,4 +36,4 @@ Every day, I dedicate a bit of time to practicing my Spanish by reading aloud an
 
 ## Eastern Philosophies
 
-I'm having a great time learning more about Eastern Philosophies, specifically Taoism and Buddhism. Currently reading The Dhammapada in Spanish.
+I'm having a great time learning more about Eastern Philosophies, specifically Taoism and Buddhism. Currently reading The Tao of Pooh in Spanish.
