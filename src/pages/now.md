@@ -2,15 +2,15 @@
 title: "Now | Hanif Carroll Web Designer & Developer"
 description: "See what Hanif Carroll is focused on right now: current projects, priorities, and what’s new."
 layout: ../layouts/MarkdownLayout.astro
-updated: 2025-05-26
+updated: 2025-06-13
 location: Buenos Aires, Argentina
 ---
 
 # What I'm Up To
 
-(This is [a now page](https://nownownow.com/about), and if you have your own site, consider making one, too.)
+(This is [a now page](https://nownownow.com/about), and if you have your own site, consider adding a now page to it.)
 
-_Last Updated June 12th, 2025_
+_Last Updated June 13th, 2025_
 
 ## From Freelance to Product
 
