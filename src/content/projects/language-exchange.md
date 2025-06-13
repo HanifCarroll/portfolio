@@ -1,7 +1,7 @@
 ---
 title: "Buenos Aires Language Connect"
 description: "A user research-driven approach to solving language exchange UX challenges in Buenos Aires. From user interviews to functional prototype, exploring how small-scale exchanges can create better learning experiences."
-tags: ["UX Research", "Product Design", "Prototyping"]
+tags: ["UX Research", "Product Design", "Prototyping", "MVP Development"]
 image: "./language-exchange.jpeg"
 imageAlt: "Buenos Aires Language Connect screenshot"
 order: 1
@@ -139,11 +139,13 @@ This approach represents the future of UX engineering - using AI as a powerful t
 
 ### Key Design Decisions
 
-**1. Auto-Generated Avatars**
+**1. Real Photos, not Generated Avatars**
 
--   Eliminates dating app associations
--   Reduces appearance-based judgments
--   Focuses attention on language goals and interests
+Initial prototype testing revealed a critical insight: while auto-generated avatars reduce dating app associations, they create significant trust barriers for small group meetups. Users consistently expressed that for 1-on-1 or small group exchanges, seeing the person builds essential confidence and safety.
+
+-   Real photos increase user comfort and trust
+-   Exchange-first architecture still differentiates from dating apps
+-   Verification system can be added post-launch to enhance safety
 
 **2. Exchange-First Architecture**
 
@@ -163,23 +165,55 @@ This approach represents the future of UX engineering - using AI as a powerful t
 -   Prevents platform from becoming a social network
 -   Keeps focus on coordinating meetups, not endless chatting
 
+## Prototype Testing Results
+
+### What Users Loved
+
+-    Exchange-First Model: Multiple users noted that browsing exchanges rather than profiles made the app feel clearly focused on language learning, not dating.
+-    Intuitive Interface: Users consistently described the interface as "minimalist" and "easy to use" - even non-technical users could navigate without confusion.
+-    Clear Value Proposition: The small-scale approach resonated strongly with users frustrated by large, overwhelming events.
+
+### Critical Improvements Identified
+
+**Navigation & User Flow**
+
+-   Need clear back navigation from profile pages
+-   Messaging CTA unclear ("View Exchange Messages" vs. "Send Message")
+-   Home page needs context explaining app purpose
+
+**Exchange Creation Flow**
+
+-   Language learning should link to language options in dropdown
+-   "1-on-1" vs "group" labels need better visual distinction
+-   Need clearer participant count labeling
+
+**Trust & Safety Considerations**
+
+-    Users want real photos for small group safety
+-    Verification system desired but not blocking for MVP
+-    Clear anti-dating messaging needed
+
 ## MVP Feature Set
 
 Based on user research insights, the initial version focuses on core functionality:
 
-### Essential Features
+### Essential Features (MVP v1)
 
--   **Basic User Profiles**: Auto-generated avatars, languages, neighborhood, interests, and learning goals
+-   **Basic User Profiles**: Real profile photo, languages, neighborhood, interests, and learning goals
 -   **Exchange Creation**: Simple posting of 1-on-1 or small group requests
--   **Exchange Discovery**: Browse and filter available opportunities
+-   **Exchange Discovery**: Browse and filter available opportunities with clear labeling
 -   **Coordination Messaging**: Basic chat functionality for meetup planning only
+-   **Home Page Context**: Clear explanation of app purpose and value proposition
+
 
 ### Intentionally Excluded (For Now)
 
+-   User verification system (can be added post-launch)
 -   Complex matching algorithms
 -   Social features (likes, follows, feeds)
 -   In-app video calling
 -   Extensive user profiles
+-   Advanced features (maps view, friend system, custom event categories)
 
 This lean approach allows for rapid user testing and iteration based on real usage patterns rather than assumed needs.
 
@@ -218,37 +252,74 @@ The technical architecture prioritizes rapid development and iteration while ens
 -   Adding data persistence and user authentication
 -   Preparing for real user testing
 
-## Next Steps & Validation Plan
+## Prototype Development Journey
 
-### Immediate User Testing (Next 2 weeks)
+### Wireframe to Prototype to MVP
 
--   5-8 user testing sessions with prototype
--   Focus on core flow: profile creation → exchange discovery → meetup coordination
+**Phase 1: Figma Wireframes**
 
-### Key Questions to Validate
+-   Core user flows mapped out
+-   Basic information architecture established
+-   Visual hierarchy and interaction patterns defined
 
-1. Do users understand the exchange-first model?
-2. Are filtering options necessary for a minimally useful product?
-3. Does the simplified messaging achieve coordination without becoming social media?
-4. How effective are auto-generated avatars at reducing dating app associations while giving users confidence?
-5. Does a Ruby on Rails PWA address the needs of users?
+**Phase 2: AI-Assisted Functional Prototype**
+
+-   Used v0 to rapidly build interactive version
+-   Real form submissions and data flow
+-   Testable user interactions with actual feedback
+
+**Phase 3: User Testing & Validation**
+
+-   6 comprehensive user testing sessions
+-   Identified critical improvements and validated core concept
+-   Resolved major architectural decisions (photos vs. avatars)
+
+**Phase 4: Ruby on Rails PWA MVP Development** *(Current Phase)*
+
+-   Converting learnings from prototype and user testing into production-ready code
+-   Implementing identified improvements from user feedback
+-   Adding data persistence and user authentication
+
+## Development & Launch Plan
+
+### Current Status: Moving to MVP Development
+
+Based on successful prototype validation, the next phase focuses on building and launching the MVP with identified improvements.
+
+### Immediate Development Priorities
+
+**Core MVP with User Testing Improvements**
+-   Implement navigation improvements and clearer CTAs
+-   Add home page context and explanation
+-   Enhanced exchange creation flow with language linking
+-   Improved messaging interface
+
+**Beta Testing with Real Users**
+-   Deploy MVP to 10-15 Buenos Aires language learners
+-   Monitor actual exchange creation and completion rates
+-   Gather feedback on real-world usage patterns
+
+**Iteration and Public Launch**
+-   Address critical issues identified in beta testing
+-   Launch to broader Buenos Aires language learning community
+-   Begin tracking key success metrics
 
 ### Success Metrics
 
--   **Task completion rate** for creating and joining exchanges
--   **User satisfaction** with matching quality
--   **Conversion rate** from exchange creation to actual meetups
--   **User retention** after first exchange experience
--   **User feedback** on experience of the app compared with other native apps they use
+-   **Exchange Completion Rate**: Percentage of created exchanges that result in actual meetups
+-   **User Retention**: Users who create or join multiple exchanges
+-   **Anti-Dating Effectiveness**: User feedback confirming language-focused positioning
+-   **User Satisfaction**: Qualitative feedback on exchange quality vs. alternatives
 
-### Iteration Plan
+### Post-Launch Iteration Plan
 
-Based on testing results, priority improvements may include:
+Based on real usage data, priority improvements may include:
 
--   Enhanced filtering options
--   Meeting spot suggestions
--   Calendar integration
--   Basic rating/feedback system
+-   User verification system for enhanced trust
+-   Enhanced filtering and discovery options
+-   Meeting spot suggestions and location features
+-   Basic rating/feedback system for exchanges
+-   Friend/connection features for repeat partners
 
 ## Learnings & Reflection
 
@@ -256,21 +327,26 @@ This project reinforced several key principles for product development:
 
 **1. User Research Drives Everything**
 
-The insight about users preferring smaller exchanges over large events became the core differentiator, and it's something I wouldn't have discovered without direct user feedback.
+The insight about users preferring smaller exchanges over large events became the core differentiator, and the photos vs. avatars tension required direct user feedback to resolve properly.
 
 **2. Prototype Early and Often**
 
-AI-assisted prototyping allowed me to test assumptions quickly rather than building based on untested designs.
+AI-assisted prototyping allowed me to test assumptions quickly, and the 6 user testing sessions revealed critical navigation and trust issues that would have been expensive to fix post-launch.
 
-**3. Constraints Spark Creativity**
+**3. Validate Before Building**
 
-Limiting the MVP scope forced creative solutions and prevented feature creep that could dilute the core value proposition.
+The decision to resolve the photos/verification question through user testing before MVP development saved significant architectural rework and ensures the core trust model aligns with user needs.
+
+**4. Start Lean, Iterate Fast**
+
+Focusing the MVP on core functionality while planning post-launch iterations based on real usage prevents feature creep and ensures rapid time-to-market for validation.
 
 **4. Technical Decisions Impact UX**
 
-Choosing a Ruby on Rails PWA for multi-platform use was as much a UX decision as a technical one - more user feedback means more confidence that I'm developing the right features.
+Choosing a Ruby on Rails PWA for rapid iteration capabilities was as much a UX decision as a technical one - faster iteration cycles mean better user experience through continuous improvement.
 
 ## Project Links
 
 -   **Live Prototype**: https://v0-language-exchange-prototype-dp.vercel.app/
 -   **Figma Wireframes**: https://www.figma.com/design/qXhMH8P2ZuuoEhHRwykW5x/BA-Language-Connect?node-id=0-1&t=i7zRsP7Hcu2KsxSv-1
+-   **MVP Launch**: _(Coming Soon)_
