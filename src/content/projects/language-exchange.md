@@ -11,7 +11,8 @@ toolsUsed:
         "Google Forms",
         "Figma",
         "AI-Assisted Prototyping (v0)",
-        "Ruby on Rails (PWA)",
+        "Ruby on Rails (API)",
+        "React Native",
     ]
 role: "Product Engineer (Solo Project)"
 figmaLink: "https://www.figma.com/design/qXhMH8P2ZuuoEhHRwykW5x/BA-Language-Connect?node-id=0-1&t=i7zRsP7Hcu2KsxSv-1"
@@ -221,16 +222,18 @@ This lean approach allows for rapid user testing and iteration based on real usa
 
 ## Technical Implementation
 
-**Technology Stack**: Ruby on Rails PWA
+**Technology Stack**: React Native Frontend + Ruby on Rails API
 
-**Why Ruby on Rails PWA for the MVP?**
+**Why React Native + Rails API for the MVP?**
 
--   Fast development with Rails' convention over configuration philosophy
--   Progressive Web App approach provides cross-platform availability without app stores
--   Easier deployment and maintenance compared to native apps
--   App store discoverability is not a concern for a local app in a small community
+The initial PWA approach was reconsidered after identifying critical iOS limitations that would significantly impact user experience:
 
-The technical architecture prioritizes rapid development and iteration while ensuring accessibility across all devices, allowing for quick feature adjustments based on user feedback.
+-   **iOS PWA Push Notification Restrictions**: iOS requires users to manually add PWAs to their home screen before they can receive push notifications, creating a major UX friction point that would reduce engagement and exchange completion rates
+-   **Native App Store Distribution**: App store presence provides better discoverability and trust for a local community app
+-   **Rails API Backend**: Maintains rapid development capabilities while providing a clean separation between frontend and backend
+-   **Cross-Platform Consistency**: React Native ensures consistent experience across iOS and Android while leveraging native capabilities
+
+This architecture balances development speed with user experience requirements, ensuring the app can effectively support real-time coordination for language exchanges without the PWA limitations.
 
 ## Prototype Development
 
@@ -248,11 +251,12 @@ The technical architecture prioritizes rapid development and iteration while ens
 -   Real form submissions and data flow
 -   Testable user interactions with actual feedback
 
-**Phase 3: Ruby on Rails PWA MVP Development**
+**Phase 3: React Native + Rails API MVP Development**
 
--   Converting learnings from prototype into production-ready code
+-   Converting learnings from prototype and user testing into production-ready code
+-   Implementing identified improvements from user feedback
 -   Adding data persistence and user authentication
--   Preparing for real user testing
+-   Leveraging native push notifications for better user engagement
 
 ## Prototype Development Journey
 
@@ -276,11 +280,12 @@ The technical architecture prioritizes rapid development and iteration while ens
 -   Identified critical improvements and validated core concept
 -   Resolved major architectural decisions (photos vs. avatars)
 
-**Phase 4: Ruby on Rails PWA MVP Development** *(Current Phase)*
+**Phase 4: React Native + Rails API MVP Development** *(Current Phase)*
 
 -   Converting learnings from prototype and user testing into production-ready code
 -   Implementing identified improvements from user feedback
 -   Adding data persistence and user authentication
+-   Leveraging native push notifications for better user engagement
 
 ## Development & Launch Plan
 
@@ -383,7 +388,7 @@ Focusing the MVP on core functionality while planning post-launch iterations bas
 
 **4. Technical Decisions Are Product Decisions**
 
-Choosing a Ruby on Rails PWA over React Native for rapid iteration capabilities was as much a product decision as a technical one - faster iteration cycles mean better user experience through continuous improvement.
+The switch from PWA to React Native was driven by iOS push notification limitations that would have created significant UX friction. This technical decision directly impacts product success - users need seamless notifications to coordinate language exchanges effectively. Choosing React Native for cross-platform development was as much a product decision as a technical one - writing once for both iOS and Android ensures consistent user experience while maintaining development efficiency.
 
 ## Project Links
 
