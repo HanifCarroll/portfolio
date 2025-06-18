@@ -143,7 +143,7 @@ Users consistently describe the interface as "clunky" and "dated"—not just aes
    - Improve sync reliability across different storage services
    - Optimize initial sync performance for large datasets
 
-#### Success Metrics:
+#### Success Metrics
 
 - Zero silent data overwrites (most critical user complaint)
 - Sync conflicts resolved through UI rather than data loss
@@ -153,7 +153,7 @@ Users consistently describe the interface as "clunky" and "dated"—not just aes
 
 **Goal:** Significantly improve user satisfaction scores
 
-#### Actions:
+#### Actions
 
 **Phase 1: Window & Navigation Improvements**
    - Multi-window note editing with pop-out capability
@@ -170,7 +170,8 @@ Users consistently describe the interface as "clunky" and "dated"—not just aes
    - Improved toolbar design and space efficiency
    - Keyboard shortcuts for power user workflows
 
-#### Success Metrics:
+#### Success Metrics
+
 - Multi-window functionality implemented (addresses 11 specific complaints)
 - Navigation improvements for large note collections
 - Reduced user reports of "clunky" interface and layout issues
