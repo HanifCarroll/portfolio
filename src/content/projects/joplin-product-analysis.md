@@ -95,7 +95,7 @@ The data revealed a clear story: while UI issues were most frequent, sync proble
 
 ### 1. The Sync Crisis: When Trust Breaks
 
-Sync failures aren't bugs—they're relationship enders. Of 65 sync-related issues, 86% were marked high-severity.
+Sync failures represent the most critical user experience issue. Of 65 sync-related issues, 86% were marked high-severity.
 
 **Real user impact:**
 > "This happend to me twice today. I sit down to edit a note on a computer. But it hasn't synced yet. So my stale data from half a day ago overwrites the new data...I can't take it anymore I am going to try Obsidian."
