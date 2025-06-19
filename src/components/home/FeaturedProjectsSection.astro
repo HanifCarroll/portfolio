@@ -11,8 +11,8 @@ const featuredProjects = (await getCollection("projects"))
 ---
 
 <section id="featured-projects" class="featured-projects-section">
-    <div class="container section-padding-block featured-projects-container">
-        <h2>Featured Projects</h2>
+    <div class="container featured-projects-container">
+        <h2 class="projects-heading">Selected Work</h2>
 
         <div class="projects-grid">
             {
@@ -37,34 +37,50 @@ const featuredProjects = (await getCollection("projects"))
 
 <style>
     .featured-projects-section {
-        background-color: var(--primary-500);
-        color: var(--secondary-500);
+        background-color: #fafafa;
+        color: #2c2c2c;
+    }
+
+    .featured-projects-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 80px 24px;
+    }
+
+    .projects-heading {
+        font-size: 2.25rem;
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        text-align: center;
+        margin-bottom: 60px;
+        color: #1a1a1a;
+        line-height: 1.2;
     }
 
     .projects-grid {
-        display: grid;
-        gap: var(--section-gap);
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
     }
 
     @media (min-width: 768px) {
+        .featured-projects-container {
+            padding: 100px 24px;
+        }
+
+        .projects-heading {
+            font-size: 2.75rem;
+            margin-bottom: 80px;
+        }
+
         .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3.75rem;
+            gap: 80px;
         }
     }
 
-    @media (min-width: 1280px) {
+    @media (min-width: 1024px) {
         .projects-grid {
-            grid-template-columns: 1fr;
-            gap: 5rem;
-        }
-
-        .projects-grid {
-            > :nth-child(even) {
-                .featured-project-card__image {
-                    order: 1;
-                }
-            }
+            gap: 100px;
         }
     }
 </style>
