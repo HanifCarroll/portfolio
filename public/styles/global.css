@@ -1,22 +1,34 @@
-:root {
-    --border-radius: 12px;
+/* ==========================================================================
+   CSS Custom Properties (CSS Variables)
+   ========================================================================== */
 
+:root {
+    /* Layout & Spacing */
+    --border-radius: 12px;
+    --container-max-width: 600px;
+    --container-padding-inline: 16px;
+    --section-padding-block: 32px;
+    --section-gap: 20px;
+    --button-padding-inline: 24px;
+    --button-padding-block: 12px;
+
+    /* Typography Scale */
     --font-size-body-small: 0.889rem;
     --font-size-caption: 0.889rem;
     --font-size-text-link: 0.889rem;
-    /* Start of Selection */
     --font-size-body: 1rem;
-    --font-size-h6: 1.125rem;
-    --font-size-h5: 1.266rem;
-    --font-size-h4: 1.424rem;
-    --font-size-h3: 1.602rem;
-    --font-size-h2: 1.802rem;
-    --font-size-h1: 2.027rem;
-    /* End of Selection */
+    --font-size-h6: 1.25rem;
+    --font-size-h5: 1.563rem;
+    --font-size-h4: 1.953rem;
+    --font-size-h3: 2.441rem;
+    --font-size-h2: 3.052rem;
+    --font-size-h1: 3.815rem;
 
+    /* Base Colors */
     --white: white;
     --black: black;
 
+    /* Blue Color Palette */
     --color-blue-50: #eaebed;
     --color-blue-100: #bec1c6;
     --color-blue-200: #9ea3ab;
@@ -28,6 +40,7 @@
     --color-blue-800: #191e28;
     --color-blue-900: #13171e;
 
+    /* Cream Color Palette */
     --color-cream-50: #fefdfd;
     --color-cream-100: #fdfaf8;
     --color-cream-200: #fcf8f4;
@@ -39,7 +52,7 @@
     --color-cream-800: #89837f;
     --color-cream-900: #696461;
 
-    /* Primary color aliases */
+    /* Semantic Color Aliases */
     --primary-50: var(--color-blue-50);
     --primary-100: var(--color-blue-100);
     --primary-200: var(--color-blue-200);
@@ -51,7 +64,6 @@
     --primary-800: var(--color-blue-800);
     --primary-900: var(--color-blue-900);
 
-    /* Secondary color aliases */
     --secondary-50: var(--color-cream-50);
     --secondary-100: var(--color-cream-100);
     --secondary-200: var(--color-cream-200);
@@ -62,164 +74,11 @@
     --secondary-700: var(--color-cream-700);
     --secondary-800: var(--color-cream-800);
     --secondary-900: var(--color-cream-900);
-
-    /* Default Mobile Values */
-    --container-max-width: 600px;
-    --container-padding-inline: 16px;
-    --section-padding-block: 32px;
-    --button-padding-inline: 24px;
-    --button-padding-block: 12px;
-    --section-gap: 20px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-family: "Poppins", sans-serif;
-    font-size: 100%;
-    color: var(--primary-500);
-    scroll-behavior: smooth;
-}
-
-body {
-    font-size: var(--font-size-body);
-    background-color: var(--secondary-500);
-}
-
-p {
-    line-height: 1.6;
-}
-
-a {
-    color: var(--primary-500);
-    text-decoration: none;
-}
-
-h6 {
-    font-size: var(--font-size-h6);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-h5 {
-    font-size: var(--font-size-h5);
-    font-weight: 500;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-h4 {
-    font-size: var(--font-size-h4);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-h3 {
-    font-size: var(--font-size-h3);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 110%;
-}
-
-h2 {
-    font-size: var(--font-size-h2);
-    font-weight: 700;
-    letter-spacing: -0.05rem;
-    line-height: 110%;
-    margin-bottom: var(--section-gap);
-}
-
-h1 {
-    font-size: var(--font-size-h1);
-    font-weight: 700;
-    letter-spacing: -0.05rem;
-    line-height: 90%;
-}
-
-/* Font size utility classes */
-.text-bold {
-    font-weight: bold;
-}
-
-.text-body-small {
-    font-size: var(--font-size-body-small);
-    font-weight: 400;
-    letter-spacing: 0em;
-}
-
-.text-caption {
-    font-size: var(--font-size-caption);
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    line-height: 120%;
-    text-transform: uppercase;
-}
-
-.text-body {
-    font-size: var(--font-size-body);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 150%;
-}
-
-.text-h6 {
-    font-size: var(--font-size-h6);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-.text-h5 {
-    font-size: var(--font-size-h5);
-    font-weight: 500;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-.text-h4 {
-    font-size: var(--font-size-h4);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 120%;
-}
-
-.text-h3 {
-    font-size: var(--font-size-h3);
-    font-weight: 400;
-    letter-spacing: 0em;
-    line-height: 110%;
-}
-
-.text-h2 {
-    font-size: var(--font-size-h2);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 110%;
-}
-
-.text-h1 {
-    font-size: var(--font-size-h1);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 90%;
-}
-
-.text-link {
-    font-size: var(--font-size-text-link);
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-}
-
-.nav-link {
-    font-size: var(--font-size-body);
-    font-weight: 500;
-    letter-spacing: 0em;
-}
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
 
 /* Tablet Breakpoint */
 @media (min-width: 768px) {
@@ -247,6 +106,174 @@ h1 {
     }
 }
 
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+    font-size: 100%;
+    color: var(--primary-500);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: var(--font-size-body);
+    background-color: var(--secondary-500);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/* Headings */
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    letter-spacing: -0.05rem;
+    line-height: 0.9;
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+    line-height: 1.1;
+    margin-bottom: var(--section-gap);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.1;
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+h6 {
+    font-size: var(--font-size-h6);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+/* Text Elements */
+p {
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary-500);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Typography Utilities */
+.text-bold {
+    font-weight: 700;
+}
+
+.text-body-small {
+    font-size: var(--font-size-body-small);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.text-caption {
+    font-size: var(--font-size-caption);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.text-body {
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+
+.text-h6 {
+    font-size: var(--font-size-h6);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.text-h5 {
+    font-size: var(--font-size-h5);
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.text-h4 {
+    font-size: var(--font-size-h4);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.text-h3 {
+    font-size: var(--font-size-h3);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.1;
+}
+
+.text-h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.text-h1 {
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+}
+
+.text-link {
+    font-size: var(--font-size-text-link);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+/* Layout Utilities */
 .container {
     width: 100%;
     max-width: var(--container-max-width);
@@ -259,41 +286,52 @@ h1 {
     padding-block: var(--section-padding-block);
 }
 
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+/* Button Components */
 .btn {
     display: inline-block;
-    padding-inline: var(--button-padding-inline);
-    padding-block: var(--button-padding-block);
+    padding: var(--button-padding-block) var(--button-padding-inline);
     background-color: var(--primary-500);
     color: var(--secondary-500);
+    border: none;
     border-radius: var(--border-radius);
     font-weight: 500;
-    transition: background-color 0.2s, transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        filter 0.15s ease;
+}
 
-    &:hover,
-    &:focus-visible {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
-        filter: brightness(1.35);
-    }
+.btn:hover,
+.btn:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.08);
+    filter: brightness(1.35);
+}
 
-    &:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
-        filter: brightness(0.95);
-    }
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+    filter: brightness(0.95);
 }
 
 .btn-outline {
-    border: 2px solid black;
     background-color: transparent;
     color: var(--primary-500);
+    border: 2px solid var(--black);
 }
 
 .btn-secondary {
     background-color: var(--secondary-500);
     color: var(--primary-500);
-}
-
-.hidden {
-    display: none !important;
 }

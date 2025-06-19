@@ -179,7 +179,7 @@ Users consistently describe the interface as "clunky" and "dated"—not just aes
 ## Business Impact
 
 - **User Retention:** Implementing sync reliability improvements would address the primary driver of user churn—86% of sync issues were high-severity, with users explicitly abandoning Joplin after data loss incidents
-- **User Acquisition:** UI modernization would remove adoption barriers, making Joplin more competitive against polished alternatives like Notion and Obsidian
+- **User Acquisition:** UI modernization would remove adoption barriers, making Joplin more competitive against polished alternatives like Notion and Evernote
 - **Community Growth:** Resolving the top pain points would reduce support burden and increase positive word-of-mouth recommendations in the open-source community
 
 ## What I Learned
