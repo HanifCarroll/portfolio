@@ -2,14 +2,48 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/home/HeroSection.astro";
 import FeaturedProjectsSection from "../components/home/FeaturedProjectsSection.astro";
-import AboutMeSection from "../components/home/AboutMeSection.astro";
-import MyServicesSection from "../components/home/MyServicesSection.astro";
 import MyProcessSection from "../components/home/MyProcessSection.astro";
 
 const pageTitle =
     "Hanif Carroll | Product Engineer - Research, Strategy, and Code";
 const pageDescription =
     "Product Engineer combining 7+ years of frontend development with user-centered design. Currently seeking Product Engineer roles at seed-stage startups.";
+
+const services = [
+    {
+        title: "Product Strategy & Research",
+        description:
+            "I start by understanding users deeply, not just implementing features quickly. My approach combines user research insights with strategic thinking to identify what problems are worth solving and how to solve them effectively.",
+        features: [
+            "User research & problem validation",
+            "Product strategy & roadmap planning",
+            "User journey mapping & optimization",
+            "Market analysis & competitive research",
+        ],
+    },
+    {
+        title: "Technical Product Development",
+        description:
+            "My technical background enables me to rapidly build and test product ideas with real functionality. I create working prototypes that validate assumptions before committing to full development, saving time and reducing risk.",
+        features: [
+            "Functional prototypes with real data flow",
+            "Quick iteration based on user feedback",
+            "Full-stack application development",
+            "Technical feasibility assessment",
+        ],
+    },
+    {
+        title: "Full-Stack Product Building",
+        description:
+            "I bridge the gap between product vision and technical reality by handling both strategic decisions and implementation. This eliminates miscommunication and ensures product ideas translate into working solutions that users love.",
+        features: [
+            "End-to-end feature development",
+            "Modern full-stack development",
+            "Scalable, performance-optimized user experiences",
+            "Cross-functional team collaboration",
+        ],
+    },
+];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -17,9 +51,237 @@ const pageDescription =
 
     <FeaturedProjectsSection />
 
-    <AboutMeSection />
+    <section class="about-me-section">
+        <div class="container section-padding-block about-me-container">
+            <h2>About Me</h2>
+            <div class="about-me-flex">
+                <div class="portrait-container">
+                    <img
+                        src="/img/portrait-professional.webp"
+                        alt="Professional portrait"
+                        class="about-me-avatar"
+                        width="310"
+                        height="292"
+                        loading="lazy"
+                    />
+                    <img
+                        src="/img/portrait-professional-desktop.webp"
+                        alt="Professional portrait"
+                        class="about-me-avatar-desktop"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="about-me-content">
+                    <p>
+                        With <span class="text-bold"
+                            >7+ years of frontend development experience</span
+                        >, I've evolved into a Product Engineer who combines
+                        technical execution with product strategy and user
+                        research to create digital products that users genuinely
+                        love.
+                    </p>
+                    <p>
+                        My unique advantage is <span class="text-bold"
+                            >thinking across the full product lifecycle</span
+                        >. I can conduct user research to identify real
+                        problems, make strategic decisions about what to build,
+                        then execute technically using modern development
+                        tools—all without handoff delays or lost context.
+                    </p>
+                    <p>
+                        My experience ranges from enterprise environments
+                        (Capgemini) to fast-moving startups (LeagueApps), giving
+                        me
+                        <span class="text-bold">
+                            deep understanding of how successful products get
+                            built</span
+                        >
+                        and the cross-functional collaboration skills essential in
+                        early-stage environments.
+                    </p>
+                    <p>
+                        I'm passionate about creating products that bring people
+                        together and help them live more fulfilling lives. <span
+                            class="text-bold"
+                            >Currently seeking Founding/Product Engineer roles
+                            at seed-stage startups</span
+                        >
+                        where I can contribute to product strategy while building
+                        the technical foundation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <MyServicesSection />
+    <section class="services-section">
+        <div class="container section-padding-block about-me-container">
+            <h2>What I Bring to Early-Stage Teams</h2>
+            <div class="service-cards">
+                {
+                    services.map((service) => (
+                        <div class="card">
+                            <h5 class="card-title">{service.title}</h5>
+                            <p class="card-description">
+                                {service.description}
+                            </p>
+                            <ul class="features-list">
+                                {service.features.map((feature) => (
+                                    <li class="feature-item">
+                                        <span class="checkmark-icon-bg">
+                                            <svg
+                                                class="checkmark-icon"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="3"
+                                                    d="M5 13l4 4L19 7"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <span class="feature-text">
+                                            {feature}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
 
     <MyProcessSection />
 </BaseLayout>
+
+<style>
+    .service-cards {
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+    }
+    .card {
+        background-color: var(--secondary-100);
+        border-radius: var(--border-radius);
+        padding: 1.25rem;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        max-width: 60ch;
+    }
+    .card-description {
+        line-height: 1.625;
+    }
+    .features-list {
+        list-style: none;
+        padding: 0;
+    }
+    .features-list li + li {
+        margin-top: 0.75rem;
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+    }
+    .feature-text {
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    @media (min-width: 768px) {
+        .card {
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+    }
+    @media (min-width: 1280px) {
+        .card {
+            padding: 2rem;
+            gap: 2rem;
+        }
+    }
+    .checkmark-icon-bg {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 9999px;
+        background-color: var(--primary-500);
+        margin-right: 0.5rem;
+    }
+    .checkmark-icon {
+        width: 1rem;
+        height: 1rem;
+        color: var(--secondary-500);
+    }
+    .about-me-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    .portrait-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 24px;
+    }
+    .about-me-avatar {
+        width: 310px;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+    .about-me-avatar-desktop {
+        display: none;
+    }
+    .about-me-content {
+        line-height: 1.7;
+        max-width: 60ch;
+    }
+    .about-me-content p:not(:last-of-type) {
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .about-me-flex {
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 2.5rem;
+        }
+        .portrait-container {
+            width: 165px;
+            height: 400px;
+            justify-content: flex-start;
+            align-items: stretch;
+            display: flex;
+            margin-bottom: 0;
+        }
+        .about-me-avatar {
+            display: none;
+        }
+        .about-me-avatar-desktop {
+            display: block;
+            object-fit: cover;
+        }
+    }
+
+    @media (min-width: 1268px) {
+        .portrait-container {
+            width: auto;
+            height: 520px;
+            margin-bottom: 0;
+        }
+    }
+</style>
