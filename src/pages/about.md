@@ -46,7 +46,7 @@ Simplicity is another guiding principle of mine, both in life and in design. Les
 
 Connecting with others and sharing ideas is a source of joy, as is teaching and learning. This mutual exchange supports self-discovery and growth for everyone involved.
 
-My interest in bringing people together and creating spaces for connection stems from a belief in the essential role of community in a meaningful life.
+My interest in bringing people together and creating spaces for connection stems from a belief in the essential role of community in a meaningful life. Related to this, I organize a community in Buenos Aires that bridges the gap between digital nomads, expats, and locals. We run events that allow these different groups to come toogether and connect at a deeper level than they might normally at a normal social event. Intentionality drives us.
 
 ### Fitness
 
