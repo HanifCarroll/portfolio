@@ -1,5 +1,5 @@
 ---
-title: Data-Driven Product Strategy for Joplin
+title: "Joplin UX: Turning 754 User Comments into an Actionable Product Roadmap"
 description: "AI-powered analysis of 754 user feedback items to transform unstructured data into actionable product strategy. Built automated pipeline to categorize pain points and feature requests, identifying critical sync reliability and UI modernization priorities that directly impact user retention and growth."
 tags: ["Product Strategy", "Data Analysis", "AI", "User Research", "Product Management"]
 image: "./pain-points-distribution.png"

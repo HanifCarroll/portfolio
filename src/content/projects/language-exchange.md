@@ -1,5 +1,5 @@
 ---
-title: "Buenos Aires Language Connect"
+title: "Validating a Niche Market & Building the MVP for a Local Language App"
 description: "A complete product development cycle from user research to MVP, demonstrating how to identify market opportunities and build solutions people actually want to use. From user interviews to functional prototype, exploring how small-scale exchanges can create better learning experiences."
 tags: ["Product Strategy", "User Research", "MVP Development", "Prototyping"]
 image: "./language-exchange.jpeg"
