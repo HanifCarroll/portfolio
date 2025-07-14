@@ -2,9 +2,13 @@
     <div class="container hero-container">
         <div class="hero-content">
             <div class="hero-text">
-                <span class="hero-tagline">Product Engineer</span>
-                <h1 class="hero-title">Hi, I'm Hanif</h1>
-                <div class="hero-description">
+                <span class="hero-tagline hero-animate" data-delay="100"
+                    >Product Engineer</span
+                >
+                <h1 class="hero-title hero-animate" data-delay="200">
+                    Hi, I'm Hanif
+                </h1>
+                <div class="hero-description hero-animate" data-delay="300">
                     <p>
                         I'm a product engineer who combines user research,
                         strategic thinking, and technical execution to build
@@ -16,7 +20,7 @@
                         genuine user empathy and strategic product vision.
                     </p>
                 </div>
-                <div class="hero-actions">
+                <div class="hero-actions hero-animate" data-delay="400">
                     <a href="#featured-projects" class="hero-button primary"
                         >View Featured Projects</a
                     >
@@ -32,7 +36,10 @@
                     </a>
                 </div>
             </div>
-            <div class="hero-image-container">
+            <div
+                class="hero-image-container hero-animate-scale"
+                data-delay="500"
+            >
                 <img
                     src="img/portrait.webp"
                     alt="Portrait of Hanif Carroll, smiling."
@@ -43,7 +50,91 @@
     </div>
 </section>
 
+<script>
+    // Wait for DOM to be ready
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (prefersReducedMotion) {
+            // If user prefers reduced motion, just show all elements
+            document
+                .querySelectorAll(".hero-animate, .hero-animate-scale")
+                .forEach((el) => {
+                    (el as HTMLElement).style.opacity = "1";
+                    (el as HTMLElement).style.transform = "none";
+                });
+            return;
+        }
+
+        // Animate elements with staggered timing
+        const animateElements = document.querySelectorAll(".hero-animate");
+        const scaleElements = document.querySelectorAll(".hero-animate-scale");
+
+        animateElements.forEach((el) => {
+            const delay = parseInt(el.getAttribute("data-delay") || "0");
+            setTimeout(() => {
+                el.classList.add("animate-in");
+            }, delay);
+        });
+
+        scaleElements.forEach((el) => {
+            const delay = parseInt(el.getAttribute("data-delay") || "0");
+            setTimeout(() => {
+                el.classList.add("animate-scale-in");
+            }, delay);
+        });
+    });
+</script>
+
 <style>
+    /* Animation keyframes */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    /* Initial states */
+    .hero-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: none;
+    }
+
+    .hero-animate-scale {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+        transition: none;
+    }
+
+    /* Animated states */
+    .hero-animate.animate-in {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-animate-scale.animate-scale-in {
+        animation: fadeInScale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
     .hero-section {
         background-color: #ffffff;
         color: #2c2c2c;
@@ -122,6 +213,7 @@
         border-radius: 2px;
         text-align: center;
         width: 100%;
+        transform: translateY(0);
     }
 
     .hero-button.primary {
@@ -133,6 +225,7 @@
     .hero-button.primary:hover {
         background-color: #1a1a1a;
         border-color: #1a1a1a;
+        transform: translateY(-1px);
     }
 
     .hero-button.secondary {
@@ -144,6 +237,7 @@
     .hero-button.secondary:hover {
         background-color: #f5f5f5;
         border-color: #999;
+        transform: translateY(-1px);
     }
 
     .hero-image-container {
@@ -156,6 +250,30 @@
         object-fit: cover;
         border-radius: 2px;
         display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-animate,
+        .hero-animate-scale {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .hero-animate.animate-in,
+        .hero-animate-scale.animate-scale-in {
+            animation: none !important;
+        }
+
+        .hero-button:hover,
+        .hero-image:hover {
+            transform: none;
+        }
     }
 
     @media (min-width: 768px) {
