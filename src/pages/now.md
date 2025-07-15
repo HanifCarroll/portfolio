@@ -10,11 +10,15 @@ location: Buenos Aires, Argentina
 
 (This is [a now page](https://nownownow.com/about), and if you have your own site, consider adding a now page to it.)
 
-_Last Updated June 13th, 2025_
+_Last Updated July 15th, 2025_
 
-## From Freelance to Product
+## From Developer to Product
 
-After careful reflection, I've decided to set my sights on a new career path. My long term goal is to create a software studio that makes consumer apps that connect people and make their lives better. My shorter term goal is to join an early-stage startup as a founding engineer, where I can learn the full product lifecycle—from user research to technical architecture—while contributing to building something people genuinely want to use.
+After careful reflection, I've decided to set my sights on new career goals. My long term goal is to create a software studio that makes apps that connect people and make their lives better. My shorter term goal is to start consulting with startups on product development. I still love programming, and I'll continue to do it, but now I'll be doing more strategy work as well.
+
+## Learning Russian
+
+I recently started learning Russian. It's a language that always interested me, but I'm finally decided to invest some time into it due to all of the interactions I've had with Russian speaking people here in Buenos Aires. Being able to use a language is a big motivator to learn it. One thing surprised me: the alphabet wasn't as hard to learn as I thought it would be!
 
 ## Scheduling Virtual Coffee Chats
 
@@ -28,12 +32,4 @@ _(If you can’t find a suitable time, send me an email and we’ll work it out.
 
 I decided to start a new side project: a mobile app for people in Buenos Aires, Argentina to find other people for language exchanges. The idea is that they use the app to find people interested in practicing their language skills, then they coordinate to meet up in person.
 
-I'm developing it Lean Startup style, aiming for fast iterations and getting feedback as quickly as I can.
-
-## Spanish Mastery
-
-Every day, I dedicate a bit of time to practicing my Spanish by reading aloud and by listening to audio books, podcasts, or YouTube videos. I've been doing this for about 5 weeks, and it's surprising how much more fluent I feel.
-
-## Eastern Philosophies
-
-I'm having a great time learning more about Eastern Philosophies, specifically Taoism and Buddhism. Currently reading The Tao of Pooh in Spanish.
+I'm developing it Lean Startup style, aiming for fast iterations and getting feedback as quickly as I can. I had to pause development for a bit while I looked for a job, but I'll be starting MVP development very soon.
