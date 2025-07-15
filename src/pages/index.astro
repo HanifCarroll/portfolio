@@ -44,10 +44,33 @@ const services = [
         ],
     },
 ];
+
+const trustedByCompanies = [
+    "Capgemini",
+    "LeagueApps",
+    "Disney Cruise Line",
+    "GE Aerospace",
+    "Cisco",
+];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
     <HeroSection />
+
+    <section class="trusted-by-section">
+        <div class="container trusted-by-container">
+            <h2 class="trusted-by-heading">Trusted By</h2>
+            <div class="trusted-by-logos">
+                {
+                    trustedByCompanies.map((company) => (
+                        <div class="trusted-by-logo">
+                            <span class="company-name">{company}</span>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
 
     <FeaturedProjectsSection />
 
@@ -274,6 +297,55 @@ const services = [
         font-weight: 300;
     }
 
+    .trusted-by-section {
+        color: #2c2c2c;
+        padding: 60px 24px;
+        text-align: center;
+    }
+
+    .trusted-by-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .trusted-by-heading {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        color: var(--accent-600);
+        line-height: 1.2;
+    }
+
+    .trusted-by-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .trusted-by-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+    }
+
+    .trusted-by-logo:hover {
+        opacity: 1;
+    }
+
+    .company-name {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #666;
+        text-align: center;
+        letter-spacing: 0.01em;
+    }
+
     @media (min-width: 768px) {
         .about-container {
             padding: 100px 24px;
@@ -335,6 +407,24 @@ const services = [
         .capability-description {
             font-size: 1.125rem;
         }
+
+        .trusted-by-section {
+            padding: 40px 24px 80px 24px;
+        }
+
+        .trusted-by-heading {
+            font-size: 1rem;
+            margin-bottom: 50px;
+        }
+
+        .trusted-by-logos {
+            gap: 48px;
+            justify-content: center;
+        }
+
+        .company-name {
+            font-size: 1.125rem;
+        }
     }
 
     @media (min-width: 1024px) {
@@ -356,6 +446,11 @@ const services = [
         .capability-card:last-child {
             grid-column: 1 / -1;
             width: 70%;
+            margin: 0 auto;
+        }
+
+        .trusted-by-logos {
+            justify-content: space-between;
             margin: 0 auto;
         }
     }
