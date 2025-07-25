@@ -1,4 +1,4 @@
-export const SITE_TITLE_SUFFIX = "Hanif Carroll Product Engineer";
+export const SITE_TITLE_SUFFIX = "Hanif Carroll - Product Engineer";
 
 export function createPageTitle(pageTitle: string): string {
     return `${pageTitle} | ${SITE_TITLE_SUFFIX}`;
