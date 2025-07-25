@@ -1,5 +1,5 @@
 ---
-title: "Now | Hanif Carroll Web Designer & Developer"
+title: "Now"
 description: "See what Hanif Carroll is focused on right now: current projects, priorities, and what’s new."
 layout: ../layouts/MarkdownLayout.astro
 updated: 2025-06-13

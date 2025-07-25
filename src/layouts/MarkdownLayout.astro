@@ -3,12 +3,22 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import Head from "../components/Head.astro";
 import MarkdownRenderer from "../components/MarkdownRenderer.astro";
+import { SITE_TITLE_SUFFIX } from "../utils/siteConfig";
 
 export interface Props {
-    title: string;
-    description: string;
+    frontmatter: {
+        title: string;
+        description: string;
+    };
 }
-const { title, description } = Astro.props;
+const frontmatter = Astro.props.frontmatter || Astro.props;
+let { title, description } = frontmatter;
+
+// Automatically add suffix if not already present
+if (!title.includes(SITE_TITLE_SUFFIX)) {
+    const pagePrefix = title.replace(/\s*\|\s*.*$/, ''); // Remove any existing suffix
+    title = `${pagePrefix} | ${SITE_TITLE_SUFFIX}`;
+}
 ---
 
 <!doctype html>

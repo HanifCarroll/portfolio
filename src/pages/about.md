@@ -1,5 +1,5 @@
 ---
-title: "About | Hanif Carroll UX Engineer"
+title: "About"
 description: "Learn about Hanif Carroll's journey from frontend developer to UX Engineer, his passion for user-centered design, and what drives him to create digital products that bring people together."
 layout: ../layouts/MarkdownLayout.astro
 ---
