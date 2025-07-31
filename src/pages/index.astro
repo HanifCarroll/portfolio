@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HeroSection from "../components/home/HeroSection.astro";
-import FeaturedProjectsSection from "../components/home/FeaturedProjectsSection.astro";
-import MyProcessSection from "../components/home/MyProcessSection.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import FeaturedProjectCard from "../components/FeaturedProjectCard.astro";
 import { SITE_CONFIG } from "../utils/siteConfig";
 
 const pageTitle = SITE_CONFIG.defaultTitle;
@@ -52,10 +51,89 @@ const trustedByCompanies = [
     "GE Aerospace",
     "Cisco",
 ];
+
+const featuredProjects = (await getCollection("projects"))
+    .filter((project: CollectionEntry<"projects">) => project.data.isFeatured)
+    .sort(
+        (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
+            (a.data.order ?? 0) - (b.data.order ?? 0)
+    );
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-    <HeroSection />
+    <!-- Hero Section -->
+    <section class="bg-white text-gray-800 min-h-[80vh] flex items-center">
+        <div class="container w-full py-[60px] px-6 md:py-20 lg:py-[100px]">
+            <div
+                class="flex flex-col gap-12 items-center md:flex-row md:gap-[60px] md:items-center md:text-left lg:gap-20"
+            >
+                <div class="max-w-[600px] md:flex-1 md:max-w-none">
+                    <span
+                        class="hero-tagline hero-animate text-[0.9rem] font-medium text-accent-600 uppercase tracking-[0.15em] mb-4 block"
+                        data-delay="100">From Idea to Launch in Weeks</span
+                    >
+                    <h1
+                        class="hero-title hero-animate text-[3rem] font-light text-gray-900 m-0 mb-4 leading-[1.1] tracking-tight md:text-[3.5rem] md:mb-6 lg:text-[4rem]"
+                        data-delay="200"
+                    >
+                        Hi, I'm Hanif
+                    </h1>
+                    <p
+                        class="hero-credibility hero-animate text-lg text-gray-600 mb-6 font-normal"
+                        data-delay="250"
+                    >
+                        7 years building products for startups and enterprises
+                    </p>
+                    <div
+                        class="hero-description hero-animate flex flex-col gap-5 mb-10 md:mb-12"
+                        data-delay="300"
+                    >
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0 lg:text-[1.25rem]"
+                        >
+                            I help agencies and businesses build products that
+                            users love by combining user research, strategic
+                            thinking, and full-stack development in one person.
+                        </p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0 lg:text-[1.25rem]"
+                        >
+                            With 7 years of technical experience, I can quickly
+                            turn ideas into working prototypes, then build the
+                            production version—eliminating handoff friction and
+                            reducing project risk.
+                        </p>
+                    </div>
+                    <div
+                        class="hero-actions hero-animate flex flex-col gap-4 items-center md:flex-row md:gap-5 md:items-start"
+                        data-delay="400"
+                    >
+                        <a
+                            href="/services"
+                            class="hero-button primary inline-block py-button-y px-button-x text-[0.95rem] font-normal tracking-normal transition-all duration-200 ease-in-out rounded-sm text-center w-full transform translate-y-0 bg-gray-800 text-white border border-gray-800 hover:bg-gray-900 hover:border-gray-900 hover:-translate-y-px"
+                            >View My Services</a
+                        >
+                        <a
+                            class="hero-button secondary inline-block py-button-y px-button-x text-[0.95rem] font-normal tracking-normal transition-all duration-200 ease-in-out rounded-sm text-center w-full transform translate-y-0 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 hover:-translate-y-px"
+                            href="https://cal.com/hanifcarroll/discovery"
+                        >
+                            Schedule a Discovery Call
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="hero-image-container hero-animate-scale flex-shrink-0"
+                    data-delay="500"
+                >
+                    <img
+                        src="img/portrait.webp"
+                        alt="Portrait of Hanif Carroll, smiling."
+                        class="hero-image w-[280px] h-auto object-cover rounded-sm block transition-transform duration-300 ease-in-out hover:scale-[1.02] md:w-80 lg:w-[360px]"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Brief Services Section -->
     <section class="bg-white text-gray-800 border-t border-gray-100">
@@ -203,7 +281,44 @@ const trustedByCompanies = [
         </div>
     </section>
 
-    <FeaturedProjectsSection />
+    <!-- Featured Projects Section -->
+    <section id="featured-projects" class="bg-gray-50 text-gray-800">
+        <div
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <h2
+                class="text-5xl font-light tracking-tight text-center mb-4 text-gray-900 leading-tight md:text-[2.75rem]"
+            >
+                Featured Projects
+            </h2>
+            <p
+                class="text-lg font-light leading-relaxed text-gray-500 text-center max-w-2xl mx-auto mb-[60px] md:mb-20"
+            >
+                See my approach in action. These personal projects demonstrate
+                my ability to combine user research, strategic thinking, and
+                technical execution to create meaningful products.
+            </p>
+
+            <div class="flex flex-col gap-[60px] md:gap-20 lg:gap-[100px]">
+                {
+                    featuredProjects.map((project: any) => {
+                        return (
+                            <FeaturedProjectCard
+                                title={project.data.title}
+                                description={project.data.description}
+                                tags={project.data.tags}
+                                image={project.data.image}
+                                imageAlt={
+                                    project.data.imageAlt ?? project.data.title
+                                }
+                                slug={project.slug}
+                            />
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
 
     <section class="bg-gray-50 text-gray-800">
         <div
@@ -271,7 +386,9 @@ const trustedByCompanies = [
     <section class="bg-white text-gray-800 py-20 md:py-[100px] lg:py-[120px]">
         <div class="container max-w-container mx-auto px-6">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]">
+                <h2
+                    class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]"
+                >
                     What People Say
                 </h2>
                 <div
@@ -378,7 +495,199 @@ const trustedByCompanies = [
         </div>
     </section>
 
-    <MyProcessSection />
+    <!-- My Process Section -->
+    <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
+        <div
+            class="container max-w-[1000px] mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <h2
+                class="text-5xl font-light tracking-tight text-center mb-4 text-gray-900 leading-tight md:text-[2.75rem]"
+            >
+                My Process
+            </h2>
+            <p
+                class="text-lg font-light leading-relaxed text-gray-500 text-center max-w-[700px] mx-auto mb-16"
+            >
+                A proven approach that turns ideas into working products
+                quickly, with your input every step of the way.
+            </p>
+
+            <div
+                class="grid gap-8 max-w-[1000px] mx-auto md:grid-cols-2 lg:grid-cols-4"
+            >
+                <!-- Step 1 -->
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
+                    >
+                        1
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Discovery
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We discuss your goals, users, and constraints. I ask the
+                        right questions to understand what success looks like.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
+                    >
+                        2
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Rapid Prototyping
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I quickly build working prototypes to test ideas and get
+                        early feedback before committing to full development.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
+                    >
+                        3
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Iterative Development
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        We work in short cycles with regular check-ins, so you
+                        see progress and can course-correct as needed.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
+                    >
+                        4
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Launch & Support
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I ensure smooth deployment and provide documentation so
+                        your team can maintain and grow the product.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Differentiators -->
+            <div
+                class="mt-16 bg-white rounded-lg p-8 border border-gray-200 max-w-[800px] mx-auto"
+            >
+                <h3 class="text-2xl font-medium text-gray-900 mb-6 text-center">
+                    What Makes My Process Different
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-accent-600 mb-3">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="mx-auto"
+                            >
+                                <path
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-2">
+                            No Handoffs
+                        </h4>
+                        <p class="text-sm text-gray-600">
+                            I handle strategy, design decisions, and technical
+                            implementation—no context lost between teams.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-accent-600 mb-3">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="mx-auto"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-2">
+                            Speed & Quality
+                        </h4>
+                        <p class="text-sm text-gray-600">
+                            Working prototypes in days, not weeks.
+                            Production-ready code that's built to scale.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-accent-600 mb-3">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="mx-auto"
+                            >
+                                <path
+                                    d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                                ></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-2">
+                            True Collaboration
+                        </h4>
+                        <p class="text-sm text-gray-600">
+                            You're involved throughout, with regular demos and
+                            the ability to influence direction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <p class="text-lg font-light text-gray-500 mb-6">
+                    Ready to start building? Let's discuss your project.
+                </p>
+                <a
+                    href="https://cal.com/hanifcarroll/discovery"
+                    class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
+                >
+                    Schedule Your Free Discovery Call
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- FAQ Section -->
     <section
@@ -386,7 +695,9 @@ const trustedByCompanies = [
     >
         <div class="container max-w-container mx-auto px-6">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]">
+                <h2
+                    class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]"
+                >
                     Frequently Asked Questions
                 </h2>
                 <div class="space-y-8">
@@ -455,3 +766,108 @@ const trustedByCompanies = [
         </div>
     </section>
 </BaseLayout>
+
+<script>
+    // Wait for DOM to be ready
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (prefersReducedMotion) {
+            // If user prefers reduced motion, just show all elements
+            document
+                .querySelectorAll(".hero-animate, .hero-animate-scale")
+                .forEach((el) => {
+                    (el as HTMLElement).style.opacity = "1";
+                    (el as HTMLElement).style.transform = "none";
+                });
+            return;
+        }
+
+        // Animate elements with staggered timing
+        const animateElements = document.querySelectorAll(".hero-animate");
+        const scaleElements = document.querySelectorAll(".hero-animate-scale");
+
+        animateElements.forEach((el) => {
+            const delay = parseInt(el.getAttribute("data-delay") || "0");
+            setTimeout(() => {
+                el.classList.add("animate-in");
+            }, delay);
+        });
+
+        scaleElements.forEach((el) => {
+            const delay = parseInt(el.getAttribute("data-delay") || "0");
+            setTimeout(() => {
+                el.classList.add("animate-scale-in");
+            }, delay);
+        });
+    });
+</script>
+
+<style>
+    /* Animation keyframes */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    /* Initial states */
+    .hero-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: none;
+    }
+
+    .hero-animate-scale {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+        transition: none;
+    }
+
+    /* Animated states */
+    .hero-animate.animate-in {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-animate-scale.animate-scale-in {
+        animation: fadeInScale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-animate,
+        .hero-animate-scale {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .hero-animate.animate-in,
+        .hero-animate-scale.animate-scale-in {
+            animation: none !important;
+        }
+
+        .hero-button:hover,
+        .hero-image:hover {
+            transform: none;
+        }
+    }
+</style>
