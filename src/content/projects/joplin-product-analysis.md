@@ -4,7 +4,7 @@ description: "AI-powered analysis of 754 user feedback items to transform unstru
 tags: ["Product Strategy", "Data Analysis", "AI", "User Research", "Product Management"]
 image: "./pain-points-distribution.png"
 imageAlt: "Distribution chart showing categorized pain points from Joplin user feedback analysis"
-order: 2
+order: 3
 toolsUsed:
     [
         "Large Language Models",
