@@ -57,111 +57,14 @@ const trustedByCompanies = [
 <BaseLayout title={pageTitle} description={pageDescription}>
     <HeroSection />
 
-    <section
-        class="text-gray-800 py-[60px] px-6 text-center md:py-10 md:pb-20 lg:justify-between"
-    >
-        <div class="container">
-            <h2 class="text-base text-accent-600 mb-10 md:mb-[50px]">
-                Trusted By
-            </h2>
-            <div
-                class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:justify-between lg:mx-auto"
-            >
-                {
-                    trustedByCompanies.map((company) => (
-                        <div class="flex items-center justify-center opacity-60 transition-opacity duration-200 ease-in-out hover:opacity-100">
-                            <span class="text-lg font-normal text-gray-500 text-center tracking-[0.01em] md:text-lg">
-                                {company}
-                            </span>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </section>
-
-    <FeaturedProjectsSection />
-
-    <section class="bg-gray-50 text-gray-800">
+    <!-- Brief Services Section -->
+    <section class="bg-white text-gray-800 border-t border-gray-100">
         <div
             class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
         >
-            <div
-                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start md:text-left lg:gap-20"
-            >
-                <div class="flex-shrink-0">
-                    <img
-                        src="/img/portrait-professional.webp"
-                        alt="Professional portrait"
-                        class="w-[280px] h-auto object-cover block rounded-sm md:hidden"
-                        width="310"
-                        height="292"
-                        loading="lazy"
-                    />
-                    <img
-                        src="/img/portrait-professional-desktop.webp"
-                        alt="Professional portrait"
-                        class="hidden md:block w-60 h-auto object-cover rounded-sm lg:w-[280px]"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="max-w-[600px] md:text-left">
-                    <h2
-                        class="text-5xl font-light tracking-tight mb-8 text-gray-900 leading-tight md:text-[2.75rem] md:mb-9"
-                    >
-                        About
-                    </h2>
-                    <div class="flex flex-col gap-6">
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
-                        >
-                            With 7+ years of development experience, I'm a
-                            Technical Product Expert who combines strategic
-                            thinking, user research, and full-stack development
-                            to create digital products that users genuinely
-                            love.
-                        </p>
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
-                        >
-                            My unique advantage is thinking across the full
-                            product lifecycle. I can conduct user research to
-                            identify real problems, make strategic decisions
-                            about what to build, then execute technically—all
-                            without handoff delays or lost context.
-                        </p>
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
-                        >
-                            My experience ranges from enterprise environments
-                            (Capgemini) to fast-moving startups (LeagueApps),
-                            giving me deep understanding of how successful
-                            products get built and the collaboration skills
-                            essential for agency and client work.
-                        </p>
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
-                        >
-                            I'm passionate about creating products that bring
-                            people together and help them live more fulfilling
-                            lives. I work with agencies and businesses who want
-                            to move fast without sacrificing quality or user
-                            experience.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Teaser Section -->
-    <section class="bg-white text-gray-800 border-t border-gray-100">
-        <div
-            class="container max-w-container mx-auto py-16 px-6 md:py-20 lg:py-24"
-        >
             <div class="text-center mb-12">
                 <h2
-                    class="text-4xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-5xl"
+                    class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
                 >
                     How I Can Help You Build Better Products
                 </h2>
@@ -294,8 +197,146 @@ const trustedByCompanies = [
                     href="/services"
                     class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
                 >
-                    View All Services
+                    Explore All Services
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <FeaturedProjectsSection />
+
+    <section class="bg-gray-50 text-gray-800">
+        <div
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <div
+                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start md:text-left lg:gap-20"
+            >
+                <div class="flex-shrink-0">
+                    <img
+                        src="/img/portrait-professional.webp"
+                        alt="Professional portrait"
+                        class="w-[280px] h-auto object-cover block rounded-sm md:hidden"
+                        width="310"
+                        height="292"
+                        loading="lazy"
+                    />
+                    <img
+                        src="/img/portrait-professional-desktop.webp"
+                        alt="Professional portrait"
+                        class="hidden md:block w-60 h-auto object-cover rounded-sm lg:w-[280px]"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="max-w-[600px] md:text-left">
+                    <h2
+                        class="text-5xl font-light tracking-tight mb-8 text-gray-900 leading-tight md:text-[2.75rem]"
+                    >
+                        About
+                    </h2>
+                    <div class="flex flex-col gap-6">
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
+                            With <strong class="font-medium text-gray-700"
+                                >7+ years</strong
+                            > of development experience, I've become a Technical
+                            Product Expert who combines strategic thinking, user
+                            research, and full-stack development to create digital
+                            products that users genuinely love.
+                        </p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
+                            My unique advantage is thinking across the full
+                            product lifecycle. I can conduct user research, make
+                            strategic decisions, then execute technically—all
+                            without handoff delays or lost context.
+                        </p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
+                            <strong class="font-medium text-gray-700"
+                                >Products built for:</strong
+                            >
+                            {trustedByCompanies.join(", ")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="bg-white text-gray-800 py-20 md:py-[100px] lg:py-[120px]">
+        <div class="container max-w-container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]">
+                    What People Say
+                </h2>
+                <div
+                    class="bg-gray-50 rounded-lg p-8 md:p-10 border border-gray-100"
+                >
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="flex-shrink-0">
+                            <div
+                                class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center"
+                            >
+                                <span class="text-accent-600 font-medium"
+                                    >SH</span
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900">
+                                Sarah Hibner
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                                Senior Product Designer at LeagueApps
+                            </p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 leading-relaxed">
+                        <p class="mb-4">
+                            "I got to experience Hanif's collaborative front-end
+                            engineering skills in my role as a product designer
+                            on the scheduling team at LeagueApps, and he was a
+                            pleasure to work with!
+                        </p>
+                        <p class="mb-4">
+                            We worked together mostly on the tournament
+                            schedules product, and as my teammate, Hanif:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 mb-4">
+                            <li>
+                                Suggested design-to-engineering hand-off
+                                improvements to help make our team workflow more
+                                efficient
+                            </li>
+                            <li>
+                                Provided great feedback when our team was
+                                tightening up product requirements during story
+                                time reviews
+                            </li>
+                            <li>
+                                Asked insightful follow-up questions during
+                                design reviews, in Figma files, and in Jira
+                                tickets
+                            </li>
+                            <li>
+                                Brought my Figma designs to life so we could
+                                deliver value to our users in a production
+                                environment!
+                            </li>
+                        </ul>
+                        <p class="text-gray-700">
+                            I'd be happy to collaborate with Hanif again and
+                            can't recommend him enough to other teams looking
+                            for a collaborative, thorough, and all-around
+                            stellar front-end engineer."
+                        </p>
+                    </blockquote>
+                </div>
             </div>
         </div>
     </section>
@@ -305,7 +346,7 @@ const trustedByCompanies = [
             class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
         >
             <h2
-                class="text-5xl font-light tracking-tight text-center mb-[60px] text-gray-900 leading-tight md:text-[2.75rem] md:mb-20"
+                class="text-5xl font-light tracking-tight text-center mb-[60px] text-gray-900 leading-tight md:text-[2.75rem]"
             >
                 Why Work With Me
             </h2>
@@ -338,4 +379,79 @@ const trustedByCompanies = [
     </section>
 
     <MyProcessSection />
+
+    <!-- FAQ Section -->
+    <section
+        class="bg-white text-gray-800 border-t border-gray-100 py-20 md:py-[100px] lg:py-[120px]"
+    >
+        <div class="container max-w-container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]">
+                    Frequently Asked Questions
+                </h2>
+                <div class="space-y-8">
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-medium text-gray-900 mb-3">
+                            How long does a typical project take?
+                        </h3>
+                        <p class="text-gray-600">
+                            <strong>Prototype Sprint:</strong> 2 weeks from kickoff
+                            to working prototype<br />
+                            <strong>MVP Development:</strong> 6-8 weeks for a market-ready
+                            product<br />
+                            <strong>Custom Website:</strong> 2-3 weeks for a fully
+                            functional site
+                        </p>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-medium text-gray-900 mb-3">
+                            What's included in the discovery call?
+                        </h3>
+                        <p class="text-gray-600">
+                            We'll discuss your project goals, technical
+                            requirements, timeline, and budget. I'll share
+                            insights on the best approach and we'll determine if
+                            we're a good fit to work together. No pressure, just
+                            clarity on your next steps.
+                        </p>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-medium text-gray-900 mb-3">
+                            Do you work with agencies or direct clients?
+                        </h3>
+                        <p class="text-gray-600">
+                            Both! I work directly with businesses who need
+                            products built, and I also partner with agencies as
+                            an embedded technical expert for their client
+                            projects.
+                        </p>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-medium text-gray-900 mb-3">
+                            What technologies do you work with?
+                        </h3>
+                        <p class="text-gray-600">
+                            I use modern web technologies including React,
+                            Next.js, TypeScript, Node.js, Ruby on Rails, and
+                            various databases. For mobile apps, I work with Expo
+                            + React Native. I choose the right tools for each
+                            project's specific needs.
+                        </p>
+                    </div>
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-medium text-gray-900 mb-3">
+                            How involved do I need to be during the project?
+                        </h3>
+                        <p class="text-gray-600">
+                            Your involvement varies by project type, but
+                            typically includes an initial discovery session,
+                            weekly check-ins, and feedback on iterations. I
+                            handle the heavy lifting while keeping you informed
+                            and involved in key decisions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>
