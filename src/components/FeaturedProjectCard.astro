@@ -9,19 +9,19 @@ const { title, image, imageAlt, tags, description, slug } =
 ---
 
 <a
-    class="block no-underline text-inherit transition-all duration-200 ease-in-out"
+    class="block no-underline text-inherit transition-all duration-300 ease-in-out group"
     href={`/projects/${slug}`}
 >
     <article
-        class="flex flex-col gap-8 bg-white rounded-sm overflow-hidden border border-gray-200 transition-all duration-200 ease-in-out hover:border-gray-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] md:flex-row md:gap-10 lg:even:flex-row-reverse"
+        class="flex flex-col gap-8 bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 md:flex-row md:gap-10 lg:even:flex-row-reverse"
     >
         <div
-            class="w-full max-h-[600px] overflow-hidden py-8 px-3 md:flex-1 md:min-h-[300px]"
+            class="w-full max-h-[600px] overflow-hidden py-8 px-6 md:flex-1 md:min-h-[300px]"
         >
             <Image
                 src={image}
                 alt={imageAlt ?? title}
-                class="project-image w-full h-full object-contain aspect-[4/3] transition-transform duration-300 ease-in-out hover:scale-[1.02] md:h-full md:aspect-auto"
+                class="project-image w-full h-full object-contain aspect-[4/3] transition-transform duration-500 ease-in-out group-hover:scale-[1.05] md:h-full md:aspect-auto"
                 loading="eager"
                 decoding="async"
                 format="webp"
@@ -29,18 +29,22 @@ const { title, image, imageAlt, tags, description, slug } =
             />
         </div>
         <div
-            class="p-8 flex flex-col gap-5 md:flex-1 md:p-10 md:justify-center lg:p-12 lg:gap-6"
+            class="p-8 flex flex-col gap-6 md:flex-1 md:p-10 md:justify-center lg:p-12 lg:gap-8"
         >
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-5">
                 <h3
-                    class="text-[1.5rem] font-medium text-gray-900 m-0 leading-snug md:text-[1.75rem] lg:text-4xl"
+                    class="text-2xl font-light text-gray-900 m-0 leading-snug tracking-tight md:text-3xl lg:text-4xl"
                 >
                     {title}
                 </h3>
                 <div class="flex flex-wrap gap-2">
                     {
-                        tags.map((tag) => (
-                            <span class="text-[0.875rem] text-gray-500 bg-gray-100 py-1 px-3 rounded-xl font-normal tracking-normal">
+                        tags.map((tag, index) => (
+                            <span class={`text-sm font-medium py-2 px-3 rounded-full transition-colors ${
+                                index === 0 
+                                    ? "text-accent-700 bg-accent-100" 
+                                    : "text-gray-600 bg-gray-100 hover:bg-gray-200"
+                            }`}>
                                 {tag}
                             </span>
                         ))
@@ -48,15 +52,19 @@ const { title, image, imageAlt, tags, description, slug } =
                 </div>
             </div>
             <p
-                class="text-lg font-light leading-relaxed text-gray-500 m-0 md:text-lg"
+                class="text-lg font-light leading-relaxed text-gray-600 m-0 md:text-xl"
             >
                 {description}
             </p>
-            <span
-                class="project-link-text text-[0.9rem] text-gray-800 font-medium tracking-[0.02em] uppercase self-start relative transition-all duration-200 ease-in-out after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-accent-500 after:transition-[width] after:duration-200 after:ease-in-out hover:after:w-full"
-            >
-                View Project
-            </span>
+            <div class="inline-flex items-center gap-2 text-accent-600 font-medium hover:text-accent-700 transition-colors group/link">
+                <span class="text-sm tracking-wide uppercase">
+                    View Project
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover/link:translate-x-1">
+                    <path d="M5 12h14"/>
+                    <path d="m12 5 7 7-7 7"/>
+                </svg>
+            </div>
         </div>
     </article>
 </a>
