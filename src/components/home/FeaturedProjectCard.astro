@@ -9,189 +9,29 @@ const { title, image, imageAlt, tags, description, slug } =
     Astro.props as Project;
 ---
 
-<a class="project-link" href={`/projects/${slug}`}>
-    <article class="project-card">
-        <div class="project-image-container">
+<a class="block no-underline text-inherit transition-all duration-200 ease-in-out" href={`/projects/${slug}`}>
+    <article class="flex flex-col gap-8 bg-white rounded-sm overflow-hidden border border-gray-200 transition-all duration-200 ease-in-out hover:border-gray-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] md:flex-row md:gap-10 lg:even:flex-row-reverse">
+        <div class="w-full max-h-[600px] overflow-hidden py-8 px-3 md:flex-1 md:min-h-[300px]">
             <Image
                 src={image}
                 alt={imageAlt ?? title}
-                class="project-image"
+                class="project-image w-full h-full object-contain aspect-[4/3] transition-transform duration-300 ease-in-out hover:scale-[1.02] md:h-full md:aspect-auto"
                 loading="eager"
                 decoding="async"
                 format="webp"
                 quality="mid"
             />
         </div>
-        <div class="project-content">
-            <div class="project-header">
-                <h3 class="project-title">{title}</h3>
-                <div class="project-tags">
-                    {tags.map((tag) => <span class="project-tag">{tag}</span>)}
+        <div class="p-8 flex flex-col gap-5 md:flex-1 md:p-10 md:justify-center lg:p-12 lg:gap-6">
+            <div class="flex flex-col gap-4">
+                <h3 class="text-[1.5rem] font-medium text-gray-900 m-0 leading-snug md:text-[1.75rem] lg:text-4xl">{title}</h3>
+                <div class="flex flex-wrap gap-2">
+                    {tags.map((tag) => <span class="text-[0.875rem] text-gray-500 bg-gray-100 py-1 px-3 rounded-xl font-normal tracking-normal">{tag}</span>)}
                 </div>
             </div>
-            <p class="project-description">{description}</p>
-            <span class="project-link-text"> View Project </span>
+            <p class="text-lg font-light leading-relaxed text-gray-500 m-0 md:text-lg">{description}</p>
+            <span class="project-link-text text-[0.9rem] text-gray-800 font-medium tracking-[0.02em] uppercase self-start relative transition-all duration-200 ease-in-out after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-accent-500 after:transition-[width] after:duration-200 after:ease-in-out hover:after:w-full"> View Project </span>
         </div>
     </article>
 </a>
 
-<style>
-    .project-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        transition: all 0.2s ease;
-    }
-
-    .project-card {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-        background-color: #ffffff;
-        border-radius: 2px;
-        overflow: hidden;
-        border: 1px solid #e5e5e5;
-        transition: all 0.2s ease;
-    }
-
-    .project-link:hover .project-card {
-        border-color: #d1d1d1;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .project-image-container {
-        width: 100%;
-        max-height: 600px;
-        overflow: hidden;
-        padding: 32px 12px;
-    }
-
-    .project-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        aspect-ratio: 4/3;
-        transition: transform 0.3s ease;
-    }
-
-    .project-link:hover .project-image {
-        transform: scale(1.02);
-    }
-
-    .project-content {
-        padding: 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .project-header {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .project-title {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: #1a1a1a;
-        margin: 0;
-        line-height: 1.3;
-    }
-
-    .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .project-tag {
-        font-size: 0.875rem;
-        color: #666;
-        background-color: #f5f5f5;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-weight: 400;
-        letter-spacing: 0.01em;
-    }
-
-    .project-description {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #666;
-        margin: 0;
-        font-weight: 300;
-    }
-
-    .project-link-text {
-        font-size: 0.9rem;
-        color: #2c2c2c;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
-        align-self: flex-start;
-        position: relative;
-        transition: all 0.2s ease;
-    }
-
-    .project-link-text::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background-color: var(--accent-500);
-        transition: width 0.2s ease;
-    }
-
-    .project-link:hover .project-link-text::after {
-        width: 100%;
-    }
-
-    @media (min-width: 768px) {
-        .project-card {
-            flex-direction: row;
-            gap: 40px;
-        }
-
-        .project-image-container {
-            flex: 1;
-            min-height: 300px;
-        }
-
-        .project-image {
-            height: 100%;
-            aspect-ratio: auto;
-        }
-
-        .project-content {
-            flex: 1;
-            padding: 40px;
-            justify-content: center;
-        }
-
-        .project-title {
-            font-size: 1.75rem;
-        }
-
-        .project-description {
-            font-size: 1.125rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .project-card:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .project-content {
-            padding: 48px;
-            gap: 24px;
-        }
-
-        .project-title {
-            font-size: 2rem;
-        }
-    }
-</style>

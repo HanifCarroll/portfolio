@@ -7,40 +7,40 @@ import { SITE_CONFIG } from "../utils/siteConfig";
 
 const pageTitle = SITE_CONFIG.defaultTitle;
 const pageDescription =
-    "Product Engineer combining 7+ years of frontend development with user-centered design. Currently seeking Product Engineer roles at seed-stage startups.";
+    "Technical Product Expert helping agencies and businesses build products users love. Combining 7+ years of development with user research and strategic thinking.";
 
-const services = [
+const whyWorkWithMe = [
     {
-        title: "Product Strategy & Research",
+        title: "Technical + Strategic Hybrid",
         description:
-            "I start by understanding users deeply, not just implementing features quickly. My approach combines user research insights with strategic thinking to identify what problems are worth solving and how to solve them effectively.",
+            "Unlike pure developers or consultants, I combine deep technical skills with product strategy and user research. This means I can rapidly prototype ideas during client discussions, then build the production version without losing context or requiring handoffs.",
         features: [
-            "User research & problem validation",
-            "Product strategy & roadmap planning",
-            "User journey mapping & optimization",
-            "Market analysis & competitive research",
+            "Full-stack development with modern technologies",
+            "User research and strategic product thinking",
+            "Client-facing technical communication",
+            "End-to-end product development",
         ],
     },
     {
-        title: "Technical Product Development",
+        title: "Rapid Iteration & Prototyping",
         description:
-            "My technical background enables me to rapidly build and test product ideas with real functionality. I create working prototypes that validate assumptions before committing to full development, saving time and reducing risk.",
+            "I excel at turning ideas into working prototypes quickly, then iterating based on real user feedback. This approach reduces project risk and gets you to market faster with higher confidence in product-market fit.",
         features: [
-            "Functional prototypes with real data flow",
-            "Quick iteration based on user feedback",
-            "Full-stack application development",
-            "Technical feasibility assessment",
+            "Functional prototypes in days instead of weeks",
+            "Interactive client collaboration and rapid iteration",
+            "Quick validation of product assumptions",
+            "Seamless transition from prototype to production",
         ],
     },
     {
-        title: "Full-Stack Product Building",
+        title: "Agency-Ready Collaboration",
         description:
-            "I bridge the gap between product vision and technical reality by handling both strategic decisions and implementation. This eliminates miscommunication and ensures product ideas translate into working solutions that users love.",
+            "With experience across enterprise and startup environments, I understand how to work embedded in agency teams, communicate with clients effectively, and deliver on tight timelines without sacrificing quality.",
         features: [
-            "End-to-end feature development",
-            "Modern full-stack development",
-            "Scalable, performance-optimized user experiences",
+            "Client presentation and technical communication",
             "Cross-functional team collaboration",
+            "Agency project timelines and processes",
+            "Quality delivery under pressure",
         ],
     },
 ];
@@ -57,14 +57,22 @@ const trustedByCompanies = [
 <BaseLayout title={pageTitle} description={pageDescription}>
     <HeroSection />
 
-    <section class="trusted-by-section">
-        <div class="container trusted-by-container">
-            <h2 class="trusted-by-heading">Trusted By</h2>
-            <div class="trusted-by-logos">
+    <section
+        class="text-gray-800 py-[60px] px-6 text-center md:py-10 md:pb-20 lg:justify-between"
+    >
+        <div class="container">
+            <h2 class="text-base text-accent-600 mb-10 md:mb-[50px]">
+                Trusted By
+            </h2>
+            <div
+                class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:justify-between lg:mx-auto"
+            >
                 {
                     trustedByCompanies.map((company) => (
-                        <div class="trusted-by-logo">
-                            <span class="company-name">{company}</span>
+                        <div class="flex items-center justify-center opacity-60 transition-opacity duration-200 ease-in-out hover:opacity-100">
+                            <span class="text-lg font-normal text-gray-500 text-center tracking-[0.01em] md:text-lg">
+                                {company}
+                            </span>
                         </div>
                     ))
                 }
@@ -74,14 +82,18 @@ const trustedByCompanies = [
 
     <FeaturedProjectsSection />
 
-    <section class="about-section">
-        <div class="container about-container">
-            <div class="about-content">
-                <div class="portrait-container">
+    <section class="bg-gray-50 text-gray-800">
+        <div
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <div
+                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start md:text-left lg:gap-20"
+            >
+                <div class="flex-shrink-0">
                     <img
                         src="/img/portrait-professional.webp"
                         alt="Professional portrait"
-                        class="portrait-image"
+                        class="w-[280px] h-auto object-cover block rounded-sm md:hidden"
                         width="310"
                         height="292"
                         loading="lazy"
@@ -89,43 +101,52 @@ const trustedByCompanies = [
                     <img
                         src="/img/portrait-professional-desktop.webp"
                         alt="Professional portrait"
-                        class="portrait-image-desktop"
+                        class="hidden md:block w-60 h-auto object-cover rounded-sm lg:w-[280px]"
                         loading="lazy"
                     />
                 </div>
-                <div class="about-text">
-                    <h2 class="about-heading">About</h2>
-                    <div class="about-paragraphs">
-                        <p>
-                            With 7+ years of frontend development experience,
-                            I've evolved into a Product Engineer who combines
-                            technical execution with product strategy and user
-                            research to create digital products that users
-                            genuinely love.
+                <div class="max-w-[600px] md:text-left">
+                    <h2
+                        class="text-5xl font-light tracking-tight mb-8 text-gray-900 leading-tight md:text-[2.75rem] md:mb-9"
+                    >
+                        About
+                    </h2>
+                    <div class="flex flex-col gap-6">
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
+                            With 7+ years of development experience, I'm a
+                            Technical Product Expert who combines strategic
+                            thinking, user research, and full-stack development
+                            to create digital products that users genuinely
+                            love.
                         </p>
-                        <p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
                             My unique advantage is thinking across the full
                             product lifecycle. I can conduct user research to
                             identify real problems, make strategic decisions
-                            about what to build, then execute technically using
-                            modern development tools—all without handoff delays
-                            or lost context.
+                            about what to build, then execute technically—all
+                            without handoff delays or lost context.
                         </p>
-                        <p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
                             My experience ranges from enterprise environments
                             (Capgemini) to fast-moving startups (LeagueApps),
                             giving me deep understanding of how successful
-                            products get built and the cross-functional
-                            collaboration skills essential in early-stage
-                            environments.
+                            products get built and the collaboration skills
+                            essential for agency and client work.
                         </p>
-                        <p>
+                        <p
+                            class="text-lg font-light leading-relaxed text-gray-500 m-0"
+                        >
                             I'm passionate about creating products that bring
                             people together and help them live more fulfilling
-                            lives. Currently seeking Founding/Product Engineer
-                            roles at seed-stage startups where I can contribute
-                            to product strategy while building the technical
-                            foundation.
+                            lives. I work with agencies and businesses who want
+                            to move fast without sacrificing quality or user
+                            experience.
                         </p>
                     </div>
                 </div>
@@ -133,20 +154,180 @@ const trustedByCompanies = [
         </div>
     </section>
 
-    <section class="capabilities-section">
-        <div class="container capabilities-container">
-            <h2 class="capabilities-heading">What I Bring</h2>
-            <div class="capabilities-grid">
+    <!-- Services Teaser Section -->
+    <section class="bg-white text-gray-800 border-t border-gray-100">
+        <div
+            class="container max-w-container mx-auto py-16 px-6 md:py-20 lg:py-24"
+        >
+            <div class="text-center mb-12">
+                <h2
+                    class="text-4xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-5xl"
+                >
+                    How I Can Help You Build Better Products
+                </h2>
+                <p
+                    class="text-lg font-light leading-relaxed text-gray-500 max-w-2xl mx-auto"
+                >
+                    Whether you need rapid validation, full product development,
+                    or a professional web presence, I offer structured services
+                    designed to get you results quickly.
+                </p>
+            </div>
+            <div class="grid gap-8 max-w-4xl mx-auto md:grid-cols-3">
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                            ></path>
+                            <path
+                                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                            ></path>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"
+                            ></path>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Discovery & Prototype Sprint
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        Test your idea with a working prototype in just 2 weeks.
+                    </p>
+                    <a
+                        href="/services/prototypes"
+                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
+                    >
+                        Learn more →
+                    </a>
+                </div>
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect
+                                width="14"
+                                height="20"
+                                x="5"
+                                y="2"
+                                rx="2"
+                                ry="2"></rect>
+                            <path d="M12 18h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        MVP Development
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        Go from concept to market-ready product in 6-8 weeks.
+                    </p>
+                    <a
+                        href="/services/mvp-development"
+                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
+                    >
+                        Learn more →
+                    </a>
+                </div>
+                <div class="text-center p-6">
+                    <div
+                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" x2="22" y1="12" y2="12"></line>
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900 mb-3">
+                        Custom Business Websites
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        Professional websites that convert visitors into
+                        customers.
+                    </p>
+                    <a
+                        href="/services/websites"
+                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
+                    >
+                        Learn more →
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a
+                    href="/services"
+                    class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
+                >
+                    View All Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white text-gray-800">
+        <div
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <h2
+                class="text-5xl font-light tracking-tight text-center mb-[60px] text-gray-900 leading-tight md:text-[2.75rem] md:mb-20"
+            >
+                Why Work With Me
+            </h2>
+            <div
+                class="flex flex-col gap-10 md:gap-8 lg:grid lg:grid-cols-2 lg:gap-8"
+            >
                 {
-                    services.map((service) => (
-                        <div class="capability-card">
-                            <h3 class="capability-title">{service.title}</h3>
-                            <p class="capability-description">
-                                {service.description}
+                    whyWorkWithMe.map((item, i) => (
+                        <div
+                            class={`border border-gray-200 rounded-sm p-8 bg-white md:p-10 lg:p-12 ${i === whyWorkWithMe.length - 1 ? "lg:col-span-2 lg:w-[70%] lg:mx-auto" : ""}`}
+                        >
+                            <h3 class="text-xl font-medium text-gray-900 m-0 mb-4 leading-snug md:text-2xl">
+                                {item.title}
+                            </h3>
+                            <p class="text-lg font-light leading-relaxed text-gray-500 m-0 mb-6 md:text-lg">
+                                {item.description}
                             </p>
-                            <ul class="capability-list">
-                                {service.features.map((feature) => (
-                                    <li class="capability-item">{feature}</li>
+                            <ul class="list-none p-0 m-0 flex flex-col gap-3">
+                                {item.features.map((feature) => (
+                                    <li class="text-[0.95rem] leading-relaxed text-gray-600 pl-4 relative font-normal before:content-['—'] before:absolute before:left-0 before:text-accent-600 before:font-light">
+                                        {feature}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -158,300 +339,3 @@ const trustedByCompanies = [
 
     <MyProcessSection />
 </BaseLayout>
-
-<style>
-    .about-section {
-        background-color: #fafafa;
-        color: #2c2c2c;
-    }
-
-    .about-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 80px 24px;
-    }
-
-    .about-content {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-    }
-
-    .portrait-container {
-        flex-shrink: 0;
-    }
-
-    .portrait-image {
-        width: 280px;
-        height: auto;
-        object-fit: cover;
-        display: block;
-        border-radius: 2px;
-    }
-
-    .portrait-image-desktop {
-        display: none;
-    }
-
-    .about-text {
-        max-width: 600px;
-    }
-
-    .about-heading {
-        font-size: 2.25rem;
-        font-weight: 300;
-        letter-spacing: -0.02em;
-        margin-bottom: 32px;
-        color: #1a1a1a;
-        line-height: 1.2;
-    }
-
-    .about-paragraphs {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .about-paragraphs p {
-        font-size: 1.125rem;
-        line-height: 1.6;
-        color: #666;
-        font-weight: 300;
-        margin: 0;
-    }
-
-    .capabilities-section {
-        background-color: #ffffff;
-        color: #2c2c2c;
-    }
-
-    .capabilities-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 80px 24px;
-    }
-
-    .capabilities-heading {
-        font-size: 2.25rem;
-        font-weight: 300;
-        letter-spacing: -0.02em;
-        text-align: center;
-        margin-bottom: 60px;
-        color: #1a1a1a;
-        line-height: 1.2;
-    }
-
-    .capabilities-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .capability-card {
-        border: 1px solid #e5e5e5;
-        border-radius: 2px;
-        padding: 32px;
-        background-color: #ffffff;
-    }
-
-    .capability-title {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #1a1a1a;
-        margin: 0 0 16px 0;
-        line-height: 1.3;
-    }
-
-    .capability-description {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #666;
-        margin: 0 0 24px 0;
-        font-weight: 300;
-    }
-
-    .capability-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .capability-item {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: #555;
-        padding-left: 16px;
-        position: relative;
-        font-weight: 400;
-    }
-
-    .capability-item::before {
-        content: "—";
-        position: absolute;
-        left: 0;
-        color: var(--accent-600);
-        font-weight: 300;
-    }
-
-    .trusted-by-section {
-        color: #2c2c2c;
-        padding: 60px 24px;
-        text-align: center;
-    }
-
-    .trusted-by-container {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .trusted-by-heading {
-        font-size: 1rem;
-        font-weight: 500;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 40px;
-        color: var(--accent-600);
-        line-height: 1.2;
-    }
-
-    .trusted-by-logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 32px;
-    }
-
-    .trusted-by-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.6;
-        transition: opacity 0.2s ease;
-    }
-
-    .trusted-by-logo:hover {
-        opacity: 1;
-    }
-
-    .company-name {
-        font-size: 1rem;
-        font-weight: 400;
-        color: #666;
-        text-align: center;
-        letter-spacing: 0.01em;
-    }
-
-    @media (min-width: 768px) {
-        .about-container {
-            padding: 100px 24px;
-        }
-
-        .about-content {
-            flex-direction: row;
-            gap: 60px;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .about-text {
-            text-align: left;
-        }
-
-        .portrait-image {
-            display: none;
-        }
-
-        .portrait-image-desktop {
-            display: block;
-            width: 240px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        .about-heading {
-            font-size: 2.75rem;
-            margin-bottom: 36px;
-        }
-
-        .about-paragraphs p {
-            font-size: 1.125rem;
-        }
-
-        .capabilities-container {
-            padding: 100px 24px;
-        }
-
-        .capabilities-heading {
-            font-size: 2.75rem;
-            margin-bottom: 80px;
-        }
-
-        .capabilities-grid {
-            gap: 32px;
-        }
-
-        .capability-card {
-            padding: 40px;
-        }
-
-        .capability-title {
-            font-size: 1.375rem;
-        }
-
-        .capability-description {
-            font-size: 1.125rem;
-        }
-
-        .trusted-by-section {
-            padding: 40px 24px 80px 24px;
-        }
-
-        .trusted-by-heading {
-            font-size: 1rem;
-            margin-bottom: 50px;
-        }
-
-        .trusted-by-logos {
-            gap: 48px;
-            justify-content: center;
-        }
-
-        .company-name {
-            font-size: 1.125rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .about-content {
-            gap: 80px;
-        }
-
-        .portrait-image-desktop {
-            width: 280px;
-            height: auto;
-        }
-
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
-        .capability-card:last-child {
-            grid-column: 1 / -1;
-            width: 70%;
-            margin: 0 auto;
-        }
-
-        .trusted-by-logos {
-            justify-content: space-between;
-            margin: 0 auto;
-        }
-    }
-</style>

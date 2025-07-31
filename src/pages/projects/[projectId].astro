@@ -24,15 +24,16 @@ const hasContent = !!project.body && project.body.trim().length > 0;
 ---
 
 <BaseLayout title={project.data.title} description={project.data.description}>
-    <section class="project-detail container section-padding-block">
-        <h1>{project.data.title}</h1>
-        <p class="project-detail__description">{project.data.description}</p>
+    <section class="container section-padding-block [&_h2]:mb-0 [&_img]:max-w-[800px] [&_img]:max-h-[800px] [&_h3]:mb-3 md:[&_h3]:mb-5">
+        <div class="flex flex-col gap-gap-md">
+            <h1 class="mb-0">{project.data.title}</h1>
+            <p class="max-w-[80ch] mb-8 text-lg">{project.data.description}</p>
         {
             project.data.image && (
                 <Image
                     src={project.data.image}
                     alt={project.data.imageAlt ?? project.data.title}
-                    class="project-detail__image"
+                    class="w-full h-auto max-h-[600px] object-contain max-w-[800px]"
                     loading="eager"
                     decoding="async"
                     format="webp"
@@ -40,39 +41,39 @@ const hasContent = !!project.body && project.body.trim().length > 0;
                 />
             )
         }
-        <div class="project-detail__summary">
-            <div class="project-detail__property">
-                <span class="text-caption">Project Type</span>
-                <div class="project-detail__tags">
+            <div class="bg-gray-100 rounded-sm p-3">
+                <div class="mb-4 last:mb-0">
+                    <span class="text-base text-gray-400">Project Type</span>
+                    <div class="flex flex-wrap gap-1">
                     {
                         project.data.tags.map((tag) => (
                             <Tag label={tag} variant="primary-outline" />
                         ))
                     }
+                    </div>
                 </div>
-            </div>
 
-            <div class="project-detail__property">
-                <span class="text-caption">Role</span>
-                <p>{project.data.role}</p>
-            </div>
+                <div class="mb-4 last:mb-0">
+                    <span class="text-base text-gray-400">Role</span>
+                    <p class="text-lg">{project.data.role}</p>
+                </div>
 
-            <div class="project-detail__property">
-                <span class="text-caption">Tools Used</span>
-                <p>{project.data.toolsUsed.join(", ")}</p>
-            </div>
+                <div class="mb-4 last:mb-0">
+                    <span class="text-base text-gray-400">Tools Used</span>
+                    <p class="text-lg">{project.data.toolsUsed.join(", ")}</p>
+                </div>
 
             {
                 (project.data.figmaLink ||
                     project.data.githubLink ||
                     project.data.siteLink) && (
-                    <div class="project-detail__property">
-                        <span class="text-caption">Links</span>
-                        <div class="project-detail__links">
+                    <div class="mb-4 last:mb-0">
+                        <span class="text-base text-gray-400">Links</span>
+                        <div class="flex flex-col gap-1">
                             {project.data.figmaLink && (
                                 <a
                                     href={project.data.figmaLink}
-                                    class="project-detail__external-link"
+                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -82,7 +83,7 @@ const hasContent = !!project.body && project.body.trim().length > 0;
                             {project.data.prototypeLink && (
                                 <a
                                     href={project.data.prototypeLink}
-                                    class="project-detail__external-link"
+                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -92,7 +93,7 @@ const hasContent = !!project.body && project.body.trim().length > 0;
                             {project.data.siteLink && (
                                 <a
                                     href={project.data.siteLink}
-                                    class="project-detail__external-link"
+                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -103,77 +104,17 @@ const hasContent = !!project.body && project.body.trim().length > 0;
                     </div>
                 )
             }
+            </div>
+            {
+                hasContent && (
+                    <div>
+                        <MarkdownRenderer>
+                            <Content />
+                        </MarkdownRenderer>
+                    </div>
+                )
+            }
         </div>
-        {
-            hasContent && (
-                <div class="project-detail__overview">
-                    <MarkdownRenderer>
-                        <Content />
-                    </MarkdownRenderer>
-                </div>
-            )
-        }
     </section>
 </BaseLayout>
 
-<style>
-    h2 {
-        margin-bottom: 0;
-    }
-    img {
-        max-width: 800px;
-        max-height: 800px;
-    }
-    .project-detail {
-        display: flex;
-        flex-direction: column;
-        gap: var(--section-gap);
-    }
-    .project-detail__image {
-        width: 100%;
-        height: auto;
-        max-height: 600px;
-        object-fit: contain;
-    }
-    .project-detail__summary {
-        background-color: var(--secondary-100);
-        border-radius: var(--border-radius);
-        padding: 12px;
-    }
-    .project-detail__property:not(:last-of-type) {
-        margin-bottom: 1rem;
-    }
-    .project-detail__property span {
-        color: var(--primary-400);
-    }
-    .project-detail__tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-    .project-detail__description {
-        max-width: 80ch;
-        margin-bottom: 2rem;
-    }
-    .project-detail__links {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    .project-detail__external-link {
-        color: var(--primary-500);
-        font-weight: medium;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    .project-detail__overview h3 {
-        margin-bottom: 12px;
-    }
-    @media (min-width: 768px) {
-        .project-detail__overview h3 {
-            margin-bottom: 20px;
-        }
-    }
-</style>

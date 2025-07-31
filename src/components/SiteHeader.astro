@@ -2,318 +2,171 @@
 const { url } = Astro;
 ---
 
-<header class="site-header">
-    <div class="container nav-container">
-        <a href="/" class="logo">
-            <img src="/img/avatar.png" alt="Hanif smiling" />
-            <span class="logo-text">Hanif Carroll</span>
+<header class="fixed top-0 left-0 right-0 z-[1000] bg-white/95 backdrop-blur-lg border-b border-gray-200 transition-all duration-200">
+    <div class="max-w-container mx-auto px-6 py-4 md:py-5 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3 no-underline text-gray-900 font-medium text-base md:text-[1.1rem] z-[1001] transition-opacity duration-200 hover:opacity-80">
+            <img src="/img/avatar.png" alt="Hanif smiling" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover" />
+            <span class="font-medium text-gray-900 tracking-normal">Hanif Carroll</span>
         </a>
-        <nav class="site-nav" id="main-nav" aria-label="Main Navigation">
-            <ul class="nav-list">
-                <li class="nav-item">
+        <nav class="hidden md:block" id="main-nav" aria-label="Main Navigation">
+            <ul class="list-none m-0 p-0 flex items-center gap-8 md:gap-10">
+                <li class="flex">
                     <a
                         href="/"
-                        class={`nav-link ${url.pathname === "/" ? "active" : ""}`}
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname === "/" 
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                                : ""
+                        }`}
                     >
                         Home
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="flex">
                     <a
-                        href="/consulting"
-                        class={`nav-link ${url.pathname === "/consulting" ? "active" : ""}`}
+                        href="/services"
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname.startsWith("/services") 
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                                : ""
+                        }`}
                     >
-                        Consulting
+                        Services
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="flex">
                     <a
                         href="/about"
-                        class={`nav-link ${url.pathname.startsWith("/about") ? "active" : ""}`}
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname.startsWith("/about") 
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                                : ""
+                        }`}
                     >
                         About
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="flex">
                     <a
                         href="/now/"
-                        class={`nav-link ${url.pathname === "/now/" ? "active" : ""}`}
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname === "/now/" 
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                                : ""
+                        }`}
                     >
                         Now
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link contact-link"
+                <li class="flex">
+                    <a href="#contact" class="bg-gray-800 text-white px-5 py-2.5 rounded-sm font-medium transition-all duration-200 ml-4 hover:bg-gray-900"
                         >Let's Work Together</a
                     >
                 </li>
             </ul>
         </nav>
         <button
-            class="mobile-toggle"
+            class="block md:hidden bg-transparent border-0 p-2 cursor-pointer z-[1001]"
             id="mobile-nav-toggle"
             aria-label="Toggle Navigation"
             aria-expanded="false"
             aria-controls="main-nav"
         >
-            <span class="visually-hidden">Menu</span>
-            <span class="hamburger-lines">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            <span class="sr-only">Menu</span>
+            <span class="flex flex-col w-5 h-4 justify-between">
+                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
+                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
+                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
             </span>
         </button>
     </div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav hidden absolute top-full left-0 right-0 bg-white/[0.98] backdrop-blur-lg border-b border-gray-200 px-6 py-6 z-[1000] md:!hidden" id="mobile-nav">
+        <ul class="list-none m-0 p-0 flex flex-col gap-5 items-center">
+            <li class="flex w-full justify-center">
+                <a
+                    href="/"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname === "/" 
+                            ? "text-gray-800 font-medium" 
+                            : ""
+                    }`}
+                >
+                    Home
+                </a>
+            </li>
+            <li class="flex w-full justify-center">
+                <a
+                    href="/services"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname.startsWith("/services") 
+                            ? "text-gray-800 font-medium" 
+                            : ""
+                    }`}
+                >
+                    Services
+                </a>
+            </li>
+            <li class="flex w-full justify-center">
+                <a
+                    href="/about"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname.startsWith("/about") 
+                            ? "text-gray-800 font-medium" 
+                            : ""
+                    }`}
+                >
+                    About
+                </a>
+            </li>
+            <li class="flex w-full justify-center">
+                <a
+                    href="/now/"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname === "/now/" 
+                            ? "text-gray-800 font-medium" 
+                            : ""
+                    }`}
+                >
+                    Now
+                </a>
+            </li>
+            <li class="flex w-full justify-center">
+                <a href="#contact" class="bg-gray-800 text-white px-5 py-2.5 rounded-sm font-medium transition-all duration-200 mt-2 hover:bg-gray-900"
+                    >Let's Work Together</a
+                >
+            </li>
+        </ul>
+    </nav>
 </header>
 
 <style>
-    .site-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border-bottom: 1px solid #e5e5e5;
-        transition: all 0.2s ease;
+    /* Hamburger animation styles */
+    .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
     }
 
-    .nav-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 16px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+        opacity: 0;
     }
 
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: #1a1a1a;
-        font-weight: 500;
-        font-size: 1rem;
-        z-index: 1001;
-        transition: opacity 0.2s ease;
+    .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
-
-    .logo:hover {
-        opacity: 0.8;
-    }
-
-    .logo img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .logo-text {
-        font-weight: 500;
-        color: #1a1a1a;
-        letter-spacing: 0.01em;
-    }
-
-    .nav-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        gap: 32px;
-    }
-
-    .nav-item {
-        display: flex;
-    }
-
-    .nav-link {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: #666;
-        text-decoration: none;
-        padding: 8px 0;
-        position: relative;
-        transition: color 0.2s ease;
-        letter-spacing: 0.01em;
-    }
-
-    .nav-link:hover {
-        color: #2c2c2c;
-    }
-
-    .nav-link.active {
-        color: #2c2c2c;
-        font-weight: 500;
-    }
-
-    .nav-link.active::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: var(--accent-500);
-    }
-
-    .contact-link {
-        background-color: #2c2c2c;
-        color: #ffffff !important;
-        padding: 10px 20px;
-        border-radius: 2px;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        margin-left: 16px;
-    }
-
-    .contact-link:hover {
-        background-color: #1a1a1a;
-        color: #ffffff !important;
-    }
-
-    .mobile-toggle {
-        display: none;
-        background: none;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-        z-index: 1001;
-    }
-
-    .hamburger-lines {
-        display: flex;
-        flex-direction: column;
-        width: 20px;
-        height: 16px;
-        justify-content: space-between;
-    }
-
-    .hamburger-line {
-        width: 100%;
-        height: 2px;
-        background-color: #2c2c2c;
-        transition: all 0.2s ease;
-        border-radius: 1px;
-    }
-
-    .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    /* Mobile Navigation */
-    @media (max-width: 767px) {
-        .site-nav {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid #e5e5e5;
-            padding: 24px;
-            z-index: 1000;
-        }
-
-        .site-nav.is-open {
-            display: block;
-        }
-
-        .nav-list {
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-item {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .nav-link {
-            font-size: 1rem;
-        }
-
-        .contact-link {
-            margin-left: 0;
-            margin-top: 8px;
-        }
-
-        .mobile-toggle {
-            display: block;
-        }
-
-        /* Hamburger animation when open */
-        .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-    }
-
-    @media (min-width: 768px) {
-        .nav-container {
-            padding: 20px 24px;
-        }
-
-        .logo {
-            font-size: 1.1rem;
-        }
-
-        .logo img {
-            width: 36px;
-            height: 36px;
-        }
-
-        .nav-list {
-            gap: 40px;
-        }
-
-        .nav-link {
-            font-size: 1rem;
-        }
-
-        .site-nav {
-            display: block !important;
-            position: static;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .mobile-toggle {
-            display: none;
-        }
+    
+    .mobile-nav.is-open {
+        display: block !important;
     }
 </style>
 
 <script>
     const toggleButton = document.getElementById("mobile-nav-toggle");
-    const mainNav = document.getElementById("main-nav");
+    const mobileNav = document.getElementById("mobile-nav");
 
-    if (toggleButton && mainNav) {
+    if (toggleButton && mobileNav) {
         toggleButton.addEventListener("click", () => {
-            const isOpen = mainNav.classList.toggle("is-open");
+            const isOpen = mobileNav.classList.toggle("is-open");
             toggleButton.setAttribute("aria-expanded", isOpen.toString());
         });
     }

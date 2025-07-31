@@ -1,12 +1,10 @@
-<div class="markdown-content">
+<div class="markdown-content max-w-[70ch]">
     <slot />
 </div>
 
 <style is:global>
-    .markdown-content {
-        max-width: 70ch;
-    }
-
+    @reference "../styles/global.css";
+    
     /* Remove default margins from global styles within markdown */
     .markdown-content h1,
     .markdown-content h2,
@@ -14,79 +12,53 @@
     .markdown-content h4,
     .markdown-content h5,
     .markdown-content h6 {
-        margin-bottom: 0; /* Override global styles */
+        @apply mb-0;
     }
 
     .markdown-content h1 {
-        margin-bottom: 1.5rem;
+        @apply mb-6;
     }
 
     .markdown-content h2 {
-        margin-top: 3rem;
-        margin-bottom: 1.25rem;
+        @apply mt-12 mb-5;
     }
 
     .markdown-content h3 {
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
+        @apply mt-10 mb-4;
     }
 
     .markdown-content h4,
     .markdown-content h5,
     .markdown-content h6 {
-        margin-top: 2rem;
-        margin-bottom: 0.75rem;
+        @apply mt-8 mb-3;
     }
 
     .markdown-content p {
-        line-height: 1.7;
-        margin-bottom: 1.25rem;
+        @apply leading-[1.7] mb-5 last:mb-0;
     }
 
-    .markdown-content p:last-child {
-        margin-bottom: 0;
-    }
-
-    /* Keep your other existing styles */
     .markdown-content pre {
-        padding: 1rem;
-        margin-bottom: 1rem;
+        @apply p-4 mb-4;
     }
 
     .markdown-content a {
-        color: var(--primary-500);
-        text-decoration: underline;
+        @apply text-gray-800 underline;
     }
 
     .markdown-content ul,
     .markdown-content ol {
-        margin-left: 1.5rem;
-        margin-bottom: 1.25rem;
+        @apply ml-6 mb-5;
     }
 
     .markdown-content blockquote {
-        border-left: 4px solid var(--primary-800);
-        padding-left: 1rem;
-        color: var(--primary-800);
-        margin: 1.5rem 0;
-        font-style: italic;
+        @apply border-l-4 border-gray-900 pl-4 text-gray-900 my-6 italic;
     }
 
     .markdown-content li {
-        line-height: 1.6;
-        list-style: inside;
-    }
-
-    .markdown-content li:not(:last-of-type) {
-        margin-bottom: 0.5rem;
+        @apply leading-relaxed list-inside mb-2 last:mb-0;
     }
 
     .markdown-content img {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        display: block;
-        margin: 2rem 0;
+        @apply max-w-full max-h-full w-auto h-auto block my-8;
     }
 </style>
