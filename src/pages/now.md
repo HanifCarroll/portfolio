@@ -1,35 +1,39 @@
 ---
 title: "Now"
-description: "See what Hanif Carroll is focused on right now: current projects, priorities, and what’s new."
+description: "See what Hanif Carroll is focused on right now: current projects, priorities, and what's new."
 layout: ../layouts/MarkdownLayout.astro
-updated: 2025-06-13
+updated: 2025-07-31
 location: Buenos Aires, Argentina
 ---
 
 # What I'm Up To
 
-(This is [a now page](https://nownownow.com/about), and if you have your own site, consider adding a now page to it.)
+_This is [a now page](https://nownownow.com/about), and if you have your own site, consider adding a now page to it._
 
-_Last Updated July 25th, 2025_
+_Last Updated July 31st, 2025_
 
-## From Engineer to Product Engineer
+## Building a Product Engineering Practice
 
-After careful reflection, I've decided to set my sights on new career goals. My long term goal is to create a software studio that makes apps that connect people and make their lives better. My shorter term goal is to start freelancing with startups on product development. I've realied that I'm pretty good at thinking about UX as well as using AI to build products more efficiently, so I'd like to offer those gifts to the world.
+I've shifted my focus from pure development to becoming a Technical Product Expert. My goal is to help agencies and businesses build products that users genuinely love by combining user research, strategic thinking, and full-stack development.
+
+I'm currently accepting new clients for prototype development, MVP builds, and custom websites. The vision is to eventually create a software studio that makes apps connecting people and improving their lives.
 
 ## Learning Russian
 
-I recently started learning Russian. It's a language that always interested me, but I finally decided to invest some time into it due to all of the interactions I've had with Russian speaking people here in Buenos Aires. Being able to use a language is a big motivator to learn it. One thing surprised me: the alphabet wasn't as hard to learn as I thought it would be!
+I recently started learning Russian after countless interactions with Russian speakers here in Buenos Aires. Having people to practice with makes all the difference in language learning motivation. 
 
-## Scheduling Virtual Coffee Chats
+One pleasant surprise: the Cyrillic alphabet wasn't nearly as intimidating as I expected!
 
-Inspired by a great interaction I recently had, I've opened my calendar for informal virtual coffees! No agenda necessary. Just two curious people chatting, seeing what we can discover together.
+## Open Calendar for Coffee Chats
 
-[Click here to find a time that works for you](https://www.cal.com/hanifcarroll/virtual-coffee)
+Inspired by several great conversations, I've opened my calendar for informal virtual coffees. No agenda required—just two curious people exploring ideas together.
 
-_(If you can’t find a suitable time, send me an email and we’ll work it out.)_
+[Find a time that works for you](https://www.cal.com/hanifcarroll/virtual-coffee)
 
-## New Mobile App Project
+_(Can't find a suitable time? Send me an email and we'll work something out.)_
 
-I decided to start a new side project: a mobile app for people in Buenos Aires, Argentina to find other people for language exchanges. The idea is that they use the app to find people interested in practicing their language skills, then they coordinate to meet up in person.
+## Buenos Aires Language Exchange App
 
-MVP development has been going well. I've got the React Native mobile app in a decent spot, and now I'm going to start building out the server. I hope to have it in the app stores before the end of August.
+I'm developing a mobile app to help people in Buenos Aires find language exchange partners. The concept is simple: match people who want to practice different languages, then help them coordinate in-person meetups.
+
+The React Native app is progressing well, and I'm currently building the backend infrastructure. Planning to launch in the app stores soon.

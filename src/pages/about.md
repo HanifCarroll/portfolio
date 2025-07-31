@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "Learn about Hanif Carroll's journey from frontend developer to UX Engineer, his passion for user-centered design, and what drives him to create digital products that bring people together."
+description: "Learn about Hanif Carroll's journey from frontend developer to Technical Product Expert, his passion for user-centered design, and what drives him to create digital products that bring people together."
 layout: ../layouts/MarkdownLayout.astro
 ---
 
@@ -8,58 +8,36 @@ layout: ../layouts/MarkdownLayout.astro
 
 ## My Journey
 
-### Early Life and Education
+Growing up in a small Florida city, I initially studied health sciences at the University of South Florida with plans to become a physical therapist and eventually open a gym for athletes.
 
-Most of my life has been spent in Florida, growing up in a small city on its west coast. My academic path led me to the University of South Florida, where I studied health sciences. The plan was to pursue physical therapy and eventually open a gym to help athletes perform better.
+Before entering a graduate program, I realized this path wouldn't be fulfilling. Programming entered the picture and quickly became a passion. Self-teaching led to a career in tech, where I've been ever since.
 
-### Career Pivot
+I've always been drawn to languages—studying Japanese, Mandarin Chinese, German, and Turkish over the years. Spanish became my focus during the pandemic. After nearly two years of study, a trip to Mexico City sparked a fascination with life in Latin America.
 
-However, before entering a program, it became clear that this wouldn't be a very fulfilling path for me. A bit later, programming entered the picture and quickly became a passion. Self-teaching led to a job in tech, and the industry has been home ever since.
+## Finding Home in Buenos Aires
 
-### Language Learning
+My long-standing desire to live in a big city led me to explore several Latin American capitals: Medellín, Bogotá, Lima, and Buenos Aires. Buenos Aires won decisively with its vibrant social energy and cultural richness.
 
-I had always been interested in languages, having studied a bit of Japanese, Mandarin Chinese, German, and Turkish. Spanish became my new pursuit during the pandemic. After almost two years of study, a two-month trip to Mexico City put those skills to the test and opened the door to a fascination with life in Latin America.
-
-### Finding Home in Buenos Aires
-
-A long-standing desire to live in a big city inspired visits to some of the largest in Latin America—Medellin, Bogota, Lima, and Buenos Aires. Buenos Aires stood out in spectacular fashion, thanks to its vibrant social energy, which was exactly what was needed for the next phase of life.
-
-Nearly three years have passed in Buenos Aires, bringing countless reasons for gratitude. The city has been a powerful teacher, helping me to grow beyond expectations and offering connections with incredible people.
+Nearly three years later, the city continues to exceed expectations. It's been a powerful teacher, fostering personal growth and connecting me with incredible people.
 
 ## My Values
 
-### Individuation
+**Authenticity** — I'm guided by Carl Jung's concept of individuation: becoming a distinct individual separate from the collective. This philosophy drives my search for personal potential and belief in tight-knit communities as sources of meaning.
 
-My life is guided by Carl Jung's concept of individuation—the process of becoming a distinct, individual entity, separate from the collective. This philosophy inspires a search for personal potential and a deep belief in the power of tight-knit communities as sources of meaning. Strong communities, after all, are built by individuals who embrace what makes them unique.
+**Well-being** — I prioritize activities that genuinely make me feel good while avoiding those that don't. This isn't pure hedonism—working out energizes me, while dishonesty or poor eating depletes me.
 
-### Well-being
+**Simplicity** — Both in life and design, I value keeping things simple. As Gall's law states: complex systems that work evolve from simple systems that worked. Complexity can't be designed from scratch.
 
-I do things that make me feel good and avoid things that make me feel bad, but not in a purely hedonistic sense. For example, working out makes me feel good, while lying or eating poorly does not. Fulfillment and inner peace come more easily when well-being is prioritized.
+## What Drives Me
 
-### Simplicity
+**Connection** — I'm passionate about bringing people together and creating spaces for meaningful interaction. I organize a community in Buenos Aires that bridges digital nomads, expats, and locals through intentional events that foster deeper connections.
 
-Simplicity is another guiding principle of mine, both in life and in design. Lessons from software engineering reinforce the value of keeping things simple whenever possible. Gall's law states that complex systems that work evolve from simple systems that worked, which serves as a reminder that complexity can't be designed from scratch.
+**User Experience** — My empathy makes UX a natural interest. My long-term goal is creating a software studio with a portfolio of digital products people love using. Well-designed products empower users to be their authentic selves.
 
-## My Interests
-
-### Connection
-
-Connecting with others and sharing ideas is a source of joy, as is teaching and learning. This mutual exchange supports self-discovery and growth for everyone involved.
-
-My interest in bringing people together and creating spaces for connection stems from a belief in the essential role of community in a meaningful life. Related to this, I organize a community in Buenos Aires that bridges the gap between digital nomads, expats, and locals. We run events that allow these different groups to come toogether and connect at a deeper level than they might normally at a normal social event. Intentionality drives us.
-
-### Fitness
-
-Physical activity is a big part of daily life, with nearly 20 years of weightlifting, along with ultimate frisbee, flag football, dancing, running, and yoga.
-
-### User Experience
-
-User Experience is a topic that I often think about. Empathy has always been a strength of mine, making UX a natural interest. My long-term goal is to create a software studio with a portfolio of digital products that people love to use. This connects directly to my belief in helping people discover their potential—a well designed product can empower users to be their authentic selves.
-
-### Philosophy
-
-It wasn't until about a year ago that I realized that I've been going through life trying to answer the question "how can I live a good life?" I've learned about philosophy, psychology, religion, and spirituality with this question burning in the back of my mind.
+**Philosophy** — I've spent years exploring the question "how can I live a good life?" through philosophy, psychology, religion, and spirituality. This ongoing inquiry shapes how I approach both life and work.
 
 ## Now
 
-[Check out my now page](/now) to see what I've been up to lately.
+Physical activity is central to my daily routine—nearly 20 years of weightlifting plus ultimate frisbee, flag football, dancing, running, and yoga keep me grounded.
+
+[Check out my now page](/now) to see what I'm currently working on.
