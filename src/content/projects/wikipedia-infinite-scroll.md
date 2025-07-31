@@ -1,9 +1,9 @@
 ---
-title: "Wikipedia Infinite Scroll: A Language Learning Reading Tool"
-description: "A web application that helps language learners practice reading through endless Wikipedia articles. Features 50+ languages with quality filtering, bookmarking, dark mode, and responsive design for uninterrupted learning experiences."
+title: "Wikipedia Infinite Scroll: A Language Learning Discovery Tool"
+description: "A content discovery platform that helps language learners find interesting Wikipedia articles through an infinite scroll of preview cards. Features 50+ languages with quality filtering, bookmarking, and seamless navigation to Wikipedia for reading practice."
 tags: ["Web Development", "Language Learning", "React", "API Integration"]
 image: "./wikipedia-infinite-scroll.jpeg"
-imageAlt: "Wikipedia Infinite Scroll application interface showing article reading experience"
+imageAlt: "Wikipedia Infinite Scroll application interface showing article discovery cards"
 order: 2
 toolsUsed:
     [
@@ -22,30 +22,30 @@ isFeatured: true
 
 ## Project Overview
 
-Language learners often struggle to find engaging, level-appropriate reading material in their target language. While Wikipedia offers a wealth of content in 50+ languages, navigating between articles and finding quality content can be cumbersome and interrupt the learning flow.
+Language learners often struggle to find engaging, level-appropriate reading material in their target language. While Wikipedia offers a wealth of content in 50+ languages, discovering interesting articles to read can be cumbersome and time-consuming.
 
-Wikipedia Infinite Scroll solves this by creating an uninterrupted reading experience that keeps learners engaged with high-quality content, allowing them to focus on comprehension rather than navigation.
+Wikipedia Infinite Scroll solves this by creating a streamlined discovery experience through preview cards that let learners quickly browse and identify interesting articles, then seamlessly navigate to Wikipedia for full reading practice.
 
 ## The Problem
 
-**Traditional language learning reading practice has several friction points:**
+**Traditional Wikipedia article discovery has several friction points:**
 
-- **Content discovery overhead**: Spending more time finding articles than reading them
-- **Quality inconsistency**: Mixing well-written featured articles with stubs and poor content  
-- **Interruption-heavy experience**: Clicking through multiple pages breaks reading flow
-- **No progress tracking**: Difficulty remembering which articles were valuable for learning
-- **Limited customization**: Can't filter content by quality or save preferences
+- **Content discovery overhead**: Spending more time searching for articles than reading them
+- **Quality inconsistency**: Encountering stubs and poorly written content mixed with quality articles
+- **Random article limitations**: Wikipedia's "Random Article" feature often surfaces irrelevant content
+- **No progress tracking**: Difficulty remembering which articles looked interesting for later reading
+- **Limited filtering**: Can't filter by article quality or topic preferences
 
-This creates a poor user experience where learners abandon reading practice due to frustration with the tools rather than the language itself.
+This creates a poor discovery experience where learners give up searching for interesting content before they even start reading practice.
 
 ## Solution Design
 
 ### Core Features
 
-**1. Infinite Scroll Reading Experience**
-- Seamless article loading without page breaks
-- Maintains reading flow for extended practice sessions
-- Progressive loading prevents performance issues
+**1. Infinite Scroll Discovery Experience**
+- Endless stream of article preview cards without pagination
+- Quick browsing to find interesting content without clicking through multiple pages
+- Progressive loading prevents performance issues while browsing
 
 **2. Progressive Language Discovery**
 - 50+ supported languages with intuitive language selection
@@ -58,11 +58,11 @@ This creates a poor user experience where learners abandon reading practice due 
 - **All Articles**: Complete Wikipedia corpus for advanced learners
 - Smart filtering prevents stub articles and maintenance pages
 
-**4. Learning-Focused Features**
-- **Article bookmarking** with local storage for offline access
-- **Dark mode support** for comfortable reading in any lighting
+**4. Discovery-Focused Features**
+- **Article bookmarking** to save interesting articles for later reading on Wikipedia
+- **Dark mode support** for comfortable browsing in any lighting
 - **Responsive design** works seamlessly across desktop, tablet, and mobile
-- **Clean interface** removes Wikipedia's navigation clutter for focused reading
+- **Clean preview cards** show article essentials without Wikipedia's interface clutter
 
 ### Technical Architecture
 
@@ -80,7 +80,7 @@ This creates a poor user experience where learners abandon reading practice due 
 ## Key Technical Decisions
 
 ### 1. Client-Side Architecture
-Chose a single-page application approach to maintain reading flow without server round-trips. This ensures instant article loading and smooth infinite scroll performance.
+Chose a single-page application approach to maintain discovery flow without server round-trips. This ensures instant preview card loading and smooth infinite scroll performance for browsing.
 
 ### 2. Quality Filtering Implementation
 Integrated Wikipedia's quality assessment system to automatically filter content:
@@ -100,7 +100,7 @@ Built with mobile-first responsive design, ensuring the tool works effectively f
 - Set up React + TypeScript + Vite development environment
 - Implemented Wikipedia API integration with error handling
 - Built infinite scroll mechanism with performance optimization
-- Created responsive article reading interface
+- Created responsive article preview card interface
 
 ### Phase 2: Language Learning Features  
 - Added 50+ language support with intuitive selection UI
@@ -117,10 +117,10 @@ Built with mobile-first responsive design, ensuring the tool works effectively f
 ## Impact & Results
 
 ### User Experience Improvements
-- **Eliminated navigation friction**: Users can read for extended periods without interruption
-- **Quality content discovery**: Filtering ensures learners encounter well-written material
-- **Progress tracking**: Bookmarking lets users return to valuable articles
-- **Accessibility**: Dark mode and responsive design accommodate different learning preferences
+- **Eliminated discovery friction**: Users can browse hundreds of articles quickly to find interesting content
+- **Quality content filtering**: Filtering ensures learners see well-written articles worth reading
+- **Progress tracking**: Bookmarking lets users save interesting articles to read later on Wikipedia
+- **Seamless transition**: One-click navigation from preview cards to full Wikipedia articles
 
 ### Technical Achievements
 - **Fast performance**: Optimized infinite scroll handles large amounts of content smoothly
@@ -163,7 +163,7 @@ The Wikipedia API is powerful but complex. Success required understanding user n
 Infinite scroll with rich content requires careful performance consideration. Implementing virtual scrolling, image lazy loading, and smart caching was essential for smooth user experience.
 
 **3. Progressive Enhancement Strategy**
-Starting with core functionality (reading articles) and adding features incrementally allowed for better testing and user feedback integration throughout development.
+Starting with core functionality (article discovery) and adding features incrementally allowed for better testing and user feedback integration throughout development.
 
 **4. Modern Tooling Impact**
 Vite's fast refresh and TypeScript's type safety significantly improved development velocity, especially when integrating complex APIs and managing application state.

@@ -1,4 +1,4 @@
-<div class="markdown-content max-w-3xl mx-auto">
+<div class="markdown-content max-w-4xl mx-auto">
     <slot />
 </div>
 
@@ -16,25 +16,25 @@
     }
 
     .markdown-content h1 {
-        @apply text-5xl font-light tracking-tight leading-tight text-gray-900 mb-8 md:text-[2.75rem];
+        @apply text-4xl font-light tracking-tight leading-tight text-gray-900 mb-8 md:text-5xl;
     }
 
     .markdown-content h2 {
-        @apply text-2xl font-medium text-gray-900 mt-12 mb-6;
+        @apply text-3xl font-light tracking-tight text-gray-900 mt-16 mb-8 md:text-4xl;
     }
 
     .markdown-content h3 {
-        @apply text-xl font-medium text-gray-900 mt-10 mb-4;
+        @apply text-2xl font-light tracking-tight text-gray-900 mt-12 mb-6;
     }
 
     .markdown-content h4,
     .markdown-content h5,
     .markdown-content h6 {
-        @apply text-lg font-medium text-gray-900 mt-8 mb-3;
+        @apply text-xl font-medium text-gray-900 mt-10 mb-4;
     }
 
     .markdown-content p {
-        @apply text-lg font-light leading-relaxed text-gray-500 mb-6 last:mb-0;
+        @apply text-lg font-light leading-relaxed text-gray-600 mb-8 last:mb-0;
     }
 
     .markdown-content pre {
@@ -42,23 +42,47 @@
     }
 
     .markdown-content a {
-        @apply text-accent-600 font-medium hover:text-accent-700 transition-colors no-underline;
+        @apply text-accent-600 font-medium hover:text-accent-700 transition-colors no-underline relative;
+    }
+    
+    .markdown-content a:hover {
+        @apply after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-600;
     }
 
     .markdown-content ul,
     .markdown-content ol {
-        @apply ml-6 mb-6;
+        @apply ml-6 mb-8 space-y-2;
     }
 
     .markdown-content blockquote {
-        @apply border-l-4 border-accent-200 pl-6 text-gray-600 my-8 italic;
+        @apply border-l-4 border-accent-200 pl-8 py-4 text-gray-600 my-10 italic bg-accent-50/30 rounded-r-lg;
     }
 
     .markdown-content li {
-        @apply text-lg font-light leading-relaxed text-gray-500 list-inside mb-3 last:mb-0;
+        @apply text-lg font-light leading-relaxed text-gray-600 mb-2 last:mb-0;
     }
 
     .markdown-content img {
-        @apply max-w-full max-h-full w-auto h-auto block my-8;
+        @apply max-w-full max-h-full w-auto h-auto block my-12 rounded-xl shadow-sm mx-auto;
+    }
+    
+    .markdown-content strong {
+        @apply font-semibold text-gray-700;
+    }
+    
+    .markdown-content em {
+        @apply italic text-gray-600;
+    }
+    
+    .markdown-content code {
+        @apply bg-gray-100 text-gray-800 px-2 py-1 rounded-md text-base font-mono;
+    }
+    
+    .markdown-content pre {
+        @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-8;
+    }
+    
+    .markdown-content pre code {
+        @apply bg-transparent text-gray-100 p-0;
     }
 </style>
