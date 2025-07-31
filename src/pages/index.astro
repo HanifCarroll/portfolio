@@ -85,24 +85,28 @@ const featuredProjects = (await getCollection("projects"))
                         7 years building products for startups and enterprises
                     </p>
                     <div
-                        class="hero-description hero-animate flex flex-col gap-5 mb-10 md:mb-12"
+                        class="hero-description hero-animate flex flex-col gap-6 mb-10 md:mb-12"
                         data-delay="300"
                     >
                         <p
                             class="text-lg font-light leading-relaxed text-gray-500 m-0 lg:text-[1.25rem]"
                         >
-                            I help agencies and businesses build products that
-                            users love by combining user research, strategic
-                            thinking, and full-stack development in one person.
+                            I help agencies and businesses build products that users love by combining user research, strategic thinking, and full-stack development.
                         </p>
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0 lg:text-[1.25rem]"
-                        >
-                            With 7 years of technical experience, I can quickly
-                            turn ideas into working prototypes, then build the
-                            production version—eliminating handoff friction and
-                            reducing project risk.
-                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 text-base text-gray-600">
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-accent-600 rounded-full flex-shrink-0"></span>
+                                <span>No handoff friction</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-accent-600 rounded-full flex-shrink-0"></span>
+                                <span>7+ years experience</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-accent-600 rounded-full flex-shrink-0"></span>
+                                <span>Prototype to production</span>
+                            </div>
+                        </div>
                     </div>
                     <div
                         class="hero-actions hero-animate flex flex-col gap-4 items-center md:flex-row md:gap-5 md:items-start"
@@ -322,7 +326,8 @@ const featuredProjects = (await getCollection("projects"))
         </div>
     </section>
 
-    <section class="bg-gray-50 text-gray-800">
+    <!-- About Section -->
+    <section class="bg-gradient-to-b from-gray-50 to-white text-gray-800">
         <div
             class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
         >
@@ -385,70 +390,71 @@ const featuredProjects = (await getCollection("projects"))
     </section>
 
     <!-- Testimonial Section -->
-    <section class="bg-white text-gray-800 py-20 md:py-[100px] lg:py-[120px]">
-        <div class="container max-w-container mx-auto px-6">
-            <div class="max-w-3xl mx-auto">
-                <h2
-                    class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]"
-                >
-                    What People Say
-                </h2>
-                <div
-                    class="bg-gray-50 rounded-lg p-8 md:p-10 border border-gray-100"
-                >
-                    <div class="flex items-start gap-4 mb-6">
+    <section class="bg-gradient-to-b from-white to-gray-50 text-gray-800 py-20 md:py-[100px] lg:py-[120px] relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(219,39,119,0.03),transparent_50%)]"></div>
+        <div class="container max-w-container mx-auto px-6 relative">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]">
+                        What People Say
+                    </h2>
+                    <p class="text-lg font-light text-gray-500">
+                        Real feedback from teammates and collaborators
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 relative">
+                    <div class="flex items-start gap-6 mb-8">
                         <div class="flex-shrink-0">
-                            <div
-                                class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center"
-                            >
-                                <span class="text-accent-600 font-medium"
-                                    >SH</span
-                                >
+                            <div class="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-white font-semibold text-lg">SH</span>
                             </div>
                         </div>
                         <div>
-                            <h4 class="font-medium text-gray-900">
+                            <h4 class="text-xl font-medium text-gray-900 mb-1">
                                 Sarah Hibner
                             </h4>
-                            <p class="text-sm text-gray-600">
+                            <p class="text-gray-600 font-medium">
                                 Senior Product Designer at LeagueApps
                             </p>
                         </div>
                     </div>
+                    
                     <blockquote class="text-gray-700 leading-relaxed">
-                        <p class="mb-4">
+                        <p class="text-lg mb-6 font-light">
                             "I got to experience Hanif's collaborative front-end
                             engineering skills in my role as a product designer
                             on the scheduling team at LeagueApps, and he was a
                             pleasure to work with!
                         </p>
-                        <p class="mb-4">
+                        <p class="text-lg mb-6 font-light">
                             We worked together mostly on the tournament
                             schedules product, and as my teammate, Hanif:
                         </p>
-                        <ul class="list-disc pl-6 space-y-2 mb-4">
-                            <li>
-                                Suggested design-to-engineering hand-off
-                                improvements to help make our team workflow more
-                                efficient
-                            </li>
-                            <li>
-                                Provided great feedback when our team was
-                                tightening up product requirements during story
-                                time reviews
-                            </li>
-                            <li>
-                                Asked insightful follow-up questions during
-                                design reviews, in Figma files, and in Jira
-                                tickets
-                            </li>
-                            <li>
-                                Brought my Figma designs to life so we could
-                                deliver value to our users in a production
-                                environment!
-                            </li>
-                        </ul>
-                        <p class="text-gray-700">
+                        <div class="grid gap-4 mb-6 sm:grid-cols-2">
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                <span class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-gray-700">Suggested design-to-engineering hand-off improvements to help make our team workflow more efficient</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                <span class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-gray-700">Provided great feedback when our team was tightening up product requirements during story time reviews</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                <span class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-gray-700">Asked insightful follow-up questions during design reviews, in Figma files, and in Jira tickets</span>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                                <span class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-gray-700">Brought my Figma designs to life so we could deliver value to our users in a production environment!</span>
+                            </div>
+                        </div>
+                        <p class="text-lg font-light text-gray-700 italic">
                             I'd be happy to collaborate with Hanif again and
                             can't recommend him enough to other teams looking
                             for a collaborative, thorough, and all-around
@@ -460,36 +466,50 @@ const featuredProjects = (await getCollection("projects"))
         </div>
     </section>
 
-    <section class="bg-white text-gray-800">
+    <!-- Why Work With Me Section -->
+    <section class="bg-white text-gray-800 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(219,39,119,0.02),transparent_50%)]"></div>
         <div
-            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px] relative"
         >
-            <h2
-                class="text-5xl font-light tracking-tight text-center mb-[60px] text-gray-900 leading-tight md:text-[2.75rem]"
-            >
-                Why Work With Me
-            </h2>
+            <div class="text-center mb-16">
+                <h2
+                    class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
+                >
+                    Why Work With Me
+                </h2>
+                <p class="text-lg font-light text-gray-500 max-w-2xl mx-auto">
+                    Three key advantages that set me apart from traditional developers and consultants
+                </p>
+            </div>
             <div
-                class="flex flex-col gap-10 md:gap-8 lg:grid lg:grid-cols-2 lg:gap-8"
+                class="grid gap-8 lg:grid-cols-3"
             >
                 {
                     whyWorkWithMe.map((item, i) => (
                         <div
-                            class={`border border-gray-200 rounded-sm p-8 bg-white md:p-10 lg:p-12 ${i === whyWorkWithMe.length - 1 ? "lg:col-span-2 lg:w-[70%] lg:mx-auto" : ""}`}
+                            class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group"
                         >
-                            <h3 class="text-xl font-medium text-gray-900 m-0 mb-4 leading-snug md:text-2xl">
-                                {item.title}
-                            </h3>
-                            <p class="text-lg font-light leading-relaxed text-gray-500 m-0 mb-6 md:text-lg">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-400 to-accent-600"></div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent-100 to-accent-200 rounded-xl text-accent-600 font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                    {i + 1}
+                                </div>
+                                <h3 class="text-xl font-medium text-gray-900 m-0 leading-snug md:text-2xl">
+                                    {item.title}
+                                </h3>
+                            </div>
+                            <p class="text-lg font-light leading-relaxed text-gray-500 m-0 mb-6">
                                 {item.description}
                             </p>
-                            <ul class="list-none p-0 m-0 flex flex-col gap-3">
+                            <div class="space-y-3">
                                 {item.features.map((feature) => (
-                                    <li class="text-[0.95rem] leading-relaxed text-gray-600 pl-4 relative font-normal before:content-['—'] before:absolute before:left-0 before:text-accent-600 before:font-light">
-                                        {feature}
-                                    </li>
+                                    <div class="flex items-start gap-3">
+                                        <span class="w-1.5 h-1.5 bg-accent-500 rounded-full mt-2.5 flex-shrink-0"></span>
+                                        <span class="text-gray-600 leading-relaxed">{feature}</span>
+                                    </div>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                     ))
                 }
@@ -693,74 +713,119 @@ const featuredProjects = (await getCollection("projects"))
 
     <!-- FAQ Section -->
     <section
-        class="bg-white text-gray-800 border-t border-gray-100 py-20 md:py-[100px] lg:py-[120px]"
+        class="bg-gradient-to-b from-white to-gray-50 text-gray-800 border-t border-gray-100 py-20 md:py-[100px] lg:py-[120px]"
     >
         <div class="container max-w-container mx-auto px-6">
-            <div class="max-w-3xl mx-auto">
-                <h2
-                    class="text-5xl font-light tracking-tight text-center text-gray-900 leading-tight mb-12 md:text-[2.75rem]"
-                >
-                    Frequently Asked Questions
-                </h2>
-                <div class="space-y-8">
-                    <div class="border-b border-gray-200 pb-6">
-                        <h3 class="text-xl font-medium text-gray-900 mb-3">
-                            How long does a typical project take?
-                        </h3>
-                        <p class="text-gray-600">
-                            <strong>Prototype Sprint:</strong> 2 weeks from kickoff
-                            to working prototype<br />
-                            <strong>MVP Development:</strong> 6-8 weeks for a market-ready
-                            product<br />
-                            <strong>Custom Website:</strong> 2-3 weeks for a fully
-                            functional site
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <path d="M12 17h.01"/>
+                        </svg>
+                    </div>
+                    <h2
+                        class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
+                    >
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-lg font-light text-gray-500">
+                        Get clarity on timelines, process, and what to expect
+                    </p>
+                </div>
+                
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-medium text-gray-900">
+                                How long does a typical project take?
+                            </h3>
+                        </div>
+                        <div class="ml-14 space-y-2">
+                            <p class="text-gray-600"><strong class="text-gray-800">Prototype Sprint:</strong> 2 weeks from kickoff to working prototype</p>
+                            <p class="text-gray-600"><strong class="text-gray-800">MVP Development:</strong> 6-8 weeks for a market-ready product</p>
+                            <p class="text-gray-600"><strong class="text-gray-800">Custom Website:</strong> 2-3 weeks for a fully functional site</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-medium text-gray-900">
+                                What's included in the discovery call?
+                            </h3>
+                        </div>
+                        <p class="text-gray-600 ml-14">
+                            We'll discuss your project goals, technical requirements, timeline, and budget. I'll share insights on the best approach and determine if we're a good fit. No pressure, just clarity on your next steps.
                         </p>
                     </div>
-                    <div class="border-b border-gray-200 pb-6">
-                        <h3 class="text-xl font-medium text-gray-900 mb-3">
-                            What's included in the discovery call?
-                        </h3>
-                        <p class="text-gray-600">
-                            We'll discuss your project goals, technical
-                            requirements, timeline, and budget. I'll share
-                            insights on the best approach and we'll determine if
-                            we're a good fit to work together. No pressure, just
-                            clarity on your next steps.
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="8.5" cy="7" r="4"/>
+                                    <path d="M20 8v6"/>
+                                    <path d="M17 11h6"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-medium text-gray-900">
+                                Do you work with agencies or direct clients?
+                            </h3>
+                        </div>
+                        <p class="text-gray-600 ml-14">
+                            Both! I work directly with businesses who need products built, and I also partner with agencies as an embedded technical expert for their client projects.
                         </p>
                     </div>
-                    <div class="border-b border-gray-200 pb-6">
-                        <h3 class="text-xl font-medium text-gray-900 mb-3">
-                            Do you work with agencies or direct clients?
-                        </h3>
-                        <p class="text-gray-600">
-                            Both! I work directly with businesses who need
-                            products built, and I also partner with agencies as
-                            an embedded technical expert for their client
-                            projects.
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"/>
+                                    <polyline points="8 6 2 12 8 18"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-medium text-gray-900">
+                                What technologies do you work with?
+                            </h3>
+                        </div>
+                        <p class="text-gray-600 ml-14">
+                            Modern web technologies including React, Next.js, TypeScript, Node.js, Ruby on Rails, and various databases. For mobile apps, I use Expo + React Native. I choose the right tools for each project's needs.
                         </p>
                     </div>
-                    <div class="border-b border-gray-200 pb-6">
-                        <h3 class="text-xl font-medium text-gray-900 mb-3">
-                            What technologies do you work with?
-                        </h3>
-                        <p class="text-gray-600">
-                            I use modern web technologies including React,
-                            Next.js, TypeScript, Node.js, Ruby on Rails, and
-                            various databases. For mobile apps, I work with Expo
-                            + React Native. I choose the right tools for each
-                            project's specific needs.
-                        </p>
-                    </div>
-                    <div class="border-b border-gray-200 pb-6">
-                        <h3 class="text-xl font-medium text-gray-900 mb-3">
-                            How involved do I need to be during the project?
-                        </h3>
-                        <p class="text-gray-600">
-                            Your involvement varies by project type, but
-                            typically includes an initial discovery session,
-                            weekly check-ins, and feedback on iterations. I
-                            handle the heavy lifting while keeping you informed
-                            and involved in key decisions.
+
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300 md:col-span-2 md:max-w-2xl md:mx-auto">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 2v4"/>
+                                    <path d="M16 2v4"/>
+                                    <rect width="18" height="18" x="3" y="4" rx="2"/>
+                                    <path d="M3 10h18"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-medium text-gray-900">
+                                How involved do I need to be during the project?
+                            </h3>
+                        </div>
+                        <p class="text-gray-600 ml-14">
+                            Your involvement varies by project type, but typically includes an initial discovery session, weekly check-ins, and feedback on iterations. I handle the heavy lifting while keeping you informed and involved in key decisions.
                         </p>
                     </div>
                 </div>
