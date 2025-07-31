@@ -10,6 +10,7 @@ export function getStaticPaths() {
     return [
         { params: { projectId: "language-exchange" } },
         { params: { projectId: "joplin-product-analysis" } },
+        { params: { projectId: "wikipedia-infinite-scroll" } },
     ];
 }
 const { projectId } = Astro.params;
@@ -24,32 +25,34 @@ const hasContent = !!project.body && project.body.trim().length > 0;
 ---
 
 <BaseLayout title={project.data.title} description={project.data.description}>
-    <section class="container section-padding-block [&_h2]:mb-0 [&_img]:max-w-[800px] [&_img]:max-h-[800px] [&_h3]:mb-3 md:[&_h3]:mb-5">
+    <section
+        class="container section-padding-block [&_h2]:mb-0 [&_img]:max-w-[800px] [&_img]:max-h-[800px] [&_h3]:mb-3 md:[&_h3]:mb-5"
+    >
         <div class="flex flex-col gap-gap-md">
             <h1 class="mb-0">{project.data.title}</h1>
             <p class="max-w-[80ch] mb-8 text-lg">{project.data.description}</p>
-        {
-            project.data.image && (
-                <Image
-                    src={project.data.image}
-                    alt={project.data.imageAlt ?? project.data.title}
-                    class="w-full h-auto max-h-[600px] object-contain max-w-[800px]"
-                    loading="eager"
-                    decoding="async"
-                    format="webp"
-                    quality="mid"
-                />
-            )
-        }
+            {
+                project.data.image && (
+                    <Image
+                        src={project.data.image}
+                        alt={project.data.imageAlt ?? project.data.title}
+                        class="w-full h-auto max-h-[600px] object-contain max-w-[800px]"
+                        loading="eager"
+                        decoding="async"
+                        format="webp"
+                        quality="mid"
+                    />
+                )
+            }
             <div class="bg-gray-100 rounded-sm p-3">
                 <div class="mb-4 last:mb-0">
                     <span class="text-base text-gray-400">Project Type</span>
                     <div class="flex flex-wrap gap-1">
-                    {
-                        project.data.tags.map((tag) => (
-                            <Tag label={tag} variant="primary-outline" />
-                        ))
-                    }
+                        {
+                            project.data.tags.map((tag) => (
+                                <Tag label={tag} variant="primary-outline" />
+                            ))
+                        }
                     </div>
                 </div>
 
@@ -63,47 +66,47 @@ const hasContent = !!project.body && project.body.trim().length > 0;
                     <p class="text-lg">{project.data.toolsUsed.join(", ")}</p>
                 </div>
 
-            {
-                (project.data.figmaLink ||
-                    project.data.githubLink ||
-                    project.data.siteLink) && (
-                    <div class="mb-4 last:mb-0">
-                        <span class="text-base text-gray-400">Links</span>
-                        <div class="flex flex-col gap-1">
-                            {project.data.figmaLink && (
-                                <a
-                                    href={project.data.figmaLink}
-                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Figma Wireframes
-                                </a>
-                            )}
-                            {project.data.prototypeLink && (
-                                <a
-                                    href={project.data.prototypeLink}
-                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Prototype
-                                </a>
-                            )}
-                            {project.data.siteLink && (
-                                <a
-                                    href={project.data.siteLink}
-                                    class="text-gray-800 font-medium hover:underline transition-colors duration-200"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Live Site
-                                </a>
-                            )}
+                {
+                    (project.data.figmaLink ||
+                        project.data.githubLink ||
+                        project.data.siteLink) && (
+                        <div class="mb-4 last:mb-0">
+                            <span class="text-base text-gray-400">Links</span>
+                            <div class="flex flex-col gap-1">
+                                {project.data.figmaLink && (
+                                    <a
+                                        href={project.data.figmaLink}
+                                        class="text-gray-800 font-medium hover:underline transition-colors duration-200"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Figma Wireframes
+                                    </a>
+                                )}
+                                {project.data.prototypeLink && (
+                                    <a
+                                        href={project.data.prototypeLink}
+                                        class="text-gray-800 font-medium hover:underline transition-colors duration-200"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Prototype
+                                    </a>
+                                )}
+                                {project.data.siteLink && (
+                                    <a
+                                        href={project.data.siteLink}
+                                        class="text-gray-800 font-medium hover:underline transition-colors duration-200"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Live Site
+                                    </a>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
             </div>
             {
                 hasContent && (
@@ -117,4 +120,3 @@ const hasContent = !!project.body && project.body.trim().length > 0;
         </div>
     </section>
 </BaseLayout>
-
