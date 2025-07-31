@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "Learn about Hanif Carroll's journey from frontend developer to Technical Product Expert, his passion for user-centered design, and what drives him to create digital products that bring people together."
+description: "Learn about Hanif Carroll's journey to becoming a Technical Product Expert, his values of authenticity and simplicity, and his passion for creating digital products that connect people and foster meaningful relationships."
 layout: ../layouts/MarkdownLayout.astro
 ---
 
