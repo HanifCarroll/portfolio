@@ -2,20 +2,37 @@
 const { url } = Astro;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-[1000] bg-white/95 backdrop-blur-lg border-b border-gray-200 transition-all duration-200">
-    <div class="max-w-container mx-auto px-6 py-4 md:py-5 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3 no-underline text-gray-900 font-medium text-base md:text-[1.1rem] z-[1001] transition-opacity duration-200 hover:opacity-80">
-            <img src="/img/avatar.png" alt="Hanif smiling" class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover" />
-            <span class="font-medium text-gray-900 tracking-normal">Hanif Carroll</span>
+<header
+    class="fixed top-0 left-0 right-0 z-[1000] bg-white/95 backdrop-blur-lg border-b border-gray-200 transition-all duration-200"
+>
+    <div
+        class="max-w-container mx-auto px-6 py-4 md:py-5 flex items-center justify-between"
+    >
+        <a
+            href="/"
+            class="flex items-center gap-3 no-underline text-gray-900 font-medium text-base md:text-[1.1rem] z-[1001] transition-opacity duration-200 hover:opacity-80"
+        >
+            <img
+                src="/img/avatar.png"
+                alt="Hanif smiling"
+                class="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover"
+            />
+            <span class="font-medium text-gray-900 tracking-normal"
+                >Hanif Carroll</span
+            >
         </a>
-        <nav class="hidden md:block" id="main-nav" aria-label="Main Navigation">
+        <nav
+            class="hidden desktop-nav"
+            id="main-nav"
+            aria-label="Main Navigation"
+        >
             <ul class="list-none m-0 p-0 flex items-center gap-8 md:gap-10">
                 <li class="flex">
                     <a
                         href="/"
                         class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname === "/" 
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                            url.pathname === "/"
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
                                 : ""
                         }`}
                     >
@@ -26,8 +43,8 @@ const { url } = Astro;
                     <a
                         href="/services"
                         class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname.startsWith("/services") 
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                            url.pathname.startsWith("/services")
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
                                 : ""
                         }`}
                     >
@@ -36,10 +53,22 @@ const { url } = Astro;
                 </li>
                 <li class="flex">
                     <a
+                        href="/blog"
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname.startsWith("/blog")
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
+                                : ""
+                        }`}
+                    >
+                        Blog
+                    </a>
+                </li>
+                <li class="flex">
+                    <a
                         href="/about"
                         class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname.startsWith("/about") 
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                            url.pathname.startsWith("/about")
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
                                 : ""
                         }`}
                     >
@@ -50,8 +79,8 @@ const { url } = Astro;
                     <a
                         href="/now/"
                         class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname === "/now/" 
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500" 
+                            url.pathname === "/now/"
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
                                 : ""
                         }`}
                     >
@@ -59,14 +88,18 @@ const { url } = Astro;
                     </a>
                 </li>
                 <li class="flex">
-                    <a href="https://cal.com/hanifcarroll/discovery" target="_blank" rel="noopener noreferrer" class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 ml-4 hover:bg-accent-700"
+                    <a
+                        href="https://cal.com/hanifcarroll/discovery"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 ml-4 hover:bg-accent-700"
                         >Schedule a Discovery Call</a
                     >
                 </li>
             </ul>
         </nav>
         <button
-            class="block md:hidden bg-transparent border-0 p-2 cursor-pointer z-[1001]"
+            class="mobile-nav-button bg-transparent border-0 p-2 cursor-pointer z-[1001]"
             id="mobile-nav-toggle"
             aria-label="Toggle Navigation"
             aria-expanded="false"
@@ -74,23 +107,30 @@ const { url } = Astro;
         >
             <span class="sr-only">Menu</span>
             <span class="flex flex-col w-5 h-4 justify-between">
-                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
-                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
-                <span class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"></span>
+                <span
+                    class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"
+                ></span>
+                <span
+                    class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"
+                ></span>
+                <span
+                    class="w-full h-0.5 bg-gray-800 transition-all duration-200 rounded-sm hamburger-line"
+                ></span>
             </span>
         </button>
     </div>
-    
+
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav hidden absolute top-full left-0 right-0 bg-white/[0.98] backdrop-blur-lg border-b border-gray-200 px-6 py-6 z-[1000] md:!hidden" id="mobile-nav">
+    <nav
+        class="mobile-nav hidden absolute top-full left-0 right-0 bg-white/[0.98] backdrop-blur-lg border-b border-gray-200 px-6 py-6 z-[1000]"
+        id="mobile-nav"
+    >
         <ul class="list-none m-0 p-0 flex flex-col gap-5 items-center">
             <li class="flex w-full justify-center">
                 <a
                     href="/"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname === "/" 
-                            ? "text-gray-800 font-medium" 
-                            : ""
+                        url.pathname === "/" ? "text-gray-800 font-medium" : ""
                     }`}
                 >
                     Home
@@ -100,8 +140,8 @@ const { url } = Astro;
                 <a
                     href="/services"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname.startsWith("/services") 
-                            ? "text-gray-800 font-medium" 
+                        url.pathname.startsWith("/services")
+                            ? "text-gray-800 font-medium"
                             : ""
                     }`}
                 >
@@ -110,10 +150,22 @@ const { url } = Astro;
             </li>
             <li class="flex w-full justify-center">
                 <a
+                    href="/blog"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname.startsWith("/blog")
+                            ? "text-gray-800 font-medium"
+                            : ""
+                    }`}
+                >
+                    Blog
+                </a>
+            </li>
+            <li class="flex w-full justify-center">
+                <a
                     href="/about"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname.startsWith("/about") 
-                            ? "text-gray-800 font-medium" 
+                        url.pathname.startsWith("/about")
+                            ? "text-gray-800 font-medium"
                             : ""
                     }`}
                 >
@@ -124,8 +176,8 @@ const { url } = Astro;
                 <a
                     href="/now/"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname === "/now/" 
-                            ? "text-gray-800 font-medium" 
+                        url.pathname === "/now/"
+                            ? "text-gray-800 font-medium"
                             : ""
                     }`}
                 >
@@ -133,7 +185,11 @@ const { url } = Astro;
                 </a>
             </li>
             <li class="flex w-full justify-center">
-                <a href="https://cal.com/hanifcarroll/discovery" target="_blank" rel="noopener noreferrer" class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 mt-2 hover:bg-accent-700"
+                <a
+                    href="https://cal.com/hanifcarroll/discovery"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 mt-2 hover:bg-accent-700"
                     >Schedule a Discovery Call</a
                 >
             </li>
@@ -142,6 +198,28 @@ const { url } = Astro;
 </header>
 
 <style>
+    /* Custom responsive breakpoint at 930px */
+    @media (min-width: 930px) {
+        .desktop-nav {
+            display: block !important;
+        }
+        .mobile-nav-button {
+            display: none !important;
+        }
+        .mobile-nav {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 929px) {
+        .desktop-nav {
+            display: none !important;
+        }
+        .mobile-nav-button {
+            display: block !important;
+        }
+    }
+
     /* Hamburger animation styles */
     .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
@@ -154,7 +232,7 @@ const { url } = Astro;
     .mobile-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
     }
-    
+
     .mobile-nav.is-open {
         display: block !important;
     }
