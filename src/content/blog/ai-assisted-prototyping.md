@@ -80,4 +80,4 @@ The tools are getting better rapidly, but the real value comes from shifting you
 
 ---
 
-*This approach has become central to how I validate product ideas. If you're working on a product and want to discuss AI-assisted prototyping strategies, I'd love to [connect and share experiences](https://cal.com/hanifcarroll/discovery).*
+*This approach has become central to how I validate product ideas. If you're working on a product and want to discuss AI-assisted prototyping strategies, I'd love to [connect and share experiences](https://cal.com/hanifcarroll/strategy).*
