@@ -2,55 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import FeaturedProjectCard from "../components/FeaturedProjectCard.astro";
+import CTAButton from "../components/CTAButton.astro";
 import { SITE_CONFIG } from "../utils/siteConfig";
 
 const pageTitle = SITE_CONFIG.defaultTitle;
 const pageDescription =
-    "Technical Product Expert combining 7+ years of development with user research and strategic thinking. I help agencies and businesses build products users love—from idea to launch in weeks.";
-
-const whyWorkWithMe = [
-    {
-        title: "Technical + Strategic Hybrid",
-        description:
-            "Unlike pure developers or consultants, I combine deep technical skills with product strategy and user research. This means I can rapidly prototype ideas during client discussions, then build the production version without losing context or requiring handoffs.",
-        features: [
-            "Full-stack development with modern technologies",
-            "User research and strategic product thinking",
-            "Client-facing technical communication",
-            "End-to-end product development",
-        ],
-    },
-    {
-        title: "Rapid Iteration & Prototyping",
-        description:
-            "I excel at turning ideas into working prototypes quickly, then iterating based on real user feedback. This approach reduces project risk and gets you to market faster with higher confidence in product-market fit.",
-        features: [
-            "Functional prototypes in days instead of weeks",
-            "Interactive client collaboration and rapid iteration",
-            "Quick validation of product assumptions",
-            "Seamless transition from prototype to production",
-        ],
-    },
-    {
-        title: "Agency-Ready Collaboration",
-        description:
-            "With experience across enterprise and startup environments, I understand how to work embedded in agency teams, communicate with clients effectively, and deliver on tight timelines without sacrificing quality.",
-        features: [
-            "Client presentation and technical communication",
-            "Cross-functional team collaboration",
-            "Agency project timelines and processes",
-            "Quality delivery under pressure",
-        ],
-    },
-];
-
-const trustedByCompanies = [
-    "Capgemini",
-    "LeagueApps",
-    "Disney Cruise Line",
-    "GE Aerospace",
-    "Cisco",
-];
+    "Fractional CTO & Product Partner helping bootstrapped, nontechnical founders turn ambitious ideas into software that users love. From stuck idea to working software—without the overwhelm.";
 
 const featuredProjects = (await getCollection("projects"))
     .filter((project: CollectionEntry<"projects">) => project.data.isFeatured)
@@ -64,137 +21,51 @@ const featuredProjects = (await getCollection("projects"))
     <!-- Hero Section -->
     <section class="bg-white text-gray-800 min-h-[80vh] flex items-center">
         <div class="container w-full py-[60px] px-6 md:py-20 lg:py-[100px]">
-            <div
-                class="flex flex-col gap-12 items-center md:flex-row md:gap-[60px] md:items-center md:text-left lg:gap-20"
-            >
-                <div class="max-w-[600px] md:flex-1 md:max-w-none">
-                    <span
-                        class="hero-tagline hero-animate text-[0.9rem] font-medium text-accent-600 uppercase tracking-[0.15em] mb-4 block"
-                        data-delay="100">From Idea to Launch in Weeks</span
-                    >
-                    <h1
-                        class="hero-title hero-animate text-[3rem] font-light text-gray-900 m-0 mb-4 leading-[1.1] tracking-tight md:text-[3.5rem] md:mb-6 lg:text-[4rem]"
-                        data-delay="200"
-                    >
-                        Hi, I'm Hanif
-                    </h1>
-                    <p
-                        class="hero-credibility hero-animate text-lg text-gray-600 mb-6 font-normal"
-                        data-delay="250"
-                    >
-                        7 years building products for startups and enterprises
-                    </p>
-                    <div
-                        class="hero-description hero-animate flex flex-col gap-6 mb-10 md:mb-12"
-                        data-delay="300"
-                    >
-                        <p
-                            class="text-lg font-light leading-relaxed text-gray-500 m-0 lg:text-[1.25rem]"
-                        >
-                            I help agencies and businesses build products that
-                            users love by combining user research, strategic
-                            thinking, and full-stack development.
-                        </p>
-                        <div
-                            class="flex flex-col sm:flex-row gap-4 sm:gap-6 text-base text-gray-600"
-                        >
-                            <div class="flex items-center gap-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-accent-600 flex-shrink-0"
-                                >
-                                    <path d="M9 12l2 2 4-4"></path>
-                                    <path
-                                        d="M21 12c0 4.9-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"
-                                    ></path>
-                                </svg>
-                                <span>No handoff friction</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-accent-600 flex-shrink-0"
-                                >
-                                    <path d="M9 12l2 2 4-4"></path>
-                                    <path
-                                        d="M21 12c0 4.9-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"
-                                    ></path>
-                                </svg>
-                                <span>7+ years experience</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-accent-600 flex-shrink-0"
-                                >
-                                    <path d="M9 12l2 2 4-4"></path>
-                                    <path
-                                        d="M21 12c0 4.9-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"
-                                    ></path>
-                                </svg>
-                                <span>Prototype to production</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="hero-actions hero-animate flex flex-col gap-4 items-center md:flex-row md:gap-5 md:items-start"
-                        data-delay="400"
-                    >
-                        <a
-                            href="https://cal.com/hanifcarroll/strategy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="hero-button primary inline-block py-button-y px-button-x text-[0.95rem] font-normal tracking-normal transition-all duration-200 ease-in-out rounded-lg text-center w-full transform translate-y-0 bg-accent-600 text-white border border-accent-600 hover:bg-accent-700 hover:border-accent-700 hover:-translate-y-px"
-                            >Schedule a Strategy Call</a
-                        >
-                        <a
-                            class="hero-button secondary inline-block py-button-y px-button-x text-[0.95rem] font-normal tracking-normal transition-all duration-200 ease-in-out rounded-lg text-center w-full transform translate-y-0 bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-100 hover:border-gray-400 hover:-translate-y-px"
-                            href="/services"
-                        >
-                            View My Services
-                        </a>
-                    </div>
-                </div>
-                <div
-                    class="hero-image-container hero-animate-scale flex-shrink-0"
-                    data-delay="500"
+            <div class="max-w-[800px] mx-auto text-center">
+                <span
+                    class="hero-tagline hero-animate text-[0.9rem] font-medium text-accent-600 uppercase tracking-[0.15em] mb-4 block"
+                    data-delay="100">Clarify · Launch · Grow</span
                 >
-                    <img
-                        src="img/portrait.webp"
-                        alt="Portrait of Hanif Carroll, smiling."
-                        class="hero-image w-[280px] h-auto object-cover rounded-sm block transition-transform duration-300 ease-in-out hover:scale-[1.02] md:w-80 lg:w-[360px]"
+                <h1
+                    class="hero-title hero-animate text-[3rem] font-light text-gray-900 m-0 mb-6 leading-[1.1] tracking-tight md:text-[3.5rem] md:mb-8 lg:text-[4rem]"
+                    data-delay="200"
+                >
+                    From stuck idea to working software—without the overwhelm
+                </h1>
+                <p
+                    class="hero-description hero-animate text-lg font-light leading-relaxed text-gray-500 mb-10 max-w-[600px] mx-auto lg:text-[1.25rem]"
+                    data-delay="300"
+                >
+                    I help bootstrapped, nontechnical founders turn ambitious ideas into software that users love. As your Fractional CTO & Product Partner, I bridge the gap between vision and execution.
+                </p>
+                <div
+                    class="hero-actions hero-animate flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-5"
+                    data-delay="400"
+                >
+                    <CTAButton 
+                        href="https://cal.com/hanifcarroll/strategy"
+                        text="Let's Talk"
+                        size="medium"
+                        external={true}
+                        class="hero-button transform translate-y-0 hover:-translate-y-px transition-transform duration-200"
+                    />
+                    <CTAButton 
+                        href="/services"
+                        text="View My Services"
+                        size="medium"
+                        variant="secondary"
+                        class="hero-button transform translate-y-0 hover:-translate-y-px transition-transform duration-200"
                     />
                 </div>
+                <p class="hero-credibility hero-animate text-sm text-gray-500 mt-8" data-delay="500">
+                    Trusted by founders who've raised $0 and built products users love anyway
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Brief Services Section -->
-    <section class="bg-white text-gray-800 border-t border-gray-100">
+    <!-- Services Preview Section -->
+    <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
         <div
             class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
         >
@@ -202,25 +73,22 @@ const featuredProjects = (await getCollection("projects"))
                 <h2
                     class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
                 >
-                    How I Can Help You Build Better Products
+                    How I Help Bootstrapped Founders Build
                 </h2>
                 <p
                     class="text-lg font-light leading-relaxed text-gray-500 max-w-2xl mx-auto"
                 >
-                    Whether you need rapid validation, full product development,
-                    or a professional web presence, I offer structured services
-                    designed to get you results quickly.
+                    Three ways to go from idea to revenue, designed for founders who need momentum without burning cash
                 </p>
             </div>
-            <div class="grid gap-8 max-w-4xl mx-auto md:grid-cols-3">
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
-                    >
+            <div class="grid gap-8 max-w-5xl mx-auto md:grid-cols-3">
+                <!-- Clarify -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-all duration-300">
+                    <div class="text-accent-600 mb-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="32"
+                            height="32"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -228,39 +96,43 @@ const featuredProjects = (await getCollection("projects"))
                             stroke-linecap="round"
                             stroke-linejoin="round"
                         >
-                            <path
-                                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
-                            ></path>
-                            <path
-                                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
-                            ></path>
-                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"
-                            ></path>
-                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"
-                            ></path>
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Discovery & Prototype Sprint
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        Clarify (Get Unstuck)
                     </h3>
+                    <p class="text-sm text-gray-400 mb-3">11-15 days</p>
                     <p class="text-gray-600 mb-4">
-                        Test your idea with a working prototype in just 2 weeks.
+                        Perfect if you're overwhelmed or unsure what to build first. Get a clear roadmap and test your messaging.
                     </p>
-                    <a
-                        href="/services/prototypes"
-                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
-                    >
-                        Learn more →
-                    </a>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Discovery & Research Sprint
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            MVP Blueprint & Wireframes
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Positioning Framework
+                        </li>
+                    </ul>
+                    <p class="text-sm font-medium text-accent-600">
+                        100% refund if still unsure
+                    </p>
                 </div>
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
-                    >
+
+                <!-- Launch -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-all duration-300">
+                    <div class="text-accent-600 mb-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="32"
+                            height="32"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -268,37 +140,45 @@ const featuredProjects = (await getCollection("projects"))
                             stroke-linecap="round"
                             stroke-linejoin="round"
                         >
-                            <rect
-                                width="14"
-                                height="20"
-                                x="5"
-                                y="2"
-                                rx="2"
-                                ry="2"></rect>
-                            <path d="M12 18h.01"></path>
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        MVP Development
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        Launch (Ship Fast)
                     </h3>
+                    <p class="text-sm text-gray-400 mb-3">5-7 weeks</p>
                     <p class="text-gray-600 mb-4">
-                        Go from concept to market-ready product in 6-8 weeks.
+                        Need a live demo or MVP to validate with users? Ship a prototype in 7 days or full product in 4-6 weeks.
                     </p>
-                    <a
-                        href="/services/mvp-development"
-                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
-                    >
-                        Learn more →
-                    </a>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            7-day Prototype Sprint
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Live Product with Payments
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Complete Handoff Kit
+                        </li>
+                    </ul>
+                    <p class="text-sm font-medium text-accent-600">
+                        On-time or credit back
+                    </p>
                 </div>
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4"
-                    >
+
+                <!-- Grow -->
+                <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-all duration-300">
+                    <div class="text-accent-600 mb-4">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
+                            width="32"
+                            height="32"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -306,763 +186,147 @@ const featuredProjects = (await getCollection("projects"))
                             stroke-linecap="round"
                             stroke-linejoin="round"
                         >
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" x2="22" y1="12" y2="12"></line>
-                            <path
-                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                            ></path>
+                            <line x1="12" x2="12" y1="20" y2="10"></line>
+                            <line x1="18" x2="18" y1="20" y2="4"></line>
+                            <line x1="6" x2="6" y1="20" y2="16"></line>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Custom Business Websites
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">
+                        Grow (Scale Smart)
                     </h3>
+                    <p class="text-sm text-gray-400 mb-3">1-3 days/week ongoing</p>
                     <p class="text-gray-600 mb-4">
-                        Professional websites that convert visitors into
-                        customers.
+                        Got traction and need ongoing product & tech support? Embed a Fractional CTO without the equity ask.
                     </p>
-                    <a
-                        href="/services/websites"
-                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
-                    >
-                        Learn more →
-                    </a>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Product & UX Leadership
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Technical Direction
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-accent-600 mt-1">•</span>
+                            Process & Automation
+                        </li>
+                    </ul>
+                    <p class="text-sm font-medium text-accent-600">
+                        Cancel anytime, 1-week notice
+                    </p>
                 </div>
             </div>
             <div class="text-center mt-10">
-                <a
+                <CTAButton 
                     href="/services"
-                    class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
-                >
-                    Explore All Services
-                </a>
+                    text="View Full Service Details"
+                    size="medium"
+                />
             </div>
         </div>
     </section>
 
-    <!-- Featured Projects Section -->
-    <section id="featured-projects" class="bg-gray-50 text-gray-800">
-        <div
-            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
-        >
-            <h2
-                class="text-5xl font-light tracking-tight text-center mb-4 text-gray-900 leading-tight md:text-[2.75rem]"
-            >
-                Featured Projects
-            </h2>
-            <p
-                class="text-lg font-light leading-relaxed text-gray-500 text-center max-w-2xl mx-auto mb-[60px] md:mb-20"
-            >
-                See my approach in action. These personal projects demonstrate
-                my ability to combine user research, strategic thinking, and
-                technical execution to create meaningful products.
-            </p>
-
-            <div class="flex flex-col gap-[60px] md:gap-20 lg:gap-[100px]">
-                {
-                    featuredProjects.map((project: any) => {
-                        return (
-                            <FeaturedProjectCard
-                                title={project.data.title}
-                                description={project.data.description}
-                                tags={project.data.tags}
-                                image={project.data.image}
-                                imageAlt={
-                                    project.data.imageAlt ?? project.data.title
-                                }
-                                slug={project.slug}
-                                order={project.data.order}
-                            />
-                        );
-                    })
-                }
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="bg-gradient-to-b from-gray-50 to-white text-gray-800">
+    <!-- About Preview Section -->
+    <section class="bg-white text-gray-800">
         <div
             class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
         >
             <div
-                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start md:text-left lg:gap-20"
+                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start lg:gap-20"
             >
-                <div class="flex-shrink-0">
-                    <img
-                        src="/img/portrait-professional.webp"
-                        alt="Professional portrait"
-                        class="w-[280px] h-auto object-cover block rounded-sm md:hidden"
-                        width="310"
-                        height="292"
-                        loading="lazy"
-                    />
-                    <img
-                        src="/img/portrait-professional-desktop.webp"
-                        alt="Professional portrait"
-                        class="hidden md:block w-60 h-auto object-cover rounded-sm lg:w-[280px]"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="max-w-[600px] md:text-left">
+                <div class="max-w-[600px] order-2 md:order-1">
                     <h2
                         class="text-5xl font-light tracking-tight mb-8 text-gray-900 leading-tight md:text-[2.75rem]"
                     >
-                        About
+                        Why I Do This Work
                     </h2>
                     <div class="flex flex-col gap-6">
                         <p
                             class="text-lg font-light leading-relaxed text-gray-500 m-0"
                         >
-                            With <strong class="font-medium text-gray-700"
-                                >7+ years</strong
-                            > of development experience, I've become a Technical
-                            Product Expert who combines strategic thinking, user
-                            research, and full-stack development to create digital
-                            products that users genuinely love.
+                            Most ambitious founders hit the same wall: You know exactly what users need, but turning that vision into real, working software feels impossible.
                         </p>
                         <p
                             class="text-lg font-light leading-relaxed text-gray-500 m-0"
                         >
-                            My unique advantage is thinking across the full
-                            product lifecycle. I can conduct user research, make
-                            strategic decisions, then execute technically—all
-                            without handoff delays or lost context.
+                            You've got the domain expertise. You understand the problem better than any dev ever will. But translating your vision into something users actually love? That's where the real challenge begins.
                         </p>
                         <p
                             class="text-lg font-light leading-relaxed text-gray-500 m-0"
                         >
-                            <strong class="font-medium text-gray-700"
-                                >Products built for:</strong
-                            >
-                            {trustedByCompanies.join(", ")}
+                            I'm the technical partner who speaks founder, not just code. I help bootstrapped, nontechnical founders bridge the gap between brilliant idea and shipped product—without the equity ask or full-time salary.
                         </p>
                     </div>
+                    <div class="mt-8">
+                        <a
+                            href="/about"
+                            class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
+                        >
+                            Read more about my approach →
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-shrink-0 order-1 md:order-2">
+                    <img
+                        src="/img/portrait.webp"
+                        alt="Hanif Carroll"
+                        class="w-[280px] h-auto object-cover block rounded-sm md:w-[320px] lg:w-[360px]"
+                        loading="lazy"
+                    />
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Section -->
-    <section
-        class="bg-gradient-to-b from-white to-gray-50 text-gray-800 py-20 md:py-[100px] lg:py-[120px] relative overflow-hidden"
-    >
-        <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(219,39,119,0.03),transparent_50%)]"
-        >
-        </div>
-        <div class="container max-w-container mx-auto px-6 relative">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-6"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path
-                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <h2
-                        class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
-                    >
-                        What People Say
-                    </h2>
-                    <p class="text-lg font-light text-gray-500">
-                        Real feedback from teammates and collaborators
-                    </p>
-                </div>
-
-                <div
-                    class="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 relative"
-                >
-                    <div class="flex items-start gap-6 mb-8">
-                        <div class="flex-shrink-0">
-                            <div
-                                class="w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center shadow-lg"
-                            >
-                                <span class="text-white font-semibold text-lg"
-                                    >SH</span
-                                >
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-medium text-gray-900 mb-1">
-                                Sarah Hibner
-                            </h4>
-                            <p class="text-gray-600 font-medium">
-                                Senior Product Designer at LeagueApps
-                            </p>
-                        </div>
-                    </div>
-
-                    <blockquote class="text-gray-700 leading-relaxed">
-                        <p class="text-lg mb-6 font-light">
-                            "I got to experience Hanif's collaborative front-end
-                            engineering skills in my role as a product designer
-                            on the scheduling team at LeagueApps, and he was a
-                            pleasure to work with!
-                        </p>
-                        <p class="text-lg mb-6 font-light">
-                            We worked together mostly on the tournament
-                            schedules product, and as my teammate, Hanif:
-                        </p>
-                        <div class="grid gap-4 mb-6 sm:grid-cols-2">
-                            <div
-                                class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg"
-                            >
-                                <span
-                                    class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"
-                                ></span>
-                                <span class="text-gray-700"
-                                    >Suggested design-to-engineering hand-off
-                                    improvements to help make our team workflow
-                                    more efficient</span
-                                >
-                            </div>
-                            <div
-                                class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg"
-                            >
-                                <span
-                                    class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"
-                                ></span>
-                                <span class="text-gray-700"
-                                    >Provided great feedback when our team was
-                                    tightening up product requirements during
-                                    story time reviews</span
-                                >
-                            </div>
-                            <div
-                                class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg"
-                            >
-                                <span
-                                    class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"
-                                ></span>
-                                <span class="text-gray-700"
-                                    >Asked insightful follow-up questions during
-                                    design reviews, in Figma files, and in Jira
-                                    tickets</span
-                                >
-                            </div>
-                            <div
-                                class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg"
-                            >
-                                <span
-                                    class="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0"
-                                ></span>
-                                <span class="text-gray-700"
-                                    >Brought my Figma designs to life so we
-                                    could deliver value to our users in a
-                                    production environment!</span
-                                >
-                            </div>
-                        </div>
-                        <p class="text-lg font-light text-gray-700 italic">
-                            I'd be happy to collaborate with Hanif again and
-                            can't recommend him enough to other teams looking
-                            for a collaborative, thorough, and all-around
-                            stellar front-end engineer."
-                        </p>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Work With Me Section -->
-    <section class="bg-white text-gray-800 relative">
-        <div
-            class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(219,39,119,0.02),transparent_50%)]"
-        >
-        </div>
-        <div
-            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px] relative"
-        >
-            <div class="text-center mb-16">
+    <!-- Featured Projects Section -->
+    {featuredProjects.length > 0 && (
+        <section id="featured-projects" class="bg-gray-50 text-gray-800">
+            <div
+                class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+            >
                 <h2
-                    class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
+                    class="text-5xl font-light tracking-tight text-center mb-4 text-gray-900 leading-tight md:text-[2.75rem]"
                 >
-                    Why Work With Me
+                    Recent Projects
                 </h2>
-                <p class="text-lg font-light text-gray-500 max-w-2xl mx-auto">
-                    Three key advantages that set me apart from traditional
-                    developers and consultants
-                </p>
-            </div>
-            <div class="grid gap-8 lg:grid-cols-3">
-                {
-                    whyWorkWithMe.map((item, i) => (
-                        <div class="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-400 to-accent-600" />
-                            <div class="flex items-center gap-4 mb-6">
-                                <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent-100 to-accent-200 rounded-xl text-accent-600 font-bold text-lg group-hover:scale-110 transition-transform duration-300">
-                                    {i + 1}
-                                </div>
-                                <h3 class="text-xl font-medium text-gray-900 m-0 leading-snug md:text-2xl">
-                                    {item.title}
-                                </h3>
-                            </div>
-                            <p class="text-lg font-light leading-relaxed text-gray-500 m-0 mb-6">
-                                {item.description}
-                            </p>
-                            <div class="space-y-3">
-                                {item.features.map((feature) => (
-                                    <div class="flex items-start gap-3">
-                                        <span class="w-1.5 h-1.5 bg-accent-500 rounded-full mt-2.5 flex-shrink-0" />
-                                        <span class="text-gray-600 leading-relaxed">
-                                            {feature}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    </section>
-
-    <!-- My Process Section -->
-    <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
-        <div
-            class="container max-w-[1000px] mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
-        >
-            <h2
-                class="text-5xl font-light tracking-tight text-center mb-4 text-gray-900 leading-tight md:text-[2.75rem]"
-            >
-                My Process
-            </h2>
-            <p
-                class="text-lg font-light leading-relaxed text-gray-500 text-center max-w-[700px] mx-auto mb-16"
-            >
-                A proven approach that turns ideas into working products
-                quickly, with your input every step of the way.
-            </p>
-
-            <div
-                class="grid gap-8 max-w-[1000px] mx-auto md:grid-cols-2 lg:grid-cols-4"
-            >
-                <!-- Step 1 -->
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
-                    >
-                        1
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Discovery
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        We discuss your goals, users, and constraints. I ask the
-                        right questions to understand what success looks like.
-                    </p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
-                    >
-                        2
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Rapid Prototyping
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I quickly build working prototypes to test ideas and get
-                        early feedback before committing to full development.
-                    </p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
-                    >
-                        3
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Iterative Development
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        We work in short cycles with regular check-ins, so you
-                        see progress and can course-correct as needed.
-                    </p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="text-center p-6">
-                    <div
-                        class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-full text-2xl font-semibold mb-4"
-                    >
-                        4
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-3">
-                        Launch & Support
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I ensure smooth deployment and provide documentation so
-                        your team can maintain and grow the product.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Key Differentiators -->
-            <div
-                class="mt-16 bg-white rounded-lg p-8 border border-gray-200 max-w-[800px] mx-auto"
-            >
-                <h3 class="text-2xl font-medium text-gray-900 mb-6 text-center">
-                    What Makes My Process Different
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="text-center">
-                        <div class="text-accent-600 mb-3">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="mx-auto"
-                            >
-                                <path
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                ></path>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-medium text-gray-900 mb-2">
-                            No Handoffs
-                        </h4>
-                        <p class="text-sm text-gray-600">
-                            I handle strategy, design decisions, and technical
-                            implementation—no context lost between teams.
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-accent-600 mb-3">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="mx-auto"
-                            >
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-medium text-gray-900 mb-2">
-                            Speed & Quality
-                        </h4>
-                        <p class="text-sm text-gray-600">
-                            Working prototypes in days, not weeks.
-                            Production-ready code that's built to scale.
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-accent-600 mb-3">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="mx-auto"
-                            >
-                                <path
-                                    d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                                ></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <h4 class="text-lg font-medium text-gray-900 mb-2">
-                            True Collaboration
-                        </h4>
-                        <p class="text-sm text-gray-600">
-                            You're involved throughout, with regular demos and
-                            the ability to influence direction.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="text-center mt-12">
-                <p class="text-lg font-light text-gray-500 mb-6">
-                    Ready to start building? Let's discuss your project.
-                </p>
-                <a
-                    href="https://cal.com/hanifcarroll/strategy"
-                    class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
+                <p
+                    class="text-lg font-light leading-relaxed text-gray-500 text-center max-w-2xl mx-auto mb-[60px] md:mb-20"
                 >
-                    Schedule Your Free Strategy Call
-                </a>
-            </div>
-        </div>
-    </section>
+                    Personal projects where I apply the same user research, strategic thinking, and rapid execution I bring to client work
+                </p>
 
-    <!-- FAQ Section -->
-    <section
-        class="bg-gradient-to-b from-white to-gray-50 text-gray-800 border-t border-gray-100 py-20 md:py-[100px] lg:py-[120px]"
-    >
-        <div class="container max-w-container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <div
-                        class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-6"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
-                            ></path>
-                            <path d="M12 17h.01"></path>
-                        </svg>
-                    </div>
-                    <h2
-                        class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
-                    >
-                        Frequently Asked Questions
-                    </h2>
-                    <p class="text-lg font-light text-gray-500">
-                        Get clarity on timelines, process, and what to expect
-                    </p>
+                <div class="flex flex-col gap-[60px] md:gap-20 lg:gap-[100px]">
+                    {
+                        featuredProjects.map((project: any) => {
+                            return (
+                                <FeaturedProjectCard
+                                    title={project.data.title}
+                                    description={project.data.description}
+                                    tags={project.data.tags}
+                                    image={project.data.image}
+                                    imageAlt={
+                                        project.data.imageAlt ?? project.data.title
+                                    }
+                                    slug={project.slug}
+                                    order={project.data.order}
+                                />
+                            );
+                        })
+                    }
                 </div>
-
-                <div class="grid gap-6 md:grid-cols-2">
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                <div class="text-center mt-12">
+                    <a
+                        href="/projects"
+                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
                     >
-                        <div class="flex items-start gap-4 mb-4">
-                            <div
-                                class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"
-                                    ></polyline>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-medium text-gray-900">
-                                How long does a typical project take?
-                            </h3>
-                        </div>
-                        <div class="ml-14 space-y-2">
-                            <p class="text-gray-600">
-                                <strong class="text-gray-800"
-                                    >Prototype Sprint:</strong
-                                > 2 weeks from kickoff to working prototype
-                            </p>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-800"
-                                    >MVP Development:</strong
-                                > 6-8 weeks for a market-ready product
-                            </p>
-                            <p class="text-gray-600">
-                                <strong class="text-gray-800"
-                                    >Custom Website:</strong
-                                > 2-3 weeks for a fully functional site
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                        <div class="flex items-start gap-4 mb-4">
-                            <div
-                                class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <path
-                                        d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                                    ></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-medium text-gray-900">
-                                What's included in the Strategy Call?
-                            </h3>
-                        </div>
-                        <p class="text-gray-600 ml-14">
-                            We'll discuss your project goals, technical
-                            requirements, timeline, and budget. I'll share
-                            insights on the best approach and determine if we're
-                            a good fit. No pressure, just clarity on your next
-                            steps.
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                        <div class="flex items-start gap-4 mb-4">
-                            <div
-                                class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <path
-                                        d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                                    ></path>
-                                    <circle cx="8.5" cy="7" r="4"></circle>
-                                    <path d="M20 8v6"></path>
-                                    <path d="M17 11h6"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-medium text-gray-900">
-                                Do you work with agencies or direct clients?
-                            </h3>
-                        </div>
-                        <p class="text-gray-600 ml-14">
-                            Both! I work directly with businesses who need
-                            products built, and I also partner with agencies as
-                            an embedded technical expert for their client
-                            projects.
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                        <div class="flex items-start gap-4 mb-4">
-                            <div
-                                class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <polyline points="16 18 22 12 16 6"
-                                    ></polyline>
-                                    <polyline points="8 6 2 12 8 18"></polyline>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-medium text-gray-900">
-                                What technologies do you work with?
-                            </h3>
-                        </div>
-                        <p class="text-gray-600 ml-14">
-                            Modern web technologies including React, Next.js,
-                            TypeScript, Node.js, Ruby on Rails, and various
-                            databases. For mobile apps, I use Expo + React
-                            Native. I choose the right tools for each project's
-                            needs.
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300 md:col-span-2 md:max-w-2xl md:mx-auto"
-                    >
-                        <div class="flex items-start gap-4 mb-4">
-                            <div
-                                class="flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-600 rounded-xl flex-shrink-0"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <path d="M8 2v4"></path>
-                                    <path d="M16 2v4"></path>
-                                    <rect
-                                        width="18"
-                                        height="18"
-                                        x="3"
-                                        y="4"
-                                        rx="2"></rect>
-                                    <path d="M3 10h18"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-medium text-gray-900">
-                                How involved do I need to be during the project?
-                            </h3>
-                        </div>
-                        <p class="text-gray-600 ml-14">
-                            Your involvement varies by project type, but
-                            typically includes an initial discovery session,
-                            weekly check-ins, and feedback on iterations. I
-                            handle the heavy lifting while keeping you informed
-                            and involved in key decisions.
-                        </p>
-                    </div>
+                        View all projects →
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    )}
+
 </BaseLayout>
 
 <script>

@@ -1,0 +1,40 @@
+---
+export interface Props {
+    href: string;
+    text: string;
+    size?: 'small' | 'medium' | 'large';
+    variant?: 'primary' | 'secondary';
+    external?: boolean;
+    class?: string;
+}
+
+const { 
+    href, 
+    text, 
+    size = 'medium', 
+    variant = 'primary',
+    external = false,
+    class: additionalClasses = '' 
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 no-underline';
+
+const sizeClasses = {
+    small: 'py-2.5 px-5 text-sm',
+    medium: 'py-3 px-8 text-base',
+    large: 'py-4 px-10 text-lg'
+};
+
+const variantClasses = {
+    primary: 'bg-accent-600 text-white hover:bg-accent-700',
+    secondary: 'bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-100 hover:border-gray-400'
+};
+
+const finalClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${additionalClasses}`.trim();
+
+const linkProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<a href={href} class={finalClasses} {...linkProps}>
+    {text}
+</a>

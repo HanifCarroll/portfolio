@@ -1,4 +1,5 @@
 ---
+import CTAButton from "./CTAButton.astro";
 const { url } = Astro;
 ---
 
@@ -15,9 +16,10 @@ const { url } = Astro;
             <img
                 src="/img/avatar.png"
                 alt="Hanif smiling"
-                class="w-8 h-8 md:w-9 md:h-9 object-cover"
+                class="w-12 h-12 object-cover"
             />
-            <span class="font-medium text-gray-900 tracking-normal"
+            <span
+                class="font-medium text-gray-900 tracking-normal leading-tight"
                 >Hanif Carroll</span
             >
         </a>
@@ -26,7 +28,9 @@ const { url } = Astro;
             id="main-nav"
             aria-label="Main Navigation"
         >
-            <ul class="list-none m-0 p-0 flex items-center gap-8 md:gap-10">
+            <ul
+                class="list-none m-0 p-0 flex items-center gap-6 lg:gap-8 xl:gap-10"
+            >
                 <li class="flex">
                     <a
                         href="/"
@@ -37,30 +41,6 @@ const { url } = Astro;
                         }`}
                     >
                         Home
-                    </a>
-                </li>
-                <li class="flex">
-                    <a
-                        href="/services"
-                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname.startsWith("/services")
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
-                                : ""
-                        }`}
-                    >
-                        Services
-                    </a>
-                </li>
-                <li class="flex">
-                    <a
-                        href="/blog"
-                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                            url.pathname.startsWith("/blog")
-                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
-                                : ""
-                        }`}
-                    >
-                        Blog
                     </a>
                 </li>
                 <li class="flex">
@@ -77,12 +57,35 @@ const { url } = Astro;
                 </li>
                 <li class="flex">
                     <a
-                        href="https://cal.com/hanifcarroll/strategy"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 ml-4 hover:bg-accent-700"
-                        >Schedule a Strategy Call</a
+                        href="/services"
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname.startsWith("/services")
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
+                                : ""
+                        }`}
                     >
+                        Services
+                    </a>
+                </li>
+                <li class="flex">
+                    <a
+                        href="/projects"
+                        class={`text-[0.95rem] md:text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                            url.pathname.startsWith("/projects")
+                                ? "text-gray-800 font-medium after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent-500"
+                                : ""
+                        }`}
+                    >
+                        Projects
+                    </a>
+                </li>
+                <li class="flex ml-4">
+                    <CTAButton
+                        href="https://cal.com/hanifcarroll/strategy"
+                        text="Let's Talk"
+                        size="small"
+                        external={true}
+                    />
                 </li>
             </ul>
         </nav>
@@ -126,30 +129,6 @@ const { url } = Astro;
             </li>
             <li class="flex w-full justify-center">
                 <a
-                    href="/services"
-                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname.startsWith("/services")
-                            ? "text-gray-800 font-medium"
-                            : ""
-                    }`}
-                >
-                    Services
-                </a>
-            </li>
-            <li class="flex w-full justify-center">
-                <a
-                    href="/blog"
-                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname.startsWith("/blog")
-                            ? "text-gray-800 font-medium"
-                            : ""
-                    }`}
-                >
-                    Blog
-                </a>
-            </li>
-            <li class="flex w-full justify-center">
-                <a
                     href="/about"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
                         url.pathname.startsWith("/about")
@@ -162,32 +141,43 @@ const { url } = Astro;
             </li>
             <li class="flex w-full justify-center">
                 <a
-                    href="/now/"
+                    href="/services"
                     class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
-                        url.pathname === "/now/"
+                        url.pathname.startsWith("/services")
                             ? "text-gray-800 font-medium"
                             : ""
                     }`}
                 >
-                    Now
+                    Services
                 </a>
             </li>
             <li class="flex w-full justify-center">
                 <a
-                    href="https://cal.com/hanifcarroll/strategy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="bg-accent-600 text-white px-5 py-2.5 rounded-lg font-medium transition-all duration-200 mt-2 hover:bg-accent-700"
-                    >Schedule a Strategy Call</a
+                    href="/projects"
+                    class={`text-base font-normal text-gray-500 no-underline py-2 relative transition-colors duration-200 tracking-normal hover:text-gray-800 ${
+                        url.pathname.startsWith("/projects")
+                            ? "text-gray-800 font-medium"
+                            : ""
+                    }`}
                 >
+                    Projects
+                </a>
+            </li>
+            <li class="flex w-full justify-center mt-2">
+                <CTAButton
+                    href="https://cal.com/hanifcarroll/strategy"
+                    text="Let's Talk"
+                    size="small"
+                    external={true}
+                />
             </li>
         </ul>
     </nav>
 </header>
 
 <style>
-    /* Custom responsive breakpoint at 930px */
-    @media (min-width: 930px) {
+    /* Custom responsive breakpoint at 1024px */
+    @media (min-width: 1024px) {
         .desktop-nav {
             display: block !important;
         }
@@ -199,7 +189,7 @@ const { url } = Astro;
         }
     }
 
-    @media (max-width: 929px) {
+    @media (max-width: 1023px) {
         .desktop-nav {
             display: none !important;
         }

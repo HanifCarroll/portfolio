@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for a Product Engineer built with Astro 5.12.6. The site uses static site generation with a component-based architecture to showcase project case studies and professional work.
+This is a personal portfolio website for Hanif Carroll - a Fractional CTO & Product Partner who helps bootstrapped, nontechnical founders turn ambitious ideas into software that users love. Built with Astro 5.12.6, the site uses static site generation with a component-based architecture to showcase project case studies, professional work, and service offerings.
 
 ## Development Commands
 
@@ -125,9 +125,23 @@ The project uses Tailwind CSS v4 with a custom theme defined in `src/styles/glob
 - `md:` - 768px and up  
 - `lg:` - 1024px and up
 
-## Current Limitations
+## Business Context
 
-- No test framework configured
-- No linting beyond TypeScript strict mode
-- Minimal Astro configuration (room for optimization)
-- No CI/CD configuration
+### Brand Positioning
+- **Tagline**: Clarify. Launch. Grow.
+- **Target Audience**: Bootstrapped, nontechnical founders and domain experts with ambitious product ideas
+- **Core Values**: Clarity, Momentum, Candor, Craft, Resourcefulness, Risk-Free Partnership
+
+### Service Offerings
+The site presents three main service packages:
+1. **Clarify (Get Unstuck)**: Discovery & research sprint, MVP blueprint, positioning framework
+2. **Launch (Ship Fast)**: Prototype sprint (7 days), live product build (4-6 weeks), handoff kit
+3. **Grow (Scale Smart)**: Fractional CTO services (1-3 days/week, month-to-month)
+
+### Content Strategy
+- **Newsletter**: "The Bootstrapped Founder's Field Guide" - weekly publication
+- **Social**: Active on LinkedIn with educational content
+
+### SEO Focus Areas
+Primary keywords: fractional CTO, mvp development, bootstrapped mvp development, startup consultant
+Secondary keywords include: nontechnical founder help, prototype development services, lean mvp development

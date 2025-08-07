@@ -1,49 +1,33 @@
+---
+import CTAButton from "./CTAButton.astro";
+---
+
 <footer id="contact" class="bg-gray-50 text-gray-800 border-t border-gray-200">
     <div class="max-w-3xl mx-auto px-6 py-20 md:py-[100px] lg:py-[120px]">
         <div class="text-center mb-16">
             <h2
                 class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
             >
-                Let's Work Together
+                Ready to turn your idea into reality?
             </h2>
             <p
                 class="text-lg font-light leading-relaxed text-gray-500 max-w-2xl mx-auto mb-12"
             >
-                Whether you have a specific project in mind or want to explore
-                how we might collaborate, I'd love to connect and discuss the
-                possibilities.
+                Book a free strategy session to discuss your challenges and find the right path forward.
             </p>
 
-            <!-- Primary CTAs -->
-            <div
-                class="flex flex-col sm:flex-row sm:justify-center gap-4 items-center mb-8"
-            >
-                <div class="text-center">
-                    <p class="text-sm font-medium text-gray-700 mb-2">
-                        Ready to discuss a specific project?
-                    </p>
-                    <a
-                        href="https://cal.com/hanifcarroll/strategy"
-                        class="inline-flex items-center justify-center py-3 px-8 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors min-w-[200px]"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Schedule a Strategy Call
-                    </a>
-                </div>
-                <div class="text-center">
-                    <p class="text-sm font-medium text-gray-700 mb-2">
-                        Want to connect and explore opportunities?
-                    </p>
-                    <a
-                        href="https://cal.com/hanifcarroll/virtual-coffee"
-                        class="inline-flex items-center justify-center py-3 px-8 bg-white text-gray-800 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors min-w-[200px]"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Book a Coffee Chat
-                    </a>
-                </div>
+            <!-- Primary CTA -->
+            <div class="mb-8">
+                <CTAButton 
+                    href="https://cal.com/hanifcarroll/strategy"
+                    text="Let's Talk"
+                    size="medium"
+                    external={true}
+                    class="min-w-[200px]"
+                />
+                <p class="text-sm text-gray-500 mt-3">
+                    30-minute call · No sales pressure · Actionable next steps
+                </p>
             </div>
 
             <!-- Secondary Contact Options -->
@@ -72,10 +56,16 @@
         <div class="h-px bg-gray-200 mx-auto mb-10 max-w-xs"></div>
 
         <div
-            class="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-2 xs:gap-0 text-sm text-gray-400 font-light text-center xs:text-left"
+            class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-sm text-gray-400 font-light"
         >
-            <p class="m-0">© 2025 Hanif Carroll</p>
-            <p class="m-0">Buenos Aires, Argentina 🇦🇷</p>
+            <p class="m-0 text-center sm:text-left">© 2025 Hanif Carroll Consulting</p>
+            <nav class="flex flex-wrap gap-4 text-sm justify-center sm:justify-end">
+                <a href="/" class="text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+                <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
+                <a href="/services" class="text-gray-400 hover:text-gray-600 transition-colors">Services</a>
+                <a href="/projects" class="text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+                <a href="/privacy" class="text-gray-400 hover:text-gray-600 transition-colors">Privacy</a>
+            </nav>
         </div>
     </div>
 </footer>
