@@ -60,8 +60,8 @@ If you finish the Clarify workshop and remain uncertain about what to build firs
 
 **Average Duration:** 5–7 weeks
 
-**Guarantee:** On-Time or I Credit You
-If I miss our agreed launch date for reasons within my control, I’ll credit you 10 % of the sprint fee for every week I’m late, up to 30 %.
+**Guarantee:** Live & User-Ready or Money Back
+If we don't deliver a working product that real users can sign up for and use, I'll refund your entire investment. Period.
 
 **_Outcome**:_ You’ll end up with a live, user-ready product that you can show, test, and start turning into real traction—without needing to touch  servers or write a single line of code.
 

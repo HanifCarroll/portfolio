@@ -4,19 +4,27 @@ import { createPageTitle } from "../utils/siteConfig";
 import CTAButton from "../components/CTAButton.astro";
 
 const pageTitle = createPageTitle("About");
-const pageDescription = "Fractional CTO & Product Partner helping bootstrapped, nontechnical founders turn ambitious ideas into software that users love. Learn about my approach, values, and why I do this work.";
+const pageDescription =
+    "Fractional CTO & Product Partner helping bootstrapped, nontechnical founders turn ambitious ideas into software that users love. Learn about my approach, values, and why I do this work.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
     <!-- Hero Section -->
     <section class="bg-white text-gray-800">
-        <div class="container max-w-4xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]">
+        <div
+            class="container max-w-4xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
             <div class="text-center">
-                <h1 class="text-5xl font-light tracking-tight leading-tight text-gray-900 mb-8 md:text-[2.75rem]">
+                <h1
+                    class="text-5xl font-light tracking-tight leading-tight text-gray-900 mb-8 md:text-[2.75rem]"
+                >
                     About
                 </h1>
-                <p class="text-xl font-light leading-relaxed text-gray-500 max-w-3xl mx-auto">
-                    The story behind the work, the values that guide it, and the person behind the keyboard.
+                <p
+                    class="text-xl font-light leading-relaxed text-gray-500 max-w-3xl mx-auto"
+                >
+                    The story behind the work, the values that guide it, and the
+                    person behind the keyboard.
                 </p>
             </div>
         </div>
@@ -24,26 +32,37 @@ const pageDescription = "Fractional CTO & Product Partner helping bootstrapped, 
 
     <!-- About Content -->
     <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
-        <div class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]">            
-            
+        <div
+            class="container max-w-container mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
             <!-- Portrait and Intro -->
-            <div class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start lg:gap-20">
+            <div
+                class="flex flex-col gap-10 items-center md:flex-row md:gap-[60px] md:items-start lg:gap-20"
+            >
                 <div class="max-w-[600px] order-2 md:order-1">
-                    <h2 class="text-3xl font-light tracking-tight mb-6 text-gray-900 leading-tight">
+                    <h2
+                        class="text-3xl font-light tracking-tight mb-8 text-gray-900 leading-tight"
+                    >
                         Why I Do This Work
                     </h2>
-                    <div class="flex flex-col gap-6">
-                        <p class="text-lg font-light leading-relaxed text-gray-500 m-0">
-                            I spent years watching brilliant founders get stuck in the same place: they know exactly what their users need, but can't figure out how to build it without burning through their runway or losing their sanity.
+
+                    <div class="space-y-8">
+                        <p class="text-lg font-light leading-relaxed text-gray-500">
+                            I spent years watching brilliant founders get stuck in the same place: they know exactly what their users need, but can't figure out how to build it without <strong class="font-medium text-gray-700">burning through their runway</strong> or losing their sanity.
                         </p>
-                        <p class="text-lg font-light leading-relaxed text-gray-500 m-0">
-                            The problem isn't lack of vision—it's the gap between knowing what to build and actually shipping it. Technical decisions, resource constraints, competing priorities, and the overwhelming complexity of modern software development.
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-gray-700 leading-relaxed italic">
+                                The challenge isn't lack of vision—it's the gap between knowing what to build and actually shipping it.
+                            </p>
+                        </div>
+                        
+                        <p class="text-lg font-light leading-relaxed text-gray-500">
+                            After 7+ years building products across startups and enterprises, I've learned that the best solutions come from deeply understanding both the business problem and the technical landscape.
                         </p>
-                        <p class="text-lg font-light leading-relaxed text-gray-500 m-0">
-                            After 7+ years building products across startups and enterprises, I've learned that the best solutions come from deeply understanding both the business problem and the technical landscape. That's what I bring to bootstrapped founders: technical leadership that thinks like a founder.
-                        </p>
-                        <p class="text-lg font-light leading-relaxed text-gray-500 m-0">
-                            I help turn ambitious ideas into software that users love—without the equity ask, full-time commitment, or months of back-and-forth that traditional development requires.
+                        
+                        <p class="text-lg font-light leading-relaxed text-gray-500">
+                            That's what I bring to bootstrapped founders: <strong class="font-medium text-gray-700">technical leadership that thinks like a founder</strong>. I help turn ambitious ideas into software that users love—without the equity ask, full-time commitment, or months of back-and-forth that traditional development requires.
                         </p>
                     </div>
                 </div>
@@ -61,77 +80,87 @@ const pageDescription = "Fractional CTO & Product Partner helping bootstrapped, 
 
     <!-- Core Values -->
     <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
-        <div class="container max-w-5xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]">
-            <h2 class="text-3xl font-light text-gray-900 mb-16 text-center tracking-tight">
+        <div
+            class="container max-w-5xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <h2
+                class="text-3xl font-light text-gray-900 mb-16 text-center tracking-tight"
+            >
                 My Core Values
             </h2>
-            
+
             <!-- First Row: 3 columns -->
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
-                    <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-600">
-                            <path d="M9 12l2 2 4-4"/>
-                            <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h9l4-4-4-4H3"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Clarity</h3>
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                    <h3
+                        class="text-xl font-medium text-gray-900 mb-4 text-center"
+                    >
+                        Clarity
+                    </h3>
                     <p class="text-gray-600 leading-relaxed text-center">
-                        Plain language, visible roadmap, no black boxes. You always know what's happening and why.
+                        Plain language, visible roadmap, no black boxes. You
+                        always know what's happening and why.
                     </p>
                 </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
-                    <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-600">
-                            <path d="M6 3v12l6-6 6 6V3"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Momentum</h3>
+
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                    <h3
+                        class="text-xl font-medium text-gray-900 mb-4 text-center"
+                    >
+                        Momentum
+                    </h3>
                     <p class="text-gray-600 leading-relaxed text-center">
-                        Bias toward shipping real software over perfect plans. Progress beats perfection.
+                        Bias toward shipping real software over perfect plans.
+                        Progress beats perfection.
                     </p>
                 </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1">
-                    <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-600">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                            <path d="M9 9h6"/>
-                            <path d="M9 13h3"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Candor</h3>
+
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1"
+                >
+                    <h3
+                        class="text-xl font-medium text-gray-900 mb-4 text-center"
+                    >
+                        Candor
+                    </h3>
                     <p class="text-gray-600 leading-relaxed text-center">
-                        Honest trade-offs, no fluff, reality over hype. I'll tell you what you need to hear.
+                        Honest trade-offs, no fluff, reality over hype. I'll
+                        tell you what you need to hear.
                     </p>
                 </div>
             </div>
-            
+
             <!-- Second Row: 2 columns centered -->
             <div class="grid gap-8 sm:grid-cols-2 max-w-3xl mx-auto">
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
-                    <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-600">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Craft</h3>
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                    <h3
+                        class="text-xl font-medium text-gray-900 mb-4 text-center"
+                    >
+                        Craft
+                    </h3>
                     <p class="text-gray-600 leading-relaxed text-center">
-                        User-centric quality even in v1. Polish where it matters, lean everywhere else.
+                        User-centric quality even in v1. Polish where it
+                        matters, lean everywhere else.
                     </p>
                 </div>
-                
-                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
-                    <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent-600">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Resourcefulness</h3>
+
+                <div
+                    class="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                    <h3
+                        class="text-xl font-medium text-gray-900 mb-4 text-center"
+                    >
+                        Resourcefulness
+                    </h3>
                     <p class="text-gray-600 leading-relaxed text-center">
-                        Making the most of limited time and budget, maximizing impact per dollar.
+                        Making the most of limited time and budget, maximizing
+                        impact per dollar.
                     </p>
                 </div>
             </div>
@@ -148,11 +177,34 @@ const pageDescription = "Fractional CTO & Product Partner helping bootstrapped, 
                 <p class="text-lg font-light leading-relaxed text-gray-500">
                     I once aimed to open a sports-performance gym. Instead, I found my flow in <strong class="font-medium text-gray-700">shipping software</strong>.
                 </p>
+                
+                <div class="space-y-4">
+                    <p class="text-lg font-light leading-relaxed text-gray-500">
+                        With 7+ years building products for startups and enterprises, I've become a Technical Product Expert who combines:
+                    </p>
+                    
+                    <ul class="space-y-2 ml-6 text-lg font-light leading-relaxed text-gray-500">
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent-600 font-bold">•</span>
+                            <strong class="font-medium text-gray-700">Strategic thinking</strong> that sees the big picture
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent-600 font-bold">•</span>
+                            <strong class="font-medium text-gray-700">User research</strong> that uncovers real needs
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-accent-600 font-bold">•</span>
+                            <strong class="font-medium text-gray-700">Full-stack development</strong> that ships results
+                        </li>
+                    </ul>
+                    
+                    <p class="text-lg font-light leading-relaxed text-gray-500">
+                        My unique advantage: thinking across the <em class="text-accent-600">full product lifecycle</em>—from user research to strategic decisions to technical execution—all without handoff delays or lost context.
+                    </p>
+                </div>
+                
                 <p class="text-lg font-light leading-relaxed text-gray-500">
-                    With 7+ years building products for startups and enterprises, I've become a Technical Product Expert who combines strategic thinking, user research, and full-stack development. My unique advantage is thinking across the full product lifecycle—from user research to strategic decisions to technical execution—all without handoff delays or lost context.
-                </p>
-                <p class="text-lg font-light leading-relaxed text-gray-500">
-                    After working across enterprise and startup environments, I discovered my passion: helping bootstrapped founders turn ambitious ideas into products users love. The look on a founder's face when their vision becomes real, working software? That's what drives me.
+                    After working across enterprise and startup environments, I discovered my passion: helping bootstrapped founders turn ambitious ideas into products users love.
                 </p>
             </div>
         </div>
@@ -160,60 +212,87 @@ const pageDescription = "Fractional CTO & Product Partner helping bootstrapped, 
 
     <!-- Working With Me -->
     <section class="bg-gray-50 text-gray-800 border-t border-gray-100">
-        <div class="container max-w-4xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]">
-            <h2 class="text-3xl font-light text-gray-900 mb-12 text-center tracking-tight">
+        <div
+            class="container max-w-4xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <h2
+                class="text-3xl font-light text-gray-900 mb-12 text-center tracking-tight"
+            >
                 Working With Me
             </h2>
             <div class="max-w-3xl mx-auto space-y-8">
-                <p class="text-lg font-light leading-relaxed text-gray-500 text-center mb-12">
+                <p
+                    class="text-lg font-light leading-relaxed text-gray-500 text-center mb-12"
+                >
                     My approach is designed to meet you exactly where you are:
                 </p>
-                
+
                 <div class="space-y-8">
                     <div class="bg-white rounded-lg p-8 shadow-sm">
                         <div class="flex items-start gap-4">
                             <div class="text-2xl">🎯</div>
                             <div>
-                                <h3 class="text-xl font-medium text-gray-900 mb-2">Clarify (Get Unstuck)</h3>
+                                <h3
+                                    class="text-xl font-medium text-gray-900 mb-2"
+                                >
+                                    Clarify (Get Unstuck)
+                                </h3>
                                 <p class="text-gray-600 leading-relaxed">
-                                    For messy or stalled builds, we start here. Product audits and project triage give you a clear, actionable path forward.
+                                    For messy or stalled builds, we start here.
+                                    Product audits and project triage give you a
+                                    clear, actionable path forward.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white rounded-lg p-8 shadow-sm">
                         <div class="flex items-start gap-4">
                             <div class="text-2xl">🚀</div>
                             <div>
-                                <h3 class="text-xl font-medium text-gray-900 mb-2">Launch (Ship Fast)</h3>
+                                <h3
+                                    class="text-xl font-medium text-gray-900 mb-2"
+                                >
+                                    Launch (Ship Fast)
+                                </h3>
                                 <p class="text-gray-600 leading-relaxed">
-                                    Go from idea to interactive software in days or weeks, not months. AI-assisted development enables rapid prototyping and lean MVP delivery that's ready for users.
+                                    Go from idea to interactive software in days
+                                    or weeks, not months. AI-assisted
+                                    development enables rapid prototyping and
+                                    lean MVP delivery that's ready for users.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white rounded-lg p-8 shadow-sm">
                         <div class="flex items-start gap-4">
                             <div class="text-2xl">📈</div>
                             <div>
-                                <h3 class="text-xl font-medium text-gray-900 mb-2">Grow (Scale Smart)</h3>
+                                <h3
+                                    class="text-xl font-medium text-gray-900 mb-2"
+                                >
+                                    Grow (Scale Smart)
+                                </h3>
                                 <p class="text-gray-600 leading-relaxed">
-                                    Get the benefit of a senior technical partner embedded with your team. I act like your cofounder, but without the equity ask.
+                                    Get the benefit of a senior technical
+                                    partner embedded with your team. I act like
+                                    your cofounder, but without the equity ask.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="text-center pt-8">
-                    <p class="text-lg font-light text-gray-500 mb-2">You stay in control.</p>
-                    <p class="text-lg font-medium text-gray-700">I bring the execution.</p>
+                    <p class="text-lg font-light text-gray-500 mb-2">
+                        You stay in control.
+                    </p>
+                    <p class="text-lg font-medium text-gray-700">
+                        I bring the execution.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-
-
 </BaseLayout>
