@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy"
-description: "Privacy policy for Hanif Carroll Consulting - Learn how we handle your personal information and protect your privacy."
+description: "Privacy policy for Hanif Carroll, Fractional CTO & Product Partner. Learn how we handle your personal information and protect your privacy when using our services."
 layout: ../layouts/MarkdownLayout.astro
 ---
 

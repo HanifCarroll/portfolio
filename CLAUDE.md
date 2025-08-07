@@ -99,7 +99,7 @@ Project content uses frontmatter with this schema:
 ## Site Configuration
 
 Site-wide configuration is centralized in `src/utils/siteConfig.ts`:
-- Site title suffix: "Hanif Carroll - Product Engineer"
+- Site title suffix: "Hanif Carroll - Fractional CTO & Product Partner"
 - Page titles use format: `{Page Title} | {Site Title Suffix}`
 
 ## Tailwind Configuration

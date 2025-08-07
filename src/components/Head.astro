@@ -1,20 +1,65 @@
 ---
+import { SITE_CONFIG } from "../utils/siteConfig";
+
 export interface Props {
     title: string;
     description: string;
+    keywords?: string;
+    ogImage?: string;
 }
-const { title, description } = Astro.props;
+const { 
+    title, 
+    description, 
+    keywords = SITE_CONFIG.keywords,
+    ogImage = "/img/og-image.jpg"
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, SITE_CONFIG.siteUrl);
 ---
 
 <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={SITE_CONFIG.author} />
     <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/webclip.jpg" />
-    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, SITE_CONFIG.siteUrl)} />
+    <meta property="og:site_name" content="Hanif Carroll" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, SITE_CONFIG.siteUrl)} />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hanif Carroll",
+      "jobTitle": "Fractional CTO & Product Partner",
+      "description": "Helping bootstrapped, nontechnical founders turn ambitious ideas into software that users love",
+      "url": "https://hanifcarroll.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/hanifcarroll/"
+      ]
+    }
+    </script>
+    
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
