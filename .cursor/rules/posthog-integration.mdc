@@ -31,14 +31,12 @@ PostHog is already integrated into this Astro project. The configuration include
 src/
 ├── components/
 │   └── posthog.astro          # PostHog initialization
-├── layouts/
-│   └── PostHogLayout.astro    # Layout with PostHog
-└── pages/
-    └── *.astro                # Your pages using PostHogLayout
+│   └── Head.astro             # Head with PostHog
+└── layouts/
+    └── *.astro                # Your layouts using Head with PostHog component
 ```
 
 ### Common Patterns
-- Wrap pages with PostHogLayout for analytics
 - Use PostHog's autocapture for basic interaction tracking
 - Implement custom events for business-specific actions
 - Use feature flags for A/B testing and gradual rollouts
