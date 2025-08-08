@@ -9,7 +9,7 @@ Fractional CTO & Product Partner
 
 ### Headline
 
-Fractional CTO & Product Partner | Helping bootstrapped, nontechnical founders turn ambitious ideas into software that users love
+Fractional CTO & Product Partner | Helping bootstrapped nontechnical founders turn ambitious ideas into software that users love
 
 ### About
 
@@ -20,7 +20,7 @@ You’ve got the domain expertise. You understand the problem better than any de
 
 That’s where I come in.
 
-I'm the technical partner who speaks founder, not just code. As a Fractional CTO & Product Partner, I help bootstrapped, nontechnical founders bridge the gap between a brilliant idea and a shipped product.
+I'm the technical partner who speaks founder, not just code. As a Fractional CTO & Product Partner, I help bootstrapped nontechnical founders bridge the gap between a brilliant idea and a shipped product.
 
 Whether you're stuck in prototype purgatory, need a revenue-ready MVP, or want seasoned product & technical leadership without the full-time hire, I provide momentum, clarity, and execution.
 
@@ -69,7 +69,7 @@ Let's figure it out together.
 - What's been frustrating or confusing about the process  
 - What success looks like for you  
 
-**Perfect for:** Bootstrapped, nontechnical founders with ambitious ideas who need clarity on how to actually build something users will love.
+**Perfect for:** Bootstrapped nontechnical founders with ambitious ideas who need clarity on how to actually build something users will love.
 
 ### Intake Questions
 
@@ -97,7 +97,7 @@ Do NOT force keyword stuffing. Prioritize natural, persuasive, human copy.
 Use them to:
 
 - Inform phrasing in headers and blurbs (e.g., “Fractional CTO for startups”)
-- Help match the language of my ideal client (bootstrapped, nontechnical founders)
+- Help match the language of my ideal client (bootstrapped nontechnical founders)
 - Reinforce relevance in key page sections like Services or About
 
 Primary Keywords:
@@ -160,7 +160,7 @@ Long-Tail Keywords (for future reference and optional natural phrasing):
 
 - Short, confident title: _"From stuck idea to working software—without the overwhelm."_
 - 1–2 sentence intro that anchors your value:  
-  _I help bootstrapped, nontechnical founders go from fuzzy idea to user-ready product—quickly, clearly, and without wasting money._
+  _I help bootstrapped nontechnical founders go from fuzzy idea to user-ready product—quickly, clearly, and without wasting money._
 #### Service Tiers: Clarify · Launch · Grow
 
 For each package, include:

@@ -2,15 +2,15 @@
 
 ## Positioning Statement
 
-I help bootstrapped, nontechnical founders and domain experts turn ambitious ideas into software that users love.
+I help bootstrapped nontechnical founders and domain experts turn ambitious ideas into software that users love.
 
 ## Mission
 
-Make high-quality product execution accessible to bootstrapped, nontechnical founders—so more ambitious ideas actually ship, help users, and move the world forward.
+Make high-quality product execution accessible to bootstrapped nontechnical founders—so more ambitious ideas actually ship, help users, and move the world forward.
 
 ## Vision
 
-Help 100 bootstrapped, non-technical founders create their ambitious ideas into their first product that users love.
+Help 100 bootstrapped non-technical founders create their ambitious ideas into their first product that users love.
 
 ## Core Values
 
@@ -24,7 +24,7 @@ Help 100 bootstrapped, non-technical founders create their ambitious ideas into 
 
 ## Target Audience
 
-- Bootstrapped, nontechnical founders and domain experts with ambitious product ideas  
+- Bootstrapped nontechnical founders and domain experts with ambitious product ideas  
 - No technical cofounder or limited technical guidance  
 - High standards for user experience but limited bandwidth or technical confidence  
 - Have a stalled prototype, need an MVP, or need technical/product leadership 

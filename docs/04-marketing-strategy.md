@@ -2,7 +2,7 @@
 
 ## Introduction & Objectives
 
-This playbook outlines how Hanif Carroll Consulting will attract and serve **bootstrapped, nontechnical founders**. Our objectives are to build credibility in bootstrapper circles, book high‑intent strategy calls, and turn successful project outcomes into unsolicited referrals.
+This playbook outlines how Hanif Carroll Consulting will attract and serve **bootstrapped nontechnical founders**. Our objectives are to build credibility in bootstrapper circles, book high‑intent strategy calls, and turn successful project outcomes into unsolicited referrals.
 
 **SMART Goals**  
 - Book **12 strategy sessions** per quarter  
@@ -15,7 +15,7 @@ This playbook outlines how Hanif Carroll Consulting will attract and serve **boo
 
 ### Ideal Client Profile
 
-Bootstrapped, revenue‑focused nontechnical founders and domain experts who:
+Bootstrapped revenue‑focused nontechnical founders and domain experts who:
 - Have ambitious product ideas but limited technical bandwidth **and limited budgets**
 - Prioritise profit, sustainability, and fast iteration over fundraising
 - Need a hands‑on partner to translate vision into software users will pay for

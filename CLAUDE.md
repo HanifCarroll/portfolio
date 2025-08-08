@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for Hanif Carroll - a Fractional CTO & Product Partner who helps bootstrapped, nontechnical founders turn ambitious ideas into software that users love. Built with Astro 5.12.6, the site uses static site generation with a component-based architecture to showcase project case studies, professional work, and service offerings.
+This is a personal portfolio website for Hanif Carroll - a Fractional CTO & Product Partner who helps bootstrapped nontechnical founders turn ambitious ideas into software that users love. Built with Astro 5.12.6, the site uses static site generation with a component-based architecture to showcase project case studies, professional work, and service offerings.
 
 ## Development Commands
 
@@ -129,7 +129,7 @@ The project uses Tailwind CSS v4 with a custom theme defined in `src/styles/glob
 
 ### Brand Positioning
 - **Tagline**: Clarify. Launch. Grow.
-- **Target Audience**: Bootstrapped, nontechnical founders and domain experts with ambitious product ideas
+- **Target Audience**: Bootstrapped nontechnical founders and domain experts with ambitious product ideas
 - **Core Values**: Clarity, Momentum, Candor, Craft, Resourcefulness, Risk-Free Partnership
 
 ### Service Offerings
