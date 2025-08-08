@@ -4,6 +4,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import Head from "../components/Head.astro";
 import MarkdownRenderer from "../components/MarkdownRenderer.astro";
+import PostHog from "../components/posthog.astro";
 import { SITE_TITLE_SUFFIX } from "../utils/siteConfig";
 
 export interface Props {
@@ -24,7 +25,9 @@ if (!title.includes(SITE_TITLE_SUFFIX)) {
 
 <!doctype html>
 <html lang="en">
-    <Head {title} {description} />
+    <Head {title} {description}>
+        <PostHog />
+    </Head>
     <body>
         <SiteHeader />
         <main class="pt-20 md:pt-[90px]">
