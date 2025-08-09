@@ -13,34 +13,17 @@ Fractional CTO & Product Partner | Helping bootstrapped nontechnical founders tu
 
 ### About
 
-Most ambitious founders hit the same wall:  
-You know exactly what users need, but turning that vision into real, working software feels impossible.
+Build Fast. Grow Smart.
 
-You’ve got the domain expertise. You understand the problem better than any dev ever will. But translating your vision into something users actually *love*? That’s where the real challenge begins: technical decisions, UX trade-offs, slow progress, tight budgets, and way too many unknowns. 
+I help bootstrapped nontechnical founders turn ambitious ideas into real, working software—fast.
 
-That’s where I come in.
+🚀 Build Fast – Rapid prototypes & MVPs in days or weeks, not months. AI-assisted, code-based, and ready for users (and revenue).
 
-I'm the technical partner who speaks founder, not just code. As a Fractional CTO & Product Partner, I help bootstrapped nontechnical founders bridge the gap between a brilliant idea and a shipped product.
-
-Whether you're stuck in prototype purgatory, need a revenue-ready MVP, or want seasoned product & technical leadership without the full-time hire, I provide momentum, clarity, and execution.
-
-My approach is designed to meet you exactly where you are:
-
-🎯 Clarify (Get Unstuck)  
-For messy or stalled builds, we start here. Services include product audits and project triage to give you a clear, actionable path forward.
-
-🚀 Launch (Ship Fast)
-Go from idea to interactive software in days or weeks, not months. I use AI-assisted development for rapid prototyping and lean MVP delivery that's ready for users and investors.
-
-📈 Grow (Scale Smart) 
-Get the benefit of a senior technical partner embedded with your team. I act like your cofounder, but without the equity ask. I provide:  
-- Product & UX Leadership: Shaping your roadmap and holding the line on quality.  
-- Technical Direction: Guiding architecture and mentoring your team.  
-- Disciplined Execution: Managing sprints and launches with senior-level care.
+📈 Grow Smart – Fractional CTO support without the full-time hire or equity ask. Product & UX leadership, lean architecture, and disciplined execution to scale sustainably.
 
 You stay in control. I bring the execution.
 
-Ready to turn your vision into software that actually works? Message me or book a call: https://cal.com/hanifcarroll/strategy
+Ready to ship? Book a call: https://cal.com/hanifcarroll/strategy
 
 ---
 
@@ -132,7 +115,6 @@ Long-Tail Keywords (for future reference and optional natural phrasing):
 - how to build mvp without technical background
 - what does a fractional cto do
 - startup technical leadership options
-- how to validate startup idea before building
 - nontechnical founder guide to development
 
 ### Home
@@ -158,16 +140,17 @@ Long-Tail Keywords (for future reference and optional natural phrasing):
 
 #### Page Heading
 
-- Short, confident title: _"From stuck idea to working software—without the overwhelm."_
+- Short, confident title: _"From ready to build to working software—without the stress."_
 - 1–2 sentence intro that anchors your value:  
-  _I help bootstrapped nontechnical founders go from fuzzy idea to user-ready product—quickly, clearly, and without wasting money._
-#### Service Tiers: Clarify · Launch · Grow
+  _I help bootstrapped nontechnical founders go from ready to build to user-ready product—quickly, clearly, and without wasting money._
+
+#### Service Tiers: Build Fast · Grow Smart
 
 For each package, include:
 
 - **Tier Name + Tagline**
-  - E.g. _Clarify (Get Unstuck)_  
-  - One-line outcome framing (“Perfect if you don’t know what to build yet.”)
+  - E.g. _Build Fast_  
+  - One-line outcome framing (“Ideal for founders ready to turn their idea into real, working software.”)
 - **Short Summary Block**
   - 2–3 sentence overview focused on value and use case
 - **What's Included**
@@ -188,13 +171,13 @@ Include the following questions + answers:
 - _What if the engagement doesn’t meet expectations?_
 	→ Re-state guarantee for each tier.
 - _Do I need an in-house dev team for this to work?_
-	→ No. Clarify & Launch only need a decision-maker; Grow fits solo or with a team.
+	→ No. Launch only needs a decision-maker; Grow fits solo or with a team.
 - _Who owns the code and IP?_
 	→ Client owns all deliverables. Code transferred on client GitHub after final payment.
 - _How will we communicate and track progress?_
 	→ Email, optional WhatsApp, Google Meet, shared Notion dashboard.
 - _What’s the typical timeline?_
-	→ Clarify: 2–3 wks · Launch: 4–6 wks · Grow: ongoing
+	→ Launch: 4–6 wks · Grow: ongoing
 
 #### Which Package Is Right For Me?
 

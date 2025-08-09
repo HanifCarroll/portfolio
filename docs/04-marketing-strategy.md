@@ -22,9 +22,8 @@ Bootstrapped revenue‑focused nontechnical founders and domain experts who:
 
 
 **Key Message Pillars**  
-1. **Diagnose & Rescue (Clarity)** – Rapid audits and project triage that surface clear, cash‑conscious next steps.
-2. **Prototype & MVP (Launch)** – AI‑powered, code‑based sprints that go from idea to **revenue‑ready** MVP in days or weeks without burning capital.
-3. **Fractional CTO Partnership (Grow)** – Embedded product & technical leadership (1–3 days/week) without the equity ask or full‑time salary, ensuring sustainable scale.
+1. **Prototype & MVP (Launch)** – AI‑powered, code‑based sprints that go from idea to **revenue‑ready** MVP in days or weeks without burning capital.
+2. **Fractional CTO Partnership (Grow)** – Embedded product & technical leadership (1–3 days/week) without the equity ask or full‑time salary, ensuring sustainable scale.
 
 ---
 

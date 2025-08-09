@@ -1,39 +1,11 @@
 # 2. Services & Offers
 
 **Menu Headline:**  
-**Clarify · Launch · Grow**
+**Build Fast · Grow Smart**
 
 ## Service Packages
 
-### Clarify (Get Unstuck)
-
-**What’s Included:**
-
-- **Discovery & Research Sprint** (2–3 hr workshop + 2 days desk research) to align on problems, success metrics, and market landscape
-- **MVP Blueprint** (1 day) annotated wireframes and user paths to align design, dev, and messaging
-- **Positioning Framework** (1 day) to nail your positioning statement, tagline, and top 3 value props—annotated directly on your wireframes
-
-**Deliverables:**
-
-1. **Clarify Action Report**
-    - Workshop outcomes, research highlights, and a prioritized roadmap
-2. **MVP Blueprint: Annotated Wireframes & Messaging Guide**
-    - 3–5 annotated screens with final headline, subheads, and CTAs
-    - Positioning statement, tagline, and core value props
-
-**Optional: Feedback Page Prototype** 
-If you already have a warm audience, I can build a simple landing page to test your value proposition. You handle the traffic—I'll handle the copy, layout, and analytics setup.
-
-**Guarantee:** 100 % Refund if You’re Still Unsure
-If you finish the Clarify workshop and remain uncertain about what to build first, email me within 14 days and I’ll refund 100 % of your payment. No forms, no friction.
-
-**Average Duration:** 11–15 business days
-
-**_Outcome**:_ You’ll leave with a focused, test-backed product idea—so you don’t waste time building the wrong thing.
-
----
-
-### Launch (Ship Fast)
+### Build Fast
 
 **What’s Included:**
 
@@ -67,7 +39,7 @@ If we don't deliver a working product that real users can sign up for and use, I
 
 ---
 
-### Grow (Scale Smart)
+### Grow Smart
 
 **Engagement model:** 1–3 days/week · month-to-month · cancel anytime with 1-week notice
 
@@ -104,6 +76,5 @@ If we don't deliver a working product that real users can sign up for and use, I
 
 | Your Situation                                              | Start Here  | Why                                                                                                      |
 | ----------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------- |
-| You’re overwhelmed or unsure what to build first            | **Clarify** | We diagnose gaps, test your messaging, and wireframe core flows in 10–14 days.                           |
 | You need a live demo or MVP to validate with early users    | **Launch**  | We ship a prototype in 7 days or a full MVP in 4–6 weeks—ready for real feedback or revenue.             |
 | You’ve got traction and need ongoing product & tech support | **Grow**    | Embed a fractional CTO (1–3 days/week) to prioritize features, tighten your stack, and optimize revenue. |

@@ -47,7 +47,7 @@ Help 100 bootstrapped non-technical founders create their ambitious ideas into t
 
 ## Tagline
 
-Clarify. Launch. Grow.
+Build fast. Grow smart.
 
 ## Business Name & Usage
 
