@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { createPageTitle } from "../utils/siteConfig";
 import CTAButton from "../components/CTAButton.astro";
@@ -9,6 +10,26 @@ const pageDescription =
 
 // Hide footer on this page
 const showFooter = false;
+
+// Get recent newsletter issues
+const allWriting = await getCollection('writing');
+const recentNewsletters = allWriting
+    .filter(entry => entry.data.isNewsletter !== false)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .slice(0, 5);
+
+// Format date for display
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+};
+
+// Get issue number based on order
+const getIssueNumber = (index: number) => recentNewsletters.length - index;
 ---
 
 <BaseLayout
@@ -216,37 +237,43 @@ const showFooter = false;
                 Recent Issues
             </h2>
             <div class="space-y-8 max-w-3xl mx-auto">
-                <!-- Issue 1 -->
-                <article class="bg-gray-50 rounded-lg p-8">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="text-xl font-medium text-gray-900">
-                            Why Your MVP is Taking Too Long (And How to Fix It)
-                        </h3>
-                        <span
-                            class="text-sm text-gray-500 whitespace-nowrap ml-4"
-                            >Issue #1</span
+                {recentNewsletters.map((entry, index) => (
+                    <article class="bg-gray-50 rounded-lg p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-xl font-medium text-gray-900">
+                                {entry.data.title}
+                            </h3>
+                            <span class="text-sm text-gray-500 whitespace-nowrap ml-4">
+                                Issue #{getIssueNumber(index)}
+                            </span>
+                        </div>
+                        {entry.data.summary && (
+                            <p class="text-gray-600 mb-4">
+                                {entry.data.summary}
+                            </p>
+                        )}
+                        <a
+                            href={`/writing/${entry.slug}`}
+                            class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
                         >
+                            Read online →
+                        </a>
+                    </article>
+                ))}
+                
+                {recentNewsletters.length === 0 && (
+                    <div class="text-center py-8">
+                        <p class="text-gray-500">No newsletter issues published yet. Subscribe to be notified!</p>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        The hidden complexity trap that kills most MVPs before
-                        launch, plus a simple framework for cutting scope
-                        without losing value.
-                    </p>
-                    <a
-                        href="#"
-                        class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
-                    >
-                        Read online →
-                    </a>
-                </article>
+                )}
             </div>
 
             <div class="text-center mt-12">
                 <a
-                    href="#"
+                    href="/writing"
                     class="text-accent-600 font-medium hover:text-accent-700 transition-colors"
                 >
-                    View full archive on ConvertKit →
+                    View full archive →
                 </a>
             </div>
         </div>

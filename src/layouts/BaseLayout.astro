@@ -9,8 +9,9 @@ export interface Props {
     title: string;
     description: string;
     showFooter?: boolean;
+    hideFooterCTA?: boolean;
 }
-const { title, description, showFooter = true } = Astro.props;
+const { title, description, showFooter = true, hideFooterCTA = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,6 +24,6 @@ const { title, description, showFooter = true } = Astro.props;
         <main class="pt-20 md:pt-[90px]">
             <slot />
         </main>
-        {showFooter && <SiteFooter />}
+        {showFooter && <SiteFooter hideFooterCTA={hideFooterCTA} />}
     </body>
 </html>

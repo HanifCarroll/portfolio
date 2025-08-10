@@ -1,0 +1,152 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { createPageTitle } from "../../utils/siteConfig";
+
+export async function getStaticPaths() {
+    const writingEntries = await getCollection("writing");
+    return writingEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const pageTitle = createPageTitle(entry.data.title);
+const pageDescription =
+    entry.data.summary || `Read "${entry.data.title}" by Hanif Carroll`;
+const canonicalURL =
+    entry.data.canonical || `https://hanifcarroll.com/writing/${entry.slug}/`;
+
+// Format date for display
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+};
+
+// Get related posts by overlapping tags
+const allPosts = await getCollection("writing");
+const relatedPosts = allPosts
+    .filter(
+        (post) =>
+            post.slug !== entry.slug &&
+            post.data.tags.some((tag) => entry.data.tags.includes(tag))
+    )
+    .sort(
+        (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    )
+    .slice(0, 3);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <link slot="head" rel="canonical" href={canonicalURL} />
+
+    <!-- Article Container -->
+    <article class="bg-white">
+        <div
+            class="container max-w-4xl mx-auto py-20 px-6 md:py-[100px] lg:py-[120px]"
+        >
+            <!-- Article Header -->
+            <header class="mb-12">
+                <div class="text-center">
+                    <time
+                        class="text-sm font-medium text-accent-600 uppercase tracking-[0.15em] block mb-4"
+                    >
+                        {formatDate(entry.data.date)}
+                    </time>
+                    <h1
+                        class="text-5xl font-light tracking-tight leading-tight text-gray-900 mb-6 md:text-[2.75rem]"
+                    >
+                        {entry.data.title}
+                    </h1>
+                    {
+                        entry.data.summary && (
+                            <p class="text-xl font-light leading-relaxed text-gray-500 max-w-3xl mx-auto">
+                                {entry.data.summary}
+                            </p>
+                        )
+                    }
+                </div>
+            </header>
+
+            <!-- Article Content -->
+            <div
+                class="prose prose-lg prose-gray max-w-none mx-auto
+                prose-headings:font-light prose-headings:tracking-tight
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-gray-700 prose-p:leading-relaxed
+                prose-a:text-accent-600 prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-gray-900 prose-strong:font-medium
+                prose-code:text-accent-700 prose-code:bg-gray-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                prose-pre:bg-gray-900 prose-pre:text-gray-100
+                prose-blockquote:border-l-accent-500 prose-blockquote:text-gray-600 prose-blockquote:font-light
+                prose-ul:text-gray-700 prose-ol:text-gray-700
+                prose-hr:border-gray-200"
+            >
+                <Content />
+            </div>
+
+            <!-- Subscribe CTA -->
+            <div
+                class="mt-16 p-10 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100"
+            >
+                <div class="text-center">
+                    <h3 class="text-2xl font-light text-gray-900 mb-4">
+                        Get More Insights Like This
+                    </h3>
+                    <p class="text-gray-600 mb-8 max-w-md mx-auto">
+                        Join bootstrapped founders getting practical insights
+                        every week.
+                    </p>
+                    <a
+                        href="/newsletter"
+                        class="inline-flex items-center px-8 py-3 bg-accent-600 text-white font-medium rounded-full hover:bg-accent-700 transition-all hover:shadow-lg"
+                    >
+                        Subscribe to Newsletter
+                    </a>
+                </div>
+            </div>
+
+            <!-- Related Posts -->
+            {
+                relatedPosts.length > 0 && (
+                    <div class="mt-16 pt-16 border-t border-gray-200">
+                        <h3 class="text-2xl font-light text-gray-900 mb-8">
+                            Related Posts
+                        </h3>
+                        <div class="space-y-6">
+                            {relatedPosts.map((post) => (
+                                <article class="group">
+                                    <a
+                                        href={`/writing/${post.slug}`}
+                                        class="block"
+                                    >
+                                        <time class="text-sm text-gray-500">
+                                            {formatDate(post.data.date)}
+                                        </time>
+                                        <h4 class="text-xl font-medium text-gray-900 mt-2 group-hover:text-accent-600 transition-colors">
+                                            {post.data.title}
+                                        </h4>
+                                        {post.data.summary && (
+                                            <p class="text-gray-600 mt-2">
+                                                {post.data.summary}
+                                            </p>
+                                        )}
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </article>
+</BaseLayout>

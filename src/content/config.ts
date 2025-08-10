@@ -20,6 +20,19 @@ const projectsCollection = defineCollection({
     }),
 });
 
+const writingCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        date: z.string(), // ISO string format
+        summary: z.string().optional(),
+        tags: z.array(z.string()),
+        isNewsletter: z.boolean().default(true),
+        canonical: z.string().optional(),
+    }),
+});
+
 export const collections = {
     projects: projectsCollection,
+    writing: writingCollection,
 };

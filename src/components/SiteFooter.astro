@@ -1,9 +1,16 @@
 ---
 import CTAButton from "./CTAButton.astro";
+
+export interface Props {
+    hideFooterCTA?: boolean;
+}
+
+const { hideFooterCTA = false } = Astro.props;
 ---
 
 <footer id="contact" class="bg-gray-50 text-gray-800 border-t border-gray-200">
     <div class="max-w-3xl mx-auto px-6 py-20 md:py-[100px] lg:py-[120px]">
+        {!hideFooterCTA && (
         <div class="text-center mb-16">
             <h2
                 class="text-5xl font-light tracking-tight text-gray-900 leading-tight mb-4 md:text-[2.75rem]"
@@ -52,8 +59,9 @@ import CTAButton from "./CTAButton.astro";
                 </a>
             </div>
         </div>
+        )}
 
-        <div class="h-px bg-gray-200 mx-auto mb-10 max-w-xs"></div>
+        {!hideFooterCTA && <div class="h-px bg-gray-200 mx-auto mb-10 max-w-xs"></div>}
 
         <div
             class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-sm text-gray-400 font-light"
@@ -64,6 +72,7 @@ import CTAButton from "./CTAButton.astro";
                 <a href="/about" class="text-gray-400 hover:text-gray-600 transition-colors">About</a>
                 <a href="/services" class="text-gray-400 hover:text-gray-600 transition-colors">Services</a>
                 <a href="/projects" class="text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+                <!-- <a href="/writing" class="text-gray-400 hover:text-gray-600 transition-colors">Writing</a> -->
             </nav>
         </div>
     </div>
