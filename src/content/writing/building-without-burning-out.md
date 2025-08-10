@@ -79,6 +79,3 @@ You don't need venture capital. You don't need a technical co-founder. You need 
 
 That's how ambitious ideas become products users love. Not through perfection, but through persistent, pragmatic progress.
 
----
-
-*Ready to turn your ambitious idea into reality? I help bootstrapped nontechnical founders build and launch products in weeks, not months. [Let's talk about your next move](/services).*

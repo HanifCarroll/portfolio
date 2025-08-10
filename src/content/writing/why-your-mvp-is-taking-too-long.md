@@ -59,6 +59,3 @@ Remember: Reid Hoffman said if you're not embarrassed by your first version, you
 
 Ship something. Learn. Iterate. That's how great products are born.
 
----
-
-*What's the biggest feature you've cut from an MVP? Hit reply and let me know. I read every email.*
