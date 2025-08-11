@@ -69,6 +69,8 @@ const canonicalUrl = new URL(Astro.url.pathname, SITE_CONFIG.siteUrl);
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
     />
+
+    <!-- Microsoft Clarity Start -->
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
             c[a] =
@@ -83,6 +85,9 @@ const canonicalUrl = new URL(Astro.url.pathname, SITE_CONFIG.siteUrl);
             y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "rj1npp9vad");
     </script>
+    <!-- Microsoft Clarity End -->
+
+    <!-- Google Analytics Start -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XWNY8CX416"
     ></script>
     <script>
@@ -93,6 +98,26 @@ const canonicalUrl = new URL(Astro.url.pathname, SITE_CONFIG.siteUrl);
         gtag("js", new Date());
         gtag("config", "G-XWNY8CX416");
     </script>
+    <!-- Google Analytics End -->
+
+    <!-- PostHog Start -->
     <Posthog />
+    <!-- PostHog End -->
+
+    <!-- Plausible Start -->
+    <script
+        defer
+        data-domain="hanifcarroll.com"
+        src="https://plausible.hanifcarroll.com/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+    ></script>
+    <script>
+        window.plausible =
+            window.plausible ||
+            function () {
+                (window.plausible.q = window.plausible.q || []).push(arguments);
+            };
+    </script>
+    <!-- Plausible End -->
+
     <slot name="extraHead" />
 </head>
