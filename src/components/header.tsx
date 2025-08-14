@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import ThemeToggle from './theme-toggle';
 
 export default function Header() {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 sticky top-0 z-50">
       <div className="container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -32,10 +33,10 @@ export default function Header() {
               className="rounded-full"
             />
             <div>
-              <div className="text-xl font-bold text-gray-900">
+              <div className="text-xl font-bold text-gray-900 dark:text-gray-100">
                 Hanif Carroll
               </div>
-              <div className="hidden md:block text-sm text-gray-500">
+              <div className="hidden md:block text-sm text-gray-500 dark:text-gray-400">
                 Technical Product Partner
               </div>
             </div>
@@ -47,10 +48,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-gray-900 ${
+                className={`text-sm font-medium transition-colors hover:text-gray-900 dark:hover:text-gray-100 ${
                   isActive(link.href) 
-                    ? 'text-gray-900 font-semibold border-b-2 border-gray-900 pb-1' 
-                    : 'text-gray-600 pb-1'
+                    ? 'text-gray-900 dark:text-gray-100 font-semibold border-b-2 border-gray-900 dark:border-gray-100 pb-1' 
+                    : 'text-gray-600 dark:text-gray-400 pb-1'
                 }`}
               >
                 {link.label}
@@ -58,54 +59,58 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
+          {/* Desktop actions */}
+          <div className="hidden md:flex items-center space-x-3">
+            <ThemeToggle />
             <a
               href="https://cal.com/hanifcarroll/clarity-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
             >
               Book Free Call
             </a>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span className="sr-only">Toggle main menu</span>
-            <div className="relative w-6 h-6">
-              {/* Hamburger lines */}
-              <span 
-                className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? 'rotate-45 translate-y-2' 
-                    : 'rotate-0 translate-y-0'
-                }`}
-              />
-              <span 
-                className={`absolute left-0 top-3 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? 'opacity-0' 
-                    : 'opacity-100'
-                }`}
-              />
-              <span 
-                className={`absolute left-0 top-5 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                  isMobileMenuOpen 
-                    ? '-rotate-45 -translate-y-2' 
-                    : 'rotate-0 translate-y-0'
-                }`}
-              />
-            </div>
-          </button>
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <span className="sr-only">Toggle main menu</span>
+              <div className="relative w-6 h-6">
+                {/* Hamburger lines */}
+                <span 
+                  className={`absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen 
+                      ? 'rotate-45 translate-y-2' 
+                      : 'rotate-0 translate-y-0'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 top-3 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen 
+                      ? 'opacity-0' 
+                      : 'opacity-100'
+                  }`}
+                />
+                <span 
+                  className={`absolute left-0 top-5 w-6 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                    isMobileMenuOpen 
+                      ? '-rotate-45 -translate-y-2' 
+                      : 'rotate-0 translate-y-0'
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden absolute left-0 right-0 top-full bg-white border-t border-gray-100 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
+        <div className={`md:hidden absolute left-0 right-0 top-full bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-lg transition-all duration-300 ease-in-out overflow-hidden ${
           isMobileMenuOpen 
             ? 'max-h-96 opacity-100' 
             : 'max-h-0 opacity-0'
@@ -117,8 +122,8 @@ export default function Header() {
                   href={link.href}
                   className={`inline-block text-base font-medium transition-colors ${
                     isActive(link.href)
-                      ? 'text-gray-900 font-semibold border-b-2 border-gray-900'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-gray-900 dark:text-gray-100 font-semibold border-b-2 border-gray-900 dark:border-gray-100'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -131,7 +136,7 @@ export default function Header() {
                 href="https://cal.com/hanifcarroll/clarity-call"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Book Free Call
