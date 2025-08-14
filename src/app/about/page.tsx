@@ -92,7 +92,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="bg-gray-50 border-t border-gray-100 dark:border-gray-700">
+      <section className="bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
         <div className="container section-padding-block">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-12 text-center">
