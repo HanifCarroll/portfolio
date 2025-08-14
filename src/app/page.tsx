@@ -70,7 +70,7 @@ export default function Home() {
                   alt="Hanif Carroll"
                   width={300}
                   height={300}
-                  className="drop-shadow-2xl relative z-10"
+                  className="w-48 h-48 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover drop-shadow-2xl relative z-10"
                   style={{ filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))' }}
                 />
               </div>
