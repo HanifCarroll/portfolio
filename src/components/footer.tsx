@@ -29,12 +29,14 @@ export default function Footer() {
               >
                 hanifcarroll@gmail.com
               </a>
-              <Link 
-                href="#booking" 
+              <a 
+                href="https://cal.com/hanifcarroll/clarity-call"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white text-sm transition-colors block"
               >
                 Book a call
-              </Link>
+              </a>
             </div>
           </div>
 
