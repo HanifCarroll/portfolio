@@ -59,7 +59,7 @@ export default function AboutPage() {
                   alt="Hanif Carroll"
                   width={400}
                   height={500}
-                  className="w-full max-w-sm mx-auto"
+                  className="w-full max-w-xs sm:max-w-sm mx-auto"
                 />
               </div>
             </div>
