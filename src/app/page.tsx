@@ -81,7 +81,7 @@ export default function Home() {
         {/* Service Options */}
         <div className="max-w-4xl mx-auto text-center">
           
-          <section aria-labelledby="service-options" className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <section aria-labelledby="service-options" className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto md:items-stretch">
             <h2 id="service-options" className="sr-only">Choose Your Service Path</h2>
             <Link
               href="/fix"
@@ -91,26 +91,26 @@ export default function Home() {
               className={`
                 group bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm border-2 transition-all duration-200
                 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-fix-500 focus:ring-offset-2
-                animate-fadeInUp animation-delay-200
+                animate-fadeInUp animation-delay-200 flex
                 ${hoveredCard === 'fix' ? 'border-fix-400 shadow-fix-100' : 'border-gray-200 dark:border-gray-700'}
                 ${clickedCard === 'fix' ? 'scale-105' : ''}
               `}
               aria-label="Fix path: Get UX clarity audit for existing product"
             >
-              <div className="text-left">
+              <div className="text-left flex flex-col h-full w-full">
                 <div className="w-12 h-12 bg-fix-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-fix-200 transition-colors">
                   <span className="text-2xl">🔍</span>
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-fix-600 transition-colors">
                   Improve My Product
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                   Get a UX clarity audit with actionable improvements you can implement this week.
                 </p>
                 <p className="text-sm text-fix-600 font-medium mb-6">
                   → Boost conversions, onboarding, or engagement this week
                 </p>
-                <div className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-fix-500 rounded-lg hover:bg-fix-600 transition-colors shadow-sm">
+                <div className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-fix-500 rounded-lg hover:bg-fix-600 transition-colors shadow-sm mt-auto self-start">
                   Start free audit
                   <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -127,26 +127,26 @@ export default function Home() {
               className={`
                 group bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm border-2 transition-all duration-200
                 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-build-500 focus:ring-offset-2
-                animate-fadeInUp animation-delay-300
+                animate-fadeInUp animation-delay-300 flex
                 ${hoveredCard === 'build' ? 'border-build-400 shadow-build-100' : 'border-gray-200 dark:border-gray-700'}
                 ${clickedCard === 'build' ? 'scale-105' : ''}
               `}
               aria-label="Build path: Get rapid prototype for new product idea"
             >
-              <div className="text-left">
+              <div className="text-left flex flex-col h-full w-full">
                 <div className="w-12 h-12 bg-build-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-build-200 transition-colors">
                   <span className="text-2xl">🚀</span>
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-build-600 transition-colors">
                   Build My Idea
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
                   Turn your idea into a clickable prototype you can show to users and investors.
                 </p>
                 <p className="text-sm text-build-600 font-medium mb-6">
                   → Validate your concept with real users before you invest
                 </p>
-                <div className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-build-600 rounded-lg hover:bg-build-700 transition-colors shadow-sm">
+                <div className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-build-600 rounded-lg hover:bg-build-700 transition-colors shadow-sm mt-auto self-start">
                   Start prototype
                   <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
