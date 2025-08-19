@@ -21,7 +21,7 @@ export default function BuildPage() {
               See your idea, <span className="text-build-600">clickable</span>, in days — test before you invest.
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fadeInUp animation-delay-100">
-              Free 45-min clarity call → clickable prototype in 2–3 days.
+              Free 45-min strategy call → a clear blueprint for your MVP.
             </p>
           </div>
 
@@ -39,18 +39,18 @@ export default function BuildPage() {
                   Clarity Call
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  We refine your idea into a focused core flow.
+                  We refine your idea and co-create a visual map of the core user flow on a virtual whiteboard.
                 </p>
               </div>
               <div className={`text-center ${isVisible ? 'animate-fadeInUp animation-delay-100' : 'opacity-0'}`}>
                 <div className="w-16 h-16 bg-build-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <span className="text-2xl">✨</span>
+                  <span className="text-2xl">🤝</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                  Prototype (2–3d)
+                  Live Strategy & Mapping
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  I build a clickable version you can show to users or investors.
+                  Value delivered during the call as we collaboratively build your plan.
                 </p>
               </div>
               <div className={`text-center ${isVisible ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
@@ -58,10 +58,10 @@ export default function BuildPage() {
                   <span className="text-2xl">🗺️</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                  MVP Roadmap
+                  Your Actionable Blueprint
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Next steps to take it live.
+                  Leave with a visual map and strategic plan to move forward with confidence.
                 </p>
               </div>
             </div>

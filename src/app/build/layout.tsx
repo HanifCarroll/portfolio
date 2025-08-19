@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Rapid Prototype in 2–3 Days | Validate Your SaaS Idea",
-  description: "Free 45-min clarity call → clickable prototype in 2–3 days. See your idea, clickable, in days — not months.",
+  title: "Strategic MVP Planning | Validate Your SaaS Idea",
+  description: "Free 45-min strategy call → a clear blueprint for your MVP. Live, collaborative session to map your path forward.",
 };
 
 export default function BuildLayout({

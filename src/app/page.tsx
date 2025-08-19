@@ -141,13 +141,13 @@ export default function Home() {
                   Build My Idea
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">
-                  Turn your idea into a clickable prototype you can show to users and investors.
+                  Turn your idea into an actionable blueprint for a prototype you can use to validate your concept.
                 </p>
                 <p className="text-sm text-build-600 font-medium mb-6">
                   → Validate your concept with real users before you invest
                 </p>
                 <div className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-build-600 rounded-lg hover:bg-build-700 transition-colors shadow-sm mt-auto self-start">
-                  Start prototype
+                  Validate my idea
                   <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

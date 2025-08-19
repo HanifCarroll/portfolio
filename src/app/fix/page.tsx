@@ -21,7 +21,7 @@ export default function FixPage() {
               Make your product <span className="text-fix-500">feel obvious</span> — and convert better.
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fadeInUp animation-delay-100">
-              Free 45-min UX analysis → next-day Loom + Quick-Win PDF with 3–5 changes.
+              Live, collaborative session → leave with your Instant Action Plan ready to use.
             </p>
           </div>
 
@@ -39,18 +39,18 @@ export default function FixPage() {
                   Live Audit
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  We explore your product together over a live call.
+                  We explore your product together while building your action plan in real-time.
                 </p>
               </div>
               <div className={`text-center ${isVisible ? 'animate-slideInLeft animation-delay-100' : 'opacity-0'}`}>
                 <div className="w-16 h-16 bg-fix-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <span className="text-2xl">🎥</span>
+                  <span className="text-2xl">🤝</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                  Loom + PDF (24h)
+                  Collaborative Planning
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  You get a recorded walkthrough and 1-page action plan.
+                  We co-create your strategy in a shared document during the call.
                 </p>
               </div>
               <div className={`text-center ${isVisible ? 'animate-slideInLeft animation-delay-200' : 'opacity-0'}`}>
@@ -58,10 +58,10 @@ export default function FixPage() {
                   <span className="text-2xl">⚡</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                  Action Plan
+                  Instant Action Plan
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Quick wins you can implement immediately.
+                  Leave the call with a clear plan — no waiting, immediate clarity.
                 </p>
               </div>
             </div>
