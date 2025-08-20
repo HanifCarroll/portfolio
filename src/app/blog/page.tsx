@@ -11,7 +11,7 @@ export default async function BlogPage() {
   const posts = await getAllPosts();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section className="bg-white dark:bg-gray-800 dark:bg-gray-900">
         <div className="container section-padding-block">
@@ -33,7 +33,7 @@ export default async function BlogPage() {
             {posts.length === 0 ? (
               <p className="text-gray-600 dark:text-gray-400">No blog posts yet.</p>
             ) : (
-              <div className="space-y-12">
+              <div className="space-y-8">
                 {posts.map((post) => (
                   <article key={post.slug} className="group">
                     <Link href={`/blog/${post.slug}`} className="block">
