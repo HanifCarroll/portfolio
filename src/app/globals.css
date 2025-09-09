@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,90 +8,9 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  /* Custom gray scale */
-  --color-gray-50: #f8fafc;
-  --color-gray-100: #f1f5f9;
-  --color-gray-200: #e2e8f0;
-  --color-gray-300: #cbd5e1;
-  --color-gray-400: #94a3b8;
-  --color-gray-500: #64748b;
-  --color-gray-600: #475569;
-  --color-gray-700: #334155;
-  --color-gray-800: #1e293b;
-  --color-gray-900: #0f172a;
-
-  /* Fix path colors (blue/sky) */
-  --color-fix-50: #e0f2fe;
-  --color-fix-100: #bae6fd;
-  --color-fix-200: #7dd3fc;
-  --color-fix-300: #38bdf8;
-  --color-fix-400: #0ea5e9;
-  --color-fix-500: #0284c7;
-  --color-fix-600: #0369a1;
-  --color-fix-700: #075985;
-  --color-fix-800: #0c4a6e;
-  --color-fix-900: #082f49;
-
-  /* Build path colors (magenta/rose) */
-  --color-build-50: #fde2f3;
-  --color-build-100: #fce7f3;
-  --color-build-200: #fbcfe8;
-  --color-build-300: #f9a8d4;
-  --color-build-400: #f472b6;
-  --color-build-500: #ec4899;
-  --color-build-600: #db2777;
-  --color-build-700: #be185d;
-  --color-build-800: #9f1239;
-  --color-build-900: #831843;
+  --font-sans: var(--font-inter);
 }
 
-/* Utility classes */
-.container {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.section-padding-block {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  .section-padding-block {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-padding-block {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-}
-
-:root.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([class*="dark"]):not([class*="light"]) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 html {
   scroll-behavior: smooth;
@@ -107,119 +24,11 @@ body {
 
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--color-accent-500);
+  outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-/* Respect motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --color-gray-600: #000000;
-    --color-gray-900: #000000;
-  }
-}
-
-/* Screen reader only utility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Animation utilities */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-slideInLeft {
-  animation: slideInLeft 0.6s ease-out forwards;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
-
-/* Stagger delays for animations */
-.animation-delay-100 { animation-delay: 100ms; }
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-300 { animation-delay: 300ms; }
-
-/* Typography refinements */
-h1 {
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-h2 {
-  letter-spacing: -0.01em;
-}
-
-p {
-  max-width: 70ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Background patterns */
-.hero-gradient {
-  background-image: 
-    radial-gradient(at 40% 20%, rgba(14, 165, 233, 0.05) 0px, transparent 50%),
-    radial-gradient(at 80% 80%, rgba(219, 39, 119, 0.05) 0px, transparent 50%),
-    radial-gradient(at 20% 60%, rgba(236, 72, 153, 0.03) 0px, transparent 50%);
-}
-
-.hero-grid {
-  background-image: 
-    linear-gradient(rgba(156, 163, 175, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(156, 163, 175, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
+/* Smooth scrolling for the entire page */
+* {
+  scroll-behavior: smooth;
 }

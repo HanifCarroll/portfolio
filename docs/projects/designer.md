@@ -1,0 +1,8 @@
+Client: Independent Interior Designer
+https://maximo-interiorismo.netlify.app/
+
+Problem: The designer's exceptional work was invisible online. Lacking a professional website, he was losing high-value clients who couldn't find or verify his portfolio, limiting his business growth to word-of-mouth and an outdated social media presence.
+
+Solution: We designed and built his "Digital Showroom"—a custom, high-performance Next.js website engineered to reflect the premium quality of his work. The focus was on a fast, visually-immersive experience. Key elements included a filterable, high-resolution project gallery and clear pathways for potential clients to book a consultation.
+
+Result: He now possesses a professional online hub that builds instant credibility. It acts as his best salesperson, allowing him to confidently pitch larger projects and convert prospects who are actively seeking high-end interior design services.

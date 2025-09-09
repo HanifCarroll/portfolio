@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import LayoutClient from "./layout-client";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Fix or Build | Technical Product Partner for SaaS Founders",
-  description: "Technical Product Partner for SaaS founders — UX clarity audits and rapid prototypes. Fix what's built or build what's next.",
+  title: "Hanif Carroll | Digital Showroom Developer",
+  description: "I build Digital Showrooms for creative businesses—custom-coded, high-performance Next.js websites designed to showcase the true quality of your work and turn visitors into high-value clients.",
 };
 
 export default function RootLayout({
@@ -37,7 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         <Header />
         <LayoutClient>{children}</LayoutClient>
