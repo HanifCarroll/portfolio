@@ -30,7 +30,7 @@ export default function ContactPage() {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: new URLSearchParams(formData as any).toString(),
+                body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
             });
 
             if (response.ok) {
@@ -47,7 +47,7 @@ export default function ContactPage() {
                     message: "Something went wrong. Please try again.",
                 });
             }
-        } catch (error) {
+        } catch {
             setSubmitStatus({
                 type: "error",
                 message:
@@ -79,10 +79,10 @@ export default function ContactPage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="font-editorial text-[clamp(3rem,7vw,6rem)] leading-[0.9] text-[var(--foreground)] mb-8">
-                            Let's build your Digital Showroom.
+                            Let&apos;s build your Digital Showroom.
                         </h1>
                         <p className="text-xl text-[var(--muted)] mb-8 leading-relaxed">
-                            I'm currently accepting new projects for{" "}
+                            I&apos;m currently accepting new projects for{" "}
                             {new Date().toLocaleDateString("en-US", {
                                 month: "long",
                                 year: "numeric",
@@ -127,10 +127,10 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <blockquote className="font-editorial text-2xl text-[var(--foreground)] mb-8 leading-[1.3] text-center">
-                            "Just wrapped up a call with Hanif. It was
+                            &ldquo;Just wrapped up a call with Hanif. It was
                             incredibly useful. I came in with a lot of ideas but
-                            wasn't sure where to direct my focus. Hanif helped
-                            me find that clarity."
+                            wasn&apos;t sure where to direct my focus. Hanif helped
+                            me find that clarity.&rdquo;
                         </blockquote>
                         <div className="flex items-center justify-center gap-4">
                             <Image
@@ -281,7 +281,7 @@ export default function ContactPage() {
                                     Response Time
                                 </h3>
                                 <p className="text-[var(--muted)] leading-relaxed">
-                                    I'll respond to all inquiries within 24
+                                    I&apos;ll respond to all inquiries within 24
                                     business hours.
                                 </p>
                             </div>
@@ -312,7 +312,7 @@ export default function ContactPage() {
                                     Good Fit Checklist
                                 </h3>
                                 <p className="text-sm text-[var(--muted)] mb-6">
-                                    We're likely a great match if you:
+                                    We&apos;re likely a great match if you:
                                 </p>
                                 <ul className="space-y-3 text-sm text-[var(--foreground)]">
                                     {[

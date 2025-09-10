@@ -151,7 +151,7 @@ export default function Home() {
                             lower-value clients.
                         </p>
                         <p className="text-lg text-[var(--muted)] leading-relaxed">
-                            The solution is a "Digital Showroom"—a website
+                            The solution is a &ldquo;Digital Showroom&rdquo;—a website
                             engineered from the ground up to build trust and
                             showcase your expertise.
                         </p>
@@ -230,7 +230,7 @@ export default function Home() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        What's Included
+                        What&apos;s Included
                     </motion.h2>
                     <div className="grid lg:grid-cols-2 gap-x-24 gap-y-16">
                         {/* Left Column - Custom Design */}
@@ -271,7 +271,7 @@ export default function Home() {
                                 </h3>
                                 <p className="text-lg text-[var(--muted)] leading-relaxed">
                                     Built with Next.js for instant loading
-                                    times. Your visitors won't wait, and neither
+                                    times. Your visitors won&apos;t wait, and neither
                                     should you.
                                 </p>
                             </motion.div>

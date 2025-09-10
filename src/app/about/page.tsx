@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
 
@@ -43,11 +42,11 @@ export default function AboutPage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.6, delay: 0.1 }}
                                 >
-                                    I'm Hanif Carroll, a web developer with a
+                                    I&apos;m Hanif Carroll, a web developer with a
                                     passion for crafting digital experiences
                                     that elevate premium service businesses. For
                                     years, I watched talented professionals
-                                    struggle with DIY websites that didn't
+                                    struggle with DIY websites that didn&apos;t
                                     reflect their expertise. My mission is to
                                     solve this problem.
                                 </motion.p>
@@ -164,7 +163,7 @@ export default function AboutPage() {
                             My Labs
                         </h2>
                         <p className="text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
-                            Beyond client work, I'm always exploring new
+                            Beyond client work, I&apos;m always exploring new
                             technologies. Here are some personal projects:
                         </p>
                     </motion.div>

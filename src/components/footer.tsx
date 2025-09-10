@@ -81,7 +81,7 @@ export default function Footer() {
               href="/contact" 
               className="inline-flex items-center text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium text-lg transition-colors"
             >
-              Let's get started 
+              Let&apos;s get started 
               <motion.span 
                 className="ml-2"
                 whileHover={{ x: 5 }}

@@ -116,7 +116,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       excerpt: generateExcerpt(content),
       content: processedContent
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }
