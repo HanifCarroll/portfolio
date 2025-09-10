@@ -231,10 +231,10 @@ export default function ContactPage() {
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className={`mt-4 p-4 ${
+                                        className={`mt-4 p-4 border-l-4 ${
                                             submitStatus.type === "success"
-                                                ? "bg-green-50 text-green-800 border-l-4 border-green-500"
-                                                : "bg-red-50 text-red-800 border-l-4 border-red-500"
+                                                ? "bg-[var(--surface)] text-[var(--foreground)] border-[var(--accent)]"
+                                                : "bg-red-50 text-red-800 border-red-500"
                                         }`}
                                     >
                                         {submitStatus.message}
