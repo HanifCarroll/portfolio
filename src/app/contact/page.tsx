@@ -21,18 +21,13 @@ export default function ContactPage() {
         setIsSubmitting(true);
         setSubmitStatus({ type: null, message: "" });
 
-        const formElement = e.target as HTMLFormElement;
-        const formData = new FormData(formElement);
-
         try {
-            const response = await fetch("/", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type": "application/json",
                 },
-                body: new URLSearchParams(
-                    formData as unknown as Record<string, string>
-                ).toString(),
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
@@ -161,19 +156,9 @@ export default function ContactPage() {
                             transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <form
-                                name="contact"
-                                method="POST"
-                                data-netlify="true"
-                                netlify-honeypot="bot-field"
                                 onSubmit={handleSubmit}
                                 className="space-y-6"
                             >
-                                <input
-                                    type="hidden"
-                                    name="form-name"
-                                    value="contact"
-                                />
-                                <input type="hidden" name="bot-field" />
 
                                 <div>
                                     <label
