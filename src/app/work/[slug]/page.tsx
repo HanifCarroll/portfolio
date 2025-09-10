@@ -2,6 +2,58 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProject, getAllProjects } from "@/lib/projects";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  
+  if (!project) {
+    return {
+      title: 'Project Not Found | Hanif Carroll'
+    };
+  }
+
+  // Use the new description field
+  const description = project.description;
+  
+  // Extract clean title without "Case Study:" prefix if present
+  const cleanTitle = project.title.replace('Case Study: ', '');
+  
+  return {
+    title: `${cleanTitle} | Case Study | Hanif Carroll`,
+    description,
+    openGraph: {
+      title: `${cleanTitle} | Case Study`,
+      description,
+      type: 'article',
+      siteName: 'Hanif Carroll',
+      images: [
+        {
+          url: project.images.hero,
+          alt: `${cleanTitle} project preview`,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${cleanTitle} | Case Study`,
+      description,
+      images: [project.images.hero],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const projects = getAllProjects();
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
 export default async function CaseStudyPage({
   params,

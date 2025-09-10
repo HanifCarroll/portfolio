@@ -6,6 +6,7 @@ export interface ProjectImages {
 export interface Project {
   slug: string;
   title: string;
+  description: string;
   client: string;
   service: string;
   year: string;
