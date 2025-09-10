@@ -162,6 +162,7 @@ export default function ContactPage() {
                                 name="contact"
                                 method="POST"
                                 data-netlify="true"
+                                netlify-honeypot="bot-field"
                                 onSubmit={handleSubmit}
                                 className="space-y-6"
                             >
@@ -169,6 +170,10 @@ export default function ContactPage() {
                                     type="hidden"
                                     name="form-name"
                                     value="contact"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="bot-field"
                                 />
 
                                 <div>

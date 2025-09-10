@@ -40,6 +40,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
+        {/* Hidden form for Netlify Forms detection */}
+        <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="email" name="email" />
+          <textarea name="message"></textarea>
+          <input type="hidden" name="bot-field" />
+        </form>
         <Header />
         <LayoutClient>{children}</LayoutClient>
         <Footer />
