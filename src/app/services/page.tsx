@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function ServicesPage() {
     const packages = [
@@ -36,19 +39,19 @@ export default function ServicesPage() {
 
     const process = [
         {
-            step: "1",
+            step: "01",
             title: "Discover & Strategy",
             description:
                 "We dive deep into your business, understand your ideal clients, and craft a strategy that positions you as the obvious choice.",
         },
         {
-            step: "2",
+            step: "02",
             title: "Design & Build",
             description:
                 "I design and develop your Digital Showroom simultaneously, with your feedback at every key milestone for rapid iteration.",
         },
         {
-            step: "3",
+            step: "03",
             title: "Launch & Support",
             description:
                 "Your Digital Showroom is launched with everything optimized for success, plus post-launch support and training.",
@@ -83,127 +86,185 @@ export default function ServicesPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-[var(--background)]">
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6">
                 <div className="container mx-auto max-w-6xl">
-                    <div className="max-w-4xl">
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <motion.div
+                        className="max-w-4xl"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h1 className="font-editorial text-[clamp(2.5rem,6vw,5rem)] leading-[1] text-[var(--foreground)] mb-8">
                             The Digital Showroom: A Client-Winning Asset
                         </h1>
-                        <p className="text-xl text-gray-600 font-medium">
-                            Focused web development designed for one purpose: to
-                            make you look as good online as you are in real
-                            life.
+                        <p className="text-xl text-[var(--muted)] font-medium leading-relaxed">
+                            Where exceptional service meets an unforgettable
+                            digital first impression.
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Packages Section */}
-            <section className="py-20 px-6 bg-gray-50">
+            <section className="py-24 px-6 bg-[var(--surface)]">
                 <div className="container mx-auto max-w-6xl">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+                    <motion.h2
+                        className="font-editorial text-4xl md:text-5xl text-[var(--foreground)] mb-16 text-center"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
                         Packages
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        {packages.map((pkg) => (
-                            <div
+                    </motion.h2>
+                    <div className="grid md:grid-cols-2 auto-rows-fr items-stretch gap-8 max-w-4xl mx-auto">
+                        {packages.map((pkg, index) => (
+                            <motion.div
                                 key={pkg.name}
-                                className={`bg-white rounded-2xl p-8 ${
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.1,
+                                }}
+                                className={`bg-[var(--background)] p-10 flex flex-col border-2 ${
                                     pkg.popular
-                                        ? "ring-2 ring-gray-900 relative"
-                                        : "border border-gray-200"
+                                        ? "border-[var(--accent)] relative"
+                                        : "border-[var(--border-subtle)]"
                                 }`}
                             >
                                 {pkg.popular && (
-                                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-3 py-1 rounded-full text-sm">
+                                    <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white px-4 py-1 text-sm font-medium tracking-wide">
                                         Most Popular
                                     </span>
                                 )}
-                                <div className="mb-6">
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                                <div
+                                    className={`mb-8 ${
+                                        pkg.popular ? "mt-1" : ""
+                                    }`}
+                                >
+                                    <h3 className="font-editorial text-3xl text-[var(--foreground)] mb-4">
                                         {pkg.name}
                                     </h3>
-                                    <p className="text-3xl font-bold text-gray-900 mb-4">
+                                    <p className="font-editorial text-4xl text-[var(--foreground)] mb-6">
                                         {pkg.price}
                                     </p>
-                                    <p className="text-gray-600">
+                                    <p className="text-[var(--muted)] leading-relaxed min-h-[3rem]">
                                         {pkg.description}
                                     </p>
                                 </div>
-                                <ul className="space-y-3 mb-8">
-                                    {pkg.features.map((feature, index) => (
+                                <ul className="space-y-4 flex-grow">
+                                    {pkg.features.map((feature, idx) => (
                                         <li
-                                            key={index}
-                                            className="flex items-start"
+                                            key={idx}
+                                            className="flex items-center"
                                         >
-                                            <span className="text-green-500 mr-3 mt-1">
+                                            <span className="text-[var(--accent)] text-xl flex-shrink-0 w-6 leading-none">
                                                 ✓
                                             </span>
-                                            <span className="text-gray-600">
+                                            <span className="text-[var(--foreground)] ml-3">
                                                 {feature}
                                             </span>
                                         </li>
                                     ))}
                                 </ul>
-                                <Link
-                                    href="/contact"
-                                    className={`block w-full text-center px-6 py-3 rounded-full font-medium transition-all ${
-                                        pkg.popular
-                                            ? "bg-gray-900 text-white hover:bg-gray-800"
-                                            : "bg-white text-gray-900 border border-gray-900 hover:bg-gray-50"
+                                <div
+                                    className={`mt-auto pt-10 ${
+                                        !pkg.popular ? "translate-y-1" : ""
                                     }`}
                                 >
-                                    Get Started
-                                </Link>
-                            </div>
+                                    <Link
+                                        href="/contact"
+                                        className={`block w-full text-center px-8 py-4 font-medium transition-all ${
+                                            pkg.popular
+                                                ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)]"
+                                                : "bg-transparent text-[var(--foreground)] border-2 border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)]"
+                                        }`}
+                                    >
+                                        Get Started
+                                    </Link>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Process Section */}
-            <section className="py-20 px-6 bg-white">
+            <section className="py-24 px-6 bg-[var(--background)]">
                 <div className="container mx-auto max-w-6xl">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+                    <motion.h2
+                        className="font-editorial text-4xl md:text-5xl text-[var(--foreground)] mb-16 text-center"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
                         My Three-Step Process
-                    </h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {process.map((item) => (
-                            <div key={item.step} className="text-center">
-                                <div className="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
+                    </motion.h2>
+                    <div className="grid md:grid-cols-3 gap-12">
+                        {process.map((item, index) => (
+                            <motion.div
+                                key={item.step}
+                                className="text-center"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.6,
+                                    delay: index * 0.15,
+                                }}
+                            >
+                                <div className="font-editorial text-6xl text-[var(--accent)] mb-6">
                                     {item.step}
                                 </div>
-                                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                <h3 className="font-editorial text-2xl text-[var(--foreground)] mb-4">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-600 text-sm">
+                                <p className="text-[var(--muted)] leading-relaxed">
                                     {item.description}
                                 </p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* FAQ Section */}
-            <section className="py-20 px-6 bg-gray-50">
+            <section className="py-24 px-6 bg-[var(--surface)]">
                 <div className="container mx-auto max-w-4xl">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+                    <motion.h2
+                        className="font-editorial text-4xl md:text-5xl text-[var(--foreground)] mb-16 text-center"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
                         Frequently Asked Questions
-                    </h2>
-                    <div className="space-y-8">
+                    </motion.h2>
+                    <div className="space-y-6">
                         {faqs.map((faq, index) => (
-                            <div
+                            <motion.div
                                 key={index}
-                                className="bg-white rounded-lg p-6"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: index * 0.05,
+                                }}
+                                className="bg-[var(--background)] p-8 border-l-4 border-[var(--accent)]"
                             >
-                                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                                <h3 className="font-editorial text-xl text-[var(--foreground)] mb-4">
                                     {faq.question}
                                 </h3>
-                                <p className="text-gray-600">{faq.answer}</p>
-                            </div>
+                                <p className="text-[var(--muted)] leading-relaxed">
+                                    {faq.answer}
+                                </p>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
