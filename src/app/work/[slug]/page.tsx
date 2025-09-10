@@ -3,12 +3,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProject, getAllProjects } from "@/lib/projects";
 
-export default function CaseStudyPage({
+export default async function CaseStudyPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = getProject(params.slug);
+  const { slug } = await params;
+  const project = getProject(slug);
 
   if (!project) {
     notFound();

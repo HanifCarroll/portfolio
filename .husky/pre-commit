@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Build the project before committing
+echo "🔨 Running build to check for errors..."
+pnpm build
+
+# Check if build succeeded
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! Please fix errors before committing."
+  exit 1
+fi
+
+echo "✅ Build succeeded! Proceeding with commit..."
