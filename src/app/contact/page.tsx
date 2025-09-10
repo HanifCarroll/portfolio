@@ -30,7 +30,9 @@ export default function ContactPage() {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+                body: new URLSearchParams(
+                    formData as unknown as Record<string, string>
+                ).toString(),
             });
 
             if (response.ok) {
@@ -72,14 +74,14 @@ export default function ContactPage() {
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6">
                 <div className="container mx-auto max-w-4xl">
-                    <motion.div 
+                    <motion.div
                         className="text-center mb-12"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="font-editorial text-[clamp(3rem,7vw,6rem)] leading-[0.9] text-[var(--foreground)] mb-8">
-                            Let&apos;s build your Digital Showroom.
+                            Let&apos;s build your Digital Showroom
                         </h1>
                         <p className="text-xl text-[var(--muted)] mb-8 leading-relaxed">
                             I&apos;m currently accepting new projects for{" "}
@@ -92,7 +94,7 @@ export default function ContactPage() {
                         </p>
 
                         {/* Cal.com CTA - Editorial Style */}
-                        <motion.div 
+                        <motion.div
                             className="bg-[var(--surface)] border-2 border-[var(--accent)] p-8 max-w-2xl mx-auto"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -120,7 +122,7 @@ export default function ContactPage() {
                     </motion.div>
 
                     {/* Testimonial - Editorial Style */}
-                    <motion.div 
+                    <motion.div
                         className="bg-[var(--surface)] p-10 mb-16 max-w-3xl mx-auto border-l-4 border-[var(--accent)]"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -129,8 +131,8 @@ export default function ContactPage() {
                         <blockquote className="font-editorial text-2xl text-[var(--foreground)] mb-8 leading-[1.3] text-center">
                             &ldquo;Just wrapped up a call with Hanif. It was
                             incredibly useful. I came in with a lot of ideas but
-                            wasn&apos;t sure where to direct my focus. Hanif helped
-                            me find that clarity.&rdquo;
+                            wasn&apos;t sure where to direct my focus. Hanif
+                            helped me find that clarity.&rdquo;
                         </blockquote>
                         <div className="flex items-center justify-center gap-4">
                             <Image
@@ -171,10 +173,7 @@ export default function ContactPage() {
                                     name="form-name"
                                     value="contact"
                                 />
-                                <input
-                                    type="hidden"
-                                    name="bot-field"
-                                />
+                                <input type="hidden" name="bot-field" />
 
                                 <div>
                                     <label
@@ -260,7 +259,7 @@ export default function ContactPage() {
                         </motion.div>
 
                         {/* Contact Details - Editorial Style */}
-                        <motion.div 
+                        <motion.div
                             className="space-y-10"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -300,9 +299,12 @@ export default function ContactPage() {
                                         "I'll review your project details and get back to you within 24 hours",
                                         "We'll schedule a 30-minute discovery call to discuss your goals",
                                         "I'll provide a custom proposal with timeline and investment details",
-                                        "Once approved, we begin transforming your online presence"
+                                        "Once approved, we begin transforming your online presence",
                                     ].map((step, index) => (
-                                        <li key={index} className="flex items-start">
+                                        <li
+                                            key={index}
+                                            className="flex items-start"
+                                        >
                                             <span className="font-editorial text-2xl text-[var(--accent)] mr-4">
                                                 0{index + 1}
                                             </span>
@@ -324,9 +326,12 @@ export default function ContactPage() {
                                         "Are a premium service business or boutique agency",
                                         "Value quality over quantity in your client relationships",
                                         "Have a portfolio of work ready to showcase",
-                                        "Are ready to invest in professional web development"
+                                        "Are ready to invest in professional web development",
                                     ].map((item, index) => (
-                                        <li key={index} className="flex items-start">
+                                        <li
+                                            key={index}
+                                            className="flex items-start"
+                                        >
                                             <span className="text-[var(--accent)] mr-3 mt-1 text-lg">
                                                 ✓
                                             </span>
