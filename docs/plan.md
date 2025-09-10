@@ -1,7 +1,3 @@
-Of course. Here is a consolidated document containing the complete strategy and all the decisions we have made for your records. This is your strategic foundation.
-
----
-
 ### **The Polaris System: Strategic Brief**
 
 * **Last Updated:** September 9, 2025
@@ -60,9 +56,9 @@ This is *how* you charge for your value.
 * **Revenue Baseline:** The business will target a minimum of **$2,600/month** in revenue to ensure profitability and cover your personal income target.
 * **Pricing Method:** We will use **value-based, per-project pricing**. We do not sell hours.
 * **Starting Packages:**
-    * **Starter Package: $3,000**
+    * **Starter Package: $4,500**
         * A 3-5 page custom "Digital Showroom" website. Includes a project gallery and contact form.
-    * **Business Growth Package: $4,500**
+    * **Business Growth Package: $7,000**
         * Includes everything in the Starter Package, plus a blog/content section and additional pages.
 
 ---

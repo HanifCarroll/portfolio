@@ -7,7 +7,7 @@ export default function ServicesPage() {
     const packages = [
         {
             name: "Starter",
-            price: "$4,500",
+            price: "Starting at $4,500",
             description:
                 "Perfect for solopreneurs ready to elevate their online presence",
             features: [
@@ -21,7 +21,7 @@ export default function ServicesPage() {
         },
         {
             name: "Business Growth",
-            price: "$7,000",
+            price: "Custom Quote",
             description:
                 "For established businesses ready to transform their digital presence",
             features: [
@@ -110,15 +110,17 @@ export default function ServicesPage() {
             {/* Packages Section */}
             <section className="py-24 px-6 bg-[var(--surface)]">
                 <div className="container mx-auto max-w-6xl">
-                    <motion.h2
-                        className="font-editorial text-4xl md:text-5xl text-[var(--foreground)] mb-16 text-center"
+                    <motion.div
+                        className="text-center mb-16"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        Packages
-                    </motion.h2>
+                        <h2 className="font-editorial text-4xl md:text-5xl text-[var(--foreground)] mb-4">
+                            Packages
+                        </h2>
+                    </motion.div>
                     <div className="grid md:grid-cols-2 auto-rows-fr items-stretch gap-8 max-w-4xl mx-auto">
                         {packages.map((pkg, index) => (
                             <motion.div
