@@ -7,7 +7,7 @@ export default function ServicesPage() {
     const packages = [
         {
             name: "Starter",
-            price: "Starting at $4,500",
+            price: "Starting at $3,000",
             description:
                 "Perfect for solopreneurs ready to elevate their online presence",
             features: [
@@ -148,10 +148,10 @@ export default function ServicesPage() {
                                         pkg.popular ? "mt-1" : ""
                                     }`}
                                 >
-                                    <h3 className="font-editorial text-3xl text-[var(--foreground)] mb-4">
+                                    <h3 className="text-[var(--muted)] text-sm font-medium tracking-wider uppercase mb-2">
                                         {pkg.name}
                                     </h3>
-                                    <p className="font-editorial text-4xl text-[var(--foreground)] mb-6">
+                                    <p className="font-editorial text-[clamp(2.5rem,5vw,3.5rem)] leading-[1.1] text-[var(--foreground)] mb-6">
                                         {pkg.price}
                                     </p>
                                     <p className="text-[var(--muted)] leading-relaxed min-h-[3rem]">
