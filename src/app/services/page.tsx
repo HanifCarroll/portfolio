@@ -7,7 +7,7 @@ export default function ServicesPage() {
     const packages = [
         {
             name: "Starter",
-            price: "Starting at $3,000",
+            price: "Starting at $2,000",
             description:
                 "Perfect for solopreneurs ready to elevate their online presence",
             features: [
