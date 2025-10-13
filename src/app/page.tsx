@@ -335,7 +335,7 @@ export default function Home() {
                     </div>
                     <div className="relative aspect-square w-full max-w-sm overflow-hidden rounded-2xl bg-muted md:ml-auto">
                         <Image
-                            src="/headshot.webp"
+                            src="/img/headshot.webp"
                             alt="Hanif Carroll"
                             fill
                             sizes="(max-width: 768px) 320px, 320px"
