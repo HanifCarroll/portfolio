@@ -100,17 +100,18 @@ const testimonials = [
 
 const projects = [
     {
-        title: "TaskFlow - Team Task Manager",
-        description: "Lightweight task orchestration for fast-moving customer success teams.",
+        title: "Vox Prismatic – Content Creation Suite",
+        description: "Turns transcripts into LinkedIn-ready posts in minutes.",
         features: [
-            "User authentication & team management",
-            "Real-time task updates",
-            "Stripe payment integration",
-            "Responsive design",
+            "Project workspaces with transcripts and post history",
+            "AI-assisted editor with inline status controls",
+            "Hashtag management and approval workflow",
+            "Schedule-ready LinkedIn publishing pipeline",
         ],
-        tech: "Next.js, Supabase, Stripe, Vercel",
-        demoLink: "#",
-        caseStudyLink: "#",
+        tech: "Laravel, Vue, GPT-5, Google Gemini",
+        demoLink: "https://voxprismatic.com",
+        image: "/img/vox-prismatic-posts.png",
+        imageAlt: "Vox Prismatic posts dashboard with pending content queue",
     },
     {
         title: "InsightLoop - Founder Analytics Hub",
@@ -123,7 +124,8 @@ const projects = [
         ],
         tech: "Next.js, Supabase, Stripe, Vercel",
         demoLink: "#",
-        caseStudyLink: "#",
+        image: null,
+        imageAlt: "Placeholder graphic for InsightLoop case study",
     },
 ];
 
@@ -357,8 +359,18 @@ export default function Home() {
                         {projects.map((project) => (
                             <Card key={project.title} className="flex h-full flex-col">
                                 <CardHeader className="space-y-5">
-                                    <div className="relative overflow-hidden rounded-xl bg-muted">
-                                        <div className="aspect-video w-full bg-gradient-to-br from-primary/10 via-transparent to-primary/30" />
+                                    <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted">
+                                        {project.image ? (
+                                            <Image
+                                                src={project.image}
+                                                alt={project.imageAlt}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, 600px"
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <div className="h-full w-full bg-gradient-to-br from-primary/10 via-transparent to-primary/30" />
+                                        )}
                                     </div>
                                     <div>
                                         <CardTitle className="text-2xl leading-tight">
@@ -388,9 +400,6 @@ export default function Home() {
                                         <div className="flex flex-wrap gap-3">
                                             <Button asChild variant="secondary" size="sm">
                                                 <Link href={project.demoLink}>View Live Demo</Link>
-                                            </Button>
-                                            <Button asChild size="sm" variant="outline">
-                                                <Link href={project.caseStudyLink}>Read Case Study</Link>
                                             </Button>
                                         </div>
                                     </div>
