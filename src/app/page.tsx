@@ -114,18 +114,18 @@ const projects = [
         imageAlt: "Vox Prismatic posts dashboard with pending content queue",
     },
     {
-        title: "InsightLoop - Founder Analytics Hub",
-        description: "Founder-friendly dashboards to surface activation and churn signals at a glance.",
+        title: "HablaBA – Neighborhood Language Exchanges",
+        description: "Hyper-local meetups that turn Buenos Aires language practice into curated, real-world sessions.",
         features: [
-            "Role-based dashboards",
-            "Usage insights in real time",
-            "Stripe billing sync",
-            "Responsive design",
+            "Explore upcoming exchanges by neighborhood, format, and language pairing",
+            "Capacity tracking shows confirmed seats across small-group and 1-on-1 sessions",
+            "Host profiles and scheduling tools keep RSVP coordination effortless",
+            "Notification prompts keep joins, chat updates, and changes on your radar",
         ],
-        tech: "Next.js, Supabase, Stripe, Vercel",
+        tech: "Laravel, Vue",
         demoLink: "#",
-        image: null,
-        imageAlt: "Placeholder graphic for InsightLoop case study",
+        image: "/img/habla-ba-explore.png",
+        imageAlt: "HablaBA explore page listing Buenos Aires language exchanges",
     },
 ];
 
