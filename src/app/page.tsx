@@ -388,7 +388,7 @@ export default function Home() {
                                     <ul className="space-y-2 text-sm text-foreground">
                                         {project.features.map((feature) => (
                                             <li key={feature} className="flex items-start gap-2">
-                                                <span className="mt-[2px] text-primary">✓</span>
+                                                <span className="text-primary">✓</span>
                                                 <span>{feature}</span>
                                             </li>
                                         ))}
