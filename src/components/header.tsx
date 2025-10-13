@@ -1,26 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Button } from "@/components/ui/button";
 import { useState } from 'react';
 import { motion } from "motion/react";
 
 export default function Header() {
-  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => pathname === path;
-
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/work', label: 'Work' },
-    { href: '/services', label: 'Services' },
-    { href: '/about', label: 'About' },
+    { href: '/#home', label: 'HOME' },
+    { href: '/#offer', label: 'OFFER' },
+    { href: '/#work', label: 'WORK' },
+    { href: '/#proof', label: 'PROOF' },
+    { href: '/#pricing', label: 'PRICING' },
   ];
 
   return (
     <motion.header 
-      className="fixed top-0 w-full bg-[var(--background)]/95 backdrop-blur-sm border-b border-[var(--border-subtle)] z-50"
+      className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -28,7 +26,7 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo - Editorial Style */}
-          <Link href="/" className="font-editorial text-2xl text-[var(--foreground)] hover:text-[var(--accent)] transition-colors">
+          <Link href="/" className="text-2xl font-semibold text-foreground hover:text-primary transition-colors">
             Hanif Carroll
           </Link>
 
@@ -38,28 +36,21 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium uppercase tracking-wider transition-colors ${
-                  isActive(link.href) 
-                    ? 'text-[var(--accent)]' 
-                    : 'text-[var(--foreground)] hover:text-[var(--accent)]'
-                }`}
+                className="text-sm font-medium uppercase tracking-wider text-foreground transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="px-6 py-3 text-sm font-medium uppercase tracking-wider text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] transition-all"
-            >
-              Contact
-            </Link>
+            <Button asChild size="sm" className="uppercase tracking-wider">
+              <Link href="https://cal.com/hanifcarroll/strategy">BOOK CALL</Link>
+            </Button>
           </nav>
 
 
           {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-[var(--foreground)] hover:text-[var(--accent)] hover:bg-[var(--surface)] transition-colors"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary hover:bg-secondary transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">Toggle main menu</span>
@@ -92,7 +83,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <motion.div 
-          className={`md:hidden absolute left-0 right-0 top-full bg-[var(--background)] border-t border-[var(--border-subtle)] shadow-xl overflow-hidden`}
+          className={`md:hidden absolute left-0 right-0 top-full bg-background border-t shadow-xl overflow-hidden`}
           initial={false}
           animate={{ 
             height: isMobileMenuOpen ? 'auto' : 0,
@@ -105,23 +96,20 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block py-3 text-base font-medium uppercase tracking-wider transition-colors ${
-                  isActive(link.href)
-                    ? 'text-[var(--accent)]'
-                    : 'text-[var(--foreground)] hover:text-[var(--accent)]'
-                }`}
+                className="block py-3 text-base font-medium uppercase tracking-wider text-foreground transition-colors hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="block w-full px-6 py-4 text-center text-sm font-medium uppercase tracking-wider text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] transition-all mt-4"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
+            <Button asChild className="w-full uppercase tracking-wider mt-4">
+              <Link
+                href="https://cal.com/hanifcarroll/strategy"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                BOOK CALL
+              </Link>
+            </Button>
           </div>
         </motion.div>
       </div>

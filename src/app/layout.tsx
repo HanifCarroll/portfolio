@@ -17,8 +17,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Hanif Carroll | Digital Showroom Developer",
-  description: "I build Digital Showrooms for creative businesses—custom-coded, high-performance Next.js websites designed to showcase the true quality of your work and turn visitors into high-value clients.",
+  title: "Hanif Carroll | SaaS in 2 Weeks",
+  description: "I help non-technical SaaS founders go from idea to revenue-ready product in 2 weeks. Fixed-scope process, daily updates, and a clear path to launch.",
 };
 
 export default function RootLayout({
