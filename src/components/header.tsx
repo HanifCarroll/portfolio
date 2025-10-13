@@ -42,7 +42,13 @@ export default function Header() {
               </Link>
             ))}
             <Button asChild size="sm" className="uppercase tracking-wider">
-              <Link href="https://cal.com/hanifcarroll/strategy">BOOK CALL</Link>
+              <Link
+                href="https://cal.com/hanifcarroll/strategy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BOOK CALL
+              </Link>
             </Button>
           </nav>
 
@@ -105,6 +111,8 @@ export default function Header() {
             <Button asChild className="w-full uppercase tracking-wider mt-4">
               <Link
                 href="https://cal.com/hanifcarroll/strategy"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 BOOK CALL

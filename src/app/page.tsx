@@ -148,6 +148,8 @@ export default function Home() {
                             <Link
                                 href="https://cal.com/hanifcarroll/strategy"
                                 className="inline-flex items-center gap-2"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <CalendarDays
                                     className="h-5 w-5"
