@@ -515,20 +515,20 @@ export default function Home() {
                         A fixed-price investment to take you from idea to
                         revenue-ready SaaS.
                     </p>
-                    <Card className="mx-auto mt-14 max-w-3xl border-2 shadow-2xl hover:shadow-3xl transition-all duration-300">
-                        <CardHeader className="space-y-4">
+                    <Card className="mx-auto mt-14 max-w-3xl border-2 border-primary/20 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-gradient-to-br from-background via-background to-primary/[0.02]">
+                        <CardHeader className="space-y-6">
                             <div className="flex flex-wrap items-center justify-center gap-3">
                                 <Badge
                                     variant="secondary"
-                                    className="rounded-full px-3 py-1 text-sm font-medium"
+                                    className="rounded-full px-4 py-1.5 text-sm font-medium ring-1 ring-primary/10"
                                 >
                                     2-Week Build Intensive
                                 </Badge>
-                                <span className="text-sm text-muted-foreground">
+                                <span className="text-sm font-medium text-muted-foreground">
                                     Only 2 Spots Available
                                 </span>
                             </div>
-                            <CardTitle className="text-4xl font-bold">
+                            <CardTitle className="text-5xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
                                 $5,000
                             </CardTitle>
                             <CardDescription className="text-base text-muted-foreground">

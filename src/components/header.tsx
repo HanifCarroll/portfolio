@@ -17,8 +17,8 @@ export default function Header() {
   ];
 
   return (
-    <motion.header 
-      className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b z-50"
+    <motion.header
+      className="fixed top-0 w-full bg-background/95 backdrop-blur-md border-b z-50 shadow-sm"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}

@@ -8,23 +8,26 @@ import { CalendarDays, Heart } from "lucide-react";
 export default function Footer() {
 
   return (
-    <footer className="bg-secondary border-t py-20">
-      <div className="container mx-auto px-6">
+    <footer className="relative bg-gradient-to-b from-secondary/80 to-secondary border-t py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,_hsl(var(--primary)/0.03),transparent_70%)] pointer-events-none" />
+      <div className="relative container mx-auto px-6">
         <div className="flex flex-col items-center space-y-10">
           {/* CTA */}
-          <motion.div 
-            className="text-center max-w-xl"
+          <motion.div
+            className="text-center max-w-2xl"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-2xl font-semibold text-foreground mb-3">Ready to Launch Your SaaS?</p>
-            <p className="text-muted-foreground mb-6">{`Let's talk about your vision and see if we're a good fit.`}</p>
-            <Button size="lg" asChild>
+            <p className="text-3xl font-semibold text-foreground mb-4">Ready to Launch Your SaaS?</p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">{`Let's talk about your vision and see if we're a good fit.`}</p>
+            <Button size="lg" asChild className="h-14 px-8 text-base shadow-lg hover:shadow-xl transition-all">
               <Link
                 href="https://cal.com/hanifcarroll/strategy"
                 className="inline-flex items-center gap-2"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <CalendarDays className="h-5 w-5" aria-hidden="true" />
                 Book Your Free 30-Minute Strategy Call
