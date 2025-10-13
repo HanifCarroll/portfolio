@@ -123,7 +123,7 @@ const projects = [
             "Notification prompts keep joins, chat updates, and changes on your radar",
         ],
         tech: "Laravel, Vue",
-        demoLink: "#",
+        demoLink: "https://hablaba.app",
         image: "/img/habla-ba-explore.png",
         imageAlt: "HablaBA explore page listing Buenos Aires language exchanges",
     },
@@ -401,7 +401,13 @@ export default function Home() {
                                         </p>
                                         <div className="flex flex-wrap gap-3">
                                             <Button asChild variant="secondary" size="sm">
-                                                <Link href={project.demoLink}>View Live Site</Link>
+                                                <Link
+                                                    href={project.demoLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    View Live Site
+                                                </Link>
                                             </Button>
                                         </div>
                                     </div>
