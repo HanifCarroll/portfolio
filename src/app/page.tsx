@@ -399,7 +399,7 @@ export default function Home() {
                                         </p>
                                         <div className="flex flex-wrap gap-3">
                                             <Button asChild variant="secondary" size="sm">
-                                                <Link href={project.demoLink}>View Live Demo</Link>
+                                                <Link href={project.demoLink}>View Live Site</Link>
                                             </Button>
                                         </div>
                                     </div>
