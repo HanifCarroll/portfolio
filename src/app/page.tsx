@@ -337,7 +337,7 @@ export default function Home() {
                                                 aria-hidden="true"
                                             />
                                         </div>
-                                        <span className="leading-relaxed">{`You need an open-ended discovery project before building.`}</span>
+                                        <span className="leading-relaxed">{`You're more concerned with the design of the MVP than the UX and the functionality.`}</span>
                                     </li>
                                     <li className="flex items-start gap-4 group">
                                         <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-destructive/10 ring-1 ring-destructive/20 group-hover:bg-destructive/20 transition-colors">
