@@ -16,4 +16,12 @@ export interface Project {
   solution: string;
   result: string;
   images: ProjectImages;
+  // Optional fields for richer case studies (when available)
+  role?: string;
+  teamSize?: string;
+  timeline?: string;
+  constraints?: string[];
+  outcomes?: string[]; // metrics or qualitative outcomes
+  repository?: string;
+  architectureImage?: string;
 }

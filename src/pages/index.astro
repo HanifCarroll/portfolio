@@ -1,0 +1,105 @@
+---
+import { SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../lib/project-cards';
+import ProjectList from '../components/ProjectList.astro';
+import PostItem from '../components/PostItem.astro';
+import { Image } from 'astro:assets';
+import HeroImage from '@src/assets/img/portrait-brick.webp';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+const featuredProjects = projects.slice(0, 3);
+const posts = (await getCollection('blog'))
+  .sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Hanif Carroll - Full-stack Product Engineer" description={SITE_DESCRIPTION}>
+	<div class='container space-y-20 py-12'>
+		<section class='grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center'>
+      <div class="space-y-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-primary/80">
+          Full-stack Product Engineer
+        </p>
+        <h1 class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl lg:text-[3.5rem]">
+          Hey, I'm Hanif!
+        </h1>
+        <div class="space-y-5 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+          <p>
+            I'm a full-stack product engineer based in Port Charlotte, FL. I partner with teams to ship web apps built with TypeScript, React, and Node.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a
+            class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
+            href="/Hanif_Carroll_Product_Engineer.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download Resume
+          </a>
+          <a
+            class="inline-flex items-center justify-center rounded-full border border-transparent px-5 py-2.5 text-sm font-medium text-primary transition hover:bg-primary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/60 dark:text-primary"
+            href="mailto:HanifCarroll@gmail.com"
+          >
+            Email Me
+          </a>
+        </div>
+      </div>
+      <div class="flex justify-center md:justify-end">
+        <Image
+          src={HeroImage}
+          alt="Hanif Carroll"
+          loading="eager"
+          class="max-w-sm -scale-x-100 rounded-[2.5rem] shadow-xl"
+        />
+      </div>
+		</section>
+
+    <section class="space-y-5">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">About</h2>
+      </div>
+      <div class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+        <p>
+          Currently I serve as a fractional CTO for an emerging social events platform. Previously I handled front-end delivery at Nearsure and LeagueApps, building scheduling tooling adopted by 3,000+ sports organizers and streamlining mobile event management.
+        </p>
+        <p>
+          I love pairing product strategy with hands-on engineering; projects like Vox Prismatic and HablaBA blend thoughtful UX with fast iteration. If you're crafting a new experience and need someone who can move from discovery to delivery, let's chat.
+        </p>
+        <a href="/about/" class="inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline">
+          Read more
+        </a>
+      </div>
+		</section>
+
+    <section class="space-y-5">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Projects</h2>
+        <a href="/projects/" class="text-sm font-semibold text-primary underline-offset-4 hover:underline">
+          View all
+        </a>
+      </div>
+      <ProjectList projects={featuredProjects}/>
+		</section>
+
+		<section class="space-y-5">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Blog</h2>
+        <a href="/blog/" class="text-sm font-semibold text-primary underline-offset-4 hover:underline">
+          View all
+        </a>
+      </div>
+      <div class="space-y-4">
+        {
+          posts.map((post: BlogPost) => (
+            <PostItem post={post} />
+          ))
+        }
+      </div>
+		</section>
+	</div>
+</BaseLayout>

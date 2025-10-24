@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { Project } from '@src/lib/types/project';
+import { getAllProjects } from '@src/lib/projects';
+
+interface PageProps {
+  project: Project;
+}
+
+export async function getStaticPaths() {
+  return getAllProjects().map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props as PageProps;
+const { images } = project;
+---
+
+<BaseLayout
+  title={`${project.title} · Case Study`}
+  description={project.description}
+  image={images.hero}
+>
+  <article class="container max-w-5xl space-y-16 py-10">
+    <header class="space-y-8">
+      <div class="space-y-4">
+        <p class="text-sm uppercase tracking-[0.3em] text-primary/80">
+          Case Study
+        </p>
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+          {project.title}
+        </h1>
+        <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl">
+          {project.description}
+        </p>
+      </div>
+      <div class="flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/70 md:flex-row md:items-center md:justify-between">
+        <dl class="grid grid-cols-2 gap-4 text-sm text-zinc-500 dark:text-zinc-400">
+          <div>
+            <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+              Client
+            </dt>
+            <dd>{project.client}</dd>
+          </div>
+          {project.role && (
+            <div>
+              <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+                Role
+              </dt>
+              <dd>{project.role}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+              Service
+            </dt>
+            <dd>{project.service}</dd>
+          </div>
+          {project.teamSize && (
+            <div>
+              <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+                Team Size
+              </dt>
+              <dd>{project.teamSize}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+              Year
+            </dt>
+            <dd>{project.year}</dd>
+          </div>
+          {project.timeline && (
+            <div>
+              <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+                Timeline
+              </dt>
+              <dd>{project.timeline}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+              Technologies
+            </dt>
+            <dd class="flex flex-wrap gap-2">
+              {
+                project.technologies.map((tech) => (
+                  <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    {tech}
+                  </span>
+                ))
+              }
+            </dd>
+          </div>
+        </dl>
+        {
+          project.liveUrl && (
+            <a
+              class="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium tracking-wide text-primary-foreground transition hover:brightness-110 md:w-auto"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Live Site
+            </a>
+          )
+        }
+      </div>
+      {
+        images.hero && (
+          <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+            <img
+              src={images.hero}
+              alt={`${project.title} hero preview`}
+              loading="lazy"
+              class="w-full object-cover"
+            />
+          </figure>
+        )
+      }
+    </header>
+
+    <section class="space-y-10">
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">The Challenge</h2>
+        <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          {project.problem}
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">Our Approach</h2>
+        <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          {project.solution}
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">The Outcome</h2>
+        <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          {project.result}
+        </p>
+      </div>
+
+      {project.outcomes && project.outcomes.length > 0 && (
+        <div class="space-y-4">
+          <h2 class="text-2xl font-semibold tracking-tight">Impact</h2>
+          <ul class="list-disc pl-6 text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            {project.outcomes.map((o) => (<li>{o}</li>))}
+          </ul>
+        </div>
+      )}
+
+      {project.constraints && project.constraints.length > 0 && (
+        <div class="space-y-4">
+          <h2 class="text-2xl font-semibold tracking-tight">Constraints</h2>
+          <ul class="list-disc pl-6 text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            {project.constraints.map((c) => (<li>{c}</li>))}
+          </ul>
+        </div>
+      )}
+    </section>
+
+    {
+      images.feature && (
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold tracking-tight">Highlights</h2>
+          <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+            <img
+              src={images.feature}
+              alt={`${project.title} feature preview`}
+              loading="lazy"
+              class="w-full object-cover"
+            />
+          </figure>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

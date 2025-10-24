@@ -1,4 +1,4 @@
-import { Project } from './types/project';
+import type { Project } from './types/project';
 import redwriterData from './projects/redwriter-comics.json';
 import maximoData from './projects/maximo-interiorismo.json';
 import desarmaderoData from './projects/desarmadero-latorre.json';

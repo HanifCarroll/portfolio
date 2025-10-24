@@ -1,0 +1,57 @@
+---
+import type { ProjectCard } from '../lib/project-cards';
+
+const { projects } = Astro.props;
+---
+
+<div class="grid grid-cols-12 gap-5">
+  {
+    projects.map((project: ProjectCard) => (
+      <article class="col-span-12 sm:col-span-6 lg:col-span-4 border dark:border-zinc-700 rounded-xl shadow-sm p-5 flex flex-col gap-4">
+        <header class="flex justify-between items-start gap-4">
+          <div>
+            <h3 class="text-lg font-semibold leading-tight">
+              <a class="underline decoration-primary/60 decoration-2 underline-offset-4 hover:text-primary transition-colors" href={`/projects/${project.slug}/`}>
+                {project.name}
+              </a>
+            </h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+              {project.client} · {project.year}
+            </p>
+          </div>
+        </header>
+        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">
+          {project.description}
+        </p>
+        {
+          project.tags.length > 0 && (
+            <ul class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li class="border border-zinc-300 dark:border-zinc-700 rounded-full text-xs tracking-wide uppercase text-zinc-700 dark:text-zinc-300 px-3 py-1">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        <div class="flex justify-end gap-3">
+          <a class="underline flex items-center gap-2 text-sm font-medium" href={`/projects/${project.slug}/`}>
+            Case Study
+          </a>
+          {
+            project.demoLink && (
+              <a class="underline flex items-center gap-2 text-sm font-medium" href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                Live Site
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link">
+                  <path d="M15 3h6v6" />
+                  <path d="M10 14 21 3" />
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                </svg>
+              </a>
+            )
+          }
+        </div>
+      </article>
+    ))
+  }
+</div>
