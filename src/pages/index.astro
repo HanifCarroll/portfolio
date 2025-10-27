@@ -1,20 +1,12 @@
 ---
 import { SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { projects } from '../lib/project-cards';
 import ProjectList from '../components/ProjectList.astro';
-import PostItem from '../components/PostItem.astro';
 import { Image } from 'astro:assets';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 
-type BlogPost = CollectionEntry<'blog'>;
-
 const featuredProjects = projects.slice(0, 3);
-const posts = (await getCollection('blog'))
-  .sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
 ---
 
 <BaseLayout title="Hanif Carroll - Full-stack Product Engineer" description={SITE_DESCRIPTION}>
@@ -34,18 +26,18 @@ const posts = (await getCollection('blog'))
         </div>
         <div class="flex flex-wrap gap-3">
           <a
-            class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-5 py-2.5 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
+            class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            href="mailto:HanifCarroll@gmail.com"
+          >
+            Let's Talk
+          </a>
+          <a
+            class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
             href="/Hanif_Carroll_Product_Engineer.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Download Resume
-          </a>
-          <a
-            class="inline-flex items-center justify-center rounded-full border border-transparent px-5 py-2.5 text-sm font-medium text-primary transition hover:bg-primary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/60 dark:text-primary"
-            href="mailto:HanifCarroll@gmail.com"
-          >
-            Email Me
+            View Resume
           </a>
         </div>
       </div>
@@ -59,10 +51,8 @@ const posts = (await getCollection('blog'))
       </div>
 		</section>
 
-    <section class="space-y-5">
-      <div class="flex items-center justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">About</h2>
-      </div>
+    <section class="space-y-5" id="about">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">About</h2>
       <div class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
         <p>
           Currently I serve as a fractional CTO for an emerging social events platform. Previously I handled front-end delivery at Nearsure and LeagueApps, building scheduling tooling adopted by 3,000+ sports organizers and streamlining mobile event management.
@@ -70,35 +60,23 @@ const posts = (await getCollection('blog'))
         <p>
           I love pairing product strategy with hands-on engineering; projects like Vox Prismatic and HablaBA blend thoughtful UX with fast iteration. If you're crafting a new experience and need someone who can move from discovery to delivery, let's chat.
         </p>
-        <a href="/about/" class="inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline">
-          Read more
-        </a>
       </div>
 		</section>
 
-    <section class="space-y-5">
-      <div class="flex items-center justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Projects</h2>
-        <a href="/projects/" class="text-sm font-semibold text-primary underline-offset-4 hover:underline">
-          View all
-        </a>
-      </div>
+    <section class="space-y-5" id="projects">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Featured Projects</h2>
       <ProjectList projects={featuredProjects}/>
 		</section>
 
-		<section class="space-y-5">
-      <div class="flex items-center justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Blog</h2>
-        <a href="/blog/" class="text-sm font-semibold text-primary underline-offset-4 hover:underline">
-          View all
-        </a>
-      </div>
-      <div class="space-y-4">
-        {
-          posts.map((post: BlogPost) => (
-            <PostItem post={post} />
-          ))
-        }
+    <section class="space-y-5" id="experience">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Experience</h2>
+      <div class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+        <ul class="space-y-3">
+          <li><strong>Freelance (2024–now):</strong> Fractional CTO for a social events platform (led 2 juniors); delivered a portfolio site; built a Webflow catalogue; launched landing pages with GA/Hotjar insights.</li>
+          <li><strong>Nearsure (2023–2024):</strong> Improved scheduling UX for 3,000+ sports organizers; optimized mobile editing flows.</li>
+          <li><strong>LeagueApps (2021–2023):</strong> Reduced scheduling time by 45% with a drag‑and‑drop grid; conflict detection; reporting with AG Grid; component library with Styled Components + Storybook.</li>
+          <li><strong>Capgemini (2019–2021):</strong> App for cruise ship and crew management; led schedule reporting; cut test runtime by ~60%; delivered KPI dashboards.</li>
+        </ul>
       </div>
 		</section>
 	</div>

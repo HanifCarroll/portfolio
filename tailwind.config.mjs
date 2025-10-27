@@ -11,6 +11,12 @@ export default {
 			}
 		},
 		extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#3b82f6', // blue-500
+          foreground: '#ffffff',
+        },
+      },
       typography: {
         DEFAULT: {
           css: {
