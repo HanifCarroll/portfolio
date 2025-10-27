@@ -18,26 +18,31 @@ const featuredProjects = projects.slice(0, 3);
             class="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center"
         >
             <div class="space-y-6">
-                <p
-                    class="text-sm font-semibold uppercase tracking-[0.25em] text-primary/80"
-                >
-                    Full-stack Product Engineer
-                </p>
-                <h1
-                    class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl lg:text-[3.5rem]"
-                >
-                    Hey, I'm Hanif!
-                </h1>
-                <div
-                    class="space-y-5 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
-                >
-                    <p>
-                        I'm a full-stack product engineer based in Port
-                        Charlotte, FL. I don't just write code—I think deeply
-                        about product strategy, user experience, and how to
-                        build things that genuinely empower people. I love
-                        working with TypeScript, React, and Node to turn ideas
-                        into impactful products.
+                <div class="space-y-0">
+                    <p
+                        class="text-xs font-semibold uppercase tracking-[0.15em] text-primary/80"
+                    >
+                        Full-stack Product Engineer
+                    </p>
+                    <h1
+                        class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl lg:text-[3.5rem]"
+                    >
+                        Hey, I'm Hanif!
+                    </h1>
+                </div>
+                <div class="space-y-5">
+                    <p
+                        class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+                    >
+                        I'm a product-minded engineer who doesn't stay in the
+                        "engineering box."
+                    </p>
+                    <p
+                        class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+                    >
+                        Seeking a role at an early-stage startup (pre-seed to
+                        Series B) where I can do full-stack work with product
+                        input.
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-3">
@@ -67,6 +72,15 @@ const featuredProjects = projects.slice(0, 3);
             </div>
         </section>
 
+        <section class="space-y-5" id="projects">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                Featured Projects
+            </h2>
+            <PortfolioShowcase projects={featuredProjects} />
+        </section>
+
         <section class="space-y-5" id="about">
             <h2
                 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
@@ -76,7 +90,7 @@ const featuredProjects = projects.slice(0, 3);
             <div
                 class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
             >
-                <div class="space-y-2">
+                <div class="space-y-2 max-w-prose">
                     <h3
                         class="text-sm font-semibold uppercase tracking-wide text-primary/80"
                     >
@@ -85,14 +99,15 @@ const featuredProjects = projects.slice(0, 3);
                     <p>
                         I started programming in 2017 when I decided physical
                         therapy school wasn't for me. Since then, I've worked at
-                        Capgemini, LeagueApps (joined at 75 people, left at 150),
-                        and now serve as fractional CTO for a social events platform.
-                        I've built scheduling tools adopted by 3,000+ sports organizers
-                        and led teams to ship products that make complex tasks simple.
+                        Capgemini, LeagueApps (joined at 75 people, left at
+                        150), and now serve as fractional CTO for a social
+                        events platform. I've built scheduling tools adopted by
+                        3,000+ sports organizers and led teams to ship products
+                        that make complex tasks simple.
                     </p>
                 </div>
 
-                <div class="space-y-2">
+                <div class="space-y-2 max-w-prose">
                     <h3
                         class="text-sm font-semibold uppercase tracking-wide text-primary/80"
                     >
@@ -109,22 +124,7 @@ const featuredProjects = projects.slice(0, 3);
                     </p>
                 </div>
 
-                <div class="space-y-2">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        AI & Innovation
-                    </h3>
-                    <p>
-                        I'm obsessed with the question of how we can use AI to
-                        perform better—not just in software engineering, but in
-                        our lives in general. I love pairing product strategy
-                        with hands-on engineering; projects like Vox Prismatic
-                        and HablaBA blend thoughtful UX with fast iteration.
-                    </p>
-                </div>
-
-                <div class="space-y-2">
+                <div class="space-y-2 max-w-prose">
                     <h3
                         class="text-sm font-semibold uppercase tracking-wide text-primary/80"
                     >
@@ -133,22 +133,13 @@ const featuredProjects = projects.slice(0, 3);
                     <p>
                         I'm looking for a role at an early-stage startup
                         (pre-seed to Series B, 10–50 people) where I can do
-                        full-stack development with product/marketing input. I want
-                        to join an ambitious, mission-driven team building products
-                        that empower people and bring them together—not just sell
-                        more ads.
+                        full-stack development with product/marketing input. I
+                        want to join an ambitious, mission-driven team building
+                        products that empower people and bring them together—not
+                        just sell more ads.
                     </p>
                 </div>
             </div>
-        </section>
-
-        <section class="space-y-5" id="projects">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                Featured Projects
-            </h2>
-            <PortfolioShowcase projects={featuredProjects} />
         </section>
 
         <section class="space-y-8" id="experience">
@@ -181,45 +172,50 @@ const featuredProjects = projects.slice(0, 3);
                     <ul
                         class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300"
                     >
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Performed as <strong>fractional CTO</strong> for
                                 an emerging social events platform, leading a team
-                                of 2 juniors.</span>
+                                of 2 juniors.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Delivered an imaginative and responsive
                                 portfolio website for a comic book artist,
                                 highlighting recent works through a
-                                custom-designed interface.</span>
+                                custom-designed interface.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Designed and developed a responsive online
                                 catalogue for an auto salvage yard using
                                 Webflow, allowing customers to easily browse and
-                                search available salvaged vehicle inventory.</span>
+                                search available salvaged vehicle inventory.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Developed targeted landing pages for Light
-                                Bearers' ministry events & promotions.</span>
+                                Bearers' ministry events & promotions.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Delivered actionable UX insights through user
-                                behavior analysis via Google Analytics & Hotjar.</span>
+                                behavior analysis via Google Analytics & Hotjar.</span
+                            >
                         </li>
                     </ul>
                 </div>
@@ -248,22 +244,24 @@ const featuredProjects = projects.slice(0, 3);
                     <ul
                         class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300"
                     >
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Improved efficiency and user satisfaction for <strong
                                     >3,000+ sports organizers</strong
                                 > by engineering an interactive, user-friendly scheduling
-                                tool.</span>
+                                tool.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Enhanced mobile experience by developing an
                                 optimized list view that enabled rapid event
-                                editing on mobile devices.</span>
+                                editing on mobile devices.</span
+                            >
                         </li>
                     </ul>
                 </div>
@@ -292,38 +290,42 @@ const featuredProjects = projects.slice(0, 3);
                     <ul
                         class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300"
                     >
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Reduced scheduling time by <strong>45%</strong>
                                 and enhanced UX by implementing an intuitive drag-and-drop
-                                scheduling grid.</span>
+                                scheduling grid.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Built comprehensive reporting modules with AG
                                 Grid, focusing on clear data presentation for
-                                event planning and analysis.</span>
+                                event planning and analysis.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Eliminated team double-booking issues by
                                 engineering an automated conflict detection
-                                system with clear user notifications.</span>
+                                system with clear user notifications.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Established a standardized front-end component
                                 library using Styled Components and Storybook,
                                 ensuring consistent user experience across the
-                                application.</span>
+                                application.</span
+                            >
                         </li>
                     </ul>
                 </div>
@@ -352,39 +354,43 @@ const featuredProjects = projects.slice(0, 3);
                     <ul
                         class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300"
                     >
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Developed a comprehensive application that
                                 covered all aspects of managing a cruise ship
                                 and its crew, including berthing, reporting, and
-                                scheduling.</span>
+                                scheduling.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Led agile development of a schedule reporting
                                 module, collaborating closely with UI/UX
                                 designers and business analysts to ensure user
-                                needs were met.</span>
+                                needs were met.</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Boosted development productivity by reducing
                                 test suite execution time by <strong>60%</strong
-                                > (~20 min/cycle).</span>
+                                > (~20 min/cycle).</span
+                            >
                         </li>
-                        <li class="flex gap-3">
+                        <li class="flex gap-3 items-start">
                             <span
-                                class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
                             ></span><span
                                 >Designed and implemented executive KPI
                                 dashboards, focusing on clear data visualization
-                                for leadership decision-making.</span>
+                                for leadership decision-making.</span
+                            >
                         </li>
                     </ul>
                 </div>
@@ -404,13 +410,13 @@ const featuredProjects = projects.slice(0, 3);
                     <h3
                         class="text-sm font-semibold uppercase tracking-wide text-primary/80"
                     >
-                        Fitness & Competition
+                        Fitness
                     </h3>
                     <p>
                         I've been lifting weights for almost 20 years—my best
                         lifts are a 500 lb squat, 405 lb bench, and 620 lb
-                        deadlift. I also play ultimate frisbee and love staying
-                        active.
+                        deadlift. I'm also a huge fan of ultimate frisbee and
+                        have played competitively for a number of years.
                     </p>
                 </div>
 
