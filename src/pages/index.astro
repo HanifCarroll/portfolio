@@ -2,7 +2,7 @@
 import { SITE_DESCRIPTION } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { projects } from '../lib/project-cards';
-import ProjectList from '../components/ProjectList.astro';
+import PortfolioShowcase from '../components/PortfolioShowcase.astro';
 import { Image } from 'astro:assets';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 
@@ -65,18 +65,77 @@ const featuredProjects = projects.slice(0, 3);
 
     <section class="space-y-5" id="projects">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Featured Projects</h2>
-      <ProjectList projects={featuredProjects}/>
+      <PortfolioShowcase projects={featuredProjects}/>
 		</section>
 
-    <section class="space-y-5" id="experience">
+    <section class="space-y-8" id="experience">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Experience</h2>
-      <div class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-        <ul class="space-y-3">
-          <li><strong>Freelance (2024–now):</strong> Fractional CTO for a social events platform (led 2 juniors); delivered a portfolio site; built a Webflow catalogue; launched landing pages with GA/Hotjar insights.</li>
-          <li><strong>Nearsure (2023–2024):</strong> Improved scheduling UX for 3,000+ sports organizers; optimized mobile editing flows.</li>
-          <li><strong>LeagueApps (2021–2023):</strong> Reduced scheduling time by 45% with a drag‑and‑drop grid; conflict detection; reporting with AG Grid; component library with Styled Components + Storybook.</li>
-          <li><strong>Capgemini (2019–2021):</strong> App for cruise ship and crew management; led schedule reporting; cut test runtime by ~60%; delivered KPI dashboards.</li>
-        </ul>
+
+      <!-- Freelance -->
+      <div class="grid grid-cols-[140px_1fr] gap-6">
+        <div class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Sep 2024–Current</div>
+        <div class="relative space-y-3 pb-8 before:absolute before:left-[-1.5rem] before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-zinc-900 dark:before:bg-zinc-100 after:absolute after:left-[-1.1875rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800">
+          <div>
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Full-stack Software Engineer</h3>
+            <p class="text-base text-zinc-600 dark:text-zinc-400">Freelance</p>
+          </div>
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Performed as <strong>fractional CTO</strong> for an emerging social events platform, leading a team of 2 juniors.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Delivered an imaginative and responsive portfolio website for a comic book artist, highlighting recent works through a custom-designed interface.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Designed and developed a responsive online catalogue for an auto salvage yard using Webflow, allowing customers to easily browse and search available salvaged vehicle inventory.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Developed targeted landing pages for Light Bearers' ministry events & promotions.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Delivered actionable UX insights through user behavior analysis via Google Analytics & Hotjar.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Nearsure -->
+      <div class="grid grid-cols-[140px_1fr] gap-6">
+        <div class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Feb 2023–Feb 2024</div>
+        <div class="relative space-y-3 pb-8 before:absolute before:left-[-1.5rem] before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-zinc-900 dark:before:bg-zinc-100 after:absolute after:left-[-1.1875rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800">
+          <div>
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Senior Front End Engineer</h3>
+            <p class="text-base text-zinc-600 dark:text-zinc-400">Nearsure</p>
+          </div>
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Improved efficiency and user satisfaction for <strong>3,000+ sports organizers</strong> by engineering an interactive, user-friendly scheduling tool.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Enhanced mobile experience by developing an optimized list view that enabled rapid event editing on mobile devices.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LeagueApps -->
+      <div class="grid grid-cols-[140px_1fr] gap-6">
+        <div class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Nov 2021–Feb 2023</div>
+        <div class="relative space-y-3 pb-8 before:absolute before:left-[-1.5rem] before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-zinc-900 dark:before:bg-zinc-100 after:absolute after:left-[-1.1875rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800">
+          <div>
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Front End Engineer</h3>
+            <p class="text-base text-zinc-600 dark:text-zinc-400">LeagueApps</p>
+          </div>
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Reduced scheduling time by <strong>45%</strong> and enhanced UX by implementing an intuitive drag-and-drop scheduling grid.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Built comprehensive reporting modules with AG Grid, focusing on clear data presentation for event planning and analysis.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Eliminated team double-booking issues by engineering an automated conflict detection system with clear user notifications.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Established a standardized front-end component library using Styled Components and Storybook, ensuring consistent user experience across the application.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Capgemini -->
+      <div class="grid grid-cols-[140px_1fr] gap-6">
+        <div class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Jan 2019–Oct 2021</div>
+        <div class="relative space-y-3 before:absolute before:left-[-1.5rem] before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-zinc-900 dark:before:bg-zinc-100">
+          <div>
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Software Developer</h3>
+            <p class="text-base text-zinc-600 dark:text-zinc-400">Capgemini</p>
+          </div>
+          <ul class="space-y-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Developed a comprehensive application that covered all aspects of managing a cruise ship and its crew, including berthing, reporting, and scheduling.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Led agile development of a schedule reporting module, collaborating closely with UI/UX designers and business analysts to ensure user needs were met.</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Boosted development productivity by reducing test suite execution time by <strong>60%</strong> (~20 min/cycle).</span></li>
+            <li class="flex gap-3"><span class="mt-2 inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"></span><span>Designed and implemented executive KPI dashboards, focusing on clear data visualization for leadership decision-making.</span></li>
+          </ul>
+        </div>
       </div>
 		</section>
 	</div>
