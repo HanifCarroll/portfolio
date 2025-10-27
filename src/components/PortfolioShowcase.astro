@@ -28,9 +28,7 @@ const imageMap: Record<string, ImageMetadata> = {
     const heroImage = imageMap[project.slug];
     return (
       <a
-        href={project.demoLink}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={`/projects/${project.slug}/`}
         class="block overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800"
       >
         <div class="relative aspect-[16/9] overflow-hidden">
