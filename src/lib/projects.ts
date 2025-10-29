@@ -5,9 +5,9 @@ import voxPrismaticData from './projects/vox-prismatic.json';
 import genruptData from './projects/genrupt.json';
 
 export const projects: Record<string, Project> = {
-  'language-exchange': languageExchangeData as Project,
-  'mucho-hangouts': muchoHangoutsData as Project,
   'genrupt': genruptData as Project,
+  'mucho-hangouts': muchoHangoutsData as Project,
+  'language-exchange': languageExchangeData as Project,
   'vox-prismatic': voxPrismaticData as Project,
 };
 

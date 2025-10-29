@@ -3,11 +3,10 @@ import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
 
 // Import all images statically
-// TODO: Add new project images when available
-// import languageExchangeHero from '@src/assets/img/projects/language-exchange-hero.png';
-// import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
-// import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
-// import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
+import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
+import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
+import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
+import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
 
 interface Props {
   projects: ProjectCard[];
@@ -17,11 +16,10 @@ const { projects } = Astro.props;
 
 // Map project slugs to images
 const imageMap: Record<string, ImageMetadata> = {
-  // TODO: Uncomment when images are added
-  // 'language-exchange': languageExchangeHero,
-  // 'mucho-hangouts': muchoHangoutsHero,
-  // 'vox-prismatic': voxPrismaticHero,
-  // 'genrupt': genruptHero,
+  'language-exchange': hablabaHero,
+  'mucho-hangouts': muchoHangoutsHero,
+  'vox-prismatic': voxPrismaticHero,
+  'genrupt': genruptHero,
 };
 ---
 
