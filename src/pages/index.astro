@@ -1,0 +1,521 @@
+---
+import { SITE_DESCRIPTION } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../lib/project-cards";
+import PortfolioShowcase from "../components/PortfolioShowcase.astro";
+import { Image } from "astro:assets";
+import HeroImage from "@src/assets/img/portrait-brick.webp";
+
+const featuredProjects = projects.slice(0, 3);
+---
+
+<BaseLayout
+    title="Hanif Carroll - Full-stack Product Engineer"
+    description={SITE_DESCRIPTION}
+>
+    <div class="container space-y-20 py-12">
+        <section
+            class="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center"
+        >
+            <div class="space-y-6">
+                <div class="space-y-0">
+                    <p
+                        class="text-xs font-semibold uppercase tracking-[0.15em] text-primary/80"
+                    >
+                        Full-stack Product Engineer
+                    </p>
+                    <h1
+                        class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl lg:text-[3.5rem]"
+                    >
+                        Hey, I'm Hanif!
+                    </h1>
+                </div>
+                <div class="space-y-5">
+                    <p
+                        class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+                    >
+                        I'm a product-minded engineer who doesn't stay in the
+                        "engineering box."
+                    </p>
+                    <p
+                        class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+                    >
+                        Seeking a role at an early-stage startup (pre-seed to
+                        Series B) where I can do full-stack work with product
+                        input.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a
+                        class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        href="mailto:HanifCarroll@gmail.com"
+                    >
+                        Let's Talk
+                    </a>
+                    <a
+                        class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
+                        href="/Hanif_Carroll_Product_Engineer.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Resume
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <Image
+                    src={HeroImage}
+                    alt="Hanif Carroll"
+                    loading="eager"
+                    class="max-w-sm -scale-x-100 rounded-[2.5rem] shadow-xl"
+                />
+            </div>
+        </section>
+
+        <section class="scroll-mt-16 space-y-5" id="projects">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                Featured Projects
+            </h2>
+            <PortfolioShowcase projects={featuredProjects} />
+            <div class="pt-4">
+                <a
+                    href="/projects"
+                    class="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-primary dark:text-zinc-400 dark:hover:text-primary"
+                >
+                    View All Projects
+                    <svg
+                        class="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="scroll-mt-16 space-y-5" id="about">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                About
+            </h2>
+            <div
+                class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+            >
+                <div class="space-y-2 max-w-4xl">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        My Journey
+                    </h3>
+                    <p>
+                        I started programming in 2017 when I decided physical
+                        therapy school wasn't for me.
+                    </p>
+                    <p>
+                        Since then, I've worked at Capgemini, LeagueApps (joined
+                        at 75 people, left at 150), and now serve as fractional
+                        CTO for a social events platform.
+                    </p>
+                    <p>
+                        I've built scheduling tools adopted by 3,000+ sports
+                        organizers and led teams to ship products that make
+                        complex tasks simple.
+                    </p>
+                </div>
+
+                <div class="space-y-2 max-w-4xl">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Product-Minded Engineering
+                    </h3>
+                    <p>I don't like staying in the "engineering" box.</p>
+                    <p>
+                        I care about UX, product strategy, and deeply
+                        understanding user personas and their needs.
+                    </p>
+                    <p>
+                        I want to hear how users are enjoying the product and
+                        what they want changed.
+                    </p>
+                    <p>
+                        My goal is to give them what they want in the form of an
+                        exceptional product that empowers them to do things they
+                        couldn't before or makes important tasks easier.
+                    </p>
+                </div>
+
+                <div class="space-y-2 max-w-4xl">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        What's Next
+                    </h3>
+                    <p>
+                        I'm looking for a role at an early-stage startup
+                        (pre-seed to Series B, 10–50 people) where I can do
+                        full-stack development with product/marketing input.
+                    </p>
+                    <p>
+                        I want to join an ambitious, mission-driven team
+                        building products that empower people and bring them
+                        together—not just sell more ads.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-mt-16 space-y-8" id="experience">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                Experience
+            </h2>
+
+            <!-- Freelance -->
+            <div
+                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
+            >
+                <div
+                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
+                >
+                    Sep 2024–Current
+                </div>
+                <div
+                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
+                >
+                    <div>
+                        <p
+                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
+                        >
+                            Sep 2024–Current
+                        </p>
+                        <h3
+                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
+                        >
+                            Full-stack Software Engineer
+                        </h3>
+                        <p
+                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
+                        >
+                            Freelance
+                        </p>
+                    </div>
+                    <ul
+                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
+                    >
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Performed as <strong>fractional CTO</strong> for
+                                an emerging social events platform, leading a team
+                                of 2 juniors.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Delivered an imaginative and responsive
+                                portfolio website for a comic book artist,
+                                highlighting recent works through a
+                                custom-designed interface.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Designed and developed a responsive online
+                                catalogue for an auto salvage yard using
+                                Webflow, allowing customers to easily browse and
+                                search available salvaged vehicle inventory.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Developed targeted landing pages for Light
+                                Bearers' ministry events & promotions.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Delivered actionable UX insights through user
+                                behavior analysis via Google Analytics & Hotjar.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Nearsure -->
+            <div
+                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
+            >
+                <div
+                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
+                >
+                    Feb 2023–Feb 2024
+                </div>
+                <div
+                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
+                >
+                    <div>
+                        <p
+                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
+                        >
+                            Feb 2023–Feb 2024
+                        </p>
+                        <h3
+                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
+                        >
+                            Senior Front End Engineer
+                        </h3>
+                        <p
+                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
+                        >
+                            Nearsure
+                        </p>
+                    </div>
+                    <ul
+                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
+                    >
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Improved efficiency and user satisfaction for <strong
+                                    >3,000+ sports organizers</strong
+                                > by engineering an interactive, user-friendly scheduling
+                                tool.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Enhanced mobile experience by developing an
+                                optimized list view that enabled rapid event
+                                editing on mobile devices.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- LeagueApps -->
+            <div
+                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
+            >
+                <div
+                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
+                >
+                    Nov 2021–Feb 2023
+                </div>
+                <div
+                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
+                >
+                    <div>
+                        <p
+                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
+                        >
+                            Nov 2021–Feb 2023
+                        </p>
+                        <h3
+                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
+                        >
+                            Front End Engineer
+                        </h3>
+                        <p
+                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
+                        >
+                            LeagueApps
+                        </p>
+                    </div>
+                    <ul
+                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
+                    >
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Reduced scheduling time by <strong>45%</strong>
+                                and enhanced UX by implementing an intuitive drag-and-drop
+                                scheduling grid.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Built comprehensive reporting modules with AG
+                                Grid, focusing on clear data presentation for
+                                event planning and analysis.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Eliminated team double-booking issues by
+                                engineering an automated conflict detection
+                                system with clear user notifications.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Established a standardized front-end component
+                                library using Styled Components and Storybook,
+                                ensuring consistent user experience across the
+                                application.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Capgemini -->
+            <div
+                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
+            >
+                <div
+                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
+                >
+                    Jan 2019–Oct 2021
+                </div>
+                <div
+                    class="relative space-y-3 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary md:pl-0 md:before:left-[-1.5rem]"
+                >
+                    <div>
+                        <p
+                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
+                        >
+                            Jan 2019–Oct 2021
+                        </p>
+                        <h3
+                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
+                        >
+                            Software Developer
+                        </h3>
+                        <p
+                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
+                        >
+                            Capgemini
+                        </p>
+                    </div>
+                    <ul
+                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
+                    >
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Developed a comprehensive application that
+                                covered all aspects of managing a cruise ship
+                                and its crew, including berthing, reporting, and
+                                scheduling.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Led agile development of a schedule reporting
+                                module, collaborating closely with UI/UX
+                                designers and business analysts to ensure user
+                                needs were met.</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Boosted development productivity by reducing
+                                test suite execution time by <strong>60%</strong
+                                > (~20 min/cycle).</span
+                            >
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span
+                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
+                            ></span><span
+                                >Designed and implemented executive KPI
+                                dashboards, focusing on clear data visualization
+                                for leadership decision-making.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-5">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                Beyond Code
+            </h2>
+            <div
+                class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
+            >
+                <div class="space-y-2">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Fitness
+                    </h3>
+                    <p>
+                        I've been lifting weights for almost 20 years—my best
+                        lifts are a 500 lb squat, 405 lb bench, and 620 lb
+                        deadlift. I'm also a huge fan of ultimate frisbee and
+                        have played competitively for years.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Community Building
+                    </h3>
+                    <p>
+                        For nearly 3 years, I ran a social community in Buenos
+                        Aires, connecting people and building relationships. I'm
+                        passionate about bringing people together and creating
+                        spaces for genuine connection.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Continuous Learning
+                    </h3>
+                    <p>
+                        I'm an avid reader and podcast listener, always learning
+                        from others. Recently I started writing every day to
+                        improve my communication skills—clear thinking and clear
+                        communication are extremely important to me.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>

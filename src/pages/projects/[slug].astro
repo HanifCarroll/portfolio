@@ -1,0 +1,237 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { Project } from "@src/lib/types/project";
+import { getAllProjects } from "@src/lib/projects";
+
+// Import all project images statically
+import redwriterHero from "@src/assets/img/projects/redwriter-hero.png";
+import redwriterFeature from "@src/assets/img/projects/redwriter-feature.png";
+import maximoHero from "@src/assets/img/projects/maximo-hero.png";
+import maximoFeature from "@src/assets/img/projects/maximo-feature.png";
+import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
+import desarmaderoFeature from "@src/assets/img/projects/desarmadero-feature.png";
+import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
+import casaElariaFeature from "@src/assets/img/projects/casa-elaria-feature.png";
+
+interface PageProps {
+    project: Project;
+}
+
+export async function getStaticPaths() {
+    return getAllProjects().map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props as PageProps;
+
+// Map project slugs to static image imports
+const imageMap: Record<
+    string,
+    { hero: ImageMetadata; feature: ImageMetadata }
+> = {
+    "redwriter-comics": { hero: redwriterHero, feature: redwriterFeature },
+    "maximo-interiorismo": { hero: maximoHero, feature: maximoFeature },
+    "desarmadero-latorre": {
+        hero: desarmaderoHero,
+        feature: desarmaderoFeature,
+    },
+    "casa-elaria": { hero: casaElariaHero, feature: casaElariaFeature },
+};
+
+const images = imageMap[project.slug];
+---
+
+<BaseLayout
+    title={`${project.title} · Case Study`}
+    description={project.description}
+>
+    <article class="container max-w-5xl space-y-16 py-10">
+        <!-- Breadcrumb -->
+        <nav
+            class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+        >
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <span>/</span>
+            <a href="/#projects" class="hover:text-primary transition-colors"
+                >Projects</a
+            >
+            <span>/</span>
+            <span class="text-zinc-900 dark:text-zinc-100">{project.title}</span
+            >
+        </nav>
+
+        <header class="space-y-8">
+            <div class="space-y-4">
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+                    {project.title}
+                </h1>
+                <p
+                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl"
+                >
+                    {project.description}
+                </p>
+            </div>
+            <div
+                class="flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/70 md:flex-row md:items-center md:justify-between"
+            >
+                <dl
+                    class="grid grid-cols-2 gap-4 text-sm text-zinc-500 dark:text-zinc-400"
+                >
+                    <div>
+                        <dt
+                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
+                        >
+                            Client
+                        </dt>
+                        <dd>{project.client}</dd>
+                    </div>
+                    {
+                        project.role && (
+                            <div>
+                                <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
+                                    Role
+                                </dt>
+                                <dd>{project.role}</dd>
+                            </div>
+                        )
+                    }
+                    <div>
+                        <dt
+                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
+                        >
+                            Service
+                        </dt>
+                        <dd>{project.service}</dd>
+                    </div>
+                    <div>
+                        <dt
+                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
+                        >
+                            Technologies
+                        </dt>
+                        <dd class="flex flex-wrap gap-2">
+                            {
+                                project.technologies.map((tech) => (
+                                    <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                                        {tech}
+                                    </span>
+                                ))
+                            }
+                        </dd>
+                    </div>
+                </dl>
+                {
+                    project.liveUrl && (
+                        <a
+                            class="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium tracking-wide text-primary-foreground transition hover:brightness-110 md:w-auto"
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit Live Site
+                        </a>
+                    )
+                }
+            </div>
+            {
+                images?.hero && (
+                    <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+                        <Image
+                            src={images.hero}
+                            alt={`${project.title} hero preview`}
+                            class="w-full object-cover"
+                            loading="eager"
+                        />
+                    </figure>
+                )
+            }
+        </header>
+
+        <section class="space-y-6">
+            <div class="space-y-3">
+                <h2
+                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                >
+                    The Challenge
+                </h2>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.problem) ? (
+                            project.problem.map((p) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {p}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.problem}
+                            </p>
+                        )
+                    }
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h2
+                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                >
+                    The Approach
+                </h2>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.solution) ? (
+                            project.solution.map((s) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {s}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.solution}
+                            </p>
+                        )
+                    }
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h2
+                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                >
+                    The Outcome
+                </h2>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.result) ? (
+                            project.result.map((r) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {r}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.result}
+                            </p>
+                        )
+                    }
+                </div>
+            </div>
+        </section>
+
+        {
+            images?.feature && (
+                <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+                    <Image
+                        src={images.feature}
+                        alt={`${project.title} feature preview`}
+                        loading="lazy"
+                        class="w-full object-cover"
+                    />
+                </figure>
+            )
+        }
+    </article>
+</BaseLayout>
