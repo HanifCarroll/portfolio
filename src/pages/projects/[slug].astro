@@ -5,14 +5,14 @@ import type { Project } from "@src/lib/types/project";
 import { getAllProjects } from "@src/lib/projects";
 
 // Import all project images statically
-import redwriterHero from "@src/assets/img/projects/redwriter-hero.png";
-import redwriterFeature from "@src/assets/img/projects/redwriter-feature.png";
-import maximoHero from "@src/assets/img/projects/maximo-hero.png";
-import maximoFeature from "@src/assets/img/projects/maximo-feature.png";
-import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
-import desarmaderoFeature from "@src/assets/img/projects/desarmadero-feature.png";
-import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
-import casaElariaFeature from "@src/assets/img/projects/casa-elaria-feature.png";
+import hablabaHero from "@src/assets/img/projects/hablaba-hero.png";
+import hablabaFeature from "@src/assets/img/projects/hablaba-feature.png";
+import muchoHangoutsHero from "@src/assets/img/projects/mucho-hangouts-hero.png";
+import muchoHangoutsFeature from "@src/assets/img/projects/mucho-hangouts-feature.png";
+import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
+import genruptFeature from "@src/assets/img/projects/genrupt-feature.png";
+import voxPrismaticHero from "@src/assets/img/projects/vox-prismatic-hero.png";
+import voxPrismaticFeature from "@src/assets/img/projects/vox-prismatic-feature.png";
 
 interface PageProps {
     project: Project;
@@ -32,13 +32,10 @@ const imageMap: Record<
     string,
     { hero: ImageMetadata; feature: ImageMetadata }
 > = {
-    "redwriter-comics": { hero: redwriterHero, feature: redwriterFeature },
-    "maximo-interiorismo": { hero: maximoHero, feature: maximoFeature },
-    "desarmadero-latorre": {
-        hero: desarmaderoHero,
-        feature: desarmaderoFeature,
-    },
-    "casa-elaria": { hero: casaElariaHero, feature: casaElariaFeature },
+    "language-exchange": { hero: hablabaHero, feature: hablabaFeature },
+    "mucho-hangouts": { hero: muchoHangoutsHero, feature: muchoHangoutsFeature },
+    "genrupt": { hero: genruptHero, feature: genruptFeature },
+    "vox-prismatic": { hero: voxPrismaticHero, feature: voxPrismaticFeature },
 };
 
 const images = imageMap[project.slug];

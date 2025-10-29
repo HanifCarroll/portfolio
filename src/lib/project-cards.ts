@@ -15,9 +15,9 @@ const toCard = (project: Project): ProjectCard => ({
   slug: project.slug,
   name: project.title,
   description: project.description,
-  demoLink: project.liveUrl,
+  demoLink: project.liveUrl ?? '',
   tags: project.technologies ?? [],
-  year: project.year,
+  year: project.year ?? '',
   client: project.client,
 });
 

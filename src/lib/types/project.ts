@@ -9,12 +9,12 @@ export interface Project {
   description: string;
   client: string;
   service: string;
-  year: string;
+  year?: string;
   technologies: string[];
-  liveUrl: string;
-  problem: string;
-  solution: string;
-  result: string;
+  liveUrl?: string;
+  problem: string | string[];
+  solution: string | string[];
+  result: string | string[];
   images: ProjectImages;
   // Optional fields for richer case studies (when available)
   role?: string;
