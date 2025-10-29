@@ -1,14 +1,14 @@
 import type { Project } from './types/project';
-import redwriterData from './projects/redwriter-comics.json';
-import maximoData from './projects/maximo-interiorismo.json';
-import desarmaderoData from './projects/desarmadero-latorre.json';
-import casaElariaData from './projects/casa-elaria.json';
+import languageExchangeData from './projects/language-exchange.json';
+import muchoHangoutsData from './projects/mucho-hangouts.json';
+import voxPrismaticData from './projects/vox-prismatic.json';
+import genruptData from './projects/genrupt.json';
 
 export const projects: Record<string, Project> = {
-  'redwriter-comics': redwriterData as Project,
-  'maximo-interiorismo': maximoData as Project,
-  'desarmadero-latorre': desarmaderoData as Project,
-  'casa-elaria': casaElariaData as Project,
+  'language-exchange': languageExchangeData as Project,
+  'mucho-hangouts': muchoHangoutsData as Project,
+  'genrupt': genruptData as Project,
+  'vox-prismatic': voxPrismaticData as Project,
 };
 
 export function getProject(slug: string): Project | undefined {

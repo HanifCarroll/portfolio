@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects } from "../../lib/project-cards";
+import PortfolioShowcase from "../../components/PortfolioShowcase.astro";
+---
+
+<BaseLayout
+    title="Projects · Hanif Carroll"
+    description="Explore my portfolio of full-stack product engineering projects including web applications, mobile apps, and AI-powered platforms."
+>
+    <article class="container max-w-5xl space-y-16 py-10">
+        <!-- Breadcrumb -->
+        <nav
+            class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+        >
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-zinc-900 dark:text-zinc-100">Projects</span>
+        </nav>
+
+        <header class="space-y-4">
+            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+                Projects
+            </h1>
+            <p
+                class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl"
+            >
+                A collection of full-stack product engineering projects showcasing web and mobile development, real-time systems, AI integration, and technical leadership.
+            </p>
+        </header>
+
+        <section>
+            <PortfolioShowcase projects={projects} />
+        </section>
+    </article>
+</BaseLayout>

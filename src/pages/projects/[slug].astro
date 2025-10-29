@@ -69,7 +69,7 @@ const images = imageMap[project.slug];
                     {project.title}
                 </h1>
                 <p
-                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl"
+                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl"
                 >
                     {project.description}
                 </p>
@@ -106,34 +106,6 @@ const images = imageMap[project.slug];
                         </dt>
                         <dd>{project.service}</dd>
                     </div>
-                    {
-                        project.teamSize && (
-                            <div>
-                                <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
-                                    Team Size
-                                </dt>
-                                <dd>{project.teamSize}</dd>
-                            </div>
-                        )
-                    }
-                    <div>
-                        <dt
-                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
-                        >
-                            Year
-                        </dt>
-                        <dd>{project.year}</dd>
-                    </div>
-                    {
-                        project.timeline && (
-                            <div>
-                                <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
-                                    Timeline
-                                </dt>
-                                <dd>{project.timeline}</dd>
-                            </div>
-                        )
-                    }
                     <div>
                         <dt
                             class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
@@ -185,11 +157,21 @@ const images = imageMap[project.slug];
                 >
                     The Challenge
                 </h2>
-                <p
-                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed"
-                >
-                    {project.problem}
-                </p>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.problem) ? (
+                            project.problem.map((p) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {p}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.problem}
+                            </p>
+                        )
+                    }
+                </div>
             </div>
 
             <div class="space-y-3">
@@ -198,11 +180,21 @@ const images = imageMap[project.slug];
                 >
                     The Approach
                 </h2>
-                <p
-                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed"
-                >
-                    {project.solution}
-                </p>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.solution) ? (
+                            project.solution.map((s) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {s}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.solution}
+                            </p>
+                        )
+                    }
+                </div>
             </div>
 
             <div class="space-y-3">
@@ -211,42 +203,22 @@ const images = imageMap[project.slug];
                 >
                     The Outcome
                 </h2>
-                <p
-                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed"
-                >
-                    {project.result}
-                </p>
+                <div class="max-w-4xl space-y-4">
+                    {
+                        Array.isArray(project.result) ? (
+                            project.result.map((r) => (
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {r}
+                                </p>
+                            ))
+                        ) : (
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {project.result}
+                            </p>
+                        )
+                    }
+                </div>
             </div>
-
-            {
-                project.outcomes && project.outcomes.length > 0 && (
-                    <div class="space-y-3">
-                        <h2 class="text-sm font-semibold uppercase tracking-wide text-primary/80">
-                            Impact
-                        </h2>
-                        <ul class="list-disc pl-6 text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                            {project.outcomes.map((o) => (
-                                <li>{o}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )
-            }
-
-            {
-                project.constraints && project.constraints.length > 0 && (
-                    <div class="space-y-3">
-                        <h2 class="text-sm font-semibold uppercase tracking-wide text-primary/80">
-                            Constraints
-                        </h2>
-                        <ul class="list-disc pl-6 text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                            {project.constraints.map((c) => (
-                                <li>{c}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )
-            }
         </section>
 
         {

@@ -1,6 +1,6 @@
 ---
-import BaseHead from './components/BaseHead.astro';
-import Header from './components/Header.astro';
+import BaseHead from "./components/BaseHead.astro";
+import Header from "./components/Header.astro";
 
 const { title, description, image } = Astro.props;
 
@@ -8,59 +8,82 @@ const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang='en' class="scroll-smooth">
-	<head>
-		<BaseHead title={title} description={description} image={image} />
-	</head>
-	<body class="bg-white dark:bg-zinc-900 dark:text-zinc-100">
-		<Header/>
-		<div class='py-12 min-h-[calc(100vh-200px)]'>
-			<slot />
-		</div>
-		<footer id="contact" class="border-t border-zinc-200 bg-gradient-to-b from-zinc-50 via-white to-white py-16 dark:border-zinc-800 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-950">
-			<div class="container space-y-12">
-				<section class="mx-auto max-w-3xl space-y-6 text-center">
-					<h2 class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
-						Let's work together
-					</h2>
-					<p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
-						I'm available for freelance projects and consulting. Let's discuss how I can help bring your ideas to life.
-					</p>
-					<div class="flex flex-wrap justify-center gap-4">
-						<a
-							class="inline-flex items-center justify-center rounded-full border border-transparent bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-							href="mailto:HanifCarroll@gmail.com"
-						>
-							Let's Talk
-						</a>
-						<a
-							class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
-							href="/Hanif_Carroll_Product_Engineer.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							View Resume
-						</a>
-					</div>
-				</section>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <BaseHead title={title} description={description} image={image} />
+    </head>
+    <body class="bg-white dark:bg-zinc-900 dark:text-zinc-100">
+        <Header />
+        <div class="py-12 min-h-[calc(100vh-200px)]">
+            <slot />
+        </div>
+        <footer
+            id="contact"
+            class="border-t border-zinc-200 bg-gradient-to-b from-zinc-50 via-white to-white py-16 dark:border-zinc-800 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-950"
+        >
+            <div class="container space-y-12">
+                <section class="mx-auto max-w-4xl space-y-6 text-center">
+                    <h2
+                        class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl"
+                    >
+                        Let's work together
+                    </h2>
+                    <p
+                        class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed"
+                    >
+                        I'm available for freelance projects and consulting.
+                        Let's discuss how I can help bring your ideas to life.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a
+                            class="inline-flex items-center justify-center rounded-full border border-transparent bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                            href="mailto:HanifCarroll@gmail.com"
+                        >
+                            Let's Talk
+                        </a>
+                        <a
+                            class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
+                            href="/Hanif_Carroll_Product_Engineer.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Resume
+                        </a>
+                    </div>
+                </section>
 
-				<section class="flex flex-col items-center justify-between gap-6 text-sm text-zinc-500 dark:text-zinc-400 md:flex-row">
-					<div class="text-center md:text-left">
-						© {currentYear} Hanif Carroll
-					</div>
-					<div class="flex items-center gap-5">
-						<a class="transition hover:text-primary" href="https://linkedin.com/in/hanifcarroll" target="_blank" rel="noopener noreferrer">
-							LinkedIn
-						</a>
-						<a class="transition hover:text-primary" href="https://x.com/hanifcarroll" target="_blank" rel="noopener noreferrer">
-							X
-						</a>
-						<a class="transition hover:text-primary" href="mailto:HanifCarroll@gmail.com">
-							Email
-						</a>
-					</div>
-				</section>
-			</div>
-		</footer>
-	</body>
+                <section
+                    class="flex flex-col items-center justify-between gap-6 text-sm text-zinc-500 dark:text-zinc-400 md:flex-row"
+                >
+                    <div class="text-center md:text-left">
+                        © {currentYear} Hanif Carroll
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <a
+                            class="transition hover:text-primary"
+                            href="https://linkedin.com/in/hanifcarroll"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+                        <a
+                            class="transition hover:text-primary"
+                            href="https://x.com/hanifcarroll"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            X
+                        </a>
+                        <a
+                            class="transition hover:text-primary"
+                            href="mailto:HanifCarroll@gmail.com"
+                        >
+                            Email
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </footer>
+    </body>
 </html>
