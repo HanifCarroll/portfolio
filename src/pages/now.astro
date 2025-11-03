@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const lastUpdated = "November 3rd, 2025";
+---
+
+<BaseLayout
+    title="Now · Hanif Carroll"
+    description="What I'm focused on right now"
+>
+    <article class="container max-w-5xl space-y-16 py-10">
+        <!-- Breadcrumb -->
+        <nav
+            class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+        >
+            <a href="/" class="hover:text-primary transition-colors">Home</a>
+            <span>/</span>
+            <span class="text-zinc-900 dark:text-zinc-100">Now</span>
+        </nav>
+
+        <header class="space-y-4">
+            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+                What I'm Up to Now
+            </h1>
+            <p
+                class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl"
+            >
+                This is a "now page" inspired by <a
+                    href="https://nownownow.com/about"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary hover:underline">Derek Sivers</a
+                >. It's what I'd tell a friend if they asked what I'm focused on
+                right now.
+            </p>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                Last updated: {lastUpdated}
+            </p>
+        </header>
+
+        <section class="space-y-8">
+            <div class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+                <div class="space-y-2 max-w-4xl">
+                    <h2
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Professional
+                    </h2>
+                    <p>
+                        I'm actively seeking a full-stack product engineer role at
+                        an early-stage startup (pre-seed to Series B, 10–50 people).
+                        I'm looking to join a mission-driven team building products that
+                        empower people and brings them together.
+                    </p>
+                </div>
+
+                <div class="space-y-2 max-w-4xl">
+                    <h2
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Learning
+                    </h2>
+                    <p>
+                        I've been interested in copywriting for a while, and I've finally decided to learn more about it. Just finished reading The Boron Letters by Gary Halbert, and I'm currently reading The Adweek Copywriting Handbook by Joseph Sugarman.
+                    </p>
+                    <p>
+                        At the same time, I'm also learning about sales funnels as I listen to Dotcom Secrets by Russell Brunson. My plan is to listen to all of the books in the trilogy. 
+                    </p>
+                </div>
+
+                <div class="space-y-2 max-w-4xl">
+                    <h2
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Fitness
+                    </h2>
+                    <p>
+                        Finally recovering from some leg injuries and getting back into shape. I'm also getting back into playing ultimate frisbee competitively after having joined a team a few months ago.
+                    </p>
+                </div>
+                
+                <div class="space-y-2 max-w-4xl">
+                    <h2
+                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
+                    >
+                        Finding My Voice
+                    </h2>
+                    <p>
+                        I'm spending more time on X (Twitter) as I find my voice and learn to express myself more confidently. I'm amazed by how much you can learn from the diverse voices on the platform—from VCs to builders to scientists.
+                    </p>
+                </div>
+        </section>
+
+    </article>
+</BaseLayout>
