@@ -2,6 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { projects } from "../../lib/project-cards";
 import PortfolioShowcase from "../../components/PortfolioShowcase.astro";
+
+const productProjects = projects.filter((project) => project.category === "product");
+const marketingProjects = projects.filter((project) => project.category === "marketing-site");
 ---
 
 <BaseLayout
@@ -29,8 +32,24 @@ import PortfolioShowcase from "../../components/PortfolioShowcase.astro";
             </p>
         </header>
 
-        <section>
-            <PortfolioShowcase projects={projects} />
+        <section class="space-y-14">
+            <div class="space-y-6">
+                <h2 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                    Product Builds
+                </h2>
+                <PortfolioShowcase projects={productProjects} />
+            </div>
+
+            {
+                marketingProjects.length > 0 && (
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+                            Marketing &amp; Portfolio Sites
+                        </h2>
+                        <PortfolioShowcase projects={marketingProjects} />
+                    </div>
+                )
+            }
         </section>
     </article>
 </BaseLayout>

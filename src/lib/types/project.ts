@@ -9,6 +9,7 @@ export interface Project {
   description: string;
   client: string;
   service: string;
+  category?: 'product' | 'marketing-site';
   year?: string;
   technologies: string[];
   liveUrl?: string;

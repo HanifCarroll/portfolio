@@ -9,6 +9,7 @@ export interface ProjectCard {
   tags: string[];
   year: string;
   client: string;
+  category: 'product' | 'marketing-site';
 }
 
 const toCard = (project: Project): ProjectCard => ({
@@ -19,6 +20,7 @@ const toCard = (project: Project): ProjectCard => ({
   tags: project.technologies ?? [],
   year: project.year ?? '',
   client: project.client,
+  category: project.category ?? 'product',
 });
 
 const parseYear = (value: string) => {
@@ -26,6 +28,13 @@ const parseYear = (value: string) => {
   return Number.isNaN(numeric) ? 0 : numeric;
 };
 
+const categoryRank = (category: ProjectCard['category']) =>
+  category === 'marketing-site' ? 1 : 0;
+
 export const projects: ProjectCard[] = getAllProjects()
   .map(toCard)
-  .sort((a, b) => parseYear(b.year) - parseYear(a.year));
+  .sort((a, b) => {
+    const categoryDifference = categoryRank(a.category) - categoryRank(b.category);
+    if (categoryDifference !== 0) return categoryDifference;
+    return parseYear(b.year) - parseYear(a.year);
+  });
