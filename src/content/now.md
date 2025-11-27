@@ -3,7 +3,7 @@ title: "What I'm Up to Now"
 description: >
   This is a "now page" inspired by Derek Sivers. It's what I'd tell a friend if
   they asked what I'm focused on right now.
-lastUpdated: "November 3rd, 2025"
+lastUpdated: "November 26th, 2025"
 ---
 
 This is a "now page" inspired by [Derek Sivers](https://nownownow.com/about).
