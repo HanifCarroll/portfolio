@@ -1,33 +1,41 @@
 {
   "slug": "genrupt",
   "title": "Genrupt: AI Video Generation for E-commerce",
-  "description": "An AI-powered video generation platform that transforms Amazon product listings into professional video advertisements. Providing technical consultation and implementation support, helped architect database-driven cost management system, refactored core features, and implemented new functionality for multi-provider AI orchestration.",
-  "client": "Genrupt (Technical Consultant)",
-  "service": "Technical Consultation & Development",
-  "role": "Technical Consultant",
+  "description": "An AI-powered video generation platform that transforms Amazon product listings into professional video advertisements. As a contract engineer, built core platform infrastructure including the subscription billing system, distributed job queue for AI workloads, and led major state management refactors across the frontend.",
+  "client": "Genrupt",
+  "service": "Full-Stack Development",
+  "role": "Contract Full-Stack Engineer",
   "category": "product",
   "technologies": [
-    "Next.js",
+    "Next.js 14",
     "TypeScript",
     "React",
     "PostgreSQL",
     "Prisma",
-    "Multiple AI Providers",
+    "Zustand",
+    "React Query",
+    "pg-boss",
+    "Stripe",
+    "OpenAI",
+    "Runway",
+    "Kling AI",
     "Tailwind CSS"
   ],
   "liveUrl": "",
   "problem": [
-    "The founder had built a functional MVP but faced technical debt and scalability challenges. The codebase needed architectural improvements for the cost management system, refactoring for maintainability, and new features to support multiple AI providers efficiently.",
-    "As the product scaled, these technical foundations became critical bottlenecks."
+    "The platform needed to evolve from MVP to scalable SaaS. Key gaps included: no subscription or billing system, unreliable async job handling for long-running AI operations, and frontend state management that had become difficult to maintain as features grew.",
+    "The system also needed to orchestrate 10+ AI providers (OpenAI, Runway, Kling, Google VEO) while accurately tracking costs."
   ],
   "solution": [
-    "Provided technical consultation and hands-on implementation across key areas of the platform. Helped architect the database-driven cost configuration system enabling instant pricing updates without deployment.",
-    "Implemented the pending cost pattern with two-phase commit ensuring users never charged for failed AI operations. Refactored core features for improved maintainability and extensibility.",
-    "Built new functionality supporting multi-provider AI orchestration with intelligent fallback logic, and contributed to the poll-based async architecture handling long video generation times."
+    "Built the complete subscription system end-to-end: designed the Prisma schema for tiered pricing and credit pools, implemented Stripe webhook handlers for subscription lifecycle events, created the pricing page with checkout flow, and built admin interfaces for subscription management.",
+    "Implemented pg-boss job queue infrastructure for distributed image and video generation, replacing unreliable polling with persistent, retryable jobs. Added idempotent retry logic ensuring users aren't double-charged when jobs fail and retry.",
+    "Led a multi-phase frontend refactor: migrated from prop drilling to Zustand stores for storyboard state, introduced React Query for server state with proper cache invalidation, and extracted 8+ custom hooks from monolithic controllers.",
+    "Built per-user distributed locking in the billing service to prevent race conditions during concurrent credit deductions, and implemented upfront cost validation for batch operations."
   ],
   "result": [
-    "Strengthened platform's technical foundations through strategic architectural improvements and targeted refactoring. The database-driven cost system now enables rapid pricing experimentation without code changes. Pay-for-success billing pattern eliminates customer support issues around failed operations.",
-    "Refactored codebase improved team velocity for future feature development. Multi-provider orchestration increased reliability through automatic failover. Demonstrated ability to quickly understand complex codebases, identify high-impact improvements, and deliver production-ready solutions."
+    "Shipped a production subscription system now handling paying customers across Free, Basic, Premium, and Lifetime tiers. Two-pool credit system (purchased + monthly allotment) provides flexible billing model.",
+    "Job queue processes parallel AI workloads reliably, with automatic retries and real-time status updates via SSE. Idempotent billing prevents duplicate charges during failure recovery.",
+    "Refactored frontend reduced component complexity and enabled faster feature development across database schema, API routes, React components, and background workers."
   ],
   "images": {
     "hero": "@src/assets/img/projects/genrupt-hero.png",

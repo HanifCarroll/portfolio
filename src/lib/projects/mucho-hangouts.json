@@ -1,7 +1,7 @@
 {
   "slug": "mucho-hangouts",
   "title": "Mucho Hangouts: Social Events Platform",
-  "description": "A location-based social networking platform connecting people through in-person events and recurring group activities. Serving as Fractional CTO, led technical direction, mentored junior developers, eliminated technical debt, and drove migration from SPA to Next.js MPA architecture.",
+  "description": "A location-based social networking platform connecting people through in-person events, real-time messaging, and recurring group activities (\"squads\"). As Fractional CTO, owned technical architecture, shipped core infrastructure improvements, and mentored junior developers on a team of 5.",
   "client": "Mucho Hangouts (Fractional CTO)",
   "service": "Technical Leadership & Full-stack Development",
   "role": "Fractional CTO",
@@ -9,24 +9,33 @@
   "technologies": [
     "Node.js",
     "TypeScript",
+    "Express",
     "React",
-    "Next.js",
+    "Vite",
+    "Socket.io",
     "MongoDB",
-    "Tailwind CSS"
+    "React Query",
+    "Zod",
+    "GitLab CI/CD",
+    "PM2"
   ],
   "liveUrl": "https://muchohangouts.com",
   "problem": [
-    "Modern social networks excel at digital connection but fail at facilitating meaningful in-person relationships. Location-based features are shallow, event discovery is poor, and there's no way to build recurring social groups around shared interests.",
-    "People want real-world connections but lack tools to find compatible people nearby."
+    "The platform had grown rapidly with a team of junior developers, accumulating significant technical debt: JavaScript backend with no type safety, React frontend riddled with @ts-nocheck suppressions, fragmented state management, and unreliable real-time features.",
+    "New feature development was slowing as developers struggled to understand existing code and avoid regressions. The codebase needed modernization without halting product development."
   ],
   "solution": [
-    "Led technical transformation by establishing TypeScript standards across the codebase, eliminating pervasive ts-ignore usage on the frontend, and systematically converting backend JavaScript to TypeScript.",
-    "Mentored 2 junior developers through code reviews and pair programming, unblocking technical challenges and accelerating feature delivery.",
-    "Drove architectural decisions including migration from SPA to Next.js MPA for improved performance and SEO. Established CI/CD pipeline with GitLab for automated deployments and managed production VPS infrastructure with PM2 clustering."
+    "Migrated to monorepo architecture with pnpm workspaces and shared TypeScript contracts. Created a contracts package with Zod schemas defining API request/response types, enabling type-safe boundaries between Express backend and React frontend with runtime validation.",
+    "Rebuilt the real-time infrastructure by refactoring Socket.io from an imperative singleton to a React-state-driven context provider. This fixed reliability issues where notifications and messages would silently fail after authentication state changes.",
+    "Extracted typed service layer for the Events API, converting 10+ controller endpoints from raw JavaScript to TypeScript with proper DTOs, error handling, and separation of concerns. Established patterns the team could follow for remaining endpoints.",
+    "Modernized frontend state management by implementing React Query with a query key factory pattern, centralizing authentication state, and replacing scattered window.location usage with React Router navigation.",
+    "Eliminated 50+ TypeScript suppressions across React components through systematic refactoring of EventDetails, Messaging, Profile, and Onboarding modules.",
+    "Mentored 2 junior developers through code reviews and pair programming, teaching TypeScript patterns, debugging strategies, and architectural thinking."
   ],
   "result": [
-    "Transformed codebase quality and team velocity through systematic technical debt elimination and mentorship. Enabled junior developers to ship features confidently with proper TypeScript patterns and comprehensive code review process.",
-    "Established scalable deployment pipeline and production infrastructure supporting live platform at muchohangouts.com. Platform demonstrates effective technical leadership in early-stage environment, balancing rapid feature delivery with long-term maintainability and team growth."
+    "Shipped a production-ready platform at muchohangouts.com with reliable real-time messaging, type-safe API contracts, and a codebase junior developers can confidently extend.",
+    "Established CI/CD pipeline with GitLab and PM2 clustering for zero-downtime deployments. Reduced time-to-merge for junior developer PRs by establishing clear patterns and comprehensive code review.",
+    "Team now ships TypeScript by default with Zod validation on all new endpoints."
   ],
   "images": {
     "hero": "@src/assets/img/projects/mucho-hangouts-hero.png",
