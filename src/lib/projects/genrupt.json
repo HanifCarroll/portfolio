@@ -21,6 +21,7 @@
     "The system also needed to orchestrate 10+ AI providers (OpenAI, Runway, Kling, Google VEO) while accurately tracking costs."
   ],
   "solution": [
+    "Built end-to-end ML inference pipeline: Dockerized diffusion model, deployed to serverless GPU, integrated with Next.js application.",
     "Built the complete subscription system end-to-end: designed the Prisma schema for tiered pricing and credit pools, implemented Stripe webhook handlers for subscription lifecycle events, created the pricing page with checkout flow, and built admin interfaces for subscription management.",
     "Implemented pg-boss job queue infrastructure for distributed image and video generation, replacing unreliable polling with persistent, retryable jobs. Added idempotent retry logic ensuring users aren't double-charged when jobs fail and retry.",
     "Led a multi-phase frontend refactor: migrated from prop drilling to Zustand stores for storyboard state, introduced React Query for server state with proper cache invalidation, and extracted 8+ custom hooks from monolithic controllers.",
