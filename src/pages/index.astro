@@ -5,6 +5,7 @@ import { projects } from "../lib/project-cards";
 import PortfolioShowcase from "../components/PortfolioShowcase.astro";
 import { Image } from "astro:assets";
 import HeroImage from "@src/assets/img/portrait-brick.webp";
+import testimonials from "../../testimonials.json";
 
 const featuredProjects = projects.slice(0, 3);
 ---
@@ -92,6 +93,40 @@ const featuredProjects = projects.slice(0, 3);
                             d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <h2
+                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+            >
+                What People Say
+            </h2>
+            <div class="grid gap-6 md:grid-cols-3">
+                {testimonials.map((testimonial) => (
+                    <div class="relative rounded-2xl bg-zinc-100 p-6 dark:bg-zinc-800">
+                        <svg
+                            class="absolute top-4 left-4 h-8 w-8 text-primary/20"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                        <div class="pt-8 space-y-4">
+                            <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                {testimonial.text}
+                            </p>
+                            <div>
+                                <p class="font-semibold text-zinc-900 dark:text-zinc-100">
+                                    {testimonial.name}
+                                </p>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                                    {testimonial.role}{testimonial.company ? `, ${testimonial.company}` : ""}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
 
