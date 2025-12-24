@@ -78,15 +78,15 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 <div class="absolute -top-4 -right-4 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
                 <div class="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-accent-warm/60 blur-2xl dark:bg-primary/5"></div>
 
-                <div class="relative">
+                <div class="group relative">
                     <Image
                         src={HeroImage}
                         alt="Hanif Carroll"
                         loading="eager"
-                        class="relative z-10 max-w-xs -scale-x-100 rounded-3xl shadow-2xl ring-1 ring-zinc-200/50 dark:ring-zinc-700/50 md:max-w-sm"
+                        class="relative z-10 max-w-xs -scale-x-100 rounded-3xl shadow-2xl ring-1 ring-zinc-200/50 transition-transform duration-300 group-hover:-translate-y-1 dark:ring-zinc-700/50 md:max-w-sm"
                     />
                     <!-- Frame accent -->
-                    <div class="absolute -bottom-3 -right-3 h-full w-full rounded-3xl border-2 border-primary/30"></div>
+                    <div class="absolute -bottom-3 -right-3 h-full w-full rounded-3xl border-2 border-primary/30 transition-all duration-300 group-hover:-bottom-4 group-hover:-right-4 group-hover:border-primary/50"></div>
                 </div>
             </div>
         </section>
@@ -104,7 +104,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 </div>
                 <a
                     href="/projects"
-                    class="group hidden items-center gap-2 text-sm font-semibold text-zinc-600 transition hover:text-primary dark:text-zinc-400 dark:hover:text-primary sm:inline-flex"
+                    class="group inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-primary-dark sm:text-zinc-600 sm:hover:text-primary dark:text-primary dark:hover:text-primary-light sm:dark:text-zinc-400 sm:dark:hover:text-primary"
                 >
                     View All
                     <svg
@@ -122,26 +122,6 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 </a>
             </div>
             <PortfolioShowcase projects={featuredProjects} />
-            <div class="pt-2 sm:hidden">
-                <a
-                    href="/projects"
-                    class="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-                >
-                    View All Projects
-                    <svg
-                        class="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
         </section>
 
         <!-- Testimonials -->
