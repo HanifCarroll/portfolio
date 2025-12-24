@@ -3,18 +3,16 @@ title: "What I'm Up to Now"
 description: >
   This is a "now page" inspired by Derek Sivers. It's what I'd tell a friend if
   they asked what I'm focused on right now.
-lastUpdated: "November 26th, 2025"
+lastUpdated: "December 24th, 2025"
 ---
-
-This is a "now page" inspired by [Derek Sivers](https://nownownow.com/about).
-It's what I'd tell a friend if they asked what I'm focused on right now.
 
 ## Fitness
 
-I discovered what was causing the majority of my knee pain (weak tibialis anterior), and I'm feeling better than I have in a long time. I'm able to sprint 100% while playing ultimate, and I'm also getting back into doing squats, deadlifts, and cleans.
+Now that I'm mostly injury-free, I'm focused on getting my strength back to where it was ages ago. My goal for 2026 is to hit PRs for all of my strength lifts (squat, bench, deadlift, press, pull ups, etc). I recently deadlifted [220kg for 5](https://www.youtube.com/watch?v=Q0yXk9r5UTg), which is more than I thought I'd be able to. I'm confident that in 2026 I'll be able to beat my PR of 282kg for 1.
+## Genrupt
 
-I underestimated how much these injuries were bringing down my mood and motivation.
+Genrupt, the AI video generation platform that I'm developing, is coming along. We've recently added subscriptions and organizations, and we're starting to onboard more users.
 
-## Leaving Buenos Aires
+## Social Mood
 
-After a lot of careful consideration, I've decided it's time to leave Buenos Aires, and I'll be leaving in March of next year to go back to the US. I'll always be grateful for how much this city has changed me for the better.
+Throughout the year, I go through cycles where I go from feeling less social to more. I've recently started a more social part of the cycle, which has perfectly coincided with the summer here in Buenos Aires. 
