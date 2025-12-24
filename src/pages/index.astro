@@ -113,30 +113,21 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
             >
                 What People Say
             </h2>
-            <div class="grid gap-6 md:grid-cols-3">
-                {testimonials.map((testimonial) => {
+            <div class="space-y-6">
+                {testimonials.map((testimonial, index) => {
                     const photo = testimonialPhotos[testimonial.name];
+                    const isEven = index % 2 === 0;
                     return (
-                        <div class="relative rounded-2xl bg-zinc-100 p-6 dark:bg-zinc-800">
-                            <svg
-                                class="absolute top-4 left-4 h-8 w-8 text-primary/20"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                            </svg>
-                            <div class="pt-8 space-y-4">
-                                <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                                    {testimonial.text}
-                                </p>
-                                <div class="flex items-center gap-3">
+                        <div class="rounded-2xl bg-zinc-100 p-6 md:p-8 dark:bg-zinc-800">
+                            <div class={`flex flex-col gap-6 md:flex-row md:items-center ${isEven ? "" : "md:flex-row-reverse"}`}>
+                                <div class={`flex items-center gap-4 md:flex-col md:w-40 shrink-0 ${isEven ? "md:items-start" : "md:items-end md:text-right"}`}>
                                     {photo && (
                                         <Image
                                             src={photo}
                                             alt={testimonial.name}
-                                            class="h-10 w-10 rounded-full object-cover"
-                                            width={40}
-                                            height={40}
+                                            class="h-16 w-16 rounded-full object-cover"
+                                            width={64}
+                                            height={64}
                                         />
                                     )}
                                     <div>
@@ -147,6 +138,18 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                             {testimonial.role}{testimonial.company ? `, ${testimonial.company}` : ""}
                                         </p>
                                     </div>
+                                </div>
+                                <div class="flex-1">
+                                    <svg
+                                        class="h-8 w-8 text-primary/20 mb-3"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                                    </svg>
+                                    <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                        {testimonial.text}
+                                    </p>
                                 </div>
                             </div>
                         </div>
