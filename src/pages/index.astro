@@ -25,41 +25,46 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
     title="Hanif Carroll - Full-stack Product Engineer"
     description={SITE_DESCRIPTION}
 >
-    <div class="container space-y-20 py-12">
+    <div class="container space-y-32 py-12">
+        <!-- Hero Section -->
         <section
-            class="grid gap-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center"
+            class="relative grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center"
         >
-            <div class="space-y-6">
-                <div class="space-y-0">
-                    <p
-                        class="text-xs font-semibold uppercase tracking-[0.15em] text-primary/80"
-                    >
-                        Full-stack Product Engineer
-                    </p>
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2">
+                        <span class="h-px w-8 bg-primary"></span>
+                        <span
+                            class="text-sm font-semibold uppercase tracking-widest text-primary"
+                        >
+                            Full-stack Product Engineer
+                        </span>
+                    </div>
                     <h1
-                        class="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl lg:text-[3.5rem]"
+                        class="font-serif text-5xl tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-6xl lg:text-7xl"
                     >
-                        Hey, I'm Hanif!
+                        Hey, I'm <span class="italic text-primary">Hanif</span>
                     </h1>
                 </div>
-                <div class="space-y-5">
-                    <p
-                        class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
-                    >
-                        I'm a full-stack engineer who thinks about the whole
-                        picture—how features get built, how users experience
-                        them, and how they drive growth.
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-3">
+                <p
+                    class="max-w-lg text-xl leading-relaxed text-zinc-600 dark:text-zinc-400"
+                >
+                    I'm a full-stack engineer who thinks about the whole
+                    picture—how features get built, how users experience
+                    them, and how they drive growth.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
                     <a
-                        class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        class="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25"
                         href="mailto:HanifCarroll@gmail.com"
                     >
                         Let's Talk
+                        <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
                     </a>
                     <a
-                        class="inline-flex items-center justify-center rounded-full border border-zinc-200 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:border-zinc-300 hover:bg-zinc-100/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-600 dark:hover:bg-zinc-800/50 dark:focus-visible:outline-zinc-500"
+                        class="inline-flex items-center justify-center rounded-full border-2 border-zinc-300 px-7 py-3.5 text-sm font-semibold text-zinc-700 transition-all hover:border-primary hover:text-primary dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-primary dark:hover:text-primary"
                         href="/Hanif_Carroll_Fullstack_Product_Engineer.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -68,27 +73,59 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                     </a>
                 </div>
             </div>
-            <div class="flex justify-center md:justify-end">
-                <Image
-                    src={HeroImage}
-                    alt="Hanif Carroll"
-                    loading="eager"
-                    class="max-w-sm -scale-x-100 rounded-[2.5rem] shadow-xl"
-                />
+            <div class="relative flex justify-center md:justify-end">
+                <!-- Decorative elements -->
+                <div class="absolute -top-4 -right-4 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+                <div class="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-accent-warm/60 blur-2xl dark:bg-primary/5"></div>
+
+                <div class="relative">
+                    <Image
+                        src={HeroImage}
+                        alt="Hanif Carroll"
+                        loading="eager"
+                        class="relative z-10 max-w-xs -scale-x-100 rounded-3xl shadow-2xl ring-1 ring-zinc-200/50 dark:ring-zinc-700/50 md:max-w-sm"
+                    />
+                    <!-- Frame accent -->
+                    <div class="absolute -bottom-3 -right-3 h-full w-full rounded-3xl border-2 border-primary/30"></div>
+                </div>
             </div>
         </section>
 
-        <section class="scroll-mt-16 space-y-5" id="projects">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                Featured Projects
-            </h2>
-            <PortfolioShowcase projects={featuredProjects} />
-            <div class="pt-4">
+        <!-- Featured Projects -->
+        <section class="scroll-mt-16 space-y-10" id="projects">
+            <div class="flex items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <span class="text-sm font-semibold uppercase tracking-widest text-primary">
+                        Selected Work
+                    </span>
+                    <h2 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
+                        Featured Projects
+                    </h2>
+                </div>
                 <a
                     href="/projects"
-                    class="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-primary dark:text-zinc-400 dark:hover:text-primary"
+                    class="group hidden items-center gap-2 text-sm font-semibold text-zinc-600 transition hover:text-primary dark:text-zinc-400 dark:hover:text-primary sm:inline-flex"
+                >
+                    View All
+                    <svg
+                        class="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+            <PortfolioShowcase projects={featuredProjects} />
+            <div class="pt-2 sm:hidden">
+                <a
+                    href="/projects"
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-primary"
                 >
                     View All Projects
                     <svg
@@ -107,27 +144,31 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
             </div>
         </section>
 
-        <section class="space-y-8">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                What People Say
-            </h2>
-            <div class="space-y-6">
+        <!-- Testimonials -->
+        <section class="space-y-10">
+            <div class="space-y-2">
+                <span class="text-sm font-semibold uppercase tracking-widest text-primary">
+                    Kind Words
+                </span>
+                <h2 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
+                    What People Say
+                </h2>
+            </div>
+            <div class="space-y-8">
                 {testimonials.map((testimonial, index) => {
                     const photo = testimonialPhotos[testimonial.name];
                     const isEven = index % 2 === 0;
                     return (
-                        <div class="rounded-2xl bg-zinc-100 p-6 md:p-8 dark:bg-zinc-800">
-                            <div class={`flex flex-col gap-6 md:flex-row md:items-center ${isEven ? "" : "md:flex-row-reverse"}`}>
-                                <div class={`flex items-center gap-4 md:flex-col md:w-40 shrink-0 ${isEven ? "md:items-start" : "md:items-end md:text-right"}`}>
+                        <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-zinc-100 transition-all hover:shadow-md dark:bg-zinc-800/50 dark:ring-zinc-700/50 md:p-10">
+                            <div class={`flex flex-col gap-8 md:flex-row md:items-center ${isEven ? "" : "md:flex-row-reverse"}`}>
+                                <div class={`flex items-center gap-5 md:flex-col md:w-44 shrink-0 ${isEven ? "md:items-start" : "md:items-end md:text-right"}`}>
                                     {photo && (
                                         <Image
                                             src={photo}
                                             alt={testimonial.name}
-                                            class="h-16 w-16 rounded-full object-cover"
-                                            width={64}
-                                            height={64}
+                                            class="h-20 w-20 rounded-2xl object-cover shadow-md ring-2 ring-white dark:ring-zinc-700"
+                                            width={80}
+                                            height={80}
                                         />
                                     )}
                                     <div>
@@ -139,15 +180,9 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                         </p>
                                     </div>
                                 </div>
-                                <div class="flex-1">
-                                    <svg
-                                        class="h-8 w-8 text-primary/20 mb-3"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                                    </svg>
-                                    <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                <div class="flex-1 relative">
+                                    <span class="font-serif text-7xl leading-none text-primary/10 absolute -top-4 -left-2">"</span>
+                                    <p class="relative z-10 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 pl-6">
                                         {testimonial.text}
                                     </p>
                                 </div>
@@ -158,85 +193,105 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
             </div>
         </section>
 
-        <section class="scroll-mt-16 space-y-5" id="about">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                About
-            </h2>
-            <div
-                class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
-            >
-                <div class="space-y-2 max-w-4xl">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        My Journey
-                    </h3>
-                    <p>
-                        I started programming in 2017 when I decided physical
-                        therapy school wasn't for me.
-                    </p>
-                    <p>
-                        Since then, I've worked at Capgemini, LeagueApps (joined
-                        at 75 people, left at 150), and now serve as fractional
-                        CTO for a social events platform.
-                    </p>
-                    <p>
-                        I've built scheduling tools adopted by 3,000+ sports
-                        organizers and led teams to ship products that make
-                        complex tasks simple.
-                    </p>
+        <!-- Decorative divider -->
+        <div class="decorative-line"></div>
+
+        <!-- About -->
+        <section class="scroll-mt-16 space-y-10" id="about">
+            <div class="space-y-2">
+                <span class="text-sm font-semibold uppercase tracking-widest text-primary">
+                    Background
+                </span>
+                <h2 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
+                    About Me
+                </h2>
+            </div>
+
+            <div class="grid gap-8 md:grid-cols-3">
+                <!-- My Journey -->
+                <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-zinc-100 transition-all hover:shadow-md dark:bg-zinc-800/50 dark:ring-zinc-700/50">
+                    <div class="absolute top-0 right-0 h-32 w-32 -translate-y-8 translate-x-8 rounded-full bg-primary/5"></div>
+                    <div class="relative space-y-4">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                            My Journey
+                        </h3>
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400">
+                            <p>
+                                Started programming in 2017 after deciding physical
+                                therapy school wasn't for me.
+                            </p>
+                            <p>
+                                Worked at Capgemini, LeagueApps (joined at 75 people,
+                                left at 150), and now serve as fractional CTO.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="space-y-2 max-w-4xl">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        Product-Minded Engineering
-                    </h3>
-                    <p>I don't like staying in the "engineering" box.</p>
-                    <p>
-                        I care about UX, product strategy, and deeply
-                        understanding user personas and their needs.
-                    </p>
-                    <p>
-                        I want to hear how users are enjoying the product and
-                        what they want changed.
-                    </p>
-                    <p>
-                        My goal is to give them what they want in the form of an
-                        exceptional product that empowers them to do things they
-                        couldn't before or makes important tasks easier.
-                    </p>
+                <!-- Product-Minded -->
+                <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-zinc-100 transition-all hover:shadow-md dark:bg-zinc-800/50 dark:ring-zinc-700/50">
+                    <div class="absolute top-0 right-0 h-32 w-32 -translate-y-8 translate-x-8 rounded-full bg-primary/5"></div>
+                    <div class="relative space-y-4">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                            Product-Minded
+                        </h3>
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400">
+                            <p>
+                                I don't stay in the "engineering" box. I care about
+                                UX, product strategy, and understanding user needs.
+                            </p>
+                            <p>
+                                Built scheduling tools adopted by 3,000+ sports
+                                organizers.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="space-y-2 max-w-4xl">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        What's Next
-                    </h3>
-                    <p>
-                        I'm looking for a role at an early-stage startup
-                        (pre-seed to Series B, 10–50 people) where I can do
-                        full-stack development with product/marketing input.
-                    </p>
-                    <p>
-                        I want to join an ambitious, mission-driven team
-                        building products that empower people and bring them
-                        together—not just sell more ads.
-                    </p>
+                <!-- What's Next -->
+                <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-zinc-100 transition-all hover:shadow-md dark:bg-zinc-800/50 dark:ring-zinc-700/50">
+                    <div class="absolute top-0 right-0 h-32 w-32 -translate-y-8 translate-x-8 rounded-full bg-primary/5"></div>
+                    <div class="relative space-y-4">
+                        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                            What's Next
+                        </h3>
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400">
+                            <p>
+                                Looking for a role at an early-stage startup
+                                (pre-seed to Series B) with product input.
+                            </p>
+                            <p>
+                                I want to build products that empower people—not
+                                just sell more ads.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="pt-4">
+
+            <div class="pt-2">
                 <a
                     href="/now"
-                    class="inline-flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-primary dark:text-zinc-400 dark:hover:text-primary"
+                    class="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
                 >
                     What I'm up to now
                     <svg
-                        class="h-4 w-4"
+                        class="h-4 w-4 transition-transform group-hover:translate-x-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -245,358 +300,195 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M9 5l7 7-7 7"></path>
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
             </div>
         </section>
 
-        <section class="scroll-mt-16 space-y-8" id="experience">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                Experience
-            </h2>
-
-            <!-- Freelance -->
-            <div
-                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
-            >
-                <div
-                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
-                >
-                    Sep 2024–Current
-                </div>
-                <div
-                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
-                >
-                    <div>
-                        <p
-                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
-                        >
-                            Sep 2024–Current
-                        </p>
-                        <h3
-                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
-                        >
-                            Full-stack Software Engineer
-                        </h3>
-                        <p
-                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
-                        >
-                            Freelance
-                        </p>
-                    </div>
-                    <ul
-                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
-                    >
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Performed as <strong>fractional CTO</strong> for
-                                an emerging social events platform, leading a team
-                                of 2 juniors.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span>Performed as fractional CTO for a video
-                            generation platform in the e-commerce space.
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Delivered an imaginative and responsive
-                                portfolio website for a comic book artist,
-                                highlighting recent works through a
-                                custom-designed interface.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Designed and developed a responsive online
-                                catalogue for an auto salvage yard using
-                                Webflow, allowing customers to easily browse and
-                                search available salvaged vehicle inventory.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Developed targeted landing pages for Light
-                                Bearers' ministry events & promotions.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Delivered actionable UX insights through user
-                                behavior analysis via Google Analytics & Hotjar.</span
-                            >
-                        </li>
-                    </ul>
-                </div>
+        <!-- Experience -->
+        <section class="scroll-mt-16 space-y-10" id="experience">
+            <div class="space-y-2">
+                <span class="text-sm font-semibold uppercase tracking-widest text-primary">
+                    Career
+                </span>
+                <h2 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
+                    Experience
+                </h2>
             </div>
 
-            <!-- Nearsure -->
-            <div
-                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
-            >
-                <div
-                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
-                >
-                    Feb 2023–Feb 2024
-                </div>
-                <div
-                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
-                >
-                    <div>
-                        <p
-                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
-                        >
-                            Feb 2023–Feb 2024
-                        </p>
-                        <h3
-                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
-                        >
-                            Senior Front End Engineer
-                        </h3>
-                        <p
-                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
-                        >
-                            Nearsure
-                        </p>
-                    </div>
-                    <ul
-                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
-                    >
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Improved efficiency and user satisfaction for <strong
-                                    >3,000+ sports organizers</strong
-                                > by engineering an interactive, user-friendly scheduling
-                                tool.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Enhanced mobile experience by developing an
-                                optimized list view that enabled rapid event
-                                editing on mobile devices.</span
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-[7px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent md:left-[139px]"></div>
 
-            <!-- LeagueApps -->
-            <div
-                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
-            >
-                <div
-                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
-                >
-                    Nov 2021–Feb 2023
-                </div>
-                <div
-                    class="relative space-y-3 pb-8 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary after:absolute after:left-[0.3125rem] after:top-6 after:bottom-0 after:w-[2px] after:bg-zinc-200 dark:after:bg-zinc-800 md:pl-0 md:before:left-[-1.5rem] md:after:left-[-1.1875rem]"
-                >
-                    <div>
-                        <p
-                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
-                        >
-                            Nov 2021–Feb 2023
-                        </p>
-                        <h3
-                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
-                        >
-                            Front End Engineer
-                        </h3>
-                        <p
-                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
-                        >
-                            LeagueApps
-                        </p>
+                <div class="space-y-12">
+                    <!-- Freelance -->
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-[120px_1fr] md:gap-8">
+                        <div class="hidden text-sm font-semibold text-zinc-500 dark:text-zinc-400 md:block md:text-right">
+                            2024–Now
+                        </div>
+                        <div class="relative pl-8 md:pl-8">
+                            <div class="absolute left-0 top-1.5 h-4 w-4 rounded-full border-4 border-primary bg-white dark:bg-zinc-900 md:left-[-8px]"></div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs font-semibold text-zinc-400 md:hidden">2024–Now</p>
+                                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                                        Full-stack Software Engineer
+                                    </h3>
+                                    <p class="text-primary font-medium">Freelance</p>
+                                </div>
+                                <ul class="space-y-2 text-zinc-600 dark:text-zinc-400">
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Performed as <strong class="text-zinc-900 dark:text-zinc-100">fractional CTO</strong> for an emerging social events platform, leading a team of 2 juniors.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Fractional CTO for a video generation platform in the e-commerce space.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Delivered responsive portfolio websites and landing pages for various clients.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <ul
-                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
-                    >
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Reduced scheduling time by <strong>45%</strong>
-                                and enhanced UX by implementing an intuitive drag-and-drop
-                                scheduling grid.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Built comprehensive reporting modules with AG
-                                Grid, focusing on clear data presentation for
-                                event planning and analysis.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Eliminated team double-booking issues by
-                                engineering an automated conflict detection
-                                system with clear user notifications.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Established a standardized front-end component
-                                library using Styled Components and Storybook,
-                                ensuring consistent user experience across the
-                                application.</span
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <!-- Capgemini -->
-            <div
-                class="grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-6"
-            >
-                <div
-                    class="hidden text-sm font-medium text-zinc-600 dark:text-zinc-400 md:block"
-                >
-                    Jan 2019–Oct 2021
-                </div>
-                <div
-                    class="relative space-y-3 pl-6 before:absolute before:left-0 before:top-2 before:h-2 before:w-2 before:rounded-full before:bg-primary dark:before:bg-primary md:pl-0 md:before:left-[-1.5rem]"
-                >
-                    <div>
-                        <p
-                            class="mb-1 text-[0.6875rem] font-medium text-zinc-500 dark:text-zinc-500 md:hidden"
-                        >
-                            Jan 2019–Oct 2021
-                        </p>
-                        <h3
-                            class="text-base font-semibold text-zinc-900 dark:text-zinc-100 md:text-lg"
-                        >
-                            Software Developer
-                        </h3>
-                        <p
-                            class="text-sm text-zinc-600 dark:text-zinc-400 md:text-base"
-                        >
-                            Capgemini
-                        </p>
+                    <!-- Nearsure -->
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-[120px_1fr] md:gap-8">
+                        <div class="hidden text-sm font-semibold text-zinc-500 dark:text-zinc-400 md:block md:text-right">
+                            2023–2024
+                        </div>
+                        <div class="relative pl-8 md:pl-8">
+                            <div class="absolute left-0 top-1.5 h-4 w-4 rounded-full border-4 border-primary/60 bg-white dark:bg-zinc-900 md:left-[-8px]"></div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs font-semibold text-zinc-400 md:hidden">2023–2024</p>
+                                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                                        Senior Front End Engineer
+                                    </h3>
+                                    <p class="text-primary font-medium">Nearsure</p>
+                                </div>
+                                <ul class="space-y-2 text-zinc-600 dark:text-zinc-400">
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Improved efficiency for <strong class="text-zinc-900 dark:text-zinc-100">3,000+ sports organizers</strong> by engineering an interactive scheduling tool.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Enhanced mobile experience with optimized list view for rapid event editing.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <ul
-                        class="space-y-2.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:space-y-2 md:text-base md:text-zinc-600 md:dark:text-zinc-300"
-                    >
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Developed a comprehensive application that
-                                covered all aspects of managing a cruise ship
-                                and its crew, including berthing, reporting, and
-                                scheduling.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Led agile development of a schedule reporting
-                                module, collaborating closely with UI/UX
-                                designers and business analysts to ensure user
-                                needs were met.</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Boosted development productivity by reducing
-                                test suite execution time by <strong>60%</strong
-                                > (~20 min/cycle).</span
-                            >
-                        </li>
-                        <li class="flex gap-3 items-start">
-                            <span
-                                class="mt-[0.5em] inline-flex h-1 w-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0"
-                            ></span><span
-                                >Designed and implemented executive KPI
-                                dashboards, focusing on clear data visualization
-                                for leadership decision-making.</span
-                            >
-                        </li>
-                    </ul>
+
+                    <!-- LeagueApps -->
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-[120px_1fr] md:gap-8">
+                        <div class="hidden text-sm font-semibold text-zinc-500 dark:text-zinc-400 md:block md:text-right">
+                            2021–2023
+                        </div>
+                        <div class="relative pl-8 md:pl-8">
+                            <div class="absolute left-0 top-1.5 h-4 w-4 rounded-full border-4 border-primary/40 bg-white dark:bg-zinc-900 md:left-[-8px]"></div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs font-semibold text-zinc-400 md:hidden">2021–2023</p>
+                                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                                        Front End Engineer
+                                    </h3>
+                                    <p class="text-primary font-medium">LeagueApps</p>
+                                </div>
+                                <ul class="space-y-2 text-zinc-600 dark:text-zinc-400">
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Reduced scheduling time by <strong class="text-zinc-900 dark:text-zinc-100">45%</strong> with intuitive drag-and-drop scheduling grid.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Eliminated team double-booking with automated conflict detection system.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Established standardized front-end component library using Styled Components and Storybook.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capgemini -->
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-[120px_1fr] md:gap-8">
+                        <div class="hidden text-sm font-semibold text-zinc-500 dark:text-zinc-400 md:block md:text-right">
+                            2019–2021
+                        </div>
+                        <div class="relative pl-8 md:pl-8">
+                            <div class="absolute left-0 top-1.5 h-4 w-4 rounded-full border-4 border-primary/20 bg-white dark:bg-zinc-900 md:left-[-8px]"></div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs font-semibold text-zinc-400 md:hidden">2019–2021</p>
+                                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                                        Software Developer
+                                    </h3>
+                                    <p class="text-primary font-medium">Capgemini</p>
+                                </div>
+                                <ul class="space-y-2 text-zinc-600 dark:text-zinc-400">
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Developed comprehensive cruise ship management application covering berthing, reporting, and scheduling.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60"></span>
+                                        <span>Boosted productivity by reducing test suite execution time by <strong class="text-zinc-900 dark:text-zinc-100">60%</strong>.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="space-y-5">
-            <h2
-                class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
-            >
-                Beyond Code
-            </h2>
-            <div
-                class="space-y-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300"
-            >
-                <div class="space-y-2">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        Fitness
-                    </h3>
-                    <p>
-                        I've been lifting weights for almost 20 years—my best
-                        lifts are a 500 lb squat, 405 lb bench, and 620 lb
-                        deadlift. I'm also a huge fan of ultimate frisbee and
-                        have played competitively for years.
-                    </p>
+        <!-- Beyond Code -->
+        <section class="space-y-10">
+            <div class="space-y-2">
+                <span class="text-sm font-semibold uppercase tracking-widest text-primary">
+                    Life
+                </span>
+                <h2 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
+                    Beyond Code
+                </h2>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-3">
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 p-6 ring-1 ring-orange-100 dark:from-orange-950/30 dark:to-amber-950/30 dark:ring-orange-900/30">
+                    <div class="space-y-3">
+                        <span class="text-3xl">🏋️</span>
+                        <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Fitness</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            20 years of lifting—500 lb squat, 405 lb bench, 620 lb deadlift. Competitive ultimate frisbee player.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="space-y-2">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        Community Building
-                    </h3>
-                    <p>
-                        For nearly 3 years, I ran a social community in Buenos
-                        Aires, connecting people and building relationships. I'm
-                        passionate about bringing people together and creating
-                        spaces for genuine connection.
-                    </p>
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 p-6 ring-1 ring-blue-100 dark:from-blue-950/30 dark:to-cyan-950/30 dark:ring-blue-900/30">
+                    <div class="space-y-3">
+                        <span class="text-3xl">🌎</span>
+                        <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Community</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Ran a social community in Buenos Aires for 3 years, connecting people and building relationships.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="space-y-2">
-                    <h3
-                        class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                    >
-                        Continuous Learning
-                    </h3>
-                    <p>
-                        I'm an avid reader and podcast listener, always learning
-                        from others. Recently I started writing every day to
-                        improve my communication skills—clear thinking and clear
-                        communication are extremely important to me.
-                    </p>
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 p-6 ring-1 ring-violet-100 dark:from-violet-950/30 dark:to-purple-950/30 dark:ring-violet-900/30">
+                    <div class="space-y-3">
+                        <span class="text-3xl">📚</span>
+                        <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">Learning</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Avid reader and podcast listener. Daily writing practice for clearer thinking and communication.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
