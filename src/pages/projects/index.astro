@@ -13,54 +13,45 @@ const marketingProjects = projects.filter((project) => project.category === "mar
 >
     <article class="container space-y-16 py-10">
         <!-- Breadcrumb -->
-        <nav
-            class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
-        >
+        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="hover:text-primary transition-colors">Home</a>
             <span class="text-zinc-400">/</span>
-            <span class="text-zinc-900 dark:text-zinc-100">Projects</span>
+            <span class="text-primary">Projects</span>
         </nav>
 
         <header class="space-y-4">
-            <div class="inline-flex items-center gap-2">
-                <span class="h-px w-8 bg-primary"></span>
-                <span class="text-sm font-semibold uppercase tracking-widest text-primary">
-                    Portfolio
-                </span>
-            </div>
-            <h1 class="font-serif text-4xl tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl italic">
+            <span class="section-label">// Portfolio</span>
+            <h1 class="heading-display text-5xl md:text-6xl">
                 Projects
             </h1>
-            <p
-                class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl"
-            >
+            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
                 A collection of full-stack product engineering projects showcasing web and mobile development, real-time systems, AI integration, and technical leadership.
             </p>
         </header>
 
-        <section class="space-y-16">
-            <div class="space-y-8">
-                <div class="space-y-2">
-                    <span class="text-sm font-semibold uppercase tracking-widest text-primary">
-                        Applications
-                    </span>
-                    <h2 class="font-serif text-3xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
-                        Product Builds
-                    </h2>
+        <section class="space-y-20">
+            <div class="space-y-12">
+                <div class="section-header">
+                    <div class="space-y-2">
+                        <span class="section-label">// 01</span>
+                        <h2 class="heading-display text-3xl md:text-4xl">
+                            Product Builds
+                        </h2>
+                    </div>
                 </div>
                 <PortfolioShowcase projects={productProjects} />
             </div>
 
             {
                 marketingProjects.length > 0 && (
-                    <div class="space-y-8">
-                        <div class="space-y-2">
-                            <span class="text-sm font-semibold uppercase tracking-widest text-primary">
-                                Websites
-                            </span>
-                            <h2 class="font-serif text-3xl tracking-tight text-zinc-900 dark:text-zinc-100 italic">
-                                Marketing &amp; Portfolio Sites
-                            </h2>
+                    <div class="space-y-12">
+                        <div class="section-header">
+                            <div class="space-y-2">
+                                <span class="section-label">// 02</span>
+                                <h2 class="heading-display text-3xl md:text-4xl">
+                                    Marketing & Portfolio Sites
+                                </h2>
+                            </div>
                         </div>
                         <PortfolioShowcase projects={marketingProjects} />
                     </div>

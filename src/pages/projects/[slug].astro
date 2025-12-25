@@ -59,95 +59,85 @@ const images = imageMap[project.slug];
 >
     <article class="container max-w-5xl space-y-16 py-10">
         <!-- Breadcrumb -->
-        <nav
-            class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
-        >
+        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="hover:text-primary transition-colors">Home</a>
-            <span>/</span>
-            <a href="/#projects" class="hover:text-primary transition-colors"
-                >Projects</a
-            >
-            <span>/</span>
-            <span class="text-zinc-900 dark:text-zinc-100">{project.title}</span
-            >
+            <span class="text-zinc-400">/</span>
+            <a href="/#projects" class="hover:text-primary transition-colors">Projects</a>
+            <span class="text-zinc-400">/</span>
+            <span class="text-primary">{project.title}</span>
         </nav>
 
         <header class="space-y-8">
             <div class="space-y-4">
-                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+                <span class="section-label">// Case Study</span>
+                <h1 class="heading-display text-4xl md:text-5xl">
                     {project.title}
                 </h1>
-                <p
-                    class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl"
-                >
+                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-4xl">
                     {project.description}
                 </p>
             </div>
-            <div
-                class="flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/70 md:flex-row md:items-center md:justify-between"
-            >
-                <dl
-                    class="grid grid-cols-2 gap-4 text-sm text-zinc-500 dark:text-zinc-400"
-                >
-                    <div>
-                        <dt
-                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
-                        >
-                            Client
-                        </dt>
-                        <dd>{project.client}</dd>
-                    </div>
+
+            <!-- Project Meta -->
+            <div class="tech-card p-6">
+                <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                    <dl class="grid grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                Client
+                            </dt>
+                            <dd class="font-medium">{project.client}</dd>
+                        </div>
+                        {
+                            project.role && (
+                                <div>
+                                    <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                        Role
+                                    </dt>
+                                    <dd class="font-medium">{project.role}</dd>
+                                </div>
+                            )
+                        }
+                        <div>
+                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                Service
+                            </dt>
+                            <dd class="font-medium">{project.service}</dd>
+                        </div>
+                        <div>
+                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                Technologies
+                            </dt>
+                            <dd class="flex flex-wrap gap-2 mt-1">
+                                {
+                                    project.technologies.map((tech) => (
+                                        <span class="tech-tag">
+                                            {tech}
+                                        </span>
+                                    ))
+                                }
+                            </dd>
+                        </div>
+                    </dl>
                     {
-                        project.role && (
-                            <div>
-                                <dt class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200">
-                                    Role
-                                </dt>
-                                <dd>{project.role}</dd>
-                            </div>
+                        project.liveUrl && (
+                            <a
+                                class="btn-primary shrink-0"
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Visit Live Site
+                                <span>&rarr;</span>
+                            </a>
                         )
                     }
-                    <div>
-                        <dt
-                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
-                        >
-                            Service
-                        </dt>
-                        <dd>{project.service}</dd>
-                    </div>
-                    <div>
-                        <dt
-                            class="font-medium uppercase tracking-wide text-zinc-700 dark:text-zinc-200"
-                        >
-                            Technologies
-                        </dt>
-                        <dd class="flex flex-wrap gap-2">
-                            {
-                                project.technologies.map((tech) => (
-                                    <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                                        {tech}
-                                    </span>
-                                ))
-                            }
-                        </dd>
-                    </div>
-                </dl>
-                {
-                    project.liveUrl && (
-                        <a
-                            class="inline-flex w-full shrink-0 items-center justify-center self-start rounded-full bg-primary px-6 py-3 text-sm font-medium tracking-wide text-primary-foreground transition hover:brightness-110 md:w-auto"
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Visit Live Site
-                        </a>
-                    )
-                }
+                </div>
             </div>
+
             {
                 images?.hero && (
-                    <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+                    <figure class="overflow-hidden border-2 border-black dark:border-white">
                         <Image
                             src={images.hero}
                             alt={`${project.title} hero preview`}
@@ -159,23 +149,19 @@ const images = imageMap[project.slug];
             }
         </header>
 
-        <section class="space-y-6">
-            <div class="space-y-3">
-                <h2
-                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                >
-                    The Challenge
-                </h2>
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <h2 class="section-label">// The Challenge</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.problem) ? (
                             project.problem.map((p) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                     {p}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                 {project.problem}
                             </p>
                         )
@@ -183,22 +169,20 @@ const images = imageMap[project.slug];
                 </div>
             </div>
 
-            <div class="space-y-3">
-                <h2
-                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                >
-                    The Approach
-                </h2>
+            <div class="grid-line-horizontal"></div>
+
+            <div class="space-y-4">
+                <h2 class="section-label">// The Approach</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.solution) ? (
                             project.solution.map((s) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                     {s}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                 {project.solution}
                             </p>
                         )
@@ -206,22 +190,20 @@ const images = imageMap[project.slug];
                 </div>
             </div>
 
-            <div class="space-y-3">
-                <h2
-                    class="text-sm font-semibold uppercase tracking-wide text-primary/80"
-                >
-                    The Outcome
-                </h2>
+            <div class="grid-line-horizontal"></div>
+
+            <div class="space-y-4">
+                <h2 class="section-label">// The Outcome</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.result) ? (
                             project.result.map((r) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                     {r}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                 {project.result}
                             </p>
                         )
@@ -232,7 +214,7 @@ const images = imageMap[project.slug];
 
         {
             images?.feature && (
-                <figure class="overflow-hidden rounded-3xl border border-zinc-200 shadow-xl dark:border-zinc-800">
+                <figure class="overflow-hidden border-2 border-black dark:border-white">
                     <Image
                         src={images.feature}
                         alt={`${project.title} feature preview`}
@@ -242,5 +224,12 @@ const images = imageMap[project.slug];
                 </figure>
             )
         }
+
+        <!-- Back to projects -->
+        <div class="pt-8">
+            <a href="/projects" class="arrow-link">
+                Back to All Projects
+            </a>
+        </div>
     </article>
 </BaseLayout>

@@ -31,49 +31,57 @@ const imageMap: Record<string, ImageMetadata> = {
 };
 ---
 
-<div class="space-y-20">
+<div class="space-y-12">
   {projects.map((project) => {
     const heroImage = imageMap[project.slug];
     return (
       <a
         href={`/projects/${project.slug}/`}
-        class="group block overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        class="group block border-2 border-black dark:border-white transition-all duration-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
       >
-        <div class="relative aspect-[16/9] overflow-hidden">
+        <div class="aspect-[16/9] overflow-hidden border-b-2 border-black dark:border-white group-hover:border-white dark:group-hover:border-black">
           {heroImage && (
             <Image
               src={heroImage}
               alt={project.name}
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
               loading="lazy"
             />
           )}
         </div>
 
-        <div class="p-8">
-          <div class="space-y-3">
-            <h3 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-              {project.name}
-            </h3>
-            <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-              {project.description}
-            </p>
-            {project.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 pt-1">
-                {project.tags.slice(0, 5).map((tag) => (
-                  <span class="inline-block px-2.5 py-1 text-xs font-medium rounded-full bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-            <span class="inline-flex items-center gap-1 text-sm font-medium text-primary pt-1 transition-transform duration-300 group-hover:translate-x-1">
-              View Case Study
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
+        <div class="p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs uppercase tracking-wide opacity-60">
+              {project.year}
+            </span>
+            <span class="font-mono text-xs uppercase tracking-wide opacity-60">
+              {project.category === 'product' ? 'APPLICATION' : 'WEBSITE'}
             </span>
           </div>
+
+          <h3 class="text-xl font-bold uppercase tracking-tight">
+            {project.name}
+          </h3>
+
+          <p class="text-sm leading-relaxed opacity-80">
+            {project.description}
+          </p>
+
+          {project.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {project.tags.slice(0, 4).map((tag) => (
+                <span class="tech-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <span class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide">
+            View Case Study
+            <span class="transition-transform duration-200 group-hover:translate-x-2">&rarr;</span>
+          </span>
         </div>
       </a>
     );
