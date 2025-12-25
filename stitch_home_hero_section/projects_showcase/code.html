@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevPortfolio - Projects Showcase</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0000ff",
+                        "neon": "#ccff00",
+                        "dark": "#050505",
+                        "light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["'Space Grotesk'", "sans-serif"],
+                        "mono": ["'Space Mono'", "monospace"],
+                    },
+                    boxShadow: {
+                        'brutal': '6px 6px 0px 0px #000000',
+                        'brutal-hover': '2px 2px 0px 0px #000000',
+                        'brutal-sm': '3px 3px 0px 0px #000000',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        html { scroll-behavior: smooth; }.bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+                              linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-light text-black font-display selection:bg-neon selection:text-black min-h-screen flex flex-col">
+<div class="fixed inset-0 z-0 pointer-events-none bg-grid opacity-50"></div>
+<div class="relative z-10 flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-50 bg-light border-b-4 border-black">
+<div class="px-6 md:px-12 py-5 flex items-center justify-between mx-auto max-w-[1800px]">
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="size-10 bg-black flex items-center justify-center text-white border-2 border-transparent group-hover:bg-neon group-hover:text-black group-hover:border-black transition-colors duration-0">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<h2 class="text-2xl font-bold tracking-tighter uppercase font-mono group-hover:translate-x-1 transition-transform duration-0">DEV<span class="text-primary">_PORTFOLIO</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-12">
+<a class="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-colors duration-0" href="#">Work</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-colors duration-0" href="#">About</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white px-2 py-1 transition-colors duration-0" href="#">Resume</a>
+</nav>
+<button class="hidden md:flex items-center gap-2 border-2 border-black bg-white px-6 py-2 text-sm font-bold uppercase tracking-wide shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0">
+<span>Start Project</span>
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</button>
+</div>
+</header>
+<main class="flex flex-col items-center w-full grow pt-32 pb-20 px-6 md:px-12">
+<div class="w-full max-w-[1800px] flex flex-col gap-16">
+<div class="flex flex-col lg:flex-row justify-between items-end gap-10 py-10 border-b-4 border-black">
+<div class="flex flex-col gap-6 max-w-4xl">
+<div class="flex items-center gap-4">
+<span class="bg-black text-white px-3 py-1 font-mono text-xs uppercase font-bold tracking-widest">v2.0.24</span>
+<span class="text-primary font-mono font-bold uppercase tracking-widest text-xs animate-pulse">System Online</span>
+</div>
+<h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] uppercase">
+                    Projects <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-black stroke-black" style="-webkit-text-stroke: 2px black;">Showcase</span>
+</h1>
+<p class="mt-4 text-xl font-mono text-gray-600 max-w-2xl border-l-4 border-neon pl-6">
+                    Fullstack Engineering // Typescript Specialist <br/>
+                    Building robust digital architectures.
+                </p>
+</div>
+<div class="flex flex-col gap-4 items-end w-full lg:w-auto">
+<span class="font-mono text-xs font-bold uppercase tracking-widest mb-2 block w-full text-right border-b-2 border-black pb-2">Filter_Protocol</span>
+<div class="flex flex-wrap justify-end gap-3 w-full">
+<button class="px-6 py-3 border-2 border-black bg-black text-white text-sm font-bold uppercase tracking-wider shadow-brutal hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all duration-0">All Systems</button>
+<button class="px-6 py-3 border-2 border-black bg-white text-black text-sm font-bold uppercase tracking-wider shadow-brutal hover:bg-neon hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all duration-0">Next.js</button>
+<button class="px-6 py-3 border-2 border-black bg-white text-black text-sm font-bold uppercase tracking-wider shadow-brutal hover:bg-neon hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all duration-0">React</button>
+<button class="px-6 py-3 border-2 border-black bg-white text-black text-sm font-bold uppercase tracking-wider shadow-brutal hover:bg-neon hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all duration-0">Node.js</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+<div class="group relative md:col-span-12 lg:col-span-8 lg:row-span-2 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[600px] flex flex-col">
+<div class="relative h-full overflow-hidden border-b-4 border-black">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdjkk4fLNNH2xWZnpc7wa7Zi0qtPwVOI1LPvumsE8DRr3F61-noEbSzrnAxN1ADr5EwgXtpR6c8ig9WIDOyT_Dip-p6bCKQ_fY5em5oFIjZ8_JMuuq0uXkA_zsuIZ-VfJT6N-2ggJOpPVB5BLPn33IYpp7UMzQ_UMQZDnuzwzGmttxYbDeJftRDDmIeufgZsljKsCSoDWBi7TclNcIGDv0DJe3gb26Uiv1ghNaJf6kBnnjkDWpJywQ8sYV9ywjMeNOCwVLrZyoWxNq');"></div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-0"></div>
+<div class="absolute top-0 left-0 bg-black text-white px-4 py-2 font-mono text-sm font-bold border-r-4 border-b-4 border-white">
+                        FEATURED_PROJECT_01
+                    </div>
+</div>
+<div class="p-8 bg-white flex flex-col md:flex-row justify-between items-start md:items-end gap-6 relative">
+<div class="absolute -top-3 left-8 w-12 h-6 bg-neon border-2 border-black hidden group-hover:block z-10"></div>
+<div class="flex flex-col gap-3">
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-gray-200 border border-black text-xs font-mono font-bold uppercase">Next.js</span>
+<span class="px-2 py-1 bg-gray-200 border border-black text-xs font-mono font-bold uppercase">Bun</span>
+<span class="px-2 py-1 bg-gray-200 border border-black text-xs font-mono font-bold uppercase">PostgreSQL</span>
+</div>
+<h3 class="text-4xl md:text-5xl font-black uppercase tracking-tighter group-hover:text-primary transition-colors duration-0">E-Com Dashboard</h3>
+<p class="text-gray-600 font-mono text-sm md:text-base max-w-xl">Real-time inventory management system handling 10k+ SKUs with sub-second latency.</p>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 border-2 border-black bg-black text-white font-bold uppercase hover:bg-neon hover:text-black transition-colors duration-0">
+                            Live Demo <span class="material-symbols-outlined text-sm">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative md:col-span-1 lg:col-span-4 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[400px] flex flex-col">
+<div class="relative grow overflow-hidden border-b-4 border-black bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDT1qVKoy27QGT8MQHz2gPY7B3mxNYkjpYtbM66yf5jVFsbwfTVBq66sxFLtL7HY1wIFyLe9DH_45rHhBXIGaXWln9aSjdmlxvKeqTqosJHw8v5lBilFu5hZmmsRngsVcGFBuza1gWtxW_J2GwSA6EwMeGg-NFWidPaoFcnxVC50CnFPsyH2JWQyGMBZF2gyP2fW4rlCyNLl0bTsbfPSLWnvVkuoMFsccR042acZQ9Bgdy-xvnISyFZhsXXs56XFR2VJ7Zqa4w9ZoU9');"></div>
+<div class="absolute top-4 right-4 bg-white border-2 border-black p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-0">
+<span class="material-symbols-outlined text-black block">north_east</span>
+</div>
+</div>
+<div class="p-6 bg-white group-hover:bg-black group-hover:text-white transition-colors duration-0">
+<h3 class="text-2xl font-bold uppercase tracking-tight mb-1">SaaS Analytics</h3>
+<p class="text-sm font-mono opacity-70 group-hover:text-neon">User tracking &amp; visualization</p>
+</div>
+</div>
+<div class="group relative md:col-span-1 lg:col-span-4 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[400px] flex flex-col">
+<div class="relative grow overflow-hidden border-b-4 border-black bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBuQ3HOLCLS2Eh2d8PLoO53GRPoNzR9fuZECARfRNcbnkaCEsRuRW9Rjd4MqrnILYnFZdNsQhZpg2YtsNHhrjI9YMpXGxLqzfGJQg5m7bUdAZlnQcdk0yRqsgh-Yi3pgU9q08vwnIQpLg-Q_bLWPMi4ukMt94XtuwqB9xKXKZ8j173jAzb5I-s0wRFAOzufGAl2w5gg6W6SBfG9cT0ogBk18rl1ypih0FVP96RmPt8U5A0ebtsDfu86HE8VP_yuDSamqO1LeylgLFyM');"></div>
+<div class="absolute top-4 right-4 bg-white border-2 border-black p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-0">
+<span class="material-symbols-outlined text-black block">north_east</span>
+</div>
+</div>
+<div class="p-6 bg-white group-hover:bg-black group-hover:text-white transition-colors duration-0">
+<h3 class="text-2xl font-bold uppercase tracking-tight mb-1">TaskFlow App</h3>
+<p class="text-sm font-mono opacity-70 group-hover:text-neon">Real-time socket.io collab</p>
+</div>
+</div>
+<div class="group relative md:col-span-2 lg:col-span-4 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[320px] flex flex-col">
+<div class="relative grow overflow-hidden border-b-4 border-black bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqn9wons44u7_16zOZrSPCbmHQrL4hhMumj6POQQoYQE4BY_U5R0grf5gCPkG3zwf9pu-ggkIuGh0hFozV8mxd7kAW9LbfQIzTAuxbvR-LHAQCUqpm9Cz77TblKCa_6oAwX_Xz_8VnWC82wnRYxiWCf8T0ewtrYxv7HIZkR_vIYi7s9yoT9oRy9YD3WDXo3P2KQsTL5YA50HmRQacVq3lOXTo0eZp4hA88ogBlknD22wt83jLd9AA7IU7lMVZ2n2tDNWxpFILBfx_b');"></div>
+<div class="absolute inset-0 bg-primary mix-blend-multiply opacity-0 group-hover:opacity-60 transition-opacity duration-0"></div>
+</div>
+<div class="p-5 bg-white flex justify-between items-center group-hover:bg-neon transition-colors duration-0">
+<div>
+<span class="text-[10px] font-mono font-bold border border-black px-1 uppercase mb-1 inline-block bg-white">OpenAI API</span>
+<h3 class="text-xl font-bold uppercase">AI Content Gen</h3>
+</div>
+<span class="material-symbols-outlined text-2xl group-hover:-rotate-45 transition-transform duration-0">arrow_forward</span>
+</div>
+</div>
+<div class="group relative md:col-span-1 lg:col-span-4 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[320px] flex flex-col">
+<div class="relative grow overflow-hidden border-b-4 border-black bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkie97kS1Wgn21XdbjFIJFW_a-NN4r0h_dnyZNwI3Jc4UKuH5zOrTLKqo6A22SeuCShybYcqG8GkZKVTczG5a-PYnI2lNcS-5vi2jbfNLrpi6r1EHkHkN-KeRW9KE49DDwup0TJhLfevTTAHaDFQV2j5hvA-np32XjrjTpGJ75NXt8vXZV7iJ2lrLpJrmSYqqLvh7e28FXq_rxH__XlZavq5SbfUKe1Cp6vpRvg4BCPdwT8MyEM9sKZUj4nXN8dAPCY0JODJOoIkuv');"></div>
+</div>
+<div class="p-5 bg-white flex justify-between items-center group-hover:bg-primary group-hover:text-white transition-colors duration-0">
+<div>
+<span class="text-[10px] font-mono font-bold border border-black group-hover:border-white px-1 uppercase mb-1 inline-block bg-white group-hover:bg-transparent group-hover:text-white text-black">System Design</span>
+<h3 class="text-xl font-bold uppercase">CodeShare API</h3>
+</div>
+<span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform duration-0">chevron_right</span>
+</div>
+</div>
+<div class="group relative md:col-span-1 lg:col-span-4 border-4 border-black bg-white shadow-brutal hover:shadow-brutal-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-0 h-[320px] flex flex-col">
+<div class="relative grow overflow-hidden border-b-4 border-black bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPIMjI_JZCMIk46puHm8PCFTUA4gRvO2n0liqvzhSBJcrfj_1ULBSg5kvyXGF1WJS4ddahvheiB3PBOM0FIVMzI02UXS0yksLQcmhyGBUpyWRcO2aKTdG7NLMbC7N_An33uDysotS-FiEfqNmFhqyTuvzuTdBKO2mAQ8_hpNWbLtHA3zvjBa6YRkKyXaO8ofnLh1vjQDDHnw-AhEXsucsEOwilJpdtjLK0_eeRpfb8lhYwCbRuP7188wTcgCRWwksspj3G3cmLbu_v');"></div>
+</div>
+<div class="p-5 bg-white flex justify-between items-center group-hover:bg-black group-hover:text-neon transition-colors duration-0">
+<div>
+<span class="text-[10px] font-mono font-bold border border-black group-hover:border-neon px-1 uppercase mb-1 inline-block bg-white group-hover:bg-transparent group-hover:text-neon text-black">WebGL</span>
+<h3 class="text-xl font-bold uppercase">Weather View</h3>
+</div>
+<span class="material-symbols-outlined text-2xl group-hover:scale-125 transition-transform duration-0">public</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-8 py-24 border-4 border-black bg-white relative overflow-hidden">
+<div class="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black to-transparent"></div>
+<h2 class="text-4xl md:text-6xl font-black text-center uppercase tracking-tighter z-10">
+                Initiate <br/> <span class="text-primary">Collaboration</span>
+</h2>
+<p class="text-center max-w-md font-mono text-gray-600 z-10">
+                Ready to deploy your next project? <br/> I am available for freelance work.
+            </p>
+<a class="z-10 relative flex items-center gap-3 px-10 py-4 bg-primary text-white border-4 border-black font-bold text-xl uppercase tracking-wider shadow-brutal hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all duration-0 group" href="mailto:hello@devportfolio.com">
+                Start Conversation
+                <span class="material-symbols-outlined group-hover:animate-ping">mail</span>
+</a>
+</div>
+</div>
+</main>
+<footer class="w-full border-t-4 border-black bg-white py-12">
+<div class="max-w-[1800px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex flex-col gap-1">
+<span class="text-black text-2xl font-bold font-mono uppercase tracking-tighter">Dev_Portfolio</span>
+<span class="text-gray-500 text-xs font-mono">© 2024. All systems operational.</span>
+</div>
+<div class="flex gap-0 border-2 border-black bg-white">
+<a class="px-6 py-3 border-r-2 border-black text-black font-bold uppercase tracking-wider hover:bg-neon transition-colors duration-0" href="#">Twitter</a>
+<a class="px-6 py-3 border-r-2 border-black text-black font-bold uppercase tracking-wider hover:bg-neon transition-colors duration-0" href="#">GitHub</a>
+<a class="px-6 py-3 text-black font-bold uppercase tracking-wider hover:bg-neon transition-colors duration-0" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

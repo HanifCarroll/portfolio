@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Me - Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "accent": "#2563EB", // Strong Tech Blue
+                        "accent-dark": "#1d4ed8",
+                        "surface": "#ffffff",
+                        "surface-alt": "#f8fafc",
+                        "ink": "#09090b", // Zinc 950
+                        "ink-light": "#52525b", // Zinc 600
+                        "border-main": "#09090b",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Grotesk", "monospace"] 
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .brutalist-card {
+                @apply bg-surface border-2 border-border-main transition-all duration-200;
+                box-shadow: 4px 4px 0px 0px #09090b;
+            }
+            .brutalist-card:hover {
+                box-shadow: 8px 8px 0px 0px #2563EB;
+                transform: translate(-2px, -2px);
+                @apply border-accent;
+            }
+            .brutalist-btn {
+                @apply bg-ink text-white font-display uppercase tracking-wider font-bold px-6 py-3 border-2 border-transparent transition-all duration-200;
+            }
+            .brutalist-btn:hover {
+                @apply bg-accent text-white border-ink;
+                box-shadow: 4px 4px 0px 0px #09090b;
+                transform: translate(-2px, -2px);
+            }
+            .grid-bg {
+                background-color: #f3f4f6;
+                background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(to right, #e5e7eb 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .clip-corner {
+                clip-path: polygon(
+                    0 0,
+                    100% 0,
+                    100% calc(100% - 20px),
+                    calc(100% - 20px) 100%,
+                    0 100%
+                );
+            }.crosshair {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+            }
+            .crosshair::before, .crosshair::after {
+                content: '';
+                position: absolute;
+                background: #09090b;
+            }
+            .crosshair::before { top: 9px; left: 0; width: 100%; height: 2px; }
+            .crosshair::after { left: 9px; top: 0; height: 100%; width: 2px; }
+        }::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb; 
+            border-left: 2px solid #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #09090b; 
+            border: 2px solid #e5e7eb;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB; 
+        }
+    </style>
+</head>
+<body class="bg-surface-alt text-ink font-sans antialiased selection:bg-accent selection:text-white overflow-x-hidden min-h-screen flex flex-col grid-bg">
+<header class="fixed top-0 z-50 w-full border-b-2 border-border-main bg-surface/90 backdrop-blur-sm">
+<div class="max-w-[1600px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="size-10 bg-accent border-2 border-ink flex items-center justify-center group-hover:bg-ink transition-colors">
+<span class="font-display font-bold text-xl text-white">PE</span>
+</div>
+<div>
+<h2 class="text-base font-black tracking-widest uppercase">Portfolio</h2>
+<p class="text-[10px] font-mono bg-ink text-white inline-block px-1">V.2024.1</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors relative group" href="#">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest text-accent relative" href="#">
+                    // About
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-accent"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors relative group" href="#">
+                    Projects
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors relative group" href="#">
+                    Contact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center gap-2 px-6 py-2 bg-white border-2 border-ink text-ink text-sm font-bold uppercase tracking-wide hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 shadow-[4px_4px_0px_0px_#000000] active:shadow-none active:translate-x-1 active:translate-y-1">
+<span>Let's Talk</span>
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</button>
+<button class="md:hidden border-2 border-ink p-2 hover:bg-ink hover:text-white transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-20 px-4 sm:px-6">
+<div class="max-w-[1600px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-min">
+<div class="md:col-span-6 lg:col-span-8 brutalist-card p-8 sm:p-12 flex flex-col justify-between min-h-[400px] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 font-mono text-xs text-ink/50 flex flex-col items-end gap-1">
+<span>SYS.STATUS: ONLINE</span>
+<span>LOC: [ABOUT_ME]</span>
+</div>
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-accent text-white border border-ink text-xs font-bold uppercase tracking-widest mb-8 shadow-[2px_2px_0px_0px_#000]">
+<span class="size-2 bg-white animate-pulse"></span>
+                            Open to Work
+                        </div>
+<h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-black leading-[0.85] tracking-tighter text-ink mb-6 uppercase">
+                            Building<br/>the web<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-dark">Pixel by Pixel</span>
+</h1>
+</div>
+<div class="border-t-2 border-ink pt-6 mt-4 max-w-xl">
+<p class="text-ink font-mono text-lg leading-relaxed">
+                            &gt; Fullstack Product Engineer specializing in the TypeScript ecosystem. Crafting high-performance digital experiences with Next.js, Node, and Bun.
+                        </p>
+</div>
+<div class="absolute bottom-4 right-4 size-4 border-b-2 border-r-2 border-ink"></div>
+</div>
+<div class="md:col-span-3 lg:col-span-4 row-span-2 relative group h-[500px] md:h-auto">
+<div class="w-full h-full border-2 border-ink bg-white p-2 relative shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-transform hover:-translate-y-1 duration-300">
+<div class="w-full h-full relative overflow-hidden clip-corner bg-gray-100">
+<div class="w-full h-full bg-center bg-cover bg-no-repeat grayscale group-hover:grayscale-0 transition-all duration-700 contrast-125" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiU8J5VQrvOxs7e4vYaxmo15v36uK7PpYS7rVfc6BFSPgM3IkZwefBn5xmW1q8WuocnBZswJXJKOCXbg1Yrd4B0w5zGcS3CXNv743XuvCQkNVOHCsCC1tEQMKDRHKtQstXueeZ7glIel3rdLvlaiKjO_-JGC3a0y40-OI1CMK7JMxMYby7C3VPQeadVZy_3etHU1vfSqHSxgqWYSATiaQRgb-_YhJxN5mwhAs1wODDTdm0a3cO7Fqzt5H9Fs0S0kgKzCd_aeD7XqtB");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 size-20 border-l-2 border-t-2 border-white/80"></div>
+<div class="absolute bottom-4 right-4 size-20 border-r-2 border-b-2 border-white/80"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 bg-white border-t-2 border-ink flex items-center justify-between">
+<div>
+<p class="font-display font-black text-xl uppercase tracking-tighter">San Francisco</p>
+<p class="font-mono text-xs text-ink-light">LAT: 37.7749° N</p>
+</div>
+<div class="size-10 bg-accent text-white flex items-center justify-center border border-ink">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 lg:col-span-4 brutalist-card p-8 flex flex-col">
+<h3 class="font-display font-bold text-2xl mb-6 flex items-center gap-3 uppercase border-b-2 border-ink pb-4">
+<span class="material-symbols-outlined text-accent text-3xl">code_blocks</span>
+                        Core Stack
+                    </h3>
+<div class="flex flex-wrap gap-2">
+<div class="flex-1 min-w-[120px] border-2 border-ink bg-surface-alt px-3 py-2 hover:bg-accent hover:text-white transition-colors cursor-default group">
+<span class="font-mono text-xs block opacity-50 mb-1">LANG</span>
+<span class="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+                                TypeScript
+                            </span>
+</div>
+<div class="flex-1 min-w-[120px] border-2 border-ink bg-surface-alt px-3 py-2 hover:bg-accent hover:text-white transition-colors cursor-default group">
+<span class="font-mono text-xs block opacity-50 mb-1">FRAMEWORK</span>
+<span class="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+                                Next.js
+                            </span>
+</div>
+<div class="flex-1 min-w-[120px] border-2 border-ink bg-surface-alt px-3 py-2 hover:bg-accent hover:text-white transition-colors cursor-default group">
+<span class="font-mono text-xs block opacity-50 mb-1">RUNTIME</span>
+<span class="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+                                Node.js
+                            </span>
+</div>
+<div class="flex-1 min-w-[120px] border-2 border-ink bg-surface-alt px-3 py-2 hover:bg-accent hover:text-white transition-colors cursor-default group">
+<span class="font-mono text-xs block opacity-50 mb-1">LIB</span>
+<span class="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+                                React
+                            </span>
+</div>
+<div class="flex-1 min-w-[120px] border-2 border-ink bg-surface-alt px-3 py-2 hover:bg-accent hover:text-white transition-colors cursor-default group">
+<span class="font-mono text-xs block opacity-50 mb-1">TOOLING</span>
+<span class="font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+                                Bun
+                            </span>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 lg:col-span-5 brutalist-card p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-ink text-white px-2 py-1 font-mono text-xs">001_BIO</div>
+<h3 class="text-xs font-bold uppercase tracking-widest mb-6 font-mono text-accent">// The Narrative</h3>
+<div class="prose prose-neutral max-w-none font-sans">
+<p class="mb-4 text-lg font-medium leading-relaxed">
+                            I bridge the gap between complex backend logic and intuitive frontend design. With over <span class="bg-accent/20 px-1 border border-accent">5 years</span> of shipping production-grade software, I don't just write code—I architect scalable solutions.
+                        </p>
+<p class="text-ink-light leading-relaxed">
+                            My approach is rooted in the TypeScript ecosystem. Whether it's architecting microservices with Node.js or crafting interactive UIs with Next.js, I bring engineering precision to every layer.
+                        </p>
+</div>
+</div>
+<div class="md:col-span-3 lg:col-span-3 bg-ink p-8 flex flex-col justify-between group relative overflow-hidden shadow-[4px_4px_0px_0px_#2563EB]">
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 10px 10px;"></div>
+<div class="relative z-10">
+<h3 class="text-white font-display font-bold text-3xl mb-2 uppercase">Resume</h3>
+<p class="text-sm text-gray-400 font-mono">Download CV_V2.pdf</p>
+</div>
+<div class="relative z-10 flex items-center gap-3 mt-8">
+<button class="flex-1 h-14 bg-white text-ink font-bold font-display uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-accent hover:text-white transition-all border-2 border-transparent hover:border-white">
+<span class="material-symbols-outlined">download</span>
+<span>PDF</span>
+</button>
+<a class="size-14 border-2 border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-ink transition-all" href="#">
+<svg class="size-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+<div class="md:col-span-6 lg:col-span-12 mt-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="brutalist-card p-8 group">
+<div class="flex items-center justify-between mb-6">
+<div class="size-12 bg-surface-alt border-2 border-ink flex items-center justify-center text-ink group-hover:bg-accent group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<span class="font-mono text-xs text-ink-light">01</span>
+</div>
+<h4 class="font-display font-bold text-xl mb-3 uppercase">Product-Minded</h4>
+<p class="text-sm text-ink-light leading-relaxed font-mono">I focus on the 'why' behind the code. Building features that solve real user problems, not just technical challenges.</p>
+</div>
+<div class="brutalist-card p-8 group">
+<div class="flex items-center justify-between mb-6">
+<div class="size-12 bg-surface-alt border-2 border-ink flex items-center justify-center text-ink group-hover:bg-accent group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-mono text-xs text-ink-light">02</span>
+</div>
+<h4 class="font-display font-bold text-xl mb-3 uppercase">Fullstack Speed</h4>
+<p class="text-sm text-ink-light leading-relaxed font-mono">Rapid prototyping and scalable delivery using modern stacks like Bun and Next.js to get to market faster.</p>
+</div>
+<div class="brutalist-card p-8 group">
+<div class="flex items-center justify-between mb-6">
+<div class="size-12 bg-surface-alt border-2 border-ink flex items-center justify-center text-ink group-hover:bg-accent group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<span class="font-mono text-xs text-ink-light">03</span>
+</div>
+<h4 class="font-display font-bold text-xl mb-3 uppercase">Precision Eng.</h4>
+<p class="text-sm text-ink-light leading-relaxed font-mono">High-quality, maintainable code with a strong focus on strict type safety, CI/CD pipelines, and automated testing.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-6 lg:col-span-12 mt-6 brutalist-card p-8 lg:p-12 relative">
+<div class="absolute top-4 right-4 text-[100px] leading-none font-black text-gray-100 -z-10 select-none">XP</div>
+<div class="flex items-center justify-between mb-12 border-b-4 border-ink pb-4">
+<h3 class="text-4xl font-display font-black text-ink uppercase tracking-tight">Career Trajectory</h3>
+<span class="text-sm font-bold bg-accent text-white px-4 py-2 border-2 border-ink shadow-[2px_2px_0px_0px_#000]">5+ Years</span>
+</div>
+<div class="relative space-y-12 pl-4 sm:pl-0">
+<div class="absolute left-4 sm:left-[8.5rem] top-2 bottom-2 w-0.5 bg-gray-300 sm:block hidden"></div>
+<div class="relative flex flex-col sm:flex-row gap-4 sm:gap-12 group">
+<div class="sm:w-32 flex-shrink-0 text-right pt-2 hidden sm:block">
+<span class="font-mono font-bold text-accent">PRESENT</span>
+</div>
+<div class="absolute left-[-5px] sm:left-[8.2rem] top-2.5 size-3 bg-accent border-2 border-ink z-10 hidden sm:block group-hover:scale-125 transition-transform"></div>
+<div class="flex-1 pb-8 border-l-2 border-gray-200 pl-8 sm:border-0 sm:pl-0 sm:pb-0">
+<span class="text-accent font-bold text-xs sm:hidden mb-2 block font-mono">2021 - Present</span>
+<div class="flex flex-wrap items-center gap-3 mb-3">
+<h4 class="text-2xl font-black text-ink uppercase">Senior Engineer</h4>
+<span class="text-xs text-white bg-ink px-2 py-1 font-mono">@TechCo Inc.</span>
+</div>
+<p class="text-ink-light font-mono text-sm leading-relaxed max-w-3xl">
+                                    Leading the frontend migration to Next.js 14 and managing a team of 4 junior developers. Improved site performance metrics (Core Web Vitals) by 40% through server-side optimization.
+                                </p>
+</div>
+</div>
+<div class="relative flex flex-col sm:flex-row gap-4 sm:gap-12 group">
+<div class="sm:w-32 flex-shrink-0 text-right pt-2 hidden sm:block">
+<span class="font-mono font-bold text-ink-light">2019-21</span>
+</div>
+<div class="absolute left-[-5px] sm:left-[8.2rem] top-2.5 size-3 bg-white border-2 border-ink z-10 hidden sm:block group-hover:bg-accent transition-colors"></div>
+<div class="flex-1 pb-8 border-l-2 border-gray-200 pl-8 sm:border-0 sm:pl-0 sm:pb-0">
+<span class="text-ink-light font-bold text-xs sm:hidden mb-2 block font-mono">2019 - 2021</span>
+<div class="flex flex-wrap items-center gap-3 mb-3">
+<h4 class="text-2xl font-black text-ink uppercase">Freelance Engineer</h4>
+<span class="text-xs text-ink border border-ink px-2 py-1 font-mono">Remote</span>
+</div>
+<p class="text-ink-light font-mono text-sm leading-relaxed max-w-3xl">
+                                    Built and deployed over 15 fullstack applications for startups using the MERN stack. Specialized in rapid MVP development and early TypeScript adoption for cleaner codebases.
+                                </p>
+</div>
+</div>
+<div class="relative flex flex-col sm:flex-row gap-4 sm:gap-12 group">
+<div class="sm:w-32 flex-shrink-0 text-right pt-2 hidden sm:block">
+<span class="font-mono font-bold text-ink-light">2018-19</span>
+</div>
+<div class="absolute left-[-5px] sm:left-[8.2rem] top-2.5 size-3 bg-white border-2 border-ink z-10 hidden sm:block group-hover:bg-accent transition-colors"></div>
+<div class="flex-1 border-l-2 border-gray-200 pl-8 sm:border-0 sm:pl-0">
+<span class="text-ink-light font-bold text-xs sm:hidden mb-2 block font-mono">2018 - 2019</span>
+<div class="flex flex-wrap items-center gap-3 mb-3">
+<h4 class="text-2xl font-black text-ink uppercase">OSS Contributor</h4>
+<span class="text-xs text-ink border border-ink px-2 py-1 font-mono">Community</span>
+</div>
+<p class="text-ink-light font-mono text-sm leading-relaxed max-w-3xl">
+                                    Actively contributed to several React component libraries and documentation for Node.js frameworks, laying the foundation for my deep understanding of open web standards.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t-2 border-ink bg-white py-12 relative overflow-hidden">
+<div class="absolute top-0 left-10 w-4 h-full bg-surface-alt border-r border-l border-gray-200 hidden md:block"></div>
+<div class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<div class="size-8 bg-ink text-white flex items-center justify-center font-bold">©</div>
+<p class="text-sm font-mono text-ink-light">
+                    2024 PORTFOLIO. DESIGNED WITH PRECISION.
+                </p>
+</div>
+<div class="flex gap-8">
+<a class="text-ink hover:text-accent hover:underline decoration-2 underline-offset-4 transition-colors text-sm font-bold uppercase tracking-wider" href="#">GitHub</a>
+<a class="text-ink hover:text-accent hover:underline decoration-2 underline-offset-4 transition-colors text-sm font-bold uppercase tracking-wider" href="#">LinkedIn</a>
+<a class="text-ink hover:text-accent hover:underline decoration-2 underline-offset-4 transition-colors text-sm font-bold uppercase tracking-wider" href="#">Twitter</a>
+</div>
+</div>
+</footer>
+
+</body></html>
