@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectCard } from '@src/lib/project-cards';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  project: ProjectCard;
+  image: ImageMetadata;
+}
+
+const { project, image } = Astro.props;
+const primaryTag = project.tags[0] || (project.category === 'product' ? 'APP' : 'SITE');
+---
+
+<a href={`/projects/${project.slug}/`} class="tech-card group block">
+  <!-- Project image -->
+  <div class="aspect-square overflow-hidden bg-zinc-900">
+    <Image
+      src={image}
+      alt={project.name}
+      class="h-full w-full object-cover grayscale opacity-70 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="p-4 flex items-center justify-between gap-3">
+    <div class="min-w-0">
+      <!-- Tag -->
+      <span class="inline-block border border-black dark:border-white px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider mb-2">
+        {primaryTag}
+      </span>
+      <!-- Title -->
+      <h3 class="font-bold text-sm uppercase tracking-tight text-black dark:text-white truncate">
+        {project.name}
+      </h3>
+    </div>
+    <!-- Arrow -->
+    <span class="text-lg shrink-0 transition-transform duration-200 group-hover:translate-x-1">→</span>
+  </div>
+</a>

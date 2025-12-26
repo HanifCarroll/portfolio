@@ -18,9 +18,13 @@ export default {
     },
     container: {
       center: true,
-      padding: '1rem',
+      padding: '1.5rem',
       screens: {
-        xl: '1024px'
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1400px'
       }
     },
     extend: {

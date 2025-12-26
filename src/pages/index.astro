@@ -2,7 +2,9 @@
 import { SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { projects } from "../lib/project-cards";
-import PortfolioShowcase from "../components/PortfolioShowcase.astro";
+import ProjectCardFeatured from "../components/ProjectCardFeatured.astro";
+import ProjectCardMedium from "../components/ProjectCardMedium.astro";
+import ProjectCardCompact from "../components/ProjectCardCompact.astro";
 import { Image } from "astro:assets";
 import HeroImage from "@src/assets/img/portrait-brick.webp";
 import testimonials from "../../testimonials.json";
@@ -12,7 +14,31 @@ import monicaPhoto from "@src/assets/img/monica.jpeg";
 import markisPhoto from "@src/assets/img/markis.jpeg";
 import sarahPhoto from "@src/assets/img/sarah.jpeg";
 
-const featuredProjects = projects.slice(0, 3);
+// Project images
+import hablabaHero from "@src/assets/img/projects/hablaba-hero.png";
+import muchoHangoutsHero from "@src/assets/img/projects/mucho-hangouts-hero.png";
+import voxPrismaticHero from "@src/assets/img/projects/vox-prismatic-hero.png";
+import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
+import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
+import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
+import maximoHero from "@src/assets/img/projects/maximo-hero.png";
+import redwriterHero from "@src/assets/img/projects/redwriter-hero.png";
+
+const projectImages: Record<string, ImageMetadata> = {
+    "language-exchange": hablabaHero,
+    "mucho-hangouts": muchoHangoutsHero,
+    "vox-prismatic": voxPrismaticHero,
+    "genrupt": genruptHero,
+    "casa-elaria": casaElariaHero,
+    "desarmadero-latorre": desarmaderoHero,
+    "maximo-interiorismo": maximoHero,
+    "redwriter-comics": redwriterHero,
+};
+
+// Split projects: 1 featured, 2 medium, rest compact
+const featuredProject = projects[0];
+const mediumProjects = projects.slice(1, 3);
+const compactProjects = projects.slice(3);
 
 const techStack = [
     "Next.js",
@@ -184,27 +210,48 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
         <div class="container space-y-32">
 
-        <!-- Featured Projects -->
+        <!-- Projects -->
         <section class="scroll-mt-16 space-y-12" id="projects">
             <div class="section-header">
                 <div class="space-y-2">
                     <span class="section-label">// 01</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Selected Work</h2>
                 </div>
-                <a
-                    href="/projects"
-                    class="arrow-link hidden sm:flex"
-                >
-                    View All
-                </a>
             </div>
-            <PortfolioShowcase projects={featuredProjects} />
-            <a
-                href="/projects"
-                class="arrow-link sm:hidden"
-            >
-                View All Projects
-            </a>
+
+            <!-- Featured + Medium layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+                <!-- Featured project (large) -->
+                <div>
+                    <ProjectCardFeatured
+                        project={featuredProject}
+                        image={projectImages[featuredProject.slug]}
+                        index={0}
+                    />
+                </div>
+
+                <!-- Medium projects (stacked) -->
+                <div class="flex flex-col gap-6">
+                    {mediumProjects.map((project) => (
+                        <ProjectCardMedium
+                            project={project}
+                            image={projectImages[project.slug]}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <!-- Compact projects grid -->
+            {compactProjects.length > 0 && (
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {compactProjects.map((project) => (
+                        <ProjectCardCompact
+                            project={project}
+                            image={projectImages[project.slug]}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
 
         <!-- Testimonials -->
