@@ -71,7 +71,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
         <section class="relative min-h-[90vh] overflow-hidden">
             <div class="container relative py-8">
                 <!-- Status indicator -->
-                <div class="inline-flex items-center gap-3 border-2 border-black dark:border-white px-4 py-2 mb-8">
+                <div class="inline-flex items-center gap-3 border-2 border-black dark:border-white px-4 py-2 mb-8 bg-white dark:bg-black">
                     <span class="status-dot status-dot--active animate-pulse"></span>
                     <span class="font-mono text-xs uppercase tracking-widest">
                         Accepting New Projects
@@ -110,7 +110,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                 />
                             </div>
                             <!-- Name label below photo -->
-                            <div class="mt-2 flex items-center gap-3">
+                            <div class="mt-2 flex items-center gap-3 bg-white dark:bg-black px-3 py-2 border-2 border-black dark:border-white">
                                 <div class="w-2 h-2 bg-black dark:bg-white"></div>
                                 <div class="h-0.5 w-8 bg-black dark:bg-white"></div>
                                 <div>
@@ -125,7 +125,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 <!-- Bottom content row -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12 lg:mt-16">
                     <!-- Left: Description and buttons -->
-                    <div class="space-y-8">
+                    <div class="tech-card p-6 md:p-8 space-y-8">
                         <!-- Decorative gear icon -->
                         <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
@@ -133,11 +133,11 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
                         <!-- Description with highlight -->
                         <div class="border-l-4 border-primary pl-6 space-y-3">
-                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
                                 I'm not here to just close tickets. I want to understand your product, your users, and your strategy—then ship the code that actually matters.
                             </p>
-                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                                Full-stack, product-minded, and available for contracts or full-time roles.
+                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                Full-stack, product-minded, and available for contract work or full-time roles.
                             </p>
                         </div>
 
@@ -162,7 +162,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                     </div>
 
                     <!-- Right: Tech stack box -->
-                    <div class="lg:flex lg:justify-end">
+                    <div class="lg:flex lg:justify-end lg:items-start">
                         <div class="tech-card w-full max-w-sm">
                             <!-- Window header -->
                             <div class="flex items-center justify-between px-4 py-3 border-b-2 border-black dark:border-white">
@@ -175,7 +175,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                             </div>
                             <!-- Content -->
                             <div class="p-4 font-mono text-sm">
-                                <div class="text-zinc-500 dark:text-zinc-400">{"{"}</div>
+                                <div class="text-zinc-500 dark:text-zinc-300">{"{"}</div>
                                 <div class="pl-4">
                                     <span class="text-primary">"technologies"</span>: [
                                     <div class="pl-4 space-y-1">
@@ -188,7 +188,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     </div>
                                     ]
                                 </div>
-                                <div class="text-zinc-500 dark:text-zinc-400">{"}"}</div>
+                                <div class="text-zinc-500 dark:text-zinc-300">{"}"}</div>
                             </div>
                         </div>
                     </div>
@@ -290,7 +290,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     </div>
                                     <div>
                                         <p class="font-bold uppercase text-sm">{testimonial.name}</p>
-                                        <p class="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                                        <p class="font-mono text-xs text-zinc-500 dark:text-zinc-300">
                                             {testimonial.role}
                                         </p>
                                     </div>
@@ -331,7 +331,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                             </svg>
                         </div>
                         <h3 class="font-bold uppercase tracking-wide">My Journey</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400 text-sm">
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
                             <p>
                                 Started programming in 2017 after deciding physical
                                 therapy school wasn't for me.
@@ -352,7 +352,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                             </svg>
                         </div>
                         <h3 class="font-bold uppercase tracking-wide">Product-Minded</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400 text-sm">
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
                             <p>
                                 I don't stay in the "engineering" box. I care about
                                 UX, product strategy, and understanding user needs.
@@ -374,7 +374,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                             </svg>
                         </div>
                         <h3 class="font-bold uppercase tracking-wide">What's Next</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-400 text-sm">
+                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
                             <p>
                                 Open to full-time roles at early-stage startups
                                 or freelance engagements for the right projects.
@@ -404,6 +404,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 </div>
             </div>
 
+            <div class="tech-card p-6 md:p-8">
             <div class="relative">
                 <!-- Timeline line -->
                 <div class="absolute left-0 md:left-32 top-0 bottom-0 w-0.5 bg-black dark:bg-white"></div>
@@ -423,7 +424,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     <h3 class="font-bold uppercase text-lg">Full-Stack Software Engineer</h3>
                                     <p class="font-mono text-sm text-primary">FREELANCE</p>
                                 </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
                                     <li class="flex gap-3">
                                         <span class="text-primary">&rarr;</span>
                                         <span>Performed as <strong class="text-black dark:text-white">fractional CTO</strong> for an emerging social events platform, leading a team of 2 juniors.</span>
@@ -454,7 +455,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     <h3 class="font-bold uppercase text-lg">Senior Front End Engineer</h3>
                                     <p class="font-mono text-sm text-primary">NEARSURE</p>
                                 </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
                                     <li class="flex gap-3">
                                         <span class="text-primary">&rarr;</span>
                                         <span>Improved efficiency for <strong class="text-black dark:text-white">3,000+ sports organizers</strong> by engineering an interactive scheduling tool.</span>
@@ -481,7 +482,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     <h3 class="font-bold uppercase text-lg">Front End Engineer</h3>
                                     <p class="font-mono text-sm text-primary">LEAGUEAPPS</p>
                                 </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
                                     <li class="flex gap-3">
                                         <span class="text-primary">&rarr;</span>
                                         <span>Reduced scheduling time by <strong class="text-black dark:text-white">45%</strong> with intuitive drag-and-drop scheduling grid.</span>
@@ -512,7 +513,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                                     <h3 class="font-bold uppercase text-lg">Software Developer</h3>
                                     <p class="font-mono text-sm text-primary">CAPGEMINI</p>
                                 </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
                                     <li class="flex gap-3">
                                         <span class="text-primary">&rarr;</span>
                                         <span>Developed comprehensive cruise ship management application covering berthing, reporting, and scheduling.</span>
@@ -526,6 +527,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <div class="pt-4">
@@ -554,7 +556,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                     <div class="space-y-3">
                         <span class="font-mono text-2xl text-primary">01</span>
                         <h3 class="font-bold uppercase">Fitness</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
                             20 years of lifting—500 lb squat, 405 lb bench, 620 lb deadlift. Competitive ultimate frisbee player.
                         </p>
                     </div>
@@ -564,7 +566,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                     <div class="space-y-3">
                         <span class="font-mono text-2xl text-primary">02</span>
                         <h3 class="font-bold uppercase">Community</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
                             Ran a social community in Buenos Aires for 3 years, connecting people and building relationships.
                         </p>
                     </div>
@@ -574,7 +576,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                     <div class="space-y-3">
                         <span class="font-mono text-2xl text-primary">03</span>
                         <h3 class="font-bold uppercase">Learning</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
                             Avid reader and podcast listener. Daily writing practice for clearer thinking and communication.
                         </p>
                     </div>

@@ -73,9 +73,11 @@ const images = imageMap[project.slug];
                 <h1 class="heading-display text-4xl md:text-5xl">
                     {project.title}
                 </h1>
-                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-4xl">
-                    {project.description}
-                </p>
+                <div class="tech-card p-6">
+                    <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl">
+                        {project.description}
+                    </p>
+                </div>
             </div>
 
             <!-- Project Meta -->
@@ -164,19 +166,19 @@ const images = imageMap[project.slug];
             }
         </header>
 
-        <section class="space-y-12">
+        <section class="tech-card p-6 md:p-8 space-y-12">
             <div class="space-y-4">
                 <h2 class="section-label">// The Challenge</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.problem) ? (
                             project.problem.map((p) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                     {p}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                 {project.problem}
                             </p>
                         )
@@ -192,12 +194,12 @@ const images = imageMap[project.slug];
                     {
                         Array.isArray(project.solution) ? (
                             project.solution.map((s) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                     {s}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                 {project.solution}
                             </p>
                         )
@@ -213,12 +215,12 @@ const images = imageMap[project.slug];
                     {
                         Array.isArray(project.result) ? (
                             project.result.map((r) => (
-                                <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                     {r}
                                 </p>
                             ))
                         ) : (
-                            <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                 {project.result}
                             </p>
                         )
