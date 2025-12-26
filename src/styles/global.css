@@ -159,3 +159,69 @@
     transform: translateY(0);
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero giant italic text */
+.hero-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.hero-title-outline {
+  -webkit-text-stroke: 2px currentColor;
+  -webkit-text-fill-color: transparent;
+}
+
+:is(.dark) .hero-title-outline {
+  -webkit-text-stroke: 2px white;
+}
+
+/* Tech marquee */
+.tech-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.tech-marquee-content {
+  display: inline-flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.tech-marquee:hover .tech-marquee-content {
+  animation-play-state: paused;
+}
+
+/* Terminal window dots */
+.window-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.window-dot--red { background: #ff5f57; }
+.window-dot--yellow { background: #febc2e; }
+.window-dot--green { background: #28c840; }
+
+/* Highlight box for inline text */
+.highlight-box {
+  @apply bg-primary text-white px-2 py-0.5 font-semibold;
+}

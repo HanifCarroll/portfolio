@@ -14,6 +14,18 @@ import sarahPhoto from "@src/assets/img/sarah.jpeg";
 
 const featuredProjects = projects.slice(0, 3);
 
+const techStack = [
+    "Next.js",
+    "React",
+    "Node.js",
+    "PostgreSQL",
+    "Tailwind",
+    "Docker",
+    "TypeScript",
+    "Bun",
+    "Prisma",
+];
+
 const testimonialPhotos: Record<string, ImageMetadata> = {
     "Monica Londoño": monicaPhoto,
     "Markis Zarate": markisPhoto,
@@ -25,71 +37,149 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
     title="Hanif Carroll - Full-stack Product Engineer"
     description={SITE_DESCRIPTION}
 >
-    <div class="container space-y-32 py-16">
+    <div class="space-y-32">
         <!-- Hero Section -->
-        <section
-            class="relative grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center"
-        >
-            <div class="space-y-8">
+        <section class="relative min-h-[90vh] overflow-hidden">
+            <div class="container relative py-8">
                 <!-- Status indicator -->
-                <div class="flex items-center gap-3">
+                <div class="inline-flex items-center gap-3 border-2 border-black dark:border-white px-4 py-2 mb-8">
                     <span class="status-dot status-dot--active animate-pulse"></span>
-                    <span class="font-mono text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                        System Online // Available for Work
+                    <span class="font-mono text-xs uppercase tracking-widest">
+                        Accepting New Projects
                     </span>
                 </div>
 
-                <!-- Main heading -->
-                <h1 class="heading-display text-6xl md:text-7xl text-black dark:text-white">
-                    Hanif<br />Carroll
-                </h1>
+                <!-- Main content grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
+                    <!-- Giant title -->
+                    <div class="relative">
+                        <h1 class="hero-title text-[clamp(3rem,10vw,8rem)] text-black dark:text-white">
+                            Fullstack
+                        </h1>
+                        <h1 class="hero-title hero-title-outline text-[clamp(3rem,10vw,8rem)]">
+                            Product
+                        </h1>
+                        <h1 class="hero-title text-[clamp(3rem,10vw,8rem)] text-black dark:text-white">
+                            Engineer
+                        </h1>
+                    </div>
 
-                <!-- Role with brackets -->
-                <p class="font-mono text-lg text-zinc-600 dark:text-zinc-400">
-                    [Full-Stack Product Engineer]
-                </p>
+                    <!-- Photo card -->
+                    <div class="relative">
+                        <div class="relative inline-block">
+                            <!-- Blue corner accent -->
+                            <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary flex items-center justify-center text-white font-bold z-30">
+                                +
+                            </div>
+                            <!-- Photo container -->
+                            <div class="border-2 border-black dark:border-white bg-black overflow-hidden" style="box-shadow: 4px 4px 0 0 black;">
+                                <Image
+                                    src={HeroImage}
+                                    alt="Hanif Carroll"
+                                    loading="eager"
+                                    class="w-64 md:w-72 lg:w-80 h-auto -scale-x-100 grayscale transition-all duration-500 hover:grayscale-0"
+                                />
+                            </div>
+                            <!-- Name label below photo -->
+                            <div class="mt-2 flex items-center gap-3">
+                                <div class="w-2 h-2 bg-black dark:bg-white"></div>
+                                <div class="h-0.5 w-8 bg-black dark:bg-white"></div>
+                                <div>
+                                    <p class="font-mono text-xs text-primary uppercase tracking-wider">Status: Active</p>
+                                    <p class="font-bold text-lg uppercase tracking-wide">Hanif Carroll</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <!-- Description -->
-                <p class="max-w-lg text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    I'm a full-stack engineer who thinks about the whole
-                    picture—how features get built, how users experience
-                    them, and how they drive growth.
-                </p>
+                <!-- Bottom content row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12 lg:mt-16">
+                    <!-- Left: Description and buttons -->
+                    <div class="space-y-8">
+                        <!-- Decorative gear icon -->
+                        <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
+                        </svg>
 
-                <!-- Buttons -->
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a
-                        class="btn-primary"
-                        href="mailto:HanifCarroll@gmail.com"
-                    >
-                        Initiate Contact
-                        <span>&rarr;</span>
-                    </a>
-                    <a
-                        class="btn-secondary"
-                        href="/Hanif_Carroll_Fullstack_Product_Engineer.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        View Resume
-                    </a>
+                        <!-- Description with highlight -->
+                        <div class="border-l-4 border-primary pl-6">
+                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+                                I'm a full-stack engineer who thinks about the whole picture—how features get built, how users experience them, and how they drive growth.
+                            </p>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex flex-wrap gap-4">
+                            <a
+                                class="btn-primary"
+                                href="mailto:HanifCarroll@gmail.com"
+                            >
+                                Contact
+                            </a>
+                            <a
+                                class="btn-secondary"
+                                href="/projects"
+                            >
+                                View Projects
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Tech stack box -->
+                    <div class="lg:flex lg:justify-end">
+                        <div class="tech-card w-full max-w-sm">
+                            <!-- Window header -->
+                            <div class="flex items-center justify-between px-4 py-3 border-b-2 border-black dark:border-white">
+                                <span class="font-mono text-xs uppercase tracking-wider">tech_stack.json</span>
+                                <div class="window-dots">
+                                    <div class="window-dot window-dot--red"></div>
+                                    <div class="window-dot window-dot--yellow"></div>
+                                    <div class="window-dot window-dot--green"></div>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-4 font-mono text-sm">
+                                <div class="text-zinc-500 dark:text-zinc-400">{"{"}</div>
+                                <div class="pl-4">
+                                    <span class="text-primary">"technologies"</span>: [
+                                    <div class="pl-4 space-y-1">
+                                        <div>"React",</div>
+                                        <div>"TypeScript",</div>
+                                        <div>"Next.js",</div>
+                                        <div>"Node.js",</div>
+                                        <div>"PostgreSQL",</div>
+                                        <div>"Tailwind"</div>
+                                    </div>
+                                    ]
+                                </div>
+                                <div class="text-zinc-500 dark:text-zinc-400">{"}"}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Photo with geometric frame -->
-            <div class="relative flex justify-center md:justify-end">
-                <div class="group relative">
-                    <!-- Outer geometric frame -->
-                    <div class="absolute -inset-4 border-2 border-black/20 dark:border-white/20"></div>
-                    <Image
-                        src={HeroImage}
-                        alt="Hanif Carroll"
-                        loading="eager"
-                        class="relative z-10 max-w-xs -scale-x-100 grayscale transition-all duration-500 group-hover:grayscale-0 md:max-w-sm"
-                    />
+            <!-- Tech marquee -->
+            <div class="border-t-2 border-b-2 border-black dark:border-white py-4 mt-16 bg-white dark:bg-black overflow-hidden">
+                <div class="tech-marquee">
+                    <div class="tech-marquee-content">
+                        {[...Array(4)].map(() => (
+                            <span class="flex items-center gap-8 px-4 shrink-0">
+                                {techStack.map((tech) => (
+                                    <>
+                                        <span class="font-mono text-sm uppercase tracking-wider font-bold">{tech}</span>
+                                        <span class="w-2 h-2 bg-primary shrink-0"></span>
+                                    </>
+                                ))}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
+
+        <div class="container space-y-32">
 
         <!-- Featured Projects -->
         <section class="scroll-mt-16 space-y-12" id="projects">
@@ -424,5 +514,6 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 </div>
             </div>
         </section>
+    </div>
     </div>
 </BaseLayout>
