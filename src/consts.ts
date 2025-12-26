@@ -2,6 +2,6 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Hanif Carroll';
-export const SITE_TAGLINE = 'Product Engineer for 0→1';
+export const SITE_TAGLINE = 'Product-Minded Full-Stack Engineer';
 export const SITE_DESCRIPTION =
-  'Founding‑engineer caliber builder who owns discovery → delivery: React, TypeScript, Node.js, Next.js, Tailwind; user research, prototyping, MVP development.';
+  'Full-stack product engineer for startups and agencies. I help teams figure out what to build, then build it—React, TypeScript, Node.js, AI integrations.';
