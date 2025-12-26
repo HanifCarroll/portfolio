@@ -119,19 +119,34 @@ const images = imageMap[project.slug];
                             </dd>
                         </div>
                     </dl>
-                    {
-                        project.liveUrl && (
-                            <a
-                                class="btn-primary shrink-0"
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Visit Live Site
-                                <span>&rarr;</span>
-                            </a>
-                        )
-                    }
+                    <div class="flex flex-wrap gap-3 shrink-0">
+                        {
+                            project.liveUrl && (
+                                <a
+                                    class="btn-primary"
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Visit Live Site
+                                    <span>&rarr;</span>
+                                </a>
+                            )
+                        }
+                        {
+                            project.repository && (
+                                <a
+                                    class="btn-secondary"
+                                    href={project.repository}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Code
+                                    <span>&rarr;</span>
+                                </a>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
 
