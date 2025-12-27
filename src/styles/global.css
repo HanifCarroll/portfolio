@@ -10,15 +10,19 @@
 
   body {
     @apply bg-white text-black antialiased;
-    background-image: url('/grid-light.webp');
-    background-size: cover;
-    background-position: center;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
     background-attachment: fixed;
   }
 
   :is(.dark) body {
     @apply bg-black text-white;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/grid-dark.webp');
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
   pre,
