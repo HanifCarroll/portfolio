@@ -228,7 +228,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
             <!-- Featured + Medium layout -->
             <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
                 <!-- Featured project (large) -->
-                <div>
+                <div class="h-full">
                     <ProjectCardFeatured
                         project={featuredProject}
                         image={projectImages[featuredProject.slug]}
@@ -238,10 +238,11 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
                 <!-- Medium projects (stacked) -->
                 <div class="flex flex-col gap-6">
-                    {mediumProjects.map((project) => (
+                    {mediumProjects.map((project, i) => (
                         <ProjectCardMedium
                             project={project}
                             image={projectImages[project.slug]}
+                            index={i + 1}
                         />
                     ))}
                 </div>
