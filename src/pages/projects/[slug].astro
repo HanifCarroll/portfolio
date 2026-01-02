@@ -5,6 +5,8 @@ import type { Project } from "@src/lib/types/project";
 import { getAllProjects } from "@src/lib/projects";
 
 // Import all project images statically
+import baEventosHero from "@src/assets/img/projects/ba-eventos-hero.png";
+import baEventosFeature from "@src/assets/img/projects/ba-eventos-feature.png";
 import hablabaHero from "@src/assets/img/projects/hablaba-hero.png";
 import hablabaFeature from "@src/assets/img/projects/hablaba-feature.png";
 import muchoHangoutsHero from "@src/assets/img/projects/mucho-hangouts-hero.png";
@@ -40,6 +42,7 @@ const imageMap: Record<
     string,
     { hero: ImageMetadata; feature: ImageMetadata }
 > = {
+    "ba-eventos": { hero: baEventosHero, feature: baEventosFeature },
     "language-exchange": { hero: hablabaHero, feature: hablabaFeature },
     "mucho-hangouts": { hero: muchoHangoutsHero, feature: muchoHangoutsFeature },
     "genrupt": { hero: genruptHero, feature: genruptFeature },
