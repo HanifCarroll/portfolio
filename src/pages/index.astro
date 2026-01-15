@@ -2,6 +2,8 @@
 import { SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { projects } from "../lib/project-cards";
+import { getCollection } from 'astro:content';
+import PostItem from "../components/PostItem.astro";
 import ProjectCardFeatured from "../components/ProjectCardFeatured.astro";
 import ProjectCardMedium from "../components/ProjectCardMedium.astro";
 import ProjectCardCompact from "../components/ProjectCardCompact.astro";
@@ -62,6 +64,11 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
     "Markis Zarate": markisPhoto,
     "Sarah Hibner": sarahPhoto,
 };
+
+// Blog posts
+const posts = (await getCollection('blog'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
 ---
 
 <BaseLayout
@@ -545,11 +552,27 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
             </div>
         </section>
 
+        <!-- Latest Posts -->
+        <section class="scroll-mt-16 space-y-12" id="blog">
+            <div class="section-header">
+                <div class="space-y-2">
+                    <span class="section-label">// 05</span>
+                    <h2 class="heading-display text-4xl md:text-5xl">Latest Posts</h2>
+                </div>
+                <a href="/blog" class="arrow-link">View all posts</a>
+            </div>
+            <div class="tech-card p-6">
+                {posts.map((post) => (
+                    <PostItem post={post} />
+                ))}
+            </div>
+        </section>
+
         <!-- Beyond Code -->
         <section class="space-y-12">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 05</span>
+                    <span class="section-label">// 06</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Beyond Code</h2>
                 </div>
             </div>

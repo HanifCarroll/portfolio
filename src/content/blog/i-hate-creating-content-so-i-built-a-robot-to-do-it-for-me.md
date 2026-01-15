@@ -94,4 +94,4 @@ While I don't have long-term metrics yet, the immediate result is clear: I've tr
 
 This approach—identifying inefficiencies and building elegant solutions—is exactly how I approach client projects. More importantly, I've built a solution that allows me to spend less time on content logistics and more time doing what I love: building great products and solving complex problems for my clients.
 
-If you're facing a complex workflow challenge and need an elegant, effective solution, I'd love to chat. **[Let's connect.](https://cal.com/hanifcarroll/build-my-idea)**
+If you're facing a complex workflow challenge and need an elegant, effective solution, I'd love to chat.
