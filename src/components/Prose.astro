@@ -4,7 +4,24 @@ const { class: className = "" } = Astro.props;
 
 <div
 	class:list={[
-    'prose dark:prose-invert prose-h1:font-[900] prose-h1:my-4 prose-h1:text-2xl sm:prose-h1:text-[2rem]/[1.3] prose-h2:mt-6 prose-h2:mb-3 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-extrabold prose-h3:mt-5 prose-h3:mb-2 prose-h3:text-xl sm:prose-h3:text-2xl prose-h4:mt-3 prose-h4:mb-0 prose-img:rounded-xl prose-h3:target:pt-20',
+    'prose prose-blog dark:prose-invert',
+    'max-w-[85ch]',
+    /* Base typography */
+    'prose-p:leading-[1.75] prose-p:mb-6',
+    'prose-li:leading-[1.75]',
+    /* Headings - more distinct with spacing */
+    'prose-h1:font-[900] prose-h1:my-4 prose-h1:text-2xl sm:prose-h1:text-[2rem]/[1.3]',
+    'prose-h2:mt-16 prose-h2:mb-5 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-extrabold prose-h2:tracking-tight prose-h2:border-t-2 prose-h2:border-black prose-h2:dark:border-white prose-h2:pt-4',
+    'prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:font-bold',
+    'prose-h4:mt-6 prose-h4:mb-3 prose-h4:font-semibold',
+    /* Code blocks */
+    'prose-pre:rounded-none prose-pre:border-2 prose-pre:border-black prose-pre:dark:border-white',
+    /* Images */
+    'prose-img:rounded-xl',
+    /* Target anchors */
+    'prose-h3:target:pt-20',
+    /* Strong emphasis */
+    'prose-strong:font-bold',
     className,
   ]}
 >

@@ -238,3 +238,69 @@
 .highlight-box {
   @apply bg-primary text-white px-2 py-0.5 font-semibold;
 }
+
+/* ==============================================
+   BLOG PROSE STYLES
+   Brutalist table styling and enhanced readability
+   ============================================== */
+
+.prose-blog {
+  /* Horizontal rules - thicker, more spacing */
+  & hr {
+    @apply border-t-2 border-black dark:border-white my-12;
+  }
+
+  /* Tables - brutalist style with thick borders */
+  & table {
+    @apply w-full border-collapse border-2 border-black dark:border-white my-8;
+    font-size: 0.9rem;
+  }
+
+  & thead {
+    @apply bg-black text-white dark:bg-white dark:text-black;
+  }
+
+  & th {
+    @apply px-4 py-3 text-left font-bold text-sm border-2 border-black dark:border-white text-white dark:text-black;
+  }
+
+  & td {
+    @apply px-4 py-3 border-2 border-black dark:border-white;
+  }
+
+  & tbody tr:nth-child(even) {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  & tbody tr:hover {
+    @apply bg-gray-200 dark:bg-gray-800;
+  }
+
+  /* First column styling for row headers */
+  & td:first-child {
+    @apply font-semibold;
+  }
+
+  /* Blockquotes - brutalist callout style */
+  & blockquote {
+    @apply border-l-4 border-black dark:border-white bg-gray-100 dark:bg-gray-900 pl-6 pr-4 py-4 my-8 not-italic;
+  }
+
+  & blockquote p {
+    @apply mb-0;
+  }
+
+  /* Lists - better spacing */
+  & ul, & ol {
+    @apply my-6 space-y-2;
+  }
+
+  & li {
+    @apply pl-2;
+  }
+
+  /* Inline code - more visible */
+  & :not(pre) > code {
+    @apply bg-gray-200 dark:bg-gray-800 px-1.5 py-0.5 rounded-sm font-medium text-[0.9em] border border-gray-300 dark:border-gray-700;
+  }
+}
