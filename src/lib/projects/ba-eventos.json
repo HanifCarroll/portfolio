@@ -1,20 +1,22 @@
 {
   "slug": "ba-eventos",
   "title": "AI-Powered Event Discovery for Buenos Aires",
-  "description": "A conversational AI platform that solves Buenos Aires' fragmented event landscape by aggregating data from 5+ sources and enabling natural language discovery. Built with Claude AI, semantic search via pgvector, and a multi-source import pipeline to help users find everything from underground techno parties to traditional tango milongas.",
+  "description": "A conversational AI assistant that solves Buenos Aires' fragmented event landscape by aggregating data from 5+ sources and enabling users to discover, save, and share events through natural language. Built with agent-native architecture principles—17 AI tools that achieve full parity with the UI, powered by Claude AI and semantic search via pgvector.",
   "client": "Personal Project",
   "service": "Full-Stack AI Engineering",
   "role": "Solo Developer & AI Engineer",
   "category": "product",
-  "year": "2025",
+  "year": "2025-2026",
   "technologies": [
     "TanStack Start",
     "React 19",
     "TypeScript",
     "Claude AI (Anthropic)",
+    "Vercel AI SDK",
     "OpenAI Embeddings",
     "PostgreSQL + pgvector",
     "Supabase",
+    "Trigger.dev",
     "Tailwind CSS v4"
   ],
   "repository": "https://github.com/hanifcarroll/ba-events",
@@ -24,13 +26,16 @@
   ],
   "solution": [
     "Built a conversational AI agent using Claude that understands natural language queries about events. Users can ask 'What's happening tonight?' or 'Find me a free outdoor concert' and get intelligent, contextual recommendations.",
+    "Implemented agent-native architecture following parity principles: 17 tools covering search, discovery, user actions (save/unsave events), and utilities (directions, sharing). The AI can do anything a user can do through the interface, enabling emergent capabilities like 'save that one, then find me something similar.'",
     "Implemented semantic search using OpenAI embeddings stored in PostgreSQL with pgvector. Events are embedded based on Spanish descriptions, enabling cross-language similarity matching that captures mood and atmosphere beyond keywords.",
     "Created a 7-step import wizard that aggregates events from Passline, Eventbrite, BA Tourism, and Meetup. Includes smart venue matching, AI-powered description enrichment, and automatic categorization using Claude Haiku.",
+    "Automated daily data pipelines with Trigger.dev scheduled jobs, including exponential backoff for rate limiting and retry logic for browser automation failures.",
     "Designed a bilingual system (Spanish/English) with Paraglide JS, where Spanish descriptions power the semantic search while English translations serve international users.",
     "Built a complete admin dashboard with bulk operations, data quality tools (duplicate detection, address analysis), and background AI enrichment with real-time progress streaming."
   ],
   "result": [
     "Deployed a production RAG application with 800+ events and 190+ venues aggregated from multiple sources. The AI agent successfully handles complex queries combining semantic search with structured filters.",
+    "Achieved 100% feature parity between UI and AI agent with 17 tools, enabling complex multi-step conversations. Analytics via PostHog track tool usage patterns to inform future development.",
     "Achieved sub-second response times for semantic search by leveraging pgvector's IVFFlat indexing on 1536-dimensional embeddings, with server-side filtering reducing post-processing overhead.",
     "Established a repeatable pipeline for event data acquisition: scrape sources, match venues, enrich descriptions with AI, generate embeddings, and serve via conversational interface.",
     "Demonstrated full-stack AI engineering capabilities: prompt engineering, RAG architecture, embedding pipelines, streaming responses, and tool-use patterns with Claude."
