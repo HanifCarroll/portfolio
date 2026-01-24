@@ -220,7 +220,7 @@ No manual dashboard navigation. No copy-pasting API keys. The agent handles infr
 
 ### Where It Falls Short
 
-**Very new.** Founded in July 2025 by ex-Amazon, Databricks, Meta, and TikTok engineers, but currently unfunded. The team is strong, but less battle-testing means more uncertainty.
+**Very new.** Founded in July 2025 by ex-Amazon, Databricks, Meta, and TikTok engineers, with $1.5M in funding raised in 2025. The team is strong, but less battle-testing means more uncertainty.
 
 **Limited to specific AI tools.** MCP integration works best with Claude Code, Cursor, and Windsurf. If you're not using these tools, you lose the main benefit.
 
@@ -338,7 +338,7 @@ await insforge.events.create({ name: 'Concert', date: '2025-01-15' })
 | | Supabase | Convex | InsForge |
 |---|---|---|---|
 | **Age** | 5 years | 4 years | <1 year |
-| **Funding** | $116M+ | $26M | Unfunded |
+| **Funding** | $116M+ | $26M | $1.5M |
 | **Production usage** | Thousands of apps | Growing | Early adopters |
 | **Self-hosting** | Yes | Yes | Yes |
 
