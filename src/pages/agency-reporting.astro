@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SampleDashboard from "../components/SampleDashboard.astro";
+
+const title = "Agency Reporting Automation";
+const description = "Automated client reporting + weekly updates for digital marketing agencies.";
+---
+
+<BaseLayout title={title} description={description}>
+    <div class="container space-y-24">
+        <!-- Hero -->
+        <section class="space-y-6">
+            <span class="section-label">// Offer</span>
+            <h1 class="heading-display text-4xl md:text-5xl">Agency Reporting Automation</h1>
+            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-2xl">
+                Automated client reporting + weekly updates for digital marketing agencies. Unify GA4, GSC,
+                ads, and CRM data into a single dashboard and deliver updates without manual work.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a
+                    class="btn-primary"
+                    href="https://cal.com/hanifcarroll/intro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Book a 30-min call
+                    <span>&rarr;</span>
+                </a>
+                <a class="btn-secondary" href="/">Back to home</a>
+            </div>
+        </section>
+
+        <!-- Offer + Dashboard -->
+        <section class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div class="tech-card p-8 space-y-6">
+                <div>
+                    <h2 class="font-bold uppercase tracking-wide">What You Get</h2>
+                    <ul class="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Multi-source dashboards (GA4, GSC, Ads, CRM)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Weekly KPI updates (email or Slack)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Anomaly alerts for spend spikes, traffic drops, and conversion changes</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="font-bold uppercase tracking-wide">Implementation (2-week sprint)</h2>
+                    <ul class="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Day 1–2: Data access + KPI definition</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Day 3–7: Dashboard build + QA</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Day 8–10: Weekly update automation</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-primary">&rarr;</span>
+                            <span>Day 11–14: Alerts + handoff</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <SampleDashboard />
+        </section>
+
+        <!-- Example Weekly Update -->
+        <section class="tech-card p-8 space-y-4">
+            <h2 class="font-bold uppercase tracking-wide">Example Weekly Update (Auto)</h2>
+            <p class="text-sm text-zinc-600 dark:text-zinc-300">
+                Summary: Paid Search up 12% WoW driven by improved ad quality scores. Organic dipped 4% after a
+                ranking change on two priority pages. Next actions: refresh landing copy and adjust budget pacing.
+            </p>
+            <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
+                <li class="flex gap-3">
+                    <span class="text-primary">&rarr;</span>
+                    <span>Top KPIs: Sessions +12%, Leads +8%, ROAS 3.7x</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-primary">&rarr;</span>
+                    <span>Risks: Spend spike in Brand campaign (+18%)</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-primary">&rarr;</span>
+                    <span>Next actions: Audit landing page + adjust pacing</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+</BaseLayout>
