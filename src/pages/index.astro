@@ -7,7 +7,6 @@ import PostItem from "../components/PostItem.astro";
 import ProjectCardFeatured from "../components/ProjectCardFeatured.astro";
 import ProjectCardMedium from "../components/ProjectCardMedium.astro";
 import ProjectCardCompact from "../components/ProjectCardCompact.astro";
-import SampleDashboard from "../components/SampleDashboard.astro";
 import { Image } from "astro:assets";
 import HeroImage from "@src/assets/img/portrait-brick.webp";
 import testimonials from "../../testimonials.json";
@@ -226,59 +225,11 @@ const posts = (await getCollection('blog'))
 
         <div class="container space-y-32">
 
-        <!-- Agency Reporting Automation -->
-        <section class="scroll-mt-16 space-y-12" id="agency-reporting">
-            <div class="section-header">
-                <div class="space-y-2">
-                    <span class="section-label">// 01</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Agency Reporting Automation</h2>
-                </div>
-                <a href="/agency-reporting" class="arrow-link">View example dashboard</a>
-            </div>
-
-            <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-                <div class="tech-card p-8 space-y-6">
-                    <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                        I help digital marketing agencies automate client reporting with live dashboards and weekly KPI updates.
-                    </p>
-                    <ul class="space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
-                        <li class="flex gap-3">
-                            <span class="text-primary">&rarr;</span>
-                            <span>Multi-source dashboards (GA4, GSC, Ads, CRM)</span>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-primary">&rarr;</span>
-                            <span>Weekly KPI updates (email or Slack)</span>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-primary">&rarr;</span>
-                            <span>Anomaly alerts for spend spikes, traffic drops, and conversion changes</span>
-                        </li>
-                    </ul>
-                    <div class="flex flex-wrap gap-4">
-                        <a
-                            class="btn-primary"
-                            href="https://cal.com/hanifcarroll/intro"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Book a 30-min call
-                            <span>&rarr;</span>
-                        </a>
-                        <a class="btn-secondary" href="/agency-reporting">View example dashboard</a>
-                    </div>
-                </div>
-
-                <SampleDashboard compact />
-            </div>
-        </section>
-
-
         <!-- Projects -->
         <section class="scroll-mt-16 space-y-12" id="projects">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 02</span>
+	                    <span class="section-label">// 01</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Selected Work</h2>
                 </div>
             </div>
@@ -323,18 +274,45 @@ const posts = (await getCollection('blog'))
         <section class="scroll-mt-16 space-y-12">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 03</span>
+	                    <span class="section-label">// 02</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Testimonials</h2>
                 </div>
             </div>
-            <div class="space-y-6">
-                {testimonials.map((testimonial) => {
-                    const photo = testimonialPhotos[testimonial.name];
-                    return (
-                        <SampleDashboard compact />
-                    );
-                })}
-            </div>
+	            <div class="space-y-6">
+	                {testimonials.map((testimonial) => {
+	                    const photo = testimonialPhotos[testimonial.name];
+	                    return (
+	                        <div class="tech-card p-8">
+	                            <div class="flex items-start gap-6">
+	                                {photo && (
+	                                    <div class="shrink-0">
+	                                        <div class="w-16 h-16 border-2 border-black dark:border-white overflow-hidden bg-black">
+	                                            <Image
+	                                                src={photo}
+	                                                alt={testimonial.name}
+	                                                loading="lazy"
+	                                                class="w-full h-full object-cover"
+	                                            />
+	                                        </div>
+	                                    </div>
+	                                )}
+	                                <div class="space-y-3">
+	                                    <div>
+	                                        <p class="font-bold uppercase tracking-wide">{testimonial.name}</p>
+	                                        <p class="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-300">
+	                                            {testimonial.role}
+	                                            {testimonial.company ? ` · ${testimonial.company}` : ""}
+	                                        </p>
+	                                    </div>
+	                                    <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+	                                        {testimonial.text}
+	                                    </p>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    );
+	                })}
+	            </div>
         </section>
 
         <!-- Divider -->
@@ -344,7 +322,7 @@ const posts = (await getCollection('blog'))
         <section class="scroll-mt-16 space-y-12" id="about">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 04</span>
+	                    <span class="section-label">// 03</span>
                     <h2 class="heading-display text-4xl md:text-5xl">About</h2>
                 </div>
             </div>
@@ -447,7 +425,7 @@ const posts = (await getCollection('blog'))
         <section class="scroll-mt-16 space-y-12" id="services">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 05</span>
+	                    <span class="section-label">// 04</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Services</h2>
                 </div>
             </div>
@@ -516,7 +494,7 @@ const posts = (await getCollection('blog'))
         <section class="scroll-mt-16 space-y-12" id="experience">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 06</span>
+	                    <span class="section-label">// 05</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Experience</h2>
                 </div>
             </div>
@@ -663,7 +641,7 @@ const posts = (await getCollection('blog'))
         <section class="scroll-mt-16 space-y-12" id="blog">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 07</span>
+	                    <span class="section-label">// 06</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Latest Posts</h2>
                 </div>
                 <a href="/blog" class="arrow-link">View all posts</a>
@@ -679,7 +657,7 @@ const posts = (await getCollection('blog'))
         <section class="space-y-12">
             <div class="section-header">
                 <div class="space-y-2">
-                    <span class="section-label">// 08</span>
+	                    <span class="section-label">// 07</span>
                     <h2 class="heading-display text-4xl md:text-5xl">Beyond Code</h2>
                 </div>
             </div>
