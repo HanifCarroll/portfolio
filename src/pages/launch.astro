@@ -1,0 +1,413 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import testimonials from "../../testimonials.json";
+import monicaPhoto from "@src/assets/img/monica.jpeg";
+import markisPhoto from "@src/assets/img/markis.jpeg";
+import sarahPhoto from "@src/assets/img/sarah.jpeg";
+
+const title = "The 4-Week Launch";
+const description =
+    "From idea to live product in 4 weeks. No equity. No jargon. No bullshit.";
+const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
+
+const testimonialPhotos: Record<string, ImageMetadata> = {
+    "Monica Londoño": monicaPhoto,
+    "Markis Zarate": markisPhoto,
+    "Sarah Hibner": sarahPhoto,
+};
+---
+
+<BaseLayout
+    title={`${title} · Hanif Carroll`}
+    description={description}
+>
+    <article class="container space-y-32 py-10">
+        <!-- Breadcrumb -->
+        <nav
+            class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide"
+        >
+            <a href="/" class="transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">Home</a>
+            <span class="text-zinc-400">/</span>
+            <span class="text-primary">Launch</span>
+        </nav>
+
+        <!-- 1. Hero -->
+        <header class="space-y-6">
+            <span class="section-label">// The 4-Week Launch</span>
+            <h1 class="heading-display text-5xl md:text-6xl" style="text-wrap: balance">
+                From idea to live product in 4&nbsp;weeks.
+            </h1>
+            <p
+                class="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl"
+            >
+                I turn your idea into a real, working product that your first users
+                can pay for&mdash;in 4&nbsp;weeks. Built for nontechnical founders.
+            </p>
+            <div class="space-y-2">
+                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                    Book Your Free Product Roadmap Call
+                </a>
+                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-wide">30 minutes &middot; No commitment</p>
+            </div>
+        </header>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 2. Credibility Strip -->
+        <section class="space-y-12">
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="tech-card p-6 text-center">
+                    <p class="heading-display text-3xl text-primary" style="font-variant-numeric: tabular-nums">8+</p>
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-600 dark:text-zinc-300 mt-2">Years Building Products</p>
+                </div>
+                <div class="tech-card p-6 text-center">
+                    <p class="heading-display text-3xl text-primary" style="font-variant-numeric: tabular-nums">10+</p>
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-600 dark:text-zinc-300 mt-2">Projects Shipped</p>
+                </div>
+                <div class="tech-card p-6 text-center">
+                    <p class="heading-display text-3xl text-primary">4 Weeks</p>
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-600 dark:text-zinc-300 mt-2">Average Time to Launch</p>
+                </div>
+            </div>
+
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 text-center font-mono uppercase tracking-wide">Previously at Capgemini &amp; LeagueApps</p>
+
+            <!-- Testimonials -->
+            <div class="space-y-4">
+                <h2 class="heading-display text-3xl md:text-4xl">What People Say About Working With Me</h2>
+            </div>
+            <div class="space-y-6">
+                {testimonials.map((testimonial) => {
+                    const photo = testimonialPhotos[testimonial.name];
+                    return (
+                        <div class="tech-card p-8">
+                            <div class="flex items-start gap-6">
+                                {photo && (
+                                    <div class="shrink-0">
+                                        <div class="w-16 h-16 border-2 border-black dark:border-white overflow-hidden bg-black">
+                                            <Image
+                                                src={photo}
+                                                alt={testimonial.name}
+                                                width={64}
+                                                height={64}
+                                                loading="lazy"
+                                                class="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-bold uppercase tracking-wide">{testimonial.name}</p>
+                                        <p class="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-300">
+                                            {testimonial.role}
+                                            {testimonial.company ? ` · ${testimonial.company}` : ""}
+                                        </p>
+                                    </div>
+                                    <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                        &ldquo;{testimonial.text}&rdquo;
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 3. Problem Section -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// The Problem</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">You Have the Idea. You Just Can&rsquo;t Build It.</h2>
+                <p class="text-lg text-zinc-600 dark:text-zinc-300">Every month you wait is another month your competitors are building.</p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Stuck for Months&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You&rsquo;ve been sitting on this idea, but you can&rsquo;t write code and don&rsquo;t know where to start.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Burned Before&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You paid $5&ndash;15K to a freelancer or agency and got half-finished garbage.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Overwhelmed by Options&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Agencies want $15&ndash;30K. A cofounder wants 30&ndash;50% equity. Cheap freelancers are a gamble.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Lost in Translation&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You don&rsquo;t speak developer. You&rsquo;re afraid of jargon, &ldquo;stupid questions,&rdquo; and not being able to tell if the work is good.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 4. "Not for Everyone" Qualifier -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// A Note on Fit</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">This Is Not for Everyone</h2>
+            </div>
+
+            <div class="tech-card p-8 md:p-10 space-y-8">
+                <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+                    <li class="flex gap-3">
+                        <span class="text-primary font-bold shrink-0">&times;</span>
+                        <span>If you need a complex enterprise platform with 50+ features, this isn&rsquo;t the right fit. I build focused MVPs, not bloated v1s.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-primary font-bold shrink-0">&times;</span>
+                        <span>If you can&rsquo;t commit to a 30-minute weekly check-in and timely feedback, I can&rsquo;t guarantee the timeline.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-primary font-bold shrink-0">&times;</span>
+                        <span>If you want pixel-perfect custom design before any code is written, you&rsquo;ll need a designer first. I build functional, clean products&mdash;not award-winning visual design.</span>
+                    </li>
+                </ul>
+
+                <div class="grid-line-horizontal"></div>
+
+                <blockquote class="text-xl font-bold" style="text-wrap: balance">
+                    &ldquo;I&rsquo;m a solo engineer based in Buenos Aires, not a 20-person agency.&rdquo;
+                </blockquote>
+
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div>
+                        <p class="font-bold uppercase tracking-wide">Direct Access</p>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">You talk to the person building your product. No account managers, no game of telephone.</p>
+                    </div>
+                    <div>
+                        <p class="font-bold uppercase tracking-wide">No Overhead</p>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">No office, no junior devs learning on your dime. You pay for senior-level execution, nothing else.</p>
+                    </div>
+                    <div>
+                        <p class="font-bold uppercase tracking-wide">Speed</p>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-2">One decision-maker, zero bureaucracy. I move fast because there&rsquo;s nothing slowing me down.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 5. How It Works -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// The Process</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">4 Weeks. Here&rsquo;s How.</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="tech-card p-8">
+                    <span class="section-label">// 01</span>
+                    <h3 class="font-bold uppercase tracking-wide mt-3">Scoping Sprint (Days 1&ndash;3)</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You walk away knowing exactly what gets built, in what order, and why&mdash;before a single line of code.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <span class="section-label">// 02</span>
+                    <h3 class="font-bold uppercase tracking-wide mt-3">Landing Page Live (Week 1)</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Your landing page goes live <strong class="text-black dark:text-white">in the first week</strong>. You&rsquo;re collecting signups and validating demand while the product is being built.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <span class="section-label">// 03</span>
+                    <h3 class="font-bold uppercase tracking-wide mt-3">Full Build + Weekly Demos (Weeks 2&ndash;4)</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">I build. You show up for a 30-minute demo each week and give feedback in plain English. That&rsquo;s it.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <span class="section-label">// 04</span>
+                    <h3 class="font-bold uppercase tracking-wide mt-3">Launch Day</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Your product is live, hosted, and monitored. I handle the technical launch. You focus on telling customers.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 6. Offer Stack -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// What You Get</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">One Price. Everything You Need to Launch.</h2>
+            </div>
+
+            <div class="tech-card p-8 md:p-10 space-y-8">
+                <!-- Core Deliverables -->
+                <div class="space-y-4">
+                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Core Deliverables</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">MVP Scoping Sprint</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,500 value</span>
+                        </div>
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">Complete Product Build (4 weeks)</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$8,000+ value</span>
+                        </div>
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">Launch Day Deployment &amp; Setup</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,500 value</span>
+                        </div>
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">30-Day Post-Launch Bug Shield</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$2,000 value</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-line-horizontal"></div>
+
+                <!-- Bonuses -->
+                <div class="space-y-4">
+                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Bonuses</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">Technical Handoff Documentation</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,000 value</span>
+                        </div>
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">Founder&rsquo;s Tech Decision Cheat Sheet</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$500 value</span>
+                        </div>
+                        <div class="flex justify-between items-baseline gap-4">
+                            <span class="font-bold">Launch Announcement Kit</span>
+                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$500 value</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-line-horizontal"></div>
+
+                <!-- Total -->
+                <div class="text-center space-y-2">
+                    <p class="text-lg text-zinc-500 line-through" style="font-variant-numeric: tabular-nums">$15,000+ in value</p>
+                    <p class="heading-display text-3xl text-primary" style="font-variant-numeric: tabular-nums">$4,000</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 7. Pricing Block -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// The Investment</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">$4,000. One Month. Done.</h2>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="tech-card p-6 text-center space-y-3">
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">US-Based Developer</p>
+                    <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">$8&ndash;15K/month</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300">And you&rsquo;re still managing them</p>
+                </div>
+                <div class="tech-card p-6 text-center space-y-3">
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Technical Cofounder</p>
+                    <p class="heading-display text-2xl">30&ndash;50% equity</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300">That&rsquo;s forever</p>
+                </div>
+                <div class="tech-card p-6 text-center space-y-3">
+                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Agency</p>
+                    <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">$15&ndash;30K</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300">3&ndash;6 month timeline</p>
+                </div>
+            </div>
+
+            <div class="text-center space-y-3">
+                <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">$4,000</p>
+                <p class="text-zinc-600 dark:text-zinc-300">100% of your equity stays yours</p>
+            </div>
+
+            <div class="text-center pt-4">
+                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                    Book Your Free Product Roadmap Call
+                </a>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 8. Guarantee / Risk Reversal -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// The Guarantee</span>
+            </div>
+
+            <div class="tech-card border-primary p-10 md:p-12 space-y-6">
+                <p class="text-zinc-600 dark:text-zinc-300 font-bold">You&rsquo;re not risking $4,000. You&rsquo;re risking 30 minutes on a call.</p>
+                <p class="text-2xl md:text-3xl font-bold" style="text-wrap: balance">
+                    &ldquo;If your MVP isn&rsquo;t live within 4 weeks, I work for free until it is.&rdquo;
+                </p>
+                <p class="text-zinc-600 dark:text-zinc-300">
+                    No extra charges, no excuses. Requires your participation in weekly check-ins and timely feedback.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                    Book Your Free Product Roadmap Call
+                </a>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 9. Objection FAQ -->
+        <section class="space-y-12">
+            <div class="space-y-4">
+                <span class="section-label">// Common Questions</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">Questions You Might Have</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I&rsquo;ve been burned by a developer before.&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Code on your GitHub from Day 1. Weekly demos. Shared project board. You&rsquo;re never locked in.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I don&rsquo;t know what to build first.&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">That&rsquo;s what the Scoping Sprint is for. You get a prioritized roadmap before I write a line of code.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;What happens after it&rsquo;s built?&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You don&rsquo;t touch infrastructure. I handle deployment, monitoring, and bugs for 30 days. Plus a recorded handoff so any future dev can pick it up.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I can&rsquo;t afford a CTO or an agency.&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">$4,000 gets you a senior technical partner for a full month. No equity required.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I don&rsquo;t know how to talk to developers.&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Weekly updates in plain English. Every technical decision translated into business impact. No jargon, ever.</p>
+                </div>
+                <div class="tech-card p-8">
+                    <h3 class="font-bold uppercase tracking-wide">&ldquo;How does payment work?&rdquo;</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">50% upfront to kick off the Scoping Sprint, 50% at launch. Simple, no surprises.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
+        <!-- 10. Scarcity + Final CTA -->
+        <section class="text-center max-w-2xl mx-auto space-y-6">
+            <blockquote class="text-sm text-zinc-600 dark:text-zinc-300 italic leading-relaxed">
+                &ldquo;Hanif delivers high quality work with strong attention to detail. He&rsquo;s the kind of developer who not only gets the job done but elevates the process for everyone involved.&rdquo;
+                <span class="block mt-2 not-italic font-mono text-xs uppercase tracking-wider">&mdash; Markis Zarate, Founder, Zarate Studios</span>
+            </blockquote>
+            <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take 2 build projects at a time.</p>
+            <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">Your Product Could Be Live in 4&nbsp;Weeks</h2>
+            <p class="text-zinc-600 dark:text-zinc-300">
+                Book a free 30-minute Product Roadmap Call. You&rsquo;ll walk away with a prioritized feature list and realistic timeline&mdash;whether or not we work together.
+            </p>
+            <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                Book Your Free Product Roadmap Call
+            </a>
+        </section>
+    </article>
+</BaseLayout>
