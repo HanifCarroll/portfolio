@@ -11,6 +11,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image } = Astro.props;
 const fallbackImage = image ?? "/img/avatar2.jpg";
+const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+const gtmLoaderScript = gtmId
+    ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`
+    : "";
+const gaInitScript = gaMeasurementId
+    ? `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = window.gtag || gtag; gtag('js', new Date()); gtag('config', '${gaMeasurementId}', { send_page_view: false });`
+    : "";
+const clarityLoaderScript = clarityProjectId
+    ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, 'clarity', 'script', '${clarityProjectId}');`
+    : "";
 ---
 
 <!-- Global Metadata -->
@@ -19,6 +32,9 @@ const fallbackImage = image ?? "/img/avatar2.jpg";
 <link rel="icon" href="/favicon.jpg" />
 <link rel="apple-touch-icon" href="/webclip.jpg" />
 <meta name="generator" content={Astro.generator} />
+{gscVerification && (
+    <meta name="google-site-verification" content={gscVerification} />
+)}
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,6 +43,19 @@ const fallbackImage = image ?? "/img/avatar2.jpg";
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet"
 />
+{gtmLoaderScript && <script is:inline set:html={gtmLoaderScript}></script>}
+{
+    gaMeasurementId && (
+        <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+        ></script>
+    )
+}
+{gaInitScript && <script is:inline set:html={gaInitScript}></script>}
+{clarityLoaderScript && (
+    <script is:inline set:html={clarityLoaderScript}></script>
+)}
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
