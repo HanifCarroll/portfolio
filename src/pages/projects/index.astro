@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectList from "../../components/ProjectList.astro";
+import { projects } from "../../lib/project-cards";
+
+const title = "Projects";
+const description =
+    "Case studies and selected product work by Hanif Carroll across AI, web applications, and marketing sites.";
+---
+
+<BaseLayout title={`${title} · Hanif Carroll`} description={description}>
+    <article class="container max-w-6xl space-y-16 py-10">
+        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
+            <a href="/" class="transition-colors hover:text-primary">Home</a>
+            <span class="text-zinc-400">/</span>
+            <span class="text-primary">Projects</span>
+        </nav>
+
+        <header class="space-y-6">
+            <span class="section-label">// Selected Work</span>
+            <h1 class="heading-display text-4xl md:text-5xl">
+                Product work, marketing sites, and systems that shipped.
+            </h1>
+            <div class="tech-card p-6 md:p-8">
+                <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    These are the projects I&rsquo;ve built across product engineering,
+                    AI workflows, and growth-oriented web experiences. Each case study
+                    focuses on the problem, the approach, and the business outcome.
+                </p>
+            </div>
+        </header>
+
+        <ProjectList projects={projects} />
+    </article>
+</BaseLayout>
