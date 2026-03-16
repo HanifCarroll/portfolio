@@ -8,18 +8,77 @@ const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <BaseHead title={`${title} · Hanif Carroll`} description={description} />
     <style is:inline>
       @page {
         size: Letter;
-        margin: 0.45in;
+        margin: 0.5in;
       }
 
       html,
       body {
-        background: white !important;
+        background: #f7f4ee !important;
+      }
+
+      body {
+        color: #111111;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sheet {
+        background: #fffdf8;
+        border: 1.5px solid #111111;
+        box-shadow: 8px 8px 0 #111111;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.24em;
+      }
+
+      .accent-rule {
+        height: 6px;
+        background: linear-gradient(90deg, #111111 0%, #111111 70%, #d97706 70%, #d97706 100%);
+      }
+
+      .kpi-card {
+        border: 1.5px solid #111111;
+        background: #fff;
+      }
+
+      .panel {
+        border: 1.5px solid #111111;
+        background: #fff;
+      }
+
+      .section-title {
+        letter-spacing: -0.03em;
+      }
+
+      .muted {
+        color: #4b5563;
+      }
+
+      .price-chip {
+        border: 1.5px solid #111111;
+        background: #111111;
+        color: white;
+      }
+
+      .mini-label {
+        letter-spacing: 0.18em;
+      }
+
+      .timeline-item,
+      .panel,
+      .kpi-card,
+      .price-box,
+      .contact-box,
+      .avoid-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
 
       @media print {
@@ -29,66 +88,80 @@ const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
         }
 
         body {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+          margin: 0;
         }
 
-        .print-shell {
-          padding-top: 0 !important;
-          padding-bottom: 0 !important;
-        }
-
-        .avoid-break,
-        .avoid-break > *,
-        .tech-card,
-        .print-block {
-          break-inside: avoid;
-          page-break-inside: avoid;
+        .sheet {
+          box-shadow: none;
         }
 
         a {
-          color: inherit !important;
-          text-decoration: none !important;
+          color: inherit;
+          text-decoration: none;
         }
       }
     </style>
   </head>
-  <body class="font-sans bg-white text-black">
-    <main class="print-shell py-8 md:py-10">
-      <article class="container">
-        <div class="mx-auto max-w-4xl space-y-8">
-          <header class="avoid-break space-y-5 border-2 border-black p-8 md:p-10">
-            <div class="space-y-2">
-              <p class="font-mono text-xs uppercase tracking-[0.2em] text-primary">Hanif Carroll</p>
-              <h1 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
-                Full-stack engineer for nontechnical founders who need a real MVP fast.
-              </h1>
+  <body class="font-sans">
+    <main class="py-6">
+      <article class="container max-w-5xl">
+        <div class="sheet mx-auto p-8 md:p-10 space-y-8">
+          <div class="accent-rule"></div>
+
+          <header class="avoid-break space-y-6">
+            <div class="flex items-start justify-between gap-6">
+              <div class="space-y-3 max-w-3xl">
+                <p class="eyebrow text-[11px] font-mono uppercase text-zinc-500">Hanif Carroll · Founder MVP One-Pager</p>
+                <h1 class="heading-display section-title text-4xl md:text-5xl leading-none">
+                  Full-stack engineer for nontechnical founders who need a real MVP fast.
+                </h1>
+                <p class="text-lg leading-relaxed muted max-w-2xl">
+                  I help founders go from idea to live product in 4 weeks. Scope, UX,
+                  full-stack development, deployment, and launch support — handled directly by me.
+                </p>
+              </div>
+              <div class="price-chip px-4 py-3 shrink-0 text-center">
+                <p class="mini-label font-mono text-[10px] uppercase text-white/80">Launch pricing</p>
+                <p class="heading-display text-2xl mt-1">From $7,500</p>
+              </div>
             </div>
-            <p class="text-lg text-zinc-700 max-w-3xl leading-relaxed">
-              I help founders go from idea to live product in 4 weeks. Scope, UX,
-              full-stack development, deployment, and launch support — handled directly by me.
-            </p>
-            <div class="grid gap-4 md:grid-cols-3 text-sm font-mono uppercase tracking-wide text-zinc-700">
-              <div class="tech-card print-block p-4">8+ years building products</div>
-              <div class="tech-card print-block p-4">React / Next.js / Node / TypeScript / AI</div>
-              <div class="tech-card print-block p-4">Focused MVP launches start at $7,500</div>
+
+            <div class="grid gap-4 md:grid-cols-3 text-sm font-mono uppercase">
+              <div class="kpi-card p-4">
+                <p class="text-2xl font-black">8+</p>
+                <p class="mt-1 text-zinc-600">Years building products</p>
+              </div>
+              <div class="kpi-card p-4">
+                <p class="text-2xl font-black">Full-stack + AI</p>
+                <p class="mt-1 text-zinc-600">React / Next.js / Node / TypeScript</p>
+              </div>
+              <div class="kpi-card p-4">
+                <p class="text-2xl font-black">4 Weeks</p>
+                <p class="mt-1 text-zinc-600">Focused MVP launch timeline</p>
+              </div>
             </div>
           </header>
 
-          <section class="avoid-break grid gap-6 md:grid-cols-2">
-            <div class="tech-card print-block p-8 space-y-4">
-              <h2 class="heading-display text-2xl">Who I help</h2>
-              <ul class="space-y-3 text-zinc-700">
-                <li>• Nontechnical founders who need a technical partner they can trust</li>
+          <section class="grid gap-5 md:grid-cols-2 avoid-break">
+            <div class="panel p-6 space-y-4">
+              <div>
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Who I help</p>
+                <h2 class="heading-display text-2xl mt-2">Founders who need a technical partner they can trust.</h2>
+              </div>
+              <ul class="space-y-3 muted text-[15px] leading-relaxed">
+                <li>• Nontechnical founders moving from idea to first launch</li>
                 <li>• Early-stage teams validating a new product or internal tool</li>
                 <li>• Operators who want direct access to the builder, not agency layers</li>
-                <li>• Founders who need clarity, speed, and plain-English communication</li>
+                <li>• Buyers who value speed, clarity, and plain-English communication</li>
               </ul>
             </div>
 
-            <div class="tech-card print-block p-8 space-y-4">
-              <h2 class="heading-display text-2xl">What I deliver</h2>
-              <ul class="space-y-3 text-zinc-700">
+            <div class="panel p-6 space-y-4">
+              <div>
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">What I deliver</p>
+                <h2 class="heading-display text-2xl mt-2">A clean first version that people can actually use.</h2>
+              </div>
+              <ul class="space-y-3 muted text-[15px] leading-relaxed">
                 <li>• MVP scoping sprint to cut scope to what matters</li>
                 <li>• UX and product thinking for a clean v1 experience</li>
                 <li>• Full-stack build from frontend to backend</li>
@@ -97,75 +170,91 @@ const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
             </div>
           </section>
 
-          <section class="avoid-break tech-card print-block p-8 md:p-10 space-y-6">
-            <div class="space-y-2">
-              <p class="font-mono text-xs uppercase tracking-[0.2em] text-primary">The 4-Week Launch</p>
-              <h2 class="heading-display text-3xl md:text-4xl">From idea to live MVP in 4 weeks.</h2>
+          <section class="panel p-6 md:p-8 space-y-6 avoid-break">
+            <div class="flex items-end justify-between gap-6">
+              <div>
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">The 4-Week Launch</p>
+                <h2 class="heading-display text-3xl md:text-4xl mt-2">From idea to live MVP in 4 weeks.</h2>
+              </div>
+              <p class="text-sm muted max-w-sm text-right">Fixed-scope engagement with weekly demos, direct communication, and launch support.</p>
             </div>
-            <div class="grid gap-6 md:grid-cols-4">
-              <div class="print-block">
-                <p class="font-mono text-xs uppercase tracking-wide text-zinc-500">Week 1</p>
-                <p class="mt-2 text-sm text-zinc-700">Scoping sprint, roadmap, and product decisions.</p>
+
+            <div class="grid gap-4 md:grid-cols-4">
+              <div class="timeline-item border-l-4 border-black pl-4">
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 1</p>
+                <p class="mt-2 font-semibold">Scope and roadmap</p>
+                <p class="mt-1 text-sm muted">Feature cuts, product decisions, and a realistic launch plan.</p>
               </div>
-              <div class="print-block">
-                <p class="font-mono text-xs uppercase tracking-wide text-zinc-500">Week 2</p>
-                <p class="mt-2 text-sm text-zinc-700">Core build starts with visible momentum.</p>
+              <div class="timeline-item border-l-4 border-black pl-4">
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 2</p>
+                <p class="mt-2 font-semibold">Core build</p>
+                <p class="mt-1 text-sm muted">The product becomes real quickly, with visible momentum.</p>
               </div>
-              <div class="print-block">
-                <p class="font-mono text-xs uppercase tracking-wide text-zinc-500">Week 3</p>
-                <p class="mt-2 text-sm text-zinc-700">Refinement, polish, integrations, and founder feedback.</p>
+              <div class="timeline-item border-l-4 border-black pl-4">
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 3</p>
+                <p class="mt-2 font-semibold">Refine and integrate</p>
+                <p class="mt-1 text-sm muted">Polish, feedback, integrations, and key user flows.</p>
               </div>
-              <div class="print-block">
-                <p class="font-mono text-xs uppercase tracking-wide text-zinc-500">Week 4</p>
-                <p class="mt-2 text-sm text-zinc-700">Launch, deployment, handoff, and bug shield.</p>
+              <div class="timeline-item border-l-4 border-black pl-4">
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 4</p>
+                <p class="mt-2 font-semibold">Launch</p>
+                <p class="mt-1 text-sm muted">Deployment, handoff, and post-launch bug shield.</p>
               </div>
             </div>
           </section>
 
-          <section class="avoid-break grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
-            <div class="tech-card print-block p-8 space-y-4">
-              <h2 class="heading-display text-2xl">Relevant work</h2>
-              <div class="space-y-4 text-zinc-700">
-                <div class="print-block">
+          <section class="grid gap-5 md:grid-cols-[1.15fr_0.85fr] avoid-break">
+            <div class="panel p-6 space-y-5">
+              <div>
+                <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Relevant work</p>
+                <h2 class="heading-display text-2xl mt-2">Proof that I can ship the kind of thing founders actually need.</h2>
+              </div>
+              <div class="space-y-4 text-[15px]">
+                <div>
                   <p class="font-bold">Genrupt</p>
-                  <p class="text-sm">Ongoing development partner for an AI image and video generation platform.</p>
+                  <p class="muted text-sm mt-1">Ongoing development partner for an AI image and video generation platform.</p>
                 </div>
-                <div class="print-block">
+                <div>
                   <p class="font-bold">BA Events</p>
-                  <p class="text-sm">AI-powered event discovery product with conversational UX and production data pipelines.</p>
+                  <p class="muted text-sm mt-1">AI-powered event discovery product with conversational UX and production data pipelines.</p>
                 </div>
-                <div class="print-block">
-                  <p class="font-bold">Client fit</p>
-                  <p class="text-sm">Best fit for founders who want a focused first version, weekly demos, and a product they can actually show users.</p>
+                <div>
+                  <p class="font-bold">Best fit</p>
+                  <p class="muted text-sm mt-1">Founders who want a focused first version, weekly demos, and a product they can actually show users.</p>
                 </div>
               </div>
             </div>
 
-            <div class="tech-card print-block p-8 space-y-5">
-              <div class="print-block">
-                <p class="font-mono text-xs uppercase tracking-[0.2em] text-primary">Pricing</p>
-                <p class="heading-display text-3xl mt-2">Starting at $7,500</p>
-                <p class="text-sm text-zinc-700 mt-2">Exact pricing depends on scope, integrations, and complexity.</p>
+            <div class="space-y-5">
+              <div class="panel price-box p-6 space-y-4">
+                <div>
+                  <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Pricing</p>
+                  <p class="heading-display text-3xl mt-2">Starting at $7,500</p>
+                  <p class="muted text-sm mt-2">Exact pricing depends on scope, integrations, and technical complexity.</p>
+                </div>
+                <div class="space-y-2 text-sm muted">
+                  <p>• Fixed-scope launch engagement</p>
+                  <p>• Weekly demos and direct communication</p>
+                  <p>• No equity required</p>
+                  <p>• 50% upfront, 50% at launch</p>
+                </div>
               </div>
-              <div class="space-y-3 text-sm text-zinc-700">
-                <p>• Fixed-scope launch engagement</p>
-                <p>• Weekly demos and direct communication</p>
-                <p>• No equity required</p>
-                <p>• 50% upfront, 50% at launch</p>
-              </div>
-            </div>
-          </section>
 
-          <section class="avoid-break border-2 border-black p-8 md:p-10 space-y-4">
-            <h2 class="heading-display text-3xl">Next step</h2>
-            <p class="text-zinc-700 max-w-2xl">
-              Book a free Product Roadmap Call. I’ll help cut scope, map the fastest realistic MVP, and tell you whether I’m the right fit.
-            </p>
-            <div class="space-y-1 text-sm text-zinc-700">
-              <p><span class="font-bold">Website:</span> hanifcarroll.com/launch</p>
-              <p><span class="font-bold">Portfolio:</span> hanifcarroll.com/projects</p>
-              <p><span class="font-bold">Call:</span> <a href={calUrl}>cal.com/hanifcarroll/roadmap-call</a></p>
-              <p><span class="font-bold">Location:</span> Buenos Aires, Argentina (works remotely worldwide)</p>
+              <div class="panel contact-box p-6 space-y-4">
+                <div>
+                  <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Next step</p>
+                  <h2 class="heading-display text-2xl mt-2">Book a free Product Roadmap Call.</h2>
+                </div>
+                <p class="muted text-sm leading-relaxed">
+                  I’ll help cut scope, map the fastest realistic MVP, and tell you whether I’m the right fit.
+                </p>
+                <div class="space-y-1 text-sm">
+                  <p><span class="font-bold">Website:</span> hanifcarroll.com/launch</p>
+                  <p><span class="font-bold">Portfolio:</span> hanifcarroll.com/projects</p>
+                  <p><span class="font-bold">Call:</span> cal.com/hanifcarroll/roadmap-call</p>
+                  <p><span class="font-bold">Location:</span> Buenos Aires, Argentina</p>
+                </div>
+              </div>
             </div>
           </section>
         </div>
