@@ -2,6 +2,7 @@
 title: "I Hate Creating Content, So I Built a Robot to Do It For Me"
 pubDate: "2025-08-19"
 description: "How I automated my own content workflow with a functional AI pipeline that turns call transcripts into ready-to-schedule posts."
+ctaVariant: automation
 ---
 
 Let's be honest: creating content for social media can be a grind.

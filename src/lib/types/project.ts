@@ -3,12 +3,25 @@ export interface ProjectImages {
   feature: string;
 }
 
+export type ProjectTrack =
+  | 'mvp_build'
+  | 'mvp_validation'
+  | 'workflow_automation'
+  | 'ai_systems'
+  | 'launch_site';
+
+export type ProjectTrackGroup =
+  | 'automation_and_ai'
+  | 'mvp_and_validation'
+  | 'launch_sites';
+
 export interface Project {
   slug: string;
   title: string;
   description: string;
   client: string;
   service: string;
+  track: ProjectTrack;
   category?: 'product' | 'marketing-site';
   year?: string;
   technologies: string[];

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { project, image } = Astro.props;
-const primaryTag = project.tags[0] || (project.category === 'product' ? 'APP' : 'SITE');
+const primaryTag = project.tags[0] || project.trackShortLabel;
 ---
 
 <a href={`/projects/${project.slug}/`} class="tech-card group block">

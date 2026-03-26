@@ -19,14 +19,10 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const {
-	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, tags }
+	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant }
 } = post;
 const { Content, headings } = await render(post);
 
-const topicText = `${title} ${description ?? ''} ${(tags ?? []).join(' ')}`.toLowerCase();
-const blogVariant = /agent|ai|automation|workflow|playwright|browser/.test(topicText)
-	? 'automation'
-	: 'mvp';
 const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`;
 ---
 
@@ -55,7 +51,7 @@ const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`
 					</Prose>
 				</article>
 				<div class='mt-12 border-t border-black/10 pt-10 dark:border-white/10'>
-					<ServiceCallout variant={blogVariant} location={ctaLocation} />
+					<ServiceCallout context="blog" variant={ctaVariant} location={ctaLocation} />
 				</div>
 			</main>
     <div class='shrink-0 w-[280px] hidden md:block'>

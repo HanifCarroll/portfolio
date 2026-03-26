@@ -3,6 +3,7 @@ title: "Browser Automation for AI Agents: Playwriter vs Agent-Browser vs Claude 
 description: "A hands-on comparison of three browser automation tools for AI agents. Benchmarks, code examples, and recommendations for different use cases."
 pubDate: 2026-01-16
 tags: ["ai", "browser-automation", "tools", "comparison", "playwright"]
+ctaVariant: automation
 ---
 
 I spent an afternoon testing three browser automation tools to see which one is best for AI agent work. Here's what I found.

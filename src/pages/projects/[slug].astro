@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ServiceCallout from "../../components/ServiceCallout.astro";
 import type { Project } from "@src/lib/types/project";
 import { getAllProjects } from "@src/lib/projects";
+import { getProjectTrackMeta } from "@src/lib/project-tracks";
 
 // Import all project images statically
 import baEventosHero from "@src/assets/img/projects/ba-eventos-hero.png";
@@ -37,15 +38,8 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props as PageProps;
-const automationProjectSlugs = new Set([
-    "ba-eventos",
-    "desarmadero-latorre",
-    "genrupt",
-    "vox-prismatic",
-]);
-const caseStudyVariant = automationProjectSlugs.has(project.slug)
-    ? "automation"
-    : "mvp";
+const trackMeta = getProjectTrackMeta(project.track);
+const caseStudyVariant = trackMeta.ctaVariant;
 
 // Map project slugs to static image imports
 const imageMap: Record<
@@ -113,6 +107,12 @@ const images = imageMap[project.slug];
                                 </div>
                             )
                         }
+                        <div>
+                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                Track
+                            </dt>
+                            <dd class="font-medium">{trackMeta.label}</dd>
+                        </div>
                         <div>
                             <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
                                 Service
@@ -259,6 +259,7 @@ const images = imageMap[project.slug];
 
         <ServiceCallout
             variant={caseStudyVariant}
+            context="case-study"
             location={`case_study_${project.slug}`}
         />
 
