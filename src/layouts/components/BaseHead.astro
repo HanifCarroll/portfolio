@@ -22,7 +22,19 @@ const gaInitScript = gaMeasurementId
     ? `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = window.gtag || gtag; gtag('js', new Date()); gtag('config', '${gaMeasurementId}', { send_page_view: false });`
     : "";
 const clarityLoaderScript = clarityProjectId
-    ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, 'clarity', 'script', '${clarityProjectId}');`
+    ? `(() => {
+        const clarityAllowedHosts = new Set(['hanifcarroll.com', 'www.hanifcarroll.com']);
+        if (!clarityAllowedHosts.has(window.location.hostname)) return;
+
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);
+            t.async=1;
+            t.src='https://www.clarity.ms/tag/'+i;
+            y=l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t,y);
+        })(window, document, 'clarity', 'script', '${clarityProjectId}');
+    })();`
     : "";
 ---
 
