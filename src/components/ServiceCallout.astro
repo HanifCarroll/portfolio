@@ -1,0 +1,110 @@
+---
+import { BOOK_CALL_URL } from "../consts";
+
+type Variant = "general" | "mvp" | "automation";
+
+interface Props {
+    variant?: Variant;
+    location: string;
+    class?: string;
+}
+
+const { variant = "general", location, class: className = "" } =
+    Astro.props as Props;
+
+const offers = {
+    general: {
+        label: "// Work With Me",
+        title: "Need a senior builder to turn an idea or messy workflow into working software?",
+        body: "Most of these posts and case studies come from the same kind of work I do for clients: scoping the right first version, shipping it fast, and keeping the process clear for nontechnical teams.",
+        bullets: [
+            "Scope the smallest version worth shipping.",
+            "Figure out whether the problem is an MVP, an automation job, or both.",
+            "Work directly with the person building it.",
+        ],
+        secondaryHref: "/projects/",
+        secondaryLabel: "Browse Case Studies",
+    },
+    mvp: {
+        label: "// MVP Path",
+        title: "If you need a real first version, start by scoping the smallest thing worth launching.",
+        body: "The roadmap call is where we narrow the problem, pressure-test the scope, and decide what needs to exist in version one so you can get in front of real users quickly.",
+        bullets: [
+            "Clarify what the MVP needs on day one.",
+            "Cut features that slow launch without improving validation.",
+            "Leave with a sharper build plan and next step.",
+        ],
+        secondaryHref: "/launch/",
+        secondaryLabel: "See MVP Builds",
+    },
+    automation: {
+        label: "// Automation Path",
+        title: "If the workflow feels heavier than it should, there is usually a software problem hiding inside it.",
+        body: "Bring the repetitive task, the messy handoff, or the half-manual AI idea. The roadmap call is where we decide what to automate first and where AI actually helps.",
+        bullets: [
+            "Map the workflow before picking tools or models.",
+            "Find the smallest automation that removes real friction.",
+            "Define the guardrails, data, and actions the system needs.",
+        ],
+        secondaryHref: "/automation-ai-agents/",
+        secondaryLabel: "See Automation & AI Work",
+    },
+} as const;
+
+const offer = offers[variant];
+const primaryClasses =
+    "btn-primary border-white bg-white text-black hover:bg-black hover:text-white dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white";
+const secondaryClasses =
+    "btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black";
+---
+
+<section
+    class:list={[
+        "border-y border-black/10 bg-black px-6 py-10 text-white dark:border-white/10 md:px-8 md:py-12",
+        className,
+    ]}
+>
+    <div class="grid gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:items-end">
+        <div class="space-y-5">
+            <span class="section-label">{offer.label}</span>
+            <h2 class="heading-display max-w-3xl text-4xl text-white md:text-5xl">
+                {offer.title}
+            </h2>
+            <p class="max-w-2xl text-base leading-7 text-white/74 md:text-lg md:leading-8">
+                {offer.body}
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <ul class="space-y-4 border-t border-white/15 pt-5 text-sm leading-6 text-white/74">
+                {offer.bullets.map((bullet) => (
+                    <li class="flex gap-3">
+                        <span class="mt-2 block h-2 w-2 shrink-0 rounded-full bg-primary"></span>
+                        <span>{bullet}</span>
+                    </li>
+                ))}
+            </ul>
+
+            <div class="flex flex-wrap gap-4">
+                <a
+                    class={primaryClasses}
+                    href={BOOK_CALL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-track-event="book_call_clicked"
+                    data-track-location={`${location}_primary`}
+                >
+                    Book a Roadmap Call
+                </a>
+                <a
+                    class={secondaryClasses}
+                    href={offer.secondaryHref}
+                    data-track-event="service_page_clicked"
+                    data-track-location={`${location}_secondary`}
+                >
+                    {offer.secondaryLabel}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

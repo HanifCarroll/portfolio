@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ServiceCallout from "../../components/ServiceCallout.astro";
 import type { Project } from "@src/lib/types/project";
 import { getAllProjects } from "@src/lib/projects";
 
@@ -36,6 +37,15 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props as PageProps;
+const automationProjectSlugs = new Set([
+    "ba-eventos",
+    "desarmadero-latorre",
+    "genrupt",
+    "vox-prismatic",
+]);
+const caseStudyVariant = automationProjectSlugs.has(project.slug)
+    ? "automation"
+    : "mvp";
 
 // Map project slugs to static image imports
 const imageMap: Record<
@@ -246,6 +256,11 @@ const images = imageMap[project.slug];
                 </figure>
             )
         }
+
+        <ServiceCallout
+            variant={caseStudyVariant}
+            location={`case_study_${project.slug}`}
+        />
 
         <!-- Back to projects -->
         <div class="pt-8">

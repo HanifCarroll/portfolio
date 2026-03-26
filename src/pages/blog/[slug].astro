@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
-import { slugify } from '../../utils';
+import ServiceCallout from '../../components/ServiceCallout.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -22,6 +22,12 @@ const {
 	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, tags }
 } = post;
 const { Content, headings } = await render(post);
+
+const topicText = `${title} ${description ?? ''} ${(tags ?? []).join(' ')}`.toLowerCase();
+const blogVariant = /agent|ai|automation|workflow|playwright|browser/.test(topicText)
+	? 'automation'
+	: 'mvp';
+const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`;
 ---
 
 <BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined}>
@@ -48,6 +54,9 @@ const { Content, headings } = await render(post);
 						<Content />
 					</Prose>
 				</article>
+				<div class='mt-12 border-t border-black/10 pt-10 dark:border-white/10'>
+					<ServiceCallout variant={blogVariant} location={ctaLocation} />
+				</div>
 			</main>
     <div class='shrink-0 w-[280px] hidden md:block'>
       <div class='mb-4'>
