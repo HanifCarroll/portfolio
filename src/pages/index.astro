@@ -7,6 +7,7 @@ import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
 import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
 import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
+import markisPhoto from "@src/assets/img/markis.jpeg";
 import testimonials from "../../testimonials.json";
 
 const title = "Hanif Carroll | MVPs and AI Automation for Nontechnical Founders";
@@ -15,6 +16,9 @@ const description =
 
 const founderQuote = testimonials.find(
     (testimonial) => testimonial.name === "Monica Londoño",
+);
+const operatorQuote = testimonials.find(
+    (testimonial) => testimonial.name === "Markis Zarate",
 );
 
 const fitColumns = [
@@ -367,6 +371,32 @@ const caseStudies = [
                         </div>
                     ))}
                 </div>
+
+                {operatorQuote && (
+                    <div class="border-t border-black/12 pt-6 dark:border-white/12">
+                        <div class="flex items-start gap-4">
+                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
+                                <Image
+                                    src={markisPhoto}
+                                    alt={operatorQuote.name}
+                                    width={64}
+                                    height={64}
+                                    loading="lazy"
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                                    &ldquo;{operatorQuote.text}&rdquo;
+                                </p>
+                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
+                                    {operatorQuote.name} · {operatorQuote.role}
+                                    {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
             </div>
         </div>

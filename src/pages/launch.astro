@@ -4,18 +4,17 @@ import { Image } from "astro:assets";
 import { BOOK_CALL_URL } from "../consts";
 import testimonials from "../../testimonials.json";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
+import markisPhoto from "@src/assets/img/markis.jpeg";
 import sarahPhoto from "@src/assets/img/sarah.jpeg";
 
 const title = "MVP Builds";
 const description =
     "Focused MVP builds for nontechnical founders who need a working first version in 4 weeks.";
 const calUrl = BOOK_CALL_URL;
-const displayedTestimonials = testimonials.filter(
-    (testimonial) => testimonial.name !== "Markis Zarate",
-);
 
 const testimonialPhotos: Record<string, ImageMetadata> = {
     "Monica Londoño": monicaPhoto,
+    "Markis Zarate": markisPhoto,
     "Sarah Hibner": sarahPhoto,
 };
 ---
@@ -81,7 +80,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
                 <h2 class="heading-display text-3xl md:text-4xl">Client notes</h2>
             </div>
             <div class="space-y-6">
-                {displayedTestimonials.map((testimonial) => {
+                {testimonials.map((testimonial) => {
                     const photo = testimonialPhotos[testimonial.name];
                     return (
                         <div class="tech-card p-8">
@@ -399,6 +398,10 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
         <!-- 10. Scarcity + Final CTA -->
         <section class="text-center max-w-2xl mx-auto space-y-6">
+            <blockquote class="text-sm text-zinc-600 dark:text-zinc-300 italic leading-relaxed">
+                &ldquo;Hanif delivers high quality work with strong attention to detail. He&rsquo;s the kind of developer who not only gets the job done but elevates the process for everyone involved.&rdquo;
+                <span class="block mt-2 not-italic font-mono text-xs uppercase tracking-wider">&mdash; Markis Zarate, Founder, Zarate Studios</span>
+            </blockquote>
             <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take 2 build projects at a time.</p>
             <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">If the scope is right, your MVP can be live in 4&nbsp;weeks.</h2>
             <p class="text-zinc-600 dark:text-zinc-300">
