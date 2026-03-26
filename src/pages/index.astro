@@ -7,7 +7,6 @@ import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
 import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
 import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
-import markisPhoto from "@src/assets/img/markis.jpeg";
 import testimonials from "../../testimonials.json";
 
 const title = "Hanif Carroll | MVPs and AI Automation for Nontechnical Founders";
@@ -17,25 +16,20 @@ const description =
 const founderQuote = testimonials.find(
     (testimonial) => testimonial.name === "Monica Londoño",
 );
-const operatorQuote = testimonials.find(
-    (testimonial) => testimonial.name === "Markis Zarate",
-);
 
 const fitColumns = [
     {
         title: "Best fit",
         items: [
-            "You need a real v1, not another month of planning.",
-            "Your business is buried in repetitive manual workflow.",
-            "You want useful AI tied to a workflow or decision, not AI theater.",
+            "You need a first version in users' hands soon.",
+            "Your business keeps losing time to the same manual work.",
         ],
     },
     {
         title: "Probably not a fit",
         items: [
             "Idea-only projects with no urgency or budget.",
-            "Large enterprise platforms with massive v1 scope.",
-            "Teams shopping for the cheapest dev hours possible.",
+            "Teams shopping for the cheapest developer hours they can find.",
         ],
     },
 ];
@@ -45,11 +39,10 @@ const offers = [
         label: "01",
         title: "MVP builds",
         description:
-            "For founders who need a real first version in the hands of users without building a team from scratch.",
+            "For founders who need a first version in front of users without hiring a team from scratch.",
         bullets: [
-            "Scope the narrowest valuable version first",
-            "Ship a focused product instead of a bloated v1",
-            "Work directly with the person building it",
+            "Cut the first version down before code starts.",
+            "Ship something people can actually use.",
         ],
         href: "/launch/",
         cta: "See the MVP path",
@@ -62,9 +55,8 @@ const offers = [
         description:
             "For business owners and lean teams who need software to remove operational drag and make AI genuinely useful.",
         bullets: [
-            "Replace repetitive admin and lead-handling work",
-            "Connect the tools you already rely on",
-            "Add AI only where it reduces work or improves decisions",
+            "Remove repetitive work inside the business.",
+            "Add AI only when it reduces work or improves a decision.",
         ],
         href: "/automation-ai-agents/",
         cta: "See automation examples",
@@ -77,17 +69,22 @@ const processSteps = [
     {
         number: "01",
         title: "Find the real bottleneck",
-        body: "We narrow the problem until the first build is small enough to ship and important enough to matter.",
+        body: "We decide whether the problem is a first version, an ops bottleneck, or both.",
     },
     {
         number: "02",
-        title: "Build in plain English",
-        body: "You get direct updates, weekly demos, and technical decisions translated into business impact.",
+        title: "Cut scope hard",
+        body: "The first build has to be useful and small enough to ship.",
     },
     {
         number: "03",
-        title: "Launch something usable",
-        body: "The goal is not a deck, prototype, or AI demo. It is working software that removes friction or creates traction.",
+        title: "Build with direct feedback",
+        body: "You get direct updates and short demos without extra layers between us.",
+    },
+    {
+        number: "04",
+        title: "Launch and learn",
+        body: "We ship something people can use, then decide what deserves the next round.",
     },
 ];
 
@@ -204,11 +201,10 @@ const caseStudies = [
             </div>
 
             <div
-                class="mt-10 grid gap-4 border-t border-white/14 pt-6 text-sm text-white/74 md:grid-cols-3"
+                class="mt-10 grid gap-4 border-t border-white/14 pt-6 text-sm text-white/74 md:grid-cols-2"
             >
                 <p>Real v1 builds for founder-led products.</p>
-                <p>Automation for businesses drowning in repetitive work.</p>
-                <p>AI systems where the model is useful because the workflow is clear.</p>
+                <p>Automation and AI systems for teams buried in manual work.</p>
             </div>
         </div>
     </section>
@@ -218,12 +214,11 @@ const caseStudies = [
             <div class="space-y-5">
                 <p class="kicker-line">Who This Is For</p>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    The site should filter for the right kind of buyer.
+                    You should know fast whether this is a fit.
                 </h2>
                 <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    If someone lands here from LinkedIn, Instagram, search, or a referral,
-                    they should know in a few seconds whether this is the kind of help they
-                    need.
+                    Most people land here cold. They should know fast whether I build the
+                    kind of thing they need.
                 </p>
             </div>
 
@@ -255,11 +250,11 @@ const caseStudies = [
             <p class="kicker-line">What I Build</p>
             <div class="max-w-3xl space-y-4">
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Two paths. Same goal: ship the smallest thing that meaningfully moves the business.
+                    Most projects start in one of two places.
                 </h2>
                 <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    I want the homepage to make the offer legible before anyone needs to
-                    click deeper into the site.
+                    Either a founder needs a first version, or a business needs software
+                    to remove a recurring bottleneck.
                 </p>
             </div>
         </div>
@@ -373,31 +368,6 @@ const caseStudies = [
                     ))}
                 </div>
 
-                {operatorQuote && (
-                    <div class="border-t border-black/12 pt-6 dark:border-white/12">
-                        <div class="flex items-start gap-4">
-                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
-                                <Image
-                                    src={markisPhoto}
-                                    alt={operatorQuote.name}
-                                    width={64}
-                                    height={64}
-                                    loading="lazy"
-                                    class="h-full w-full object-cover"
-                                />
-                            </div>
-                            <div class="space-y-3">
-                                <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
-                                    &ldquo;{operatorQuote.text}&rdquo;
-                                </p>
-                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
-                                    {operatorQuote.name} · {operatorQuote.role}
-                                    {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     </section>
@@ -407,10 +377,11 @@ const caseStudies = [
             <p class="kicker-line">Selected Case Studies</p>
             <div class="max-w-3xl space-y-4">
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Proof organized by business problem, not by a random project grid.
+                    Case studies grouped by the problem they solved.
                 </h2>
                 <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    The case studies need to answer the buyer&rsquo;s question: have you solved something close to my problem before?
+                    If you&rsquo;re trying to launch something or clean up a messy workflow,
+                    you should be able to find similar work fast.
                 </p>
             </div>
         </div>
@@ -455,11 +426,12 @@ const caseStudies = [
             <div class="max-w-4xl space-y-6">
                 <p class="kicker-line">Next Step</p>
                 <h2 class="poster-title max-w-3xl">
-                    Bring the bottleneck. I&rsquo;ll help you decide what to build first.
+                    Bring the bottleneck, and I&rsquo;ll help decide what to build first.
                 </h2>
                 <p class="poster-copy max-w-2xl text-white/74">
-                    Book a roadmap call if you need a real MVP, a cleaner operational workflow,
-                    or an AI system that does more than look impressive in a demo.
+                    Book a roadmap call if you need an MVP or a workflow that no longer
+                    depends on manual cleanup. If AI belongs in the solution, we can decide
+                    that after the workflow is clear.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a

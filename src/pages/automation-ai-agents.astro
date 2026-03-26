@@ -11,9 +11,10 @@ const description =
     "Workflow automation and AI agents for founder-led businesses that need less manual work and more reliable execution.";
 
 const painSignals = [
-    "Your team answers the same questions over and over.",
-    "A critical workflow still depends on copy-paste and human memory.",
-    "You know AI could help, but the real problem is stitching it into the business.",
+    "Your team answers the same questions every week.",
+    "A core handoff still depends on copy-paste.",
+    "Too much context lives in one person's head.",
+    "You have an AI idea, but no clean workflow under it.",
 ];
 
 const buildTracks = [
@@ -56,9 +57,10 @@ const examples = [
 ];
 
 const process = [
-    "Start with the workflow, not the model.",
-    "Define the smallest version worth shipping.",
-    "Build the automation or AI layer around the data, actions, and guardrails the business already needs.",
+    "Start with the workflow and the people touching it.",
+    "Cut the first version down to the part that removes the bottleneck.",
+    "Build around the data and actions the business already needs.",
+    "Add AI only if it improves the result.",
 ];
 ---
 
@@ -108,7 +110,7 @@ const process = [
             </figure>
         </header>
 
-        <section class="grid gap-6 md:grid-cols-3">
+        <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {painSignals.map((signal) => (
                 <div class="border-t border-black/12 pt-5 dark:border-white/12">
                     <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
@@ -155,7 +157,7 @@ const process = [
             <div class="max-w-3xl space-y-4">
                 <span class="section-label">// Recent Examples</span>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Proof tied to real workflows, not abstract AI demos.
+                    Examples from teams that needed the workflow to hold up in real use.
                 </h2>
             </div>
 
@@ -189,7 +191,7 @@ const process = [
             <div class="space-y-5">
                 <span class="section-label">// Process</span>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    The project should feel simple, even when the underlying system is not.
+                    Complicated systems still need a simple working process.
                 </h2>
             </div>
 
@@ -211,12 +213,11 @@ const process = [
             <div class="max-w-3xl space-y-5">
                 <span class="section-label">// Next Step</span>
                 <h2 class="heading-display text-4xl md:text-5xl text-white">
-                    Bring me the workflow that feels heavier than it should.
+                    Bring the workflow that keeps dragging on the business.
                 </h2>
                 <p class="text-lg leading-8 text-white/74">
-                    If the business keeps repeating the same work, there is usually a software
-                    problem hiding inside it. The roadmap call is where we decide what to automate
-                    first and whether AI belongs in the solution.
+                    We can decide what to automate first. If AI belongs in the solution,
+                    we figure that out after the workflow is clear.
                 </p>
                 <a
                     href={BOOK_CALL_URL}
