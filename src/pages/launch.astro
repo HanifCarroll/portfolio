@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import { BOOK_CALL_URL } from "../consts";
 import testimonials from "../../testimonials.json";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
 import markisPhoto from "@src/assets/img/markis.jpeg";
 import sarahPhoto from "@src/assets/img/sarah.jpeg";
 
-const title = "The 4-Week Launch";
+const title = "MVP Builds";
 const description =
-    "From idea to live MVP in 4 weeks. Direct senior execution, clear communication, and no agency overhead.";
-const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
+    "Focused MVP builds for nontechnical founders. Scope it, build it, and launch it in 4 weeks.";
+const calUrl = BOOK_CALL_URL;
 
 const testimonialPhotos: Record<string, ImageMetadata> = {
     "Monica Londoño": monicaPhoto,
@@ -34,15 +35,15 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
         <!-- 1. Hero -->
         <header class="space-y-6">
-            <span class="section-label">// The 4-Week Launch</span>
+            <span class="section-label">// MVP Builds</span>
             <h1 class="heading-display text-5xl md:text-6xl" style="text-wrap: balance">
-                From idea to live product in 4&nbsp;weeks.
+                A focused MVP live in 4&nbsp;weeks.
             </h1>
             <p
                 class="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl"
             >
-                I turn your idea into a real, working product that your first users
-                can pay for&mdash;in 4&nbsp;weeks. Built for nontechnical founders.
+                I scope, build, and launch the narrowest version worth putting in front
+                of real users. Built for nontechnical founders who need speed and clarity.
             </p>
             <div class="space-y-2">
                 <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_hero">

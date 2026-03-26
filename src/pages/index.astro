@@ -1,731 +1,482 @@
 ---
-import { SITE_DESCRIPTION } from "../consts";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { projects } from "../lib/project-cards";
-import { getCollection } from 'astro:content';
-import PostItem from "../components/PostItem.astro";
-import ProjectCardFeatured from "../components/ProjectCardFeatured.astro";
-import ProjectCardMedium from "../components/ProjectCardMedium.astro";
-import ProjectCardCompact from "../components/ProjectCardCompact.astro";
 import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { BOOK_CALL_URL } from "../consts";
 import HeroImage from "@src/assets/img/portrait-brick.webp";
-import testimonials from "../../testimonials.json";
-
-// Testimonial photos
-import monicaPhoto from "@src/assets/img/monica.jpeg";
-import markisPhoto from "@src/assets/img/markis.jpeg";
-import sarahPhoto from "@src/assets/img/sarah.jpeg";
-
-// Project images
-import baEventosHero from "@src/assets/img/projects/ba-eventos-hero.png";
-import hablabaHero from "@src/assets/img/projects/hablaba-hero.png";
-import muchoHangoutsHero from "@src/assets/img/projects/mucho-hangouts-hero.png";
-import voxPrismaticHero from "@src/assets/img/projects/vox-prismatic-hero.png";
-import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
 import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
 import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
-import maximoHero from "@src/assets/img/projects/maximo-hero.png";
-import redwriterHero from "@src/assets/img/projects/redwriter-hero.png";
+import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
+import monicaPhoto from "@src/assets/img/monica.jpeg";
+import markisPhoto from "@src/assets/img/markis.jpeg";
+import testimonials from "../../testimonials.json";
 
-const projectImages: Record<string, ImageMetadata> = {
-    "ba-eventos": baEventosHero,
-    "language-exchange": hablabaHero,
-    "mucho-hangouts": muchoHangoutsHero,
-    "vox-prismatic": voxPrismaticHero,
-    "genrupt": genruptHero,
-    "casa-elaria": casaElariaHero,
-    "desarmadero-latorre": desarmaderoHero,
-    "maximo-interiorismo": maximoHero,
-    "redwriter-comics": redwriterHero,
-};
+const title = "Hanif Carroll | MVPs and AI Automation for Nontechnical Founders";
+const description =
+    "I build MVPs, workflow automation, and AI agents for nontechnical founders and business owners who need working software fast.";
 
-// Split projects: 1 featured, 2 medium, rest compact
-const featuredProject = projects[0];
-const mediumProjects = projects.slice(1, 3);
-const compactProjects = projects.slice(3);
+const founderQuote = testimonials.find(
+    (testimonial) => testimonial.name === "Monica Londoño",
+);
+const operatorQuote = testimonials.find(
+    (testimonial) => testimonial.name === "Markis Zarate",
+);
 
-const techStack = [
-    "Claude Code",
-    "Google Gemini",
-    "Cursor",
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Node.js",
-    "PostgreSQL",
-    "Tailwind",
-    "Docker",
-    "Bun",
-    "Prisma"
+const fitColumns = [
+    {
+        title: "Best fit",
+        items: [
+            "You need a real v1, not another month of planning.",
+            "Your business is buried in repetitive manual workflow.",
+            "You want useful AI tied to a workflow or decision, not AI theater.",
+        ],
+    },
+    {
+        title: "Probably not a fit",
+        items: [
+            "Idea-only projects with no urgency or budget.",
+            "Large enterprise platforms with massive v1 scope.",
+            "Teams shopping for the cheapest dev hours possible.",
+        ],
+    },
 ];
 
-const testimonialPhotos: Record<string, ImageMetadata> = {
-    "Monica Londoño": monicaPhoto,
-    "Markis Zarate": markisPhoto,
-    "Sarah Hibner": sarahPhoto,
-};
+const offers = [
+    {
+        label: "01",
+        title: "MVP builds",
+        description:
+            "For founders who need a real first version in the hands of users without building a team from scratch.",
+        bullets: [
+            "Scope the narrowest valuable version first",
+            "Ship a focused product instead of a bloated v1",
+            "Work directly with the person building it",
+        ],
+        href: "/launch/",
+        cta: "See the MVP path",
+        image: casaElariaHero,
+        imageAlt: "Market validation storefront built for a beauty brand MVP test.",
+    },
+    {
+        label: "02",
+        title: "Workflow automation + AI agents",
+        description:
+            "For business owners and lean teams who need software to remove operational drag and make AI genuinely useful.",
+        bullets: [
+            "Replace repetitive admin and lead-handling work",
+            "Connect the tools you already rely on",
+            "Add AI only where it reduces work or improves decisions",
+        ],
+        href: "/automation-ai-agents/",
+        cta: "See automation examples",
+        image: desarmaderoHero,
+        imageAlt: "Inventory and workflow software interface for an auto-parts supplier.",
+    },
+];
 
-// Blog posts
-const posts = (await getCollection('blog'))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(0, 3);
+const processSteps = [
+    {
+        number: "01",
+        title: "Find the real bottleneck",
+        body: "We narrow the problem until the first build is small enough to ship and important enough to matter.",
+    },
+    {
+        number: "02",
+        title: "Build in plain English",
+        body: "You get direct updates, weekly demos, and technical decisions translated into business impact.",
+    },
+    {
+        number: "03",
+        title: "Launch something usable",
+        body: "The goal is not a deck, prototype, or AI demo. It is working software that removes friction or creates traction.",
+    },
+];
+
+const proofPoints = [
+    {
+        metric: "8+",
+        label: "years building software products",
+    },
+    {
+        metric: "10+",
+        label: "client and internal projects shipped",
+    },
+    {
+        metric: "3,000+",
+        label: "organizers served through tools I helped build",
+    },
+];
+
+const caseStudies = [
+    {
+        slug: "casa-elaria",
+        label: "MVP validation",
+        title: "Validated demand before inventory spend",
+        body: "Built a fake-door e-commerce launch for a beauty brand so the founder could test purchase intent and collect early demand before committing to inventory.",
+        outcome: "Measured demand with a high-fidelity storefront and turned curiosity into a launch list.",
+        image: casaElariaHero,
+        imageAlt: "Beauty brand landing page used for fake-door validation.",
+    },
+    {
+        slug: "desarmadero-latorre",
+        label: "Workflow automation",
+        title: "Turned phone calls into a digital stockroom",
+        body: "Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.",
+        outcome: "Reduced repetitive operational work and increased qualified inbound inquiries.",
+        image: desarmaderoHero,
+        imageAlt: "Digital stockroom and searchable inventory interface.",
+    },
+    {
+        slug: "genrupt",
+        label: "AI systems",
+        title: "Took an AI product from fragile MVP to paid SaaS",
+        body: "Built subscription infrastructure, job queues, and production AI workflows for a creative platform generating image and video assets at scale.",
+        outcome: "Made the product billable, more reliable, and ready to support paying customers.",
+        image: genruptHero,
+        imageAlt: "AI creative platform interface for image and video generation.",
+    },
+];
 ---
 
-<BaseLayout
-    title="Hanif Carroll - Fullstack AI Engineer | I Build Products for Startups"
-    description={SITE_DESCRIPTION}
->
-    <div class="space-y-32">
-        <!-- Hero Section -->
-        <section class="relative min-h-[90vh] overflow-hidden">
-            <div class="container relative py-8">
-                <!-- Status indicator -->
-                <div class="inline-flex items-center gap-3 border-2 border-black dark:border-white px-4 py-2 mb-8 bg-white dark:bg-black">
-                    <span class="status-dot status-dot--active animate-pulse"></span>
-                    <span class="font-mono text-xs uppercase tracking-widest">
-                        Accepting New Projects
-                    </span>
-                </div>
+<BaseLayout title={title} description={description} flushTop>
+    <section class="relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10">
+        <div class="absolute inset-0">
+            <Image
+                src={HeroImage}
+                alt="Hanif Carroll"
+                class="h-full w-full object-cover object-[72%_18%] opacity-60 lg:object-[68%_18%]"
+                loading="eager"
+            />
+            <div class="absolute inset-0 bg-[linear-gradient(110deg,rgba(5,5,5,0.94)_24%,rgba(5,5,5,0.82)_50%,rgba(5,5,5,0.18)_100%)]"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,102,255,0.24),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.10),transparent_26%)]"></div>
+        </div>
 
-                <!-- Main content grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
-                    <!-- Giant title -->
-                    <div class="relative">
-                        <h1 class="hero-title text-[clamp(3rem,10vw,8rem)] text-black dark:text-white">
-                            Fullstack
-                        </h1>
-                        <h1 class="hero-title hero-title-outline text-[clamp(3rem,10vw,8rem)]">
-                            + AI
-                        </h1>
-                        <h1 class="hero-title text-[clamp(3rem,10vw,8rem)] text-black dark:text-white">
-                            Engineer
-                        </h1>
-                    </div>
-
-                    <!-- Photo card -->
-                    <div class="relative">
-                        <div class="relative inline-block">
-                            <!-- Blue corner accent -->
-                            <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary flex items-center justify-center text-white font-bold z-30">
-                                +
-                            </div>
-                            <!-- Photo container -->
-                            <div class="border-2 border-black dark:border-white bg-black overflow-hidden" style="box-shadow: 4px 4px 0 0 black;">
-                                <Image
-                                    src={HeroImage}
-                                    alt="Hanif Carroll"
-                                    loading="eager"
-                                    class="w-64 md:w-72 lg:w-80 h-auto -scale-x-100 grayscale transition-all duration-500 hover:grayscale-0"
-                                />
-                            </div>
-                            <!-- Name label below photo -->
-                            <div class="mt-2 flex items-center gap-3 bg-white dark:bg-black px-3 py-2 border-2 border-black dark:border-white">
-                                <div class="w-2 h-2 bg-black dark:bg-white"></div>
-                                <div class="h-0.5 w-8 bg-black dark:bg-white"></div>
-                                <div>
-                                    <p class="font-mono text-xs text-primary uppercase tracking-wider">Status: Active</p>
-                                    <p class="font-bold text-lg uppercase tracking-wide">Hanif Carroll</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom content row -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12 lg:mt-16">
-                    <!-- Left: Description and buttons -->
-                    <div class="tech-card p-6 md:p-8 space-y-8">
-                        <!-- Decorative gear icon -->
-                        <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
-                        </svg>
-
-                        <!-- Description with highlight -->
-                        <div class="border-l-4 border-primary pl-6 space-y-3">
-                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                                Code is a means to an end. Most developers forget that.
-                            </p>
-                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                                I help founders ship products their users love. AI agents, semantic search, full-stack apps. I care about the product, not just the technology.
-                            </p>
-                        </div>
-
-                        <!-- Buttons -->
-                        <div class="flex flex-wrap gap-4">
-                            <a
-                                class="btn-primary"
-                                href="https://cal.com/hanifcarroll/intro"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-track-event="book_call_clicked"
-                                data-track-location="home_hero"
-                            >
-                                Schedule a Call
-                                <span>&rarr;</span>
-                            </a>
-                            <a
-                                class="btn-secondary"
-                                href="#projects"
-                            >
-                                View Projects
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Right: Tech stack box -->
-                    <div class="lg:flex lg:justify-end lg:items-start">
-                        <div class="tech-card w-full max-w-sm">
-                            <!-- Window header -->
-                            <div class="flex items-center justify-between px-4 py-3 border-b-2 border-black dark:border-white">
-                                <span class="font-mono text-xs uppercase tracking-wider">tech_stack.json</span>
-                                <div class="window-dots">
-                                    <div class="window-dot window-dot--red"></div>
-                                    <div class="window-dot window-dot--yellow"></div>
-                                    <div class="window-dot window-dot--green"></div>
-                                </div>
-                            </div>
-                            <!-- Content -->
-                            <div class="p-4 font-mono text-sm">
-                                <div class="text-zinc-500 dark:text-zinc-300">{"{"}</div>
-                                <div class="pl-4">
-                                    <span class="text-primary">"technologies"</span>: [
-                                    <div class="pl-4 space-y-1">
-                                        <div>"Claude",</div>
-                                        <div>"Gemini",</div>
-                                        <div>"React",</div>
-                                        <div>"TypeScript",</div>
-                                        <div>"Node.js",</div>
-                                        <div>"PostgreSQL"</div>
-                                    </div>
-                                    ]
-                                </div>
-                                <div class="text-zinc-500 dark:text-zinc-300">{"}"}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tech marquee -->
-            <div class="border-t-2 border-b-2 border-black dark:border-white py-4 mt-16 bg-white dark:bg-black overflow-hidden">
-                <div class="tech-marquee">
-                    <div class="tech-marquee-content">
-                        {[...Array(4)].map(() => (
-                            <span class="flex items-center gap-8 px-4 shrink-0">
-                                {techStack.map((tech) => (
-                                    <>
-                                        <span class="font-mono text-sm uppercase tracking-wider font-bold">{tech}</span>
-                                        <span class="w-2 h-2 bg-primary shrink-0"></span>
-                                    </>
-                                ))}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="container space-y-32">
-
-        <!-- Projects -->
-        <section class="scroll-mt-16 space-y-12" id="projects">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 01</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Selected Work</h2>
-                </div>
-            </div>
-
-            <!-- Featured + Medium layout -->
-            <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
-                <!-- Featured project (large) -->
-                <div class="h-full">
-                    <ProjectCardFeatured
-                        project={featuredProject}
-                        image={projectImages[featuredProject.slug]}
-                        index={0}
-                    />
-                </div>
-
-                <!-- Medium projects (stacked) -->
-                <div class="flex flex-col gap-6">
-                    {mediumProjects.map((project, i) => (
-                        <ProjectCardMedium
-                            project={project}
-                            image={projectImages[project.slug]}
-                            index={i + 1}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            <!-- Compact projects grid -->
-            {compactProjects.length > 0 && (
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {compactProjects.map((project) => (
-                        <ProjectCardCompact
-                            project={project}
-                            image={projectImages[project.slug]}
-                        />
-                    ))}
-                </div>
-            )}
-        </section>
-
-        <!-- Testimonials -->
-        <section class="scroll-mt-16 space-y-12">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 02</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Testimonials</h2>
-                </div>
-            </div>
-	            <div class="space-y-6">
-	                {testimonials.map((testimonial) => {
-	                    const photo = testimonialPhotos[testimonial.name];
-	                    return (
-	                        <div class="tech-card p-8">
-	                            <div class="flex items-start gap-6">
-	                                {photo && (
-	                                    <div class="shrink-0">
-	                                        <div class="w-16 h-16 border-2 border-black dark:border-white overflow-hidden bg-black">
-	                                            <Image
-	                                                src={photo}
-	                                                alt={testimonial.name}
-	                                                loading="lazy"
-	                                                class="w-full h-full object-cover"
-	                                            />
-	                                        </div>
-	                                    </div>
-	                                )}
-	                                <div class="space-y-3">
-	                                    <div>
-	                                        <p class="font-bold uppercase tracking-wide">{testimonial.name}</p>
-	                                        <p class="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-300">
-	                                            {testimonial.role}
-	                                            {testimonial.company ? ` · ${testimonial.company}` : ""}
-	                                        </p>
-	                                    </div>
-	                                    <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-	                                        {testimonial.text}
-	                                    </p>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    );
-	                })}
-	            </div>
-        </section>
-
-        <!-- Divider -->
-        <div class="grid-line-horizontal"></div>
-
-        <!-- About -->
-        <section class="scroll-mt-16 space-y-12" id="about">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 03</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">About</h2>
-                </div>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-2">
-                <!-- My Journey -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">My Journey</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
-                            <p>
-                                Started programming in 2017 after deciding physical
-                                therapy school wasn't for me.
-                            </p>
-                            <p>
-                                After shipping products at Capgemini and LeagueApps, I went independent. Now I build AI-powered products for early-stage founders.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product-Minded -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">Product-Minded</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
-                            <p>
-                                I don't stay in the "engineering" box. I care about
-                                UX, product strategy, and understanding user needs.
-                            </p>
-                            <p>
-                                Built scheduling tools adopted by 3,000+ sports
-                                organizers.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Integration -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">AI Integration</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
-                            <p>
-                                I'm obsessed with how AI changes how we work. Not the hype—the actual integration.
-                            </p>
-                            <p>
-                                The bottleneck isn't intelligence; it's knowing where AI fits and where it doesn't. I build chatbots, RAG systems, and workflow automation that solve real problems.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- What's Next -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">What's Next</h3>
-                        <div class="space-y-3 text-zinc-600 dark:text-zinc-300 text-sm">
-                            <p>
-                                I build products for early-stage founders who need to ship fast. Also open to the right full-time role.
-                            </p>
-                            <p>
-                                I want to build things that empower people, not just sell more ads.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-2">
-                <a href="/now/" class="arrow-link">
-                    What I'm up to now
-                </a>
-            </div>
-        </section>
-
-        <!-- Services -->
-        <section class="scroll-mt-16 space-y-12" id="services">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 04</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Services</h2>
-                </div>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-3">
-                <!-- MVP & Product Builds -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">MVP & Product Builds</h3>
-                        <p class="text-zinc-600 dark:text-zinc-300 text-sm">
-                            I take your idea from zero to shipped product. Full-stack, AI-native, designed to grow. You get a working product, not a prototype.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Feature Sprints -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">Feature Sprints</h3>
-                        <p class="text-zinc-600 dark:text-zinc-300 text-sm">
-                            Need to ship fast? I plug into your codebase and deliver production features in weeks, not months. React, Node, AI integrations, billing, the works.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- AI Agents & Chatbots -->
-                <div class="tech-card p-8">
-                    <div class="space-y-4">
-                        <div class="w-12 h-12 border-2 border-primary flex items-center justify-center">
-                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold uppercase tracking-wide">AI Agents & Chatbots</h3>
-                        <p class="text-zinc-600 dark:text-zinc-300 text-sm">
-                            RAG systems, conversational AI, and tool-use agents that actually work. Not demos. Production systems that handle real user queries and take real actions.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center pt-4">
-                <a
-                    class="btn-primary"
-                    href="https://cal.com/hanifcarroll/intro"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track-event="book_call_clicked"
-                    data-track-location="home_services"
+        <div class="relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] flex-col justify-between px-6 pb-8 pt-16 md:px-10 md:pt-20 lg:px-16 lg:pb-10 lg:pt-24">
+            <div class="max-w-5xl space-y-6">
+                <p
+                    class="kicker-line animate-fade-in-up opacity-0"
+                    style="animation-delay: 80ms; animation-fill-mode: forwards;"
                 >
-                    Schedule a Call
-                    <span>&rarr;</span>
-                </a>
-            </div>
-        </section>
+                    Hanif Carroll
+                    <span class="text-white/60">Independent product engineer</span>
+                </p>
 
-        <!-- Experience -->
-        <section class="scroll-mt-16 space-y-12" id="experience">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 05</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Experience</h2>
+                <div class="space-y-4">
+                    <p
+                        class="poster-brand animate-fade-in-up text-white/16 opacity-0"
+                        style="animation-delay: 140ms; animation-fill-mode: forwards;"
+                    >
+                        Hanif Carroll
+                    </p>
+                    <h1
+                        class="poster-title max-w-4xl animate-fade-in-up opacity-0"
+                        style="animation-delay: 220ms; animation-fill-mode: forwards;"
+                    >
+                        MVPs and AI automation for nontechnical founders.
+                    </h1>
                 </div>
-            </div>
 
-            <div class="tech-card p-6 md:p-8">
-            <div class="relative">
-                <!-- Timeline line -->
-                <div class="absolute left-0 md:left-32 top-0 bottom-0 w-0.5 bg-black dark:bg-white"></div>
-
-                <div class="space-y-12">
-                    <!-- Freelance -->
-                    <div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
-                        <div class="hidden md:block text-right">
-                            <span class="font-mono text-sm">2024-NOW</span>
-                        </div>
-                        <div class="relative pl-8">
-                            <!-- Square marker -->
-                            <div class="absolute left-[-5px] top-1 w-3 h-3 bg-primary border-2 border-black dark:border-white"></div>
-                            <div class="space-y-4">
-                                <div>
-                                    <span class="md:hidden font-mono text-xs text-zinc-500">2024-NOW</span>
-                                    <h3 class="font-bold uppercase text-lg">Full-Stack Software Engineer</h3>
-                                    <p class="font-mono text-sm text-primary">FREELANCE</p>
-                                </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Performed as <strong class="text-black dark:text-white">fractional CTO</strong> for an emerging social events platform, leading a team of 2 juniors.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Built the AI text-editing and video generation pipeline for an <strong class="text-black dark:text-white">e-commerce AI platform</strong> (Vision OCR, inpainting, font detection, 10+ AI providers).</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Solo-built <strong class="text-black dark:text-white">BA Events</strong>, an AI event discovery platform with conversational search across 5 live data sources.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Nearsure -->
-                    <div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
-                        <div class="hidden md:block text-right">
-                            <span class="font-mono text-sm">2023-2024</span>
-                        </div>
-                        <div class="relative pl-8">
-                            <div class="absolute left-[-5px] top-1 w-3 h-3 bg-primary/60 border-2 border-black dark:border-white"></div>
-                            <div class="space-y-4">
-                                <div>
-                                    <span class="md:hidden font-mono text-xs text-zinc-500">2023-2024</span>
-                                    <h3 class="font-bold uppercase text-lg">Senior Front End Engineer</h3>
-                                    <p class="font-mono text-sm text-primary">NEARSURE</p>
-                                </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Improved efficiency for <strong class="text-black dark:text-white">3,000+ sports organizers</strong> by engineering an interactive scheduling tool.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Enhanced mobile experience with optimized list view for rapid event editing.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- LeagueApps -->
-                    <div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
-                        <div class="hidden md:block text-right">
-                            <span class="font-mono text-sm">2021-2023</span>
-                        </div>
-                        <div class="relative pl-8">
-                            <div class="absolute left-[-5px] top-1 w-3 h-3 bg-primary/40 border-2 border-black dark:border-white"></div>
-                            <div class="space-y-4">
-                                <div>
-                                    <span class="md:hidden font-mono text-xs text-zinc-500">2021-2023</span>
-                                    <h3 class="font-bold uppercase text-lg">Front End Engineer</h3>
-                                    <p class="font-mono text-sm text-primary">LEAGUEAPPS</p>
-                                </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Reduced scheduling time by <strong class="text-black dark:text-white">45%</strong> with intuitive drag-and-drop scheduling grid.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Eliminated team double-booking with automated conflict detection system.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Established standardized front-end component library using Styled Components and Storybook.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Capgemini -->
-                    <div class="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
-                        <div class="hidden md:block text-right">
-                            <span class="font-mono text-sm">2019-2021</span>
-                        </div>
-                        <div class="relative pl-8">
-                            <div class="absolute left-[-5px] top-1 w-3 h-3 bg-primary/20 border-2 border-black dark:border-white"></div>
-                            <div class="space-y-4">
-                                <div>
-                                    <span class="md:hidden font-mono text-xs text-zinc-500">2019-2021</span>
-                                    <h3 class="font-bold uppercase text-lg">Software Developer</h3>
-                                    <p class="font-mono text-sm text-primary">CAPGEMINI</p>
-                                </div>
-                                <ul class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Developed comprehensive cruise ship management application covering berthing, reporting, and scheduling.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="text-primary">&rarr;</span>
-                                        <span>Boosted productivity by reducing test suite execution time by <strong class="text-black dark:text-white">60%</strong>.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="pt-4">
-                <a
-                    href="/Hanif_Carroll_Fullstack_AI_Engineer.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="arrow-link"
+                <p
+                    class="poster-copy max-w-2xl animate-fade-in-up text-white/78 opacity-0"
+                    style="animation-delay: 320ms; animation-fill-mode: forwards;"
                 >
-                    Download Full Resume
-                </a>
-            </div>
-        </section>
+                    I turn product ideas and messy manual workflows into working software
+                    without agency overhead or technical hand-holding.
+                </p>
 
-        <!-- Latest Posts -->
-        <section class="scroll-mt-16 space-y-12" id="blog">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 06</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Latest Posts</h2>
+                <div
+                    class="flex flex-wrap gap-4 animate-fade-in-up opacity-0"
+                    style="animation-delay: 420ms; animation-fill-mode: forwards;"
+                >
+                    <a
+                        class="btn-primary"
+                        href={BOOK_CALL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-track-event="book_call_clicked"
+                        data-track-location="home_hero_primary"
+                    >
+                        Book a Roadmap Call
+                    </a>
+                    <a class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black" href="#case-studies">
+                        See Case Studies
+                    </a>
                 </div>
-                <a href="/blog/" class="arrow-link">View all posts</a>
             </div>
-            <div class="tech-card p-6">
-                {posts.map((post) => (
-                    <PostItem post={post} />
+
+            <div
+                class="mt-10 grid gap-4 border-t border-white/14 pt-6 text-sm text-white/74 md:grid-cols-3"
+            >
+                <p>Real v1 builds for founder-led products.</p>
+                <p>Automation for businesses drowning in repetitive work.</p>
+                <p>AI systems where the model is useful because the workflow is clear.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-20 md:py-24">
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div class="space-y-5">
+                <p class="kicker-line">Who This Is For</p>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    The site should filter for the right kind of buyer.
+                </h2>
+                <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    If someone lands here from LinkedIn, Instagram, search, or a referral,
+                    they should know in a few seconds whether this is the kind of help they
+                    need.
+                </p>
+            </div>
+
+            <div class="grid gap-10 md:grid-cols-2">
+                {fitColumns.map((column) => (
+                    <div class="signal-line pt-5">
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            {column.title}
+                        </p>
+                        <ul class="mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                            {column.items.map((item) => (
+                                <li class="border-t border-black/10 pt-4 dark:border-white/10">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 ))}
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Beyond Code -->
-        <section class="space-y-12">
-            <div class="section-header">
-                <div class="space-y-2">
-	                    <span class="section-label">// 07</span>
-                    <h2 class="heading-display text-4xl md:text-5xl">Beyond Code</h2>
-                </div>
+    <section class="container py-6 md:py-10">
+        <div class="soft-divider"></div>
+    </section>
+
+    <section class="container py-14 md:py-20">
+        <div class="space-y-5">
+            <p class="kicker-line">What I Build</p>
+            <div class="max-w-3xl space-y-4">
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Two paths. Same goal: ship the smallest thing that meaningfully moves the business.
+                </h2>
+                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    I want the homepage to make the offer legible before anyone needs to
+                    click deeper into the site.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-12 space-y-12 md:space-y-16">
+            {offers.map((offer, index) => (
+                <article class="grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+                    <div class:list={[index % 2 === 1 && "lg:order-2"]}>
+                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                            Offer {offer.label}
+                        </p>
+                        <div class="mt-5 max-w-2xl space-y-5">
+                            <h3 class="heading-display text-3xl md:text-4xl">{offer.title}</h3>
+                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                {offer.description}
+                            </p>
+                            <ul class="space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base">
+                                {offer.bullets.map((bullet) => (
+                                    <li class="border-t border-black/10 pt-4 dark:border-white/10">
+                                        {bullet}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div class="pt-2">
+                                <a class="arrow-link" href={offer.href}>
+                                    {offer.cta}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-1"]}>
+                        <Image
+                            src={offer.image}
+                            alt={offer.imageAlt}
+                            class="aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+                            loading="lazy"
+                        />
+                    </figure>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="container py-20 md:py-24" id="proof">
+        <div class="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
+            <div class="space-y-6 lg:sticky lg:top-28 lg:self-start">
+                <p class="kicker-line">Why This Works</p>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Direct senior execution without the agency drag.
+                </h2>
+                <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    The point is clarity. One person owns the scope, the build, the tradeoffs,
+                    and the communication. That matters a lot when the client is nontechnical.
+                </p>
+
+                {founderQuote && (
+                    <div class="border-t border-black/12 pt-6 dark:border-white/12">
+                        <div class="flex items-start gap-4">
+                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
+                                <Image
+                                    src={monicaPhoto}
+                                    alt={founderQuote.name}
+                                    width={64}
+                                    height={64}
+                                    loading="lazy"
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                                    &ldquo;{founderQuote.text}&rdquo;
+                                </p>
+                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
+                                    {founderQuote.name} · {founderQuote.role}
+                                    {founderQuote.company ? ` · ${founderQuote.company}` : ""}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">01</span>
-                        <h3 class="font-bold uppercase">Fitness</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            20 years of lifting—500 lb squat, 405 lb bench, 620 lb deadlift. Competitive ultimate frisbee player.
-                        </p>
-                    </div>
+            <div class="space-y-14">
+                <div class="grid gap-8 md:grid-cols-3">
+                    {proofPoints.map((point) => (
+                        <div class="border-t border-black/12 pt-5 dark:border-white/12">
+                            <p class="inline-metric">{point.metric}</p>
+                            <p class="mt-3 text-sm uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-300">
+                                {point.label}
+                            </p>
+                        </div>
+                    ))}
                 </div>
 
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">02</span>
-                        <h3 class="font-bold uppercase">Community</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            Ran a social community in Buenos Aires for 3 years, connecting people and building relationships.
-                        </p>
-                    </div>
+                <div class="space-y-8">
+                    {processSteps.map((step) => (
+                        <div class="grid gap-4 border-t border-black/12 pt-6 dark:border-white/12 md:grid-cols-[100px_1fr]">
+                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                                Step {step.number}
+                            </p>
+                            <div class="space-y-3">
+                                <h3 class="heading-display text-2xl md:text-3xl">
+                                    {step.title}
+                                </h3>
+                                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                    {step.body}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">03</span>
-                        <h3 class="font-bold uppercase">Exploration</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            Learned Spanish during the pandemic, then moved to Buenos Aires for 3 years. Drawn to experiences that expand perspective.
-                        </p>
+                {operatorQuote && (
+                    <div class="border-t border-black/12 pt-6 dark:border-white/12">
+                        <div class="flex items-start gap-4">
+                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
+                                <Image
+                                    src={markisPhoto}
+                                    alt={operatorQuote.name}
+                                    width={64}
+                                    height={64}
+                                    loading="lazy"
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                                    &ldquo;{operatorQuote.text}&rdquo;
+                                </p>
+                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
+                                    {operatorQuote.name} · {operatorQuote.role}
+                                    {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                )}
+            </div>
+        </div>
+    </section>
 
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">04</span>
-                        <h3 class="font-bold uppercase">Teaching</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            Natural at breaking down complex topics into simple terms. Whether it's lifting technique or a technical concept, I enjoy helping others understand.
-                        </p>
-                    </div>
-                </div>
+    <section class="container py-20 md:py-24" id="case-studies">
+        <div class="space-y-5">
+            <p class="kicker-line">Selected Case Studies</p>
+            <div class="max-w-3xl space-y-4">
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Proof organized by business problem, not by a random project grid.
+                </h2>
+                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    The case studies need to answer the buyer&rsquo;s question: have you solved something close to my problem before?
+                </p>
+            </div>
+        </div>
 
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">05</span>
-                        <h3 class="font-bold uppercase">Intentionality</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            I think a lot about how to live well. Daily reflection, goal-setting, and building systems to become the person I want to be.
-                        </p>
-                    </div>
-                </div>
+        <div class="mt-12 space-y-12">
+            {caseStudies.map((study, index) => (
+                <a
+                    href={`/projects/${study.slug}/`}
+                    class="group grid gap-8 border-t border-black/12 py-10 transition-colors dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14"
+                >
+                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-2"]}>
+                        <Image
+                            src={study.image}
+                            alt={study.imageAlt}
+                            class="aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                            loading="lazy"
+                        />
+                    </figure>
 
-                <div class="tech-card p-6">
-                    <div class="space-y-3">
-                        <span class="font-mono text-2xl text-primary">06</span>
-                        <h3 class="font-bold uppercase">Empathy</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-                            I naturally see things from others' perspectives. It shapes how I build products, communicate, and connect with people.
+                    <div class:list={["space-y-5", index % 2 === 1 && "lg:order-1"]}>
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            {study.label}
                         </p>
+                        <h3 class="heading-display text-3xl md:text-4xl">
+                            {study.title}
+                        </h3>
+                        <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                            {study.body}
+                        </p>
+                        <p class="border-t border-black/10 pt-4 text-sm uppercase tracking-[0.18em] text-zinc-700 dark:border-white/10 dark:text-zinc-200">
+                            {study.outcome}
+                        </p>
+                        <span class="arrow-link">View case study</span>
                     </div>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    <section class="border-y border-black/10 bg-black py-20 text-white dark:border-white/10 md:py-24">
+        <div class="container">
+            <div class="max-w-4xl space-y-6">
+                <p class="kicker-line">Next Step</p>
+                <h2 class="poster-title max-w-3xl">
+                    Bring the bottleneck. I&rsquo;ll help you decide what to build first.
+                </h2>
+                <p class="poster-copy max-w-2xl text-white/74">
+                    Book a roadmap call if you need a real MVP, a cleaner operational workflow,
+                    or an AI system that does more than look impressive in a demo.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a
+                        class="btn-primary"
+                        href={BOOK_CALL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-track-event="book_call_clicked"
+                        data-track-location="home_final_primary"
+                    >
+                        Book a Roadmap Call
+                    </a>
+                    <a class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black" href="/projects/">
+                        Browse Case Studies
+                    </a>
                 </div>
             </div>
-        </section>
-    </div>
-    </div>
+        </div>
+    </section>
 </BaseLayout>

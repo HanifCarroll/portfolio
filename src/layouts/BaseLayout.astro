@@ -1,8 +1,9 @@
 ---
 import BaseHead from "./components/BaseHead.astro";
 import Header from "./components/Header.astro";
+import { BOOK_CALL_URL } from "../consts";
 
-const { title, description, image } = Astro.props;
+const { title, description, image, flushTop = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
@@ -27,7 +28,10 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
             )
         }
         <Header />
-        <div class="py-12 min-h-[calc(100vh-200px)]">
+        <div class:list={[
+            "min-h-[calc(100vh-200px)]",
+            flushTop ? "pb-12" : "py-12",
+        ]}>
             <slot />
         </div>
         <footer id="contact" class="bg-black dark:bg-white text-white dark:text-black border-t-2 border-black dark:border-white">
@@ -37,33 +41,32 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
                     <!-- Left Column: CTA Content -->
                     <div class="lg:col-span-7 space-y-8">
-                        <span class="section-label">// The 4-Week Launch</span>
+                        <span class="section-label">// Work With Me</span>
 
                         <h2
                             class="heading-display text-4xl md:text-5xl lg:text-6xl text-white dark:text-black"
                         >
-                            Your Product Could Be Live in
-                            4&nbsp;Weeks
+                            Need an MVP or automation system that actually ships?
                         </h2>
 
                         <p
                             class="text-lg text-zinc-300 dark:text-zinc-600 leading-relaxed max-w-xl"
                         >
-                            Book a free 30-minute Product Roadmap Call.
-                            You&rsquo;ll walk away with a prioritized feature list
-                            and realistic timeline&mdash;whether or not we work together.
+                            Book a free 30-minute roadmap call. We&rsquo;ll narrow the
+                            problem, decide what to build first, and see whether I&rsquo;m
+                            the right fit for the work.
                         </p>
 
                         <div class="pt-2">
                             <a
                                 class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                href="https://cal.com/hanifcarroll/roadmap-call"
+                                href={BOOK_CALL_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 data-track-event="book_call_clicked"
                                 data-track-location="footer_contact"
                             >
-                                Book Your Free Product Roadmap Call
+                                Book a Roadmap Call
                             </a>
                         </div>
                     </div>
@@ -149,8 +152,25 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                 return eventParams;
             };
 
+            const shouldDelayTrackedNavigation = (link, clickEvent) => {
+                const href = link.getAttribute("href") || "";
+                const opensNewTab =
+                    link.target === "_blank" ||
+                    clickEvent.metaKey ||
+                    clickEvent.ctrlKey ||
+                    clickEvent.shiftKey ||
+                    clickEvent.altKey ||
+                    clickEvent.button !== 0;
+
+                if (opensNewTab) return false;
+                if (href.startsWith("#") || href.startsWith("/#")) return false;
+
+                return href.startsWith("mailto:") || /^https?:/i.test(href);
+            };
+
             document.addEventListener("click", (event) => {
                 if (!(event.target instanceof Element)) return;
+                if (!(event instanceof MouseEvent)) return;
 
                 const link = event.target.closest("a[data-track-event]");
                 if (!(link instanceof HTMLAnchorElement)) return;
@@ -162,6 +182,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                     event: eventName,
                     event_location: link.dataset.trackLocation || "unknown",
                     link_text: getLinkText(link),
+                    link_url: link.href,
+                    page_title: document.title,
                     page_path: window.location.pathname,
                 };
 
@@ -179,7 +201,32 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                 }
 
                 window.dataLayer.push(payload);
-                window.gtag("event", eventName, toEventParams(payload));
+
+                const eventParams = {
+                    ...toEventParams(payload),
+                    transport_type: "beacon",
+                };
+
+                if (shouldDelayTrackedNavigation(link, event)) {
+                    event.preventDefault();
+
+                    let navigated = false;
+                    const navigate = () => {
+                        if (navigated) return;
+                        navigated = true;
+                        window.location.assign(link.href);
+                    };
+
+                    window.gtag("event", eventName, {
+                        ...eventParams,
+                        event_callback: navigate,
+                    });
+
+                    window.setTimeout(navigate, 250);
+                    return;
+                }
+
+                window.gtag("event", eventName, eventParams);
             });
         </script>
     </body>

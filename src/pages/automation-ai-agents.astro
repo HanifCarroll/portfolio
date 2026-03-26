@@ -1,0 +1,234 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { BOOK_CALL_URL } from "../consts";
+import desarmaderoFeature from "@src/assets/img/projects/desarmadero-feature.png";
+import genruptFeature from "@src/assets/img/projects/genrupt-feature.png";
+import baEventosFeature from "@src/assets/img/projects/ba-eventos-feature.png";
+
+const title = "Workflow Automation & AI Agents";
+const description =
+    "Workflow automation and AI agents for founder-led businesses that need less manual work and more reliable execution.";
+
+const painSignals = [
+    "Your team answers the same questions over and over.",
+    "A critical workflow still depends on copy-paste and human memory.",
+    "You know AI could help, but the real problem is stitching it into the business.",
+];
+
+const buildTracks = [
+    {
+        label: "01",
+        title: "Internal workflow software",
+        body: "Dashboards, intake flows, searchable inventory, and operational tools that replace repetitive manual steps with something your team can actually use.",
+    },
+    {
+        label: "02",
+        title: "Automation layers",
+        body: "Connect the tools you already use, move data between them, trigger the right next step, and remove the bottleneck that is slowing the business down.",
+    },
+    {
+        label: "03",
+        title: "AI agents with bounded actions",
+        body: "Retrieval, routing, summarization, classification, and tool-use flows that are useful because the workflow and guardrails are clear.",
+    },
+];
+
+const examples = [
+    {
+        title: "Digital stockroom for an auto-parts supplier",
+        body: "Built a searchable inventory system so customers could browse stock without calling staff for every request.",
+        image: desarmaderoFeature,
+        href: "/projects/desarmadero-latorre/",
+    },
+    {
+        title: "Production AI workflows for an e-commerce creative platform",
+        body: "Built subscriptions, async job infrastructure, and reliable AI-powered batch operations for a paid SaaS product.",
+        image: genruptFeature,
+        href: "/projects/genrupt/",
+    },
+    {
+        title: "Conversational event discovery with real tools behind it",
+        body: "Built an agent-native system that combines semantic search, structured filters, and useful actions instead of a dead-end chat UI.",
+        image: baEventosFeature,
+        href: "/projects/ba-eventos/",
+    },
+];
+
+const process = [
+    "Start with the workflow, not the model.",
+    "Define the smallest version worth shipping.",
+    "Build the automation or AI layer around the data, actions, and guardrails the business already needs.",
+];
+---
+
+<BaseLayout title={`${title} · Hanif Carroll`} description={description}>
+    <article class="container max-w-6xl space-y-20 py-10">
+        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
+            <a href="/" class="transition-colors hover:text-primary">Home</a>
+            <span class="text-zinc-400">/</span>
+            <span class="text-primary">Automation &amp; AI</span>
+        </nav>
+
+        <header class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <div class="space-y-6">
+                <span class="section-label">// Workflow Automation &amp; AI Agents</span>
+                <h1 class="heading-display text-5xl md:text-6xl">
+                    Replace repetitive work with software that actually fits the business.
+                </h1>
+                <p class="max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+                    This is for founder-led teams and business owners whose operations are
+                    slowing down because too much knowledge lives in people, tabs, and manual
+                    workarounds.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a
+                        href={BOOK_CALL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-primary"
+                        data-track-event="book_call_clicked"
+                        data-track-location="automation_page_hero"
+                    >
+                        Book a Roadmap Call
+                    </a>
+                    <a href="/projects/" class="btn-secondary">
+                        View Case Studies
+                    </a>
+                </div>
+            </div>
+
+            <figure class="overflow-hidden border border-black/15 bg-black dark:border-white/15">
+                <Image
+                    src={desarmaderoFeature}
+                    alt="Workflow automation example"
+                    class="aspect-[16/11] w-full object-cover"
+                    loading="eager"
+                />
+            </figure>
+        </header>
+
+        <section class="grid gap-6 md:grid-cols-3">
+            {painSignals.map((signal) => (
+                <div class="border-t border-black/12 pt-5 dark:border-white/12">
+                    <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                        Signal
+                    </p>
+                    <p class="mt-4 text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                        {signal}
+                    </p>
+                </div>
+            ))}
+        </section>
+
+        <section class="space-y-10">
+            <div class="max-w-3xl space-y-4">
+                <span class="section-label">// What I Actually Build</span>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Software first. AI where it earns its keep.
+                </h2>
+                <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    Most automation problems are really operations problems. The work starts by
+                    understanding the workflow and only then deciding whether AI should be part of
+                    the solution.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                {buildTracks.map((track) => (
+                    <div class="grid gap-4 border-t border-black/12 pt-6 dark:border-white/12 md:grid-cols-[100px_1fr]">
+                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                            Track {track.label}
+                        </p>
+                        <div class="space-y-3">
+                            <h3 class="heading-display text-2xl md:text-3xl">{track.title}</h3>
+                            <p class="max-w-3xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                {track.body}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section class="space-y-10">
+            <div class="max-w-3xl space-y-4">
+                <span class="section-label">// Recent Examples</span>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Proof tied to real workflows, not abstract AI demos.
+                </h2>
+            </div>
+
+            <div class="space-y-12">
+                {examples.map((example, index) => (
+                    <a
+                        href={example.href}
+                        class="group grid gap-8 border-t border-black/12 py-8 dark:border-white/12 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-12"
+                    >
+                        <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-2"]}>
+                            <Image
+                                src={example.image}
+                                alt={example.title}
+                                class="aspect-[5/4] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                                loading="lazy"
+                            />
+                        </figure>
+                        <div class:list={["space-y-4", index % 2 === 1 && "lg:order-1"]}>
+                            <h3 class="heading-display text-3xl md:text-4xl">{example.title}</h3>
+                            <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                {example.body}
+                            </p>
+                            <span class="arrow-link">Open case study</span>
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </section>
+
+        <section class="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
+            <div class="space-y-5">
+                <span class="section-label">// Process</span>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    The project should feel simple, even when the underlying system is not.
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+                {process.map((step, index) => (
+                    <div class="grid gap-4 border-t border-black/12 pt-6 dark:border-white/12 md:grid-cols-[80px_1fr]">
+                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                            {String(index + 1).padStart(2, "0")}
+                        </p>
+                        <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                            {step}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section class="border border-black/15 bg-black px-8 py-12 text-white dark:border-white/15">
+            <div class="max-w-3xl space-y-5">
+                <span class="section-label">// Next Step</span>
+                <h2 class="heading-display text-4xl md:text-5xl text-white">
+                    Bring me the workflow that feels heavier than it should.
+                </h2>
+                <p class="text-lg leading-8 text-white/74">
+                    If the business keeps repeating the same work, there is usually a software
+                    problem hiding inside it. The roadmap call is where we decide what to automate
+                    first and whether AI belongs in the solution.
+                </p>
+                <a
+                    href={BOOK_CALL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary"
+                    data-track-event="book_call_clicked"
+                    data-track-location="automation_page_final"
+                >
+                    Book a Roadmap Call
+                </a>
+            </div>
+        </section>
+    </article>
+</BaseLayout>
