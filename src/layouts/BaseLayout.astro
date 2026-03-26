@@ -3,7 +3,7 @@ import BaseHead from "./components/BaseHead.astro";
 import Header from "./components/Header.astro";
 import { BOOK_CALL_URL } from "../consts";
 
-const { title, description, image, flushTop = false } = Astro.props;
+const { title, description, image, flushTop = false, showFooterCta = true } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
@@ -34,40 +34,41 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
         ]}>
             <slot />
         </div>
-        <footer id="contact" class="bg-black dark:bg-white text-white dark:text-black border-t-2 border-black dark:border-white">
-            <div class="container py-20">
+        {
+            showFooterCta && (
+                <footer id="contact" class="bg-black dark:bg-white text-white dark:text-black border-t-2 border-black dark:border-white">
+                    <div class="container py-20">
                 <!-- Main Footer Grid -->
                 <div class="bg-zinc-900 dark:bg-zinc-100 border-2 border-white dark:border-black p-6 md:p-8 shadow-[4px_4px_0_0_white] dark:shadow-[4px_4px_0_0_black]">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-                    <!-- Left Column: CTA Content -->
                     <div class="lg:col-span-7 space-y-8">
-                        <span class="section-label">// Work With Me</span>
+                                <span class="section-label">// Work With Me</span>
 
-                        <h2
-                            class="heading-display text-4xl md:text-5xl lg:text-6xl text-white dark:text-black"
-                        >
-                            Need an MVP or automation system that actually ships?
-                        </h2>
+                                <h2
+                                    class="heading-display text-4xl md:text-5xl lg:text-6xl text-white dark:text-black"
+                                >
+                                    Need an MVP or automation system that actually ships?
+                                </h2>
 
-                        <p
-                            class="text-lg text-zinc-300 dark:text-zinc-600 leading-relaxed max-w-xl"
-                        >
-                            Book a 30-minute roadmap call. We&rsquo;ll narrow the problem
-                            and figure out whether I&rsquo;m the right fit for it.
-                        </p>
+                                <p
+                                    class="text-lg text-zinc-300 dark:text-zinc-600 leading-relaxed max-w-xl"
+                                >
+                                    Book a 30-minute roadmap call. We&rsquo;ll narrow the problem
+                                    and figure out whether I&rsquo;m the right fit for it.
+                                </p>
 
-                        <div class="pt-2">
-                            <a
-                                class="btn-primary inline-block border-black bg-black px-6 py-3 text-white hover:bg-white hover:text-black focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-black dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"
-                                href={BOOK_CALL_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-track-event="book_call_clicked"
-                                data-track-location="footer_contact"
-                            >
-                                Book a Roadmap Call
-                            </a>
-                        </div>
+                                <div class="pt-2">
+                                    <a
+                                        class="btn-primary inline-block border-black bg-black px-6 py-3 text-white hover:bg-white hover:text-black focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-black dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"
+                                        href={BOOK_CALL_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track-event="book_call_clicked"
+                                        data-track-location="footer_contact"
+                                    >
+                                        Book a Roadmap Call
+                                    </a>
+                                </div>
                     </div>
 
                     <!-- Right Column: Connect Links -->
@@ -75,9 +76,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                         class="lg:col-span-5 lg:flex lg:flex-col lg:items-end lg:justify-end"
                     >
                         <div class="space-y-6">
-                            <span class="section-label block lg:text-right"
-                                >// Connect</span
-                            >
+                            <span class="section-label block lg:text-right">
+                                // Connect
+                            </span>
                             <nav class="flex flex-col gap-3">
                                 <a
                                     class="group flex items-center gap-3 font-mono text-sm uppercase tracking-wide transition-colors hover:text-primary lg:justify-end"
@@ -134,7 +135,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                 </div>
                 </div>
             </div>
-        </footer>
+                </footer>
+            )
+        }
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
             window.gtag =
