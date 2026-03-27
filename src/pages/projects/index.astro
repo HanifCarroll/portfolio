@@ -2,10 +2,18 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectList from "../../components/ProjectList.astro";
 import { projects } from "../../lib/project-cards";
+import { projectTrackGroups } from "../../lib/project-tracks";
 
-const title = "Projects";
+const title = "Case Studies";
 const description =
-    "Case studies and selected product work by Hanif Carroll across AI, web applications, and marketing sites.";
+    "Case studies from product builds and automation work by Hanif Carroll.";
+
+const projectSections = projectTrackGroups
+    .map((group) => ({
+        ...group,
+        projects: projects.filter((project) => project.trackGroup === group.key),
+    }))
+    .filter((group) => group.projects.length > 0);
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description}>
@@ -13,23 +21,37 @@ const description =
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="transition-colors hover:text-primary">Home</a>
             <span class="text-zinc-400">/</span>
-            <span class="text-primary">Projects</span>
+            <span class="text-primary">Case Studies</span>
         </nav>
 
         <header class="space-y-6">
-            <span class="section-label">// Selected Work</span>
+            <span class="section-label">// Case Studies</span>
             <h1 class="heading-display text-4xl md:text-5xl">
-                Product work, marketing sites, and systems that shipped.
+                Case studies grouped by the problem they solved.
             </h1>
             <div class="tech-card p-6 md:p-8">
                 <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    These are the projects I&rsquo;ve built across product engineering,
-                    AI workflows, and growth-oriented web experiences. Each case study
-                    focuses on the problem, the approach, and the business outcome.
+                    Start with the kind of problem you are trying to solve: shipping a
+                    first version, cleaning up a workflow, or building a site that
+                    supports the launch.
                 </p>
             </div>
         </header>
 
-        <ProjectList projects={projects} />
+        <div class="space-y-16">
+            {projectSections.map((section) => (
+                <section class="space-y-6">
+                    <div class="max-w-3xl space-y-3">
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            {section.title}
+                        </p>
+                        <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                            {section.description}
+                        </p>
+                    </div>
+                    <ProjectList projects={section.projects} />
+                </section>
+            ))}
+        </div>
     </article>
 </BaseLayout>

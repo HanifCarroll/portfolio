@@ -1,9 +1,68 @@
 ---
 import BaseHead from "../layouts/components/BaseHead.astro";
+import { BOOK_CALL_URL } from "../consts";
 
-const title = "Founder MVP One-Pager";
+const title = "MVPs + Workflow Automation One-Pager";
 const description =
-  "From idea to live MVP in 4 weeks. Direct senior execution, clear communication, and no agency overhead.";
+  "A shareable overview of Hanif Carroll's MVP builds, workflow automation, and AI agent work for nontechnical founders and business owners.";
+
+const offerTracks = [
+  {
+    label: "01",
+    title: "MVP builds",
+    intro: "For nontechnical founders who need a real first version in users' hands.",
+    bullets: [
+      "Cut scope to the smallest version worth shipping.",
+      "Build the product, not just the landing page.",
+      "Launch with direct feedback and a clean handoff.",
+    ],
+  },
+  {
+    label: "02",
+    title: "Workflow automation + AI agents",
+    intro: "For business owners and lean teams buried in repeat work and messy handoffs.",
+    bullets: [
+      "Turn repeated tasks into internal tools or automation.",
+      "Connect the systems already running the business.",
+      "Add AI only when it reduces work or improves a decision.",
+    ],
+  },
+];
+
+const proofItems = [
+  {
+    name: "Casa Elaria",
+    detail:
+      "Built a fake-door storefront so the founder could validate demand before paying for inventory.",
+  },
+  {
+    name: "Desarmadero La Torre",
+    detail:
+      "Built a searchable digital stockroom that cut down on repetitive phone-based inventory checks.",
+  },
+  {
+    name: "Genrupt",
+    detail:
+      "Built subscription, billing, and job infrastructure that helped turn an AI product into a paid SaaS.",
+  },
+];
+
+const fitSignals = [
+  "A founder or owner has a concrete problem, not just a vague idea.",
+  "There is urgency: launch, validation, or operational drag is costing time or money.",
+  "They want direct senior execution instead of agency layers.",
+  "They can make decisions and give timely feedback.",
+];
+
+const links = [
+  { label: "MVP offer", href: "https://www.hanifcarroll.com/launch" },
+  {
+    label: "Automation offer",
+    href: "https://www.hanifcarroll.com/automation-ai-agents",
+  },
+  { label: "Case studies", href: "https://www.hanifcarroll.com/projects" },
+  { label: "Roadmap call", href: BOOK_CALL_URL },
+];
 ---
 
 <!doctype html>
@@ -13,27 +72,62 @@ const description =
     <style is:inline>
       @page {
         size: Letter;
-        margin: 0.65in;
+        margin: 0.6in;
       }
 
       html,
       body {
-        background: white !important;
+        background: #f2ede3 !important;
       }
 
       body {
         color: #111111;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        font-family: Inter, system-ui, sans-serif;
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .sheet {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .display {
+        font-family: "Syne", "IBM Plex Sans", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.06em;
+        line-height: 0.93;
+        text-transform: uppercase;
+        text-wrap: balance;
+      }
+
+      .eyebrow,
+      .mini-label {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
       }
 
       .eyebrow {
-        letter-spacing: 0.22em;
+        color: #4b5563;
+      }
+
+      .mini-label {
+        color: #0066ff;
       }
 
       .muted {
-        color: #5b5b5b;
+        color: #535868;
+      }
+
+      .rule {
+        border-top: 1px solid rgba(17, 17, 17, 0.18);
       }
 
       .section {
@@ -41,20 +135,11 @@ const description =
         page-break-inside: avoid;
       }
 
-      .section + .section {
-        margin-top: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid #d4d4d4;
-      }
-
-      .mini-label {
-        letter-spacing: 0.18em;
-      }
-
-      .timeline-grid {
+      .hero-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        align-items: end;
       }
 
       .two-col {
@@ -63,186 +148,238 @@ const description =
         gap: 1.5rem;
       }
 
-      .split-col {
+      .panel {
+        border: 1.5px solid #111111;
+        background: rgba(255, 255, 255, 0.66);
+        padding: 1.1rem 1.15rem;
+      }
+
+      .offer-grid {
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
       }
 
-      .timeline-item {
-        break-inside: avoid;
-        page-break-inside: avoid;
+      .offer-title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        align-items: baseline;
       }
 
-      .price-note {
-        border-left: 3px solid #111111;
+      .offer-number {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        color: #0066ff;
+      }
+
+      .compact-list,
+      .link-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .compact-list li + li,
+      .link-list li + li {
+        margin-top: 0.55rem;
+      }
+
+      .compact-list li {
+        position: relative;
         padding-left: 1rem;
       }
 
-      @media print {
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+      .compact-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 0.38rem;
+        height: 0.38rem;
+        border-radius: 999px;
+        background: #0066ff;
+      }
+
+      .proof-item + .proof-item,
+      .fit-item + .fit-item {
+        margin-top: 0.8rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(17, 17, 17, 0.12);
+      }
+
+      .link-list a {
+        text-decoration: underline;
+        text-underline-offset: 0.18rem;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.85rem;
       }
 
       @media (max-width: 800px) {
-        .timeline-grid,
+        .hero-grid,
         .two-col,
-        .split-col {
+        .offer-grid,
+        .hero-stats {
           grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <main class="py-2">
-      <article class="container max-w-5xl mx-auto">
-        <section class="section space-y-6">
-          <div class="space-y-3 max-w-3xl">
-            <p class="eyebrow text-[11px] font-mono uppercase text-zinc-500">Hanif Carroll · Founder MVP One-Pager</p>
-            <h1 class="heading-display text-4xl md:text-5xl leading-none tracking-tight">
-              Full-stack engineer for nontechnical founders who need a real MVP fast.
-            </h1>
-            <p class="text-lg leading-relaxed muted max-w-2xl">
-              I help founders go from idea to live product in 4 weeks. Scope, UX,
-              full-stack development, deployment, and launch support — handled directly by me.
+    <main class="sheet px-6 py-6">
+      <article class="space-y-8">
+        <section class="section hero-grid">
+          <div class="space-y-5">
+            <p class="eyebrow">Hanif Carroll · Product Engineer · Buenos Aires</p>
+            <div class="space-y-4">
+              <h1 class="display text-5xl md:text-6xl">
+                MVPs and workflow automation for nontechnical founders and business owners.
+              </h1>
+              <p class="muted max-w-2xl text-lg leading-relaxed">
+                I help clients ship useful first versions and replace repeated manual
+                work with software that actually fits the business.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel space-y-4">
+            <p class="mini-label">When to send me to someone</p>
+            <p class="display text-2xl">
+              There is a real bottleneck, and they need someone to build the fix.
+            </p>
+            <div class="hero-stats">
+              <div>
+                <p class="display text-2xl">8+</p>
+                <p class="muted text-sm">years building products</p>
+              </div>
+              <div>
+                <p class="display text-2xl">Direct</p>
+                <p class="muted text-sm">senior execution, no agency layer</p>
+              </div>
+              <div>
+                <p class="display text-2xl">Fast</p>
+                <p class="muted text-sm">clear scope, short feedback loops</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section rule pt-7">
+          <div class="mb-5 flex items-end justify-between gap-6">
+            <div>
+              <p class="mini-label">Two ways I help</p>
+              <h2 class="display mt-2 text-3xl">
+                One track for new products, one for operational drag.
+              </h2>
+            </div>
+            <p class="muted max-w-sm text-sm leading-relaxed">
+              The common thread is the same: cut through ambiguity, build the useful
+              thing first, and keep communication plain.
             </p>
           </div>
 
-          <div class="two-col items-end">
-            <div class="grid gap-3 md:grid-cols-3 text-sm font-mono uppercase">
-              <div>
-                <p class="text-2xl font-black">8+</p>
-                <p class="mt-1 text-zinc-600">Years building products</p>
-              </div>
-              <div>
-                <p class="text-2xl font-black">Full-stack + AI</p>
-                <p class="mt-1 text-zinc-600">React / Next.js / Node / TypeScript</p>
-              </div>
-              <div>
-                <p class="text-2xl font-black">4 Weeks</p>
-                <p class="mt-1 text-zinc-600">Focused MVP launch timeline</p>
-              </div>
-            </div>
-
-            <div class="price-note justify-self-end max-w-sm">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Launch pricing</p>
-              <p class="heading-display text-3xl mt-2">Starting at $7,500</p>
-              <p class="muted text-sm mt-2">Direct senior execution, fixed-scope delivery, and no agency overhead.</p>
-            </div>
+          <div class="offer-grid">
+            {offerTracks.map((track) => (
+              <section class="panel section">
+                <div class="offer-title-row">
+                  <p class="mini-label">{track.title}</p>
+                  <span class="offer-number">{track.label}</span>
+                </div>
+                <p class="muted mt-3 text-[15px] leading-relaxed">{track.intro}</p>
+                <ul class="compact-list mt-5 muted text-[15px] leading-relaxed">
+                  {track.bullets.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
         </section>
 
-        <section class="section two-col">
-          <div class="space-y-4">
-            <div>
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Who I help</p>
-              <h2 class="heading-display text-2xl mt-2">Founders who need a technical partner they can trust.</h2>
-            </div>
-            <ul class="space-y-3 muted text-[15px] leading-relaxed">
-              <li>• Nontechnical founders moving from idea to first launch</li>
-              <li>• Early-stage teams validating a new product or internal tool</li>
-              <li>• Operators who want direct access to the builder, not agency layers</li>
-              <li>• Buyers who value speed, clarity, and plain-English communication</li>
-            </ul>
-          </div>
-
-          <div class="space-y-4">
-            <div>
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">What I deliver</p>
-              <h2 class="heading-display text-2xl mt-2">A clean first version that people can actually use.</h2>
-            </div>
-            <ul class="space-y-3 muted text-[15px] leading-relaxed">
-              <li>• MVP scoping sprint to cut scope to what matters</li>
-              <li>• UX and product thinking for a clean v1 experience</li>
-              <li>• Full-stack build from frontend to backend</li>
-              <li>• Deployment, launch support, and 30-day bug coverage</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="section space-y-6">
-          <div class="flex items-end justify-between gap-6">
-            <div>
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">The 4-Week Launch</p>
-              <h2 class="heading-display text-3xl md:text-4xl mt-2">From idea to live MVP in 4 weeks.</h2>
-            </div>
-            <p class="text-sm muted max-w-sm text-right">Fixed-scope engagement with weekly demos, direct communication, and launch support.</p>
-          </div>
-
-          <div class="timeline-grid">
-            <div class="timeline-item">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 1</p>
-              <p class="mt-2 font-semibold">Scope and roadmap</p>
-              <p class="mt-1 text-sm muted">Feature cuts, product decisions, and a realistic launch plan.</p>
-            </div>
-            <div class="timeline-item">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 2</p>
-              <p class="mt-2 font-semibold">Core build</p>
-              <p class="mt-1 text-sm muted">The product becomes real quickly, with visible momentum.</p>
-            </div>
-            <div class="timeline-item">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 3</p>
-              <p class="mt-2 font-semibold">Refine and integrate</p>
-              <p class="mt-1 text-sm muted">Polish, feedback, integrations, and key user flows.</p>
-            </div>
-            <div class="timeline-item">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Week 4</p>
-              <p class="mt-2 font-semibold">Launch</p>
-              <p class="mt-1 text-sm muted">Deployment, handoff, and post-launch bug shield.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section split-col">
+        <section class="section two-col rule pt-7">
           <div class="space-y-5">
             <div>
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Relevant work</p>
-              <h2 class="heading-display text-2xl mt-2">Proof that I can ship the kind of thing founders actually need.</h2>
+              <p class="mini-label">Recent work</p>
+              <h2 class="display mt-2 text-3xl">
+                Recent projects clients can map themselves to quickly.
+              </h2>
             </div>
-            <div class="space-y-4 text-[15px]">
-              <div>
-                <p class="font-bold">Genrupt</p>
-                <p class="muted text-sm mt-1">Ongoing development partner for an AI image and video generation platform.</p>
-              </div>
-              <div>
-                <p class="font-bold">BA Events</p>
-                <p class="muted text-sm mt-1">AI-powered event discovery product with conversational UX and production data pipelines.</p>
-              </div>
-              <div>
-                <p class="font-bold">Best fit</p>
-                <p class="muted text-sm mt-1">Founders who want a focused first version, weekly demos, and a product they can actually show users.</p>
-              </div>
+            <div>
+              {proofItems.map((item) => (
+                <div class="proof-item">
+                  <p class="font-semibold">{item.name}</p>
+                  <p class="muted mt-1 text-sm leading-relaxed">{item.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div class="space-y-6">
-            <div class="space-y-3">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Pricing</p>
-              <p class="heading-display text-3xl">Starting at $7,500</p>
-              <p class="muted text-sm">Exact pricing depends on scope, integrations, and technical complexity.</p>
-              <div class="space-y-2 text-sm muted pt-2">
-                <p>• Fixed-scope launch engagement</p>
-                <p>• Weekly demos and direct communication</p>
-                <p>• No equity required</p>
-                <p>• 50% upfront, 50% at launch</p>
-              </div>
+          <div class="space-y-5">
+            <div>
+              <p class="mini-label">Good referrals</p>
+              <h2 class="display mt-2 text-3xl">
+                Best fit for people who can decide and want momentum.
+              </h2>
             </div>
+            <div>
+              {fitSignals.map((signal) => (
+                <div class="fit-item">
+                  <p class="muted text-sm leading-relaxed">{signal}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            <div class="space-y-3">
-              <p class="mini-label text-[11px] font-mono uppercase text-zinc-500">Next step</p>
-              <h2 class="heading-display text-2xl">Book a free Product Roadmap Call.</h2>
-              <p class="muted text-sm leading-relaxed">
-                I’ll help cut scope, map the fastest realistic MVP, and tell you whether I’m the right fit.
-              </p>
-              <div class="space-y-1 text-sm">
-                <p><span class="font-bold">Website:</span> <a href="https://www.hanifcarroll.com/launch" style="text-decoration: underline; text-underline-offset: 2px;">hanifcarroll.com/launch</a></p>
-                <p><span class="font-bold">Portfolio:</span> <a href="https://www.hanifcarroll.com/projects" style="text-decoration: underline; text-underline-offset: 2px;">hanifcarroll.com/projects</a></p>
-                <p><span class="font-bold">Call:</span> <a href="https://cal.com/hanifcarroll/roadmap-call" style="text-decoration: underline; text-underline-offset: 2px;">cal.com/hanifcarroll/roadmap-call</a></p>
-                <p><span class="font-bold">Location:</span> Buenos Aires, Argentina</p>
-              </div>
+        <section class="section two-col rule pt-7">
+          <div class="space-y-5">
+            <div>
+              <p class="mini-label">How engagements start</p>
+              <h2 class="display mt-2 text-3xl">
+                Start with a roadmap call, then scope the right first step.
+              </h2>
             </div>
+            <div class="space-y-3 muted text-sm leading-relaxed">
+              <p>
+                MVP builds start at <strong style="color:#111111;">$7,500</strong> for a
+                focused four-week build.
+              </p>
+              <p>
+                Workflow automation and AI work is scoped after looking at the current
+                workflow, systems, and the actual bottleneck.
+              </p>
+              <p>
+                In both cases, the first call is for narrowing the problem and deciding
+                whether I am the right fit.
+              </p>
+            </div>
+          </div>
+
+          <div class="panel space-y-5">
+            <div>
+              <p class="mini-label">Forward or send directly</p>
+              <h2 class="display mt-2 text-3xl">
+                If someone needs help shipping or cleaning up operations, send this.
+              </h2>
+            </div>
+            <ul class="link-list text-sm leading-relaxed">
+              {links.map((link) => (
+                <li>
+                  <span class="font-semibold">{link.label}:</span>{" "}
+                  <a href={link.href}>{link.href.replace("https://", "")}</a>
+                </li>
+              ))}
+              <li>
+                <span class="font-semibold">Email:</span>{" "}
+                <a href="mailto:HanifCarroll@gmail.com">HanifCarroll@gmail.com</a>
+              </li>
+            </ul>
           </div>
         </section>
       </article>

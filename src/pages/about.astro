@@ -1,6 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const clientReasons = [
+    "Direct access to the person scoping and building the work.",
+    "A bias toward smaller, useful first versions instead of bloated v1s.",
+    "Technical decisions explained in product and business terms.",
+    "Clean handoff, clear communication, and honest fit assessment.",
+];
+
 const title = "About Hanif Carroll";
 const description =
     "Learn about Hanif Carroll's path into software, the kind of products he likes to build, and the values that shape his work.";
@@ -17,15 +24,15 @@ const description =
         <header class="space-y-6">
             <span class="section-label">// About</span>
             <h1 class="heading-display text-4xl md:text-5xl">
-                Product-minded engineering, grounded in real life.
+                Direct product engineering for founders and owner-led teams.
             </h1>
             <div class="tech-card p-6 md:p-8">
                 <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
                     I started programming in 2017 after realizing physical therapy
                     school was the wrong path for me. Since then I&rsquo;ve worked in
-                    consulting, startups, and client projects, and I&rsquo;ve learned that
-                    I do my best work when engineering is tied to product thinking,
-                    user empathy, and clear business outcomes.
+                    consulting, product teams, and client projects. Today I focus on
+                    MVPs, workflow automation, and AI systems where speed, scope, and
+                    communication matter.
                 </p>
             </div>
         </header>
@@ -35,9 +42,9 @@ const description =
                 <h2 class="section-label">// Journey</h2>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                     I&rsquo;ve worked at Capgemini, at LeagueApps during a strong growth
-                    phase, and as a freelancer building websites and web apps. More
-                    recently I&rsquo;ve built products around AI-assisted content systems,
-                    community tools, and event discovery.
+                    phase, and as an independent builder for client and internal
+                    products. The mix has been useful: I understand structured delivery,
+                    real product constraints, and the pace smaller teams need.
                 </p>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                     Buenos Aires has become home. Living here has shaped the way I
@@ -50,14 +57,25 @@ const description =
                 <h2 class="section-label">// How I Work</h2>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                     I&rsquo;m strongest in TypeScript and full-stack product work, but I
-                    care as much about UX, positioning, and what users are actually
-                    trying to accomplish as I do about code quality.
+                    care as much about scope, UX, and business friction as I do about
+                    the code itself.
                 </p>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    I don&rsquo;t like staying in the engineering box. I like understanding
-                    the user persona, finding the main friction, and shaping the
-                    product so it feels obvious to use.
+                    I like direct communication, small useful first versions, and
+                    product decisions explained in plain English. The goal is not to
+                    sound technical. The goal is to build the right thing and ship it.
                 </p>
+            </div>
+        </section>
+
+        <section class="tech-card p-6 md:p-8 space-y-6">
+            <h2 class="heading-display text-3xl md:text-4xl">Why clients hire me</h2>
+            <div class="grid gap-4 md:grid-cols-2">
+                {clientReasons.map((reason) => (
+                    <p class="border-t border-black/10 pt-4 text-base leading-relaxed text-zinc-600 dark:border-white/10 dark:text-zinc-300">
+                        {reason}
+                    </p>
+                ))}
             </div>
         </section>
 
@@ -66,24 +84,8 @@ const description =
             <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                 I&rsquo;ve been lifting weights for nearly 20 years, I play ultimate
                 frisbee, and I care a lot about writing, philosophy, and building
-                strong in-person communities. I&rsquo;m also obsessed with how AI can help
-                people perform better, not only in software engineering but in life
-                more broadly.
-            </p>
-            <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                If you want the current snapshot of what I&rsquo;m focused on, the
-                <a href="/now/" class="underline decoration-primary underline-offset-4">now page</a>
-                has the latest.
-            </p>
-        </section>
-
-        <section class="tech-card p-6 md:p-8 space-y-4">
-            <h2 class="section-label">// What I&rsquo;m Looking For</h2>
-            <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                I like early-stage teams where I can have a real impact across
-                product, engineering, and growth. The best fit is a company building
-                something that genuinely helps people and has enough ambition to make
-                the work matter.
+                strong in-person communities. I also spend a lot of time thinking about
+                how AI can help people perform better in real work, not just in demos.
             </p>
         </section>
     </article>

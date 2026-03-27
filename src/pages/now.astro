@@ -1,8 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Prose from "../components/Prose.astro";
-const [nowEntry] = await Astro.glob("../content/now.md");
-const { Content, frontmatter } = nowEntry;
+const nowEntry = Object.values(
+    import.meta.glob("../content/now.md", { eager: true })
+)[0] as {
+    frontmatter?: {
+        title?: string;
+        description?: string;
+        lastUpdated?: string;
+    };
+    default: any;
+};
+const frontmatter = nowEntry.frontmatter ?? {};
+const Content = nowEntry.default;
 const title = frontmatter.title ?? "What I'm Up to Now";
 const description =
     frontmatter.description ??
@@ -11,7 +21,7 @@ const lastUpdated = frontmatter.lastUpdated ?? "";
 ---
 
 <BaseLayout title={`Now · Hanif Carroll`} description={description}>
-    <article class="container space-y-16 py-10">
+    <article class="container max-w-4xl space-y-16 py-10">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="hover:text-primary transition-colors">Home</a>

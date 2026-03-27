@@ -1,28 +1,109 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import { BOOK_CALL_URL } from "../consts";
 import testimonials from "../../testimonials.json";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
 import markisPhoto from "@src/assets/img/markis.jpeg";
 import sarahPhoto from "@src/assets/img/sarah.jpeg";
 
-const title = "The 4-Week Launch";
+const title = "MVP Builds";
 const description =
-    "From idea to live MVP in 4 weeks. Direct senior execution, clear communication, and no agency overhead.";
-const calUrl = "https://cal.com/hanifcarroll/roadmap-call";
+    "Focused MVP builds for nontechnical founders who need a working first version in 4 weeks.";
+const calUrl = BOOK_CALL_URL;
+const monicaTestimonial = testimonials.find(
+    (testimonial) => testimonial.name === "Monica Londoño",
+);
 
 const testimonialPhotos: Record<string, ImageMetadata> = {
     "Monica Londoño": monicaPhoto,
     "Markis Zarate": markisPhoto,
     "Sarah Hibner": sarahPhoto,
 };
+
+const buyerChallenges = [
+    {
+        title: "The first version still feels too big",
+        body: "You need someone to cut the scope hard enough to ship without flattening the idea.",
+    },
+    {
+        title: "You want direct accountability",
+        body: "A previous freelancer or agency left you with too little visibility and too much cleanup.",
+    },
+    {
+        title: "You need the fastest sane path",
+        body: "Hiring, agency sales cycles, and cofounder searches all slow down the moment you actually need.",
+    },
+    {
+        title: "You need plain-English decisions",
+        body: "You want the tradeoffs explained in business terms, not buried under technical jargon.",
+    },
+];
+
+const bestFit = [
+    "You need a real v1 in front of users soon.",
+    "You can make product decisions and join a short weekly check-in.",
+    "You want direct access to the person building the product.",
+];
+
+const notFit = [
+    "You need a large platform with broad feature scope on day one.",
+    "You want exhaustive custom design before product decisions are made.",
+    "You cannot stay involved during scoping and review.",
+];
+
+const includedItems = [
+    "MVP scoping sprint to cut the first version down before build starts.",
+    "Product build across frontend, backend, and deployment.",
+    "Launch setup plus 30 days of post-launch bug coverage.",
+    "Recorded handoff and shared project visibility from day one.",
+];
+
+const priceComparisons = [
+    {
+        label: "US-Based Developer",
+        value: "$8-15K/month",
+        note: "And you are still managing the process.",
+    },
+    {
+        label: "Technical Cofounder",
+        value: "30-50% equity",
+        note: "A huge long-term trade for an early build.",
+    },
+    {
+        label: "Agency",
+        value: "$15-30K",
+        note: "Usually with more overhead and a longer timeline.",
+    },
+];
+
+const faqItems = [
+    {
+        title: "Burned by a developer before",
+        body: "The code lives in your GitHub from day one, you see weekly demos, and the project board stays shared the whole time.",
+    },
+    {
+        title: "Not sure what to build first",
+        body: "The scoping sprint is for that. You leave with a clearer roadmap before I write a line of code.",
+    },
+    {
+        title: "After launch",
+        body: "I handle deployment, monitoring, bug fixes for 30 days, and a recorded handoff so the next developer can pick it up cleanly.",
+    },
+    {
+        title: "Budget and payment",
+        body: "Focused four-week MVP builds start at $7,500. Payment is 50% upfront to start, 50% at launch. No equity required.",
+    },
+];
 ---
 
 <BaseLayout
     title={`${title} · Hanif Carroll`}
     description={description}
+    showFooterCta={false}
+    footerLinksOnly
 >
-    <article class="container space-y-32 py-10">
+    <article class="container max-w-5xl space-y-32 py-10">
         <!-- Breadcrumb -->
         <nav
             class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide"
@@ -34,21 +115,22 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
         <!-- 1. Hero -->
         <header class="space-y-6">
-            <span class="section-label">// The 4-Week Launch</span>
+            <span class="section-label">// MVP Builds</span>
             <h1 class="heading-display text-5xl md:text-6xl" style="text-wrap: balance">
-                From idea to live product in 4&nbsp;weeks.
+                A focused MVP live in 4&nbsp;weeks.
             </h1>
             <p
                 class="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl"
             >
-                I turn your idea into a real, working product that your first users
-                can pay for&mdash;in 4&nbsp;weeks. Built for nontechnical founders.
+                I scope and build the smallest version worth putting in front of real
+                users. Best for nontechnical founders who need a real v1 fast and can
+                keep the scope tight.
             </p>
             <div class="space-y-2">
                 <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_hero">
-                    Book Your Free Product Roadmap Call
+                    Book a Roadmap Call
                 </a>
-                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-wide">30 minutes &middot; No commitment</p>
+                <p class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-wide">30 minutes &middot; Clear next step</p>
             </div>
         </header>
 
@@ -75,7 +157,7 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
 
             <!-- Testimonials -->
             <div class="space-y-4">
-                <h2 class="heading-display text-3xl md:text-4xl">What People Say About Working With Me</h2>
+                <h2 class="heading-display text-3xl md:text-4xl">Client notes</h2>
             </div>
             <div class="space-y-6">
                 {testimonials.map((testimonial) => {
@@ -121,28 +203,25 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
         <!-- 3. Problem Section -->
         <section class="space-y-12">
             <div class="space-y-4">
-                <span class="section-label">// The Problem</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">You Have the Idea. You Just Can&rsquo;t Build It.</h2>
-                <p class="text-lg text-zinc-600 dark:text-zinc-300">Every month you wait is another month your competitors are building.</p>
+                <span class="section-label">// Why Founders Come to Me</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
+                    You need a real v1 without wasting months on the wrong build.
+                </h2>
+                <p class="text-lg text-zinc-600 dark:text-zinc-300">
+                    Usually the problem is simpler: the scope is fuzzy, execution is slow,
+                    or the work keeps getting handed off.
+                </p>
             </div>
 
             <div class="grid gap-6 md:grid-cols-2">
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Stuck for Months&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You&rsquo;ve been sitting on this idea, but you can&rsquo;t write code and don&rsquo;t know where to start.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Burned Before&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You paid $5&ndash;15K to a freelancer or agency and got half-finished garbage.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Overwhelmed by Options&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Agencies want $15&ndash;30K. A cofounder wants 30&ndash;50% equity. Cheap freelancers are a gamble.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;Lost in Translation&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You don&rsquo;t speak developer. You&rsquo;re afraid of jargon, &ldquo;stupid questions,&rdquo; and not being able to tell if the work is good.</p>
-                </div>
+                {buyerChallenges.map((challenge) => (
+                    <div class="tech-card p-8">
+                        <h3 class="font-bold uppercase tracking-wide">{challenge.title}</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">
+                            {challenge.body}
+                        </p>
+                    </div>
+                ))}
             </div>
         </section>
 
@@ -151,30 +230,42 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
         <!-- 4. "Not for Everyone" Qualifier -->
         <section class="space-y-12">
             <div class="space-y-4">
-                <span class="section-label">// A Note on Fit</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">This Is Not for Everyone</h2>
+                <span class="section-label">// Best Fit</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
+                    Best fit for founders who need a smaller, clearer first version.
+                </h2>
             </div>
 
             <div class="tech-card p-8 md:p-10 space-y-8">
-                <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
-                    <li class="flex gap-3">
-                        <span class="text-primary font-bold shrink-0">&times;</span>
-                        <span>If you need a complex enterprise platform with 50+ features, this isn&rsquo;t the right fit. I build focused MVPs, not bloated v1s.</span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-primary font-bold shrink-0">&times;</span>
-                        <span>If you can&rsquo;t commit to a 30-minute weekly check-in and timely feedback, I can&rsquo;t guarantee the timeline.</span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-primary font-bold shrink-0">&times;</span>
-                        <span>If you want pixel-perfect custom design before any code is written, you&rsquo;ll need a designer first. I build functional, clean products&mdash;not award-winning visual design.</span>
-                    </li>
-                </ul>
+                <div class="grid gap-8 md:grid-cols-2">
+                    <div class="space-y-4">
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Best fit</p>
+                        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+                            {bestFit.map((item) => (
+                                <li class="flex gap-3">
+                                    <span class="text-primary font-bold shrink-0">+</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Not a fit</p>
+                        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+                            {notFit.map((item) => (
+                                <li class="flex gap-3">
+                                    <span class="text-primary font-bold shrink-0">&times;</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="grid-line-horizontal"></div>
 
                 <blockquote class="text-xl font-bold" style="text-wrap: balance">
-                    &ldquo;I&rsquo;m a solo engineer based in Buenos Aires, not a 20-person agency.&rdquo;
+                    I&rsquo;m a solo engineer in Buenos Aires. This is direct work, not an agency process.
                 </blockquote>
 
                 <div class="grid gap-6 md:grid-cols-3">
@@ -200,24 +291,29 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
         <section class="space-y-12">
             <div class="space-y-4">
                 <span class="section-label">// The Process</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">4 Weeks. Here&rsquo;s How.</h2>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
+                    How the four weeks are used.
+                </h2>
             </div>
 
             <div class="space-y-6">
                 <div class="tech-card p-8">
                     <span class="section-label">// 01</span>
                     <h3 class="font-bold uppercase tracking-wide mt-3">Scoping Sprint (Days 1&ndash;3)</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You walk away knowing exactly what gets built, in what order, and why&mdash;before a single line of code.</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You leave with a clear build plan before I write a line of code.</p>
                 </div>
                 <div class="tech-card p-8">
                     <span class="section-label">// 02</span>
-                    <h3 class="font-bold uppercase tracking-wide mt-3">Landing Page Live (Week 1)</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Your landing page goes live <strong class="text-black dark:text-white">in the first week</strong>. You&rsquo;re collecting signups and validating demand while the product is being built.</p>
+                    <h3 class="font-bold uppercase tracking-wide mt-3">Core Build Starts (Week 1)</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">
+                        The highest-risk part of the product gets built early so you have
+                        visible progress and something concrete to react to.
+                    </p>
                 </div>
                 <div class="tech-card p-8">
                     <span class="section-label">// 03</span>
                     <h3 class="font-bold uppercase tracking-wide mt-3">Full Build + Weekly Demos (Weeks 2&ndash;4)</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">I build. You show up for a 30-minute demo each week and give feedback in plain English. That&rsquo;s it.</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">I build while you join a 30-minute demo each week and give feedback in plain English.</p>
                 </div>
                 <div class="tech-card p-8">
                     <span class="section-label">// 04</span>
@@ -232,181 +328,135 @@ const testimonialPhotos: Record<string, ImageMetadata> = {
         <!-- 6. Offer Stack -->
         <section class="space-y-12">
             <div class="space-y-4">
-                <span class="section-label">// What You Get</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">One Price. Everything You Need to Launch.</h2>
+                <span class="section-label">// Offer + Price</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
+                    What a focused four-week build includes.
+                </h2>
+                <p class="text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl">
+                    The roadmap call is where we narrow whether this is the right kind of
+                    project. If it is, the build starts with a scoping sprint and a fixed
+                    first version.
+                </p>
             </div>
 
             <div class="tech-card p-8 md:p-10 space-y-8">
-                <!-- Core Deliverables -->
-                <div class="space-y-4">
-                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Core Deliverables</p>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">MVP Scoping Sprint</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,500 value</span>
-                        </div>
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">Complete Product Build (4 weeks)</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$8,000+ value</span>
-                        </div>
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">Launch Day Deployment &amp; Setup</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,500 value</span>
-                        </div>
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">30-Day Post-Launch Bug Shield</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$2,000 value</span>
+                <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+                    <div class="space-y-4">
+                        <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Included</p>
+                        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+                            {includedItems.map((item) => (
+                                <li class="border-t border-black/10 pt-4 dark:border-white/10">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                        <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Starting price</p>
+                        <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">
+                            Starting at $7,500
+                        </p>
+                        <div class="space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+                            <p>Fixed-scope build for the first useful version.</p>
+                            <p>50% upfront to start, 50% at launch.</p>
+                            <p>No equity. No agency layers. Direct communication.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid-line-horizontal"></div>
 
-                <!-- Bonuses -->
-                <div class="space-y-4">
-                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Bonuses</p>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">Technical Handoff Documentation</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$1,000 value</span>
+                <div class="grid gap-6 md:grid-cols-3">
+                    {priceComparisons.map((comparison) => (
+                        <div class="tech-card p-6 text-center space-y-3">
+                            <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                                {comparison.label}
+                            </p>
+                            <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">
+                                {comparison.value}
+                            </p>
+                            <p class="text-sm text-zinc-600 dark:text-zinc-300">
+                                {comparison.note}
+                            </p>
                         </div>
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">Founder&rsquo;s Tech Decision Cheat Sheet</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$500 value</span>
-                        </div>
-                        <div class="flex justify-between items-baseline gap-4">
-                            <span class="font-bold">Launch Announcement Kit</span>
-                            <span class="font-mono text-sm text-zinc-500 dark:text-zinc-400 shrink-0" style="font-variant-numeric: tabular-nums">$500 value</span>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-                <div class="grid-line-horizontal"></div>
-
-                <!-- Total -->
-                <div class="text-center space-y-2">
-                    <p class="text-lg text-zinc-500 line-through" style="font-variant-numeric: tabular-nums">$15,000+ in value</p>
-                    <p class="heading-display text-3xl text-primary" style="font-variant-numeric: tabular-nums">Starting at $7,500</p>
+                <div class="text-center pt-2">
+                    <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_offer_price">
+                        Book a Roadmap Call
+                    </a>
                 </div>
             </div>
         </section>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- 7. Pricing Block -->
-        <section class="space-y-12">
-            <div class="space-y-4">
-                <span class="section-label">// The Investment</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">Starting at $7,500. Four Weeks. Done.</h2>
-            </div>
-
-            <div class="grid gap-6 md:grid-cols-3">
-                <div class="tech-card p-6 text-center space-y-3">
-                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">US-Based Developer</p>
-                    <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">$8&ndash;15K/month</p>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300">And you&rsquo;re still managing them</p>
-                </div>
-                <div class="tech-card p-6 text-center space-y-3">
-                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Technical Cofounder</p>
-                    <p class="heading-display text-2xl">30&ndash;50% equity</p>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300">That&rsquo;s forever</p>
-                </div>
-                <div class="tech-card p-6 text-center space-y-3">
-                    <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Agency</p>
-                    <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">$15&ndash;30K</p>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300">3&ndash;6 month timeline</p>
-                </div>
-            </div>
-
-            <div class="text-center space-y-3">
-                <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">Starting at $7,500</p>
-                <p class="text-zinc-600 dark:text-zinc-300">100% of your equity stays yours</p>
-            </div>
-
-            <div class="text-center pt-4">
-                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_pricing">
-                    Book Your Free Product Roadmap Call
-                </a>
-            </div>
-        </section>
-
-        <div class="grid-line-horizontal"></div>
-
-        <!-- 8. Guarantee / Risk Reversal -->
+        <!-- 7. Guarantee / Risk Reversal -->
         <section class="space-y-12">
             <div class="space-y-4">
                 <span class="section-label">// The Guarantee</span>
             </div>
 
             <div class="tech-card border-primary p-10 md:p-12 space-y-6">
-                <p class="text-zinc-600 dark:text-zinc-300 font-bold">You&rsquo;re not risking a bloated build. You&rsquo;re risking 30 minutes on a call.</p>
+                <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Low-risk first step</p>
                 <p class="text-2xl md:text-3xl font-bold" style="text-wrap: balance">
-                    &ldquo;If your MVP isn&rsquo;t live within 4 weeks, I work for free until it is.&rdquo;
+                    If I miss the four-week timeline because of my execution, I keep working until the agreed MVP is live at no added cost.
                 </p>
                 <p class="text-zinc-600 dark:text-zinc-300">
-                    No extra charges, no excuses. Requires your participation in weekly check-ins and timely feedback.
+                    This depends on timely feedback, a tight scope, and normal client-side access during the build.
                 </p>
-            </div>
-
-            <div class="text-center">
-                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_guarantee">
-                    Book Your Free Product Roadmap Call
-                </a>
             </div>
         </section>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- 9. Objection FAQ -->
+        <!-- 8. Objection FAQ -->
         <section class="space-y-12">
             <div class="space-y-4">
-                <span class="section-label">// Common Questions</span>
-                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">Questions You Might Have</h2>
+                <span class="section-label">// Common Concerns</span>
+                <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">Common concerns</h2>
             </div>
 
             <div class="space-y-6">
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I&rsquo;ve been burned by a developer before.&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Code on your GitHub from Day 1. Weekly demos. Shared project board. You&rsquo;re never locked in.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I don&rsquo;t know what to build first.&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">That&rsquo;s what the Scoping Sprint is for. You get a prioritized roadmap before I write a line of code.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;What happens after it&rsquo;s built?&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">You don&rsquo;t touch infrastructure. I handle deployment, monitoring, and bugs for 30 days. Plus a recorded handoff so any future dev can pick it up.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I can&rsquo;t afford a CTO or an agency.&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Focused 4-week MVP launches start at $7,500. No equity required.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;I don&rsquo;t know how to talk to developers.&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">Weekly updates in plain English. Every technical decision translated into business impact. No jargon, ever.</p>
-                </div>
-                <div class="tech-card p-8">
-                    <h3 class="font-bold uppercase tracking-wide">&ldquo;How does payment work?&rdquo;</h3>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">50% upfront to kick off the Scoping Sprint, 50% at launch. Simple, no surprises.</p>
-                </div>
+                {faqItems.map((item) => (
+                    <div class="tech-card p-8">
+                        <h3 class="font-bold uppercase tracking-wide">{item.title}</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-3">
+                            {item.body}
+                        </p>
+                    </div>
+                ))}
             </div>
         </section>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- 10. Scarcity + Final CTA -->
+        <!-- 9. Scarcity + Final CTA -->
         <section class="text-center max-w-2xl mx-auto space-y-6">
-            <blockquote class="text-sm text-zinc-600 dark:text-zinc-300 italic leading-relaxed">
-                &ldquo;Hanif delivers high quality work with strong attention to detail. He&rsquo;s the kind of developer who not only gets the job done but elevates the process for everyone involved.&rdquo;
-                <span class="block mt-2 not-italic font-mono text-xs uppercase tracking-wider">&mdash; Markis Zarate, Founder, Zarate Studios</span>
-            </blockquote>
-            <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take 2 build projects at a time.</p>
-            <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">Your Product Could Be Live in 4&nbsp;Weeks</h2>
+            {monicaTestimonial && (
+                <div class="tech-card p-6 text-left space-y-2">
+                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">
+                        Founder note
+                    </p>
+                    <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                        Monica Londoño, co-founder at Punto de Partida, said the work moved
+                        quickly and stayed aligned with both the business need and the visual
+                        direction.
+                    </p>
+                </div>
+            )}
+            <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take on 2 build projects at a time.</p>
+            <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">
+                Bring the scope. I&rsquo;ll tell you whether this should be a 4-week build.
+            </h2>
             <p class="text-zinc-600 dark:text-zinc-300">
-                Book a free 30-minute Product Roadmap Call. You&rsquo;ll walk away with a prioritized feature list and realistic timeline&mdash;whether or not we work together.
+                Book a 30-minute roadmap call. You&rsquo;ll leave with a clearer scope,
+                rough timeline, and a direct answer on fit.
             </p>
             <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-track-event="book_call_clicked" data-track-location="launch_final">
-                Book Your Free Product Roadmap Call
+                Book a Roadmap Call
             </a>
         </section>
     </article>

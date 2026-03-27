@@ -1,8 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ServiceCallout from "../../components/ServiceCallout.astro";
 import type { Project } from "@src/lib/types/project";
 import { getAllProjects } from "@src/lib/projects";
+import { getProjectTrackMeta } from "@src/lib/project-tracks";
 
 // Import all project images statically
 import baEventosHero from "@src/assets/img/projects/ba-eventos-hero.png";
@@ -36,6 +38,8 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props as PageProps;
+const trackMeta = getProjectTrackMeta(project.track);
+const caseStudyVariant = trackMeta.ctaVariant;
 
 // Map project slugs to static image imports
 const imageMap: Record<
@@ -59,13 +63,15 @@ const images = imageMap[project.slug];
 <BaseLayout
     title={`${project.title} · Case Study`}
     description={project.description}
+    showFooterCta={false}
+    footerLinksOnly
 >
     <article class="container max-w-5xl space-y-16 py-10">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="hover:text-primary transition-colors">Home</a>
             <span class="text-zinc-400">/</span>
-            <a href="/projects/" class="hover:text-primary transition-colors">Projects</a>
+            <a href="/projects/" class="hover:text-primary transition-colors">Case Studies</a>
             <span class="text-zinc-400">/</span>
             <span class="text-primary">{project.title}</span>
         </nav>
@@ -103,6 +109,12 @@ const images = imageMap[project.slug];
                                 </div>
                             )
                         }
+                        <div>
+                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                                Track
+                            </dt>
+                            <dd class="font-medium">{trackMeta.label}</dd>
+                        </div>
                         <div>
                             <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
                                 Service
@@ -247,10 +259,16 @@ const images = imageMap[project.slug];
             )
         }
 
+        <ServiceCallout
+            variant={caseStudyVariant}
+            context="case-study"
+            location={`case_study_${project.slug}`}
+        />
+
         <!-- Back to projects -->
         <div class="pt-8">
             <a href="/projects/" class="arrow-link">
-                Back to All Projects
+                Back to All Case Studies
             </a>
         </div>
     </article>

@@ -1,44 +1,50 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import { BOOK_CALL_URL } from "../../consts";
 
 const navLinks = [
-    { href: "/launch/", label: "The 4-Week Launch" },
-    { href: "/projects/", label: "Projects" },
+    { href: "/launch/", label: "MVP Builds" },
+    { href: "/automation-ai-agents/", label: "Automation & AI" },
+    { href: "/projects/", label: "Case Studies" },
     { href: "/about/", label: "About" },
-    { href: "/#experience", label: "Experience" },
-    { href: "/blog/", label: "Blog" },
+    { href: "/blog/", label: "Insights" },
 ];
 ---
 
 <header
-    class="sticky top-0 z-[999] border-b-2 border-black bg-white transition-colors duration-200 dark:border-white dark:bg-black"
+    class="sticky top-0 z-[999] border-b border-black/10 bg-[#f2ede3] transition-colors duration-200 dark:border-white/10 dark:bg-[#090909]"
 >
     <div
-        class="container flex items-center justify-between py-4"
+        class="container flex items-center justify-between gap-6 py-4"
     >
         <a
             href="/"
             id="logoLink"
-            class="font-mono text-sm font-bold uppercase tracking-widest transition hover:text-primary focus-visible:outline-none"
+            class="flex flex-col transition hover:text-primary focus-visible:outline-none"
         >
-            [HANIF.DEV]
+            <span class="font-display text-lg font-semibold uppercase tracking-[0.18em]">
+                Hanif Carroll
+            </span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.34em] text-zinc-500 dark:text-zinc-400">
+                MVPs + AI Automation
+            </span>
         </a>
 
-        <nav class="hidden items-center gap-8 md:flex">
-            <a
-                href="/"
-                id="homeButton"
-                class="nav-link"
-            >
-                Home
-            </a>
+        <nav class="hidden items-center gap-6 lg:flex">
             {
                 navLinks.map((link) => (
                     <HeaderLink href={link.href}>{link.label}</HeaderLink>
                 ))
             }
-            <a href="/#contact" class="btn-primary py-2 px-4">
-                Contact
+            <a
+                href={BOOK_CALL_URL}
+                class="btn-primary py-2 px-4"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-event="book_call_clicked"
+                data-track-location="header_primary"
+            >
+                Book a Roadmap Call
             </a>
         </nav>
 
@@ -127,30 +133,30 @@ const navLinks = [
 
     <!-- Mobile Menu - Full screen overlay -->
     <div
-        class="fixed inset-0 top-[65px] z-50 bg-white dark:bg-black md:hidden"
+        class="fixed inset-0 top-[73px] z-50 bg-white dark:bg-black md:hidden"
         id="mobileMenu"
         hidden
     >
         <nav class="container flex flex-col gap-6 py-8">
-            <a
-                href="/"
-                id="mobileHomeButton"
-                class="text-2xl font-bold uppercase tracking-wide transition hover:text-primary"
-            >
-                Home
-            </a>
             {
                 navLinks.map((link) => (
                     <a
                         href={link.href}
-                        class="text-2xl font-bold uppercase tracking-wide transition hover:text-primary"
+                        class="text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary"
                     >
                         {link.label}
                     </a>
                 ))
             }
-            <a href="/#contact" class="btn-primary mt-4 w-fit">
-                Contact
+            <a
+                href={BOOK_CALL_URL}
+                class="btn-primary mt-4 w-fit"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-event="book_call_clicked"
+                data-track-location="header_mobile"
+            >
+                Book a Roadmap Call
             </a>
         </nav>
     </div>

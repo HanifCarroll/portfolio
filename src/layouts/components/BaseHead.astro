@@ -15,15 +15,51 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+const analyticsAllowedHosts = JSON.stringify([
+    "hanifcarroll.com",
+    "www.hanifcarroll.com",
+]);
 const gtmLoaderScript = gtmId
-    ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`
+    ? `(() => {
+        const allowedHosts = new Set(${analyticsAllowedHosts});
+        if (!allowedHosts.has(window.location.hostname)) return;
+
+        (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${gtmId}');
+    })();`
     : "";
-const gaInitScript = gaMeasurementId
-    ? `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = window.gtag || gtag; gtag('js', new Date()); gtag('config', '${gaMeasurementId}', { send_page_view: false });`
+const gaLoaderScript = gaMeasurementId
+    ? `(() => {
+        const allowedHosts = new Set(${analyticsAllowedHosts});
+        if (!allowedHosts.has(window.location.hostname)) return;
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        window.gtag = window.gtag || gtag;
+
+        gtag('js', new Date());
+        gtag('config', '${gaMeasurementId}', {
+            anonymize_ip: true,
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname,
+        });
+    })();`
     : "";
 const clarityLoaderScript = clarityProjectId
     ? `(() => {
-        const clarityAllowedHosts = new Set(['hanifcarroll.com', 'www.hanifcarroll.com']);
+        const clarityAllowedHosts = new Set(${analyticsAllowedHosts});
         if (!clarityAllowedHosts.has(window.location.hostname)) return;
 
         (function(c,l,a,r,i,t,y){
@@ -52,19 +88,11 @@ const clarityLoaderScript = clarityProjectId
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
 />
 {gtmLoaderScript && <script is:inline set:html={gtmLoaderScript}></script>}
-{
-    gaMeasurementId && (
-        <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-        ></script>
-    )
-}
-{gaInitScript && <script is:inline set:html={gaInitScript}></script>}
+{gaLoaderScript && <script is:inline set:html={gaLoaderScript}></script>}
 {clarityLoaderScript && (
     <script is:inline set:html={clarityLoaderScript}></script>
 )}

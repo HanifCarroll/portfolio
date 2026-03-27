@@ -1,0 +1,111 @@
+---
+import { BOOK_CALL_URL } from "../consts";
+
+type Variant = "general" | "mvp" | "automation";
+type Context = "blog" | "case-study";
+
+interface Props {
+    variant?: Variant;
+    context?: Context;
+    location: string;
+    class?: string;
+}
+
+const { variant = "general", context = "blog", location, class: className = "" } =
+    Astro.props as Props;
+
+const offers = {
+    blog: {
+        general: {
+            label: "// Work With Me",
+            title: "If you're sorting through an MVP or workflow problem, the next step is narrowing the build.",
+            body: "I work with nontechnical founders and business owners to scope MVPs, workflow automation, and AI systems around an actual business bottleneck.",
+            secondaryHref: "/projects/",
+            secondaryLabel: "Browse Case Studies",
+        },
+        mvp: {
+            label: "// Need an MVP?",
+            title: "Need help cutting scope and getting v1 live?",
+            body: "If the problem in this post looks familiar, bring it to a roadmap call and we’ll narrow the first version before code starts.",
+            secondaryHref: "/launch/",
+            secondaryLabel: "See MVP Builds",
+        },
+        automation: {
+            label: "// Need Automation?",
+            title: "Need to clean up the workflow behind this?",
+            body: "Bring the handoff, repeated task, or operational bottleneck. We’ll decide what should be software and whether AI belongs in it.",
+            secondaryHref: "/automation-ai-agents/",
+            secondaryLabel: "See Automation & AI Work",
+        },
+    },
+    "case-study": {
+        general: {
+            label: "// Similar Work?",
+            title: "Need something like this for your business?",
+            body: "If the case study looks close to the problem you’re solving, the fastest next step is a roadmap call to narrow scope and fit.",
+            secondaryHref: "/projects/",
+            secondaryLabel: "Browse More Case Studies",
+        },
+        mvp: {
+            label: "// Similar Build?",
+            title: "Need a first version like this?",
+            body: "If you need a real v1 in front of users without dragging the build out for months, start by scoping the smallest useful version.",
+            secondaryHref: "/launch/",
+            secondaryLabel: "See MVP Builds",
+        },
+        automation: {
+            label: "// Similar Workflow?",
+            title: "Need this kind of workflow cleaned up?",
+            body: "If your business is still relying on copy-paste, fragmented tools, or one person’s memory, bring the workflow and we’ll scope the first fix.",
+            secondaryHref: "/automation-ai-agents/",
+            secondaryLabel: "See Automation & AI Work",
+        },
+    },
+} as const;
+
+const offer = offers[context][variant];
+const primaryClasses =
+    "btn-primary border-white bg-white text-black hover:bg-black hover:text-white dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white";
+const secondaryClasses =
+    "btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black";
+---
+
+<section
+    class:list={[
+        "border-y border-black/10 bg-black px-6 py-10 text-white dark:border-white/10 md:px-8 md:py-12",
+        className,
+    ]}
+>
+    <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+        <div class="space-y-5">
+            <span class="section-label">{offer.label}</span>
+            <h2 class="heading-display max-w-3xl text-4xl text-white md:text-5xl">
+                {offer.title}
+            </h2>
+            <p class="max-w-2xl text-base leading-7 text-white/74 md:text-lg md:leading-8">
+                {offer.body}
+            </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 lg:justify-end lg:self-end">
+            <a
+                class={primaryClasses}
+                href={BOOK_CALL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-event="book_call_clicked"
+                data-track-location={`${location}_primary`}
+            >
+                Book a Roadmap Call
+            </a>
+            <a
+                class={secondaryClasses}
+                href={offer.secondaryHref}
+                data-track-event="service_page_clicked"
+                data-track-location={`${location}_secondary`}
+            >
+                {offer.secondaryLabel}
+            </a>
+        </div>
+    </div>
+</section>

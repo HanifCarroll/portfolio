@@ -3,6 +3,7 @@ title: "Choosing a Backend in 2026: Convex, InsForge, or Supabase?"
 description: "A practical comparison of three backend platforms for indie devs and startup CTOs. When to use each, code examples, and my honest take after building with Supabase."
 pubDate: 2026-01-15
 tags: ["backend", "supabase", "convex", "insforge", "comparison"]
+ctaVariant: general
 ---
 
 You need a backend. Supabase is the obvious choice. Everyone uses it, and for good reason.
