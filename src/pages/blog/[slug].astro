@@ -26,8 +26,8 @@ const { Content, headings } = await render(post);
 const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`;
 ---
 
-<BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false}>
-	<div class='container lg:flex gap-10 tech-card py-8 px-6 lg:px-10'>
+<BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false} footerLinksOnly>
+	<div class='container max-w-5xl lg:flex gap-10 tech-card py-8 px-6 lg:px-10'>
 		<main
 			class='overflow-hidden grow'
 		>

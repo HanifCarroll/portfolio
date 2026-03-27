@@ -72,8 +72,8 @@ const offers = [
 const processSteps = [
     {
         number: "01",
-        title: "Find the real bottleneck",
-        body: "We decide whether the problem is a first version, an ops bottleneck, or both.",
+        title: "Decide what needs to be built first",
+        body: "First we work out whether you need an MVP, workflow automation, or both.",
     },
     {
         number: "02",
@@ -138,7 +138,7 @@ const caseStudies = [
 ];
 ---
 
-<BaseLayout title={title} description={description} flushTop>
+<BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly>
     <section class="border-b border-black/10 bg-black text-white dark:border-white/10">
         <div class="home-hero-split min-h-[calc(100svh-73px)]">
             <div class="relative flex items-center bg-[linear-gradient(165deg,#050505,#07162d)] px-6 py-12 md:px-10 md:py-14 lg:border-r lg:border-r-white/10 lg:px-16 xl:px-20">
@@ -166,7 +166,7 @@ const caseStudies = [
                         style="animation-delay: 280ms; animation-fill-mode: forwards;"
                     >
                         I turn product ideas and messy manual workflows into working software
-                        without agency overhead or technical hand-holding.
+                        without agency overhead.
                     </p>
 
                     <div
@@ -215,11 +215,11 @@ const caseStudies = [
             <div class="space-y-5">
                 <p class="kicker-line">Who This Is For</p>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    You should know fast whether this is a fit.
+                    Know quickly if this is the right kind of help.
                 </h2>
                 <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    Most people land here cold. They should know fast whether I build the
-                    kind of thing they need.
+                    If you need a first version soon or software to remove a recurring
+                    bottleneck, the fit should be clear fast.
                 </p>
             </div>
 
@@ -248,7 +248,7 @@ const caseStudies = [
 
     <section class="container py-14 md:py-20">
         <div class="space-y-5">
-            <p class="kicker-line">What I Build</p>
+            <p class="kicker-line">Where This Usually Starts</p>
             <div class="max-w-3xl space-y-4">
                 <h2 class="heading-display text-4xl md:text-5xl">
                     Most projects start in one of two places.
@@ -308,14 +308,14 @@ const caseStudies = [
                     Direct senior execution without the agency drag.
                 </h2>
                 <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    The point is clarity. One person owns the scope, the build, the tradeoffs,
-                    and the communication. That matters a lot when the client is nontechnical.
+                    You get one person handling the scope, the build, the tradeoffs, and the
+                    communication. That matters when the buyer is nontechnical.
                 </p>
 
                 {founderQuote && (
                     <div class="border-t border-black/12 pt-6 dark:border-white/12">
                         <div class="flex items-start gap-4">
-                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
+                            <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
                                 <Image
                                     src={monicaPhoto}
                                     alt={founderQuote.name}
@@ -329,10 +329,15 @@ const caseStudies = [
                                 <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
                                     &ldquo;{founderQuote.text}&rdquo;
                                 </p>
-                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
-                                    {founderQuote.name} · {founderQuote.role}
-                                    {founderQuote.company ? ` · ${founderQuote.company}` : ""}
-                                </p>
+                                <div class="space-y-1 font-mono text-zinc-500 dark:text-zinc-400">
+                                    <p class="text-xs uppercase tracking-[0.24em]">
+                                        {founderQuote.name}
+                                    </p>
+                                    <p class="text-[11px] uppercase tracking-[0.18em]">
+                                        {founderQuote.role}
+                                        {founderQuote.company ? ` · ${founderQuote.company}` : ""}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -372,24 +377,29 @@ const caseStudies = [
                 {operatorQuote && (
                     <div class="border-t border-black/12 pt-6 dark:border-white/12">
                         <div class="flex items-start gap-4">
-                            <div class="h-16 w-16 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
+                            <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-black/15 dark:border-white/15">
                                 <Image
                                     src={markisPhoto}
                                     alt={operatorQuote.name}
                                     width={64}
                                     height={64}
                                     loading="lazy"
-                                    class="h-full w-full object-cover"
+                                    class="h-full w-full object-cover object-center"
                                 />
                             </div>
                             <div class="space-y-3">
                                 <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
                                     &ldquo;{operatorQuote.text}&rdquo;
                                 </p>
-                                <p class="font-mono text-xs uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
-                                    {operatorQuote.name} · {operatorQuote.role}
-                                    {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
-                                </p>
+                                <div class="space-y-1 font-mono text-zinc-500 dark:text-zinc-400">
+                                    <p class="text-xs uppercase tracking-[0.24em]">
+                                        {operatorQuote.name}
+                                    </p>
+                                    <p class="text-[11px] uppercase tracking-[0.18em]">
+                                        {operatorQuote.role}
+                                        {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -401,14 +411,14 @@ const caseStudies = [
 
     <section class="container py-20 md:py-24" id="case-studies">
         <div class="space-y-5">
-            <p class="kicker-line">Selected Case Studies</p>
+            <p class="kicker-line">Case Studies</p>
             <div class="max-w-3xl space-y-4">
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Case studies grouped by the problem they solved.
+                    Find the closest match for the kind of problem you have.
                 </h2>
                 <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    If you&rsquo;re trying to launch something or clean up a messy workflow,
-                    you should be able to find similar work fast.
+                    The work is grouped by MVP, workflow, and AI-system projects so you can
+                    start with the most relevant examples.
                 </p>
             </div>
         </div>

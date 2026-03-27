@@ -64,7 +64,7 @@ const process = [
 ];
 ---
 
-<BaseLayout title={`${title} · Hanif Carroll`} description={description}>
+<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
     <article class="container max-w-6xl space-y-20 py-10">
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="transition-colors hover:text-primary">Home</a>
@@ -72,13 +72,13 @@ const process = [
             <span class="text-primary">Automation &amp; AI</span>
         </nav>
 
-        <header class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <div class="space-y-6">
+        <header class="space-y-10 xl:space-y-12">
+            <div class="max-w-5xl space-y-6">
                 <span class="section-label">// Workflow Automation &amp; AI Agents</span>
-                <h1 class="heading-display text-5xl md:text-6xl">
+                <h1 class="automation-hero-title max-w-[13.8ch]">
                     Replace repetitive work with software that actually fits the business.
                 </h1>
-                <p class="max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+                <p class="max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
                     This is for founder-led teams and business owners whose operations are
                     slowing down because too much knowledge lives in people, tabs, and manual
                     workarounds.
@@ -100,11 +100,11 @@ const process = [
                 </div>
             </div>
 
-            <figure class="overflow-hidden border border-black/15 bg-black dark:border-white/15">
+            <figure class="automation-hero-figure overflow-hidden border border-black/15 bg-black dark:border-white/15">
                 <Image
                     src={desarmaderoFeature}
                     alt="Workflow automation example"
-                    class="aspect-[16/11] w-full object-cover"
+                    class="aspect-[16/10] w-full object-cover"
                     loading="eager"
                 />
             </figure>
@@ -127,7 +127,7 @@ const process = [
             <div class="max-w-3xl space-y-4">
                 <span class="section-label">// What I Actually Build</span>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Software first. AI where it earns its keep.
+                    Start with the workflow. Use AI only where it helps.
                 </h2>
                 <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
                     Most automation problems are really operations problems. The work starts by
@@ -233,3 +233,26 @@ const process = [
         </section>
     </article>
 </BaseLayout>
+
+<style>
+    .automation-hero-title {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(3.2rem, 7vw, 6.25rem);
+        font-weight: 700;
+        line-height: 0.88;
+        letter-spacing: -0.07em;
+        text-transform: uppercase;
+        text-wrap: balance;
+    }
+
+    .automation-hero-figure {
+        width: min(100%, 68rem);
+    }
+
+    @media (min-width: 1024px) {
+        .automation-hero-figure {
+            margin-left: auto;
+            width: min(100%, 54rem);
+        }
+    }
+ </style>

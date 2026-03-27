@@ -11,6 +11,9 @@ const title = "MVP Builds";
 const description =
     "Focused MVP builds for nontechnical founders who need a working first version in 4 weeks.";
 const calUrl = BOOK_CALL_URL;
+const monicaTestimonial = testimonials.find(
+    (testimonial) => testimonial.name === "Monica Londoño",
+);
 
 const testimonialPhotos: Record<string, ImageMetadata> = {
     "Monica Londoño": monicaPhoto,
@@ -97,8 +100,10 @@ const faqItems = [
 <BaseLayout
     title={`${title} · Hanif Carroll`}
     description={description}
+    showFooterCta={false}
+    footerLinksOnly
 >
-    <article class="container space-y-32 py-10">
+    <article class="container max-w-5xl space-y-32 py-10">
         <!-- Breadcrumb -->
         <nav
             class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide"
@@ -203,8 +208,8 @@ const faqItems = [
                     You need a real v1 without wasting months on the wrong build.
                 </h2>
                 <p class="text-lg text-zinc-600 dark:text-zinc-300">
-                    The drag is usually not ambition. It is unclear scope, slow execution,
-                    or another round of handoff friction.
+                    Usually the problem is simpler: the scope is fuzzy, execution is slow,
+                    or the work keeps getting handed off.
                 </p>
             </div>
 
@@ -430,11 +435,19 @@ const faqItems = [
 
         <!-- 9. Scarcity + Final CTA -->
         <section class="text-center max-w-2xl mx-auto space-y-6">
-            <blockquote class="text-sm text-zinc-600 dark:text-zinc-300 italic leading-relaxed">
-                &ldquo;Hanif delivers high quality work with strong attention to detail. He&rsquo;s the kind of developer who not only gets the job done but elevates the process for everyone involved.&rdquo;
-                <span class="block mt-2 not-italic font-mono text-xs uppercase tracking-wider">&mdash; Markis Zarate, Founder, Zarate Studios</span>
-            </blockquote>
-            <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take 2 build projects at a time.</p>
+            {monicaTestimonial && (
+                <div class="tech-card p-6 text-left space-y-2">
+                    <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">
+                        Founder note
+                    </p>
+                    <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                        Monica Londoño, co-founder at Punto de Partida, said the work moved
+                        quickly and stayed aligned with both the business need and the visual
+                        direction.
+                    </p>
+                </div>
+            )}
+            <p class="font-mono text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">I only take on 2 build projects at a time.</p>
             <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">
                 Bring the scope. I&rsquo;ll tell you whether this should be a 4-week build.
             </h2>

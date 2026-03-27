@@ -16,8 +16,10 @@ const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b
 <BaseLayout
   title={title}
   description={description}
+  showFooterCta={false}
+  footerLinksOnly
 >
-  <div class='container tech-card py-8 px-6 lg:px-10'>
+  <div class='container max-w-6xl tech-card py-8 px-6 lg:px-10'>
     <div class="mb-10">
       <span class="section-label">// Insights</span>
       <h1 class="heading-display mt-3 text-4xl md:text-5xl">{title}</h1>
