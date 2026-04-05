@@ -10,6 +10,7 @@ const {
     flushTop = false,
     showFooterCta = true,
     footerLinksOnly = false,
+    padContentBeforeFooter = true,
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
@@ -37,7 +38,11 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
         <Header />
         <div class:list={[
             "min-h-[calc(100vh-200px)]",
-            flushTop ? (showFooterCta || footerLinksOnly ? "pb-12" : "pb-0") : "py-12",
+            flushTop
+                ? (showFooterCta || footerLinksOnly) && padContentBeforeFooter
+                    ? "pb-12"
+                    : "pb-0"
+                : "py-12",
         ]}>
             <slot />
         </div>
