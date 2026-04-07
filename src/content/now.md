@@ -6,18 +6,18 @@ description: >
 lastUpdated: "April 6th, 2026"
 ---
 
-## BA Eventos
-
-I built an AI-powered event discovery platform for Buenos Aires called [BA Eventos](https://baeventos.com). It aggregates events from Passline, Eventbrite, Meetup, and other sources, then lets users search and discover events through natural language conversation. Built with Claude AI, semantic search via pgvector, and agent-native architecture—17 tools that give the AI full parity with the UI.
-
-## Genrupt
-
-Still working with Genrupt, but the scope is much bigger now than the old image and video workflow. Recent work spans org billing and credit systems, queue-backed generation, Canva-like text editing, Amazon market analysis, listing builder and A+ tooling, and a new MCP surface for agent-driven workflows.
-
 ## Fitness
 
-Knees are finally healing after discovering sissy squats. No more pain going downstairs, which means I can actually do cardio again. Goal for 2026 is to hit PRs on all my lifts—recently deadlifted 220kg for 5, aiming to beat my 282kg single.
+Discovered that calf tightness and weakness (specifically the soleus) was the cause of my ankle and knee pain. Life has been much better since I began to address that, and I can run and squat comfortably again!
+
+## New Project
+
+Began working on a new client project: a language learning web and mobile app. It's been going well, but wow, I had no idea it was such a pain to release mobile apps.
 
 ## Life in Buenos Aires
 
-I was planning to move back to the US in April, but then I got into a relationship and decided to stay. Summer is in full swing and I'm enjoying it. 
+Summer has gone, and we're getting into colder weather. It's not my favorite time of year, but I'm doing what I can to enjoy it.
+
+## Relationship
+
+I'm blessed to have the relationship that I do. Enough said.
