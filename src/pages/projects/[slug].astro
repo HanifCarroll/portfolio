@@ -40,6 +40,18 @@ export async function getStaticPaths() {
 const { project } = Astro.props as PageProps;
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
+const firstText = (value: string | string[]) =>
+    Array.isArray(value) ? value[0] : value;
+const problemSummary = firstText(project.problem);
+const outcomeSummary = firstText(project.result);
+const engagementDetails = [
+    { label: "Client", value: project.client },
+    { label: "Service", value: project.service },
+    { label: "Track", value: trackMeta.label },
+    { label: "Role", value: project.role },
+].filter(
+    (detail): detail is { label: string; value: string } => Boolean(detail.value),
+);
 
 // Map project slugs to static image imports
 const imageMap: Record<
@@ -90,82 +102,85 @@ const images = imageMap[project.slug];
                 </div>
             </div>
 
-            <!-- Project Meta -->
             <div class="tech-card p-6">
-                <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-                    <dl class="grid grid-cols-2 gap-6 text-sm">
-                        <div>
-                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                                Client
-                            </dt>
-                            <dd class="font-medium">{project.client}</dd>
+                <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:gap-10">
+                    <div class="space-y-6">
+                        <div class="space-y-3">
+                            <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                                What changed
+                            </p>
+                            <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+                                {outcomeSummary}
+                            </p>
                         </div>
-                        {
-                            project.role && (
-                                <div>
-                                    <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                                        Role
+
+                        <dl class="grid gap-4 sm:grid-cols-2">
+                            {engagementDetails.map((detail) => (
+                                <div class="border-t border-black/10 pt-4 text-sm dark:border-white/10">
+                                    <dt class="font-mono text-[11px] uppercase tracking-[0.24em] text-primary">
+                                        {detail.label}
                                     </dt>
-                                    <dd class="font-medium">{project.role}</dd>
+                                    <dd class="mt-2 text-base font-medium text-zinc-900 dark:text-zinc-100">
+                                        {detail.value}
+                                    </dd>
                                 </div>
-                            )
-                        }
-                        <div>
-                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                                Track
-                            </dt>
-                            <dd class="font-medium">{trackMeta.label}</dd>
+                            ))}
+                        </dl>
+                    </div>
+
+                    <div class="space-y-6 border-t border-black/10 pt-6 dark:border-white/10 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0">
+                        <div class="space-y-3">
+                            <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                                Why it mattered
+                            </p>
+                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                {problemSummary}
+                            </p>
                         </div>
-                        <div>
-                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                                Service
-                            </dt>
-                            <dd class="font-medium">{project.service}</dd>
+
+                        <div class="space-y-3">
+                            <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                                Built with
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                    <span class="tech-tag">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                        <div>
-                            <dt class="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                                Technologies
-                            </dt>
-                            <dd class="flex flex-wrap gap-2 mt-1">
-                                {
-                                    project.technologies.map((tech) => (
-                                        <span class="tech-tag">
-                                            {tech}
-                                        </span>
-                                    ))
-                                }
-                            </dd>
+
+                        <div class="flex flex-wrap gap-3">
+                            {
+                                project.liveUrl && (
+                                    <a
+                                        class="btn-primary"
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        data-track-event="project_live_site_clicked"
+                                        data-track-location="project_detail"
+                                    >
+                                        Visit Live Site
+                                        <span>&rarr;</span>
+                                    </a>
+                                )
+                            }
+                            {
+                                project.repository && (
+                                    <a
+                                        class="btn-secondary"
+                                        href={project.repository}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Code
+                                        <span>&rarr;</span>
+                                    </a>
+                                )
+                            }
                         </div>
-                    </dl>
-                    <div class="flex flex-wrap gap-3 shrink-0">
-                        {
-                            project.liveUrl && (
-                                <a
-                                    class="btn-primary"
-                                    href={project.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    data-track-event="project_live_site_clicked"
-                                    data-track-location="project_detail"
-                                >
-                                    Visit Live Site
-                                    <span>&rarr;</span>
-                                </a>
-                            )
-                        }
-                        {
-                            project.repository && (
-                                <a
-                                    class="btn-secondary"
-                                    href={project.repository}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Code
-                                    <span>&rarr;</span>
-                                </a>
-                            )
-                        }
                     </div>
                 </div>
             </div>
@@ -186,7 +201,7 @@ const images = imageMap[project.slug];
 
         <section class="tech-card p-6 md:p-8 space-y-12">
             <div class="space-y-4">
-                <h2 class="section-label">// The Challenge</h2>
+                <h2 class="section-label">// What Was Happening</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.problem) ? (
@@ -207,7 +222,7 @@ const images = imageMap[project.slug];
             <div class="grid-line-horizontal"></div>
 
             <div class="space-y-4">
-                <h2 class="section-label">// The Approach</h2>
+                <h2 class="section-label">// What I Built</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.solution) ? (
@@ -228,7 +243,7 @@ const images = imageMap[project.slug];
             <div class="grid-line-horizontal"></div>
 
             <div class="space-y-4">
-                <h2 class="section-label">// The Outcome</h2>
+                <h2 class="section-label">// What Changed</h2>
                 <div class="max-w-4xl space-y-4">
                     {
                         Array.isArray(project.result) ? (

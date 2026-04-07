@@ -1,38 +1,32 @@
 ---
-import { slugify } from '../utils';
 import FormattedDate from './FormattedDate.astro';
 import type { CollectionEntry } from 'astro:content';
 
 type BlogPost = CollectionEntry<'blog'>;
 interface Props {
   post: BlogPost;
-  showTags?: boolean;
 }
-const { post, showTags = false } = Astro.props;
+const { post } = Astro.props;
+const audienceLabel =
+  post.data.audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
 ---
-<div class='flex flex-col sm:flex-row gap-2 sm:items-center  border-b py-2 mb-1 capitalize dark:border-b-zinc-700'>
-  <div class='text-zinc-700 text-sm w-24 dark:text-zinc-300 shrink-0'>
+<article class="grid gap-5 border-t border-black/10 py-6 dark:border-white/10 md:grid-cols-[150px_1fr_auto] md:items-start">
+  <div class="text-sm text-zinc-600 dark:text-zinc-300">
     <FormattedDate date={post.data.pubDate} />
   </div>
-  <h3 class='font-medium grow'>
-    <a href={`/blog/${post.id}/`}>
-      {post.data.title}
-    </a>
-  </h3>
-  {showTags && (
-    <div class='flex gap-2 shrink-0'>
-      {
-        (post.data.tags || [] )?.map((tag: string) => (
-          <a
-            class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
-            text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
-            transition-all duration-700
-            hover:border-zinc-700 dark:hover:border-zinc-300'
-            href={`/tags/${slugify(tag)}`}>
-            {tag}
-          </a>
-        ))
-      }
-    </div>
-  )}
-</div>
+  <div class="space-y-3">
+    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+      <a href={`/blog/${post.id}/`} class="transition-colors hover:text-primary">
+        {post.data.title}
+      </a>
+    </h3>
+    <p class="max-w-3xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+      {post.data.description}
+    </p>
+  </div>
+  <div class="md:justify-self-end">
+    <span class="inline-flex rounded-full border border-black/12 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.24em] text-zinc-600 dark:border-white/12 dark:text-zinc-300">
+      {audienceLabel}
+    </span>
+  </div>
+</article>

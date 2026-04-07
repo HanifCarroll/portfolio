@@ -2,15 +2,20 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostsByYear from '../../components/PostsByYear.astro';
+import PostItem from '../../components/PostItem.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
-const title = 'Notes on MVPs, Automation, and AI Agents';
+const title = 'Insights on launching MVPs, fixing workflows, and using AI where it actually helps';
 const description =
-  'Breakdowns from shipped product work, workflow automation projects, and the decisions behind useful AI systems.';
+  'Notes for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build notes are here too, but they support the client work rather than replace it.';
 
-const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog')).sort(
+  (a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const founderPosts = posts.filter((post) => post.data.audience === 'founder');
+const builderPosts = posts.filter((post) => post.data.audience === 'builder');
 ---
 
 <BaseLayout
@@ -19,15 +24,74 @@ const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b
   showFooterCta={false}
   footerLinksOnly
 >
-  <div class='container max-w-6xl tech-card py-8 px-6 lg:px-10'>
-    <div class="mb-10">
+  <article class="container max-w-6xl space-y-16 py-10">
+    <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
+      <a href="/" class="transition-colors hover:text-primary">Home</a>
+      <span class="text-zinc-400">/</span>
+      <span class="text-primary">Insights</span>
+    </nav>
+
+    <header class="space-y-6">
       <span class="section-label">// Insights</span>
-      <h1 class="heading-display mt-3 text-4xl md:text-5xl">{title}</h1>
-      <p class="mt-4 max-w-3xl text-zinc-700 dark:text-zinc-300 text-lg leading-8">{description}</p>
-    </div>
-    <PostsByYear posts={posts}/>
-    <div class="mt-12 border-t border-black/10 pt-10 dark:border-white/10">
-      <ServiceCallout context="blog" variant="general" location="blog_index" />
-    </div>
-  </div>
+      <h1 class="heading-display text-4xl md:text-5xl">
+        Insights on launching MVPs, fixing workflows, and using AI where it actually helps.
+      </h1>
+      <div class="tech-card grid gap-6 p-6 md:grid-cols-2 md:p-8">
+        <div class="space-y-3">
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+            Primary audience
+          </p>
+          <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+            Most of this section is for founders and operator-led teams trying to decide
+            what to build, what to automate, and where a smaller first system is enough.
+          </p>
+        </div>
+        <div class="space-y-3">
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+            Secondary lane
+          </p>
+          <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+            Some posts are technical build notes. They are here to show how I think and
+            how the systems get built, not to turn the section into a general dev blog.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="space-y-6">
+      <div class="max-w-3xl space-y-3">
+        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+          For founders and operators
+        </p>
+        <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+          Start here if you are deciding how to launch, where the workflow is breaking,
+          or how to use AI without adding more noise.
+        </p>
+      </div>
+      <div class="tech-card p-6 md:p-8">
+        {founderPosts.map((post) => <PostItem post={post} />)}
+      </div>
+    </section>
+
+    {
+      builderPosts.length > 0 && (
+        <section class="space-y-6">
+          <div class="max-w-3xl space-y-3">
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+              Build notes
+            </p>
+            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+              Technical notes on architecture, tooling, and implementation choices behind
+              the kinds of systems I build for clients.
+            </p>
+          </div>
+          <div class="tech-card p-6 md:p-8">
+            {builderPosts.map((post) => <PostItem post={post} />)}
+          </div>
+        </section>
+      )
+    }
+
+    <ServiceCallout context="blog" variant="general" location="blog_index" />
+  </article>
 </BaseLayout>

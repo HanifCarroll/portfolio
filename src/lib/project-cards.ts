@@ -6,16 +6,21 @@ export interface ProjectCard {
   slug: string;
   name: string;
   description: string;
+  outcome: string;
   demoLink: string;
   tags: string[];
   year: string;
   client: string;
+  service: string;
   track: Project['track'];
   trackLabel: string;
   trackShortLabel: string;
   trackGroup: ReturnType<typeof getProjectTrackMeta>['group'];
   category: 'product' | 'marketing-site';
 }
+
+const firstText = (value: string | string[]) =>
+  Array.isArray(value) ? value[0] : value;
 
 const toCard = (project: Project): ProjectCard => {
   const trackMeta = getProjectTrackMeta(project.track);
@@ -24,10 +29,12 @@ const toCard = (project: Project): ProjectCard => {
     slug: project.slug,
     name: project.title,
     description: project.description,
+    outcome: firstText(project.result),
     demoLink: project.liveUrl ?? '',
     tags: project.technologies ?? [],
     year: project.year ?? '',
     client: project.client,
+    service: project.service,
     track: project.track,
     trackLabel: trackMeta.label,
     trackShortLabel: trackMeta.shortLabel,

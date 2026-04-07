@@ -71,6 +71,19 @@
     box-shadow: 5px 5px 0 0 rgba(255, 255, 255, 0.92);
   }
 
+  .cta-panel {
+    @apply border border-black bg-black text-white;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      10px 10px 0 0 rgba(0, 0, 0, 0.16);
+  }
+
+  :is(.dark) .cta-panel {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.14),
+      0 0 0 8px rgba(255, 255, 255, 0.03);
+  }
+
   /* Primary button - black with white text */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2

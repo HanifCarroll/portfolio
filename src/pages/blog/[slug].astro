@@ -19,21 +19,33 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const {
-	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant }
+	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant, audience }
 } = post;
 const { Content, headings } = await render(post);
 
 const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`;
+const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
 ---
 
 <BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false} footerLinksOnly>
-	<div class='container max-w-5xl lg:flex gap-10 tech-card py-8 px-6 lg:px-10'>
+	<div class='container max-w-5xl space-y-8 py-8'>
+		<nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
+			<a href="/" class="transition-colors hover:text-primary">Home</a>
+			<span class="text-zinc-400">/</span>
+			<a href="/blog/" class="transition-colors hover:text-primary">Insights</a>
+			<span class="text-zinc-400">/</span>
+			<span class="text-primary">{title}</span>
+		</nav>
+		<div class='lg:flex gap-10 tech-card px-6 py-8 lg:px-10'>
 		<main
 			class='overflow-hidden grow'
 		>
 			<article>
 					<Prose>
 						<div>
+						<p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+							{audienceLabel}
+						</p>
 						<h1 class='!my-1 leading-tight'>{title}</h1>
             <div class='text-sm font-[500] mt-2 py-1'>
               {
@@ -60,6 +72,7 @@ const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`
 			</div>
 			<TableOfContent headings={headings} />
 		</div>
+	</div>
 	</div>
 </BaseLayout>
 

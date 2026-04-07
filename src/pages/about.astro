@@ -1,22 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { BOOK_CALL_URL } from "../consts";
 
 const clientReasons = [
-    "Direct access to the person shaping the product and building it.",
-    "Product strategy, UX decisions, and pricing advice — not just code.",
-    "A bias toward smaller, useful first versions instead of bloated v1s.",
-    "Technical and business decisions explained in plain English.",
-    "Help with go-to-market: marketing sites, positioning, and launch mechanics.",
-    "Clean handoff, clear communication, and honest fit assessment.",
+    "You work directly with the person making the product and technical decisions.",
+    "I help narrow the first useful version before the build gets bloated.",
+    "Workflow, pricing, UX, and scope decisions are explained in plain English.",
+    "The goal is useful software, not a long agency process.",
+];
+
+const engagementSteps = [
+    {
+        label: "01",
+        title: "Start with the bottleneck",
+        body: "The work usually starts with one question: what is slowing things down right now, a missing product, a messy workflow, or a system that no longer scales?",
+    },
+    {
+        label: "02",
+        title: "Narrow the first useful version",
+        body: "Sometimes that means a fixed-scope MVP. Sometimes it means a workflow audit and a smaller internal tool. The point is to avoid solving the wrong problem.",
+    },
+    {
+        label: "03",
+        title: "Build with direct feedback",
+        body: "You get direct access, short feedback loops, and one person accountable for the actual outcome.",
+    },
 ];
 
 const title = "About Hanif Carroll";
 const description =
-    "I help nontechnical founders go from idea to launched product — product strategy, UX, pricing, full-stack engineering, and go-to-market support.";
+    "I help founders and operator-led teams launch focused MVPs and fix operational bottlenecks with internal tools, workflow automation, and useful AI systems.";
 ---
 
-<BaseLayout title={title} description={description}>
-    <article class="container max-w-4xl space-y-16 py-10">
+<BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
+    <article class="container max-w-5xl space-y-16 py-10">
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="transition-colors hover:text-primary">Home</a>
             <span class="text-zinc-400">/</span>
@@ -26,28 +43,27 @@ const description =
         <header class="space-y-6">
             <span class="section-label">// About</span>
             <h1 class="heading-display text-4xl md:text-5xl">
-                Product partner for founders who need more than a developer.
+                Senior builder for founders and operator-led teams who need the right first system.
             </h1>
             <div class="tech-card p-6 md:p-8">
                 <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    Most founders don&rsquo;t just need a developer. They need someone
-                    who can look at their idea, figure out what the MVP should actually
-                    be, advise on pricing and positioning, design the UX, build the
-                    whole thing, and help them take it to market. That&rsquo;s what I do.
-                    I&rsquo;ve been building software since 2017 across consulting,
-                    product teams, and client projects.
+                    Most clients do not need more code. They need someone who can look at
+                    the business problem, narrow the first useful version, and build the
+                    system that actually moves things forward. That might be an MVP, an
+                    internal tool, a workflow automation, or a bounded AI layer. That is
+                    the work I do.
                 </p>
             </div>
         </header>
 
         <section class="grid gap-6 md:grid-cols-2">
             <div class="tech-card p-6 space-y-4">
-                <h2 class="section-label">// Journey</h2>
+                <h2 class="section-label">// Background</h2>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                     I&rsquo;ve worked at Capgemini, at LeagueApps during a strong growth
                     phase, and as an independent builder for client and internal
                     products. The mix has been useful: I understand structured delivery,
-                    real product constraints, and the pace smaller teams need.
+                    real product constraints, and the pace smaller teams actually need.
                 </p>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                     Buenos Aires has become home. Living here has shaped the way I
@@ -57,19 +73,36 @@ const description =
             </div>
 
             <div class="tech-card p-6 space-y-4">
-                <h2 class="section-label">// How I Work</h2>
+                <h2 class="section-label">// What I Actually Help With</h2>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    I&rsquo;m strongest in TypeScript and full-stack product work, but
-                    half the value I bring happens before code starts: scoping the MVP,
-                    designing the user experience, advising on pricing and monetization,
-                    and building the marketing site that positions the product.
+                    My strongest work lives at the intersection of product judgment and
+                    implementation: MVP scoping, workflow cleanup, internal tools,
+                    automation, AI systems, and the go-to-market surface around them.
                 </p>
                 <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    I like direct communication, small useful first versions, and
-                    product decisions explained in plain English. The goal is to build
-                    the right thing, ship it, and help you get it in front of the right
-                    people.
+                    A lot of the value happens before code starts. I help decide what
+                    the first version should be, what should wait, and what kind of
+                    system is actually worth building.
                 </p>
+            </div>
+        </section>
+
+        <section class="tech-card p-6 md:p-8 space-y-6">
+            <h2 class="heading-display text-3xl md:text-4xl">How engagements usually start</h2>
+            <div class="grid gap-8 lg:grid-cols-3">
+                {engagementSteps.map((step) => (
+                    <div class="border-t border-black/10 pt-5 dark:border-white/10">
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            Step {step.label}
+                        </p>
+                        <h3 class="mt-4 text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                            {step.title}
+                        </h3>
+                        <p class="mt-3 text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                            {step.body}
+                        </p>
+                    </div>
+                ))}
             </div>
         </section>
 
@@ -84,14 +117,52 @@ const description =
             </div>
         </section>
 
-        <section class="tech-card p-6 md:p-8 space-y-6">
-            <h2 class="heading-display text-3xl md:text-4xl">Outside of Work</h2>
-            <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                I&rsquo;ve been lifting weights for nearly 20 years, I play ultimate
-                frisbee, and I care a lot about writing, philosophy, and building
-                strong in-person communities. I also spend a lot of time thinking about
-                how AI can help people perform better in real work, not just in demos.
-            </p>
+        <section class="tech-card grid gap-6 p-6 md:grid-cols-[0.72fr_1.28fr] md:p-8">
+            <div class="space-y-3">
+                <p class="section-label">// Outside of Work</p>
+                <h2 class="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 md:text-3xl">
+                    The personal side is still grounded in building.
+                </h2>
+            </div>
+            <div class="space-y-4">
+                <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    I&rsquo;ve been lifting weights for nearly 20 years, I play ultimate
+                    frisbee, and I care a lot about writing, philosophy, and building
+                    strong in-person communities.
+                </p>
+                <p class="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    I also spend a lot of time thinking about how AI can help people do
+                    better work in the real world, not just produce impressive demos.
+                </p>
+            </div>
+        </section>
+
+        <section class="cta-panel p-6 md:p-10">
+            <div class="max-w-4xl space-y-6">
+                <p class="kicker-line">Next Step</p>
+                <h2 class="heading-display max-w-3xl text-4xl text-white md:text-5xl">
+                    If you need a first product or a cleaner workflow, start with a roadmap call.
+                </h2>
+                <p class="max-w-2xl text-base leading-7 text-white/74 md:text-lg md:leading-8">
+                    I&rsquo;ll help you decide whether this should start as an MVP, a
+                    workflow audit, or a smaller first step.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a
+                        class="btn-primary border-white bg-white text-black hover:bg-black hover:text-white"
+                        href={BOOK_CALL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-track-event="book_call_clicked"
+                        data-track-location="about_primary"
+                    >
+                        Book a Roadmap Call
+                    </a>
+                    <a class="btn-secondary border-white text-white hover:bg-white hover:text-black" href="/launch/">
+                        See Services
+                    </a>
+                </div>
+            </div>
         </section>
     </article>
 </BaseLayout>

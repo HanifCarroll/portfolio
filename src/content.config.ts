@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders'; // Not available with legacy API
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
-  schema: ({ image }) => z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
     seoTitle: z.string().optional(),
 		description: z.string(),
@@ -12,6 +12,7 @@ const blog = defineCollection({
 		updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).optional(),
 		coverImage: image().optional(),
+    audience: z.enum(['founder', 'builder']).default('founder'),
     ctaVariant: z.enum(['general', 'mvp', 'automation']).default('general'),
 	})
 });
