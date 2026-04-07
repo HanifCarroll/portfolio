@@ -1,9 +1,9 @@
 {
   "slug": "genrupt",
-  "title": "AI Image & Video Generation for E-commerce",
-  "description": "An AI-powered creative platform that transforms product images into professional marketing assets. Built core infrastructure (subscriptions, teams, job queues) and shipped a Canva-style text editor with Google Vision OCR, AI-powered text removal, and brand identity automation for batch image processing.",
+  "title": "Amazon Creative Ops Platform for Sellers",
+  "description": "Expanded Genrupt from a fragile AI media MVP into a broader Amazon creative ops platform. Built subscription and organization billing, queue-backed generation workflows, Canva-like text editing, and architecture foundations for market analysis, listing builder, A+ content, A/B testing, and MCP-based agent workflows.",
   "client": "Genrupt",
-  "service": "Full-Stack Development",
+  "service": "Full-Stack Product Engineering",
   "role": "Contract Full-Stack Engineer",
   "category": "product",
   "track": "ai_systems",
@@ -15,30 +15,30 @@
     "Prisma",
     "pg-boss",
     "Stripe",
-    "Google Cloud Vision",
+    "TanStack Query",
+    "Zustand",
     "FAL.ai",
     "OpenAI",
-    "Runway",
-    "Kling"
+    "Google Vision OCR",
+    "Model Context Protocol"
   ],
   "liveUrl": "",
   "problem": [
-    "The platform needed to evolve from MVP to scalable SaaS. Key gaps included: no subscription or billing system, unreliable async job handling for long-running AI operations, and frontend state management that had become difficult to maintain as features grew.",
-    "The system also needed to orchestrate 10+ AI providers (OpenAI, Runway, Kling, Google VEO) while accurately tracking costs."
+    "Genrupt had outgrown its original AI image and video MVP. To support paying customers, it needed real billing, safer credit accounting, and more reliable handling for long-running image, video, and storyboard jobs.",
+    "At the same time, the product surface was expanding into Amazon seller workflows like market analysis, variations, listing builder, A+ content, and experimentation, which put pressure on architecture, state management, and async infrastructure."
   ],
   "solution": [
-    "Built end-to-end ML inference pipeline: Dockerized diffusion model, deployed to serverless GPU, integrated with Next.js application.",
-    "Built the complete subscription system end-to-end: designed the Prisma schema for tiered pricing and credit pools, implemented Stripe webhook handlers for subscription lifecycle events, created the pricing page with checkout flow, and built admin interfaces for subscription management.",
-    "Implemented pg-boss job queue infrastructure for distributed image and video generation, replacing unreliable polling with persistent, retryable jobs. Added idempotent retry logic ensuring users aren't double-charged when jobs fail and retry.",
-    "Led a multi-phase frontend refactor: migrated from prop drilling to Zustand stores for storyboard state, introduced React Query for server state with proper cache invalidation, and extracted 8+ custom hooks from monolithic controllers.",
-    "Engineered a custom two-pool credit billing system with Stripe integration; implemented idempotent webhook processing and atomic database operations to ensure financial accuracy during concurrent usage.",
-    "Built a Canva-style text editing feature: Google Vision OCR detects text on images, AI inpainting models remove it cleanly, users replace with styled text. Implemented brand identity system with automatic header/subtitle classification and font replacement. Added multi-image batch processing with pipeline workflow and real-time status indicators."
+    "Built subscription, organization, and credit-ledger infrastructure around Stripe, including pricing, checkout, webhook reconciliation, tier changes, cancellation/reactivation handling, and org-to-individual transition logic.",
+    "Migrated long-running generation flows onto pg-boss workers and hardened the async engine so image, video, storyboard, and related jobs could retry safely without drifting billing or leaving users in contradictory states.",
+    "Shipped a Canva-like text editing workflow for product images: OCR detects text, AI inpainting removes it, and users replace it inline with cleaner controls, batch-aware flows, and brand-aware styling.",
+    "Led a broad architecture cleanup across routes, services, and client state: moved app-to-app calls behind server actions and shared services, standardized React Query and Zustand usage, and reduced the retained API surface from 393 routes to 177.",
+    "Helped prepare the platform for newer Amazon seller workflows and agent usage by working across market analysis, variations, listing builder, A+ tooling, and the MCP layer that exposes a typed public agent interface."
   ],
   "result": [
-    "Shipped a production subscription system now handling paying customers across Free, Basic, Premium, and Lifetime tiers. Two-pool credit system (purchased + monthly allotment) provides flexible billing model.",
-    "Job queue processes parallel AI workloads reliably, with automatic retries and real-time status updates via SSE. Idempotent billing prevents duplicate charges during failure recovery.",
-    "Refactored frontend reduced component complexity and enabled faster feature development across database schema, API routes, React components, and background workers.",
-    "Shipped text editing feature enabling non-designers to create professional branded images—OCR text detection, AI-powered removal, and automatic brand font replacement across batch uploads."
+    "Moved Genrupt from a fragile creative MVP toward a billable Amazon creative platform with production subscription flows, org billing, and safer cost accounting.",
+    "Made long-running product workflows materially more reliable across storyboard, variations, listing builder, market analysis, and A+ by tightening worker lifecycle, persistence, and job recovery behavior.",
+    "Load-testing work on the newer architecture set current planning numbers at a 90-user webinar burst and 300-user future-planning scenario, giving the team clearer launch capacity targets.",
+    "The codebase is easier to extend: cleaner boundaries, fewer internal route hops, and a real MCP surface make it more practical to keep shipping new seller workflows and agent-driven features."
   ],
   "images": {
     "hero": "@src/assets/img/projects/genrupt-hero.png",

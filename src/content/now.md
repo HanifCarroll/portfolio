@@ -3,7 +3,7 @@ title: "What I'm Up to Now"
 description: >
   This is a "now page" inspired by Derek Sivers. It's what I'd tell a friend if
   they asked what I'm focused on right now.
-lastUpdated: "January 22nd, 2026"
+lastUpdated: "April 6th, 2026"
 ---
 
 ## BA Eventos
@@ -12,7 +12,7 @@ I built an AI-powered event discovery platform for Buenos Aires called [BA Event
 
 ## Genrupt
 
-Still working with Genrupt, an AI video/image generation platform for e-commerce. Recently shipped a Canva-style text editing feature: Google Vision OCR detects text on product images, AI inpainting removes it, then users can add branded text with automatic font classification. Also built out batch processing for handling multiple images in a pipeline.
+Still working with Genrupt, but the scope is much bigger now than the old image and video workflow. Recent work spans org billing and credit systems, queue-backed generation, Canva-like text editing, Amazon market analysis, listing builder and A+ tooling, and a new MCP surface for agent-driven workflows.
 
 ## Fitness
 

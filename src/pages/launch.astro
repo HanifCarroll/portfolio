@@ -4,79 +4,68 @@ import { Image } from "astro:assets";
 import { BOOK_CALL_URL } from "../consts";
 import testimonials from "../../testimonials.json";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
-import markisPhoto from "@src/assets/img/markis.jpeg";
-import sarahPhoto from "@src/assets/img/sarah.jpeg";
 import desarmaderoFeature from "@src/assets/img/projects/desarmadero-feature.png";
 import genruptFeature from "@src/assets/img/projects/genrupt-feature.png";
 import baEventosFeature from "@src/assets/img/projects/ba-eventos-feature.png";
 
-const title = "Launch";
+const title = "Services";
 const description =
-    "MVP builds for nontechnical founders and workflow automation for founder-led teams. From idea to launched product, or from bottleneck to working system.";
+    "Fixed-scope MVP builds for nontechnical founders and workflow audits for founder-led teams that need automation, internal tools, or bounded AI systems.";
 const calUrl = BOOK_CALL_URL;
 
-const testimonialPhotos: Record<string, ImageMetadata> = {
-    "Monica Londoño": monicaPhoto,
-    "Markis Zarate": markisPhoto,
-    "Sarah Hibner": sarahPhoto,
-};
+const spotlightTestimonial = testimonials.find(
+    (testimonial) => testimonial.name === "Monica Londoño",
+);
 
-const buyerChallenges = [
-    {
-        title: "You're not sure what the MVP should include",
-        body: "You need someone who can look at your idea, figure out what matters, and define the first version — not just code what you describe.",
-    },
-    {
-        title: "You need more than just a developer",
-        body: "You want help with product decisions, pricing, UX, and go-to-market — not someone who waits for a spec.",
-    },
-    {
-        title: "You want direct accountability",
-        body: "A previous freelancer or agency left you with too little visibility and too much cleanup.",
-    },
-    {
-        title: "You need plain-English decisions",
-        body: "You want the tradeoffs explained in business terms, not buried under technical jargon.",
-    },
+const proofStats = [
+    { value: "8+", label: "Years building products" },
+    { value: "10+", label: "MVPs, automations, and AI systems shipped" },
+    { value: "4 Wks", label: "Average time from scope to launch" },
 ];
 
-const bestFit = [
-    "You need a real v1 in front of users soon.",
-    "You can make product decisions and join a short weekly check-in.",
-    "You want direct access to the person building the product.",
-];
-
-const notFit = [
-    "You need a large platform with broad feature scope on day one.",
-    "You want exhaustive custom design before product decisions are made.",
-    "You cannot stay involved during scoping and review.",
+const mvpBestFor = [
+    "Nontechnical founders who need more than a developer.",
+    "Teams that need a smaller, clearer first version.",
+    "Founders who can stay involved in scope and weekly review.",
 ];
 
 const includedItems = [
-    "Product strategy: scoping the MVP, defining user tiers, and advising on pricing.",
-    "UX and design decisions so you don't need a separate designer.",
-    "Full-stack product build across frontend, backend, and deployment.",
-    "Marketing site and positioning to support your launch.",
-    "Launch setup plus 30 days of post-launch bug coverage.",
+    "Product strategy, scope cuts, and pricing guidance before code starts.",
+    "UX and design decisions so you do not need a separate designer.",
+    "Full-stack build across frontend, backend, deployment, and launch setup.",
+    "Marketing site support plus 30 days of post-launch bug coverage.",
     "Recorded handoff and shared project visibility from day one.",
 ];
 
-const priceComparisons = [
+const mvpProcessSteps = [
     {
-        label: "US-Based Developer",
-        value: "$8-15K/month",
-        note: "And you are still managing the process.",
+        num: "01",
+        title: "Cut the scope to the first useful version",
+        body: "We define what needs to exist for the product to be useful, testable, and small enough to ship fast.",
     },
     {
-        label: "Technical Cofounder",
-        value: "30-50% equity",
-        note: "A huge long-term trade for an early build.",
+        num: "02",
+        title: "Build with short feedback loops",
+        body: "I handle the implementation while you get weekly demos, direct communication, and business-level tradeoff calls.",
     },
     {
-        label: "Agency",
-        value: "$15-30K",
-        note: "Usually with more overhead and a longer timeline.",
+        num: "03",
+        title: "Launch with handoff",
+        body: "The product goes live with deployment, monitoring, bug coverage, and a handoff that the next developer can pick up cleanly.",
     },
+];
+
+const automationBestFor = [
+    "Founder-led teams with repeated manual work and no clear system under it.",
+    "SMBs that rely on copy-paste, inbox triage, or one person holding too much context.",
+    "Teams exploring AI, but only if it actually improves the workflow.",
+];
+
+const workflowAuditItems = [
+    "Review the current workflow, tools, handoffs, and failure points.",
+    "Identify the real bottleneck instead of automating the wrong step.",
+    "Recommend the first useful system, automation layer, or bounded AI workflow.",
+    "Scope implementation only after the workflow is clear.",
 ];
 
 const painSignals = [
@@ -95,11 +84,11 @@ const buildTracks = [
     {
         label: "02",
         title: "Automation layers",
-        body: "Connect the tools you already use, move data between them, trigger the right next step, and remove the bottleneck that is slowing the business down.",
+        body: "Connect the tools you already use, move data between them, trigger the right next step, and remove the bottleneck slowing the business down.",
     },
     {
         label: "03",
-        title: "AI agents with bounded actions",
+        title: "Bounded AI systems",
         body: "Retrieval, routing, summarization, classification, and tool-use flows that are useful because the workflow and guardrails are clear.",
     },
 ];
@@ -125,22 +114,29 @@ const automationExamples = [
     },
 ];
 
+const automationProcessSteps = [
+    "Audit the current workflow and map the real constraint.",
+    "Define the first useful system before quoting implementation.",
+    "Build around the data, tools, and actions the business already needs.",
+    "Add AI only if it improves the result.",
+];
+
 const faqItems = [
     {
         title: "Burned by a developer before",
-        body: "The code lives in your GitHub from day one, you see weekly demos, and the project board stays shared the whole time.",
+        body: "The code lives in your GitHub from day one, you see regular demos, and the project board stays shared the whole time.",
     },
     {
-        title: "Not sure what to build first",
-        body: "The scoping sprint is for that. You leave with a clearer roadmap before I write a line of code.",
+        title: "Not sure whether this is an MVP or an automation problem",
+        body: "That is exactly what the roadmap call is for. I will tell you which path fits, what the first useful version looks like, and whether the scope is strong enough to move forward.",
     },
     {
-        title: "After launch",
+        title: "After launch or implementation",
         body: "I handle deployment, monitoring, bug fixes for 30 days, and a recorded handoff so the next developer can pick it up cleanly.",
     },
     {
         title: "Budget and payment",
-        body: "Projects typically range from $10,000–$15,000 for MVPs depending on scope. Automation projects are scoped per engagement. Payment is 50% upfront to start, 50% at completion. No equity required.",
+        body: "The 4-Week Launch starts at $10,000 with 50% upfront and 50% at launch. Workflow audits start at $2,000 and are credited toward implementation if we move forward.",
     },
 ];
 ---
@@ -152,142 +148,182 @@ const faqItems = [
     footerLinksOnly
 >
     <article class="container max-w-5xl space-y-24 py-10">
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
             <a href="/" class="transition-colors hover:text-primary">Home</a>
             <span class="text-zinc-400">/</span>
-            <span class="text-primary">Launch</span>
+            <span class="text-primary">Services</span>
         </nav>
 
-        <!-- Hero -->
         <header class="space-y-8">
             <span class="section-label">// Services</span>
             <h1 class="heading-display text-5xl md:text-6xl" style="text-wrap: balance">
-                I build the product or fix the workflow. Both in weeks.
+                Launch the product or fix the workflow.
             </h1>
-            <p class="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
-                Two tracks, one person. Either a focused MVP from idea to launch, or
-                workflow software that removes the operational drag slowing your business
-                down.
+            <p class="max-w-3xl text-xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+                I help nontechnical founders ship focused MVPs, and I help founder-led
+                teams turn manual bottlenecks into internal tools, automation, and bounded
+                AI systems.
             </p>
             <div class="flex flex-wrap gap-4">
-                <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary" data-track-event="book_call_clicked" data-track-location="launch_hero">
+                <a
+                    href={calUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary"
+                    data-track-event="book_call_clicked"
+                    data-track-location="launch_hero"
+                >
                     Book a Roadmap Call
                 </a>
                 <a href="/projects/" class="btn-secondary">View Case Studies</a>
             </div>
-            <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">30 minutes &middot; Clear next step &middot; I only take on 2 projects at a time</p>
+            <div class="space-y-2">
+                <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">
+                    30 minutes &middot; Clear scope, budget signal, and next step
+                </p>
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+                    The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
+                </p>
+            </div>
         </header>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- Track selector -->
+        <section class="space-y-10">
+            <div class="grid gap-0 border-t border-black/12 dark:border-white/12 md:grid-cols-3">
+                {proofStats.map((stat, index) => (
+                    <div
+                        class:list={[
+                            "border-b border-black/12 py-6 dark:border-white/12 md:border-b-0",
+                            index < proofStats.length - 1 && "md:border-r",
+                            index === 0 && "md:pr-8",
+                            index === 1 && "md:px-8",
+                            index === 2 && "md:pl-8",
+                        ]}
+                    >
+                        <p class="inline-metric text-primary" style="font-variant-numeric: tabular-nums">
+                            {stat.value}
+                        </p>
+                        <p class="mt-2 font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                            {stat.label}
+                        </p>
+                    </div>
+                ))}
+            </div>
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">
+                Previously at Capgemini &amp; LeagueApps
+            </p>
+
+            {spotlightTestimonial && (
+                <div class="tech-card p-8 md:p-10">
+                    <div class="grid gap-6 md:grid-cols-[96px_1fr] md:items-start">
+                        <div class="h-24 w-24 overflow-hidden border border-black/20 dark:border-white/20">
+                            <Image
+                                src={monicaPhoto}
+                                alt={spotlightTestimonial.name}
+                                width={96}
+                                height={96}
+                                loading="lazy"
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                        <div class="space-y-4">
+                            <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">
+                                Founder note
+                            </p>
+                            <p class="text-lg leading-8 text-zinc-700 dark:text-zinc-200">
+                                &ldquo;{spotlightTestimonial.text}&rdquo;
+                            </p>
+                            <p class="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+                                {spotlightTestimonial.name} &middot; {spotlightTestimonial.role}
+                                {spotlightTestimonial.company ? ` · ${spotlightTestimonial.company}` : ""}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </section>
+
+        <div class="grid-line-horizontal"></div>
+
         <section class="grid gap-6 md:grid-cols-2">
-            <a href="#mvp" class="group block border border-black/15 p-6 transition-colors hover:border-primary dark:border-white/15">
-                <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">Track 01</p>
-                <h2 class="heading-display mt-3 text-2xl md:text-3xl">MVP Builds</h2>
-                <p class="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                    For nontechnical founders who need a product partner — not just a
-                    developer. Scope, build, and launch in 4 weeks.
+            <a
+                href="#mvp"
+                class="group block border border-black/15 p-6 transition-colors hover:border-primary dark:border-white/15"
+            >
+                <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">Offer 01</p>
+                <h2 class="heading-display mt-3 text-2xl md:text-3xl">The 4-Week Launch</h2>
+                <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+                    Starts at $10,000
                 </p>
-                <span class="arrow-link mt-5 inline-flex">See the MVP track</span>
+                <p class="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                    A fixed-scope MVP for nontechnical founders who need more than a
+                    developer. I help define the product, make the key UX and pricing
+                    decisions, build it, and get it live.
+                </p>
+                <ul class="mt-5 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+                    <li>Cut the scope to the first useful version.</li>
+                    <li>Build and launch in 4 weeks.</li>
+                    <li>Work directly with the person shipping it.</li>
+                </ul>
+                <span class="arrow-link mt-6 inline-flex">See the MVP path</span>
             </a>
-            <a href="#automation" class="group block border border-black/15 p-6 transition-colors hover:border-primary dark:border-white/15">
-                <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">Track 02</p>
-                <h2 class="heading-display mt-3 text-2xl md:text-3xl">Workflow Automation & AI</h2>
-                <p class="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                    For founder-led teams with operational bottlenecks. Internal
-                    tools, automation layers, and AI where it actually helps.
+
+            <a
+                href="#automation"
+                class="group block border border-black/15 p-6 transition-colors hover:border-primary dark:border-white/15"
+            >
+                <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">Offer 02</p>
+                <h2 class="heading-display mt-3 text-2xl md:text-3xl">Workflow Automation &amp; AI</h2>
+                <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
+                    Starts with a workflow audit from $2,000
                 </p>
-                <span class="arrow-link mt-5 inline-flex">See the automation track</span>
+                <p class="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                    For founder-led teams and SMBs with operational bottlenecks. I map the
+                    workflow, find the real constraint, and define the first useful system
+                    before quoting implementation.
+                </p>
+                <ul class="mt-5 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+                    <li>Find the manual step that is actually slowing the business down.</li>
+                    <li>Decide whether software, automation, or AI is the right fix.</li>
+                    <li>Credit the audit toward implementation if we move forward.</li>
+                </ul>
+                <span class="arrow-link mt-6 inline-flex">See the automation path</span>
             </a>
         </section>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- ===== TRACK 01: MVP BUILDS ===== -->
         <section id="mvp" class="space-y-16">
             <div class="space-y-3">
-                <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">Track 01</p>
+                <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">Offer 01</p>
                 <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
                     A focused MVP live in 4 weeks.
                 </h2>
-                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
                     I help you figure out what the MVP should be, advise on pricing and
-                    positioning, design the UX, build the product, and set up the marketing
-                    site. Best for nontechnical founders who need a product partner, not
-                    just a developer.
+                    positioning, design the UX, build the product, and set up the launch.
+                    Best for nontechnical founders who need a product partner, not just a
+                    pair of hands.
                 </p>
             </div>
 
-            <!-- Buyer challenges -->
-            <div class="space-y-0">
-                {buyerChallenges.map((challenge) => (
-                    <div class="grid gap-3 border-t border-black/12 py-6 dark:border-white/12 md:grid-cols-[1fr_2fr]">
-                        <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-black dark:text-white">{challenge.title}</h3>
-                        <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{challenge.body}</p>
-                    </div>
-                ))}
-            </div>
-
-            <!-- Best fit card -->
-            <div class="tech-card p-8 md:p-10 space-y-8">
-                <div class="grid gap-8 md:grid-cols-2">
+            <div class="tech-card p-8 md:p-10">
+                <div class="grid gap-8 lg:grid-cols-[0.9fr_1.2fr_0.8fr]">
                     <div class="space-y-4">
-                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Best fit</p>
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Best for</p>
                         <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
-                            {bestFit.map((item) => (
+                            {mvpBestFor.map((item) => (
                                 <li class="flex gap-3 border-t border-black/10 pt-4 dark:border-white/10">
-                                    <span class="text-primary font-bold shrink-0">+</span>
+                                    <span class="shrink-0 text-primary font-bold">+</span>
                                     <span>{item}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
-                    <div class="space-y-4">
-                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Not a fit</p>
-                        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
-                            {notFit.map((item) => (
-                                <li class="flex gap-3 border-t border-black/10 pt-4 dark:border-white/10">
-                                    <span class="text-primary font-bold shrink-0">&times;</span>
-                                    <span>{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-                <div class="grid-line-horizontal"></div>
-                <blockquote class="text-xl font-bold" style="text-wrap: balance">
-                    I&rsquo;m a solo engineer in Buenos Aires. This is direct work, not an agency process — direct access, no overhead, one decision-maker.
-                </blockquote>
-            </div>
 
-            <!-- Process -->
-            <div class="space-y-6">
-                <h3 class="heading-display text-3xl md:text-4xl">How the four weeks are used.</h3>
-                <div class="space-y-0">
-                    {[
-                        { num: "01", title: "Scoping Sprint (Days 1–3)", body: "You leave with a clear build plan before I write a line of code." },
-                        { num: "02", title: "Core Build Starts (Week 1)", body: "The highest-risk part of the product gets built early so you have visible progress and something concrete to react to." },
-                        { num: "03", title: "Full Build + Weekly Demos (Weeks 2–4)", body: "I build while you join a 30-minute demo each week and give feedback in plain English." },
-                        { num: "04", title: "Launch Day", body: "Your product is live, hosted, and monitored. I handle the technical launch. You focus on telling customers." },
-                    ].map((step) => (
-                        <div class="grid gap-3 border-t border-black/12 py-5 dark:border-white/12 md:grid-cols-[80px_1fr]">
-                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">{step.num}</p>
-                            <div class="space-y-1">
-                                <h4 class="font-semibold uppercase tracking-wide text-sm">{step.title}</h4>
-                                <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{step.body}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <!-- Offer + Price -->
-            <div class="tech-card p-8 md:p-10 space-y-8">
-                <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
                     <div class="space-y-4">
-                        <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Included</p>
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Included</p>
                         <ul class="space-y-0">
                             {includedItems.map((item) => (
                                 <li class="border-t border-black/10 py-3 text-sm leading-6 text-zinc-600 dark:border-white/10 dark:text-zinc-300">
@@ -296,28 +332,45 @@ const faqItems = [
                             ))}
                         </ul>
                     </div>
+
                     <div class="space-y-4 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
                         <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Starting price</p>
-                        <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">$10,000</p>
+                        <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">
+                            $10,000
+                        </p>
                         <div class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
                             <p>Fixed-scope build for the first useful version.</p>
                             <p>50% upfront to start, 50% at launch.</p>
                             <p>No equity. No agency layers.</p>
                         </div>
                         <div class="pt-2">
-                            <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6" data-track-event="book_call_clicked" data-track-location="launch_mvp_price">
+                            <a
+                                href={calUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-primary inline-block py-3 px-6"
+                                data-track-event="book_call_clicked"
+                                data-track-location="launch_mvp_price"
+                            >
                                 Book a Roadmap Call
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="grid-line-horizontal"></div>
-                <div class="grid gap-6 md:grid-cols-3">
-                    {priceComparisons.map((comparison) => (
-                        <div class="space-y-1 border-t border-black/10 pt-4 dark:border-white/10">
-                            <p class="font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">vs. {comparison.label}</p>
-                            <p class="heading-display text-2xl" style="font-variant-numeric: tabular-nums">{comparison.value}</p>
-                            <p class="text-xs text-zinc-500 dark:text-zinc-400">{comparison.note}</p>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="heading-display text-3xl md:text-4xl">How the four weeks are used.</h3>
+                <div class="space-y-0">
+                    {mvpProcessSteps.map((step) => (
+                        <div class="grid gap-3 border-t border-black/12 py-5 dark:border-white/12 md:grid-cols-[80px_1fr]">
+                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                                {step.num}
+                            </p>
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold uppercase tracking-wide">{step.title}</h4>
+                                <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{step.body}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -326,42 +379,94 @@ const faqItems = [
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- ===== TRACK 02: WORKFLOW AUTOMATION & AI ===== -->
         <section id="automation" class="space-y-16">
             <div class="space-y-3">
-                <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">Track 02</p>
+                <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">Offer 02</p>
                 <h2 class="heading-display text-4xl md:text-5xl" style="text-wrap: balance">
                     Replace repetitive work with software that fits the business.
                 </h2>
-                <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
                     For founder-led teams and business owners whose operations are slowing
                     down because too much knowledge lives in people, tabs, and manual
                     workarounds.
                 </p>
             </div>
 
-            <!-- Pain signals -->
+            <div class="tech-card p-8 md:p-10">
+                <div class="grid gap-8 lg:grid-cols-[0.9fr_1.2fr_0.8fr]">
+                    <div class="space-y-4">
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Best for</p>
+                        <ul class="space-y-4 text-zinc-600 dark:text-zinc-300">
+                            {automationBestFor.map((item) => (
+                                <li class="flex gap-3 border-t border-black/10 pt-4 dark:border-white/10">
+                                    <span class="shrink-0 text-primary font-bold">+</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4">
+                        <p class="font-mono text-xs uppercase tracking-[0.24em] text-primary">Workflow audit includes</p>
+                        <ul class="space-y-0">
+                            {workflowAuditItems.map((item) => (
+                                <li class="border-t border-black/10 py-3 text-sm leading-6 text-zinc-600 dark:border-white/10 dark:text-zinc-300">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4 border-t border-black/10 pt-6 dark:border-white/10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                        <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">Workflow audit</p>
+                        <p class="heading-display text-4xl text-primary" style="font-variant-numeric: tabular-nums">
+                            From $2,000
+                        </p>
+                        <div class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
+                            <p>Paid discovery for custom automation work.</p>
+                            <p>Credited toward implementation if we move forward.</p>
+                            <p>Implementation is quoted after the workflow is clear.</p>
+                        </div>
+                        <div class="pt-2">
+                            <a
+                                href={calUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-primary inline-block py-3 px-6"
+                                data-track-event="book_call_clicked"
+                                data-track-location="launch_automation_audit"
+                            >
+                                Book a Roadmap Call
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid gap-0 md:grid-cols-2">
                 {painSignals.map((signal) => (
                     <div class="border-t border-black/12 py-5 dark:border-white/12 md:odd:pr-8">
-                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary mb-3">Signal</p>
+                        <p class="mb-3 font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            Signal
+                        </p>
                         <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">{signal}</p>
                     </div>
                 ))}
             </div>
 
-            <!-- What gets built -->
             <div class="space-y-6">
-                <h3 class="heading-display text-3xl md:text-4xl">Start with the workflow. Use AI only where it helps.</h3>
-                <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300 max-w-2xl">
-                    Most automation problems are really operations problems. The work starts
-                    by understanding the workflow and only then deciding whether AI should
-                    be part of the solution.
+                <h3 class="heading-display text-3xl md:text-4xl">What gets built after the audit.</h3>
+                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    Most automation problems are operations problems first. The audit keeps
+                    the scope honest, then the implementation can be cut to the first useful
+                    system.
                 </p>
                 <div class="space-y-0">
                     {buildTracks.map((track) => (
                         <div class="grid gap-3 border-t border-black/12 py-6 dark:border-white/12 md:grid-cols-[80px_1fr]">
-                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">Track {track.label}</p>
+                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                                {track.label}
+                            </p>
                             <div class="space-y-1">
                                 <h4 class="heading-display text-xl md:text-2xl">{track.title}</h4>
                                 <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{track.body}</p>
@@ -371,7 +476,6 @@ const faqItems = [
                 </div>
             </div>
 
-            <!-- Examples -->
             <div class="space-y-6">
                 <h3 class="heading-display text-3xl md:text-4xl">Recent examples.</h3>
                 <div class="space-y-0">
@@ -380,7 +484,12 @@ const faqItems = [
                             href={example.href}
                             class="group grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12"
                         >
-                            <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-2"]}>
+                            <figure
+                                class:list={[
+                                    "overflow-hidden border border-black/15 bg-black dark:border-white/15",
+                                    index % 2 === 1 && "lg:order-2",
+                                ]}
+                            >
                                 <Image
                                     src={example.image}
                                     alt={example.title}
@@ -391,25 +500,23 @@ const faqItems = [
                             <div class:list={["space-y-4", index % 2 === 1 && "lg:order-1"]}>
                                 <h4 class="heading-display text-2xl md:text-3xl">{example.title}</h4>
                                 <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{example.body}</p>
-                                <span class="arrow-link group-hover:border-primary group-hover:text-primary">Open case study</span>
+                                <span class="arrow-link group-hover:border-primary group-hover:text-primary">
+                                    Open case study
+                                </span>
                             </div>
                         </a>
                     ))}
                 </div>
             </div>
 
-            <!-- Process -->
             <div class="space-y-6">
                 <h3 class="heading-display text-3xl md:text-4xl">How automation projects work.</h3>
                 <div class="space-y-0">
-                    {[
-                        "Start with the workflow and the people touching it.",
-                        "Cut the first version down to the part that removes the bottleneck.",
-                        "Build around the data and actions the business already needs.",
-                        "Add AI only if it improves the result.",
-                    ].map((step, index) => (
+                    {automationProcessSteps.map((step, index) => (
                         <div class="grid gap-3 border-t border-black/12 py-5 dark:border-white/12 md:grid-cols-[80px_1fr]">
-                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">{String(index + 1).padStart(2, "0")}</p>
+                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                                {String(index + 1).padStart(2, "0")}
+                            </p>
                             <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{step}</p>
                         </div>
                     ))}
@@ -419,83 +526,32 @@ const faqItems = [
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- ===== SHARED: PROOF + TESTIMONIALS ===== -->
-        <section class="space-y-10">
-            <div class="grid gap-0 border-t border-black/12 dark:border-white/12 md:grid-cols-3">
-                <div class="border-b border-black/12 py-6 dark:border-white/12 md:border-b-0 md:border-r md:pr-8">
-                    <p class="inline-metric text-primary" style="font-variant-numeric: tabular-nums">8+</p>
-                    <p class="mt-2 font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Years building products</p>
-                </div>
-                <div class="border-b border-black/12 py-6 dark:border-white/12 md:border-b-0 md:border-r md:px-8">
-                    <p class="inline-metric text-primary" style="font-variant-numeric: tabular-nums">10+</p>
-                    <p class="mt-2 font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">MVPs, automations &amp; AI systems shipped</p>
-                </div>
-                <div class="py-6 md:pl-8">
-                    <p class="inline-metric text-primary">4 Wks</p>
-                    <p class="mt-2 font-mono text-xs uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Average time from scope to launch</p>
-                </div>
-            </div>
-            <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">Previously at Capgemini &amp; LeagueApps</p>
-
-            <div class="space-y-0">
-                {testimonials.map((testimonial) => {
-                    const photo = testimonialPhotos[testimonial.name];
-                    return (
-                        <div class="flex items-start gap-5 border-t border-black/12 py-8 dark:border-white/12">
-                            {photo && (
-                                <div class="h-12 w-12 shrink-0 overflow-hidden border border-black/20 dark:border-white/20">
-                                    <Image
-                                        src={photo}
-                                        alt={testimonial.name}
-                                        width={48}
-                                        height={48}
-                                        loading="lazy"
-                                        class="h-full w-full object-cover"
-                                    />
-                                </div>
-                            )}
-                            <div class="space-y-2">
-                                <p class="text-base leading-7 text-zinc-700 dark:text-zinc-200">
-                                    &ldquo;{testimonial.text}&rdquo;
-                                </p>
-                                <div class="font-mono text-zinc-400 dark:text-zinc-500">
-                                    <span class="text-xs uppercase tracking-[0.24em]">{testimonial.name}</span>
-                                    <span class="mx-2 text-zinc-300 dark:text-zinc-600">&middot;</span>
-                                    <span class="text-[11px] uppercase tracking-[0.18em]">
-                                        {testimonial.role}{testimonial.company ? ` · ${testimonial.company}` : ""}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </section>
-
-        <div class="grid-line-horizontal"></div>
-
-        <!-- ===== SHARED: GUARANTEE ===== -->
         <section>
             <div class="tech-card border-primary p-8 md:p-10 space-y-4">
-                <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">The Guarantee</p>
+                <p class="font-mono text-xs uppercase tracking-wide text-primary font-bold">
+                    The Guarantee
+                </p>
                 <p class="text-2xl font-bold leading-tight" style="text-wrap: balance">
-                    If I miss the agreed timeline because of my execution, I keep working until the scope is live at no added cost.
+                    If I miss the agreed timeline because of my execution, I keep working
+                    until the agreed scope is live at no added cost.
                 </p>
                 <p class="text-sm text-zinc-500 dark:text-zinc-400">
-                    Requires timely feedback, a tight scope, and normal client-side access during the build.
+                    Requires timely feedback, a tight scope, and normal client-side access
+                    during the build.
                 </p>
             </div>
         </section>
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- ===== SHARED: FAQ ===== -->
         <section class="space-y-8">
             <span class="section-label">// Common Concerns</span>
             <div class="space-y-0">
                 {faqItems.map((item) => (
                     <div class="grid gap-3 border-t border-black/12 py-6 dark:border-white/12 md:grid-cols-[1fr_2fr]">
-                        <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-black dark:text-white">{item.title}</h3>
+                        <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-black dark:text-white">
+                            {item.title}
+                        </h3>
                         <p class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{item.body}</p>
                     </div>
                 ))}
@@ -504,17 +560,26 @@ const faqItems = [
 
         <div class="grid-line-horizontal"></div>
 
-        <!-- Final CTA -->
         <section class="max-w-2xl space-y-5">
-            <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">I only take on 2 projects at a time.</p>
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">
+                I only take on 2 projects at a time.
+            </p>
             <h2 class="heading-display text-3xl md:text-4xl" style="text-wrap: balance">
-                Bring the scope. I&rsquo;ll tell you whether it&rsquo;s an MVP or an automation problem.
+                Bring the scope. I&apos;ll tell you whether it needs an MVP, a workflow
+                audit, or a smaller first step.
             </h2>
             <p class="text-zinc-600 dark:text-zinc-300">
-                Book a 30-minute roadmap call. You&rsquo;ll leave with a clearer scope,
-                which track fits, and a direct answer on fit.
+                Book a 30-minute roadmap call. You&apos;ll leave with a clearer scope, the
+                likely budget range, and a direct answer on fit.
             </p>
-            <a href={calUrl} target="_blank" rel="noopener noreferrer" class="btn-primary inline-block py-3 px-6" data-track-event="book_call_clicked" data-track-location="launch_final">
+            <a
+                href={calUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary inline-block py-3 px-6"
+                data-track-event="book_call_clicked"
+                data-track-location="launch_final"
+            >
                 Book a Roadmap Call
             </a>
         </section>
