@@ -7,92 +7,15 @@ import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
 import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
 import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
 import monicaPhoto from "@src/assets/img/monica.jpeg";
-import markisPhoto from "@src/assets/img/markis.jpeg";
 import testimonials from "../../testimonials.json";
 
-const title = "Hanif Carroll | Product Partner for Nontechnical Founders";
+const title = "Hanif Carroll | MVPs, Automation, and AI Systems";
 const description =
-    "I help nontechnical founders figure out what to build, then I build it. Product strategy, MVP builds, and AI systems without agency overhead.";
+    "I help nontechnical founders and founder-led teams launch focused MVPs or fix operational bottlenecks with internal tools, automation, and bounded AI systems.";
 
 const founderQuote = testimonials.find(
     (testimonial) => testimonial.name === "Monica Londoño",
 );
-const operatorQuote = testimonials.find(
-    (testimonial) => testimonial.name === "Markis Zarate",
-);
-
-const fitColumns = [
-    {
-        title: "Best fit",
-        items: [
-            "You have an idea but aren't sure what the MVP should actually include.",
-            "You need a first version in users' hands soon.",
-            "You want one person who can advise on product, pricing, and launch — not just write code.",
-        ],
-    },
-    {
-        title: "Probably not a fit",
-        items: [
-            "Idea-only projects with no urgency or budget.",
-            "Teams shopping for the cheapest developer hours they can find.",
-            "You already have a detailed spec and just need hands to code it.",
-        ],
-    },
-];
-
-const offers = [
-    {
-        label: "01",
-        title: "MVP builds",
-        description:
-            "For founders who need someone to shape the product, not just code it. I define the scope, design the UX, advise on pricing and positioning, and build the whole thing.",
-        bullets: [
-            "Figure out what the MVP should actually include before code starts.",
-            "Ship something people can use, pay for, and come back to.",
-        ],
-        href: "/launch/",
-        cta: "See the MVP path",
-        image: casaElariaHero,
-        imageAlt: "Market validation storefront built for a beauty brand MVP test.",
-    },
-    {
-        label: "02",
-        title: "Workflow automation + AI agents",
-        description:
-            "For business owners and lean teams who need software to remove operational drag and make AI genuinely useful.",
-        bullets: [
-            "Remove repetitive work inside the business.",
-            "Add AI only when it reduces work or improves a decision.",
-        ],
-        href: "/launch/#automation",
-        cta: "See automation examples",
-        image: desarmaderoHero,
-        imageAlt: "Inventory and workflow software interface for an auto-parts supplier.",
-    },
-];
-
-const processSteps = [
-    {
-        number: "01",
-        title: "Understand the business and the user",
-        body: "Before anything gets built, I learn who it's for, what the business model is, and what success looks like. This shapes everything that follows.",
-    },
-    {
-        number: "02",
-        title: "Define the product and cut scope hard",
-        body: "I help decide what the MVP should include, how to price it, and what to leave out. The first build has to be useful and small enough to ship.",
-    },
-    {
-        number: "03",
-        title: "Build with direct feedback",
-        body: "You get direct updates and short demos without extra layers between us. I handle the UX, the design decisions, and the code.",
-    },
-    {
-        number: "04",
-        title: "Launch and go to market",
-        body: "We ship something people can use, then I help with the marketing site, positioning, and whatever else it takes to get the product in front of the right people.",
-    },
-];
 
 const proofPoints = [
     {
@@ -101,11 +24,44 @@ const proofPoints = [
     },
     {
         metric: "10+",
-        label: "products shipped — MVPs, automations, and AI systems",
+        label: "products shipped, MVPs, automations, and AI systems",
     },
     {
         metric: "3,000+",
         label: "end users served through tools built with founders",
+    },
+];
+
+const offers = [
+    {
+        label: "01",
+        title: "The 4-Week Launch",
+        price: "Starts at $10,000",
+        description:
+            "A fixed-scope MVP for nontechnical founders who need more than a developer. I help cut the scope, shape the product, and get the first useful version live.",
+        bullets: [
+            "Define the first useful version before code starts.",
+            "Build and launch in 4 weeks with direct feedback.",
+        ],
+        href: "/launch/#mvp",
+        cta: "See the MVP offer",
+        image: casaElariaHero,
+        imageAlt: "Market validation storefront built for a beauty brand MVP test.",
+    },
+    {
+        label: "02",
+        title: "Workflow Automation & AI",
+        price: "Workflow audits start at $2,000",
+        description:
+            "For founder-led teams and SMBs with operational drag. I map the workflow, find the bottleneck, and define the first useful system before implementation starts.",
+        bullets: [
+            "Audit the workflow before automating the wrong step.",
+            "Credit the audit toward implementation if we move forward.",
+        ],
+        href: "/launch/#automation",
+        cta: "See the automation offer",
+        image: desarmaderoHero,
+        imageAlt: "Inventory and workflow software interface for an auto-parts supplier.",
     },
 ];
 
@@ -139,6 +95,43 @@ const caseStudies = [
         imageClass: "object-left-top",
     },
 ];
+
+const processSteps = [
+    {
+        number: "01",
+        title: "Clarify the business problem",
+        body: "I start with the user, the workflow, and the business constraint that is actually slowing things down.",
+    },
+    {
+        number: "02",
+        title: "Cut the scope to the first useful system",
+        body: "The goal is not maximum scope. It is the smallest version that creates signal, removes work, or moves the business forward.",
+    },
+    {
+        number: "03",
+        title: "Build with direct feedback",
+        body: "You work directly with me, get short demos, and make faster decisions without extra agency layers.",
+    },
+];
+
+const fitColumns = [
+    {
+        title: "Good fit",
+        items: [
+            "You need a first version or internal system in use soon.",
+            "You want one person who can advise on scope, pricing, workflow, and implementation.",
+            "You need a smaller, clearer first step instead of a giant build.",
+        ],
+    },
+    {
+        title: "Probably not a fit",
+        items: [
+            "Idea-only projects with no urgency or budget.",
+            "Teams shopping for the cheapest developer hours they can find.",
+            "Large enterprise programs with broad committee scope from day one.",
+        ],
+    },
+];
 ---
 
 <BaseLayout
@@ -158,25 +151,28 @@ const caseStudies = [
                         style="animation-delay: 80ms; animation-fill-mode: forwards;"
                     >
                         Hanif Carroll
-                        <span class="text-black/45 dark:text-white/60">Product partner for founders</span>
+                        <span class="text-black/45 dark:text-white/60">
+                            Services for founders and founder-led teams
+                        </span>
                     </p>
 
                     <h1
                         class="hero-title max-w-[13.2ch] animate-fade-in-up opacity-0"
                         style="animation-delay: 180ms; animation-fill-mode: forwards;"
                     >
-                        <span class="block whitespace-nowrap">I figure out</span>
-                        <span class="block whitespace-nowrap">what to build,</span>
-                        <span class="block whitespace-nowrap">then I build</span>
-                        <span class="block">it.</span>
+                        <span class="block whitespace-nowrap">Launch the</span>
+                        <span class="block whitespace-nowrap">product or</span>
+                        <span class="block whitespace-nowrap">fix the</span>
+                        <span class="block">workflow.</span>
                     </h1>
 
                     <p
-                        class="max-w-[28rem] animate-fade-in-up text-lg leading-8 text-black/60 opacity-0 dark:text-white/80"
+                        class="max-w-[29rem] animate-fade-in-up text-lg leading-8 text-black/60 opacity-0 dark:text-white/80"
                         style="animation-delay: 280ms; animation-fill-mode: forwards;"
                     >
-                        Product strategy, UX, pricing, and full-stack engineering for
-                        nontechnical founders — without agency overhead.
+                        I help nontechnical founders ship focused MVPs, and I help
+                        founder-led teams turn manual bottlenecks into internal tools,
+                        automation, and bounded AI systems.
                     </p>
 
                     <div
@@ -193,17 +189,29 @@ const caseStudies = [
                         >
                             Book a Roadmap Call
                         </a>
-                        <a class="btn-secondary" href="#case-studies">
-                            See Case Studies
+                        <a class="btn-secondary" href="/launch/">
+                            See Services
                         </a>
                     </div>
 
                     <div
-                        class="grid gap-3 border-t border-black/10 pt-5 text-sm text-black/50 animate-fade-in-up opacity-0 dark:border-white/15 dark:text-white/70 md:grid-cols-2"
+                        class="space-y-2 animate-fade-in-up opacity-0"
                         style="animation-delay: 460ms; animation-fill-mode: forwards;"
                     >
-                        <p>Product decisions and code from the same person.</p>
-                        <p>From idea through launch and go-to-market.</p>
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-black/45 dark:text-white/60">
+                            30 minutes &middot; Clear scope, budget signal, and next step
+                        </p>
+                        <p class="font-mono text-xs uppercase tracking-[0.18em] text-black/50 dark:text-white/65">
+                            The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
+                        </p>
+                    </div>
+
+                    <div
+                        class="grid gap-3 border-t border-black/10 pt-5 text-sm text-black/50 animate-fade-in-up opacity-0 dark:border-white/15 dark:text-white/70 md:grid-cols-2"
+                        style="animation-delay: 520ms; animation-fill-mode: forwards;"
+                    >
+                        <p>Direct access to the person making the product and technical calls.</p>
+                        <p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
                     </div>
                 </div>
             </div>
@@ -220,107 +228,17 @@ const caseStudies = [
         </div>
     </section>
 
-    <section class="container py-20 md:py-24">
-        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div class="space-y-5">
-                <p class="kicker-line">Who This Is For</p>
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    Know quickly if this is the right kind of help.
-                </h2>
-                <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    If you need a first version soon or software to remove a recurring
-                    bottleneck, the fit should be clear fast.
-                </p>
-            </div>
-
-            <div class="grid gap-10 md:grid-cols-2">
-                {fitColumns.map((column) => (
-                    <div class="signal-line pt-5">
-                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-                            {column.title}
-                        </p>
-                        <ul class="mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200">
-                            {column.items.map((item) => (
-                                <li class="border-t border-black/10 pt-4 dark:border-white/10">
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <section class="container py-6 md:py-10">
-        <div class="soft-divider"></div>
-    </section>
-
-    <section class="container py-14 md:py-20">
-        <div class="space-y-5">
-            <p class="kicker-line">Where This Usually Starts</p>
-            <div class="max-w-3xl space-y-4">
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    Most projects start in one of two places.
-                </h2>
-                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    Either a founder needs a first version, or a business needs software
-                    to remove a recurring bottleneck.
-                </p>
-            </div>
-        </div>
-
-        <div class="mt-12 space-y-12 md:space-y-16">
-            {offers.map((offer, index) => (
-                <article class="grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
-                    <div class:list={[index % 2 === 1 && "lg:order-2"]}>
-                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                            Offer {offer.label}
-                        </p>
-                        <div class="mt-5 max-w-2xl space-y-5">
-                            <h3 class="heading-display text-3xl md:text-4xl">{offer.title}</h3>
-                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                                {offer.description}
-                            </p>
-                            <ul class="space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base">
-                                {offer.bullets.map((bullet) => (
-                                    <li class="border-t border-black/10 pt-4 dark:border-white/10">
-                                        {bullet}
-                                    </li>
-                                ))}
-                            </ul>
-                            <div class="pt-2">
-                                <a class="arrow-link" href={offer.href}>
-                                    {offer.cta}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-1"]}>
-                        <Image
-                            src={offer.image}
-                            alt={offer.imageAlt}
-                            class="aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
-                            loading="lazy"
-                        />
-                    </figure>
-                </article>
-            ))}
-        </div>
-    </section>
-
-    <section class="border-y border-black/20 bg-zinc-950 py-20 text-white dark:border-white/10 dark:bg-zinc-900 md:py-28" id="proof">
+    <section class="border-y border-black/20 bg-zinc-950 py-20 text-white dark:border-white/10 dark:bg-zinc-900 md:py-24" id="approach">
         <div class="container grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
-            <div class="space-y-6 lg:sticky lg:top-28 lg:self-start">
-                <p class="kicker-line">Why This Works</p>
+            <div class="space-y-6">
+                <p class="kicker-line">How I work</p>
                 <h2 class="heading-display text-4xl md:text-5xl">
-                    Strategy and execution from the same person.
+                    One person handles the scope, the build, and the tradeoffs.
                 </h2>
                 <p class="max-w-xl text-base leading-7 text-white/70">
-                    You get one person handling the product decisions, the UX, the pricing
-                    strategy, the build, and the communication. No handoffs between a
-                    strategist, a designer, and a developer.
+                    You are not hiring separate strategy, design, and engineering layers.
+                    The same person helps define the first useful version, ships the work,
+                    and keeps the scope honest.
                 </p>
 
                 {founderQuote && (
@@ -384,39 +302,64 @@ const caseStudies = [
                         </div>
                     ))}
                 </div>
+            </div>
+        </div>
+    </section>
 
-                {operatorQuote && (
-                    <div class="border-t border-white/12 pt-6">
-                        <div class="flex items-start gap-4">
-                            <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/20">
-                                <Image
-                                    src={markisPhoto}
-                                    alt={operatorQuote.name}
-                                    width={64}
-                                    height={64}
-                                    loading="lazy"
-                                    class="h-full w-full object-cover object-center"
-                                />
-                            </div>
-                            <div class="space-y-3">
-                                <p class="text-base leading-7 text-white/80">
-                                    &ldquo;{operatorQuote.text}&rdquo;
-                                </p>
-                                <div class="space-y-1 font-mono text-white/40">
-                                    <p class="text-xs uppercase tracking-[0.24em]">
-                                        {operatorQuote.name}
-                                    </p>
-                                    <p class="text-[11px] uppercase tracking-[0.18em]">
-                                        {operatorQuote.role}
-                                        {operatorQuote.company ? ` · ${operatorQuote.company}` : ""}
-                                    </p>
-                                </div>
+    <section class="container py-20 md:py-24">
+        <div class="space-y-5">
+            <p class="kicker-line">Services</p>
+            <div class="max-w-3xl space-y-4">
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Two ways I usually help.
+                </h2>
+                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    Most projects start as either a launch problem or a workflow problem.
+                    The page below tells you which path fits.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-12 space-y-12 md:space-y-16">
+            {offers.map((offer, index) => (
+                <article class="grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
+                    <div class:list={[index % 2 === 1 && "lg:order-2"]}>
+                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
+                            Offer {offer.label}
+                        </p>
+                        <div class="mt-5 max-w-2xl space-y-5">
+                            <h3 class="heading-display text-3xl md:text-4xl">{offer.title}</h3>
+                            <p class="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+                                {offer.price}
+                            </p>
+                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                {offer.description}
+                            </p>
+                            <ul class="space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base">
+                                {offer.bullets.map((bullet) => (
+                                    <li class="border-t border-black/10 pt-4 dark:border-white/10">
+                                        {bullet}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div class="pt-2">
+                                <a class="arrow-link" href={offer.href}>
+                                    {offer.cta}
+                                </a>
                             </div>
                         </div>
                     </div>
-                )}
 
-            </div>
+                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-1"]}>
+                        <Image
+                            src={offer.image}
+                            alt={offer.imageAlt}
+                            class="aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+                            loading="lazy"
+                        />
+                    </figure>
+                </article>
+            ))}
         </div>
     </section>
 
@@ -428,8 +371,8 @@ const caseStudies = [
                     Find the closest match for the kind of problem you have.
                 </h2>
                 <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    The work is grouped by MVP, workflow, and AI-system projects so you can
-                    start with the most relevant examples.
+                    Start with the project that looks closest to your situation, whether
+                    that is an MVP launch, a workflow bottleneck, or a bounded AI system.
                 </p>
             </div>
         </div>
@@ -466,12 +409,16 @@ const caseStudies = [
                         </div>
                         <div class="space-y-4">
                             <div class="border-t border-black/12 pt-4 dark:border-white/12">
-                                <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">Outcome</p>
+                                <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                                    Outcome
+                                </p>
                                 <p class="mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100">
                                     {study.outcome}
                                 </p>
                             </div>
-                            <span class="arrow-link group-hover:border-primary group-hover:text-primary">View case study</span>
+                            <span class="arrow-link group-hover:border-primary group-hover:text-primary">
+                                View case study
+                            </span>
                         </div>
                     </div>
                 </a>
@@ -479,17 +426,48 @@ const caseStudies = [
         </div>
     </section>
 
+    <section class="container py-20 md:py-24">
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div class="space-y-5">
+                <p class="kicker-line">Fit</p>
+                <h2 class="heading-display text-4xl md:text-5xl">
+                    Know quickly if this is the right kind of help.
+                </h2>
+                <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                    The fit should be clear by now. If you need the first useful version,
+                    or the first useful system, the next step is a roadmap call.
+                </p>
+            </div>
+
+            <div class="grid gap-10 md:grid-cols-2">
+                {fitColumns.map((column) => (
+                    <div class="signal-line pt-5">
+                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                            {column.title}
+                        </p>
+                        <ul class="mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200">
+                            {column.items.map((item) => (
+                                <li class="border-t border-black/10 pt-4 dark:border-white/10">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
     <section class="border-y border-black/10 bg-black py-20 text-white dark:border-white/10 md:py-24">
         <div class="container">
             <div class="max-w-4xl space-y-6">
                 <p class="kicker-line">Next Step</p>
-                <h2 class="poster-title max-w-3xl">
-                    Bring the bottleneck, and I&rsquo;ll help decide what to build first.
+                <h2 class="heading-display max-w-[12ch] text-4xl md:text-5xl">
+                    Tell me what&rsquo;s slowing things down.
                 </h2>
                 <p class="poster-copy max-w-2xl text-white/74">
-                    Book a roadmap call if you need an MVP or a workflow that no longer
-                    depends on manual cleanup. If AI belongs in the solution, we can decide
-                    that after the workflow is clear.
+                    In a 30-minute roadmap call, we&rsquo;ll figure out whether this
+                    should start as an MVP, a workflow audit, or a smaller first step.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a
@@ -502,8 +480,8 @@ const caseStudies = [
                     >
                         Book a Roadmap Call
                     </a>
-                    <a class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black" href="/projects/">
-                        Browse Case Studies
+                    <a class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black" href="/launch/">
+                        See Services
                     </a>
                 </div>
             </div>
