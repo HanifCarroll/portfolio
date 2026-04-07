@@ -2,12 +2,16 @@
   "slug": "ba-eventos",
   "title": "AI-Powered Event Discovery for Buenos Aires",
   "description": "A conversational event discovery product that turned Buenos Aires' fragmented event scene into one searchable assistant for finding, saving, and sharing plans.",
+  "proofType": "experiment",
   "client": "Personal Project",
-  "service": "Full-Stack AI Engineering",
+  "service": "AI Product Build",
+  "bestFit": "Teams exploring AI assistants, RAG search, or data-heavy discovery products that need grounded answers.",
   "role": "Solo Developer & AI Engineer",
   "category": "product",
   "track": "ai_systems",
   "year": "2025-2026",
+  "timeline": "Ongoing product build, 2025 to present",
+  "teamSize": "Solo build",
   "technologies": [
     "TanStack Start",
     "React 19",
@@ -21,25 +25,24 @@
     "Tailwind CSS v4"
   ],
   "liveUrl": "https://baeventos.com",
+  "constraints": [
+    "Event data was fragmented across multiple sources with inconsistent formats.",
+    "The assistant needed to answer vibe-based queries without drifting away from real event data."
+  ],
   "problem": [
     "Buenos Aires has a thriving nightlife and cultural scene, but event information is scattered across incompatible platforms: Instagram stories, Facebook events, Eventbrite, Passline, venue websites, and WhatsApp groups. There's no single source of truth, making it nearly impossible to discover what's happening tonight.",
     "Traditional search doesn't work for events. Users want to ask questions like 'romantic jazz spots in Palermo' or 'underground techno this weekend' - queries that require understanding intent, vibes, and context rather than just keyword matching."
   ],
   "solution": [
-    "Built a conversational AI agent using Claude that understands natural language queries about events. Users can ask 'What's happening tonight?' or 'Find me a free outdoor concert' and get intelligent, contextual recommendations.",
-    "Implemented agent-native architecture following parity principles: 17 tools covering search, discovery, user actions (save/unsave events), and utilities (directions, sharing). The AI can do anything a user can do through the interface, enabling emergent capabilities like 'save that one, then find me something similar.'",
-    "Implemented semantic search using OpenAI embeddings stored in PostgreSQL with pgvector. Events are embedded based on Spanish descriptions, enabling cross-language similarity matching that captures mood and atmosphere beyond keywords.",
-    "Created a 7-step import wizard that aggregates events from Passline, Eventbrite, BA Tourism, and Meetup. Includes smart venue matching, AI-powered description enrichment, and automatic categorization using Claude Haiku.",
-    "Automated daily data pipelines with Trigger.dev scheduled jobs, including exponential backoff for rate limiting and retry logic for browser automation failures.",
-    "Designed a bilingual system (Spanish/English) with Paraglide JS, where Spanish descriptions power the semantic search while English translations serve international users.",
-    "Built a complete admin dashboard with bulk operations, data quality tools (duplicate detection, address analysis), and background AI enrichment with real-time progress streaming."
+    "Built a conversational assistant that lets users ask for events in plain language instead of hunting across Instagram, ticketing sites, and venue feeds.",
+    "Created an ingestion and enrichment pipeline that pulls events from multiple sources, matches venues, cleans descriptions, and keeps the catalog usable.",
+    "Combined semantic search with structured filters so the product can handle intent-heavy queries like mood, neighborhood, or time window instead of just keywords.",
+    "Built the admin and data-quality tooling needed to keep the product grounded in real event data rather than turning into an unreliable AI demo."
   ],
   "result": [
-    "Deployed a production RAG application with 800+ events and 190+ venues aggregated from multiple sources. The AI agent successfully handles complex queries combining semantic search with structured filters.",
-    "Achieved 100% feature parity between UI and AI agent with 17 tools, enabling complex multi-step conversations. Analytics via PostHog track tool usage patterns to inform future development.",
-    "Achieved sub-second response times for semantic search by leveraging pgvector's IVFFlat indexing on 1536-dimensional embeddings, with server-side filtering reducing post-processing overhead.",
-    "Established a repeatable pipeline for event data acquisition: scrape sources, match venues, enrich descriptions with AI, generate embeddings, and serve via conversational interface.",
-    "Demonstrated full-stack AI engineering capabilities: prompt engineering, RAG architecture, embedding pipelines, streaming responses, and tool-use patterns with Claude."
+    "Launched a working event discovery product with 800+ events and 190+ venues pulled into one searchable experience instead of forcing users to jump between sources.",
+    "Proved a repeatable pattern for AI-assisted discovery over messy local data: ingest it, clean it, enrich it, embed it, and answer with grounded results.",
+    "The product is now a live example of how I build AI systems that need reliable retrieval, admin tooling, and a usable front end, not just a chat box."
   ],
   "images": {
     "hero": "@src/assets/img/projects/ba-eventos-hero.png",

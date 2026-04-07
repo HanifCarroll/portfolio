@@ -11,7 +11,10 @@ export interface ProjectCard {
   tags: string[];
   year: string;
   client: string;
+  proofType: Project['proofType'];
+  proofTypeLabel: string;
   service: string;
+  bestFit: string;
   track: Project['track'];
   trackLabel: string;
   trackShortLabel: string;
@@ -21,6 +24,9 @@ export interface ProjectCard {
 
 const firstText = (value: string | string[]) =>
   Array.isArray(value) ? value[0] : value;
+
+const getProofTypeLabel = (proofType: Project['proofType']) =>
+  proofType === 'client' ? 'Client Work' : 'Selected Experiment';
 
 const toCard = (project: Project): ProjectCard => {
   const trackMeta = getProjectTrackMeta(project.track);
@@ -34,7 +40,10 @@ const toCard = (project: Project): ProjectCard => {
     tags: project.technologies ?? [],
     year: project.year ?? '',
     client: project.client,
+    proofType: project.proofType,
+    proofTypeLabel: getProofTypeLabel(project.proofType),
     service: project.service,
+    bestFit: project.bestFit,
     track: project.track,
     trackLabel: trackMeta.label,
     trackShortLabel: trackMeta.shortLabel,

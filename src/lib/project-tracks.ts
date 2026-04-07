@@ -53,21 +53,21 @@ export const projectTrackGroups: Array<{
 }> = [
   {
     key: 'automation_and_ai',
-    title: 'When the workflow is the bottleneck',
+    title: 'Workflow cleanup, automation, and AI',
     description:
-      'Internal tools, automation, and AI systems built to remove manual work, clean up messy handoffs, or make a process usable at scale.',
+      'Internal tools, automations, and bounded AI systems for teams losing time to manual work, messy handoffs, or brittle processes.',
   },
   {
     key: 'mvp_and_validation',
-    title: 'When you need to launch or validate',
+    title: 'MVPs and validation',
     description:
-      'MVPs and validation builds designed to get something useful in front of users quickly, without dragging the first version out for months.',
+      'First versions built to test demand, get in front of users quickly, and avoid overbuilding the initial scope.',
   },
   {
     key: 'launch_sites',
-    title: 'When credibility or conversion needs work',
+    title: 'Launch sites and credibility',
     description:
-      'Sites built to support a launch, improve credibility, or turn interest into better-qualified conversations.',
+      'Sites built to explain the offer clearly, improve credibility, and turn more interest into qualified conversations.',
   },
 ];
 

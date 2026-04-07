@@ -3,6 +3,12 @@ export interface ProjectImages {
   feature: string;
 }
 
+export interface ProjectProofQuote {
+  quote: string;
+  author: string;
+  role?: string;
+}
+
 export type ProjectTrack =
   | 'mvp_build'
   | 'mvp_validation'
@@ -20,7 +26,9 @@ export interface Project {
   title: string;
   description: string;
   client: string;
+  proofType: 'client' | 'experiment';
   service: string;
+  bestFit: string;
   track: ProjectTrack;
   category?: 'product' | 'marketing-site';
   year?: string;
@@ -38,4 +46,5 @@ export interface Project {
   outcomes?: string[]; // metrics or qualitative outcomes
   repository?: string;
   architectureImage?: string;
+  proofQuote?: ProjectProofQuote;
 }

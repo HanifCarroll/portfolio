@@ -2,18 +2,15 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectList from "../../components/ProjectList.astro";
 import { projects } from "../../lib/project-cards";
-import { projectTrackGroups } from "../../lib/project-tracks";
 
 const title = "Case Studies";
 const description =
     "Case studies from product builds and automation work by Hanif Carroll.";
 
-const projectSections = projectTrackGroups
-    .map((group) => ({
-        ...group,
-        projects: projects.filter((project) => project.trackGroup === group.key),
-    }))
-    .filter((group) => group.projects.length > 0);
+const clientProjects = projects.filter((project) => project.proofType === "client");
+const experimentProjects = projects.filter(
+    (project) => project.proofType === "experiment",
+);
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description}>
@@ -31,27 +28,52 @@ const projectSections = projectTrackGroups
             </h1>
             <div class="tech-card p-6 md:p-8">
                 <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    Start with the kind of problem you are trying to solve: launching a
-                    first version, removing workflow drag, or improving credibility and
-                    conversion around the work.
+                    Start with client proof first. Each card still shows the kind of
+                    work involved, from MVPs and launch sites to workflow automation
+                    and AI systems.
                 </p>
             </div>
         </header>
 
-        <div class="space-y-16">
-            {projectSections.map((section) => (
-                <section class="space-y-6">
-                    <div class="max-w-3xl space-y-3">
-                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-                            {section.title}
-                        </p>
-                        <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                            {section.description}
-                        </p>
+        <div class="space-y-20">
+            <section class="space-y-10">
+                <div class="tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8">
+                    <div class="space-y-3">
+                        <p class="section-label">// Start Here</p>
+                        <h2 class="heading-display text-3xl md:text-4xl">
+                            Client Work
+                        </h2>
                     </div>
-                    <ProjectList projects={section.projects} />
-                </section>
-            ))}
+                    <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg">
+                        The strongest proof for how I scope, build, and ship work for
+                        paying clients. Start here if you want the clearest signal of
+                        what it is like to hire me.
+                    </p>
+                </div>
+                <ProjectList projects={clientProjects} />
+            </section>
+
+            {
+                experimentProjects.length > 0 && (
+                    <section class="space-y-10">
+                        <div class="tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8">
+                            <div class="space-y-3">
+                                <p class="section-label">// Also Useful</p>
+                                <h2 class="heading-display text-3xl md:text-4xl">
+                                    Selected Product Experiments
+                                </h2>
+                            </div>
+                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg">
+                                Self-initiated products that show how I think through
+                                MVPs, workflows, and AI systems when I own the problem
+                                end to end. Useful for judgment and product taste, but
+                                separate from client delivery.
+                            </p>
+                        </div>
+                        <ProjectList projects={experimentProjects} />
+                    </section>
+                )
+            }
         </div>
     </article>
 </BaseLayout>

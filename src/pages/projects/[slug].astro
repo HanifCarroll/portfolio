@@ -44,11 +44,17 @@ const firstText = (value: string | string[]) =>
     Array.isArray(value) ? value[0] : value;
 const problemSummary = firstText(project.problem);
 const outcomeSummary = firstText(project.result);
+const proofTypeLabel =
+    project.proofType === "client" ? "Client work" : "Selected experiment";
 const engagementDetails = [
+    { label: "Proof type", value: proofTypeLabel },
     { label: "Client", value: project.client },
     { label: "Service", value: project.service },
+    { label: "Best fit", value: project.bestFit },
     { label: "Track", value: trackMeta.label },
     { label: "Role", value: project.role },
+    { label: "Timeline", value: project.timeline },
+    { label: "Team", value: project.teamSize },
 ].filter(
     (detail): detail is { label: string; value: string } => Boolean(detail.value),
 );
@@ -137,6 +143,21 @@ const images = imageMap[project.slug];
                                 {problemSummary}
                             </p>
                         </div>
+
+                        {
+                            project.constraints && project.constraints.length > 0 && (
+                                <div class="space-y-3">
+                                    <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                                        Constraints
+                                    </p>
+                                    <ul class="list-disc space-y-2 pl-5 text-base leading-7 text-zinc-600 dark:text-zinc-300">
+                                        {project.constraints.map((constraint) => (
+                                            <li>{constraint}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )
+                        }
 
                         <div class="space-y-3">
                             <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
@@ -272,6 +293,25 @@ const images = imageMap[project.slug];
                         class="w-full object-cover"
                     />
                 </figure>
+            )
+        }
+
+        {
+            project.proofQuote && (
+                <section class="tech-card p-6 md:p-8">
+                    <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                        Proof
+                    </p>
+                    <blockquote class="mt-4 space-y-4">
+                        <p class="text-xl leading-relaxed text-zinc-900 dark:text-zinc-100">
+                            &ldquo;{project.proofQuote.quote}&rdquo;
+                        </p>
+                        <footer class="text-sm uppercase tracking-[0.18em] text-zinc-600 dark:text-zinc-300">
+                            {project.proofQuote.author}
+                            {project.proofQuote.role && ` · ${project.proofQuote.role}`}
+                        </footer>
+                    </blockquote>
+                </section>
             )
         }
 
