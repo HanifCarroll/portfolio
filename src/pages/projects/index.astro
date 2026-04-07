@@ -7,9 +7,44 @@ const title = "Case Studies";
 const description =
     "Case studies from product builds and automation work by Hanif Carroll.";
 
-const clientProjects = projects.filter((project) => project.proofType === "client");
-const experimentProjects = projects.filter(
-    (project) => project.proofType === "experiment",
+const preferredClientOrder = [
+    "desarmadero-latorre",
+    "genrupt",
+    "casa-elaria",
+    "mucho-hangouts",
+    "maximo-interiorismo",
+    "redwriter-comics",
+] as const;
+
+const preferredExperimentOrder = [
+    "ba-eventos",
+    "language-exchange",
+    "vox-prismatic",
+] as const;
+
+const sortByPreferredOrder = (
+    projectList: typeof projects,
+    preferredOrder: readonly string[],
+) => {
+    const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
+
+    return [...projectList].sort((a, b) => {
+        const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
+        const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
+
+        if (aIndex !== bIndex) return aIndex - bIndex;
+        return 0;
+    });
+};
+
+const clientProjects = sortByPreferredOrder(
+    projects.filter((project) => project.proofType === "client"),
+    preferredClientOrder,
+);
+
+const experimentProjects = sortByPreferredOrder(
+    projects.filter((project) => project.proofType === "experiment"),
+    preferredExperimentOrder,
 );
 ---
 
