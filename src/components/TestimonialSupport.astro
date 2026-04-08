@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	quote: string;
+	name: string;
+	role: string;
+	company?: string;
+	image?: ImageMetadata;
+	label?: string;
+	class?: string;
+}
+
+const { quote, name, role, company, image, label = 'Client note', class: className = '' } = Astro.props as Props;
+const meta = company ? `${role} · ${company}` : role;
+---
+
+<aside class:list={['testimonial-support', className]}>
+	<div class='space-y-5'>
+		<p class='testimonial-support__label'>{label}</p>
+		<blockquote class='space-y-5'>
+			<p class='testimonial-support__quote'>&ldquo;{quote}&rdquo;</p>
+
+			<footer class='flex items-center gap-4'>
+				{
+					image && (
+						<div class='h-14 w-14 shrink-0 overflow-hidden rounded-full border border-black/15 dark:border-white/15'>
+							<Image src={image} alt={name} width={56} height={56} loading='lazy' class='h-full w-full object-cover' />
+						</div>
+					)
+				}
+
+				<div class='space-y-1'>
+					<p class='testimonial-support__name'>{name}</p>
+					<p class='testimonial-support__meta'>{meta}</p>
+				</div>
+			</footer>
+		</blockquote>
+	</div>
+</aside>

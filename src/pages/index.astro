@@ -1,529 +1,450 @@
 ---
-import { Image } from "astro:assets";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { BOOK_CALL_URL } from "../consts";
-import HeroImage from "@src/assets/img/portrait-brick.webp";
-import casaElariaHero from "@src/assets/img/projects/casa-elaria-hero.png";
-import desarmaderoHero from "@src/assets/img/projects/desarmadero-hero.png";
-import genruptHero from "@src/assets/img/projects/genrupt-hero.png";
-import monicaPhoto from "@src/assets/img/monica.jpeg";
-import testimonials from "../../testimonials.json";
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialBillboard from '../components/TestimonialBillboard.astro';
+import { BOOK_CALL_URL } from '../consts';
+import HeroImage from '@src/assets/img/portrait-brick.webp';
+import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
+import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
+import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
+import monicaPhoto from '@src/assets/img/monica.jpeg';
+import testimonials from '../../testimonials.json';
 
-const title = "Hanif Carroll | MVPs, Automation, and AI Systems";
+const title = 'Hanif Carroll | MVPs, Automation, and AI Systems';
 const description =
-    "I help nontechnical founders and founder-led teams launch focused MVPs or fix operational bottlenecks with internal tools, automation, and bounded AI systems.";
+	'I help nontechnical founders and founder-led teams launch focused MVPs or fix operational bottlenecks with internal tools, automation, and bounded AI systems.';
 
-const founderQuote = testimonials.find(
-    (testimonial) => testimonial.name === "Monica Londoño",
-);
+const founderQuote = testimonials.find((testimonial) => testimonial.name === 'Monica Londoño');
 
 const proofPoints = [
-    {
-        metric: "8+",
-        label: "years from consulting to product teams to independent work",
-    },
-    {
-        metric: "10+",
-        label: "products shipped, MVPs, automations, and AI systems",
-    },
-    {
-        metric: "3,000+",
-        label: "end users served through tools built with founders",
-    },
+	{
+		metric: '8+',
+		label: 'years from consulting to product teams to independent work'
+	},
+	{
+		metric: '10+',
+		label: 'products shipped, MVPs, automations, and AI systems'
+	},
+	{
+		metric: '3,000+',
+		label: 'end users served through tools built with founders'
+	}
 ];
 
 const offers = [
-    {
-        label: "01",
-        title: "The 4-Week Launch",
-        price: "Starts at $10,000",
-        description:
-            "A fixed-scope MVP for nontechnical founders who need more than a developer. I help cut the scope, shape the product, and get the first useful version live.",
-        bullets: [
-            "Define the first useful version before code starts.",
-            "Build and launch in 4 weeks with direct feedback.",
-        ],
-        href: "/launch/#mvp",
-        cta: "See the MVP offer",
-        image: casaElariaHero,
-        imageAlt: "Market validation storefront built for a beauty brand MVP test.",
-    },
-    {
-        label: "02",
-        title: "Workflow Automation & AI",
-        price: "Workflow audits start at $2,000",
-        description:
-            "For founder-led teams and SMBs with operational drag. I map the workflow, find the bottleneck, and define the first useful system before implementation starts.",
-        bullets: [
-            "Audit the workflow before automating the wrong step.",
-            "Credit the audit toward implementation if we move forward.",
-        ],
-        href: "/launch/#automation",
-        cta: "See the automation offer",
-        image: desarmaderoHero,
-        imageAlt: "Inventory and workflow software interface for an auto-parts supplier.",
-    },
+	{
+		label: '01',
+		title: 'The 4-Week Launch',
+		price: 'Starts at $10,000',
+		description:
+			'A fixed-scope MVP for nontechnical founders who need more than a developer. I help cut the scope, shape the product, and get the first useful version live.',
+		bullets: ['Define the first useful version before code starts.', 'Build and launch in 4 weeks with direct feedback.'],
+		href: '/launch/#mvp',
+		cta: 'See the MVP offer',
+		image: casaElariaHero,
+		imageAlt: 'Market validation storefront built for a beauty brand MVP test.'
+	},
+	{
+		label: '02',
+		title: 'Workflow Automation & AI',
+		price: 'Workflow audits start at $2,000',
+		description:
+			'For founder-led teams and SMBs with operational drag. I map the workflow, find the bottleneck, and define the first useful system before implementation starts.',
+		bullets: ['Audit the workflow before automating the wrong step.', 'Credit the audit toward implementation if we move forward.'],
+		href: '/launch/#automation',
+		cta: 'See the automation offer',
+		image: desarmaderoHero,
+		imageAlt: 'Inventory and workflow software interface for an auto-parts supplier.'
+	}
 ];
 
 const caseStudies = [
-    {
-        slug: "casa-elaria",
-        label: "MVP validation",
-        title: "Validated demand before inventory spend",
-        body: "Built a fake-door e-commerce launch for a beauty brand so the founder could test purchase intent and collect early demand before committing to inventory.",
-        outcome: "Measured demand with a high-fidelity storefront and turned curiosity into a launch list.",
-        image: casaElariaHero,
-        imageAlt: "Beauty brand landing page used for fake-door validation.",
-    },
-    {
-        slug: "desarmadero-latorre",
-        label: "Workflow automation",
-        title: "Turned phone calls into a digital stockroom",
-        body: "Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.",
-        outcome: "Reduced repetitive operational work and increased qualified inbound inquiries.",
-        image: desarmaderoHero,
-        imageAlt: "Digital stockroom and searchable inventory interface.",
-    },
-    {
-        slug: "genrupt",
-        label: "AI systems",
-        title: "Expanded an AI demo into an Amazon creative platform",
-        body: "Built the billing, worker infrastructure, and product foundations behind Genrupt as it grew from image and video generation into a broader Amazon creative ops system.",
-        outcome: "Made the product billable, more reliable under load, and much broader than the original MVP.",
-        image: genruptHero,
-        imageAlt: "AI creative platform interface for image and video generation.",
-        imageClass: "object-left-top",
-    },
+	{
+		slug: 'casa-elaria',
+		label: 'MVP validation',
+		title: 'Validated demand before inventory spend',
+		body: 'Built a fake-door e-commerce launch for a beauty brand so the founder could test purchase intent and collect early demand before committing to inventory.',
+		outcome: 'Measured demand with a high-fidelity storefront and turned curiosity into a launch list.',
+		image: casaElariaHero,
+		imageAlt: 'Beauty brand landing page used for fake-door validation.'
+	},
+	{
+		slug: 'desarmadero-latorre',
+		label: 'Workflow automation',
+		title: 'Turned phone calls into a digital stockroom',
+		body: 'Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.',
+		outcome: 'Reduced repetitive operational work and increased qualified inbound inquiries.',
+		image: desarmaderoHero,
+		imageAlt: 'Digital stockroom and searchable inventory interface.'
+	},
+	{
+		slug: 'genrupt',
+		label: 'AI systems',
+		title: 'Expanded an AI demo into an Amazon creative platform',
+		body: 'Built the billing, worker infrastructure, and product foundations behind Genrupt as it grew from image and video generation into a broader Amazon creative ops system.',
+		outcome: 'Made the product billable, more reliable under load, and much broader than the original MVP.',
+		image: genruptHero,
+		imageAlt: 'AI creative platform interface for image and video generation.',
+		imageClass: 'object-left-top'
+	}
 ];
 
 const processSteps = [
-    {
-        number: "01",
-        title: "Clarify the business problem",
-        body: "I start with the user, the workflow, and the business constraint that is actually slowing things down.",
-    },
-    {
-        number: "02",
-        title: "Cut the scope to the first useful system",
-        body: "The goal is not maximum scope. It is the smallest version that creates signal, removes work, or moves the business forward.",
-    },
-    {
-        number: "03",
-        title: "Build with direct feedback",
-        body: "You work directly with me, get short demos, and make faster decisions without extra agency layers.",
-    },
+	{
+		number: '01',
+		title: 'Clarify the business problem',
+		body: 'I start with the user, the workflow, and the business constraint that is actually slowing things down.'
+	},
+	{
+		number: '02',
+		title: 'Cut the scope to the first useful system',
+		body: 'The goal is not maximum scope. It is the smallest version that creates signal, removes work, or moves the business forward.'
+	},
+	{
+		number: '03',
+		title: 'Build with direct feedback',
+		body: 'You work directly with me, get short demos, and make faster decisions without extra agency layers.'
+	}
 ];
 
 const fitColumns = [
-    {
-        title: "Good fit",
-        items: [
-            "You need a first version or internal system in use soon.",
-            "You want one person who can advise on scope, pricing, workflow, and implementation.",
-            "You need a smaller, clearer first step instead of a giant build.",
-        ],
-    },
-    {
-        title: "Probably not a fit",
-        items: [
-            "Idea-only projects with no urgency or budget.",
-            "Teams shopping for the cheapest developer hours they can find.",
-            "Large enterprise programs with broad committee scope from day one.",
-        ],
-    },
+	{
+		title: 'Good fit',
+		items: [
+			'You need a first version or internal system in use soon.',
+			'You want one person who can advise on scope, pricing, workflow, and implementation.',
+			'You need a smaller, clearer first step instead of a giant build.'
+		]
+	},
+	{
+		title: 'Probably not a fit',
+		items: [
+			'Idea-only projects with no urgency or budget.',
+			'Teams shopping for the cheapest developer hours they can find.',
+			'Large enterprise programs with broad committee scope from day one.'
+		]
+	}
 ];
 ---
 
-<BaseLayout
-    title={title}
-    description={description}
-    flushTop
-    showFooterCta={false}
-    footerLinksOnly
-    padContentBeforeFooter={false}
->
-    <section class="border-b border-black/15 bg-[#f2ede3] text-black dark:border-white/10 dark:bg-black dark:text-white">
-        <div class="home-hero-split min-h-[calc(100svh-73px)]">
-            <div class="relative flex items-center bg-[#f2ede3] px-6 py-12 md:px-10 md:py-14 lg:border-r lg:border-r-black/10 lg:px-16 xl:px-20 dark:bg-[linear-gradient(165deg,#050505,#07162d)] dark:lg:border-r-white/10">
-                <div class="max-w-[31rem] space-y-7">
-                    <p
-                        class="kicker-line animate-fade-in-up opacity-0"
-                        style="animation-delay: 80ms; animation-fill-mode: forwards;"
-                    >
-                        Hanif Carroll
-                        <span class="text-black/45 dark:text-white/60">
-                            Services for founders and founder-led teams
-                        </span>
-                    </p>
+<BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
+	<section class='border-b border-black/15 bg-[#f2ede3] text-black dark:border-white/10 dark:bg-black dark:text-white'>
+		<div class='home-hero-split min-h-[calc(100svh-73px)]'>
+			<div
+				class='relative flex items-center bg-[#f2ede3] px-6 py-12 md:px-10 md:py-14 lg:border-r lg:border-r-black/10 lg:px-16 xl:px-20 dark:bg-[linear-gradient(165deg,#050505,#07162d)] dark:lg:border-r-white/10'
+			>
+				<div class='max-w-[31rem] space-y-7'>
+					<p class='kicker-line animate-fade-in-up opacity-0' style='animation-delay: 80ms; animation-fill-mode: forwards;'>
+						Hanif Carroll
+						<span class='text-black/45 dark:text-white/60'> Services for founders and founder-led teams </span>
+					</p>
 
-                    <h1
-                        class="hero-title max-w-[13.2ch] animate-fade-in-up opacity-0"
-                        style="animation-delay: 180ms; animation-fill-mode: forwards;"
-                    >
-                        <span class="block whitespace-nowrap">Launch the</span>
-                        <span class="block whitespace-nowrap">product or</span>
-                        <span class="block whitespace-nowrap">fix the</span>
-                        <span class="block">workflow.</span>
-                    </h1>
+					<h1 class='hero-title max-w-[13.2ch] animate-fade-in-up opacity-0' style='animation-delay: 180ms; animation-fill-mode: forwards;'>
+						<span class='block whitespace-nowrap'>Launch the</span>
+						<span class='block whitespace-nowrap'>product or</span>
+						<span class='block whitespace-nowrap'>fix the</span>
+						<span class='block'>workflow.</span>
+					</h1>
 
-                    <p
-                        class="max-w-[29rem] animate-fade-in-up text-lg leading-8 text-black/60 opacity-0 dark:text-white/80"
-                        style="animation-delay: 280ms; animation-fill-mode: forwards;"
-                    >
-                        I help nontechnical founders ship focused MVPs, and I help
-                        founder-led teams turn manual bottlenecks into internal tools,
-                        automation, and bounded AI systems.
-                    </p>
+					<p
+						class='max-w-[29rem] animate-fade-in-up text-lg leading-8 text-black/60 opacity-0 dark:text-white/80'
+						style='animation-delay: 280ms; animation-fill-mode: forwards;'
+					>
+						I help nontechnical founders ship focused MVPs, and I help founder-led teams turn manual bottlenecks into internal tools,
+						automation, and bounded AI systems.
+					</p>
 
-                    <div
-                        class="flex flex-wrap gap-4 animate-fade-in-up opacity-0"
-                        style="animation-delay: 380ms; animation-fill-mode: forwards;"
-                    >
-                        <a
-                            class="btn-primary"
-                            href={BOOK_CALL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            data-track-event="book_call_clicked"
-                            data-track-location="home_hero_primary"
-                        >
-                            Book a Roadmap Call
-                        </a>
-                        <a class="btn-secondary" href="/launch/">
-                            See Services
-                        </a>
-                    </div>
+					<div class='flex flex-wrap gap-4 animate-fade-in-up opacity-0' style='animation-delay: 380ms; animation-fill-mode: forwards;'>
+						<a
+							class='btn-primary'
+							href={BOOK_CALL_URL}
+							target='_blank'
+							rel='noopener noreferrer'
+							data-track-event='book_call_clicked'
+							data-track-location='home_hero_primary'
+						>
+							Book a Roadmap Call
+						</a>
+						<a class='btn-secondary' href='/launch/'> See Services </a>
+					</div>
 
-                    <div
-                        class="space-y-2 animate-fade-in-up opacity-0"
-                        style="animation-delay: 460ms; animation-fill-mode: forwards;"
-                    >
-                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-black/45 dark:text-white/60">
-                            30 minutes &middot; Clear scope, budget signal, and next step
-                        </p>
-                        <p class="font-mono text-xs uppercase tracking-[0.18em] text-black/50 dark:text-white/65">
-                            The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
-                        </p>
-                    </div>
+					<div class='space-y-2 animate-fade-in-up opacity-0' style='animation-delay: 460ms; animation-fill-mode: forwards;'>
+						<p class='font-mono text-xs uppercase tracking-[0.28em] text-black/45 dark:text-white/60'>
+							30 minutes &middot; Clear scope, budget signal, and next step
+						</p>
+						<p class='font-mono text-xs uppercase tracking-[0.18em] text-black/50 dark:text-white/65'>
+							The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
+						</p>
+					</div>
 
-                    <div
-                        class="grid gap-3 border-t border-black/10 pt-5 text-sm text-black/50 animate-fade-in-up opacity-0 dark:border-white/15 dark:text-white/70 md:grid-cols-2"
-                        style="animation-delay: 520ms; animation-fill-mode: forwards;"
-                    >
-                        <p>Direct access to the person making the product and technical calls.</p>
-                        <p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
-                    </div>
-                </div>
-            </div>
+					<div
+						class='grid gap-3 border-t border-black/10 pt-5 text-sm text-black/50 animate-fade-in-up opacity-0 dark:border-white/15 dark:text-white/70 md:grid-cols-2'
+						style='animation-delay: 520ms; animation-fill-mode: forwards;'
+					>
+						<p>Direct access to the person making the product and technical calls.</p>
+						<p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
+					</div>
+				</div>
+			</div>
 
-            <div class="relative min-h-[24rem] overflow-hidden bg-[#d8c6b9] lg:min-h-full">
-                <Image
-                    src={HeroImage}
-                    alt="Hanif Carroll"
-                    class="hero-portrait absolute inset-0 h-full w-full object-cover"
-                    loading="eager"
-                />
-                <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.14))]"></div>
-            </div>
-        </div>
-    </section>
+			<div class='relative min-h-[24rem] overflow-hidden bg-[#d8c6b9] lg:min-h-full'>
+				<Image src={HeroImage} alt='Hanif Carroll' class='hero-portrait absolute inset-0 h-full w-full object-cover' loading='eager' />
+				<div class='absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.14))]'></div>
+			</div>
+		</div>
+	</section>
 
-    <section class="border-y border-black/20 bg-zinc-950 py-20 text-white dark:border-white/10 dark:bg-zinc-900 md:py-24" id="approach">
-        <div class="container grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
-            <div class="space-y-6">
-                <p class="kicker-line">How I work</p>
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    One person handles the scope, the build, and the tradeoffs.
-                </h2>
-                <p class="max-w-xl text-base leading-7 text-white/70">
-                    You are not hiring separate strategy, design, and engineering layers.
-                    The same person helps define the first useful version, ships the work,
-                    and keeps the scope honest.
-                </p>
+	<section class='border-y border-black/20 bg-zinc-950 py-20 text-white dark:border-white/10 dark:bg-zinc-900 md:py-24' id='approach'>
+		<div class='container space-y-14 lg:space-y-16'>
+			<div class='grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20'>
+				<div class='space-y-6'>
+					<p class='kicker-line'>How I work</p>
+					<h2 class='heading-display text-4xl md:text-5xl'>One person handles the scope, the build, and the tradeoffs.</h2>
+					<p class='max-w-xl text-base leading-7 text-white/70'>
+						You are not hiring separate strategy, design, and engineering layers. The same person helps define the first useful version,
+						ships the work, and keeps the scope honest.
+					</p>
+				</div>
 
-                {founderQuote && (
-                    <div class="border-t border-white/12 pt-6">
-                        <div class="flex items-start gap-4">
-                            <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/20">
-                                <Image
-                                    src={monicaPhoto}
-                                    alt={founderQuote.name}
-                                    width={64}
-                                    height={64}
-                                    loading="lazy"
-                                    class="h-full w-full object-cover"
-                                />
-                            </div>
-                            <div class="space-y-3">
-                                <p class="text-base leading-7 text-white/80">
-                                    &ldquo;{founderQuote.text}&rdquo;
-                                </p>
-                                <div class="space-y-1 font-mono text-white/40">
-                                    <p class="text-xs uppercase tracking-[0.24em]">
-                                        {founderQuote.name}
-                                    </p>
-                                    <p class="text-[11px] uppercase tracking-[0.18em]">
-                                        {founderQuote.role}
-                                        {founderQuote.company ? ` · ${founderQuote.company}` : ""}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
+				<div class='space-y-14'>
+					<div class='grid gap-8 md:grid-cols-3'>
+						{
+							proofPoints.map((point) => (
+								<div class='border-t border-white/15 pt-5'>
+									<p class='inline-metric'>{point.metric}</p>
+									<p class='mt-3 text-sm uppercase tracking-[0.2em] text-white/55'>{point.label}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
 
-            <div class="space-y-14">
-                <div class="grid gap-8 md:grid-cols-3">
-                    {proofPoints.map((point) => (
-                        <div class="border-t border-white/15 pt-5">
-                            <p class="inline-metric">{point.metric}</p>
-                            <p class="mt-3 text-sm uppercase tracking-[0.2em] text-white/55">
-                                {point.label}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+			{
+				founderQuote && (
+					<TestimonialBillboard
+						quote={founderQuote.billboardText ?? founderQuote.text}
+						name={founderQuote.name}
+						role={founderQuote.role}
+						company={founderQuote.company}
+						image={monicaPhoto}
+						label='Founder note'
+					/>
+				)
+			}
 
-                <div class="space-y-8">
-                    {processSteps.map((step) => (
-                        <div class="grid gap-4 border-t border-white/12 pt-6 md:grid-cols-[100px_1fr]">
-                            <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                                Step {step.number}
-                            </p>
-                            <div class="space-y-3">
-                                <h3 class="heading-display text-2xl md:text-3xl">
-                                    {step.title}
-                                </h3>
-                                <p class="max-w-2xl text-base leading-7 text-white/70">
-                                    {step.body}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>
+			<div class='grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20'>
+				<div></div>
+				<div class='space-y-8'>
+					{
+						processSteps.map((step) => (
+							<div class='grid gap-4 border-t border-white/12 pt-6 md:grid-cols-[100px_1fr]'>
+								<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>Step {step.number}</p>
+								<div class='space-y-3'>
+									<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
+									<p class='max-w-2xl text-base leading-7 text-white/70'>{step.body}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section class="container py-20 md:py-24">
-        <div class="space-y-5">
-            <p class="kicker-line">Services</p>
-            <div class="max-w-3xl space-y-4">
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    Two ways I usually help.
-                </h2>
-                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    Most projects start as either a launch problem or a workflow problem.
-                    The page below tells you which path fits.
-                </p>
-            </div>
-        </div>
+	<section class='container py-20 md:py-24'>
+		<div class='space-y-5'>
+			<p class='kicker-line'>Services</p>
+			<div class='max-w-3xl space-y-4'>
+				<h2 class='heading-display text-4xl md:text-5xl'>Two ways I usually help.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					Most projects start as either a launch problem or a workflow problem. The page below tells you which path fits.
+				</p>
+			</div>
+		</div>
 
-        <div class="mt-12 space-y-12 md:space-y-16">
-            {offers.map((offer, index) => (
-                <article class="grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
-                    <div class:list={[index % 2 === 1 && "lg:order-2"]}>
-                        <p class="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                            Offer {offer.label}
-                        </p>
-                        <div class="mt-5 max-w-2xl space-y-5">
-                            <h3 class="heading-display text-3xl md:text-4xl">{offer.title}</h3>
-                            <p class="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-                                {offer.price}
-                            </p>
-                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                                {offer.description}
-                            </p>
-                            <ul class="space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base">
-                                {offer.bullets.map((bullet) => (
-                                    <li class="border-t border-black/10 pt-4 dark:border-white/10">
-                                        {bullet}
-                                    </li>
-                                ))}
-                            </ul>
-                            <div class="pt-2">
-                                <a class="arrow-link" href={offer.href}>
-                                    {offer.cta}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+		<div class='mt-12 space-y-12 md:space-y-16'>
+			{
+				offers.map((offer, index) => (
+					<article class='grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14'>
+						<div class:list={[index % 2 === 1 && 'lg:order-2']}>
+							<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>Offer {offer.label}</p>
+							<div class='mt-5 max-w-2xl space-y-5'>
+								<h3 class='heading-display text-3xl md:text-4xl'>{offer.title}</h3>
+								<p class='font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400'>{offer.price}</p>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{offer.description}</p>
+								<ul class='space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base'>
+									{offer.bullets.map((bullet) => (
+										<li class='border-t border-black/10 pt-4 dark:border-white/10'>{bullet}</li>
+									))}
+								</ul>
+								<div class='pt-2'>
+									<a class='arrow-link' href={offer.href}>
+										{offer.cta}
+									</a>
+								</div>
+							</div>
+						</div>
 
-                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-1"]}>
-                        <Image
-                            src={offer.image}
-                            alt={offer.imageAlt}
-                            class="aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
-                            loading="lazy"
-                        />
-                    </figure>
-                </article>
-            ))}
-        </div>
-    </section>
+						<figure class:list={['overflow-hidden border border-black/15 bg-black dark:border-white/15', index % 2 === 1 && 'lg:order-1']}>
+							<Image
+								src={offer.image}
+								alt={offer.imageAlt}
+								class='aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]'
+								loading='lazy'
+							/>
+						</figure>
+					</article>
+				))
+			}
+		</div>
+	</section>
 
-    <section class="container py-20 md:py-24" id="case-studies">
-        <div class="space-y-5">
-            <p class="kicker-line">Case Studies</p>
-            <div class="max-w-3xl space-y-4">
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    Find the closest match for the kind of problem you have.
-                </h2>
-                <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    Start with the project that looks closest to your situation, whether
-                    that is an MVP launch, a workflow bottleneck, or a bounded AI system.
-                </p>
-            </div>
-        </div>
+	<section class='container py-20 md:py-24' id='case-studies'>
+		<div class='space-y-5'>
+			<p class='kicker-line'>Case Studies</p>
+			<div class='max-w-3xl space-y-4'>
+				<h2 class='heading-display text-4xl md:text-5xl'>Find the closest match for the kind of problem you have.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					Start with the project that looks closest to your situation, whether that is an MVP launch, a workflow bottleneck, or a bounded AI
+					system.
+				</p>
+			</div>
+		</div>
 
-        <div class="mt-12 space-y-0">
-            {caseStudies.map((study, index) => (
-                <a
-                    href={`/projects/${study.slug}/`}
-                    class="group grid gap-8 border-t border-black/12 py-12 transition-colors dark:border-white/12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16"
-                >
-                    <figure class:list={["overflow-hidden border border-black/15 bg-black dark:border-white/15", index % 2 === 1 && "lg:order-2"]}>
-                        <Image
-                            src={study.image}
-                            alt={study.imageAlt}
-                            class:list={[
-                                "aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]",
-                                study.imageClass,
-                            ]}
-                            loading="lazy"
-                        />
-                    </figure>
+		<div class='mt-12 space-y-0'>
+			{
+				caseStudies.map((study, index) => (
+					<a
+						href={`/projects/${study.slug}/`}
+						class='group grid gap-8 border-t border-black/12 py-12 transition-colors dark:border-white/12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16'
+					>
+						<figure class:list={['overflow-hidden border border-black/15 bg-black dark:border-white/15', index % 2 === 1 && 'lg:order-2']}>
+							<Image
+								src={study.image}
+								alt={study.imageAlt}
+								class:list={[
+									'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
+									study.imageClass
+								]}
+								loading='lazy'
+							/>
+						</figure>
 
-                    <div class:list={["flex h-full flex-col justify-between gap-6 lg:py-2", index % 2 === 1 && "lg:order-1"]}>
-                        <div class="space-y-4">
-                            <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-                                {study.label}
-                            </p>
-                            <h3 class="heading-display text-3xl md:text-4xl">
-                                {study.title}
-                            </h3>
-                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                                {study.body}
-                            </p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="border-t border-black/12 pt-4 dark:border-white/12">
-                                <p class="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                                    Outcome
-                                </p>
-                                <p class="mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100">
-                                    {study.outcome}
-                                </p>
-                            </div>
-                            <span class="arrow-link group-hover:border-primary group-hover:text-primary">
-                                View case study
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            ))}
-        </div>
-    </section>
+						<div class:list={['flex h-full flex-col justify-between gap-6 lg:py-2', index % 2 === 1 && 'lg:order-1']}>
+							<div class='space-y-4'>
+								<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{study.label}</p>
+								<h3 class='heading-display text-3xl md:text-4xl'>{study.title}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{study.body}</p>
+							</div>
+							<div class='space-y-4'>
+								<div class='border-t border-black/12 pt-4 dark:border-white/12'>
+									<p class='font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500'>Outcome</p>
+									<p class='mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100'>{study.outcome}</p>
+								</div>
+								<span class='arrow-link group-hover:border-primary group-hover:text-primary'>View case study</span>
+							</div>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</section>
 
-    <section class="container py-20 md:py-24">
-        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div class="space-y-5">
-                <p class="kicker-line">Fit</p>
-                <h2 class="heading-display text-4xl md:text-5xl">
-                    Know quickly if this is the right kind of help.
-                </h2>
-                <p class="max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                    The fit should be clear by now. If you need the first useful version,
-                    or the first useful system, the next step is a roadmap call.
-                </p>
-            </div>
+	<section class='container py-20 md:py-24'>
+		<div class='grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
+			<div class='space-y-5'>
+				<p class='kicker-line'>Fit</p>
+				<h2 class='heading-display text-4xl md:text-5xl'>Know quickly if this is the right kind of help.</h2>
+				<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The fit should be clear by now. If you need the first useful version, or the first useful system, the next step is a roadmap call.
+				</p>
+			</div>
 
-            <div class="grid gap-10 md:grid-cols-2">
-                {fitColumns.map((column) => (
-                    <div class="signal-line pt-5">
-                        <p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-                            {column.title}
-                        </p>
-                        <ul class="mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200">
-                            {column.items.map((item) => (
-                                <li class="border-t border-black/10 pt-4 dark:border-white/10">
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
+			<div class='grid gap-10 md:grid-cols-2'>
+				{
+					fitColumns.map((column) => (
+						<div class='signal-line pt-5'>
+							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{column.title}</p>
+							<ul class='mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200'>
+								{column.items.map((item) => (
+									<li class='border-t border-black/10 pt-4 dark:border-white/10'>{item}</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
 
-    <section class="border-y border-black/10 bg-black py-16 text-white dark:border-white/10 md:py-20">
-        <div class="container">
-            <div class="grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.92fr)] lg:items-end lg:gap-16">
-                <div class="space-y-6">
-                    <p class="kicker-line">Next Step</p>
-                    <h2 class="heading-display max-w-[16ch] text-[clamp(2.85rem,4.9vw,4.8rem)]">
-                        Tell me what&rsquo;s slowing things down.
-                    </h2>
-                </div>
+	<section class='border-y border-black/10 bg-black py-16 text-white dark:border-white/10 md:py-20'>
+		<div class='container'>
+			<div class='grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.92fr)] lg:items-end lg:gap-16'>
+				<div class='space-y-6'>
+					<p class='kicker-line'>Next Step</p>
+					<h2 class='heading-display max-w-[16ch] text-[clamp(2.85rem,4.9vw,4.8rem)]'>Tell me what&rsquo;s slowing things down.</h2>
+				</div>
 
-                <div class="space-y-6 lg:pb-1">
-                    <p class="poster-copy max-w-[34rem] text-white/74">
-                        In a 30-minute roadmap call, we&rsquo;ll figure out whether this
-                        should start as an MVP, a workflow audit, or a smaller first step.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-1">
-                        <a
-                            class="btn-primary"
-                            href={BOOK_CALL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            data-track-event="book_call_clicked"
-                            data-track-location="home_final_primary"
-                        >
-                            Book a Roadmap Call
-                        </a>
-                        <a class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black" href="/launch/">
-                            See Services
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+				<div class='space-y-6 lg:pb-1'>
+					<p class='poster-copy max-w-[34rem] text-white/74'>
+						In a 30-minute roadmap call, we&rsquo;ll figure out whether this should start as an MVP, a workflow audit, or a smaller first
+						step.
+					</p>
+					<div class='flex flex-wrap gap-4 pt-1'>
+						<a
+							class='btn-primary'
+							href={BOOK_CALL_URL}
+							target='_blank'
+							rel='noopener noreferrer'
+							data-track-event='book_call_clicked'
+							data-track-location='home_final_primary'
+						>
+							Book a Roadmap Call
+						</a>
+						<a
+							class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+							href='/launch/'
+						>
+							See Services
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
 
 <style>
-    .home-hero-split {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-    }
+	.home-hero-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+	}
 
-    .hero-portrait {
-        object-position: 58% 12%;
-        transform: scaleX(-1) scale(1.08);
-        transform-origin: center;
-    }
+	.hero-portrait {
+		object-position: 58% 12%;
+		transform: scaleX(-1) scale(1.08);
+		transform-origin: center;
+	}
 
-    .hero-title {
-        font-family: 'Syne', sans-serif;
-        font-size: clamp(3rem, 5.4vw, 5.25rem);
-        font-weight: 700;
-        line-height: 0.88;
-        letter-spacing: -0.07em;
-        text-transform: uppercase;
-        text-wrap: balance;
-    }
+	.hero-title {
+		font-family: 'Syne', sans-serif;
+		font-size: clamp(3rem, 5.4vw, 5.25rem);
+		font-weight: 700;
+		line-height: 0.88;
+		letter-spacing: -0.07em;
+		text-transform: uppercase;
+		text-wrap: balance;
+	}
 
-    @media (min-width: 1024px) {
-        .home-hero-split {
-            grid-template-columns: minmax(0, 62%) minmax(0, 38%);
-        }
+	@media (min-width: 1024px) {
+		.home-hero-split {
+			grid-template-columns: minmax(0, 62%) minmax(0, 38%);
+		}
 
-        .hero-portrait {
-            object-position: 76% 12%;
-            transform: scaleX(-1) scale(1.2);
-        }
-    }
+		.hero-portrait {
+			object-position: 76% 12%;
+			transform: scaleX(-1) scale(1.2);
+		}
+	}
 </style>
