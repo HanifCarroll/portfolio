@@ -11,6 +11,7 @@ const {
     showFooterCta = true,
     footerLinksOnly = false,
     padContentBeforeFooter = true,
+    bodyClass = '',
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
@@ -22,7 +23,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
     <head>
         <BaseHead title={title} description={description} image={image} />
     </head>
-    <body class="font-sans">
+    <body class:list={['font-sans', bodyClass]}>
         {
             gtmId && (
                 <noscript>
