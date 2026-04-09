@@ -201,6 +201,16 @@
 		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 	}
 
+	.ledger-section--faq {
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.ledger-section--hero {
+		padding-top: 1.75rem;
+		padding-bottom: 1.75rem;
+	}
+
 	.ledger-band {
 		@apply mb-6 flex flex-col gap-3 pb-4 md:flex-row md:items-end md:justify-between;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -214,6 +224,26 @@
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
 		gap: 1.5rem;
+	}
+
+	.launch-hero-split {
+		gap: 1.75rem;
+	}
+
+	.launch-hero-copy {
+		max-width: 33rem;
+	}
+
+	.launch-hero-body {
+		max-width: 31rem;
+	}
+
+	.launch-hero-rail {
+		max-width: 30rem;
+	}
+
+	.launch-proof-split {
+		gap: 1.75rem;
 	}
 
 	.ledger-rail {
@@ -231,6 +261,16 @@
 			grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
 			align-items: start;
 			gap: 2rem;
+		}
+
+		.launch-hero-split {
+			grid-template-columns: minmax(0, 1fr) minmax(21.5rem, 1fr);
+			gap: 2rem;
+		}
+
+		.launch-proof-split {
+			grid-template-columns: minmax(0, 1.08fr) minmax(21rem, 0.92fr);
+			gap: 2.25rem;
 		}
 
 		.ledger-rail {
@@ -268,6 +308,12 @@
 		text-wrap: balance;
 	}
 
+	.launch-display--hero {
+		font-size: clamp(2.7rem, 4.6vw, 4.85rem);
+		line-height: 0.9;
+		letter-spacing: -0.07em;
+	}
+
 	.launch-body {
 		@apply max-w-3xl text-[1.05rem] leading-8 text-zinc-700 dark:text-zinc-300;
 		text-wrap: pretty;
@@ -275,6 +321,12 @@
 
 	.launch-meta {
 		@apply font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400;
+	}
+
+	.launch-meta--hero {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.24em;
 	}
 
 	.ledger-entry {
@@ -285,6 +337,15 @@
 
 	:is(.dark) .ledger-entry {
 		border-top-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.ledger-entry--faq {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	.ledger-entry--first {
+		border-top-width: 0;
 	}
 
 	.ledger-entry--process {
@@ -298,15 +359,42 @@
 		background: rgba(255, 255, 255, 0.04);
 	}
 
-	.ledger-entry--faq {
-		@apply rounded-[1rem] border px-4 py-4;
-		border-color: rgba(0, 0, 0, 0.1);
-		background: rgba(255, 255, 255, 0.55);
+	.launch-proof-metric {
+		font-family: 'Syne', sans-serif;
+		font-size: clamp(2.2rem, 4vw, 4rem);
+		font-weight: 700;
+		line-height: 0.88;
+		letter-spacing: -0.06em;
+		text-transform: uppercase;
 	}
 
-	:is(.dark) .ledger-entry--faq {
-		border-color: rgba(255, 255, 255, 0.1);
-		background: rgba(255, 255, 255, 0.03);
+	.testimonial-billboard--launch {
+		border-color: rgba(0, 0, 0, 0.14);
+		background: rgba(255, 255, 255, 0.72);
+		box-shadow: 12px 12px 0 0 rgba(0, 102, 255, 0.08);
+	}
+
+	.testimonial-billboard--launch::before {
+		top: 1.25rem;
+		width: 2.5rem;
+	}
+
+	:is(.dark) .testimonial-billboard--launch {
+		border-color: rgba(255, 255, 255, 0.14);
+		background: rgba(255, 255, 255, 0.05);
+		box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.08);
+	}
+
+	.testimonial-billboard--launch .testimonial-billboard__quote {
+		font-size: clamp(1.35rem, 2.1vw, 2.35rem);
+		margin-inline: 0;
+		max-width: 24ch;
+		text-align: left;
+	}
+
+	.testimonial-billboard--launch blockquote > footer {
+		justify-content: flex-start;
+		text-align: left;
 	}
 
 	/* Primary button - black with white text */

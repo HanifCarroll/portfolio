@@ -143,67 +143,66 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout
-	title={`${title} · Hanif Carroll`}
-	description={description}
-	showFooterCta={false}
-	footerLinksOnly
-	bodyClass='page-launch'
->
+<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-launch'>
 	<article class='container max-w-5xl space-y-24 py-10'>
-		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
-			<a href='/' class='transition-colors hover:text-primary'>Home</a>
-			<span class='text-zinc-400'>/</span>
-			<span class='text-primary'>Services</span>
-		</nav>
+		<section class='space-y-8 md:space-y-10'>
+			<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
+				<a href='/' class='transition-colors hover:text-primary'>Home</a>
+				<span class='text-zinc-400'>/</span>
+				<span class='text-primary'>Services</span>
+			</nav>
 
-		<header class='ledger-section border-t-0 pt-0'>
-			<div class='ledger-split'>
-				<div class='space-y-8'>
-					<span class='section-label'>// Services</span>
-					<h1 class='launch-display max-w-[10ch]'>Launch the product or fix the workflow.</h1>
-					<p class='launch-body max-w-3xl'>
-						I help nontechnical founders ship focused MVPs, and I help founder-led teams turn manual bottlenecks into internal tools,
-						automation, and bounded AI systems.
-					</p>
-					<div class='flex flex-wrap gap-4'>
-						<a
-							href={calUrl}
-							target='_blank'
-							rel='noopener noreferrer'
-							class='btn-primary'
-							data-track-event='book_call_clicked'
-							data-track-location='launch_hero'
-						>
-							Book a Roadmap Call
-						</a>
-						<a href='/projects/' class='btn-secondary'>View Case Studies</a>
-					</div>
-				</div>
-
-				<aside class='ledger-rail space-y-6'>
-					<div class='space-y-2'>
-						<p class='launch-meta text-primary'>Timeline</p>
-						<p class='text-base leading-7 text-black dark:text-white'>30-minute roadmap call. Clear scope, budget signal, and next step.</p>
-					</div>
-					<div class='space-y-2'>
-						<p class='launch-meta text-primary'>Starting points</p>
-						<p class='text-base leading-7 text-black dark:text-white'>The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.</p>
-					</div>
-					<div class='space-y-2'>
-						<p class='launch-meta text-primary'>Best fit</p>
-						<p class='text-base leading-7 text-black dark:text-white'>
-							Nontechnical founders and founder-led teams who need a smaller first useful system, not a giant custom program.
+			<header class='ledger-section ledger-section--hero'>
+				<div class='ledger-split launch-hero-split'>
+					<div class='launch-hero-copy space-y-5 md:space-y-6'>
+						<h1 class='launch-display launch-display--hero max-w-[8.6ch]'>Launch the product or fix the workflow.</h1>
+						<p class='launch-body launch-hero-body'>
+							I help nontechnical founders ship focused MVPs, and I help founder-led teams turn manual bottlenecks into internal tools,
+							automation, and bounded AI systems.
 						</p>
+						<div class='flex flex-wrap gap-4 pt-1 sm:flex-nowrap'>
+							<a
+								href={calUrl}
+								target='_blank'
+								rel='noopener noreferrer'
+								class='btn-primary'
+								data-track-event='book_call_clicked'
+								data-track-location='launch_hero'
+							>
+								Book a Roadmap Call
+							</a>
+							<a href='/projects/' class='btn-secondary'>View Case Studies</a>
+						</div>
 					</div>
-				</aside>
-			</div>
-		</header>
+
+					<aside class='ledger-rail launch-hero-rail space-y-8'>
+						<div class='space-y-3'>
+							<p class='launch-meta launch-meta--hero text-primary'>Timeline</p>
+							<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
+								30-minute roadmap call. Clear scope, budget signal, and next step.
+							</p>
+						</div>
+						<div class='space-y-3'>
+							<p class='launch-meta launch-meta--hero text-primary'>Starting points</p>
+							<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
+								The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
+							</p>
+						</div>
+						<div class='space-y-3'>
+							<p class='launch-meta launch-meta--hero text-primary'>Best fit</p>
+							<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
+								Nontechnical founders and founder-led teams who need a smaller first useful system, not a giant custom program.
+							</p>
+						</div>
+					</aside>
+				</div>
+			</header>
+		</section>
 
 		<div class='grid-line-horizontal'></div>
 
 		<section class='ledger-section space-y-10'>
-			<div class='ledger-split items-start'>
+			<div class='ledger-split launch-proof-split items-start'>
 				<div class='space-y-4'>
 					<p class='launch-meta text-primary'>Why this works</p>
 					<p class='text-2xl font-semibold leading-tight text-black dark:text-white'>
@@ -212,22 +211,19 @@ const faqItems = [
 				</div>
 
 				<div class='ledger-rail'>
-					<div class='grid gap-0 border-t border-black/10 dark:border-white/12 md:grid-cols-3'>
+					<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
 						{
 							proofStats.map((stat, index) => (
 								<div
 									class:list={[
-										'border-b border-black/10 py-5 dark:border-white/12 md:border-b-0',
-										index < proofStats.length - 1 && 'md:border-r md:border-black/10 md:dark:border-white/12',
-										index === 0 && 'md:pr-5',
-										index === 1 && 'md:px-5',
-										index === 2 && 'md:pl-5',
+										'grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:grid-cols-[6.5rem_1fr] md:items-start',
+										index === proofStats.length - 1 && 'border-b-0'
 									]}
 								>
-									<p class='inline-metric text-primary' style='font-variant-numeric: tabular-nums'>
+									<p class='launch-proof-metric text-primary' style='font-variant-numeric: tabular-nums'>
 										{stat.value}
 									</p>
-									<p class='launch-meta mt-2'>{stat.label}</p>
+									<p class='launch-meta md:pt-2'>{stat.label}</p>
 								</div>
 							))
 						}
@@ -245,6 +241,7 @@ const faqItems = [
 						company={spotlightTestimonial.company}
 						image={monicaPhoto}
 						label='Founder note'
+						class='testimonial-billboard--launch'
 					/>
 				)
 			}
@@ -261,8 +258,8 @@ const faqItems = [
 				<div class='space-y-4'>
 					<h2 class='heading-display text-2xl md:text-3xl'>The 4-Week Launch</h2>
 					<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200'>
-						A fixed-scope MVP for nontechnical founders who need more than a developer. I help define the product, make the key UX and pricing
-						decisions, build it, and get it live.
+						A fixed-scope MVP for nontechnical founders who need more than a developer. I help define the product, make the key UX and
+						pricing decisions, build it, and get it live.
 					</p>
 					<ul class='space-y-2 text-sm leading-6 text-zinc-700 dark:text-zinc-200'>
 						<li>Cut the scope to the first useful version.</li>
@@ -319,8 +316,8 @@ const faqItems = [
 				</div>
 				<div class='ledger-rail'>
 					<p class='launch-body'>
-						I help you figure out what the MVP should be, advise on pricing and positioning, design the UX, build the product, and set up the
-						launch. Best for nontechnical founders who need a product partner, not just a pair of hands.
+						I help you figure out what the MVP should be, advise on pricing and positioning, design the UX, build the product, and set up
+						the launch. Best for nontechnical founders who need a product partner, not just a pair of hands.
 					</p>
 				</div>
 			</div>
@@ -406,8 +403,8 @@ const faqItems = [
 				</div>
 				<div class='ledger-rail'>
 					<p class='launch-body'>
-						For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs, and
-						manual workarounds.
+						For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs,
+						and manual workarounds.
 					</p>
 				</div>
 			</div>
@@ -481,8 +478,8 @@ const faqItems = [
 			<div class='space-y-6'>
 				<h3 class='heading-display text-3xl md:text-4xl'>What gets built after the audit.</h3>
 				<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200 max-w-2xl'>
-					Most automation problems are operations problems first. The audit keeps the scope honest, then the implementation can be cut to the
-					first useful system.
+					Most automation problems are operations problems first. The audit keeps the scope honest, then the implementation can be cut to
+					the first useful system.
 				</p>
 				<div class='space-y-0'>
 					{
@@ -560,12 +557,17 @@ const faqItems = [
 
 		<div class='grid-line-horizontal'></div>
 
-		<section class='ledger-section space-y-8'>
+		<section class='space-y-6'>
 			<span class='section-label'>// Common Concerns</span>
-			<div class='space-y-0'>
+			<div class='ledger-section ledger-section--faq space-y-0'>
 				{
-					faqItems.map((item) => (
-						<div class='ledger-entry ledger-entry--faq'>
+					faqItems.map((item, index) => (
+						<div
+							class:list={[
+								'ledger-entry ledger-entry--faq md:grid-cols-[minmax(0,17rem)_1fr] md:items-start',
+								index === 0 && 'ledger-entry--first'
+							]}
+						>
 							<h3 class='launch-meta text-black dark:text-white'>{item.title}</h3>
 							<p class='text-sm leading-6 text-zinc-700 dark:text-zinc-200'>{item.body}</p>
 						</div>
