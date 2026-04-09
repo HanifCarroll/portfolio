@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TestimonialBillboard from '../components/TestimonialBillboard.astro';
 import { BOOK_CALL_URL } from '../consts';
+import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
 import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
@@ -128,11 +129,20 @@ const fitColumns = [
 
 <BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
 	<section class='container py-10 md:py-12'>
-		<header class='ledger-section ledger-section--hero'>
-			<div class='ledger-split launch-hero-split'>
-				<div class='launch-hero-copy space-y-5 md:space-y-6'>
-					<h1 class='launch-display launch-display--hero max-w-[8.8ch]'>Launch the product or fix the workflow.</h1>
-					<p class='launch-body launch-hero-body'>
+		<header class='home-hero-panel'>
+			<div class='home-hero-split'>
+				<div class='home-hero-copy space-y-5 md:space-y-6'>
+					<div class='home-hero-intro'>
+						<p class='section-label'>Hanif Carroll</p>
+						<p class='home-hero-context'>Services for founders and founder-led teams</p>
+					</div>
+					<h1 class='home-hero-title'>
+						<span class='block'>Launch the</span>
+						<span class='block'>product or</span>
+						<span class='block'>fix the</span>
+						<span class='block'>workflow.</span>
+					</h1>
+					<p class='launch-body home-hero-body'>
 						I help nontechnical founders ship focused MVPs, and I help founder-led teams turn manual bottlenecks into internal tools,
 						automation, and bounded AI systems.
 					</p>
@@ -149,28 +159,19 @@ const fitColumns = [
 						</a>
 						<a class='btn-secondary' href='/launch/'>See Services</a>
 					</div>
+					<div class='home-hero-meta'>
+						<p class='launch-meta'>30 minutes · Clear scope, budget signal, and next step</p>
+						<p class='launch-meta'>The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.</p>
+					</div>
+					<div class='home-hero-support'>
+						<p>Direct access to the person making the product and technical calls.</p>
+						<p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
+					</div>
 				</div>
 
-				<aside class='ledger-rail launch-hero-rail space-y-8'>
-					<div class='space-y-3'>
-						<p class='launch-meta launch-meta--hero text-primary'>Start here</p>
-						<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
-							30-minute roadmap call. Clear scope, budget signal, and next step.
-						</p>
-					</div>
-					<div class='space-y-3'>
-						<p class='launch-meta launch-meta--hero text-primary'>Starting points</p>
-						<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
-							The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.
-						</p>
-					</div>
-					<div class='space-y-3'>
-						<p class='launch-meta launch-meta--hero text-primary'>Best fit</p>
-						<p class='text-[1.02rem] leading-8 text-black dark:text-white'>
-							Founders and founder-led teams who need a smaller first useful system, not a giant custom program.
-						</p>
-					</div>
-				</aside>
+				<div class='home-hero-image-wrap'>
+					<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
+				</div>
 			</div>
 		</header>
 	</section>

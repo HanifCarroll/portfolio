@@ -238,7 +238,107 @@
 	}
 
 	.launch-hero-rail {
-		max-width: 30rem;
+		max-width: 29rem;
+	}
+
+	.home-hero-panel {
+		overflow: hidden;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: 1.75rem;
+		background: rgba(249, 246, 239, 0.92);
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+	}
+
+	:is(.dark) .home-hero-panel {
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.04);
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+	}
+
+	.home-hero-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.home-hero-copy {
+		padding: 2rem 1.5rem;
+	}
+
+	.home-hero-intro {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		max-width: 34rem;
+	}
+
+	.home-hero-context {
+		@apply font-mono text-xs uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-300;
+	}
+
+	.home-hero-title {
+		font-family: 'Syne', sans-serif;
+		font-size: clamp(3rem, 8vw, 5.8rem);
+		font-weight: 700;
+		line-height: 0.88;
+		letter-spacing: -0.08em;
+		text-transform: uppercase;
+		text-wrap: balance;
+		max-width: 13.2ch;
+	}
+
+	.home-hero-body {
+		max-width: 29rem;
+	}
+
+	.home-hero-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		padding-top: 1rem;
+	}
+
+	.home-hero-meta .launch-meta {
+		color: rgb(113 113 122);
+	}
+
+	:is(.dark) .home-hero-meta .launch-meta {
+		color: rgb(212 212 216);
+	}
+
+	.home-hero-support {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1.35rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		color: rgb(82 82 91);
+		line-height: 1.8;
+	}
+
+	:is(.dark) .home-hero-support {
+		border-top-color: rgba(255, 255, 255, 0.1);
+		color: rgb(212 212 216);
+	}
+
+	.home-hero-image-wrap {
+		position: relative;
+		overflow: hidden;
+		min-height: 20rem;
+		background: #d9cabd;
+	}
+
+	:is(.dark) .home-hero-image-wrap {
+		background: #101010;
+	}
+
+	.home-hero-portrait {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		object-position: 60% 14%;
+		transform: scaleX(-1) scale(1.08);
+		transform-origin: center;
 	}
 
 	.launch-proof-split {
@@ -256,6 +356,19 @@
 	}
 
 	@media (min-width: 768px) {
+		.home-hero-copy {
+			padding: 2.5rem 2.25rem 2rem;
+		}
+
+		.home-hero-intro {
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.home-hero-support {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
 		.ledger-split {
 			grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
 			align-items: start;
@@ -263,13 +376,40 @@
 		}
 
 		.launch-hero-split {
-			grid-template-columns: minmax(0, 1fr) minmax(21.5rem, 1fr);
+			grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
 			gap: 2rem;
 		}
 
 		.launch-proof-split {
 			grid-template-columns: minmax(0, 1.08fr) minmax(21rem, 0.92fr);
 			gap: 2.25rem;
+		}
+
+		.home-hero-split {
+			grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+			min-height: min(48rem, calc(100svh - 8rem));
+		}
+
+		.home-hero-panel {
+			margin-right: calc(50% - 50vw - 1.5rem);
+		}
+
+		.home-hero-copy {
+			padding: 2.9rem 2.5rem 2.25rem;
+		}
+
+		.home-hero-image-wrap {
+			min-height: 100%;
+			border-left: 1px solid rgba(0, 0, 0, 0.08);
+		}
+
+		:is(.dark) .home-hero-image-wrap {
+			border-left-color: rgba(255, 255, 255, 0.08);
+		}
+
+		.home-hero-portrait {
+			object-position: 76% 12%;
+			transform: scaleX(-1) scale(1.18);
 		}
 
 		.ledger-rail {
@@ -319,7 +459,7 @@
 	}
 
 	.launch-meta {
-		@apply font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400;
+		@apply font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-300;
 	}
 
 	.launch-meta--hero {
@@ -380,7 +520,8 @@
 
 	:is(.dark) .testimonial-billboard--launch {
 		border-color: rgba(255, 255, 255, 0.14);
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(255, 255, 255, 0.07);
+		color: rgb(244 244 245);
 		box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.08);
 	}
 
@@ -388,7 +529,16 @@
 		font-size: clamp(1.35rem, 2.1vw, 2.35rem);
 		margin-inline: 0;
 		max-width: 24ch;
+		color: inherit;
 		text-align: left;
+	}
+
+	:is(.dark) .testimonial-billboard--launch .testimonial-billboard__name {
+		color: rgb(244 244 245);
+	}
+
+	:is(.dark) .testimonial-billboard--launch .testimonial-billboard__meta {
+		color: rgb(161 161 170);
 	}
 
 	.testimonial-billboard--launch blockquote > footer {
