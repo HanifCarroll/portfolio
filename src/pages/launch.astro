@@ -398,19 +398,21 @@ const faqItems = [
 
 		<div class='grid-line-horizontal'></div>
 
-		<section id='automation' class='space-y-16'>
-			<div class='space-y-3'>
-				<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>Offer 02</p>
-				<h2 class='heading-display text-4xl md:text-5xl' style='text-wrap: balance'>
-					Replace repetitive work with software that fits the business.
-				</h2>
-				<p class='max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-300'>
-					For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs, and
-					manual workarounds.
-				</p>
+		<section id='automation' class='ledger-section space-y-10'>
+			<div class='ledger-split items-start'>
+				<div class='space-y-3'>
+					<p class='launch-meta text-primary'>Offer 02</p>
+					<h2 class='heading-display text-4xl md:text-5xl'>Replace repetitive work with software that fits the business.</h2>
+				</div>
+				<div class='ledger-rail'>
+					<p class='launch-body'>
+						For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs, and
+						manual workarounds.
+					</p>
+				</div>
 			</div>
 
-			<div class='tech-card p-8 md:p-10'>
+			<div class='ledger-strong-panel'>
 				<div class='grid gap-8 lg:grid-cols-[0.9fr_1.2fr_0.8fr]'>
 					<div class='space-y-4'>
 						<p class='font-mono text-xs uppercase tracking-[0.24em] text-primary'>Best for</p>
@@ -463,31 +465,33 @@ const faqItems = [
 				</div>
 			</div>
 
-			<div class='grid gap-0 md:grid-cols-2'>
-				{
-					painSignals.map((signal) => (
-						<div class='border-t border-black/12 py-5 dark:border-white/12 md:odd:pr-8'>
-							<p class='mb-3 font-mono text-xs uppercase tracking-[0.28em] text-primary'>Signal</p>
-							<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200'>{signal}</p>
-						</div>
-					))
-				}
+			<div class='ledger-band'>
+				<div class='grid gap-0 md:grid-cols-2'>
+					{
+						painSignals.map((signal) => (
+							<div class='ledger-entry py-4 md:odd:pr-8'>
+								<p class='launch-meta text-primary'>Signal</p>
+								<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200'>{signal}</p>
+							</div>
+						))
+					}
+				</div>
 			</div>
 
 			<div class='space-y-6'>
 				<h3 class='heading-display text-3xl md:text-4xl'>What gets built after the audit.</h3>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Most automation problems are operations problems first. The audit keeps the scope honest, then the implementation can be cut to
-					the first useful system.
+				<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200 max-w-2xl'>
+					Most automation problems are operations problems first. The audit keeps the scope honest, then the implementation can be cut to the
+					first useful system.
 				</p>
 				<div class='space-y-0'>
 					{
 						buildTracks.map((track) => (
-							<div class='grid gap-3 border-t border-black/12 py-6 dark:border-white/12 md:grid-cols-[80px_1fr]'>
-								<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>{track.label}</p>
+							<div class='ledger-entry ledger-entry--process'>
+								<p class='launch-meta text-primary'>{track.label}</p>
 								<div class='space-y-1'>
 									<h4 class='heading-display text-xl md:text-2xl'>{track.title}</h4>
-									<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{track.body}</p>
+									<p class='text-sm leading-6 text-zinc-700 dark:text-zinc-200'>{track.body}</p>
 								</div>
 							</div>
 						))
@@ -516,7 +520,7 @@ const faqItems = [
 								</figure>
 								<div class:list={['space-y-4', index % 2 === 1 && 'lg:order-1']}>
 									<h4 class='heading-display text-2xl md:text-3xl'>{example.title}</h4>
-									<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{example.body}</p>
+									<p class='text-sm leading-6 text-zinc-700 dark:text-zinc-200'>{example.body}</p>
 									<span class='arrow-link group-hover:border-primary group-hover:text-primary'>Open case study</span>
 								</div>
 							</a>
@@ -530,9 +534,9 @@ const faqItems = [
 				<div class='space-y-0'>
 					{
 						automationProcessSteps.map((step, index) => (
-							<div class='grid gap-3 border-t border-black/12 py-5 dark:border-white/12 md:grid-cols-[80px_1fr]'>
-								<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>{String(index + 1).padStart(2, '0')}</p>
-								<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{step}</p>
+							<div class='ledger-entry ledger-entry--process'>
+								<p class='launch-meta text-primary'>{String(index + 1).padStart(2, '0')}</p>
+								<p class='text-sm leading-6 text-zinc-700 dark:text-zinc-200'>{step}</p>
 							</div>
 						))
 					}
@@ -556,13 +560,13 @@ const faqItems = [
 
 		<div class='grid-line-horizontal'></div>
 
-		<section class='space-y-8'>
+		<section class='ledger-section space-y-8'>
 			<span class='section-label'>// Common Concerns</span>
 			<div class='space-y-0'>
 				{
 					faqItems.map((item) => (
-						<div class='grid gap-3 border-t border-black/12 py-6 dark:border-white/12 md:grid-cols-[1fr_2fr]'>
-							<h3 class='font-mono text-xs font-semibold uppercase tracking-[0.22em] text-black dark:text-white'>{item.title}</h3>
+						<div class='ledger-entry ledger-entry--faq'>
+							<h3 class='launch-meta text-black dark:text-white'>{item.title}</h3>
 							<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
 						</div>
 					))
@@ -572,24 +576,35 @@ const faqItems = [
 
 		<div class='grid-line-horizontal'></div>
 
-		<section class='max-w-2xl space-y-5'>
-			<p class='font-mono text-xs uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500'>I only take on 2 projects at a time.</p>
-			<h2 class='heading-display text-3xl md:text-4xl' style='text-wrap: balance'>
-				Bring the scope. I&apos;ll tell you whether it needs an MVP, a workflow audit, or a smaller first step.
-			</h2>
-			<p class='text-zinc-600 dark:text-zinc-300'>
-				Book a 30-minute roadmap call. You&apos;ll leave with a clearer scope, the likely budget range, and a direct answer on fit.
-			</p>
-			<a
-				href={calUrl}
-				target='_blank'
-				rel='noopener noreferrer'
-				class='btn-primary inline-block py-3 px-6'
-				data-track-event='book_call_clicked'
-				data-track-location='launch_final'
-			>
-				Book a Roadmap Call
-			</a>
+		<section class='ledger-section'>
+			<div class='ledger-split items-end'>
+				<div class='space-y-5'>
+					<p class='launch-meta text-primary'>Availability</p>
+					<h2 class='heading-display text-3xl md:text-4xl'>
+						Bring the scope. I&apos;ll tell you whether it needs an MVP, a workflow audit, or a smaller first step.
+					</h2>
+					<p class='launch-body max-w-2xl'>
+						Book a 30-minute roadmap call. You&apos;ll leave with a clearer scope, the likely budget range, and a direct answer on fit.
+					</p>
+					<a
+						href={calUrl}
+						target='_blank'
+						rel='noopener noreferrer'
+						class='btn-primary inline-block py-3 px-6'
+						data-track-event='book_call_clicked'
+						data-track-location='launch_final'
+					>
+						Book a Roadmap Call
+					</a>
+				</div>
+
+				<aside class='ledger-rail space-y-4'>
+					<p class='launch-meta'>I only take on 2 projects at a time.</p>
+					<p class='text-base leading-7 text-black dark:text-white'>
+						Use the call to narrow the problem, decide which engagement fits, and leave with a concrete next step.
+					</p>
+				</aside>
+			</div>
 		</section>
 	</article>
 </BaseLayout>
