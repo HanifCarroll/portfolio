@@ -186,6 +186,119 @@
 		@apply font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400;
 	}
 
+	/* Editorial-ledger primitives */
+	.ledger-section {
+		@apply rounded-[1.5rem] border px-5 py-6 text-black backdrop-blur-sm md:px-8 md:py-8;
+		border-color: rgba(0, 0, 0, 0.1);
+		background: rgba(249, 246, 239, 0.92);
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+	}
+
+	:is(.dark) .ledger-section {
+		@apply text-white;
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.04);
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+	}
+
+	.ledger-band {
+		@apply mb-6 flex flex-col gap-3 pb-4 md:flex-row md:items-end md:justify-between;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	:is(.dark) .ledger-band {
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.ledger-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.5rem;
+	}
+
+	.ledger-rail {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+	}
+
+	@media (min-width: 768px) {
+		.ledger-split {
+			grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+			align-items: start;
+			gap: 2rem;
+		}
+
+		.ledger-rail {
+			grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+			align-items: start;
+			gap: 1.5rem;
+		}
+	}
+
+	.ledger-strong-panel {
+		@apply rounded-[1.25rem] border px-5 py-5 text-black;
+		border-color: rgba(0, 0, 0, 0.12);
+		background: rgba(255, 255, 255, 0.8);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+	}
+
+	:is(.dark) .ledger-strong-panel {
+		@apply text-white;
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.06);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	}
+
+	.launch-display {
+		font-family: 'Syne', sans-serif;
+		font-size: clamp(2.5rem, 5vw, 5.2rem);
+		font-weight: 700;
+		line-height: 0.94;
+		letter-spacing: -0.06em;
+		text-wrap: balance;
+	}
+
+	.launch-body {
+		@apply max-w-3xl text-[1.05rem] leading-8 text-zinc-700 dark:text-zinc-300;
+		text-wrap: pretty;
+	}
+
+	.launch-meta {
+		@apply font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400;
+	}
+
+	.ledger-entry {
+		@apply border-t py-4;
+		border-top-color: rgba(0, 0, 0, 0.1);
+	}
+
+	:is(.dark) .ledger-entry {
+		border-top-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.ledger-entry--process {
+		@apply border-l-2 pl-4;
+		border-left-color: rgba(0, 102, 255, 0.5);
+		background: rgba(0, 102, 255, 0.03);
+	}
+
+	:is(.dark) .ledger-entry--process {
+		border-left-color: rgba(110, 168, 255, 0.65);
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.ledger-entry--faq {
+		@apply rounded-[1rem] border px-4 py-4;
+		border-color: rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.55);
+	}
+
+	:is(.dark) .ledger-entry--faq {
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.03);
+	}
+
 	/* Primary button - black with white text */
 	.btn-primary {
 		@apply inline-flex items-center justify-center gap-2
