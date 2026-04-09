@@ -241,18 +241,14 @@
 		max-width: 29rem;
 	}
 
-	.home-hero-panel {
-		overflow: hidden;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		border-radius: 1.75rem;
-		background: rgba(249, 246, 239, 0.92);
-		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+	.home-hero-shell {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+		background: #f2ede3;
 	}
 
-	:is(.dark) .home-hero-panel {
-		border-color: rgba(255, 255, 255, 0.1);
-		background: rgba(255, 255, 255, 0.04);
-		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+	:is(.dark) .home-hero-shell {
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+		background: #090909;
 	}
 
 	.home-hero-split {
@@ -260,30 +256,57 @@
 		grid-template-columns: minmax(0, 1fr);
 	}
 
-	.home-hero-copy {
-		padding: 2rem 1.5rem;
+	.home-hero-copy-wrap {
+		display: flex;
+		align-items: center;
+		padding: 2.5rem 1.5rem;
+		background: #f2ede3;
 	}
 
-	.home-hero-intro {
-		display: flex;
-		flex-direction: column;
-		gap: 0.6rem;
-		max-width: 34rem;
+	:is(.dark) .home-hero-copy-wrap {
+		background: linear-gradient(165deg, #050505, #07162d);
+	}
+
+	.home-hero-copy {
+		width: 100%;
+		max-width: 32rem;
 	}
 
 	.home-hero-context {
-		@apply font-mono text-xs uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-300;
+		color: rgb(113 113 122);
+	}
+
+	:is(.dark) .home-hero-context {
+		color: rgb(212 212 216);
+	}
+
+	.home-hero-kicker {
+		flex-wrap: wrap;
+		row-gap: 0.55rem;
 	}
 
 	.home-hero-title {
 		font-family: 'Syne', sans-serif;
-		font-size: clamp(3rem, 8vw, 5.8rem);
+		font-size: clamp(3.2rem, 8.4vw, 6.05rem);
 		font-weight: 700;
-		line-height: 0.88;
-		letter-spacing: -0.08em;
+		line-height: 0.9;
+		letter-spacing: -0.07em;
 		text-transform: uppercase;
-		text-wrap: balance;
 		max-width: 13.2ch;
+	}
+
+	.home-hero-pivot {
+		margin: 0.28rem 0 0.2rem;
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: clamp(1.1rem, 2.1vw, 1.65rem);
+		font-weight: 600;
+		letter-spacing: 0.22em;
+		line-height: 1;
+		color: rgb(0 102 255);
+	}
+
+	:is(.dark) .home-hero-pivot {
+		color: rgb(96 165 250);
 	}
 
 	.home-hero-body {
@@ -295,6 +318,17 @@
 		flex-direction: column;
 		gap: 0.65rem;
 		padding-top: 1rem;
+	}
+
+	.home-hero-actions {
+		display: grid;
+		gap: 0.75rem;
+		padding-top: 0.25rem;
+		max-width: 16rem;
+	}
+
+	.home-hero-action {
+		width: 100%;
 	}
 
 	.home-hero-meta .launch-meta {
@@ -322,7 +356,7 @@
 	.home-hero-image-wrap {
 		position: relative;
 		overflow: hidden;
-		min-height: 20rem;
+		min-height: 24rem;
 		background: #d9cabd;
 	}
 
@@ -336,7 +370,7 @@
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
-		object-position: 60% 14%;
+		object-position: 62% 14%;
 		transform: scaleX(-1) scale(1.08);
 		transform-origin: center;
 	}
@@ -356,17 +390,20 @@
 	}
 
 	@media (min-width: 768px) {
-		.home-hero-copy {
-			padding: 2.5rem 2.25rem 2rem;
-		}
-
-		.home-hero-intro {
-			flex-direction: row;
-			align-items: center;
-		}
-
 		.home-hero-support {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.home-hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			max-width: none;
+			padding-top: 0.25rem;
+		}
+
+		.home-hero-action {
+			width: auto;
 		}
 
 		.ledger-split {
@@ -386,25 +423,34 @@
 		}
 
 		.home-hero-split {
-			grid-template-columns: minmax(0, 60%) minmax(0, 40%);
-			min-height: min(48rem, calc(100svh - 8rem));
+			grid-template-columns: minmax(0, 62%) minmax(19rem, 38%);
+			min-height: calc(100svh - 73px);
 		}
 
-		.home-hero-panel {
-			margin-right: calc(50% - 50vw - 1.5rem);
+		.home-hero-copy-wrap {
+			padding: 0 clamp(1.75rem, 4vw, 4rem);
+			border-right: 1px solid rgba(0, 0, 0, 0.1);
+		}
+
+		:is(.dark) .home-hero-copy-wrap {
+			border-right-color: rgba(255, 255, 255, 0.1);
 		}
 
 		.home-hero-copy {
-			padding: 2.9rem 2.5rem 2.25rem;
+			max-width: 31rem;
+		}
+
+		.home-hero-title {
+			width: fit-content;
+			max-width: 100%;
+		}
+
+		.home-hero-pivot {
+			margin: 0.38rem 0 0.28rem;
 		}
 
 		.home-hero-image-wrap {
 			min-height: 100%;
-			border-left: 1px solid rgba(0, 0, 0, 0.08);
-		}
-
-		:is(.dark) .home-hero-image-wrap {
-			border-left-color: rgba(255, 255, 255, 0.08);
 		}
 
 		.home-hero-portrait {
@@ -421,6 +467,12 @@
 
 		:is(.dark) .ledger-rail {
 			border-left-color: rgba(255, 255, 255, 0.1);
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.home-hero-copy-wrap {
+			padding-inline: clamp(3rem, 5vw, 5.75rem);
 		}
 	}
 

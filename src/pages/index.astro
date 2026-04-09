@@ -128,27 +128,28 @@ const fitColumns = [
 ---
 
 <BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
-	<section class='container py-10 md:py-12'>
-		<header class='home-hero-panel'>
-			<div class='home-hero-split'>
+	<section class='home-hero-shell'>
+		<header class='home-hero-split'>
+			<div class='home-hero-copy-wrap'>
 				<div class='home-hero-copy space-y-5 md:space-y-6'>
-					<div class='home-hero-intro'>
-						<p class='section-label'>Hanif Carroll</p>
-						<p class='home-hero-context'>Services for founders and founder-led teams</p>
-					</div>
+					<p class='kicker-line home-hero-kicker'>
+						Hanif Carroll
+						<span class='home-hero-context'>Services for founders and founder-led teams</span>
+					</p>
 					<h1 class='home-hero-title'>
-						<span class='block'>Launch the</span>
-						<span class='block'>product or</span>
-						<span class='block'>fix the</span>
-						<span class='block'>workflow.</span>
+						<span class='block md:whitespace-nowrap'>Launch the</span>
+						<span class='block md:whitespace-nowrap'>product</span>
+						<span class='block home-hero-pivot'>OR</span>
+						<span class='block md:whitespace-nowrap'>fix the</span>
+						<span class='block md:whitespace-nowrap'>workflow.</span>
 					</h1>
 					<p class='launch-body home-hero-body'>
 						I help nontechnical founders ship focused MVPs, and I help founder-led teams turn manual bottlenecks into internal tools,
 						automation, and bounded AI systems.
 					</p>
-					<div class='flex flex-wrap gap-4 pt-1 sm:flex-nowrap'>
+					<div class='home-hero-actions'>
 						<a
-							class='btn-primary'
+							class='btn-primary home-hero-action'
 							href={BOOK_CALL_URL}
 							target='_blank'
 							rel='noopener noreferrer'
@@ -157,7 +158,7 @@ const fitColumns = [
 						>
 							Book a Roadmap Call
 						</a>
-						<a class='btn-secondary' href='/launch/'>See Services</a>
+						<a class='btn-secondary home-hero-action' href='/launch/'>See Services</a>
 					</div>
 					<div class='home-hero-meta'>
 						<p class='launch-meta'>30 minutes · Clear scope, budget signal, and next step</p>
@@ -168,10 +169,10 @@ const fitColumns = [
 						<p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
 					</div>
 				</div>
+			</div>
 
-				<div class='home-hero-image-wrap'>
-					<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
-				</div>
+			<div class='home-hero-image-wrap'>
+				<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
 			</div>
 		</header>
 	</section>
