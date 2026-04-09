@@ -29,50 +29,59 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 
 <BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false} footerLinksOnly>
 	<div class='container max-w-5xl space-y-8 py-8'>
-		<nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
-			<a href="/" class="transition-colors hover:text-primary">Home</a>
-			<span class="text-zinc-400">/</span>
-			<a href="/blog/" class="transition-colors hover:text-primary">Insights</a>
-			<span class="text-zinc-400">/</span>
-			<span class="text-primary">{title}</span>
+		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
+			<a href='/' class='transition-colors hover:text-primary'>Home</a>
+			<span class='text-zinc-400'>/</span>
+			<a href='/blog/' class='transition-colors hover:text-primary'>Insights</a>
+			<span class='text-zinc-400'>/</span>
+			<span class='text-primary'>{title}</span>
 		</nav>
-		<div class='lg:flex gap-10 tech-card px-6 py-8 lg:px-10'>
-		<main
-			class='overflow-hidden grow'
-		>
-			<article>
+		<div class='ledger-section lg:flex gap-10 px-6 py-8 lg:px-10'>
+			<main class='overflow-hidden grow'>
+				<article>
 					<Prose>
 						<div>
-						<p class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-							{audienceLabel}
-						</p>
-						<h1 class='!my-1 leading-tight'>{title}</h1>
-            <div class='text-sm font-[500] mt-2 py-1'>
-              {
-                updatedDate ?
-                  <>Updated on <strong><FormattedDate date={updatedDate} /></strong></>
-                :
-                  <>Published on <strong><FormattedDate date={pubDate} /></strong></>
-              }
-            </div>
-					</div>
-	          <div class='py-3 overflow-hidden'>
-	            {coverImage && <Image class='rounded-3xl w-full m-0 lg:mb-2' src={coverImage} alt={title} loading='eager' />}
-	          </div>
+							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>
+								{audienceLabel}
+							</p>
+							<h1 class='!my-1 leading-tight'>{title}</h1>
+							<div class='text-sm font-[500] mt-2 py-1'>
+								{
+									updatedDate ? (
+										<>
+											Updated on{' '}
+											<strong>
+												<FormattedDate date={updatedDate} />
+											</strong>
+										</>
+									) : (
+										<>
+											Published on{' '}
+											<strong>
+												<FormattedDate date={pubDate} />
+											</strong>
+										</>
+									)
+								}
+							</div>
+						</div>
+						<div class='py-3 overflow-hidden'>
+							{coverImage && <Image class='rounded-3xl w-full m-0 lg:mb-2' src={coverImage} alt={title} loading='eager' />}
+						</div>
 						<Content />
 					</Prose>
 				</article>
 				<div class='mt-12 border-t border-black/10 pt-10 dark:border-white/10'>
-					<ServiceCallout context="blog" variant={ctaVariant} location={ctaLocation} />
+					<ServiceCallout context='blog' variant={ctaVariant} location={ctaLocation} />
 				</div>
 			</main>
-    <div class='shrink-0 w-[280px] hidden md:block'>
-      <div class='mb-4'>
-				<AboutTheAuthor />
+			<div class='shrink-0 w-[280px] hidden md:block'>
+				<div class='mb-4'>
+					<AboutTheAuthor />
+				</div>
+				<TableOfContent headings={headings} />
 			</div>
-			<TableOfContent headings={headings} />
 		</div>
-	</div>
 	</div>
 </BaseLayout>
 

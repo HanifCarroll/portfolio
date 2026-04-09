@@ -1,59 +1,48 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Prose from "../components/Prose.astro";
-const nowEntry = Object.values(
-    import.meta.glob("../content/now.md", { eager: true })
-)[0] as {
-    frontmatter?: {
-        title?: string;
-        description?: string;
-        lastUpdated?: string;
-    };
-    default: any;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+const nowEntry = Object.values(import.meta.glob('../content/now.md', { eager: true }))[0] as {
+	frontmatter?: {
+		title?: string;
+		description?: string;
+		lastUpdated?: string;
+	};
+	default: any;
 };
 const frontmatter = nowEntry.frontmatter ?? {};
 const Content = nowEntry.default;
 const title = frontmatter.title ?? "What I'm Up to Now";
-const description =
-    frontmatter.description ??
-    "What I'd tell a friend about what I'm focused on right now.";
-const lastUpdated = frontmatter.lastUpdated ?? "";
+const description = frontmatter.description ?? "What I'd tell a friend about what I'm focused on right now.";
+const lastUpdated = frontmatter.lastUpdated ?? '';
 ---
 
 <BaseLayout title={`Now · Hanif Carroll`} description={description}>
-    <article class="container max-w-4xl space-y-16 py-10">
-        <!-- Breadcrumb -->
-        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
-            <a href="/" class="hover:text-primary transition-colors">Home</a>
-            <span class="text-zinc-400">/</span>
-            <span class="text-primary">Now</span>
-        </nav>
+	<article class='container max-w-4xl space-y-16 py-10'>
+		<!-- Breadcrumb -->
+		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
+			<a href='/' class='hover:text-primary transition-colors'>Home</a>
+			<span class='text-zinc-400'>/</span>
+			<span class='text-primary'>Now</span>
+		</nav>
 
-        <header class="space-y-4">
-            <span class="section-label">// Current Focus</span>
-            <h1 class="heading-display text-5xl md:text-6xl">
-                {title}
-            </h1>
-            <p class="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl">
-                {description}
-            </p>
-            {
-                lastUpdated && (
-                    <p class="font-mono text-xs text-zinc-500 dark:text-zinc-300 uppercase tracking-wide">
-                        Last updated: {lastUpdated}
-                    </p>
-                )
-            }
-        </header>
+		<header class='ledger-section space-y-4'>
+			<h1 class='heading-display text-5xl md:text-6xl'>
+				{title}
+			</h1>
+			<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl'>
+				{description}
+			</p>
+			{lastUpdated && <p class='font-mono text-xs text-zinc-500 dark:text-zinc-300 uppercase tracking-wide'>Last updated: {lastUpdated}</p>}
+		</header>
 
-        <section class="space-y-8">
-            <div class="tech-card p-8 md:p-10">
-                <Prose
-                    class="prose-h2:uppercase prose-h2:text-sm prose-h2:tracking-[0.15em] prose-h2:text-primary prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-p:text-base prose-p:text-zinc-600 dark:prose-p:text-zinc-300 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-black dark:prose-strong:text-white"
-                >
-                    <Content />
-                </Prose>
-            </div>
-        </section>
-    </article>
+		<section class='space-y-8'>
+			<div class='ledger-section p-8 md:p-10'>
+				<Prose
+					class='prose-h2:uppercase prose-h2:text-sm prose-h2:tracking-[0.15em] prose-h2:text-primary prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-p:text-base prose-p:text-zinc-600 dark:prose-p:text-zinc-300 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-black dark:prose-strong:text-white'
+				>
+					<Content />
+				</Prose>
+			</div>
+		</section>
+	</article>
 </BaseLayout>

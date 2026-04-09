@@ -10,18 +10,12 @@
 
 	body {
 		@apply bg-[#f2ede3] text-black antialiased;
-		background-image:
-			linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-		background-size: 72px 72px;
-		background-attachment: fixed;
+		background-image: none;
 	}
 
 	:is(.dark) body {
 		@apply bg-[#090909] text-white;
-		background-image:
-			linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
-		background-size: 72px 72px;
+		background-image: none;
 	}
 
 	body.page-launch {
@@ -82,12 +76,17 @@
 
 	/* Tech card with border and brutalist shadow */
 	.tech-card {
-		@apply bg-white/90 border border-black/85 dark:bg-black/80 dark:border-white;
-		box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.92);
+		@apply border text-black;
+		border-color: rgba(0, 0, 0, 0.1);
+		background: rgba(249, 246, 239, 0.92);
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
 	}
 
 	:is(.dark) .tech-card {
-		box-shadow: 5px 5px 0 0 rgba(255, 255, 255, 0.92);
+		@apply text-white;
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.04);
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 	}
 
 	.cta-panel {

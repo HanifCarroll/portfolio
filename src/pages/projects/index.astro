@@ -1,114 +1,93 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectList from "../../components/ProjectList.astro";
-import { projects } from "../../lib/project-cards";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import { projects } from '../../lib/project-cards';
 
-const title = "Case Studies";
-const description =
-    "Case studies from product builds and automation work by Hanif Carroll.";
+const title = 'Case Studies';
+const description = 'Case studies from product builds and automation work by Hanif Carroll.';
 
 const preferredClientOrder = [
-    "desarmadero-latorre",
-    "genrupt",
-    "casa-elaria",
-    "mucho-hangouts",
-    "maximo-interiorismo",
-    "redwriter-comics",
+	'desarmadero-latorre',
+	'genrupt',
+	'casa-elaria',
+	'mucho-hangouts',
+	'maximo-interiorismo',
+	'redwriter-comics'
 ] as const;
 
-const preferredExperimentOrder = [
-    "ba-eventos",
-    "language-exchange",
-    "vox-prismatic",
-] as const;
+const preferredExperimentOrder = ['ba-eventos', 'language-exchange', 'vox-prismatic'] as const;
 
-const sortByPreferredOrder = (
-    projectList: typeof projects,
-    preferredOrder: readonly string[],
-) => {
-    const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
+const sortByPreferredOrder = (projectList: typeof projects, preferredOrder: readonly string[]) => {
+	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
 
-    return [...projectList].sort((a, b) => {
-        const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
-        const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
+	return [...projectList].sort((a, b) => {
+		const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
+		const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
 
-        if (aIndex !== bIndex) return aIndex - bIndex;
-        return 0;
-    });
+		if (aIndex !== bIndex) return aIndex - bIndex;
+		return 0;
+	});
 };
 
 const clientProjects = sortByPreferredOrder(
-    projects.filter((project) => project.proofType === "client"),
-    preferredClientOrder,
+	projects.filter((project) => project.proofType === 'client'),
+	preferredClientOrder
 );
 
 const experimentProjects = sortByPreferredOrder(
-    projects.filter((project) => project.proofType === "experiment"),
-    preferredExperimentOrder,
+	projects.filter((project) => project.proofType === 'experiment'),
+	preferredExperimentOrder
 );
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description}>
-    <article class="container max-w-6xl space-y-16 py-10">
-        <nav class="flex items-center gap-2 font-mono text-xs uppercase tracking-wide">
-            <a href="/" class="transition-colors hover:text-primary">Home</a>
-            <span class="text-zinc-400">/</span>
-            <span class="text-primary">Case Studies</span>
-        </nav>
+	<article class='container max-w-6xl space-y-16 py-10'>
+		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
+			<a href='/' class='transition-colors hover:text-primary'>Home</a>
+			<span class='text-zinc-400'>/</span>
+			<span class='text-primary'>Case Studies</span>
+		</nav>
 
-        <header class="space-y-6">
-            <span class="section-label">// Case Studies</span>
-            <h1 class="heading-display text-4xl md:text-5xl">
-                Work organized by the business problem, not the stack.
-            </h1>
-            <div class="tech-card p-6 md:p-8">
-                <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    Start with client proof first. Each card still shows the kind of
-                    work involved, from MVPs and launch sites to workflow automation
-                    and AI systems.
-                </p>
-            </div>
-        </header>
+		<header class='ledger-section space-y-6'>
+			<h1 class='heading-display text-4xl md:text-5xl'>Work organized by the business problem, not the stack.</h1>
+			<p class='text-lg leading-relaxed text-zinc-600 dark:text-zinc-300'>
+				Start with client proof first. Each card still shows the kind of work involved, from MVPs and launch sites to workflow automation
+				and AI systems.
+			</p>
+		</header>
 
-        <div class="space-y-20">
-            <section class="space-y-10">
-                <div class="tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8">
-                    <div class="space-y-3">
-                        <p class="section-label">// Start Here</p>
-                        <h2 class="heading-display text-3xl md:text-4xl">
-                            Client Work
-                        </h2>
-                    </div>
-                    <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg">
-                        The strongest proof for how I scope, build, and ship work for
-                        paying clients. Start here if you want the clearest signal of
-                        what it is like to hire me.
-                    </p>
-                </div>
-                <ProjectList projects={clientProjects} />
-            </section>
+		<div class='space-y-20'>
+			<section class='space-y-10'>
+				<div class='tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8'>
+					<div class='space-y-3'>
+						<p class='section-label'>// Start Here</p>
+						<h2 class='heading-display text-3xl md:text-4xl'>Client Work</h2>
+					</div>
+					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg'>
+						The strongest proof for how I scope, build, and ship work for paying clients. Start here if you want the clearest signal of what
+						it is like to hire me.
+					</p>
+				</div>
+				<ProjectList projects={clientProjects} />
+			</section>
 
-            {
-                experimentProjects.length > 0 && (
-                    <section class="space-y-10">
-                        <div class="tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8">
-                            <div class="space-y-3">
-                                <p class="section-label">// Also Useful</p>
-                                <h2 class="heading-display text-3xl md:text-4xl">
-                                    Selected Product Experiments
-                                </h2>
-                            </div>
-                            <p class="text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg">
-                                Self-initiated products that show how I think through
-                                MVPs, workflows, and AI systems when I own the problem
-                                end to end. Useful for judgment and product taste, but
-                                separate from client delivery.
-                            </p>
-                        </div>
-                        <ProjectList projects={experimentProjects} />
-                    </section>
-                )
-            }
-        </div>
-    </article>
+			{
+				experimentProjects.length > 0 && (
+					<section class='space-y-10'>
+						<div class='tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8'>
+							<div class='space-y-3'>
+								<p class='section-label'>// Also Useful</p>
+								<h2 class='heading-display text-3xl md:text-4xl'>Selected Product Experiments</h2>
+							</div>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg'>
+								Self-initiated products that show how I think through MVPs, workflows, and AI systems when I own the problem end to end.
+								Useful for judgment and product taste, but separate from client delivery.
+							</p>
+						</div>
+						<ProjectList projects={experimentProjects} />
+					</section>
+				)
+			}
+		</div>
+	</article>
 </BaseLayout>
