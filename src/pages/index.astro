@@ -132,10 +132,7 @@ const fitColumns = [
 		<header class='home-hero-split'>
 			<div class='home-hero-copy-wrap'>
 				<div class='home-hero-copy space-y-5 md:space-y-6'>
-					<p class='kicker-line home-hero-kicker'>
-						Hanif Carroll
-						<span class='home-hero-context'>Services for founders and founder-led teams</span>
-					</p>
+					<p class='home-hero-context home-hero-context--hero'>Services for founders and founder-led teams</p>
 					<h1 class='home-hero-title'>
 						<span class='block md:whitespace-nowrap'>Launch the</span>
 						<span class='block md:whitespace-nowrap'>product</span>
@@ -160,14 +157,6 @@ const fitColumns = [
 						</a>
 						<a class='btn-secondary home-hero-action' href='/launch/'>See Services</a>
 					</div>
-					<div class='home-hero-meta'>
-						<p class='launch-meta'>30 minutes · Clear scope, budget signal, and next step</p>
-						<p class='launch-meta'>The 4-Week Launch starts at $10,000. Workflow audits start at $2,000.</p>
-					</div>
-					<div class='home-hero-support'>
-						<p>Direct access to the person making the product and technical calls.</p>
-						<p>MVPs, internal tools, automation layers, and bounded AI systems.</p>
-					</div>
 				</div>
 			</div>
 
@@ -175,41 +164,45 @@ const fitColumns = [
 				<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
 			</div>
 		</header>
-	</section>
+		</section>
 
-	<section class='container py-20 md:py-24' id='approach'>
-		<div class='ledger-section space-y-12'>
-			<div class='ledger-split launch-proof-split items-start'>
-				<div class='space-y-4'>
-					<p class='launch-meta text-primary'>Why this works</p>
-					<p class='text-2xl font-semibold leading-tight text-black dark:text-white md:text-3xl'>
-						One person handles the scope, the build, and the tradeoffs.
-					</p>
-					<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						You are not hiring separate strategy, design, and engineering layers. The same person helps define the first useful version,
-						ships the work, and keeps the scope honest.
-					</p>
-				</div>
-
-				<div class='ledger-rail'>
-					<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
-						{
-							proofPoints.map((point, index) => (
-								<div
-									class:list={[
-										'grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:grid-cols-[6.5rem_1fr] md:items-start',
-										index === proofPoints.length - 1 && 'border-b-0'
-									]}
-								>
-									<p class='launch-proof-metric text-primary'>{point.metric}</p>
-									<p class='launch-meta md:pt-2'>{point.label}</p>
-								</div>
-							))
-						}
+		<section class='container pb-20 pt-10 md:pb-24 md:pt-12' id='approach'>
+			<div class='ledger-section space-y-12'>
+				<div class='ledger-split launch-proof-split items-start'>
+					<div class='space-y-4'>
+						<p class='launch-meta text-primary'>Why this works</p>
+						<p class='text-2xl font-semibold leading-tight text-black dark:text-white md:text-3xl'>
+							One person handles the scope, the build, and the tradeoffs.
+						</p>
+						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+							You are not hiring separate strategy, design, and engineering layers. You get direct access to the person making the
+							product and technical calls, and the same person keeps the first useful version honest.
+						</p>
+						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+							That work can be an MVP, an internal tool, an automation layer, or a bounded AI system. The point is a smaller system in
+							use soon, not a giant custom program.
+						</p>
 					</div>
-					<p class='launch-meta mt-5'>Previously at Capgemini &amp; LeagueApps</p>
+
+					<div class='ledger-rail home-proof-rail'>
+						<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
+							{
+								proofPoints.map((point, index) => (
+									<div
+										class:list={[
+											'launch-proof-row home-proof-row grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:items-start',
+											index === proofPoints.length - 1 && 'border-b-0'
+										]}
+									>
+										<p class='launch-proof-metric home-proof-metric text-primary'>{point.metric}</p>
+										<p class='launch-meta md:pt-2'>{point.label}</p>
+									</div>
+								))
+							}
+						</div>
+						<p class='launch-meta home-proof-note mt-5'>Previously at Capgemini &amp; LeagueApps</p>
+					</div>
 				</div>
-			</div>
 
 			{
 				founderQuote && (

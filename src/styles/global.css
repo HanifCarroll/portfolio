@@ -280,9 +280,13 @@
 		color: rgb(212 212 216);
 	}
 
-	.home-hero-kicker {
-		flex-wrap: wrap;
-		row-gap: 0.55rem;
+	.home-hero-context--hero {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.78rem;
+		font-weight: 500;
+		letter-spacing: 0.28em;
+		line-height: 1.45;
+		text-transform: uppercase;
 	}
 
 	.home-hero-title {
@@ -313,13 +317,6 @@
 		max-width: 29rem;
 	}
 
-	.home-hero-meta {
-		display: flex;
-		flex-direction: column;
-		gap: 0.65rem;
-		padding-top: 1rem;
-	}
-
 	.home-hero-actions {
 		display: grid;
 		gap: 0.75rem;
@@ -329,28 +326,6 @@
 
 	.home-hero-action {
 		width: 100%;
-	}
-
-	.home-hero-meta .launch-meta {
-		color: rgb(113 113 122);
-	}
-
-	:is(.dark) .home-hero-meta .launch-meta {
-		color: rgb(212 212 216);
-	}
-
-	.home-hero-support {
-		display: grid;
-		gap: 1rem;
-		padding-top: 1.35rem;
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
-		color: rgb(82 82 91);
-		line-height: 1.8;
-	}
-
-	:is(.dark) .home-hero-support {
-		border-top-color: rgba(255, 255, 255, 0.1);
-		color: rgb(212 212 216);
 	}
 
 	.home-hero-image-wrap {
@@ -379,6 +354,18 @@
 		gap: 1.75rem;
 	}
 
+	.home-proof-rail {
+		gap: 1rem;
+	}
+
+	.home-proof-note {
+		color: rgb(113 113 122);
+	}
+
+	:is(.dark) .home-proof-note {
+		color: rgb(212 212 216);
+	}
+
 	.ledger-rail {
 		@apply flex flex-col;
 		padding-top: 1rem;
@@ -390,10 +377,6 @@
 	}
 
 	@media (min-width: 768px) {
-		.home-hero-support {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
 		.home-hero-actions {
 			display: flex;
 			flex-wrap: wrap;
@@ -447,6 +430,16 @@
 
 		.home-hero-pivot {
 			margin: 0.38rem 0 0.28rem;
+		}
+
+		.launch-proof-row {
+			grid-template-columns: max-content minmax(0, 1fr);
+			column-gap: 1rem;
+		}
+
+		.home-proof-row {
+			grid-template-columns: minmax(7.25rem, max-content) minmax(0, 1fr);
+			column-gap: 1.25rem;
 		}
 
 		.home-hero-image-wrap {
@@ -557,6 +550,17 @@
 		line-height: 0.88;
 		letter-spacing: -0.06em;
 		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.launch-proof-row {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.home-proof-metric {
+		font-size: clamp(1.9rem, 2.8vw, 3.1rem);
+		line-height: 0.92;
+		letter-spacing: -0.05em;
 	}
 
 	.testimonial-billboard--launch {
