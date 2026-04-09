@@ -217,9 +217,13 @@
 	}
 
 	.ledger-rail {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		gap: 1rem;
+		@apply flex flex-col;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	:is(.dark) .ledger-rail {
+		border-top-color: rgba(255, 255, 255, 0.1);
 	}
 
 	@media (min-width: 768px) {
@@ -230,9 +234,14 @@
 		}
 
 		.ledger-rail {
-			grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
-			align-items: start;
-			gap: 1.5rem;
+			padding-top: 0;
+			padding-left: 1.25rem;
+			border-top: 0;
+			border-left: 1px solid rgba(0, 0, 0, 0.1);
+		}
+
+		:is(.dark) .ledger-rail {
+			border-left-color: rgba(255, 255, 255, 0.1);
 		}
 	}
 
