@@ -55,7 +55,7 @@ export const projectTrackGroups: Array<{
     key: 'automation_and_ai',
     title: 'Workflow cleanup, automation, and AI',
     description:
-      'Internal tools, automations, and bounded AI systems for teams losing time to manual work, messy handoffs, or brittle processes.',
+      'Internal tools, automations, and AI systems for teams losing time to manual work, slow handoffs, or brittle processes.',
   },
   {
     key: 'mvp_and_validation',

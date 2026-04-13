@@ -4,5 +4,5 @@
 export const SITE_TITLE = 'Hanif Carroll';
 export const SITE_TAGLINE = 'Product Partner for Founders';
 export const SITE_DESCRIPTION =
-  'I help nontechnical founders figure out what to build, then I build it. Product strategy, MVP builds, and AI systems.';
+  'I help nontechnical founders ship focused MVPs, automate manual operations, and use AI to get more work done with a smaller team.';
 export const BOOK_CALL_URL = 'https://cal.com/hanifcarroll/roadmap-call';
