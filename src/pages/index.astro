@@ -10,24 +10,41 @@ import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
 import monicaPhoto from '@src/assets/img/monica.jpeg';
 import testimonials from '../../testimonials.json';
 
-const title = 'Hanif Carroll | MVPs, Workflow Automation, and AI Systems';
+const title = 'Hanif Carroll | MVPs and Workflow Systems';
 const description =
-	'I help nontechnical founders ship focused MVPs, automate manual operations, and use AI to get more work done with a smaller team.';
+	'I help founder-led teams turn stuck product ideas and manual workflows into smaller systems that can be scoped, built, launched, and owned without agency overhead.';
 
 const founderQuote = testimonials.find((testimonial) => testimonial.name === 'Monica Londoño');
 
 const proofPoints = [
 	{
 		metric: '8+',
-		label: 'years from consulting to product teams to independent work'
+		label: 'years building product and client systems'
 	},
 	{
 		metric: '10+',
-		label: 'products shipped, MVPs, automations, and AI systems'
+		label: 'MVPs, automations, and AI workflows shipped'
 	},
 	{
 		metric: '3,000+',
-		label: 'end users served through tools built with founders'
+		label: 'end users served by tools built with founders'
+	}
+];
+
+const pathCards = [
+	{
+		label: 'Path 01',
+		title: 'I need to launch a product',
+		body: 'For nontechnical founders who need the first useful version scoped, built, and live without hiring a team.',
+		href: '/launch/#mvp',
+		cta: 'See the 4-Week Launch'
+	},
+	{
+		label: 'Path 02',
+		title: 'I need to fix a workflow',
+		body: 'For founder-led teams with repetitive manual work, scattered context, or an AI idea that needs a real workflow underneath.',
+		href: '/launch/#automation',
+		cta: 'See the Workflow Audit'
 	}
 ];
 
@@ -46,11 +63,11 @@ const offers = [
 	},
 	{
 		label: '02',
-		title: 'Workflow Automation & AI Systems',
+		title: 'Workflow Audit & AI Systems',
 		price: 'Workflow audits start at $2,000',
 		description:
 			'For founder-led teams and SMBs with operational drag. I map the workflow, find the bottleneck, and define the first useful system before implementation starts.',
-		bullets: ['Audit the workflow before automating the wrong step.', 'Credit the audit toward implementation if we move forward.'],
+		bullets: ['Map the workflow before automating the wrong step.', 'Credit the audit toward implementation if we move forward.'],
 		href: '/launch/#automation',
 		cta: 'See the automation offer',
 		image: desarmaderoHero,
@@ -141,7 +158,8 @@ const fitColumns = [
 						<span class='block md:whitespace-nowrap'>workflow.</span>
 					</h1>
 					<p class='launch-body home-hero-body'>
-						I help nontechnical founders ship focused MVPs, automate manual operations, and use AI to get more work done with a smaller team.
+						I help founder-led teams turn stuck product ideas and manual workflows into smaller systems that can be scoped, built, launched,
+						and owned without agency overhead.
 					</p>
 					<div class='home-hero-actions'>
 						<a
@@ -154,7 +172,7 @@ const fitColumns = [
 						>
 							Book a Roadmap Call
 						</a>
-						<a class='btn-secondary home-hero-action' href='/launch/'>See Services</a>
+						<a class='btn-secondary home-hero-action' href='/launch/#paths'>Choose Your Path</a>
 					</div>
 				</div>
 			</div>
@@ -163,45 +181,77 @@ const fitColumns = [
 				<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
 			</div>
 		</header>
-		</section>
+	</section>
 
-		<section class='container pb-20 pt-10 md:pb-24 md:pt-12' id='approach'>
-			<div class='ledger-section space-y-12'>
-				<div class='ledger-split launch-proof-split items-start'>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Why this works</p>
-						<p class='text-2xl font-semibold leading-tight text-black dark:text-white md:text-3xl'>
-							One person handles the scope, the build, and the tradeoffs.
-						</p>
-						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							You are not hiring separate strategy, design, and engineering layers. You get direct access to the person making the
-							product and technical calls, and the same person keeps the first useful version honest.
-						</p>
-						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							That work can be an MVP, an internal tool, an automation layer, or an AI system that helps the team get more done. The
-							point is a smaller system in use soon, not a giant custom program.
-						</p>
-					</div>
-
-					<div class='ledger-rail home-proof-rail'>
-						<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
-							{
-								proofPoints.map((point, index) => (
-									<div
-										class:list={[
-											'launch-proof-row home-proof-row grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:items-start',
-											index === proofPoints.length - 1 && 'border-b-0'
-										]}
-									>
-										<p class='launch-proof-metric home-proof-metric text-primary'>{point.metric}</p>
-										<p class='launch-meta md:pt-2'>{point.label}</p>
-									</div>
-								))
-							}
-						</div>
-						<p class='launch-meta home-proof-note mt-5'>Previously at Capgemini &amp; LeagueApps</p>
-					</div>
+	<section class='container py-10 md:py-12' aria-labelledby='home-paths-title'>
+		<div class='ledger-section space-y-7'>
+			<div class='ledger-split items-start'>
+				<div class='space-y-4'>
+					<p class='launch-meta text-primary'>Start here</p>
+					<h2 id='home-paths-title' class='heading-display text-3xl md:text-4xl'>Choose the problem you need solved.</h2>
 				</div>
+				<div class='ledger-rail'>
+					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+						Most good engagements start as either a product launch or an operations bottleneck. Pick the closest path, then we can narrow
+						the scope on a roadmap call.
+					</p>
+				</div>
+			</div>
+
+			<div class='grid gap-6 md:grid-cols-2'>
+				{
+					pathCards.map((path) => (
+						<a href={path.href} class='group signal-line flex flex-col gap-4 pt-5 transition-colors hover:text-primary'>
+							<p class='launch-meta text-primary'>{path.label}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display text-2xl md:text-3xl'>{path.title}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{path.body}</p>
+							</div>
+							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{path.cta}</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class='container pb-20 pt-8 md:pb-24 md:pt-10' id='approach'>
+		<div class='ledger-section space-y-12'>
+			<div class='ledger-split launch-proof-split items-start'>
+				<div class='space-y-4'>
+					<p class='launch-meta text-primary'>Why this works</p>
+					<p class='text-2xl font-semibold leading-tight text-black dark:text-white md:text-3xl'>
+						One person handles the scope, the build, and the tradeoffs.
+					</p>
+					<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+						You are not hiring separate strategy, design, and engineering layers. You get direct access to the person making the product and
+						technical calls, and the same person keeps the first useful version honest.
+					</p>
+					<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+						That work can be an MVP, an internal tool, an automation layer, or an AI system that helps the team get more done. The point is
+						a smaller system in use soon, not a giant custom program.
+					</p>
+				</div>
+
+				<div class='ledger-rail home-proof-rail'>
+					<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
+						{
+							proofPoints.map((point, index) => (
+								<div
+									class:list={[
+										'launch-proof-row home-proof-row grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:items-start',
+										index === proofPoints.length - 1 && 'border-b-0'
+									]}
+								>
+									<p class='launch-proof-metric home-proof-metric text-primary'>{point.metric}</p>
+									<p class='launch-meta md:pt-2'>{point.label}</p>
+								</div>
+							))
+						}
+					</div>
+					<p class='launch-meta home-proof-note mt-5'>Previously at Capgemini &amp; LeagueApps</p>
+				</div>
+			</div>
 
 			{
 				founderQuote && (
@@ -287,8 +337,8 @@ const fitColumns = [
 			<div class='max-w-3xl space-y-4'>
 				<h2 class='heading-display text-4xl md:text-5xl'>Find the closest match for the kind of problem you have.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Start with the project that looks closest to your situation, whether that is an MVP launch, a workflow bottleneck, or an AI
-					system your team needs to use every week.
+					Start with the project that looks closest to your situation, whether that is an MVP launch, a workflow bottleneck, or an AI system
+					your team needs to use every week.
 				</p>
 			</div>
 		</div>
