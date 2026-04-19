@@ -12,12 +12,12 @@ const files = {
 const expectations = [
 	{
 		file: 'header',
-		text: 'MVPs + Workflow Systems',
+		text: 'Technical Product Partner',
 		reason: 'header tagline should avoid commodity AI positioning'
 	},
 	{
 		file: 'home',
-		text: 'Hanif Carroll | MVPs and Workflow Systems',
+		text: 'Hanif Carroll | Technical Product Partner',
 		reason: 'homepage title should match the new portfolio positioning'
 	},
 	{
