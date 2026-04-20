@@ -22,7 +22,7 @@ const expectations = [
 	},
 	{
 		file: 'home',
-		text: 'founder-led teams turn stuck product ideas and manual workflows',
+		text: 'founder-led teams turn vague product ideas and manual workflows',
 		reason: 'homepage hero should name both buyer pains clearly'
 	},
 	{
