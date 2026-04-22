@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectList from '../../components/ProjectList.astro';
+import ServiceCallout from '../../components/ServiceCallout.astro';
 import { projects } from '../../lib/project-cards';
 
 const title = 'Case Studies';
@@ -40,54 +41,51 @@ const experimentProjects = sortByPreferredOrder(
 );
 ---
 
-<BaseLayout title={`${title} · Hanif Carroll`} description={description}>
-	<article class='container max-w-6xl space-y-16 py-10'>
+<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
+	<article class='container max-w-6xl space-y-20 py-10 md:space-y-24'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
 			<span class='text-primary'>Case Studies</span>
 		</nav>
 
-		<header class='ledger-section space-y-6'>
-			<h1 class='heading-display text-4xl md:text-5xl'>Work organized by the business problem, not the stack.</h1>
-			<p class='text-lg leading-relaxed text-zinc-600 dark:text-zinc-300'>
-				Start with client proof first. Each card still shows the kind of work involved, from MVPs and launch sites to workflow automation
-				and AI systems.
+		<header class='max-w-4xl space-y-5'>
+			<p class='section-label'>// Case Studies</p>
+			<h1 class='heading-display text-4xl md:text-6xl'>Find the closest match for the kind of problem you have.</h1>
+			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+				Start with client work if you want the clearest signal of what it is like to hire me. The experiments are useful too, but they are
+				better for product judgment than delivery proof.
 			</p>
 		</header>
 
-		<div class='space-y-20'>
-			<section class='space-y-10'>
-				<div class='tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8'>
-					<div class='space-y-3'>
-						<p class='section-label'>// Start Here</p>
-						<h2 class='heading-display text-3xl md:text-4xl'>Client Work</h2>
-					</div>
-					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg'>
-						The strongest proof for how I scope, build, and ship work for paying clients. Start here if you want the clearest signal of what
-						it is like to hire me.
-					</p>
-				</div>
-				<ProjectList projects={clientProjects} />
-			</section>
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Client Work</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Proof from paid engagements.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					These are the strongest examples of how I scope, build, and ship for real businesses. If you want to know what the work feels
+					like in practice, start here.
+				</p>
+			</div>
+			<ProjectList projects={clientProjects} />
+		</section>
 
-			{
-				experimentProjects.length > 0 && (
-					<section class='space-y-10'>
-						<div class='tech-card grid gap-6 p-6 md:grid-cols-[0.8fr_1.2fr] md:p-8'>
-							<div class='space-y-3'>
-								<p class='section-label'>// Also Useful</p>
-								<h2 class='heading-display text-3xl md:text-4xl'>Selected Product Experiments</h2>
-							</div>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg'>
-								Self-initiated products that show how I think through MVPs, workflows, and AI systems when I own the problem end to end.
-								Useful for judgment and product taste, but separate from client delivery.
-							</p>
-						</div>
-						<ProjectList projects={experimentProjects} />
-					</section>
-				)
-			}
-		</div>
+		{
+			experimentProjects.length > 0 && (
+				<section class='space-y-8 md:space-y-10'>
+					<div class='max-w-3xl space-y-4'>
+						<p class='section-label'>// Selected Experiments</p>
+						<h2 class='heading-display text-3xl md:text-5xl'>Self-initiated product work.</h2>
+						<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+							These projects show how I think when I own the problem end to end. They are useful for product taste, AI judgment, and
+							workflow design, but separate from client proof.
+						</p>
+					</div>
+					<ProjectList projects={experimentProjects} />
+				</section>
+			)
+		}
+
+		<ServiceCallout context='case-study' variant='general' location='projects_index' />
 	</article>
 </BaseLayout>

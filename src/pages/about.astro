@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCallout from '../components/ServiceCallout.astro';
 import TestimonialSupport from '../components/TestimonialSupport.astro';
-import { BOOK_CALL_URL } from '../consts';
 import testimonials from '../../testimonials.json';
 import sarahPhoto from '@src/assets/img/sarah.jpeg';
 
@@ -37,77 +37,76 @@ const designTestimonial = testimonials.find((testimonial) => testimonial.name ==
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='container max-w-5xl space-y-16 py-10'>
+	<article class='container max-w-6xl space-y-20 py-10 md:space-y-24'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
 			<span class='text-primary'>About</span>
 		</nav>
 
-		<header class='ledger-section space-y-6'>
-			<h1 class='heading-display text-4xl md:text-5xl'>
-				Senior builder for founders and operator-led teams who need the right first system.
-			</h1>
-			<p class='text-lg leading-relaxed text-zinc-600 dark:text-zinc-300'>
-				Most clients do not need more code. They need someone who can look at the business problem, narrow the first useful version, and
-				build the system that actually moves things forward. That might be an MVP, an internal tool, a workflow automation, or an AI
-				system. That is the work I do.
+		<header class='max-w-4xl space-y-5'>
+			<p class='section-label'>// About</p>
+			<h1 class='heading-display text-4xl md:text-6xl'>Technical product partner for founders and operator-led teams.</h1>
+			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+				Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and build
+				the system that actually moves things forward.
 			</p>
 		</header>
 
-		<section class='grid gap-6 md:grid-cols-2'>
-			<div class='tech-card p-6 space-y-4'>
-				<h2 class='section-label'>// Background</h2>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
-					I&rsquo;ve worked at Capgemini, at LeagueApps during a strong growth phase, and as an independent builder for client and internal
-					products. The mix has been useful: I understand structured delivery, real product constraints, and the pace smaller teams actually
-					need.
-				</p>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
-					Buenos Aires has become home. Living here has shaped the way I think about work, community, and the kinds of products worth
-					building.
-				</p>
+		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
+			<div class='space-y-4'>
+				<p class='section-label'>// Background</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Builder first, not agency layer.</h2>
 			</div>
-
-			<div class='tech-card p-6 space-y-4'>
-				<h2 class='section-label'>// What I Actually Help With</h2>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
-					My strongest work lives at the intersection of product judgment and implementation: MVP scoping, workflow cleanup, internal tools,
-					automation, AI systems, and the go-to-market surface around them.
+			<div class='space-y-5 text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				<p>
+					I&rsquo;ve worked at Capgemini, at LeagueApps during a strong growth phase, and as an independent builder across client and
+					internal products. That mix has been useful: I understand structured delivery, real product constraints, and the pace smaller
+					teams actually need.
 				</p>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
+				<p>
+					My strongest work sits between product judgment and implementation: MVP scoping, workflow cleanup, internal tools, automation, AI
+					systems, and the go-to-market surface around them.
+				</p>
+				<p>
 					A lot of the value happens before code starts. I help decide what the first version should be, what should wait, and what kind of
 					system is actually worth building.
 				</p>
 			</div>
 		</section>
 
-		<section class='tech-card p-6 md:p-8 space-y-6'>
-			<h2 class='heading-display text-3xl md:text-4xl'>How engagements usually start</h2>
-			<div class='grid gap-8 lg:grid-cols-3'>
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// How Engagements Start</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>The work usually moves through three questions.</h2>
+			</div>
+			<div class='how-we-work-grid'>
 				{
 					engagementSteps.map((step) => (
-						<div class='border-t border-black/10 pt-5 dark:border-white/10'>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>Step {step.label}</p>
-							<h3 class='mt-4 text-xl font-semibold text-zinc-900 dark:text-zinc-100'>{step.title}</h3>
-							<p class='mt-3 text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+						<div class='how-we-work-step'>
+							<p class='launch-meta text-primary'>Step {step.label}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
+								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+							</div>
 						</div>
 					))
 				}
 			</div>
 		</section>
 
-		<section class='tech-card p-6 md:p-8 space-y-6'>
-			<h2 class='heading-display text-3xl md:text-4xl'>Why clients hire me</h2>
-			<div class='grid gap-4 md:grid-cols-2'>
+		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
+			<div class='space-y-4'>
+				<p class='section-label'>// Why Clients Hire Me</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Useful software, explained clearly.</h2>
+			</div>
+			<ul class='fit-list'>
 				{
 					clientReasons.map((reason) => (
-						<p class='border-t border-black/10 pt-4 text-base leading-relaxed text-zinc-600 dark:border-white/10 dark:text-zinc-300'>
-							{reason}
-						</p>
+						<li>{reason}</li>
 					))
 				}
-			</div>
+			</ul>
 		</section>
 
 		{
@@ -125,48 +124,26 @@ const designTestimonial = testimonials.find((testimonial) => testimonial.name ==
 			)
 		}
 
-		<section class='tech-card grid gap-6 p-6 md:grid-cols-[0.72fr_1.28fr] md:p-8'>
-			<div class='space-y-3'>
-				<p class='section-label'>// Outside of Work</p>
-				<h2 class='text-2xl font-semibold text-zinc-900 dark:text-zinc-100 md:text-3xl'>
-					The personal side is still grounded in building.
-				</h2>
-			</div>
+		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
 			<div class='space-y-4'>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
+				<p class='section-label'>// Outside Of Work</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Still grounded in building.</h2>
+			</div>
+			<div class='space-y-5 text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				<p>
 					I&rsquo;ve been lifting weights for nearly 20 years, I play ultimate frisbee, and I care a lot about writing, philosophy, and
 					building strong in-person communities.
 				</p>
-				<p class='text-base leading-relaxed text-zinc-600 dark:text-zinc-300'>
+				<p>
+					Buenos Aires has become home. Living here has shaped how I think about work, community, and the kinds of products worth building.
+				</p>
+				<p>
 					I also spend a lot of time thinking about how AI can help people do better work in the real world, not just produce impressive
 					demos.
 				</p>
 			</div>
 		</section>
 
-		<section class='cta-panel p-6 md:p-10'>
-			<div class='max-w-4xl space-y-6'>
-				<p class='kicker-line'>Next Step</p>
-				<h2 class='heading-display max-w-3xl text-4xl text-white md:text-5xl'>
-					If you need a first product or a cleaner workflow, start with a roadmap call.
-				</h2>
-				<p class='max-w-2xl text-base leading-7 text-white/74 md:text-lg md:leading-8'>
-					I&rsquo;ll help you decide whether this should start as an MVP, a workflow audit, or a smaller first step.
-				</p>
-				<div class='flex flex-wrap gap-4'>
-					<a
-						class='btn-primary border-white bg-white text-black hover:bg-black hover:text-white'
-						href={BOOK_CALL_URL}
-						target='_blank'
-						rel='noopener noreferrer'
-						data-track-event='book_call_clicked'
-						data-track-location='about_primary'
-					>
-						Book a Roadmap Call
-					</a>
-					<a class='btn-secondary border-white text-white hover:bg-white hover:text-black' href='/launch/'> See Services </a>
-				</div>
-			</div>
-		</section>
+		<ServiceCallout context='blog' variant='general' location='about_page' />
 	</article>
 </BaseLayout>

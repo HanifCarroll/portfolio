@@ -10,12 +10,15 @@ const { post } = Astro.props;
 const audienceLabel =
   post.data.audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
 ---
-<article class="grid gap-5 border-t border-black/10 py-6 dark:border-white/10 md:grid-cols-[150px_1fr_auto] md:items-start">
-  <div class="text-sm text-zinc-600 dark:text-zinc-300">
+<article class="grid gap-4 py-1 md:grid-cols-[160px_1fr_auto] md:items-start md:gap-6">
+  <div class="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
     <FormattedDate date={post.data.pubDate} />
+    <span class="inline-flex w-fit rounded-full border border-black/12 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.24em] text-zinc-600 dark:border-white/12 dark:text-zinc-300">
+      {audienceLabel}
+    </span>
   </div>
   <div class="space-y-3">
-    <h3 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+    <h3 class="heading-display text-2xl text-zinc-900 dark:text-zinc-100 md:text-3xl">
       <a href={`/blog/${post.id}/`} class="transition-colors hover:text-primary">
         {post.data.title}
       </a>
@@ -24,9 +27,7 @@ const audienceLabel =
       {post.data.description}
     </p>
   </div>
-  <div class="md:justify-self-end">
-    <span class="inline-flex rounded-full border border-black/12 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.24em] text-zinc-600 dark:border-white/12 dark:text-zinc-300">
-      {audienceLabel}
-    </span>
+  <div class="md:justify-self-end md:pt-1">
+    <a href={`/blog/${post.id}/`} class="arrow-link">Read note</a>
   </div>
 </article>
