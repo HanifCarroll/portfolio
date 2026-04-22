@@ -1,35 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TestimonialBillboard from '../components/TestimonialBillboard.astro';
 import { BOOK_CALL_URL } from '../consts';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
 import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
-import monicaPhoto from '@src/assets/img/monica.jpeg';
-import testimonials from '../../testimonials.json';
 
 const title = 'Hanif Carroll | Technical Product Partner';
 const description =
 	'I help founder-led teams turn vague product ideas and manual workflows into smaller systems that can be scoped, built, launched, and owned without agency overhead.';
-
-const founderQuote = testimonials.find((testimonial) => testimonial.name === 'Monica Londoño');
-
-const proofPoints = [
-	{
-		metric: '8+',
-		label: 'years building product and client systems'
-	},
-	{
-		metric: '10+',
-		label: 'MVPs, automations, and AI workflows shipped'
-	},
-	{
-		metric: '3,000+',
-		label: 'end users served by tools built with founders'
-	}
-];
 
 const pathCards = [
 	{
@@ -45,33 +25,6 @@ const pathCards = [
 		body: 'For founder-led teams with repetitive manual work, scattered context, or an AI idea that needs a real workflow underneath.',
 		href: '/launch/#automation',
 		cta: 'See the Workflow Audit'
-	}
-];
-
-const offers = [
-	{
-		label: '01',
-		title: 'The 4-Week Launch',
-		price: 'Starts at $10,000',
-		description:
-			'A fixed-scope MVP for nontechnical founders who need more than a developer. I help cut the scope, shape the product, and get the first useful version live.',
-		bullets: ['Define the first useful version before code starts.', 'Build and launch in 4 weeks with direct feedback.'],
-		href: '/launch/#mvp',
-		cta: 'See the MVP offer',
-		image: casaElariaHero,
-		imageAlt: 'Market validation storefront built for a beauty brand MVP test.'
-	},
-	{
-		label: '02',
-		title: 'Workflow Audit & AI Systems',
-		price: 'Workflow audits start at $2,000',
-		description:
-			'For founder-led teams and SMBs with operational drag. I map the workflow, find the bottleneck, and define the first useful system before implementation starts.',
-		bullets: ['Map the workflow before automating the wrong step.', 'Credit the audit toward implementation if we move forward.'],
-		href: '/launch/#automation',
-		cta: 'See the automation offer',
-		image: desarmaderoHero,
-		imageAlt: 'Inventory and workflow software interface for an auto-parts supplier.'
 	}
 ];
 
@@ -105,6 +58,8 @@ const caseStudies = [
 		imageClass: 'object-left-top'
 	}
 ];
+
+const [featuredCaseStudy, ...secondaryCaseStudies] = caseStudies;
 
 const processSteps = [
 	{
@@ -142,6 +97,7 @@ const fitColumns = [
 		]
 	}
 ];
+
 ---
 
 <BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
@@ -181,28 +137,27 @@ const fitColumns = [
 	</section>
 
 	<section class='container py-10 md:py-12' aria-labelledby='home-paths-title'>
-		<div class='ledger-section space-y-7'>
-			<div class='ledger-split items-start'>
-				<div class='space-y-4'>
-					<p class='launch-meta text-primary'>Start here</p>
-					<h2 id='home-paths-title' class='heading-display text-3xl md:text-4xl'>Choose the problem you need solved.</h2>
-				</div>
-				<div class='ledger-rail'>
-					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						Most good engagements start as either a product launch or an operations bottleneck. Pick the closest path, then we can narrow
-						the scope on a roadmap call.
-					</p>
-				</div>
+		<div class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='launch-meta text-primary'>Start here</p>
+				<h2 id='home-paths-title' class='heading-display text-3xl md:text-5xl'>What are you focused on right now?</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					Most good engagements start as either a product launch or an operations bottleneck. Start with the closest path, then we narrow the
+					scope on a roadmap call.
+				</p>
 			</div>
 
-			<div class='grid gap-6 md:grid-cols-2'>
+			<div class='path-choices'>
 				{
 					pathCards.map((path) => (
-						<a href={path.href} class='group signal-line flex flex-col gap-4 pt-5 transition-colors hover:text-primary'>
-							<p class='launch-meta text-primary'>{path.label}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display text-2xl md:text-3xl'>{path.title}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{path.body}</p>
+						<a href={path.href} class='path-choice group'>
+							<div class='path-choice__header'>
+								<p class='launch-meta text-primary'>{path.label}</p>
+								<span class='path-choice__arrow'>↗</span>
+							</div>
+							<div class='space-y-4'>
+								<h3 class='heading-display text-[clamp(2.4rem,4vw,4.4rem)]'>{path.title}</h3>
+								<p class='path-choice__body'>{path.body}</p>
 							</div>
 							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{path.cta}</span>
 						</a>
@@ -212,193 +167,108 @@ const fitColumns = [
 		</div>
 	</section>
 
-	<section class='container pb-20 pt-8 md:pb-24 md:pt-10' id='approach'>
-		<div class='ledger-section space-y-12'>
-			<div class='ledger-split launch-proof-split items-start'>
-				<div class='space-y-4'>
-					<p class='launch-meta text-primary'>Why this works</p>
-					<p class='text-2xl font-semibold leading-tight text-black dark:text-white md:text-3xl'>
-						One person handles the scope, the build, and the tradeoffs.
-					</p>
-					<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						You are not hiring separate strategy, design, and engineering layers. You get direct access to the person making the product and
-						technical calls, and the same person keeps the first useful version honest.
-					</p>
-					<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						That work can be an MVP, an internal tool, an automation layer, or an AI system that helps the team get more done. The point is
-						a smaller system in use soon, not a giant custom program.
-					</p>
-				</div>
-
-				<div class='ledger-rail home-proof-rail'>
-					<div class='space-y-0 border-t border-black/10 dark:border-white/12'>
-						{
-							proofPoints.map((point, index) => (
-								<div
-									class:list={[
-										'launch-proof-row home-proof-row grid gap-3 border-b border-black/10 py-4 dark:border-white/12 md:items-start',
-										index === proofPoints.length - 1 && 'border-b-0'
-									]}
-								>
-									<p class='launch-proof-metric home-proof-metric text-primary'>{point.metric}</p>
-									<p class='launch-meta md:pt-2'>{point.label}</p>
-								</div>
-							))
-						}
-					</div>
-					<p class='launch-meta home-proof-note mt-5'>Previously at Capgemini &amp; LeagueApps</p>
-				</div>
-			</div>
-
-			{
-				founderQuote && (
-					<TestimonialBillboard
-						quote={founderQuote.billboardText ?? founderQuote.text}
-						name={founderQuote.name}
-						role={founderQuote.role}
-						company={founderQuote.company}
-						image={monicaPhoto}
-						label='Founder note'
-						class='testimonial-billboard--launch'
-					/>
-				)
-			}
-
-			<div class='space-y-0'>
-				{
-					processSteps.map((step) => (
-						<div class='ledger-entry md:grid-cols-[120px_1fr] md:items-start'>
-							<p class='launch-meta text-primary'>Step {step.number}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
-								<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<section class='container py-20 md:py-24'>
-		<div class='space-y-5'>
-			<p class='section-label'>// Services</p>
-			<div class='max-w-3xl space-y-4'>
-				<h2 class='heading-display text-4xl md:text-5xl'>Two ways I usually help.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Most projects start as either a launch problem or a workflow problem. The page below tells you which path fits.
-				</p>
-			</div>
-		</div>
-
-		<div class='mt-12 space-y-12 md:space-y-16'>
-			{
-				offers.map((offer, index) => (
-					<article class='grid gap-8 border-t border-black/12 py-10 dark:border-white/12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14'>
-						<div class:list={[index % 2 === 1 && 'lg:order-2']}>
-							<p class='font-mono text-xs uppercase tracking-[0.3em] text-primary'>Offer {offer.label}</p>
-							<div class='mt-5 max-w-2xl space-y-5'>
-								<h3 class='heading-display text-3xl md:text-4xl'>{offer.title}</h3>
-								<p class='font-mono text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400'>{offer.price}</p>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{offer.description}</p>
-								<ul class='space-y-4 text-sm leading-6 text-zinc-700 dark:text-zinc-200 md:text-base'>
-									{offer.bullets.map((bullet) => (
-										<li class='border-t border-black/10 pt-4 dark:border-white/10'>{bullet}</li>
-									))}
-								</ul>
-								<div class='pt-2'>
-									<a class='arrow-link' href={offer.href}>
-										{offer.cta}
-									</a>
-								</div>
-							</div>
-						</div>
-
-						<figure class:list={['overflow-hidden border border-black/15 bg-black dark:border-white/15', index % 2 === 1 && 'lg:order-1']}>
-							<Image
-								src={offer.image}
-								alt={offer.imageAlt}
-								class='aspect-[5/4] h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]'
-								loading='lazy'
-							/>
-						</figure>
-					</article>
-				))
-			}
-		</div>
-	</section>
-
 	<section class='container py-20 md:py-24' id='case-studies'>
 		<div class='space-y-5'>
 			<p class='section-label'>// Case Studies</p>
 			<div class='max-w-3xl space-y-4'>
 				<h2 class='heading-display text-4xl md:text-5xl'>Find the closest match for the kind of problem you have.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Start with the project that looks closest to your situation, whether that is an MVP launch, a workflow bottleneck, or an AI system
-					your team needs to use every week.
+					Start with the project that feels closest to the problem you need solved, whether that is an MVP launch, a workflow bottleneck, or
+					an AI system your team needs to use every week.
 				</p>
 			</div>
 		</div>
 
-		<div class='mt-12 space-y-0'>
+		<div class='mt-12 space-y-10 md:space-y-12'>
 			{
-				caseStudies.map((study, index) => (
+				featuredCaseStudy && (
 					<a
-						href={`/projects/${study.slug}/`}
-						class='group grid gap-8 border-t border-black/12 py-12 transition-colors dark:border-white/12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-16'
+						href={`/projects/${featuredCaseStudy.slug}/`}
+						class='case-study-feature group grid gap-8 transition-colors lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-14'
 					>
-						<figure class:list={['overflow-hidden border border-black/15 bg-black dark:border-white/15', index % 2 === 1 && 'lg:order-2']}>
+						<figure class='overflow-hidden border border-black/15 bg-black dark:border-white/15'>
 							<Image
-								src={study.image}
-								alt={study.imageAlt}
+								src={featuredCaseStudy.image}
+								alt={featuredCaseStudy.imageAlt}
 								class:list={[
 									'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
-									study.imageClass
+									featuredCaseStudy.imageClass
 								]}
 								loading='lazy'
 							/>
 						</figure>
 
-						<div class:list={['flex h-full flex-col justify-between gap-6 lg:py-2', index % 2 === 1 && 'lg:order-1']}>
+						<div class='flex h-full flex-col justify-between gap-6 lg:py-2'>
 							<div class='space-y-4'>
-								<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{study.label}</p>
-								<h3 class='heading-display text-3xl md:text-4xl'>{study.title}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{study.body}</p>
+								<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>Featured / {featuredCaseStudy.label}</p>
+								<h3 class='heading-display text-3xl md:text-5xl'>{featuredCaseStudy.title}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredCaseStudy.body}</p>
 							</div>
 							<div class='space-y-4'>
 								<div class='border-t border-black/12 pt-4 dark:border-white/12'>
 									<p class='font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500'>Outcome</p>
-									<p class='mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100'>{study.outcome}</p>
+									<p class='mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100'>{featuredCaseStudy.outcome}</p>
 								</div>
 								<span class='arrow-link group-hover:border-primary group-hover:text-primary'>View case study</span>
 							</div>
 						</div>
 					</a>
-				))
+				)
 			}
+
+			<div class='case-study-secondary-grid'>
+				{
+					secondaryCaseStudies.map((study) => (
+						<a href={`/projects/${study.slug}/`} class='case-study-secondary group'>
+							<figure class='overflow-hidden border border-black/15 bg-black dark:border-white/15'>
+								<Image
+									src={study.image}
+									alt={study.imageAlt}
+									class:list={[
+										'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
+										study.imageClass
+									]}
+									loading='lazy'
+								/>
+							</figure>
+							<div class='space-y-3'>
+								<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{study.label}</p>
+								<h3 class='heading-display text-2xl md:text-3xl'>{study.title}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{study.outcome}</p>
+							</div>
+							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>View case study</span>
+						</a>
+					))
+				}
+			</div>
+
+			<div class='pt-2'>
+				<a class='arrow-link' href='/projects/'>
+					See all case studies
+				</a>
+			</div>
 		</div>
 	</section>
 
-	<section class='container py-20 md:py-24'>
-		<div class='grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
-			<div class='space-y-5'>
-				<p class='section-label'>// Fit</p>
-				<h2 class='heading-display text-4xl md:text-5xl'>Know quickly if this is the right kind of help.</h2>
-				<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The fit should be clear by now. If you need the first useful version, or the first useful system, the next step is a roadmap call.
+	<section class='container py-20 md:py-24' id='approach'>
+		<div class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// How We Work Together</p>
+				<h2 class='heading-display text-4xl md:text-5xl'>A smaller first step, then direct execution.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The process is meant to reduce noise, not create it. Each step should make the next decision clearer.
 				</p>
 			</div>
 
-			<div class='grid gap-10 md:grid-cols-2'>
+			<div class='how-we-work-grid'>
 				{
-					fitColumns.map((column) => (
-						<div class='signal-line pt-5'>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{column.title}</p>
-							<ul class='mt-6 space-y-4 text-base leading-7 text-zinc-700 dark:text-zinc-200'>
-								{column.items.map((item) => (
-									<li class='border-t border-black/10 pt-4 dark:border-white/10'>{item}</li>
-								))}
-							</ul>
+					processSteps.map((step) => (
+						<div class='how-we-work-step'>
+							<p class='launch-meta text-primary'>Step {step.number}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
+								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+							</div>
 						</div>
 					))
 				}
@@ -406,38 +276,42 @@ const fitColumns = [
 		</div>
 	</section>
 
-	<section class='border-y border-black/10 bg-black py-16 text-white dark:border-white/10 md:py-20'>
-		<div class='container'>
-			<div class='grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.92fr)] lg:items-end lg:gap-16'>
-				<div class='space-y-6'>
-					<p class='section-label'>// Next Step</p>
-					<h2 class='heading-display max-w-[16ch] text-[clamp(2.85rem,4.9vw,4.8rem)]'>Tell me what&rsquo;s slowing things down.</h2>
-				</div>
+	<section class='container py-20 md:py-24'>
+		<div class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Fit</p>
+				<h2 class='heading-display text-4xl md:text-5xl'>Know quickly if this is the right kind of help.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The best fit is usually a founder or small team that needs a useful first version or internal system in use soon.
+				</p>
+			</div>
 
-				<div class='space-y-6 lg:pb-1'>
-					<p class='poster-copy max-w-[34rem] text-white/74'>
-						In a 30-minute roadmap call, we&rsquo;ll figure out whether this should start as an MVP, a workflow audit, or a smaller first
-						step.
-					</p>
-					<div class='flex flex-wrap gap-4 pt-1'>
-						<a
-							class='btn-primary'
-							href={BOOK_CALL_URL}
-							target='_blank'
-							rel='noopener noreferrer'
-							data-track-event='book_call_clicked'
-							data-track-location='home_final_primary'
-						>
-							Book a Roadmap Call
-						</a>
-						<a
-							class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
-							href='/launch/'
-						>
-							See Services
-						</a>
-					</div>
-				</div>
+			<div class='fit-grid'>
+				{
+					fitColumns.map((column) => (
+						<div class='fit-column'>
+							<p class='launch-meta text-primary'>{column.title}</p>
+							<ul class='fit-list'>
+								{column.items.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+
+			<div class='fit-actions pt-2'>
+				<a
+					class='home-hero-primary-link'
+					href={BOOK_CALL_URL}
+					target='_blank'
+					rel='noopener noreferrer'
+					data-track-event='book_call_clicked'
+					data-track-location='home_fit_primary'
+				>
+					Book a Roadmap Call
+				</a>
 			</div>
 		</div>
 	</section>
