@@ -146,41 +146,38 @@ const fitColumns = [
 
 <BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
 	<section class='home-hero-shell'>
-		<header class='home-hero-split'>
-			<div class='home-hero-copy-wrap'>
-				<div class='home-hero-copy space-y-5 md:space-y-6'>
-					<p class='home-hero-context home-hero-context--hero'>Services for founders and founder-led teams</p>
-					<h1 class='home-hero-title'>
-						<span class='block md:whitespace-nowrap'>Launch the</span>
-						<span class='block md:whitespace-nowrap'>product</span>
-						<span class='block home-hero-pivot'>OR</span>
-						<span class='block md:whitespace-nowrap'>fix the</span>
-						<span class='block md:whitespace-nowrap'>workflow.</span>
-					</h1>
-					<p class='launch-body home-hero-body'>
-						I help founder-led teams turn vague product ideas and manual workflows into smaller systems that can be scoped, built, launched,
-						and owned without agency overhead.
-					</p>
-					<div class='home-hero-actions'>
-						<a
-							class='btn-primary home-hero-action'
-							href={BOOK_CALL_URL}
-							target='_blank'
-							rel='noopener noreferrer'
-							data-track-event='book_call_clicked'
-							data-track-location='home_hero_primary'
-						>
-							Book a Roadmap Call
-						</a>
-						<a class='btn-secondary home-hero-action' href='/launch/#paths'>Choose Your Path</a>
+		<div class='container home-hero-stage'>
+			<header class='home-hero-split'>
+				<div class='home-hero-copy-wrap'>
+					<div class='home-hero-copy space-y-6 md:space-y-7'>
+						<p class='home-hero-context home-hero-context--hero'>For nontechnical founders</p>
+						<h1 class='home-hero-title'>Turn rough ideas and manual workflows into working software.</h1>
+						<p class='home-hero-body'>
+							Get one senior partner to refine your concept, cut scope, and ship your MVP. No agency overhead, just direct execution.
+						</p>
+						<div class='home-hero-actions'>
+							<a
+								class='home-hero-primary-link'
+								href={BOOK_CALL_URL}
+								target='_blank'
+								rel='noopener noreferrer'
+								data-track-event='book_call_clicked'
+								data-track-location='home_hero_primary'
+							>
+								Book a Roadmap Call
+							</a>
+							<a class='home-hero-secondary-link' href='/projects/'>See case studies</a>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class='home-hero-image-wrap'>
-				<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
-			</div>
-		</header>
+				<div class='home-hero-media'>
+					<figure class='home-hero-image-wrap'>
+						<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
+					</figure>
+				</div>
+			</header>
+		</div>
 	</section>
 
 	<section class='container py-10 md:py-12' aria-labelledby='home-paths-title'>
