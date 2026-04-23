@@ -274,6 +274,82 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
             )
         }
         <script is:inline>
+            function fitHeadingToLines(title) {
+                const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+                const viewportWidth = window.innerWidth;
+                const mobileMode = viewportWidth <= 768;
+                const narrowMobileMode = viewportWidth <= 480;
+                const maxLines = narrowMobileMode
+                    ? Number.parseInt(title.dataset.fitLinesNarrowMobile || "4", 10)
+                    : mobileMode
+                        ? Number.parseInt(title.dataset.fitLinesMobile || "4", 10)
+                        : Number.parseInt(title.dataset.fitLinesDesktop || "3", 10);
+                const minRem = Number.parseFloat(title.dataset.fitMinRem || "1.8");
+                const configuredMaxRem = Number.parseFloat(title.dataset.fitMaxRem || "4.85");
+                const maxRem = narrowMobileMode
+                    ? Math.min(configuredMaxRem, Number.parseFloat(title.dataset.fitMaxNarrowRem || "3.5"))
+                    : configuredMaxRem;
+                const minPx = minRem * rootFontSize;
+                const hardMaxPx = maxRem * rootFontSize;
+
+                title.style.removeProperty("font-size");
+                const cssBaselinePx = Number.parseFloat(getComputedStyle(title).fontSize) || hardMaxPx;
+                const maxPx = Math.min(cssBaselinePx, hardMaxPx);
+
+                title.style.fontSize = `${maxPx}px`;
+
+                let low = minPx;
+                let high = maxPx;
+                let best = maxPx;
+
+                for (let i = 0; i < 14; i++) {
+                    const mid = (low + high) / 2;
+                    title.style.fontSize = `${mid}px`;
+                    const computed = getComputedStyle(title);
+                    const lineHeight = Number.parseFloat(computed.lineHeight);
+                    const height = title.getBoundingClientRect().height;
+                    const lineCount = lineHeight > 0 ? Math.round(height / lineHeight) : Infinity;
+
+                    if (lineCount <= maxLines) {
+                        best = mid;
+                        low = mid;
+                    } else {
+                        high = mid;
+                    }
+                }
+
+                title.style.fontSize = `${best}px`;
+            }
+
+            function setupHeadingFit() {
+                const titles = Array.from(document.querySelectorAll("[data-fit-heading]"));
+                if (titles.length === 0) return;
+
+                const refitAll = () => {
+                    titles.forEach((title) => fitHeadingToLines(title));
+                };
+
+                refitAll();
+
+                const resizeObserver = new ResizeObserver(() => {
+                    requestAnimationFrame(refitAll);
+                });
+
+                titles.forEach((title) => {
+                    const container = title.closest("[data-fit-container]") || title.parentElement;
+                    if (container) resizeObserver.observe(container);
+                });
+
+                window.addEventListener("resize", refitAll, { passive: true });
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", setupHeadingFit, { once: true });
+            } else {
+                setupHeadingFit();
+            }
+        </script>
+        <script is:inline>
             window.dataLayer = window.dataLayer || [];
             window.gtag =
                 window.gtag ||

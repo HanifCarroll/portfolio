@@ -74,6 +74,27 @@
 		text-wrap: balance;
 	}
 
+	.heading-display--hero {
+		font-size: clamp(2.35rem, 1.85rem + 2.15vw, 4.85rem);
+	}
+
+	.heading-display--section {
+		font-size: clamp(1.95rem, 1.55rem + 1.45vw, 3.9rem);
+	}
+
+	.heading-display--subsection {
+		font-size: clamp(1.55rem, 1.28rem + 0.85vw, 2.45rem);
+	}
+
+	.heading-display--note {
+		font-size: clamp(1.3rem, 1.12rem + 0.55vw, 1.85rem);
+	}
+
+	.heading-display--price {
+		font-size: clamp(2.45rem, 1.95rem + 1.55vw, 4.1rem);
+		line-height: 0.88;
+	}
+
 	/* Tech card with border and brutalist shadow */
 	.tech-card {
 		@apply border text-black;
@@ -532,8 +553,10 @@
 	.service-summary-item {
 		display: grid;
 		gap: 0.45rem;
-		padding-top: 1.1rem;
-		border-top: 1px solid rgba(0, 0, 0, 0.12);
+		padding: 1.15rem 1.2rem 1.25rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.48));
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.service-compare-grid {
@@ -609,8 +632,8 @@
 		display: grid;
 		gap: 1rem;
 		padding: 1.35rem 1.4rem 1.5rem;
-		background: rgba(255, 255, 255, 0.28);
-		outline: 1px solid rgba(0, 0, 0, 0.08);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.54));
+		outline: 1px solid rgba(0, 0, 0, 0.06);
 		outline-offset: -1px;
 	}
 
@@ -631,8 +654,10 @@
 	.service-audit-note {
 		display: grid;
 		gap: 0.7rem;
-		padding: 1.2rem 0 0;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		padding: 1.2rem 1.25rem 1.3rem;
+		background: rgba(255, 255, 255, 0.14);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.service-audit-includes {
@@ -655,7 +680,6 @@
 	}
 
 	.about-hero-title {
-		max-width: 12ch;
 		text-wrap: pretty;
 	}
 
@@ -663,8 +687,17 @@
 		display: grid;
 		gap: 0.9rem;
 		max-width: 20rem;
-		padding: 1.25rem 0 0;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		padding: 1.25rem 1.25rem 1.35rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(247, 242, 232, 0.58));
+		outline: 1px solid rgba(0, 0, 0, 0.06);
+		outline-offset: -1px;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+	}
+
+	.about-hero-note__thesis {
+		color: rgb(39 39 42);
+		letter-spacing: -0.04em;
+		line-height: 0.97;
 	}
 
 	.about-strengths-grid {
@@ -674,11 +707,22 @@
 
 	.about-strength-card {
 		display: grid;
-		gap: 0.8rem;
+		gap: 0.95rem;
 		padding: 1.35rem 1.4rem 1.5rem;
-		background: rgba(255, 255, 255, 0.22);
-		outline: 1px solid rgba(0, 0, 0, 0.08);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(244, 239, 230, 0.62));
+		outline: 1px solid rgba(0, 0, 0, 0.06);
 		outline-offset: -1px;
+	}
+
+	.about-strength-card :is(p:last-child),
+	.about-reasons-grid__item :is(p:last-child),
+	.about-background-rail__item :is(p:last-child) {
+		color: rgb(39 39 42);
+	}
+
+	.about-card-label {
+		color: rgb(82 82 91);
+		opacity: 0.95;
 	}
 
 	.about-working-style {
@@ -699,6 +743,7 @@
 	.about-working-style__num {
 		font-size: clamp(2.8rem, 8vw, 5rem);
 		line-height: 0.9;
+		color: rgba(0, 102, 255, 0.72);
 	}
 
 	.about-reasons-grid {
@@ -708,9 +753,11 @@
 
 	.about-reasons-grid__item {
 		display: grid;
-		gap: 0.8rem;
-		padding: 1.25rem 0 0;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		gap: 0.95rem;
+		padding: 1.35rem 1.4rem 1.5rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(243, 238, 229, 0.54));
+		outline: 1px solid rgba(0, 0, 0, 0.06);
+		outline-offset: -1px;
 	}
 
 	.about-background-rail {
@@ -720,9 +767,22 @@
 
 	.about-background-rail__item {
 		display: grid;
-		gap: 0.7rem;
-		padding: 1.2rem 0 0;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		gap: 0.8rem;
+		padding: 1.25rem 1.3rem 1.4rem;
+		background: rgba(255, 255, 255, 0.12);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
+	}
+
+	.about-section-panel {
+		padding: 1.75rem 1.4rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(244, 240, 232, 0.45));
+		outline: 1px solid rgba(0, 0, 0, 0.04);
+		outline-offset: -1px;
+	}
+
+	.about-section-panel--soft {
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(242, 237, 227, 0.32));
 	}
 
 	.case-studies-featured {
@@ -754,6 +814,15 @@
 	.case-studies-meta {
 		display: grid;
 		gap: 1.25rem;
+	}
+
+	.case-studies-meta > div {
+		display: grid;
+		gap: 0.65rem;
+		padding: 1.1rem 1.15rem 1.2rem;
+		background: rgba(255, 255, 255, 0.14);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.case-studies-editorial-list {
@@ -801,8 +870,10 @@
 	.case-studies-browse-types__item {
 		display: grid;
 		gap: 0.65rem;
-		padding: 1.2rem 0 0;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		padding: 1.2rem 1.25rem 1.3rem;
+		background: rgba(255, 255, 255, 0.14);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.case-studies-experiments {
@@ -814,8 +885,8 @@
 		display: grid;
 		gap: 0.85rem;
 		padding: 1.35rem 1.4rem 1.5rem;
-		background: rgba(255, 255, 255, 0.2);
-		outline: 1px solid rgba(0, 0, 0, 0.08);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.48));
+		outline: 1px solid rgba(0, 0, 0, 0.06);
 		outline-offset: -1px;
 	}
 
@@ -845,8 +916,10 @@
 	.insights-featured__rail-item {
 		display: grid;
 		gap: 0.85rem;
-		padding-top: 1rem;
-		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		padding: 1.2rem 1.25rem 1.3rem;
+		background: rgba(255, 255, 255, 0.14);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.insights-editorial-list {
@@ -870,6 +943,106 @@
 		display: grid;
 		gap: 1rem;
 		max-width: 36rem;
+	}
+
+	.blog-post-hero {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.blog-post-hero__copy {
+		display: grid;
+		gap: 1rem;
+		max-width: 54rem;
+	}
+
+	.blog-post-hero__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.blog-post-hero__title {
+		font-size: clamp(2.15rem, 1.75rem + 1.95vw, 4.75rem);
+		max-width: 26ch;
+	}
+
+	.blog-post-hero__dek {
+		max-width: 42rem;
+	}
+
+	.blog-post-hero__media {
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.22);
+		outline: 1px solid rgba(0, 0, 0, 0.08);
+		outline-offset: -1px;
+	}
+
+	.blog-post-hero__image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.blog-post-layout {
+		display: grid;
+		gap: 3rem;
+		align-items: start;
+	}
+
+	.blog-post-main {
+		display: grid;
+		gap: 3rem;
+		min-width: 0;
+	}
+
+	.blog-post-article {
+		min-width: 0;
+	}
+
+	.blog-post-prose {
+		max-width: 78ch;
+	}
+
+	.blog-post-prose :where(h2) {
+		border-top: 0;
+		padding-top: 0;
+		margin-top: 4rem;
+	}
+
+	.blog-post-prose :where(h3) {
+		margin-top: 2.75rem;
+	}
+
+	.blog-post-prose :where(blockquote) {
+		border-left-width: 2px;
+		background: transparent;
+		padding-left: 1.5rem;
+		padding-right: 0;
+	}
+
+	.blog-post-closing {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
+	}
+
+	.blog-post-rail {
+		display: none;
+	}
+
+	.blog-post-rail__block {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1.2rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
+	}
+
+	.about-the-author {
+		display: grid;
+		gap: 1rem;
 	}
 
 	.case-study-detail {
@@ -1013,7 +1186,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
-		padding-top: 0.25rem;
+		padding: 1.15rem 1.2rem 1.25rem;
+		background: rgba(255, 255, 255, 0.12);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.how-we-work-grid {
@@ -1024,7 +1200,10 @@
 	.how-we-work-step {
 		display: grid;
 		gap: 1.25rem;
-		padding: 0;
+		padding: 1.25rem 1.3rem 1.35rem;
+		background: rgba(255, 255, 255, 0.12);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.how-we-work-step__num {
@@ -1041,6 +1220,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		padding: 1.2rem 1.25rem 1.3rem;
+		background: rgba(255, 255, 255, 0.12);
+		outline: 1px solid rgba(0, 0, 0, 0.05);
+		outline-offset: -1px;
 	}
 
 	.fit-actions {
@@ -1135,6 +1318,7 @@
 	:is(.dark) .service-audit-sheet,
 	:is(.dark) .service-launch-step,
 	:is(.dark) .about-strength-card,
+	:is(.dark) .blog-post-hero__media,
 	:is(.dark) .case-study-detail__hero-media,
 	:is(.dark) .case-study-detail__proof-media,
 	:is(.dark) .case-studies-featured__media,
@@ -1148,11 +1332,66 @@
 	:is(.dark) .about-hero-note,
 	:is(.dark) .about-reasons-grid__item,
 	:is(.dark) .about-background-rail__item,
+	:is(.dark) .about-section-panel,
+	:is(.dark) .blog-post-closing,
+	:is(.dark) .blog-post-rail__block,
 	:is(.dark) .insights-featured__rail-item,
 	:is(.dark) .case-study-detail__hero-note,
 	:is(.dark) .case-study-detail__meta-item,
 	:is(.dark) .case-studies-browse-types__item {
 		border-top-color: rgba(255, 255, 255, 0.12);
+	}
+
+	:is(.dark) .about-hero-note,
+	:is(.dark) .about-strength-card,
+	:is(.dark) .about-reasons-grid__item,
+	:is(.dark) .about-background-rail__item,
+	:is(.dark) .about-section-panel,
+	:is(.dark) .service-summary-item,
+	:is(.dark) .service-launch-step,
+	:is(.dark) .service-audit-note,
+	:is(.dark) .case-studies-meta > div,
+	:is(.dark) .case-studies-browse-types__item,
+	:is(.dark) .case-studies-experiment,
+	:is(.dark) .insights-featured__rail-item,
+	:is(.dark) .case-study-secondary,
+	:is(.dark) .how-we-work-step,
+	:is(.dark) .fit-column {
+		background: rgba(255, 255, 255, 0.03);
+		outline-color: rgba(255, 255, 255, 0.1);
+		box-shadow: none;
+	}
+
+	:is(.dark) .about-hero-note__thesis {
+		color: rgb(244 244 245);
+	}
+
+	:is(.dark) .about-card-label {
+		color: rgb(161 161 170);
+	}
+
+	.service-summary-item :is(p:last-child),
+	.service-audit-note :is(p:last-child),
+	.case-studies-meta > div :is(p:last-child),
+	.case-studies-browse-types__item :is(p:last-child),
+	.case-studies-experiment :is(p:last-child),
+	.insights-featured__rail-item :is(p:last-child),
+	.case-study-secondary :is(p:last-child),
+	.how-we-work-step :is(p:last-child),
+	.fit-column :is(p:last-child) {
+		color: rgb(39 39 42);
+	}
+
+	:is(.dark) .service-summary-item :is(p:last-child),
+	:is(.dark) .service-audit-note :is(p:last-child),
+	:is(.dark) .case-studies-meta > div :is(p:last-child),
+	:is(.dark) .case-studies-browse-types__item :is(p:last-child),
+	:is(.dark) .case-studies-experiment :is(p:last-child),
+	:is(.dark) .insights-featured__rail-item :is(p:last-child),
+	:is(.dark) .case-study-secondary :is(p:last-child),
+	:is(.dark) .how-we-work-step :is(p:last-child),
+	:is(.dark) .fit-column :is(p:last-child) {
+		color: rgb(228 228 231);
 	}
 
 	:is(.dark) .path-choice__body,
@@ -1309,6 +1548,23 @@
 		.insights-editorial-item {
 			grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
 			gap: 3rem;
+		}
+
+		.blog-post-hero {
+			gap: 2.5rem;
+		}
+
+		.blog-post-layout {
+			grid-template-columns: minmax(0, 1fr) minmax(16rem, 18rem);
+			gap: 3.5rem;
+		}
+
+		.blog-post-rail {
+			position: sticky;
+			top: 6rem;
+			display: grid;
+			gap: 1.75rem;
+			align-self: start;
 		}
 
 		.case-study-detail__hero {

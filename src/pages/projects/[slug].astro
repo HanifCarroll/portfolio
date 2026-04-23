@@ -147,7 +147,14 @@ const images = imageMap[project.slug];
 					<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
 						<div class='case-study-detail__hero-copy space-y-5'>
 							<p class='section-label'>{content.pageLabel}</p>
-							<h1 class='heading-display text-4xl md:text-6xl'>{project.title}</h1>
+							<h1
+								class='heading-display heading-display--hero'
+								data-fit-heading
+								data-fit-min-rem='2'
+								data-fit-max-rem='4.85'
+							>
+								{project.title}
+							</h1>
 							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
 							<div class='flex flex-wrap gap-3'>
 								{
@@ -179,7 +186,7 @@ const images = imageMap[project.slug];
 						<div class='case-study-detail__hero-summary'>
 							<div class='case-study-detail__hero-note'>
 								<p class='section-label'>{content.heroNoteLabel}</p>
-								<p class='heading-display text-2xl md:text-3xl'>{content.heroNote}</p>
+								<p class='heading-display heading-display--note'>{content.heroNote}</p>
 							</div>
 
 							<div class='case-study-detail__meta-item case-study-detail__meta-item--outcome'>
@@ -213,13 +220,20 @@ const images = imageMap[project.slug];
 					<div class='case-study-detail__hero-body'>
 						<div class='space-y-5'>
 							<p class='section-label'>{content.pageLabel}</p>
-							<h1 class='heading-display text-4xl md:text-6xl'>{project.title}</h1>
+							<h1
+								class='heading-display heading-display--hero'
+								data-fit-heading
+								data-fit-min-rem='2'
+								data-fit-max-rem='4.85'
+							>
+								{project.title}
+							</h1>
 							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
 						</div>
 
 						<div class='case-study-detail__hero-note'>
 							<p class='section-label'>{content.heroNoteLabel}</p>
-							<p class='heading-display text-2xl md:text-3xl'>{content.heroNote}</p>
+							<p class='heading-display heading-display--note'>{content.heroNote}</p>
 						</div>
 
 						<div class='case-study-detail__meta-grid'>

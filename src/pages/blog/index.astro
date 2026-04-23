@@ -27,7 +27,14 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 
 		<header class='max-w-5xl space-y-5'>
 			<p class='section-label'>// Insights</p>
-			<h1 class='heading-display text-4xl md:text-6xl'>Notes on products, workflows, and AI.</h1>
+			<h1
+				class='heading-display heading-display--hero'
+				data-fit-heading
+				data-fit-min-rem='2'
+				data-fit-max-rem='4.85'
+			>
+				Notes on products, workflows, and AI.
+			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
 				Most of these posts come out of real product and client work. Some are for founders deciding what the first useful system should be.
 				Others are build notes from the tooling, architecture, and debugging behind that work.
@@ -46,7 +53,12 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 							</div>
 						</div>
 						<div class='space-y-5'>
-							<h2 class='heading-display text-4xl md:text-6xl'>
+							<h2
+								class='heading-display heading-display--hero'
+								data-fit-heading
+								data-fit-min-rem='2'
+								data-fit-max-rem='4.85'
+							>
 								<a href={`/blog/${featuredPost.id}/`} class='transition-colors hover:text-primary'>
 									{featuredPost.data.title}
 								</a>
@@ -67,7 +79,7 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 												<FormattedDate date={post.data.pubDate} />
 												<span class='launch-meta text-primary'>{audienceLabel(post)}</span>
 											</div>
-											<h3 class='heading-display text-2xl md:text-3xl'>
+											<h3 class='heading-display heading-display--subsection'>
 												<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>
 													{post.data.title}
 												</a>
@@ -96,7 +108,7 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 										<FormattedDate date={post.data.pubDate} />
 										<span class='launch-meta text-primary'>{audienceLabel(post)}</span>
 									</div>
-									<h3 class='heading-display text-3xl md:text-5xl'>
+									<h3 class='heading-display heading-display--section'>
 										<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>
 											{post.data.title}
 										</a>

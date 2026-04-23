@@ -20,23 +20,23 @@ function buildToc(headings: any) {
 }
 ---
 
-<nav class='toc sticky top-4 py-2 lg:-ml-3'>
-	<h3 class='font-extrabold uppercase mb-1 px-3 text-sm'>On This Page</h3>
-	<ul class='toc-list max-h-[calc(100vh-70px)] overflow-auto text-[.825rem] text-[var(--color-content-secondary)]'>
+<nav class='toc'>
+	<h3 class='section-label'>// On This Page</h3>
+	<ul class='toc-list max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] text-[var(--color-content-secondary)]'>
 		{
 			toc.map((heading: any) => (
 				<li>
 					<a
-						class='block font-bold py-1.5 px-3 border-l border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300'
+						class='block py-2 text-inherit leading-tight text-zinc-700 transition-colors hover:text-primary dark:text-zinc-300'
 						href={'#' + heading.slug}>
 						{heading.text}
 					</a>
 					{heading.subheadings?.length > 0 && (
-						<ul>
+						<ul class='pl-4'>
 							{heading.subheadings.map((subheading: any) => (
 								<li>
 									<a
-										class='block py-1.5 pl-6 pr-3 border-l border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300'
+										class='block py-1.5 text-inherit leading-tight text-zinc-600 transition-colors hover:text-primary dark:text-zinc-400'
 										href={'#' + subheading.slug}>
 										{subheading.text}
 									</a>
@@ -50,6 +50,11 @@ function buildToc(headings: any) {
 	</ul>
 </nav>
 <style>
+	.toc {
+		display: grid;
+		gap: 1rem;
+	}
+
 	.toc-list::-webkit-scrollbar {
 		width: 5px;
 	}

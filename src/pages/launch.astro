@@ -152,8 +152,14 @@ const faqItems = [
 
 		<header class='service-hero-grid'>
 			<div class='space-y-6'>
-				<p class='section-label'>// Services</p>
-				<h1 class='heading-display text-4xl md:text-6xl'>Choose the right starting path.</h1>
+				<h1
+					class='heading-display heading-display--hero'
+					data-fit-heading
+					data-fit-min-rem='2'
+					data-fit-max-rem='4.85'
+				>
+					Choose the right starting path.
+				</h1>
 				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
 					This page should help you decide whether you need a focused MVP build or a workflow audit first.
 				</p>
@@ -186,19 +192,19 @@ const faqItems = [
 		<section id='compare' class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// Compare The Paths</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Most engagements start in one of two places.</h2>
+				<h2 class='heading-display heading-display--section'>Most engagements start in one of two places.</h2>
 			</div>
 
 			<div class='service-compare-grid'>
 				<a href={compareCards[0].href} class='service-compare-panel service-compare-panel--launch group'>
 					<div class='service-compare-price'>
-						<p class='heading-display text-5xl text-primary md:text-6xl' style='font-variant-numeric: tabular-nums'>{compareCards[0].priceDisplay}</p>
+						<p class='heading-display heading-display--price text-primary' style='font-variant-numeric: tabular-nums'>{compareCards[0].priceDisplay}</p>
 						<p class='launch-meta'>{compareCards[0].price}</p>
 					</div>
 					<div class='space-y-4'>
 						<p class='launch-meta text-primary'>{compareCards[0].label}</p>
 						<p class='launch-meta'>{compareCards[0].kicker}</p>
-						<h3 class='heading-display text-3xl md:text-5xl'>{compareCards[0].title}</h3>
+						<h3 class='heading-display heading-display--section'>{compareCards[0].title}</h3>
 						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{compareCards[0].summary}</p>
 					</div>
 					<div class='space-y-4'>
@@ -218,12 +224,12 @@ const faqItems = [
 								<p class='launch-meta'>{compareCards[1].kicker}</p>
 							</div>
 							<div class='space-y-1 text-left md:text-right'>
-								<p class='heading-display text-5xl text-primary md:text-6xl' style='font-variant-numeric: tabular-nums'>{compareCards[1].priceDisplay}</p>
+								<p class='heading-display heading-display--price text-primary' style='font-variant-numeric: tabular-nums'>{compareCards[1].priceDisplay}</p>
 								<p class='launch-meta'>{compareCards[1].price}</p>
 							</div>
 						</div>
 						<div class='space-y-4'>
-							<h3 class='heading-display text-3xl md:text-[3.2rem]'>{compareCards[1].title}</h3>
+							<h3 class='heading-display heading-display--section'>{compareCards[1].title}</h3>
 							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{compareCards[1].summary}</p>
 						</div>
 						<div class='service-audit-sheet__rows'>
@@ -240,7 +246,7 @@ const faqItems = [
 			<div class='service-detail-grid'>
 				<div class='space-y-4'>
 					<p class='section-label'>// The 4-Week Launch</p>
-					<h2 class='heading-display text-3xl md:text-5xl'>A focused MVP live in 4 weeks.</h2>
+					<h2 class='heading-display heading-display--section'>A focused MVP live in 4 weeks.</h2>
 					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 						I help define what the MVP should be, advise on pricing and positioning, design the UX, build the product, and set up the
 						launch. Best for nontechnical founders who need a product partner, not just a pair of hands.
@@ -269,7 +275,7 @@ const faqItems = [
 					<div class='service-launch-step'>
 						<p class='launch-meta text-primary'>Step {step.num}</p>
 						<div class='space-y-3'>
-							<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
+							<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
 							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
 						</div>
 					</div>
@@ -281,7 +287,7 @@ const faqItems = [
 			<div class='service-detail-grid service-detail-grid--audit'>
 				<div class='space-y-4'>
 					<p class='section-label'>// Workflow Audit / AI Systems</p>
-					<h2 class='heading-display text-3xl md:text-5xl'>Figure out what the workflow actually needs first.</h2>
+					<h2 class='heading-display heading-display--section'>Figure out what the workflow actually needs first.</h2>
 					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 						For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs,
 						and manual workarounds. The audit comes before the build because most automation failures are workflow failures first.
@@ -300,7 +306,7 @@ const faqItems = [
 			<div class='service-audit-worksheet'>
 				<div class='service-audit-worksheet__intro space-y-4'>
 					<p class='section-label'>// Audit Output</p>
-					<h3 class='heading-display text-3xl md:text-5xl'>A smaller first system, not a vague recommendation.</h3>
+					<h3 class='heading-display heading-display--section'>A smaller first system, not a vague recommendation.</h3>
 					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 						The audit should leave you with something concrete enough to act on, even if the right next move is not a build yet.
 					</p>
@@ -328,7 +334,7 @@ const faqItems = [
 		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// How Engagements Start</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Most engagements start by narrowing the real problem.</h2>
+				<h2 class='heading-display heading-display--section'>Most engagements start by narrowing the real problem.</h2>
 			</div>
 			<div class='how-we-work-grid'>
 				{
@@ -336,7 +342,7 @@ const faqItems = [
 						<div class='how-we-work-step'>
 							<p class='heading-display how-we-work-step__num text-primary'>{step.num}</p>
 							<div class='space-y-3'>
-								<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
+								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
 								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
 							</div>
 						</div>
@@ -348,7 +354,7 @@ const faqItems = [
 		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// Common Concerns</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Common concerns before starting.</h2>
+				<h2 class='heading-display heading-display--section'>Common concerns before starting.</h2>
 			</div>
 			<div class='service-faq-grid'>
 				{
@@ -365,7 +371,7 @@ const faqItems = [
 		<section class='service-detail-grid'>
 			<div class='space-y-4'>
 				<p class='section-label'>// Next Step</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Bring the scope. I&rsquo;ll tell you what the first useful step is.</h2>
+				<h2 class='heading-display heading-display--section'>Bring the scope. I&rsquo;ll tell you what the first useful step is.</h2>
 			</div>
 			<div class='space-y-5'>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>

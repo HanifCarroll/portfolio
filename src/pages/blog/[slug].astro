@@ -6,7 +6,6 @@ import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
-import ServiceCallout from '../../components/ServiceCallout.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -19,16 +18,15 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const {
-	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant, audience }
+	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, audience }
 } = post;
 const { Content, headings } = await render(post);
 
-const ctaLocation = `blog_${post.id.replace(/[^a-z0-9]+/gi, '_').toLowerCase()}`;
 const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
 ---
 
 <BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false} footerLinksOnly>
-	<div class='container max-w-5xl space-y-8 py-8'>
+	<div class='container max-w-6xl space-y-10 py-8 md:space-y-12'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
@@ -36,51 +34,74 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 			<span class='text-zinc-400'>/</span>
 			<span class='text-primary'>{title}</span>
 		</nav>
-		<div class='ledger-section lg:flex gap-10 px-6 py-8 lg:px-10'>
-			<main class='overflow-hidden grow'>
-				<article>
-					<Prose>
-						<div>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>
-								{audienceLabel}
-							</p>
-							<h1 class='!my-1 leading-tight'>{title}</h1>
-							<div class='text-sm font-[500] mt-2 py-1'>
-								{
-									updatedDate ? (
-										<>
-											Updated on{' '}
-											<strong>
-												<FormattedDate date={updatedDate} />
-											</strong>
-										</>
-									) : (
-										<>
-											Published on{' '}
-											<strong>
-												<FormattedDate date={pubDate} />
-											</strong>
-										</>
-									)
-								}
-							</div>
-						</div>
-						<div class='py-3 overflow-hidden'>
-							{coverImage && <Image class='rounded-3xl w-full m-0 lg:mb-2' src={coverImage} alt={title} loading='eager' />}
-						</div>
+
+		<header class='blog-post-hero'>
+			<div class='blog-post-hero__copy'>
+				<p class='section-label'>// Insight</p>
+				<div class='blog-post-hero__meta'>
+					<span class='launch-meta text-primary'>{audienceLabel}</span>
+					<span class='text-zinc-400'>/</span>
+					<div class='text-sm text-zinc-600 dark:text-zinc-300'>
+						{
+							updatedDate ? (
+								<>
+									Updated <FormattedDate date={updatedDate} />
+								</>
+							) : (
+								<>
+									Published <FormattedDate date={pubDate} />
+								</>
+							)
+						}
+					</div>
+				</div>
+				<h1
+					class='heading-display heading-display--hero blog-post-hero__title'
+					data-fit-heading
+					data-fit-min-rem='2'
+					data-fit-max-rem='4.75'
+				>
+					{title}
+				</h1>
+				<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{description}</p>
+			</div>
+			{
+				coverImage && (
+					<figure class='blog-post-hero__media'>
+						<Image class='blog-post-hero__image' src={coverImage} alt={title} loading='eager' />
+					</figure>
+				)
+			}
+		</header>
+
+		<div class='blog-post-layout'>
+			<main class='blog-post-main'>
+				<article class='blog-post-article'>
+					<Prose class='blog-post-prose'>
 						<Content />
 					</Prose>
 				</article>
-				<div class='mt-12 border-t border-black/10 pt-10 dark:border-white/10'>
-					<ServiceCallout context='blog' variant={ctaVariant} location={ctaLocation} />
-				</div>
+
+				<section class='blog-post-closing'>
+					<p class='section-label'>// Closing Note</p>
+					<h2 class='heading-display heading-display--section'>If the problem in this post sounds familiar, bring the actual bottleneck.</h2>
+					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+						I can usually tell pretty quickly whether the right first move is an MVP, a workflow audit, or a smaller system change.
+					</p>
+					<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
+				</section>
 			</main>
-			<div class='shrink-0 w-[280px] hidden md:block'>
-				<div class='mb-4'>
+
+			<aside class='blog-post-rail'>
+				<div class='blog-post-rail__block'>
 					<AboutTheAuthor />
 				</div>
-				<TableOfContent headings={headings} />
-			</div>
+				{headings.length > 0 && (
+					<div class='blog-post-rail__block'>
+						<TableOfContent headings={headings} />
+					</div>
+				)}
+			</aside>
 		</div>
 	</div>
 </BaseLayout>
