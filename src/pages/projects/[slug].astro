@@ -3,11 +3,10 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
-import type { Project } from '@src/lib/types/project';
+import type { Project, ProjectDetailVariant } from '@src/lib/types/project';
 import { getAllProjects } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
 
-// Import all project images statically
 import baEventosHero from '@src/assets/img/projects/ba-eventos-hero.png';
 import baEventosFeature from '@src/assets/img/projects/ba-eventos-feature.png';
 import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
@@ -31,6 +30,17 @@ interface PageProps {
 	project: Project;
 }
 
+interface VariantContent {
+	pageLabel: string;
+	heroNoteLabel: string;
+	heroNote: string;
+	problemLabel: string;
+	approachLabel: string;
+	outcomeLabel: string;
+	proofLabel: string;
+	proofIntro: string;
+}
+
 export async function getStaticPaths() {
 	return getAllProjects().map((project) => ({
 		params: { slug: project.slug },
@@ -42,11 +52,47 @@ const { project } = Astro.props as PageProps;
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const firstText = (value: string | string[]) => (Array.isArray(value) ? value[0] : value);
-const problemSummary = firstText(project.problem);
 const outcomeSummary = firstText(project.result);
 const proofTypeLabel = project.proofType === 'client' ? 'Client work' : 'Selected experiment';
+const detailVariant = project.detailVariant;
+
+const variantContent: Record<ProjectDetailVariant, VariantContent> = {
+	product: {
+		pageLabel: '// Product Case Study',
+		heroNoteLabel: '// Product Shift',
+		heroNote: 'The win was not just shipping features. It was making the product clearer, more trustworthy, and easier to extend.',
+		problemLabel: '// Product Context',
+		approachLabel: '// What I Built',
+		outcomeLabel: '// What Changed',
+		proofLabel: '// Screens',
+		proofIntro: 'Screens from the live product.'
+	},
+	workflow: {
+		pageLabel: '// Workflow Case Study',
+		heroNoteLabel: '// System Shift',
+		heroNote: 'The real change was reducing repeated operational friction, not just layering another tool on top of the business.',
+		problemLabel: '// Where The Work Was Getting Stuck',
+		approachLabel: '// The System I Put In Place',
+		outcomeLabel: '// What Changed Operationally',
+		proofLabel: '// Workflow Proof',
+		proofIntro: 'What matters here is the shift in how the work moved, not just how the interface looked.'
+	},
+	launch_site: {
+		pageLabel: '// Launch Site Case Study',
+		heroNoteLabel: '// Positioning Shift',
+		heroNote: 'The site needed to make the work clearer, more credible, and easier to act on without feeling heavier than the offer itself.',
+		problemLabel: '// What The Site Needed To Communicate',
+		approachLabel: '// How I Structured It',
+		outcomeLabel: '// What Changed For Credibility',
+		proofLabel: '// Site Proof',
+		proofIntro: 'The proof here is how the work, offer, and credibility read together once the site is in the world.'
+	}
+};
+
+const content = variantContent[detailVariant];
+
 const engagementDetails = [
-	{ label: 'Proof type', value: proofTypeLabel },
+	{ label: 'Engagement', value: proofTypeLabel },
 	{ label: 'Client', value: project.client },
 	{ label: 'Service', value: project.service },
 	{ label: 'Best fit', value: project.bestFit },
@@ -56,7 +102,6 @@ const engagementDetails = [
 	{ label: 'Team', value: project.teamSize }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
-// Map project slugs to static image imports
 const imageMap: Record<string, { hero: ImageMetadata; feature: ImageMetadata }> = {
 	'ba-eventos': { hero: baEventosHero, feature: baEventosFeature },
 	'language-exchange': { hero: hablabaHero, feature: hablabaFeature },
@@ -79,8 +124,7 @@ const images = imageMap[project.slug];
 	showFooterCta={false}
 	footerLinksOnly
 >
-	<article class='container max-w-5xl space-y-16 py-10'>
-		<!-- Breadcrumb -->
+	<article class:list={['container max-w-6xl space-y-16 py-10', `case-study-detail case-study-detail--${detailVariant}`]}>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='hover:text-primary transition-colors'>Home</a>
 			<span class='text-zinc-400'>/</span>
@@ -89,64 +133,108 @@ const images = imageMap[project.slug];
 			<span class='text-primary'>{project.title}</span>
 		</nav>
 
-		<header class='space-y-8'>
-			<div class='ledger-section space-y-4'>
-				<h1 class='heading-display text-4xl md:text-5xl'>
-					{project.title}
-				</h1>
-				<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-4xl'>
-					{project.description}
-				</p>
-			</div>
+		{
+			detailVariant === 'product' ? (
+				<header class='case-study-detail__hero case-study-detail__hero--product'>
+					{
+						images?.hero && (
+							<figure class='case-study-detail__hero-media case-study-detail__hero-media--product'>
+								<Image src={images.hero} alt={`${project.title} hero preview`} class='case-study-detail__hero-image' loading='eager' />
+							</figure>
+						)
+					}
 
-			<div class='tech-card p-6'>
-				<div class='grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:gap-10'>
-					<div class='space-y-6'>
-						<div class='space-y-3'>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>What changed</p>
-							<p class='text-lg leading-relaxed text-zinc-600 dark:text-zinc-300'>
-								{outcomeSummary}
-							</p>
+					<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
+						<div class='case-study-detail__hero-copy space-y-5'>
+							<p class='section-label'>{content.pageLabel}</p>
+							<h1 class='heading-display text-4xl md:text-6xl'>{project.title}</h1>
+							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+							<div class='flex flex-wrap gap-3'>
+								{
+									project.liveUrl && (
+										<a
+											class='btn-primary'
+											href={project.liveUrl}
+											target='_blank'
+											rel='noopener noreferrer'
+											data-track-event='project_live_site_clicked'
+											data-track-location='project_detail'
+										>
+											Visit Live Site
+											<span>&rarr;</span>
+										</a>
+									)
+								}
+								{
+									project.repository && (
+										<a class='btn-secondary' href={project.repository} target='_blank' rel='noopener noreferrer'>
+											View Code
+											<span>&rarr;</span>
+										</a>
+									)
+								}
+							</div>
 						</div>
 
-						<dl class='grid gap-4 sm:grid-cols-2'>
+						<div class='case-study-detail__hero-summary'>
+							<div class='case-study-detail__hero-note'>
+								<p class='section-label'>{content.heroNoteLabel}</p>
+								<p class='heading-display text-2xl md:text-3xl'>{content.heroNote}</p>
+							</div>
+
+							<div class='case-study-detail__meta-item case-study-detail__meta-item--outcome'>
+								<p class='launch-meta text-primary'>What changed</p>
+								<p class='text-lg leading-8 text-zinc-700 dark:text-zinc-200'>{outcomeSummary}</p>
+							</div>
+						</div>
+
+						<div class='case-study-detail__meta-grid case-study-detail__meta-grid--product'>
 							{
 								engagementDetails.map((detail) => (
-									<div class='border-t border-black/10 pt-4 text-sm dark:border-white/10'>
-										<dt class='font-mono text-[11px] uppercase tracking-[0.24em] text-primary'>{detail.label}</dt>
-										<dd class='mt-2 text-base font-medium text-zinc-900 dark:text-zinc-100'>{detail.value}</dd>
+									<div class='case-study-detail__meta-item'>
+										<p class='launch-meta text-primary'>{detail.label}</p>
+										<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200'>{detail.value}</p>
 									</div>
 								))
 							}
-						</dl>
+						</div>
 					</div>
+				</header>
+			) : (
+				<header class='case-study-detail__hero'>
+					{
+						images?.hero && (
+							<figure class='case-study-detail__hero-media'>
+								<Image src={images.hero} alt={`${project.title} hero preview`} class='case-study-detail__hero-image' loading='eager' />
+							</figure>
+						)
+					}
 
-					<div class='space-y-6 border-t border-black/10 pt-6 dark:border-white/10 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0'>
-						<div class='space-y-3'>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>Why it mattered</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-								{problemSummary}
-							</p>
+					<div class='case-study-detail__hero-body'>
+						<div class='space-y-5'>
+							<p class='section-label'>{content.pageLabel}</p>
+							<h1 class='heading-display text-4xl md:text-6xl'>{project.title}</h1>
+							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
 						</div>
 
-						{
-							project.constraints && project.constraints.length > 0 && (
-								<div class='space-y-3'>
-									<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>Constraints</p>
-									<ul class='list-disc space-y-2 pl-5 text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-										{project.constraints.map((constraint) => (
-											<li>{constraint}</li>
-										))}
-									</ul>
-								</div>
-							)
-						}
+						<div class='case-study-detail__hero-note'>
+							<p class='section-label'>{content.heroNoteLabel}</p>
+							<p class='heading-display text-2xl md:text-3xl'>{content.heroNote}</p>
+						</div>
 
-						<div class='space-y-3'>
-							<p class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>Built with</p>
-							<div class='flex flex-wrap gap-2'>
-								{project.technologies.map((tech) => <span class='tech-tag'>{tech}</span>)}
+						<div class='case-study-detail__meta-grid'>
+							<div class='case-study-detail__meta-item case-study-detail__meta-item--outcome'>
+								<p class='launch-meta text-primary'>What changed</p>
+								<p class='text-lg leading-8 text-zinc-700 dark:text-zinc-200'>{outcomeSummary}</p>
 							</div>
+							{
+								engagementDetails.map((detail) => (
+									<div class='case-study-detail__meta-item'>
+										<p class='launch-meta text-primary'>{detail.label}</p>
+										<p class='text-base leading-7 text-zinc-700 dark:text-zinc-200'>{detail.value}</p>
+									</div>
+								))
+							}
 						</div>
 
 						<div class='flex flex-wrap gap-3'>
@@ -175,68 +263,84 @@ const images = imageMap[project.slug];
 							}
 						</div>
 					</div>
+				</header>
+			)
+		}
+
+		<section class='case-study-detail__story'>
+			<div class='case-study-detail__story-main'>
+				<div class='space-y-4'>
+					<p class='section-label'>{content.problemLabel}</p>
+					<div class='space-y-4'>
+						{
+							Array.isArray(project.problem) ? (
+								project.problem.map((item) => <p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item}</p>)
+							) : (
+								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.problem}</p>
+							)
+						}
+					</div>
+				</div>
+
+				<div class='space-y-4'>
+					<p class='section-label'>{content.approachLabel}</p>
+					<div class='space-y-4'>
+						{
+							Array.isArray(project.solution) ? (
+								project.solution.map((item) => <p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item}</p>)
+							) : (
+								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.solution}</p>
+							)
+						}
+					</div>
+				</div>
+
+				<div class='space-y-4'>
+					<p class='section-label'>{content.outcomeLabel}</p>
+					<div class='space-y-4'>
+						{
+							Array.isArray(project.result) ? (
+								project.result.map((item) => <p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item}</p>)
+							) : (
+								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.result}</p>
+							)
+						}
+					</div>
 				</div>
 			</div>
 
-			{
-				images?.hero && (
-					<figure class='overflow-hidden border-2 border-black dark:border-white'>
-						<Image src={images.hero} alt={`${project.title} hero preview`} class='w-full object-cover' loading='eager' />
-					</figure>
-				)
-			}
-		</header>
+			<aside class='case-study-detail__story-side'>
+				{
+					project.constraints && project.constraints.length > 0 && (
+						<div class='space-y-4'>
+							<p class='section-label'>// Constraints</p>
+							<ul class='fit-list'>
+								{project.constraints.map((constraint) => <li>{constraint}</li>)}
+							</ul>
+						</div>
+					)
+				}
 
-		<section class='tech-card p-6 md:p-8 space-y-12'>
-			<div class='space-y-4'>
-				<h2 class='section-label'>// What Was Happening</h2>
-				<div class='max-w-4xl space-y-4'>
-					{
-						Array.isArray(project.problem) ? (
-							project.problem.map((p) => <p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{p}</p>)
-						) : (
-							<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{project.problem}</p>
-						)
-					}
+				<div class='space-y-4'>
+					<p class='section-label'>// Built With</p>
+					<div class='flex flex-wrap gap-2'>
+						{project.technologies.map((tech) => <span class='tech-tag'>{tech}</span>)}
+					</div>
 				</div>
-			</div>
-
-			<div class='grid-line-horizontal'></div>
-
-			<div class='space-y-4'>
-				<h2 class='section-label'>// How I Helped</h2>
-				<div class='max-w-4xl space-y-4'>
-					{
-						Array.isArray(project.solution) ? (
-							project.solution.map((s) => <p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{s}</p>)
-						) : (
-							<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{project.solution}</p>
-						)
-					}
-				</div>
-			</div>
-
-			<div class='grid-line-horizontal'></div>
-
-			<div class='space-y-4'>
-				<h2 class='section-label'>// What Changed</h2>
-				<div class='max-w-4xl space-y-4'>
-					{
-						Array.isArray(project.result) ? (
-							project.result.map((r) => <p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{r}</p>)
-						) : (
-							<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed'>{project.result}</p>
-						)
-					}
-				</div>
-			</div>
+			</aside>
 		</section>
 
 		{
 			images?.feature && (
-				<figure class='overflow-hidden border-2 border-black dark:border-white'>
-					<Image src={images.feature} alt={`${project.title} feature preview`} loading='lazy' class='w-full object-cover' />
-				</figure>
+				<section class='case-study-detail__proof'>
+					<div class='max-w-3xl space-y-4'>
+						<p class='section-label'>{content.proofLabel}</p>
+						<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{content.proofIntro}</p>
+					</div>
+					<figure class='case-study-detail__proof-media'>
+						<Image src={images.feature} alt={`${project.title} feature preview`} loading='lazy' class='case-study-detail__proof-image' />
+					</figure>
+				</section>
 			)
 		}
 
@@ -253,9 +357,8 @@ const images = imageMap[project.slug];
 
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 
-		<!-- Back to projects -->
 		<div class='pt-8'>
-			<a href='/projects/' class='arrow-link'> Back to All Case Studies </a>
+			<a href='/projects/' class='arrow-link'>Back to All Case Studies</a>
 		</div>
 	</article>
 </BaseLayout>
