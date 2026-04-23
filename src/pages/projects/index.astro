@@ -1,11 +1,17 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectList from '../../components/ProjectList.astro';
-import ServiceCallout from '../../components/ServiceCallout.astro';
 import { projects } from '../../lib/project-cards';
 
+import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
+import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
+import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
+import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
+import maximoHero from '@src/assets/img/projects/maximo-hero.png';
+import redwriterHero from '@src/assets/img/projects/redwriter-hero.png';
+
 const title = 'Case Studies';
-const description = 'Case studies from product builds and automation work by Hanif Carroll.';
+const description = 'Selected case studies from MVP builds, launch sites, and workflow systems by Hanif Carroll.';
 
 const preferredClientOrder = [
 	'desarmadero-latorre',
@@ -18,27 +24,52 @@ const preferredClientOrder = [
 
 const preferredExperimentOrder = ['ba-eventos', 'language-exchange', 'vox-prismatic'] as const;
 
-const sortByPreferredOrder = (projectList: typeof projects, preferredOrder: readonly string[]) => {
+const orderProjects = (projectList: typeof projects, preferredOrder: readonly string[]) => {
 	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
 
 	return [...projectList].sort((a, b) => {
 		const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
 		const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
-
-		if (aIndex !== bIndex) return aIndex - bIndex;
-		return 0;
+		return aIndex - bIndex;
 	});
 };
 
-const clientProjects = sortByPreferredOrder(
+const clientProjects = orderProjects(
 	projects.filter((project) => project.proofType === 'client'),
 	preferredClientOrder
 );
 
-const experimentProjects = sortByPreferredOrder(
+const experimentProjects = orderProjects(
 	projects.filter((project) => project.proofType === 'experiment'),
 	preferredExperimentOrder
 );
+
+const featuredProject = clientProjects[0];
+const archiveProjects = clientProjects.slice(1);
+
+const imageMap = {
+	'desarmadero-latorre': desarmaderoHero,
+	genrupt: genruptHero,
+	'casa-elaria': casaElariaHero,
+	'mucho-hangouts': muchoHangoutsHero,
+	'maximo-interiorismo': maximoHero,
+	'redwriter-comics': redwriterHero
+} as const;
+
+const featuredOutcomeHighlights = {
+	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',
+	genrupt: 'Genrupt moved from demo-stage AI generation toward a more reliable seller platform.',
+	'casa-elaria': 'The site made the property easier to understand, trust, and inquire about.',
+	'mucho-hangouts': 'The product became clearer to navigate, book, and use.',
+	'maximo-interiorismo': 'The studio gained a cleaner showcase for its work and positioning.',
+	'redwriter-comics': 'The launch site gave the project a stronger public-facing home.'
+} as const;
+
+const browseTypes = [
+	{ label: 'MVP launches', body: 'Products and first versions built to get something useful live quickly.' },
+	{ label: 'Workflow systems', body: 'Operational tools and internal systems that reduce repetitive manual work.' },
+	{ label: 'Launch sites', body: 'Marketing and launch surfaces where conversion clarity mattered as much as code.' }
+];
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -49,25 +80,130 @@ const experimentProjects = sortByPreferredOrder(
 			<span class='text-primary'>Case Studies</span>
 		</nav>
 
-		<header class='max-w-4xl space-y-5'>
+		<header class='max-w-5xl space-y-5'>
 			<p class='section-label'>// Case Studies</p>
-			<h1 class='heading-display text-4xl md:text-6xl'>Find the closest match for the kind of problem you have.</h1>
+			<h1 class='heading-display text-4xl md:text-6xl'>Proof of what this work looks like in the world.</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Start with client work if you want the clearest signal of what it is like to hire me. The experiments are useful too, but they are
-				better for product judgment than delivery proof.
+				MVP launches, internal tools, workflow systems, and launch sites. Start with the featured project, then skim for the closest match
+				to the kind of problem you have.
 			</p>
 		</header>
 
+		{
+			featuredProject && (
+				<section class='case-studies-featured'>
+					<div class='case-studies-featured__media'>
+						<Image
+							src={imageMap[featuredProject.slug as keyof typeof imageMap]}
+							alt={featuredProject.name}
+							class='case-studies-featured__image'
+							loading='eager'
+						/>
+					</div>
+					<div class='case-studies-featured__body'>
+						<div class='space-y-3'>
+							<p class='section-label'>// Featured Case Study</p>
+							<p class='launch-meta text-primary'>{featuredProject.trackLabel}</p>
+						</div>
+						<div class='space-y-5'>
+							<h2 class='heading-display text-4xl md:text-6xl'>{featuredProject.name}</h2>
+							<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredProject.description}</p>
+						</div>
+						<div class='case-studies-meta'>
+							<div>
+								<p class='launch-meta text-primary'>Type</p>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredProject.service}</p>
+							</div>
+							<div>
+								<p class='launch-meta text-primary'>Context</p>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredProject.client}</p>
+							</div>
+							<div>
+								<p class='launch-meta text-primary'>What changed</p>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+									{featuredOutcomeHighlights[featuredProject.slug as keyof typeof featuredOutcomeHighlights] ?? featuredProject.outcome}
+								</p>
+							</div>
+						</div>
+						<a href={`/projects/${featuredProject.slug}/`} class='arrow-link w-fit'>Read case study</a>
+					</div>
+				</section>
+			)
+		}
+
 		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Client Work</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Proof from paid engagements.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					These are the strongest examples of how I scope, build, and ship for real businesses. If you want to know what the work feels
-					like in practice, start here.
-				</p>
+				<p class='section-label'>// Selected Client Work</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>The closest examples, arranged like a curated archive.</h2>
 			</div>
-			<ProjectList projects={clientProjects} />
+
+			<div class='case-studies-editorial-list'>
+				{
+					archiveProjects.map((project, index) => (
+						<article class:list={['case-studies-editorial-item', index % 2 === 1 && 'case-studies-editorial-item--reverse']}>
+							<a href={`/projects/${project.slug}/`} class='case-studies-editorial-item__media group'>
+								<Image
+									src={imageMap[project.slug as keyof typeof imageMap]}
+									alt={project.name}
+									class='case-studies-editorial-item__image transition duration-700 ease-out group-hover:scale-[1.02]'
+									loading='lazy'
+								/>
+							</a>
+							<div class='case-studies-editorial-item__body'>
+								<div class='space-y-3'>
+									<p class='launch-meta text-primary'>{project.trackLabel}</p>
+									<h3 class='heading-display text-3xl md:text-5xl'>
+										<a href={`/projects/${project.slug}/`}>{project.name}</a>
+									</h3>
+								</div>
+								<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+								<div class='case-studies-editorial-item__facts'>
+									<div>
+										<p class='launch-meta text-primary'>Best fit</p>
+										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.bestFit}</p>
+									</div>
+									<div>
+										<p class='launch-meta text-primary'>Outcome</p>
+										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.outcome}</p>
+									</div>
+								</div>
+								<div class='flex flex-wrap items-center gap-4'>
+									<a href={`/projects/${project.slug}/`} class='arrow-link'>Read case study</a>
+									{
+										project.demoLink && (
+											<a
+												href={project.demoLink}
+												target='_blank'
+												rel='noopener noreferrer'
+												class='launch-meta text-primary transition-colors hover:text-black dark:hover:text-white'
+												data-track-event='project_live_site_clicked'
+												data-track-location='projects_archive'
+											>
+												Visit live site
+											</a>
+										)
+									}
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Browse By Type</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Start with the kind of work closest to your situation.</h2>
+			</div>
+			<div class='case-studies-browse-types'>
+				{browseTypes.map((item) => (
+					<div class='case-studies-browse-types__item'>
+						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+					</div>
+				))}
+			</div>
 		</section>
 
 		{
@@ -75,17 +211,37 @@ const experimentProjects = sortByPreferredOrder(
 				<section class='space-y-8 md:space-y-10'>
 					<div class='max-w-3xl space-y-4'>
 						<p class='section-label'>// Selected Experiments</p>
-						<h2 class='heading-display text-3xl md:text-5xl'>Self-initiated product work.</h2>
+						<h2 class='heading-display text-3xl md:text-5xl'>Self-initiated work that shows product judgment.</h2>
 						<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							These projects show how I think when I own the problem end to end. They are useful for product taste, AI judgment, and
-							workflow design, but separate from client proof.
+							These are useful for how I think through product, AI, and workflow problems, but they are separate from client delivery proof.
 						</p>
 					</div>
-					<ProjectList projects={experimentProjects} />
+					<div class='case-studies-experiments'>
+						{
+							experimentProjects.map((project) => (
+								<article class='case-studies-experiment'>
+									<p class='launch-meta text-primary'>{project.trackLabel}</p>
+									<h3 class='heading-display text-2xl md:text-3xl'>
+										<a href={`/projects/${project.slug}/`}>{project.name}</a>
+									</h3>
+									<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+									<p class='text-sm leading-6 text-zinc-500 dark:text-zinc-400'>{project.outcome}</p>
+									<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>Read case study</a>
+								</article>
+							))
+						}
+					</div>
 				</section>
 			)
 		}
 
-		<ServiceCallout context='case-study' variant='general' location='projects_index' />
+		<section class='max-w-3xl space-y-5 pb-4'>
+			<p class='section-label'>// Closing Note</p>
+			<h2 class='heading-display text-3xl md:text-4xl'>Need the closest example for your situation?</h2>
+			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				On a roadmap call, I can point you to the nearest match and explain where your project would likely differ.
+			</p>
+			<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
+		</section>
 	</article>
 </BaseLayout>

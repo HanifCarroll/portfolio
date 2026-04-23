@@ -1,39 +1,69 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ServiceCallout from '../components/ServiceCallout.astro';
-import TestimonialSupport from '../components/TestimonialSupport.astro';
-import testimonials from '../../testimonials.json';
-import sarahPhoto from '@src/assets/img/sarah.jpeg';
-
-const clientReasons = [
-	'You work directly with the person making the product and technical decisions.',
-	'I help narrow the first useful version before the build gets bloated.',
-	'Workflow, pricing, UX, and scope decisions are explained in plain English.',
-	'The goal is useful software, not a long agency process.'
-];
-
-const engagementSteps = [
-	{
-		label: '01',
-		title: 'Start with the bottleneck',
-		body: 'The work usually starts with one question: what is slowing things down right now, a missing product, a messy workflow, or a system that no longer scales?'
-	},
-	{
-		label: '02',
-		title: 'Narrow the first useful version',
-		body: 'Sometimes that means a fixed-scope MVP. Sometimes it means a workflow audit and a smaller internal tool. The point is to avoid solving the wrong problem.'
-	},
-	{
-		label: '03',
-		title: 'Build with direct feedback',
-		body: 'You get direct access, short feedback loops, and one person accountable for the actual outcome.'
-	}
-];
 
 const title = 'About Hanif Carroll';
 const description =
-	'I help founders and operator-led teams launch focused MVPs and fix operational bottlenecks with internal tools, workflow automation, and useful AI systems.';
-const designTestimonial = testimonials.find((testimonial) => testimonial.name === 'Sarah Hibner');
+	'I help nontechnical founders and operator-led teams cut the first useful scope, make the right product and workflow decisions, and build systems that are actually worth using.';
+
+const strengths = [
+	{
+		label: 'Scope before sprawl',
+		body: 'I help narrow the first useful version before the project turns into a bigger, slower, more expensive build than it needs to be.'
+	},
+	{
+		label: 'Product judgment plus execution',
+		body: 'The value is not just building. It is knowing what to build first, what to defer, and how to make the tradeoffs legible in plain English.'
+	},
+	{
+		label: 'One accountable partner',
+		body: 'You are not coordinating strategy, design, and engineering layers. You work directly with the person making the product and technical calls.'
+	}
+];
+
+const workingStyle = [
+	{
+		title: 'I start with the bottleneck.',
+		body: 'Most projects should begin with the business constraint, not the requested feature list. That is usually where the real leverage is.'
+	},
+	{
+		title: 'I reduce before I build.',
+		body: 'The first version should be smaller and clearer than what most teams ask for at the start. That is how good projects stay shippable.'
+	},
+	{
+		title: 'I explain tradeoffs directly.',
+		body: 'Scope, UX, pricing, workflow, and AI decisions only help if they are understandable. I do not hide the reasoning behind implementation language.'
+	}
+];
+
+const clientReasons = [
+	{
+		label: 'Closer to a product partner than a vendor',
+		body: 'The value is not just implementation. It is having someone in the room who can cut scope, challenge bad assumptions, and still carry the work through.'
+	},
+	{
+		label: 'Senior judgment without a layered team',
+		body: 'Clients usually want fewer handoffs, fewer rounds of translation, and fewer people between the problem and the build.'
+	},
+	{
+		label: 'Clear tradeoffs in plain language',
+		body: 'A lot of trust comes from making the why behind product, workflow, and technical decisions easy to understand before the build gets expensive.'
+	}
+];
+
+const backgroundMoments = [
+	{
+		label: 'Capgemini',
+		body: 'Learned structured delivery, stakeholder management, and what larger organizations optimize for when the systems are real.'
+	},
+	{
+		label: 'LeagueApps',
+		body: 'Worked inside a strong product environment where growth, UX, and implementation had to stay connected to each other.'
+	},
+	{
+		label: 'Independent work',
+		body: 'Built across MVPs, launch sites, workflow systems, internal tools, and AI-enabled products where smaller teams needed judgment as much as code.'
+	}
+];
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
@@ -44,106 +74,95 @@ const designTestimonial = testimonials.find((testimonial) => testimonial.name ==
 			<span class='text-primary'>About</span>
 		</nav>
 
-		<header class='max-w-4xl space-y-5'>
-			<p class='section-label'>// About</p>
-			<h1 class='heading-display text-4xl md:text-6xl'>Technical product partner for founders and operator-led teams.</h1>
-			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and build
-				the system that actually moves things forward.
-			</p>
+		<header class='about-hero-grid'>
+			<div class='about-hero-copy space-y-5'>
+				<p class='section-label'>// About</p>
+				<h1 class='heading-display about-hero-title text-4xl md:text-6xl'>I help founders and operator-led teams make the right first system real.</h1>
+				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+					Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and
+					build the system that actually moves things forward.
+				</p>
+			</div>
+			<div class='about-hero-note'>
+				<p class='section-label'>// Working Thesis</p>
+				<p class='heading-display text-2xl md:text-3xl'>The best projects usually get smaller before they get better.</p>
+			</div>
 		</header>
 
-		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
-			<div class='space-y-4'>
-				<p class='section-label'>// Background</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Builder first, not agency layer.</h2>
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// What I Do Best</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>Useful software, clearer decisions, less wasted motion.</h2>
 			</div>
-			<div class='space-y-5 text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-				<p>
-					I&rsquo;ve worked at Capgemini, at LeagueApps during a strong growth phase, and as an independent builder across client and
-					internal products. That mix has been useful: I understand structured delivery, real product constraints, and the pace smaller
-					teams actually need.
-				</p>
-				<p>
-					My strongest work sits between product judgment and implementation: MVP scoping, workflow cleanup, internal tools, automation, AI
-					systems, and the go-to-market surface around them.
-				</p>
-				<p>
-					A lot of the value happens before code starts. I help decide what the first version should be, what should wait, and what kind of
-					system is actually worth building.
-				</p>
+			<div class='about-strengths-grid'>
+				{strengths.map((item) => (
+					<div class='about-strength-card'>
+						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+					</div>
+				))}
 			</div>
 		</section>
 
 		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// How Engagements Start</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>The work usually moves through three questions.</h2>
+				<p class='section-label'>// How I Work</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>The working style matters as much as the stack.</h2>
 			</div>
-			<div class='how-we-work-grid'>
-				{
-					engagementSteps.map((step) => (
-						<div class='how-we-work-step'>
-							<p class='launch-meta text-primary'>Step {step.label}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display text-2xl md:text-3xl'>{step.title}</h3>
-								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
-							</div>
+			<div class='about-working-style'>
+				{workingStyle.map((item, index) => (
+					<div class:list={['about-working-style__item', index === 1 && 'about-working-style__item--offset']}>
+						<p class='heading-display about-working-style__num text-primary'>{String(index + 1).padStart(2, '0')}</p>
+						<div class='space-y-3'>
+							<h3 class='heading-display text-2xl md:text-3xl'>{item.title}</h3>
+							<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
 						</div>
-					))
-				}
+					</div>
+				))}
 			</div>
 		</section>
 
-		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
-			<div class='space-y-4'>
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// Why Clients Hire Me</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Useful software, explained clearly.</h2>
+				<h2 class='heading-display text-3xl md:text-5xl'>The difference is usually judgment, not just output.</h2>
 			</div>
-			<ul class='fit-list'>
-				{
-					clientReasons.map((reason) => (
-						<li>{reason}</li>
-					))
-				}
-			</ul>
-		</section>
-
-		{
-			designTestimonial && (
-				<section>
-					<TestimonialSupport
-						quote={designTestimonial.supportText ?? designTestimonial.text}
-						name={designTestimonial.name}
-						role={designTestimonial.role}
-						company={designTestimonial.company}
-						image={sarahPhoto}
-						label='Design collaboration note'
-					/>
-				</section>
-			)
-		}
-
-		<section class='grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16'>
-			<div class='space-y-4'>
-				<p class='section-label'>// Outside Of Work</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Still grounded in building.</h2>
-			</div>
-			<div class='space-y-5 text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-				<p>
-					I&rsquo;ve been lifting weights for nearly 20 years, I play ultimate frisbee, and I care a lot about writing, philosophy, and
-					building strong in-person communities.
-				</p>
-				<p>
-					Buenos Aires has become home. Living here has shaped how I think about work, community, and the kinds of products worth building.
-				</p>
-				<p>
-					I also spend a lot of time thinking about how AI can help people do better work in the real world, not just produce impressive
-					demos.
-				</p>
+			<div class='about-reasons-grid'>
+				{clientReasons.map((item) => (
+					<div class='about-reasons-grid__item'>
+						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+					</div>
+				))}
 			</div>
 		</section>
 
-		<ServiceCallout context='blog' variant='general' location='about_page' />
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Background</p>
+				<h2 class='heading-display text-3xl md:text-5xl'>A mix of product, delivery, and independent execution.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The useful part of my background is not the logos. It is that I have seen how larger teams work, how product-led teams make
+					decisions, and what smaller businesses actually need in order to ship something useful.
+				</p>
+			</div>
+			<div class='about-background-rail'>
+				{backgroundMoments.map((item) => (
+					<div class='about-background-rail__item'>
+						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class='max-w-3xl space-y-5 pb-4'>
+			<p class='section-label'>// Closing Note</p>
+			<h2 class='heading-display text-3xl md:text-4xl'>If you need a first useful version, I can usually tell you where to start quickly.</h2>
+			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				The roadmap call is where I tell you whether this should start as an MVP, a workflow audit, or something smaller.
+			</p>
+			<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
+		</section>
 	</article>
 </BaseLayout>
