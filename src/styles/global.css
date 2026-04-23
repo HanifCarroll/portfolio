@@ -1029,6 +1029,13 @@
 		border-top: 1px solid rgba(0, 0, 0, 0.08);
 	}
 
+	.blog-post-author-inline {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
+	}
+
 	.blog-post-rail {
 		display: none;
 	}
@@ -1043,6 +1050,16 @@
 	.about-the-author {
 		display: grid;
 		gap: 1rem;
+	}
+
+	.about-the-author--compact {
+		gap: 0.75rem;
+		max-width: 34rem;
+	}
+
+	.about-the-author--compact .author-desc {
+		font-size: 0.98rem;
+		line-height: 1.8;
 	}
 
 	.case-study-detail {
@@ -1333,6 +1350,7 @@
 	:is(.dark) .about-reasons-grid__item,
 	:is(.dark) .about-background-rail__item,
 	:is(.dark) .about-section-panel,
+	:is(.dark) .blog-post-author-inline,
 	:is(.dark) .blog-post-closing,
 	:is(.dark) .blog-post-rail__block,
 	:is(.dark) .insights-featured__rail-item,
@@ -1366,6 +1384,12 @@
 		color: rgb(244 244 245);
 	}
 
+	:is(.dark) .about-strength-card :is(p:last-child),
+	:is(.dark) .about-reasons-grid__item :is(p:last-child),
+	:is(.dark) .about-background-rail__item :is(p:last-child) {
+		color: rgb(244 244 245);
+	}
+
 	:is(.dark) .about-card-label {
 		color: rgb(161 161 170);
 	}
@@ -1387,6 +1411,7 @@
 	:is(.dark) .case-studies-meta > div :is(p:last-child),
 	:is(.dark) .case-studies-browse-types__item :is(p:last-child),
 	:is(.dark) .case-studies-experiment :is(p:last-child),
+	:is(.dark) .blog-post-author-inline :is(p:last-child),
 	:is(.dark) .insights-featured__rail-item :is(p:last-child),
 	:is(.dark) .case-study-secondary :is(p:last-child),
 	:is(.dark) .how-we-work-step :is(p:last-child),

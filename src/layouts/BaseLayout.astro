@@ -308,7 +308,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
                     const computed = getComputedStyle(title);
                     const lineHeight = Number.parseFloat(computed.lineHeight);
                     const height = title.getBoundingClientRect().height;
-                    const lineCount = lineHeight > 0 ? Math.round(height / lineHeight) : Infinity;
+                    const lineCount = lineHeight > 0 ? Math.ceil((height / lineHeight) - 0.02) : Infinity;
 
                     if (lineCount <= maxLines) {
                         best = mid;
