@@ -2,8 +2,7 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostItem from '../../components/PostItem.astro';
-import ServiceCallout from '../../components/ServiceCallout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
 const title = 'Insights on launching MVPs, fixing workflows, and using AI where it actually helps';
@@ -12,8 +11,10 @@ const description =
 
 const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const founderPosts = posts.filter((post) => post.data.audience === 'founder');
-const builderPosts = posts.filter((post) => post.data.audience === 'builder');
+const featuredPost = posts[0];
+const supportingPosts = posts.slice(1, 4);
+const editorialPosts = posts.slice(1);
+const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'Build Note' : 'For Founders And Operators');
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
@@ -24,48 +25,100 @@ const builderPosts = posts.filter((post) => post.data.audience === 'builder');
 			<span class='text-primary'>Insights</span>
 		</nav>
 
-		<header class='max-w-4xl space-y-5'>
+		<header class='max-w-5xl space-y-5'>
 			<p class='section-label'>// Insights</p>
-			<h1 class='heading-display text-4xl md:text-6xl'>Notes on what to build, what to automate, and where AI actually helps.</h1>
+			<h1 class='heading-display text-4xl md:text-6xl'>Notes on products, workflows, and AI.</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Most of this section is for founders and operator-led teams deciding what the first useful system should be. Some posts are technical
-				build notes, but they are here to support the client work, not replace it.
+				Most of these posts come out of real product and client work. Some are for founders deciding what the first useful system should be.
+				Others are build notes from the tooling, architecture, and debugging behind that work.
 			</p>
 		</header>
 
-		<section class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// For Founders And Operators</p>
-				<h2 class='heading-display text-3xl md:text-5xl'>Start here if the product or workflow decision is still fuzzy.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					These are the posts most likely to help you think through an MVP, an operations bottleneck, or whether AI belongs in the first
-					solution at all.
-				</p>
-			</div>
-			<div class='space-y-10'>
-				{founderPosts.map((post) => <PostItem post={post} />)}
-			</div>
-		</section>
+		{
+			featuredPost && (
+				<section class='insights-featured'>
+					<div class='insights-featured__lead'>
+						<div class='space-y-4'>
+							<p class='section-label'>// Featured Note</p>
+							<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
+								<FormattedDate date={featuredPost.data.pubDate} />
+								<span class='launch-meta text-primary'>{audienceLabel(featuredPost)}</span>
+							</div>
+						</div>
+						<div class='space-y-5'>
+							<h2 class='heading-display text-4xl md:text-6xl'>
+								<a href={`/blog/${featuredPost.id}/`} class='transition-colors hover:text-primary'>
+									{featuredPost.data.title}
+								</a>
+							</h2>
+							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredPost.data.description}</p>
+							<a href={`/blog/${featuredPost.id}/`} class='arrow-link w-fit'>Read note</a>
+						</div>
+					</div>
+
+					{
+						supportingPosts.length > 0 && (
+							<aside class='insights-featured__rail'>
+								<p class='section-label'>// Recent Notes</p>
+								<div class='insights-featured__rail-list'>
+									{supportingPosts.map((post) => (
+										<article class='insights-featured__rail-item'>
+											<div class='flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
+												<FormattedDate date={post.data.pubDate} />
+												<span class='launch-meta text-primary'>{audienceLabel(post)}</span>
+											</div>
+											<h3 class='heading-display text-2xl md:text-3xl'>
+												<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>
+													{post.data.title}
+												</a>
+											</h3>
+											<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{post.data.description}</p>
+										</article>
+									))}
+								</div>
+							</aside>
+						)
+					}
+				</section>
+			)
+		}
 
 		{
-			builderPosts.length > 0 && (
+			editorialPosts.length > 0 && (
 				<section class='space-y-8 md:space-y-10'>
-					<div class='max-w-3xl space-y-4'>
-						<p class='section-label'>// Build Notes</p>
-						<h2 class='heading-display text-3xl md:text-5xl'>Technical notes behind the systems.</h2>
-						<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							Implementation details, tooling choices, and architecture notes from the kinds of products and workflow systems I build.
-						</p>
-					</div>
-					<div class='space-y-10'>
-						{builderPosts.map((post) => (
-							<PostItem post={post} />
+					<p class='section-label'>// Archive</p>
+
+					<div class='insights-editorial-list'>
+						{editorialPosts.map((post) => (
+							<article class='insights-editorial-item'>
+								<div class='insights-editorial-item__heading'>
+									<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
+										<FormattedDate date={post.data.pubDate} />
+										<span class='launch-meta text-primary'>{audienceLabel(post)}</span>
+									</div>
+									<h3 class='heading-display text-3xl md:text-5xl'>
+										<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>
+											{post.data.title}
+										</a>
+									</h3>
+								</div>
+								<div class='insights-editorial-item__body'>
+									<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{post.data.description}</p>
+									<div class='flex flex-wrap items-center gap-4'>
+										<a href={`/blog/${post.id}/`} class='arrow-link'>Read note</a>
+										{
+											post.data.tags && post.data.tags.length > 0 && (
+												<p class='launch-meta text-zinc-500 dark:text-zinc-400'>{post.data.tags.slice(0, 3).join(' / ')}</p>
+											)
+										}
+									</div>
+								</div>
+							</article>
 						))}
 					</div>
 				</section>
 			)
 		}
 
-		<ServiceCallout context='blog' variant='general' location='blog_index' />
 	</article>
 </BaseLayout>
