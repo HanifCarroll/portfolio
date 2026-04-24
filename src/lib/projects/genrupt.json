@@ -1,11 +1,11 @@
 {
   "slug": "genrupt",
   "title": "Amazon Creative Ops Platform for Sellers",
-  "description": "Helped Genrupt move from a fragile AI media MVP to a subscription-ready Amazon creative ops platform that seller teams could pay for, trust, and keep expanding.",
+  "description": "Helped Genrupt move from a fragile AI media MVP to an agent-accessible Amazon creative ops platform that seller teams could pay for, trust, and keep expanding.",
   "proofType": "client",
   "client": "Genrupt",
   "service": "Contract Product Engineering",
-  "bestFit": "Teams turning an early AI product into something customers can actually buy, trust, and use at scale.",
+  "bestFit": "Teams turning an early AI product into a commercial platform with reliable async workflows, billing, and agent-accessible product operations.",
   "detailVariant": "product",
   "role": "Contract Product Engineer",
   "category": "product",
@@ -25,26 +25,33 @@
     "FAL.ai",
     "OpenAI",
     "Google Vision OCR",
-    "Model Context Protocol"
+    "Model Context Protocol",
+    "MCP SDK",
+    "OAuth",
+    "WebSocket extension bridge"
   ],
   "liveUrl": "",
   "constraints": [
     "The product had to support paying customers while the platform surface kept expanding.",
-    "Long-running generation jobs needed to retry safely without drifting credits or billing state."
+    "Long-running generation jobs needed to retry safely without drifting credits or billing state.",
+    "Agent-facing workflows had to stay narrow, permissioned, and recoverable instead of exposing the whole internal app surface."
   ],
   "problem": [
     "Genrupt had AI image and video generation working, but the product was not ready for serious customer usage. Paying seller teams needed subscriptions, organization billing, safer credit accounting, and long-running jobs they could trust.",
-    "The product was also expanding into Amazon seller workflows like market analysis, variations, listing builder, A+ content, and experimentation. Without stronger foundations, each new workflow increased the risk of slower releases, cost mistakes, and fragile user experiences."
+    "The product was also expanding into Amazon seller workflows like market analysis, review scraping, variations, listing builder, A+ content, and experimentation. Without stronger foundations, each new workflow increased the risk of slower releases, cost mistakes, and fragile user experiences.",
+    "As the workflow surface grew, normal app screens were no longer the only interface that mattered. Genrupt needed a safe way for external agents and internal chat to run product operations without asking users to understand routes, IDs, or background job mechanics."
   ],
   "solution": [
     "Turned billing, organizations, and credit accounting into a commercial foundation for paid seller-team usage.",
     "Made long-running image, video, storyboard, and related generation workflows safer to retry and easier for users to trust.",
-    "Helped expand the product beyond generation into seller-facing workflows, including inline product-image editing and foundations for market analysis, listing builder, A+ content, and agent-facing interfaces.",
-    "Cleaned up routes, services, and client state so the team could keep adding seller workflows without compounding the product's earlier fragility."
+    "Built the remote MCP and Agent Access surface so paid users could connect external agents, discover allowed capabilities, and run market analysis, Amazon review scraping, listing-builder, and A+ workflows through a small permissioned tool catalog.",
+    "Kept long-running agent workflows recoverable with operation IDs, status and result tools, resource links, structured errors, idempotency keys, and additive progress or logging notifications where clients support them.",
+    "Cleaned up routes, services, client state, and request ownership so the team could keep adding seller workflows without compounding the product's earlier fragility."
   ],
   "result": [
     "Genrupt moved closer to a real commercial platform, with subscriptions, organization billing, and safer cost controls for paying seller teams.",
-    "Long-running generation flows became more dependable, which made newer seller workflows practical to ship instead of risky to launch or manually babysit.",
+    "External agents can now use Genrupt to run market analysis, scrape Amazon reviews, generate listing-builder images, and create A+ content without needing to know the internal app architecture.",
+    "Long-running generation and agent workflows became more dependable, which made newer seller workflows practical to ship instead of risky to launch or manually babysit.",
     "Load testing gave the team clearer launch-capacity targets for current and future events.",
     "The cleaned-up architecture made it easier to keep adding seller workflows and agent-driven features without piling more fragility into the product."
   ],
