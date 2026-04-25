@@ -106,26 +106,47 @@ const navLinks = [
 			const closeIcon = mobileToggle?.querySelector('.close-icon');
 			let lockedScrollY = 0;
 			let menuCloseTimer;
+			let scrollLockStyles;
 			const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
 			const menuCloseDelay = () => (reducedMotionMedia.matches ? 0 : 220);
 
 			const lockScroll = () => {
+				if (scrollLockStyles) return;
 				lockedScrollY = window.scrollY || window.pageYOffset || 0;
+				const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+				scrollLockStyles = {
+					rootOverflow: document.documentElement.style.overflow,
+					rootScrollbarGutter: document.documentElement.style.scrollbarGutter,
+					bodyPosition: document.body.style.position,
+					bodyTop: document.body.style.top,
+					bodyLeft: document.body.style.left,
+					bodyRight: document.body.style.right,
+					bodyWidth: document.body.style.width,
+					bodyPaddingRight: document.body.style.paddingRight
+				};
 				document.documentElement.style.overflow = 'hidden';
+				document.documentElement.style.scrollbarGutter = 'stable';
 				document.body.style.position = 'fixed';
 				document.body.style.top = `-${lockedScrollY}px`;
 				document.body.style.left = '0';
 				document.body.style.right = '0';
 				document.body.style.width = '100%';
+				if (scrollbarWidth > 0) {
+					document.body.style.paddingRight = `${scrollbarWidth}px`;
+				}
 			};
 
 			const unlockScroll = () => {
-				document.documentElement.style.removeProperty('overflow');
-				document.body.style.removeProperty('position');
-				document.body.style.removeProperty('top');
-				document.body.style.removeProperty('left');
-				document.body.style.removeProperty('right');
-				document.body.style.removeProperty('width');
+				if (!scrollLockStyles) return;
+				document.documentElement.style.overflow = scrollLockStyles.rootOverflow;
+				document.documentElement.style.scrollbarGutter = scrollLockStyles.rootScrollbarGutter;
+				document.body.style.position = scrollLockStyles.bodyPosition;
+				document.body.style.top = scrollLockStyles.bodyTop;
+				document.body.style.left = scrollLockStyles.bodyLeft;
+				document.body.style.right = scrollLockStyles.bodyRight;
+				document.body.style.width = scrollLockStyles.bodyWidth;
+				document.body.style.paddingRight = scrollLockStyles.bodyPaddingRight;
+				scrollLockStyles = undefined;
 				window.scrollTo(0, lockedScrollY);
 			};
 
