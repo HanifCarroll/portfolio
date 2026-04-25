@@ -12,9 +12,9 @@ const navLinks = [
 ---
 
 <header
-	class='sticky top-0 z-[999] border-b border-black/10 bg-[#f2ede3]/92 backdrop-blur-md transition-colors duration-200 dark:border-white/10 dark:bg-[#090909]/92'
+	class='sticky top-0 z-[1001] border-b border-black/10 bg-[#f2ede3]/92 backdrop-blur-md transition-colors duration-200 dark:border-white/10 dark:bg-[#090909]/92'
 >
-	<div class='container flex items-center justify-between gap-4 py-4'>
+	<div class='container relative z-[70] flex items-center justify-between gap-4 py-4'>
 		<a href='/' id='logoLink' class='flex flex-col transition hover:text-primary focus-visible:outline-none'>
 			<span class='font-display text-lg font-semibold uppercase tracking-[0.18em]'> Hanif Carroll </span>
 			<span class='font-mono text-[10px] uppercase tracking-[0.34em] text-zinc-500 dark:text-zinc-400'> Technical Product Partner </span>
@@ -39,6 +39,8 @@ const navLinks = [
 			class='inline-flex h-10 w-10 items-center justify-center border-2 border-black text-black transition hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black lg:hidden'
 			id='mobileMenuToggle'
 			aria-label='Toggle navigation'
+			aria-expanded='false'
+			aria-controls='mobileMenu'
 		>
 			<svg
 				class='menu-icon'
@@ -74,30 +76,6 @@ const navLinks = [
 		</button>
 	</div>
 
-	<!-- Mobile Menu - Full screen overlay -->
-	<div class='fixed inset-0 top-[73px] z-50 bg-[#f2ede3] dark:bg-[#090909] lg:hidden' id='mobileMenu' hidden>
-		<nav class='container flex flex-col gap-6 py-8'>
-			{
-				navLinks.map((link) => (
-					<a href={link.href} class='text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary'>
-						{link.label}
-					</a>
-				))
-			}
-			<a
-				href={BOOK_CALL_URL}
-				class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#f2ede3] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
-				target='_blank'
-				rel='noopener noreferrer'
-				data-track-event='book_call_clicked'
-				data-track-location='header_mobile'
-			>
-				Book a Roadmap Call
-				<span aria-hidden='true' class='text-base leading-none'>→</span>
-			</a>
-		</nav>
-	</div>
-
 	<script is:inline>
 		const root = document.documentElement;
 		const darkModeMedia = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: dark)') : null;
@@ -121,45 +99,113 @@ const navLinks = [
 			}
 		}
 
-		const mobileToggle = document.getElementById('mobileMenuToggle');
-		const mobileMenu = document.getElementById('mobileMenu');
-		const menuIcon = mobileToggle?.querySelector('.menu-icon');
-		const closeIcon = mobileToggle?.querySelector('.close-icon');
+		const setupHeaderInteractions = () => {
+			const mobileToggle = document.getElementById('mobileMenuToggle');
+			const mobileMenu = document.getElementById('mobileMenu');
+			const menuIcon = mobileToggle?.querySelector('.menu-icon');
+			const closeIcon = mobileToggle?.querySelector('.close-icon');
+			let lockedScrollY = 0;
 
-		mobileToggle?.addEventListener('click', () => {
-			if (!mobileMenu) return;
-			const isHidden = mobileMenu.hasAttribute('hidden');
-			if (isHidden) {
-				mobileMenu.removeAttribute('hidden');
-				menuIcon?.classList.add('hidden');
-				closeIcon?.classList.remove('hidden');
-			} else {
-				mobileMenu.setAttribute('hidden', 'true');
-				menuIcon?.classList.remove('hidden');
-				closeIcon?.classList.add('hidden');
-			}
-		});
+			const lockScroll = () => {
+				lockedScrollY = window.scrollY || window.pageYOffset || 0;
+				document.documentElement.style.overflow = 'hidden';
+				document.body.style.position = 'fixed';
+				document.body.style.top = `-${lockedScrollY}px`;
+				document.body.style.left = '0';
+				document.body.style.right = '0';
+				document.body.style.width = '100%';
+			};
 
-		// Close mobile menu when clicking a link
-		mobileMenu?.querySelectorAll('a').forEach((link) => {
-			link.addEventListener('click', () => {
-				mobileMenu.setAttribute('hidden', 'true');
-				menuIcon?.classList.remove('hidden');
-				closeIcon?.classList.add('hidden');
+			const unlockScroll = () => {
+				document.documentElement.style.removeProperty('overflow');
+				document.body.style.removeProperty('position');
+				document.body.style.removeProperty('top');
+				document.body.style.removeProperty('left');
+				document.body.style.removeProperty('right');
+				document.body.style.removeProperty('width');
+				window.scrollTo(0, lockedScrollY);
+			};
+
+			const setMobileMenuOpen = (isOpen) => {
+				if (!mobileMenu) return;
+				if (isOpen) {
+					mobileMenu.removeAttribute('hidden');
+					menuIcon?.classList.add('hidden');
+					closeIcon?.classList.remove('hidden');
+					mobileToggle?.setAttribute('aria-expanded', 'true');
+					lockScroll();
+				} else {
+					mobileMenu.setAttribute('hidden', 'true');
+					menuIcon?.classList.remove('hidden');
+					closeIcon?.classList.add('hidden');
+					mobileToggle?.setAttribute('aria-expanded', 'false');
+					unlockScroll();
+				}
+			};
+
+			mobileToggle?.addEventListener('click', () => {
+				if (!mobileMenu) return;
+				setMobileMenuOpen(mobileMenu.hasAttribute('hidden'));
 			});
-		});
 
-		// Handle home button and logo clicks to scroll to top if already on homepage
-		const handleHomeClick = (e) => {
-			const currentPath = window.location.pathname;
-			if (currentPath === '/') {
-				e.preventDefault();
-				window.scrollTo({ top: 0, behavior: 'smooth' });
-			}
+			mobileMenu?.querySelectorAll('a').forEach((link) => {
+				link.addEventListener('click', () => {
+					setMobileMenuOpen(false);
+				});
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape' && mobileMenu && !mobileMenu.hasAttribute('hidden')) {
+					setMobileMenuOpen(false);
+					mobileToggle?.focus();
+				}
+			});
+
+			window.addEventListener('resize', () => {
+				if (window.innerWidth >= 1024 && mobileMenu && !mobileMenu.hasAttribute('hidden')) {
+					setMobileMenuOpen(false);
+				}
+			});
+
+			const handleHomeClick = (e) => {
+				const currentPath = window.location.pathname;
+				if (currentPath === '/') {
+					e.preventDefault();
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				}
+			};
+
+			const logoLink = document.getElementById('logoLink');
+			logoLink?.addEventListener('click', handleHomeClick);
 		};
 
-		const logoLink = document.getElementById('logoLink');
-
-		logoLink?.addEventListener('click', handleHomeClick);
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', setupHeaderInteractions, { once: true });
+		} else {
+			setupHeaderInteractions();
+		}
 	</script>
 </header>
+
+<div class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#f2ede3] pt-[6.5rem] dark:bg-[#090909] lg:hidden' id='mobileMenu' hidden>
+	<nav class='container flex min-h-[calc(100dvh-6.5rem)] flex-col gap-6 py-8'>
+		{
+			navLinks.map((link) => (
+				<a href={link.href} class='text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary'>
+					{link.label}
+				</a>
+			))
+		}
+		<a
+			href={BOOK_CALL_URL}
+			class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#f2ede3] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
+			target='_blank'
+			rel='noopener noreferrer'
+			data-track-event='book_call_clicked'
+			data-track-location='header_mobile'
+		>
+			Book a Roadmap Call
+			<span aria-hidden='true' class='text-base leading-none'>→</span>
+		</a>
+	</nav>
+</div>
