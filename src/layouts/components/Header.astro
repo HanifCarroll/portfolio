@@ -105,6 +105,9 @@ const navLinks = [
 			const menuIcon = mobileToggle?.querySelector('.menu-icon');
 			const closeIcon = mobileToggle?.querySelector('.close-icon');
 			let lockedScrollY = 0;
+			let menuCloseTimer;
+			const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const menuCloseDelay = () => (reducedMotionMedia.matches ? 0 : 220);
 
 			const lockScroll = () => {
 				lockedScrollY = window.scrollY || window.pageYOffset || 0;
@@ -128,18 +131,27 @@ const navLinks = [
 
 			const setMobileMenuOpen = (isOpen) => {
 				if (!mobileMenu) return;
+				window.clearTimeout(menuCloseTimer);
 				if (isOpen) {
+					mobileMenu.dataset.state = 'closed';
 					mobileMenu.removeAttribute('hidden');
+					requestAnimationFrame(() => {
+						mobileMenu.dataset.state = 'open';
+					});
 					menuIcon?.classList.add('hidden');
 					closeIcon?.classList.remove('hidden');
 					mobileToggle?.setAttribute('aria-expanded', 'true');
 					lockScroll();
 				} else {
-					mobileMenu.setAttribute('hidden', 'true');
+					mobileMenu.dataset.state = 'closing';
 					menuIcon?.classList.remove('hidden');
 					closeIcon?.classList.add('hidden');
 					mobileToggle?.setAttribute('aria-expanded', 'false');
-					unlockScroll();
+					menuCloseTimer = window.setTimeout(() => {
+						mobileMenu.setAttribute('hidden', 'true');
+						mobileMenu.dataset.state = 'closed';
+						unlockScroll();
+					}, menuCloseDelay());
 				}
 			};
 
@@ -187,11 +199,21 @@ const navLinks = [
 	</script>
 </header>
 
-<div class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#f2ede3] pt-[6.5rem] dark:bg-[#090909] lg:hidden' id='mobileMenu' hidden>
+<div
+	class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#f2ede3] pt-[6.5rem] dark:bg-[#090909] lg:hidden'
+	id='mobileMenu'
+	data-state='closed'
+	hidden
+>
 	<nav class='container flex min-h-[calc(100dvh-6.5rem)] flex-col gap-6 py-8'>
 		{
-			navLinks.map((link) => (
-				<a href={link.href} class='text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary'>
+			navLinks.map((link, index) => (
+				<a
+					href={link.href}
+					class='text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary'
+					data-mobile-menu-item
+					style={`--mobile-menu-index: ${index}`}
+				>
 					{link.label}
 				</a>
 			))
@@ -203,9 +225,59 @@ const navLinks = [
 			rel='noopener noreferrer'
 			data-track-event='book_call_clicked'
 			data-track-location='header_mobile'
+			data-mobile-menu-item
+			style={`--mobile-menu-index: ${navLinks.length}`}
 		>
 			Book a Roadmap Call
 			<span aria-hidden='true' class='text-base leading-none'>→</span>
 		</a>
 	</nav>
 </div>
+
+<style>
+	#mobileMenu {
+		opacity: 0;
+		transition: opacity 180ms ease-in;
+	}
+
+	#mobileMenu[data-state='open'] {
+		opacity: 1;
+		transition-duration: 220ms;
+		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	#mobileMenu[data-state='closing'] {
+		opacity: 0;
+	}
+
+	#mobileMenu [data-mobile-menu-item] {
+		opacity: 0;
+		transform: translateY(12px);
+		transition:
+			opacity 180ms ease-in,
+			transform 180ms ease-in;
+		transition-delay: 0ms;
+	}
+
+	#mobileMenu[data-state='open'] [data-mobile-menu-item] {
+		opacity: 1;
+		transform: translateY(0);
+		transition-duration: 240ms;
+		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+		transition-delay: calc(var(--mobile-menu-index) * 32ms + 55ms);
+	}
+
+	#mobileMenu[data-state='closing'] [data-mobile-menu-item] {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#mobileMenu,
+		#mobileMenu [data-mobile-menu-item] {
+			transition: none;
+			transition-delay: 0ms;
+			transform: none;
+		}
+	}
+</style>
