@@ -559,52 +559,60 @@
 		outline-offset: -1px;
 	}
 
-	.service-compare-grid {
+	.service-path-grid {
 		display: grid;
-		gap: 4rem;
-		align-items: start;
+		border-block: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
-	.service-compare-panel {
+	.service-path-option {
 		display: grid;
-		gap: 2rem;
+		gap: 1.25rem;
+		padding: 1.5rem 0;
+		transition:
+			border-color 180ms ease,
+			color 180ms ease;
+	}
+
+	.service-path-option + .service-path-option {
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.service-path-option__meta {
+		display: grid;
+		gap: 0.35rem;
 		align-content: start;
+	}
+
+	.service-path-option__body {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.service-path-option__signals {
+		display: grid;
+		gap: 0.55rem;
+		margin: 0;
 		padding: 0;
+		list-style: none;
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: rgb(63 63 70);
 	}
 
-	.service-compare-panel--launch {
-		gap: 2.5rem;
+	.service-path-option__signals li {
+		position: relative;
+		padding-left: 1.05rem;
 	}
 
-	.service-compare-price {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: end;
-		justify-content: space-between;
-		gap: 1rem 1.5rem;
-	}
-
-	.service-compare-panel--audit {
-		padding-top: 0.35rem;
-	}
-
-	.service-audit-sheet {
-		display: grid;
-		gap: 1.75rem;
-		padding: 1.5rem;
-		background: rgba(255, 255, 255, 0.45);
-		outline: 1px solid rgba(0, 0, 0, 0.08);
-		outline-offset: -1px;
-	}
-
-	.service-audit-sheet__head {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.service-audit-sheet__rows {
-		display: grid;
-		gap: 1rem;
+	.service-path-option__signals li::before {
+		position: absolute;
+		top: 0.7em;
+		left: 0;
+		width: 0.35rem;
+		height: 0.35rem;
+		border: 1px solid currentColor;
+		content: '';
+		transform: translateY(-50%);
 	}
 
 	.service-detail-grid {
@@ -617,9 +625,14 @@
 		gap: 2.5rem;
 	}
 
+	.service-offer-scope {
+		display: grid;
+		gap: 2rem;
+	}
+
 	.service-audit-sidebar {
 		display: grid;
-		gap: 1rem;
+		gap: 2rem;
 		max-width: 34rem;
 	}
 
@@ -1427,11 +1440,11 @@
 
 	:is(.dark) .path-choices,
 	:is(.dark) .path-choice,
+	:is(.dark) .service-path-grid,
 	:is(.dark) .service-summary-item {
 		border-color: rgba(255, 255, 255, 0.12);
 	}
 
-	:is(.dark) .service-audit-sheet,
 	:is(.dark) .service-launch-step,
 	:is(.dark) .about-strength-card,
 	:is(.dark) .blog-post-hero__media,
@@ -1443,6 +1456,10 @@
 	:is(.dark) .tools-card {
 		background: rgba(255, 255, 255, 0.03);
 		outline-color: rgba(255, 255, 255, 0.12);
+	}
+
+	:is(.dark) .service-path-option + .service-path-option {
+		border-top-color: rgba(255, 255, 255, 0.12);
 	}
 
 	:is(.dark) .service-audit-note,
@@ -1524,6 +1541,7 @@
 	}
 
 	:is(.dark) .path-choice__body,
+	:is(.dark) .service-path-option__signals,
 	:is(.dark) .fit-list li,
 	:is(.dark) .fit-signal {
 		color: rgb(212 212 216);
@@ -1559,14 +1577,20 @@
 			gap: 1.5rem;
 		}
 
-		.service-compare-grid {
-			grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-			gap: 4.5rem;
+		.service-path-option {
+			grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
+			gap: 3rem;
+			padding: 1.75rem 0;
 		}
 
-		.service-audit-sheet__head {
-			grid-template-columns: minmax(0, 1fr) auto;
+		.service-path-option__body {
+			grid-template-columns: minmax(0, 0.98fr) minmax(16rem, 0.86fr);
 			align-items: start;
+			column-gap: 3rem;
+		}
+
+		.service-path-option__body .arrow-link {
+			grid-column: 1 / -1;
 		}
 
 		.service-detail-grid--audit {

@@ -13,17 +13,16 @@ const heroFacts = [
 	{ label: 'What you get', value: 'Clear scope, direct execution, and one person handling the product and technical tradeoffs.' }
 ];
 
-const compareCards = [
+const pathChoices = [
 	{
 		label: 'Offer 01',
 		title: 'The 4-Week Launch',
-		summary: 'A fixed-scope MVP for nontechnical founders who need product judgment and senior execution in one person.',
-		priceDisplay: '$10K+',
-		kicker: 'Fixed-scope MVP build',
-		bestFor: [
-			'You need a first useful version live without hiring a team first.',
-			'The idea is promising, but the right v1 is still fuzzy.',
-			'You want one person handling scope, UX, build, and launch.'
+		summary: 'For nontechnical founders who need the first useful version scoped, built, and live.',
+		price: 'Starts at $10,000',
+		signals: [
+			'The right v1 is still fuzzy.',
+			'You need scope, UX, build, and launch in one place.',
+			'You want a fixed-scope build, not an open-ended team search.'
 		],
 		cta: 'See the MVP path',
 		href: '#mvp'
@@ -31,13 +30,12 @@ const compareCards = [
 	{
 		label: 'Offer 02',
 		title: 'Workflow Audit / AI Systems',
-		summary: 'A paid diagnostic for founder-led teams with repeated manual work, scattered context, or an AI idea without a clean workflow underneath.',
-		priceDisplay: '$1K+',
-		kicker: 'Paid diagnostic first',
-		bestFor: [
-			'Your team is losing time to copy-paste, inbox triage, or handoff chaos.',
-			'You suspect the workflow is the real issue, not the tool on top of it.',
-			'You want to know whether software, automation, or AI is actually the right fix.'
+		summary: 'For founder-led teams that need to diagnose the workflow before committing to a build.',
+		price: 'Starts at $1,000',
+		signals: [
+			'The team is losing time to copy-paste, inbox triage, or handoff chaos.',
+			'The workflow may be the real issue.',
+			'You need to know whether software, automation, or AI is the right fix.'
 		],
 		cta: 'See the workflow path',
 		href: '#automation'
@@ -49,6 +47,8 @@ const mvpBestFor = [
 	'Teams that need a smaller, clearer first version.',
 	'Founders who can stay involved in scope and weekly review.'
 ];
+
+const mvpTerms = ['Starts at $10,000.', 'Fixed scope.', '50% upfront, 50% at launch.'];
 
 const includedItems = [
 	'Product strategy, scope cuts, and pricing guidance before code starts.',
@@ -62,6 +62,12 @@ const automationBestFor = [
 	'Founder-led teams with repeated manual work and no clear system under it.',
 	'SMBs that rely on copy-paste, inbox triage, or one person holding too much context.',
 	'Teams exploring AI, but only if it actually improves the workflow.'
+];
+
+const auditTerms = [
+	'Starts at $1,000.',
+	'Credited toward implementation if we move forward.',
+	'Built to produce a concrete next-step recommendation.'
 ];
 
 const workflowAuditItems = [
@@ -134,8 +140,16 @@ const faqItems = [
 		body: 'The 4-Week Launch starts at $10,000 with 50% upfront and 50% at launch. Workflow audits start at $1,000 and are credited toward implementation if we move forward.'
 	},
 	{
+		title: 'What happens after the roadmap call?',
+		body: 'You leave with a recommended starting path, likely budget range, and the smallest useful next step. If this is not the right fit, I will say that directly.'
+	},
+	{
 		title: 'What if AI is not the right fix?',
 		body: 'Then I will say that. The audit is meant to choose the right first system, not force AI into the workflow.'
+	},
+	{
+		title: 'How do you handle sensitive business context?',
+		body: 'We start with the minimum access needed, keep credentials out of shared docs and chat, and define human review points before automation touches customer, financial, or operational data.'
 	}
 ];
 ---
@@ -150,16 +164,11 @@ const faqItems = [
 
 		<header class='service-hero-grid'>
 			<div class='space-y-6'>
-				<h1
-					class='heading-display heading-display--hero'
-					data-fit-heading
-					data-fit-min-rem='2'
-					data-fit-max-rem='4.85'
-				>
-					Choose the right starting path.
+				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+					Start with the right first system.
 				</h1>
 				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-					This page should help you decide whether you need a focused MVP build or a workflow audit first.
+					For nontechnical founders and founder-led teams deciding between a focused MVP build, a workflow audit, or a smaller first step.
 				</p>
 				<div class='flex flex-wrap gap-4 pt-1'>
 					<a
@@ -187,54 +196,35 @@ const faqItems = [
 			</div>
 		</header>
 
-		<section id='compare' class='space-y-8 md:space-y-10'>
+		<section id='paths' class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Compare The Paths</p>
-				<h2 class='heading-display heading-display--section'>Most engagements start in one of two places.</h2>
+				<p class='section-label'>// Choose Your Path</p>
+				<h2 class='heading-display heading-display--section'>Start with the closest match, then we narrow from there.</h2>
 			</div>
 
-			<div class='service-compare-grid'>
-				<a href={compareCards[0].href} class='service-compare-panel service-compare-panel--launch group'>
-					<div class='service-compare-price'>
-						<p class='heading-display heading-display--price text-primary' style='font-variant-numeric: tabular-nums'>{compareCards[0].priceDisplay}</p>
-					</div>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>{compareCards[0].label}</p>
-						<p class='launch-meta'>{compareCards[0].kicker}</p>
-						<h3 class='heading-display heading-display--section'>{compareCards[0].title}</h3>
-						<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{compareCards[0].summary}</p>
-					</div>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Best fit</p>
-						<ul class='fit-list'>
-							{compareCards[0].bestFor.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{compareCards[0].cta}</span>
-				</a>
-
-				<a href={compareCards[1].href} class='service-compare-panel service-compare-panel--audit group'>
-					<div class='service-audit-sheet'>
-						<div class='service-audit-sheet__head'>
-							<div class='space-y-2'>
-								<p class='launch-meta text-primary'>{compareCards[1].label}</p>
-								<p class='launch-meta'>{compareCards[1].kicker}</p>
+			<div class='service-path-grid'>
+				{
+					pathChoices.map((choice) => (
+						<a href={choice.href} class='service-path-option group'>
+							<div class='service-path-option__meta'>
+								<p class='launch-meta text-primary'>{choice.label}</p>
+								<p class='launch-meta'>{choice.price}</p>
 							</div>
-							<div class='space-y-1 text-left md:text-right'>
-								<p class='heading-display heading-display--price text-primary' style='font-variant-numeric: tabular-nums'>{compareCards[1].priceDisplay}</p>
+							<div class='service-path-option__body'>
+								<div class='space-y-3'>
+									<h3 class='heading-display heading-display--subsection'>{choice.title}</h3>
+									<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{choice.summary}</p>
+								</div>
+								<ul class='service-path-option__signals'>
+									{choice.signals.map((signal) => (
+										<li>{signal}</li>
+									))}
+								</ul>
+								<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{choice.cta}</span>
 							</div>
-						</div>
-						<div class='space-y-4'>
-							<h3 class='heading-display heading-display--section'>{compareCards[1].title}</h3>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{compareCards[1].summary}</p>
-						</div>
-						<div class='service-audit-sheet__rows'>
-							<p class='launch-meta text-primary'>Best fit</p>
-							{compareCards[1].bestFor.map((item) => <p class='fit-signal'>{item}</p>)}
-						</div>
-					</div>
-					<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{compareCards[1].cta}</span>
-				</a>
+						</a>
+					))
+				}
 			</div>
 		</section>
 
@@ -250,7 +240,7 @@ const faqItems = [
 					<p class='launch-meta'>Starts at $10,000. Fixed scope. 50% upfront, 50% at launch.</p>
 				</div>
 
-				<div class='grid gap-10 lg:grid-cols-[0.95fr_1.05fr]'>
+				<div class='service-offer-scope'>
 					<div class='space-y-4'>
 						<p class='launch-meta text-primary'>Best for</p>
 						<ul class='fit-list'>
@@ -263,19 +253,27 @@ const faqItems = [
 							{includedItems.map((item) => <li>{item}</li>)}
 						</ul>
 					</div>
+					<div class='space-y-4'>
+						<p class='launch-meta text-primary'>Commercial terms</p>
+						<ul class='fit-list'>
+							{mvpTerms.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
 				</div>
 			</div>
 
 			<div class='service-launch-steps'>
-				{launchSteps.map((step) => (
-					<div class='service-launch-step'>
-						<p class='launch-meta text-primary'>Step {step.num}</p>
-						<div class='space-y-3'>
-							<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+				{
+					launchSteps.map((step) => (
+						<div class='service-launch-step'>
+							<p class='launch-meta text-primary'>Step {step.num}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+							</div>
 						</div>
-					</div>
-				))}
+					))
+				}
 			</div>
 		</section>
 
@@ -292,10 +290,18 @@ const faqItems = [
 				</div>
 
 				<div class='service-audit-sidebar'>
-					<p class='launch-meta text-primary'>Best for</p>
-					<ul class='fit-list'>
-						{automationBestFor.map((item) => <li>{item}</li>)}
-					</ul>
+					<div class='space-y-4'>
+						<p class='launch-meta text-primary'>Best for</p>
+						<ul class='fit-list'>
+							{automationBestFor.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+					<div class='space-y-4'>
+						<p class='launch-meta text-primary'>Commercial terms</p>
+						<ul class='fit-list'>
+							{auditTerms.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
 				</div>
 			</div>
 
@@ -308,12 +314,14 @@ const faqItems = [
 					</p>
 				</div>
 				<div class='service-audit-worksheet__grid'>
-					{auditOutputs.map((item) => (
-						<div class='service-audit-note'>
-							<p class='launch-meta text-primary'>{item.label}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-						</div>
-					))}
+					{
+						auditOutputs.map((item) => (
+							<div class='service-audit-note'>
+								<p class='launch-meta text-primary'>{item.label}</p>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+							</div>
+						))
+					}
 				</div>
 			</div>
 
