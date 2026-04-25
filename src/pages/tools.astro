@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Tools & Experiments';
+const description =
+	'Local-first tools Hanif Carroll builds for AI agents, automation, personal workflows, and safer operational evidence handling.';
+
+const featuredTools = [
+	{
+		name: 'codex-telegram-bridge',
+		status: 'Public OSS',
+		focus: 'Remote Codex control',
+		body: 'A local bridge that lets me mark myself away, receive Codex updates in Telegram, reply back into the right thread, inspect active work, and approve actions without keeping the laptop in front of me.',
+		why: 'It turns Codex Desktop from a single-machine workflow into something I can safely supervise while away.',
+		repo: 'https://github.com/HanifCarroll/codex-telegram-bridge'
+	},
+	{
+		name: 'codex-recall',
+		status: 'Public OSS',
+		focus: 'Session recall',
+		body: 'A local SQLite FTS index over Codex session archives, built so agents can search prior work, inspect receipts, and reuse context without treating raw JSONL logs like a durable database.',
+		why: 'It gives long-running agent workflows memory with evidence instead of vague recollection.',
+		repo: 'https://github.com/HanifCarroll/codex-recall'
+	},
+	{
+		name: 'mailbridge',
+		status: 'Public OSS',
+		focus: 'Mailbox evidence',
+		body: 'A conservative JSON CLI over local Gmail and Fastmail access for search, read, thread lookup, attachment download, evidence pulls, and draft-only composition.',
+		why: 'It gives agents useful mailbox context while keeping the boundary narrow: no send, archive, delete, or label mutations.',
+		repo: 'https://github.com/HanifCarroll/mailbridge'
+	},
+	{
+		name: 'tool-feedback',
+		status: 'Experimental',
+		focus: 'Tool improvement loops',
+		body: 'A local runtime for submitting tool-friction cases, deduping them, routing triage or patch jobs, and sending approval/status updates through Telegram.',
+		why: 'It makes tool improvement a tracked workflow instead of scattered notes after something breaks.',
+		repo: 'https://github.com/HanifCarroll/tool-feedback'
+	},
+	{
+		name: 'cli-tools',
+		status: 'Public toolkit',
+		focus: 'macOS automation',
+		body: 'A TypeScript monorepo of local CLIs for macOS apps, Granola notes, browser tabs, and social workflows that agents can call during real work.',
+		why: 'It keeps useful desktop context reachable through explicit commands instead of fragile one-off scripts.',
+		repo: 'https://github.com/HanifCarroll/cli-tools'
+	}
+];
+
+const principles = [
+	{
+		label: 'Local first',
+		body: 'The useful state stays on the machine whenever possible: transcripts, mailbox pulls, tool feedback, and workflow databases.'
+	},
+	{
+		label: 'Narrow permissions',
+		body: 'Tools should expose the smallest useful surface, especially around email, browser sessions, client context, and agent actions.'
+	},
+	{
+		label: 'Receipts over vibes',
+		body: 'Agent workflows get better when they can point to source files, command output, run artifacts, and explicit state transitions.'
+	}
+];
+---
+
+<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
+	<article class='container max-w-6xl space-y-20 py-10 md:space-y-24'>
+		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
+			<a href='/' class='transition-colors hover:text-primary'>Home</a>
+			<span class='text-zinc-400'>/</span>
+			<span class='text-primary'>Tools</span>
+		</nav>
+
+		<header class='grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.9fr)] lg:items-end'>
+			<div class='max-w-4xl space-y-5'>
+				<p class='section-label'>// Tools & Experiments</p>
+				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+					Local-first tools for agent-heavy work.
+				</h1>
+				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+					These are the small systems I build around my own workflow: Codex remote control, session recall, mailbox evidence, tool-feedback
+					loops, and desktop automation. They sit behind the client work, but they show how I think about reliability, permissions, and
+					operational context.
+				</p>
+			</div>
+
+			<div class='tools-console' aria-label='Local-first agent tooling themes'>
+				<div class='tools-console__bar'>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class='tools-console__body'>
+					<p><span>agent surface</span> codex, telegram, mailbox, browser</p>
+					<p><span>state</span> sqlite, jsonl, markdown, local artifacts</p>
+					<p><span>rules</span> narrow permissions, receipts, approval gates</p>
+					<p><span>output</span> tools that make real work easier to repeat</p>
+				</div>
+			</div>
+		</header>
+
+		<section class='space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Featured Tools</p>
+				<h2 class='heading-display heading-display--section'>Useful enough to explain publicly.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The point is not a long list of side projects. These are the tools that best show the operating system I am building around
+					agentic work.
+				</p>
+			</div>
+
+			<div class='tools-grid'>
+				{
+					featuredTools.map((tool) => (
+						<article class='tools-card'>
+							<div class='tools-card__header'>
+								<p class='launch-meta text-primary'>{tool.status}</p>
+								<p class='tools-card__focus'>{tool.focus}</p>
+							</div>
+							<div class='space-y-4'>
+								<h3 class='heading-display heading-display--subsection'>{tool.name}</h3>
+								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{tool.body}</p>
+							</div>
+							<div class='tools-card__why'>
+								<p class='launch-meta text-primary'>Why it exists</p>
+								<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{tool.why}</p>
+							</div>
+							<a
+								href={tool.repo}
+								class='arrow-link w-fit'
+								target='_blank'
+								rel='noopener noreferrer'
+								data-track-event='tool_repo_clicked'
+								data-track-location='tools_page'
+							>
+								View repo
+							</a>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='tools-principles space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Design Principles</p>
+				<h2 class='heading-display heading-display--section'>The same judgment shows up in client systems.</h2>
+			</div>
+			<div class='tools-principles__grid'>
+				{
+					principles.map((principle) => (
+						<div class='tools-principle'>
+							<p class='launch-meta text-primary'>{principle.label}</p>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{principle.body}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='max-w-3xl space-y-5 pb-4'>
+			<p class='section-label'>// Private Bench</p>
+			<h2 class='heading-display heading-display--section'>Some tools stay internal until the public story is clean.</h2>
+			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				My personal workflow runtime, knowledge engine, and evidence collectors are useful, but not every internal tool should become a
+				public product page. The public list stays focused on tools that are safe to explain and useful to other builders.
+			</p>
+			<a href='/projects/' class='arrow-link w-fit'>See client case studies</a>
+		</section>
+	</article>
+</BaseLayout>

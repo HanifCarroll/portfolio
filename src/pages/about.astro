@@ -76,12 +76,7 @@ const backgroundMoments = [
 
 		<header class='about-hero-grid'>
 			<div class='about-hero-copy space-y-5' data-fit-container>
-				<h1
-					class='heading-display heading-display--hero about-hero-title'
-					data-fit-heading
-					data-fit-min-rem='2'
-					data-fit-max-rem='4.85'
-				>
+				<h1 class='heading-display heading-display--hero about-hero-title' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 					I help founders and operator-led teams make the right first system.
 				</h1>
 				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
@@ -108,12 +103,14 @@ const backgroundMoments = [
 				<h2 class='heading-display heading-display--section'>Useful software, clearer decisions, less wasted motion.</h2>
 			</div>
 			<div class='about-strengths-grid'>
-				{strengths.map((item) => (
-					<div class='about-strength-card'>
-						<p class='launch-meta about-card-label'>{item.label}</p>
-						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-					</div>
-				))}
+				{
+					strengths.map((item) => (
+						<div class='about-strength-card'>
+							<p class='launch-meta about-card-label'>{item.label}</p>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						</div>
+					))
+				}
 			</div>
 		</section>
 
@@ -123,15 +120,17 @@ const backgroundMoments = [
 				<h2 class='heading-display heading-display--section'>The working style matters as much as the stack.</h2>
 			</div>
 			<div class='about-working-style'>
-				{workingStyle.map((item, index) => (
-					<div class:list={['about-working-style__item', index === 1 && 'about-working-style__item--offset']}>
-						<p class='heading-display about-working-style__num text-primary'>{String(index + 1).padStart(2, '0')}</p>
-						<div class='space-y-3'>
-							<h3 class='heading-display heading-display--subsection'>{item.title}</h3>
-							<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+				{
+					workingStyle.map((item, index) => (
+						<div class:list={['about-working-style__item', index === 1 && 'about-working-style__item--offset']}>
+							<p class='heading-display about-working-style__num text-primary'>{String(index + 1).padStart(2, '0')}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display heading-display--subsection'>{item.title}</h3>
+								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+							</div>
 						</div>
-					</div>
-				))}
+					))
+				}
 			</div>
 		</section>
 
@@ -141,12 +140,14 @@ const backgroundMoments = [
 				<h2 class='heading-display heading-display--section'>The difference is usually judgment, not just output.</h2>
 			</div>
 			<div class='about-reasons-grid'>
-				{clientReasons.map((item) => (
-					<div class='about-reasons-grid__item'>
-						<p class='launch-meta about-card-label'>{item.label}</p>
-						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-					</div>
-				))}
+				{
+					clientReasons.map((item) => (
+						<div class='about-reasons-grid__item'>
+							<p class='launch-meta about-card-label'>{item.label}</p>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						</div>
+					))
+				}
 			</div>
 		</section>
 
@@ -160,18 +161,35 @@ const backgroundMoments = [
 				</p>
 			</div>
 			<div class='about-background-rail'>
-				{backgroundMoments.map((item) => (
-					<div class='about-background-rail__item'>
-						<p class='launch-meta about-card-label'>{item.label}</p>
-						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-					</div>
-				))}
+				{
+					backgroundMoments.map((item) => (
+						<div class='about-background-rail__item'>
+							<p class='launch-meta about-card-label'>{item.label}</p>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						</div>
+					))
+				}
 			</div>
+		</section>
+
+		<section class='about-section-panel space-y-8 md:space-y-10'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Tools I Build</p>
+				<h2 class='heading-display heading-display--section'>I build my own operating tools for agent-heavy work.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					Outside client delivery, I build local-first tools for Codex remote control, session recall, mailbox evidence, desktop automation,
+					and tool-improvement loops. They are not the main offer, but they show how I think about reliability and permissions in real
+					workflows.
+				</p>
+			</div>
+			<a href='/tools/' class='arrow-link w-fit'>See tools and experiments</a>
 		</section>
 
 		<section class='max-w-3xl space-y-5 pb-4'>
 			<p class='section-label'>// Closing Note</p>
-			<h2 class='heading-display heading-display--section'>If you need a first useful version, I can usually tell you where to start quickly.</h2>
+			<h2 class='heading-display heading-display--section'>
+				If you need a first useful version, I can usually tell you where to start quickly.
+			</h2>
 			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 				The roadmap call is where I tell you whether this should start as an MVP, a workflow audit, or something smaller.
 			</p>
