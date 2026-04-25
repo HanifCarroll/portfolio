@@ -64,12 +64,6 @@ const featuredOutcomeHighlights = {
 	'maximo-interiorismo': 'The studio gained a cleaner showcase for its work and positioning.',
 	'redwriter-comics': 'The launch site gave the project a stronger public-facing home.'
 } as const;
-
-const browseTypes = [
-	{ label: 'MVP launches', body: 'Products and first versions built to get something useful live quickly.' },
-	{ label: 'Workflow systems', body: 'Operational tools and internal systems that reduce repetitive manual work.' },
-	{ label: 'Launch sites', body: 'Marketing and launch surfaces where conversion clarity mattered as much as code.' }
-];
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -90,8 +84,7 @@ const browseTypes = [
 				Examples of the work in context.
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				MVP launches, internal tools, workflow systems, and launch sites. Start with the featured project, then skim for the closest match
-				to the kind of problem you have.
+				MVP launches, internal tools, workflow systems, and launch sites.
 			</p>
 		</header>
 
@@ -147,7 +140,6 @@ const browseTypes = [
 		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// Selected Client Work</p>
-				<h2 class='heading-display heading-display--section'>The closest examples, arranged like a curated archive.</h2>
 			</div>
 
 			<div class='case-studies-editorial-list'>
@@ -204,21 +196,6 @@ const browseTypes = [
 			</div>
 		</section>
 
-		<section class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Browse By Type</p>
-				<h2 class='heading-display heading-display--section'>Start with the kind of work closest to your situation.</h2>
-			</div>
-			<div class='case-studies-browse-types'>
-				{browseTypes.map((item) => (
-					<div class='case-studies-browse-types__item'>
-						<p class='launch-meta text-primary'>{item.label}</p>
-						<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-					</div>
-				))}
-			</div>
-		</section>
-
 		{
 			experimentProjects.length > 0 && (
 				<section class='space-y-8 md:space-y-10'>
@@ -247,14 +224,5 @@ const browseTypes = [
 				</section>
 			)
 		}
-
-		<section class='max-w-3xl space-y-5 pb-4'>
-			<p class='section-label'>// Closing Note</p>
-			<h2 class='heading-display heading-display--section'>Need the closest example for your situation?</h2>
-			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-				On a roadmap call, I can point you to the nearest match and explain where your project would likely differ.
-			</p>
-			<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
-		</section>
 	</article>
 </BaseLayout>

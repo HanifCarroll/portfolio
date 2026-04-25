@@ -9,6 +9,10 @@ const navLinks = [
 	{ href: '/about/', label: 'About' },
 	{ href: '/blog/', label: 'Insights' }
 ];
+
+const { pathname } = Astro.url;
+const currentRoot = `/${pathname.match(/[^\/]+/)?.[0] ?? ''}/`;
+const isActiveLink = (href: string) => href === pathname || href === currentRoot;
 ---
 
 <header
@@ -237,7 +241,11 @@ const navLinks = [
 			navLinks.map((link, index) => (
 				<a
 					href={link.href}
-					class='text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary'
+					class:list={[
+						'text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary',
+						isActiveLink(link.href) && 'text-primary'
+					]}
+					aria-current={isActiveLink(link.href) ? 'page' : undefined}
 					data-mobile-menu-item
 					style={`--mobile-menu-index: ${index}`}
 				>
