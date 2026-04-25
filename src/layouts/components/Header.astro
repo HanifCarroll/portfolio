@@ -117,6 +117,7 @@ const navLinks = [
 				scrollLockStyles = {
 					rootOverflow: document.documentElement.style.overflow,
 					rootScrollbarGutter: document.documentElement.style.scrollbarGutter,
+					rootScrollBehavior: document.documentElement.style.scrollBehavior,
 					bodyPosition: document.body.style.position,
 					bodyTop: document.body.style.top,
 					bodyLeft: document.body.style.left,
@@ -138,6 +139,7 @@ const navLinks = [
 
 			const unlockScroll = () => {
 				if (!scrollLockStyles) return;
+				document.documentElement.style.scrollBehavior = 'auto';
 				document.documentElement.style.overflow = scrollLockStyles.rootOverflow;
 				document.documentElement.style.scrollbarGutter = scrollLockStyles.rootScrollbarGutter;
 				document.body.style.position = scrollLockStyles.bodyPosition;
@@ -146,8 +148,12 @@ const navLinks = [
 				document.body.style.right = scrollLockStyles.bodyRight;
 				document.body.style.width = scrollLockStyles.bodyWidth;
 				document.body.style.paddingRight = scrollLockStyles.bodyPaddingRight;
+				const previousScrollBehavior = scrollLockStyles.rootScrollBehavior;
 				scrollLockStyles = undefined;
-				window.scrollTo(0, lockedScrollY);
+				window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'auto' });
+				requestAnimationFrame(() => {
+					document.documentElement.style.scrollBehavior = previousScrollBehavior;
+				});
 			};
 
 			const setMobileMenuOpen = (isOpen) => {
