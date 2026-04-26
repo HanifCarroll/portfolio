@@ -5,7 +5,7 @@ import { BOOK_CALL_URL } from '../consts';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
-import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
+import genruptFeature from '@src/assets/img/projects/genrupt-feature.png';
 
 const title = 'Hanif Carroll | Technical Product Partner';
 const description =
@@ -13,18 +13,18 @@ const description =
 
 const pathCards = [
 	{
-		label: 'Path 01',
-		title: 'I need to launch a product',
-		body: 'For nontechnical founders who need the first useful version scoped, built, and live without hiring a team.',
-		href: '/launch/#mvp',
-		cta: 'See the 4-Week Launch'
+		label: 'Product path',
+		title: 'Launch a first version',
+		body: 'For founders who need the first useful version scoped, built, and live.',
+		href: '/launch/',
+		cta: 'See the launch path'
 	},
 	{
-		label: 'Path 02',
-		title: 'I need to fix a workflow',
-		body: 'For founder-led teams with repetitive manual work, scattered context, or an AI idea that needs a real workflow underneath.',
-		href: '/launch/#automation',
-		cta: 'See the Workflow Audit'
+		label: 'Workflow path',
+		title: 'Diagnose the workflow',
+		body: 'For teams that need to find the bottleneck before building software or adding AI.',
+		href: '/launch/',
+		cta: 'See the audit path'
 	}
 ];
 
@@ -53,7 +53,7 @@ const caseStudies = [
 		title: 'Moved an AI demo toward a billable seller platform',
 		body: 'Helped Genrupt move beyond demo-stage image and video generation by adding the commercial and reliability foundations needed for paid Amazon seller workflows.',
 		outcome: 'Made the product more subscription-ready, more reliable under load, and easier to extend into new seller workflows.',
-		image: genruptHero,
+		image: genruptFeature,
 		imageAlt: 'AI creative platform interface for image and video generation.',
 		imageClass: 'object-left-top'
 	}
@@ -61,31 +61,13 @@ const caseStudies = [
 
 const [featuredCaseStudy, ...secondaryCaseStudies] = caseStudies;
 
-const processSteps = [
-	{
-		number: '01',
-		title: 'Clarify the business problem',
-		body: 'I start with the user, the workflow, and the business constraint that is actually slowing things down.'
-	},
-	{
-		number: '02',
-		title: 'Cut the scope to the first useful system',
-		body: 'The goal is not maximum scope. It is the smallest version that creates signal, removes work, or moves the business forward.'
-	},
-	{
-		number: '03',
-		title: 'Build with direct feedback',
-		body: 'You work directly with me, get short demos, and make faster decisions without extra agency layers.'
-	}
-];
-
 const fitColumns = [
 	{
 		title: 'Good fit',
 		items: [
-			'You need a first version or internal system in use soon.',
-			'You want one person who can advise on scope, pricing, workflow, and implementation.',
-			'You need a smaller, clearer first step instead of a giant build.'
+			'You need a first product, workflow, or internal system in use soon.',
+			'You want one person who can advise on scope, workflow, and implementation.',
+			'You need a smaller first step before committing to a bigger build.'
 		]
 	},
 	{
@@ -109,7 +91,8 @@ const fitColumns = [
 						<p class='home-hero-context home-hero-context--hero'>For nontechnical founders</p>
 						<h1 class='home-hero-title'>Turn rough ideas and manual workflows into working software.</h1>
 						<p class='home-hero-body'>
-							Get one senior partner to refine your concept, cut scope, and ship your MVP. No agency overhead, just direct execution.
+							Get one senior partner to choose the right first system, cut scope, and build it directly. Product launch, workflow audit,
+							or a smaller first step.
 						</p>
 						<div class='home-hero-actions'>
 							<a
@@ -136,45 +119,13 @@ const fitColumns = [
 		</div>
 	</section>
 
-	<section class='container py-10 md:py-12' aria-labelledby='home-paths-title'>
-		<div class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='launch-meta text-primary'>Start here</p>
-				<h2 id='home-paths-title' class='heading-display heading-display--section'>What are you focused on right now?</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Most good engagements start as either a product launch or an operations bottleneck. Start with the closest path, then we narrow the
-					scope on a roadmap call.
-				</p>
-			</div>
-
-			<div class='path-choices'>
-				{
-					pathCards.map((path) => (
-						<a href={path.href} class='path-choice group'>
-							<div class='path-choice__header'>
-								<p class='launch-meta text-primary'>{path.label}</p>
-								<span class='path-choice__arrow'>↗</span>
-							</div>
-							<div class='space-y-4'>
-								<h3 class='heading-display text-[clamp(2.4rem,4vw,4.4rem)]'>{path.title}</h3>
-								<p class='path-choice__body'>{path.body}</p>
-							</div>
-							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{path.cta}</span>
-						</a>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<section class='container py-20 md:py-24' id='case-studies'>
+	<section class='container py-16 md:py-20' id='case-studies'>
 		<div class='space-y-5'>
 			<p class='section-label'>// Case Studies</p>
 			<div class='max-w-3xl space-y-4'>
-				<h2 class='heading-display heading-display--section'>Find the closest match for the kind of problem you have.</h2>
+				<h2 class='heading-display heading-display--section'>Proof from products, workflows, and AI systems.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Start with the project that feels closest to the problem you need solved, whether that is an MVP launch, a workflow bottleneck, or
-					an AI system your team needs to use every week.
+					Three examples of the same pattern: narrow the problem, build the useful system, and leave the work easier to own.
 				</p>
 			</div>
 		</div>
@@ -186,7 +137,7 @@ const fitColumns = [
 						href={`/projects/${featuredCaseStudy.slug}/`}
 						class='case-study-feature group grid gap-8 transition-colors lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-14'
 					>
-						<figure class='overflow-hidden border border-black/15 bg-black dark:border-white/15'>
+						<figure class='overflow-hidden border border-black/15 bg-zinc-950 dark:border-white/15'>
 							<Image
 								src={featuredCaseStudy.image}
 								alt={featuredCaseStudy.imageAlt}
@@ -194,7 +145,7 @@ const fitColumns = [
 									'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
 									featuredCaseStudy.imageClass
 								]}
-								loading='lazy'
+								loading='eager'
 							/>
 						</figure>
 
@@ -220,7 +171,7 @@ const fitColumns = [
 				{
 					secondaryCaseStudies.map((study) => (
 						<a href={`/projects/${study.slug}/`} class='case-study-secondary group'>
-							<figure class='overflow-hidden border border-black/15 bg-black dark:border-white/15'>
+							<figure class='overflow-hidden border border-black/15 bg-zinc-950 dark:border-white/15'>
 								<Image
 									src={study.image}
 									alt={study.imageAlt}
@@ -228,7 +179,7 @@ const fitColumns = [
 										'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
 										study.imageClass
 									]}
-									loading='lazy'
+									loading='eager'
 								/>
 							</figure>
 							<div class='space-y-3'>
@@ -250,40 +201,29 @@ const fitColumns = [
 		</div>
 	</section>
 
-	<section class='container py-20 md:py-24' id='approach'>
+	<section class='container py-16 md:py-20' aria-labelledby='home-paths-title'>
 		<div class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// How We Work Together</p>
-				<h2 class='heading-display heading-display--section'>A smaller first step, then direct execution.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The process is meant to reduce noise, not create it. Each step should make the next decision clearer.
-				</p>
+				<p class='launch-meta text-primary'>Start here</p>
+				<h2 id='home-paths-title' class='heading-display heading-display--section'>Choose the kind of uncertainty you have.</h2>
 			</div>
 
-			<div class='how-we-work-grid'>
+			<div class='path-choices'>
 				{
-					processSteps.map((step) => (
-						<div class='how-we-work-step'>
-							<p class='launch-meta text-primary'>Step {step.number}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
-								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+					pathCards.map((path) => (
+						<a href={path.href} class='path-choice group'>
+							<div class='path-choice__header'>
+								<p class='launch-meta text-primary'>{path.label}</p>
+								<span class='path-choice__arrow'>↗</span>
 							</div>
-						</div>
+							<div class='space-y-4'>
+								<h3 class='heading-display text-[clamp(2.25rem,4vw,4.4rem)]'>{path.title}</h3>
+								<p class='path-choice__body'>{path.body}</p>
+							</div>
+							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{path.cta}</span>
+						</a>
 					))
 				}
-			</div>
-		</div>
-	</section>
-
-	<section class='container py-20 md:py-24'>
-		<div class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Fit</p>
-				<h2 class='heading-display heading-display--section'>Know quickly if this is the right kind of help.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The best fit is usually a founder or small team that needs a useful first version or internal system in use soon.
-				</p>
 			</div>
 
 			<div class='fit-grid'>
