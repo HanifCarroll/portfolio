@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
-import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
 import genruptFeature from '@src/assets/img/projects/genrupt-feature.png';
 import palabrunoHero from '@src/assets/img/projects/palabruno-teacher-library.png';
@@ -30,33 +29,15 @@ const pathCards = [
 ];
 
 const caseStudies = [
-		{
-			slug: 'palabruno',
-			label: 'MVP build',
-			title: 'Took a founder from rough idea to paid MVP',
-			body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, a teacher web dashboard, Stripe checkout, store listings, UX polish, and public-site copy.',
-			outcome:
-				'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led commercial wedge.',
-			image: palabrunoHero,
-			imageAlt: 'Palabruno teacher dashboard showing roster and shared reading workflow.'
-		},
 	{
-		slug: 'casa-elaria',
-		label: 'MVP validation',
-		title: 'Validated demand before inventory spend',
-		body: 'Built a fake-door e-commerce launch for a beauty brand so the founder could test purchase intent and collect early demand before committing to inventory.',
-		outcome: 'Measured demand with a high-fidelity storefront and turned curiosity into a launch list.',
-		image: casaElariaHero,
-		imageAlt: 'Beauty brand landing page used for fake-door validation.'
-	},
-	{
-		slug: 'desarmadero-latorre',
-		label: 'Workflow automation',
-		title: 'Turned phone calls into a digital stockroom',
-		body: 'Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.',
-		outcome: 'Reduced repetitive operational work and increased qualified inbound inquiries.',
-		image: desarmaderoHero,
-		imageAlt: 'Digital stockroom and searchable inventory interface.'
+		slug: 'palabruno',
+		label: 'MVP build',
+		title: 'Took a founder from rough idea to paid MVP',
+		body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, a teacher web dashboard, Stripe checkout, store listings, UX polish, and public-site copy.',
+		outcome:
+			'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led buyer path.',
+		image: palabrunoHero,
+		imageAlt: 'Palabruno teacher dashboard showing roster and shared reading workflow.'
 	},
 	{
 		slug: 'genrupt',
@@ -67,6 +48,15 @@ const caseStudies = [
 		image: genruptFeature,
 		imageAlt: 'AI creative platform interface for image and video generation.',
 		imageClass: 'object-left-top'
+	},
+	{
+		slug: 'desarmadero-latorre',
+		label: 'Workflow automation',
+		title: 'Turned phone calls into a digital stockroom',
+		body: 'Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.',
+		outcome: 'Reduced repetitive operational work and increased qualified inbound inquiries.',
+		image: desarmaderoHero,
+		imageAlt: 'Digital stockroom and searchable inventory interface.'
 	}
 ];
 
@@ -133,7 +123,7 @@ const fitColumns = [
 		<div class='space-y-5'>
 			<p class='section-label'>// Case Studies</p>
 			<div class='max-w-3xl space-y-4'>
-				<h2 class='heading-display heading-display--section'>Proof from products, workflows, and AI systems.</h2>
+				<h2 class='heading-display heading-display--section'>Recent work that reached real users.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 					Three examples of the same pattern: narrow the problem, build the useful system, and leave the work easier to own.
 				</p>
@@ -147,16 +137,18 @@ const fitColumns = [
 						href={`/projects/${featuredCaseStudy.slug}/`}
 						class='case-study-feature group grid gap-8 transition-colors lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-14'
 					>
-						<figure class='overflow-hidden border border-black/15 bg-zinc-950 dark:border-white/15'>
-							<Image
-								src={featuredCaseStudy.image}
-								alt={featuredCaseStudy.imageAlt}
-								class:list={[
-									'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
-									featuredCaseStudy.imageClass
-								]}
-								loading='eager'
-							/>
+						<figure class='case-study-feature__media'>
+							<div class='device-frame device-frame--macbook case-study-feature__device'>
+								<div class='device-frame__screen'>
+									<Image
+										src={featuredCaseStudy.image}
+										alt={featuredCaseStudy.imageAlt}
+										class='device-frame__image transition duration-700 ease-out group-hover:scale-[1.015]'
+										loading='eager'
+									/>
+								</div>
+								<div class='device-frame__base' aria-hidden='true'></div>
+							</div>
 						</figure>
 
 						<div class='flex h-full flex-col justify-between gap-6 lg:py-2'>

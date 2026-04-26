@@ -105,7 +105,7 @@ const productStorySections = [
 		title: 'Could a useful prototype become a commercial product teachers and learners could actually try?',
 		body: [
 			'Palabruno started with a strong product instinct: make Spanish reading less brittle by keeping translation, grammar, and pronunciation help inside the reading flow.',
-			'The strategic question was sharper than the build question. A student reader alone was useful, but the first commercial wedge needed a buyer with repeated need. Teachers gave the product a clearer path: create readings, share them with students, and bring those students into the mobile app.'
+			'The sharper question was who would pay first. A student reader alone was useful, but teachers had a repeated need: create readings, share them with students, and bring those students into the mobile app.'
 		]
 	},
 	{
@@ -113,7 +113,7 @@ const productStorySections = [
 		title: 'Split the MVP into two connected surfaces instead of one overstuffed app.',
 		body: [
 			'I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.',
-			'The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and the commercial checkout path.'
+			'The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and checkout.'
 		]
 	},
 	{
@@ -126,14 +126,14 @@ const productStorySections = [
 	},
 	{
 		label: '// The Result',
-		title: 'A launched paid MVP with a real market wedge, not a speculative build.',
+		title: 'A launched paid MVP with a clear first buyer, not a speculative build.',
 		body: project.result
 	}
 ];
 
 const productProofMoments = [
 	{
-		label: 'Commercial wedge',
+		label: 'First buyer',
 		title: 'Teacher became the clearest first buyer.',
 		body: 'The web workspace gives tutors a reason to pay: class management, student groups, custom readings, and shareable material for lessons.'
 	},
@@ -246,7 +246,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 							<h2>Summary</h2>
 							<div class='case-study-detail__editorial-copy'>
 								<p>
-									This case study is about the judgment between idea and launch: choosing the commercial wedge, cutting the
+									This case study is about the judgment between idea and launch: choosing the first buyer, cutting the
 									first version to the right shape, building the product, and leaving the founder with something real enough to
 									sell, test, and own.
 								</p>
@@ -302,7 +302,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 									<figure class='case-study-detail__device-plate'>
 										<div class='device-frame device-frame--macbook'>
 											<div class='device-frame__screen'>
-												<Image src={images.hero} alt={`${project.title} teacher workspace`} class='device-frame__image' loading='lazy' />
+												<Image src={images.hero} alt={`${project.title} teacher workspace`} class='device-frame__image' loading='eager' />
 											</div>
 											<div class='device-frame__base' aria-hidden='true'></div>
 										</div>
@@ -385,8 +385,8 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 						<h2>What Shipped</h2>
 						<div class='case-study-detail__editorial-copy case-study-detail__launch-proof-list'>
 							<p>
-								The proof is not a long feature checklist. It is the set of product decisions that made Palabruno commercially
-								testable: a buyer wedge, payments, store readiness, and a handoff the founder could own.
+								The proof is not a long feature checklist. It is the set of product decisions that made Palabruno ready for
+								real users: a clear first buyer, payments, store readiness, and a handoff the founder could own.
 							</p>
 							{productProofMoments.map((moment, index) => (
 								<article class='case-study-detail__launch-proof-row'>
@@ -406,11 +406,11 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 		{
 			images?.feature && (
 				<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-					<h2>{isPalabrunoCaseStudy ? 'Reader Story' : 'Product Proof'}</h2>
+					<h2>{isPalabrunoCaseStudy ? 'Student Reader' : 'Product Proof'}</h2>
 					<div class='case-study-detail__editorial-copy'>
 						<p>
 							{isPalabrunoCaseStudy
-								? 'The reader stays focused on the story itself: a complete Spanish text with in-context language help available directly inside the reading flow.'
+								? 'Students can read a complete Spanish text while keeping translation, grammar, and pronunciation help close to the page.'
 								: proofIntro}
 						</p>
 						{
@@ -418,7 +418,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 								<figure class='case-study-detail__device-plate'>
 									<div class='device-frame device-frame--macbook'>
 										<div class='device-frame__screen'>
-											<Image src={images.feature} alt={`${project.title} reader story`} loading='lazy' class='device-frame__image' />
+											<Image src={images.feature} alt={`${project.title} reader story`} loading='eager' class='device-frame__image' />
 										</div>
 										<div class='device-frame__base' aria-hidden='true'></div>
 									</div>
@@ -460,7 +460,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 					<h2>Product Screens</h2>
 					<div class='case-study-detail__editorial-copy'>
 						<p>
-							These screenshots use the real Palabruno teacher workspace with seeded product data: creation, roster, groups, recent shares, reader, and saved library.
+							Screens from the teacher workspace and reader show the core product surfaces: create a reading, manage students, organize groups, share material, and read the assigned text.
 						</p>
 						<div class='case-study-detail__device-grid'>
 							{palabrunoSupportingScreens.map((screen) => {
@@ -471,7 +471,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 											<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
 												{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true'></div>}
 												<div class='device-frame__screen'>
-													<Image src={screenImage} alt={`${project.title}: ${screen.title}`} loading='lazy' class='device-frame__image' />
+													<Image src={screenImage} alt={`${project.title}: ${screen.title}`} loading='eager' class='device-frame__image' />
 												</div>
 												{screen.frame !== 'mobile' && <div class='device-frame__base' aria-hidden='true'></div>}
 											</div>
