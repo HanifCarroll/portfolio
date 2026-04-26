@@ -5,15 +5,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
-const title = 'Insights on launching MVPs, fixing workflows, and using AI where it actually helps';
+const title = 'Notes on products, workflows, and AI';
 const description =
 	'Notes for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build notes are here too, but they support the client work rather than replace it.';
 
 const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const featuredPost = posts[0];
-const editorialPosts = posts.slice(1);
-const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'Build Note' : 'For Founders And Operators');
+const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'Build note' : 'Founder note');
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
@@ -25,59 +23,23 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 		</nav>
 
 		<header class='max-w-5xl space-y-5'>
-			<p class='section-label'>// Insights</p>
-			<h1
-				class='heading-display heading-display--hero'
-				data-fit-heading
-				data-fit-min-rem='2'
-				data-fit-max-rem='4.85'
-			>
+			<p class='section-label'>// Notes</p>
+			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 				Notes on products, workflows, and AI.
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Most of these posts come out of real product and client work. Some are for founders deciding what the first useful system should be.
-				Others are build notes from the tooling, architecture, and debugging behind that work.
+				Field notes from product work, workflow systems, agent tooling, architecture decisions, and the debugging behind useful builds.
 			</p>
 		</header>
 
 		{
-			featuredPost && (
-				<section class='insights-featured'>
-					<div class='insights-featured__lead'>
-						<div class='space-y-4'>
-							<p class='section-label'>// Featured Note</p>
-							<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
-								<FormattedDate date={featuredPost.data.pubDate} />
-								<span class='launch-meta text-primary'>{audienceLabel(featuredPost)}</span>
-							</div>
-						</div>
-						<div class='space-y-5'>
-							<h2
-								class='heading-display heading-display--hero insights-featured__title'
-								data-fit-heading
-								data-fit-min-rem='2'
-								data-fit-max-rem='4.85'
-							>
-								<a href={`/blog/${featuredPost.id}/`} class='transition-colors hover:text-primary'>
-									{featuredPost.data.title}
-								</a>
-							</h2>
-							<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredPost.data.description}</p>
-							<a href={`/blog/${featuredPost.id}/`} class='arrow-link w-fit'>Read note</a>
-						</div>
-					</div>
-				</section>
-			)
-		}
-
-		{
-			editorialPosts.length > 0 && (
+			posts.length > 0 && (
 				<section class='space-y-8 md:space-y-10'>
-					<p class='section-label'>// Archive</p>
+					<p class='section-label'>// Latest</p>
 
 					<div class='insights-editorial-list'>
-						{editorialPosts.map((post) => (
-							<article class='insights-editorial-item'>
+						{posts.map((post, index) => (
+							<article class:list={['insights-editorial-item', index === 0 && 'insights-editorial-item--latest']}>
 								<div class='insights-editorial-item__heading'>
 									<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
 										<FormattedDate date={post.data.pubDate} />
@@ -91,14 +53,9 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 								</div>
 								<div class='insights-editorial-item__body'>
 									<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{post.data.description}</p>
-									<div class='flex flex-wrap items-center gap-4'>
-										<a href={`/blog/${post.id}/`} class='arrow-link'>Read note</a>
-										{
-											post.data.tags && post.data.tags.length > 0 && (
-												<p class='launch-meta text-zinc-500 dark:text-zinc-400'>{post.data.tags.slice(0, 3).join(' / ')}</p>
-											)
-										}
-									</div>
+									<a href={`/blog/${post.id}/`} class='arrow-link w-fit'>
+										Read note
+									</a>
 								</div>
 							</article>
 						))}
@@ -106,6 +63,5 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 				</section>
 			)
 		}
-
 	</article>
 </BaseLayout>
