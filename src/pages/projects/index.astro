@@ -67,14 +67,14 @@ const featuredOutcomeHighlights = {
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='container max-w-6xl space-y-20 py-10 md:space-y-24'>
+	<article class='container max-w-6xl space-y-14 py-8 md:space-y-20 md:py-10'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
 			<span class='text-primary'>Case Studies</span>
 		</nav>
 
-		<header class='max-w-5xl space-y-5'>
+		<header class='max-w-5xl space-y-5 pb-2 md:pb-0'>
 			<h1
 				class='heading-display heading-display--hero'
 				data-fit-heading
@@ -100,10 +100,7 @@ const featuredOutcomeHighlights = {
 						/>
 					</div>
 					<div class='case-studies-featured__body'>
-						<div class='space-y-3'>
-							<p class='section-label'>// Featured Case Study</p>
-							<p class='launch-meta text-primary'>{featuredProject.trackLabel}</p>
-						</div>
+						<p class='section-label case-studies-featured__label'>// Featured · {featuredProject.trackLabel}</p>
 						<div class='space-y-5'>
 							<h2
 								class='heading-display heading-display--hero'
@@ -116,14 +113,6 @@ const featuredOutcomeHighlights = {
 							<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredProject.description}</p>
 						</div>
 						<div class='case-studies-meta'>
-							<div>
-								<p class='launch-meta text-primary'>Type</p>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredProject.service}</p>
-							</div>
-							<div>
-								<p class='launch-meta text-primary'>Context</p>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredProject.client}</p>
-							</div>
 							<div>
 								<p class='launch-meta text-primary'>What changed</p>
 								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
@@ -164,10 +153,6 @@ const featuredOutcomeHighlights = {
 								<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
 								<div class='case-studies-editorial-item__facts'>
 									<div>
-										<p class='launch-meta text-primary'>Best fit</p>
-										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.bestFit}</p>
-									</div>
-									<div>
 										<p class='launch-meta text-primary'>Outcome</p>
 										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.outcome}</p>
 									</div>
@@ -180,7 +165,7 @@ const featuredOutcomeHighlights = {
 												href={project.demoLink}
 												target='_blank'
 												rel='noopener noreferrer'
-												class='launch-meta text-primary transition-colors hover:text-black dark:hover:text-white'
+												class='case-studies-live-link'
 												data-track-event='project_live_site_clicked'
 												data-track-location='projects_archive'
 											>
@@ -210,13 +195,16 @@ const featuredOutcomeHighlights = {
 						{
 							experimentProjects.map((project) => (
 								<article class='case-studies-experiment'>
-									<p class='launch-meta text-primary'>{project.trackLabel}</p>
-									<h3 class='heading-display heading-display--subsection'>
-										<a href={`/projects/${project.slug}/`}>{project.name}</a>
-									</h3>
-									<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
-									<p class='text-sm leading-6 text-zinc-500 dark:text-zinc-400'>{project.outcome}</p>
-									<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>Read case study</a>
+									<div class='space-y-3'>
+										<p class='launch-meta text-primary'>{project.trackLabel}</p>
+										<h3 class='heading-display heading-display--subsection'>
+											<a href={`/projects/${project.slug}/`}>{project.name}</a>
+										</h3>
+									</div>
+									<div class='case-studies-experiment__body'>
+										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+										<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>Read case study</a>
+									</div>
 								</article>
 							))
 						}
