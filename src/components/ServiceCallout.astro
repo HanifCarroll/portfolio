@@ -1,107 +1,101 @@
 ---
-import { BOOK_CALL_URL } from "../consts";
+import { BOOK_CALL_URL } from '../consts';
 
-type Variant = "general" | "mvp" | "automation";
-type Context = "blog" | "case-study";
+type Variant = 'general' | 'mvp' | 'automation';
+type Context = 'blog' | 'case-study';
 
 interface Props {
-    variant?: Variant;
-    context?: Context;
-    location: string;
-    class?: string;
+	variant?: Variant;
+	context?: Context;
+	location: string;
+	class?: string;
 }
 
-const { variant = "general", context = "blog", location, class: className = "" } =
-    Astro.props as Props;
+const { variant = 'general', context = 'blog', location, class: className = '' } = Astro.props as Props;
 
 const offers = {
-    blog: {
-        general: {
-            label: "// Work With Me",
-            title: "If you're trying to launch something or clean up a workflow, the next step is narrowing the first useful version.",
-            body: "I work with founders and operator-led teams to scope MVPs, workflow automation, and AI systems around a real business bottleneck.",
-            secondaryHref: "/projects/",
-            secondaryLabel: "Browse Case Studies",
-        },
-        mvp: {
-            label: "// Need an MVP?",
-            title: "Need help cutting scope and getting v1 live?",
-            body: "If the problem in this post looks familiar, bring it to a roadmap call and we’ll narrow the first version before code starts.",
-            secondaryHref: "/launch/",
-            secondaryLabel: "See MVP Builds",
-        },
-        automation: {
-            label: "// Need Automation?",
-            title: "Need to clean up the workflow behind this?",
-            body: "Bring the handoff, repeated task, or operational bottleneck. We’ll decide what should be software and whether AI belongs in it.",
-            secondaryHref: "/launch/#automation",
-            secondaryLabel: "See Automation & AI Work",
-        },
-    },
-    "case-study": {
-        general: {
-            label: "// Similar Work?",
-            title: "Need something like this for your team?",
-            body: "If the case study looks close to the problem you are solving, the fastest next step is a roadmap call to narrow scope, fit, and the right first version.",
-            secondaryHref: "/projects/",
-            secondaryLabel: "Browse More Case Studies",
-        },
-        mvp: {
-            label: "// Similar Build?",
-            title: "Need a first version like this?",
-            body: "If you need a real v1 in front of users without dragging the build out for months, start by scoping the smallest useful version.",
-            secondaryHref: "/launch/",
-            secondaryLabel: "See MVP Builds",
-        },
-        automation: {
-            label: "// Similar Workflow?",
-            title: "Need this kind of workflow cleaned up?",
-            body: "If your business is still relying on copy-paste, fragmented tools, or one person’s memory, bring the workflow and we’ll scope the first fix.",
-            secondaryHref: "/launch/#automation",
-            secondaryLabel: "See Automation & AI Work",
-        },
-    },
+	blog: {
+		general: {
+			label: '// Work With Me',
+			title: "If you're trying to launch something or clean up a workflow, the next step is narrowing the first useful version.",
+			body: 'I work with founders and operator-led teams to scope MVPs, workflow automation, and AI systems around a real business bottleneck.',
+			secondaryHref: '/projects/',
+			secondaryLabel: 'Browse Case Studies'
+		},
+		mvp: {
+			label: '// Need an MVP?',
+			title: 'Need help cutting scope and getting v1 live?',
+			body: 'If the problem in this post looks familiar, bring it to a roadmap call and we’ll narrow the first version before code starts.',
+			secondaryHref: '/launch/',
+			secondaryLabel: 'See MVP Builds'
+		},
+		automation: {
+			label: '// Need Automation?',
+			title: 'Need to clean up the workflow behind this?',
+			body: 'Bring the handoff, repeated task, or operational bottleneck. We’ll decide what should be software and whether AI belongs in it.',
+			secondaryHref: '/launch/#automation',
+			secondaryLabel: 'See Automation & AI Work'
+		}
+	},
+	'case-study': {
+		general: {
+			label: '// Similar Work?',
+			title: 'Need something like this for your team?',
+			body: 'If the case study looks close to the problem you are solving, the next step is a roadmap call to narrow the scope and decide what version is worth building first.',
+			secondaryHref: '/projects/',
+			secondaryLabel: 'Browse More Case Studies'
+		},
+		mvp: {
+			label: '// Similar Build?',
+			title: 'Need a first version like this?',
+			body: 'If you need a real v1 in front of users without dragging the build out for months, start by scoping the smallest useful version.',
+			secondaryHref: '/launch/',
+			secondaryLabel: 'See MVP Builds'
+		},
+		automation: {
+			label: '// Similar Workflow?',
+			title: 'Need this kind of workflow cleaned up?',
+			body: 'If your business is still relying on copy-paste, fragmented tools, or one person’s memory, bring the workflow and we’ll scope the first fix.',
+			secondaryHref: '/launch/#automation',
+			secondaryLabel: 'See Automation & AI Work'
+		}
+	}
 } as const;
 
 const offer = offers[context][variant];
 ---
 
-<section
-    class:list={[
-        "tech-card px-6 py-10 md:px-8 md:py-12",
-        className,
-    ]}
->
-    <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
-        <div class="space-y-5">
-            <span class="section-label">{offer.label}</span>
-            <h2 class="heading-display heading-display--section max-w-3xl">
-                {offer.title}
-            </h2>
-            <p class="max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg md:leading-8">
-                {offer.body}
-            </p>
-        </div>
+<section class:list={['tech-card px-6 py-10 md:px-8 md:py-12', className]}>
+	<div class='grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end'>
+		<div class='space-y-5'>
+			<span class='section-label'>{offer.label}</span>
+			<h2 class='heading-display heading-display--section max-w-3xl'>
+				{offer.title}
+			</h2>
+			<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg md:leading-8'>
+				{offer.body}
+			</p>
+		</div>
 
-        <div class="flex flex-col items-start gap-4 lg:items-end lg:self-end">
-            <a
-                class="home-hero-primary-link"
-                href={BOOK_CALL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-track-event="book_call_clicked"
-                data-track-location={`${location}_primary`}
-            >
-                Book a Roadmap Call
-            </a>
-            <a
-                class="fit-secondary-link"
-                href={offer.secondaryHref}
-                data-track-event="service_page_clicked"
-                data-track-location={`${location}_secondary`}
-            >
-                {offer.secondaryLabel}
-            </a>
-        </div>
-    </div>
+		<div class='flex flex-col items-start gap-4 lg:items-end lg:self-end'>
+			<a
+				class='home-hero-primary-link'
+				href={BOOK_CALL_URL}
+				target='_blank'
+				rel='noopener noreferrer'
+				data-track-event='book_call_clicked'
+				data-track-location={`${location}_primary`}
+			>
+				Book a Roadmap Call
+			</a>
+			<a
+				class='fit-secondary-link'
+				href={offer.secondaryHref}
+				data-track-event='service_page_clicked'
+				data-track-location={`${location}_secondary`}
+			>
+				{offer.secondaryLabel}
+			</a>
+		</div>
+	</div>
 </section>

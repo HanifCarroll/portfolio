@@ -75,12 +75,7 @@ const featuredOutcomeHighlights = {
 		</nav>
 
 		<header class='max-w-5xl space-y-5 pb-2 md:pb-0'>
-			<h1
-				class='heading-display heading-display--hero'
-				data-fit-heading
-				data-fit-min-rem='2'
-				data-fit-max-rem='4.85'
-			>
+			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 				Examples of the work in context.
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
@@ -102,12 +97,7 @@ const featuredOutcomeHighlights = {
 					<div class='case-studies-featured__body'>
 						<p class='section-label case-studies-featured__label'>// Featured · {featuredProject.trackLabel}</p>
 						<div class='space-y-5'>
-							<h2
-								class='heading-display heading-display--hero'
-								data-fit-heading
-								data-fit-min-rem='2'
-								data-fit-max-rem='4.85'
-							>
+							<h2 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 								{featuredProject.name}
 							</h2>
 							<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredProject.description}</p>
@@ -120,7 +110,9 @@ const featuredOutcomeHighlights = {
 								</p>
 							</div>
 						</div>
-						<a href={`/projects/${featuredProject.slug}/`} class='arrow-link w-fit'>Read case study</a>
+						<a href={`/projects/${featuredProject.slug}/`} class='arrow-link w-fit'>
+							Read case study
+						</a>
 					</div>
 				</section>
 			)
@@ -158,21 +150,21 @@ const featuredOutcomeHighlights = {
 									</div>
 								</div>
 								<div class='flex flex-wrap items-center gap-4'>
-									<a href={`/projects/${project.slug}/`} class='arrow-link'>Read case study</a>
-									{
-										project.demoLink && (
-											<a
-												href={project.demoLink}
-												target='_blank'
-												rel='noopener noreferrer'
-												class='case-studies-live-link'
-												data-track-event='project_live_site_clicked'
-												data-track-location='projects_archive'
-											>
-												Visit live site
-											</a>
-										)
-									}
+									<a href={`/projects/${project.slug}/`} class='arrow-link'>
+										Read case study
+									</a>
+									{project.demoLink && (
+										<a
+											href={project.demoLink}
+											target='_blank'
+											rel='noopener noreferrer'
+											class='case-studies-live-link'
+											data-track-event='project_live_site_clicked'
+											data-track-location='projects_archive'
+										>
+											Visit live site
+										</a>
+									)}
 								</div>
 							</div>
 						</article>
@@ -188,26 +180,26 @@ const featuredOutcomeHighlights = {
 						<p class='section-label'>// Selected Experiments</p>
 						<h2 class='heading-display heading-display--section'>Self-initiated work that shows product judgment.</h2>
 						<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							These are useful for how I think through product, AI, and workflow problems, but they are separate from client delivery proof.
+							These show how I test product, AI, and workflow ideas outside client delivery.
 						</p>
 					</div>
 					<div class='case-studies-experiments'>
-						{
-							experimentProjects.map((project) => (
-								<article class='case-studies-experiment'>
-									<div class='space-y-3'>
-										<p class='launch-meta text-primary'>{project.trackLabel}</p>
-										<h3 class='heading-display heading-display--subsection'>
-											<a href={`/projects/${project.slug}/`}>{project.name}</a>
-										</h3>
-									</div>
-									<div class='case-studies-experiment__body'>
-										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
-										<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>Read case study</a>
-									</div>
-								</article>
-							))
-						}
+						{experimentProjects.map((project) => (
+							<article class='case-studies-experiment'>
+								<div class='space-y-3'>
+									<p class='launch-meta text-primary'>{project.trackLabel}</p>
+									<h3 class='heading-display heading-display--subsection'>
+										<a href={`/projects/${project.slug}/`}>{project.name}</a>
+									</h3>
+								</div>
+								<div class='case-studies-experiment__body'>
+									<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+									<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>
+										Read case study
+									</a>
+								</div>
+							</article>
+						))}
 					</div>
 				</section>
 			)
