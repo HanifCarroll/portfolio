@@ -35,21 +35,6 @@ const workingStyle = [
 	}
 ];
 
-const clientReasons = [
-	{
-		label: 'Closer to a product partner than a vendor',
-		body: 'The value is not just implementation. It is having someone in the room who can cut scope, challenge bad assumptions, and still carry the work through.'
-	},
-	{
-		label: 'Senior judgment without a layered team',
-		body: 'Clients usually want fewer handoffs, fewer rounds of translation, and fewer people between the problem and the build.'
-	},
-	{
-		label: 'Clear tradeoffs in plain language',
-		body: 'A lot of trust comes from making the why behind product, workflow, and technical decisions easy to understand before the build gets expensive.'
-	}
-];
-
 const backgroundMoments = [
 	{
 		label: 'Capgemini',
@@ -74,38 +59,28 @@ const backgroundMoments = [
 			<span class='text-primary'>About</span>
 		</nav>
 
-		<header class='about-hero-grid'>
-			<div class='about-hero-copy space-y-5' data-fit-container>
-				<h1 class='heading-display heading-display--hero about-hero-title' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-					I help founders and operator-led teams make the right first system.
-				</h1>
-				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-					Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and
-					build the system that actually moves things forward.
-				</p>
-			</div>
-			<div class='about-hero-note' data-fit-container>
-				<p class='section-label'>// Working Thesis</p>
-				<p
-					class='heading-display heading-display--note about-hero-note__thesis'
-					data-fit-heading
-					data-fit-min-rem='1.15'
-					data-fit-max-rem='1.85'
-				>
-					Most projects get better when the first step gets smaller.
-				</p>
-			</div>
+		<header class='about-hero-copy space-y-5' data-fit-container>
+			<h1 class='heading-display heading-display--hero about-hero-title' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+				I help founders and operator-led teams make the right first system.
+			</h1>
+			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+				Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and build
+				the system that actually moves things forward.
+			</p>
 		</header>
 
-		<section class='space-y-8 md:space-y-10'>
+		<section class='about-editorial-split'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// What I Do Best</p>
 				<h2 class='heading-display heading-display--section'>Useful software, clearer decisions, less wasted motion.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					The difference is usually judgment, not just output. The work is to make the first useful scope obvious enough to build.
+				</p>
 			</div>
-			<div class='about-strengths-grid'>
+			<div class='about-positioning-list'>
 				{
 					strengths.map((item) => (
-						<div class='about-strength-card'>
+						<div class='about-positioning-item'>
 							<p class='launch-meta about-card-label'>{item.label}</p>
 							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
 						</div>
@@ -114,19 +89,19 @@ const backgroundMoments = [
 			</div>
 		</section>
 
-		<section class='about-section-panel space-y-8 md:space-y-10'>
+		<section class='space-y-8 md:space-y-10'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// How I Work</p>
 				<h2 class='heading-display heading-display--section'>The working style matters as much as the stack.</h2>
 			</div>
-			<div class='about-working-style'>
+			<div class='about-working-style about-working-style--rows'>
 				{
 					workingStyle.map((item, index) => (
-						<div class:list={['about-working-style__item', index === 1 && 'about-working-style__item--offset']}>
+						<div class='about-working-style__item'>
 							<p class='heading-display about-working-style__num text-primary'>{String(index + 1).padStart(2, '0')}</p>
 							<div class='space-y-3'>
 								<h3 class='heading-display heading-display--subsection'>{item.title}</h3>
-								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+								<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
 							</div>
 						</div>
 					))
@@ -134,24 +109,7 @@ const backgroundMoments = [
 			</div>
 		</section>
 
-		<section class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Why Clients Hire Me</p>
-				<h2 class='heading-display heading-display--section'>The difference is usually judgment, not just output.</h2>
-			</div>
-			<div class='about-reasons-grid'>
-				{
-					clientReasons.map((item) => (
-						<div class='about-reasons-grid__item'>
-							<p class='launch-meta about-card-label'>{item.label}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-						</div>
-					))
-				}
-			</div>
-		</section>
-
-		<section class='about-section-panel about-section-panel--soft space-y-8 md:space-y-10'>
+		<section class='about-background-strip'>
 			<div class='max-w-3xl space-y-4'>
 				<p class='section-label'>// Background</p>
 				<h2 class='heading-display heading-display--section'>A mix of product, delivery, and independent execution.</h2>
@@ -172,16 +130,11 @@ const backgroundMoments = [
 			</div>
 		</section>
 
-		<section class='about-section-panel space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Tools I Build</p>
-				<h2 class='heading-display heading-display--section'>I build my own operating tools for agent-heavy work.</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Outside client delivery, I build local-first tools for Codex remote control, session recall, mailbox context, desktop automation,
-					and tool-improvement loops. They are not the main offer, but they show how I think about reliability and permissions in real
-					workflows.
-				</p>
-			</div>
+		<section class='about-tools-link'>
+			<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				I also build local-first tools for agent-heavy work, mostly around remote control, session recall, mailbox context, and safer
+				automation.
+			</p>
 			<a href='/tools/' class='arrow-link w-fit'>See tools and experiments</a>
 		</section>
 
