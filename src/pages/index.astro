@@ -226,19 +226,26 @@ const fitColumns = [
 				}
 			</div>
 
-			<div class='fit-grid'>
-				{
-					fitColumns.map((column) => (
-						<div class='fit-column'>
-							<p class='launch-meta text-primary'>{column.title}</p>
-							<ul class='fit-list'>
-								{column.items.map((item) => (
-									<li>{item}</li>
-								))}
-							</ul>
-						</div>
-					))
-				}
+			<div class='home-fit-check'>
+				<div class='max-w-2xl space-y-3'>
+					<p class='launch-meta text-primary'>Fit check</p>
+					<h3 class='heading-display heading-display--subsection'>Before we talk, this should feel familiar.</h3>
+				</div>
+
+				<div class='fit-grid'>
+					{
+						fitColumns.map((column) => (
+							<div class='fit-column'>
+								<p class='launch-meta text-primary'>{column.title}</p>
+								<ul class='fit-list'>
+									{column.items.map((item) => (
+										<li>{item}</li>
+									))}
+								</ul>
+							</div>
+						))
+					}
+				</div>
 			</div>
 
 			<div class='fit-actions pt-2'>
