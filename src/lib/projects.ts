@@ -1,6 +1,7 @@
 import type { Project } from './types/project';
 import baEventosData from './projects/ba-eventos.json';
 import genruptData from './projects/genrupt.json';
+import palabrunoData from './projects/palabruno.json';
 import languageExchangeData from './projects/language-exchange.json';
 import muchoHangoutsData from './projects/mucho-hangouts.json';
 import voxPrismaticData from './projects/vox-prismatic.json';
@@ -10,6 +11,7 @@ import maximoInteriorismoData from './projects/maximo-interiorismo.json';
 import redwriterComicsData from './projects/redwriter-comics.json';
 
 export const projects: Record<string, Project> = {
+  'palabruno': palabrunoData as Project,
   'ba-eventos': baEventosData as Project,
   'genrupt': genruptData as Project,
   'mucho-hangouts': muchoHangoutsData as Project,

@@ -1,6 +1,15 @@
 export interface ProjectImages {
   hero: string;
   feature: string;
+  [key: string]: string;
+}
+
+export interface ProjectProofScreen {
+  image: string;
+  label: string;
+  title: string;
+  caption: string;
+  frame?: 'desktop' | 'mobile';
 }
 
 export interface ProjectProofQuote {
@@ -50,6 +59,9 @@ export interface Project {
   timeline?: string;
   constraints?: string[];
   outcomes?: string[]; // metrics or qualitative outcomes
+  deliveryHighlights?: string[];
+  proofIntro?: string;
+  proofScreens?: ProjectProofScreen[];
   repository?: string;
   architectureImage?: string;
   proofQuote?: ProjectProofQuote;
