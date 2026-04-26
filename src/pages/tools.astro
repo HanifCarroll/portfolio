@@ -10,40 +10,36 @@ const featuredTools = [
 		name: 'codex-telegram-bridge',
 		status: 'Public OSS',
 		focus: 'Remote Codex control',
-		body: 'A local bridge that lets me mark myself away, receive Codex updates in Telegram, reply back into the right thread, inspect active work, and approve actions without keeping the laptop in front of me.',
-		why: 'It turns Codex Desktop from a single-machine workflow into something I can safely supervise while away.',
+		body: 'A local bridge for supervising Codex work from Telegram: receive updates, reply into the right thread, inspect active runs, and approve actions away from the laptop.',
+		why: 'It turns Codex Desktop from a single-machine workflow into an agent setup I can safely supervise while away.',
 		repo: 'https://github.com/HanifCarroll/codex-telegram-bridge'
 	},
 	{
 		name: 'codex-recall',
 		status: 'Public OSS',
 		focus: 'Session recall',
-		body: 'A local SQLite FTS index over Codex session archives, built so agents can search prior work, inspect receipts, and reuse context without treating raw JSONL logs like a durable database.',
-		why: 'It gives long-running agent workflows memory with evidence instead of vague recollection.',
+		body: 'A local SQLite FTS index over Codex session archives, so agents can search prior work and reuse context with receipts.',
 		repo: 'https://github.com/HanifCarroll/codex-recall'
 	},
 	{
 		name: 'mailbridge',
 		status: 'Public OSS',
 		focus: 'Mailbox context',
-		body: 'A conservative JSON CLI over local Gmail and Fastmail access for search, read, thread lookup, attachment download, source-backed pulls, and draft-only composition.',
-		why: 'It gives agents the email context they need for real work while keeping the boundary narrow: no send, archive, delete, or label mutations.',
+		body: 'A conservative JSON CLI over Gmail and Fastmail for search, read, thread lookup, attachment pulls, and draft-only composition.',
 		repo: 'https://github.com/HanifCarroll/mailbridge'
 	},
 	{
 		name: 'tool-feedback',
 		status: 'Experimental',
 		focus: 'Tool improvement loops',
-		body: 'A local runtime agents can use to submit tool-friction cases from real work, dedupe them, route triage or patch jobs, and send approval/status updates through Telegram.',
-		why: 'It lets agents improve their own tools through a tracked workflow instead of leaving scattered notes after something breaks.',
+		body: 'A local runtime for capturing tool-friction cases from real work, deduping them, and routing triage or patch jobs.',
 		repo: 'https://github.com/HanifCarroll/tool-feedback'
 	},
 	{
 		name: 'cli-tools',
 		status: 'Public toolkit',
 		focus: 'macOS automation',
-		body: 'A TypeScript monorepo of local CLIs for macOS apps, Granola notes, browser tabs, and social workflows that agents can call during real work.',
-		why: 'It keeps useful desktop context reachable through explicit commands instead of fragile one-off scripts.',
+		body: 'A TypeScript monorepo of local CLIs for macOS apps, Granola notes, browser tabs, and social workflows.',
 		repo: 'https://github.com/HanifCarroll/cli-tools'
 	}
 ];
@@ -51,17 +47,19 @@ const featuredTools = [
 const principles = [
 	{
 		label: 'Local first',
-		body: 'The useful state stays on the machine whenever possible: transcripts, mailbox pulls, tool feedback, and workflow databases.'
+		body: 'Keep useful state on the machine when possible.'
 	},
 	{
 		label: 'Narrow permissions',
-		body: 'Tools should expose the smallest useful surface, especially around email, browser sessions, client context, and agent actions.'
+		body: 'Expose the smallest surface that still gets the job done.'
 	},
 	{
 		label: 'Receipts over vibes',
-		body: 'Agent workflows get better when they can point to source files, command output, run artifacts, and explicit state transitions.'
+		body: 'Prefer source files, command output, and explicit state.'
 	}
 ];
+
+const [flagshipTool, ...supportingTools] = featuredTools;
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -72,32 +70,14 @@ const principles = [
 			<span class='text-primary'>Tools</span>
 		</nav>
 
-		<header class='grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.9fr)] lg:items-end'>
-			<div class='max-w-4xl space-y-5'>
-				<p class='section-label'>// Tools & Experiments</p>
-				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-					Local-first tools for agent-heavy work.
-				</h1>
-				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-					These are the small systems I build around my own workflow: Codex remote control, session recall, mailbox context, tool-feedback
-					loops, and desktop automation. They sit behind the client work, but they show how I think about reliability, permissions, and
-					operational context.
-				</p>
-			</div>
-
-			<div class='tools-console' aria-label='Local-first agent tooling themes'>
-				<div class='tools-console__bar'>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-				<div class='tools-console__body'>
-					<p><span>agent surface</span> codex, telegram, mailbox, browser</p>
-					<p><span>state</span> sqlite, jsonl, markdown, local artifacts</p>
-					<p><span>rules</span> narrow permissions, receipts, approval gates</p>
-					<p><span>output</span> tools that make real work easier to repeat</p>
-				</div>
-			</div>
+		<header class='max-w-5xl space-y-5'>
+			<p class='section-label'>// Tools & Experiments</p>
+			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+				Local-first tools for agent-heavy work.
+			</h1>
+			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+				Small systems from my own workflow: remote Codex control, session recall, mailbox context, tool feedback, and desktop automation.
+			</p>
 		</header>
 
 		<section class='space-y-8 md:space-y-10'>
@@ -105,32 +85,50 @@ const principles = [
 				<p class='section-label'>// Featured Tools</p>
 				<h2 class='heading-display heading-display--section'>Tools that came from real workflow pressure.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The point is not a long list of side projects. These are the tools that best show the operating system I am building around
-					agentic work.
+					The page is not a complete project list. These are the tools that best show how I make agent workflows more reliable.
 				</p>
 			</div>
 
-			<div class='tools-grid'>
+			<article class='tools-feature'>
+				<div class='space-y-5'>
+					<div class='tools-feature__meta'>
+						<p class='launch-meta text-primary'>{flagshipTool.status}</p>
+						<p class='tools-focus'>{flagshipTool.focus}</p>
+					</div>
+					<h3 class='heading-display heading-display--section'>{flagshipTool.name}</h3>
+				</div>
+				<div class='tools-feature__body'>
+					<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{flagshipTool.body}</p>
+					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{flagshipTool.why}</p>
+					<a
+						href={flagshipTool.repo}
+						class='arrow-link w-fit'
+						target='_blank'
+						rel='noopener noreferrer'
+						aria-label={`View ${flagshipTool.name} repository`}
+						data-track-event='tool_repo_clicked'
+						data-track-location='tools_page'
+					>
+						View repo
+					</a>
+				</div>
+			</article>
+
+			<div class='tools-list'>
 				{
-					featuredTools.map((tool) => (
-						<article class='tools-card'>
-							<div class='tools-card__header'>
+					supportingTools.map((tool) => (
+						<article class='tools-row'>
+							<div>
 								<p class='launch-meta text-primary'>{tool.status}</p>
-								<p class='tools-card__focus'>{tool.focus}</p>
+								<h3 class='heading-display heading-display--note'>{tool.name}</h3>
 							</div>
-							<div class='space-y-4'>
-								<h3 class='heading-display heading-display--subsection'>{tool.name}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{tool.body}</p>
-							</div>
-							<div class='tools-card__why'>
-								<p class='launch-meta text-primary'>Why it exists</p>
-								<p class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{tool.why}</p>
-							</div>
+							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{tool.body}</p>
 							<a
 								href={tool.repo}
-								class='arrow-link w-fit'
+								class='case-studies-live-link tools-row__link'
 								target='_blank'
 								rel='noopener noreferrer'
+								aria-label={`View ${tool.name} repository`}
 								data-track-event='tool_repo_clicked'
 								data-track-location='tools_page'
 							>
@@ -142,9 +140,9 @@ const principles = [
 			</div>
 		</section>
 
-		<section class='tools-principles space-y-8 md:space-y-10'>
+		<section class='tools-principles'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Design Principles</p>
+				<p class='section-label'>// Operating Rules</p>
 				<h2 class='heading-display heading-display--section'>The same judgment shows up in client systems.</h2>
 			</div>
 			<div class='tools-principles__grid'>
