@@ -30,7 +30,7 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
-			<a href='/blog/' class='transition-colors hover:text-primary'>Insights</a>
+			<a href='/blog/' class='transition-colors hover:text-primary'>Notes</a>
 			<span class='hidden text-zinc-400 md:inline'>/</span>
 			<span class='hidden text-primary md:inline'>{title}</span>
 		</nav>
@@ -88,7 +88,9 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 
 				<section class='blog-post-closing'>
 					<p class='section-label'>// Closing Note</p>
-					<h2 class='heading-display heading-display--section'>If the problem in this post sounds familiar, bring the actual bottleneck.</h2>
+					<h2 class='heading-display heading-display--section'>
+						If the problem in this post sounds familiar, bring the actual bottleneck.
+					</h2>
 					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 						I can usually tell pretty quickly whether the right first move is an MVP, a workflow audit, or a smaller system change.
 					</p>
@@ -97,11 +99,13 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 			</main>
 
 			<aside class='blog-post-rail'>
-				{headings.length > 0 && (
-					<div class='blog-post-rail__block'>
-						<TableOfContent headings={headings} />
-					</div>
-				)}
+				{
+					headings.length > 0 && (
+						<div class='blog-post-rail__block'>
+							<TableOfContent headings={headings} />
+						</div>
+					)
+				}
 			</aside>
 		</div>
 	</div>
