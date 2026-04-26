@@ -539,35 +539,78 @@
 		text-wrap: pretty;
 	}
 
+	.service-page-stack {
+		display: grid;
+		gap: 5.75rem;
+	}
+
 	.service-hero-grid {
 		display: grid;
-		gap: 3.5rem;
+		gap: 3.75rem;
 		align-items: start;
 	}
 
-	.service-summary-grid {
+	.service-hero-copy {
 		display: grid;
-		gap: 1.25rem;
+		gap: 2rem;
 	}
 
-	.service-summary-item {
+	.service-proof-strip {
 		display: grid;
-		gap: 0.45rem;
-		padding: 1.15rem 1.2rem 1.25rem;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.48));
-		outline: 1px solid rgba(0, 0, 0, 0.05);
-		outline-offset: -1px;
+		gap: 1.4rem;
+		padding-block: 1.5rem;
+		border-block: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.service-proof-item {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.service-testimonial {
+		max-width: 46rem;
+	}
+
+	.service-section {
+		display: grid;
+		gap: 3.25rem;
+	}
+
+	.service-choice-header {
+		display: grid;
+		gap: 2rem;
+		padding-block: 2.5rem;
+		border-block: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+	.service-choice-heading {
+		display: grid;
+		gap: 1.15rem;
+	}
+
+	.service-choice-title {
+		max-width: 13ch;
+		font-size: clamp(2.35rem, 1.25rem + 3.2vw, 5.25rem);
+		line-height: 0.9;
+	}
+
+	.service-choice-title span {
+		display: block;
+	}
+
+	.service-choice-title span:nth-child(even) {
+		color: rgb(0 102 255);
 	}
 
 	.service-path-grid {
 		display: grid;
-		border-block: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
 	.service-path-option {
 		display: grid;
-		gap: 1.5rem;
-		padding: 1.85rem 0;
+		gap: 1.85rem;
+		padding: 2.25rem 0;
 		transition:
 			border-color 180ms ease,
 			color 180ms ease;
@@ -585,17 +628,17 @@
 
 	.service-path-option__body {
 		display: grid;
-		gap: 1.2rem;
+		gap: 1.55rem;
 	}
 
 	.service-path-option__signals {
 		display: grid;
-		gap: 0.55rem;
+		gap: 0.8rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		font-size: 0.95rem;
-		line-height: 1.65;
+		font-size: 1.05rem;
+		line-height: 1.75;
 		color: rgb(63 63 70);
 	}
 
@@ -617,69 +660,44 @@
 
 	.service-detail-grid {
 		display: grid;
-		gap: 3.5rem;
+		gap: 4rem;
 		align-items: start;
-	}
-
-	.service-detail-grid--audit {
-		gap: 3rem;
-	}
-
-	.service-offer-scope {
-		display: grid;
-		gap: 2rem;
-	}
-
-	.service-audit-sidebar {
-		display: grid;
-		gap: 2rem;
-		max-width: 34rem;
 	}
 
 	.service-launch-steps {
 		display: grid;
-		gap: 1.75rem;
+		gap: 2rem;
 	}
 
 	.service-launch-step {
 		display: grid;
-		gap: 1rem;
-		padding: 1.35rem 1.4rem 1.5rem;
+		gap: 1.25rem;
+		padding: 1.65rem 1.65rem 1.8rem;
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.54));
 		outline: 1px solid rgba(0, 0, 0, 0.06);
 		outline-offset: -1px;
 	}
 
-	.service-audit-worksheet {
+	.service-faq-compact {
 		display: grid;
-		gap: 3rem;
+		gap: 1.75rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 
-	.service-audit-worksheet__intro {
-		max-width: 42rem;
-	}
-
-	.service-audit-worksheet__grid {
+	.service-faq-compact__item {
 		display: grid;
-		gap: 1.25rem;
+		gap: 0.85rem;
+		padding-top: 2rem;
 	}
 
-	.service-audit-note {
-		display: grid;
-		gap: 0.7rem;
-		padding: 1.2rem 1.25rem 1.3rem;
-		background: rgba(255, 255, 255, 0.14);
-		outline: 1px solid rgba(0, 0, 0, 0.05);
-		outline-offset: -1px;
-	}
-
-	.service-audit-includes {
-		max-width: 46rem;
-	}
-
-	.service-faq-grid {
-		display: grid;
-		gap: 2.25rem;
+	.service-faq-compact__question {
+		font-family: 'Syne', sans-serif;
+		font-size: clamp(1.3rem, 1.08rem + 0.55vw, 1.85rem);
+		font-weight: 700;
+		line-height: 1.08;
+		letter-spacing: -0.04em;
+		color: rgb(0 102 255);
+		text-wrap: balance;
 	}
 
 	.about-hero-grid {
@@ -1403,14 +1421,14 @@
 
 	.fit-list {
 		display: grid;
-		gap: 1rem;
+		gap: 1.3rem;
 	}
 
 	.fit-list li {
 		display: grid;
 		grid-template-columns: auto minmax(0, 1fr);
 		align-items: start;
-		column-gap: 0.9rem;
+		column-gap: 1.05rem;
 		font-size: 1.05rem;
 		line-height: 1.75;
 		color: rgb(82 82 91);
@@ -1446,8 +1464,10 @@
 
 	:is(.dark) .path-choices,
 	:is(.dark) .path-choice,
+	:is(.dark) .service-choice-header,
 	:is(.dark) .service-path-grid,
-	:is(.dark) .service-summary-item {
+	:is(.dark) .service-proof-strip,
+	:is(.dark) .service-faq-compact {
 		border-color: rgba(255, 255, 255, 0.12);
 	}
 
@@ -1468,7 +1488,6 @@
 		border-top-color: rgba(255, 255, 255, 0.12);
 	}
 
-	:is(.dark) .service-audit-note,
 	:is(.dark) .about-hero-note,
 	:is(.dark) .about-reasons-grid__item,
 	:is(.dark) .about-background-rail__item,
@@ -1489,9 +1508,7 @@
 	:is(.dark) .about-reasons-grid__item,
 	:is(.dark) .about-background-rail__item,
 	:is(.dark) .about-section-panel,
-	:is(.dark) .service-summary-item,
 	:is(.dark) .service-launch-step,
-	:is(.dark) .service-audit-note,
 	:is(.dark) .case-studies-meta > div,
 	:is(.dark) .case-studies-browse-types__item,
 	:is(.dark) .case-studies-experiment,
@@ -1520,8 +1537,6 @@
 		color: rgb(161 161 170);
 	}
 
-	.service-summary-item :is(p:last-child),
-	.service-audit-note :is(p:last-child),
 	.case-studies-meta > div :is(p:last-child),
 	.case-studies-browse-types__item :is(p:last-child),
 	.case-studies-experiment :is(p:last-child),
@@ -1532,8 +1547,6 @@
 		color: rgb(39 39 42);
 	}
 
-	:is(.dark) .service-summary-item :is(p:last-child),
-	:is(.dark) .service-audit-note :is(p:last-child),
 	:is(.dark) .case-studies-meta > div :is(p:last-child),
 	:is(.dark) .case-studies-browse-types__item :is(p:last-child),
 	:is(.dark) .case-studies-experiment :is(p:last-child),
@@ -1551,6 +1564,14 @@
 	:is(.dark) .fit-list li,
 	:is(.dark) .fit-signal {
 		color: rgb(212 212 216);
+	}
+
+	:is(.dark) .service-faq-compact__question {
+		color: rgb(99 179 255);
+	}
+
+	:is(.dark) .service-choice-title span:nth-child(even) {
+		color: rgb(99 179 255);
 	}
 
 	:is(.dark) .fit-secondary-link:hover {
@@ -1572,58 +1593,51 @@
 	}
 
 	@media (min-width: 768px) {
-		.service-hero-grid,
+		.service-page-stack {
+			gap: 6.5rem;
+		}
+
+		.service-hero-grid {
+			max-width: 44rem;
+		}
+
+		.service-proof-strip {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 2.5rem;
+		}
+
 		.service-detail-grid {
 			grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
 			gap: 4rem;
 		}
 
-		.service-summary-grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 1.5rem;
+		.service-section {
+			gap: 3.75rem;
+		}
+
+		.service-choice-header {
+			padding-block: 3.25rem;
 		}
 
 		.service-path-option {
 			grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-			gap: 3.5rem;
-			padding: 2.1rem 0;
+			gap: 4rem;
+			padding: 2.6rem 0;
 		}
 
 		.service-path-option__body {
 			grid-template-columns: minmax(0, 0.98fr) minmax(16rem, 0.86fr);
 			align-items: start;
-			column-gap: 3.5rem;
+			column-gap: 4.25rem;
 		}
 
 		.service-path-option__body .arrow-link {
 			grid-column: 1 / -1;
 		}
 
-		.service-detail-grid--audit {
-			grid-template-columns: minmax(0, 1.02fr) minmax(18rem, 0.98fr);
-			gap: 4.5rem;
-		}
-
 		.service-launch-steps {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 1.5rem;
-		}
-
-		.service-audit-worksheet {
-			grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-			align-items: start;
-			gap: 4.5rem;
-		}
-
-		.service-audit-worksheet__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 1.75rem 2.25rem;
-		}
-
-		.service-faq-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			column-gap: 3rem;
-			row-gap: 2.5rem;
+			gap: 1.85rem;
 		}
 
 		.about-hero-grid {
@@ -1849,10 +1863,6 @@
 			grid-template-columns: minmax(0, 0.96fr) minmax(20rem, 0.64fr);
 		}
 
-		.service-faq-grid > :nth-child(odd) {
-			padding-top: 0.75rem;
-		}
-
 		.how-we-work-step {
 			grid-template-columns: 5.5rem minmax(0, 1fr);
 			align-items: start;
@@ -1937,18 +1947,6 @@
 
 		:is(.dark) .ledger-rail {
 			border-left-color: rgba(255, 255, 255, 0.1);
-		}
-	}
-
-	@media (min-width: 768px) and (max-width: 1240px) {
-		.service-audit-worksheet {
-			grid-template-columns: minmax(0, 1fr);
-			gap: 2.5rem;
-		}
-
-		.service-audit-worksheet__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 1.5rem 2rem;
 		}
 	}
 
@@ -2263,9 +2261,9 @@
 	}
 
 	.testimonial-billboard--launch .testimonial-billboard__quote {
-		font-size: clamp(1.35rem, 2.1vw, 2.35rem);
+		font-size: clamp(1.6rem, 2.35vw, 2.8rem);
 		margin-inline: 0;
-		max-width: 24ch;
+		max-width: 26ch;
 		color: inherit;
 		text-align: left;
 	}

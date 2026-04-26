@@ -1,161 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialBillboard from '../components/TestimonialBillboard.astro';
 import { BOOK_CALL_URL } from '../consts';
+import testimonials from '../../testimonials.json';
+import monicaImage from '../assets/img/monica.jpeg';
 
 const title = 'MVP Launches & Workflow Audits';
 const description =
 	'MVP launches for nontechnical founders and workflow audits for founder-led teams that need automation, internal tools, or useful AI systems.';
 const calUrl = BOOK_CALL_URL;
-
-const heroFacts = [
-	{ label: 'Best for', value: 'Nontechnical founders and founder-led teams that need a useful first system in use soon.' },
-	{ label: 'Starting points', value: 'The 4-Week Launch starts at $10,000. Workflow audits start at $1,000.' },
-	{ label: 'What you get', value: 'Clear scope, direct execution, and one person handling the product and technical tradeoffs.' }
-];
+const serviceTestimonial = testimonials[0];
 
 const pathChoices = [
 	{
-		label: 'Offer 01',
-		title: 'The 4-Week Launch',
-		summary: 'For nontechnical founders who need the first useful version scoped, built, and live.',
+		label: 'Product path',
+		title: '4-Week Launch',
+		summary: 'For founders who need the first useful version scoped, built, and live.',
 		price: 'Starts at $10,000',
 		signals: [
-			'The right v1 is still fuzzy.',
-			'You need scope, UX, build, and launch in one place.',
-			'You want a fixed-scope build, not an open-ended team search.'
+			'The product direction is still fuzzy.',
+			'You need scope, UX, build, and launch in one place.'
 		],
-		cta: 'See the MVP path',
-		href: '#mvp'
+		cta: 'Talk through a launch',
+		trackLocation: 'launch_path_product'
 	},
 	{
-		label: 'Offer 02',
-		title: 'Workflow Audit / AI Systems',
-		summary: 'For founder-led teams that need to diagnose the workflow before committing to a build.',
+		label: 'Workflow path',
+		title: 'Workflow Audit',
+		summary: 'For teams that need to find the bottleneck before building software or adding AI.',
 		price: 'Starts at $1,000',
 		signals: [
-			'The team is losing time to copy-paste, inbox triage, or handoff chaos.',
-			'The workflow may be the real issue.',
-			'You need to know whether software, automation, or AI is the right fix.'
+			'The workflow is slowing the team down.',
+			'You need to know whether software, automation, AI, or no build is the right move.'
 		],
-		cta: 'See the workflow path',
-		href: '#automation'
+		cta: 'Talk through an audit',
+		trackLocation: 'launch_path_workflow'
 	}
 ];
 
-const mvpBestFor = [
-	'Nontechnical founders who need more than a developer.',
-	'Teams that need a smaller, clearer first version.',
-	'Founders who can stay involved in scope and weekly review.'
-];
-
-const mvpTerms = ['Starts at $10,000.', 'Fixed scope.', '50% upfront, 50% at launch.'];
-
-const includedItems = [
-	'Product strategy, scope cuts, and pricing guidance before code starts.',
-	'UX and design decisions so you do not need a separate designer.',
-	'Frontend, backend, deployment, and launch setup.',
-	'Marketing site support plus 30 days of post-launch bug coverage.',
-	'Recorded handoff and shared project visibility from day one.'
-];
-
-const automationBestFor = [
-	'Founder-led teams with repeated manual work and no clear system under it.',
-	'SMBs that rely on copy-paste, inbox triage, or one person holding too much context.',
-	'Teams exploring AI, but only if it actually improves the workflow.'
-];
-
-const auditTerms = [
-	'Starts at $1,000.',
-	'Credited toward implementation if we move forward.',
-	'Built to produce a concrete next-step recommendation.'
-];
-
-const workflowAuditItems = [
-	'Workflow map: tools, people, handoffs, data, and failure points.',
-	'Bottleneck diagnosis: what is actually slowing the business down.',
-	'Data and context readiness check before AI or automation gets added.',
-	'Human review map: where a person needs to approve, edit, or override the system.',
-	'Implementation recommendation: software, automation, AI, or no build yet.',
-	'Scope, budget range, timeline, risks, and next step.'
-];
-
-const launchSteps = [
+const roadmapSteps = [
 	{
 		num: '01',
-		title: 'Cut the v1 scope',
-		body: 'Reduce the product to the first version that can create real learning or revenue.'
+		title: 'Bring the idea or bottleneck',
+		body: 'No polished brief required. Bring the messy version.'
 	},
 	{
 		num: '02',
-		title: 'Build with direct feedback',
-		body: 'Weekly demos and tradeoff calls keep the work moving without agency layers.'
+		title: 'Pick the smallest useful step',
+		body: 'MVP, audit, automation, AI system, or something smaller.'
 	},
 	{
 		num: '03',
-		title: 'Launch with handoff',
-		body: 'Go live cleanly, then leave the project in a state the next person can pick up.'
+		title: 'Leave with a practical scope',
+		body: 'A starting path, likely budget range, and the next decision.'
 	}
 ];
 
-const auditOutputs = [
-	{ label: 'Workflow map', body: 'Tools, people, handoffs, and where the work actually stalls.' },
-	{ label: 'Constraint diagnosis', body: 'What is really slowing the business down and what is just a symptom.' },
-	{ label: 'Build recommendation', body: 'Software, automation, AI, or no build yet.' },
-	{ label: 'First-step scope', body: 'Budget range, risks, and the smallest next system worth implementing.' }
-];
-
-const engagementSteps = [
-	{
-		num: '01',
-		title: 'Clarify the bottleneck',
-		body: 'We narrow the actual problem first so the engagement starts from the business constraint, not from a guessed solution.'
-	},
-	{
-		num: '02',
-		title: 'Cut the first useful scope',
-		body: 'The work gets reduced to the smallest system that can create a real outcome, whether that is an MVP, an internal tool, or an audit.'
-	},
-	{
-		num: '03',
-		title: 'Build the right first system',
-		body: 'Once the first step is clear, I build it directly with short feedback loops and a clean handoff.'
-	}
+const proofItems = [
+	{ label: '8+ years', value: 'Building software' },
+	{ label: '10+ shipped', value: 'Products and systems' },
+	{ label: 'Direct', value: 'Senior execution' }
 ];
 
 const faqItems = [
 	{
 		title: 'Not sure which path fits?',
-		body: 'That is exactly what the roadmap call is for. I will tell you whether this should start as an MVP, a workflow audit, or something smaller.'
-	},
-	{
-		title: 'Burned by developers before?',
-		body: 'The code lives in your GitHub from day one, you see regular demos, and the project stays visible the whole time.'
-	},
-	{
-		title: 'What happens after launch?',
-		body: 'I handle deployment, bug coverage for 30 days, and a recorded handoff so the next developer can pick it up cleanly.'
+		body: 'That is what the roadmap call is for. I will tell you whether this should start as a launch, a workflow audit, or something smaller.'
 	},
 	{
 		title: 'How does pricing work?',
-		body: 'The 4-Week Launch starts at $10,000 with 50% upfront and 50% at launch. Workflow audits start at $1,000 and are credited toward implementation if we move forward.'
-	},
-	{
-		title: 'What happens after the roadmap call?',
-		body: 'You leave with a recommended starting path, likely budget range, and the smallest useful next step. If this is not the right fit, I will say that directly.'
+		body: '4-Week Launches start at $10,000. Workflow audits start at $1,000 and can be credited toward implementation if we move forward.'
 	},
 	{
 		title: 'What if AI is not the right fix?',
-		body: 'Then I will say that. The audit is meant to choose the right first system, not force AI into the workflow.'
-	},
-	{
-		title: 'How do you handle sensitive business context?',
-		body: 'We start with the minimum access needed, keep credentials out of shared docs and chat, and define human review points before automation touches customer, financial, or operational data.'
+		body: 'We will choose the simplest useful fix. Sometimes that is AI or automation; sometimes it is a cleaner workflow, handoff, or no build yet.'
 	}
 ];
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-launch'>
-	<article class='container max-w-6xl space-y-24 py-12 md:space-y-32 md:py-16 lg:space-y-36'>
+	<article class='container max-w-6xl service-page-stack py-14 md:py-16'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
@@ -163,14 +87,14 @@ const faqItems = [
 		</nav>
 
 		<header class='service-hero-grid'>
-			<div class='space-y-6'>
+			<div class='service-hero-copy'>
 				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-					Start with the right first system.
+					Build the right first system.
 				</h1>
-				<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-					For nontechnical founders and founder-led teams deciding between a focused MVP build, a workflow audit, or a smaller first step.
+				<p class='max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300'>
+					I help nontechnical founders and founder-led teams turn fuzzy product ideas or messy workflows into useful software.
 				</p>
-				<div class='flex flex-wrap gap-4 pt-1'>
+				<div class='flex flex-wrap gap-4'>
 					<a
 						href={calUrl}
 						target='_blank'
@@ -183,29 +107,55 @@ const faqItems = [
 					</a>
 				</div>
 			</div>
-
-			<div class='service-summary-grid'>
-				{
-					heroFacts.map((fact) => (
-						<div class='service-summary-item'>
-							<p class='launch-meta text-primary'>{fact.label}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{fact.value}</p>
-						</div>
-					))
-				}
-			</div>
 		</header>
 
-		<section id='paths' class='space-y-10 md:space-y-12'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Choose Your Path</p>
-				<h2 class='heading-display heading-display--section'>Start with the closest match, then we narrow from there.</h2>
+		<section class='service-section'>
+			<TestimonialBillboard
+				quote={serviceTestimonial.billboardText ?? serviceTestimonial.text}
+				name={serviceTestimonial.name}
+				role={serviceTestimonial.role}
+				company={serviceTestimonial.company}
+				image={monicaImage}
+				label='Client note'
+				class='testimonial-billboard--launch service-testimonial'
+			/>
+		</section>
+
+		<div class='service-proof-strip'>
+			{
+				proofItems.map((item) => (
+					<div class='service-proof-item'>
+						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.value}</p>
+					</div>
+				))
+			}
+		</div>
+
+		<section id='paths' class='service-section'>
+			<div class='service-choice-header'>
+				<div class='service-choice-heading'>
+					<p class='section-label'>// Two Ways To Start</p>
+					<h2 class='heading-display heading-display--section service-choice-title'>
+						<span>Product fuzzy?</span>
+						<span>Launch first.</span>
+						<span>Workflow fuzzy?</span>
+						<span>Audit first.</span>
+					</h2>
+				</div>
 			</div>
 
 			<div class='service-path-grid'>
 				{
 					pathChoices.map((choice) => (
-						<a href={choice.href} class='service-path-option group'>
+						<a
+							href={calUrl}
+							target='_blank'
+							rel='noopener noreferrer'
+							class='service-path-option group'
+							data-track-event='book_call_clicked'
+							data-track-location={choice.trackLocation}
+						>
 							<div class='service-path-option__meta'>
 								<p class='launch-meta text-primary'>{choice.label}</p>
 								<p class='launch-meta'>{choice.price}</p>
@@ -213,7 +163,7 @@ const faqItems = [
 							<div class='service-path-option__body'>
 								<div class='space-y-3'>
 									<h3 class='heading-display heading-display--subsection'>{choice.title}</h3>
-									<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{choice.summary}</p>
+									<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{choice.summary}</p>
 								</div>
 								<ul class='service-path-option__signals'>
 									{choice.signals.map((signal) => (
@@ -228,159 +178,51 @@ const faqItems = [
 			</div>
 		</section>
 
-		<section id='mvp' class='space-y-12 md:space-y-16'>
-			<div class='service-detail-grid'>
-				<div class='space-y-4'>
-					<p class='section-label'>// The 4-Week Launch</p>
-					<h2 class='heading-display heading-display--section'>A focused MVP live in 4 weeks.</h2>
-					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						I help define what the MVP should be, advise on pricing and positioning, design the UX, build the product, and set up the
-						launch. Best for nontechnical founders who need a product partner, not just a pair of hands.
-					</p>
-					<p class='launch-meta'>Starts at $10,000. Fixed scope. 50% upfront, 50% at launch.</p>
-				</div>
-
-				<div class='service-offer-scope'>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Best for</p>
-						<ul class='fit-list'>
-							{mvpBestFor.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Included</p>
-						<ul class='fit-list'>
-							{includedItems.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Commercial terms</p>
-						<ul class='fit-list'>
-							{mvpTerms.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-				</div>
+		<section class='service-section'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Roadmap Call</p>
+				<h2 class='heading-display heading-display--section'>Use the call to pick the next move.</h2>
 			</div>
-
 			<div class='service-launch-steps'>
 				{
-					launchSteps.map((step) => (
+					roadmapSteps.map((step) => (
 						<div class='service-launch-step'>
-							<p class='launch-meta text-primary'>Step {step.num}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+								<p class='launch-meta text-primary'>Step {step.num}</p>
+								<div class='space-y-3'>
+									<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
+									<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+								</div>
 							</div>
-						</div>
 					))
 				}
 			</div>
 		</section>
 
-		<section id='automation' class='space-y-12 md:space-y-16'>
-			<div class='service-detail-grid service-detail-grid--audit'>
-				<div class='space-y-4'>
-					<p class='section-label'>// Workflow Audit / AI Systems</p>
-					<h2 class='heading-display heading-display--section'>Figure out what the workflow actually needs first.</h2>
-					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						For founder-led teams and business owners whose operations are slowing down because too much knowledge lives in people, tabs,
-						and manual workarounds. The audit comes before the build because most automation failures are workflow failures first.
-					</p>
-					<p class='launch-meta'>Workflow audits start at $1,000 and are credited toward implementation if we move forward.</p>
-				</div>
-
-				<div class='service-audit-sidebar'>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Best for</p>
-						<ul class='fit-list'>
-							{automationBestFor.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<div class='space-y-4'>
-						<p class='launch-meta text-primary'>Commercial terms</p>
-						<ul class='fit-list'>
-							{auditTerms.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class='service-audit-worksheet'>
-				<div class='service-audit-worksheet__intro space-y-4'>
-					<p class='section-label'>// Audit Output</p>
-					<h3 class='heading-display heading-display--section'>A smaller first system, not a vague recommendation.</h3>
-					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						The audit should leave you with something concrete enough to act on, even if the right next move is not a build yet.
-					</p>
-				</div>
-				<div class='service-audit-worksheet__grid'>
-					{
-						auditOutputs.map((item) => (
-							<div class='service-audit-note'>
-								<p class='launch-meta text-primary'>{item.label}</p>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-							</div>
-						))
-					}
-				</div>
-			</div>
-
-			<div class='service-audit-includes'>
-				<div class='space-y-4'>
-					<p class='launch-meta text-primary'>Audit includes</p>
-					<ul class='fit-list'>
-						{workflowAuditItems.map((item) => <li>{item}</li>)}
-					</ul>
-				</div>
-			</div>
-		</section>
-
-		<section class='space-y-10 md:space-y-12'>
+		<section class='service-section'>
 			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// How Engagements Start</p>
-				<h2 class='heading-display heading-display--section'>Most engagements start by narrowing the real problem.</h2>
+				<p class='section-label'>// Common Questions</p>
+				<h2 class='heading-display heading-display--section'>A few things worth answering upfront.</h2>
 			</div>
-			<div class='how-we-work-grid'>
-				{
-					engagementSteps.map((step) => (
-						<div class='how-we-work-step'>
-							<p class='heading-display how-we-work-step__num text-primary'>{step.num}</p>
-							<div class='space-y-3'>
-								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
-								<p class='max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</section>
-
-		<section class='space-y-10 md:space-y-12'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Common Concerns</p>
-				<h2 class='heading-display heading-display--section'>Common concerns before starting.</h2>
-			</div>
-			<div class='service-faq-grid'>
+			<div class='service-faq-compact'>
 				{
 					faqItems.map((item) => (
-						<div class='space-y-3'>
-							<p class='launch-meta text-primary'>{item.title}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						<div class='service-faq-compact__item'>
+							<p class='service-faq-compact__question'>{item.title}</p>
+							<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
 						</div>
 					))
 				}
 			</div>
 		</section>
 
-		<section class='service-detail-grid'>
+		<section class='service-section service-detail-grid'>
 			<div class='space-y-4'>
 				<p class='section-label'>// Next Step</p>
-				<h2 class='heading-display heading-display--section'>Bring the scope. I&rsquo;ll tell you what the first useful step is.</h2>
+				<h2 class='heading-display heading-display--section'>Bring the idea or bottleneck.</h2>
 			</div>
 			<div class='space-y-5'>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Book a 30-minute roadmap call. You&rsquo;ll leave with a clearer scope, the likely budget range, and a direct answer on whether
-					this should start as an MVP, a workflow audit, or something smaller.
+				<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+					I&rsquo;ll tell you whether this should start as a launch, a workflow audit, or something smaller.
 				</p>
 				<a
 					href={calUrl}
