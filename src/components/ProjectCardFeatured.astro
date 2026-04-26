@@ -18,7 +18,7 @@ const formatIndex = (i: number) => String(i + 1).padStart(2, '0');
   <div class="relative shrink-0">
     <!-- Featured label -->
     <div class="absolute top-0 left-0 z-10 bg-black text-white dark:bg-white dark:text-black px-4 py-2">
-      <span class="font-mono text-xs uppercase tracking-wider">
+      <span class="launch-meta text-white dark:text-black">
         Featured_Project_{formatIndex(index)}
       </span>
     </div>
@@ -40,7 +40,7 @@ const formatIndex = (i: number) => String(i + 1).padStart(2, '0');
     {project.tags.length > 0 && (
       <div class="flex flex-wrap gap-2">
         {project.tags.slice(0, 4).map((tag) => (
-          <span class="inline-block bg-black text-white dark:bg-white dark:text-black px-3 py-1.5 font-mono text-xs uppercase tracking-wider">
+          <span class="launch-meta inline-block bg-black px-3 py-1.5 text-white dark:bg-white dark:text-black">
             {tag}
           </span>
         ))}
