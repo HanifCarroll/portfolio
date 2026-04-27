@@ -2180,16 +2180,6 @@
 		min-width: min(100%, 16rem);
 	}
 
-	.service-callout .fit-secondary-link {
-		white-space: nowrap;
-	}
-
-	.service-callout .fit-secondary-link::after,
-	.service-callout .fit-secondary-link:hover::after {
-		flex: 0 0 3.5rem;
-		width: 3.5rem;
-	}
-
 	.service-callout--case-study {
 		background: transparent;
 		padding-inline: 0;
@@ -2234,17 +2224,12 @@
 
 	.service-callout--case-study .fit-secondary-link::after {
 		content: '→';
-		flex-basis: 1em;
-		width: 1em;
+		width: auto;
 		height: auto;
 		background: transparent;
 		font-size: 1.15rem;
 		line-height: 1;
 		opacity: 1;
-	}
-
-	.service-callout--case-study .fit-secondary-link:hover::after {
-		width: 1em;
 	}
 
 	.service-callout--case-study .fit-secondary-link:hover {
@@ -2680,10 +2665,10 @@
 		align-items: center;
 		gap: 0.75rem;
 		font-family: var(--font-mono);
-		font-size: 0.78rem;
+		font-size: 0.9rem;
 		font-weight: 600;
-		letter-spacing: 0.28em;
-		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		text-transform: none;
 		color: rgb(0 102 255);
 		transition: color 180ms ease;
 	}
@@ -2695,9 +2680,7 @@
 		height: 1px;
 		background: currentColor;
 		opacity: 0.5;
-		transition:
-			width 180ms ease,
-			opacity 180ms ease;
+		transition: background-color 180ms ease;
 	}
 
 	.fit-secondary-link:hover {
@@ -2705,8 +2688,8 @@
 	}
 
 	.fit-secondary-link:hover::after {
-		width: 4.25rem;
-		opacity: 0.8;
+		width: 3.5rem;
+		opacity: 0.5;
 	}
 
 	.fit-list {
