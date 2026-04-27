@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../lib/project-cards';
 
-import palabrunoHero from '@src/assets/img/projects/palabruno-teacher-library.png';
+import palabrunoHero from '@src/assets/img/projects/palabruno-founder-idea-launch.png';
 
 const title = 'Case Studies';
 const description = 'Selected case studies from MVP builds, launch sites, and workflow systems by Hanif Carroll.';
@@ -41,11 +41,11 @@ const experimentProjects = orderProjects(
 );
 
 const featuredProject = clientProjects[0];
-const visibleClientProjects = clientProjects;
+const visibleClientProjects = clientProjects.filter((project) => project.slug !== featuredProject?.slug);
 
 const featuredOutcomeHighlights = {
 	palabruno:
-		'Palabruno moved from rough founder idea to paid MVP with mobile subscriptions, teacher payments on the web, app store launch assets, and launch-ready positioning.',
+		'Palabruno moved from rough founder idea to launch with mobile subscriptions, teacher payments on the web, app store launch assets, and clearer positioning.',
 	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',
 	genrupt: 'Genrupt moved from demo-stage AI generation toward a more reliable seller platform.',
 	'casa-elaria': 'The fake-door storefront tested buyer intent before inventory spend.',

@@ -5,7 +5,7 @@ import { BOOK_CALL_URL } from '../consts';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
 import genruptFeature from '@src/assets/img/projects/genrupt-feature.png';
-import palabrunoHero from '@src/assets/img/projects/palabruno-teacher-library.png';
+import palabrunoHero from '@src/assets/img/projects/palabruno-founder-idea-launch.png';
 
 const title = 'Hanif Carroll | Technical Product Partner';
 const description =
@@ -32,12 +32,12 @@ const caseStudies = [
 	{
 		slug: 'palabruno',
 		label: 'MVP build',
-		title: 'Took a founder from rough idea to paid MVP',
+		title: 'Took a founder from rough idea to launch',
 		body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, web payments for teachers, app store launch assets, UX polish, and public-site copy.',
 		outcome:
 			'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led buyer path.',
 		image: palabrunoHero,
-		imageAlt: 'Palabruno teacher dashboard showing roster and shared reading workflow.'
+		imageAlt: 'Palabruno portfolio visual showing the browser workspace and mobile reader.'
 	},
 	{
 		slug: 'genrupt',
@@ -138,17 +138,12 @@ const fitColumns = [
 						class='case-study-feature group grid gap-8 transition-colors lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-14'
 					>
 						<figure class='case-study-feature__media'>
-							<div class='device-frame device-frame--macbook case-study-feature__device'>
-								<div class='device-frame__screen'>
-									<Image
-										src={featuredCaseStudy.image}
-										alt={featuredCaseStudy.imageAlt}
-										class='device-frame__image transition duration-700 ease-out group-hover:scale-[1.015]'
-										loading='eager'
-									/>
-								</div>
-								<div class='device-frame__base' aria-hidden='true'></div>
-							</div>
+							<Image
+								src={featuredCaseStudy.image}
+								alt={featuredCaseStudy.imageAlt}
+								class='case-study-feature__image transition duration-700 ease-out group-hover:scale-[1.015]'
+								loading='eager'
+							/>
 						</figure>
 
 						<div class='flex h-full flex-col justify-between gap-6 lg:py-2'>
