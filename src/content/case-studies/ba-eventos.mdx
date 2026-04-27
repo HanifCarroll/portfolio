@@ -1,0 +1,47 @@
+---
+projectSlug: ba-eventos
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import baEventosFeature from '../../assets/img/projects/ba-eventos-feature.png';
+
+<CaseSection title="Summary">
+	Buenos Aires event information is scattered across Instagram stories, Facebook events, Eventbrite, Passline, venue sites, and WhatsApp groups.
+
+    I built BA Eventos as a live discovery product that turns that fragmented local data into a searchable experience with grounded AI answers.
+
+</CaseSection>
+
+<CaseSection title="Workflow Objective">
+	Traditional search does not work well for events. People ask for moods, neighborhoods, time windows, and social context, not just exact keywords.
+
+    The product needed a data pipeline, an admin surface, and a retrieval layer that could answer those questions without hallucinating dead-end recommendations.
+
+</CaseSection>
+
+<CaseSection title="System Design">
+	<DecisionBlock title="Turned messy sources into a usable event dataset.">
+		The system ingests events, matches venues, enriches descriptions, and keeps the catalog organized enough to support real search.
+	</DecisionBlock>
+
+    <DecisionBlock title="Combined semantic search with structured filters.">
+    	Users can ask intent-heavy questions like “romantic jazz in Palermo” or “underground techno this weekend” while the system stays grounded in event records.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Product Proof" media>
+	The product is a working example of AI-assisted discovery over messy local data, not just a chat interface.
+
+    <ImagePlate image={baEventosFeature} alt="BA Eventos event discovery product interface." />
+
+</CaseSection>
+
+<CaseSection title="Results">
+	BA Eventos launched with 800+ events and 190+ venues pulled into one searchable experience.
+
+    The project proved a repeatable pattern for AI discovery products: ingest the data, clean it, enrich it, embed it, and answer with grounded results.
+
+</CaseSection>

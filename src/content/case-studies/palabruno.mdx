@@ -1,0 +1,145 @@
+---
+projectSlug: palabruno
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import DeviceGrid from '../../components/case-study/DeviceGrid.astro';
+import DevicePlate from '../../components/case-study/DevicePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import teacherCreateReading from '../../assets/img/projects/palabruno-teacher-create-reading.png';
+import teacherGroups from '../../assets/img/projects/palabruno-teacher-groups.png';
+import teacherLibrary from '../../assets/img/projects/palabruno-teacher-library.png';
+import teacherRecentShares from '../../assets/img/projects/palabruno-teacher-recent-shares.png';
+import teacherStudents from '../../assets/img/projects/palabruno-teacher-students.png';
+
+export const shippedRows = [
+	{
+		label: 'First buyer',
+		title: 'Teacher became the clearest first buyer.',
+		body: 'The web workspace gives tutors a reason to pay: class management, student groups, custom readings, and shareable material for lessons.'
+	},
+	{
+		label: 'Payment readiness',
+		title: 'The MVP can charge through the right channels.',
+		body: 'Premium uses Apple and Google subscriptions through RevenueCat. Teacher payments happen on the web, where tutors and small classes naturally buy.'
+	},
+	{
+		label: 'Launch surface',
+		title: 'The product shipped with the surrounding trust layer.',
+		body: 'The launch included the public site, pricing, legal pages, store screenshots, app listings, and release documentation.'
+	},
+	{
+		label: 'Founder handoff',
+		title: 'The founder left with a product he could test in market.',
+		body: 'The engagement ended with a working mobile app, teacher dashboard, shared backend, launch docs, store assets, and a clearer first segment to learn from.'
+	}
+];
+
+export const teacherScreens = [
+	{
+		image: teacherCreateReading,
+		alt: 'Palabruno teacher workspace for creating a Spanish reading.',
+		label: 'Text creation',
+		title: 'Lesson notes can become level-matched readings.',
+		caption: 'Teachers can choose a topic, level, and length, then turn class material into Spanish reading practice.'
+	},
+	{
+		image: teacherStudents,
+		alt: 'Palabruno teacher roster with student records and invite status.',
+		label: 'Teacher roster',
+		title: 'Student records and invites live in the product.',
+		caption: 'The roster keeps student names, invite status, and next actions close to the reading workflow.'
+	},
+	{
+		image: teacherGroups,
+		alt: 'Palabruno teacher groups for recurring classes.',
+		label: 'Student groups',
+		title: 'Groups support recurring classes and tutoring cohorts.',
+		caption: 'Teachers can organize students by lesson group and share readings with the right class faster.'
+	},
+	{
+		image: teacherRecentShares,
+		alt: 'Palabruno recent shares view for assigned readings.',
+		label: 'Share history',
+		title: 'Teachers can see what was sent and when.',
+		caption: 'Recent shares make it easier to track assigned readings across email, links, and WhatsApp.'
+	}
+];
+
+<CaseSection title="Summary">
+	This case study is about the judgment between idea and launch: choosing the first buyer, cutting the first version to the right shape, building the product, and leaving the founder with something real enough to sell, test, and own.
+
+    Palabruno moved from founder idea to paid MVP: the iOS app went live on the App Store, the Android app went live on Google Play, and the public launch pages were ready for real users.
+
+</CaseSection>
+
+<CaseSection title="About">
+	Palabruno began as a strong founder idea: make Spanish reading feel lower-friction by letting learners tap a word, get translation, grammar, and pronunciation help, and stay inside the reading flow.
+
+    The harder question was not whether the app could be built, but rather what the first commercial version should be. A student reader alone was useful, but teachers were the clearer first buyer: a tutor could turn lesson material into level-appropriate readings, send them to students, and bring those students into the app.
+
+</CaseSection>
+
+<CaseSection title="Business Objective">
+	The founder needed a first commercial version that could support Spanish learners on mobile while giving teachers a clear reason to adopt and pay for the product.
+
+    That meant shaping the MVP around real validation: a mobile reading experience, a teacher workspace, payments, store readiness, and enough positioning clarity to start testing with actual teachers.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Could a useful prototype become a commercial product teachers and learners could actually try?">
+		Palabruno started with a strong product instinct: make Spanish reading less brittle by keeping translation, grammar, and pronunciation help inside the reading flow.
+
+    	The sharper question was who would pay first. A student reader alone was useful, but teachers had a repeated need: create readings, share them with students, and bring those students into the mobile app.
+    </DecisionBlock>
+
+    <DecisionBlock title="Split the MVP into two connected surfaces instead of one overstuffed app.">
+    	I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.
+
+    	The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Teacher Workspace" media>
+	The web product gave the first buyer a dedicated workspace for class management, student groups, shared readings, and paid teacher accounts.
+
+    <DevicePlate image={teacherLibrary} alt="Palabruno teacher workspace showing the saved reading library." />
+
+</CaseSection>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Treat payments, store review, positioning, and handoff as part of the MVP.">
+		I carried the launch work beyond the interface: Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and founder handoff.
+
+    	That mattered because a nontechnical founder does not just need code. He needs the product to be coherent enough to sell, trustworthy enough to launch, and documented enough to own after the engagement.
+    </DecisionBlock>
+
+    <DecisionBlock title="A launched paid MVP with a clear first buyer.">
+    	The product can now take payments through the right channels: Premium through Apple and Google via RevenueCat, and Teacher through Stripe on the web.
+
+    	The founder ended the engagement with a working cross-platform product, teacher dashboard, shared backend, launch documentation, store assets, and a clearer first market to test with real Spanish teachers.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				Palabruno became ready for real users because the MVP connected product scope to launch requirements: a clear first buyer, working
+				payments, store readiness, and a handoff the founder could own.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
+
+    <DeviceGrid screens={teacherScreens} />
+
+</CaseSection>

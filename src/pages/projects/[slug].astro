@@ -1,481 +1,126 @@
 ---
-import { Image } from 'astro:assets';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
 import { BOOK_CALL_URL } from '../../consts';
-import type { Project, ProjectDetailVariant } from '@src/lib/types/project';
-import { getAllProjects } from '@src/lib/projects';
+import type { Project } from '@src/lib/types/project';
+import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
 
 import baEventosHero from '@src/assets/img/projects/ba-eventos-hero.png';
-import baEventosFeature from '@src/assets/img/projects/ba-eventos-feature.png';
 import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
-import hablabaFeature from '@src/assets/img/projects/hablaba-feature.png';
 import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
-import muchoHangoutsFeature from '@src/assets/img/projects/mucho-hangouts-feature.png';
 import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
-import genruptFeature from '@src/assets/img/projects/genrupt-feature.png';
-import palabrunoTeacherCreateReading from '@src/assets/img/projects/palabruno-teacher-create-reading.png';
-import palabrunoTeacherGroups from '@src/assets/img/projects/palabruno-teacher-groups.png';
-import palabrunoTeacherLibrary from '@src/assets/img/projects/palabruno-teacher-library.png';
-import palabrunoTeacherReaderStory from '@src/assets/img/projects/palabruno-teacher-reader-story.png';
-import palabrunoTeacherRecentShares from '@src/assets/img/projects/palabruno-teacher-recent-shares.png';
-import palabrunoTeacherStudents from '@src/assets/img/projects/palabruno-teacher-students.png';
+import palabrunoHero from '@src/assets/img/projects/palabruno-teacher-library.png';
 import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
-import voxPrismaticFeature from '@src/assets/img/projects/vox-prismatic-feature.png';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
-import casaElariaFeature from '@src/assets/img/projects/casa-elaria-feature.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
-import desarmaderoFeature from '@src/assets/img/projects/desarmadero-feature.png';
 import maximoHero from '@src/assets/img/projects/maximo-hero.png';
-import maximoFeature from '@src/assets/img/projects/maximo-feature.png';
 import redwriterHero from '@src/assets/img/projects/redwriter-hero.png';
-import redwriterFeature from '@src/assets/img/projects/redwriter-feature.png';
 
 interface PageProps {
 	project: Project;
+	caseStudy: CollectionEntry<'caseStudies'>;
 }
 
-interface VariantContent {
-	pageLabel: string;
-	heroNoteLabel: string;
-	heroNote: string;
-	problemLabel: string;
-	approachLabel: string;
-	outcomeLabel: string;
-	proofLabel: string;
-	proofIntro: string;
-}
+const imageMap = {
+	palabruno: palabrunoHero,
+	'ba-eventos': baEventosHero,
+	'language-exchange': hablabaHero,
+	'mucho-hangouts': muchoHangoutsHero,
+	genrupt: genruptHero,
+	'vox-prismatic': voxPrismaticHero,
+	'casa-elaria': casaElariaHero,
+	'desarmadero-latorre': desarmaderoHero,
+	'maximo-interiorismo': maximoHero,
+	'redwriter-comics': redwriterHero
+} as const;
 
 export async function getStaticPaths() {
-	return getAllProjects().map((project) => ({
-		params: { slug: project.slug },
-		props: { project }
-	}));
+	const caseStudies = await getCollection('caseStudies');
+
+	return caseStudies.map((caseStudy) => {
+		const slug = caseStudy.data.projectSlug ?? caseStudy.id;
+		const project = getProject(slug);
+
+		if (!project) {
+			throw new Error(`Missing project metadata for case study "${slug}".`);
+		}
+
+		return {
+			params: { slug },
+			props: { project, caseStudy }
+		};
+	});
 }
 
-const { project } = Astro.props as PageProps;
+const { project, caseStudy } = Astro.props as PageProps;
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
-const firstText = (value: string | string[]) => (Array.isArray(value) ? value[0] : value);
-const outcomeSummary = firstText(project.result);
-const detailVariant = project.detailVariant;
-const isPalabrunoCaseStudy = project.slug === 'palabruno';
+const { Content } = await render(caseStudy);
+const heroImage = imageMap[project.slug as keyof typeof imageMap];
 
-const variantContent: Record<ProjectDetailVariant, VariantContent> = {
-	product: {
-		pageLabel: '// Product Case Study',
-		heroNoteLabel: '// Product Shift',
-		heroNote: 'The win was not just shipping features. It was making the product clearer, more trustworthy, and easier to extend.',
-		problemLabel: '// Product Context',
-		approachLabel: '// What I Built',
-		outcomeLabel: '// What Changed',
-		proofLabel: '// Screens',
-			proofIntro: 'Screens from the live product.'
-	},
-	workflow: {
-		pageLabel: '// Workflow Case Study',
-		heroNoteLabel: '// System Shift',
-		heroNote: 'The real change was reducing repeated operational friction, not just layering another tool on top of the business.',
-		problemLabel: '// Where The Work Was Getting Stuck',
-		approachLabel: '// The System I Put In Place',
-		outcomeLabel: '// What Changed Operationally',
-		proofLabel: '// Workflow Proof',
-		proofIntro: 'What matters here is the shift in how the work moved, not just how the interface looked.'
-	},
-	launch_site: {
-		pageLabel: '// Launch Site Case Study',
-		heroNoteLabel: '// Positioning Shift',
-		heroNote: 'The site needed to make the work clearer, more credible, and easier to act on without feeling heavier than the offer itself.',
-		problemLabel: '// What The Site Needed To Communicate',
-		approachLabel: '// How I Structured It',
-		outcomeLabel: '// What Changed For Credibility',
-		proofLabel: '// Site Proof',
-		proofIntro: 'The proof here is how the work, offer, and credibility read together once the site is in the world.'
-	}
-};
-
-const content = variantContent[detailVariant];
-const proofIntro = project.proofIntro ?? content.proofIntro;
-const productAbout = Array.isArray(project.problem) ? project.problem : [project.problem];
-const productStorySections = [
-	{
-		label: '// The Business Question',
-		title: 'Could a useful prototype become a commercial product teachers and learners could actually try?',
-		body: [
-			'Palabruno started with a strong product instinct: make Spanish reading less brittle by keeping translation, grammar, and pronunciation help inside the reading flow.',
-			'The sharper question was who would pay first. A student reader alone was useful, but teachers had a repeated need: create readings, share them with students, and bring those students into the mobile app.'
-		]
-	},
-	{
-		label: '// The Product Bet',
-		title: 'Split the MVP into two connected surfaces instead of one overstuffed app.',
-		body: [
-			'I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.',
-			'The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.'
-		]
-	},
-	{
-		label: '// The Launch Work',
-		title: 'Treat payments, store review, positioning, and handoff as part of the MVP.',
-		body: [
-			'I carried the launch work beyond the interface: Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and founder handoff.',
-			'That mattered because a nontechnical founder does not just need code. He needs the product to be coherent enough to sell, trustworthy enough to launch, and documented enough to own after the engagement.'
-		]
-	},
-	{
-		label: '// The Result',
-		title: 'A launched paid MVP with a clear first buyer.',
-		body: project.result
-	}
-];
-
-const productProofMoments = [
-	{
-		label: 'First buyer',
-		title: 'Teacher became the clearest first buyer.',
-		body: 'The web workspace gives tutors a reason to pay: class management, student groups, custom readings, and shareable material for lessons.'
-	},
-	{
-		label: 'Payment readiness',
-		title: 'The MVP can charge through the right channels.',
-		body: 'Premium uses Apple and Google subscriptions through RevenueCat. Teacher payments happen on the web, where tutors and small classes naturally buy.'
-	},
-	{
-		label: 'Launch surface',
-		title: 'The product shipped with the surrounding trust layer.',
-		body: 'The launch included the public site, pricing, legal pages, store screenshots, app listings, and release documentation.'
-	},
-	{
-		label: 'Founder handoff',
-		title: 'The founder left with a product he could test in market.',
-		body: 'The engagement ended with a working mobile app, teacher dashboard, shared backend, launch docs, store assets, and a clearer first segment to learn from.'
-	}
-];
-
-const productBrief = [
-	{ label: 'Role', value: project.role },
-	{ label: 'Scope', value: 'Product strategy, UX, engineering, payments, launch support.' },
-	{ label: 'Year', value: '2026' },
-	{ label: 'Company', value: project.client }
-].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
-
-const heroDetails = [
+const caseStudyFacts = [
 	{ label: 'Role', value: project.role },
 	{ label: 'Service', value: project.service },
 	{ label: 'Year', value: project.year ?? project.timeline },
 	{ label: 'Company', value: project.client }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
-const caseStudyFacts = isPalabrunoCaseStudy ? productBrief : heroDetails;
-
-const imageMap: Record<string, Record<string, ImageMetadata> & { hero: ImageMetadata; feature: ImageMetadata }> = {
-	palabruno: {
-		hero: palabrunoTeacherLibrary,
-		feature: palabrunoTeacherReaderStory,
-		teacherCreateReading: palabrunoTeacherCreateReading,
-		teacherGroups: palabrunoTeacherGroups,
-		teacherLibrary: palabrunoTeacherLibrary,
-		teacherReaderStory: palabrunoTeacherReaderStory,
-		teacherRecentShares: palabrunoTeacherRecentShares,
-		teacherStudents: palabrunoTeacherStudents
-	},
-	'ba-eventos': { hero: baEventosHero, feature: baEventosFeature },
-	'language-exchange': { hero: hablabaHero, feature: hablabaFeature },
-	'mucho-hangouts': { hero: muchoHangoutsHero, feature: muchoHangoutsFeature },
-	genrupt: { hero: genruptHero, feature: genruptFeature },
-	'vox-prismatic': { hero: voxPrismaticHero, feature: voxPrismaticFeature },
-	'casa-elaria': { hero: casaElariaHero, feature: casaElariaFeature },
-	'desarmadero-latorre': { hero: desarmaderoHero, feature: desarmaderoFeature },
-	'maximo-interiorismo': { hero: maximoHero, feature: maximoFeature },
-	'redwriter-comics': { hero: redwriterHero, feature: redwriterFeature }
-};
-
-const images = imageMap[project.slug];
-const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['hero', 'feature'].includes(screen.image)) ?? [];
 ---
 
 <BaseLayout
 	title={`${project.title} · Case Study`}
 	description={project.description}
-	image={images?.hero?.src}
+	image={heroImage?.src}
 	showFooterCta={false}
 	footerLinksOnly
 >
-	<article class:list={['container max-w-6xl space-y-14 py-8 md:space-y-16 md:py-10', `case-study-detail case-study-detail--${detailVariant}`]}>
+	<article
+		class:list={[
+			'container max-w-6xl space-y-14 py-8 md:space-y-16 md:py-10',
+			`case-study-detail case-study-detail--${project.detailVariant}`
+		]}
+	>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
-			<a href='/' class='hover:text-primary transition-colors'>Home</a>
+			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
-			<a href='/projects/' class='hover:text-primary transition-colors'>Case Studies</a>
+			<a href='/projects/' class='transition-colors hover:text-primary'>Case Studies</a>
 			<span class='hidden text-zinc-400 md:inline'>/</span>
 			<span class='hidden text-primary md:inline'>{project.title}</span>
 		</nav>
 
-			<header class='case-study-detail__hero case-study-detail__hero--product'>
-				<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
-					<div class='case-study-detail__hero-copy space-y-5'>
-						<h1
-							class='heading-display heading-display--hero'
-							data-fit-heading
-							data-fit-min-rem='1.75'
-							data-fit-max-rem='7.2'
-							data-fit-lines-desktop='3'
-							data-fit-lines-mobile='3'
-							data-fit-lines-narrow-mobile='3'
-						>
-							{project.title}
-						</h1>
-						<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
-					</div>
+		<header class='case-study-detail__hero case-study-detail__hero--product'>
+			<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
+				<div class='case-study-detail__hero-copy space-y-5'>
+					<h1
+						class='heading-display heading-display--hero'
+						data-fit-heading
+						data-fit-min-rem='1.75'
+						data-fit-max-rem='7.2'
+						data-fit-lines-desktop='3'
+						data-fit-lines-mobile='3'
+						data-fit-lines-narrow-mobile='3'
+					>
+						{project.title}
+					</h1>
+					<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+				</div>
 
-					<aside class='case-study-detail__hero-facts'>
-						{caseStudyFacts.map((detail) => (
+				<aside class='case-study-detail__hero-facts'>
+					{
+						caseStudyFacts.map((detail) => (
 							<div class='case-study-detail__hero-fact'>
 								<p>{detail.label}</p>
 								<strong>{detail.value}</strong>
 							</div>
-						))}
-					</aside>
-				</div>
-			</header>
+						))
+					}
+				</aside>
+			</div>
+		</header>
 
-			{
-				isPalabrunoCaseStudy ? (
-					<>
-						<section class='case-study-detail__editorial-section'>
-							<h2>Summary</h2>
-							<div class='case-study-detail__editorial-copy'>
-								<p>
-									This case study is about the judgment between idea and launch: choosing the first buyer, cutting the
-									first version to the right shape, building the product, and leaving the founder with something real enough to
-									sell, test, and own.
-								</p>
-								<p>{outcomeSummary}</p>
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>About</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{productAbout.slice(0, 2).map((item) => <p>{item}</p>)}
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>Business Objective</h2>
-							<div class='case-study-detail__editorial-copy'>
-								<p>
-									The founder needed a first commercial version that could support Spanish learners on mobile while giving
-									teachers a clear reason to adopt and pay for the product.
-								</p>
-								<p>
-									That meant shaping the MVP around real validation: a mobile reading experience, a teacher workspace, payments,
-									store readiness, and enough positioning clarity to start testing with actual teachers.
-								</p>
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>Product Direction</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{productStorySections.slice(0, 2).map((section) => (
-									<div class='case-study-detail__decision-block'>
-										<h3>{section.title}</h3>
-										{Array.isArray(section.body) ? (
-											section.body.map((item) => <p>{item}</p>)
-										) : (
-											<p>{section.body}</p>
-										)}
-									</div>
-								))}
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-							<h2>Teacher Workspace</h2>
-							<div class='case-study-detail__editorial-copy'>
-								<p>
-									The web product gave the first buyer a dedicated workspace for class management, student groups, shared
-									readings, and paid teacher accounts.
-								</p>
-								{images?.hero && (
-									<figure class='case-study-detail__device-plate'>
-										<div class='device-frame device-frame--macbook'>
-											<div class='device-frame__screen'>
-												<Image src={images.hero} alt={`${project.title} teacher workspace`} class='device-frame__image' loading='eager' />
-											</div>
-											<div class='device-frame__base' aria-hidden='true'></div>
-										</div>
-									</figure>
-								)}
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>The Work</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{productStorySections.slice(2).map((section) => (
-									<div class='case-study-detail__decision-block'>
-										<h3>{section.title}</h3>
-										{Array.isArray(section.body) ? (
-											section.body.map((item) => <p>{item}</p>)
-										) : (
-											<p>{section.body}</p>
-										)}
-									</div>
-								))}
-							</div>
-						</section>
-					</>
-				) : (
-					<>
-						<section class='case-study-detail__editorial-section'>
-							<h2>Summary</h2>
-							<div class='case-study-detail__editorial-copy'>
-								<p>{project.description}</p>
-								<p>{outcomeSummary}</p>
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>{detailVariant === 'workflow' ? 'Workflow Objective' : 'Business Objective'}</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{Array.isArray(project.problem) ? project.problem.map((item) => <p>{item}</p>) : <p>{project.problem}</p>}
-							</div>
-						</section>
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>{detailVariant === 'workflow' ? 'System Design' : 'The Work'}</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{Array.isArray(project.solution) ? project.solution.map((item) => <p>{item}</p>) : <p>{project.solution}</p>}
-							</div>
-						</section>
-
-						{Boolean(project.deliveryHighlights?.length || project.constraints?.length) && (
-							<section class='case-study-detail__editorial-section'>
-								<h2>What Shipped</h2>
-								<div class='case-study-detail__editorial-copy'>
-									{project.deliveryHighlights && project.deliveryHighlights.length > 0 && (
-										<ul class='fit-list'>
-											{project.deliveryHighlights.map((highlight) => <li>{highlight}</li>)}
-										</ul>
-									)}
-									{project.constraints && project.constraints.length > 0 && (
-										<ul class='fit-list'>
-											{project.constraints.map((constraint) => <li>{constraint}</li>)}
-										</ul>
-									)}
-								</div>
-							</section>
-						)}
-
-						<section class='case-study-detail__editorial-section'>
-							<h2>Results</h2>
-							<div class='case-study-detail__editorial-copy'>
-								{Array.isArray(project.result) ? project.result.map((item) => <p>{item}</p>) : <p>{project.result}</p>}
-							</div>
-						</section>
-					</>
-				)
-			}
-
-			{
-				isPalabrunoCaseStudy && (
-					<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-						<h2>What Shipped</h2>
-						<div class='case-study-detail__editorial-copy case-study-detail__launch-proof-list'>
-							<p>
-								Palabruno became ready for real users because the MVP connected product scope to launch requirements: a clear
-								first buyer, working payments, store readiness, and a handoff the founder could own.
-							</p>
-							{productProofMoments.map((moment, index) => (
-								<article class='case-study-detail__launch-proof-row'>
-									<span>{String(index + 1).padStart(2, '0')}</span>
-									<div>
-										<p>{moment.label}</p>
-										<h3>{moment.title}</h3>
-										<p>{moment.body}</p>
-									</div>
-								</article>
-							))}
-						</div>
-					</section>
-				)
-			}
-
-		{
-			!isPalabrunoCaseStudy && images?.feature && (
-				<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-					<h2>Product Proof</h2>
-					<div class='case-study-detail__editorial-copy'>
-						<p>{proofIntro}</p>
-						{
-							project.proofScreens && project.proofScreens.length > 0 ? (
-								<div class='case-study-detail__proof-grid case-study-detail__proof-grid--editorial'>
-									{project.proofScreens.map((screen) => (
-										<figure class='case-study-detail__proof-card'>
-											<div class='case-study-detail__proof-media'>
-												<Image
-													src={images[screen.image]}
-													alt={`${project.title}: ${screen.title}`}
-													loading='lazy'
-													class='case-study-detail__proof-image'
-												/>
-											</div>
-											<figcaption class='case-study-detail__proof-caption'>
-												<span>{screen.label}</span>
-												<strong>{screen.title}</strong>
-												<p>{screen.caption}</p>
-											</figcaption>
-										</figure>
-									))}
-								</div>
-							) : (
-								<figure class='case-study-detail__image-plate'>
-									<Image src={images.feature} alt={`${project.title} feature preview`} loading='lazy' class='case-study-detail__image-plate-img' />
-								</figure>
-							)
-						}
-					</div>
-				</section>
-			)
-		}
-
-		{
-			isPalabrunoCaseStudy && palabrunoSupportingScreens.length > 0 && (
-				<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-					<h2>Product Screens</h2>
-					<div class='case-study-detail__editorial-copy'>
-						<p>
-							Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
-						</p>
-						<div class='case-study-detail__device-grid'>
-							{palabrunoSupportingScreens.map((screen) => {
-								const screenImage = images?.[screen.image];
-								return (
-									screenImage && (
-										<figure class={`case-study-detail__device-card case-study-detail__device-card--${screen.frame ?? 'desktop'}`}>
-											<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
-												{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true'></div>}
-												<div class='device-frame__screen'>
-													<Image src={screenImage} alt={`${project.title}: ${screen.title}`} loading='eager' class='device-frame__image' />
-												</div>
-												{screen.frame !== 'mobile' && <div class='device-frame__base' aria-hidden='true'></div>}
-											</div>
-											<figcaption class='case-study-detail__device-caption'>
-												<span>{screen.label}</span>
-												<strong>{screen.title}</strong>
-												<p>{screen.caption}</p>
-											</figcaption>
-										</figure>
-									)
-								);
-							})}
-						</div>
-					</div>
-				</section>
-			)
-		}
+		<Content />
 
 		{
 			project.technologies.length > 0 && (
@@ -483,7 +128,9 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 					<h2>Built With</h2>
 					<div class='case-study-detail__editorial-copy'>
 						<div class='flex flex-wrap gap-2'>
-							{project.technologies.map((tech) => <span class='tech-tag'>{tech}</span>)}
+							{project.technologies.map((tech) => (
+								<span class='tech-tag'>{tech}</span>
+							))}
 						</div>
 						<div class='case-study-detail__actions'>
 							<a
@@ -497,21 +144,19 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 								Book a Roadmap Call
 								<span>&rarr;</span>
 							</a>
-							{
-								project.liveUrl && (
-									<a
-										class='btn-secondary'
-										href={project.liveUrl}
-										target='_blank'
-										rel='noopener noreferrer'
-										data-track-event='project_live_site_clicked'
-										data-track-location='project_detail'
-									>
-										Visit Live Site
-										<span>&rarr;</span>
-									</a>
-								)
-							}
+							{project.liveUrl && (
+								<a
+									class='btn-secondary'
+									href={project.liveUrl}
+									target='_blank'
+									rel='noopener noreferrer'
+									data-track-event='project_live_site_clicked'
+									data-track-location='project_detail'
+								>
+									Visit Live Site
+									<span>&rarr;</span>
+								</a>
+							)}
 						</div>
 					</div>
 				</section>

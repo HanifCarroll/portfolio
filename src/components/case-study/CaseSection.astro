@@ -1,0 +1,15 @@
+---
+interface Props {
+	title: string;
+	media?: boolean;
+}
+
+const { title, media = false } = Astro.props;
+---
+
+<section class:list={['case-study-detail__editorial-section', media && 'case-study-detail__editorial-section--media']}>
+	<h2>{title}</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<slot />
+	</div>
+</section>

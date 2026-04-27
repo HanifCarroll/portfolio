@@ -1,0 +1,29 @@
+---
+interface ProofRow {
+	label: string;
+	title: string;
+	body: string;
+}
+
+interface Props {
+	rows: ProofRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class='case-study-detail__launch-proof-list'>
+	<slot />
+	{
+		rows.map((row, index) => (
+			<article class='case-study-detail__launch-proof-row'>
+				<span>{String(index + 1).padStart(2, '0')}</span>
+				<div>
+					<p>{row.label}</p>
+					<h3>{row.title}</h3>
+					<p>{row.body}</p>
+				</div>
+			</article>
+		))
+	}
+</div>

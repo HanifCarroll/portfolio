@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface DeviceGridScreen {
+	image: ImageMetadata;
+	alt: string;
+	label: string;
+	title: string;
+	caption: string;
+	frame?: 'desktop' | 'mobile';
+}
+
+interface Props {
+	screens: DeviceGridScreen[];
+}
+
+const { screens } = Astro.props;
+---
+
+<div class='case-study-detail__device-grid'>
+	{
+		screens.map((screen) => (
+			<figure class={`case-study-detail__device-card case-study-detail__device-card--${screen.frame ?? 'desktop'}`}>
+				<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
+					{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true' />}
+					<div class='device-frame__screen'>
+						<Image src={screen.image} alt={screen.alt} loading='eager' class='device-frame__image' />
+					</div>
+					{screen.frame !== 'mobile' && <div class='device-frame__base' aria-hidden='true' />}
+				</div>
+				<figcaption class='case-study-detail__device-caption'>
+					<span>{screen.label}</span>
+					<strong>{screen.title}</strong>
+					<p>{screen.caption}</p>
+				</figcaption>
+			</figure>
+		))
+	}
+</div>
