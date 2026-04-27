@@ -7,6 +7,8 @@ import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import DeviceGrid from '../../components/case-study/DeviceGrid.astro';
 import DevicePlate from '../../components/case-study/DevicePlate.astro';
 import ProofRows from '../../components/case-study/ProofRows.astro';
+import { Image } from 'astro:assets';
+import palabrunoProductCover from '../../assets/img/projects/palabruno-founder-idea-launch.png';
 import teacherCreateReading from '../../assets/img/projects/palabruno-teacher-create-reading.png';
 import teacherGroups from '../../assets/img/projects/palabruno-teacher-groups.png';
 import teacherLibrary from '../../assets/img/projects/palabruno-teacher-library.png';
@@ -66,6 +68,10 @@ export const teacherScreens = [
 		caption: 'Recent shares make it easier to track assigned readings across email, links, and WhatsApp.'
 	}
 ];
+
+<figure class='case-study-detail__product-cover'>
+	<Image src={palabrunoProductCover} alt="Palabruno teacher workspace and mobile reader product visual." class='case-study-detail__product-cover-img' loading='eager' />
+</figure>
 
 <CaseSection title="Summary">
 	This case study is about the judgment between idea and launch: choosing the first buyer, cutting the first version to the right shape, building the product, and leaving the founder with something real enough to sell, test, and own.
