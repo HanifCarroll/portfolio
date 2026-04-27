@@ -163,17 +163,20 @@ const fitColumns = [
 				))
 			}
 
-			<div class='pt-2'>
-				<a class='arrow-link' href='/projects/'> See all case studies </a>
-			</div>
+			<p class='case-study-archive-link'>
+				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
+			</p>
 		</div>
 	</section>
 
-	<section class='container py-16 md:py-20' aria-labelledby='home-paths-title'>
-		<div class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
+	<section class='container home-start-section' aria-labelledby='home-paths-title'>
+		<div class='home-start-section__inner'>
+			<div class='max-w-3xl space-y-5'>
 				<p class='launch-meta text-primary'>Start here</p>
-				<h2 id='home-paths-title' class='heading-display heading-display--section'>Choose the kind of uncertainty you have.</h2>
+				<h2 id='home-paths-title' class='heading-display home-start-section__title'>Choose the right first step.</h2>
+				<p class='home-start-section__body'>
+					The first conversation should clarify whether you need a build path or a workflow diagnosis before anything gets scoped.
+				</p>
 			</div>
 
 			<div class='path-choices'>
@@ -185,38 +188,40 @@ const fitColumns = [
 								<span class='path-choice__arrow'>↗</span>
 							</div>
 							<div class='space-y-4'>
-								<h3 class='heading-display text-[clamp(2.25rem,4vw,4.4rem)]'>{path.title}</h3>
+								<h3 class='heading-display path-choice__title'>{path.title}</h3>
 								<p class='path-choice__body'>{path.body}</p>
 							</div>
-							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{path.cta}</span>
+							<span class='path-choice__link'>{path.cta} <span aria-hidden='true'>→</span></span>
 						</a>
 					))
 				}
 			</div>
+		</div>
+	</section>
 
-			<div class='home-fit-check'>
-				<div class='max-w-2xl space-y-3'>
-					<p class='launch-meta text-primary'>Fit check</p>
-					<h3 class='heading-display heading-display--subsection'>Before we talk, this should feel familiar.</h3>
-				</div>
-
-				<div class='fit-grid'>
-					{
-						fitColumns.map((column) => (
-							<div class='fit-column'>
-								<p class='launch-meta text-primary'>{column.title}</p>
-								<ul class='fit-list'>
-									{column.items.map((item) => (
-										<li>{item}</li>
-									))}
-								</ul>
-							</div>
-						))
-					}
-				</div>
+	<section class='container home-fit-section' aria-labelledby='home-fit-title'>
+		<div class='home-fit-section__inner'>
+			<div class='max-w-2xl space-y-4'>
+				<p class='launch-meta text-primary'>Fit check</p>
+				<h2 id='home-fit-title' class='heading-display home-fit-section__title'>A quick fit check before booking.</h2>
 			</div>
 
-			<div class='fit-actions pt-2'>
+			<div class='fit-grid'>
+				{
+					fitColumns.map((column) => (
+						<div class='fit-column'>
+							<p class='launch-meta text-primary'>{column.title}</p>
+							<ul class='fit-list'>
+								{column.items.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+
+			<div class='fit-actions'>
 				<a
 					class='home-hero-primary-link'
 					href={BOOK_CALL_URL}
