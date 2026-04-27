@@ -638,10 +638,18 @@
 	}
 
 	.path-choice__arrow {
-		font-size: 1.5rem;
+		display: inline-flex;
+		font-size: clamp(2.25rem, 3vw, 3.4rem);
+		font-weight: 900;
 		line-height: 1;
 		color: rgb(0 102 255);
-		transform: translateY(-1px);
+		transform: translateY(-0.08em);
+		transition: transform 180ms ease;
+		will-change: transform;
+	}
+
+	.path-choice:hover .path-choice__arrow {
+		transform: translate(0.22em, -0.3em);
 	}
 
 	.path-choice__title {
