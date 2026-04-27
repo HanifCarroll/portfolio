@@ -5,43 +5,97 @@ projectSlug: ba-eventos
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import baEventosFeature from '../../assets/img/projects/ba-eventos-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Data coverage',
+		title: 'Hundreds of events moved into one searchable product.',
+		body: 'The product launched with 800+ events and 190+ venues organized into a single discovery surface.'
+	},
+	{
+		label: 'Grounded answers',
+		title: 'AI search stayed tied to real event data.',
+		body: 'Semantic search and structured filters helped answer intent-heavy questions without drifting into unsupported recommendations.'
+	},
+	{
+		label: 'Admin tooling',
+		title: 'The catalog could be kept usable.',
+		body: 'Admin and data-quality tooling supported venue matching, enrichment, and cleanup behind the public experience.'
+	},
+	{
+		label: 'Reusable pattern',
+		title: 'The build proved an AI discovery pattern.',
+		body: 'Ingest, clean, enrich, embed, then answer with grounded results instead of shipping another empty chat box.'
+	}
+];
 
 <CaseSection title="Summary">
 	Buenos Aires event information is scattered across Instagram stories, Facebook events, Eventbrite, Passline, venue sites, and WhatsApp groups.
 
-    I built BA Eventos as a live discovery product that turns that fragmented local data into a searchable experience with grounded AI answers.
+    I built BA Eventos as a live discovery product that turns fragmented local data into a searchable experience with grounded AI answers.
 
 </CaseSection>
 
-<CaseSection title="Workflow Objective">
-	Traditional search does not work well for events. People ask for moods, neighborhoods, time windows, and social context, not just exact keywords.
+<CaseSection title="About">
+	The city has a dense cultural calendar, but the information lives across incompatible sources and changes constantly.
 
-    The product needed a data pipeline, an admin surface, and a retrieval layer that could answer those questions without hallucinating dead-end recommendations.
+    People do not search for events like database records. They ask for moods, neighborhoods, time windows, and social context.
 
 </CaseSection>
 
-<CaseSection title="System Design">
-	<DecisionBlock title="Turned messy sources into a usable event dataset.">
-		The system ingests events, matches venues, enriches descriptions, and keeps the catalog organized enough to support real search.
+<CaseSection title="Business Objective">
+	The product needed to help people find real plans without forcing them to jump between social platforms, ticketing sites, and venue pages.
+
+    That required a data pipeline, an admin surface, and a retrieval layer that could answer natural questions without hallucinating dead-end recommendations.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Treat event discovery as a data-quality problem first.">
+		The product could only feel useful if the underlying event and venue data was current, matched, and clean enough to search.
 	</DecisionBlock>
 
-    <DecisionBlock title="Combined semantic search with structured filters.">
-    	Users can ask intent-heavy questions like “romantic jazz in Palermo” or “underground techno this weekend” while the system stays grounded in event records.
+    <DecisionBlock title="Use AI where intent matters.">
+	Semantic search handled queries around vibe, neighborhood, and timing, while structured filters kept the answers grounded in real records.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Proof" media>
+<CaseSection title="Product Surface" media>
 	The product is a working example of AI-assisted discovery over messy local data, not just a chat interface.
 
     <ImagePlate image={baEventosFeature} alt="BA Eventos event discovery product interface." />
 
 </CaseSection>
 
-<CaseSection title="Results">
-	BA Eventos launched with 800+ events and 190+ venues pulled into one searchable experience.
+<CaseSection title="The Work">
+	<DecisionBlock title="Turned scattered sources into a usable event catalog.">
+		The system ingests events, matches venues, enriches descriptions, and keeps the catalog organized enough to support real search.
+	</DecisionBlock>
 
-    The project proved a repeatable pattern for AI discovery products: ingest the data, clean it, enrich it, embed it, and answer with grounded results.
+    <DecisionBlock title="Built discovery around plain-language intent.">
+	Users can ask questions like romantic jazz in Palermo or underground techno this weekend while the product stays tied to real event records.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				BA Eventos shipped as a live example of an AI product where the hard part is the operating system around the model: data ingestion,
+				cleanup, retrieval, and a usable product surface.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The product surface shows the grounded discovery experience built on top of the event and venue catalog.
+
+    <ImagePlate image={baEventosFeature} alt="BA Eventos grounded AI search interface." />
 
 </CaseSection>

@@ -5,7 +5,31 @@ projectSlug: maximo-interiorismo
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import maximoFeature from '../../assets/img/projects/maximo-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Credibility',
+		title: 'The designer gained a professional public home.',
+		body: 'The site made the work easier to verify before a consultation conversation.'
+	},
+	{
+		label: 'Portfolio clarity',
+		title: 'Project presentation became easier to scan.',
+		body: 'The experience let the work carry the pitch through immersive imagery and cleaner project structure.'
+	},
+	{
+		label: 'Consultation path',
+		title: 'Prospects had a clearer next step.',
+		body: 'The site created a more direct path from reviewing work to starting a conversation.'
+	},
+	{
+		label: 'Sales support',
+		title: 'The portfolio became easier to share.',
+		body: 'The designer could pitch larger projects without relying on scattered social content.'
+	}
+];
 
 <CaseSection title="Summary">
 	The designer's work was strong in person but underrepresented online.
@@ -14,32 +38,61 @@ import maximoFeature from '../../assets/img/projects/maximo-feature.png';
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	Without a professional website, the designer was relying too heavily on word of mouth and scattered social content.
+<CaseSection title="About">
+	The designer had strong interior work, but the online presence did not match the quality of the actual projects.
 
-    The site needed to make the work feel established without making the experience heavier than the portfolio itself.
+    That made it harder for prospective clients to verify the work before reaching out.
 
 </CaseSection>
 
-<CaseSection title="The Work">
+<CaseSection title="Business Objective">
+	The site needed to make the designer look as established online as he already was in person.
+
+    It also needed to keep the work in the foreground instead of burying the portfolio under generic agency-style copy.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
 	<DecisionBlock title="Let the work carry the pitch.">
-		The site focused on immersive project presentation, high-quality imagery, and a clear path to consultation.
+		The design centered on immersive project presentation, high-quality imagery, and a clear consultation path.
 	</DecisionBlock>
 
-    <DecisionBlock title="Built a credible public home.">
-    	The experience gave prospects a clean way to inspect the work before reaching out.
+    <DecisionBlock title="Make the portfolio feel established without making it heavy.">
+	The structure stayed restrained so prospects could inspect the work quickly and trust the presentation.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Site Proof" media>
+<CaseSection title="Product Surface" media>
 	The portfolio needed to make the designer look as established online as he already was in person.
 
     <ImagePlate image={maximoFeature} alt="Maximo Interiorismo portfolio site." />
 
 </CaseSection>
 
-<CaseSection title='Results'>
-	The designer now has a site that makes it easier to look credible, share work cleanly, and pitch larger interior design projects without
-	relying on scattered social content.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built a credible public home.">
+		The site gave prospects a clean way to inspect the work before reaching out.
+	</DecisionBlock>
+
+    <DecisionBlock title="Kept the visual system quiet.">
+	The design supported the interior work rather than competing with it.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>The launch site gave the designer a more credible, shareable portfolio for higher-value client conversations.</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The site surface shows the portfolio presentation and credibility layer built around the designer's work.
+
+    <ImagePlate image={maximoFeature} alt="Maximo Interiorismo site surface." />
+
 </CaseSection>

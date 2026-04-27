@@ -5,7 +5,31 @@ projectSlug: genrupt
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import genruptFeature from '../../assets/img/projects/genrupt-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Commercial foundation',
+		title: 'Seller teams could become paying accounts.',
+		body: 'Subscriptions, organization billing, credit-ledger accounting, and webhook reconciliation gave the product a cleaner path to paid usage.'
+	},
+	{
+		label: 'Agent access',
+		title: 'External agents could run product workflows safely.',
+		body: 'The MCP and Agent Access surface exposed a small permissioned tool catalog instead of asking users to understand internal routes or job mechanics.'
+	},
+	{
+		label: 'Workflow reliability',
+		title: 'Long-running AI work became easier to trust.',
+		body: 'Operation IDs, status tools, result tools, structured errors, and idempotency keys made generation and seller workflows more recoverable.'
+	},
+	{
+		label: 'Product velocity',
+		title: 'New seller workflows became easier to add.',
+		body: 'Cleaner route, service, state, and request ownership reduced the fragility that had built up around earlier demo-stage features.'
+	}
+];
 
 <CaseSection title="Summary">
 	Genrupt had a working AI media MVP, but paid seller teams needed more than generation screens. They needed billing, credit accounting, long-running jobs, Amazon seller workflows, and a safer way for agents to use the product.
@@ -14,10 +38,35 @@ import genruptFeature from '../../assets/img/projects/genrupt-feature.png';
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	Genrupt needed to become trustworthy enough for serious customer usage while the product surface kept expanding into market analysis, review scraping, listing generation, A+ content, and experimentation.
+<CaseSection title="About">
+	Genrupt was expanding from AI image and video generation into Amazon seller workflows: market analysis, review scraping, variations, listing builder, A+ content, and experimentation.
 
-    The challenge was to add those capabilities without turning every new workflow into more fragile routes, cost mistakes, and manually babysat background jobs.
+    As the surface grew, normal app screens were no longer the only interface that mattered. The product also needed a way for external agents and internal chat to run operations safely.
+
+</CaseSection>
+
+<CaseSection title="Business Objective">
+	The product needed to become trustworthy enough for serious customer usage while the team kept adding seller workflows.
+
+    The challenge was to add commercial readiness and agent access without turning every new workflow into more fragile routes, cost mistakes, and manually babysat background jobs.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Move from demo-stage generation to seller-team operations.">
+		The work focused on the product foundations that make a tool billable: organizations, subscriptions, credits, safer job handling, and cleaner workflow ownership.
+	</DecisionBlock>
+
+    <DecisionBlock title="Treat agents as a real product surface.">
+	Instead of exposing the whole app implicitly, the agent surface used allowed capabilities, resource links, structured tool results, and recoverable long-running operations.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Product Surface" media>
+	The product moved beyond a demo-stage generator into a more operable seller workflow platform.
+
+    <ImagePlate image={genruptFeature} alt="Genrupt AI creative platform interface." />
 
 </CaseSection>
 
@@ -27,27 +76,30 @@ import genruptFeature from '../../assets/img/projects/genrupt-feature.png';
 	</DecisionBlock>
 
     <DecisionBlock title="Made long-running AI workflows easier to trust.">
-    	Image, video, storyboard, and seller-workflow jobs needed to survive retries and give users clearer progress. Operation IDs, status and result tools, resource links, structured errors, idempotency keys, and additive progress notifications made those flows more dependable.
+	Image, video, storyboard, and seller-workflow jobs needed to survive retries and give users clearer progress. Operation IDs, status and result tools, resource links, structured errors, idempotency keys, and additive progress notifications made those flows more dependable.
     </DecisionBlock>
 
     <DecisionBlock title="Opened the product to external agents safely.">
-    	The remote MCP and Agent Access surface let paid users connect external agents, discover allowed capabilities, and run market analysis, Amazon review scraping, listing-builder, and A+ workflows through a small permissioned tool catalog.
+	The remote MCP and Agent Access surface let paid users connect external agents, discover allowed capabilities, and run market analysis, Amazon review scraping, listing-builder, and A+ workflows through a small permissioned tool catalog.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Proof" media>
-	The product moved beyond a demo-stage generator into a more operable seller workflow platform.
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				Genrupt became more ready for paid seller teams because the work connected commercial infrastructure, AI workflow reliability, and
+				agent access into one product foundation.
+			</p>
+		</ProofRows>
+	</div>
+</section>
 
-    <ImagePlate image={genruptFeature} alt="Genrupt AI creative platform interface." />
+<CaseSection title="Product Screens" media>
+	The product proof is the shift from isolated generation into seller-facing workflows with the surrounding systems needed for paid usage.
 
-</CaseSection>
-
-<CaseSection title="Results">
-	Genrupt became commercially operable, with subscriptions, organization billing, credit-ledger accounting, webhook reconciliation, and safer cost controls for paying seller teams.
-
-    External agents can now run product workflows without needing to know the internal app architecture.
-
-    The cleaned-up architecture made it easier to keep adding seller workflows and agent-driven features without piling more fragility into the product.
+    <ImagePlate image={genruptFeature} alt="Genrupt seller workflow interface." />
 
 </CaseSection>

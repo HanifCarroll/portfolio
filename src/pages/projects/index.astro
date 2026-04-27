@@ -3,13 +3,16 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../lib/project-cards';
 
+import baEventosHero from '@src/assets/img/projects/ba-eventos-hero.png';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
 import genruptHero from '@src/assets/img/projects/genrupt-hero.png';
 import palabrunoHero from '@src/assets/img/projects/palabruno-teacher-library.png';
 import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
+import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
 import maximoHero from '@src/assets/img/projects/maximo-hero.png';
 import redwriterHero from '@src/assets/img/projects/redwriter-hero.png';
+import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
 
 const title = 'Case Studies';
 const description = 'Selected case studies from MVP builds, launch sites, and workflow systems by Hanif Carroll.';
@@ -55,105 +58,103 @@ const imageMap = {
 	genrupt: genruptHero,
 	'casa-elaria': casaElariaHero,
 	'mucho-hangouts': muchoHangoutsHero,
+	'language-exchange': hablabaHero,
 	'maximo-interiorismo': maximoHero,
-	'redwriter-comics': redwriterHero
+	'redwriter-comics': redwriterHero,
+	'ba-eventos': baEventosHero,
+	'vox-prismatic': voxPrismaticHero
 } as const;
 
 const featuredOutcomeHighlights = {
-	palabruno: 'Palabruno moved from rough founder idea to paid MVP with mobile subscriptions, web Teacher checkout, store listings, and launch-ready positioning.',
+	palabruno:
+		'Palabruno moved from rough founder idea to paid MVP with mobile subscriptions, teacher payments on the web, app store launch assets, and launch-ready positioning.',
 	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',
 	genrupt: 'Genrupt moved from demo-stage AI generation toward a more reliable seller platform.',
-	'casa-elaria': 'The site made the property easier to understand, trust, and inquire about.',
-	'mucho-hangouts': 'The product became clearer to navigate, book, and use.',
-	'maximo-interiorismo': 'The studio gained a cleaner showcase for its work and positioning.',
-	'redwriter-comics': 'The launch site gave the project a stronger public-facing home.'
+	'casa-elaria': 'The fake-door storefront tested buyer intent before inventory spend.',
+	'mucho-hangouts': 'The product became more reliable while the team kept shipping.',
+	'maximo-interiorismo': 'The designer gained a cleaner public home for high-value project conversations.',
+	'redwriter-comics': 'The artist gained a professional portfolio hub for editors and commissions.'
 } as const;
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='container max-w-6xl space-y-14 py-8 md:space-y-20 md:py-10'>
+	<article class='projects-index container max-w-6xl space-y-16 py-8 md:space-y-24 md:py-10'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
 			<span class='text-zinc-400'>/</span>
 			<span class='text-primary'>Case Studies</span>
 		</nav>
 
-		<header class='max-w-5xl space-y-5 pb-2 md:pb-0'>
-			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				Examples of the work in context.
+		<header class='projects-index__hero'>
+			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='6.6'>
+				Case studies with the work in context.
 			</h1>
-			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				MVP launches, internal tools, workflow systems, and launch sites.
-			</p>
+			<div class='projects-index__hero-copy'>
+				<p class='launch-meta text-primary'>Selected Work</p>
+				<p>
+					MVP launches, workflow systems, AI product foundations, and launch sites. Each case study shows the product judgment around the
+					build, not just the final screen.
+				</p>
+			</div>
 		</header>
 
 		{
 			featuredProject && (
-				<section class='case-studies-featured'>
-					<div class='case-studies-featured__media'>
-						<Image
-							src={imageMap[featuredProject.slug as keyof typeof imageMap]}
-							alt={featuredProject.name}
-							class='case-studies-featured__image'
-							loading='eager'
-						/>
-					</div>
-					<div class='case-studies-featured__body'>
-						<p class='section-label case-studies-featured__label'>// Featured · {featuredProject.trackLabel}</p>
-						<div class='space-y-5'>
-							<h2 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-								{featuredProject.name}
-							</h2>
-							<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{featuredProject.description}</p>
-						</div>
-						<div class='case-studies-meta'>
-							<div>
-								<p class='launch-meta text-primary'>What changed</p>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-									{featuredOutcomeHighlights[featuredProject.slug as keyof typeof featuredOutcomeHighlights] ?? featuredProject.outcome}
-								</p>
+				<section class='projects-index__section'>
+					<h2>Featured</h2>
+					<div class='projects-index__section-body'>
+						<a href={`/projects/${featuredProject.slug}/`} class='projects-index__feature group'>
+							<figure class='projects-index__feature-media'>
+								<Image
+									src={imageMap[featuredProject.slug as keyof typeof imageMap]}
+									alt={featuredProject.name}
+									class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.015]'
+									loading='eager'
+								/>
+							</figure>
+							<div class='projects-index__feature-copy'>
+								<p class='launch-meta text-primary'>{featuredProject.trackLabel}</p>
+								<h3 class='heading-display heading-display--section'>{featuredProject.name}</h3>
+								<p>{featuredProject.description}</p>
+								<div class='projects-index__fact'>
+									<p class='launch-meta text-primary'>What changed</p>
+									<p>
+										{featuredOutcomeHighlights[featuredProject.slug as keyof typeof featuredOutcomeHighlights] ?? featuredProject.outcome}
+									</p>
+								</div>
+								<span class='arrow-link w-fit'>Read case study</span>
 							</div>
-						</div>
-						<a href={`/projects/${featuredProject.slug}/`} class='arrow-link w-fit'>
-							Read case study
 						</a>
 					</div>
 				</section>
 			)
 		}
 
-		<section class='space-y-8 md:space-y-10'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Selected Client Work</p>
-			</div>
-
-			<div class='case-studies-editorial-list'>
+		<section class='projects-index__section'>
+			<h2>Client Work</h2>
+			<div class='projects-index__section-body projects-index__rows'>
 				{
-					archiveProjects.map((project, index) => (
-						<article class:list={['case-studies-editorial-item', index % 2 === 1 && 'case-studies-editorial-item--reverse']}>
-							<a href={`/projects/${project.slug}/`} class='case-studies-editorial-item__media group'>
+					archiveProjects.map((project) => (
+						<article class='projects-index__row'>
+							<a href={`/projects/${project.slug}/`} class='projects-index__row-media group'>
 								<Image
 									src={imageMap[project.slug as keyof typeof imageMap]}
 									alt={project.name}
-									class='case-studies-editorial-item__image transition duration-700 ease-out group-hover:scale-[1.02]'
+									class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.02]'
 									loading='lazy'
 								/>
 							</a>
-							<div class='case-studies-editorial-item__body'>
-								<div class='space-y-3'>
-									<p class='launch-meta text-primary'>{project.trackLabel}</p>
-									<h3 class='heading-display heading-display--section'>
-										<a href={`/projects/${project.slug}/`}>{project.name}</a>
-									</h3>
+							<div class='projects-index__row-copy'>
+								<p class='launch-meta text-primary'>{project.trackLabel}</p>
+								<h3 class='heading-display heading-display--subsection'>
+									<a href={`/projects/${project.slug}/`}>{project.name}</a>
+								</h3>
+								<p>{project.description}</p>
+								<div class='projects-index__fact'>
+									<p class='launch-meta text-primary'>Outcome</p>
+									<p>{featuredOutcomeHighlights[project.slug as keyof typeof featuredOutcomeHighlights] ?? project.outcome}</p>
 								</div>
-								<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
-								<div class='case-studies-editorial-item__facts'>
-									<div>
-										<p class='launch-meta text-primary'>Outcome</p>
-										<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.outcome}</p>
-									</div>
-								</div>
-								<div class='flex flex-wrap items-center gap-4'>
+								<div class='projects-index__links'>
 									<a href={`/projects/${project.slug}/`} class='arrow-link'>
 										Read case study
 									</a>
@@ -179,25 +180,25 @@ const featuredOutcomeHighlights = {
 
 		{
 			experimentProjects.length > 0 && (
-				<section class='space-y-8 md:space-y-10'>
-					<div class='max-w-3xl space-y-4'>
-						<p class='section-label'>// Selected Experiments</p>
-						<h2 class='heading-display heading-display--section'>Self-initiated work that shows product judgment.</h2>
-						<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-							These show how I test product, AI, and workflow ideas outside client delivery.
-						</p>
-					</div>
-					<div class='case-studies-experiments'>
+				<section class='projects-index__section'>
+					<h2>Experiments</h2>
+					<div class='projects-index__section-body projects-index__rows'>
 						{experimentProjects.map((project) => (
-							<article class='case-studies-experiment'>
-								<div class='space-y-3'>
+							<article class='projects-index__row projects-index__row--compact'>
+								<a href={`/projects/${project.slug}/`} class='projects-index__row-media group'>
+									<Image
+										src={imageMap[project.slug as keyof typeof imageMap]}
+										alt={project.name}
+										class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.02]'
+										loading='lazy'
+									/>
+								</a>
+								<div class='projects-index__row-copy'>
 									<p class='launch-meta text-primary'>{project.trackLabel}</p>
 									<h3 class='heading-display heading-display--subsection'>
 										<a href={`/projects/${project.slug}/`}>{project.name}</a>
 									</h3>
-								</div>
-								<div class='case-studies-experiment__body'>
-									<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+									<p>{project.description}</p>
 									<a href={`/projects/${project.slug}/`} class='arrow-link w-fit'>
 										Read case study
 									</a>

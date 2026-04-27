@@ -5,7 +5,31 @@ projectSlug: redwriter-comics
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import redwriterFeature from '../../assets/img/projects/redwriter-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Portfolio hub',
+		title: 'Editors had one place to review the work.',
+		body: 'The site gathered scattered social proof into a professional portfolio home.'
+	},
+	{
+		label: 'Editorial scan',
+		title: 'Sequential pages and covers became easier to compare.',
+		body: 'The galleries were organized around how editors actually inspect comic work.'
+	},
+	{
+		label: 'Commission path',
+		title: 'The contact path became more direct.',
+		body: 'The site made it easier to move from review to inquiry without asking for files or links first.'
+	},
+	{
+		label: 'Professional signal',
+		title: 'The presentation matched the quality of the work.',
+		body: 'A clean, fast portfolio made the artist easier to trust as a professional collaborator.'
+	}
+];
 
 <CaseSection title="Summary">
 	The artist had strong work spread across social media, but editors and publishers needed a cleaner way to review it.
@@ -14,32 +38,61 @@ import redwriterFeature from '../../assets/img/projects/redwriter-feature.png';
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	Scattered social links made the artist look less established than the quality of the work.
+<CaseSection title="About">
+	The work itself was impressive, but the public presentation was fragmented.
 
-    The site needed to make commission conversations easier by giving editors one professional home for the portfolio.
+    That made professional review harder than it needed to be for editors, publishers, and potential commissioners.
 
 </CaseSection>
 
-<CaseSection title="The Work">
-	<DecisionBlock title="Organized the portfolio around editorial review.">
-		The galleries were structured around how editors actually inspect work, so sequential art, covers, and character pieces could each do their job.
+<CaseSection title="Business Objective">
+	The site needed to make commission conversations easier by giving editors one professional home for the portfolio.
+
+    It had to stay fast and direct so the artwork remained the reason to keep reading.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Organize the portfolio around editorial review.">
+		The galleries were structured around how editors inspect work, so sequential art, covers, and character pieces could each do their job.
 	</DecisionBlock>
 
-    <DecisionBlock title="Kept the visual system out of the way.">
-    	The site stayed fast and clean so the artwork remained the reason to keep reading.
+    <DecisionBlock title="Keep the visual system out of the way.">
+	The site needed to feel professional without competing with the artwork.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Site Proof" media>
+<CaseSection title="Product Surface" media>
 	The launch site gave the artist a stronger public-facing home for professional review.
 
     <ImagePlate image={redwriterFeature} alt="Redwriter Comics portfolio site." />
 
 </CaseSection>
 
-<CaseSection title='Results'>
-	The site gives editors a clean way to review work, trust the professionalism, and reach out for commissions without asking for links or
-	files first.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built a clean review path.">
+		The portfolio gave editors a clear path through the work without asking for scattered links or files.
+	</DecisionBlock>
+
+    <DecisionBlock title="Made the artist easier to commission.">
+	The site connected portfolio review with a direct path to reach out for professional work.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>The portfolio site turned scattered public work into a professional review surface for editors, publishers, and commissions.</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The site surface shows the portfolio structure built around professional review.
+
+    <ImagePlate image={redwriterFeature} alt="Redwriter Comics site surface." />
+
 </CaseSection>

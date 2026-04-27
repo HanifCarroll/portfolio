@@ -5,7 +5,31 @@ projectSlug: casa-elaria
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import casaElariaFeature from '../../assets/img/projects/casa-elaria-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Fake-door flow',
+		title: 'Visitors could behave like buyers.',
+		body: 'The storefront created a normal shopping path, then captured interest at the final step instead of taking payment.'
+	},
+	{
+		label: 'Demand signal',
+		title: 'The founders could compare product interest.',
+		body: 'The test showed which products attracted the strongest buying intent before inventory spend.'
+	},
+	{
+		label: 'Launch list',
+		title: 'Curiosity became a warmer audience.',
+		body: 'Email capture turned early interest into a list the founders could use for launch.'
+	},
+	{
+		label: 'Capital discipline',
+		title: 'The first build reduced inventory risk.',
+		body: 'The project tested market pull before the founders committed to a larger operational bet.'
+	}
+];
 
 <CaseSection title="Summary">
 	Casa Elaria needed a way to test purchase intent before spending on inventory.
@@ -14,34 +38,63 @@ import casaElariaFeature from '../../assets/img/projects/casa-elaria-feature.png
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	The risk was not whether a storefront could be built. The real risk was buying inventory before knowing whether people would try to buy.
+<CaseSection title="About">
+	The founders had a promising beauty product idea, but inventory and development would require real upfront spend.
 
-    The first version needed to feel real enough to test intent while staying honest about the product not being ready to ship yet.
+    The first question was whether people would act like buyers, not whether a full commerce operation could be built.
 
 </CaseSection>
 
-<CaseSection title="The Work">
-	<DecisionBlock title="Built the buying moment without taking payment.">
-		The storefront guided visitors through a normal e-commerce flow, then captured email interest at the final step instead of charging at checkout.
+<CaseSection title="Business Objective">
+	The test needed to feel real enough to measure intent while staying honest about the product not being ready to ship yet.
+
+    That meant building the buying moment, capturing demand, and avoiding the cost of a full storefront and inventory commitment.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Validate the buying moment before the business commits.">
+		The useful MVP was not a complete store. It was the smallest convincing experience that could show whether visitors wanted the products.
 	</DecisionBlock>
 
-    <DecisionBlock title="Turned curiosity into an early launch list.">
-    	The test gave the founders a way to compare product interest and build a warmer audience before spending on inventory.
+    <DecisionBlock title="Use the final step to capture demand.">
+	Instead of charging at checkout, the site collected email interest so the founders could measure intent and build a launch list.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Site Proof" media>
+<CaseSection title="Product Surface" media>
 	The page needed to create enough belief for visitors to behave like buyers, not just casual browsers.
 
     <ImagePlate image={casaElariaFeature} alt="Casa Elaria fake-door e-commerce storefront." />
 
 </CaseSection>
 
-<CaseSection title="Results">
-	Instead of guessing, the founders got a low-risk signal on which products drew the strongest interest.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built the storefront around buyer behavior.">
+		The experience used familiar e-commerce patterns so the test measured shopping intent instead of confusion with a prototype.
+	</DecisionBlock>
 
-    The test also built an early launch list, which gave them proof of demand and a warmer audience before they spent on inventory.
+    <DecisionBlock title="Kept the scope focused on learning.">
+	The build avoided unnecessary backend and inventory complexity while still producing a useful commercial signal.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				The fake-door MVP gave the founders a clearer demand signal before they spent on inventory or committed to a larger commerce build.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The product surface shows the validation storefront used to test purchase intent.
+
+    <ImagePlate image={casaElariaFeature} alt="Casa Elaria validation storefront." />
 
 </CaseSection>

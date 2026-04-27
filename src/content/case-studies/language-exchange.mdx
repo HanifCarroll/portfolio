@@ -5,7 +5,31 @@ projectSlug: language-exchange
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import hablabaFeature from '../../assets/img/projects/hablaba-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Local discovery',
+		title: 'Learners could find practice around place.',
+		body: 'Neighborhood discovery made the product feel tied to real-world coordination instead of endless profile browsing.'
+	},
+	{
+		label: 'Group practice',
+		title: 'The product centered on small exchanges.',
+		body: 'Small group matching gave learners a more useful practice format than large events or swipe-heavy apps.'
+	},
+	{
+		label: 'Cross-platform use',
+		title: 'Web and mobile shared the same product foundation.',
+		body: 'The backend supported both discovery and coordination without splitting the product into separate systems.'
+	},
+	{
+		label: 'Trust-heavy MVP',
+		title: 'The build tested behavior, not just screens.',
+		body: 'The MVP gave me a useful proof point for product trust, coordination, and local marketplace constraints.'
+	}
+];
 
 <CaseSection title="Summary">
 	HablaBA started from a local language-learning problem: most exchange products feel like profile browsing, dating apps, or large events where meaningful conversation is hard.
@@ -14,34 +38,64 @@ import hablabaFeature from '../../assets/img/projects/hablaba-feature.png';
 
 </CaseSection>
 
+<CaseSection title="About">
+	Language learners want focused practice with real people, but many platforms optimize for profiles or event volume.
+
+    The useful product shape was smaller and more intentional: help people find practice opportunities that feel local, social, and manageable.
+
+</CaseSection>
+
 <CaseSection title="Business Objective">
-	The product needed to make practice feel more intentional than swiping through profiles while still being lightweight enough for people to actually use.
+	The product needed to make practice feel more intentional than swiping through profiles while staying lightweight enough for people to actually use.
 
     That meant focusing the MVP on groups, discovery, chat, and coordination instead of trying to become a full social network from day one.
 
 </CaseSection>
 
-<CaseSection title="The Work">
-	<DecisionBlock title="Centered the product on practice, not profiles.">
-		The experience prioritized small group exchanges and neighborhood-based discovery so learners could find real opportunities to practice.
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Center the experience on practice, not profiles.">
+		The product prioritized small group exchanges and neighborhood-based discovery so learners could find real opportunities to practice.
 	</DecisionBlock>
 
-    <DecisionBlock title="Kept web and mobile connected to one backend.">
-    	The product used shared backend foundations so mobile coordination and web discovery could support the same usage pattern without splitting into separate products.
+    <DecisionBlock title="Keep web and mobile connected to one backend.">
+	Shared foundations let mobile coordination and web discovery support the same usage pattern without splitting into separate products.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Proof" media>
+<CaseSection title="Product Surface" media>
 	The MVP shows how trust-heavy local products need product shape, coordination, and launch constraints to work together.
 
     <ImagePlate image={hablabaFeature} alt="HablaBA language exchange product interface." />
 
 </CaseSection>
 
-<CaseSection title="Results">
-	The project became a working product with onboarding, group chat, neighborhood discovery, and cross-platform coordination.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built around small-group behavior.">
+		The product framed discovery around groups and neighborhoods so the experience could feel practical rather than abstract.
+	</DecisionBlock>
 
-    It remains a useful proof point for how I approach MVPs where user behavior and product trust matter as much as the code.
+    <DecisionBlock title="Connected onboarding, chat, and coordination.">
+	The MVP covered the first loop from entering the product to finding and coordinating language practice.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				HablaBA became a working MVP for a local language-exchange concept, with enough product surface to test practice behavior and
+				coordination constraints.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The product surface shows the small-group practice experience and local discovery direction.
+
+    <ImagePlate image={hablabaFeature} alt="HablaBA product surface." />
 
 </CaseSection>

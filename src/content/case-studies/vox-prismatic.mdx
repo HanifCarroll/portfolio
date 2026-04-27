@@ -5,7 +5,31 @@ projectSlug: vox-prismatic
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import voxPrismaticFeature from '../../assets/img/projects/vox-prismatic-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Transcript pipeline',
+		title: 'Long inputs became reviewable drafts.',
+		body: 'The system chunks transcripts, extracts candidate insights, and turns them into post drafts for human review.'
+	},
+	{
+		label: 'Voice control',
+		title: 'Publishing stayed human-led.',
+		body: 'The workflow kept review and approval in the loop instead of handing publishing to a generic content generator.'
+	},
+	{
+		label: 'Operations',
+		title: 'Scheduling became part of the system.',
+		body: 'Hook frameworks, scheduling controls, and timezone handling made the product an operating tool.'
+	},
+	{
+		label: 'Trust',
+		title: 'Long-running AI work had visible progress.',
+		body: 'Real-time updates made processing feel less like a black box while the AI workflow ran.'
+	}
+];
 
 <CaseSection title="Summary">
 	Vox Prismatic turned long-form transcripts into a reviewable content operations system.
@@ -14,34 +38,64 @@ import voxPrismaticFeature from '../../assets/img/projects/vox-prismatic-feature
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	Content teams can record hours of valuable material, then lose momentum because the useful ideas stay buried in long transcripts.
+<CaseSection title="About">
+	Content teams can record hours of valuable material, then lose momentum because useful ideas stay buried in long transcripts.
 
-    The product needed to extract useful moments, preserve voice, and make the publishing workflow operational instead of producing generic AI drafts.
+    Manual repurposing is slow, maintaining voice across posts is hard, and finding the most shareable moments requires judgment.
 
 </CaseSection>
 
-<CaseSection title="The Work">
-	<DecisionBlock title="Turned transcripts into reviewable post drafts.">
-		The pipeline chunks long transcripts, extracts candidate insights, and turns them into drafts someone can review instead of mining the transcript by hand.
+<CaseSection title="Business Objective">
+	The product needed to extract useful moments, preserve voice, and make the publishing workflow operational instead of producing generic AI drafts.
+
+    The goal was content intelligence, not automatic posting for its own sake.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Convert raw expertise into reviewable assets.">
+		The workflow treated transcripts as source material that needed extraction, shaping, and review before publishing.
 	</DecisionBlock>
 
-    <DecisionBlock title="Made the workflow operational.">
-    	Hook frameworks, scheduling controls, timezone-aware publishing, and progress updates made the system feel like a tool, not just a generator.
+    <DecisionBlock title="Make AI processing feel operational.">
+	Progress updates, scheduling controls, and review steps made the product feel like a workflow system, not a single prompt box.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Proof" media>
+<CaseSection title="Product Surface" media>
 	The product shows a repeatable pattern for AI-assisted content operations where voice control, long inputs, and scheduling reliability all matter.
 
     <ImagePlate image={voxPrismaticFeature} alt="Vox Prismatic AI content transformation interface." />
 
 </CaseSection>
 
-<CaseSection title="Results">
-	The workflow now extracts insights, drafts posts, and keeps a human in control before anything gets scheduled.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built the transcript-to-draft pipeline.">
+		The system chunks long transcripts, extracts candidate insights, and turns them into drafts someone can review instead of mining the transcript by hand.
+	</DecisionBlock>
 
-    It proved a useful pattern for turning raw expertise into publishable material without handing the whole process to a generic content generator.
+    <DecisionBlock title="Added the workflow around the generation.">
+	Hook frameworks, scheduling controls, timezone-aware publishing, and progress updates made the system usable beyond a single AI output.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				Vox Prismatic turned a manual transcript-to-post workflow into a controllable system for extracting, drafting, reviewing, and
+				scheduling content.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The product surface shows the workflow from raw content toward reviewable, scheduled output.
+
+    <ImagePlate image={voxPrismaticFeature} alt="Vox Prismatic product surface." />
 
 </CaseSection>

@@ -5,7 +5,31 @@ projectSlug: desarmadero-latorre
 import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
 import desarmaderoFeature from '../../assets/img/projects/desarmadero-feature.png';
+
+export const shippedRows = [
+	{
+		label: 'Customer search',
+		title: 'Customers could check inventory before calling.',
+		body: 'The catalog gave buyers a way to search by make, model, and year instead of starting every inquiry with a vague availability question.'
+	},
+	{
+		label: 'Staff workflow',
+		title: 'Inventory updates stayed simple.',
+		body: 'The staff workflow focused on adding vehicles, photos, and listing basics without forcing the business into a heavy internal system.'
+	},
+	{
+		label: 'Inquiry quality',
+		title: 'Calls became more qualified.',
+		body: 'Customers could arrive with a specific part or vehicle context, which reduced repetitive back-and-forth.'
+	},
+	{
+		label: 'Always-on catalog',
+		title: 'The business gained a 24/7 stockroom.',
+		body: 'Inventory could be surfaced outside business hours without relying on phone time alone.'
+	}
+];
 
 <CaseSection title="Summary">
 	The business had a large, changing auto-parts inventory, but customers had to call or visit to check what was available.
@@ -14,34 +38,64 @@ import desarmaderoFeature from '../../assets/img/projects/desarmadero-feature.pn
 
 </CaseSection>
 
-<CaseSection title="Workflow Objective">
-	Staff were spending too much time answering repetitive availability questions. Customers were also arriving with vague requests because they had no way to inspect stock themselves.
+<CaseSection title="About">
+	Desarmadero Latorre had useful inventory, but the sales workflow depended on staff repeatedly answering the same availability questions.
 
-    The goal was to make inventory visible enough that inbound questions became more qualified and less dependent on constant phone time.
+    That created friction on both sides: customers had no way to inspect stock, and staff had to spend phone time qualifying basic requests.
 
 </CaseSection>
 
-<CaseSection title="System Design">
-	<DecisionBlock title="Made stock searchable before the first call.">
-		I built a customer-facing catalog with search by make, model, and year so buyers could narrow the question before reaching out.
+<CaseSection title="Business Objective">
+	The goal was to make inventory visible enough that inbound questions became more qualified and less dependent on constant phone time.
+
+    The system needed to work for a real operating business, which meant keeping the staff side simple enough to maintain.
+
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Make stock searchable before the first call.">
+		The customer-facing product centered on search by make, model, and year so buyers could narrow the question before reaching out.
 	</DecisionBlock>
 
-    <DecisionBlock title="Kept the staff workflow simple.">
-    	The internal workflow focused on adding vehicles, photos, and basic listing information without forcing the business into a heavy inventory system it would not maintain.
+    <DecisionBlock title="Keep the internal workflow lightweight.">
+	The staff workflow focused on practical listing updates instead of trying to introduce a full inventory platform the business would not use.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Workflow Proof" media>
+<CaseSection title="Product Surface" media>
 	The useful shift was not just a nicer website. It was giving customers a way to self-qualify before staff got involved.
 
     <ImagePlate image={desarmaderoFeature} alt="Desarmadero Latorre searchable inventory interface." />
 
 </CaseSection>
 
-<CaseSection title="Results">
-	Customers can now search the catalog before calling, which turns vague stock questions into more qualified inquiries and frees staff from repeating the same availability checks all day.
+<CaseSection title="The Work">
+	<DecisionBlock title="Built a searchable catalog around how customers ask.">
+		The catalog organized vehicles and parts around the query patterns customers already used when calling the business.
+	</DecisionBlock>
 
-    The business also gained a 24/7 way to surface inventory without relying on phone time alone.
+    <DecisionBlock title="Created a direct path from browsing to inquiry.">
+	Listings included photos and a direct inquiry path so customers could move from search to a more specific conversation.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				The digital stockroom made the workflow less dependent on repetitive phone checks and gave the business a clearer way to surface
+				inventory.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Product Screens" media>
+	The product surface shows the operating shift: customers can search first, then contact the business with a more specific question.
+
+    <ImagePlate image={desarmaderoFeature} alt="Desarmadero Latorre digital stockroom." />
 
 </CaseSection>
