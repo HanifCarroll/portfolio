@@ -113,20 +113,20 @@ const productStorySections = [
 		title: 'Split the MVP into two connected surfaces instead of one overstuffed app.',
 		body: [
 			'I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.',
-			'The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and checkout.'
+			'The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The Teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.'
 		]
 	},
 	{
 		label: '// The Launch Work',
 		title: 'Treat payments, store review, positioning, and handoff as part of the MVP.',
 		body: [
-			'The project was not finished when the screens existed. I handled the launch surface around Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and feedback loops.',
+			'I carried the launch work beyond the interface: Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and founder handoff.',
 			'That mattered because a nontechnical founder does not just need code. He needs the product to be coherent enough to sell, trustworthy enough to launch, and documented enough to own after the engagement.'
 		]
 	},
 	{
 		label: '// The Result',
-		title: 'A launched paid MVP with a clear first buyer, not a speculative build.',
+		title: 'A launched paid MVP with a clear first buyer.',
 		body: project.result
 	}
 ];
@@ -140,12 +140,12 @@ const productProofMoments = [
 	{
 		label: 'Payment readiness',
 		title: 'The MVP can charge through the right channels.',
-		body: 'Premium uses Apple and Google subscriptions through RevenueCat. Teacher checkout lives on the web through Stripe, where tutors and small classes naturally buy.'
+		body: 'Premium uses Apple and Google subscriptions through RevenueCat. Teacher payments happen on the web, where tutors and small classes naturally buy.'
 	},
 	{
 		label: 'Launch surface',
 		title: 'The product shipped with the surrounding trust layer.',
-		body: 'The public site, pricing page, privacy policy, terms, store screenshots, app listings, and release documentation were part of the launch work.'
+		body: 'The launch included the public site, pricing, legal pages, store screenshots, app listings, and release documentation.'
 	},
 	{
 		label: 'Founder handoff',
@@ -265,11 +265,11 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 							<h2>Business Objective</h2>
 							<div class='case-study-detail__editorial-copy'>
 								<p>
-									The goal was not just to build screens. The founder needed a first commercial version that could support
-									Spanish learners on mobile while giving teachers a clear reason to adopt and pay for the product.
+									The founder needed a first commercial version that could support Spanish learners on mobile while giving
+									teachers a clear reason to adopt and pay for the product.
 								</p>
 								<p>
-									That meant shaping the MVP around real validation: a student reading experience, a teacher workspace, payments,
+									That meant shaping the MVP around real validation: a mobile reading experience, a teacher workspace, payments,
 									store readiness, and enough positioning clarity to start testing with actual teachers.
 								</p>
 							</div>
@@ -296,7 +296,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 							<div class='case-study-detail__editorial-copy'>
 								<p>
 									The web product gave the first buyer a dedicated workspace for class management, student groups, shared
-									readings, and Stripe checkout.
+									readings, and paid teacher accounts.
 								</p>
 								{images?.hero && (
 									<figure class='case-study-detail__device-plate'>
@@ -385,8 +385,8 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 						<h2>What Shipped</h2>
 						<div class='case-study-detail__editorial-copy case-study-detail__launch-proof-list'>
 							<p>
-								The proof is not a long feature checklist. It is the set of product decisions that made Palabruno ready for
-								real users: a clear first buyer, payments, store readiness, and a handoff the founder could own.
+								Palabruno became ready for real users because the MVP connected product scope to launch requirements: a clear
+								first buyer, working payments, store readiness, and a handoff the founder could own.
 							</p>
 							{productProofMoments.map((moment, index) => (
 								<article class='case-study-detail__launch-proof-row'>
@@ -404,26 +404,13 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 			}
 
 		{
-			images?.feature && (
+			!isPalabrunoCaseStudy && images?.feature && (
 				<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-					<h2>{isPalabrunoCaseStudy ? 'Student Reader' : 'Product Proof'}</h2>
+					<h2>Product Proof</h2>
 					<div class='case-study-detail__editorial-copy'>
-						<p>
-							{isPalabrunoCaseStudy
-								? 'Students can read a complete Spanish text while keeping translation, grammar, and pronunciation help close to the page.'
-								: proofIntro}
-						</p>
+						<p>{proofIntro}</p>
 						{
-							isPalabrunoCaseStudy ? (
-								<figure class='case-study-detail__device-plate'>
-									<div class='device-frame device-frame--macbook'>
-										<div class='device-frame__screen'>
-											<Image src={images.feature} alt={`${project.title} reader story`} loading='eager' class='device-frame__image' />
-										</div>
-										<div class='device-frame__base' aria-hidden='true'></div>
-									</div>
-								</figure>
-							) : project.proofScreens && project.proofScreens.length > 0 ? (
+							project.proofScreens && project.proofScreens.length > 0 ? (
 								<div class='case-study-detail__proof-grid case-study-detail__proof-grid--editorial'>
 									{project.proofScreens.map((screen) => (
 										<figure class='case-study-detail__proof-card'>
@@ -460,7 +447,7 @@ const palabrunoSupportingScreens = project.proofScreens?.filter((screen) => !['h
 					<h2>Product Screens</h2>
 					<div class='case-study-detail__editorial-copy'>
 						<p>
-							Screens from the teacher workspace and reader show the core product surfaces: create a reading, manage students, organize groups, share material, and read the assigned text.
+							Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
 						</p>
 						<div class='case-study-detail__device-grid'>
 							{palabrunoSupportingScreens.map((screen) => {
