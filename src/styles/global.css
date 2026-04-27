@@ -2305,6 +2305,7 @@
 		position: relative;
 		overflow: hidden;
 		background: #f8f6f1;
+		border: 1px solid #050505;
 	}
 
 	.device-frame__image {
@@ -2315,65 +2316,38 @@
 
 	.device-frame--macbook {
 		max-width: 58rem;
-		padding: 0.62rem 0.62rem 0;
-		border-radius: 1.05rem 1.05rem 0.6rem 0.6rem;
-		background: #050505;
-		box-shadow: 0 1.4rem 3.8rem rgba(28, 24, 18, 0.16);
+		padding: 0;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
 	}
 
 	.device-frame--macbook .device-frame__screen {
-		border-radius: 0.62rem;
-		outline: 1px solid #050505;
+		border-radius: 0.55rem;
 	}
 
 	.device-frame__base {
-		position: relative;
-		left: 50%;
-		width: calc(100% + 3.8rem);
-		height: clamp(0.7rem, 1.5vw, 1.05rem);
-		margin-top: 0.58rem;
-		transform: translateX(-50%);
-		border-radius: 0 0 1.15rem 1.15rem;
-		background: linear-gradient(180deg, #d8d4cc 0%, #aca69d 100%);
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+		display: none;
 	}
 
 	.device-frame__base::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 50%;
-		width: min(8rem, 22%);
-		height: 0.34rem;
-		transform: translateX(-50%);
-		border-radius: 0 0 0.45rem 0.45rem;
-		background: rgba(84, 78, 70, 0.28);
+		content: none;
 	}
 
 	.device-frame--ios {
 		width: min(100%, 16rem);
-		padding: 0.72rem;
-		border-radius: 2.25rem;
-		background: #050505;
-		box-shadow: 0 1.2rem 3.2rem rgba(28, 24, 18, 0.18);
+		padding: 0;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
 	}
 
 	.device-frame--ios .device-frame__screen {
-		border-radius: 1.65rem;
-		outline: 1px solid #050505;
+		border-radius: 0.55rem;
 	}
 
 	.device-frame__island {
-		position: absolute;
-		z-index: 2;
-		top: 1.25rem;
-		left: 50%;
-		width: 4.4rem;
-		height: 1.15rem;
-		transform: translateX(-50%);
-		border-radius: 999px;
-		background: #050505;
-		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03);
+		display: none;
 	}
 
 	:is(.dark) .case-study-detail__device-plate {
@@ -2383,29 +2357,17 @@
 
 	:is(.dark) .device-frame--macbook,
 	:is(.dark) .device-frame--ios {
-		background: #050505;
-		box-shadow:
-			0 0 0 1px rgba(246, 241, 232, 0.22),
-			0 1.6rem 4rem rgba(0, 0, 0, 0.46);
+		background: transparent;
+		box-shadow: none;
 	}
 
 	:is(.dark) .device-frame--macbook .device-frame__screen,
 	:is(.dark) .device-frame--ios .device-frame__screen {
-		outline: 1px solid #050505;
-	}
-
-	:is(.dark) .device-frame__base {
-		background: linear-gradient(180deg, #f1ece4 0%, #aaa196 100%);
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
-	}
-
-	:is(.dark) .device-frame__base::before {
-		background: rgba(23, 21, 18, 0.24);
+		border-color: rgba(246, 241, 232, 0.72);
 	}
 
 	:is(.dark) .device-frame__island {
-		background: #171512;
-		box-shadow: 0 0 0 1px rgba(246, 241, 232, 0.14);
+		display: none;
 	}
 
 	.case-study-detail__device-grid {
