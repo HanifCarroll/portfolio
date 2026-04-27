@@ -945,7 +945,7 @@
 		padding-inline: 1rem;
 		border: 1px solid var(--site-rule);
 		color: var(--site-ink);
-		font-family: var(--font-mono);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.16em;
@@ -1036,7 +1036,7 @@
 	.projects-index__meta dt,
 	.projects-index__row-meta span {
 		color: var(--site-muted);
-		font-family: var(--font-mono);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.72rem;
 		font-weight: 700;
 		letter-spacing: 0.16em;
@@ -2592,7 +2592,7 @@
 	}
 
 	.case-study-row__title {
-		font-family: var(--font-display);
+		font-family: 'IBM Plex Sans', system-ui, sans-serif;
 		font-size: clamp(3rem, 5.8vw, 5.8rem);
 		font-weight: 700;
 		line-height: 0.94;
@@ -2612,15 +2612,15 @@
 		width: fit-content;
 		align-items: center;
 		justify-content: center;
-		border: 1.5px solid color-mix(in srgb, var(--site-primary) 70%, var(--site-ink));
+		border: 1.5px solid #96965f;
 		border-radius: 999px;
 		padding: 0.85rem 1.65rem;
-		font-family: var(--font-mono);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.72rem;
 		font-weight: 800;
 		line-height: 1;
 		text-transform: uppercase;
-		color: color-mix(in srgb, var(--site-primary) 76%, var(--site-ink));
+		color: #85864e;
 		transition:
 			background-color 180ms ease,
 			border-color 180ms ease,
@@ -2628,8 +2628,8 @@
 	}
 
 	.case-study-row:hover .case-study-row__button {
-		border-color: var(--site-primary);
-		background: var(--site-primary);
+		border-color: #85864e;
+		background: #85864e;
 		color: white;
 	}
 
@@ -3461,12 +3461,6 @@
 			transform: scaleX(-1) scale(0.92);
 		}
 
-		.case-study-secondary-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			align-items: start;
-			gap: 2rem;
-		}
-
 		.how-we-work-step {
 			grid-template-columns: minmax(0, 120px) minmax(0, 1fr);
 			align-items: start;
@@ -3517,9 +3511,24 @@
 			padding: 2.1rem 0 2.35rem;
 		}
 
-		.case-study-secondary-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 2.25rem;
+		.case-study-row {
+			grid-template-columns: minmax(0, 1fr) minmax(28rem, 0.92fr);
+			gap: clamp(2.25rem, 4vw, 4rem);
+			min-height: clamp(34rem, 51vw, 55rem);
+		}
+
+		.case-study-row__media {
+			border-left: 2px solid var(--site-ink);
+			padding-left: clamp(2rem, 4vw, 3.75rem);
+		}
+
+		.case-study-row__image-frame,
+		.case-study-row__image {
+			height: 100%;
+		}
+
+		.case-study-row__image {
+			aspect-ratio: auto;
 		}
 	}
 

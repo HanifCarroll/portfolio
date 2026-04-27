@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
-import desarmaderoHero from '@src/assets/img/projects/desarmadero-hero.png';
-import genruptFeature from '@src/assets/img/projects/genrupt-feature.png';
-import palabrunoHero from '@src/assets/img/projects/palabruno-founder-idea-launch.png';
+import desarmaderoPhoto from '@src/assets/img/projects/desarmadero-parts-stockroom-photo.png';
+import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
+import palabrunoPhoto from '@src/assets/img/projects/palabruno-language-study-photo.png';
 
 const title = 'Hanif Carroll | Technical Product Partner';
 const description =
@@ -32,35 +32,33 @@ const caseStudies = [
 	{
 		slug: 'palabruno',
 		label: 'MVP build',
-		title: 'Took a founder from rough idea to launch',
+		title: 'Palabruno',
 		body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, web payments for teachers, app store launch assets, UX polish, and public-site copy.',
 		outcome:
 			'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led buyer path.',
-		image: palabrunoHero,
-		imageAlt: 'Palabruno portfolio visual showing the browser workspace and mobile reader.'
+		image: palabrunoPhoto,
+		imageAlt: 'Language study notebook and vocabulary cards on a wooden table.'
 	},
 	{
 		slug: 'genrupt',
 		label: 'AI systems',
-		title: 'Moved an AI demo toward a billable seller platform',
+		title: 'Genrupt',
 		body: 'Helped Genrupt move beyond demo-stage image and video generation by adding the commercial and reliability foundations needed for paid Amazon seller workflows.',
 		outcome: 'Made the product more subscription-ready, more reliable under load, and easier to extend into new seller workflows.',
-		image: genruptFeature,
-		imageAlt: 'AI creative platform interface for image and video generation.',
+		image: genruptPhoto,
+		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
 	{
 		slug: 'desarmadero-latorre',
 		label: 'Workflow automation',
-		title: 'Turned phone calls into a digital stockroom',
+		title: 'Desarmadero La Torre',
 		body: 'Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.',
 		outcome: 'Reduced repetitive operational work and increased qualified inbound inquiries.',
-		image: desarmaderoHero,
-		imageAlt: 'Digital stockroom and searchable inventory interface.'
+		image: desarmaderoPhoto,
+		imageAlt: 'Organized shelves of used auto parts in a stockroom.'
 	}
 ];
-
-const [featuredCaseStudy, ...secondaryCaseStudies] = caseStudies;
 
 const fitColumns = [
 	{
@@ -130,65 +128,40 @@ const fitColumns = [
 			</div>
 		</div>
 
-		<div class='mt-12 space-y-10 md:space-y-12'>
+		<div class='case-study-rows mt-12'>
 			{
-				featuredCaseStudy && (
-					<a
-						href={`/projects/${featuredCaseStudy.slug}/`}
-						class='case-study-feature group grid gap-8 transition-colors lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-14'
-					>
-						<figure class='case-study-feature__media'>
-							<Image
-								src={featuredCaseStudy.image}
-								alt={featuredCaseStudy.imageAlt}
-								class='case-study-feature__image transition duration-700 ease-out group-hover:scale-[1.015]'
-								loading='eager'
-							/>
-						</figure>
-
-						<div class='flex h-full flex-col justify-between gap-6 lg:py-2'>
-							<div class='space-y-4'>
-								<p class='launch-meta text-primary'>Featured / {featuredCaseStudy.label}</p>
-								<h3 class='heading-display heading-display--section'>{featuredCaseStudy.title}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{featuredCaseStudy.body}</p>
-							</div>
-							<div class='space-y-4'>
-								<div class='border-t border-black/12 pt-4 dark:border-white/12'>
-									<p class='launch-meta text-zinc-400 dark:text-zinc-500'>Outcome</p>
-									<p class='mt-1 text-sm font-medium leading-6 text-zinc-800 dark:text-zinc-100'>{featuredCaseStudy.outcome}</p>
+				caseStudies.map((study, index) => (
+					<a href={`/projects/${study.slug}/`} class='case-study-row group'>
+						<div class='case-study-row__copy'>
+							<p class='case-study-row__eyebrow'>
+								<span aria-hidden='true'></span>
+								CASE STUDY {String(index + 1).padStart(2, '0')}
+							</p>
+							<div class='case-study-row__body'>
+								<div class='space-y-5'>
+									<p class='launch-meta text-primary'>{study.label}</p>
+									<h3 class='case-study-row__title'>{study.title}</h3>
+									<p class='case-study-row__description'>{study.body}</p>
 								</div>
-								<span class='arrow-link group-hover:border-primary group-hover:text-primary'>View case study</span>
+								<span class='case-study-row__button'>View case study</span>
 							</div>
 						</div>
-					</a>
-				)
-			}
-
-			<div class='case-study-secondary-grid'>
-				{
-					secondaryCaseStudies.map((study) => (
-						<a href={`/projects/${study.slug}/`} class='case-study-secondary group'>
-							<figure class='overflow-hidden border border-black/15 bg-zinc-950 dark:border-white/15'>
+						<figure class='case-study-row__media'>
+							<div class='case-study-row__image-frame'>
 								<Image
 									src={study.image}
 									alt={study.imageAlt}
 									class:list={[
-										'aspect-[16/10] h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]',
+										'case-study-row__image transition duration-700 ease-out group-hover:scale-[1.025]',
 										study.imageClass
 									]}
 									loading='eager'
 								/>
-							</figure>
-							<div class='space-y-3'>
-								<p class='launch-meta text-primary'>{study.label}</p>
-								<h3 class='heading-display heading-display--subsection'>{study.title}</h3>
-								<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{study.outcome}</p>
 							</div>
-							<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>View case study</span>
-						</a>
-					))
-				}
-			</div>
+						</figure>
+					</a>
+				))
+			}
 
 			<div class='pt-2'>
 				<a class='arrow-link' href='/projects/'> See all case studies </a>
