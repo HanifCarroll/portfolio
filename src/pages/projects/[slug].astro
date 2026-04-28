@@ -3,7 +3,6 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
-import { BOOK_CALL_URL } from '../../consts';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
@@ -132,32 +131,23 @@ const caseStudyFacts = [
 								<span class='tech-tag'>{tech}</span>
 							))}
 						</div>
-						<div class='case-study-detail__actions'>
-							<a
-								class='btn-primary'
-								href={BOOK_CALL_URL}
-								target='_blank'
-								rel='noopener noreferrer'
-								data-track-event='book_call_clicked'
-								data-track-location='project_detail_bottom_primary'
-							>
-								Book a Roadmap Call
-								<span>&rarr;</span>
-							</a>
-							{project.liveUrl && (
-								<a
-									class='btn-secondary'
-									href={project.liveUrl}
-									target='_blank'
-									rel='noopener noreferrer'
-									data-track-event='project_live_site_clicked'
-									data-track-location='project_detail'
-								>
-									Visit Live Site
-									<span>&rarr;</span>
-								</a>
-							)}
-						</div>
+						{
+							project.liveUrl && (
+								<div class='case-study-detail__actions'>
+									<a
+										class='btn-secondary'
+										href={project.liveUrl}
+										target='_blank'
+										rel='noopener noreferrer'
+										data-track-event='project_live_site_clicked'
+										data-track-location='project_detail'
+									>
+										Visit Live Site
+										<span>&rarr;</span>
+									</a>
+								</div>
+							)
+						}
 					</div>
 				</section>
 			)
