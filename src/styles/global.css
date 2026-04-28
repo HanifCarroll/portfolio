@@ -167,7 +167,7 @@
 		@apply font-mono font-semibold uppercase text-primary;
 		font-size: clamp(0.84rem, 0.79rem + 0.18vw, 0.98rem);
 		line-height: 1.35;
-		letter-spacing: 0.24em;
+		letter-spacing: 0.06em;
 	}
 
 	/* All-caps heading style */
@@ -640,7 +640,7 @@
 	.path-choice__arrow {
 		display: inline-flex;
 		font-size: clamp(2.25rem, 3vw, 3.4rem);
-		font-weight: 500;
+		font-weight: 300;
 		line-height: 1;
 		color: rgb(0 102 255);
 		transform: translateY(-0.08em);
@@ -675,7 +675,7 @@
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.82rem;
 		font-weight: 700;
-		letter-spacing: 0.18em;
+		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		color: var(--site-muted);
 		transition: color 180ms ease;
@@ -1004,6 +1004,7 @@
 	.projects-index__feature {
 		display: grid;
 		gap: clamp(2rem, 5vw, 4rem);
+		max-width: 58rem;
 		color: inherit;
 	}
 
@@ -1017,7 +1018,7 @@
 	}
 
 	.projects-index__feature-media {
-		aspect-ratio: 16 / 10;
+		aspect-ratio: 16 / 9;
 		background: transparent;
 		outline: 0;
 	}
@@ -1033,7 +1034,7 @@
 		display: block;
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
+		object-fit: cover;
 	}
 
 	.projects-index__feature-copy,
@@ -1053,7 +1054,6 @@
 		gap: 1.1rem;
 		margin: 0;
 		padding-block: 1.6rem;
-		border-block: 1px solid var(--site-rule);
 	}
 
 	.projects-index__meta div,
@@ -1065,11 +1065,11 @@
 
 	.projects-index__meta dt,
 	.projects-index__row-meta span {
-		color: var(--site-muted);
+		color: var(--site-body);
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.16em;
+		font-size: 0.78rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
 		text-transform: uppercase;
 	}
 
@@ -1080,7 +1080,6 @@
 	.projects-index__rows {
 		display: grid;
 		gap: 0;
-		border-top: 1px solid var(--site-rule);
 	}
 
 	.projects-index__row {
@@ -1089,7 +1088,6 @@
 		gap: clamp(1.4rem, 3vw, 2.5rem);
 		align-items: start;
 		padding-block: clamp(2rem, 4vw, 3rem);
-		border-bottom: 1px solid var(--site-rule);
 		transition:
 			background-color 420ms cubic-bezier(0.32, 0.72, 0, 1),
 			transform 420ms cubic-bezier(0.32, 0.72, 0, 1);
@@ -1165,7 +1163,6 @@
 		display: grid;
 		gap: 1.25rem;
 		padding-block: 1.5rem;
-		border-top: 1px solid var(--site-rule);
 		color: inherit;
 	}
 
@@ -2359,7 +2356,7 @@
 	}
 
 	.device-frame--macbook {
-		max-width: 58rem;
+		max-width: 66rem;
 		padding: 0;
 		border-radius: 0;
 		background: transparent;
@@ -2674,7 +2671,7 @@
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.86rem;
 		font-weight: 700;
-		letter-spacing: 0.18em;
+		letter-spacing: 0.06em;
 		line-height: 1;
 		text-transform: uppercase;
 	}
@@ -3060,8 +3057,7 @@
 		}
 
 		.projects-index__feature {
-			grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.72fr);
-			align-items: end;
+			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.projects-index__row {
@@ -3237,6 +3233,44 @@
 
 		.case-study-detail__device-card--desktop {
 			grid-column: 1 / -1;
+		}
+
+		.case-study-detail__editorial-section--media {
+			grid-template-columns: minmax(14rem, 0.38fr) minmax(0, 0.62fr);
+			column-gap: clamp(5rem, 10vw, 9rem);
+		}
+
+		.case-study-detail__editorial-section--media .case-study-detail__editorial-copy {
+			display: contents;
+		}
+
+		.case-study-detail__editorial-section--media .case-study-detail__editorial-copy > p:first-child {
+			grid-column: 2;
+			max-width: 46rem;
+		}
+
+		.case-study-detail__editorial-section--media .case-study-detail__device-grid {
+			grid-column: 1 / -1;
+			margin-top: clamp(0.5rem, 2vw, 1.5rem);
+		}
+
+		.case-study-detail__editorial-section--media .device-frame--macbook {
+			max-width: 100%;
+		}
+
+		.case-study-detail__editorial-section--wide-media {
+			grid-template-columns: minmax(14rem, 0.3fr) minmax(0, 0.7fr);
+			column-gap: clamp(4rem, 8vw, 8rem);
+		}
+
+		.case-study-detail__editorial-section--wide-media .case-study-detail__device-grid {
+			width: 100%;
+			margin-inline: 0;
+			gap: clamp(2.75rem, 5vw, 5rem);
+		}
+
+		.case-study-detail__editorial-section--wide-media .case-study-detail__device-caption {
+			max-width: 46rem;
 		}
 
 		.case-study-detail .case-study-detail__hero-body,
@@ -3780,12 +3814,12 @@
 		@apply font-mono font-semibold uppercase text-zinc-500 dark:text-zinc-300;
 		font-size: clamp(0.82rem, 0.78rem + 0.14vw, 0.92rem);
 		line-height: 1.45;
-		letter-spacing: 0.18em;
+		letter-spacing: 0.06em;
 	}
 
 	.launch-meta--hero {
 		font-size: clamp(0.86rem, 0.81rem + 0.18vw, 1rem);
-		letter-spacing: 0.2em;
+		letter-spacing: 0.06em;
 	}
 
 	.ledger-entry {

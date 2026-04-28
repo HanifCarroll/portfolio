@@ -85,20 +85,20 @@ const featuredOutcomeHighlights = {
 			featuredProject && (
 				<section class='projects-index__feature-section' aria-labelledby='featured-work-title'>
 					<a href={`/projects/${featuredProject.slug}/`} class='projects-index__feature group'>
-						<figure class='projects-index__feature-media'>
-							<Image
-								src={palabrunoHero}
-								alt={featuredProject.name}
-								class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.015]'
-								loading='eager'
-							/>
-						</figure>
 						<div class='projects-index__feature-copy'>
 							<p class='section-label'>Featured Case Study</p>
 							<h2 id='featured-work-title' class='heading-display heading-display--section'>
 								{featuredProject.name}
 							</h2>
 							<p>{featuredProject.description}</p>
+							<figure class='projects-index__feature-media'>
+								<Image
+									src={palabrunoHero}
+									alt={featuredProject.name}
+									class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.015]'
+									loading='eager'
+								/>
+							</figure>
 							<dl class='projects-index__meta'>
 								<div>
 									<dt>Client</dt>
