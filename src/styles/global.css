@@ -2238,12 +2238,13 @@
 	}
 
 	.service-callout--case-study .service-callout__actions {
-		align-items: stretch;
-		gap: 1rem;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.15rem;
 	}
 
 	.service-callout--case-study .service-callout__actions > a {
-		min-width: min(100%, 18rem);
+		min-width: 0;
 	}
 
 	.service-callout--case-study .section-label {
@@ -2265,18 +2266,48 @@
 		color: var(--case-body, #3a352f);
 	}
 
-	.service-callout--case-study .fit-secondary-link {
+	.service-callout--case-study .home-hero-primary-link {
+		display: inline-grid;
+		grid-template-columns: minmax(0, 13.5rem) 1.7rem;
+		column-gap: 1.45rem;
 		justify-content: center;
-		min-height: 4.35rem;
-		padding: 0 1.85rem;
-		border: 1.5px solid var(--case-ink, #171512);
-		color: var(--case-ink, #171512) !important;
+		min-width: min(100%, 23rem);
+		min-height: 4.65rem;
+		border-color: var(--case-ink, #171512);
+		background: var(--case-ink, #171512);
+		color: #f6f1e8;
+		font-weight: 600;
+	}
+
+	.service-callout--case-study .home-hero-primary-link:hover {
+		background: transparent;
+		color: var(--case-ink, #171512);
+	}
+
+	.service-callout--case-study .home-hero-primary-link .service-callout__button-arrow {
+		font-size: 1.7rem;
+		font-weight: 500;
+	}
+
+	.service-callout--case-study .fit-secondary-link {
+		display: inline-flex;
+		gap: 0.7rem;
+		min-height: 0;
+		padding: 0;
+		border: 0;
+		color: var(--case-body, #3a352f) !important;
+		font-size: 0.9rem;
+		font-weight: 500;
 	}
 
 	.service-callout--case-study .fit-secondary-link:hover {
-		border-color: var(--case-ink, #171512);
-		background: var(--case-ink, #171512);
-		color: #f6f1e8 !important;
+		background: transparent;
+		color: var(--case-ink, #171512) !important;
+	}
+
+	.service-callout--case-study .fit-secondary-link .service-callout__button-arrow {
+		width: auto;
+		font-size: 1.05rem;
 	}
 
 	:is(.dark) .service-callout--case-study .home-hero-primary-link {
@@ -2292,14 +2323,12 @@
 	}
 
 	:is(.dark) .service-callout--case-study .fit-secondary-link {
-		border-color: rgba(246, 241, 232, 0.82);
-		color: #f6f1e8 !important;
+		color: rgba(246, 241, 232, 0.72) !important;
 	}
 
 	:is(.dark) .service-callout--case-study .fit-secondary-link:hover {
-		background: #f6f1e8;
-		border-color: #f6f1e8;
-		color: #090909 !important;
+		background: transparent;
+		color: #f6f1e8 !important;
 	}
 
 	.case-study-detail > .pt-8 {
