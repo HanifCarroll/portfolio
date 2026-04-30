@@ -1,0 +1,35 @@
+---
+interface Props {
+	title?: string;
+	class?: string;
+	contentClass?: string;
+	ariaLabel?: string;
+	showControls?: boolean;
+}
+
+const {
+	title,
+	class: className,
+	contentClass,
+	ariaLabel,
+	showControls = true
+} = Astro.props;
+---
+
+<div class:list={['case-study-detail__mac-window', className]} aria-label={ariaLabel}>
+	<div class='case-study-detail__mac-window-bar' aria-hidden={!title}>
+		{
+			showControls && (
+				<div class='case-study-detail__mac-window-controls' aria-hidden='true'>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			)
+		}
+		{title && <span class='case-study-detail__mac-window-title'>{title}</span>}
+	</div>
+	<div class:list={['case-study-detail__mac-window-content', contentClass]}>
+		<slot />
+	</div>
+</div>

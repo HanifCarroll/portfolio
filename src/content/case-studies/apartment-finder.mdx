@@ -1,0 +1,107 @@
+---
+projectSlug: apartment-finder
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import MacWindowFrame from '../../components/case-study/MacWindowFrame.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import apartmentFinderUi from '../../assets/img/projects/apartment-finder-ui.png';
+
+export const shippedRows = [
+	{
+		label: 'Product surface',
+		title: 'Search moved from manual tabs into one focused UI.',
+		body: 'The app supports provider filters, raw search URLs, async scans, result filtering, price sorting, expandable listing rows, extracted details, washer evidence, and listing photos.'
+	},
+	{
+		label: 'Model evidence',
+		title: 'The workflow kept decisions auditable.',
+		body: 'Each result can show the extracted listing details, strongest washer evidence, gallery photos, model confidence, and the original listing.'
+	},
+	{
+		label: 'Evaluation',
+		title: 'The listing-summary path was tested against labels.',
+		body: 'The best validated run scored 39/40 on labeled listings: 10/10 in-unit, 16/17 shared-building, and 13/13 unknown.'
+	},
+	{
+		label: 'Open source',
+		title: 'The project shipped publicly.',
+		body: 'The public repo includes the TanStack Start UI, Bun CLI, provider extraction code, search scans, smoke tests, and fixture-based evaluation scripts.'
+	}
+];
+
+<CaseSection title="Summary">
+	Apartment listing sites often treat private in-unit washers and shared building laundry as the same amenity.
+
+	I built Apartment Finder to scan real rental listings, extract the evidence that matters, and show which apartments are likely to have a washer inside the private unit.
+</CaseSection>
+
+<CaseSection title="About">
+	The first version started as a command-line classifier for apartment photos.
+
+	The useful version became a product: build or paste a provider search, discover listings, scan them, then compare results without manually opening every listing gallery.
+</CaseSection>
+
+<CaseSection title="Product Objective">
+	The goal was not to make a generic apartment search engine.
+
+	It was to solve one expensive decision problem well: avoid wasting time on listings where "washer" means shared building laundry instead of an in-unit machine.
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Make the AI judgment inspectable.">
+		The app does not hide behind a single yes/no answer. It keeps extracted descriptions, listing facts, photo galleries, washer evidence, confidence, and source links visible so the result can be checked.
+	</DecisionBlock>
+
+	<DecisionBlock title="Keep the product workflow faster than manual search.">
+		The UI supports filters, raw URLs, partial scan progress, result filters, price sorting, expandable rows, and a lightbox so the user can move through many listings quickly.
+	</DecisionBlock>
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media apartment-finder-product-surface'>
+	<h2>Product Surface</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<p>The app wraps the search, extraction, classification, and review loop in one compact workspace.</p>
+
+		<MacWindowFrame class='apartment-finder-product-window' ariaLabel='Apartment Finder product screenshot'>
+			<ImagePlate image={apartmentFinderUi} alt="Apartment Finder search and listing-discovery interface." />
+		</MacWindowFrame>
+	</div>
+</section>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Extracted listing evidence across providers.">
+		The system handles provider search discovery, gallery extraction, listing details, Airbnb washer amenity metadata, and cached extraction fallback for repeatable scans.
+	</DecisionBlock>
+
+	<DecisionBlock title="Built a two-pass classification path.">
+		The first pass uses a cheaper vision model, then escalates ambiguous or risky photos to a stronger model before producing a listing-level summary.
+	</DecisionBlock>
+
+	<DecisionBlock title="Kept CLI, UI, and evals on the same core services.">
+		The TanStack Start UI wraps the same core search and listing-scan services used by the Bun CLI, so the product surface and the verification scripts stay aligned.
+	</DecisionBlock>
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			Apartment Finder is a public example of turning a narrow, real-life decision workflow into an AI product with extraction,
+			classification, UI review, and benchmark evidence.
+		</ProofRows>
+	</div>
+</section>
+
+<section class='case-study-detail__editorial-section'>
+	<h2>Public Repo</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<p>The project is open source, including the TanStack Start UI, Bun CLI, extraction scripts, and evaluation fixtures.</p>
+		<a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/apartment-finder' target='_blank' rel='noopener noreferrer'>
+			View GitHub repo
+			<span>&rarr;</span>
+		</a>
+	</div>
+</section>

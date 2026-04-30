@@ -1,0 +1,50 @@
+{
+  "slug": "apartment-finder",
+  "title": "Apartment Finder",
+  "description": "Built a personal AI search app that turns noisy Buenos Aires rental listings into evidence-backed decisions about likely in-unit washing machines.",
+  "proofType": "experiment",
+  "client": "Personal Project",
+  "service": "AI Product Build",
+  "bestFit": "Founders and small teams turning messy real-world search, review, or triage workflows into focused AI-assisted products.",
+  "detailVariant": "product",
+  "role": "Solo Product & AI Systems Builder",
+  "category": "product",
+  "track": "ai_systems",
+  "year": "2026",
+  "timeline": "Rapid product build, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "TanStack Start",
+    "React 19",
+    "TypeScript",
+    "OpenAI Vision Models",
+    "Playwright",
+    "Playwriter",
+    "Bun",
+    "Tailwind CSS v4",
+    "Vitest"
+  ],
+  "repository": "https://github.com/HanifCarroll/apartment-finder",
+  "constraints": [
+    "Listing sites often mark shared building laundry as a washer amenity, even when the decision depends on whether the washer is inside the private apartment.",
+    "The app needed to work across Zonaprop, Argenprop, and Airbnb while keeping enough evidence visible to audit the model's judgment."
+  ],
+  "problem": [
+    "Apartment search filters were producing too many false matches because rental platforms collapse private in-unit washers and shared building laundry into the same amenity signal.",
+    "The real decision required inspecting listing photos, provider metadata, price and room details, descriptions, and ambiguous evidence across many listings without opening every gallery by hand."
+  ],
+  "solution": [
+    "Built a search app that accepts provider filters or raw result URLs, discovers listings, extracts gallery photos and listing details, and scans each listing for washer evidence.",
+    "Wrapped the classifier in a product UI with provider filters, neighborhood typeahead, async scan progress, decision filters, price sorting, expandable result rows, extracted descriptions, amenity details, evidence links, and a listing-photo lightbox.",
+    "Kept the underlying CLI and JSONL workflow for repeatable evals, audit trails, and provider extraction smoke tests."
+  ],
+  "result": [
+    "Validated the core listing-summary workflow at 39/40 on labeled listings, with 10/10 in-unit, 16/17 shared-building, and 13/13 unknown decisions.",
+    "Turned a frustrating personal search problem into a reusable product pattern: extract messy source data, classify the hard evidence, show the user why the system made the call, and keep the workflow auditable.",
+    "Shipped the project publicly as an open-source example of building an AI product around evidence and workflow design, not just a model call."
+  ],
+  "images": {
+    "hero": "@src/assets/img/projects/apartment-finder-ui.png",
+    "feature": "@src/assets/img/projects/apartment-finder-ui.png"
+  }
+}
