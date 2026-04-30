@@ -34,3 +34,9 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Re-check Search Console after 3 to 6 weeks, especially `hanif ai`, `genrupt`, and `mucho hangouts`.
 - If the resume PDF keeps earning impressions for commercial positioning queries, decide whether to keep it indexable or make the HTML pages stronger and de-emphasize the PDF.
 - Do not start a broad SEO content push until the pages Google is already testing have cleaner search appearance data.
+
+### Indexing Requests
+
+- Verified production HTML after deploy for `/`, `/projects/genrupt/`, and `/projects/mucho-hangouts/`.
+- Requested indexing in Google Search Console for all three URLs.
+- Search Console accepted each request with: URL was added to a priority crawl queue.
