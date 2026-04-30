@@ -14,10 +14,12 @@ It replaces the previous Next.js build while keeping the existing project JSON d
 bun install
 bun dev
 ```
-The dev server runs on [http://localhost:4321](http://localhost:4321) by default.
+The dev server runs through Portless at [https://portfolio.localhost](https://portfolio.localhost).
+Use `bun run dev:direct` for the raw Astro server on [http://localhost:4321](http://localhost:4321).
 
 ### Commands
-- `bun dev` – start the local dev server
+- `bun dev` – start the local dev server through Portless
+- `bun run dev:direct` – start the raw Astro dev server
 - `bun run build` – type-check and build the static site to `dist/`
 - `bun run preview` – preview the production build locally
 

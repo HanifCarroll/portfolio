@@ -23,7 +23,12 @@ export const shippedRows = [
 	{
 		label: 'Evaluation',
 		title: 'The listing-summary path was tested against labels.',
-		body: 'The best validated run scored 39/40 on labeled listings: 10/10 in-unit, 16/17 shared-building, and 13/13 unknown.'
+		body: 'The validated fixture set now scores 53/55 overall while preserving zero false in-unit and zero false shared-building decisions.'
+	},
+	{
+		label: 'Cost control',
+		title: 'Targeted escalation cut second-pass model calls.',
+		body: 'A cap sweep found the same 53/55 accuracy at 6 escalated photos per listing as at 8, while reducing escalated images from 329 to 247.'
 	},
 	{
 		label: 'Open source',
@@ -80,6 +85,10 @@ export const shippedRows = [
 		The first pass uses a cheaper vision model, then escalates ambiguous or risky photos to a stronger model before producing a listing-level summary.
 	</DecisionBlock>
 
+	<DecisionBlock title="Reduced cost without giving up accuracy.">
+		I centralized the escalation policy around targeted top-k photo selection and measured the tradeoff across caps. The current default escalates up to 6 photos per listing, matching the 53/55 result from the wider 8-photo run while cutting second-pass images from 329 to 247.
+	</DecisionBlock>
+
 	<DecisionBlock title="Kept CLI, UI, and evals on the same core services.">
 		The TanStack Start UI wraps the same core search and listing-scan services used by the Bun CLI, so the product surface and the verification scripts stay aligned.
 	</DecisionBlock>
@@ -90,7 +99,7 @@ export const shippedRows = [
 	<div class='case-study-detail__editorial-copy'>
 		<ProofRows rows={shippedRows}>
 			Apartment Finder is a public example of turning a narrow, real-life decision workflow into an AI product with extraction,
-			classification, UI review, and benchmark evidence.
+			classification, UI review, benchmark evidence, and measured model-cost tradeoffs.
 		</ProofRows>
 	</div>
 </section>
