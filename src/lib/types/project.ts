@@ -39,6 +39,8 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
   client: string;
   proofType: 'client' | 'experiment';
   service: string;

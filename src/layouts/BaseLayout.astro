@@ -7,6 +7,7 @@ const {
 	title,
 	description,
 	image,
+	jsonLd,
 	flushTop = false,
 	showFooterCta = true,
 	footerLinksOnly = false,
@@ -21,7 +22,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 <!doctype html>
 <html lang='en' class='scroll-smooth'>
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} jsonLd={jsonLd} />
 	</head>
 	<body class:list={['font-sans', bodyClass]}>
 		{

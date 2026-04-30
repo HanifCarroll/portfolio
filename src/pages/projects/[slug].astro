@@ -59,6 +59,24 @@ const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);
 const heroImage = imageMap[project.slug as keyof typeof imageMap];
+const seoTitle = project.seoTitle ?? `${project.title} · Case Study`;
+const seoDescription = project.seoDescription ?? project.description;
+const canonicalUrl = new URL(`/projects/${project.slug}/`, Astro.site).toString();
+const caseStudyJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CreativeWork',
+	name: project.title,
+	headline: seoTitle,
+	description: seoDescription,
+	url: canonicalUrl,
+	creator: {
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	},
+	about: [project.client, project.service, ...project.technologies.slice(0, 6)],
+	datePublished: project.year?.split('-')[0]
+};
 
 const caseStudyFacts = [
 	{ label: 'Role', value: project.role },
@@ -69,9 +87,10 @@ const caseStudyFacts = [
 ---
 
 <BaseLayout
-	title={`${project.title} · Case Study`}
-	description={project.description}
+	title={seoTitle}
+	description={seoDescription}
 	image={heroImage?.src}
+	jsonLd={caseStudyJsonLd}
 	showFooterCta={false}
 	footerLinksOnly
 >

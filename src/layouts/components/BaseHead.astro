@@ -5,12 +5,16 @@ interface Props {
     title: string;
     description: string;
     image?: string;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image } = Astro.props;
+const { title, description, image, jsonLd } = Astro.props;
 const fallbackImage = image ?? "/img/avatar2.jpg";
+const structuredData = jsonLd
+    ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
+    : "";
 const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
@@ -117,3 +121,6 @@ const clarityLoaderScript = clarityProjectId
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(fallbackImage, Astro.url)} />
+{structuredData && (
+    <script is:inline type="application/ld+json" set:html={structuredData}></script>
+)}

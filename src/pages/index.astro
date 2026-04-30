@@ -7,9 +7,29 @@ import desarmaderoPhoto from '@src/assets/img/projects/desarmadero-parts-stockro
 import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
 import palabrunoPhoto from '@src/assets/img/projects/palabruno-language-study-photo.png';
 
-const title = 'Hanif Carroll | Technical Product Partner';
+const title = 'Hanif Carroll | AI Product Engineer for MVPs & Automation';
 const description =
-	'I help founder-led teams turn vague product ideas and manual workflows into smaller systems that can be scoped, built, launched, and owned without agency overhead.';
+	'I help nontechnical founders ship focused MVPs, automate manual workflows, and build useful AI systems without agency overhead.';
+
+const homepageJsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/',
+		jobTitle: 'AI Product Engineer',
+		description,
+		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
+		knowsAbout: ['MVP development', 'workflow automation', 'AI agents', 'product engineering']
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/',
+		description
+	}
+];
 
 const pathCards = [
 	{
@@ -80,21 +100,21 @@ const fitColumns = [
 ];
 ---
 
-<BaseLayout title={title} description={description} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
+<BaseLayout title={title} description={description} jsonLd={homepageJsonLd} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
 	<section class='home-hero-shell'>
 		<div class='container home-hero-stage'>
 			<header class='home-hero-split'>
 				<div class='home-hero-copy-wrap'>
 					<div class='home-hero-copy space-y-6 md:space-y-7'>
-						<p class='home-hero-context home-hero-context--hero'>For nontechnical founders</p>
+						<p class='home-hero-context home-hero-context--hero'>AI product engineer for nontechnical founders</p>
 						<h1 class='home-hero-title'>
 							<span>Turn rough ideas</span>
 							<span>and manual workflows</span>
 							<span>into working software</span>
 						</h1>
 						<p class='home-hero-body'>
-							Work with one senior partner to cut scope, choose the right path, and build the first version directly. Product launch,
-							workflow audit, or a smaller first step.
+							Work with one senior partner to cut scope, choose the right path, and build the first version directly. MVP launch,
+							workflow automation, AI agents, or a smaller first step.
 						</p>
 						<div class='home-hero-actions'>
 							<a
