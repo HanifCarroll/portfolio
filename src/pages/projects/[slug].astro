@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
+import { BOOK_CALL_URL } from '../../consts';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
@@ -82,10 +83,44 @@ const caseStudyJsonLd = {
 
 const caseStudyFacts = [
 	{ label: 'Role', value: project.role },
-	{ label: 'Service', value: project.service },
-	{ label: 'Year', value: project.year ?? project.timeline },
+	{ label: 'Timeline', value: project.timeline ?? project.year },
+	{ label: 'Team', value: project.teamSize },
+	{ label: 'Service', value: project.service }
+].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
+
+const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
+const proofSnapshot = [
+	{ label: 'Outcome', value: firstResult },
+	{ label: 'Buyer or user', value: project.bestFit },
+	{ label: 'What shipped', value: project.deliveryHighlights?.[0] },
 	{ label: 'Company', value: project.client }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
+
+const heroActions = [
+	project.liveUrl && {
+		label: 'Visit live product',
+		href: project.liveUrl,
+		trackEvent: 'project_live_site_clicked',
+		trackLocation: 'project_detail_hero',
+		external: true
+	},
+	project.repository && {
+		label: 'View repository',
+		href: project.repository,
+		trackEvent: 'project_repository_clicked',
+		trackLocation: 'project_detail_hero',
+		external: true
+	},
+	{
+		label: 'Book a roadmap call',
+		href: BOOK_CALL_URL,
+		trackEvent: 'book_call_clicked',
+		trackLocation: 'project_detail_hero',
+		external: true
+	}
+].filter((action): action is { label: string; href: string; trackEvent: string; trackLocation: string; external: boolean } =>
+	Boolean(action)
+);
 ---
 
 <BaseLayout
@@ -125,6 +160,22 @@ const caseStudyFacts = [
 						{project.title}
 					</h1>
 					<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+					<div class='case-study-detail__hero-actions'>
+						{
+							heroActions.map((action, index) => (
+								<a
+									class={index === 0 ? 'home-hero-primary-link' : 'fit-secondary-link'}
+									href={action.href}
+									target={action.external ? '_blank' : undefined}
+									rel={action.external ? 'noopener noreferrer' : undefined}
+									data-track-event={action.trackEvent}
+									data-track-location={action.trackLocation}
+								>
+									{action.label}
+								</a>
+							))
+						}
+					</div>
 				</div>
 
 				<aside class='case-study-detail__hero-facts'>
@@ -140,6 +191,20 @@ const caseStudyFacts = [
 			</div>
 		</header>
 
+		<section class='case-study-detail__proof-snapshot' aria-labelledby='case-study-proof-snapshot-title'>
+			<h2 id='case-study-proof-snapshot-title'>Proof snapshot</h2>
+			<div class='case-study-detail__proof-snapshot-grid'>
+				{
+					proofSnapshot.map((detail) => (
+						<div class='case-study-detail__proof-snapshot-item'>
+							<p>{detail.label}</p>
+							<strong>{detail.value}</strong>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
 		<Content />
 
 		{
@@ -152,9 +217,9 @@ const caseStudyFacts = [
 								<span class='tech-tag'>{tech}</span>
 							))}
 						</div>
-						{
-							project.liveUrl && (
-								<div class='case-study-detail__actions'>
+						{(project.liveUrl || project.repository) && (
+							<div class='case-study-detail__actions'>
+								{project.liveUrl && (
 									<a
 										class='btn-secondary'
 										href={project.liveUrl}
@@ -166,9 +231,22 @@ const caseStudyFacts = [
 										Visit Live Site
 										<span>&rarr;</span>
 									</a>
-								</div>
-							)
-						}
+								)}
+								{project.repository && (
+									<a
+										class='btn-secondary'
+										href={project.repository}
+										target='_blank'
+										rel='noopener noreferrer'
+										data-track-event='project_repository_clicked'
+										data-track-location='project_detail'
+									>
+										View Repository
+										<span>&rarr;</span>
+									</a>
+								)}
+							</div>
+						)}
 					</div>
 				</section>
 			)

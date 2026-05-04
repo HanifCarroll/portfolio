@@ -15,6 +15,7 @@ const pathChoices = [
 	{
 		label: 'Product path',
 		title: '4-Week Launch',
+		anchor: 'mvp',
 		summary: 'For founders who need the first useful version scoped, built, and live.',
 		price: 'Starts at $10,000',
 		signals: ['The product direction is still fuzzy.', 'You need scope, UX, build, and launch in one place.'],
@@ -24,6 +25,7 @@ const pathChoices = [
 	{
 		label: 'Workflow path',
 		title: 'Workflow Audit',
+		anchor: 'automation',
 		summary: 'For teams that need to find the bottleneck before building software or adding AI.',
 		price: 'Starts at $1,000',
 		signals: [
@@ -146,6 +148,7 @@ const faqItems = [
 				{
 					pathChoices.map((choice) => (
 						<a
+							id={choice.anchor}
 							href={calUrl}
 							target='_blank'
 							rel='noopener noreferrer'

@@ -1,10 +1,11 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { BOOK_CALL_URL } from '../../consts';
+import { BOOK_CALL_URL, RESUME_URL } from '../../consts';
 
 const navLinks = [
 	{ href: '/launch/', label: 'Services' },
 	{ href: '/projects/', label: 'Case Studies' },
+	{ href: RESUME_URL, label: 'Resume', trackEvent: 'resume_clicked', trackLocation: 'header_nav' },
 	{ href: '/tools/', label: 'Tools' },
 	{ href: '/about/', label: 'About' },
 	{ href: '/blog/', label: 'Notes' }
@@ -19,11 +20,19 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 	<div class='container relative z-[70] flex items-center justify-between gap-4 py-4'>
 		<a href='/' id='logoLink' class='flex flex-col transition hover:text-primary focus-visible:outline-none'>
 			<span class='font-display text-lg font-semibold uppercase tracking-[0.08em]'> Hanif Carroll </span>
-			<span class='font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400'> Technical Product Partner </span>
+			<span class='font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400'>
+				Product Engineer, Full Stack + AI
+			</span>
 		</a>
 
 		<nav class='hidden items-center gap-8 lg:flex'>
-			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
+			{
+				navLinks.map((link) => (
+					<HeaderLink href={link.href} data-track-event={link.trackEvent} data-track-location={link.trackLocation}>
+						{link.label}
+					</HeaderLink>
+				))
+			}
 			<a
 				href={BOOK_CALL_URL}
 				class='inline-flex items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#f2ede3] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
@@ -166,6 +175,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 					mobileMenu.removeAttribute('hidden');
 					requestAnimationFrame(() => {
 						mobileMenu.dataset.state = 'open';
+						mobileMenu.querySelector('[data-mobile-menu-item]')?.focus({ preventScroll: true });
 					});
 					menuIcon?.classList.add('hidden');
 					closeIcon?.classList.remove('hidden');
@@ -240,10 +250,12 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 				<a
 					href={link.href}
 					class:list={[
-						'text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary',
+						'text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary focus-visible:outline-none focus-visible:text-primary',
 						isActiveLink(link.href) && 'text-primary'
 					]}
 					aria-current={isActiveLink(link.href) ? 'page' : undefined}
+					data-track-event={link.trackEvent}
+					data-track-location={link.trackLocation?.replace('header_nav', 'header_mobile_nav')}
 					data-mobile-menu-item
 					style={`--mobile-menu-index: ${index}`}
 				>

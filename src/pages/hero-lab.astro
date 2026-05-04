@@ -1,324 +1,274 @@
 ---
-import { Image } from "astro:assets";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { BOOK_CALL_URL } from "../consts";
-import HeroImage from "@src/assets/img/portrait-brick.webp";
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL } from '../consts';
+import HeroImage from '@src/assets/img/portrait-brick.webp';
 
-const title = "Hero Lab | Hanif Carroll";
-const description =
-    "Five hero directions for comparing text/image hierarchy on Hanif Carroll's homepage.";
+const title = 'Hero Lab | Hanif Carroll';
+const description = "Five hero directions for comparing text/image hierarchy on Hanif Carroll's homepage.";
 
-const bodyCopy =
-    "I turn product ideas and messy manual workflows into working software without agency overhead or technical hand-holding.";
+const bodyCopy = 'I turn product ideas and messy manual workflows into working software without agency overhead or technical hand-holding.';
 const summaryPoints = [
-    {
-        id: "variant-1",
-        label: "01",
-        title: "Protected split",
-        note: "Hard separation. Text and portrait never compete.",
-    },
-    {
-        id: "variant-2",
-        label: "02",
-        title: "Reduced footprint",
-        note: "Same full-bleed energy, but the headline gets out of the way.",
-    },
-    {
-        id: "variant-3",
-        label: "03",
-        title: "Gradient zone",
-        note: "Full image stays intact, but the copy only lives on the dark side.",
-    },
-    {
-        id: "variant-4",
-        label: "04",
-        title: "Bottom overlay",
-        note: "Cinematic image with the copy anchored low and left.",
-    },
-    {
-        id: "variant-5",
-        label: "05",
-        title: "Vertical stack",
-        note: "Text and portrait stop sharing the same plane entirely.",
-    },
+	{
+		id: 'variant-1',
+		label: '01',
+		title: 'Protected split',
+		note: 'Hard separation. Text and portrait never compete.'
+	},
+	{
+		id: 'variant-2',
+		label: '02',
+		title: 'Reduced footprint',
+		note: 'Same full-bleed energy, but the headline gets out of the way.'
+	},
+	{
+		id: 'variant-3',
+		label: '03',
+		title: 'Gradient zone',
+		note: 'Full image stays intact, but the copy only lives on the dark side.'
+	},
+	{
+		id: 'variant-4',
+		label: '04',
+		title: 'Bottom overlay',
+		note: 'Cinematic image with the copy anchored low and left.'
+	},
+	{
+		id: 'variant-5',
+		label: '05',
+		title: 'Vertical stack',
+		note: 'Text and portrait stop sharing the same plane entirely.'
+	}
 ];
 ---
 
-<BaseLayout title={title} description={description} flushTop>
-    <section class="container py-12 md:py-16">
-        <div class="max-w-4xl space-y-6">
-            <p class="kicker-line">Hero Lab</p>
-            <h1 class="heading-display text-4xl md:text-6xl">
-                Five hero directions, stacked for comparison.
-            </h1>
-            <p class="max-w-3xl text-base leading-7 text-zinc-600 dark:text-zinc-300">
-                These are not micro-crop tweaks. Each section tests a distinct layout
-                decision about how the copy and portrait should share the first viewport.
-            </p>
-        </div>
-        <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {summaryPoints.map((item) => (
-                <a
-                    href={`#${item.id}`}
-                    class="signal-line flex flex-col gap-3 px-0 pt-5 text-left transition-colors hover:text-primary"
-                >
-                    <span class="font-mono text-xs uppercase tracking-[0.28em] text-primary">
-                        {item.label}
-                    </span>
-                    <span class="text-lg font-semibold">{item.title}</span>
-                    <span class="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                        {item.note}
-                    </span>
-                </a>
-            ))}
-        </div>
-    </section>
+<BaseLayout title={title} description={description} robots='noindex, nofollow' flushTop>
+	<section class='container py-12 md:py-16'>
+		<div class='max-w-4xl space-y-6'>
+			<p class='kicker-line'>Hero Lab</p>
+			<h1 class='heading-display text-4xl md:text-6xl'>Five hero directions, stacked for comparison.</h1>
+			<p class='max-w-3xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				These are not micro-crop tweaks. Each section tests a distinct layout decision about how the copy and portrait should share the
+				first viewport.
+			</p>
+		</div>
+		<div class='mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5'>
+			{
+				summaryPoints.map((item) => (
+					<a href={`#${item.id}`} class='signal-line flex flex-col gap-3 px-0 pt-5 text-left transition-colors hover:text-primary'>
+						<span class='font-mono text-xs uppercase tracking-[0.28em] text-primary'>{item.label}</span>
+						<span class='text-lg font-semibold'>{item.title}</span>
+						<span class='text-sm leading-6 text-zinc-600 dark:text-zinc-300'>{item.note}</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
 
-    <section
-        id="variant-1"
-        class="border-y border-black/10 bg-black text-white dark:border-white/10"
-    >
-        <div class="hero-lab-protected-split min-h-[calc(100svh-73px)]">
-            <div class="relative min-w-0 flex items-center border-b border-white/10 bg-[linear-gradient(165deg,#050505,#07162d)] px-6 py-14 md:px-10 lg:border-b-0 lg:border-r lg:border-r-white/10 lg:px-14 xl:px-20">
-                <div class="max-w-[31rem] space-y-7">
-                    <div class="space-y-4">
-                        <p class="kicker-line">01 / Protected Split</p>
-                        <h2 class="poster-title max-w-[7.2ch] text-[clamp(2.2rem,3.35vw,3.7rem)] leading-[0.94]">
-                            <span class="block">MVPs and AI</span>
-                            <span class="block">automation for</span>
-                            <span class="block">nontechnical founders.</span>
-                        </h2>
-                    </div>
-                    <p class="max-w-[28rem] text-lg leading-8 text-white/74">
-                        {bodyCopy}
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a
-                            class="btn-primary"
-                            href={BOOK_CALL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Book a Roadmap Call
-                        </a>
-                        <a
-                            class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
-                            href="/projects/"
-                        >
-                            See Case Studies
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="relative min-h-[26rem] min-w-0 overflow-hidden bg-[#d8c6b9]">
-                <Image
-                    src={HeroImage}
-                    alt="Hanif Carroll portrait"
-                    class="absolute inset-0 h-full w-full scale-x-[-1] object-cover object-[64%_12%] lg:object-[72%_12%]"
-                    loading="eager"
-                />
-                <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.14))]"></div>
-                <div class="absolute bottom-6 left-6 max-w-[15rem] border-t border-black/15 pt-4 text-xs uppercase tracking-[0.24em] text-black/55">
-                    No overlap. The portrait stays fully readable.
-                </div>
-            </div>
-        </div>
-    </section>
+	<section id='variant-1' class='border-y border-black/10 bg-black text-white dark:border-white/10'>
+		<div class='hero-lab-protected-split min-h-[calc(100svh-73px)]'>
+			<div
+				class='relative min-w-0 flex items-center border-b border-white/10 bg-[linear-gradient(165deg,#050505,#07162d)] px-6 py-14 md:px-10 lg:border-b-0 lg:border-r lg:border-r-white/10 lg:px-14 xl:px-20'
+			>
+				<div class='max-w-[31rem] space-y-7'>
+					<div class='space-y-4'>
+						<p class='kicker-line'>01 / Protected Split</p>
+						<h2 class='poster-title max-w-[7.2ch] text-[clamp(2.2rem,3.35vw,3.7rem)] leading-[0.94]'>
+							<span class='block'>MVPs and AI</span>
+							<span class='block'>automation for</span>
+							<span class='block'>nontechnical founders.</span>
+						</h2>
+					</div>
+					<p class='max-w-[28rem] text-lg leading-8 text-white/74'>
+						{bodyCopy}
+					</p>
+					<div class='flex flex-wrap gap-4'>
+						<a class='btn-primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'> Book a Roadmap Call </a>
+						<a
+							class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+							href='/projects/'
+						>
+							See Case Studies
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class='relative min-h-[26rem] min-w-0 overflow-hidden bg-[#d8c6b9]'>
+				<Image
+					src={HeroImage}
+					alt='Hanif Carroll portrait'
+					class='absolute inset-0 h-full w-full scale-x-[-1] object-cover object-[64%_12%] lg:object-[72%_12%]'
+					loading='eager'
+				/>
+				<div class='absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.14))]'></div>
+				<div class='absolute bottom-6 left-6 max-w-[15rem] border-t border-black/15 pt-4 text-xs uppercase tracking-[0.24em] text-black/55'>
+					No overlap. The portrait stays fully readable.
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section
-        id="variant-2"
-        class="relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10"
-    >
-        <div class="absolute inset-0">
-            <Image
-                src={HeroImage}
-                alt="Hanif Carroll portrait"
-                class="h-full w-full scale-x-[-1] object-cover object-[100%_14%] lg:object-[116%_8%]"
-                loading="lazy"
-            />
-            <div class="absolute inset-0 bg-[linear-gradient(98deg,rgba(4,5,7,0.96)_10%,rgba(4,5,7,0.90)_24%,rgba(4,5,7,0.58)_36%,rgba(4,5,7,0.16)_50%,rgba(4,5,7,0.04)_100%)]"></div>
-        </div>
-        <div class="relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] flex-col justify-between px-6 pb-6 pt-12 md:px-10 lg:px-16 lg:pt-16">
-            <div class="max-w-[31rem] space-y-6">
-                <p class="kicker-line">02 / Reduced Footprint</p>
-                <h2 class="poster-title max-w-[7.5ch] text-[clamp(2.3rem,3.7vw,3.9rem)] leading-[0.94]">
-                    <span class="block">Ship the first</span>
-                    <span class="block">version. Then</span>
-                    <span class="block">clean up the</span>
-                    <span class="block">workflow.</span>
-                </h2>
-                <p class="max-w-[29rem] text-lg leading-8 text-white/76">
-                    Same full-bleed energy as the current hero, but the copy stops trying
-                    to occupy the same space as the portrait.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a
-                        class="btn-primary"
-                        href={BOOK_CALL_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Book a Roadmap Call
-                    </a>
-                    <a
-                        class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
-                        href="/projects/"
-                    >
-                        See Case Studies
-                    </a>
-                </div>
-            </div>
-            <div class="mt-8 grid gap-4 border-t border-white/14 pt-5 text-sm text-white/72 md:grid-cols-2">
-                <p>Headline is smaller and narrower, not weaker.</p>
-                <p>The face sits in the open half of the frame.</p>
-            </div>
-        </div>
-    </section>
+	<section id='variant-2' class='relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10'>
+		<div class='absolute inset-0'>
+			<Image
+				src={HeroImage}
+				alt='Hanif Carroll portrait'
+				class='h-full w-full scale-x-[-1] object-cover object-[100%_14%] lg:object-[116%_8%]'
+				loading='lazy'
+			/>
+			<div
+				class='absolute inset-0 bg-[linear-gradient(98deg,rgba(4,5,7,0.96)_10%,rgba(4,5,7,0.90)_24%,rgba(4,5,7,0.58)_36%,rgba(4,5,7,0.16)_50%,rgba(4,5,7,0.04)_100%)]'
+			>
+			</div>
+		</div>
+		<div
+			class='relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] flex-col justify-between px-6 pb-6 pt-12 md:px-10 lg:px-16 lg:pt-16'
+		>
+			<div class='max-w-[31rem] space-y-6'>
+				<p class='kicker-line'>02 / Reduced Footprint</p>
+				<h2 class='poster-title max-w-[7.5ch] text-[clamp(2.3rem,3.7vw,3.9rem)] leading-[0.94]'>
+					<span class='block'>Ship the first</span>
+					<span class='block'>version. Then</span>
+					<span class='block'>clean up the</span>
+					<span class='block'>workflow.</span>
+				</h2>
+				<p class='max-w-[29rem] text-lg leading-8 text-white/76'>
+					Same full-bleed energy as the current hero, but the copy stops trying to occupy the same space as the portrait.
+				</p>
+				<div class='flex flex-wrap gap-4'>
+					<a class='btn-primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'> Book a Roadmap Call </a>
+					<a
+						class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+						href='/projects/'
+					>
+						See Case Studies
+					</a>
+				</div>
+			</div>
+			<div class='mt-8 grid gap-4 border-t border-white/14 pt-5 text-sm text-white/72 md:grid-cols-2'>
+				<p>Headline is smaller and narrower, not weaker.</p>
+				<p>The face sits in the open half of the frame.</p>
+			</div>
+		</div>
+	</section>
 
-    <section
-        id="variant-3"
-        class="relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10"
-    >
-        <div class="absolute inset-0">
-            <Image
-                src={HeroImage}
-                alt="Hanif Carroll portrait"
-                class="h-full w-full scale-x-[-1] object-cover object-[90%_12%] lg:object-[100%_10%]"
-                loading="lazy"
-            />
-            <div class="absolute inset-y-0 left-0 w-full bg-[linear-gradient(90deg,rgba(3,4,6,0.96)_0%,rgba(3,4,6,0.90)_26%,rgba(3,4,6,0.56)_36%,rgba(3,4,6,0.08)_52%)] lg:w-[58%]"></div>
-            <div class="absolute inset-y-0 left-0 hidden w-px bg-white/12 lg:block"></div>
-        </div>
-        <div class="relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] items-center px-6 py-14 md:px-10 lg:px-16">
-            <div class="max-w-[30rem] space-y-6">
-                <p class="kicker-line">03 / Gradient Zone</p>
-                <h2 class="poster-title max-w-[6.8ch] text-[clamp(2.35rem,4vw,4.2rem)] leading-[0.92]">
-                    <span class="block">Keep the</span>
-                    <span class="block">image full-</span>
-                    <span class="block">bleed. Keep</span>
-                    <span class="block">the copy on</span>
-                    <span class="block">the dark side.</span>
-                </h2>
-                <p class="max-w-[28rem] text-lg leading-8 text-white/74">
-                    This keeps the cinematic edge of a background image, but the copy
-                    lives inside its own protected tonal zone.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a
-                        class="btn-primary"
-                        href={BOOK_CALL_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Book a Roadmap Call
-                    </a>
-                    <a
-                        class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
-                        href="/projects/"
-                    >
-                        See Case Studies
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section id='variant-3' class='relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10'>
+		<div class='absolute inset-0'>
+			<Image
+				src={HeroImage}
+				alt='Hanif Carroll portrait'
+				class='h-full w-full scale-x-[-1] object-cover object-[90%_12%] lg:object-[100%_10%]'
+				loading='lazy'
+			/>
+			<div
+				class='absolute inset-y-0 left-0 w-full bg-[linear-gradient(90deg,rgba(3,4,6,0.96)_0%,rgba(3,4,6,0.90)_26%,rgba(3,4,6,0.56)_36%,rgba(3,4,6,0.08)_52%)] lg:w-[58%]'
+			>
+			</div>
+			<div class='absolute inset-y-0 left-0 hidden w-px bg-white/12 lg:block'></div>
+		</div>
+		<div class='relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] items-center px-6 py-14 md:px-10 lg:px-16'>
+			<div class='max-w-[30rem] space-y-6'>
+				<p class='kicker-line'>03 / Gradient Zone</p>
+				<h2 class='poster-title max-w-[6.8ch] text-[clamp(2.35rem,4vw,4.2rem)] leading-[0.92]'>
+					<span class='block'>Keep the</span>
+					<span class='block'>image full-</span>
+					<span class='block'>bleed. Keep</span>
+					<span class='block'>the copy on</span>
+					<span class='block'>the dark side.</span>
+				</h2>
+				<p class='max-w-[28rem] text-lg leading-8 text-white/74'>
+					This keeps the cinematic edge of a background image, but the copy lives inside its own protected tonal zone.
+				</p>
+				<div class='flex flex-wrap gap-4'>
+					<a class='btn-primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'> Book a Roadmap Call </a>
+					<a
+						class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+						href='/projects/'
+					>
+						See Case Studies
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section
-        id="variant-4"
-        class="relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10"
-    >
-        <div class="absolute inset-0">
-            <Image
-                src={HeroImage}
-                alt="Hanif Carroll portrait"
-                class="h-full w-full scale-x-[-1] object-cover object-[90%_10%] lg:object-[100%_8%]"
-                loading="lazy"
-            />
-            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.06)_0%,rgba(5,5,5,0.12)_40%,rgba(5,5,5,0.80)_74%,rgba(5,5,5,0.94)_100%)]"></div>
-            <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.62)_0%,rgba(5,5,5,0.24)_30%,rgba(5,5,5,0.02)_56%)]"></div>
-        </div>
-        <div class="relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] flex-col justify-between px-6 py-12 md:px-10 lg:px-16">
-            <div class="flex justify-start">
-                <p class="kicker-line">04 / Bottom Overlay</p>
-            </div>
-            <div class="max-w-[42rem] space-y-6 pb-4">
-                <h2 class="poster-title max-w-[8.4ch] text-[clamp(2.7rem,4.9vw,5rem)] leading-[0.9]">
-                    Let the portrait breathe. Put the argument below it.
-                </h2>
-                <p class="max-w-[34rem] text-lg leading-8 text-white/78">
-                    This version keeps the image dominant and moves the sell lower in the
-                    frame, so the trust signal lands before the CTA.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a
-                        class="btn-primary"
-                        href={BOOK_CALL_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Book a Roadmap Call
-                    </a>
-                    <a
-                        class="btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black"
-                        href="/projects/"
-                    >
-                        See Case Studies
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section id='variant-4' class='relative isolate overflow-hidden border-b border-black/10 bg-black text-white dark:border-white/10'>
+		<div class='absolute inset-0'>
+			<Image
+				src={HeroImage}
+				alt='Hanif Carroll portrait'
+				class='h-full w-full scale-x-[-1] object-cover object-[90%_10%] lg:object-[100%_8%]'
+				loading='lazy'
+			/>
+			<div
+				class='absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.06)_0%,rgba(5,5,5,0.12)_40%,rgba(5,5,5,0.80)_74%,rgba(5,5,5,0.94)_100%)]'
+			>
+			</div>
+			<div class='absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.62)_0%,rgba(5,5,5,0.24)_30%,rgba(5,5,5,0.02)_56%)]'></div>
+		</div>
+		<div class='relative mx-auto flex min-h-[calc(100svh-73px)] max-w-[1480px] flex-col justify-between px-6 py-12 md:px-10 lg:px-16'>
+			<div class='flex justify-start'>
+				<p class='kicker-line'>04 / Bottom Overlay</p>
+			</div>
+			<div class='max-w-[42rem] space-y-6 pb-4'>
+				<h2 class='poster-title max-w-[8.4ch] text-[clamp(2.7rem,4.9vw,5rem)] leading-[0.9]'>
+					Let the portrait breathe. Put the argument below it.
+				</h2>
+				<p class='max-w-[34rem] text-lg leading-8 text-white/78'>
+					This version keeps the image dominant and moves the sell lower in the frame, so the trust signal lands before the CTA.
+				</p>
+				<div class='flex flex-wrap gap-4'>
+					<a class='btn-primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'> Book a Roadmap Call </a>
+					<a
+						class='btn-secondary border-white text-white hover:bg-white hover:text-black dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black'
+						href='/projects/'
+					>
+						See Case Studies
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section
-        id="variant-5"
-        class="border-b border-black/10 bg-[#ebe4d7] dark:border-white/10 dark:bg-[#090909]"
-    >
-        <div class="grid min-h-[calc(100svh-73px)] lg:grid-rows-[0.7fr_1.3fr]">
-            <div class="flex items-center border-b border-black/10 px-6 py-10 md:px-10 lg:px-16 lg:py-10 dark:border-white/10">
-                <div class="max-w-[54rem] space-y-5">
-                    <p class="kicker-line">05 / Vertical Stack</p>
-                    <h2 class="heading-display max-w-[10ch] text-4xl md:text-6xl lg:text-[4.2rem] lg:leading-[0.92]">
-                        Text and portrait stop sharing the same plane.
-                    </h2>
-                    <p class="max-w-[34rem] text-lg leading-8 text-zinc-700 dark:text-zinc-300">
-                        If the portrait matters, give it its own strip. This is the most
-                        explicit answer to the overlap problem.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a
-                            class="btn-primary"
-                            href={BOOK_CALL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Book a Roadmap Call
-                        </a>
-                        <a class="btn-secondary" href="/projects/">See Case Studies</a>
-                    </div>
-                </div>
-            </div>
-            <div class="relative min-h-[24rem] overflow-hidden bg-black">
-                <Image
-                    src={HeroImage}
-                    alt="Hanif Carroll portrait"
-                    class="absolute inset-0 h-full w-full scale-x-[-1] object-cover object-[50%_10%] lg:object-[84%_4%]"
-                    loading="lazy"
-                />
-                <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.06)_0%,rgba(5,5,5,0.16)_100%)]"></div>
-            </div>
-        </div>
-    </section>
+	<section id='variant-5' class='border-b border-black/10 bg-[#ebe4d7] dark:border-white/10 dark:bg-[#090909]'>
+		<div class='grid min-h-[calc(100svh-73px)] lg:grid-rows-[0.7fr_1.3fr]'>
+			<div class='flex items-center border-b border-black/10 px-6 py-10 md:px-10 lg:px-16 lg:py-10 dark:border-white/10'>
+				<div class='max-w-[54rem] space-y-5'>
+					<p class='kicker-line'>05 / Vertical Stack</p>
+					<h2 class='heading-display max-w-[10ch] text-4xl md:text-6xl lg:text-[4.2rem] lg:leading-[0.92]'>
+						Text and portrait stop sharing the same plane.
+					</h2>
+					<p class='max-w-[34rem] text-lg leading-8 text-zinc-700 dark:text-zinc-300'>
+						If the portrait matters, give it its own strip. This is the most explicit answer to the overlap problem.
+					</p>
+					<div class='flex flex-wrap gap-4'>
+						<a class='btn-primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'> Book a Roadmap Call </a>
+						<a class='btn-secondary' href='/projects/'>See Case Studies</a>
+					</div>
+				</div>
+			</div>
+			<div class='relative min-h-[24rem] overflow-hidden bg-black'>
+				<Image
+					src={HeroImage}
+					alt='Hanif Carroll portrait'
+					class='absolute inset-0 h-full w-full scale-x-[-1] object-cover object-[50%_10%] lg:object-[84%_4%]'
+					loading='lazy'
+				/>
+				<div class='absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.06)_0%,rgba(5,5,5,0.16)_100%)]'></div>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
 
 <style>
-    .hero-lab-protected-split {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-    }
+	.hero-lab-protected-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+	}
 
-    @media (min-width: 1024px) {
-        .hero-lab-protected-split {
-            grid-template-columns: minmax(0, 44%) minmax(0, 56%);
-        }
-    }
+	@media (min-width: 1024px) {
+		.hero-lab-protected-split {
+			grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+		}
+	}
 </style>

@@ -84,3 +84,25 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Search Console has too little new search volume to judge CTR impact yet.
 - The resume PDF continues to gain impressions and should stay on the watch list because it may compete with the homepage for professional positioning queries.
 - GA4 is still too low-volume for conversion conclusions, but organic search produced one deeper homepage session after the changes.
+
+## 2026-05-04
+
+### Changes Shipped
+
+- Reframed the homepage and shared header around `Product Engineer, Full Stack + AI` plus `Founder-led SaaS from idea to launch`.
+- Added a homepage proof strip, recruiter evidence links, and earlier path selection before case-study rows.
+- Reordered visible proof toward Palabruno, Genrupt, and Mucho Hangouts, with Desarmadero moved to supporting project proof.
+- Fixed RSS item links from `/undefined/` to `/blog/{slug}/`.
+- Filtered `/hero-lab/` and `/automation-ai-agents/` out of the generated sitemap, and marked `/hero-lab/` noindex.
+- Added project-detail proof snapshots, early live/repository actions, blog `BlogPosting` JSON-LD, RSS alternate metadata, and shared skip-link/focus accessibility hooks.
+
+### Verification
+
+- `bun run check:projects` passed and caught no remaining project JSON, case-study, or asset-path drift.
+- `bun run build` passed.
+- Generated `dist/rss.xml` contains blog URLs, and generated `dist/sitemap-0.xml` no longer lists `/hero-lab/` or `/automation-ai-agents/`.
+
+### Follow-Up Checks
+
+- After deployment and cache propagation, verify production HTML for `/`, `/projects/palabruno/`, `/projects/`, and `/rss.xml`.
+- Re-check Search Console in 3 to 6 weeks for homepage, resume PDF, Palabruno, Genrupt, and Mucho Hangouts query movement.

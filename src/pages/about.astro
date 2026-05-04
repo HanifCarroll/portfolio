@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL, RESUME_URL } from '../consts';
 
 const title = 'About Hanif Carroll';
 const description =
@@ -48,6 +49,14 @@ const backgroundMoments = [
 		label: 'Independent work',
 		body: 'Built across MVPs, launch sites, workflow systems, internal tools, and AI-enabled products where smaller teams needed judgment as much as code.'
 	}
+];
+
+const evidenceLinks = [
+	{ label: 'Resume', href: RESUME_URL, trackEvent: 'resume_clicked' },
+	{ label: 'GitHub', href: 'https://github.com/hanifcarroll' },
+	{ label: 'LinkedIn', href: 'https://linkedin.com/in/hanifcarroll' },
+	{ label: 'Tools and experiments', href: '/tools/' },
+	{ label: 'Email', href: 'mailto:HanifCarroll@gmail.com', trackEvent: 'email_clicked' }
 ];
 ---
 
@@ -138,6 +147,31 @@ const backgroundMoments = [
 			<a href='/tools/' class='arrow-link w-fit'>See tools and experiments</a>
 		</section>
 
+		<section class='about-evidence-path'>
+			<div class='max-w-3xl space-y-4'>
+				<p class='section-label'>// Recruiter Path</p>
+				<h2 class='heading-display heading-display--section'>The product-engineer case in one place.</h2>
+				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					Resume, code, tools, case studies, and contact links are grouped here so the product engineering story is easier to verify.
+				</p>
+			</div>
+			<div class='home-evidence-links about-evidence-path__links' aria-label='Professional evidence links'>
+				{
+					evidenceLinks.map((link) => (
+						<a
+							href={link.href}
+							target={link.href.startsWith('http') ? '_blank' : undefined}
+							rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+							data-track-event={link.trackEvent ?? 'evidence_clicked'}
+							data-track-location='about_evidence'
+						>
+							{link.label}
+						</a>
+					))
+				}
+			</div>
+		</section>
+
 		<section class='max-w-3xl space-y-5 pb-4'>
 			<p class='section-label'>// Closing Note</p>
 			<h2 class='heading-display heading-display--section'>
@@ -146,7 +180,16 @@ const backgroundMoments = [
 			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 				The roadmap call is where I tell you whether this should start as an MVP, a workflow audit, or something smaller.
 			</p>
-			<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
+			<a
+				href={BOOK_CALL_URL}
+				target='_blank'
+				rel='noopener noreferrer'
+				class='arrow-link w-fit'
+				data-track-event='book_call_clicked'
+				data-track-location='about_closing'
+			>
+				Book a Roadmap Call
+			</a>
 		</section>
 	</article>
 </BaseLayout>

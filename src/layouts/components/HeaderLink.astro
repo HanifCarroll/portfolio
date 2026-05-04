@@ -7,16 +7,17 @@ const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + subpath?.[0];
+const hrefPath = href instanceof URL ? href.pathname : typeof href === 'string' ? href : undefined;
+const normalizePath = (value?: string) => (value ? (value.endsWith('/') ? value : `${value}/`) : '/');
+const normalizedHref = normalizePath(hrefPath);
+const currentRoot = normalizePath(subpath?.[0] ? `/${subpath[0]}` : '/');
+const isActive = normalizedHref === normalizePath(pathname) || normalizedHref === currentRoot;
 ---
 
 <a
 	href={href}
-	class:list={[
-		'nav-link',
-		{ 'text-primary after:w-full': isActive },
-		className
-	]}
+	aria-current={isActive ? 'page' : undefined}
+	class:list={['nav-link', { 'text-primary after:w-full': isActive }, className]}
 	{...props}
 >
 	<slot />

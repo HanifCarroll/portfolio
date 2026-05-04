@@ -2,23 +2,12 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../lib/project-cards';
+import { CLIENT_PROJECT_ORDER, EXPERIMENT_PROJECT_ORDER, PROJECT_OUTCOME_HIGHLIGHTS } from '../../lib/project-curation';
 
 import palabrunoHero from '@src/assets/img/projects/palabruno-language-study-photo.png';
 
 const title = 'Case Studies';
 const description = 'Selected case studies from MVP builds, launch sites, and workflow systems by Hanif Carroll.';
-
-const preferredClientOrder = [
-	'palabruno',
-	'desarmadero-latorre',
-	'genrupt',
-	'casa-elaria',
-	'mucho-hangouts',
-	'maximo-interiorismo',
-	'redwriter-comics'
-] as const;
-
-const preferredExperimentOrder = ['apartment-finder', 'ba-eventos', 'language-exchange', 'vox-prismatic'] as const;
 
 const orderProjects = (projectList: typeof projects, preferredOrder: readonly string[]) => {
 	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
@@ -32,27 +21,18 @@ const orderProjects = (projectList: typeof projects, preferredOrder: readonly st
 
 const clientProjects = orderProjects(
 	projects.filter((project) => project.proofType === 'client'),
-	preferredClientOrder
+	CLIENT_PROJECT_ORDER
 );
 
 const experimentProjects = orderProjects(
 	projects.filter((project) => project.proofType === 'experiment'),
-	preferredExperimentOrder
+	EXPERIMENT_PROJECT_ORDER
 );
 
 const featuredProject = clientProjects[0];
 const visibleClientProjects = clientProjects.filter((project) => project.slug !== featuredProject?.slug);
 
-const featuredOutcomeHighlights = {
-	palabruno:
-		'Palabruno moved from rough founder idea to launch with mobile subscriptions, teacher payments on the web, app store launch assets, and clearer positioning.',
-	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',
-	genrupt: 'Genrupt moved from demo-stage AI generation toward a more reliable seller platform.',
-	'casa-elaria': 'The fake-door storefront tested buyer intent before inventory spend.',
-	'mucho-hangouts': 'The product became more reliable while the team kept shipping.',
-	'maximo-interiorismo': 'The designer gained a cleaner public home for high-value project conversations.',
-	'redwriter-comics': 'The artist gained a professional portfolio hub for editors and commissions.'
-} as const;
+const focusAreas = ['MVP builds', 'Product strategy', 'Launch systems', 'AI workflows'];
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -72,12 +52,9 @@ const featuredOutcomeHighlights = {
 			</div>
 			<div class='projects-index__hero-side'>
 				<p>Product strategy, UX, engineering, launch readiness, and the decisions that make a first version usable in the real world.</p>
-				<div class='projects-index__focus-list' aria-label='Project focus areas'>
-					<span>MVP builds</span>
-					<span>Product strategy</span>
-					<span>Launch systems</span>
-					<span>AI workflows</span>
-				</div>
+				<ul class='projects-index__focus-list' aria-label='Project focus areas'>
+					{focusAreas.map((area) => <li>{area}</li>)}
+				</ul>
 			</div>
 		</header>
 
@@ -94,7 +71,7 @@ const featuredOutcomeHighlights = {
 							<figure class='projects-index__feature-media'>
 								<Image
 									src={palabrunoHero}
-									alt={featuredProject.name}
+									alt='Language study notebook and vocabulary cards representing the Palabruno launch.'
 									class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.015]'
 									loading='eager'
 								/>
@@ -110,9 +87,7 @@ const featuredOutcomeHighlights = {
 								</div>
 								<div>
 									<dt>Result</dt>
-									<dd>
-										{featuredOutcomeHighlights[featuredProject.slug as keyof typeof featuredOutcomeHighlights] ?? featuredProject.outcome}
-									</dd>
+									<dd>{PROJECT_OUTCOME_HIGHLIGHTS[featuredProject.slug] ?? featuredProject.outcome}</dd>
 								</div>
 							</dl>
 							<span class='arrow-link w-fit'>Read case study</span>
@@ -137,7 +112,7 @@ const featuredOutcomeHighlights = {
 								<h3 class='heading-display heading-display--subsection'>
 									<a href={`/projects/${project.slug}/`}>{project.name}</a>
 								</h3>
-								<p>{featuredOutcomeHighlights[project.slug as keyof typeof featuredOutcomeHighlights] ?? project.outcome}</p>
+								<p>{PROJECT_OUTCOME_HIGHLIGHTS[project.slug] ?? project.outcome}</p>
 							</div>
 							<div class='projects-index__row-meta' aria-label={`${project.name} details`}>
 								<p>

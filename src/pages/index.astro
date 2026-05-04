@@ -1,15 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL } from '../consts';
+import { BOOK_CALL_URL, RESUME_URL } from '../consts';
+import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
-import desarmaderoPhoto from '@src/assets/img/projects/desarmadero-parts-stockroom-photo.png';
 import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
+import muchoHangoutsPhoto from '@src/assets/img/projects/mucho-hangouts-feature.png';
 import palabrunoPhoto from '@src/assets/img/projects/palabruno-language-study-photo.png';
 
-const title = 'Hanif Carroll | AI Product Engineer for MVPs & Automation';
+const title = 'Hanif Carroll | Product Engineer, Full Stack + AI';
 const description =
-	'I help nontechnical founders ship focused MVPs, automate manual workflows, and build useful AI systems without agency overhead.';
+	'I help founder-led teams turn rough SaaS ideas and manual workflows into useful launched software, with product judgment, full-stack engineering, and AI where it helps.';
 
 const homepageJsonLd = [
 	{
@@ -17,10 +18,10 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'AI Product Engineer',
+		jobTitle: 'Product Engineer, Full Stack + AI',
 		description,
 		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
-		knowsAbout: ['MVP development', 'workflow automation', 'AI agents', 'product engineering']
+		knowsAbout: ['Product engineering', 'MVP development', 'SaaS', 'workflow automation', 'AI systems']
 	},
 	{
 		'@context': 'https://schema.org',
@@ -36,30 +37,30 @@ const pathCards = [
 		label: 'Product path',
 		title: 'Launch a first version',
 		body: 'For founders who need the first useful version scoped, built, and live.',
-		href: '/launch/',
+		href: '/launch/#mvp',
 		cta: 'See the launch path'
 	},
 	{
 		label: 'Workflow path',
 		title: 'Diagnose the workflow',
 		body: 'For teams that need to find the bottleneck before building software or adding AI.',
-		href: '/launch/',
+		href: '/launch/#automation',
 		cta: 'See the audit path'
 	}
 ];
 
-const caseStudies = [
-	{
+const caseStudyBySlug = {
+	palabruno: {
 		slug: 'palabruno',
 		label: 'MVP build',
 		title: 'Palabruno',
 		body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, web payments for teachers, app store launch assets, UX polish, and public-site copy.',
-		outcome:
-			'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led buyer path.',
+		outcome: 'Launched iOS, Android, and web surfaces with real payment paths and a clearer teacher-led buyer path.',
 		image: palabrunoPhoto,
-		imageAlt: 'Language study notebook and vocabulary cards on a wooden table.'
+		imageAlt: 'Language study notebook and vocabulary cards on a wooden table.',
+		imageClass: undefined
 	},
-	{
+	genrupt: {
 		slug: 'genrupt',
 		label: 'AI systems',
 		title: 'Genrupt',
@@ -69,15 +70,34 @@ const caseStudies = [
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
-	{
-		slug: 'desarmadero-latorre',
-		label: 'Workflow automation',
-		title: 'Desarmadero La Torre',
-		body: 'Created a searchable inventory system for an auto-parts supplier so customers could browse stock 24/7 instead of calling staff for every question.',
-		outcome: 'Reduced repetitive operational work and increased qualified inbound inquiries.',
-		image: desarmaderoPhoto,
-		imageAlt: 'Organized shelves of used auto parts in a stockroom.'
+	'mucho-hangouts': {
+		slug: 'mucho-hangouts',
+		label: 'Product reliability',
+		title: 'Mucho Hangouts',
+		body: 'Helped a live social events product become more reliable, easier to extend, and less dependent on constant senior intervention while the team kept shipping.',
+		outcome: 'Stabilized messaging, notifications, typed patterns, and junior-developer delivery inside a live product team.',
+		image: muchoHangoutsPhoto,
+		imageAlt: 'Social events platform interface shown on a mobile device.',
+		imageClass: undefined
 	}
+} as const;
+
+const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
+
+const proofStats = [
+	{ label: '8+ years', value: 'Product and software delivery' },
+	{ label: '10+ shipped', value: 'Products, systems, and tools' },
+	{ label: 'Launched', value: 'Palabruno across iOS, Android, and web' },
+	{ label: '3,000+', value: 'Organizers supported at LeagueApps' },
+	{ label: '45%', value: 'Scheduling-time reduction at LeagueApps' }
+];
+
+const evidenceLinks = [
+	{ label: 'Resume', href: RESUME_URL, trackEvent: 'resume_clicked' },
+	{ label: 'GitHub', href: 'https://github.com/hanifcarroll' },
+	{ label: 'LinkedIn', href: 'https://linkedin.com/in/hanifcarroll' },
+	{ label: 'Tools', href: '/tools/' },
+	{ label: 'Email', href: 'mailto:HanifCarroll@gmail.com', trackEvent: 'email_clicked' }
 ];
 
 const fitColumns = [
@@ -100,21 +120,29 @@ const fitColumns = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={homepageJsonLd} flushTop showFooterCta={false} footerLinksOnly padContentBeforeFooter={false}>
+<BaseLayout
+	title={title}
+	description={description}
+	jsonLd={homepageJsonLd}
+	flushTop
+	showFooterCta={false}
+	footerLinksOnly
+	padContentBeforeFooter={false}
+>
 	<section class='home-hero-shell'>
 		<div class='container home-hero-stage'>
 			<header class='home-hero-split'>
 				<div class='home-hero-copy-wrap'>
 					<div class='home-hero-copy space-y-6 md:space-y-7'>
-						<p class='home-hero-context home-hero-context--hero'>AI product engineer for nontechnical founders</p>
+						<p class='home-hero-context home-hero-context--hero'>Product Engineer, Full Stack + AI</p>
 						<h1 class='home-hero-title'>
-							<span>Turn rough ideas</span>
-							<span>and manual workflows</span>
-							<span>into working software</span>
+							<span>Founder-led SaaS</span>
+							<span>from idea</span>
+							<span>to launch</span>
 						</h1>
 						<p class='home-hero-body'>
-							Work with one senior partner to cut scope, choose the right path, and build the first version directly. MVP launch,
-							workflow automation, AI agents, or a smaller first step.
+							I help nontechnical founders and lean teams turn rough product ideas or manual workflows into launched software. Scope, UX,
+							full-stack build, AI systems where they help, and the product judgment to keep v1 shippable.
 						</p>
 						<div class='home-hero-actions'>
 							<a
@@ -129,6 +157,21 @@ const fitColumns = [
 							</a>
 							<a class='home-hero-secondary-link' href='/projects/'>See case studies</a>
 						</div>
+						<div class='home-evidence-links' aria-label='Professional evidence links'>
+							{
+								evidenceLinks.map((link) => (
+									<a
+										href={link.href}
+										target={link.href.startsWith('http') ? '_blank' : undefined}
+										rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+										data-track-event={link.trackEvent ?? 'evidence_clicked'}
+										data-track-location='home_evidence'
+									>
+										{link.label}
+									</a>
+								))
+							}
+						</div>
 					</div>
 				</div>
 
@@ -138,51 +181,17 @@ const fitColumns = [
 					</figure>
 				</div>
 			</header>
-		</div>
-	</section>
 
-	<section class='container py-16 md:py-20' id='case-studies'>
-		<div class='space-y-5'>
-			<h2 class='heading-display home-case-studies-title'>Case Studies</h2>
-		</div>
-
-		<div class='case-study-rows mt-8'>
-			{
-				caseStudies.map((study, index) => (
-					<a href={`/projects/${study.slug}/`} class='case-study-row group'>
-						<div class='case-study-row__copy'>
-							<p class='case-study-row__eyebrow'>
-								<span aria-hidden='true'></span>
-								CASE STUDY {String(index + 1).padStart(2, '0')}
-							</p>
-							<div class='case-study-row__body'>
-								<div class='space-y-5'>
-									<h3 class='case-study-row__title'>{study.title}</h3>
-									<p class='case-study-row__description'>{study.body}</p>
-								</div>
-								<span class='case-study-row__button'>View case study</span>
-							</div>
+			<dl class='home-proof-strip' aria-label='Portfolio proof points'>
+				{
+					proofStats.map((item) => (
+						<div class='home-proof-strip__item'>
+							<dt>{item.label}</dt>
+							<dd>{item.value}</dd>
 						</div>
-						<figure class='case-study-row__media'>
-							<div class='case-study-row__image-frame'>
-								<Image
-									src={study.image}
-									alt={study.imageAlt}
-									class:list={[
-										'case-study-row__image transition duration-700 ease-out group-hover:scale-[1.025]',
-										study.imageClass
-									]}
-									loading='eager'
-								/>
-							</div>
-						</figure>
-					</a>
-				))
-			}
-
-			<p class='case-study-archive-link'>
-				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
-			</p>
+					))
+				}
+			</dl>
 		</div>
 	</section>
 
@@ -204,11 +213,56 @@ const fitColumns = [
 								<h3 class='heading-display path-choice__title'>{path.title}</h3>
 								<p class='path-choice__body'>{path.body}</p>
 							</div>
-							<span class='path-choice__link'>{path.cta} <span aria-hidden='true'>→</span></span>
+							<span class='path-choice__link'>
+								{path.cta} <span aria-hidden='true'>→</span>
+							</span>
 						</a>
 					))
 				}
 			</div>
+		</div>
+	</section>
+
+	<section class='container py-16 md:py-20' id='case-studies'>
+		<div class='space-y-5'>
+			<h2 class='heading-display home-case-studies-title'>Case Studies</h2>
+		</div>
+
+		<div class='case-study-rows mt-8'>
+			{
+				caseStudies.map((study, index) => (
+					<a href={`/projects/${study.slug}/`} class='case-study-row group'>
+						<div class='case-study-row__copy'>
+							<p class='case-study-row__eyebrow'>
+								<span aria-hidden='true' />
+								CASE STUDY {String(index + 1).padStart(2, '0')}
+							</p>
+							<div class='case-study-row__body'>
+								<div class='space-y-5'>
+									<h3 class='case-study-row__title'>{study.title}</h3>
+									<p class='case-study-row__description'>{study.body}</p>
+									<p class='case-study-row__outcome'>{study.outcome}</p>
+								</div>
+								<span class='case-study-row__button'>View case study</span>
+							</div>
+						</div>
+						<figure class='case-study-row__media'>
+							<div class='case-study-row__image-frame'>
+								<Image
+									src={study.image}
+									alt={study.imageAlt}
+									class:list={['case-study-row__image transition duration-700 ease-out group-hover:scale-[1.025]', study.imageClass]}
+									loading='eager'
+								/>
+							</div>
+						</figure>
+					</a>
+				))
+			}
+
+			<p class='case-study-archive-link'>
+				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
+			</p>
 		</div>
 	</section>
 

@@ -1,30 +1,27 @@
 ---
-import "../../styles/global.css";
+import '../../styles/global.css';
 
 interface Props {
-    title: string;
-    description: string;
-    image?: string;
-    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+	title: string;
+	description: string;
+	image?: string;
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+	ogType?: string;
+	robots?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image, jsonLd } = Astro.props;
-const fallbackImage = image ?? "/img/avatar2.jpg";
-const structuredData = jsonLd
-    ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
-    : "";
+const { title, description, image, jsonLd, ogType = 'website', robots } = Astro.props;
+const fallbackImage = image ?? '/img/avatar2.jpg';
+const structuredData = jsonLd ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : '';
 const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
-const analyticsAllowedHosts = JSON.stringify([
-    "hanifcarroll.com",
-    "www.hanifcarroll.com",
-]);
+const analyticsAllowedHosts = JSON.stringify(['hanifcarroll.com', 'www.hanifcarroll.com']);
 const gtmLoaderScript = gtmId
-    ? `(() => {
+	? `(() => {
         const allowedHosts = new Set(${analyticsAllowedHosts});
         if (!allowedHosts.has(window.location.hostname)) return;
 
@@ -37,9 +34,9 @@ const gtmLoaderScript = gtmId
             f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${gtmId}');
     })();`
-    : "";
+	: '';
 const gaLoaderScript = gaMeasurementId
-    ? `(() => {
+	? `(() => {
         const allowedHosts = new Set(${analyticsAllowedHosts});
         if (!allowedHosts.has(window.location.hostname)) return;
 
@@ -60,9 +57,9 @@ const gaLoaderScript = gaMeasurementId
             page_path: window.location.pathname,
         });
     })();`
-    : "";
+	: '';
 const clarityLoaderScript = clarityProjectId
-    ? `(() => {
+	? `(() => {
         const clarityAllowedHosts = new Set(${analyticsAllowedHosts});
         if (!clarityAllowedHosts.has(window.location.hostname)) return;
 
@@ -75,52 +72,48 @@ const clarityLoaderScript = clarityProjectId
             y.parentNode.insertBefore(t,y);
         })(window, document, 'clarity', 'script', '${clarityProjectId}');
     })();`
-    : "";
+	: '';
 ---
 
 <!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" href="/favicon.jpg" />
-<link rel="apple-touch-icon" href="/webclip.jpg" />
-<meta name="generator" content={Astro.generator} />
-{gscVerification && (
-    <meta name="google-site-verification" content={gscVerification} />
-)}
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width,initial-scale=1' />
+<link rel='icon' href='/favicon.jpg' />
+<link rel='apple-touch-icon' href='/webclip.jpg' />
+<meta name='generator' content={Astro.generator} />
+{gscVerification && <meta name='google-site-verification' content={gscVerification} />}
 
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
+	href='https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap'
+	rel='stylesheet'
 />
-{gtmLoaderScript && <script is:inline set:html={gtmLoaderScript}></script>}
-{gaLoaderScript && <script is:inline set:html={gaLoaderScript}></script>}
-{clarityLoaderScript && (
-    <script is:inline set:html={clarityLoaderScript}></script>
-)}
+{gtmLoaderScript && <script is:inline set:html={gtmLoaderScript} />}
+{gaLoaderScript && <script is:inline set:html={gaLoaderScript} />}
+{clarityLoaderScript && <script is:inline set:html={clarityLoaderScript} />}
 <!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+<link rel='canonical' href={canonicalURL} />
+<link rel='alternate' type='application/rss+xml' title='Hanif Carroll Notes' href={new URL('/rss.xml', Astro.site)} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<meta name='title' content={title} />
+<meta name='description' content={description} />
+{robots && <meta name='robots' content={robots} />}
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(fallbackImage, Astro.url)} />
+<meta property='og:type' content={ogType} />
+<meta property='og:url' content={Astro.url} />
+<meta property='og:title' content={title} />
+<meta property='og:description' content={description} />
+<meta property='og:image' content={new URL(fallbackImage, Astro.url)} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(fallbackImage, Astro.url)} />
-{structuredData && (
-    <script is:inline type="application/ld+json" set:html={structuredData}></script>
-)}
+<meta property='twitter:card' content='summary_large_image' />
+<meta property='twitter:url' content={Astro.url} />
+<meta property='twitter:title' content={title} />
+<meta property='twitter:description' content={description} />
+<meta property='twitter:image' content={new URL(fallbackImage, Astro.url)} />
+{structuredData && <script is:inline type='application/ld+json' set:html={structuredData} />}

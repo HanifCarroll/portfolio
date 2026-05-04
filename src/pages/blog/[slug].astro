@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Prose from '../../components/Prose.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCallout from '../../components/ServiceCallout.astro';
 import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
@@ -18,14 +19,37 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const {
-	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, audience }
+	data: { title, seoTitle, description, coverImage, pubDate, updatedDate, audience, ctaVariant }
 } = post;
 const { Content, headings } = await render(post);
 
 const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
+const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
+const blogJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	url: canonicalUrl,
+	datePublished: pubDate.toISOString(),
+	dateModified: (updatedDate ?? pubDate).toISOString(),
+	author: {
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	}
+};
 ---
 
-<BaseLayout title={seoTitle || title} description={description} image={coverImage?.src || undefined} showFooterCta={false} footerLinksOnly>
+<BaseLayout
+	title={seoTitle || title}
+	description={description}
+	image={coverImage?.src || undefined}
+	jsonLd={blogJsonLd}
+	ogType='article'
+	showFooterCta={false}
+	footerLinksOnly
+>
 	<div class='container max-w-6xl space-y-10 py-8 md:space-y-12'>
 		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
 			<a href='/' class='transition-colors hover:text-primary'>Home</a>
@@ -75,7 +99,7 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 		</header>
 
 		<div class='blog-post-layout'>
-			<main class='blog-post-main'>
+			<div class='blog-post-main'>
 				<article class='blog-post-article'>
 					<Prose class='blog-post-prose'>
 						<Content />
@@ -86,17 +110,8 @@ const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and 
 					<AboutTheAuthor compact={true} />
 				</section>
 
-				<section class='blog-post-closing'>
-					<p class='section-label'>// Closing Note</p>
-					<h2 class='heading-display heading-display--section'>
-						If the problem in this post sounds familiar, bring the actual bottleneck.
-					</h2>
-					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-						I can usually tell pretty quickly whether the right first move is an MVP, a workflow audit, or a smaller system change.
-					</p>
-					<a href='/launch' class='arrow-link w-fit'>Book a Roadmap Call</a>
-				</section>
-			</main>
+				<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
+			</div>
 
 			<aside class='blog-post-rail'>
 				{
