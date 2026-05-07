@@ -106,3 +106,18 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 - After deployment and cache propagation, verify production HTML for `/`, `/projects/palabruno/`, `/projects/`, and `/rss.xml`.
 - Re-check Search Console in 3 to 6 weeks for homepage, resume PDF, Palabruno, Genrupt, and Mucho Hangouts query movement.
+
+## 2026-05-07
+
+### Weekly Performance Refresh
+
+- Date range compared: 2026-04-30 through 2026-05-06 against 2026-04-23 through 2026-04-29.
+- Search Console property: `sc-domain:hanifcarroll.com`; GA4 property: `properties/484617236`.
+- Search Console web results: 0 clicks in both windows; impressions increased from 12 to 18; CTR stayed at 0%; weighted average position moved from 2.8 to 4.6.
+- Search query visibility remained too sparse for keyword conclusions. The only exposed query row was `genrupt`, with 2 impressions in both windows and average position improving from 2.0 to 1.5.
+- Search Console page rows: homepage impressions increased from 3 to 7, Genrupt moved from 8 to 7, resume PDF moved from 1 to 5, Mucho Hangouts moved from 0 to 3, and `/launch/` moved from 0 to 1.
+- GA4 totals: sessions moved from 45 to 34, total users from 37 to 31, page views from 55 to 39, and event count from 168 to 138.
+- GA4 engagement improved despite lower volume: engaged sessions moved from 7 to 12, engagement rate from 15.6% to 35.3%, and average session duration from 61s to 117s.
+- Channel notes: Direct sessions fell from 30 to 22; Organic Search moved from 6 to 5 sessions but improved from 0 to 2 engaged sessions; Organic Social moved from 8 to 7 sessions and improved from 3 to 6 engaged sessions.
+- Key events remained 0 in both windows. The event report showed default engagement events plus `click`, but no conversion/key-event signal fired.
+- Interpretation: search impressions are up but still too small to judge SEO impact, while traffic quality improved in GA4. Re-check next week after the May homepage edits have a full clean comparison window.

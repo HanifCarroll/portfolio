@@ -1,388 +1,426 @@
 ---
-import BaseHead from "../layouts/components/BaseHead.astro";
-import { BOOK_CALL_URL } from "../consts";
+import BaseHead from '../layouts/components/BaseHead.astro';
+import { BOOK_CALL_URL } from '../consts';
 
-const title = "MVPs + Workflow Automation One-Pager";
-const description =
-  "A shareable overview of Hanif Carroll's MVP builds, workflow automation, and AI agent work for nontechnical founders and business owners.";
-
-const offerTracks = [
-  {
-    label: "01",
-    title: "MVP builds",
-    intro: "For nontechnical founders who need a real first version in users' hands.",
-    bullets: [
-      "Cut scope to the smallest version worth shipping.",
-      "Build the product, not just the landing page.",
-      "Launch with direct feedback and a clean handoff.",
-    ],
-  },
-  {
-    label: "02",
-    title: "Workflow automation + AI agents",
-    intro: "For business owners and lean teams buried in repeat work and slow handoffs.",
-    bullets: [
-      "Turn repeated tasks into internal tools or automation.",
-      "Connect the systems already running the business.",
-      "Add AI only when it reduces work or improves a decision.",
-    ],
-  },
-];
+const title = 'Founder MVP + Workflow One-Pager';
+const description = "A shareable overview of Hanif Carroll's MVP launch, workflow audit, and AI systems work for nontechnical founders.";
 
 const proofItems = [
-  {
-    name: "Casa Elaria",
-    detail:
-      "Built a fake-door storefront so the founder could validate demand before paying for inventory.",
-  },
-  {
-    name: "Desarmadero La Torre",
-    detail:
-      "Built a searchable digital stockroom that cut down on repetitive phone-based inventory checks.",
-  },
-  {
-    name: "Genrupt",
-    detail:
-      "Expanded an AI media MVP into a billable Amazon creative ops platform with subscriptions, queue-backed generation, and seller-facing creative workflows.",
-  },
+	{
+		name: 'Palabruno',
+		label: 'Founder MVP',
+		detail:
+			'Helped a nontechnical founder shape and launch a Spanish reading MVP across iOS, Android, and web, including subscriptions, teacher payments, app store assets, UX polish, and public-site copy.'
+	},
+	{
+		name: 'Apartment Finder',
+		label: 'AI product',
+		detail:
+			'Built an AI search product that turns noisy rental listings into evidence-backed decisions, with fixture-based evaluation and measured model-cost tradeoffs.'
+	},
+	{
+		name: 'Genrupt',
+		label: 'AI systems',
+		detail:
+			'Expanded an AI media MVP into a commercial Amazon seller workflow platform with subscriptions, safer async generation, credit accounting, and agent-accessible creative operations.'
+	},
+	{
+		name: 'Desarmadero La Torre',
+		label: 'Workflow system',
+		detail:
+			'Built a searchable digital stockroom so customers could check inventory before calling and staff could spend less time answering repetitive stock questions.'
+	}
+];
+
+const launchSteps = [
+	['01', 'Scope', 'Cut the idea to the smallest useful first version.'],
+	['02', 'Build', 'Ship the core product surface, data flow, and integrations.'],
+	['03', 'Polish', 'Tighten UX, copy, payments, launch assets, and feedback loops.'],
+	['04', 'Launch', 'Deploy, hand off, and leave the founder with a product they can own.']
 ];
 
 const fitSignals = [
-  "A founder or owner has a concrete problem, not just a vague idea.",
-  "There is urgency: launch, validation, or operational drag is costing time or money.",
-  "They want direct senior execution instead of agency layers.",
-  "They can make decisions and give timely feedback.",
-];
-
-const links = [
-  { label: "MVP offer", href: "https://www.hanifcarroll.com/launch" },
-  {
-    label: "Automation offer",
-    href: "https://www.hanifcarroll.com/automation-ai-agents",
-  },
-  { label: "Case studies", href: "https://www.hanifcarroll.com/projects" },
-  { label: "Roadmap call", href: BOOK_CALL_URL },
+	'A nontechnical founder needs more than implementation of a fixed spec.',
+	'A team has manual review, search, handoff, or decision work that software could simplify.',
+	'The first version needs senior product judgment, UX thinking, and implementation in one place.',
+	'There is enough urgency and decision speed to keep momentum.'
 ];
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={`${title} · Hanif Carroll`} description={description} />
-    <style is:inline>
-      @page {
-        size: Letter;
-        margin: 0.6in;
-      }
+<html lang='en'>
+	<head>
+		<BaseHead title={`${title} · Hanif Carroll`} description={description} />
+		<style is:inline>
+			@page {
+				size: Letter;
+				margin: 0.58in;
+			}
 
-      html,
-      body {
-        background: #f2ede3 !important;
-      }
+			:root {
+				--ink: #121212;
+				--muted: #5f6368;
+				--soft: #f5f1e8;
+				--paper: #fffdf8;
+				--line: #d8d0c2;
+				--blue: #155eef;
+				--green: #117865;
+			}
 
-      body {
-        color: #111111;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        font-family: "IBM Plex Sans", system-ui, sans-serif;
-      }
+			html,
+			body {
+				background: var(--soft) !important;
+			}
 
-      a {
-        color: inherit;
-      }
+			body {
+				color: var(--ink);
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+				font-family: Inter, system-ui, sans-serif;
+			}
 
-      .sheet {
-        max-width: 1120px;
-        margin: 0 auto;
-      }
+			a {
+				color: inherit;
+			}
 
-      .display {
-        font-family: "Syne", "IBM Plex Sans", system-ui, sans-serif;
-        font-weight: 700;
-        letter-spacing: -0.06em;
-        line-height: 0.93;
-        text-transform: uppercase;
-        text-wrap: balance;
-      }
+			.sheet {
+				max-width: 1040px;
+				margin: 0 auto;
+				background: var(--paper);
+				border: 1px solid var(--line);
+			}
 
-      .eyebrow,
-      .mini-label {
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-      }
+			.display {
+				font-family: Inter, system-ui, sans-serif;
+				font-weight: 900;
+				letter-spacing: -0.055em;
+				line-height: 0.92;
+				text-transform: uppercase;
+				text-wrap: balance;
+			}
 
-      .eyebrow {
-        color: #4b5563;
-      }
+			.eyebrow,
+			.mini-label {
+				font-family: 'IBM Plex Mono', ui-monospace, monospace;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+			}
 
-      .mini-label {
-        color: #0066ff;
-      }
+			.eyebrow {
+				color: var(--muted);
+			}
 
-      .muted {
-        color: #535868;
-      }
+			.mini-label,
+			.accent {
+				color: var(--blue);
+			}
 
-      .rule {
-        border-top: 1px solid rgba(17, 17, 17, 0.18);
-      }
+			.muted {
+				color: var(--muted);
+			}
 
-      .section {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
+			.section {
+				break-inside: auto;
+				page-break-inside: auto;
+			}
 
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 2rem;
-        align-items: end;
-      }
+			.section + .section {
+				margin-top: 1.75rem;
+				padding-top: 1.35rem;
+				border-top: 1px solid var(--line);
+			}
 
-      .two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-      }
+			.hero-grid,
+			.two-col,
+			.proof-grid {
+				display: grid;
+				gap: 1.35rem;
+			}
 
-      .panel {
-        border: 1.5px solid #111111;
-        background: rgba(255, 255, 255, 0.66);
-        padding: 1.1rem 1.15rem;
-      }
+			.hero-grid {
+				grid-template-columns: 1.18fr 0.82fr;
+				align-items: end;
+			}
 
-      .offer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
+			.two-col {
+				grid-template-columns: 1fr 1fr;
+			}
 
-      .offer-title-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 0.75rem;
-        align-items: baseline;
-      }
+			.proof-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
 
-      .offer-number {
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
-        font-size: 0.82rem;
-        font-weight: 600;
-        letter-spacing: 0.22em;
-        color: #0066ff;
-      }
+			.panel {
+				border: 1px solid var(--ink);
+				background: #ffffff;
+				padding: 1.05rem;
+			}
 
-      .compact-list,
-      .link-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
+			.proof-card {
+				border-top: 2px solid var(--ink);
+				padding-top: 0.78rem;
+				break-inside: avoid;
+				page-break-inside: avoid;
+			}
 
-      .compact-list li + li,
-      .link-list li + li {
-        margin-top: 0.55rem;
-      }
+			.stat-grid,
+			.launch-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 0.8rem;
+			}
 
-      .compact-list li {
-        position: relative;
-        padding-left: 1rem;
-      }
+			.launch-grid {
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+			}
 
-      .compact-list li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.6rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: #0066ff;
-      }
+			.stat,
+			.launch-step {
+				border-left: 3px solid var(--blue);
+				padding-left: 0.75rem;
+			}
 
-      .proof-item + .proof-item,
-      .fit-item + .fit-item {
-        margin-top: 0.8rem;
-        padding-top: 0.8rem;
-        border-top: 1px solid rgba(17, 17, 17, 0.12);
-      }
+			.hero-panel .stat-grid {
+				grid-template-columns: 1fr;
+				gap: 0.7rem;
+			}
 
-      .link-list a {
-        text-decoration: underline;
-        text-underline-offset: 0.18rem;
-      }
+			.hero-panel .stat {
+				display: grid;
+				grid-template-columns: 4.6rem 1fr;
+				gap: 0.6rem;
+			}
 
-      .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.85rem;
-      }
+			.hero-panel .stat .display {
+				font-size: 1.35rem;
+				letter-spacing: -0.025em;
+				line-height: 1;
+			}
 
-      @media (max-width: 800px) {
-        .hero-grid,
-        .two-col,
-        .offer-grid,
-        .hero-stats {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="sheet px-6 py-6">
-      <article class="space-y-8">
-        <section class="section hero-grid">
-          <div class="space-y-5">
-            <p class="eyebrow">Hanif Carroll · Technical Product Partner · Buenos Aires</p>
-            <div class="space-y-4">
-              <h1 class="display text-5xl md:text-6xl">
-                MVPs and workflow automation for nontechnical founders and business owners.
-              </h1>
-              <p class="muted max-w-2xl text-lg leading-relaxed">
-                I help clients ship useful first versions and replace repeated manual
-                work with software that actually fits the business.
-              </p>
-            </div>
-          </div>
+			.price-band {
+				border: 1px solid var(--ink);
+				background: var(--ink);
+				color: #ffffff;
+				padding: 1.1rem;
+				break-inside: avoid;
+				page-break-inside: avoid;
+			}
 
-          <div class="panel space-y-4">
-            <p class="mini-label">When to send me to someone</p>
-            <p class="display text-2xl">
-              There is a real bottleneck, and they need someone to build the fix.
-            </p>
-            <div class="hero-stats">
-              <div>
-                <p class="display text-2xl">8+</p>
-                <p class="muted text-sm">years building products</p>
-              </div>
-              <div>
-                <p class="display text-2xl">Direct</p>
-                <p class="muted text-sm">senior execution, no agency layer</p>
-              </div>
-              <div>
-                <p class="display text-2xl">Fast</p>
-                <p class="muted text-sm">clear scope, short feedback loops</p>
-              </div>
-            </div>
-          </div>
-        </section>
+			.price-band .muted {
+				color: rgba(255, 255, 255, 0.72);
+			}
 
-        <section class="section rule pt-7">
-          <div class="mb-5 flex items-end justify-between gap-6">
-            <div>
-              <p class="mini-label">Two ways I help</p>
-              <h2 class="display mt-2 text-3xl">
-                One track for new products, one for operational drag.
-              </h2>
-            </div>
-            <p class="muted max-w-sm text-sm leading-relaxed">
-              The common thread is the same: cut through ambiguity, build the useful
-              thing first, and keep communication plain.
-            </p>
-          </div>
+			.fit-list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
 
-          <div class="offer-grid">
-            {offerTracks.map((track) => (
-              <section class="panel section">
-                <div class="offer-title-row">
-                  <p class="mini-label">{track.title}</p>
-                  <span class="offer-number">{track.label}</span>
-                </div>
-                <p class="muted mt-3 text-[15px] leading-relaxed">{track.intro}</p>
-                <ul class="compact-list mt-5 muted text-[15px] leading-relaxed">
-                  {track.bullets.map((bullet) => (
-                    <li>{bullet}</li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-        </section>
+			.fit-list li {
+				border-top: 1px solid var(--line);
+				padding: 0.52rem 0;
+			}
 
-        <section class="section two-col rule pt-7">
-          <div class="space-y-5">
-            <div>
-              <p class="mini-label">Recent work</p>
-              <h2 class="display mt-2 text-3xl">
-                Recent projects clients can map themselves to quickly.
-              </h2>
-            </div>
-            <div>
-              {proofItems.map((item) => (
-                <div class="proof-item">
-                  <p class="font-semibold">{item.name}</p>
-                  <p class="muted mt-1 text-sm leading-relaxed">{item.detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+			.fit-list li:first-child {
+				border-top: 0;
+				padding-top: 0;
+			}
 
-          <div class="space-y-5">
-            <div>
-              <p class="mini-label">Good referrals</p>
-              <h2 class="display mt-2 text-3xl">
-                Best fit for people who can decide and want momentum.
-              </h2>
-            </div>
-            <div>
-              {fitSignals.map((signal) => (
-                <div class="fit-item">
-                  <p class="muted text-sm leading-relaxed">{signal}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+			@media print {
+				html,
+				body {
+					background: white !important;
+				}
 
-        <section class="section two-col rule pt-7">
-          <div class="space-y-5">
-            <div>
-              <p class="mini-label">How engagements start</p>
-              <h2 class="display mt-2 text-3xl">
-                Start with a roadmap call, then scope the right first step.
-              </h2>
-            </div>
-            <div class="space-y-3 muted text-sm leading-relaxed">
-              <p>
-                MVP builds start at <strong style="color:#111111;">$10,000</strong> for a
-                focused four-week build.
-              </p>
-              <p>
-                Workflow automation and AI work is scoped after looking at the current
-                workflow, systems, and the actual bottleneck.
-              </p>
-              <p>
-                In both cases, the first call is for narrowing the problem and deciding
-                whether I am the right fit.
-              </p>
-            </div>
-          </div>
+				.sheet {
+					border: 0;
+					max-width: none;
+					padding: 0 !important;
+				}
 
-          <div class="panel space-y-5">
-            <div>
-              <p class="mini-label">Forward or send directly</p>
-              <h2 class="display mt-2 text-3xl">
-                If someone needs help shipping or cleaning up operations, send this.
-              </h2>
-            </div>
-            <ul class="link-list text-sm leading-relaxed">
-              {links.map((link) => (
-                <li>
-                  <span class="font-semibold">{link.label}:</span>{" "}
-                  <a href={link.href}>{link.href.replace("https://", "")}</a>
-                </li>
-              ))}
-              <li>
-                <span class="font-semibold">Email:</span>{" "}
-                <a href="mailto:HanifCarroll@gmail.com">HanifCarroll@gmail.com</a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </article>
-    </main>
-  </body>
+				.display {
+					letter-spacing: -0.045em;
+				}
+
+				.section + .section {
+					margin-top: 1.15rem;
+					padding-top: 0.95rem;
+				}
+
+				.two-col.section,
+				.launch-section,
+				.proof-section,
+				.price-band {
+					break-inside: avoid;
+					page-break-inside: avoid;
+				}
+
+				.launch-section,
+				.proof-section {
+					break-before: page;
+					page-break-before: always;
+				}
+
+				.fit-list li {
+					padding: 0.42rem 0;
+				}
+
+				a {
+					color: inherit;
+					text-decoration: none;
+				}
+			}
+
+			@media screen and (max-width: 800px) {
+				.hero-grid,
+				.two-col,
+				.proof-grid,
+				.stat-grid,
+				.launch-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class='px-5 py-5'>
+			<article class='sheet px-7 py-7 md:px-10 md:py-10'>
+				<section class='section hero-grid'>
+					<div class='space-y-5'>
+						<p class='eyebrow'>Hanif Carroll · Technical Product Partner · Buenos Aires</p>
+						<div class='space-y-4'>
+							<h1 class='display text-4xl md:text-5xl'>I help nontechnical founders turn rough ideas into working software.</h1>
+							<p class='muted max-w-2xl text-lg leading-relaxed'>
+								Scope, UX, full-stack development, launch support, workflow automation, and useful AI systems, handled directly by one
+								senior product builder.
+							</p>
+						</div>
+					</div>
+
+					<div class='panel hero-panel space-y-4'>
+						<p class='mini-label'>When to send me someone</p>
+						<p class='display text-2xl'>They need the right first product or workflow system, not a pile of developer hours.</p>
+						<div class='stat-grid'>
+							<div class='stat'>
+								<p class='display text-2xl'>10+</p>
+								<p class='muted text-sm'>years building products</p>
+							</div>
+							<div class='stat'>
+								<p class='display text-2xl'>Direct</p>
+								<p class='muted text-sm'>senior execution</p>
+							</div>
+							<div class='stat'>
+								<p class='display text-2xl'>Fast</p>
+								<p class='muted text-sm'>focused scope and feedback</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class='section two-col'>
+					<div class='space-y-4'>
+						<p class='mini-label'>Two ways to start</p>
+						<h2 class='display text-2xl md:text-3xl'>Launch when the product is unclear.</h2>
+						<p class='muted leading-relaxed'>
+							The 4-Week Launch is for founders who need the first useful version scoped, built, and live. It is best when the goal is a
+							real product users can try, pay for, or react to.
+						</p>
+					</div>
+
+					<div class='space-y-4'>
+						<p class='mini-label' style='color: var(--green);'>Lower-friction first step</p>
+						<h2 class='display text-2xl md:text-3xl'>Audit when the workflow is unclear.</h2>
+						<p class='muted leading-relaxed'>
+							The Workflow Audit is for teams that need to find the bottleneck before building. The answer might be software, automation,
+							AI, a cleaner handoff, or no build yet.
+						</p>
+					</div>
+				</section>
+
+				<section class='section launch-section space-y-6'>
+					<div class='flex items-end justify-between gap-6'>
+						<div>
+							<p class='mini-label'>The 4-Week Launch</p>
+							<h2 class='display mt-2 text-2xl md:text-3xl'>From idea to live MVP in four focused weeks.</h2>
+						</div>
+						<p class='muted max-w-sm text-right text-sm leading-relaxed'>
+							A fixed-scope build with weekly demos, direct communication, launch support, and a handoff the founder can own.
+						</p>
+					</div>
+
+					<div class='launch-grid'>
+						{
+							launchSteps.map(([num, label, body]) => (
+								<div class='launch-step'>
+									<p class='mini-label'>{num}</p>
+									<p class='mt-2 font-semibold'>{label}</p>
+									<p class='muted mt-1 text-sm leading-relaxed'>{body}</p>
+								</div>
+							))
+						}
+					</div>
+				</section>
+
+				<section class='section proof-section space-y-6'>
+					<div>
+						<p class='mini-label'>Recent proof</p>
+						<h2 class='display mt-2 text-2xl md:text-3xl'>Founder launch, AI product, seller workflows, operational systems.</h2>
+					</div>
+
+					<div class='proof-grid'>
+						{
+							proofItems.map((item) => (
+								<div class='proof-card'>
+									<p class='mini-label'>{item.label}</p>
+									<p class='mt-2 text-lg font-bold'>{item.name}</p>
+									<p class='muted mt-2 text-sm leading-relaxed'>{item.detail}</p>
+								</div>
+							))
+						}
+					</div>
+				</section>
+
+				<section class='section split-col two-col'>
+					<div class='space-y-5'>
+						<div>
+							<p class='mini-label'>Good referrals</p>
+							<h2 class='display mt-2 text-2xl md:text-3xl'>Best fit for founders who can decide and want momentum.</h2>
+						</div>
+						<ul class='fit-list muted text-sm leading-relaxed'>
+							{fitSignals.map((signal) => <li>{signal}</li>)}
+						</ul>
+					</div>
+
+					<div class='space-y-5'>
+						<div class='price-band space-y-3'>
+							<p class='mini-label'>Engagements</p>
+							<p class='display text-2xl md:text-3xl'>Launches start at $10,000.</p>
+							<p class='muted text-sm leading-relaxed'>
+								Workflow audits start at $1,000 and can be credited toward implementation if we move forward.
+							</p>
+						</div>
+
+						<div class='space-y-3'>
+							<p class='mini-label'>Next step</p>
+							<h2 class='display text-2xl'>Book a Product Roadmap Call.</h2>
+							<p class='muted text-sm leading-relaxed'>
+								I will help cut scope, choose the right first step, and tell you whether I am the right fit.
+							</p>
+							<div class='space-y-1 text-sm'>
+								<p><span class='font-bold'>Offer:</span> <a href='https://www.hanifcarroll.com/launch'>hanifcarroll.com/launch</a></p>
+								<p>
+									<span class='font-bold'>Portfolio:</span>
+									<a href='https://www.hanifcarroll.com/projects'>hanifcarroll.com/projects</a>
+								</p>
+								<p><span class='font-bold'>Call:</span> <a href={BOOK_CALL_URL}>{BOOK_CALL_URL.replace('https://', '')}</a></p>
+								<p><span class='font-bold'>Email:</span> <a href='mailto:HanifCarroll@gmail.com'>HanifCarroll@gmail.com</a></p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>
