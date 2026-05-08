@@ -2,6 +2,20 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-05-08
+
+### Positioning Cleanup
+
+- Refocused the public offer language around MVP launches for nontechnical founders and fractional product engineering for founder-led teams.
+- Updated homepage title/description/JSON-LD, shared header tagline, `/launch/`, `/projects/`, the one-pager route, service callouts, author/about copy, project-track labels, and selected project service metadata.
+- Demoted AI/workflow-heavy work into supporting proof language instead of standalone service categories.
+- Redirected `/automation-ai-agents/` to `/launch/#fractional`.
+
+### Follow-Up Checks
+
+- After deployment, verify production HTML for `/`, `/launch/`, `/projects/`, `/one-pager/`, and `/automation-ai-agents/`.
+- Re-check Search Console in 3 to 6 weeks for homepage, launch page, Palabruno, Genrupt, and resume PDF query movement after the offer-language change.
+
 ## 2026-04-29
 
 ### Search Console Baseline

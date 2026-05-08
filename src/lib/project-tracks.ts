@@ -4,45 +4,45 @@ export interface ProjectTrackMeta {
   label: string;
   shortLabel: string;
   group: ProjectTrackGroup;
-  ctaVariant: 'mvp' | 'automation';
+  ctaVariant: 'mvp' | 'fractional';
   rank: number;
 }
 
 export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
   workflow_automation: {
-    label: 'Workflow Automation',
-    shortLabel: 'Automation',
-    group: 'automation_and_ai',
-    ctaVariant: 'automation',
-    rank: 0,
+    label: 'Operational Product System',
+    shortLabel: 'Systems proof',
+    group: 'supporting_product_proof',
+    ctaVariant: 'fractional',
+    rank: 3,
   },
   ai_systems: {
-    label: 'AI Systems',
-    shortLabel: 'AI',
-    group: 'automation_and_ai',
-    ctaVariant: 'automation',
-    rank: 1,
+    label: 'AI Product Proof',
+    shortLabel: 'AI proof',
+    group: 'supporting_product_proof',
+    ctaVariant: 'fractional',
+    rank: 4,
   },
   mvp_build: {
     label: 'MVP Build',
     shortLabel: 'MVP',
     group: 'mvp_and_validation',
     ctaVariant: 'mvp',
-    rank: 2,
+    rank: 0,
   },
   mvp_validation: {
     label: 'Validation Build',
     shortLabel: 'Validation',
     group: 'mvp_and_validation',
     ctaVariant: 'mvp',
-    rank: 3,
+    rank: 1,
   },
   launch_site: {
     label: 'Launch Site',
     shortLabel: 'Site',
     group: 'launch_sites',
     ctaVariant: 'mvp',
-    rank: 4,
+    rank: 2,
   },
 };
 
@@ -52,10 +52,10 @@ export const projectTrackGroups: Array<{
   description: string;
 }> = [
   {
-    key: 'automation_and_ai',
-    title: 'Workflow cleanup, automation, and AI',
+    key: 'supporting_product_proof',
+    title: 'Supporting product systems proof',
     description:
-      'Internal tools, automations, and AI systems for teams losing time to manual work, slow handoffs, or brittle processes.',
+      'AI and workflow-heavy projects framed as proof of product engineering judgment, not standalone service categories.',
   },
   {
     key: 'mvp_and_validation',
