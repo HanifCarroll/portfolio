@@ -1,8 +1,8 @@
 I started programming in 2017 after realizing physical therapy school was not the right path for me.
 
-Since then, I have worked at Capgemini, at LeagueApps during a strong growth phase, and independently with founders, business owners, and small product teams. That mix shaped the work I do now: helping people turn product ideas, operational bottlenecks, and practical AI opportunities into working software.
+Since then, I have worked at Capgemini, at LeagueApps during a strong growth phase, and independently with founders, business owners, and small product teams. That mix shaped the work I do now: helping people turn product ideas and product constraints into working software.
 
-My strongest work lives at the intersection of product judgment and implementation. I help nontechnical founders and founder-led teams narrow the first useful version, build it, launch it, and leave with software they can actually own. Sometimes that means a focused MVP. Sometimes it means an internal tool, workflow automation, or an AI system tied to a real business process.
+My strongest work lives at the intersection of product judgment and implementation. I help nontechnical founders and founder-led teams narrow the first useful version, build it, launch it, and leave with software they can actually own. Sometimes that means a focused MVP. Sometimes it means fractional product engineering for a team that needs senior help without adding a full-time hire.
 
 I am most comfortable in TypeScript, React, Next.js, Node.js, and modern web stacks, but the stack is rarely the real point. The useful part is helping a client decide what should be built first, what should wait, and what kind of system will actually move the business forward.
 

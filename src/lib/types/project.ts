@@ -26,7 +26,7 @@ export type ProjectTrack =
   | 'launch_site';
 
 export type ProjectTrackGroup =
-  | 'automation_and_ai'
+  | 'supporting_product_proof'
   | 'mvp_and_validation'
   | 'launch_sites';
 

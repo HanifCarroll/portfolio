@@ -4,7 +4,7 @@ description: "A hands-on comparison of three browser automation tools for AI age
 pubDate: 2026-01-16
 audience: builder
 tags: ["ai", "browser-automation", "tools", "comparison", "playwright"]
-ctaVariant: automation
+ctaVariant: fractional
 ---
 
 I spent an afternoon testing three browser automation tools to see which one is best for AI agent work. Here's what I found.
