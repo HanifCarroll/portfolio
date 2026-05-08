@@ -11,6 +11,12 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Demoted AI/workflow-heavy work into supporting proof language instead of standalone service categories.
 - Redirected `/automation-ai-agents/` to `/launch/#fractional`.
 
+### Launch Page Metadata Polish
+
+- De-slopified `/launch/` offer copy and tightened the meta description so MVP launches and fractional product engineering read as two separate offers.
+- Verified with `bun run check:projects`, `bun run build`, and a 390px browser smoke for `/launch/`.
+- After deployment, verify production `/launch/` metadata and watch Search Console for launch-page query movement in 3 to 6 weeks.
+
 ### Follow-Up Checks
 
 - After deployment, verify production HTML for `/`, `/launch/`, `/projects/`, `/one-pager/`, and `/automation-ai-agents/`.
