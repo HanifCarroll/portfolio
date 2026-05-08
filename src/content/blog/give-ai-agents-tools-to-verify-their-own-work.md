@@ -3,7 +3,7 @@ title: "Stop Reviewing AI Code. Give It Tools to Verify Its Own Work."
 pubDate: "2026-01-22"
 description: "The shift from reviewing AI-generated code to giving AI agents the feedback loops they need to catch their own mistakes."
 audience: builder
-ctaVariant: automation
+ctaVariant: fractional
 ---
 
 There's a debate happening right now about whether humans should review AI-generated code.
