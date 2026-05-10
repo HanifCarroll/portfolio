@@ -22,6 +22,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - After deployment, verify production HTML for `/`, `/launch/`, `/projects/`, `/one-pager/`, and `/automation-ai-agents/`.
 - Re-check Search Console in 3 to 6 weeks for homepage, launch page, Palabruno, Genrupt, and resume PDF query movement after the offer-language change.
 
+## 2026-05-10
+
+### Resume PDF Replacement
+
+- Replaced the public resume PDF at `/Hanif_Carroll_Fullstack_AI_Engineer.pdf` from the newest iCloud Downloads resume while preserving the stable public URL.
+- Verified the copied asset by SHA-256 and ran `bun run build`.
+- After deployment, re-check the live PDF hash and keep the resume PDF in the next Search Console page-row review.
+
 ## 2026-04-29
 
 ### Search Console Baseline
