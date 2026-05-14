@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Tools & Experiments';
 const description =
-	'Local-first tools Hanif Carroll builds for AI agents, automation, personal workflows, and safer operational evidence handling.';
+	'Local-first tools Hanif Carroll builds for AI agents, automation, desktop utilities, personal workflows, and safer operational evidence handling.';
 
 const featuredTools = [
 	{
@@ -20,6 +20,13 @@ const featuredTools = [
 		focus: 'Session recall',
 		body: 'A local SQLite FTS index over Codex session archives, so agents can search prior work and reuse context with receipts.',
 		repo: 'https://github.com/HanifCarroll/codex-recall'
+	},
+	{
+		name: 'devtree',
+		status: 'Public OSS',
+		focus: 'Runnable worktrees',
+		body: 'A Rust CLI that turns Git worktrees into runnable local environments with copied env files, setup commands, managed dev servers, stable local URLs, logs, and safe cleanup.',
+		repo: 'https://github.com/HanifCarroll/devtree'
 	},
 	{
 		name: 'mailbridge',
@@ -48,6 +55,13 @@ const featuredTools = [
 		focus: 'AI listing triage',
 		body: 'A TanStack Start app and Bun CLI for searching Buenos Aires rentals, extracting listing evidence, and classifying whether washer access is likely in-unit or shared-building.',
 		repo: 'https://github.com/HanifCarroll/apartment-finder'
+	},
+	{
+		name: 'Simple Image Viewer',
+		status: 'Public OSS',
+		focus: 'Native image review',
+		body: 'A dependency-free SwiftUI macOS viewer for opening an image or folder, stepping through nearby images by keyboard, and scanning a thumbnail rail with GIF and natural filename support.',
+		repo: 'https://github.com/HanifCarroll/simple-image-viewer'
 	},
 	{
 		name: 'cli-tools',
@@ -87,10 +101,10 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 		<header class='max-w-5xl space-y-7'>
 			<p class='section-label'>// Tools & Experiments</p>
 			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				Local-first tools for agent-heavy work.
+				Local-first tools for serious work.
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Small systems from my own workflow: remote Codex control, session recall, mailbox context, voice-note transcription, tool feedback, and desktop automation.
+				Small systems from my own workflow: remote Codex control, session recall, runnable worktrees, mailbox context, voice-note transcription, tool feedback, and desktop utilities.
 			</p>
 		</header>
 
@@ -99,7 +113,7 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 				<p class='section-label'>// Featured Tools</p>
 				<h2 class='heading-display heading-display--section'>Tools built from recurring agent-work problems.</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The page is not a complete project list. These are the tools that best show how I make agent workflows more reliable.
+					The page is not a complete project list. These are the tools that best show how I make local workflows more reliable.
 				</p>
 			</div>
 
