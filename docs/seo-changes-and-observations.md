@@ -10,6 +10,19 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Generated a new Casamo project image and kept Mucho Hangouts available in the full case-study archive.
 - Verified project metadata and production build locally. Recheck production HTML and request indexing after deployment.
 
+### Performance Refresh
+
+- Date range checked: 2026-05-07 through 2026-05-17. Weekly Search Console comparison used 2026-05-07 through 2026-05-13 against 2026-04-30 through 2026-05-06.
+- Search Console property: `sc-domain:hanifcarroll.com`; GA4 property: `properties/484617236`.
+- Search Console weekly web results: clicks moved from 0 to 1, impressions moved from 18 to 22, CTR moved from 0% to 4.5%, and weighted average position moved from 4.6 to 7.1.
+- Search Console page rows: homepage moved from 0 clicks / 7 impressions to 1 click / 9 impressions, Genrupt moved from 7 to 14 impressions but average position fell from 3.0 to 8.9, `/launch/` moved from 1 to 4 impressions, resume PDF fell from 5 to 2 impressions, and Mucho Hangouts stayed at 3 impressions.
+- Since the last check window, 2026-05-07 through 2026-05-17, GSC page totals were homepage 1 click / 23 impressions, Genrupt 18 impressions, `/launch/` 7 impressions, resume PDF 6 impressions, and Mucho Hangouts 5 impressions.
+- Query visibility is still sparse. The only exposed query row was `genrupt`, with 4 impressions, 0 clicks, and average position 2.5.
+- GA4 totals for 2026-05-07 through 2026-05-17: 49 sessions, 47 users, 56 page views, 209 events, 18 engaged sessions, 36.7% engagement rate, 64s average session duration, and 0 key events. The previous 2026-04-30 through 2026-05-06 window had 34 sessions, 31 users, 39 page views, 138 events, 12 engaged sessions, 35.3% engagement rate, 117s average session duration, and 0 key events.
+- Channel notes: Direct moved from 22 to 34 sessions and 4 to 13 engaged sessions; Organic Social moved from 7 to 10 sessions but 6 to 4 engaged sessions; Organic Search moved from 5 to 4 sessions and 2 to 0 engaged sessions; Referral appeared with 1 engaged session.
+- Event notes: GA4 recorded default engagement events plus 2 `click` events and 1 `file_download`; key events remained 0.
+- Interpretation: visibility and total traffic are moving up, including the first Search Console click in this follow-up period, but organic search quality is not yet improving and the sample is still too small for keyword conclusions.
+
 ## 2026-05-08
 
 ### Positioning Cleanup
