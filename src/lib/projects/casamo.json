@@ -1,0 +1,67 @@
+{
+  "slug": "casamo",
+  "title": "Casamo: Stay Audits for Remote Workers",
+  "description": "Built Casamo, a paid stay-decision SaaS that scans Airbnb and Booking.com listings, audits the evidence, and ranks the stays worth considering for remote-work trips.",
+  "seoTitle": "Casamo Case Study | AI Stay Audit SaaS",
+  "seoDescription": "How Casamo became a paid AI stay-audit SaaS with Airbnb and Booking.com scans, evidence-backed reports, Stripe passes, auth, worker queues, and production deployment.",
+  "proofType": "client",
+  "client": "Casamo (Owned Product)",
+  "service": "Product Strategy + Full-Stack MVP Build",
+  "bestFit": "Founders turning a narrow, high-friction decision workflow into a paid SaaS with evidence-backed AI, payments, background jobs, and production infrastructure.",
+  "detailVariant": "product",
+  "role": "Founder / Solo Product Engineer",
+  "category": "product",
+  "track": "mvp_build",
+  "year": "2026",
+  "timeline": "Rapid product build, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "TanStack Start",
+    "React 19",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "BullMQ",
+    "Stripe",
+    "Better Auth",
+    "OpenAI",
+    "Playwright",
+    "Browserbase",
+    "PostHog",
+    "Kamal"
+  ],
+  "liveUrl": "https://casamo.app",
+  "constraints": [
+    "The product needed to avoid the crowded generic AI travel-search lane and prove a sharper decision-support wedge.",
+    "Search scans had real infrastructure costs from browser automation, model calls, retries, and hosted workers.",
+    "Marketplace filters could not be trusted on their own, so reports had to show evidence, uncertainty, and host questions instead of only scores."
+  ],
+  "problem": [
+    "Remote workers booking 2-8 week furnished stays face a high-cost decision with low-trust marketplace data. A listing can claim Wi-Fi, workspace, kitchen, or laundry without proving that the stay will actually work for weeks of living and working.",
+    "The original apartment-search prototype proved that listing evidence could be extracted and classified, but Casamo needed to become a real product: a buyer-facing promise, a paid workflow, saved reports, user accounts, and a production system that could run long scans reliably.",
+    "The business risk was building a generic Airbnb search clone. The useful wedge was narrower: scan a shortlist across marketplaces and show which stays have enough evidence to trust."
+  ],
+  "solution": [
+    "Positioned Casamo as a stay-decision guide for remote workers, focused on evidence-backed audits rather than generic travel search.",
+    "Built the web intake for destination, dates, guests, budget, listing cap, and must-haves such as Wi-Fi, workspace, kitchen, washer, AC, quiet, and elevator.",
+    "Implemented a scan pipeline that discovers Airbnb and Booking.com candidates, audits listing photos and text, deepens the strongest candidates, ranks the shortlist, saves the report, and renders the decision surface.",
+    "Added paid access through a $29 Trip Scan Pass, Better Auth accounts, Stripe Checkout and webhooks, scan-credit enforcement, saved reports, and PostHog analytics.",
+    "Moved the app to a VPS deployment with Kamal, Postgres, Redis, a BullMQ worker, Browserbase-backed browser automation, Resend email, and production domains."
+  ],
+  "result": [
+    "Casamo became a live paid SaaS at casamo.app with production auth, payments, report storage, background scanning, analytics, and email infrastructure.",
+    "The product can run a destination/date scan, audit Airbnb and Booking.com candidates, and return a decision-first report with one recommended pick, two backups, evidence, concerns, and host questions.",
+    "The architecture now separates pure domain rules, app use cases, provider adapters, and infrastructure seams so search, evidence capture, photo audits, ranking, billing, and deployment can keep improving without collapsing into one script.",
+    "The case study shows the full founder-style path: choose a niche, shape the product, build the MVP, price it, deploy it, and keep the AI workflow auditable."
+  ],
+  "deliveryHighlights": [
+    "Paid $29 Trip Scan Pass with Stripe Checkout and idempotent webhook access",
+    "Airbnb and Booking.com scan pipeline with worker queues and saved reports",
+    "Evidence-backed report UI with recommended pick, backups, host questions, and proof panels",
+    "Production VPS deployment with Postgres, Redis, Browserbase, Resend, analytics, and Kamal"
+  ],
+  "images": {
+    "hero": "@src/assets/img/projects/casamo-stay-audit.webp",
+    "feature": "@src/assets/img/projects/casamo-stay-audit.webp"
+  }
+}

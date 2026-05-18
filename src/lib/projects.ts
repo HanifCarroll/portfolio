@@ -1,5 +1,6 @@
 import type { Project } from './types/project';
 import baEventosData from './projects/ba-eventos.json';
+import casamoData from './projects/casamo.json';
 import genruptData from './projects/genrupt.json';
 import palabrunoData from './projects/palabruno.json';
 import languageExchangeData from './projects/language-exchange.json';
@@ -13,6 +14,7 @@ import apartmentFinderData from './projects/apartment-finder.json';
 
 export const projects: Record<string, Project> = {
   'palabruno': palabrunoData as Project,
+  'casamo': casamoData as Project,
   'ba-eventos': baEventosData as Project,
   'apartment-finder': apartmentFinderData as Project,
   'genrupt': genruptData as Project,

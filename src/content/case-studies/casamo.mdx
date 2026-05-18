@@ -1,0 +1,103 @@
+---
+projectSlug: casamo
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import MacWindowFrame from '../../components/case-study/MacWindowFrame.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import casamoFeature from '../../assets/img/projects/casamo-stay-audit.webp';
+
+export const shippedRows = [
+	{
+		label: 'Paid access',
+		title: 'The product can sell a trip scan pass.',
+		body: 'Stripe Checkout, webhooks, scan credits, pass expiry, and account state support a $29 paid workflow instead of a free prototype.'
+	},
+	{
+		label: 'Scan pipeline',
+		title: 'Searches run as background work.',
+		body: 'The worker pipeline discovers candidates, audits listings, deepens the strongest options, ranks results, and saves the final report.'
+	},
+	{
+		label: 'Evidence-first AI',
+		title: 'Reports show why a stay is worth trusting.',
+		body: 'The report separates good signals, concerns, proof, missing evidence, and host questions instead of hiding everything behind a score.'
+	},
+	{
+		label: 'Production system',
+		title: 'The MVP runs on real infrastructure.',
+		body: 'The deployed stack uses TanStack Start, Postgres, Redis, BullMQ, Browserbase, Resend, PostHog, Stripe, and Kamal on a VPS.'
+	}
+];
+
+<CaseSection title="Summary">
+	Casamo is a stay-decision tool for remote workers booking furnished stays for weeks at a time.
+
+	It scans Airbnb and Booking.com listings, checks the evidence behind each stay, and turns a noisy marketplace search into a ranked report with one recommended pick, two backups, and the questions still worth asking the host.
+</CaseSection>
+
+<CaseSection title="About">
+	The project grew out of a narrow apartment-search prototype, but the product direction changed once the real buyer problem became clearer.
+
+	Remote workers do not need another generic travel search interface. They need to know whether a stay can actually support living and working for multiple weeks before they commit money, time, and travel plans.
+</CaseSection>
+
+<CaseSection title="Business Objective">
+	The product needed to become a paid SaaS around a decision workflow, not a one-off AI demo.
+
+	The first commercial wedge was a $29 Trip Scan Pass: enter destination, dates, budget, guests, and must-haves, then get a report that ranks the strongest stays by practical long-stay fit.
+</CaseSection>
+
+<CaseSection title="Product Direction">
+	<DecisionBlock title="Compete on skeptical evidence, not generic search.">
+		Marketplace filters can say a listing has Wi-Fi, workspace, kitchen, or laundry without proving those claims. Casamo's useful job is to challenge the listing with photos, amenities, text, reviews, missing evidence, and host questions.
+	</DecisionBlock>
+
+	<DecisionBlock title="Make the report decision-first.">
+		The report leads with the strongest candidate and two backups. Scores and evidence still matter, but the product answers the actual booking question first: where should I investigate next?
+	</DecisionBlock>
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
+	<h2>Product Surface</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<p>The case-study image shows the intended product shape: a stay search, a ranked shortlist, and evidence-backed checks around workspace, kitchen, laundry, and booking risk.</p>
+
+		<MacWindowFrame ariaLabel='Casamo stay audit product surface'>
+			<ImagePlate image={casamoFeature} alt="Casamo stay audit report with a ranked shortlist and evidence checks." />
+		</MacWindowFrame>
+	</div>
+</section>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Built the intake and paid scan flow.">
+		The app collects destination, dates, guests, budget, listing cap, and must-haves, then gates scans behind account access and the Trip Scan Pass.
+	</DecisionBlock>
+
+	<DecisionBlock title="Turned listing checks into a persisted pipeline.">
+		The scan pipeline discovers Airbnb and Booking.com candidates, audits selected listing photos and evidence, deepens the strongest candidates, ranks them, and saves the final report.
+	</DecisionBlock>
+
+	<DecisionBlock title="Made the AI output inspectable.">
+		Reports preserve claims, photo evidence, review snippets, missing proof, concerns, and host questions so the user can audit the recommendation instead of blindly trusting a model answer.
+	</DecisionBlock>
+
+	<DecisionBlock title="Shipped the real SaaS plumbing.">
+		Casamo now has Better Auth accounts, Stripe Checkout and webhooks, scan-credit enforcement, saved reports, PostHog analytics, transactional email, and a VPS deployment with Postgres, Redis, and a background worker.
+	</DecisionBlock>
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			Casamo is live as a focused paid MVP: a remote-work stay audit product with the commercial, AI, and infrastructure pieces needed to keep improving from real usage.
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Why It Matters">
+	This is the kind of founder-style MVP work the portfolio should foreground: narrow product strategy, scoped AI behavior, full-stack implementation, payments, deployment, and enough operational depth to move from idea to real product.
+</CaseSection>

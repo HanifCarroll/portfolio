@@ -1,7 +1,8 @@
-export const HOMEPAGE_CASE_STUDY_SLUGS = ['palabruno', 'genrupt', 'mucho-hangouts'] as const;
+export const HOMEPAGE_CASE_STUDY_SLUGS = ['palabruno', 'genrupt', 'casamo'] as const;
 
 export const CLIENT_PROJECT_ORDER = [
 	'palabruno',
+	'casamo',
 	'genrupt',
 	'mucho-hangouts',
 	'casa-elaria',
@@ -17,6 +18,8 @@ export const PROJECT_OUTCOME_HIGHLIGHTS: Record<string, string> = {
 		'Palabruno moved from rough founder idea to launch with iOS, Android, web payments, teacher workflows, store assets, and clearer positioning.',
 	genrupt:
 		'Genrupt moved from fragile AI generation toward a commercial Amazon seller workflow platform with safer billing and async operations.',
+	casamo:
+		'Casamo turned a narrow remote-work stay decision into a live paid SaaS with evidence-backed scans, saved reports, Stripe passes, and production infrastructure.',
 	'mucho-hangouts': 'The live social events product became more reliable while the team kept shipping with clearer technical patterns.',
 	'casa-elaria': 'The fake-door storefront tested buyer intent before inventory spend.',
 	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',

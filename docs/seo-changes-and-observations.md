@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-05-18
+
+### Casamo Case Study
+
+- Added `/projects/casamo/` as a new case-study page and replaced Mucho Hangouts with Casamo in the homepage case-study trio.
+- Generated a new Casamo project image and kept Mucho Hangouts available in the full case-study archive.
+- Verified project metadata and production build locally. Recheck production HTML and request indexing after deployment.
+
 ## 2026-05-08
 
 ### Positioning Cleanup

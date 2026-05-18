@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
+import casamoPhoto from '@src/assets/img/projects/casamo-stay-audit.webp';
 import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
-import muchoHangoutsPhoto from '@src/assets/img/projects/mucho-hangouts-feature.png';
 import palabrunoPhoto from '@src/assets/img/projects/palabruno-language-study-photo.png';
 
 const title = 'Hanif Carroll | Technical Product Partner for MVPs';
@@ -68,13 +68,13 @@ const caseStudyBySlug = {
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
-	'mucho-hangouts': {
-		slug: 'mucho-hangouts',
-		label: 'Product reliability',
-		title: 'Mucho Hangouts',
-		body: 'Helped a live social events product become more reliable, easier to extend, and less dependent on constant senior intervention while the team kept shipping.',
-		image: muchoHangoutsPhoto,
-		imageAlt: 'Social events platform interface shown on a mobile device.',
+	casamo: {
+		slug: 'casamo',
+		label: 'AI SaaS MVP',
+		title: 'Casamo',
+		body: 'Built a paid stay-decision SaaS that scans Airbnb and Booking.com listings, audits the evidence, ranks the strongest stays, and runs on production infrastructure.',
+		image: casamoPhoto,
+		imageAlt: 'Casamo stay audit report with ranked listing evidence.',
 		imageClass: undefined
 	}
 } as const;
