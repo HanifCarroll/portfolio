@@ -19,7 +19,7 @@ export const PROJECT_OUTCOME_HIGHLIGHTS: Record<string, string> = {
 	genrupt:
 		'Genrupt moved from fragile AI generation toward a commercial Amazon seller workflow platform with safer billing and async operations.',
 	casamo:
-		'Casamo helps remote workers move from a noisy stay search to a bookable shortlist backed by photos, amenities, reviews, and host questions.',
+		'Casamo helps remote workers turn a noisy stay search into a bookable shortlist backed by photos, amenities, reviews, and host questions.',
 	'mucho-hangouts': 'The live social events product became more reliable while the team kept shipping with clearer technical patterns.',
 	'casa-elaria': 'The fake-door storefront tested buyer intent before inventory spend.',
 	'desarmadero-latorre': 'The business gained a 24/7 inventory channel and fewer repetitive stock calls.',

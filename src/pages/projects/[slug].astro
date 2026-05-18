@@ -9,7 +9,7 @@ import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
 
 import baEventosHero from '@src/assets/img/projects/ba-eventos-hero.png';
-import casamoHero from '@src/assets/img/projects/casamo-stay-audit.webp';
+import casamoHero from '@src/assets/img/projects/casamo-product-surface.jpg';
 import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
 import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
 import genruptHero from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
@@ -88,14 +88,6 @@ const caseStudyFacts = [
 	{ label: 'Timeline', value: project.timeline ?? project.year },
 	{ label: 'Team', value: project.teamSize },
 	{ label: 'Service', value: project.service }
-].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
-
-const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
-const proofSnapshot = [
-	{ label: 'Outcome', value: firstResult },
-	{ label: 'Buyer or user', value: project.bestFit },
-	{ label: 'What shipped', value: project.deliveryHighlights?.[0] },
-	{ label: 'Company', value: project.client }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
 const heroActions = [
@@ -192,20 +184,6 @@ const heroActions = [
 				</aside>
 			</div>
 		</header>
-
-		<section class='case-study-detail__proof-snapshot' aria-labelledby='case-study-proof-snapshot-title'>
-			<h2 id='case-study-proof-snapshot-title'>Proof snapshot</h2>
-			<div class='case-study-detail__proof-snapshot-grid'>
-				{
-					proofSnapshot.map((detail) => (
-						<div class='case-study-detail__proof-snapshot-item'>
-							<p>{detail.label}</p>
-							<strong>{detail.value}</strong>
-						</div>
-					))
-				}
-			</div>
-		</section>
 
 		<Content />
 
