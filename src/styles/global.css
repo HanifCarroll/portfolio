@@ -708,6 +708,15 @@
 		text-wrap: pretty;
 	}
 
+	.service-section-label {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--site-muted);
+	}
+
 	.service-page-stack {
 		display: grid;
 		gap: 5.75rem;
@@ -768,62 +777,90 @@
 	}
 
 	.service-choice-title span:nth-child(even) {
-		color: rgb(0 102 255);
+		font-style: italic;
 	}
 
-	.service-path-grid {
+	/* Path cards (replaces divider-row service-path-option) */
+	.service-path-cards {
 		display: grid;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		gap: 1.25rem;
 	}
 
-	.service-path-option {
-		display: grid;
-		gap: 1.85rem;
-		padding: 2.25rem 0;
+	.service-path-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		padding: 2rem 2rem 2.25rem;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.6);
 		scroll-margin-top: 6rem;
 		transition:
 			border-color 180ms ease,
-			color 180ms ease;
+			background 180ms ease;
 	}
 
-	.service-path-option + .service-path-option {
-		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	.service-path-card:hover {
+		border-color: rgba(0, 0, 0, 0.22);
+		background: #fff;
 	}
 
-	.service-path-option__meta {
+	.service-path-card__header {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.service-path-card__price {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.78rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		color: var(--site-muted);
+	}
+
+	.service-path-card__body {
 		display: grid;
-		gap: 0.35rem;
-		align-content: start;
+		gap: 1.25rem;
+		flex: 1;
 	}
 
-	.service-path-option__body {
-		display: grid;
-		gap: 1.55rem;
+	.service-path-card__title {
+		color: var(--site-ink);
 	}
 
-	.service-path-option__signals {
+	.service-path-card__summary {
+		font-size: 1.05rem;
+		line-height: 1.75;
+		color: var(--site-body);
+	}
+
+	.service-path-card__signals {
 		display: grid;
-		gap: 0.8rem;
+		gap: 0.7rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		font-size: 1.05rem;
-		line-height: 1.75;
-		color: rgb(63 63 70);
+		font-size: 0.97rem;
+		line-height: 1.7;
+		color: var(--site-muted);
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
+		padding-top: 1.25rem;
 	}
 
-	.service-path-option__signals li {
+	.service-path-card__signals li {
 		position: relative;
-		padding-left: 1.05rem;
+		padding-left: 1rem;
 	}
 
-	.service-path-option__signals li::before {
+	.service-path-card__signals li::before {
 		position: absolute;
 		top: 0.7em;
 		left: 0;
-		width: 0.35rem;
-		height: 0.35rem;
+		width: 0.3rem;
+		height: 0.3rem;
 		border: 1px solid currentColor;
+		border-radius: 50%;
 		content: '';
 		transform: translateY(-50%);
 	}
@@ -842,10 +879,18 @@
 	.service-launch-step {
 		display: grid;
 		gap: 1.25rem;
-		padding: 1.65rem 1.65rem 1.8rem;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(244, 239, 230, 0.54));
-		outline: 1px solid rgba(0, 0, 0, 0.06);
-		outline-offset: -1px;
+		padding: 1.75rem 1.75rem 2rem;
+		border: 1px solid rgba(0, 0, 0, 0.09);
+		background: rgba(255, 255, 255, 0.5);
+	}
+
+	.service-launch-step__num {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--site-muted);
 	}
 
 	.service-faq-compact {
@@ -861,12 +906,12 @@
 	}
 
 	.service-faq-compact__question {
-		font-family: 'Syne', sans-serif;
-		font-size: clamp(1.3rem, 1.08rem + 0.55vw, 1.85rem);
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+		font-size: clamp(1.2rem, 1rem + 0.5vw, 1.65rem);
 		font-weight: 700;
-		line-height: 1.08;
-		letter-spacing: -0.04em;
-		color: rgb(0 102 255);
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		color: var(--site-ink);
 		text-wrap: balance;
 	}
 
@@ -2652,11 +2697,21 @@
 	:is(.dark) .service-launch-step,
 	:is(.dark) .blog-post-hero__media {
 		background: rgba(255, 255, 255, 0.03);
-		outline-color: rgba(255, 255, 255, 0.12);
+		border-color: rgba(255, 255, 255, 0.1);
 	}
 
-	:is(.dark) .service-path-option + .service-path-option {
-		border-top-color: rgba(255, 255, 255, 0.12);
+	:is(.dark) .service-path-card {
+		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	:is(.dark) .service-path-card:hover {
+		border-color: rgba(255, 255, 255, 0.22);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	:is(.dark) .service-path-card__signals {
+		border-top-color: rgba(255, 255, 255, 0.1);
 	}
 
 	:is(.dark) .about-background-strip,
@@ -2706,11 +2761,11 @@
 	}
 
 	:is(.dark) .service-faq-compact__question {
-		color: rgb(99 179 255);
+		color: var(--site-ink);
 	}
 
 	:is(.dark) .service-choice-title span:nth-child(even) {
-		color: rgb(99 179 255);
+		color: inherit;
 	}
 
 	:is(.dark) .fit-secondary-link:hover {
@@ -2756,20 +2811,12 @@
 			padding-block: 3.25rem;
 		}
 
-		.service-path-option {
-			grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-			gap: 4rem;
-			padding: 2.6rem 0;
+		.service-path-cards {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
-		.service-path-option__body {
-			grid-template-columns: minmax(0, 0.98fr) minmax(16rem, 0.86fr);
-			align-items: start;
-			column-gap: 4.25rem;
-		}
-
-		.service-path-option__body .arrow-link {
-			grid-column: 1 / -1;
+		.service-path-card {
+			padding: 2.5rem 2.5rem 2.75rem;
 		}
 
 		.service-launch-steps {
@@ -3370,21 +3417,22 @@
 	}
 
 	.testimonial-billboard--launch {
-		border-color: rgba(0, 0, 0, 0.14);
+		border-color: rgba(0, 0, 0, 0.1);
 		background: rgba(255, 255, 255, 0.72);
-		box-shadow: 12px 12px 0 0 rgba(0, 102, 255, 0.08);
+		box-shadow: none;
 	}
 
 	.testimonial-billboard--launch::before {
 		top: 1.25rem;
 		width: 2.5rem;
+		background: var(--site-muted);
 	}
 
 	:is(.dark) .testimonial-billboard--launch {
-		border-color: rgba(255, 255, 255, 0.14);
-		background: rgba(255, 255, 255, 0.07);
+		border-color: rgba(255, 255, 255, 0.12);
+		background: rgba(255, 255, 255, 0.05);
 		color: var(--site-ink);
-		box-shadow: 12px 12px 0 0 rgba(255, 255, 255, 0.08);
+		box-shadow: none;
 	}
 
 	.testimonial-billboard--launch .testimonial-billboard__quote {

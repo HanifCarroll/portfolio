@@ -79,8 +79,10 @@ const faqItems = [
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-launch'>
 	<article class='container max-w-6xl service-page-stack py-14 md:py-16'>
+
 		<header class='service-hero-grid'>
 			<div class='service-hero-copy'>
+				<p class='service-section-label'>Technical Product Partner</p>
 				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 					Launch the right first product.
 				</h1>
@@ -119,7 +121,7 @@ const faqItems = [
 			{
 				proofItems.map((item) => (
 					<div class='service-proof-item'>
-						<p class='launch-meta'>{item.label}</p>
+						<p class='service-section-label'>{item.label}</p>
 						<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.value}</p>
 					</div>
 				))
@@ -129,7 +131,7 @@ const faqItems = [
 		<section id='paths' class='service-section'>
 			<div class='service-choice-header'>
 				<div class='service-choice-heading'>
-					<p class='section-label'>// Two Ways To Start</p>
+					<p class='service-section-label'>Two ways to start</p>
 					<h2 class='heading-display heading-display--section service-choice-title'>
 						<span>Start with a first version.</span>
 						<span>Stay with senior product help.</span>
@@ -137,7 +139,7 @@ const faqItems = [
 				</div>
 			</div>
 
-			<div class='service-path-grid'>
+			<div class='service-path-cards'>
 				{
 					pathChoices.map((choice) => (
 						<a
@@ -145,26 +147,24 @@ const faqItems = [
 							href={calUrl}
 							target='_blank'
 							rel='noopener noreferrer'
-							class='service-path-option group'
+							class='service-path-card group'
 							data-track-event='book_call_clicked'
 							data-track-location={choice.trackLocation}
 						>
-							<div class='service-path-option__meta'>
-								<p class='launch-meta'>{choice.label}</p>
-								<p class='launch-meta'>{choice.price}</p>
+							<div class='service-path-card__header'>
+								<p class='service-section-label'>{choice.label}</p>
+								<p class='service-path-card__price'>{choice.price}</p>
 							</div>
-							<div class='service-path-option__body'>
-								<div class='space-y-3'>
-									<h3 class='heading-display heading-display--subsection'>{choice.title}</h3>
-									<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{choice.summary}</p>
-								</div>
-								<ul class='service-path-option__signals'>
+							<div class='service-path-card__body'>
+								<h3 class='heading-display heading-display--subsection service-path-card__title'>{choice.title}</h3>
+								<p class='service-path-card__summary'>{choice.summary}</p>
+								<ul class='service-path-card__signals'>
 									{choice.signals.map((signal) => (
 										<li>{signal}</li>
 									))}
 								</ul>
-								<span class='arrow-link w-fit group-hover:border-primary group-hover:text-primary'>{choice.cta}</span>
 							</div>
+							<span class='arrow-link w-fit'>{choice.cta}</span>
 						</a>
 					))
 				}
@@ -172,15 +172,15 @@ const faqItems = [
 		</section>
 
 		<section class='service-section'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Roadmap Call</p>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Roadmap Call</p>
 				<h2 class='heading-display heading-display--section'>Use the call to choose the first move.</h2>
 			</div>
 			<div class='service-launch-steps'>
 				{
 					roadmapSteps.map((step) => (
 						<div class='service-launch-step'>
-							<p class='launch-meta'>Step {step.num}</p>
+							<p class='service-launch-step__num'>{step.num}</p>
 							<div class='space-y-3'>
 								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
 								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
@@ -192,8 +192,8 @@ const faqItems = [
 		</section>
 
 		<section class='service-section'>
-			<div class='max-w-3xl space-y-4'>
-				<p class='section-label'>// Common Questions</p>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Common Questions</p>
 				<h2 class='heading-display heading-display--section'>Questions founders usually ask first.</h2>
 			</div>
 			<div class='service-faq-compact'>
@@ -210,7 +210,7 @@ const faqItems = [
 
 		<section class='service-section service-detail-grid'>
 			<div class='space-y-4'>
-				<p class='section-label'>// Next Step</p>
+				<p class='service-section-label'>Next Step</p>
 				<h2 class='heading-display heading-display--section'>Bring the rough version.</h2>
 			</div>
 			<div class='space-y-5'>
@@ -229,5 +229,6 @@ const faqItems = [
 				</a>
 			</div>
 		</section>
+
 	</article>
 </BaseLayout>
