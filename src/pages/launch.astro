@@ -79,12 +79,6 @@ const faqItems = [
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-launch'>
 	<article class='container max-w-6xl service-page-stack py-14 md:py-16'>
-		<nav class='flex items-center gap-2 font-mono text-xs uppercase tracking-wide'>
-			<a href='/' class='transition-colors hover:text-primary'>Home</a>
-			<span class='text-zinc-400'>/</span>
-			<span class='text-primary'>Services</span>
-		</nav>
-
 		<header class='service-hero-grid'>
 			<div class='service-hero-copy'>
 				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
@@ -125,7 +119,7 @@ const faqItems = [
 			{
 				proofItems.map((item) => (
 					<div class='service-proof-item'>
-						<p class='launch-meta text-primary'>{item.label}</p>
+						<p class='launch-meta'>{item.label}</p>
 						<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.value}</p>
 					</div>
 				))
@@ -156,7 +150,7 @@ const faqItems = [
 							data-track-location={choice.trackLocation}
 						>
 							<div class='service-path-option__meta'>
-								<p class='launch-meta text-primary'>{choice.label}</p>
+								<p class='launch-meta'>{choice.label}</p>
 								<p class='launch-meta'>{choice.price}</p>
 							</div>
 							<div class='service-path-option__body'>
@@ -186,7 +180,7 @@ const faqItems = [
 				{
 					roadmapSteps.map((step) => (
 						<div class='service-launch-step'>
-							<p class='launch-meta text-primary'>Step {step.num}</p>
+							<p class='launch-meta'>Step {step.num}</p>
 							<div class='space-y-3'>
 								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
 								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{step.body}</p>

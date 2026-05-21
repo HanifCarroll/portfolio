@@ -16,11 +16,11 @@ const currentRoot = `/${pathname.match(/[^\/]+/)?.[0] ?? ''}/`;
 const isActiveLink = (href: string) => href === pathname || href === currentRoot;
 ---
 
-<header class='site-header sticky top-0 z-[1001] transition-colors duration-200'>
-	<div class='container relative z-[70] flex items-center justify-between gap-4 py-4'>
-		<a href='/' id='logoLink' class='flex flex-col transition hover:text-primary focus-visible:outline-none'>
-			<span class='font-display text-lg font-semibold uppercase tracking-[0.08em]'> Hanif Carroll </span>
-			<span class='font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400'>
+<header class='site-header sticky top-0 z-[1001]' id='siteHeader'>
+	<div class='container relative z-[70] flex items-center justify-between gap-4 py-6'>
+		<a href='/' id='logoLink' class='flex flex-col gap-0.5 transition hover:opacity-80 focus-visible:outline-none'>
+			<span class='font-display text-xl font-semibold uppercase tracking-[0.08em]'>Hanif Carroll</span>
+			<span class='font-mono text-[10px] uppercase tracking-[0.18em] opacity-70'>
 				Technical Product Partner
 			</span>
 		</a>
@@ -35,7 +35,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 			}
 			<a
 				href={BOOK_CALL_URL}
-				class='inline-flex items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#f2ede3] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
+				class='inline-flex items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
 				target='_blank'
 				rel='noopener noreferrer'
 				data-track-event='book_call_clicked'
@@ -47,7 +47,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 		</nav>
 
 		<button
-			class='inline-flex h-10 w-10 items-center justify-center border-2 border-black text-black transition hover:bg-[#090909] hover:text-white dark:border-white dark:text-white dark:hover:bg-zinc-100 dark:hover:text-black lg:hidden'
+			class='inline-flex h-10 w-10 items-center justify-center border-2 border-white/60 text-white transition hover:border-white hover:bg-white/10 lg:hidden'
 			id='mobileMenuToggle'
 			aria-label='Toggle navigation'
 			aria-expanded='false'
@@ -230,16 +230,52 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 			logoLink?.addEventListener('click', handleHomeClick);
 		};
 
+		const setupScrollBehavior = () => {
+			const header = document.getElementById('siteHeader');
+			if (!header) return;
+
+			let lastScrollY = window.scrollY;
+			let ticking = false;
+			const SCROLL_THRESHOLD = 80;
+
+			const updateHeader = () => {
+				const currentScrollY = window.scrollY;
+				const scrollingDown = currentScrollY > lastScrollY;
+				const menu = document.getElementById('mobileMenu');
+				const menuOpen = menu && !menu.hasAttribute('hidden');
+
+				if (menuOpen || currentScrollY <= SCROLL_THRESHOLD) {
+					header.style.transform = '';
+				} else if (scrollingDown) {
+					header.style.transform = 'translateY(-100%)';
+				} else {
+					header.style.transform = 'translateY(0)';
+				}
+
+				lastScrollY = currentScrollY;
+				ticking = false;
+			};
+
+			window.addEventListener('scroll', () => {
+				if (!ticking) {
+					requestAnimationFrame(updateHeader);
+					ticking = true;
+				}
+			}, { passive: true });
+		};
+
 		if (document.readyState === 'loading') {
 			document.addEventListener('DOMContentLoaded', setupHeaderInteractions, { once: true });
+			document.addEventListener('DOMContentLoaded', setupScrollBehavior, { once: true });
 		} else {
 			setupHeaderInteractions();
+			setupScrollBehavior();
 		}
 	</script>
 </header>
 
 <div
-	class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#f2ede3] pt-[6.5rem] dark:bg-[#090909] lg:hidden'
+	class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#0c0c0c] pt-[6.5rem] lg:hidden'
 	id='mobileMenu'
 	data-state='closed'
 	hidden
@@ -250,7 +286,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 				<a
 					href={link.href}
 					class:list={[
-						'text-2xl font-display font-semibold uppercase tracking-[0.12em] transition hover:text-primary focus-visible:outline-none focus-visible:text-primary',
+						'text-2xl font-display font-semibold uppercase tracking-[0.12em] text-white/80 transition hover:text-white focus-visible:outline-none focus-visible:text-white',
 						isActiveLink(link.href) && 'text-primary'
 					]}
 					aria-current={isActiveLink(link.href) ? 'page' : undefined}
@@ -265,7 +301,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 		}
 		<a
 			href={BOOK_CALL_URL}
-			class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#f2ede3] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
+			class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
 			target='_blank'
 			rel='noopener noreferrer'
 			data-track-event='book_call_clicked'
@@ -280,6 +316,19 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 </div>
 
 <style>
+	#siteHeader {
+		transition:
+			transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+			background-color 200ms ease,
+			border-color 200ms ease;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#siteHeader {
+			transition: none;
+		}
+	}
+
 	#mobileMenu {
 		opacity: 0;
 		transition: opacity 180ms ease-in;

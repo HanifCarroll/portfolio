@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, RESUME_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
@@ -37,15 +37,13 @@ const pathCards = [
 		label: 'Product path',
 		title: 'Launch a first version',
 		body: 'For founders who need the first useful version scoped, built, and live.',
-		href: '/launch/#mvp',
-		cta: 'See the launch path'
+		href: '/launch/#mvp'
 	},
 	{
 		label: 'Fractional path',
 		title: 'Add senior product engineering',
 		body: 'For founder-led teams that need scope control, architecture judgment, and steady shipping help.',
-		href: '/launch/#fractional',
-		cta: 'See fractional support'
+		href: '/launch/#fractional'
 	}
 ];
 
@@ -84,34 +82,33 @@ const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug
 const proofStats = [
 	{ label: '8+ years', value: 'Product and software delivery' },
 	{ label: '10+ shipped', value: 'Products, systems, and tools' },
-	{ label: 'Launched', value: 'Palabruno across iOS, Android, and web' },
 	{ label: '3,000+', value: 'Organizers supported at LeagueApps' }
 ];
 
-const evidenceLinks = [
-	{ label: 'Resume', href: RESUME_URL, trackEvent: 'resume_clicked' },
-	{ label: 'GitHub', href: 'https://github.com/hanifcarroll' },
-	{ label: 'LinkedIn', href: 'https://linkedin.com/in/hanifcarroll' },
-	{ label: 'Tools', href: '/tools/' },
-	{ label: 'Email', href: 'mailto:HanifCarroll@gmail.com', trackEvent: 'email_clicked' }
+const fitItems = [
+	'You need a focused MVP built from scratch, or senior product engineering help for an existing product.',
+	'You want one person who can advise on scope, UX, architecture, and implementation.',
+	'You need a smaller first step before committing to a bigger build.'
 ];
 
-const fitColumns = [
+const testimonials = [
 	{
-		title: 'Good fit',
-		items: [
-			'You need a focused MVP built from scratch, or senior product engineering help for an existing product.',
-			'You want one person who can advise on scope, UX, architecture, and implementation.',
-			'You need a smaller first step before committing to a bigger build.'
-		]
+		quote: 'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time.',
+		name: 'Monica Londoño',
+		role: 'Co-founder',
+		company: 'Punto de Partida'
 	},
 	{
-		title: 'Probably not a fit',
-		items: [
-			'Idea-only projects with no urgency or budget.',
-			'Teams shopping for the cheapest developer hours they can find.',
-			'Large enterprise programs with broad committee scope from day one.'
-		]
+		quote: "He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
+		name: 'Markis Zarate',
+		role: 'Founder',
+		company: 'Zarate Studios'
+	},
+	{
+		quote: 'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.',
+		name: 'Sarah Hibner',
+		role: 'Senior Product Designer',
+		company: 'LeagueApps'
 	}
 ];
 ---
@@ -127,54 +124,40 @@ const fitColumns = [
 >
 	<section class='home-hero-shell'>
 		<div class='container home-hero-stage'>
-			<header class='home-hero-split'>
-				<div class='home-hero-copy-wrap'>
-					<div class='home-hero-copy space-y-6 md:space-y-7'>
-						<p class='home-hero-context home-hero-context--hero'>Technical Product Partner</p>
-						<h1 class='home-hero-title'>
-							<span>MVP launches</span>
-							<span>for founder-led</span>
-							<span>teams</span>
-						</h1>
-						<p class='home-hero-body'>
-							I help nontechnical founders and lean teams turn rough product ideas into launched web and mobile MVPs, then stay
-							involved as fractional product engineering support when senior judgment matters.
-						</p>
-						<div class='home-hero-actions'>
-							<a
-								class='home-hero-primary-link'
-								href={BOOK_CALL_URL}
-								target='_blank'
-								rel='noopener noreferrer'
-								data-track-event='book_call_clicked'
-								data-track-location='home_hero_primary'
-							>
-								Book a Roadmap Call
-							</a>
-							<a class='home-hero-secondary-link' href='/projects/'>See case studies</a>
-						</div>
-						<div class='home-evidence-links' aria-label='Professional evidence links'>
-							{
-								evidenceLinks.map((link) => (
-									<a
-										href={link.href}
-										target={link.href.startsWith('http') ? '_blank' : undefined}
-										rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-										data-track-event={link.trackEvent ?? 'evidence_clicked'}
-										data-track-location='home_evidence'
-									>
-										{link.label}
-									</a>
-								))
-							}
+			<header class='home-hero'>
+				<h1 class='home-hero-title'>
+					<span>Launch your MVP.</span>
+					<span>Keep a senior engineer on call.</span>
+				</h1>
+
+				<div class='home-hero-split'>
+					<div class='home-hero-copy-wrap'>
+						<div class='home-hero-copy space-y-6 md:space-y-7'>
+							<p class='home-hero-body'>
+								I help nontechnical founders and lean teams turn rough product ideas into launched web and mobile MVPs.
+								Then I stay on as fractional product engineering support when senior judgment matters.
+							</p>
+							<div class='home-hero-actions'>
+								<a
+									class='home-hero-primary-link'
+									href={BOOK_CALL_URL}
+									target='_blank'
+									rel='noopener noreferrer'
+									data-track-event='book_call_clicked'
+									data-track-location='home_hero_primary'
+								>
+									Book a Roadmap Call
+								</a>
+								<a class='home-hero-secondary-link' href='/projects/'>See case studies</a>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class='home-hero-media'>
-					<figure class='home-hero-image-wrap'>
-						<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
-					</figure>
+					<div class='home-hero-media'>
+						<figure class='home-hero-image-wrap'>
+							<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
+						</figure>
+					</div>
 				</div>
 			</header>
 
@@ -191,6 +174,41 @@ const fitColumns = [
 		</div>
 	</section>
 
+	<section class='home-testimonials-band' aria-labelledby='home-testimonials-title'>
+		<div class='container home-testimonials'>
+			<p class='home-testimonials__eyebrow' id='home-testimonials-title'>What clients say</p>
+			<div class='home-testimonials__grid'>
+				{
+					testimonials.map((t) => (
+						<figure class='home-testimonial'>
+							<blockquote class='home-testimonial__quote'>
+								<p>{t.quote}</p>
+							</blockquote>
+							<figcaption class='home-testimonial__attr'>
+								<span class='home-testimonial__name'>{t.name}</span>
+								<span class='home-testimonial__role'>
+									{t.role}, {t.company}
+								</span>
+							</figcaption>
+						</figure>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class='container home-about' aria-labelledby='home-about-title'>
+		<div class='home-about__inner'>
+			<h2 id='home-about-title' class='home-about__title'>Hi, I'm Hanif.</h2>
+			<p class='home-about__body'>
+				I've spent eight years shipping web and mobile products — from a Spanish reading app I built end-to-end to senior product
+				engineering for teams at LeagueApps and beyond. I work with nontechnical founders and lean teams who need someone who can
+				make scope, design, and engineering judgment calls in the same conversation, then ship the result.
+			</p>
+			<p class='home-about__location'>Based in Buenos Aires. Available worldwide.</p>
+		</div>
+	</section>
+
 	<section class='container home-start-section' aria-labelledby='home-paths-title'>
 		<div class='home-start-section__inner'>
 			<div class='space-y-5'>
@@ -202,16 +220,13 @@ const fitColumns = [
 					pathCards.map((path) => (
 						<a href={path.href} class='path-choice group'>
 							<div class='path-choice__header'>
-								<p class='launch-meta text-primary'>{path.label}</p>
+								<p class='launch-meta'>{path.label}</p>
 								<span class='path-choice__arrow'>↗</span>
 							</div>
-							<div class='space-y-4'>
+							<div class='space-y-3'>
 								<h3 class='heading-display path-choice__title'>{path.title}</h3>
 								<p class='path-choice__body'>{path.body}</p>
 							</div>
-							<span class='path-choice__link'>
-								{path.cta} <span aria-hidden='true'>→</span>
-							</span>
 						</a>
 					))
 				}
@@ -263,24 +278,14 @@ const fitColumns = [
 
 	<section class='container home-fit-section' aria-labelledby='home-fit-title'>
 		<div class='home-fit-section__inner'>
-			<div class='space-y-4'>
-				<h2 id='home-fit-title' class='heading-display home-fit-section__title'>A quick fit check before booking</h2>
+			<div class='space-y-3'>
+				<h2 id='home-fit-title' class='home-fit-section__title'>Is this for you?</h2>
+				<p class='home-fit-section__lede'>A roadmap call is the right next step if any of these sound familiar:</p>
 			</div>
 
-			<div class='fit-grid'>
-				{
-					fitColumns.map((column) => (
-						<div class='fit-column'>
-							<p class='launch-meta text-primary'>{column.title}</p>
-							<ul class='fit-list'>
-								{column.items.map((item) => (
-									<li>{item}</li>
-								))}
-							</ul>
-						</div>
-					))
-				}
-			</div>
+			<ul class='fit-list home-fit-list'>
+				{fitItems.map((item) => <li>{item}</li>)}
+			</ul>
 
 			<div class='fit-actions'>
 				<a
