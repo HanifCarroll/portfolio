@@ -761,22 +761,21 @@
 		gap: 3.25rem;
 	}
 
-	.service-choice-header {
+	/* Paths split layout */
+	.service-paths-section {
 		display: grid;
-		gap: 2rem;
-		padding-block: 2.5rem;
-		border-block: 1px solid rgba(0, 0, 0, 0.1);
+		gap: 2.5rem;
 	}
 
-	.service-choice-heading {
+	.service-paths-heading {
 		display: grid;
-		gap: 1.15rem;
+		gap: 1.25rem;
+		align-content: start;
 	}
 
 	.service-choice-title {
-		max-width: 13ch;
-		font-size: clamp(2.35rem, 1.25rem + 3.2vw, 5.25rem);
-		line-height: 0.9;
+		font-size: clamp(2rem, 1.2rem + 2.8vw, 3.5rem);
+		line-height: 1;
 	}
 
 	.service-choice-title span {
@@ -2675,9 +2674,6 @@
 
 	:is(.dark) .path-choices,
 	:is(.dark) .path-choice,
-	:is(.dark) .service-choice-header,
-	:is(.dark) .service-path-grid,
-	:is(.dark) .service-proof-strip,
 	:is(.dark) .service-faq-compact,
 	:is(.dark) .home-proof-strip,
 	:is(.dark) .about-evidence-path {
@@ -2814,12 +2810,15 @@
 			gap: 3.75rem;
 		}
 
-		.service-choice-header {
-			padding-block: 3.25rem;
+		.service-paths-section {
+			grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+			gap: 5rem;
+			align-items: start;
 		}
 
-		.service-path-cards {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+		/* Cards stack vertically in the right column */
+		.service-paths-section .service-path-cards {
+			grid-template-columns: 1fr;
 		}
 
 		.service-path-card {
