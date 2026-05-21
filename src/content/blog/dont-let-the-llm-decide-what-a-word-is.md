@@ -11,13 +11,13 @@ I'm building a reading app for Spanish learners. You open a story, tap any word,
 
 "Se lo dije" is three written words and one thought. "Había viajado" is two written words, but only the first one is what a learner usually wants explained. "Cambio climático" is two words that mean one thing. Get those boundaries wrong and the app feels broken even when every card, read alone, is correct.
 
-I built the first version of this the way most people would in 2026: hand the Spanish text to an LLM and let it figure everything out. That was the mistake.
+I built the first version of this tap-grouping logic the way most people would in 2026: hand the Spanish text to an LLM and let it figure everything out. That was the mistake.
 
 ## The bug that gave it away
 
 A teacher testing the app tapped "había" inside "había viajado." The card said "had traveled," which is the meaning of both words together, not the one he tapped. Same session, he tapped "cambio climático" and got two separate cards, "change" and "climatic," when it should have been one unit for "climate change." Two opposite-looking failures, fifteen seconds apart.
 
-I'd been patching these one sentence at a time for weeks. Whenever a teacher flagged a case, I'd add another rule for that specific phrase or that specific verb form. The list of patches kept getting longer and the app kept not getting more predictable. New stories surfaced new versions of the same problem, and the rules I'd written for the last story rarely helped with the next one.
+I'd spent too long patching these one sentence at a time. Whenever a teacher flagged a case, I'd add another rule for that specific phrase or that specific verb form. The list of patches kept getting longer without the app getting any more predictable. New stories surfaced new versions of the same problem, and the rules I'd written for the last story rarely helped with the next one.
 
 ![Two failure modes: a card explaining more than what was tapped, and one phrase split into two separate cards](/blog/llm-word-boundaries/two-failure-modes.png)
 
@@ -27,11 +27,11 @@ The original pipeline sent the whole Spanish story to an LLM and asked it to do 
 
 The appeal was that LLMs are good with language and you can describe the whole job to one in a paragraph. The behavior in the happy case looked impressive enough that the failures felt like edge cases I could chip away at.
 
-Two things kept breaking, and they were structural, not edge cases.
+Two things kept breaking in a systematic way.
 
-The model wasn't consistent about boundaries. The same phrase in two different stories would be grouped differently for no reason I could explain to the teacher. Sometimes "estaba leyendo" was one unit, sometimes two. I couldn't promise behavior, because I couldn't reproduce it.
+The model wasn't consistent about boundaries. The same phrase in two different stories would be grouped differently for no reason I could explain to the teacher. Sometimes "estaba leyendo" was one unit, sometimes two. I couldn't promise behavior because I couldn't reproduce it.
 
-The card text disagreed with the span it was supposedly explaining, and there was no place in the pipeline to notice. The model produced the span and the card in the same step, so by the time I had the output, the only check I could write was "does this look right," which is the kind of check that scales to about one paragraph.
+The card text disagreed with the phrase it was supposedly explaining, and there was no place in the pipeline to notice. The model produced the phrase and the card in the same step, so by the time I had the output, the only check I could write was "does this look right," which is the kind of check that scales to about one paragraph.
 
 ## The reframe
 
@@ -39,11 +39,11 @@ Two different kinds of decision were tangled together inside one model call.
 
 The first kind is structural. Where does one tap end and the next begin? This needs a single right answer for a given input, the same answer every time, and a reason you can point to when a teacher asks why.
 
-The second kind is content. Given one specific Spanish span, what's the clearest short English explanation for a learner at this level? This is open-ended. Two good writers would produce different cards and both would be fine.
+The second kind is content. Given one specific Spanish phrase, what's the clearest short English explanation for a learner at this level? This is open-ended. Two good writers would produce different cards and both would be fine.
 
 LLMs are good at the content kind. They are not bad at the structural kind in any absolute sense, but they're bad at it in the ways that matter here: you can't reproduce the answer, you can't audit it, and you can't constrain it to a rule a teacher would agree with.
 
-Structural decisions belong in code you can read top to bottom: a dictionary of known phrases, a grammar parser that tells you which words attach to which, and an ordered list of rules with names. Once those decisions are made and locked, you can give the model one span at a time and ask it to write a card for that span only. It can't reach across a boundary it never saw.
+Structural decisions belong in code you can read top to bottom: a dictionary of known phrases, a grammar parser that tells you which words attach to which, and an ordered list of rules with names. Once those decisions are made and locked, you can give the model one phrase at a time and ask it to write a card for that phrase only. It can't reach across a boundary it never saw.
 
 ![Two-lane diagram: code's job (dictionary, grammar, ordered rules) feeds locked tap units across a trust boundary to the model, which writes one card](/blog/llm-word-boundaries/two-lanes-trust-boundary.png)
 
@@ -59,7 +59,7 @@ Third, run an ordered list of rules against that result. Known fixed expressions
 
 Fourth, lock the result. Nothing later is allowed to merge, split, or move a tap unit.
 
-Fifth, generate cards. For each locked unit, call the LLM with that unit, its grammar features, and a small amount of surrounding context for disambiguation. The model writes one card. A validator checks the card against the span: if it claims a meaning the span can't carry (translating the neighbor, glossing a finite verb as an infinitive, treating a piece of a proper name as a standalone word), the system either retries with a tighter prompt or falls back to a curated dictionary entry.
+Fifth, generate cards. For each locked unit, call the LLM with that unit, its grammar features, and a small amount of surrounding context for disambiguation. The model writes one card. A validator checks the card against the phrase: if it claims a meaning the phrase can't carry (translating the neighbor, glossing a finite verb as an infinitive, treating a piece of a proper name as a standalone word), the system either retries with a tighter prompt or falls back to a curated dictionary entry.
 
 The output is a saved artifact that records, for every tap on screen, which rule put the boundary there, what evidence the rule used, what the card said, and where the card text came from. When a teacher reports a bug now, the answer is a row in that record, not a guess.
 
@@ -69,9 +69,9 @@ Per-sentence patches stopped accumulating. A new story doesn't introduce new bou
 
 We can write hand-labeled test cases (for this paragraph these tap units must exist, these must not) and run them on every change. The test suite catches regressions before a teacher does.
 
-LLM cost dropped because we stopped sending full stories and started sending single locked spans. Most cards now consume a fraction of the tokens the old pipeline used.
+LLM cost dropped because we stopped sending full stories and started sending single locked phrases. Most cards now consume a fraction of the tokens the old pipeline used.
 
-Bad cards still happen, but the validator catches the failure mode teachers noticed most: cards that claim more meaning than the tapped span actually carries.
+Bad cards still happen, but the validator catches the failure mode teachers noticed most: cards that claim more meaning than the tapped phrase actually carries.
 
 And when a teacher asks why a specific tap behaves a specific way, I can answer in one sentence instead of opening a debugger.
 
