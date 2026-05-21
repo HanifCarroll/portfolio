@@ -761,25 +761,25 @@
 		gap: 3.25rem;
 	}
 
-	/* Paths split layout */
+	/* Paths section */
 	.service-paths-section {
 		display: grid;
-		gap: 2.5rem;
+		gap: 3rem;
 	}
 
 	.service-paths-heading {
 		display: grid;
 		gap: 1.25rem;
-		align-content: start;
 	}
 
 	.service-choice-title {
-		font-size: clamp(2rem, 1.2rem + 2.8vw, 3.5rem);
-		line-height: 1;
+		font-size: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+		line-height: 1.1;
+		max-width: 28ch;
 	}
 
 	.service-choice-title span {
-		display: block;
+		display: inline;
 	}
 
 	.service-choice-title span:nth-child(even) {
@@ -2813,15 +2813,8 @@
 			gap: 3.75rem;
 		}
 
-		.service-paths-section {
-			grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
-			gap: 5rem;
-			align-items: start;
-		}
-
-		/* Cards stack vertically in the right column */
-		.service-paths-section .service-path-cards {
-			grid-template-columns: 1fr;
+		.service-path-cards {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.service-path-card {
