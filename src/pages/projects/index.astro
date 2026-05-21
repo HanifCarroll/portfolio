@@ -40,7 +40,7 @@ const focusAreas = ['MVP launches', 'Product strategy', 'Fractional engineering'
 		<header class='projects-index__hero'>
 			<div class='projects-index__hero-main'>
 				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='6.8'>
-					Founder-led product work.
+					Founder-led product work
 				</h1>
 			</div>
 			<div class='projects-index__hero-side'>
@@ -90,8 +90,7 @@ const focusAreas = ['MVP launches', 'Product strategy', 'Fractional engineering'
 
 		<section class='projects-index__archive' aria-labelledby='client-work-title'>
 			<div class='projects-index__archive-heading'>
-				<p class='section-label'>Client Work</p>
-				<h2 id='client-work-title' class='heading-display heading-display--section'>Client work from idea to launch.</h2>
+				<h2 id='client-work-title' class='heading-display heading-display--section'>Client work</h2>
 			</div>
 			<div class='projects-index__rows'>
 				{
@@ -125,20 +124,15 @@ const focusAreas = ['MVP launches', 'Product strategy', 'Fractional engineering'
 		{
 			experimentProjects.length > 0 && (
 				<section class='projects-index__experiments' aria-labelledby='experiments-title'>
-					<div class='projects-index__archive-heading'>
-						<p class='section-label'>Experiments</p>
-						<h2 id='experiments-title' class='heading-display heading-display--subsection'>
-							Smaller builds and product studies.
-						</h2>
-					</div>
-					<div class='projects-index__experiment-grid'>
+					<h2 id='experiments-title' class='heading-display heading-display--subsection projects-index__experiments-title'>
+						Smaller builds and studies
+					</h2>
+					<div class='projects-index__experiment-list'>
 						{experimentProjects.map((project) => (
-							<a href={`/projects/${project.slug}/`} class='projects-index__experiment-card group'>
-								<div>
-									<p class='section-label'>{project.trackShortLabel}</p>
-									<h3>{project.name}</h3>
-									<p>{project.description}</p>
-								</div>
+							<a href={`/projects/${project.slug}/`} class='projects-index__experiment-row group'>
+								<span class='projects-index__experiment-track'>{project.trackShortLabel}</span>
+								<span class='projects-index__experiment-name'>{project.name}</span>
+								<span class='projects-index__experiment-arrow' aria-hidden='true'>→</span>
 							</a>
 						))}
 					</div>

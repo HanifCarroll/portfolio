@@ -15,11 +15,10 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='container max-w-6xl space-y-20 py-10 md:space-y-24'>
-		<header class='max-w-5xl space-y-5'>
-			<p class='section-label'>// Notes</p>
-			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				Notes on products, workflows, and AI.
+	<article class='container max-w-6xl space-y-14 py-10 md:space-y-16'>
+		<header class='space-y-5'>
+			<h1 class='heading-display heading-display--hero blog-index-hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+				Notes on products, workflows, and AI
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
 				Field notes from product work, workflow systems, agent tooling, architecture decisions, and the debugging behind useful builds.
@@ -28,9 +27,7 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 
 		{
 			posts.length > 0 && (
-				<section class='space-y-8 md:space-y-10'>
-					<p class='section-label'>// Latest</p>
-
+				<section>
 					<div class='insights-editorial-list'>
 						{posts.map((post, index) => (
 							<article class:list={['insights-editorial-item', index === 0 && 'insights-editorial-item--latest']}>
@@ -39,7 +36,7 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 										<FormattedDate date={post.data.pubDate} />
 										<span class='launch-meta'>{audienceLabel(post)}</span>
 									</div>
-									<h3 class='heading-display heading-display--section'>
+									<h3 class='insights-editorial-item__title'>
 										<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>
 											{post.data.title}
 										</a>
