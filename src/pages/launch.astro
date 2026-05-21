@@ -1,15 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TestimonialBillboard from '../components/TestimonialBillboard.astro';
 import { BOOK_CALL_URL } from '../consts';
-import testimonials from '../../testimonials.json';
-import monicaImage from '../assets/img/monica.jpeg';
 
 const title = 'MVP Launches & Fractional Product Engineering';
 const description =
 	'Web and mobile MVP launches for nontechnical founders. Fractional product engineering for founder-led teams that need senior help shipping.';
 const calUrl = BOOK_CALL_URL;
-const serviceTestimonial = testimonials[0];
 
 const pathChoices = [
 	{
@@ -55,12 +51,6 @@ const roadmapSteps = [
 	}
 ];
 
-const proofItems = [
-	{ label: '8+ years', value: 'Building software' },
-	{ label: '10+ shipped', value: 'Products and systems' },
-	{ label: 'Direct', value: 'Senior execution' }
-];
-
 const faqItems = [
 	{
 		title: 'Can I book a call before the scope is clear?',
@@ -86,9 +76,9 @@ const faqItems = [
 				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
 					Launch the right first product.
 				</h1>
-				<p class='max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300'>
-					I help nontechnical founders turn rough ideas into focused web and mobile MVPs. I also work with founder-led teams that need
-					senior product engineering support without hiring full-time.
+				<p class='service-hero-body'>
+					I help nontechnical founders turn rough ideas into focused web and mobile MVPs. I also work with founder-led teams that
+					need senior product engineering support without hiring full-time.
 				</p>
 				<div class='flex flex-wrap gap-4'>
 					<a
@@ -101,32 +91,10 @@ const faqItems = [
 					>
 						Book a Roadmap Call
 					</a>
+					<a href='#paths' class='fit-secondary-link'>See the options</a>
 				</div>
 			</div>
 		</header>
-
-		<section class='service-section'>
-			<TestimonialBillboard
-				quote={serviceTestimonial.billboardText ?? serviceTestimonial.text}
-				name={serviceTestimonial.name}
-				role={serviceTestimonial.role}
-				company={serviceTestimonial.company}
-				image={monicaImage}
-				label='Client note'
-				class='testimonial-billboard--launch service-testimonial'
-			/>
-		</section>
-
-		<div class='service-proof-strip'>
-			{
-				proofItems.map((item) => (
-					<div class='service-proof-item'>
-						<p class='service-section-label'>{item.label}</p>
-						<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.value}</p>
-					</div>
-				))
-			}
-		</div>
 
 		<section id='paths' class='service-section'>
 			<div class='service-choice-header'>
