@@ -1,14 +1,14 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { BOOK_CALL_URL, RESUME_URL } from '../../consts';
+import { EMAIL_URL, RESUME_URL } from '../../consts';
 
 const navLinks = [
-	{ href: '/launch/', label: 'Services' },
 	{ href: '/projects/', label: 'Case Studies' },
+	{ href: '/about/', label: 'About' },
 	{ href: RESUME_URL, label: 'Resume', trackEvent: 'resume_clicked', trackLocation: 'header_nav' },
 	{ href: '/tools/', label: 'Tools' },
-	{ href: '/about/', label: 'About' },
-	{ href: '/blog/', label: 'Notes' }
+	{ href: '/blog/', label: 'Notes' },
+	{ href: '/launch/', label: 'Work with me' }
 ];
 
 const { pathname } = Astro.url;
@@ -21,7 +21,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 		<a href='/' id='logoLink' class='flex flex-col gap-0.5 transition hover:opacity-80 focus-visible:outline-none'>
 			<span class='font-display text-xl font-semibold uppercase tracking-[0.08em]'>Hanif Carroll</span>
 			<span class='font-mono text-[10px] uppercase tracking-[0.18em] opacity-70'>
-				Technical Product Partner
+				Product Engineer
 			</span>
 		</a>
 
@@ -34,14 +34,12 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 				))
 			}
 			<a
-				href={BOOK_CALL_URL}
+				href={EMAIL_URL}
 				class='inline-flex items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
-				target='_blank'
-				rel='noopener noreferrer'
-				data-track-event='book_call_clicked'
+				data-track-event='email_clicked'
 				data-track-location='header_primary'
 			>
-				Book a Roadmap Call
+				Get in touch
 				<span aria-hidden='true' class='text-base leading-none'>→</span>
 			</a>
 		</nav>
@@ -300,16 +298,14 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 			))
 		}
 		<a
-			href={BOOK_CALL_URL}
+			href={EMAIL_URL}
 			class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
-			target='_blank'
-			rel='noopener noreferrer'
-			data-track-event='book_call_clicked'
+			data-track-event='email_clicked'
 			data-track-location='header_mobile'
 			data-mobile-menu-item
 			style={`--mobile-menu-index: ${navLinks.length}`}
 		>
-			Book a Roadmap Call
+			Get in touch
 			<span aria-hidden='true' class='text-base leading-none'>→</span>
 		</a>
 	</nav>

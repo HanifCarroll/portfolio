@@ -1,38 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, RESUME_URL } from '../consts';
+import { EMAIL_URL, RESUME_URL } from '../consts';
 
 const title = 'About Hanif Carroll';
 const description =
-	'I help nontechnical founders and founder-led teams cut the first useful scope, launch focused MVPs, and keep product engineering moving.';
+	'Product engineer with 8+ years across web and mobile, now mostly building with LLMs. I like owning the whole arc: talking to users, shaping the product, designing the UX, and shipping the code.';
 
 const strengths = [
 	{
-		label: 'Scope before sprawl',
-		body: 'I help narrow the first useful version before the project turns into a bigger, slower, more expensive build than it needs to be.'
+		label: 'Close to the user',
+		body: 'I do my best work when I can talk to the people we are building for, not just read a ticket. That is usually where the real product decisions hide.'
 	},
 	{
-		label: 'Product judgment plus execution',
-		body: 'The value is not just building. It is knowing what to build first, what to defer, and how to make the tradeoffs legible in plain English.'
+		label: 'The whole arc, one person',
+		body: 'Scope, UX, architecture, and the code that ships. I like making those calls in the same conversation instead of throwing work over walls.'
 	},
 	{
-		label: 'One accountable partner',
-		body: 'You are not coordinating strategy, design, and engineering layers. You work directly with the person making the product and technical calls.'
+		label: 'AI with judgment',
+		body: 'Most of my recent work is with LLMs: RAG, agents, evals, and voice. The hard part is rarely the model. It is the product and UX choices around it.'
 	}
 ];
 
 const workingStyle = [
 	{
-		title: 'I start with the bottleneck.',
-		body: 'Most projects should begin with the business constraint, not the requested feature list. That is usually where the real leverage is.'
+		title: 'I start with the real constraint.',
+		body: 'Most work should begin with the actual bottleneck, not the feature list. That is usually where the leverage is.'
 	},
 	{
 		title: 'I reduce before I build.',
-		body: 'The first version should be smaller and clearer than what most teams ask for at the start. That is how good projects stay shippable.'
+		body: 'The first version should be smaller and clearer than what most teams reach for at the start. That is how good products stay shippable.'
 	},
 	{
 		title: 'I explain tradeoffs directly.',
-		body: 'Scope, UX, pricing, architecture, and implementation decisions only help if they are understandable. I do not hide the reasoning behind technical language.'
+		body: 'Scope, UX, architecture, and implementation decisions only help if they are understandable. I do not hide the reasoning behind technical language.'
 	}
 ];
 
@@ -43,11 +43,11 @@ const backgroundMoments = [
 	},
 	{
 		label: 'LeagueApps',
-		body: 'Worked inside a strong product environment where growth, UX, and implementation had to stay connected to each other.'
+		body: 'Senior product engineering inside a strong product team, where growth, UX, and implementation had to stay connected to each other.'
 	},
 	{
-		label: 'Independent work',
-		body: 'Built across MVPs, launch sites, product systems, internal tools, and AI-enabled products where smaller teams needed judgment as much as code.'
+		label: 'HC Studio',
+		body: 'My own studio, where I have shipped MVPs, AI products from demo to paid, and internal tools end to end. Proof I can own a product, not just a task.'
 	}
 ];
 
@@ -56,7 +56,7 @@ const evidenceLinks = [
 	{ label: 'GitHub', href: 'https://github.com/hanifcarroll' },
 	{ label: 'LinkedIn', href: 'https://linkedin.com/in/hanifcarroll' },
 	{ label: 'Tools and experiments', href: '/tools/' },
-	{ label: 'Email', href: 'mailto:HanifCarroll@gmail.com', trackEvent: 'email_clicked' }
+	{ label: 'Email', href: EMAIL_URL, trackEvent: 'email_clicked' }
 ];
 ---
 
@@ -64,19 +64,20 @@ const evidenceLinks = [
 	<article class='container max-w-6xl space-y-12 py-10 md:space-y-16'>
 		<header class='about-hero-copy space-y-6' data-fit-container>
 			<h1 class='heading-display heading-display--hero about-hero-title' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				I help founders and operator-led teams decide what to build first
+				I'm a product engineer who likes owning the whole product
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Most clients do not need more code. They need someone who can look at the business problem, cut the first useful version, and build
-				a system that changes the way the work gets done.
+				I started as a software developer and kept drifting toward the parts most engineers hand off: what we should build, why, and whether
+				it actually works for the person using it. Eight years later, that is the job I want. Product engineering, where the same person
+				talks to users, shapes the product, and ships it.
 			</p>
 		</header>
 
 		<section class='about-editorial-split'>
 			<div class='space-y-4'>
-				<h2 class='about-section-serif-heading'>Useful software, clearer decisions, less wasted motion</h2>
+				<h2 class='about-section-serif-heading'>How I work</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The difference is usually judgment, not just output. The work is to make the first useful scope obvious enough to build.
+					The value is rarely just output. It is judgment about what to build, what to leave out, and how the thing feels to use.
 				</p>
 			</div>
 			<div class='about-positioning-list'>
@@ -105,11 +106,28 @@ const evidenceLinks = [
 			}
 		</section>
 
+		<section class='about-editorial-split'>
+			<div class='space-y-4'>
+				<h2 class='about-section-serif-heading'>What I'm building toward</h2>
+			</div>
+			<div class='space-y-4 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+				<p>
+					I care most about AI that keeps the person in the driver's seat. Not automation that quietly replaces people, but tools that
+					make us better at creating, learning, and thinking for ourselves. The human stays the protagonist; the AI is the partner.
+				</p>
+				<p>
+					In practice that means copilots for making things, tutors that actually teach, and AI that can show up inside a real
+					conversation between people. It is the thread I follow when I choose what to build, and the kind of product I most want to
+					help a team get right.
+				</p>
+			</div>
+		</section>
+
 		<section class='about-background-strip'>
 			<div class='space-y-3'>
 				<h2 class='heading-display heading-display--note'>Background</h2>
 				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Larger delivery environments, product-led teams, and independent work where smaller teams needed judgment as much as code.
+					Large delivery environments, a product-led team, and my own studio, where owning the outcome mattered as much as the code.
 				</p>
 			</div>
 			<div class='about-background-rail'>
@@ -159,20 +177,19 @@ const evidenceLinks = [
 
 		<section class='max-w-3xl space-y-5 pb-4'>
 			<h2 class='heading-display heading-display--subsection'>
-				If you need a first useful version, I can usually tell you where to start
+				If you're building something I might fit, I'd love to hear about it
 			</h2>
 			<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-				The roadmap call is where I tell you whether this should be an MVP launch, fractional product engineering, or a smaller first step.
+				I'm looking for a team building a product worth caring about, where an engineer who can own the whole arc would help. Email is
+				the fastest way to reach me. I also take on select freelance and fractional work through HC Studio.
 			</p>
 			<a
-				href={BOOK_CALL_URL}
-				target='_blank'
-				rel='noopener noreferrer'
+				href={EMAIL_URL}
 				class='arrow-link w-fit'
-				data-track-event='book_call_clicked'
+				data-track-event='email_clicked'
 				data-track-location='about_closing'
 			>
-				Book a Roadmap Call
+				Get in touch
 			</a>
 		</section>
 	</article>

@@ -1,7 +1,7 @@
 ---
 import BaseHead from './components/BaseHead.astro';
 import Header from './components/Header.astro';
-import { BOOK_CALL_URL, RESUME_URL } from '../consts';
+import { EMAIL_URL, RESUME_URL } from '../consts';
 
 const {
 	title,
@@ -59,26 +59,24 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 					<div class='container py-20'>
 						<div class='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8'>
 							<div class='lg:col-span-7 space-y-8'>
-								<span class='section-label'>Work with me</span>
+								<span class='section-label'>Get in touch</span>
 
 								<h2 class='heading-display text-4xl md:text-5xl lg:text-6xl text-white dark:text-black'>
-									Need an MVP launch or senior product engineering help?
+									Building something I could help with?
 								</h2>
 
 								<p class='text-lg text-zinc-300 dark:text-zinc-600 leading-relaxed max-w-xl'>
-									Book a 30-minute roadmap call. We&rsquo;ll narrow the product constraint and figure out whether I&rsquo;m the right fit for it.
+									I&rsquo;m always happy to talk product, AI, and what you&rsquo;re working on. Email is the fastest way to reach me.
 								</p>
 
 								<div class='pt-2'>
 									<a
 										class='btn-primary inline-block border-[#090909] bg-[#090909] px-6 py-3 text-white hover:bg-white hover:text-black focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:border-[#090909] dark:bg-[#090909] dark:text-white dark:hover:bg-white dark:hover:text-black'
-										href={BOOK_CALL_URL}
-										target='_blank'
-										rel='noopener noreferrer'
-										data-track-event='book_call_clicked'
+										href={EMAIL_URL}
+										data-track-event='email_clicked'
 										data-track-location='footer_contact'
 									>
-										Book a Roadmap Call
+										Get in touch
 									</a>
 								</div>
 							</div>
@@ -94,7 +92,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 												href='/launch/'
 											>
 												<span class='h-px w-6 bg-zinc-700 dark:bg-zinc-300 transition-all group-hover:w-10 group-hover:bg-primary' />
-												Services
+												Work with me
 											</a>
 											<a
 												class='group flex items-center gap-3 font-mono text-sm uppercase tracking-wide transition-colors hover:text-primary lg:justify-end'
@@ -124,7 +122,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 										<nav class='flex flex-col gap-3'>
 											<a
 												class='group flex items-center gap-3 font-mono text-sm uppercase tracking-wide transition-colors hover:text-primary lg:justify-end'
-												href='mailto:HanifCarroll@gmail.com'
+												href={EMAIL_URL}
 												data-track-event='email_clicked'
 												data-track-location='footer_connect'
 											>
@@ -197,7 +195,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 										href='/launch/'
 									>
 										<span class='h-px w-6 bg-zinc-700 dark:bg-zinc-300 transition-all group-hover:w-10 group-hover:bg-primary' />
-										Services
+										Work with me
 									</a>
 									<a
 										class='group flex items-center gap-3 font-mono text-sm uppercase tracking-wide transition-colors hover:text-primary'
@@ -227,7 +225,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 								<nav class='flex flex-col gap-3'>
 									<a
 										class='group flex items-center gap-3 font-mono text-sm uppercase tracking-wide transition-colors hover:text-primary'
-										href='mailto:HanifCarroll@gmail.com'
+										href={EMAIL_URL}
 										data-track-event='email_clicked'
 										data-track-location='footer_connect'
 									>

@@ -1,5 +1,5 @@
 ---
-import { BOOK_CALL_URL } from '../consts';
+import { EMAIL_URL } from '../consts';
 
 type Variant = 'general' | 'mvp' | 'fractional';
 type Context = 'blog' | 'case-study';
@@ -25,7 +25,7 @@ const offers = {
 		mvp: {
 			label: 'Need an MVP?',
 			title: 'Need help cutting scope and getting v1 live?',
-			body: 'If the problem in this post looks familiar, bring it to a roadmap call and we’ll narrow the first version before code starts.',
+			body: 'If the problem in this post looks familiar, send me an email and we’ll narrow the first version before code starts.',
 			secondaryHref: '/launch/#mvp',
 			secondaryLabel: 'See MVP Builds'
 		},
@@ -41,7 +41,7 @@ const offers = {
 		general: {
 			label: 'Similar work?',
 			title: 'Need something like this for your team?',
-			body: 'If the case study looks close to the problem you are solving, the next step is a roadmap call to narrow the scope and decide what version is worth building first.',
+			body: 'If the case study looks close to the problem you are solving, the next step is an email to narrow the scope and decide what version is worth building first.',
 			secondaryHref: '/projects/',
 			secondaryLabel: 'Browse More Case Studies'
 		},
@@ -55,7 +55,7 @@ const offers = {
 		fractional: {
 			label: 'Similar product work?',
 			title: 'Need senior product engineering like this?',
-			body: 'If this case study looks close to your product constraint, bring it to a roadmap call and we’ll scope the support needed to move it forward.',
+			body: 'If this case study looks close to your product constraint, send me an email and we’ll scope the support needed to move it forward.',
 			secondaryHref: '/launch/#fractional',
 			secondaryLabel: 'See Fractional Support'
 		}
@@ -80,13 +80,11 @@ const offer = offers[context][variant];
 		<div class='service-callout__actions'>
 			<a
 				class='home-hero-primary-link'
-				href={BOOK_CALL_URL}
-				target='_blank'
-				rel='noopener noreferrer'
-				data-track-event='book_call_clicked'
+				href={EMAIL_URL}
+				data-track-event='email_clicked'
 				data-track-location={`${location}_primary`}
 			>
-				<span class='service-callout__button-label'>Book a Roadmap Call</span>
+				<span class='service-callout__button-label'>Get in touch</span>
 				<span class='service-callout__button-arrow' aria-hidden='true'>→</span>
 			</a>
 			<a

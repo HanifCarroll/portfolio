@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
-import { BOOK_CALL_URL } from '../../consts';
+import { EMAIL_URL } from '../../consts';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
@@ -114,11 +114,11 @@ const heroActions = [
 		external: true
 	},
 	{
-		label: 'Book a roadmap call',
-		href: BOOK_CALL_URL,
-		trackEvent: 'book_call_clicked',
+		label: 'Get in touch',
+		href: EMAIL_URL,
+		trackEvent: 'email_clicked',
 		trackLocation: 'project_detail_hero',
-		external: true
+		external: false
 	}
 ].filter((action): action is { label: string; href: string; trackEvent: string; trackLocation: string; external: boolean } =>
 	Boolean(action)

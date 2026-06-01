@@ -1,16 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL } from '../consts';
+import { EMAIL_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
 import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
 import palabrunoPhoto from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
 
-const title = 'Hanif Carroll | Technical Product Partner for MVPs';
+const title = 'Hanif Carroll | Product Engineer';
 const description =
-	'I help nontechnical founders launch focused web and mobile MVPs, and give founder-led teams senior fractional product engineering help.';
+	'I am a product engineer with 8+ years across web and mobile, now mostly building with LLMs. I own the whole arc: talking to users, shaping the product, designing the UX, and shipping the code.';
 
 const homepageJsonLd = [
 	{
@@ -18,10 +18,10 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'Technical Product Partner',
+		jobTitle: 'Product Engineer',
 		description,
 		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
-		knowsAbout: ['Product engineering', 'MVP development', 'SaaS', 'mobile apps', 'fractional product engineering']
+		knowsAbout: ['Product engineering', 'AI products', 'LLMs', 'RAG', 'AI agents', 'React', 'Next.js', 'React Native', 'TypeScript']
 	},
 	{
 		'@context': 'https://schema.org',
@@ -29,21 +29,6 @@ const homepageJsonLd = [
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
 		description
-	}
-];
-
-const pathCards = [
-	{
-		label: 'Product path',
-		title: 'Launch a first version',
-		body: 'For founders who need the first useful version scoped, built, and live.',
-		href: '/launch/#mvp'
-	},
-	{
-		label: 'Fractional path',
-		title: 'Add senior product engineering',
-		body: 'For founder-led teams that need scope control, architecture judgment, and steady shipping help.',
-		href: '/launch/#fractional'
 	}
 ];
 
@@ -85,12 +70,6 @@ const proofStats = [
 	{ label: '3,000+', value: 'Organizers supported at LeagueApps' }
 ];
 
-const fitItems = [
-	'You need a focused MVP built from scratch, or senior product engineering help for an existing product.',
-	'You want one person who can advise on scope, UX, architecture, and implementation.',
-	'You need a smaller first step before committing to a bigger build.'
-];
-
 const testimonials = [
 	{
 		quote: 'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time.',
@@ -126,29 +105,28 @@ const testimonials = [
 		<div class='container home-hero-stage'>
 			<header class='home-hero'>
 				<h1 class='home-hero-title'>
-					<span>Launch your MVP.</span>
-					<span>Keep a senior engineer on call.</span>
+					<span>I'm a product engineer.</span>
+					<span>I build AI products end to end.</span>
 				</h1>
 
 				<div class='home-hero-split'>
 					<div class='home-hero-copy-wrap'>
 						<div class='home-hero-copy space-y-6 md:space-y-7'>
 							<p class='home-hero-body'>
-								I help nontechnical founders and lean teams turn rough product ideas into launched web and mobile MVPs.
-								Then I stay on as fractional product engineering support when senior judgment matters.
+								Eight years shipping web and mobile products, most of it now spent building with LLMs: RAG, agents, evals, and
+								voice. I like owning the whole arc, from talking to users and shaping the product to designing the UX and writing
+								the code that ships.
 							</p>
 							<div class='home-hero-actions'>
 								<a
 									class='home-hero-primary-link'
-									href={BOOK_CALL_URL}
-									target='_blank'
-									rel='noopener noreferrer'
-									data-track-event='book_call_clicked'
+									href={EMAIL_URL}
+									data-track-event='email_clicked'
 									data-track-location='home_hero_primary'
 								>
-									Book a Roadmap Call
+									Get in touch
 								</a>
-								<a class='home-hero-secondary-link' href='/projects/'>See case studies</a>
+								<a class='home-hero-secondary-link' href='#case-studies'>See case studies</a>
 							</div>
 						</div>
 					</div>
@@ -171,66 +149,6 @@ const testimonials = [
 					))
 				}
 			</dl>
-		</div>
-	</section>
-
-	<section class='home-testimonials-band' aria-labelledby='home-testimonials-title'>
-		<div class='container home-testimonials'>
-			<p class='home-testimonials__eyebrow' id='home-testimonials-title'>What clients say</p>
-			<div class='home-testimonials__grid'>
-				{
-					testimonials.map((t) => (
-						<figure class='home-testimonial'>
-							<blockquote class='home-testimonial__quote'>
-								<p>{t.quote}</p>
-							</blockquote>
-							<figcaption class='home-testimonial__attr'>
-								<span class='home-testimonial__name'>{t.name}</span>
-								<span class='home-testimonial__role'>
-									{t.role}, {t.company}
-								</span>
-							</figcaption>
-						</figure>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<section class='container home-about' aria-labelledby='home-about-title'>
-		<div class='home-about__inner'>
-			<h2 id='home-about-title' class='home-about__title'>Hi, I'm Hanif.</h2>
-			<p class='home-about__body'>
-				I've spent eight years shipping web and mobile products — from a Spanish reading app I built end-to-end to senior product
-				engineering for teams at LeagueApps and beyond. I work with nontechnical founders and lean teams who need someone who can
-				make scope, design, and engineering judgment calls in the same conversation, then ship the result.
-			</p>
-			<p class='home-about__location'>Based in Buenos Aires. Available worldwide.</p>
-		</div>
-	</section>
-
-	<section class='container home-start-section' aria-labelledby='home-paths-title'>
-		<div class='home-start-section__inner'>
-			<div class='space-y-5'>
-				<h2 id='home-paths-title' class='heading-display home-start-section__title'>Choose the right first step</h2>
-			</div>
-
-			<div class='path-choices'>
-				{
-					pathCards.map((path) => (
-						<a href={path.href} class='path-choice group'>
-							<div class='path-choice__header'>
-								<p class='launch-meta'>{path.label}</p>
-								<span class='path-choice__arrow'>↗</span>
-							</div>
-							<div class='space-y-3'>
-								<h3 class='heading-display path-choice__title'>{path.title}</h3>
-								<p class='path-choice__body'>{path.body}</p>
-							</div>
-						</a>
-					))
-				}
-			</div>
 		</div>
 	</section>
 
@@ -276,27 +194,73 @@ const testimonials = [
 		</div>
 	</section>
 
-	<section class='container home-fit-section' aria-labelledby='home-fit-title'>
+	<section class='home-testimonials-band' aria-labelledby='home-testimonials-title'>
+		<div class='container home-testimonials'>
+			<p class='home-testimonials__eyebrow' id='home-testimonials-title'>What people I've worked with say</p>
+			<div class='home-testimonials__grid'>
+				{
+					testimonials.map((t) => (
+						<figure class='home-testimonial'>
+							<blockquote class='home-testimonial__quote'>
+								<p>{t.quote}</p>
+							</blockquote>
+							<figcaption class='home-testimonial__attr'>
+								<span class='home-testimonial__name'>{t.name}</span>
+								<span class='home-testimonial__role'>
+									{t.role}, {t.company}
+								</span>
+							</figcaption>
+						</figure>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class='container home-about' aria-labelledby='home-about-title'>
+		<div class='home-about__inner'>
+			<h2 id='home-about-title' class='home-about__title'>A bit about me.</h2>
+			<p class='home-about__body'>
+				I started out as a software developer and grew into a product engineer: someone who cares as much about what we build and why
+				as how it's built. I've shipped a Spanish reading app end to end, taken AI products from demo to paid, and done senior product
+				engineering for teams like LeagueApps. I'm happiest close to users, making the call on scope, UX, and architecture in the same
+				conversation, then shipping it.
+			</p>
+			<p class='home-about__location'>Based in Buenos Aires, working US hours.</p>
+			<p class='home-about__location'>
+				<a class='home-hero-secondary-link' href='/about/'>More about me</a>
+			</p>
+		</div>
+	</section>
+
+	<section class='container home-about' aria-labelledby='home-pov-title'>
+		<div class='home-about__inner'>
+			<h2 id='home-pov-title' class='home-about__title'>Where I think this is going.</h2>
+			<p class='home-about__body'>
+				I care most about AI that keeps the person in the driver's seat. Not automation that quietly replaces people, but tools that
+				make us better at creating, learning, and thinking for ourselves. Copilots for making things, tutors that actually teach, AI
+				that can show up inside a real conversation. That's the kind of product I want to help build.
+			</p>
+		</div>
+	</section>
+
+	<section class='container home-fit-section' aria-labelledby='home-contact-title'>
 		<div class='home-fit-section__inner'>
 			<div class='space-y-3'>
-				<h2 id='home-fit-title' class='home-fit-section__title'>Is this for you?</h2>
-				<p class='home-fit-section__lede'>A roadmap call is the right next step if any of these sound familiar:</p>
+				<h2 id='home-contact-title' class='home-fit-section__title'>Let's talk.</h2>
+				<p class='home-fit-section__lede'>
+					If you're building something where a product engineer who can own the whole arc would help, I'd love to hear about it.
+				</p>
 			</div>
-
-			<ul class='fit-list home-fit-list'>
-				{fitItems.map((item) => <li>{item}</li>)}
-			</ul>
 
 			<div class='fit-actions'>
 				<a
 					class='home-hero-primary-link'
-					href={BOOK_CALL_URL}
-					target='_blank'
-					rel='noopener noreferrer'
-					data-track-event='book_call_clicked'
-					data-track-location='home_fit_primary'
+					href={EMAIL_URL}
+					data-track-event='email_clicked'
+					data-track-location='home_contact_primary'
 				>
-					Book a Roadmap Call
+					Get in touch
 				</a>
 			</div>
 		</div>
