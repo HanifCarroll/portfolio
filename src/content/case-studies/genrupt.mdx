@@ -6,7 +6,12 @@ import CaseSection from '../../components/case-study/CaseSection.astro';
 import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
 import ImagePlate from '../../components/case-study/ImagePlate.astro';
 import ProofRows from '../../components/case-study/ProofRows.astro';
-import genruptFeature from '../../assets/img/projects/genrupt-feature.png';
+import genruptProjectsGrid from '../../assets/img/projects/genrupt/product-surface-projects-grid.png';
+import genruptDashboard from '../../assets/img/projects/genrupt/commercial-readiness-dashboard.png';
+import genruptPricing from '../../assets/img/projects/genrupt/subscriptions-pricing.png';
+import genruptAgentAccess from '../../assets/img/projects/genrupt/agent-access.png';
+import genruptAplusSetup from '../../assets/img/projects/genrupt/aplus-project-setup.png';
+import genruptMarketAnalysis from '../../assets/img/projects/genrupt/market-analysis.png';
 
 export const shippedRows = [
 	{
@@ -58,15 +63,18 @@ export const shippedRows = [
 	</DecisionBlock>
 
     <DecisionBlock title="Treat agents as a real product surface.">
-	Instead of exposing the whole app implicitly, the agent surface used allowed capabilities, resource links, structured tool results, and recoverable long-running operations.
+    Instead of exposing the whole app implicitly, the agent surface used allowed capabilities, resource links, structured tool results, and recoverable long-running operations.
     </DecisionBlock>
 
 </CaseSection>
 
 <CaseSection title="Product Surface" media>
-	The product moved beyond a demo-stage generator into a more operable seller workflow platform.
+	The product moved beyond a demo-stage generator into a more operable seller workflow platform with project, account, and workflow surfaces for paid seller teams.
 
-    <ImagePlate image={genruptFeature} alt="Genrupt AI creative platform interface." />
+    <div class="genrupt-screen-gallery genrupt-screen-gallery--feature">
+        <ImagePlate image={genruptProjectsGrid} alt="Genrupt projects dashboard showing seller workflow projects." />
+        <ImagePlate image={genruptDashboard} alt="Genrupt dashboard showing account overview, credits, generated assets, and subscription status." />
+    </div>
 
 </CaseSection>
 
@@ -76,11 +84,11 @@ export const shippedRows = [
 	</DecisionBlock>
 
     <DecisionBlock title="Made long-running AI workflows easier to trust.">
-	Image, video, storyboard, and seller-workflow jobs needed to survive retries and give users clearer progress. Operation IDs, status and result tools, resource links, structured errors, idempotency keys, and additive progress notifications made those flows more dependable.
+    Image, video, storyboard, and seller-workflow jobs needed to survive retries and give users clearer progress. Operation IDs, status and result tools, resource links, structured errors, idempotency keys, and additive progress notifications made those flows more dependable.
     </DecisionBlock>
 
     <DecisionBlock title="Opened the product to external agents safely.">
-	The remote MCP and Agent Access surface let paid users connect external agents, discover allowed capabilities, and run market analysis, Amazon review scraping, listing-builder, and A+ workflows through a small permissioned tool catalog.
+    The remote MCP and Agent Access surface let paid users connect external agents, discover allowed capabilities, and run market analysis, Amazon review scraping, listing-builder, and A+ workflows through a small permissioned tool catalog.
     </DecisionBlock>
 
 </CaseSection>
@@ -100,6 +108,11 @@ export const shippedRows = [
 <CaseSection title="Product Screens" media>
 	The product proof is the shift from isolated generation into seller-facing workflows with the surrounding systems needed for paid usage.
 
-    <ImagePlate image={genruptFeature} alt="Genrupt seller workflow interface." />
+    <div class="genrupt-screen-gallery">
+        <ImagePlate image={genruptPricing} alt="Genrupt subscription pricing plans for paid seller teams." />
+        <ImagePlate image={genruptAgentAccess} alt="Genrupt Agent Access diagram connecting model providers and execution systems." />
+        <ImagePlate image={genruptAplusSetup} alt="Genrupt A+ content project setup screen." />
+        <ImagePlate image={genruptMarketAnalysis} alt="Genrupt market analysis screen for seller research workflows." />
+    </div>
 
 </CaseSection>

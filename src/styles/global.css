@@ -50,7 +50,6 @@
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.875rem;
 	}
-
 }
 
 @layer components {
@@ -1322,7 +1321,9 @@
 	.projects-index__experiment-arrow {
 		font-size: 1rem;
 		color: var(--site-muted);
-		transition: transform 150ms, color 150ms;
+		transition:
+			transform 150ms,
+			color 150ms;
 	}
 
 	.projects-index__experiment-row:hover .projects-index__experiment-arrow {
@@ -2093,6 +2094,26 @@
 		height: auto;
 	}
 
+	.case-study-detail__editorial-section--media .case-study-detail__image-plate,
+	.genrupt-screen-gallery {
+		grid-column: 1 / -1;
+	}
+
+	.genrupt-screen-gallery {
+		display: grid;
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.genrupt-screen-gallery .case-study-detail__image-plate {
+		justify-content: center;
+		padding: clamp(0.75rem, 2vw, 1.5rem);
+	}
+
+	.genrupt-screen-gallery .case-study-detail__image-plate-img {
+		max-width: none;
+		border-radius: 0.65rem;
+	}
+
 	.apartment-finder-product-surface .case-study-detail__image-plate {
 		grid-column: 1 / -1;
 		justify-content: center;
@@ -2336,12 +2357,7 @@
 		line-height: 1.68;
 	}
 
-	.case-study-detail
-		:is(
-			.case-study-detail__editorial-section,
-			.case-study-detail__launch-proof,
-			.case-study-detail__launch-proof-row
-		) {
+	.case-study-detail :is(.case-study-detail__editorial-section, .case-study-detail__launch-proof, .case-study-detail__launch-proof-row) {
 		border-top: 0 !important;
 		border-bottom: 0 !important;
 	}
@@ -2793,8 +2809,6 @@
 		border-top-color: rgba(255, 255, 255, 0.1);
 	}
 
-
-
 	:is(.dark) .projects-index__feature-media {
 		background: transparent;
 		outline: 0;
@@ -3166,7 +3180,6 @@
 			object-position: 64% 14%;
 			transform: scaleX(-1) scale(0.92);
 		}
-
 	}
 
 	@media (min-width: 1024px) {
@@ -3923,4 +3936,3 @@
 		border-left-color: rgba(255, 255, 255, 0.22);
 	}
 }
-
