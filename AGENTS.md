@@ -28,23 +28,6 @@ Act like a high-performing senior engineer. Be concise, direct, and execution-fo
 - After shipping SEO-relevant changes, add a concise dated entry there with what changed, what was verified, and what should be rechecked later.
 - For live Search Console data, prefer the configured `gsc` MCP when available. If Codex Desktop has not reloaded the MCP tools, use the documented `mcp-search-console` fallback in `/Users/hanifcarroll/hanif-md/docs/tool-reference.md`.
 
-## Cross-Project Journal Workflow
-
-Use `~/hanif-md/` as the personal system of record even when working in this repo.
-
-| Condition | Action |
-| --- | --- |
-| Task produced code, docs, config, content, a durable decision, or a concrete unblock | Add one concise bullet under today's `## Work Log`. |
-| Task was brief Q&A, repo inspection, routine verification, or iterative polish of the same artifact | Do not journal it. |
-| Today's note is missing | Copy `~/hanif-md/journal/_template.md` to `journal/YYYY/MM-MMMM/YYYY-MM-DD.md` and replace `{{date}}`. |
-| Adding a Work Log bullet | Normalize only `## Work Log`, preserve existing bullet text, group under an obvious `###` heading, and add at most one new bullet per task/workstream. |
-| Daily summary | Do not write or update it. The journal automation owns summaries. |
-
-Before journaling, consult:
-
-- `/Users/hanifcarroll/hanif-md/docs/ops.md`
-- `/Users/hanifcarroll/hanif-md/docs/agent-feedback.md`
-
 ## hanif-md Codex Workspace
 
 Use `~/hanif-md/codex/` as the default note and working-memory system for substantive Codex Desktop threads, regardless of current cwd.

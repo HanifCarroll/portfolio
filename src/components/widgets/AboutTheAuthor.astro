@@ -3,10 +3,9 @@ import Author from '../Author.astro';
 
 interface Props {
 	compact?: boolean;
-	showLabel?: boolean;
 }
 
-const { compact = false, showLabel = true } = Astro.props as Props;
+const { compact = false } = Astro.props as Props;
 ---
 
 <div class:list={['about-the-author', compact && 'about-the-author--compact']}>
