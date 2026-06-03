@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-05-27
+
+### Blog Post Added
+
+- Added `/blog/expensive-tokens-reward-good-architecture/` as a builder-facing post about AI token prices, model routing, and architecture as cost control.
+- Verified the post metadata with the local Astro content schema and production build.
+- After deployment, confirm the post appears in RSS and the sitemap, then request indexing if it should be discoverable quickly.
+
 ## 2026-05-18
 
 ### Casamo Case Study
