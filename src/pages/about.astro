@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL_URL, RESUME_URL } from '../consts';
+import { EMAIL_URL } from '../consts';
 
 const title = 'About Hanif Carroll';
 const description =
@@ -43,33 +43,26 @@ const backgroundMoments = [
 	},
 	{
 		label: 'LeagueApps',
-		body: 'Senior product engineering inside a strong product team, where growth, UX, and implementation had to stay connected to each other.'
+		body: 'Front end engineer inside a strong product team, where growth, UX, and implementation had to stay connected to each other.'
 	},
 	{
 		label: 'HC Studio',
-		body: 'My own studio, where I have shipped MVPs, AI products from demo to paid, and internal tools end to end. Proof I can own a product, not just a task.'
+		body: 'My own studio, where I have shipped MVPs, taken AI products to paying customers, and built internal tools end to end.'
 	}
 ];
 
-const evidenceLinks = [
-	{ label: 'Resume', href: RESUME_URL, trackEvent: 'resume_clicked' },
-	{ label: 'GitHub', href: 'https://github.com/hanifcarroll' },
-	{ label: 'LinkedIn', href: 'https://linkedin.com/in/hanifcarroll' },
-	{ label: 'Tools and experiments', href: '/tools/' },
-	{ label: 'Email', href: EMAIL_URL, trackEvent: 'email_clicked' }
-];
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
 	<article class='container max-w-6xl space-y-12 py-10 md:space-y-16'>
 		<header class='about-hero-copy space-y-6' data-fit-container>
 			<h1 class='heading-display heading-display--hero about-hero-title' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				I'm a product engineer who likes owning the whole product
+				I'm an empathetic builder. I use technology to empower people.
 			</h1>
 			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				I started as a software developer and kept drifting toward the parts most engineers hand off: what we should build, why, and whether
-				it actually works for the person using it. Eight years later, that is the job I want. Product engineering, where the same person
-				talks to users, shapes the product, and ships it.
+				I started as a software developer and kept gravitating toward the parts most engineers hand off: what to build, why, and whether
+				it actually works for the person using it. Eight years later, that's still what I want to do. I live in Buenos Aires, I'm building
+				my own product, and I'm looking for a team where I can stay close to users and own the product, not just a piece of it.
 			</p>
 		</header>
 
@@ -112,15 +105,50 @@ const evidenceLinks = [
 			</div>
 			<div class='space-y-4 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
 				<p>
-					I care most about AI that keeps the person in the driver's seat. Not automation that quietly replaces people, but tools that
-					make us better at creating, learning, and thinking for ourselves. The human stays the protagonist; the AI is the partner.
+					In five years, I want a product of my own that earns me enough to live well, and enough time left over to help other people figure
+					out how to build things. I'm thinking about an indie hacker community in Buenos Aires, people learning to take an idea
+					from zero to something real, finding collaborators, getting honest feedback. That's the version of this career I'm
+					working toward.
 				</p>
 				<p>
-					In practice that means copilots for making things, tutors that actually teach, and AI that can show up inside a real
-					conversation between people. It is the thread I follow when I choose what to build, and the kind of product I most want to
-					help a team get right.
+					Right now I'm building Casamo, looking for a team doing product work I can believe in, and using AI to move faster
+					than I could before.
 				</p>
 			</div>
+		</section>
+
+		<section class='about-working-style about-working-style--rows'>
+			<div class='space-y-4'>
+				<h2 class='about-section-serif-heading'>What I believe</h2>
+			</div>
+			{
+				[
+					{
+						title: 'Knowing what you want is the most important skill.',
+						body: "Not taste, not technical ability. The people who actually make it are the ones who know themselves well enough to pick the right problem and stick with it. Taste follows from that."
+					},
+					{
+						title: 'Building is easy now. Choosing is hard.',
+						body: "AI has made implementation cheap. The scarce thing now is clarity: knowing who you're building for, and whether the problem is actually worth solving."
+					},
+					{
+						title: 'The person is always the point.',
+						body: "Good technology gets out of the way. When it's working, the person using it stops thinking about it entirely. That's the goal."
+					},
+					{
+						title: 'Autonomy is a condition for doing good work.',
+						body: "Good decisions come from people who are close to the problem and allowed to act on what they see. I do my best work when I can form a view and act on it, not just implement someone else's."
+					}
+				].map((item, index) => (
+					<div class='about-working-style__item'>
+						<p class='about-working-style__num'>{String(index + 1).padStart(2, '0')}</p>
+						<div class='space-y-2'>
+							<h3 class='about-working-style__title'>{item.title}</h3>
+							<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						</div>
+					</div>
+				))
+			}
 		</section>
 
 		<section class='about-background-strip'>
@@ -144,36 +172,11 @@ const evidenceLinks = [
 
 		<section class='about-tools-link'>
 			<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-				I also build local-first tools for agent-heavy work, mostly around remote control, session recall, mailbox context, and safer
-				automation.
+				Along the way I've built tools to solve problems I kept running into: remote control for agent workflows, session recall, mailbox context, safer automation. They're collected on the tools page.
 			</p>
 			<a href='/tools/' class='arrow-link w-fit'>See tools and experiments</a>
 		</section>
 
-		<section class='about-evidence-path'>
-			<div class='space-y-3'>
-				<p class='section-label'>For recruiters</p>
-				<h2 class='heading-display heading-display--note'>The product-engineer case in one place</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Resume, code, tools, case studies, and contact links — the full picture in one scroll.
-				</p>
-			</div>
-			<div class='home-evidence-links about-evidence-path__links' aria-label='Professional evidence links'>
-				{
-					evidenceLinks.map((link) => (
-						<a
-							href={link.href}
-							target={link.href.startsWith('http') ? '_blank' : undefined}
-							rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-							data-track-event={link.trackEvent ?? 'evidence_clicked'}
-							data-track-location='about_evidence'
-						>
-							{link.label}
-						</a>
-					))
-				}
-			</div>
-		</section>
 
 		<section class='max-w-3xl space-y-5 pb-4'>
 			<h2 class='heading-display heading-display--subsection'>

@@ -46,30 +46,6 @@ export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
   },
 };
 
-export const projectTrackGroups: Array<{
-  key: ProjectTrackGroup;
-  title: string;
-  description: string;
-}> = [
-  {
-    key: 'supporting_product_proof',
-    title: 'Supporting product systems proof',
-    description:
-      'AI and workflow-heavy projects framed as proof of product engineering judgment, not standalone service categories.',
-  },
-  {
-    key: 'mvp_and_validation',
-    title: 'MVPs and validation',
-    description:
-      'First versions built to test demand, get in front of users quickly, and avoid overbuilding the initial scope.',
-  },
-  {
-    key: 'launch_sites',
-    title: 'Launch sites and credibility',
-    description:
-      'Sites built to explain the offer clearly, improve credibility, and turn more interest into qualified conversations.',
-  },
-];
 
 export function getProjectTrackMeta(track: ProjectTrack): ProjectTrackMeta {
   return projectTrackMeta[track];
