@@ -2,54 +2,61 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { EMAIL_URL } from '../consts';
 
-const title = 'What I Believe | Hanif Carroll';
+const title = 'Point of View | Hanif Carroll';
 const description =
-	'My convictions about AI, building products, and what makes work worth doing. Not a manifesto—just things I think are true and try to act on.';
+	'Notes on AI, product judgment, and building products close to users. AI made first versions easier, but it did not decide what is worth building.';
 
 const beliefs = [
 	{
 		num: '01',
-		title: 'Knowing what you want is the most important skill.',
+		title: 'Know what you want before you ask AI to help.',
 		body: [
-			"Everyone keeps saying taste is now the most important skill. I find that framing a bit annoying. It stops the question too early. Taste doesn't do much if you don't know what you want to build in the first place.",
-			"Knowing what you want requires self-knowledge most people don't develop deliberately. It means noticing what makes you genuinely excited versus what makes you dread the day ahead. If you can't tell the difference, no amount of craft will save you from building the wrong thing really well.",
-			"AI has made this more visible. When implementation is cheap, the hard part shifts to intention. Building the right thing requires a kind of self-honesty that tools can't give you."
+			'AI can make you faster, but it cannot decide what matters for you. If you do not know who you are building for or why the problem matters, you can just build the wrong thing faster.',
+			'That is why I find the "taste is everything" framing incomplete. Taste helps, but it comes after intention. You need enough self-knowledge to notice what actually pulls at you, what drains you, and what kind of work you want to keep doing.',
+			'Tools can accelerate execution. They cannot do that part for you.'
 		]
 	},
 	{
 		num: '02',
-		title: 'Building is easy now. Choosing is hard.',
+		title: 'The first version is easier now. Choosing is still hard.',
 		body: [
-			"A few years ago I watched someone build a working application without knowing how to code. Not a demo, something real. That's when I understood things had actually changed. The gap between an idea and a working product used to require months and a team. Now it mostly requires clarity about what you're building and why.",
-			"That changes what matters. If anyone can build, execution becomes table stakes. What you chose to build in the first place is the whole game. A simple product that solves a real problem will outlast an impressive one that solves a problem nobody has.",
-			"When I eventually teach people how to build, the first session will be about finding a problem worth solving. Code comes after."
+			'A few years ago, getting from idea to working product took more people and more time. Now one person can get surprisingly far if they can use the tools well.',
+			'That changes what matters. The impressive part is no longer that something exists. The impressive part is choosing a real problem, finding the simplest shape for it, and getting it in front of people.',
+			'When I teach people how to build, I want the first session to be about finding a problem worth solving. Code comes after.'
 		]
 	},
 	{
 		num: '03',
-		title: 'The person is always the point.',
+		title: 'Stay close to the person using it.',
 		body: [
-			"Buenos Aires has a different relationship to technology than the places I've lived before. It's more social, less startup-obsessed. Living here for years has reinforced something I already suspected: technology is supposed to help people, and you have to keep that visible when you're building.",
-			"It's easy to forget. Engineers, myself included, can get absorbed in the craft. The architecture, the performance, the clean solution. And then the person using the thing has to fight their way to what they actually came for.",
-			"Good technology gets out of the way. When it's working, the person using it stops thinking about it entirely. That's the goal."
+			'The useful product decisions usually hide in conversation with the user. By the time a problem becomes a polished ticket, a lot of the meaning has already been lost.',
+			'Buenos Aires has reinforced that for me. It is a social place, not a place where technology feels like the center of everything. That has made it easier to remember that the product is never the point. The person using it is.',
+			'Good technology gets out of the way.'
 		]
 	},
 	{
 		num: '04',
-		title: 'Autonomy is a condition for doing good work.',
+		title: 'Fast work needs guardrails.',
 		body: [
-			"Good decisions come from people who are close to the problem and allowed to act on what they see. Every layer you add between observation and action costs you something.",
-			"I do my best work when I can talk to a user, form a view, and act on it. Information degrades at each step of retelling, and by the time a spec reaches me it can be several steps removed from the actual problem.",
-			"It's also why I prefer small teams. I want the accountability to actually connect to the work. When a team is large enough that nobody can see the whole thing, you get a lot of motion without much direction."
+			'I like moving quickly, especially with AI, but speed only helps if the work is still safe to ship. Tests, linting, evals, automated QA, logs, and release checklists matter more when the code is moving faster.',
+			'The right guardrails depend on the stakes. A personal experiment can tolerate more risk than a shared production codebase. But I do not buy the idea that AI work has to be sloppy. It should make better verification cheaper.'
 		]
 	},
 	{
 		num: '05',
-		title: 'The indie hacker path is one of the most honest ways to build.',
+		title: 'Autonomy matters because context decays.',
 		body: [
-			"I'm drawn to people who start from zero and build their way to a real income, one user at a time. What I find compelling about that model is the honesty it demands. You can't hide behind a roadmap. You either have users or you don't.",
-			"Larger organizations find ways to soften that feedback. An indie builder doesn't have that option. Some days that's brutal; other days it's the clearest feeling in the world.",
-			"That's the version of this work I want to get to eventually. And when I'm ready to teach, I want to teach how to get from an idea to someone actually paying for it."
+			'I do my best work when I can see the problem, form a view, and act on it. Every handoff between observation and implementation loses something.',
+			'That does not mean working alone. It means keeping decision-making close to the people with the clearest signal. Talk to the user, understand the constraint, make the tradeoff, ship the change.'
+		]
+	},
+	{
+		num: '06',
+		title: 'The indie hacker path is honest.',
+		body: [
+			'I am drawn to builders who start at zero and earn one user at a time. You either have something people want or you do not. Brutal, but clean.',
+			'Larger organizations can soften that feedback. Sometimes that is useful. Sometimes it lets a product drift for a long time without anyone admitting it. Indie building forces the question earlier.',
+			'That is the version of this work I want to get to eventually: build something real, learn from the market, and help other people do the same.'
 		]
 	}
 ];
@@ -58,13 +65,13 @@ const beliefs = [
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
 	<article class='container max-w-6xl space-y-12 py-10 md:space-y-16'>
 		<header class='about-hero-copy space-y-6'>
-			<p class='section-label'>What I believe</p>
+			<p class='section-label'>Point of view</p>
 			<h1 class='about-hero-title heading-display heading-display--hero' style='font-size: clamp(2.4rem, 1.8rem + 2.5vw, 4.5rem); font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif; font-weight: 400; line-height: 0.96; text-transform: none; letter-spacing: 0;'>
-				Not a manifesto. Just things I think are true and try to act on.
+				AI made it easier to build the first version. It did not tell us what is worth building.
 			</h1>
 			<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				These are my working convictions about AI, building products, and what makes work worth doing. They've come from eight years of
-				building, two years of freelancing on my own, and living far enough from the tech bubble to see things differently.
+				These notes come from building client products, shipping my own tools, and living outside the usual startup bubble in Buenos Aires.
+				They are not slogans. They are the rules I keep coming back to when I decide what to build next.
 			</p>
 		</header>
 
@@ -92,7 +99,7 @@ const beliefs = [
 				I'm looking for a team building something worth caring about, where an engineer who thinks this way would help. Email is the
 				fastest way to reach me.
 			</p>
-			<a href={EMAIL_URL} class='arrow-link w-fit' data-track-event='email_clicked' data-track-location='beliefs_closing'>
+			<a href={EMAIL_URL} class='arrow-link w-fit' data-track-event='email_clicked' data-track-location='point_of_view_closing'>
 				Get in touch
 			</a>
 		</section>
