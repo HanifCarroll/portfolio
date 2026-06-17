@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Tools & Experiments';
 const description =
-	'Local-first tools Hanif Carroll builds for AI agents, automation, desktop utilities, personal workflows, and safer operational evidence handling.';
+	'Local-first tools for AI agents, automation, desktop utilities, and personal workflows.';
 
-const featuredTools = [
+const tools = [
 	{
 		name: 'codex-telegram-bridge',
 		focus: 'Remote Codex control',
@@ -62,73 +62,48 @@ const featuredTools = [
 		repo: 'https://github.com/HanifCarroll/cli-tools'
 	}
 ];
-
-const [flagshipTool, ...supportingTools] = featuredTools;
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='container max-w-6xl space-y-24 py-12 md:space-y-32 md:py-14'>
-		<header class='space-y-7'>
-			<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
-				Tools from my own workflow
-			</h1>
-			<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
-				Small systems from my own workflow: remote Codex control, session recall, runnable worktrees, mailbox context, voice-note transcription, tool feedback, and desktop utilities.
+	<article class='content-page container max-w-4xl'>
+		<header class='content-page__hero'>
+			<h1 class='content-page__title'>Tools from my workflow</h1>
+			<p class='content-page__lede'>
+				Small systems I built to solve problems I kept running into: remote agent control, session recall, runnable worktrees, mailbox
+				context, and desktop utilities.
 			</p>
 		</header>
 
-		<section class='space-y-10 md:space-y-14'>
-			<article class='tools-feature'>
-				<div class='space-y-7'>
-					<div class='tools-feature__meta'>
-						<p class='tools-focus'>{flagshipTool.focus}</p>
-					</div>
-					<h3 class='heading-display heading-display--section'>{flagshipTool.name}</h3>
-				</div>
-				<div class='tools-feature__body'>
-					<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{flagshipTool.body}</p>
-					<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{flagshipTool.why}</p>
-					<a
-						href={flagshipTool.repo}
-						class='arrow-link w-fit'
-						target='_blank'
-						rel='noopener noreferrer'
-						aria-label={`View ${flagshipTool.name} repository`}
-						data-track-event='tool_repo_clicked'
-						data-track-location='tools_page'
-					>
-						View repo
-					</a>
-				</div>
-			</article>
-
-			<div class='tools-list'>
+		<section aria-label='Tools'>
+			<div class='content-page__list'>
 				{
-					supportingTools.map((tool) => (
-						<article class='tools-row'>
-							<div>
-								<h3 class='heading-display heading-display--note'>{tool.name}</h3>
-							</div>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{tool.body}</p>
-							<a
-								href={tool.repo}
-								class='case-studies-live-link tools-row__link'
-								target='_blank'
-								rel='noopener noreferrer'
-								aria-label={`View ${tool.name} repository`}
-								data-track-event='tool_repo_clicked'
-								data-track-location='tools_page'
-							>
-								View repo
-							</a>
+					tools.map((tool) => (
+						<article class='content-page__entry'>
+							<h2 class='content-page__entry-title'>{tool.name}</h2>
+							<p class='content-page__entry-meta'>{tool.focus}</p>
+							<p class='content-page__entry-body'>{tool.body}</p>
+							{tool.why && <p class='content-page__entry-body'>{tool.why}</p>}
+							<p class='content-page__aside'>
+								<a
+									href={tool.repo}
+									class='content-page__link'
+									target='_blank'
+									rel='noopener noreferrer'
+									aria-label={`View ${tool.name} repository`}
+									data-track-event='tool_repo_clicked'
+									data-track-location='tools_page'
+								>
+									View repo
+								</a>
+							</p>
 						</article>
 					))
 				}
 			</div>
 		</section>
 
-<section class='max-w-3xl pb-4'>
-			<a href='/projects/' class='arrow-link w-fit'>See client case studies</a>
-		</section>
+		<footer class='content-page__footer'>
+			<a href='/projects/' class='content-page__link'>See client case studies</a>
+		</footer>
 	</article>
 </BaseLayout>
