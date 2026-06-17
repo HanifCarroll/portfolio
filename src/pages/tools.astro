@@ -8,7 +8,6 @@ const description =
 const featuredTools = [
 	{
 		name: 'codex-telegram-bridge',
-		status: 'Public OSS',
 		focus: 'Remote Codex control',
 		body: 'A local bridge for supervising Codex work from Telegram: receive updates, reply into the right thread, inspect active runs, and approve actions away from the laptop.',
 		why: 'It turns Codex Desktop from a single-machine workflow into an agent setup I can safely supervise while away.',
@@ -16,56 +15,48 @@ const featuredTools = [
 	},
 	{
 		name: 'agent-recall',
-		status: 'Public OSS',
 		focus: 'Session recall',
 		body: 'A local SQLite FTS index over Codex, OMP, Pi, and Claude session archives, so agents can search prior work and reuse context with receipts.',
 		repo: 'https://github.com/HanifCarroll/agent-recall'
 	},
 	{
 		name: 'devtree',
-		status: 'Public OSS',
 		focus: 'Runnable worktrees',
 		body: 'A Rust CLI that turns Git worktrees into runnable local environments with copied env files, setup commands, managed dev servers, stable local URLs, logs, and safe cleanup.',
 		repo: 'https://github.com/HanifCarroll/devtree'
 	},
 	{
 		name: 'mailbridge',
-		status: 'Public OSS',
 		focus: 'Mailbox context',
 		body: 'A conservative JSON CLI over Gmail and Fastmail for search, read, thread lookup, attachment pulls, and draft-only composition.',
 		repo: 'https://github.com/HanifCarroll/mailbridge'
 	},
 	{
 		name: 'transcribe-audio',
-		status: 'Public OSS',
 		focus: 'Voice-note transcription',
 		body: 'A Rust CLI for local audio transcription with batch runs, discoverable audio files, JSON manifests, prompt files, and combined Markdown transcripts for agent workflows.',
 		repo: 'https://github.com/HanifCarroll/transcribe-audio'
 	},
 	{
 		name: 'tool-feedback',
-		status: 'Experimental',
 		focus: 'Tool improvement loops',
 		body: 'A local runtime for capturing tool-friction cases from real work, deduping them, and routing triage or patch jobs.',
 		repo: 'https://github.com/HanifCarroll/tool-feedback'
 	},
 	{
 		name: 'apartment-finder',
-		status: 'Public OSS',
 		focus: 'AI listing triage',
 		body: 'A TanStack Start app and Bun CLI for searching Buenos Aires rentals, extracting listing evidence, and classifying whether washer access is likely in-unit or shared-building.',
 		repo: 'https://github.com/HanifCarroll/apartment-finder'
 	},
 	{
 		name: 'Simple Image Viewer',
-		status: 'Public OSS',
 		focus: 'Native image review',
 		body: 'A dependency-free SwiftUI macOS viewer for opening an image or folder, stepping through nearby images by keyboard, and scanning a thumbnail rail with GIF and natural filename support.',
 		repo: 'https://github.com/HanifCarroll/simple-image-viewer'
 	},
 	{
 		name: 'cli-tools',
-		status: 'Public toolkit',
 		focus: 'macOS automation',
 		body: 'A TypeScript monorepo of local CLIs for macOS apps, Granola notes, browser tabs, and social workflows.',
 		repo: 'https://github.com/HanifCarroll/cli-tools'
@@ -90,7 +81,6 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 			<article class='tools-feature'>
 				<div class='space-y-7'>
 					<div class='tools-feature__meta'>
-						<p class='launch-meta'>{flagshipTool.status}</p>
 						<p class='tools-focus'>{flagshipTool.focus}</p>
 					</div>
 					<h3 class='heading-display heading-display--section'>{flagshipTool.name}</h3>
@@ -117,7 +107,6 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 					supportingTools.map((tool) => (
 						<article class='tools-row'>
 							<div>
-								<p class='launch-meta'>{tool.status}</p>
 								<h3 class='heading-display heading-display--note'>{tool.name}</h3>
 							</div>
 							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{tool.body}</p>

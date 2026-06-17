@@ -3,7 +3,6 @@ title: "Don't Let the LLM Decide What a Word Is"
 subtitle: "Where to draw the line between code and the model"
 pubDate: "2026-05-21"
 description: "A reading app for Spanish learners taught me which decisions belong to an LLM and which belong in code. The boundary is sharper than I thought."
-audience: builder
 ctaVariant: fractional
 ---
 

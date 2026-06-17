@@ -14,7 +14,6 @@ const blog = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			tags: z.array(z.string()).optional(),
 			coverImage: image().optional(),
-			audience: z.enum(['founder', 'builder']).default('founder'),
 			ctaVariant: z.enum(['general', 'mvp', 'fractional']).default('general')
 		})
 });
