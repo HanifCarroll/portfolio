@@ -11,7 +11,6 @@ const description =
 
 const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'Build note' : 'Founder note');
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
@@ -34,7 +33,6 @@ const audienceLabel = (post: BlogPost) => (post.data.audience === 'builder' ? 'B
 								<div class='insights-editorial-item__heading'>
 									<div class='flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300'>
 										<FormattedDate date={post.data.pubDate} />
-										<span class='launch-meta'>{audienceLabel(post)}</span>
 									</div>
 									<h3 class='insights-editorial-item__title'>
 										<a href={`/blog/${post.id}/`} class='transition-colors hover:text-primary'>

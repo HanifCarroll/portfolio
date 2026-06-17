@@ -19,11 +19,10 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const {
-	data: { title, subtitle, seoTitle, description, coverImage, pubDate, updatedDate, audience, ctaVariant }
+	data: { title, subtitle, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant }
 } = post;
 const { Content, headings } = await render(post);
 
-const audienceLabel = audience === 'builder' ? 'Build Note' : 'For Founders and Operators';
 const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
 const wordCount = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
 const readingMinutes = Math.max(1, Math.round(wordCount / 225));
@@ -56,8 +55,6 @@ const blogJsonLd = {
 		<header class='blog-post-hero'>
 			<div class='blog-post-hero__copy'>
 				<div class='blog-post-hero__meta'>
-					<span class='launch-meta'>{audienceLabel}</span>
-					<span class='text-zinc-400'>/</span>
 					<div class='text-sm text-zinc-700 dark:text-zinc-300'>
 						{
 							updatedDate ? (
