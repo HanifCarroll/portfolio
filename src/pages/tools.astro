@@ -15,11 +15,11 @@ const featuredTools = [
 		repo: 'https://github.com/HanifCarroll/codex-telegram-bridge'
 	},
 	{
-		name: 'codex-recall',
+		name: 'agent-recall',
 		status: 'Public OSS',
 		focus: 'Session recall',
-		body: 'A local SQLite FTS index over Codex session archives, so agents can search prior work and reuse context with receipts.',
-		repo: 'https://github.com/HanifCarroll/codex-recall'
+		body: 'A local SQLite FTS index over Codex, OMP, Pi, and Claude session archives, so agents can search prior work and reuse context with receipts.',
+		repo: 'https://github.com/HanifCarroll/agent-recall'
 	},
 	{
 		name: 'devtree',
@@ -72,21 +72,6 @@ const featuredTools = [
 	}
 ];
 
-const principles = [
-	{
-		label: 'Local first',
-		body: 'Keep useful state on the machine when possible.'
-	},
-	{
-		label: 'Narrow permissions',
-		body: 'Expose the smallest surface that still gets the job done.'
-	},
-	{
-		label: 'Evidence over guesses',
-		body: 'Prefer source files, command output, and explicit state.'
-	}
-];
-
 const [flagshipTool, ...supportingTools] = featuredTools;
 ---
 
@@ -102,14 +87,6 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 		</header>
 
 		<section class='space-y-10 md:space-y-14'>
-			<div class='max-w-3xl space-y-5'>
-				<p class='section-label'>Featured Tools</p>
-				<h2 class='heading-display heading-display--section'>Built from real agent-work friction</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					Not a complete list — these are the tools that best show how I make local workflows more reliable.
-				</p>
-			</div>
-
 			<article class='tools-feature'>
 				<div class='space-y-7'>
 					<div class='tools-feature__meta'>
@@ -161,21 +138,7 @@ const [flagshipTool, ...supportingTools] = featuredTools;
 			</div>
 		</section>
 
-		<section class='tools-principles'>
-			<h2 class='heading-display heading-display--subsection tools-principles__heading'>Operating principles</h2>
-			<div class='tools-principles__grid'>
-				{
-					principles.map((principle) => (
-						<div class='tools-principle'>
-							<p class='launch-meta'>{principle.label}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{principle.body}</p>
-						</div>
-					))
-				}
-			</div>
-		</section>
-
-		<section class='max-w-3xl pb-4'>
+<section class='max-w-3xl pb-4'>
 			<a href='/projects/' class='arrow-link w-fit'>See client case studies</a>
 		</section>
 	</article>
