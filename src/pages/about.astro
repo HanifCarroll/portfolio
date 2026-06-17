@@ -6,21 +6,6 @@ const title = 'About Hanif Carroll';
 const description =
 	'Product engineer with 8+ years across web and mobile, now mostly building with LLMs. I like owning the whole arc: talking to users, shaping the product, designing the UX, and shipping the code.';
 
-const strengths = [
-	{
-		label: 'Close to the user',
-		body: 'I do my best work when I can talk to the people we are building for, not just read a ticket. That is usually where the real product decisions hide.'
-	},
-	{
-		label: 'The whole arc, one person',
-		body: 'Scope, UX, architecture, and the code that ships. I like making those calls in the same conversation instead of throwing work over walls.'
-	},
-	{
-		label: 'AI with judgment',
-		body: 'Most of my recent work is with LLMs: RAG, agents, evals, and voice. The hard part is rarely the model. It is the product and UX choices around it.'
-	}
-];
-
 const workingStyle = [
 	{
 		title: 'I start with the real constraint.',
@@ -66,37 +51,31 @@ const backgroundMoments = [
 			</p>
 		</header>
 
-		<section class='about-editorial-split'>
-			<div class='space-y-4'>
-				<h2 class='about-section-serif-heading'>How I work</h2>
-				<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
-					The value is rarely just output. It is judgment about what to build, what to leave out, and how the thing feels to use.
+		<section class='space-y-10'>
+			<div class='about-editorial-split'>
+				<div class='space-y-4'>
+					<h2 class='about-section-serif-heading'>How I work</h2>
+					<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+						The value is rarely just output. It is judgment about what to build, what to leave out, and how the thing feels to use.
+					</p>
+				</div>
+				<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>
+					I do my best work close to the user, owning the full arc: product decisions, UX, and the code that ships. Most of my recent work has been with LLMs — RAG, agents, evals, and voice. The hard part is rarely the model.
 				</p>
 			</div>
-			<div class='about-positioning-list'>
+			<div class='about-working-style about-working-style--rows'>
 				{
-					strengths.map((item) => (
-						<div class='about-positioning-item'>
-							<p class='launch-meta about-card-label'>{item.label}</p>
-							<p class='text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+					workingStyle.map((item, index) => (
+						<div class='about-working-style__item'>
+							<p class='about-working-style__num'>{String(index + 1).padStart(2, '0')}</p>
+							<div class='space-y-2'>
+								<h3 class='about-working-style__title'>{item.title}</h3>
+								<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+							</div>
 						</div>
 					))
 				}
 			</div>
-		</section>
-
-		<section class='about-working-style about-working-style--rows'>
-			{
-				workingStyle.map((item, index) => (
-					<div class='about-working-style__item'>
-						<p class='about-working-style__num'>{String(index + 1).padStart(2, '0')}</p>
-						<div class='space-y-2'>
-							<h3 class='about-working-style__title'>{item.title}</h3>
-							<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
-						</div>
-					</div>
-				))
-			}
 		</section>
 
 		<section class='about-editorial-split'>
