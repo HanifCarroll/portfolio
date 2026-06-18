@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL } from '../consts';
+import { serviceOfferList } from '../lib/service-offers';
+
+const title = 'Work With Me';
+const description =
+	'Choose between a focused MVP launch for a first product and fractional product engineering for founder-led teams that need senior product and technical support.';
+
+const workWithMeJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: title,
+	description,
+	url: 'https://www.hanifcarroll.com/work-with-me/'
+};
+---
+
+<BaseLayout title={`${title} · Hanif Carroll`} description={description} jsonLd={workWithMeJsonLd} showFooterCta={false} footerLinksOnly bodyClass='page-work-with-me'>
+	<article class='container work-with-me-page'>
+		<header class='work-with-me-hero'>
+			<h1>Choose how we work together.</h1>
+			<p>
+				Two focused ways to work together: a first product launch when the idea needs shape, or senior product engineering support when
+				the team needs help moving.
+			</p>
+			<div class='work-with-me-actions'>
+				<a
+					href={BOOK_CALL_URL}
+					target='_blank'
+					rel='noopener noreferrer'
+					class='work-with-me-button'
+					data-track-event='book_call_clicked'
+					data-track-location='work_with_me_hero'
+				>
+					Book a Roadmap Call
+				</a>
+				<a href='#offers' class='work-with-me-link'>Compare options</a>
+			</div>
+		</header>
+
+		<section id='offers' class='work-with-me-offers' aria-label='Service options'>
+			{
+				serviceOfferList.map((offer) => (
+					<a href={offer.path} class='work-with-me-offer' data-track-event='service_page_clicked' data-track-location={`work_with_me_${offer.key}`}>
+						<div class='work-with-me-offer__meta'>
+							<span>{offer.label}</span>
+							<span>{offer.price}</span>
+						</div>
+						<div class='work-with-me-offer__body'>
+							<h2>{offer.title}</h2>
+							<p>{offer.chooserSummary}</p>
+						</div>
+						<ul>
+							{offer.fitSignals.slice(0, 2).map((signal) => (
+								<li>{signal}</li>
+							))}
+						</ul>
+						<span class='work-with-me-link work-with-me-offer__link'>{offer.chooserCta}</span>
+					</a>
+				))
+			}
+		</section>
+
+		<section class='work-with-me-closing' aria-labelledby='work-with-me-fit-title'>
+			<div>
+				<p class='work-with-me-closing__label'>Not sure which path fits?</p>
+				<h2 id='work-with-me-fit-title'>Start with the constraint.</h2>
+			</div>
+			<div>
+				<p>
+					Bring the rough version. I will help decide whether this should be a focused MVP launch, fractional product engineering, or a
+					smaller first step.
+				</p>
+				<a
+					href={BOOK_CALL_URL}
+					target='_blank'
+					rel='noopener noreferrer'
+					class='work-with-me-link'
+					data-track-event='book_call_clicked'
+					data-track-location='work_with_me_final'
+				>
+					Book a Roadmap Call
+				</a>
+			</div>
+		</section>
+	</article>
+</BaseLayout>

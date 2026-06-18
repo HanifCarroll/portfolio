@@ -13,7 +13,7 @@ export default defineConfig({
 	integrations: [
 		mdx(),
 		sitemap({
-			filter: (page) => !page.endsWith('/automation-ai-agents/')
+			filter: (page) => !page.endsWith('/automation-ai-agents/') && !page.endsWith('/launch/')
 		}),
 		tailwind()
 	],

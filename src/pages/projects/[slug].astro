@@ -3,7 +3,6 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
-import { EMAIL_URL } from '../../consts';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
@@ -16,6 +15,7 @@ import genruptHero from '@src/assets/img/projects/genrupt-creative-ops-photo.png
 import palabrunoHero from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
 import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
 import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
+import desarmaderoOperationsHero from '@src/assets/img/projects/desarmadero-operations-ventas.png';
 import desarmaderoHero from '@src/assets/img/projects/desarmadero-parts-stockroom-photo.png';
 import maximoHero from '@src/assets/img/projects/maximo-hero.png';
 import redwriterHero from '@src/assets/img/projects/redwriter-hero.png';
@@ -36,6 +36,7 @@ const imageMap = {
 	genrupt: genruptHero,
 	'vox-prismatic': voxPrismaticHero,
 	'casa-elaria': casaElariaHero,
+	'desarmadero-operations-prototype': desarmaderoOperationsHero,
 	'desarmadero-latorre': desarmaderoHero,
 	'maximo-interiorismo': maximoHero,
 	'redwriter-comics': redwriterHero
@@ -91,11 +92,12 @@ const caseStudyFacts = [
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
 const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
+const firstProblem = Array.isArray(project.problem) ? project.problem[0] : project.problem;
+const firstSolution = Array.isArray(project.solution) ? project.solution[0] : project.solution;
 const proofSnapshot = [
-	{ label: 'Outcome', value: firstResult },
-	{ label: 'Best fit', value: project.bestFit },
-	{ label: 'What shipped', value: project.deliveryHighlights?.[0] },
-	{ label: 'Company', value: project.client }
+	{ label: 'Starting Point', value: firstProblem },
+	{ label: 'What Shipped', value: project.deliveryHighlights?.[0] ?? firstSolution },
+	{ label: 'Why It Mattered', value: firstResult }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
 const heroActions = [
@@ -112,13 +114,6 @@ const heroActions = [
 		trackEvent: 'project_repository_clicked',
 		trackLocation: 'project_detail_hero',
 		external: true
-	},
-	{
-		label: 'Get in touch',
-		href: EMAIL_URL,
-		trackEvent: 'email_clicked',
-		trackLocation: 'project_detail_hero',
-		external: false
 	}
 ].filter((action): action is { label: string; href: string; trackEvent: string; trackLocation: string; external: boolean } =>
 	Boolean(action)
@@ -186,7 +181,7 @@ const heroActions = [
 		</header>
 
 		<section class='case-study-detail__proof-snapshot' aria-label='Case study proof points'>
-			<div class='case-study-detail__proof-snapshot-grid'>
+			<div class:list={['case-study-detail__proof-snapshot-grid', `case-study-detail__proof-snapshot-grid--${proofSnapshot.length}`]}>
 				{
 					proofSnapshot.map((detail) => (
 						<div class='case-study-detail__proof-snapshot-item'>

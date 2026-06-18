@@ -2,6 +2,23 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-06-18
+
+### Service Offer Page Split
+
+- Split the mixed `/launch/` offer page into `/work-with-me/`, `/mvp-launch/`, and `/fractional-product-engineering/`.
+- Kept `/launch/` as a 301 redirect to `/work-with-me/` so old links resolve without keeping the mixed page as the public destination.
+- Retargeted service callout CTAs and `/automation-ai-agents/` toward the specific MVP or fractional offer pages.
+- After deployment, verify the three new service URLs in production, confirm sitemap inclusion, and watch Search Console for `/launch/` redirect consolidation.
+
+### Desarmadero Operations Prototype Case Study
+
+- Added `/projects/desarmadero-operations-prototype/` as a forward-deployed product engineering case study for the anonymized auto-dismantling yard prototype.
+- Kept the homepage case-study trio unchanged and added the new page to the `/projects/` Client work archive.
+- Included direct demo and repository links, plus the public demo password, so the case study connects the portfolio page to the clickable prototype and source artifacts.
+- Verified project metadata with `bun run check:projects` and production output with `bun run build`.
+- After deployment, verify the live page, confirm it appears in the sitemap, and request indexing if the forward-deployed proof page should be discoverable quickly.
+
 ## 2026-05-27
 
 ### Blog Post Added

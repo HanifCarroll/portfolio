@@ -11,6 +11,7 @@ import desarmaderoLatorreData from './projects/desarmadero-latorre.json';
 import maximoInteriorismoData from './projects/maximo-interiorismo.json';
 import redwriterComicsData from './projects/redwriter-comics.json';
 import apartmentFinderData from './projects/apartment-finder.json';
+import desarmaderoOperationsPrototypeData from './projects/desarmadero-operations-prototype.json';
 
 export const projects: Record<string, Project> = {
   'palabruno': palabrunoData as Project,
@@ -22,6 +23,7 @@ export const projects: Record<string, Project> = {
   'language-exchange': languageExchangeData as Project,
   'vox-prismatic': voxPrismaticData as Project,
   'casa-elaria': casaElariaData as Project,
+  'desarmadero-operations-prototype': desarmaderoOperationsPrototypeData as Project,
   'desarmadero-latorre': desarmaderoLatorreData as Project,
   'maximo-interiorismo': maximoInteriorismoData as Project,
   'redwriter-comics': redwriterComicsData as Project,

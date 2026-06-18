@@ -44,7 +44,6 @@ export interface Project {
   client: string;
   proofType: 'client' | 'experiment';
   service: string;
-  bestFit: string;
   track: ProjectTrack;
   detailVariant: ProjectDetailVariant;
   category?: 'product' | 'marketing-site';

@@ -67,6 +67,18 @@
 		background-image: none;
 	}
 
+	body.page-work-with-me {
+		background: #fbfbfd;
+		background-image: none;
+		color: #1d1d1f;
+	}
+
+	:is(.dark) body.page-work-with-me {
+		background: #0b0b0c;
+		background-image: none;
+		color: #f5f5f7;
+	}
+
 	pre,
 	code {
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
@@ -706,6 +718,55 @@
 		transform: translateY(-50%);
 	}
 
+	.service-offer-signal-list {
+		border-top-color: rgba(0, 0, 0, 0.1);
+		padding-top: 1.5rem;
+	}
+
+	.service-proof-grid {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.service-proof-card {
+		display: grid;
+		gap: 1.5rem;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.service-proof-card__media {
+		overflow: hidden;
+		aspect-ratio: 16 / 10;
+		background: rgba(255, 255, 255, 0.45);
+		border: 1px solid rgba(0, 0, 0, 0.08);
+	}
+
+	.service-proof-card__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 420ms cubic-bezier(0.32, 0.72, 0, 1);
+	}
+
+	.service-proof-card:hover .service-proof-card__image {
+		transform: scale(1.025);
+	}
+
+	.service-proof-card__copy {
+		display: grid;
+		gap: 1rem;
+		align-content: start;
+	}
+
+	.service-proof-card__copy p:not(.service-section-label) {
+		max-width: 42rem;
+		font-size: 1rem;
+		line-height: 1.75;
+		color: var(--site-body);
+	}
+
 	.service-detail-grid {
 		display: grid;
 		gap: 4rem;
@@ -763,6 +824,298 @@
 		letter-spacing: -0.02em;
 		color: var(--site-ink);
 		text-wrap: balance;
+	}
+
+	.work-with-me-page {
+		display: grid;
+		gap: 6rem;
+		padding-block: 5.5rem 6.5rem;
+		font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+	}
+
+	.work-with-me-hero {
+		display: grid;
+		justify-items: center;
+		gap: 1.8rem;
+		max-width: 66rem;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.work-with-me-hero h1 {
+		max-width: 13ch;
+		margin: 0;
+		color: #1d1d1f;
+		font-family: inherit;
+		font-size: 6.4rem;
+		font-weight: 650;
+		letter-spacing: 0;
+		line-height: 0.94;
+		text-wrap: balance;
+	}
+
+	.work-with-me-hero p {
+		max-width: 42rem;
+		margin: 0;
+		color: #6e6e73;
+		font-size: 1.28rem;
+		font-weight: 400;
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+
+	.work-with-me-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 1.1rem 1.5rem;
+		padding-top: 0.55rem;
+	}
+
+	.work-with-me-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3.15rem;
+		padding-inline: 1.45rem;
+		border: 1px solid #1d1d1f;
+		border-radius: 8px;
+		background: #1d1d1f;
+		color: #fbfbfd;
+		font-size: 0.95rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-decoration: none;
+		transition:
+			background-color 180ms ease,
+			border-color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.work-with-me-button:hover {
+		background: #303033;
+		border-color: #303033;
+		color: #fbfbfd;
+	}
+
+	.work-with-me-button:active {
+		transform: scale(0.98);
+	}
+
+	.work-with-me-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		color: #0066cc;
+		font-size: 0.98rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 160ms ease;
+	}
+
+	.work-with-me-link::after {
+		width: 0.42rem;
+		height: 0.42rem;
+		border-top: 1.5px solid currentColor;
+		border-right: 1.5px solid currentColor;
+		content: '';
+		transform: rotate(45deg);
+	}
+
+	.work-with-me-link:hover {
+		color: #004f9f;
+	}
+
+	.work-with-me-offers {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.work-with-me-offer {
+		display: grid;
+		align-content: start;
+		gap: 2.15rem;
+		min-height: 100%;
+		padding: 2.35rem;
+		border: 1px solid #d2d2d7;
+		border-radius: 8px;
+		background: #fdfdfd;
+		color: inherit;
+		text-decoration: none;
+		transition:
+			border-color 180ms ease,
+			box-shadow 180ms ease,
+			transform 180ms ease;
+	}
+
+	.work-with-me-offer:hover {
+		border-color: #86868b;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.035);
+		transform: translateY(-2px);
+	}
+
+	.work-with-me-offer__meta {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		color: #6e6e73;
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 0;
+	}
+
+	.work-with-me-offer__body {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.work-with-me-offer h2 {
+		max-width: 12ch;
+		margin: 0;
+		color: #1d1d1f;
+		font-family: inherit;
+		font-size: 3.25rem;
+		font-weight: 650;
+		letter-spacing: 0;
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.work-with-me-offer p {
+		max-width: 32rem;
+		margin: 0;
+		color: #515154;
+		font-size: 1.02rem;
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	.work-with-me-offer ul {
+		display: grid;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 1.4rem 0 0;
+		border-top: 1px solid #e8e8ed;
+		list-style: none;
+		color: #6e6e73;
+		font-size: 0.94rem;
+		line-height: 1.5;
+	}
+
+	.work-with-me-offer li {
+		position: relative;
+		padding-left: 1rem;
+	}
+
+	.work-with-me-offer li::before {
+		position: absolute;
+		top: 0.72em;
+		left: 0;
+		width: 0.28rem;
+		height: 0.28rem;
+		border-radius: 999px;
+		background: currentColor;
+		content: '';
+		transform: translateY(-50%);
+		opacity: 0.55;
+	}
+
+	.work-with-me-offer__link {
+		align-self: end;
+		margin-top: auto;
+	}
+
+	.work-with-me-closing {
+		display: grid;
+		gap: 3.75rem;
+		padding-top: 3.5rem;
+		border-top: 1px solid #d2d2d7;
+	}
+
+	.work-with-me-closing__label {
+		margin: 0 0 0.8rem;
+		color: #86868b;
+		font-size: 0.84rem;
+		font-weight: 500;
+		letter-spacing: 0;
+	}
+
+	.work-with-me-closing h2 {
+		max-width: 11ch;
+		margin: 0;
+		color: #1d1d1f;
+		font-family: inherit;
+		font-size: 4.15rem;
+		font-weight: 650;
+		letter-spacing: 0;
+		line-height: 0.96;
+		text-wrap: balance;
+	}
+
+	.work-with-me-closing p:not(.work-with-me-closing__label) {
+		max-width: 34rem;
+		margin: 0 0 1.1rem;
+		color: #515154;
+		font-size: 1.14rem;
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	:is(.dark) .work-with-me-hero h1,
+	:is(.dark) .work-with-me-offer h2,
+	:is(.dark) .work-with-me-closing h2 {
+		color: #f5f5f7;
+	}
+
+	:is(.dark) .work-with-me-hero p,
+	:is(.dark) .work-with-me-offer__meta,
+	:is(.dark) .work-with-me-offer ul,
+	:is(.dark) .work-with-me-closing__label {
+		color: #a1a1a6;
+	}
+
+	:is(.dark) .work-with-me-offer p,
+	:is(.dark) .work-with-me-closing p:not(.work-with-me-closing__label) {
+		color: #d2d2d7;
+	}
+
+	:is(.dark) .work-with-me-button {
+		background: #f5f5f7;
+		border-color: #f5f5f7;
+		color: #1d1d1f;
+	}
+
+	:is(.dark) .work-with-me-button:hover {
+		background: #e8e8ed;
+		border-color: #e8e8ed;
+		color: #1d1d1f;
+	}
+
+	:is(.dark) .work-with-me-link {
+		color: #2997ff;
+	}
+
+	:is(.dark) .work-with-me-link:hover {
+		color: #6bb8ff;
+	}
+
+	:is(.dark) .work-with-me-offer {
+		background: #161617;
+		border-color: #2a2a2d;
+	}
+
+	:is(.dark) .work-with-me-offer:hover {
+		border-color: #4a4a4f;
+		box-shadow: none;
+	}
+
+	:is(.dark) .work-with-me-offer ul,
+	:is(.dark) .work-with-me-closing {
+		border-color: #2a2a2d;
 	}
 
 	.content-page {
@@ -1661,11 +2014,13 @@
 	.case-study-detail__proof-snapshot-grid {
 		display: grid;
 		gap: 1.35rem;
+		align-items: start;
 	}
 
 	.case-study-detail__proof-snapshot-item {
 		display: grid;
 		gap: 0.45rem;
+		align-content: start;
 	}
 
 	.case-study-detail__proof-snapshot-item p {
@@ -1939,20 +2294,24 @@
 	}
 
 	.case-study-detail__editorial-section--media .case-study-detail__image-plate,
+	.case-study-screen-gallery,
 	.genrupt-screen-gallery {
 		grid-column: 1 / -1;
 	}
 
+	.case-study-screen-gallery,
 	.genrupt-screen-gallery {
 		display: grid;
 		gap: clamp(1rem, 2vw, 1.5rem);
 	}
 
+	.case-study-screen-gallery .case-study-detail__image-plate,
 	.genrupt-screen-gallery .case-study-detail__image-plate {
 		justify-content: center;
 		padding: clamp(0.75rem, 2vw, 1.5rem);
 	}
 
+	.case-study-screen-gallery .case-study-detail__image-plate-img,
 	.genrupt-screen-gallery .case-study-detail__image-plate-img {
 		max-width: none;
 		border-radius: 0.65rem;
@@ -2574,6 +2933,11 @@
 		border-top-color: rgba(255, 255, 255, 0.1);
 	}
 
+	:is(.dark) .service-proof-card__media {
+		background: rgba(255, 255, 255, 0.03);
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
 	:is(.dark) .projects-index__feature-media {
 		background: transparent;
 		outline: 0;
@@ -2621,6 +2985,18 @@
 			gap: 6.5rem;
 		}
 
+		.work-with-me-offers {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			align-items: stretch;
+			column-gap: 1rem;
+			row-gap: 2.15rem;
+		}
+
+		.work-with-me-closing {
+			grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+			align-items: start;
+		}
+
 		.service-hero-grid {
 			max-width: 44rem;
 		}
@@ -2628,6 +3004,14 @@
 
 		.case-study-detail__proof-snapshot-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.work-with-me-offer[data-track-location='work_with_me_mvp'] h2 {
+			max-width: 7.5ch;
+		}
+
+		.case-study-detail__proof-snapshot-grid--3 {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
 		.service-detail-grid {
@@ -2645,6 +3029,11 @@
 
 		.service-path-card {
 			padding: 2.5rem 2.5rem 2.75rem;
+		}
+
+		.service-proof-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 2rem;
 		}
 
 		.service-launch-steps {
@@ -3225,6 +3614,65 @@
 			max-width: 100%;
 			min-height: 4rem;
 			padding-inline: 1.45rem;
+		}
+
+		.work-with-me-page {
+			gap: 4rem;
+			padding-block: 3.5rem 4.75rem;
+		}
+
+		.work-with-me-hero {
+			text-align: left;
+			justify-items: start;
+			margin-inline: 0;
+		}
+
+		.work-with-me-hero h1 {
+			max-width: 11ch;
+			font-size: 3.35rem;
+			letter-spacing: 0;
+		}
+
+		.work-with-me-hero p {
+			font-size: 1.08rem;
+		}
+
+		.work-with-me-actions {
+			justify-content: flex-start;
+			width: 100%;
+		}
+
+		.work-with-me-button {
+			width: 100%;
+		}
+
+		.work-with-me-link {
+			font-size: 1rem;
+		}
+
+		.work-with-me-offer {
+			padding: 1.45rem;
+		}
+
+		.work-with-me-offer__meta {
+			display: grid;
+			gap: 0.35rem;
+		}
+
+		.work-with-me-offer h2 {
+			max-width: 10.5ch;
+			font-size: 2.55rem;
+		}
+
+		.work-with-me-closing {
+			gap: 1.45rem;
+			padding-top: 2.5rem;
+		}
+
+		.work-with-me-closing h2 {
+			max-width: 9.5ch;
+			font-size: 3.15rem;
+			line-height: 1;
 		}
 
 		.home-hero-image-wrap {

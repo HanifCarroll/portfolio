@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL } from '../consts';
+import type { ServiceOffer } from '../lib/service-offers';
+
+interface Props {
+	offer: ServiceOffer;
+}
+
+const { offer } = Astro.props as Props;
+
+const serviceJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: offer.title,
+	description: offer.description,
+	url: `https://www.hanifcarroll.com${offer.path}`,
+	provider: {
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	}
+};
+---
+
+<BaseLayout
+	title={`${offer.metaTitle} · Hanif Carroll`}
+	description={offer.description}
+	jsonLd={serviceJsonLd}
+	showFooterCta={false}
+	footerLinksOnly
+	bodyClass='page-launch'
+>
+	<article class='container max-w-6xl service-page-stack py-14 md:py-16'>
+		<header class='service-hero-grid'>
+			<div class='service-hero-copy'>
+				<p class='service-section-label'>{offer.label}</p>
+				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='4.85'>
+					{offer.heroTitle}
+				</h1>
+				<p class='service-hero-body'>
+					{offer.heroBody}
+				</p>
+				<div class='flex flex-wrap gap-4'>
+					<a
+						href={BOOK_CALL_URL}
+						target='_blank'
+						rel='noopener noreferrer'
+						class='home-hero-primary-link'
+						data-track-event='book_call_clicked'
+						data-track-location={`${offer.key}_offer_hero`}
+					>
+						Book a Roadmap Call
+					</a>
+					<a href='/projects/' class='fit-secondary-link'>View case studies</a>
+				</div>
+			</div>
+		</header>
+
+		<section class='service-section service-detail-grid'>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Best fit</p>
+				<h2 class='heading-display heading-display--section'>{offer.fitHeading}</h2>
+			</div>
+			<div class='space-y-6'>
+				<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+					{offer.fitBody}
+				</p>
+				<ul class='service-path-card__signals service-offer-signal-list'>
+					{offer.fitSignals.map((signal) => <li>{signal}</li>)}
+				</ul>
+			</div>
+		</section>
+
+		<section class='service-section'>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Outcome</p>
+				<h2 class='heading-display heading-display--section'>{offer.outcomesHeading}</h2>
+			</div>
+			<div class='service-launch-steps'>
+				{
+					offer.outcomes.map((item, index) => (
+						<div class='service-launch-step'>
+							<p class='service-launch-step__num'>{String(index + 1).padStart(2, '0')}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display heading-display--subsection'>{item.title}</h3>
+								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='service-section'>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Proof</p>
+				<h2 class='heading-display heading-display--section'>{offer.proofHeading}</h2>
+			</div>
+			<div class='service-proof-grid'>
+				{
+					offer.proof.map((proof) => (
+						<a href={proof.href} class='service-proof-card'>
+							<figure class='service-proof-card__media'>
+								<Image src={proof.image} alt={proof.imageAlt} class:list={['service-proof-card__image', proof.imageClass]} loading='lazy' />
+							</figure>
+							<div class='service-proof-card__copy'>
+								<p class='service-section-label'>{proof.label}</p>
+								<h3 class='heading-display heading-display--subsection'>{proof.title}</h3>
+								<p>{proof.body}</p>
+								<span class='arrow-link w-fit'>Read case study</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='service-section'>
+			<div class='space-y-4'>
+				<p class='service-section-label'>Process</p>
+				<h2 class='heading-display heading-display--section'>{offer.processHeading}</h2>
+			</div>
+			<div class='service-launch-steps'>
+				{
+					offer.process.map((step, index) => (
+						<div class='service-launch-step'>
+							<p class='service-launch-step__num'>{String(index + 1).padStart(2, '0')}</p>
+							<div class='space-y-3'>
+								<h3 class='heading-display heading-display--subsection'>{step.title}</h3>
+								<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{step.body}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='service-faq-section'>
+			<h2 class='heading-display heading-display--section'>Questions founders usually ask first.</h2>
+			<div class='service-faq-compact'>
+				{
+					offer.faqs.map((item) => (
+						<div class='service-faq-compact__item'>
+							<p class='service-faq-compact__question'>{item.title}</p>
+							<p class='text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{item.body}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class='service-section service-detail-grid'>
+			<div class='space-y-4'>
+				<h2 class='heading-display heading-display--section'>{offer.finalHeading}</h2>
+			</div>
+			<div class='space-y-5'>
+				<p class='max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>
+					{offer.finalBody}
+				</p>
+				<a
+					href={BOOK_CALL_URL}
+					target='_blank'
+					rel='noopener noreferrer'
+					class='home-hero-primary-link'
+					data-track-event='book_call_clicked'
+					data-track-location={`${offer.key}_offer_final`}
+				>
+					Book a Roadmap Call
+				</a>
+			</div>
+		</section>
+	</article>
+</BaseLayout>

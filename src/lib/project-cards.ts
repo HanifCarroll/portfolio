@@ -14,7 +14,6 @@ export interface ProjectCard {
   proofType: Project['proofType'];
   proofTypeLabel: string;
   service: string;
-  bestFit: string;
   track: Project['track'];
   trackLabel: string;
   trackShortLabel: string;
@@ -43,7 +42,6 @@ const toCard = (project: Project): ProjectCard => {
     proofType: project.proofType,
     proofTypeLabel: getProofTypeLabel(project.proofType),
     service: project.service,
-    bestFit: project.bestFit,
     track: project.track,
     trackLabel: trackMeta.label,
     trackShortLabel: trackMeta.shortLabel,
