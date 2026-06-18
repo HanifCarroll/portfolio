@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=400, initial-scale=1" />
+    <title>AI SaaS Prototype Offer</title>
+    <style>
+      :root {
+        --lime: #a7ff14;
+        --blue: #39a9ff;
+        --ink: #f8fbff;
+        --muted: #b8c7d9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 400px;
+        height: 300px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: #030812;
+      }
+
+      .poster {
+        position: relative;
+        width: 400px;
+        height: 300px;
+        isolation: isolate;
+        background-image:
+          linear-gradient(90deg, rgba(2, 8, 18, 0.96) 0%, rgba(2, 8, 18, 0.88) 31%, rgba(2, 8, 18, 0.24) 56%, rgba(2, 8, 18, 0.04) 100%),
+          url("./ai-saas-prototype-bg.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .poster::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 24% 52%, rgba(57, 169, 255, 0.25), transparent 24%),
+          radial-gradient(circle at 30% 76%, rgba(167, 255, 20, 0.22), transparent 18%);
+      }
+
+      .content {
+        width: 192px;
+        padding: 24px 0 0 22px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 22px;
+        padding: 0 9px;
+        border: 1px solid rgba(167, 255, 20, 0.72);
+        border-radius: 999px;
+        color: var(--lime);
+        background: rgba(6, 18, 16, 0.82);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 14px rgba(167, 255, 20, 0.9);
+      }
+
+      h1 {
+        margin: 13px 0 9px;
+        font-size: 31px;
+        line-height: 0.94;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      h1 .accent {
+        color: var(--lime);
+        text-shadow: 0 0 20px rgba(167, 255, 20, 0.28);
+      }
+
+      .subtitle {
+        margin: 0 0 15px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.28;
+        font-weight: 650;
+      }
+
+      .checks {
+        display: grid;
+        gap: 7px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checks li {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 11px;
+        font-weight: 760;
+        color: #f2f8ff;
+      }
+
+      .check {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 15px;
+        height: 15px;
+        border-radius: 5px;
+        color: #061108;
+        background: linear-gradient(135deg, var(--lime), #42d7ff);
+        box-shadow: 0 0 13px rgba(57, 169, 255, 0.36);
+        font-size: 10px;
+        font-weight: 900;
+      }
+
+      .path {
+        position: absolute;
+        left: 22px;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 26px;
+        padding: 0 10px;
+        border: 1px solid rgba(57, 169, 255, 0.45);
+        border-radius: 8px;
+        color: #d7e9ff;
+        background: rgba(2, 9, 24, 0.78);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        font-size: 9px;
+        font-weight: 850;
+      }
+
+      .path strong {
+        color: var(--lime);
+        font-weight: 900;
+      }
+
+      .path span {
+        color: var(--blue);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster">
+      <section class="content" aria-label="AI SaaS prototype offer">
+        <div class="eyebrow">10-Day Build</div>
+        <h1>
+          <span>AI SaaS</span>
+          <span class="accent">Prototype</span>
+        </h1>
+        <p class="subtitle">A working vertical slice before the full MVP.</p>
+        <ul class="checks">
+          <li><span class="check">✓</span>Core workflow</li>
+          <li><span class="check">✓</span>AI feature</li>
+          <li><span class="check">✓</span>Deployed demo</li>
+        </ul>
+      </section>
+      <div class="path"><strong>Scope</strong><span>→</span>Build<span>→</span>Demo</div>
+    </main>
+  </body>
+</html>

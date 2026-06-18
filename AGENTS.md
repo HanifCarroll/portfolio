@@ -28,17 +28,6 @@ Act like a high-performing senior engineer. Be concise, direct, and execution-fo
 - After shipping SEO-relevant changes, add a concise dated entry there with what changed, what was verified, and what should be rechecked later.
 - For live Search Console data, prefer the configured `gsc` MCP when available. If Codex Desktop has not reloaded the MCP tools, use the documented `mcp-search-console` fallback in `/Users/hanifcarroll/hanif-md/docs/tool-reference.md`.
 
-## hanif-md Codex Workspace
-
-Use `~/hanif-md/codex/` as the default note and working-memory system for substantive Codex Desktop threads, regardless of current cwd.
-
-For substantive Codex Desktop work:
-
-1. Read `codex/INDEX.md` and `codex/NOW.md`.
-2. Reuse or create the matching `codex/THREADS/*.md` note.
-3. Sync `codex/NOW.md` with the active thread set.
-4. Continue with deeper repo, vault, or projectless work only after that state is in sync.
-
 ## Tool Inventory
 
 Before using a nontrivial local or global tool, check:
