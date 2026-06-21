@@ -17,10 +17,10 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 ---
 
 <header class='site-header sticky top-0 z-[1001]' id='siteHeader'>
-	<div class='container relative z-[70] flex items-center justify-between gap-4 py-6'>
+	<div class='container relative z-[70] flex items-center justify-between gap-3 py-4 lg:gap-4 lg:py-6'>
 		<a href='/' id='logoLink' class='flex flex-col gap-0.5 transition hover:opacity-80 focus-visible:outline-none'>
-			<span class='font-display text-xl font-semibold uppercase tracking-[0.08em]'>Hanif Carroll</span>
-			<span class='font-mono text-[10px] uppercase tracking-[0.18em] opacity-70'>
+			<span class='font-display text-lg font-semibold uppercase tracking-[0.08em] lg:text-xl'>Hanif Carroll</span>
+			<span class='font-mono text-[9px] uppercase tracking-[0.16em] opacity-70 lg:text-[10px] lg:tracking-[0.18em]'>
 				Product Engineer
 			</span>
 		</a>
@@ -35,7 +35,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 			}
 			<a
 				href={EMAIL_URL}
-				class='inline-flex items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
+				class='inline-flex items-center justify-center gap-2.5 rounded-[0.35rem] border border-primary bg-primary px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
 				data-track-event='email_clicked'
 				data-track-location='header_primary'
 			>
@@ -45,7 +45,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 		</nav>
 
 		<button
-			class='inline-flex h-10 w-10 items-center justify-center border-2 border-white/60 text-white transition hover:border-white hover:bg-white/10 lg:hidden'
+			class='inline-flex h-9 w-9 items-center justify-center border-2 border-white/60 text-white transition hover:border-white hover:bg-white/10 lg:hidden'
 			id='mobileMenuToggle'
 			aria-label='Toggle navigation'
 			aria-expanded='false'
@@ -254,12 +254,16 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 				ticking = false;
 			};
 
-			window.addEventListener('scroll', () => {
-				if (!ticking) {
-					requestAnimationFrame(updateHeader);
-					ticking = true;
-				}
-			}, { passive: true });
+			window.addEventListener(
+				'scroll',
+				() => {
+					if (!ticking) {
+						requestAnimationFrame(updateHeader);
+						ticking = true;
+					}
+				},
+				{ passive: true }
+			);
 		};
 
 		if (document.readyState === 'loading') {
@@ -272,19 +276,14 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 	</script>
 </header>
 
-<div
-	class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#0c0c0c] pt-[6.5rem] lg:hidden'
-	id='mobileMenu'
-	data-state='closed'
-	hidden
->
-	<nav class='container flex min-h-[calc(100dvh-6.5rem)] flex-col gap-6 py-8'>
+<div class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#0c0c0c] pt-[5rem] lg:hidden' id='mobileMenu' data-state='closed' hidden>
+	<nav class='container flex min-h-[calc(100dvh-5rem)] flex-col gap-5 py-6'>
 		{
 			navLinks.map((link, index) => (
 				<a
 					href={link.href}
 					class:list={[
-						'text-2xl font-display font-semibold uppercase tracking-[0.12em] text-white/80 transition hover:text-white focus-visible:outline-none focus-visible:text-white',
+						'text-xl font-display font-semibold uppercase tracking-[0.10em] text-white/80 transition hover:text-white focus-visible:outline-none focus-visible:text-white',
 						isActiveLink(link.href) && 'text-primary'
 					]}
 					aria-current={isActiveLink(link.href) ? 'page' : undefined}
@@ -299,7 +298,7 @@ const isActiveLink = (href: string) => href === pathname || href === currentRoot
 		}
 		<a
 			href={EMAIL_URL}
-			class='mt-4 inline-flex w-fit items-center justify-center gap-3 rounded-[0.35rem] border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
+			class='mt-3 inline-flex w-fit items-center justify-center gap-2.5 rounded-[0.35rem] border border-primary bg-primary px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
 			data-track-event='email_clicked'
 			data-track-location='header_mobile'
 			data-mobile-menu-item
