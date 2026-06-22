@@ -10,6 +10,15 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Verified the copied asset by SHA-256: `ed007e23c99e0ccc0adacc525bc03e17c0b09a69c7ce287476218353a8c4d393`.
 - After deployment, re-check the live PDF hash and keep the resume PDF in the next Search Console page-row review.
 
+### Product Engineer Positioning Refresh
+
+- Updated the homepage hero around `Hanif Carroll | Product Engineer`, founder/team AI product launches, and 8+ years of web/mobile product experience.
+- Rewrote the Palabruno, Genrupt, and Casamo homepage summaries with clearer outcomes and added a scannable `What I Work With` tech stack section.
+- Expanded `/projects/palabruno/`, `/projects/genrupt/`, and `/projects/casamo/` around Problem / Context, Approach, Solution, Results / Impact, Tech Stack, and Visuals.
+- Aligned `/about/` and the contact CTA with contract/project work through HC Studio.
+- Verified with `bun run check:projects` and `bun run build`.
+- After deployment, verify production HTML for `/`, `/about/`, `/projects/palabruno/`, `/projects/genrupt/`, and `/projects/casamo/`, then watch Search Console for homepage, Palabruno, Genrupt, and Casamo query movement.
+
 ## 2026-06-21
 
 ### Analytics Access Repair

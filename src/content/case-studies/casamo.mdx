@@ -33,24 +33,20 @@ export const shippedRows = [
 ];
 
 <CaseSection title="Summary">
-	Casamo is a stay-decision tool for remote workers booking furnished stays for weeks at a time.
+	Casamo is an AI-powered travel decision tool for remote workers booking furnished stays for weeks at a time.
 
 	It scans Airbnb and Booking.com listings, checks the evidence behind each stay, and turns a noisy marketplace search into a ranked report with one recommended pick, two backups, and the questions still worth asking the host.
 </CaseSection>
 
-<CaseSection title="About">
+<CaseSection title="Problem / Context">
 	The project grew out of a narrow apartment-search prototype, but the product direction changed once the real buyer problem became clearer.
 
 	Remote workers already have plenty of travel search interfaces. What they need is confidence that a stay can actually support living and working for multiple weeks before they commit money, time, and travel plans.
+
+	The business risk was building a generic Airbnb search clone. The useful wedge was smaller and clearer: scan a shortlist across marketplaces and show which stays have enough evidence to trust.
 </CaseSection>
 
-<CaseSection title="Business Objective">
-	The product needed to become a real travel decision workflow. A one-off AI demo would not be enough.
-
-	The first commercial wedge was a $29 Trip Scan Pass: enter destination, dates, budget, guests, and must-haves, then get a report that ranks the strongest stays by practical long-stay fit.
-</CaseSection>
-
-<CaseSection title="Product Direction">
+<CaseSection title="Approach">
 	<DecisionBlock title="Lead with evidence instead of search convenience.">
 		Marketplace filters can say a listing has Wi-Fi, workspace, kitchen, or laundry without proving those claims. Casamo checks the listing against photos, amenities, text, reviews, missing evidence, and host questions.
 	</DecisionBlock>
@@ -58,23 +54,16 @@ export const shippedRows = [
 	<DecisionBlock title="Make the report decision-first.">
 		The report leads with the strongest candidate and two backups. Scores and evidence still matter, but the product answers the actual booking question first: where should I investigate next?
 	</DecisionBlock>
+
+	<DecisionBlock title="Give customers a paid way to start.">
+		The first commercial wedge was a $29 Trip Scan Pass: enter destination, dates, budget, guests, and must-haves, then get a report that ranks the strongest stays by practical long-stay fit.
+	</DecisionBlock>
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-	<h2>Product Surface</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<p>The product is built around the evidence remote workers actually need before booking: a usable workspace, real kitchen and laundry details, visible risks, and the host questions still worth asking.</p>
+<CaseSection title="Solution">
+	The product is built around the evidence remote workers actually need before booking: a usable workspace, real kitchen and laundry details, visible risks, and the host questions still worth asking.
 
-		<MacWindowFrame ariaLabel='Casamo stay audit product surface'>
-			<ImagePlate image={casamoFeature} alt="Casamo homepage showing the stay search form, audit priorities, and first product promise." />
-		</MacWindowFrame>
-	</div>
-</section>
-
-<CaseSection title="Why It Matters">
-	Booking a furnished stay for several weeks is a bigger decision than a weekend hotel search. Casamo gives remote workers a clearer path from “these listings look similar” to “this is the stay worth checking with the host before I book.”
-
-	Casamo gives them a faster path to the right shortlist, with the evidence, tradeoffs, and unanswered questions visible in one place.
+	The report workflow compares the strongest candidates, shows tradeoffs, saves the result, and keeps the user focused on the next practical question: which stay should I check with the host before booking?
 </CaseSection>
 
 <CaseSection title="The Work">
@@ -96,10 +85,19 @@ export const shippedRows = [
 </CaseSection>
 
 <section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>What Shipped</h2>
+	<h2>Results / Impact</h2>
 	<div class='case-study-detail__editorial-copy'>
 		<ProofRows rows={shippedRows}>
-			Casamo is live as a focused MVP: a remote-work stay audit product that helps travelers choose the stay worth booking, then improve from real usage.
+			Casamo is live as a focused MVP: a remote-work stay audit product with automated scans, saved reports, payments,
+			usage limits, analytics, and a clearer path from noisy listing search to a stay worth checking with the host.
 		</ProofRows>
 	</div>
 </section>
+
+<CaseSection title="Visuals" media>
+	The current product surface shows the stay-audit promise, intake flow, and decision criteria that anchor the MVP.
+
+	<MacWindowFrame ariaLabel='Casamo stay audit product visual'>
+		<ImagePlate image={casamoFeature} alt="Casamo homepage showing the stay search form, audit priorities, and first product promise." />
+	</MacWindowFrame>
+</CaseSection>

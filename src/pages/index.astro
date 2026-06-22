@@ -37,7 +37,8 @@ const caseStudyBySlug = {
 		slug: 'palabruno',
 		label: 'MVP build',
 		title: 'Palabruno',
-		body: 'Helped a nontechnical founder shape, build, and launch Palabruno: a Spanish reading app with mobile subscriptions, web payments for teachers, app store launch assets, UX polish, and public-site copy.',
+		body: "Took a non-technical founder's idea from concept to live iOS, Android, and web app — including teacher workflows, AI features, Stripe/RevenueCat billing, and App Store launch.",
+		tech: 'React Native / Expo • Supabase • Stripe • RevenueCat • OpenAI',
 		image: palabrunoPhoto,
 		imageAlt: 'Spanish reading materials with vocabulary, grammar, and pronunciation cards.',
 		imageClass: undefined
@@ -46,7 +47,8 @@ const caseStudyBySlug = {
 		slug: 'genrupt',
 		label: 'Product platform',
 		title: 'Genrupt',
-		body: 'Helped Genrupt move beyond demo-stage image and video generation by adding the commercial and reliability foundations needed for paid Amazon seller workflows.',
+		body: 'Evolved an AI media MVP into a production platform for Amazon sellers with subscriptions, credit billing, agent access, and background jobs — enabled the first 100 paying customers.',
+		tech: 'Next.js • PostgreSQL • Stripe • OpenAI • MCP',
 		image: genruptPhoto,
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
@@ -55,7 +57,8 @@ const caseStudyBySlug = {
 		slug: 'casamo',
 		label: 'Travel decision MVP',
 		title: 'Casamo',
-		body: 'Built a travel decision product that helps remote workers find the stay worth booking without opening 20 tabs or trusting misleading marketplace filters.',
+		body: 'Built an AI-powered travel decision tool that helps remote workers find quality long-stay accommodations, with automated scanning, payments, and analytics.',
+		tech: 'TanStack Start • PostgreSQL • Stripe • Playwright • OpenAI',
 		image: casamoPhoto,
 		imageAlt: 'Casamo homepage showing the stay search form and audit priorities over a furnished apartment.',
 		imageClass: 'object-left-top'
@@ -63,6 +66,24 @@ const caseStudyBySlug = {
 } as const;
 
 const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
+
+const techStackGroups = [
+	{
+		id: 'core-stack',
+		title: 'Core Stack',
+		items: ['TypeScript', 'React', 'Next.js', 'React Native / Expo', 'Node.js', 'PostgreSQL', 'Supabase']
+	},
+	{
+		id: 'ai-agents',
+		title: 'AI & Agents',
+		items: ['OpenAI', 'Anthropic', 'MCP', 'RAG', 'Evals', 'Agent Workflows']
+	},
+	{
+		id: 'tools-infrastructure',
+		title: 'Tools & Infrastructure',
+		items: ['Stripe', 'RevenueCat', 'Vercel', 'Docker', 'Playwright', 'Claude Code', 'ChatGPT Codex']
+	}
+];
 
 const testimonials = [
 	{
@@ -105,10 +126,17 @@ const testimonials = [
 					<div class='home-hero-copy-wrap'>
 						<div class='home-hero-copy'>
 							<p class='home-hero-greeting'>Hey, I'm <span class='home-hero-greeting__name'>Hanif</span>.</p>
-							<h1 class='home-hero-title'>I build AI products and workflows.</h1>
+							<h1 class='home-hero-title'>
+								<span>Hanif Carroll |</span>
+								<span>Product Engineer</span>
+							</h1>
+							<p class='home-hero-subheadline'>
+								<span>I help founders and teams turn</span>
+								<span>AI product ideas into shipped,</span>
+								<span>revenue-generating software.</span>
+							</p>
 							<p class='home-hero-body'>
-								Eight years building products. I like talking to users, deciding what to build, writing the code, then restarting the
-								process. Most of my recent work has been with LLMs: agents, RAG, evals, and MCP.
+								8+ years building web and mobile products, with recent work focused on LLMs, agents, RAG, evals, and MCP.
 							</p>
 							<div class='home-hero-actions'>
 								<a class='home-hero-primary-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_hero_primary'>
@@ -147,6 +175,7 @@ const testimonials = [
 								<div class='space-y-5'>
 									<h3 class='case-study-row__title'>{study.title}</h3>
 									<p class='case-study-row__description'>{study.body}</p>
+									<p class='case-study-row__tech'>{study.tech}</p>
 								</div>
 								<span class='case-study-row__button'>View case study</span>
 							</div>
@@ -168,6 +197,30 @@ const testimonials = [
 			<p class='case-study-archive-link'>
 				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
 			</p>
+		</div>
+	</section>
+
+	<section class='container home-tech-section' aria-labelledby='home-tech-title'>
+		<div class='home-tech-section__heading'>
+			<h2 id='home-tech-title' class='home-tech-section__title'>What I Work With</h2>
+			<p class='home-tech-section__intro'>
+				A practical stack for AI-powered products that need to move from idea to production without losing the product thread.
+			</p>
+		</div>
+
+		<div class='home-tech-grid'>
+			{
+				techStackGroups.map((group) => (
+					<section class='home-tech-group' aria-labelledby={`home-tech-${group.id}`}>
+						<h3 id={`home-tech-${group.id}`} class='home-tech-group__title'>{group.title}</h3>
+						<ul class='home-tech-group__tags'>
+							{group.items.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</section>
+				))
+			}
 		</div>
 	</section>
 
@@ -198,9 +251,9 @@ const testimonials = [
 		<div class='home-about__inner'>
 			<h2 id='home-about-title' class='home-about__title'>A bit about me.</h2>
 			<p class='home-about__body'>
-				I started writing software because I liked making things. I stayed with it because the best work is really about people: what
-				they're trying to do, where the current tool fails them, and what you can remove so they get there faster. I'm also building Casamo
-				for remote workers choosing a long-term stay.
+				I work with founders and teams when the job is bigger than code alone: shape the product, narrow the first version, build the
+				software, and get it launched. I'm also building Casamo, an AI-powered stay-decision tool for remote workers choosing a long-term
+				stay.
 			</p>
 			<p class='home-about__location'>Based in Buenos Aires, working US hours. US clients contract with me through HC Studio, my LLC.</p>
 			<p class='home-about__location'>
@@ -238,14 +291,13 @@ const testimonials = [
 			<div class='space-y-3'>
 				<h2 id='home-contact-title' class='home-fit-section__title'>Let's talk.</h2>
 				<p class='home-fit-section__lede'>
-					If you're building a product and need an engineer who can talk to users, choose the scope, and ship the code, I'd like to hear
-					what you're working on.
+					Building an AI product or need help shipping a focused first version? Let's talk.
 				</p>
 			</div>
 
 			<div class='fit-actions'>
 				<a class='home-hero-primary-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_contact_primary'>
-					Get in touch
+					Let's talk
 				</a>
 			</div>
 		</div>

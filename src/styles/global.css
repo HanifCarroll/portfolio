@@ -260,7 +260,7 @@
 		font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
 		font-weight: 700;
 		line-height: 1.1;
-		letter-spacing: -0.02em;
+		letter-spacing: 0;
 		text-transform: none;
 	}
 
@@ -438,6 +438,20 @@
 
 	:is(.dark) .home-hero-body {
 		color: var(--site-muted);
+	}
+
+	.home-hero-subheadline {
+		max-width: 41rem;
+		color: var(--site-ink);
+		font-size: clamp(1.35rem, 2vw, 1.85rem);
+		font-weight: 550;
+		line-height: 1.35;
+		letter-spacing: 0;
+		text-wrap: balance;
+	}
+
+	.home-hero-subheadline span {
+		display: inline;
 	}
 
 	.home-hero-actions {
@@ -2623,6 +2637,17 @@
 		color: #514b43;
 	}
 
+	.case-study-row__tech {
+		max-width: 34rem;
+		color: var(--site-muted);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.72rem;
+		font-weight: 650;
+		letter-spacing: 0.04em;
+		line-height: 1.65;
+		text-transform: uppercase;
+	}
+
 	.case-study-row__button {
 		display: inline-flex;
 		width: fit-content;
@@ -2719,6 +2744,84 @@
 		padding-block: clamp(5rem, 8vw, 7.25rem) clamp(6rem, 10vw, 8.5rem);
 	}
 
+	.home-tech-section {
+		display: grid;
+		gap: clamp(2rem, 4vw, 3.25rem);
+		padding-block: clamp(4.5rem, 8vw, 7rem);
+		border-top: 1px solid var(--site-rule);
+	}
+
+	.home-tech-section__heading {
+		display: grid;
+		gap: 1rem;
+		max-width: 52rem;
+	}
+
+	.home-tech-section__title {
+		max-width: 60ch;
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+		font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		text-transform: none;
+	}
+
+	.home-tech-section__intro {
+		max-width: 44rem;
+		color: var(--site-body);
+		font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem);
+		line-height: 1.65;
+		text-wrap: pretty;
+	}
+
+	.home-tech-grid {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.home-tech-group {
+		display: grid;
+		gap: 1rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--site-rule);
+	}
+
+	.home-tech-group__title {
+		color: var(--site-ink);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.78rem;
+		font-weight: 750;
+		letter-spacing: 0.08em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.home-tech-group__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.home-tech-group__tags li {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.05rem;
+		padding: 0.38rem 0.68rem;
+		border: 1px solid var(--site-rule);
+		background: rgba(255, 255, 255, 0.5);
+		color: var(--site-body);
+		font-size: 0.82rem;
+		line-height: 1.2;
+	}
+
+	:is(.dark) .home-tech-group__tags li {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
 	/* Testimonials */
 	/* Testimonials band — full-bleed dark zone */
 	.home-testimonials-band {
@@ -2748,6 +2851,11 @@
 		.home-testimonials__grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: clamp(2rem, 4vw, 3rem);
+		}
+
+		.home-tech-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: clamp(1.25rem, 3vw, 2rem);
 		}
 	}
 
@@ -3545,9 +3653,10 @@
 
 		.case-study-detail .heading-display--hero,
 		.case-study-detail--product .heading-display--hero {
-			font-size: clamp(2.15rem, 8.6vw, 3rem) !important;
+			width: min(100%, 15rem);
+			font-size: 2rem !important;
 			line-height: 0.98;
-			max-width: 100%;
+			max-width: 15rem;
 			overflow-wrap: break-word;
 			text-wrap: wrap;
 			white-space: normal;
@@ -3557,14 +3666,14 @@
 		.case-study-detail .case-study-detail__hero-copy,
 		.case-study-detail .case-study-detail__editorial-copy,
 		.case-study-detail .case-study-detail__hero-facts {
-			width: 100%;
-			max-width: 100%;
+			width: min(100%, 15rem);
+			max-width: 15rem;
 		}
 
 		.case-study-detail p,
 		.case-study-detail strong,
 		.case-study-detail h3 {
-			max-width: calc(100vw - 3rem);
+			max-width: 15rem;
 			overflow-wrap: break-word;
 		}
 
@@ -3600,22 +3709,45 @@
 		}
 
 		.home-hero-copy {
-			width: min(100%, calc(100vw - 3rem));
+			width: min(100%, 15rem);
 			overflow-wrap: break-word;
 		}
 
 		.home-hero-title {
-			width: min(100%, calc(100vw - 3rem));
+			width: min(100%, 15rem);
 			max-width: none;
-			font-size: clamp(2.4rem, 8vw, 3.4rem);
+			font-size: 2rem;
 			line-height: 1.05;
-			letter-spacing: -0.025em;
+			letter-spacing: 0;
+			overflow-wrap: break-word;
+		}
+
+		.home-hero-title span {
+			white-space: normal;
+		}
+
+		.home-hero-subheadline {
+			width: min(100%, 15rem);
+			max-width: 100%;
+			font-size: 1.12rem;
+			text-wrap: wrap;
+		}
+
+		.home-hero-subheadline span {
+			display: block;
 		}
 
 		.home-hero-body {
-			width: min(100%, calc(100vw - 3rem));
+			width: min(100%, 15rem);
 			max-width: 100%;
 			font-size: 1.1rem;
+			overflow-wrap: break-word;
+		}
+
+		.case-study-row__body,
+		.case-study-row__description,
+		.case-study-row__tech {
+			max-width: min(100%, 15rem);
 			overflow-wrap: break-word;
 		}
 
