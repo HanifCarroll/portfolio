@@ -26,24 +26,15 @@ Act like a high-performing senior engineer. Be concise, direct, and execution-fo
 - Use `docs/seo-changes-and-observations.md` as the running record for portfolio SEO changes, Search Console observations, indexing requests, and follow-up checks.
 - Before making SEO changes, review that file for the current baseline and prior decisions.
 - After shipping SEO-relevant changes, add a concise dated entry there with what changed, what was verified, and what should be rechecked later.
-- For live Search Console data, prefer the configured `gsc` MCP when available. If Codex Desktop has not reloaded the MCP tools, use the documented `mcp-search-console` fallback in `/Users/hanifcarroll/hanif-md/docs/tool-reference.md`.
-
-## Tool Inventory
-
-Before using a nontrivial local or global tool, check:
-
-1. `/Users/hanifcarroll/hanif-md/docs/tool-reference.md`
-2. `/Users/hanifcarroll/hanif-md/docs/tooling-quirks.md`
-
-Keep exact command syntax in the tool reference and durable failures or environment quirks in the quirks file. Do not duplicate long recipes in AGENTS files.
+- For live Search Console data, prefer the configured `gsc` MCP when available. If it is unavailable in the current session, state that live Search Console data is blocked and use only verified fallbacks.
 
 ## Email Access
 
 | Account | Access path |
 | --- | --- |
-| Personal Gmail: `hanifcarroll@gmail.com` | `mailbridge` first |
-| Domain Gmail: `hanif@hanifcarroll.com` | `mailbridge` first |
-| Fastmail | `mailbridge` first |
+| Personal Gmail: `hanifcarroll@gmail.com` | Gmail connector if available; otherwise `gog` |
+| Fastmail primary: `hanifcarroll@fastmail.com` | Direct Fastmail/JMAP tooling |
+| Domain email: `hanif@hanifcarroll.com` | Direct Fastmail/JMAP tooling |
 
 Never paste tokens or secrets into chat, files, commits, command output, or logs.
 

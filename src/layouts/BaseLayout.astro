@@ -411,7 +411,12 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 				if (opensNewTab) return false;
 				if (href.startsWith('#') || href.startsWith('/#')) return false;
 
-				return href.startsWith('mailto:') || /^https?:/i.test(href);
+				try {
+					const url = new URL(link.href);
+					return ['http:', 'https:', 'mailto:'].includes(url.protocol);
+				} catch {
+					return false;
+				}
 			};
 
 			document.addEventListener('click', (event) => {

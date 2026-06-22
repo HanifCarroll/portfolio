@@ -2,6 +2,25 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-06-22
+
+### Resume PDF Replacement
+
+- Replaced the public resume PDF at `/Hanif-Carroll-Resume.pdf` from the iCloud Downloads resume while preserving the stable public URL.
+- Verified the copied asset by SHA-256: `ed007e23c99e0ccc0adacc525bc03e17c0b09a69c7ce287476218353a8c4d393`.
+- After deployment, re-check the live PDF hash and keep the resume PDF in the next Search Console page-row review.
+
+## 2026-06-21
+
+### Analytics Access Repair
+
+- Reauthorized `gws` OAuth for `hanifcarroll@gmail.com` and added GA4/Search Console read scopes.
+- Enabled the Google Analytics Data API on the OAuth project so GA4 API reads can run from local tooling.
+- Verified live GA4 and Search Console API reads for 2026-06-14 through 2026-06-20 against 2026-06-07 through 2026-06-13.
+- GA4 moved from 22 to 165 sessions, 17 to 160 users, 24 to 224 page views, 93 to 672 events, and 7 to 92 engaged sessions.
+- Search Console moved from 8 clicks / 233 impressions to 6 clicks / 268 impressions. CTR moved from 3.43% to 2.24%, and average position held roughly flat at 17.0 to 16.8.
+- Current top page rows: Genrupt 6 clicks / 59 impressions / 1.3 average position; homepage 0 clicks / 22 impressions / 4.5 average position; resume PDF 0 clicks / 190 impressions / 22.8 average position; `/launch/` 0 clicks / 4 impressions / 4.0 average position; Mucho Hangouts 0 clicks / 4 impressions / 6.0 average position.
+
 ## 2026-06-18
 
 ### Service Offer Page Split
