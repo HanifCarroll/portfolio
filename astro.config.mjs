@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -18,14 +19,15 @@ export default defineConfig({
 		tailwind()
 	],
 	markdown: {
-		extendDefaultPlugins: true,
-		rehypePlugins: [
-			[
-				autoNewTabExternalLinks,
-				{
-					domain: siteDomain
-				}
+		processor: unified({
+			rehypePlugins: [
+				[
+					autoNewTabExternalLinks,
+					{
+						domain: siteDomain
+					}
+				]
 			]
-		]
+		})
 	}
 });
