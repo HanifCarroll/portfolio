@@ -1,0 +1,510 @@
+---
+import { EMAIL } from '../consts';
+
+const portfolioUrl = 'https://www.hanifcarroll.com';
+const resumeUrl = `${portfolioUrl}/Hanif-Carroll-Resume.pdf`;
+const linkedInUrl = 'https://linkedin.com/in/hanifcarroll';
+const onePagerTitle = 'Contract Full-Stack Product Engineer';
+
+const bestFit = [
+	'Contract full-stack product engineering',
+	'AI product builds and agent workflows',
+	'MVP to production work',
+	'Agency overflow and product rescue',
+	'Founder-led product teams'
+];
+
+const capabilities = [
+	'Full-stack web apps',
+	'Mobile apps with Expo and React Native',
+	'AI workflows, agents, and evaluation loops',
+	'Payments, subscriptions, and billing',
+	'Product scoping, UX, and launch support'
+];
+
+const setup = ['US citizen', '1099/C2C via HC Studio LLC', 'US-hours work from Buenos Aires'];
+
+const work = [
+	{
+		name: 'Genrupt',
+		label: 'AI media agent platform for Amazon sellers',
+		result:
+			'Turned an AI media MVP into a production platform with subscriptions, credit billing, background jobs, and agent access. Helped support the first 100 paying customers.',
+		url: `${portfolioUrl}/projects/genrupt/`
+	},
+	{
+		name: 'Palabruno',
+		label: 'Spanish reading app for mobile and web',
+		result:
+			'Built and launched the product across iOS, Android, and web with teacher workflows, AI reading features, subscriptions, billing, store assets, and launch support.',
+		url: `${portfolioUrl}/projects/palabruno/`
+	},
+	{
+		name: 'Casamo',
+		label: 'AI stay-audit product for remote workers',
+		result:
+			'Built and launched a paid stay-audit MVP with Airbnb and Booking.com scans, saved reports, accounts, usage limits, analytics, and evidence-backed host questions.',
+		url: `${portfolioUrl}/projects/casamo/`
+	}
+];
+
+const tech = [
+	'TypeScript',
+	'React',
+	'Next.js',
+	'Expo',
+	'React Native',
+	'PostgreSQL',
+	'Supabase',
+	'Stripe',
+	'RevenueCat',
+	'OpenAI',
+	'ChatGPT Codex',
+	'Claude Code',
+	'MCP',
+	'Playwright'
+];
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<title>{onePagerTitle} | Hanif Carroll</title>
+		<meta
+			name='description'
+			content='One-page contractor capability sheet for Hanif Carroll, a contract full-stack product engineer for AI, web, and mobile products.'
+		/>
+		<style is:inline>
+			@page {
+				size: Letter;
+				margin: 0;
+			}
+
+			:root {
+				--ink: #171714;
+				--body: #3f3f3a;
+				--muted: #6f7069;
+				--faint: #b3b2aa;
+				--paper: #fdfdfb;
+				--side: 2.05in;
+				--gutter: 0.46in;
+				/* Spacing scale: multiples of 0.08in */
+				--s1: 0.08in;
+				--s2: 0.16in;
+				--s3: 0.24in;
+				--s4: 0.32in;
+				--s5: 0.4in;
+				--s6: 0.48in;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				background: #edebe6;
+				color: var(--ink);
+				font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+			}
+
+			body {
+				-webkit-print-color-adjust: exact;
+				print-color-adjust: exact;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.sheet {
+				width: auto;
+				max-width: 8.5in;
+				height: 11in;
+				margin: 0 auto;
+				background: var(--paper);
+				padding: 0.56in 0.64in;
+				display: grid;
+				grid-template-rows: auto auto auto;
+				align-content: start;
+				gap: var(--s6);
+				overflow: hidden;
+			}
+
+			.header {
+				display: grid;
+				gap: var(--s4);
+			}
+
+			.topline {
+				display: grid;
+				grid-template-columns: var(--side) minmax(0, 1fr);
+				column-gap: var(--gutter);
+				row-gap: var(--s2);
+				align-items: end;
+				padding-bottom: var(--s1);
+			}
+
+			.kicker {
+				margin: 0 0 var(--s1);
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 500;
+				letter-spacing: 0.07em;
+				line-height: 1.2;
+				text-transform: uppercase;
+			}
+
+			.kicker span {
+				display: block;
+			}
+
+			h1 {
+				margin: 0;
+				color: var(--ink);
+				font-size: 16pt;
+				font-weight: 500;
+				letter-spacing: 0;
+				line-height: 1;
+			}
+
+			.contact {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--s1) var(--s2);
+				color: var(--muted);
+				font-size: 8pt;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 1.25;
+				justify-content: flex-start;
+				text-align: left;
+			}
+
+			.contact a,
+			.contact span {
+				display: inline-block;
+				white-space: nowrap;
+			}
+
+			.intro {
+				display: grid;
+				gap: var(--s2);
+			}
+
+			.subtitle {
+				margin: 0;
+				color: var(--ink);
+				font-size: 18pt;
+				font-weight: 500;
+				letter-spacing: -0.015em;
+				line-height: 1.2;
+			}
+
+			.availability {
+				margin: 0;
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.45;
+				text-align: left;
+			}
+
+			.main {
+				display: grid;
+				grid-template-columns: var(--side) minmax(0, 1fr);
+				gap: var(--gutter);
+				align-content: start;
+			}
+
+			.sidebar,
+			.content {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				align-content: start;
+				min-width: 0;
+			}
+
+			.sidebar {
+				gap: var(--s5);
+			}
+
+			.content {
+				gap: var(--s5);
+			}
+
+			.section {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				gap: var(--s1);
+				min-width: 0;
+			}
+
+			.section-title {
+				margin: 0;
+				color: var(--body);
+				font-size: 8pt;
+				font-weight: 500;
+				letter-spacing: 0.07em;
+				line-height: 1.15;
+				text-transform: uppercase;
+			}
+
+			.list {
+				display: grid;
+				gap: var(--s1);
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.list li {
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.4;
+			}
+
+			.setup-list {
+				display: grid;
+				gap: var(--s1);
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.setup-list li {
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.35;
+			}
+
+			.work-list {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				gap: var(--s4);
+				min-width: 0;
+			}
+
+			.work-row {
+				display: grid;
+				grid-template-columns: 1.44in minmax(0, 1fr);
+				gap: var(--s2);
+				break-inside: avoid;
+			}
+
+			.work-row__meta {
+				display: grid;
+				gap: var(--s1);
+				align-content: start;
+			}
+
+			.work-row h2 {
+				margin: 0;
+				color: var(--ink);
+				font-size: 12pt;
+				font-weight: 500;
+				letter-spacing: 0;
+				line-height: 1.08;
+			}
+
+			.work-row h3 {
+				margin: 0;
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.3;
+			}
+
+			.work-row p {
+				margin: 0;
+				color: var(--body);
+				font-size: 9pt;
+				font-weight: 400;
+				line-height: 1.42;
+				overflow-wrap: break-word;
+			}
+
+			.work-row a {
+				display: block;
+				margin-top: var(--s1);
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.25;
+				overflow-wrap: anywhere;
+			}
+
+			.tech-line {
+				margin: 0;
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.45;
+				overflow-wrap: break-word;
+			}
+
+			.tech-line span {
+				white-space: nowrap;
+			}
+
+			.tech-line span:not(:last-child)::after {
+				content: ' /';
+				color: var(--faint);
+				padding: 0 0.045in;
+			}
+
+			.footer {
+				display: block;
+			}
+
+			.link-row {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+				gap: var(--s1) var(--s2);
+			}
+
+			.link-row a {
+				color: var(--muted);
+				font-size: 8pt;
+				font-weight: 400;
+				line-height: 1.2;
+			}
+
+			@media screen and (max-width: 860px) {
+				body {
+					background: var(--paper);
+				}
+
+				.sheet {
+					width: 100%;
+					height: auto;
+					min-height: 100vh;
+					padding: 30px 22px;
+				}
+
+				.topline,
+				.intro,
+				.main {
+					grid-template-columns: 1fr;
+				}
+
+				.subtitle {
+					font-size: 20pt;
+				}
+
+				.contact,
+				.availability {
+					text-align: left;
+				}
+
+				.contact a,
+				.contact span {
+					white-space: normal;
+				}
+
+				.work-row {
+					grid-template-columns: 1fr;
+				}
+
+				.link-row {
+					justify-content: flex-start;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class='sheet'>
+			<header class='header'>
+				<div class='topline'>
+					<section>
+						<p class='kicker'>
+							<span>Contract Full-Stack</span>
+							<span>Product Engineer</span>
+						</p>
+						<h1>Hanif Carroll</h1>
+					</section>
+
+					<address class='contact' aria-label='Contact details'>
+						<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+						<a href={portfolioUrl}>hanifcarroll.com</a>
+						<a href={linkedInUrl}>linkedin.com/in/hanifcarroll</a>
+					</address>
+				</div>
+
+				<section class='intro'>
+					<p class='subtitle'>I build AI, web, and mobile products, from MVP to production.</p>
+					<p class='availability'>Available for contract, project, and overflow work.</p>
+				</section>
+			</header>
+
+			<section class='main'>
+				<aside class='sidebar'>
+					<section class='section'>
+						<h2 class='section-title'>Best Fit</h2>
+						<ul class='list'>
+							{bestFit.map((item) => <li>{item}</li>)}
+						</ul>
+					</section>
+
+					<section class='section'>
+						<h2 class='section-title'>Capabilities</h2>
+						<ul class='list'>
+							{capabilities.map((item) => <li>{item}</li>)}
+						</ul>
+					</section>
+
+					<section class='section'>
+						<h2 class='section-title'>Setup</h2>
+						<ul class='setup-list'>
+							{setup.map((item) => <li>{item}</li>)}
+						</ul>
+					</section>
+				</aside>
+
+				<section class='content'>
+					<section class='section'>
+						<h2 class='section-title'>Selected Work</h2>
+						<div class='work-list'>
+							{
+								work.map((project) => (
+									<article class='work-row'>
+										<div class='work-row__meta'>
+											<h2>{project.name}</h2>
+											<h3>{project.label}</h3>
+										</div>
+										<div>
+											<p>{project.result}</p>
+											<a href={project.url}>{project.url.replace('https://www.', '')}</a>
+										</div>
+									</article>
+								))
+							}
+						</div>
+					</section>
+
+					<section class='section'>
+						<h2 class='section-title'>Tech Stack</h2>
+						<p class='tech-line'>
+							{tech.map((item) => <span>{item}</span>)}
+						</p>
+					</section>
+				</section>
+			</section>
+
+			<footer class='footer'>
+				<nav class='link-row' aria-label='Primary links'>
+					<a href={resumeUrl}>Resume</a>
+					<a href={portfolioUrl}>Portfolio</a>
+					<a href={linkedInUrl}>LinkedIn</a>
+				</nav>
+			</footer>
+		</main>
+	</body>
+</html>
