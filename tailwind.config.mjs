@@ -18,7 +18,10 @@ export default {
     },
     container: {
       center: true,
-      padding: '1.5rem',
+      padding: {
+        DEFAULT: '1rem',
+        md: '1.5rem',
+      },
       screens: {
         sm: '640px',
         md: '768px',
