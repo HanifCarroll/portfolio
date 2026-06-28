@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL_URL } from '../consts';
+import { EMAIL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
@@ -128,16 +128,17 @@ const testimonials = [
 						<div class='home-hero-copy'>
 							<p class='home-hero-greeting'>Hey, I'm <span class='home-hero-greeting__name'>Hanif</span>.</p>
 							<p class='home-hero-subheadline'>
-								<span>I help founders and teams turn </span>
-								<span>AI product ideas into shipped, </span>
-								<span>revenue-generating software.</span>
+								<span>I’m a full-stack product engineer who </span>
+								<span>builds products, internal tools, automations, </span>
+								<span>and AI workflows for growing teams.</span>
 							</p>
 							<p class='home-hero-body'>
-								8+ years building web and mobile products, with recent work focused on LLMs, agents, RAG, evals, and MCP.
+								8+ years building web and mobile software, with recent work focused on LLM-powered products, workflow automation, and
+								business-critical systems.
 							</p>
 							<div class='home-hero-actions'>
-								<a class='home-hero-primary-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_hero_primary'>
-									Get in touch
+								<a class='home-hero-primary-link' href={RESUME_URL} data-track-event='resume_clicked' data-track-location='home_hero_primary'>
+									View resume
 								</a>
 								<a class='home-hero-secondary-link' href='#case-studies'>See case studies</a>
 							</div>

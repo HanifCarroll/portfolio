@@ -4,6 +4,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-06-28
 
+### Homepage Hero Copy And CTA Refresh
+
+- Updated the homepage hero to position Hanif as a full-stack product engineer building products, internal tools, automations, and AI workflows for growing teams.
+- Changed the primary homepage hero CTA to `View resume` linking to `/Hanif-Carroll-Resume.pdf`, with `See case studies` kept as the secondary CTA.
+- Verified with `bun run build` and confirmed the generated `dist/index.html` contains the updated hero copy, resume CTA, and case-studies CTA.
+- After deployment, verify the live homepage hero and resume CTA.
+
 ### Resume PDF Replacement
 
 - Replaced the public resume PDF at `/Hanif-Carroll-Resume.pdf` from the iCloud Downloads resume while preserving the stable public URL.
