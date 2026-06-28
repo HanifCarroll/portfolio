@@ -1,4 +1,4 @@
-export const HOMEPAGE_CASE_STUDY_SLUGS = ['palabruno', 'genrupt', 'casamo'] as const;
+export const HOMEPAGE_CASE_STUDY_SLUGS = ['palabruno', 'genrupt', 'desarmadero-operations-prototype'] as const;
 
 export const CLIENT_PROJECT_ORDER = [
 	'palabruno',

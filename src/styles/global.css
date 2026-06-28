@@ -2685,6 +2685,93 @@
 		object-fit: cover;
 	}
 
+	.additional-work {
+		display: grid;
+		gap: 1.5rem;
+		padding: 2.25rem 0 1.75rem;
+	}
+
+	.additional-work__header {
+		display: flex;
+		align-items: baseline;
+		justify-content: flex-start;
+		gap: 1rem;
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		line-height: 1.2;
+		text-transform: uppercase;
+	}
+
+	.additional-work__header h3 {
+		color: var(--site-ink);
+	}
+
+	.additional-work__list {
+		display: grid;
+		gap: 1.65rem;
+	}
+
+	.additional-work__item {
+		display: grid;
+		grid-template-columns: 4.75rem minmax(0, 1fr);
+		gap: 1.1rem;
+		align-items: start;
+		padding: 0.25rem 0;
+		color: var(--site-ink);
+	}
+
+	.additional-work__media {
+		display: block;
+		overflow: hidden;
+		background: color-mix(in srgb, var(--site-ink) 8%, transparent);
+		aspect-ratio: 1.12 / 1;
+	}
+
+	.additional-work__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 220ms ease;
+	}
+
+	.additional-work__item:hover .additional-work__image {
+		transform: scale(1.035);
+	}
+
+	.additional-work__copy {
+		display: grid;
+		gap: 0.4rem;
+		min-width: 0;
+		padding-top: 0.1rem;
+	}
+
+	.additional-work__title {
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+		font-size: 1.35rem;
+		font-weight: 700;
+		line-height: 1.08;
+	}
+
+	.additional-work__body {
+		color: #514b43;
+		font-size: 0.98rem;
+		font-weight: 500;
+		line-height: 1.45;
+	}
+
+	.additional-work__focus {
+		color: var(--site-muted);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		line-height: 1.35;
+		text-transform: uppercase;
+	}
+
 	.case-study-archive-link {
 		padding-top: clamp(1.75rem, 3vw, 2.5rem);
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;

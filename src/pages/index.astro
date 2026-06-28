@@ -4,13 +4,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { EMAIL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
+import apartmentFinderPhoto from '@src/assets/img/projects/apartment-finder-ui.png';
+import baEventosPhoto from '@src/assets/img/projects/ba-eventos-feature.png';
 import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
+import desarmaderoOperationsPhoto from '@src/assets/img/projects/desarmadero-operations-ventas.png';
 import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
 import palabrunoPhoto from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
 
 const title = 'Hanif Carroll | Product Engineer';
 const description =
 	'Product engineer with 8+ years across web and mobile. Based in Buenos Aires, working US hours. US clients contract through HC Studio, my LLC.';
+const socialDescription =
+	'Product engineer with 8+ years building web, mobile, internal tools, automation, and AI workflows for growing teams.';
 
 const homepageJsonLd = [
 	{
@@ -53,6 +58,16 @@ const caseStudyBySlug = {
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
+	'desarmadero-operations-prototype': {
+		slug: 'desarmadero-operations-prototype',
+		label: 'Operations prototype',
+		title: 'Desarmadero Operations',
+		body: 'Turned one discovery call with an auto-dismantling yard into a clickable operations prototype, PRD, functional spec, and live demo before quoting the full build.',
+		tech: 'SvelteKit • Drizzle • Cloudflare D1 • Product discovery',
+		image: desarmaderoOperationsPhoto,
+		imageAlt: 'Desarmadero operations prototype showing the counter-sales workflow and live order summary.',
+		imageClass: 'object-left-top'
+	},
 	casamo: {
 		slug: 'casamo',
 		label: 'Travel decision MVP',
@@ -66,6 +81,30 @@ const caseStudyBySlug = {
 } as const;
 
 const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
+
+const additionalWork = [
+	{
+		slug: 'casamo',
+		title: 'Casamo',
+		focus: 'Stay-audit MVP',
+		body: 'A live travel decision tool that turns noisy Airbnb and Booking.com searches into evidence-backed stay reports.',
+		image: casamoPhoto
+	},
+	{
+		slug: 'apartment-finder',
+		title: 'Apartment Finder',
+		focus: 'AI listing triage',
+		body: 'An evidence-backed apartment search workflow with labeled evals, cost controls, source links, and inspectable model judgments.',
+		image: apartmentFinderPhoto
+	},
+	{
+		slug: 'ba-eventos',
+		title: 'BA Eventos',
+		focus: 'Grounded AI discovery',
+		body: 'A local event discovery product built around messy source ingestion, venue cleanup, semantic search, and grounded answers.',
+		image: baEventosPhoto
+	}
+] as const;
 
 const techStackGroups = [
 	{
@@ -113,6 +152,7 @@ const testimonials = [
 <BaseLayout
 	title={title}
 	description={description}
+	socialDescription={socialDescription}
 	jsonLd={homepageJsonLd}
 	flushTop
 	showFooterCta={false}
@@ -191,6 +231,28 @@ const testimonials = [
 					</a>
 				))
 			}
+
+			<section class='additional-work' aria-labelledby='additional-work-title'>
+				<div class='additional-work__header'>
+					<h3 id='additional-work-title'>Additional work</h3>
+				</div>
+				<div class='additional-work__list'>
+					{
+						additionalWork.map((work) => (
+							<a href={`/projects/${work.slug}/`} class='additional-work__item'>
+								<span class='additional-work__media' aria-hidden='true'>
+									<Image src={work.image} alt='' class='additional-work__image' loading='lazy' />
+								</span>
+								<span class='additional-work__copy'>
+									<span class='additional-work__title'>{work.title}</span>
+									<span class='additional-work__body'>{work.body}</span>
+									<span class='additional-work__focus'>{work.focus}</span>
+								</span>
+							</a>
+						))
+					}
+				</div>
+			</section>
 
 			<p class='case-study-archive-link'>
 				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
