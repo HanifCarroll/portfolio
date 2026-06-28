@@ -13,7 +13,10 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image, jsonLd, ogType = 'website', robots } = Astro.props;
-const fallbackImage = image ?? '/img/avatar2.jpg';
+const defaultSocialImage = '/img/social-card.jpg';
+const fallbackImage = image ?? defaultSocialImage;
+const fallbackImageURL = new URL(fallbackImage, Astro.url);
+const isDefaultSocialImage = fallbackImage === defaultSocialImage;
 const structuredData = jsonLd ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : '';
 const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
@@ -108,12 +111,15 @@ const clarityLoaderScript = clarityProjectId
 <meta property='og:url' content={Astro.url} />
 <meta property='og:title' content={title} />
 <meta property='og:description' content={description} />
-<meta property='og:image' content={new URL(fallbackImage, Astro.url)} />
+<meta property='og:image' content={fallbackImageURL} />
+<meta property='og:image:alt' content={`${title} preview image`} />
+{isDefaultSocialImage && <meta property='og:image:width' content='1200' />}
+{isDefaultSocialImage && <meta property='og:image:height' content='630' />}
 
 <!-- Twitter -->
 <meta property='twitter:card' content='summary_large_image' />
 <meta property='twitter:url' content={Astro.url} />
 <meta property='twitter:title' content={title} />
 <meta property='twitter:description' content={description} />
-<meta property='twitter:image' content={new URL(fallbackImage, Astro.url)} />
+<meta property='twitter:image' content={fallbackImageURL} />
 {structuredData && <script is:inline type='application/ld+json' set:html={structuredData} />}

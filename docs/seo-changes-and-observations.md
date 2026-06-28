@@ -4,6 +4,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-06-28
 
+### Social Preview Card
+
+- Replaced the default Open Graph/Twitter fallback image from the square headshot at `/img/avatar2.jpg` to a dedicated 1200x630 social card at `/img/social-card.jpg`.
+- Designed and exported the card in Pencil with the headshot on the left and the requested identity text on the right.
+- Added explicit default `og:image:width` and `og:image:height` values so crawlers can identify the image as a landscape share card.
+- After deployment, test a fresh share scrape. WhatsApp may keep showing the prior cached preview until its URL cache refreshes.
+
 ### Homepage Hero Copy And CTA Refresh
 
 - Updated the homepage hero to position Hanif as a full-stack product engineer building products, internal tools, automations, and AI workflows for growing teams.
