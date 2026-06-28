@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-06-28
+
+### Resume PDF Replacement
+
+- Replaced the public resume PDF at `/Hanif-Carroll-Resume.pdf` from the iCloud Downloads resume while preserving the stable public URL.
+- Verified the copied asset by SHA-256: `cac4fff0d0712ca6c04c36c3f26959262a32616b983a0fd39014d10c1f02b950`.
+- After deployment, re-check the live PDF hash and keep the resume PDF in the next Search Console page-row review.
+
 ## 2026-06-22
 
 ### Resume PDF Replacement
