@@ -29,15 +29,14 @@ export const PROJECT_OUTCOME_HIGHLIGHTS: Record<string, string> = {
 	acquire:
 		'Acquire turns sourcing, review, application prep, outreach, and submission into one local-first operating system with approval gates.',
 	'job-application-assistant':
-		'Job Application Assistant turns extracted job context, portfolio proof, Codex drafts, cover-letter PDFs, and application tracking into one local workflow.',
+		'Job Application Assistant keeps the job snapshot, selected proof, Codex draft, cover-letter PDF, and application ledger in one local workflow.',
 	'linkedin-tools':
-		'LinkedIn automation moved behind a public Python controller with explicit send gates, audit reconciliation, source contracts, and a local review UI.',
+		'LinkedIn Tools puts networking, outreach, comment extraction, and opportunity research behind controller-owned state and guarded send actions.',
 	'codex-telegram-bridge':
-		'Codex Telegram Bridge turns remote Codex work into a governed local workflow with presence gates, reply routing, approvals, and bounded MCP access.',
-	'agent-recall':
-		'Agent Recall makes prior AI-agent work searchable through local SQLite FTS5, receipt-backed results, memory objects, and freshness checks.',
+		'Codex Telegram Bridge lets me reply to Codex from Telegram or Discord while local state owns presence, routing, approvals, and delivery.',
+	'agent-recall': 'Agent Recall makes prior agent work searchable with SQLite FTS5, source receipts, memory records, and freshness checks.',
 	'client-feedback':
-		'WhatsApp chats, voice notes, Gmail threads, and attachments became local evidence packets with manifests, hashes, and optional transcripts.',
+		'Client Feedback turns WhatsApp chats, voice notes, Gmail threads, and attachments into local evidence packets with manifests and hashes.',
 	palabruno:
 		'Palabruno moved from rough founder idea to launch with iOS, Android, web payments, teacher workflows, store assets, and clearer positioning.',
 	genrupt:

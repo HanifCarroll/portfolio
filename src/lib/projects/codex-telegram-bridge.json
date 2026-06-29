@@ -1,7 +1,7 @@
 {
 	"slug": "codex-telegram-bridge",
 	"title": "Codex Telegram Bridge",
-	"description": "Built a public Rust bridge that lets Codex work continue through Telegram or Discord only after an explicit remote-mode gate, with reply routing, approvals, project selection, daemon delivery, a macOS menu bar companion, and a bounded MCP adapter.",
+	"description": "Built a public Rust bridge for controlling Codex from Telegram or Discord after an explicit remote-mode gate, with reply routing, approvals, project selection, daemon delivery, a macOS menu bar companion, and a small MCP adapter.",
 	"seoTitle": "Codex Telegram Bridge Case Study | Remote Codex Control Tool",
 	"seoDescription": "A case study on Codex Telegram Bridge, a Rust CLI and local daemon for presence-gated Codex notifications, Telegram and Discord replies, approvals, project selection, and bounded MCP access.",
 	"proofType": "experiment",
@@ -29,12 +29,12 @@
 	],
 	"repository": "https://github.com/HanifCarroll/codex-telegram-bridge",
 	"constraints": [
-		"Remote notifications had to be presence-gated so active desktop work did not create noisy Telegram or Discord updates.",
+		"Remote notifications had to be gated by presence so active desktop work did not create noisy Telegram or Discord updates.",
 		"Inbound replies and approvals needed to route back to exact Codex threads without exposing tokens, local runtime state, or raw thread ids in chat."
 	],
 	"problem": [
 		"Codex could keep working after I left the computer, but the control surface stayed pinned to the local app: a waiting prompt, approval, or completed answer was easy to miss until I returned.",
-		"The product risk was ownership. Notifications, replies, live backend management, and optional agent access needed clear boundaries so a remote chat tool did not become an unbounded automation channel."
+		"The risk was ownership. Notifications, replies, live backend management, and optional agent access needed clear boundaries so a remote chat tool did not become an open-ended automation channel."
 	],
 	"solution": [
 		"Built a Rust CLI and daemon around explicit away and remote modes: /away starts or reuses the shared Codex live backend and enables outbound notifications; /back clears pending notifications when I return.",
@@ -45,9 +45,9 @@
 		"Shipped a Rust CLI, daemon, Telegram and Discord transports, project registry, native macOS menu bar app, and bounded MCP adapter."
 	],
 	"result": [
-		"Shipped a public open-source bridge with install docs, Telegram and Discord setup guides, release workflow docs, CI, security notes, and a native macOS menu bar companion.",
-		"Turned remote Codex work into a governed local workflow: presence gates decide when outbound messages are allowed, SQLite routes replies to exact threads, and the daemon owns retryable delivery.",
-		"Kept the agent adapter bounded: MCP can inspect and act on Codex threads, while setup, daemon control, transports, watch/follow streams, project creation, and archive operations stay outside the MCP tool surface."
+		"Shipped a public bridge with install docs, Telegram and Discord setup guides, release workflow docs, CI, security notes, and a native macOS menu bar companion.",
+		"Turned remote Codex work into a local workflow: presence gates decide when outbound messages are allowed, SQLite routes replies to exact threads, and the daemon owns retryable delivery.",
+		"Kept the agent adapter small: MCP can inspect and act on Codex threads, while setup, daemon control, transports, watch/follow streams, project creation, and archive operations stay outside the MCP tool surface."
 	],
 	"images": {
 		"hero": "@src/assets/img/projects/codex-telegram-bridge-terminal.png",

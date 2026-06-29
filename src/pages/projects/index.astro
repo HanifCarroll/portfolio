@@ -129,10 +129,17 @@ const visibleClientProjects = clientProjects.filter((project) => project.slug !=
 							<a href={`/projects/${project.slug}/`} class='projects-index__experiment-row group'>
 								<span class='projects-index__experiment-track'>{project.trackShortLabel}</span>
 								<span class='projects-index__experiment-name'>{project.name}</span>
-								<span class='projects-index__experiment-arrow' aria-hidden='true'>→</span>
+								<span class='projects-index__experiment-arrow' aria-hidden='true'>
+									→
+								</span>
 							</a>
 						))}
 					</div>
+					<p class='projects-index__tools-link'>
+						<a href='/tools/'>
+							More workflow tools <span aria-hidden='true'>→</span>
+						</a>
+					</p>
 				</section>
 			)
 		}

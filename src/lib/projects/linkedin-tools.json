@@ -1,7 +1,7 @@
 {
 	"slug": "linkedin-tools",
 	"title": "LinkedIn Tools",
-	"description": "Built a public Python monorepo that turns LinkedIn networking, recruiter/agency outreach, opportunity intelligence, comment extraction, and review into controller-owned workflows with guarded real-action gates.",
+	"description": "Built a public Python monorepo for LinkedIn workflows: networking, recruiter and agency outreach, opportunity research, comment extraction, review, and guarded browser actions.",
 	"seoTitle": "LinkedIn Tools Case Study | Guarded LinkedIn Automation Controller",
 	"seoDescription": "A case study on LinkedIn Tools, a Python, SQLite, FastAPI, and Playwright monorepo for guarded LinkedIn networking, recruiter outreach, opportunity intelligence, comment extraction, and review workflows.",
 	"proofType": "experiment",
@@ -16,22 +16,22 @@
 	"teamSize": "Solo build",
 	"technologies": ["Python", "SQLite", "FastAPI", "Jinja", "Playwright", "Pydantic", "uv", "pytest", "ruff", "mypy"],
 	"constraints": [
-		"The system had to separate read-only recommendation workflows from send-capable browser actions so automation ownership stayed explicit.",
+		"The system had to separate read-only recommendation workflows from browser actions that can send messages, connections, or withdrawals.",
 		"The public portfolio artifact could not expose local LinkedIn runtime state, private browser artifacts, credentials, or live account data."
 	],
 	"problem": [
 		"LinkedIn networking, recruiter outreach, opportunity discovery, comment extraction, and acceptance follow-up work were too risky to run as scattered browser scripts.",
-		"The hard problem was workflow ownership: knowing which system could send, which system could only recommend, what evidence was captured, and what needed audit reconciliation after uncertain browser behavior."
+		"The hard part was ownership: which system could send, which system could only recommend, what evidence was captured, and what needed reconciliation after uncertain browser behavior."
 	],
 	"solution": [
-		"Built a Python monorepo with one top-level CLI and explicit namespaces for network automation, recruiter/agency outreach, opportunity intelligence, comment extraction, local review UI, and cutover audits.",
-		"Modeled dangerous actions behind controller-owned states, browser artifacts, audit reports, and explicit flags such as allow-send and allow-withdraw.",
+		"Built a Python monorepo with one top-level CLI and namespaces for network automation, recruiter/agency outreach, opportunity research, comment extraction, local review UI, and cutover audits.",
+		"Put risky actions behind controller-owned states, browser artifacts, audit reports, and explicit flags such as allow-send and allow-withdraw.",
 		"Added a local FastAPI/Jinja review UI that reads SQLite and JSON state for opportunities, network runs, recruiter/agency queues, browser artifacts, and guarded actions."
 	],
 	"result": [
-		"Moved LinkedIn automation behind durable controllers with source contracts, reconciliation reports, candidate reservoirs, acceptance ledgers, review queues, and token-gated guarded action pages.",
-		"Separated safety boundaries clearly: network owns connection requests and accepted follow-ups, recruiter/agency outreach sends drafted messages only, and opportunity intelligence remains recommend-only.",
-		"Created a public example of browser automation that treats state, evidence, and approval gates as first-class product requirements instead of implementation details."
+		"Moved LinkedIn automation behind controllers with source contracts, reconciliation reports, candidate reservoirs, acceptance ledgers, review queues, and token-gated action pages.",
+		"Separated the boundaries: network owns connection requests and accepted follow-ups, recruiter/agency outreach sends drafted messages only, and opportunity intelligence remains recommend-only.",
+		"Created a public example of browser automation where state, evidence, and approval gates are part of the product, not cleanup work after the fact."
 	],
 	"deliveryHighlights": [
 		"One CLI exposes the active network, recruiter-agency, opportunity, comments, and review UI namespaces.",

@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-06-29
+
+### Workflow Tools And Case Study Copy Polish
+
+- Demoted `/tools/` from the global navigation, renamed the page to `Workflow tools`, and linked it from `/projects/` under Smaller builds and studies.
+- Revised the new case-study copy and metadata for Job Application Assistant, LinkedIn Tools, Codex Telegram Bridge, Agent Recall, and Client Feedback to read less like generated portfolio copy while preserving the technical proof.
+- Updated `/work-with-me/` hero copy and aligned the offer cards so the card rows line up across desktop columns.
+- Verified with `bun run check:projects`, `git diff --check`, `bun run build`, and browser smoke checks for `/projects/`, `/tools/`, `/work-with-me/`, and the five revised project pages.
+
 ## 2026-06-28
 
 ### Project Archive And Tools Expansion

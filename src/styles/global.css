@@ -927,8 +927,9 @@
 
 	.work-with-me-offer {
 		display: grid;
-		align-content: start;
-		gap: 2.15rem;
+		grid-template-rows: auto auto auto 1fr;
+		align-content: stretch;
+		gap: 1.9rem;
 		min-height: 100%;
 		padding: 2.35rem;
 		border: 1px solid #d2d2d7;
@@ -962,6 +963,7 @@
 	.work-with-me-offer__body {
 		display: grid;
 		gap: 0.9rem;
+		align-content: start;
 	}
 
 	.work-with-me-offer h2 {
@@ -987,6 +989,7 @@
 
 	.work-with-me-offer ul {
 		display: grid;
+		align-content: start;
 		gap: 0.75rem;
 		margin: 0;
 		padding: 1.4rem 0 0;
@@ -1612,6 +1615,26 @@
 
 	.projects-index__experiment-row:hover .projects-index__experiment-arrow {
 		transform: translate(3px, -2px);
+		color: var(--site-ink);
+	}
+
+	.projects-index__tools-link {
+		margin: 0;
+		padding-top: 0.25rem;
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.projects-index__tools-link a {
+		color: var(--site-muted);
+		text-decoration: none;
+		transition: color 150ms ease;
+	}
+
+	.projects-index__tools-link a:hover {
 		color: var(--site-ink);
 	}
 
@@ -3164,6 +3187,10 @@
 			align-items: stretch;
 			column-gap: 1rem;
 			row-gap: 2.15rem;
+		}
+
+		.work-with-me-offer {
+			grid-template-rows: minmax(2.8rem, auto) minmax(17.5rem, auto) minmax(16.5rem, auto) minmax(2rem, 1fr);
 		}
 
 		.work-with-me-closing {

@@ -12,111 +12,111 @@ import jobApplicationAssistantSurface from '../../assets/img/projects/job-applic
 export const shippedRows = [
 	{
 		label: 'Extension surface',
-		title: 'Job extraction, review, drafting, PDF actions, and ledger checks live in the side panel.',
-		body: 'The Manifest V3 extension exposes the current job snapshot, source URL, role fields, notes, draft controls, PDF actions, already-applied status, and apply-enabled posting lists.'
+		title: 'The side panel handles review, drafting, PDFs, and application status.',
+		body: 'It shows the current job snapshot, source URL, role fields, notes, draft controls, PDF actions, already-applied status, and apply-enabled posting lists.'
 	},
 	{
 		label: 'Local backend',
-		title: 'FastAPI owns the durable workflow.',
-		body: 'The backend provides health, context reindexing, draft jobs, draft lookup, application lookup, dashboard, and PDF endpoints while SQLite stores jobs, drafts, timing metadata, and application records.'
+		title: 'FastAPI owns the durable parts of the workflow.',
+		body: 'The backend provides health checks, context reindexing, draft jobs, draft lookup, application lookup, dashboard, and PDF endpoints. SQLite stores jobs, drafts, timing metadata, and application records.'
 	},
 	{
-		label: 'Audit contract',
-		title: 'Drafts return source-traceable decisions.',
-		body: 'Each Codex draft response includes the applicant-facing text plus selected angle, role classification, strategy, selected and rejected projects, decisions, claims, caused_by references, and warnings.'
+		label: 'Audit trail',
+		title: 'Drafts come back with reasons attached.',
+		body: 'Each Codex response includes the applicant-facing answer plus the angle, role classification, strategy, selected and rejected projects, decisions, claims, caused_by references, and warnings.'
 	},
 	{
 		label: 'Extraction discipline',
-		title: 'The prompt receives structured fields, not page-wide guesses.',
-		body: 'The opportunity model rejects unknown fields and strips obsolete freeform fields like raw_text and source_text before prompt construction. Extraction tests also forbid broad weak-inference patterns.'
+		title: 'The prompt gets structured fields instead of page-wide guesses.',
+		body: 'The opportunity model rejects unknown fields and removes obsolete freeform fields before prompt construction. Extraction tests also block broad weak-inference patterns.'
 	},
 	{
 		label: 'Verification',
-		title: 'The repo ships with checks across Python and extension code.',
+		title: 'The repo checks both Python and extension code.',
 		body: 'The check script runs mypy, pytest, JavaScript syntax checks for extension files, JSON validation for the manifest and response schema, and git whitespace checks.'
 	}
 ];
 
 <CaseSection title="Summary">
-	Job Application Assistant is a local workflow tool for drafting and tracking job applications.
+	Job Application Assistant is a local tool for drafting and tracking job applications.
 
-    It combines a Chrome extension, a Python FastAPI backend, a SQLite ledger, local portfolio context, Codex draft generation, and cover-letter PDF export into one auditable loop.
-
-</CaseSection>
-
-<CaseSection title="The Situation">
-	The job application workflow had too many disconnected states.
-
-    A job board had the source posting. Local notes had positioning and proof points. A draft lived in a chat or text box. A cover-letter PDF had to be generated separately. The application history lived somewhere else. That made it easy to lose the link between the role, the chosen proof, the final language, and whether the application was already sent.
+    It combines a Chrome extension, a FastAPI backend, SQLite, local portfolio context, Codex draft generation, and cover-letter PDF export. The important part is that the draft, the source job, the chosen proof, and the application ledger stay connected.
 
 </CaseSection>
 
-<CaseSection title="Operating Model">
-	<DecisionBlock title="Keep sensitive workflow state local.">
-		The tool stores extension state in Chrome, draft jobs and application records in SQLite, generated PDFs under the configured runtime directory, and generated context under a local cache. The README is explicit that drafting uses the locally configured Codex/OpenAI account, and the app does not include analytics or job-board API calls.
+<CaseSection title="The situation">
+	My application workflow had too many loose pieces.
+
+    The job board had the posting. Local files had my positioning and project proof. Drafts lived in a chat or text box. Cover letters had to become PDFs somewhere else. Application history was another habit to maintain. It was too easy to lose the link between the role, the claim I made, the final PDF, and whether I had already applied.
+
+</CaseSection>
+
+<CaseSection title="How it works">
+	<DecisionBlock title="Keep sensitive state local.">
+		The extension keeps browser state in Chrome. The backend stores draft jobs and application records in SQLite. Generated PDFs live under the configured runtime directory, and generated context stays in a local cache. The README is explicit that drafting uses the locally configured Codex/OpenAI account. The app does not add analytics or job-board API calls.
 	</DecisionBlock>
 
-    <DecisionBlock title="Make extraction a contract.">
-    	Supported job pages are normalized into an OpportunitySnapshot with fields like source URL, title, company, location, description, responsibilities, requirements, skills, questions, company context, recruiter context, and extraction warnings. Missing data stays missing with warnings instead of being filled from broad page text.
+    <DecisionBlock title="Treat extraction as a contract.">
+	Supported job pages become an OpportunitySnapshot with fields like source URL, title, company, location, description, responsibilities, requirements, skills, questions, company context, recruiter context, and extraction warnings. Missing data stays missing.
     </DecisionBlock>
 
-    <DecisionBlock title="Make drafting traceable.">
-    	The backend builds a single prompt from the job snapshot plus local profile, resume, offers, and project proof points. The model must return strict JSON with the draft and the audit fields needed to inspect why an angle or claim was used.
+    <DecisionBlock title="Make the draft inspectable.">
+	The backend builds one prompt from the job snapshot plus local profile, resume, offers, and project proof. The model has to return strict JSON, including the draft and the audit fields needed to check why a claim was used.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Surface" media>
-	The main product surface is the extension side panel, with the local dashboard behind it for the application ledger.
+<CaseSection title="Product surface" media>
+	The main product surface is the extension side panel. The local dashboard sits behind it for the application ledger.
 
     <MacWindowFrame ariaLabel="Job Application Assistant product surface screenshot">
-    	<ImagePlate image={jobApplicationAssistantSurface} alt="Job Application Assistant side panel and local dashboard showing a draft workflow and SQLite application ledger." />
+	<ImagePlate image={jobApplicationAssistantSurface} alt="Job Application Assistant side panel and local dashboard showing a draft workflow and SQLite application ledger." />
     </MacWindowFrame>
 
 </CaseSection>
 
-<CaseSection title="The Work">
-	<DecisionBlock title="Built the extension and extraction layer.">
-		The extension supports Upwork, Dice, Indeed, ZipRecruiter, Robert Half, and LinkedIn page shapes. It uses platform adapters, structured selectors, Dice JobPosting JSON-LD where available, and reviewable side-panel fields before a draft job starts.
+<CaseSection title="What I built">
+	<DecisionBlock title="Extension adapters for real job pages.">
+		The extension supports Upwork, Dice, Indeed, ZipRecruiter, Robert Half, and LinkedIn page shapes. It uses platform adapters, structured selectors, Dice JobPosting JSON-LD when available, and reviewable side-panel fields before a draft starts.
 	</DecisionBlock>
 
-    <DecisionBlock title="Built the local context and drafting backend.">
-    	The backend indexes profile Markdown, offer JSON, project proof JSON, and resume text into a ContextBundle. Draft jobs run asynchronously, persist request and result JSON, expose polling status, and record stage and Codex subprocess timing metadata.
+    <DecisionBlock title="A local context and drafting backend.">
+	The backend indexes profile Markdown, offer JSON, project proof JSON, and resume text into a ContextBundle. Draft jobs run asynchronously, persist request and result JSON, expose polling status, and record stage and Codex subprocess timing metadata.
     </DecisionBlock>
 
-    <DecisionBlock title="Added application tracking as part of the workflow.">
-    	Application records are stored in SQLite and deduplicated by normalized source URL. The extension can check whether the current source URL already exists, and the local dashboard supports search, filters, date views, sorting, pagination, and draft links.
+    <DecisionBlock title="Application tracking in the same workflow.">
+	Application records are stored in SQLite and deduplicated by normalized source URL. The extension can check whether the current source URL already exists, and the local dashboard supports search, filters, date views, sorting, pagination, and draft links.
     </DecisionBlock>
 
-    <DecisionBlock title="Turned cover letters into generated artifacts.">
-    	The PDF exporter renders the saved draft text without rewriting it, derives a restrained letterhead from the configured resume PDF, omits phone-like contact items, names files by company, reveals generated files in Finder, and archives submitted cover letters when an application is logged.
+    <DecisionBlock title="Cover-letter PDFs as saved artifacts.">
+	The PDF exporter renders the saved draft text without rewriting it, derives a restrained letterhead from the configured resume PDF, omits phone-like contact items, names files by company, reveals generated files in Finder, and archives submitted cover letters when an application is logged.
     </DecisionBlock>
 
-    <DecisionBlock title="Bounded apply automation to supported flows.">
-    	The result-page side panel can list apply-enabled postings and open selected Dice, Indeed, and LinkedIn flows. Platform helpers can attach generated cover-letter PDFs and record confirmed applications, while unfamiliar application questions require manual attention.
+    <DecisionBlock title="Apply automation with review points.">
+	The result-page side panel can list apply-enabled postings and open selected Dice, Indeed, and LinkedIn flows. Platform helpers can attach generated cover-letter PDFs and record confirmed applications. Unfamiliar application questions stay manual.
     </DecisionBlock>
 
 </CaseSection>
 
 <section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>What Shipped</h2>
+	<h2>What shipped</h2>
 	<div class='case-study-detail__editorial-copy'>
 		<ProofRows rows={shippedRows}>
-			Job Application Assistant is a public example of building around a real personal workflow without turning it into an opaque agent. The
-			durable product is the contract between extraction, context, drafting, artifact generation, and ledger state.
+			Job Application Assistant is built around the contract between extraction, context, drafting, artifact generation, and ledger state.
+			It is not trying to be a black-box application agent.
 		</ProofRows>
 	</div>
 </section>
 
-<CaseSection title="Why It Matters">
+<CaseSection title="Why it matters">
 	The useful part is not that the system can write a cover letter.
 
-    The useful part is that every draft is tied back to the job snapshot and the allowed portfolio proof, every application can be checked against the ledger, and every generated PDF remains part of the same local workflow.
+    The useful part is that every draft stays tied to the job snapshot and the allowed portfolio proof. Every application can be checked against the ledger, and every generated PDF remains part of the same local workflow.
 
 </CaseSection>
 
 <section class='case-study-detail__editorial-section'>
-	<h2>Public Repo</h2>
+	<h2>Public repo</h2>
 	<div class='case-study-detail__editorial-copy'>
 		<p>
 			The project is open source, including the Chrome extension, FastAPI backend, SQLite stores, response schema, and Python and extension
