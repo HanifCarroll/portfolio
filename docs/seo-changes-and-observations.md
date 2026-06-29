@@ -4,6 +4,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-06-28
 
+### Business Systems Positioning And Offers
+
+- Updated the homepage and `/work-with-me/` around business systems, custom software, workflow automation, and AI operations.
+- Added `/business-systems-audit/` and `/business-systems-build/` offer pages using the shared service-offer template.
+- Updated service-offer CTAs so each offer can use a more specific call label.
+- After deployment, verify the live homepage, `/work-with-me/`, `/business-systems-audit/`, `/business-systems-build/`, and relevant service CTAs.
+
 ### Social Preview Card
 
 - Replaced the default Open Graph/Twitter fallback image from the square headshot at `/img/avatar2.jpg` to a dedicated 1200x630 social card at `/img/social-card.jpg`.

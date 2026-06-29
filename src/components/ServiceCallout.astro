@@ -1,7 +1,7 @@
 ---
-import { EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
-type Variant = 'general' | 'mvp' | 'fractional';
+type Variant = 'general' | 'audit' | 'systemsBuild' | 'mvp' | 'fractional';
 type Context = 'blog' | 'case-study';
 
 interface Props {
@@ -17,10 +17,33 @@ const offers = {
 	blog: {
 		general: {
 			label: 'Work with me',
-			title: "If you're trying to launch a product or strengthen delivery, the next step is narrowing the first useful version.",
-			body: 'I work with founders and operator-led teams on focused MVP launches and fractional product engineering around a real business constraint.',
-			secondaryHref: '/projects/',
-			secondaryLabel: 'Browse Case Studies'
+			title: "If your business has outgrown the way it operates, start by finding the operating constraint.",
+			body: 'I help growing teams diagnose the workflow, then build the internal tools, automation, and AI systems that make the next version easier to run.',
+			secondaryHref: '/work-with-me/',
+			secondaryLabel: 'Compare Work Options',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Business Systems Audit',
+			primaryExternal: true
+		},
+		audit: {
+			label: 'Business Systems Audit',
+			title: 'Need to map the bottleneck before you build?',
+			body: 'Start with a diagnostic that turns messy workflows, manual handoffs, and scattered tools into a clear first-system plan.',
+			secondaryHref: '/business-systems-audit/',
+			secondaryLabel: 'Explore Business Systems Audit',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Business Systems Audit',
+			primaryExternal: true
+		},
+		systemsBuild: {
+			label: 'Business Systems Build',
+			title: 'Have a workflow ready to turn into software?',
+			body: 'I build internal tools, automations, dashboards, and AI workflows once the operating constraint is clear.',
+			secondaryHref: '/business-systems-build/',
+			secondaryLabel: 'Explore Systems Build',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Build Scoping Call',
+			primaryExternal: true
 		},
 		mvp: {
 			label: 'Need an MVP?',
@@ -41,9 +64,32 @@ const offers = {
 		general: {
 			label: 'Similar work?',
 			title: 'Need something like this for your team?',
-			body: 'If the case study looks close to the problem you are solving, the next step is an email to narrow the scope and decide what version is worth building first.',
-			secondaryHref: '/projects/',
-			secondaryLabel: 'Browse More Case Studies'
+			body: 'If the case study looks close to the way your business operates, start by diagnosing the workflow and deciding what system is worth building first.',
+			secondaryHref: '/work-with-me/',
+			secondaryLabel: 'Compare Work Options',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Business Systems Audit',
+			primaryExternal: true
+		},
+		audit: {
+			label: 'Similar system problem?',
+			title: 'Need to map an operating bottleneck like this?',
+			body: 'A Business Systems Audit turns the current workflow, handoffs, tools, and failure points into a clear first build plan.',
+			secondaryHref: '/business-systems-audit/',
+			secondaryLabel: 'Explore Business Systems Audit',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Business Systems Audit',
+			primaryExternal: true
+		},
+		systemsBuild: {
+			label: 'Similar build?',
+			title: 'Need a system like this built?',
+			body: 'If the workflow is already clear, I can help turn it into a focused internal tool, automation, dashboard, or AI workflow.',
+			secondaryHref: '/business-systems-build/',
+			secondaryLabel: 'Explore Systems Build',
+			primaryHref: BOOK_CALL_URL,
+			primaryLabel: 'Book a Build Scoping Call',
+			primaryExternal: true
 		},
 		mvp: {
 			label: 'Similar build?',
@@ -63,6 +109,9 @@ const offers = {
 } as const;
 
 const offer = offers[context][variant];
+const primaryHref = 'primaryHref' in offer ? offer.primaryHref : EMAIL_URL;
+const primaryLabel = 'primaryLabel' in offer ? offer.primaryLabel : 'Get in touch';
+const primaryExternal = 'primaryExternal' in offer ? offer.primaryExternal : false;
 ---
 
 <section class:list={['service-callout px-6 py-10 md:px-8 md:py-12', context === 'case-study' && 'service-callout--case-study', className]}>
@@ -80,11 +129,13 @@ const offer = offers[context][variant];
 		<div class='service-callout__actions'>
 			<a
 				class='home-hero-primary-link'
-				href={EMAIL_URL}
-				data-track-event='email_clicked'
+				href={primaryHref}
+				target={primaryExternal ? '_blank' : undefined}
+				rel={primaryExternal ? 'noopener noreferrer' : undefined}
+				data-track-event={primaryExternal ? 'book_call_clicked' : 'email_clicked'}
 				data-track-location={`${location}_primary`}
 			>
-				<span class='service-callout__button-label'>Get in touch</span>
+				<span class='service-callout__button-label'>{primaryLabel}</span>
 				<span class='service-callout__button-arrow' aria-hidden='true'>→</span>
 			</a>
 			<a

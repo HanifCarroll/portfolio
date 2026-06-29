@@ -4,7 +4,7 @@ export interface ProjectTrackMeta {
   label: string;
   shortLabel: string;
   group: ProjectTrackGroup;
-  ctaVariant: 'mvp' | 'fractional';
+  ctaVariant: 'audit' | 'systemsBuild' | 'mvp' | 'fractional';
   rank: number;
 }
 
@@ -13,14 +13,14 @@ export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
     label: 'Operational Product System',
     shortLabel: 'Systems proof',
     group: 'supporting_product_proof',
-    ctaVariant: 'fractional',
+    ctaVariant: 'audit',
     rank: 3,
   },
   ai_systems: {
     label: 'AI Product Proof',
     shortLabel: 'AI proof',
     group: 'supporting_product_proof',
-    ctaVariant: 'fractional',
+    ctaVariant: 'systemsBuild',
     rank: 4,
   },
   mvp_build: {

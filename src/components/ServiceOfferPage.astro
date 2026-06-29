@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { offer } = Astro.props as Props;
+const ctaLabel = offer.ctaLabel ?? 'Book a Roadmap Call';
 
 const serviceJsonLd = {
 	'@context': 'https://schema.org',
@@ -51,7 +52,7 @@ const serviceJsonLd = {
 						data-track-event='book_call_clicked'
 						data-track-location={`${offer.key}_offer_hero`}
 					>
-						Book a Roadmap Call
+						{ctaLabel}
 					</a>
 					<a href='/projects/' class='fit-secondary-link'>View case studies</a>
 				</div>
@@ -167,7 +168,7 @@ const serviceJsonLd = {
 					data-track-event='book_call_clicked'
 					data-track-location={`${offer.key}_offer_final`}
 				>
-					Book a Roadmap Call
+					{ctaLabel}
 				</a>
 			</div>
 		</section>

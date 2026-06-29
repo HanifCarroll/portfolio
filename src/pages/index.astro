@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL_URL, RESUME_URL } from '../consts';
+import { BOOK_CALL_URL, EMAIL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
 import acquirePhoto from '@src/assets/img/projects/acquire-pursuits.png';
@@ -14,9 +14,9 @@ import palabrunoPhoto from '@src/assets/img/projects/palabruno-reading-materials
 
 const title = 'Hanif Carroll | Product Engineer';
 const description =
-	'Product engineer with 8+ years across web and mobile. Based in Buenos Aires, working US hours. US clients contract through HC Studio, my LLC.';
+	'Product engineer helping growing businesses improve operations with custom software, workflow automation, and AI systems. Based in Buenos Aires, working US hours.';
 const socialDescription =
-	'Product engineer with 8+ years building web, mobile, internal tools, automation, and AI workflows for growing teams.';
+	'Product engineer helping growing businesses improve operations with custom software, workflow automation, and AI systems.';
 
 const homepageJsonLd = [
 	{
@@ -27,7 +27,21 @@ const homepageJsonLd = [
 		jobTitle: 'Product Engineer',
 		description,
 		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
-		knowsAbout: ['Product engineering', 'AI products', 'LLMs', 'RAG', 'AI agents', 'React', 'Next.js', 'React Native', 'TypeScript']
+		knowsAbout: [
+			'Product engineering',
+			'Business systems',
+			'Workflow automation',
+			'AI operations systems',
+			'Internal tools',
+			'AI products',
+			'LLMs',
+			'RAG',
+			'AI agents',
+			'React',
+			'Next.js',
+			'React Native',
+			'TypeScript'
+		]
 	},
 	{
 		'@context': 'https://schema.org',
@@ -94,13 +108,6 @@ const caseStudyBySlug = {
 const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
 
 const additionalWork = [
-	{
-		slug: 'desarmadero-operations-prototype',
-		title: 'Desarmadero Operations',
-		focus: 'Operations prototype',
-		body: 'A clickable yard-operations prototype, PRD, functional spec, and live demo built from one discovery call.',
-		image: desarmaderoOperationsPhoto
-	},
 	{
 		slug: 'casamo',
 		title: 'Casamo',
@@ -186,19 +193,33 @@ const testimonials = [
 						<div class='home-hero-copy'>
 							<p class='home-hero-greeting'>Hey, I'm <span class='home-hero-greeting__name'>Hanif</span>.</p>
 							<p class='home-hero-subheadline'>
-								<span>I’m a full-stack product engineer who </span>
-								<span>builds products, internal tools, automations, </span>
-								<span>and AI workflows for growing teams.</span>
+								<span>I’m a product engineer who helps </span>
+								<span>growing businesses improve operations </span>
+								<span>with software, automation, and AI.</span>
 							</p>
 							<p class='home-hero-body'>
-								8+ years building web and mobile software, with recent work focused on LLM-powered products, workflow automation, and
-								business-critical systems.
+								8+ years building web and mobile software, with recent work focused on internal operating systems, AI workflows, and
+								business-critical product platforms.
 							</p>
 							<div class='home-hero-actions'>
-								<a class='home-hero-primary-link' href={RESUME_URL} data-track-event='resume_clicked' data-track-location='home_hero_primary'>
+								<a
+									class='home-hero-primary-link'
+									href={RESUME_URL}
+									data-track-event='resume_clicked'
+									data-track-location='home_hero_primary'
+								>
 									View resume
 								</a>
-								<a class='home-hero-secondary-link' href='#case-studies'>See case studies</a>
+								<a
+									class='home-hero-secondary-link'
+									href={BOOK_CALL_URL}
+									target='_blank'
+									rel='noopener noreferrer'
+									data-track-event='book_call_clicked'
+									data-track-location='home_hero_secondary'
+								>
+									Book a Business Systems Audit
+								</a>
 							</div>
 						</div>
 					</div>
@@ -281,16 +302,16 @@ const testimonials = [
 	<section class='container home-tech-section' aria-labelledby='home-tech-title'>
 		<div class='home-tech-section__heading'>
 			<h2 id='home-tech-title' class='home-tech-section__title'>What I Work With</h2>
-			<p class='home-tech-section__intro'>
-				Tools I use to take AI products from early ideas all the way to production.
-			</p>
+			<p class='home-tech-section__intro'>Tools I use to build internal tools, workflow automation, AI systems, and production products.</p>
 		</div>
 
 		<div class='home-tech-grid'>
 			{
 				techStackGroups.map((group) => (
 					<section class='home-tech-group' aria-labelledby={`home-tech-${group.id}`}>
-						<h3 id={`home-tech-${group.id}`} class='home-tech-group__title'>{group.title}</h3>
+						<h3 id={`home-tech-${group.id}`} class='home-tech-group__title'>
+							{group.title}
+						</h3>
 						<ul class='home-tech-group__tags'>
 							{group.items.map((item) => (
 								<li>{item}</li>
@@ -329,8 +350,8 @@ const testimonials = [
 		<div class='home-about__inner'>
 			<h2 id='home-about-title' class='home-about__title'>A Bit About Me</h2>
 			<p class='home-about__body'>
-				I partner with founders and teams to build and launch AI products — from shaping the idea and narrowing scope to shipping the first
-				version. I’m also building Casamo, an AI tool that helps remote workers find good long-term stays.
+				I partner with founders and teams to turn messy operational workflows into software that is easier to run, inspect, and improve. I’m
+				also building Casamo, an AI tool that helps remote workers find good long-term stays.
 			</p>
 			<p class='home-about__location'>Based in Buenos Aires, working US hours. US clients contract with me through HC Studio, my LLC.</p>
 			<p class='home-about__location'>
@@ -348,8 +369,8 @@ const testimonials = [
 		<div class='home-about__inner'>
 			<h2 id='home-pov-title' class='home-about__title'>Point of View</h2>
 			<p class='home-about__body'>
-				In the age of AI, taste gets a lot of attention. But the harder skill is deciding what’s actually worth building and following through.
-				Implementation is getting easier while clear judgment and execution are becoming more rare.
+				In the age of AI, taste gets a lot of attention. But the harder skill is deciding what’s actually worth building and following
+				through. Implementation is getting easier while clear judgment and execution are becoming more rare.
 			</p>
 			<p class='home-about__location'>
 				<a
@@ -367,7 +388,7 @@ const testimonials = [
 			<div class='space-y-3'>
 				<h2 id='home-contact-title' class='home-fit-section__title'>Let's Talk</h2>
 				<p class='home-fit-section__lede'>
-					Working on an AI product and need a partner who can help shape it and get it shipped? Let’s talk.
+					If your business has outgrown the way it operates, I can help diagnose the system and build the next version.
 				</p>
 			</div>
 
