@@ -1,0 +1,60 @@
+{
+	"slug": "job-application-assistant",
+	"title": "Job Application Assistant",
+	"description": "Built a local Chrome extension and FastAPI backend that extracts job opportunities, drafts auditable applications with Codex, exports cover-letter PDFs, and keeps a SQLite application ledger.",
+	"seoTitle": "Job Application Assistant Case Study | Auditable Local Application Workflow",
+	"seoDescription": "A case study on Job Application Assistant, a local Chrome extension and Python backend for structured job extraction, Codex-backed drafts, cover-letter PDFs, and SQLite application tracking.",
+	"proofType": "experiment",
+	"client": "Personal Workflow Tool",
+	"service": "AI Workflow Automation System",
+	"detailVariant": "workflow",
+	"role": "Solo Product & Systems Engineer",
+	"category": "product",
+	"track": "workflow_automation",
+	"year": "2026",
+	"timeline": "Local system build, 2026",
+	"teamSize": "Solo build",
+	"technologies": [
+		"Python 3.13",
+		"FastAPI",
+		"SQLite",
+		"Pydantic",
+		"Chrome Extension MV3",
+		"JavaScript",
+		"Codex CLI",
+		"Typer",
+		"ReportLab",
+		"pypdf",
+		"pytest",
+		"mypy"
+	],
+	"repository": "https://github.com/HanifCarroll/job-application-draft-assistant",
+	"constraints": [
+		"The tool handles sensitive job descriptions, personal context, draft text, application history, and generated PDFs, so the workflow needed to stay local-first and explicit about what is stored.",
+		"Job-board extraction had to avoid broad page-text guessing. Missing fields needed warnings instead of invented context."
+	],
+	"problem": [
+		"Applying to jobs was split across job boards, extension popups, local portfolio context, cover-letter drafts, PDFs, and a separate application tracking habit.",
+		"The bottleneck was not only writing faster. It was keeping the job snapshot, selected proof points, drafting strategy, final PDF, and application ledger tied to evidence."
+	],
+	"solution": [
+		"Built a Manifest V3 Chrome extension that extracts normalized opportunity snapshots from supported job pages, lets the user review them, and sends them to a local FastAPI backend.",
+		"Indexed local profile, resume, offers, and project proof points into a structured context bundle, then ran one Codex draft pass that returns the draft plus selected angle, selected and rejected projects, decisions, claims, and warnings.",
+		"Persisted draft jobs, draft JSON, generated cover-letter PDFs, and application records in SQLite, with lookup endpoints so the extension can show already-applied status."
+	],
+	"result": [
+		"Created a public local-first workflow for application drafting where the applicant-facing text, audit trail, generated PDF, and application ledger remain inspectable on the machine.",
+		"Separated extraction, context selection, drafting, PDF export, and application logging into explicit contracts covered by tests instead of one fragile browser script.",
+		"Extended the workflow beyond drafting into supported apply-enabled Dice, Indeed, and LinkedIn flows while preserving manual review points and platform-confirmed logging."
+	],
+	"deliveryHighlights": [
+		"Chrome extension side panel for extraction review, draft requests, PDF actions, already-applied checks, and apply-enabled posting lists.",
+		"FastAPI backend with async draft jobs, context reindexing, draft lookup, application lookup, dashboard, and PDF export endpoints.",
+		"SQLite stores draft requests, draft JSON, job stages, timing metadata, and application records deduplicated by normalized source URL.",
+		"Contract tests cover extraction modules, prompt inputs, Codex JSON parsing, application storage, dashboard rendering, PDF export, and extension JavaScript syntax."
+	],
+	"images": {
+		"hero": "@src/assets/img/projects/job-application-assistant-sidepanel.png",
+		"feature": "@src/assets/img/projects/job-application-assistant-sidepanel.png"
+	}
+}

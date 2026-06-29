@@ -4,6 +4,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-06-28
 
+### Project Archive And Tools Expansion
+
+- Added public case-study routes for `/projects/job-application-assistant/`, `/projects/linkedin-tools/`, `/projects/codex-telegram-bridge/`, `/projects/agent-recall/`, and `/projects/client-feedback/`.
+- Added each new case study to project metadata, experiment ordering, project image mapping, repository CTAs, the project archive, and sitemap-generating content.
+- Updated `/tools/` to mention `chatgpt-share-export`, `Folder Image Viewer`, and `Task Time Tracker`.
+- GitHub visibility was verified in the project threads for the listed repositories, including newly public repos where needed.
+- After deployment, verify the live case-study pages, repository CTAs, `/projects/`, `/tools/`, and sitemap entries, then request indexing for the pages that should become discoverable quickly.
+
 ### Business Systems Positioning And Offers
 
 - Updated the homepage and `/work-with-me/` around business systems, custom software, workflow automation, and AI operations.

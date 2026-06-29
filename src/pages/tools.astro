@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Tools & Experiments';
-const description =
-	'Local-first tools for AI agents, automation, desktop utilities, and personal workflows.';
+const description = 'Local-first tools for AI agents, automation, desktop utilities, and personal workflows.';
 
 const tools = [
 	{
@@ -18,6 +17,12 @@ const tools = [
 		focus: 'Session recall',
 		body: 'A local SQLite FTS index over Codex, OMP, Pi, and Claude session archives, so agents can search prior work and reuse context with receipts.',
 		repo: 'https://github.com/HanifCarroll/agent-recall'
+	},
+	{
+		name: 'chatgpt-share-export',
+		focus: 'Shared conversation export',
+		body: 'A standard-library Python CLI that converts public ChatGPT share links or saved share-page HTML into Markdown, JSON, or plain text by decoding the embedded React Router payload.',
+		repo: 'https://github.com/HanifCarroll/chatgpt-share-export'
 	},
 	{
 		name: 'devtree',
@@ -44,10 +49,16 @@ const tools = [
 		repo: 'https://github.com/HanifCarroll/apartment-finder'
 	},
 	{
-		name: 'Simple Image Viewer',
-		focus: 'Native image review',
-		body: 'A dependency-free SwiftUI macOS viewer for opening an image or folder, stepping through nearby images by keyboard, and scanning a thumbnail rail with GIF and natural filename support.',
+		name: 'Folder Image Viewer',
+		focus: 'Folder media review',
+		body: 'A dependency-free SwiftUI macOS app for opening a folder, image, or video, scanning nearby media with optional subfolder depth and file-count limits, and reviewing it with keyboard navigation, sort/filter controls, thumbnails, GIF playback, and native video controls.',
 		repo: 'https://github.com/HanifCarroll/simple-image-viewer'
+	},
+	{
+		name: 'Task Time Tracker',
+		focus: 'Menu bar time tracking',
+		body: 'A minimalist SwiftUI macOS menu bar timer with a compact floating panel, task naming, count-up Free Time mode, configurable countdown mode with progress, menu controls, and one-command local install into ~/Applications.',
+		repo: 'https://github.com/HanifCarroll/task-time-tracker'
 	},
 	{
 		name: 'cli-tools',
@@ -64,7 +75,7 @@ const tools = [
 			<h1 class='content-page__title'>Tools from my workflow</h1>
 			<p class='content-page__lede'>
 				Small systems I built to solve problems I kept running into: remote agent control, session recall, runnable worktrees, mailbox
-				context, and desktop utilities.
+				context, shared-conversation export, and desktop utilities.
 			</p>
 		</header>
 

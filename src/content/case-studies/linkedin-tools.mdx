@@ -1,0 +1,131 @@
+---
+projectSlug: linkedin-tools
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import linkedinToolsReviewUi from '../../assets/img/projects/linkedin-tools-review-ui.png';
+
+export const shippedRows = [
+	{
+		label: 'Controller namespaces',
+		title: 'The workflows moved behind one CLI.',
+		body: 'The public repo exposes network, recruiter-agency, opportunity, comments, ui, and cutover namespaces from the top-level linkedin-tools command.'
+	},
+	{
+		label: 'Safety boundaries',
+		title: 'Send-capable workflows have explicit owners.',
+		body: 'Network automation owns connection requests and accepted follow-ups. Recruiter/agency outreach can send drafted messages only. Opportunity intelligence is recommend-only.'
+	},
+	{
+		label: 'Guarded browser actions',
+		title: 'Real actions require approval flags.',
+		body: 'Browser-backed sends and withdrawals default to guarded behavior and require allow-send or allow-withdraw near the action being executed.'
+	},
+	{
+		label: 'Auditable state',
+		title: 'Uncertain browser work produces evidence.',
+		body: 'Runs write controller state, browser artifacts, sent-page audits, reconciliation reports, source queues, extracted comments, rankings, and blockers into app-owned state.'
+	},
+	{
+		label: 'Verification',
+		title: 'The repo tests contracts and workflow behavior.',
+		body: 'Tests cover network reconciliation, source registries, post queues, browser primitives, recruiter/agency lead state, storage migrations, and the review UI.'
+	}
+];
+
+<CaseSection title="Summary">
+	LinkedIn Tools is a public Python monorepo for guarded LinkedIn workflow automation.
+
+    It brings networking, recruiter/agency outreach, opportunity intelligence, comment extraction, browser artifacts, and review surfaces under one controller-led system instead of scattered browser scripts.
+
+</CaseSection>
+
+<CaseSection title="The Situation">
+	Browser automation is easy to make impressive and hard to make trustworthy.
+
+    The risky part was not clicking LinkedIn buttons. It was knowing which workflow owned each action, whether the action was allowed, what evidence was captured, and how to reconcile the result when the browser or platform state was uncertain.
+
+</CaseSection>
+
+<CaseSection title="Operating Model">
+	<DecisionBlock title="Make workflow ownership explicit.">
+		Connection requests, acceptance tracking, accepted follow-ups, and pending-invitation cleanup live under the network controller. Recruiter/agency outreach owns account sourcing, lead capture, drafts, dashboards, dry-runs, and guarded message sends. Opportunity intelligence ranks and reviews buyer-signal comments but does not send, connect, or withdraw.
+	</DecisionBlock>
+
+    <DecisionBlock title="Keep real actions close to approval flags.">
+    	Send-capable commands keep real-action flags next to the browser operation. The code distinguishes guarded dry-runs from explicit allow-send and allow-withdraw paths instead of letting a background script decide.
+    </DecisionBlock>
+
+    <DecisionBlock title="Treat audit evidence as product surface.">
+    	The system stores source runs, capture artifacts, audit results, candidate reservoirs, acceptance ledgers, extracted comments, ranked comments, browser artifacts, and blocked states so each run can be inspected after the fact.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Product Surface" media>
+	The local review UI is a FastAPI and Jinja surface for opportunities, network state, recruiter/agency queues, browser artifacts, and token-gated guarded actions.
+
+    The screenshot below uses isolated temporary state so the portfolio can show the shipped UI without exposing local LinkedIn runtime data.
+
+    <ImagePlate image={linkedinToolsReviewUi} alt="LinkedIn Tools local review UI showing cross-system review metrics, integration notices, safety boundaries, and guarded action surfaces." />
+
+</CaseSection>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Built the network automation controller.">
+		The network namespace owns Sales Navigator connection-request runs, saved-search capture, candidate reservoirs, sent-page audit reconciliation, acceptance checks, accepted follow-up drafts, browser sessions, and pending-invitation cleanup.
+	</DecisionBlock>
+
+    <DecisionBlock title="Separated recruiter and agency outreach.">
+    	The recruiter/agency namespace handles account sourcing, lead capture, message drafting, dashboarding, dry-runs, and guarded message sends. Tests enforce key boundaries such as requiring Sales Navigator identity before promoted agency contacts can become send-ready leads.
+    </DecisionBlock>
+
+    <DecisionBlock title="Kept opportunity intelligence recommend-only.">
+    	The opportunity namespace defines source registries, query packs, provider imports, post queues, browser-backed search capture, source experiments, and review exports. The v0 source batch includes 38 enabled sources and a scoring model for problem fit, buying signal, buyer fit, actionability, and immediacy.
+    </DecisionBlock>
+
+    <DecisionBlock title="Made comment extraction resumable and inspectable.">
+    	The comments namespace supports saved-HTML and browser-backed LinkedIn post comment extraction, safety limits, progress output, SQLite persistence, artifacts, queue checkpoints, and retry metadata.
+    </DecisionBlock>
+
+    <DecisionBlock title="Added a local review UI over real state contracts.">
+    	The review UI reads from SQLite and JSON state to show opportunity sources, post queues, extraction runs, ranked comments, experiments, calibration rows, network runs, acceptance drafts, pending cleanup, recruiter leads, browser sessions, and guarded actions.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				LinkedIn Tools is a practical example of controller-led browser automation: durable state first, explicit action ownership, guarded
+				execution second, and audit evidence available whenever the browser result needs to be checked.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Why It Matters">
+	This is the same operating pattern I would use inside a company when a high-value workflow has outgrown spreadsheets, chat threads, and ad hoc scripts.
+
+    Define ownership. Store the workflow state. Gate irreversible actions. Capture evidence. Make the next action visible. Let automation run only where the system can explain what happened.
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section'>
+	<h2>Public Repo</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<p>
+			The repository is public and contains the Python monorepo, CLI namespaces, source registries, review UI, browser primitives, fixtures,
+			and tests.
+		</p>
+		<a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/linkedin-network-run' target='_blank' rel='noopener noreferrer'>
+			View GitHub repo
+			<span>&rarr;</span>
+		</a>
+	</div>
+</section>

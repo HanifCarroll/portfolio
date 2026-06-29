@@ -1,0 +1,132 @@
+---
+projectSlug: codex-telegram-bridge
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import bridgeTerminal from '../../assets/img/projects/codex-telegram-bridge-terminal.png';
+
+export const shippedRows = [
+	{
+		label: 'Public CLI',
+		title: 'The stable product surface is a Rust command line tool.',
+		body: 'The default help exposes setup, doctor, away, remote, daemon, Telegram, Discord, projects, waiting, inbox, show, reply, approve, MCP, and Hermes commands while hiding lower-level sync, watch, follow, fork, archive, and unarchive commands.'
+	},
+	{
+		label: 'Presence gate',
+		title: 'Remote notifications only run when remote mode is explicit.',
+		body: '`/away` starts or reuses the shared Codex live backend and enables outbound Telegram or Discord notifications. `/back` turns the gate off and clears pending outbound notifications.'
+	},
+	{
+		label: 'Route-backed replies',
+		title: 'Chat replies map back to exact Codex threads.',
+		body: 'The daemon stores Telegram and Discord message routes in SQLite, then uses those routes to resume the originating Codex thread when a remote reply or approval arrives.'
+	},
+	{
+		label: 'Bounded adapter',
+		title: 'Hermes can inspect and act without owning delivery.',
+		body: 'The MCP server exposes doctor, threads, inbox, waiting, show, reply, and approve. Setup, daemon control, Telegram/Discord transport management, watch streams, new threads, forks, and archive operations stay out of the MCP surface.'
+	},
+	{
+		label: 'Desktop companion',
+		title: 'Remote mode has a native macOS control surface.',
+		body: 'The AppKit menu bar app shells out to `remote status`, `remote on`, `remote off`, and `remote repair`, then watches bridge state files so local UI and Telegram-side changes stay aligned.'
+	},
+	{
+		label: 'Public hardening',
+		title: 'The repo includes docs, CI, release workflow, and safety tests.',
+		body: 'Tests cover CLI parsing, hidden command boundaries, token redaction, Telegram route mapping, approval callbacks, SQLite state migration, MCP discovery, and the bounded MCP tool list.'
+	}
+];
+
+<CaseSection title="Summary">
+	Codex Telegram Bridge is a public local-first bridge for controlling Codex when I am away from the computer.
+
+    It turns Telegram or Discord into a remote continuation surface for Codex threads without making chat the system of record. The local Rust daemon owns sync, routing, retries, presence state, and delivery. Telegram, Discord, and Hermes remain interfaces into that local system.
+
+</CaseSection>
+
+<CaseSection title="The Situation">
+	Codex can keep working while I step away, but the default interaction model assumes I am still in front of the desktop app.
+
+    The missing product layer was not just "send me a message." It was a governed remote-control workflow: know when I am away, start or repair the shared live backend, notify only for new relevant events, let me reply to the right thread, handle approval prompts, and stop cleanly when I return.
+
+</CaseSection>
+
+<CaseSection title="Operating Model">
+	<DecisionBlock title="Make presence the top-level gate.">
+		The README and CLI center the product rule: no remote notifications while I am present. `/away` and `remote on` make outbound delivery explicit; `/back` and `remote off` disable delivery and clear pending outbound events.
+	</DecisionBlock>
+
+    <DecisionBlock title="Keep local state responsible for routing.">
+    	The bridge stores thread snapshots, outbound events, delivery logs, message routes, callback routes, inbound update dedupe rows, selected projects, and action history in local SQLite. Remote chat messages carry route handles; local state maps them back to Codex.
+    </DecisionBlock>
+
+    <DecisionBlock title="Separate transport from agent control.">
+    	Telegram and Discord own delivery and reply UX. Hermes gets a bounded MCP adapter for trusted local agent workflows. The MCP server can inspect, reply, and approve, but it does not install the daemon, configure transports, process chat updates, or own proactive notifications.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Product Surface" media>
+	The public product surface is intentionally boring: install the Rust CLI, run setup, use `/away` before leaving, reply to bridge messages when Codex needs input, and use `/back` when returning.
+
+    <ImagePlate image={bridgeTerminal} alt="Codex Telegram Bridge terminal-style command surface showing setup, remote, Telegram, Discord, project, reply, approve, and MCP commands." />
+
+</CaseSection>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Shaped the CLI around the default user path.">
+		The visible commands emphasize setup, remote mode, daemon management, transport setup, project selection, waiting threads, replies, approvals, and MCP. Advanced maintenance commands remain available but are hidden from default help so the open-source onboarding path stays focused.
+	</DecisionBlock>
+
+    <DecisionBlock title="Built daemon-owned delivery.">
+    	The daemon syncs Codex state through the configured shared websocket backend, reconciles that backend only when remote mode is required, enqueues new events after the away session starts, delivers due outbound events, and polls Telegram or Discord for replies.
+    </DecisionBlock>
+
+    <DecisionBlock title="Made replies and approvals routeable.">
+    	Telegram notifications store local message routes. Approval prompts use opaque callback route ids with Approve and Deny buttons. Discord reuses the same prepared delivery model, then maps reply messages back through the local route table.
+    </DecisionBlock>
+
+    <DecisionBlock title="Added deterministic project selection for remote-created work.">
+    	The project registry stores explicit working directories with ids, labels, and aliases. `/project` selects the current workspace, and `/new` starts a Codex thread in that registered cwd instead of guessing from chat text.
+    </DecisionBlock>
+
+    <DecisionBlock title="Kept secrets and local state out of output.">
+    	Setup writes the bridge config with user-only permissions, command output redacts bot tokens, allowed user ids can restrict inbound commands, and the public docs call out dedicated bot-token ownership and local retention.
+    </DecisionBlock>
+
+    <DecisionBlock title="Made local desktop control practical.">
+    	The macOS menu bar app embeds or resolves the bridge binary and exposes the remote-mode actions a user needs from the desktop: start, stop, repair, refresh status, open config, and open state.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			Codex Telegram Bridge is a public example of turning an agent workflow into a controlled local product: the system defines ownership
+			boundaries first, then adds automation where state, routing, and recovery are explicit.
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Why It Matters">
+	This project is not just a notifier.
+
+    It is a small operating layer around agent work: presence state, live backend health, message delivery, reply routing, approval handling, project context, local retention, and trust boundaries. Those are the pieces that make a remote-control workflow useful without turning it into ambient automation.
+
+</CaseSection>
+
+<CaseSection title="Public Repo">
+	The repository is public and includes the Rust bridge, Telegram and Discord transport docs, Hermes MCP adapter docs, macOS menu bar companion, example config files, CI, release workflow, and tests.
+
+    <a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/codex-telegram-bridge' target='_blank' rel='noopener noreferrer'>
+    	View GitHub repo
+    	<span>&rarr;</span>
+    </a>
+
+</CaseSection>

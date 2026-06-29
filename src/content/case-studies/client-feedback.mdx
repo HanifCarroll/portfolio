@@ -1,0 +1,125 @@
+---
+projectSlug: client-feedback
+---
+
+import CaseSection from '../../components/case-study/CaseSection.astro';
+import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
+import ImagePlate from '../../components/case-study/ImagePlate.astro';
+import ProofRows from '../../components/case-study/ProofRows.astro';
+import clientFeedbackImage from '../../assets/img/projects/client-feedback-evidence-packet.png';
+
+export const shippedRows = [
+	{
+		label: 'WhatsApp rail',
+		title: 'A linked browser session became a repeatable evidence source.',
+		body: 'The CLI can probe WhatsApp Web, search chat candidates, pull visible messages, and require explicit `--select-first` approval when a search is ambiguous.'
+	},
+	{
+		label: 'Voice notes',
+		title: 'Audio evidence stays local and traceable.',
+		body: 'Visible voice notes can be downloaded through the WhatsApp context menu, normalized from Agent Browser download wrappers, hashed, converted to WAV, and transcribed locally with whisper-cpp.'
+	},
+	{
+		label: 'Gmail rail',
+		title: 'Domain email threads produce reusable packets.',
+		body: 'The Gmail workflow searches through gws, resolves message or thread selections, decodes attachment payloads locally, and writes messages, attachments, hashes, and evidence Markdown.'
+	},
+	{
+		label: 'Stable outputs',
+		title: 'Automation gets manifests instead of ad hoc files.',
+		body: 'Pull runs write `run.json`, `messages.json`, `evidence.md`, and source-specific artifacts so later review can find the exact messages, files, transcripts, and hashes from the run.'
+	},
+	{
+		label: 'Tests',
+		title: 'The brittle parsing points are covered.',
+		body: 'Unit tests cover WhatsApp metadata parsing, download references, search candidates, date and time markers, download normalization, command-output JSON parsing, Gmail attachment decoding, and safe filenames.'
+	}
+];
+
+<CaseSection title="Summary">
+	Client Feedback Evidence CLI is a local-first evidence collector for client proof.
+
+    It pulls from the places where useful feedback actually shows up: WhatsApp chats, WhatsApp voice notes, domain Gmail threads, Gmail attachments, and local transcripts.
+
+</CaseSection>
+
+<CaseSection title="The Situation">
+	Client feedback is valuable only when it can be reviewed later.
+
+    Before this tool, useful proof lived in scattered chats, audio notes, emails, attachments, and screenshots. That made it hard to assemble a reliable packet without copying private text around by hand or losing the source path behind a claim.
+
+</CaseSection>
+
+<CaseSection title="System Shape" media>
+	The product is a CLI, so the durable interface is the workflow contract: commands in, local artifacts out.
+
+    <ImagePlate image={clientFeedbackImage} alt="Client Feedback Evidence CLI artifact flow showing WhatsApp, Gmail, audio, transcripts, manifests, and evidence Markdown." />
+
+</CaseSection>
+
+<CaseSection title="Operating Model">
+	<DecisionBlock title="Keep sensitive evidence local by default.">
+		Run outputs live under the local client-feedback evidence directory unless the user explicitly chooses another output path. The public repo contains source code and docs, not captured messages, audio, browser storage, or OAuth tokens.
+	</DecisionBlock>
+
+    <DecisionBlock title="Use source-specific rails instead of generic scraping.">
+    	WhatsApp work goes through a dedicated Agent Browser profile and visible WhatsApp Web state. Gmail work goes through `gws`, message or thread IDs, Gmail payloads, and attachment bodies.
+    </DecisionBlock>
+
+    <DecisionBlock title="Make ambiguous selections explicit.">
+    	WhatsApp and Gmail searches can return multiple candidates. The CLI fails loudly unless there is a single safe selection or the user has reviewed candidates and passed `--select-first`.
+    </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="The Work">
+	<DecisionBlock title="Built the CLI surface around real collection steps.">
+		The commands mirror the workflow: `doctor` checks local dependencies, `whatsapp probe` confirms linked browser state, `whatsapp search` finds chat candidates, `whatsapp pull` writes message and audio artifacts, `gmail search` previews messages, and `gmail pull` writes thread evidence.
+	</DecisionBlock>
+
+    <DecisionBlock title="Turned WhatsApp voice notes into auditable files.">
+    	The tool opens the visible message context menu, downloads voice notes, normalizes Agent Browser directory-shaped downloads into `.ogg` files, records file sizes and SHA-256 hashes, converts audio to 16kHz mono WAV, and writes transcript text and JSON when local transcription is enabled.
+    </DecisionBlock>
+
+    <DecisionBlock title="Made Gmail attachments part of the evidence packet.">
+    	The Gmail path resolves a query, message ID, or thread ID, reads message metadata and bodies, recursively finds attachment parts, decodes base64 payloads locally, sanitizes filenames, materializes files, and records hashes in the structured message output.
+    </DecisionBlock>
+
+    <DecisionBlock title="Kept machine output stable.">
+    	With `--json`, successful commands emit structured JSON to stdout and errors emit `{ ok: false, error: "..." }`. Dependency diagnostics stay on stderr, which keeps the CLI usable from scripts without hiding failures.
+    </DecisionBlock>
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
+	<h2>What Shipped</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<ProofRows rows={shippedRows}>
+			<p>
+				This is a small but production-shaped workflow system: source-specific collection, explicit approvals, local evidence handling,
+				structured manifests, and tests around the parts most likely to break.
+			</p>
+		</ProofRows>
+	</div>
+</section>
+
+<CaseSection title="Why It Matters">
+	The important part is not that the tool can scrape a page.
+
+    The important part is that it turns private, scattered feedback into a repeatable evidence workflow with visible source boundaries, local artifacts, and enough structure to reuse the proof later without guessing where it came from.
+
+</CaseSection>
+
+<section class='case-study-detail__editorial-section'>
+	<h2>Public Repo</h2>
+	<div class='case-study-detail__editorial-copy'>
+		<p>
+			The project is open source, including the Rust CLI, command contracts, local evidence manifest types, browser workflow wrappers, Gmail
+			attachment handling, and unit tests.
+		</p>
+		<a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/client-feedback' target='_blank' rel='noopener noreferrer'>
+			View GitHub repo
+			<span>&rarr;</span>
+		</a>
+	</div>
+</section>

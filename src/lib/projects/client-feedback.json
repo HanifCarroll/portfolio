@@ -1,0 +1,42 @@
+{
+	"slug": "client-feedback",
+	"title": "Client Feedback Evidence CLI",
+	"description": "Built a Rust CLI that turns WhatsApp Web chats, voice notes, and domain Gmail threads into local evidence packets with JSON manifests, attachments, hashes, and optional local transcripts.",
+	"seoTitle": "Client Feedback Evidence CLI Case Study | Rust Workflow Automation",
+	"seoDescription": "A case study on a Rust CLI for collecting client feedback evidence from WhatsApp Web and Gmail into local JSON, Markdown, attachment, audio, and transcript artifacts.",
+	"proofType": "experiment",
+	"client": "Personal Workflow System",
+	"service": "Workflow Automation System",
+	"detailVariant": "workflow",
+	"role": "Solo Product & Systems Engineer",
+	"category": "product",
+	"track": "workflow_automation",
+	"year": "2026",
+	"timeline": "Focused CLI build, 2026",
+	"teamSize": "Solo build",
+	"technologies": ["Rust", "Clap", "Agent Browser", "WhatsApp Web", "Gmail API", "gws", "ffmpeg", "whisper-cpp", "JSON", "Markdown"],
+	"repository": "https://github.com/HanifCarroll/client-feedback",
+	"constraints": [
+		"Client feedback can include private message text, audio, and attachments, so the tool had to keep run outputs local by default.",
+		"WhatsApp evidence had to come from a linked browser session because the project does not use an official WhatsApp API.",
+		"Gmail evidence had to preserve reusable artifacts without exposing OAuth tokens, browser storage, or mailbox runtime state."
+	],
+	"problem": [
+		"Useful client proof was spread across WhatsApp chats, voice notes, and domain Gmail threads, which made it hard to assemble a reusable evidence packet without manual copying and fragile exports.",
+		"The workflow needed repeatable collection, local transcription, attachment capture, and audit-friendly manifests without sending sensitive evidence to another ingestion service."
+	],
+	"solution": [
+		"Built a Rust CLI with `doctor`, WhatsApp `probe/search/pull`, and Gmail `search/pull` commands, all available with stable JSON output for automation.",
+		"Used a dedicated Agent Browser profile for WhatsApp Web, extracted visible chat messages, downloaded visible voice notes through the message context menu, normalized Agent Browser download artifacts, converted Ogg/Opus audio to WAV, and optionally transcribed locally with `whisper-cpp`.",
+		"Added a Gmail rail through `gws` that resolves search results, messages, or threads, decodes attachment payloads locally, writes evidence Markdown, and records hashes for materialized files."
+	],
+	"result": [
+		"Turned scattered client feedback sources into a repeatable local workflow that writes `run.json`, `messages.json`, `evidence.md`, attachments, audio files, WAV files, and transcript artifacts.",
+		"Kept the public code focused on workflow contracts and local artifacts while leaving private evidence directories, auth state, cookies, and browser storage out of the repo.",
+		"Backed the brittle parts with unit tests for WhatsApp metadata parsing, Agent Browser snapshot parsing, download normalization, Gmail attachment decoding, filename sanitization, and command-output JSON parsing."
+	],
+	"images": {
+		"hero": "@src/assets/img/projects/client-feedback-evidence-packet.png",
+		"feature": "@src/assets/img/projects/client-feedback-evidence-packet.png"
+	}
+}
