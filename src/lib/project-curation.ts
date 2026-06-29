@@ -1,4 +1,4 @@
-export const HOMEPAGE_CASE_STUDY_SLUGS = ['palabruno', 'genrupt', 'desarmadero-operations-prototype'] as const;
+export const HOMEPAGE_CASE_STUDY_SLUGS = ['acquire', 'palabruno', 'genrupt'] as const;
 
 export const CLIENT_PROJECT_ORDER = [
 	'palabruno',
@@ -12,9 +12,11 @@ export const CLIENT_PROJECT_ORDER = [
 	'redwriter-comics'
 ] as const;
 
-export const EXPERIMENT_PROJECT_ORDER = ['apartment-finder', 'ba-eventos', 'language-exchange', 'vox-prismatic'] as const;
+export const EXPERIMENT_PROJECT_ORDER = ['acquire', 'apartment-finder', 'ba-eventos', 'language-exchange', 'vox-prismatic'] as const;
 
 export const PROJECT_OUTCOME_HIGHLIGHTS: Record<string, string> = {
+	acquire:
+		'Acquire turns sourcing, review, application prep, outreach, and submission into one local-first operating system with approval gates.',
 	palabruno:
 		'Palabruno moved from rough founder idea to launch with iOS, Android, web payments, teacher workflows, store assets, and clearer positioning.',
 	genrupt:

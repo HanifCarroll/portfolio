@@ -1,4 +1,5 @@
 import type { Project } from './types/project';
+import acquireData from './projects/acquire.json';
 import baEventosData from './projects/ba-eventos.json';
 import casamoData from './projects/casamo.json';
 import genruptData from './projects/genrupt.json';
@@ -14,6 +15,7 @@ import apartmentFinderData from './projects/apartment-finder.json';
 import desarmaderoOperationsPrototypeData from './projects/desarmadero-operations-prototype.json';
 
 export const projects: Record<string, Project> = {
+  'acquire': acquireData as Project,
   'palabruno': palabrunoData as Project,
   'casamo': casamoData as Project,
   'ba-eventos': baEventosData as Project,

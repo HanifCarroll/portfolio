@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { EMAIL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
+import acquirePhoto from '@src/assets/img/projects/acquire-pursuits.png';
 import apartmentFinderPhoto from '@src/assets/img/projects/apartment-finder-ui.png';
 import baEventosPhoto from '@src/assets/img/projects/ba-eventos-feature.png';
 import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
@@ -38,6 +39,16 @@ const homepageJsonLd = [
 ];
 
 const caseStudyBySlug = {
+	acquire: {
+		slug: 'acquire',
+		label: 'Operating system',
+		title: 'Acquire',
+		body: 'Built a local-first acquisition operating system that turns sourcing, review, application prep, outreach, and submission into one governed workflow.',
+		tech: 'Rust • SQLite • SwiftUI • Codex • Playwriter',
+		image: acquirePhoto,
+		imageAlt: 'Acquire macOS command center showing the Pursuits workflow for submitted applications.',
+		imageClass: 'object-left-top'
+	},
 	palabruno: {
 		slug: 'palabruno',
 		label: 'MVP build',
@@ -83,6 +94,13 @@ const caseStudyBySlug = {
 const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
 
 const additionalWork = [
+	{
+		slug: 'desarmadero-operations-prototype',
+		title: 'Desarmadero Operations',
+		focus: 'Operations prototype',
+		body: 'A clickable yard-operations prototype, PRD, functional spec, and live demo built from one discovery call.',
+		image: desarmaderoOperationsPhoto
+	},
 	{
 		slug: 'casamo',
 		title: 'Casamo',

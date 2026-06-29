@@ -1,0 +1,50 @@
+{
+  "slug": "acquire",
+  "title": "Acquire",
+  "description": "Built a local-first acquisition operating system that turns sourcing, review, application prep, outreach, and submission into one governed workflow.",
+  "seoTitle": "Acquire Case Study | Local-First Acquisition Operating System",
+  "seoDescription": "A case study on Acquire, a Rust and SwiftUI acquisition operating system for sourcing, reviewing, drafting, submitting, and tracking project and role opportunities.",
+  "proofType": "experiment",
+  "client": "Personal Operating System",
+  "service": "Workflow Automation System",
+  "detailVariant": "workflow",
+  "role": "Solo Product & Systems Engineer",
+  "category": "product",
+  "track": "workflow_automation",
+  "year": "2026",
+  "timeline": "Ongoing system build, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "Rust",
+    "SQLite",
+    "SwiftUI",
+    "macOS",
+    "launchd",
+    "Codex",
+    "Playwriter",
+    "JSONL",
+    "CLI"
+  ],
+  "constraints": [
+    "The system had to stay local-first because it manages sensitive sourcing, application, resume, and outreach data.",
+    "Automation needed explicit approval gates, durable evidence, and recoverable jobs instead of hidden background actions."
+  ],
+  "problem": [
+    "Finding and pursuing work was spread across job boards, LinkedIn, Upwork, recruiters, notes, browser tabs, emails, and manual follow-up lists.",
+    "The hard part was not just discovering more opportunities. It was deciding which opportunities were worth acting on, preparing the right materials, answering portal questions consistently, and knowing what was blocked or ready."
+  ],
+  "solution": [
+    "Built a Rust CLI and SQLite-backed acquisition engine for opportunities, source runs, review queues, applications, outreach drafts, answer banks, evidence timelines, reports, and scheduled jobs.",
+    "Added a native SwiftUI command center so daily work happens in Today, Reviews, Pursuits, Sources, and Settings instead of scattered terminal commands.",
+    "Used Codex and Playwriter only behind explicit workflow boundaries: research and scoring produce auditable packets, draft generation requires review, and final submissions run from approved snapshots."
+  ],
+  "result": [
+    "Turned a fragile personal work-search process into a real operating system with source monitoring, review queues, application workflows, answer reuse, evidence timelines, and submission status in one place.",
+    "Separated judgment-heavy agent work from deterministic workflow ownership: Rust owns state, queues, validation, and reports while agents produce bounded research, drafts, and browser-run artifacts.",
+    "Created a reusable pattern for business systems engineering: map the operating workflow, define approval gates, store durable evidence, and build the software surface that makes the next action obvious."
+  ],
+  "images": {
+    "hero": "@src/assets/img/projects/acquire-pursuits.png",
+    "feature": "@src/assets/img/projects/acquire-pursuits.png"
+  }
+}
