@@ -269,3 +269,16 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Channel notes: Direct sessions fell from 30 to 22; Organic Search moved from 6 to 5 sessions but improved from 0 to 2 engaged sessions; Organic Social moved from 8 to 7 sessions and improved from 3 to 6 engaged sessions.
 - Key events remained 0 in both windows. The event report showed default engagement events plus `click`, but no conversion/key-event signal fired.
 - Interpretation: search impressions are up but still too small to judge SEO impact, while traffic quality improved in GA4. Re-check next week after the May homepage edits have a full clean comparison window.
+
+## 2026-06-29
+
+### Copy Change
+
+- Replaced the service offer work-sample eyebrow from `Proof` to `Selected Work`.
+- Reworded the service offer work-sample headings from `Relevant ... proof` to project-oriented headings.
+
+### Verification
+
+- `bun run build` passed.
+- `git diff --check` passed.
+- Built service offer pages show the updated work-sample labels and no longer render the old `Relevant ... proof` headings.

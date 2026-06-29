@@ -109,7 +109,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
 				body: 'You get a concrete first-system recommendation with the outcome, constraints, build shape, and next-step plan.'
 			}
 		],
-		proofHeading: 'Relevant systems proof',
+		proofHeading: 'Relevant systems projects',
 		proof: [
 			{
 				label: 'Operating system',
@@ -200,7 +200,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
 				body: 'The system is shipped with the context, documentation, and next-step recommendations needed to keep improving it.'
 			}
 		],
-		proofHeading: 'Relevant build proof',
+		proofHeading: 'Relevant build projects',
 		proof: [
 			{
 				label: 'Operating system',
@@ -290,7 +290,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
 				body: 'We package what shipped, what changed, and what should be validated next.'
 			}
 		],
-		proofHeading: 'Relevant launch proof',
+		proofHeading: 'Relevant launch projects',
 		proof: [
 			{
 				label: 'Founder MVP',
@@ -381,7 +381,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
 				body: 'The goal is not dependency. The product, code, and team context should get easier to operate.'
 			}
 		],
-		proofHeading: 'Relevant fractional proof',
+		proofHeading: 'Relevant product engineering projects',
 		proof: [
 			{
 				label: 'AI product platform',
