@@ -295,10 +295,12 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ### Blog Post
 
-- Added `/blog/ai-makes-open-source-more-important-not-less/` as a new indexable note about AI making reliable open-source building blocks more valuable.
+- Added `/blog/ai-makes-open-source-more-important-not-less/` as a new indexable blog post about AI making reliable open-source building blocks more valuable.
+- Renamed the public blog surface from `Notes` to `Blog` and made each blog index entry a full clickable link without the `Read note` CTA.
 
 ### Verification
 
 - `bun run build` passed.
-- `git diff --check -- src/content/blog/ai-makes-open-source-more-important-not-less.md docs/seo-changes-and-observations.md` passed.
-- Built HTML includes the post title, canonical URL, meta description, `BlogPosting` JSON-LD, Notes index entry, RSS item, and sitemap URL.
+- `git diff --check` passed for the changed blog, layout, head, CSS, and SEO log files.
+- Built HTML includes the post title, canonical URL, meta description, `BlogPosting` JSON-LD, Blog index entry, RSS item, and sitemap URL.
+- Built blog index renders full-entry links and no longer renders the `Read note` CTA.

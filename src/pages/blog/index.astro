@@ -5,9 +5,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
-const title = 'Notes on products, workflows, and AI';
+const title = 'Blog on products, workflows, and AI';
 const description =
-	'Notes for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build notes are here too, but they support the client work rather than replace it.';
+	'Blog posts for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build posts are here too, but they support the client work rather than replace it.';
 
 const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
@@ -15,31 +15,28 @@ const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
 	<article class='content-page container max-w-4xl'>
 		<header class='content-page__hero'>
-			<h1 class='content-page__title'>Notes</h1>
+			<h1 class='content-page__title'>Blog</h1>
 			<p class='content-page__lede'>
-				Field notes from product work, workflow systems, agent tooling, architecture decisions, and the debugging behind useful builds.
+				Field writing from product work, workflow systems, agent tooling, architecture decisions, and the debugging behind useful builds.
 			</p>
 		</header>
 
 		{
 			posts.length > 0 && (
-				<section aria-label='Notes'>
+				<section aria-label='Blog posts'>
 					<div class='content-page__list'>
 						{posts.map((post) => (
-							<article class='content-page__entry'>
+							<a
+								class='content-page__entry content-page__entry--link'
+								href={`/blog/${post.id}/`}
+								aria-label={`Read ${post.data.title}`}
+							>
 								<p class='content-page__entry-date'>
 									<FormattedDate date={post.data.pubDate} />
 								</p>
-								<h2 class='content-page__entry-title'>
-									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								</h2>
+								<h2 class='content-page__entry-title'>{post.data.title}</h2>
 								<p class='content-page__entry-body'>{post.data.description}</p>
-								<p class='content-page__aside'>
-									<a href={`/blog/${post.id}/`} class='content-page__link'>
-										Read note
-									</a>
-								</p>
-							</article>
+							</a>
 						))}
 					</div>
 				</section>

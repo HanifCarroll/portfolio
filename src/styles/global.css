@@ -1203,6 +1203,27 @@
 		gap: 0.5rem;
 	}
 
+	.content-page__entry--link {
+		color: inherit;
+		text-decoration: none;
+		transition: color 150ms ease;
+	}
+
+	.content-page__entry--link:hover .content-page__entry-title,
+	.content-page__entry--link:focus-visible .content-page__entry-title {
+		color: #0066ff;
+	}
+
+	.content-page__entry--link:focus-visible {
+		outline: 2px solid #0066ff;
+		outline-offset: 0.35rem;
+	}
+
+	:is(.dark) .content-page__entry--link:hover .content-page__entry-title,
+	:is(.dark) .content-page__entry--link:focus-visible .content-page__entry-title {
+		color: #4d9fff;
+	}
+
 	.content-page__entry-date {
 		font-size: var(--font-size-sm);
 		line-height: var(--line-height-body);
