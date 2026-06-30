@@ -290,3 +290,15 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - `bun run build` passed.
 - `git diff --check` passed.
 - Built service offer pages show the updated work-sample labels and no longer render the old `Relevant ... proof` headings.
+
+## 2026-06-30
+
+### Blog Post
+
+- Added `/blog/ai-makes-open-source-more-important-not-less/` as a new indexable note about AI making reliable open-source building blocks more valuable.
+
+### Verification
+
+- `bun run build` passed.
+- `git diff --check -- src/content/blog/ai-makes-open-source-more-important-not-less.md docs/seo-changes-and-observations.md` passed.
+- Built HTML includes the post title, canonical URL, meta description, `BlogPosting` JSON-LD, Notes index entry, RSS item, and sitemap URL.
