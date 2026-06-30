@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-06-30
+
+### Workflow Tool Repo Split
+
+- Replaced the `/tools/` `cli-tools` entry with standalone `macos-automation-cli` and `granola-notes-cli` entries after splitting the old monorepo.
+- Updated the `/tools/` lede to mention meeting-note retrieval explicitly.
+- After deployment, verify the live `/tools/` page and confirm the new GitHub repository links resolve.
+
 ## 2026-06-29
 
 ### Workflow Tools And Case Study Copy Polish
