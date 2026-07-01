@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Codex Telegram Bridge Product Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+        color: #14211c;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-wash {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 15% 18%, rgba(24, 167, 216, 0.16), rgba(24, 167, 216, 0) 420px),
+          radial-gradient(circle at 84% 80%, rgba(31, 111, 85, 0.2), rgba(31, 111, 85, 0) 470px),
+          radial-gradient(circle at 72% 12%, rgba(199, 134, 47, 0.12), rgba(199, 134, 47, 0) 380px);
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: -80px;
+        background-image:
+          linear-gradient(rgba(31, 111, 85, 0.13) 2px, rgba(31, 111, 85, 0) 2px),
+          linear-gradient(90deg, rgba(31, 111, 85, 0.09) 2px, rgba(31, 111, 85, 0) 2px);
+        background-position: -36px -36px;
+        background-size: 112px 112px;
+        opacity: 0.24;
+      }
+
+      .bg-panel {
+        position: absolute;
+        border: 2px solid rgba(31, 111, 85, 0.18);
+        background: rgba(223, 238, 231, 0.64);
+      }
+
+      .panel-left {
+        left: -150px;
+        top: 96px;
+        width: 390px;
+        height: 850px;
+        transform: rotate(-7deg);
+      }
+
+      .panel-right {
+        right: -185px;
+        top: 150px;
+        width: 450px;
+        height: 800px;
+        transform: rotate(8deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 68px;
+        height: 68px;
+        border-color: #1f6f55;
+        opacity: 0.72;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 82px;
+        z-index: 5;
+        color: rgba(31, 111, 85, 0.8);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 82px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.86fr 1.14fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #1f6f55;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 850px;
+        font-family: Georgia, serif;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .headline.wide {
+        max-width: 1060px;
+      }
+
+      .subhead {
+        max-width: 840px;
+        color: #52625a;
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 520px;
+        height: 5px;
+        background: #1f6f55;
+        transform-origin: left center;
+      }
+
+      .terminal-card,
+      .prompt-card,
+      .gate-card,
+      .route-card,
+      .chat-card,
+      .approval-card,
+      .thread-card,
+      .daemon-card,
+      .ownership-card,
+      .end-card {
+        border: 2px solid #d3ddd5;
+        border-radius: 8px;
+        background: rgba(251, 252, 248, 0.96);
+        box-shadow: 0 34px 90px rgba(35, 55, 47, 0.15);
+      }
+
+      .terminal-card {
+        position: relative;
+        overflow: hidden;
+        padding: 14px;
+        background: #101820;
+        border-color: rgba(24, 167, 216, 0.18);
+        box-shadow: 0 36px 96px rgba(16, 24, 32, 0.32);
+      }
+
+      .terminal-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .terminal-image-bg {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 8px;
+        background: url("assets/codex-telegram-bridge-terminal.png") center / cover no-repeat;
+      }
+
+      .terminal-card.large {
+        width: 100%;
+        max-width: 1030px;
+        justify-self: end;
+      }
+
+      .terminal-card.focus {
+        width: 960px;
+        justify-self: end;
+      }
+
+      .terminal-label {
+        position: absolute;
+        top: 34px;
+        left: 34px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border: 1px solid rgba(24, 167, 216, 0.35);
+        border-radius: 8px;
+        background: rgba(16, 24, 32, 0.86);
+        color: #9bdff5;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 19px;
+        font-weight: 800;
+      }
+
+      .status-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        background: #83f3b2;
+        box-shadow: 0 0 0 6px rgba(131, 243, 178, 0.16);
+      }
+
+      .prompt-card {
+        position: absolute;
+        right: 64px;
+        bottom: 72px;
+        width: 430px;
+        padding: 24px 26px;
+        border-color: rgba(199, 134, 47, 0.34);
+        background: #fbfcf8;
+      }
+
+      .prompt-card strong,
+      .chat-card strong,
+      .thread-card strong,
+      .daemon-card strong,
+      .ownership-card strong {
+        display: block;
+        color: #14211c;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 1.1;
+      }
+
+      .prompt-card span,
+      .chat-card span,
+      .thread-card span,
+      .daemon-card span,
+      .ownership-card span {
+        display: block;
+        margin-top: 8px;
+        color: #52625a;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 1.2;
+      }
+
+      .prompt-badge {
+        display: inline-flex;
+        margin-bottom: 14px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #fff2db;
+        color: #7a4d13;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .gate-board {
+        position: relative;
+        width: 820px;
+        height: 600px;
+        justify-self: center;
+      }
+
+      .gate-line {
+        position: absolute;
+        left: 116px;
+        top: 294px;
+        width: 590px;
+        height: 5px;
+        border-radius: 999px;
+        background: #1f6f55;
+        transform-origin: left center;
+      }
+
+      .gate-lock {
+        position: absolute;
+        left: 316px;
+        top: 196px;
+        display: grid;
+        place-items: center;
+        width: 190px;
+        height: 190px;
+        border: 3px solid rgba(31, 111, 85, 0.36);
+        border-radius: 50%;
+        background: #fbfcf8;
+        box-shadow: 0 24px 70px rgba(35, 55, 47, 0.14);
+      }
+
+      .gate-lock span {
+        color: #1f6f55;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .gate-card {
+        position: absolute;
+        width: 260px;
+        padding: 24px;
+      }
+
+      .gate-card strong {
+        display: block;
+        color: #14211c;
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .gate-card span {
+        display: block;
+        margin-top: 9px;
+        color: #52625a;
+        font-size: 21px;
+        font-weight: 700;
+      }
+
+      .gate-present {
+        left: 0;
+        top: 72px;
+      }
+
+      .gate-away {
+        right: 0;
+        bottom: 70px;
+        border-color: rgba(31, 111, 85, 0.34);
+      }
+
+      .command-rail {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        max-width: 800px;
+      }
+
+      .command-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 16px;
+        border: 2px solid rgba(24, 167, 216, 0.26);
+        border-radius: 8px;
+        background: #101820;
+        color: #83f3b2;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 24px;
+        font-weight: 900;
+        box-shadow: 0 18px 50px rgba(16, 24, 32, 0.18);
+      }
+
+      .route-layout {
+        grid-template-rows: auto 1fr;
+        align-content: center;
+      }
+
+      .route-flow {
+        position: relative;
+        display: grid;
+        grid-template-columns: 360px 300px 360px 360px;
+        align-items: center;
+        gap: 46px;
+        width: 100%;
+        height: 470px;
+      }
+
+      .flow-line {
+        position: absolute;
+        left: 280px;
+        right: 240px;
+        top: 238px;
+        height: 5px;
+        border-radius: 999px;
+        background: #18a7d8;
+        transform-origin: left center;
+      }
+
+      .flow-dot {
+        position: absolute;
+        top: 224px;
+        width: 32px;
+        height: 32px;
+        border: 5px solid #18a7d8;
+        border-radius: 999px;
+        background: #eef2ed;
+      }
+
+      .dot-one {
+        left: 338px;
+      }
+
+      .dot-two {
+        left: 708px;
+      }
+
+      .dot-three {
+        left: 1122px;
+      }
+
+      .chat-card,
+      .route-card,
+      .thread-card,
+      .daemon-card {
+        min-height: 230px;
+        padding: 28px;
+      }
+
+      .chat-card {
+        border-color: rgba(24, 167, 216, 0.34);
+      }
+
+      .chat-card .channel {
+        display: inline-flex;
+        margin-bottom: 18px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #e1f4fa;
+        color: #096a89;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .route-card {
+        display: grid;
+        place-items: center;
+        min-height: 190px;
+        border-color: rgba(31, 111, 85, 0.34);
+        background: #dfeee7;
+        text-align: center;
+      }
+
+      .route-card strong {
+        display: block;
+        color: #1f6f55;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 26px;
+        font-weight: 900;
+      }
+
+      .route-card span {
+        display: block;
+        margin-top: 10px;
+        color: #52625a;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .thread-card {
+        border-color: rgba(31, 111, 85, 0.34);
+      }
+
+      .state-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .state-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 13px 15px;
+        border: 1px solid rgba(31, 111, 85, 0.18);
+        border-radius: 8px;
+        background: #fbfcf8;
+        color: #52625a;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .state-row b {
+        color: #14211c;
+      }
+
+      .approval-board {
+        display: grid;
+        grid-template-columns: 500px 330px 500px;
+        align-items: center;
+        gap: 58px;
+        justify-content: center;
+        margin-top: 22px;
+      }
+
+      .approval-card {
+        padding: 30px;
+        border-color: rgba(24, 167, 216, 0.32);
+      }
+
+      .approval-title {
+        display: inline-flex;
+        margin-bottom: 18px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #e1f4fa;
+        color: #096a89;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .approval-question {
+        color: #14211c;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.12;
+      }
+
+      .approval-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .approval-actions span {
+        display: inline-flex;
+        flex: 1;
+        justify-content: center;
+        padding: 14px 16px;
+        border-radius: 8px;
+        color: #14211c;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .approve {
+        background: #dfeee7;
+        border: 2px solid rgba(31, 111, 85, 0.28);
+      }
+
+      .deny {
+        background: #fff2db;
+        border: 2px solid rgba(199, 134, 47, 0.26);
+      }
+
+      .daemon-card {
+        display: grid;
+        align-content: center;
+        min-height: 250px;
+        border-color: rgba(199, 134, 47, 0.34);
+        background: #fffaf1;
+      }
+
+      .approval-arrow {
+        display: grid;
+        place-items: center;
+        height: 5px;
+        border-radius: 999px;
+        background: #1f6f55;
+        transform-origin: left center;
+      }
+
+      .approval-arrow::after {
+        content: "";
+        width: 28px;
+        height: 28px;
+        margin-left: auto;
+        border-top: 5px solid #1f6f55;
+        border-right: 5px solid #1f6f55;
+        transform: translateX(8px) rotate(45deg);
+      }
+
+      .result-thread {
+        min-height: 250px;
+      }
+
+      .thread-status {
+        display: inline-flex;
+        margin-bottom: 18px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #dfeee7;
+        color: #1f6f55;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .ownership-wrap {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        align-items: center;
+        gap: 72px;
+        height: 100%;
+      }
+
+      .ownership-map {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .ownership-card {
+        min-height: 188px;
+        padding: 27px;
+      }
+
+      .ownership-card:nth-child(2),
+      .ownership-card:nth-child(3) {
+        border-color: rgba(24, 167, 216, 0.27);
+      }
+
+      .ownership-card:nth-child(4) {
+        border-color: rgba(199, 134, 47, 0.3);
+      }
+
+      .local-ring {
+        position: absolute;
+        inset: 96px 150px;
+        z-index: -1;
+        border: 3px solid rgba(31, 111, 85, 0.24);
+        border-radius: 50%;
+        background: rgba(223, 238, 231, 0.32);
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 76px;
+        z-index: 8;
+        display: grid;
+        gap: 10px;
+        width: 710px;
+        padding: 26px 30px;
+        border-color: rgba(31, 111, 85, 0.28);
+        background: rgba(251, 252, 248, 0.97);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #14211c;
+        font-family: Georgia, serif;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #52625a;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.18;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #eef2ed;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="44">
+      <section id="scene1" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Problem</p>
+            <h1 class="headline">Codex kept working after I stepped away.</h1>
+            <p class="subhead">Prompts could sit on the desktop.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="terminal-card large">
+            <img src="assets/codex-telegram-bridge-terminal.png" alt="Codex Telegram Bridge command surface" />
+            <div class="terminal-label"><span class="status-dot"></span>remote surface</div>
+            <div class="prompt-card">
+              <div class="prompt-badge">Desktop prompt</div>
+              <strong>Waiting for input</strong>
+              <span>Still pinned to the local app</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-shell split-reverse">
+          <div class="gate-board">
+            <div class="gate-line"></div>
+            <div class="gate-card gate-present">
+              <strong>Present</strong>
+              <span>No outbound chat</span>
+            </div>
+            <div class="gate-lock"><span>Remote gate</span></div>
+            <div class="gate-card gate-away">
+              <strong>Away</strong>
+              <span>Delivery allowed</span>
+            </div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">Ownership</p>
+            <h2 class="headline">Remote control needed ownership.</h2>
+            <p class="subhead">Chat should not become open automation.</p>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The bridge</p>
+            <h2 class="headline">I built a local bridge.</h2>
+            <p class="subhead">/away opens remote mode. /back closes it.</p>
+            <div class="command-rail">
+              <span class="command-chip">/away</span>
+              <span class="command-chip">remote status</span>
+              <span class="command-chip">/back</span>
+            </div>
+          </div>
+          <div class="terminal-card focus">
+            <div class="terminal-image-bg" aria-label="Codex Telegram Bridge terminal help"></div>
+            <div class="terminal-label"><span class="status-dot"></span>local bridge</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-shell route-layout">
+          <div class="copy">
+            <p class="eyebrow">Reply routing</p>
+            <h2 class="headline wide">Replies route back through local state.</h2>
+            <p class="subhead">The chat carries a safe route, not private ids.</p>
+          </div>
+          <div class="route-flow">
+            <div class="flow-line"></div>
+            <div class="flow-dot dot-one"></div>
+            <div class="flow-dot dot-two"></div>
+            <div class="flow-dot dot-three"></div>
+            <div class="chat-card">
+              <div class="channel">Telegram or Discord</div>
+              <strong>Remote reply</strong>
+              <span>Safe chat message</span>
+            </div>
+            <div class="route-card">
+              <div>
+                <strong>Safe route</strong>
+                <span>No private ids</span>
+              </div>
+            </div>
+            <div class="route-card state-stack">
+              <div class="state-row"><b>Route</b><span>local</span></div>
+              <div class="state-row"><b>Delivery</b><span>recorded</span></div>
+              <div class="state-row"><b>Action</b><span>deduped</span></div>
+            </div>
+            <div class="thread-card">
+              <strong>Same Codex thread</strong>
+              <span>The originating work continues.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p class="eyebrow">Approval path</p>
+            <h2 class="headline wide">Approvals return to the same thread.</h2>
+            <p class="subhead">Approve or deny in chat; the daemon records the action.</p>
+          </div>
+          <div class="approval-board">
+            <div class="approval-card">
+              <div class="approval-title">Approval</div>
+              <div class="approval-question">Codex needs a decision.</div>
+              <div class="approval-actions">
+                <span class="approve">Approve</span>
+                <span class="deny">Deny</span>
+              </div>
+            </div>
+            <div class="daemon-card">
+              <strong>Daemon</strong>
+              <span>Recorded action</span>
+              <div class="approval-arrow"></div>
+            </div>
+            <div class="thread-card result-thread">
+              <div class="thread-status">Same Codex thread</div>
+              <strong>Work resumes</strong>
+              <span>The approval lands where it started.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">06</div>
+        <div class="scene-shell">
+          <div class="ownership-wrap">
+            <div class="copy">
+              <p class="eyebrow">Result</p>
+              <h2 class="headline">Remote Codex stays controlled.</h2>
+              <p class="subhead">Presence, routing, approvals, and delivery stay local.</p>
+              <div class="rule"></div>
+            </div>
+            <div class="ownership-map">
+              <div class="local-ring"></div>
+              <div class="ownership-card">
+                <strong>Presence</strong>
+                <span>Remote mode is explicit.</span>
+              </div>
+              <div class="ownership-card">
+                <strong>Routing</strong>
+                <span>Replies return to source.</span>
+              </div>
+              <div class="ownership-card">
+                <strong>Approvals</strong>
+                <span>Decisions stay bounded.</span>
+              </div>
+              <div class="ownership-card">
+                <strong>Delivery</strong>
+                <span>Actions stay recorded.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Codex Telegram Bridge</strong>
+          <span>Remote replies stay locally owned.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 44;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      tl.to(".panel-left", { y: 30, duration: 22, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".panel-right", { y: -26, duration: 22, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-grid", { x: 22, y: 16, duration: 44, ease: "none" }, 0);
+
+      function fromToIfExists(selector, fromVars, toVars, position) {
+        if (document.querySelector(selector)) {
+          tl.fromTo(selector, fromVars, toVars, position);
+        }
+      }
+
+      function enterCopy(scene, start, fromX) {
+        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" }, start);
+        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: fromX }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" }, start + 0.04);
+        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" }, start + 0.18);
+        fromToIfExists(scene + " .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" }, start + 0.76);
+        fromToIfExists(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" }, start + 1.04);
+        fromToIfExists(scene + " .command-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: "back.out(1.2)", overwrite: "auto" }, start + 1.18);
+      }
+
+      function pushTransition(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 1, x: 1920 }, time);
+        tl.to(fromScene, { x: -1920, duration: 0.56, ease: "power3.inOut" }, time);
+        tl.to(toScene, { x: 0, duration: 0.56, ease: "power3.inOut" }, time);
+        tl.set(fromScene, { opacity: 0, x: 0 }, time + 0.57);
+      }
+
+      function blurTransition(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 0, scale: 0.985, x: 0, filter: "blur(10px)" }, time);
+        tl.to(fromScene, { opacity: 0, scale: 1.012, filter: "blur(10px)", duration: 0.64, ease: "sine.inOut" }, time);
+        tl.to(toScene, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.64, ease: "sine.inOut" }, time);
+        tl.set(fromScene, { scale: 1, filter: "blur(0px)" }, time + 0.65);
+      }
+
+      enterCopy("#scene1", 0.16, -34);
+      tl.fromTo("#scene1 .terminal-card", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 0.52);
+      tl.fromTo("#scene1 .terminal-label", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" }, 1.0);
+      tl.fromTo("#scene1 .prompt-card", { opacity: 0, y: 42, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "back.out(1.2)" }, 1.22);
+
+      pushTransition("#scene1", "#scene2", 5.94);
+      enterCopy("#scene2", 6.32, 34);
+      tl.fromTo("#scene2 .gate-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" }, 6.72);
+      tl.fromTo("#scene2 .gate-lock", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.46, ease: "back.out(1.45)" }, 6.9);
+      tl.fromTo("#scene2 .gate-card", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.16, ease: "power3.out" }, 7.08);
+
+      pushTransition("#scene2", "#scene3", 12.44);
+      enterCopy("#scene3", 12.82, -34);
+      tl.fromTo("#scene3 .terminal-card", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 13.02);
+      tl.fromTo("#scene3 .terminal-label", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" }, 13.6);
+
+      blurTransition("#scene3", "#scene4", 19.44);
+      enterCopy("#scene4", 19.84, -34);
+      tl.fromTo("#scene4 .flow-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 20.72);
+      tl.fromTo("#scene4 .flow-dot", { opacity: 0, scale: 0.25 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.12, ease: "back.out(1.5)" }, 20.9);
+      tl.fromTo("#scene4 .chat-card", { opacity: 0, x: -52, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 21.02);
+      tl.fromTo("#scene4 .route-card", { opacity: 0, y: 38, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.12, ease: "power2.out" }, 21.2);
+      tl.fromTo("#scene4 .thread-card", { opacity: 0, x: 52, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 21.46);
+
+      pushTransition("#scene4", "#scene5", 26.44);
+      enterCopy("#scene5", 26.82, -34);
+      tl.fromTo("#scene5 .approval-card", { opacity: 0, x: -44, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" }, 27.58);
+      tl.fromTo("#scene5 .daemon-card", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, ease: "back.out(1.2)" }, 27.82);
+      tl.fromTo("#scene5 .approval-arrow", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.46, ease: "power3.out" }, 28.2);
+      tl.fromTo("#scene5 .result-thread", { opacity: 0, x: 44, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" }, 28.28);
+      tl.fromTo("#scene5 .approval-actions span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.08, ease: "power2.out" }, 28.46);
+
+      pushTransition("#scene5", "#scene6", 33.44);
+      enterCopy("#scene6", 33.82, -34);
+      tl.fromTo("#scene6 .local-ring", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.72, ease: "sine.out" }, 34.3);
+      tl.fromTo("#scene6 .ownership-card", { opacity: 0, y: 44, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" }, 34.72);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 40.75);
+      tl.to("#end-fade", { opacity: 1, duration: 0.34, ease: "sine.inOut" }, 43.66);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
