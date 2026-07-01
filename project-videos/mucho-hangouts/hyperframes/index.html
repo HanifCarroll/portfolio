@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Mucho Hangouts Engineering Contribution Clip</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eff8f5;
+        color: #111827;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eff8f5;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eff8f5;
+      }
+
+      #scene1 { z-index: 1; }
+      #scene2 { z-index: 2; }
+      #scene3 { z-index: 3; }
+      #scene4 { z-index: 4; }
+      #scene5 { z-index: 5; }
+      #scene6 { z-index: 6; }
+
+      #scene2,
+      #scene3,
+      #scene4,
+      #scene5,
+      #scene6 {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(20, 122, 96, 0.1) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(20, 122, 96, 0.08) 2px, transparent 2px);
+        background-position: -30px -30px;
+        background-size: 120px 120px;
+        opacity: 0.34;
+      }
+
+      .bg-panel {
+        position: absolute;
+        border: 2px solid rgba(20, 122, 96, 0.18);
+        background: rgba(221, 243, 235, 0.56);
+      }
+
+      .panel-left {
+        left: -170px;
+        top: 120px;
+        width: 390px;
+        height: 820px;
+        transform: rotate(-6deg);
+      }
+
+      .panel-right {
+        right: -210px;
+        top: 170px;
+        width: 460px;
+        height: 780px;
+        transform: rotate(7deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        border-color: #147a60;
+        opacity: 0.68;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 84px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.84fr 1.16fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.12fr 0.88fr;
+        align-items: center;
+      }
+
+      .center-stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #147a60;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 840px;
+        font-family: Georgia, serif;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .headline.wide {
+        max-width: 1120px;
+      }
+
+      .subhead {
+        max-width: 780px;
+        color: #52606d;
+        font-size: 34px;
+        font-weight: 650;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 520px;
+        height: 5px;
+        background: #147a60;
+        transform-origin: left center;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 84px;
+        z-index: 3;
+        color: rgba(20, 122, 96, 0.76);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .product-frame,
+      .proof-card,
+      .flow-card,
+      .team-card,
+      .result-chip,
+      .end-card {
+        border: 2px solid #cfe4dc;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 34px 90px rgba(10, 63, 52, 0.15);
+      }
+
+      .product-frame {
+        position: relative;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .product-shot {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero-shot {
+        background-image: url("assets/mucho-hangouts-hero.png");
+      }
+
+      .feature-shot {
+        background-image: url("assets/mucho-hangouts-feature.png");
+      }
+
+      .shot-large {
+        width: 1058px;
+        height: 652px;
+      }
+
+      .shot-wide {
+        width: 1068px;
+        height: 670px;
+      }
+
+      .shot-final {
+        width: 930px;
+        height: 602px;
+      }
+
+      .risk-stack,
+      .result-stack {
+        position: absolute;
+        display: grid;
+        gap: 16px;
+      }
+
+      .risk-stack {
+        right: 42px;
+        bottom: 42px;
+        width: 330px;
+      }
+
+      .proof-card {
+        min-height: 94px;
+        padding: 24px 26px;
+      }
+
+      .proof-card strong {
+        display: block;
+        color: #111827;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .proof-card span {
+        display: block;
+        margin-top: 9px;
+        color: #52606d;
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.18;
+      }
+
+      .proof-card.accent {
+        border-color: rgba(248, 51, 78, 0.35);
+      }
+
+      .foundation-board {
+        display: grid;
+        gap: 28px;
+        width: 960px;
+      }
+
+      .foundation-rail {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .rail-line {
+        position: absolute;
+        left: 96px;
+        right: 96px;
+        top: 44px;
+        height: 5px;
+        background: #147a60;
+        transform-origin: left center;
+      }
+
+      .flow-card {
+        position: relative;
+        min-height: 220px;
+        padding: 28px;
+      }
+
+      .flow-dot {
+        width: 40px;
+        height: 40px;
+        border: 5px solid #147a60;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .flow-card strong {
+        display: block;
+        margin-top: 48px;
+        font-size: 34px;
+        line-height: 1.02;
+      }
+
+      .flow-card span {
+        display: block;
+        margin-top: 14px;
+        color: #52606d;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .product-strip {
+        position: relative;
+      }
+
+      .workflow-chips {
+        position: absolute;
+        left: 42px;
+        bottom: 42px;
+        z-index: 3;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .workflow-chip,
+      .result-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 12px 18px;
+        color: #0a3f34;
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .workflow-chip {
+        border: 2px solid rgba(20, 122, 96, 0.32);
+        border-radius: 999px;
+        background: rgba(221, 243, 235, 0.96);
+      }
+
+      .workflow-chip.coral {
+        border-color: rgba(248, 51, 78, 0.34);
+        color: #b61f34;
+        background: rgba(255, 230, 235, 0.96);
+      }
+
+      .team-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+        margin-top: 12px;
+      }
+
+      .team-card {
+        min-height: 250px;
+        padding: 34px;
+      }
+
+      .team-card .label {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #ddf3eb;
+        color: #147a60;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .team-card strong {
+        display: block;
+        margin-top: 36px;
+        font-size: 42px;
+        line-height: 1;
+      }
+
+      .team-card p {
+        margin-top: 18px;
+        color: #52606d;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .result-layout {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        align-items: center;
+        gap: 52px;
+      }
+
+      .result-stack {
+        left: 38px;
+        bottom: 38px;
+        z-index: 3;
+        grid-template-columns: repeat(3, max-content);
+      }
+
+      .end-wrap {
+        display: grid;
+        place-items: center;
+      }
+
+      .end-card {
+        display: grid;
+        gap: 18px;
+        width: 840px;
+        padding: 48px 54px;
+        opacity: 0;
+        text-align: center;
+      }
+
+      .end-card strong {
+        color: #111827;
+        font-family: Georgia, serif;
+        font-size: 64px;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #52606d;
+        font-size: 32px;
+        font-weight: 750;
+        line-height: 1.16;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #eff8f5;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="30">
+      <section id="scene1" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-inner split">
+          <div class="copy">
+            <p class="eyebrow">Problem</p>
+            <h1 class="headline">The product was live.</h1>
+            <p class="subhead">Reliability and team speed were becoming risks.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="product-frame shot-large">
+            <div class="product-shot hero-shot"></div>
+            <div class="risk-stack">
+              <div class="proof-card accent">
+                <strong>Reliability</strong>
+                <span>Core social flows needed steadier behavior.</span>
+              </div>
+              <div class="proof-card">
+                <strong>Team speed</strong>
+                <span>Delivery needed clearer defaults.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-inner split-reverse">
+          <div class="foundation-board">
+            <div class="foundation-rail">
+              <div class="rail-line"></div>
+              <div class="flow-card">
+                <div class="flow-dot"></div>
+                <strong>Clearer flows</strong>
+                <span>Less guesswork in core paths.</span>
+              </div>
+              <div class="flow-card">
+                <div class="flow-dot"></div>
+                <strong>App state</strong>
+                <span>Fewer fragile interaction points.</span>
+              </div>
+              <div class="flow-card">
+                <div class="flow-dot"></div>
+                <strong>Easier to extend</strong>
+                <span>Patterns the team could reuse.</span>
+              </div>
+            </div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">Contribution</p>
+            <h2 class="headline">I tightened the foundations.</h2>
+            <p class="subhead">Core flows got clearer and easier to extend.</p>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-inner split">
+          <div class="copy">
+            <p class="eyebrow">Core workflows</p>
+            <h2 class="headline">Messaging and notifications got steadier.</h2>
+            <p class="subhead">Everyday coordination needed fewer fragile moments.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="product-strip">
+            <div class="product-frame shot-wide">
+              <div class="product-shot feature-shot"></div>
+            </div>
+            <div class="workflow-chips">
+              <span class="workflow-chip">Message</span>
+              <span class="workflow-chip coral">Notify</span>
+              <span class="workflow-chip">Share</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-inner center-stack">
+          <div class="copy">
+            <p class="eyebrow">Team patterns</p>
+            <h2 class="headline wide">Senior judgment became repeatable.</h2>
+            <p class="subhead">Code review and pairing gave juniors safer defaults.</p>
+          </div>
+          <div class="team-strip">
+            <div class="team-card">
+              <span class="label">Review</span>
+              <strong>Clearer changes</strong>
+              <p>Work moved through stronger review habits.</p>
+            </div>
+            <div class="team-card">
+              <span class="label">Pair</span>
+              <strong>Shared direction</strong>
+              <p>Junior developers had a safer path forward.</p>
+            </div>
+            <div class="team-card">
+              <span class="label">Ship</span>
+              <strong>Reusable patterns</strong>
+              <p>New work started from clearer defaults.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-inner result-layout">
+          <div class="copy">
+            <p class="eyebrow">Result</p>
+            <h2 class="headline">The team kept shipping.</h2>
+            <p class="subhead">The product became more dependable during cleanup.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="product-strip">
+            <div class="product-frame shot-final">
+              <div class="product-shot hero-shot"></div>
+            </div>
+            <div class="result-stack">
+              <span class="result-chip">More reliable</span>
+              <span class="result-chip">Easier to extend</span>
+              <span class="result-chip">Less ad hoc rescue</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-inner end-wrap">
+          <div id="end-card" class="end-card">
+            <strong>Mucho Hangouts</strong>
+            <span>Reliable social workflows, clearer delivery.</span>
+          </div>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 30;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.48, ease: "power2.out" },
+      });
+
+      tl.to(".panel-left", { y: 28, duration: 15, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".panel-right", { y: -24, duration: 15, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-grid", { x: 16, y: 12, duration: 30, ease: "none" }, 0);
+
+      tl.fromTo("#scene1 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32 }, 0.05);
+      tl.fromTo("#scene1 .eyebrow", { opacity: 0, x: -32 }, { opacity: 1, x: 0, duration: 0.4 }, 0.08);
+      tl.fromTo("#scene1 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.68, ease: "power3.out" }, 0.18);
+      tl.fromTo("#scene1 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5 }, 0.74);
+      tl.fromTo("#scene1 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" }, 1.08);
+      tl.fromTo("#scene1 .product-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 0.42);
+      tl.fromTo("#scene1 .proof-card", { opacity: 0, x: 42 }, { opacity: 1, x: 0, duration: 0.42, stagger: 0.12, ease: "power3.out" }, 1.18);
+
+      tl.to("#scene1", { opacity: 0, x: -72, scale: 0.985, duration: 0.48, ease: "power3.inOut" }, 5.18);
+      tl.set("#scene2", { visibility: "visible" }, 5.2);
+      tl.fromTo("#scene2", { opacity: 0, x: 82, scale: 0.985 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: "power3.inOut", immediateRender: false }, 5.22);
+      tl.set("#scene1", { visibility: "hidden" }, 5.66);
+      tl.fromTo("#scene2 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32 }, 5.44);
+      tl.fromTo("#scene2 .eyebrow", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.4 }, 5.5);
+      tl.fromTo("#scene2 .headline", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.64, ease: "power3.out" }, 5.66);
+      tl.fromTo("#scene2 .subhead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 6.18);
+      tl.fromTo("#scene2 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5 }, 6.5);
+      tl.fromTo("#scene2 .rail-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7, ease: "power3.out" }, 5.92);
+      tl.fromTo("#scene2 .flow-card", { opacity: 0, y: 40, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 6.06);
+      tl.fromTo("#scene2 .flow-dot", { opacity: 0, scale: 0.25 }, { opacity: 1, scale: 1, duration: 0.32, stagger: 0.1, ease: "back.out(1.5)" }, 6.2);
+
+      tl.to("#scene2", { opacity: 0, x: -72, scale: 0.985, duration: 0.48, ease: "power3.inOut" }, 10.48);
+      tl.set("#scene3", { visibility: "visible" }, 10.5);
+      tl.fromTo("#scene3", { opacity: 0, x: 82, scale: 0.985 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: "power3.inOut", immediateRender: false }, 10.52);
+      tl.set("#scene2", { visibility: "hidden" }, 10.96);
+      tl.fromTo("#scene3 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32 }, 10.74);
+      tl.fromTo("#scene3 .eyebrow", { opacity: 0, x: -32 }, { opacity: 1, x: 0, duration: 0.4 }, 10.78);
+      tl.fromTo("#scene3 .headline", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.64, ease: "power3.out" }, 10.94);
+      tl.fromTo("#scene3 .subhead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 11.48);
+      tl.fromTo("#scene3 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5 }, 11.8);
+      tl.fromTo("#scene3 .product-frame", { opacity: 0, y: 32, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 10.96);
+      tl.fromTo("#scene3 .workflow-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.08 }, 11.88);
+
+      tl.to("#scene3", { opacity: 0, x: -72, scale: 0.985, duration: 0.48, ease: "power3.inOut" }, 15.78);
+      tl.set("#scene4", { visibility: "visible" }, 15.8);
+      tl.fromTo("#scene4", { opacity: 0, x: 82, scale: 0.985 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: "power3.inOut", immediateRender: false }, 15.82);
+      tl.set("#scene3", { visibility: "hidden" }, 16.26);
+      tl.fromTo("#scene4 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32 }, 16.04);
+      tl.fromTo("#scene4 .eyebrow", { opacity: 0, x: -32 }, { opacity: 1, x: 0, duration: 0.4 }, 16.1);
+      tl.fromTo("#scene4 .headline", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.64, ease: "power3.out" }, 16.26);
+      tl.fromTo("#scene4 .subhead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 16.82);
+      tl.fromTo("#scene4 .team-card", { opacity: 0, y: 40, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 17.06);
+      tl.fromTo("#scene4 .label", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, 17.22);
+
+      tl.to("#scene4", { opacity: 0, x: -72, scale: 0.985, duration: 0.48, ease: "power3.inOut" }, 21.08);
+      tl.set("#scene5", { visibility: "visible" }, 21.1);
+      tl.fromTo("#scene5", { opacity: 0, x: 82, scale: 0.985 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: "power3.inOut", immediateRender: false }, 21.12);
+      tl.set("#scene4", { visibility: "hidden" }, 21.56);
+      tl.fromTo("#scene5 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32 }, 21.34);
+      tl.fromTo("#scene5 .eyebrow", { opacity: 0, x: -32 }, { opacity: 1, x: 0, duration: 0.4 }, 21.38);
+      tl.fromTo("#scene5 .headline", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.64, ease: "power3.out" }, 21.56);
+      tl.fromTo("#scene5 .subhead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 22.12);
+      tl.fromTo("#scene5 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5 }, 22.46);
+      tl.fromTo("#scene5 .product-frame", { opacity: 0, x: 40, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 21.76);
+      tl.fromTo("#scene5 .result-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.08 }, 22.72);
+
+      tl.to("#scene5", { opacity: 0, x: -60, scale: 0.985, duration: 0.48, ease: "power3.inOut" }, 26.96);
+      tl.set("#scene6", { visibility: "visible" }, 27);
+      tl.fromTo("#scene6", { opacity: 0, y: 28, scale: 0.99 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, ease: "power3.out", immediateRender: false }, 27.05);
+      tl.set("#scene5", { visibility: "hidden" }, 27.44);
+      tl.fromTo("#end-card", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.48, ease: "sine.out", immediateRender: false }, 27.1);
+      tl.to("#end-fade", { opacity: 1, duration: 0.28, ease: "sine.inOut" }, 29.72);
+      tl.set("#scene6", { visibility: "hidden" }, 30);
+
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>
