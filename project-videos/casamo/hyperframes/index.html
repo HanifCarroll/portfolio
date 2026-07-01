@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Casamo Product Walkthrough</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f4f2ea;
+        color: #10263b;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f4f2ea;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f4f2ea;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+      }
+
+      .backdrop {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(13, 157, 163, 0.1) 2px, rgba(13, 157, 163, 0) 2px),
+          linear-gradient(90deg, rgba(7, 31, 58, 0.08) 2px, rgba(7, 31, 58, 0) 2px);
+        background-position: -24px -24px;
+        background-size: 104px 104px;
+        opacity: 0.28;
+      }
+
+      .wash {
+        position: absolute;
+        right: -220px;
+        top: -180px;
+        width: 820px;
+        height: 820px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(13, 157, 163, 0.18), rgba(13, 157, 163, 0) 68%);
+      }
+
+      .sand-panel {
+        position: absolute;
+        left: -180px;
+        bottom: 120px;
+        width: 560px;
+        height: 760px;
+        border: 2px solid rgba(183, 121, 46, 0.18);
+        background: rgba(232, 216, 191, 0.42);
+        transform: rotate(-8deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-color: #0d9da3;
+        opacity: 0.72;
+      }
+
+      .frame-mark.tl {
+        left: 56px;
+        top: 56px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 56px;
+        bottom: 56px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 78px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.84fr 1.16fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.14fr 0.86fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #0d7f86;
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 840px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      .headline.compact {
+        max-width: 930px;
+        font-size: 72px;
+        line-height: 1.02;
+      }
+
+      .headline.wide {
+        max-width: 1040px;
+      }
+
+      .subhead {
+        max-width: 820px;
+        color: #5d6a66;
+        font-size: 34px;
+        font-weight: 650;
+        letter-spacing: 0;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 210px;
+        height: 8px;
+        border-radius: 999px;
+        background: #0d9da3;
+        transform-origin: left center;
+      }
+
+      .screen-frame,
+      .card {
+        overflow: hidden;
+        border: 2px solid rgba(7, 31, 58, 0.12);
+        background: #fffcf4;
+        box-shadow: 0 28px 80px rgba(16, 38, 59, 0.14);
+      }
+
+      .screen-frame {
+        position: relative;
+        border-radius: 28px;
+      }
+
+      .screen-frame.dark {
+        border-color: rgba(7, 31, 58, 0.28);
+        background: #071f3a;
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        height: 54px;
+        gap: 10px;
+        padding: 0 22px;
+        border-bottom: 1px solid rgba(7, 31, 58, 0.11);
+        background: rgba(255, 252, 244, 0.96);
+      }
+
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+      }
+
+      .dot.red {
+        background: #e2776f;
+      }
+
+      .dot.yellow {
+        background: #e8c465;
+      }
+
+      .dot.green {
+        background: #73b888;
+      }
+
+      .screen-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .browser-bar + .screen-img {
+        height: calc(100% - 54px);
+      }
+
+      .screen-img.fit {
+        object-fit: contain;
+      }
+
+      .hero-shot {
+        width: 1000px;
+        height: 620px;
+        margin-left: auto;
+      }
+
+      .hero-shot .screen-img {
+        object-position: 44% center;
+      }
+
+      .claim-row {
+        position: absolute;
+        left: 42px;
+        bottom: 38px;
+        display: flex;
+        gap: 14px;
+      }
+
+      .claim-pill,
+      .evidence-pill,
+      .result-chip,
+      .loop-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 14px 20px;
+        border: 2px solid rgba(13, 157, 163, 0.25);
+        border-radius: 999px;
+        background: rgba(255, 252, 244, 0.94);
+        color: #071f3a;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1;
+        box-shadow: 0 18px 40px rgba(16, 38, 59, 0.1);
+      }
+
+      .claim-pill.warn {
+        border-color: rgba(183, 121, 46, 0.34);
+        color: #8d571e;
+      }
+
+      .photo-wrap {
+        position: relative;
+        display: grid;
+        align-items: center;
+      }
+
+      .stay-photo {
+        width: 930px;
+        height: 590px;
+      }
+
+      .stay-photo .screen-img {
+        object-position: center;
+      }
+
+      .evidence-stack {
+        position: absolute;
+        right: -22px;
+        bottom: 36px;
+        display: grid;
+        gap: 14px;
+        width: 370px;
+      }
+
+      .evidence-card,
+      .audit-card,
+      .loop-card {
+        border: 2px solid rgba(7, 31, 58, 0.1);
+        border-radius: 24px;
+        background: rgba(255, 252, 244, 0.96);
+        box-shadow: 0 24px 60px rgba(16, 38, 59, 0.12);
+      }
+
+      .evidence-card {
+        padding: 22px 24px;
+      }
+
+      .evidence-card strong,
+      .audit-card strong,
+      .loop-card strong {
+        display: block;
+        color: #10263b;
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 1.08;
+      }
+
+      .evidence-card span,
+      .audit-card span,
+      .loop-card span {
+        display: block;
+        margin-top: 9px;
+        color: #5d6a66;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.22;
+      }
+
+      .evidence-card.teal {
+        border-color: rgba(13, 157, 163, 0.28);
+        background: #ddf3f0;
+      }
+
+      .evidence-card.leaf {
+        border-color: rgba(53, 107, 80, 0.26);
+      }
+
+      .intake-wrap {
+        position: relative;
+      }
+
+      .intake-shot {
+        width: 1050px;
+        height: 640px;
+        margin-left: auto;
+      }
+
+      .intake-shot .screen-img {
+        object-position: 28% center;
+      }
+
+      .trip-needs {
+        position: absolute;
+        left: 16px;
+        bottom: 22px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        width: 820px;
+        min-height: 200px;
+        padding: 24px 20px;
+        border-radius: 28px;
+        background: rgba(255, 252, 244, 0.96);
+        box-shadow: 0 28px 70px rgba(16, 38, 59, 0.14);
+      }
+
+      .need-chip {
+        min-height: 76px;
+        padding: 16px;
+        border: 2px solid #d8ded5;
+        border-radius: 18px;
+        background: #f4f2ea;
+        color: #10263b;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.05;
+        text-align: center;
+      }
+
+      .need-chip.primary {
+        border-color: rgba(13, 157, 163, 0.32);
+        background: #ddf3f0;
+        color: #075a60;
+      }
+
+      .scan-rail {
+        position: absolute;
+        right: 42px;
+        top: 50px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 18px;
+        border-radius: 999px;
+        background: #071f3a;
+        color: #fffcf4;
+        box-shadow: 0 22px 50px rgba(7, 31, 58, 0.28);
+      }
+
+      .rail-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #0d9da3;
+      }
+
+      .scan-rail span {
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .audit-scene {
+        display: grid;
+        grid-template-columns: 0.88fr 1.12fr;
+        align-items: center;
+        gap: 44px;
+      }
+
+      .audit-visual {
+        display: grid;
+        grid-template-columns: 430px minmax(0, 1fr);
+        align-items: center;
+        gap: 22px;
+        min-width: 0;
+      }
+
+      .audit-proof {
+        width: 430px;
+        height: 600px;
+      }
+
+      .audit-proof .screen-img {
+        object-position: 61% center;
+      }
+
+      .audit-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .audit-card {
+        min-height: 190px;
+        padding: 28px;
+      }
+
+      .audit-card.teal {
+        border-color: rgba(13, 157, 163, 0.28);
+        background: #ddf3f0;
+      }
+
+      .audit-card.leaf {
+        border-color: rgba(53, 107, 80, 0.25);
+      }
+
+      .audit-card.amber {
+        border-color: rgba(183, 121, 46, 0.28);
+        background: #f4ead9;
+      }
+
+      .result-wrap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.78fr 1.22fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .result-shot {
+        width: 1040px;
+        height: 610px;
+        margin-left: auto;
+      }
+
+      .result-shot .screen-img {
+        object-position: center;
+      }
+
+      #s5-title {
+        max-width: 470px;
+        font-size: 64px;
+      }
+
+      .result-chips {
+        position: absolute;
+        right: 60px;
+        bottom: 58px;
+        display: flex;
+        gap: 14px;
+      }
+
+      .result-chip.teal {
+        background: #ddf3f0;
+        color: #075a60;
+      }
+
+      .result-chip.dark {
+        border-color: #071f3a;
+        background: #071f3a;
+        color: #fffcf4;
+      }
+
+      .loop-wrap {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        align-items: center;
+        gap: 54px;
+      }
+
+      .loop-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 22px;
+      }
+
+      .loop-card {
+        min-height: 168px;
+        padding: 28px;
+      }
+
+      .loop-card.dark {
+        border-color: #071f3a;
+        background: #071f3a;
+      }
+
+      .loop-card.dark strong,
+      .loop-card.dark span {
+        color: #fffcf4;
+      }
+
+      .loop-card.teal {
+        border-color: rgba(13, 157, 163, 0.28);
+        background: #ddf3f0;
+      }
+
+      .loop-report {
+        width: 900px;
+        height: 590px;
+      }
+
+      .loop-report .screen-img {
+        object-position: 51% center;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 72px;
+        z-index: 12;
+        display: grid;
+        width: 620px;
+        gap: 10px;
+        padding: 26px 32px;
+        border: 2px solid rgba(13, 157, 163, 0.28);
+        border-radius: 24px;
+        background: rgba(255, 252, 244, 0.97);
+        box-shadow: 0 30px 80px rgba(16, 38, 59, 0.18);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #10263b;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #5d6a66;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.15;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #f4f2ea;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="42"
+    >
+      <section id="scene1" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p id="s1-eyebrow" class="eyebrow">Problem</p>
+            <h1 id="s1-title" class="headline">Long-stay bookings are hard to trust.</h1>
+            <p id="s1-subtitle" class="subhead">Marketplace filters do not prove the stay.</p>
+            <span id="s1-rule" class="rule"></span>
+          </div>
+          <div id="s1-window" class="screen-frame dark hero-shot">
+            <div class="browser-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <img class="screen-img" src="assets/casamo-homepage-viewport.jpg" alt="Casamo homepage showing the stay search form and audit priorities." />
+            <div class="claim-row">
+              <span id="s1-claim-a" class="claim-pill">Wi-Fi</span>
+              <span id="s1-claim-b" class="claim-pill">Workspace</span>
+              <span id="s1-claim-c" class="claim-pill">Kitchen</span>
+              <span id="s1-claim-d" class="claim-pill warn">Claimed</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell split-reverse">
+          <div class="photo-wrap">
+            <div id="s2-photo" class="screen-frame stay-photo">
+              <img class="screen-img" src="assets/casamo-report-studio.webp" alt="Sample long-stay apartment with visible workspace, kitchen, and natural light." />
+            </div>
+            <div class="evidence-stack">
+              <div id="s2-card-a" class="evidence-card teal">
+                <strong>Photos</strong>
+                <span>Can the space support real work?</span>
+              </div>
+              <div id="s2-card-b" class="evidence-card leaf">
+                <strong>Amenities</strong>
+                <span>Are essentials listed and visible?</span>
+              </div>
+              <div id="s2-card-c" class="evidence-card">
+                <strong>Reviews</strong>
+                <span>Do guests confirm the details?</span>
+              </div>
+            </div>
+          </div>
+          <div class="copy">
+            <p id="s2-eyebrow" class="eyebrow">Evidence</p>
+            <h1 id="s2-title" class="headline compact">Remote workers need evidence before paying.</h1>
+            <p id="s2-subtitle" class="subhead">Photos, amenities, reviews, and gaps matter.</p>
+            <span id="s2-rule" class="rule"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p id="s3-eyebrow" class="eyebrow">Intake</p>
+            <h1 id="s3-title" class="headline compact">Casamo scans a shortlist for practical fit.</h1>
+            <p id="s3-subtitle" class="subhead">Enter destination, dates, budget, and must-haves.</p>
+            <span id="s3-rule" class="rule"></span>
+          </div>
+          <div class="intake-wrap">
+            <div id="s3-shot" class="screen-frame dark intake-shot">
+              <div class="browser-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <img class="screen-img" src="assets/casamo-homepage-intake.jpg" alt="Casamo trip intake form with destination, dates, budget, and audit priorities." />
+            </div>
+            <div id="s3-rail" class="scan-rail">
+              <span class="rail-dot"></span>
+              <span>Trip needs in</span>
+            </div>
+            <div id="s3-needs" class="trip-needs">
+              <div id="s3-need-a" class="need-chip primary">Destination</div>
+              <div id="s3-need-b" class="need-chip">Dates</div>
+              <div id="s3-need-c" class="need-chip">Budget</div>
+              <div id="s3-need-d" class="need-chip primary">Must-haves</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell audit-scene">
+          <div class="copy">
+            <p id="s4-eyebrow" class="eyebrow">Audit</p>
+            <h1 id="s4-title" class="headline compact">The audit keeps the decision checkable.</h1>
+            <p id="s4-subtitle" class="subhead">Strong signals, concerns, missing proof, and host questions stay visible.</p>
+            <span id="s4-rule" class="rule"></span>
+          </div>
+          <div class="audit-visual">
+            <div id="s4-proof" class="screen-frame audit-proof">
+              <img class="screen-img" src="assets/casamo-report-audit.webp" alt="Sample apartment evidence image used by the Casamo report." />
+            </div>
+            <div class="audit-grid">
+              <div id="s4-card-a" class="audit-card teal">
+                <strong>Supported</strong>
+                <span>Photo or review evidence found.</span>
+              </div>
+              <div id="s4-card-b" class="audit-card amber">
+                <strong>Concern</strong>
+                <span>Risk stays visible in the report.</span>
+              </div>
+              <div id="s4-card-c" class="audit-card">
+                <strong>Missing proof</strong>
+                <span>No quiet answer hidden as certainty.</span>
+              </div>
+              <div id="s4-card-d" class="audit-card leaf">
+                <strong>Host question</strong>
+                <span>The next message is clear.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell result-wrap">
+          <div class="copy">
+            <p id="s5-eyebrow" class="eyebrow">Result</p>
+            <h1 id="s5-title" class="headline compact">One recommended stay. Two backups.</h1>
+            <p id="s5-subtitle" class="subhead">The next question to ask the host is clear.</p>
+            <span id="s5-rule" class="rule"></span>
+          </div>
+          <div>
+            <div id="s5-shot" class="screen-frame dark result-shot">
+              <img class="screen-img" src="assets/casamo-shortlist-result.png" alt="Casamo report preview showing a top pick, runner-up, backup, and evidence labels." />
+            </div>
+            <div class="result-chips">
+              <span id="s5-chip-a" class="result-chip dark">Top pick</span>
+              <span id="s5-chip-b" class="result-chip teal">Two backups</span>
+              <span id="s5-chip-c" class="result-chip">Host question</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="grid-lines"></div>
+          <div class="wash"></div>
+          <div class="sand-panel"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-shell loop-wrap">
+          <div>
+            <div class="copy">
+              <p id="s6-eyebrow" class="eyebrow">Product loop</p>
+              <h1 id="s6-title" class="headline compact">Casamo is a focused founder-owned product.</h1>
+              <p id="s6-subtitle" class="subhead">Paid scans, saved reports, and auditable recommendations.</p>
+              <span id="s6-rule" class="rule"></span>
+            </div>
+            <div class="loop-grid">
+              <div id="s6-card-a" class="loop-card dark">
+                <strong>Trip Scan Pass</strong>
+                <span>Paid start for one trip.</span>
+              </div>
+              <div id="s6-card-b" class="loop-card teal">
+                <strong>Saved report</strong>
+                <span>Return while deciding.</span>
+              </div>
+              <div id="s6-card-c" class="loop-card">
+                <strong>Visible tradeoffs</strong>
+                <span>No blind recommendation.</span>
+              </div>
+              <div id="s6-card-d" class="loop-card">
+                <strong>Next step</strong>
+                <span>Ask the host before booking.</span>
+              </div>
+            </div>
+          </div>
+          <div id="s6-shot" class="screen-frame dark loop-report">
+            <img class="screen-img" src="assets/casamo-end-result.png" alt="Casamo stay audit preview with ranked options." />
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Casamo</strong>
+          <span>Noisy search to bookable shortlist.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 42;
+      var tl = gsap.timeline({ paused: true });
+
+      function pushTransition(oldScene, newScene, time, direction) {
+        var xOld = direction === "left" ? -1920 : 0;
+        var xNew = direction === "left" ? 1920 : 0;
+        var yOld = direction === "up" ? -1080 : 0;
+        var yNew = direction === "up" ? 1080 : 0;
+        tl.to(oldScene, { x: xOld, y: yOld, duration: 0.52, ease: "power3.inOut" }, time);
+        tl.set(newScene, { x: xNew, y: yNew, opacity: 1 }, time);
+        tl.to(newScene, { x: 0, y: 0, opacity: 1, duration: 0.52, ease: "power3.inOut" }, time);
+        tl.set(oldScene, { opacity: 0 }, time + 0.54);
+      }
+
+      function blurTransition(oldScene, newScene, time) {
+        tl.to(oldScene, { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: 0.54, ease: "power2.inOut" }, time);
+        tl.set(newScene, { filter: "blur(12px)", scale: 0.975, opacity: 0 }, time);
+        tl.to(newScene, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.58, ease: "power2.inOut" }, time + 0.1);
+      }
+
+      tl.to(".grid-lines", { backgroundPosition: "82px 48px", duration: 42, ease: "none" }, 0);
+      tl.to(".wash", { x: -42, y: 28, scale: 1.04, duration: 42, ease: "sine.inOut" }, 0);
+
+      tl.from("#s1-eyebrow", { y: 22, opacity: 0, duration: 0.34, ease: "power2.out" }, 0.22);
+      tl.from("#s1-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 0.36);
+      tl.from("#s1-subtitle", { x: -28, opacity: 0, duration: 0.46, ease: "sine.out" }, 0.62);
+      tl.from("#s1-rule", { scaleX: 0, opacity: 0, duration: 0.44, ease: "expo.out" }, 0.82);
+      tl.from("#s1-window", { x: 70, scale: 0.95, opacity: 0, duration: 0.72, ease: "power3.out" }, 0.44);
+      tl.from("#s1-claim-a, #s1-claim-b, #s1-claim-c, #s1-claim-d", {
+        y: 24,
+        scale: 0.94,
+        opacity: 0,
+        duration: 0.34,
+        stagger: 0.08,
+        ease: "back.out(1.4)"
+      }, 1.1);
+
+      pushTransition("#scene1", "#scene2", 6.0, "left");
+      tl.from("#s2-photo", { x: -64, scale: 0.96, opacity: 0, duration: 0.64, ease: "power3.out" }, 6.62);
+      tl.from("#s2-card-a", { y: 34, opacity: 0, duration: 0.42, ease: "power2.out" }, 6.98);
+      tl.from("#s2-card-b", { x: 34, scale: 0.96, opacity: 0, duration: 0.44, ease: "back.out(1.25)" }, 7.16);
+      tl.from("#s2-card-c", { y: 28, opacity: 0, duration: 0.38, ease: "sine.out" }, 7.34);
+      tl.from("#s2-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 6.74);
+      tl.from("#s2-title", { y: 50, opacity: 0, duration: 0.58, ease: "power3.out" }, 6.9);
+      tl.from("#s2-subtitle", { x: 26, opacity: 0, duration: 0.44, ease: "sine.out" }, 7.14);
+      tl.from("#s2-rule", { scaleX: 0, opacity: 0, duration: 0.44, ease: "expo.out" }, 7.34);
+
+      pushTransition("#scene2", "#scene3", 12.5, "left");
+      tl.from("#s3-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 13.12);
+      tl.from("#s3-title", { y: 50, opacity: 0, duration: 0.56, ease: "power3.out" }, 13.28);
+      tl.from("#s3-subtitle", { x: -26, opacity: 0, duration: 0.44, ease: "sine.out" }, 13.52);
+      tl.from("#s3-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 13.72);
+      tl.from("#s3-shot", { x: 62, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" }, 13.18);
+      tl.from("#s3-rail", { y: -28, scale: 0.94, opacity: 0, duration: 0.42, ease: "back.out(1.3)" }, 13.7);
+      tl.from("#s3-needs", { y: 24, scale: 0.98, opacity: 0, duration: 0.36, ease: "sine.out" }, 13.84);
+      tl.from("#s3-need-a, #s3-need-b, #s3-need-c, #s3-need-d", {
+        y: 30,
+        opacity: 0,
+        duration: 0.34,
+        stagger: 0.07,
+        ease: "power2.out"
+      }, 14.1);
+
+      blurTransition("#scene3", "#scene4", 19.0);
+      tl.from("#s4-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 19.62);
+      tl.from("#s4-title", { y: 50, opacity: 0, duration: 0.56, ease: "power3.out" }, 19.78);
+      tl.from("#s4-subtitle", { x: -24, opacity: 0, duration: 0.44, ease: "sine.out" }, 20.02);
+      tl.from("#s4-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 20.22);
+      tl.from("#s4-proof", { x: 52, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" }, 19.76);
+      tl.from("#s4-card-a", { y: 34, opacity: 0, duration: 0.38, ease: "power2.out" }, 20.26);
+      tl.from("#s4-card-b", { y: 34, scale: 0.96, opacity: 0, duration: 0.42, ease: "back.out(1.25)" }, 20.42);
+      tl.from("#s4-card-c", { y: 28, opacity: 0, duration: 0.38, ease: "sine.out" }, 20.58);
+      tl.from("#s4-card-d", { y: 28, scale: 0.96, opacity: 0, duration: 0.42, ease: "back.out(1.2)" }, 20.74);
+
+      blurTransition("#scene4", "#scene5", 25.5);
+      tl.from("#s5-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 26.12);
+      tl.from("#s5-title", { y: 50, opacity: 0, duration: 0.56, ease: "power3.out" }, 26.28);
+      tl.from("#s5-subtitle", { x: -24, opacity: 0, duration: 0.44, ease: "sine.out" }, 26.52);
+      tl.from("#s5-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 26.72);
+      tl.from("#s5-shot", { x: 66, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" }, 26.18);
+      tl.from("#s5-chip-a, #s5-chip-b, #s5-chip-c", {
+        y: 18,
+        scale: 0.94,
+        opacity: 0,
+        duration: 0.36,
+        stagger: 0.08,
+        ease: "back.out(1.35)"
+      }, 26.92);
+
+      pushTransition("#scene5", "#scene6", 32.0, "up");
+      tl.from("#s6-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 32.62);
+      tl.from("#s6-title", { y: 50, opacity: 0, duration: 0.56, ease: "power3.out" }, 32.78);
+      tl.from("#s6-subtitle", { x: -24, opacity: 0, duration: 0.44, ease: "sine.out" }, 33.02);
+      tl.from("#s6-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 33.22);
+      tl.from("#s6-card-a", { y: 34, opacity: 0, duration: 0.38, ease: "power2.out" }, 33.28);
+      tl.from("#s6-card-b", { y: 34, scale: 0.96, opacity: 0, duration: 0.42, ease: "back.out(1.25)" }, 33.44);
+      tl.from("#s6-card-c", { y: 30, opacity: 0, duration: 0.38, ease: "sine.out" }, 33.6);
+      tl.from("#s6-card-d", { y: 30, scale: 0.96, opacity: 0, duration: 0.42, ease: "back.out(1.2)" }, 33.76);
+      tl.from("#s6-shot", { x: 64, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" }, 32.86);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 38.55);
+      tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 41.5);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
