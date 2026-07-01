@@ -1405,49 +1405,26 @@
 		text-transform: none;
 	}
 
-	.projects-index__row-copy > p,
-	.project-video-card__copy p:not(.project-video-card__eyebrow) {
+	.project-video-card__copy > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
 		color: var(--site-body);
 		font-size: clamp(1rem, 0.96rem + 0.18vw, 1.12rem);
 		line-height: 1.85;
 	}
 
-	.projects-index__featured-section,
-	.projects-index__archive,
-	.projects-index__experiments {
+	.projects-index__ranked-work {
 		display: grid;
 		gap: clamp(2rem, 4vw, 3.5rem);
 		padding-block: clamp(2.5rem, 4vw, 4rem);
 	}
 
-	.projects-index__featured-section {
-	}
-
-	.projects-index__featured-grid {
+	.projects-index__priority-grid,
+	.projects-index__compact-list {
 		display: grid;
 		gap: clamp(1.5rem, 3vw, 2.5rem);
 	}
 
-	@media (min-width: 920px) {
-		.projects-index__featured-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
-		.project-video-card--featured {
-			grid-column: 1 / -1;
-			grid-template-columns: minmax(0, 0.92fr) minmax(24rem, 1.08fr);
-			align-items: end;
-			padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
-		}
-
-		.project-video-card--featured .project-video-card__copy {
-			align-self: center;
-			max-width: 48rem;
-		}
-
-		.project-video-card--featured .project-video-card__copy h3 {
-			font-size: clamp(1.85rem, 1.4rem + 1.65vw, 3.3rem);
-		}
+	.projects-index__compact-list {
+		gap: 0;
 	}
 
 	.project-video-card {
@@ -1455,6 +1432,16 @@
 		gap: clamp(1.25rem, 3vw, 2rem);
 		color: inherit;
 		text-decoration: none;
+	}
+
+	.project-video-card--compact {
+		gap: clamp(1rem, 2vw, 1.5rem);
+		padding-block: clamp(1.25rem, 2.6vw, 1.8rem);
+		border-top: 1px solid var(--site-rule);
+	}
+
+	.project-video-card--compact:last-child {
+		border-bottom: 1px solid var(--site-rule);
 	}
 
 	.project-video-card__media-wrap {
@@ -1572,202 +1559,77 @@
 		color: var(--site-body);
 	}
 
+	.project-video-card__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 0.75rem;
+		color: var(--site-muted);
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 750;
+		letter-spacing: 0.08em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+
+	.project-video-card__meta span + span::before {
+		content: '/';
+		margin-right: 0.75rem;
+		color: color-mix(in oklch, var(--site-muted) 62%, transparent);
+	}
+
 	.project-video-card__cta {
 		color: var(--site-ink);
 	}
 
-	.projects-index__archive {
-		gap: clamp(1rem, 2vw, 1.5rem);
+	@media (min-width: 760px) {
+		.projects-index__priority-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.project-video-card--compact {
+			grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr);
+			align-items: center;
+		}
+
+		.project-video-card--compact .project-video-card__media-wrap {
+			aspect-ratio: 16 / 10;
+		}
+
+		.project-video-card--compact .project-video-card__copy {
+			max-width: none;
+		}
+
+		.project-video-card--compact .project-video-card__copy h3 {
+			font-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.8rem);
+		}
+
+		.project-video-card--compact .project-video-card__copy > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
+			max-width: 58rem;
+			font-size: clamp(0.96rem, 0.92rem + 0.12vw, 1.05rem);
+			line-height: 1.65;
+		}
 	}
 
-	.projects-index__experiments {
-		grid-template-columns: 1fr;
-		gap: clamp(2rem, 3vw, 2.75rem);
-	}
+	@media (min-width: 980px) {
+		.project-video-card--lead {
+			grid-template-columns: minmax(0, 1.02fr) minmax(24rem, 0.98fr);
+			align-items: center;
+			gap: clamp(2.25rem, 5vw, 4.5rem);
+		}
 
-	.projects-index__experiments-title {
-		max-width: 18ch;
-	}
+		.project-video-card--lead .project-video-card__copy {
+			max-width: 48rem;
+		}
 
-	.projects-index__archive-heading {
-		display: grid;
-		gap: 1.25rem;
-		max-width: 44rem;
-	}
+		.project-video-card--lead .project-video-card__copy h3 {
+			font-size: clamp(2.1rem, 1.2rem + 3vw, 4.6rem);
+		}
 
-	.projects-index__archive-heading h2 {
-		color: var(--site-ink);
-	}
-
-	.projects-index__row-copy {
-		display: grid;
-		align-content: start;
-		gap: 1.25rem;
-	}
-
-	.projects-index__row-copy h3 {
-		color: var(--site-ink);
-	}
-
-	.projects-index__row-meta p {
-		display: grid;
-		gap: 0.45rem;
-		margin: 0;
-	}
-
-	.projects-index__row-meta span {
-		color: var(--site-body);
-		font-family: 'IBM Plex Mono', ui-monospace, monospace;
-		font-size: 0.78rem;
-		font-weight: 900;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-	}
-
-	.projects-index__rows {
-		display: grid;
-		gap: 0;
-	}
-
-	.projects-index__row {
-		position: relative;
-		display: grid;
-		gap: clamp(1.4rem, 3vw, 2.5rem);
-		align-items: start;
-		padding-block: clamp(2rem, 4vw, 3rem);
-		transition:
-			background-color 420ms cubic-bezier(0.32, 0.72, 0, 1),
-			transform 420ms cubic-bezier(0.32, 0.72, 0, 1);
-	}
-
-	.projects-index__row:hover {
-		background: color-mix(in oklch, var(--site-ink) 3%, transparent);
-		transform: translateX(0.35rem);
-	}
-
-	.projects-index__row-hit {
-		position: absolute;
-		inset: 0;
-		z-index: 1;
-	}
-
-	.projects-index__row-number {
-		position: relative;
-		z-index: 2;
-		color: var(--site-muted);
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.16em;
-	}
-
-	.projects-index__row-copy,
-	.projects-index__row-meta {
-		position: relative;
-		z-index: 2;
-	}
-
-	.projects-index__row-copy h3 {
-		max-width: 19ch;
-	}
-
-	.projects-index__row-copy a {
-		position: relative;
-		z-index: 3;
-	}
-
-	.projects-index__row-meta {
-		display: grid;
-		gap: 1.25rem;
-		color: var(--site-body);
-		font-size: 0.95rem;
-		line-height: 1.7;
-	}
-
-	.projects-index__row-action {
-		position: relative;
-		z-index: 2;
-		justify-self: start;
-		align-self: start;
-		color: var(--site-ink);
-		font-family: var(--font-mono);
-		font-size: 0.76rem;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-	}
-
-	.projects-index__row-action::after {
-		content: ' ->';
-	}
-
-	.projects-index__experiment-list {
-		display: grid;
-	}
-
-	.projects-index__experiment-row {
-		display: grid;
-		grid-template-columns: 7rem 1fr auto;
-		align-items: baseline;
-		gap: 1.5rem;
-		padding-block: 1.1rem;
-		border-top: 1px solid var(--site-rule);
-		color: inherit;
-		text-decoration: none;
-		transition: background 150ms;
-	}
-
-	.projects-index__experiment-row:last-child {
-		border-bottom: 1px solid var(--site-rule);
-	}
-
-	.projects-index__experiment-track {
-		font-family: 'IBM Plex Mono', ui-monospace, monospace;
-		font-size: 0.68rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--site-muted);
-		white-space: nowrap;
-	}
-
-	.projects-index__experiment-name {
-		font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
-		font-weight: 500;
-		color: var(--site-ink);
-		line-height: 1.3;
-	}
-
-	.projects-index__experiment-arrow {
-		font-size: 1rem;
-		color: var(--site-muted);
-		transition:
-			transform 150ms,
-			color 150ms;
-	}
-
-	.projects-index__experiment-row:hover .projects-index__experiment-arrow {
-		transform: translate(3px, -2px);
-		color: var(--site-ink);
-	}
-
-	.projects-index__tools-link {
-		margin: 0;
-		padding-top: 0.25rem;
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-	}
-
-	.projects-index__tools-link a {
-		color: var(--site-muted);
-		text-decoration: none;
-		transition: color 150ms ease;
-	}
-
-	.projects-index__tools-link a:hover {
-		color: var(--site-ink);
+		.project-video-card--lead .project-video-card__copy > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
+			font-size: clamp(1.08rem, 1rem + 0.3vw, 1.28rem);
+			line-height: 1.75;
+		}
 	}
 
 	.blog-post-hero {
@@ -3408,22 +3270,6 @@
 
 		.projects-index__hero {
 			grid-template-columns: minmax(0, 1fr);
-		}
-
-		.projects-index__row {
-			grid-template-columns: 3rem minmax(0, 0.9fr) minmax(13rem, 0.48fr) 5rem;
-		}
-
-		.projects-index__experiments {
-			grid-template-columns: minmax(0, 0.28fr) minmax(0, 0.72fr);
-			align-items: start;
-			gap: clamp(3rem, 5vw, 5rem);
-		}
-
-		.projects-index__experiments-title {
-			max-width: none;
-			position: sticky;
-			top: 6rem;
 		}
 
 		.blog-post-hero {

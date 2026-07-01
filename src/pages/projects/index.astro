@@ -2,12 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectVideoCard from '../../components/project-video/ProjectVideoCard.astro';
 import { projects } from '../../lib/project-cards';
-import {
-	EXPERIMENT_PROJECT_ORDER,
-	MAIN_PROJECT_ORDER,
-	PROJECT_INDEX_FEATURED_ORDER,
-	PROJECT_OUTCOME_HIGHLIGHTS
-} from '../../lib/project-curation';
+import { PROJECT_INDEX_ORDER } from '../../lib/project-curation';
 
 const title = 'Case Studies';
 const description = 'Selected product work by Hanif Carroll: AI products, web and mobile builds, and the product decisions behind them.';
@@ -22,25 +17,10 @@ const orderProjects = (projectList: typeof projects, preferredOrder: readonly st
 	});
 };
 
-const mainProjects = orderProjects(
-	projects.filter((project) => project.proofType === 'client' || project.proofType === 'founder'),
-	MAIN_PROJECT_ORDER
-);
-
-const experimentProjects = orderProjects(
-	projects.filter((project) => project.proofType === 'experiment'),
-	EXPERIMENT_PROJECT_ORDER
-);
-
-const featuredProjectSlugs = new Set<string>(PROJECT_INDEX_FEATURED_ORDER);
-const featuredProjects = orderProjects(
-	projects.filter((project) => featuredProjectSlugs.has(project.slug)),
-	PROJECT_INDEX_FEATURED_ORDER
-);
-const visibleExperimentProjects = experimentProjects.filter((project) => !featuredProjectSlugs.has(project.slug));
-const visibleMainProjects = mainProjects.filter((project) => !featuredProjectSlugs.has(project.slug));
-
-const getProjectContextLabel = (project: (typeof projects)[number]) => (project.proofType === 'client' ? 'Client' : 'Type');
+const orderedProjects = orderProjects(projects, PROJECT_INDEX_ORDER);
+const leadProject = orderedProjects[0];
+const priorityProjects = orderedProjects.slice(1, 5);
+const compactProjects = orderedProjects.slice(5);
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -53,73 +33,30 @@ const getProjectContextLabel = (project: (typeof projects)[number]) => (project.
 			</div>
 		</header>
 
-			{
-				featuredProjects.length > 0 && (
-					<section class='projects-index__featured-section' aria-label='Featured projects'>
-						<div class='projects-index__featured-grid'>
-							{featuredProjects.map((project, index) => (
-								<ProjectVideoCard project={project} index={index} featured={index === 0} />
-						))}
-					</div>
-				</section>
-			)
-		}
-
-		<section class='projects-index__archive' aria-labelledby='main-work-title'>
-			<div class='projects-index__archive-heading'>
-				<h2 id='main-work-title' class='heading-display heading-display--section'>More case studies</h2>
-			</div>
-			<div class='projects-index__rows'>
-				{
-					visibleMainProjects.map((project, index) => (
-						<article class='projects-index__row'>
-							<a href={`/projects/${project.slug}/`} class='projects-index__row-hit' aria-label={`Read ${project.name} case study`} />
-							<span class='projects-index__row-number'>{String(index + 1).padStart(2, '0')}</span>
-							<div class='projects-index__row-copy'>
-								<h3 class='heading-display heading-display--subsection'>
-									<a href={`/projects/${project.slug}/`}>{project.name}</a>
-								</h3>
-								<p>{PROJECT_OUTCOME_HIGHLIGHTS[project.slug] ?? project.outcome}</p>
-							</div>
-							<div class='projects-index__row-meta' aria-label={`${project.name} details`}>
-								<p>
-									<span>{getProjectContextLabel(project)}</span>
-									{project.client}
-								</p>
-								<p>
-									<span>Services</span>
-									{project.service}
-								</p>
-							</div>
-							<span class='projects-index__row-action'>View</span>
-						</article>
-					))
-				}
-			</div>
-		</section>
-
 		{
-			visibleExperimentProjects.length > 0 && (
-				<section class='projects-index__experiments' aria-labelledby='experiments-title'>
-					<h2 id='experiments-title' class='heading-display heading-display--subsection projects-index__experiments-title'>
-						Smaller builds and studies
-					</h2>
-					<div class='projects-index__experiment-list'>
-						{visibleExperimentProjects.map((project) => (
-							<a href={`/projects/${project.slug}/`} class='projects-index__experiment-row group'>
-								<span class='projects-index__experiment-track'>{project.trackShortLabel}</span>
-								<span class='projects-index__experiment-name'>{project.name}</span>
-								<span class='projects-index__experiment-arrow' aria-hidden='true'>
-									→
-								</span>
-							</a>
-						))}
-					</div>
-					<p class='projects-index__tools-link'>
-						<a href='/tools/'>
-							More workflow tools <span aria-hidden='true'>→</span>
-						</a>
-					</p>
+			leadProject && (
+				<section class='projects-index__ranked-work' aria-label='Ranked project work'>
+					<ProjectVideoCard project={leadProject} index={0} variant='lead' />
+
+					{
+						priorityProjects.length > 0 && (
+							<div class='projects-index__priority-grid'>
+								{priorityProjects.map((project, index) => (
+									<ProjectVideoCard project={project} index={index + 1} variant='card' />
+								))}
+							</div>
+						)
+					}
+
+					{
+						compactProjects.length > 0 && (
+							<div class='projects-index__compact-list'>
+								{compactProjects.map((project, index) => (
+									<ProjectVideoCard project={project} index={index + 5} variant='compact' />
+								))}
+							</div>
+						)
+					}
 				</section>
 			)
 		}

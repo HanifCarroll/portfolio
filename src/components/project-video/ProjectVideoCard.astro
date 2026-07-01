@@ -5,11 +5,14 @@ interface Props {
 	project: ProjectCard;
 	index: number;
 	featured?: boolean;
+	variant?: 'lead' | 'card' | 'compact';
 }
 
-const { project, index, featured = false } = Astro.props;
+const { project, index, featured = false, variant } = Astro.props;
 const video = project.videos?.preview ?? project.videos?.overview;
-const className = featured ? 'project-video-card project-video-card--featured' : 'project-video-card';
+const resolvedVariant = variant ?? (featured ? 'lead' : 'card');
+const className = `project-video-card project-video-card--${resolvedVariant}`;
+const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 ---
 
 {
@@ -32,7 +35,7 @@ const className = featured ? 'project-video-card project-video-card--featured' :
 					class='project-video-card__poster'
 					src={video.poster}
 					alt=''
-					loading={featured ? 'eager' : 'lazy'}
+					loading={loading}
 					decoding='async'
 					aria-hidden='true'
 				/>
@@ -45,6 +48,10 @@ const className = featured ? 'project-video-card project-video-card--featured' :
 				</p>
 				<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
 				<p>{project.outcome}</p>
+				<p class='project-video-card__meta'>
+					<span>{project.proofTypeLabel}</span>
+					<span>{project.client}</span>
+				</p>
 				<span class='project-video-card__cta'>Open case study</span>
 			</div>
 		</a>
