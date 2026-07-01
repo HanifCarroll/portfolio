@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Genrupt Project Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f2f7f8;
+        color: #101827;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f2f7f8;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f2f7f8;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+      }
+
+      .scene-bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .mesh {
+        position: absolute;
+        inset: -80px;
+        background-image:
+          radial-gradient(circle at 18% 22%, rgba(79, 124, 255, 0.24), rgba(79, 124, 255, 0) 28%),
+          radial-gradient(circle at 82% 18%, rgba(255, 138, 61, 0.2), rgba(255, 138, 61, 0) 26%),
+          radial-gradient(circle at 72% 84%, rgba(18, 183, 200, 0.2), rgba(18, 183, 200, 0) 28%),
+          radial-gradient(circle at 30% 78%, rgba(168, 85, 247, 0.16), rgba(168, 85, 247, 0) 24%);
+      }
+
+      .circuit-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(79, 124, 255, 0.12) 2px, rgba(79, 124, 255, 0) 2px),
+          linear-gradient(90deg, rgba(18, 183, 200, 0.1) 2px, rgba(18, 183, 200, 0) 2px);
+        background-position: -24px -24px;
+        background-size: 112px 112px;
+        opacity: 0.28;
+      }
+
+      .circuit-line {
+        position: absolute;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(79, 124, 255, 0), #4f7cff, #ff8a3d, rgba(255, 138, 61, 0));
+        opacity: 0.46;
+      }
+
+      .circuit-line.one {
+        top: 196px;
+        left: -120px;
+        width: 760px;
+      }
+
+      .circuit-line.two {
+        right: -180px;
+        bottom: 184px;
+        width: 840px;
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 68px;
+        height: 68px;
+        opacity: 0.7;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid #4f7cff;
+        border-left: 3px solid #4f7cff;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid #ff8a3d;
+        border-bottom: 3px solid #ff8a3d;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 76px 104px;
+        gap: 50px;
+      }
+
+      .split {
+        grid-template-columns: 0.86fr 1.14fr;
+        align-items: center;
+      }
+
+      .split-wide-left {
+        grid-template-columns: 1.12fr 0.88fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        min-width: 0;
+      }
+
+      .copy.compact {
+        gap: 18px;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #4f7cff;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow.orange {
+        color: #e86f27;
+      }
+
+      .eyebrow.teal {
+        color: #078da0;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 860px;
+        color: #101827;
+        font-size: 82px;
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .headline.wide {
+        max-width: 1080px;
+      }
+
+      .subhead {
+        max-width: 840px;
+        color: #5d6b7d;
+        font-size: 35px;
+        font-weight: 650;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 520px;
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #4f7cff, #a855f7, #ff8a3d);
+        transform-origin: left center;
+      }
+
+      .screen-frame,
+      .system-card,
+      .status-card,
+      .risk-card,
+      .result-card,
+      .end-card {
+        border: 2px solid rgba(214, 225, 232, 0.95);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 34px 92px rgba(16, 24, 39, 0.14);
+      }
+
+      .screen-frame {
+        position: relative;
+        overflow: hidden;
+        padding: 14px;
+      }
+
+      .screen-frame::before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 46px;
+        content: "";
+        background: linear-gradient(90deg, rgba(79, 124, 255, 0.12), rgba(255, 138, 61, 0.1));
+        border-bottom: 1px solid rgba(214, 225, 232, 0.9);
+      }
+
+      .screen-dots {
+        position: absolute;
+        left: 28px;
+        top: 18px;
+        display: flex;
+        gap: 8px;
+        z-index: 4;
+      }
+
+      .screen-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #4f7cff;
+      }
+
+      .screen-dot:nth-child(2) {
+        background: #a855f7;
+      }
+
+      .screen-dot:nth-child(3) {
+        background: #ff8a3d;
+      }
+
+      .screen-img {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .img-projects {
+        background-image: url("assets/product-surface-projects-grid.png");
+        background-position: 52% 45%;
+      }
+
+      .img-dashboard {
+        background-image: url("assets/commercial-readiness-dashboard.png");
+        background-position: 70% 42%;
+      }
+
+      .img-dashboard-right {
+        background-image: url("assets/commercial-readiness-dashboard.png");
+        background-position: 78% 44%;
+      }
+
+      .img-pricing {
+        background-image: url("assets/subscriptions-pricing.png");
+        background-position: 58% 44%;
+      }
+
+      .img-agent {
+        background-image: url("assets/agent-access.png");
+        background-position: 50% 50%;
+      }
+
+      .img-aplus {
+        background-image: url("assets/aplus-project-setup.png");
+        background-position: 50% 48%;
+      }
+
+      .img-market {
+        background-image: url("assets/market-analysis.png");
+        background-position: 52% 30%;
+      }
+
+      .hero-screen {
+        width: 1060px;
+        height: 650px;
+      }
+
+      .layered-screens {
+        position: relative;
+        width: 1040px;
+        height: 680px;
+      }
+
+      .layered-screens .screen-frame {
+        position: absolute;
+      }
+
+      .solution-primary {
+        right: 0;
+        top: 22px;
+        width: 770px;
+        height: 470px;
+        z-index: 2;
+      }
+
+      .solution-secondary {
+        left: 0;
+        bottom: 10px;
+        width: 610px;
+        height: 362px;
+        z-index: 3;
+      }
+
+      .proof-strip {
+        position: relative;
+        width: 100%;
+        height: 536px;
+      }
+
+      .proof-strip .screen-frame {
+        position: absolute;
+      }
+
+      .proof-left {
+        left: 0;
+        top: 48px;
+        width: 610px;
+        height: 386px;
+      }
+
+      .proof-mid {
+        left: 492px;
+        top: 0;
+        width: 696px;
+        height: 440px;
+        z-index: 2;
+      }
+
+      .proof-right {
+        right: 0;
+        top: 82px;
+        width: 560px;
+        height: 360px;
+      }
+
+      .system-card {
+        display: grid;
+        gap: 12px;
+        min-height: 122px;
+        padding: 26px 30px;
+      }
+
+      .system-card strong,
+      .status-card strong,
+      .risk-card strong,
+      .result-card strong {
+        display: block;
+        color: #101827;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.05;
+      }
+
+      .system-card span,
+      .status-card span,
+      .risk-card span,
+      .result-card span {
+        color: #5d6b7d;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.22;
+      }
+
+      .system-card-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 10px;
+      }
+
+      .system-card .chip,
+      .status-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        min-height: 34px;
+        border-radius: 999px;
+        color: #101827;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 7px 12px;
+      }
+
+      .chip.blue,
+      .status-chip.blue {
+        background: rgba(79, 124, 255, 0.16);
+        color: #315fd6;
+      }
+
+      .chip.orange,
+      .status-chip.orange {
+        background: rgba(255, 138, 61, 0.18);
+        color: #b95319;
+      }
+
+      .chip.teal,
+      .status-chip.teal {
+        background: rgba(18, 183, 200, 0.16);
+        color: #078da0;
+      }
+
+      .stakes-board {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 22px;
+        width: 100%;
+      }
+
+      .risk-line {
+        position: absolute;
+        left: 138px;
+        right: 138px;
+        top: 120px;
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #4f7cff, #a855f7, #ff8a3d, #18a66a);
+        transform-origin: left center;
+      }
+
+      .risk-card {
+        position: relative;
+        min-height: 248px;
+        padding: 32px 30px;
+      }
+
+      .risk-node {
+        width: 52px;
+        height: 52px;
+        border: 6px solid #4f7cff;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 0 12px rgba(79, 124, 255, 0.1);
+      }
+
+      .risk-card:nth-child(3) .risk-node {
+        border-color: #a855f7;
+        box-shadow: 0 0 0 12px rgba(168, 85, 247, 0.1);
+      }
+
+      .risk-card:nth-child(4) .risk-node {
+        border-color: #ff8a3d;
+        box-shadow: 0 0 0 12px rgba(255, 138, 61, 0.12);
+      }
+
+      .risk-card:nth-child(5) .risk-node {
+        border-color: #18a66a;
+        box-shadow: 0 0 0 12px rgba(24, 166, 106, 0.1);
+      }
+
+      .risk-card strong {
+        margin-top: 52px;
+      }
+
+      .commercial-layout {
+        display: grid;
+        grid-template-columns: 1fr 460px;
+        align-items: center;
+        gap: 34px;
+      }
+
+      .pricing-screen {
+        width: 1030px;
+        height: 640px;
+      }
+
+      .commercial-cards {
+        display: grid;
+        gap: 18px;
+      }
+
+      .status-card {
+        min-height: 158px;
+        padding: 28px 30px;
+      }
+
+      .status-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .agent-layout {
+        display: grid;
+        grid-template-columns: 0.98fr 1.02fr;
+        align-items: center;
+        gap: 44px;
+      }
+
+      .agent-screen {
+        width: 770px;
+        height: 524px;
+        background: #101827;
+      }
+
+      .allowed-panel {
+        display: grid;
+        gap: 18px;
+      }
+
+      .agent-card {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        align-items: center;
+        gap: 22px;
+        min-height: 126px;
+      }
+
+      .agent-icon {
+        display: grid;
+        place-items: center;
+        width: 74px;
+        height: 74px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(79, 124, 255, 0.16), rgba(18, 183, 200, 0.2));
+        color: #315fd6;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .result-layout {
+        display: grid;
+        align-content: center;
+        gap: 32px;
+      }
+
+      .result-card {
+        position: absolute;
+        left: 104px;
+        bottom: 78px;
+        z-index: 6;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        align-items: center;
+        gap: 28px;
+        width: 860px;
+        min-height: 204px;
+        padding: 30px 34px;
+        border-color: rgba(24, 166, 106, 0.38);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .metric {
+        color: #18a66a;
+        font-size: 90px;
+        font-weight: 950;
+        letter-spacing: 0;
+        line-height: 0.9;
+      }
+
+      .metric-label {
+        margin-top: 10px;
+        color: #5d6b7d;
+        font-size: 23px;
+        font-weight: 800;
+      }
+
+      .end-card {
+        position: absolute;
+        right: 104px;
+        bottom: 78px;
+        z-index: 8;
+        display: grid;
+        gap: 10px;
+        width: 640px;
+        padding: 28px 34px;
+        border-color: rgba(79, 124, 255, 0.34);
+        background: rgba(255, 255, 255, 0.97);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #101827;
+        font-size: 44px;
+        font-weight: 950;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #5d6b7d;
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1.18;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #f2f7f8;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 76px;
+        z-index: 4;
+        color: rgba(79, 124, 255, 0.78);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="45">
+      <section id="scene1" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The problem</p>
+            <h1 class="headline">AI media was working.</h1>
+            <p class="subhead">Paid seller teams needed more than generation screens.</p>
+            <div class="rule"></div>
+          </div>
+          <div>
+            <div class="screen-frame hero-screen">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-projects"></div>
+            </div>
+            <div class="system-card-row">
+              <div class="system-card">
+                <span class="chip blue">Proof</span>
+                <strong>AI media</strong>
+                <span>Image and video workflows already existed.</span>
+              </div>
+              <div class="system-card">
+                <span class="chip orange">Need</span>
+                <strong>Seller teams</strong>
+                <span>Paid accounts needed shared operations.</span>
+              </div>
+              <div class="system-card">
+                <span class="chip teal">Shift</span>
+                <strong>Platform</strong>
+                <span>The product needed stronger foundations.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p class="eyebrow orange">The stakes</p>
+            <h2 class="headline wide">Each new workflow raised the stakes.</h2>
+            <p class="subhead">Billing, credits, retries, and recovery had to hold together.</p>
+          </div>
+          <div class="stakes-board">
+            <div class="risk-line"></div>
+            <div class="risk-card">
+              <div class="risk-node"></div>
+              <strong>Billing</strong>
+              <span>Paid accounts needed dependable commercial state.</span>
+            </div>
+            <div class="risk-card">
+              <div class="risk-node"></div>
+              <strong>Credits</strong>
+              <span>Generation costs needed visible accounting.</span>
+            </div>
+            <div class="risk-card">
+              <div class="risk-node"></div>
+              <strong>Retries</strong>
+              <span>Long jobs had to recover safely.</span>
+            </div>
+            <div class="risk-card">
+              <div class="risk-node"></div>
+              <strong>Recovery</strong>
+              <span>Users needed status, results, and trust.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The solution</p>
+            <h2 class="headline">I helped turn Genrupt into a seller workflow platform.</h2>
+            <p class="subhead">Projects, billing, and jobs shared one foundation.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="layered-screens">
+            <div class="screen-frame solution-primary">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-projects"></div>
+            </div>
+            <div class="screen-frame solution-secondary">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-dashboard-right"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-shell">
+          <div class="copy compact">
+            <p class="eyebrow orange">Commercial foundation</p>
+            <h2 class="headline wide">Paid teams could subscribe, buy credits, and track usage.</h2>
+          </div>
+          <div class="commercial-layout">
+            <div class="screen-frame pricing-screen">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-pricing"></div>
+            </div>
+            <div class="commercial-cards">
+              <div class="status-card">
+                <span class="status-chip orange">Paid accounts</span>
+                <strong>Subscriptions</strong>
+                <span>Teams could move beyond one-off usage.</span>
+              </div>
+              <div class="status-card">
+                <span class="status-chip blue">Usage state</span>
+                <strong>Credits</strong>
+                <span>Generation work had clearer accounting.</span>
+              </div>
+              <div class="status-card">
+                <span class="status-chip teal">Operations</span>
+                <strong>Billing</strong>
+                <span>Account state, payments, and usage lined up.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-shell agent-layout">
+          <div class="screen-frame agent-screen">
+            <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+            <div class="screen-img img-agent"></div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow teal">Agent access</p>
+            <h2 class="headline">Agents could run allowed workflows without seeing the whole app.</h2>
+            <div class="allowed-panel">
+              <div class="system-card agent-card">
+                <div class="agent-icon">01</div>
+                <div>
+                  <strong>Allowed workflows</strong>
+                  <span>Narrow actions instead of the full product surface.</span>
+                </div>
+              </div>
+              <div class="system-card agent-card">
+                <div class="agent-icon">02</div>
+                <div>
+                  <strong>Status</strong>
+                  <span>Long-running work could be checked and recovered.</span>
+                </div>
+              </div>
+              <div class="system-card agent-card">
+                <div class="agent-icon">03</div>
+                <div>
+                  <strong>Result</strong>
+                  <span>Seller outputs stayed tied to the product.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="scene-bg">
+          <div class="mesh" data-layout-ignore></div>
+          <div class="circuit-grid" data-layout-ignore></div>
+          <div class="circuit-line one" data-layout-ignore></div>
+          <div class="circuit-line two" data-layout-ignore></div>
+          <div class="frame-mark tl" data-layout-ignore></div>
+          <div class="frame-mark br" data-layout-ignore></div>
+        </div>
+        <div class="scene-number">06</div>
+        <div class="scene-shell result-layout">
+          <div class="copy compact">
+            <p class="eyebrow">The result</p>
+            <h2 class="headline wide">Seller workflows became product surfaces.</h2>
+            <p class="subhead">The platform supported the first 100 paying customers.</p>
+          </div>
+          <div class="proof-strip">
+            <div class="screen-frame proof-left">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-market"></div>
+            </div>
+            <div class="screen-frame proof-mid">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-aplus"></div>
+            </div>
+            <div class="screen-frame proof-right">
+              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-img img-dashboard"></div>
+            </div>
+          </div>
+        </div>
+        <div id="result-card" class="result-card">
+          <div>
+            <div class="metric">100</div>
+            <div class="metric-label">paying customers</div>
+          </div>
+          <div>
+            <strong>Commercially operable</strong>
+            <span>Commercial infrastructure, workflow reliability, and agent access worked as one product foundation.</span>
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Genrupt</strong>
+          <span>AI workflows became commercially operable.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 45;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      tl.to(".mesh", { x: 24, y: -18, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".circuit-grid", { x: 26, y: 18, duration: 45, ease: "none" }, 0);
+      tl.to(".circuit-line.one", { x: 84, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".circuit-line.two", { x: -92, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+
+      function enterCopy(scene, at) {
+        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, at);
+        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, at + 0.04);
+        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, at + 0.16);
+        if (document.querySelector(scene + " .subhead")) {
+          tl.fromTo(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, at + 0.7);
+        }
+        if (document.querySelector(scene + " .rule")) {
+          tl.fromTo(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, at + 1.02);
+        }
+      }
+
+      function pushTransition(oldScene, newScene, at) {
+        tl.to(oldScene, { x: -1920, duration: 0.58, ease: "power3.inOut" }, at);
+        tl.set(newScene, { opacity: 1, x: 1920 }, at);
+        tl.to(newScene, { x: 0, duration: 0.58, ease: "power3.inOut" }, at);
+        tl.set(oldScene, { opacity: 0 }, at + 0.6);
+      }
+
+      function blurTransition(oldScene, newScene, at) {
+        tl.to(oldScene, { filter: "blur(10px)", scale: 1.025, opacity: 0, duration: 0.58, ease: "power2.inOut" }, at);
+        tl.set(newScene, { opacity: 1, filter: "blur(10px)", scale: 0.975 }, at);
+        tl.to(newScene, { filter: "blur(0px)", scale: 1, duration: 0.58, ease: "power2.inOut" }, at + 0.08);
+        tl.set(oldScene, { filter: "blur(0px)", scale: 1 }, at + 0.66);
+      }
+
+      enterCopy("#scene1", 0.1);
+      tl.fromTo("#scene1 .screen-frame", { opacity: 0, y: 36, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 0.54);
+      tl.fromTo("#scene1 .system-card", { opacity: 0, y: 34, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.11, ease: "back.out(1.2)" }, 1.12);
+
+      pushTransition("#scene1", "#scene2", 5.92);
+      enterCopy("#scene2", 6.28);
+      tl.fromTo("#scene2 .risk-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.8, ease: "power3.out" }, 7.28);
+      tl.fromTo("#scene2 .risk-card", { opacity: 0, y: 42, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" }, 7.48);
+      tl.fromTo("#scene2 .risk-node", { opacity: 0, scale: 0.22 }, { opacity: 1, scale: 1, duration: 0.36, stagger: 0.1, ease: "back.out(1.55)" }, 7.62);
+
+      blurTransition("#scene2", "#scene3", 12.4);
+      enterCopy("#scene3", 12.78);
+      tl.fromTo("#scene3 .solution-primary", { opacity: 0, x: 48, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 13.24);
+      tl.fromTo("#scene3 .solution-secondary", { opacity: 0, x: -46, y: 28, scale: 0.955 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 13.72);
+
+      pushTransition("#scene3", "#scene4", 19.4);
+      enterCopy("#scene4", 19.76);
+      tl.fromTo("#scene4 .pricing-screen", { opacity: 0, y: 36, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 20.7);
+      tl.fromTo("#scene4 .status-card", { opacity: 0, x: 46, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 21.04);
+      tl.fromTo("#scene4 .status-chip", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.32, stagger: 0.08, ease: "sine.out" }, 21.32);
+
+      pushTransition("#scene4", "#scene5", 26.4);
+      enterCopy("#scene5", 26.76);
+      tl.fromTo("#scene5 .agent-screen", { opacity: 0, x: -50, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 27.2);
+      tl.fromTo("#scene5 .agent-card", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 28.2);
+      tl.fromTo("#scene5 .agent-icon", { opacity: 0, scale: 0.72, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.34, stagger: 0.12, ease: "back.out(1.4)" }, 28.32);
+
+      blurTransition("#scene5", "#scene6", 33.4);
+      enterCopy("#scene6", 33.78);
+      tl.fromTo("#scene6 .proof-left", { opacity: 0, x: -42, y: 28, scale: 0.965 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 34.74);
+      tl.fromTo("#scene6 .proof-mid", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 34.94);
+      tl.fromTo("#scene6 .proof-right", { opacity: 0, x: 44, y: 26, scale: 0.965 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 35.18);
+      tl.fromTo("#result-card", { opacity: 0, y: 32, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.62, ease: "back.out(1.16)" }, 36.0);
+      tl.fromTo("#result-card .metric", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }, 36.16);
+
+      tl.fromTo("#end-card", { opacity: 0, y: 20, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "sine.out" }, 42.0);
+      tl.to("#end-fade", { opacity: 1, duration: 0.32, ease: "sine.inOut" }, 44.68);
+
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>
