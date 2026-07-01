@@ -748,7 +748,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="44">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="44"
+    >
       <section id="scene1" class="scene">
         <div class="bg">
           <div class="bg-wash"></div>
@@ -767,7 +774,10 @@
             <div class="rule"></div>
           </div>
           <div class="terminal-card large">
-            <img src="assets/codex-telegram-bridge-terminal.png" alt="Codex Telegram Bridge command surface" />
+            <img
+              src="assets/codex-telegram-bridge-terminal.png"
+              alt="Codex Telegram Bridge command surface"
+            />
             <div class="terminal-label"><span class="status-dot"></span>remote surface</div>
             <div class="prompt-card">
               <div class="prompt-badge">Desktop prompt</div>
@@ -989,12 +999,49 @@
       }
 
       function enterCopy(scene, start, fromX) {
-        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" }, start);
-        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: fromX }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" }, start + 0.04);
-        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" }, start + 0.18);
-        fromToIfExists(scene + " .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" }, start + 0.76);
-        fromToIfExists(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" }, start + 1.04);
-        fromToIfExists(scene + " .command-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: "back.out(1.2)", overwrite: "auto" }, start + 1.18);
+        tl.fromTo(
+          scene + " .scene-number",
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" },
+          start,
+        );
+        tl.fromTo(
+          scene + " .eyebrow",
+          { opacity: 0, x: fromX },
+          { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" },
+          start + 0.04,
+        );
+        tl.fromTo(
+          scene + " .headline",
+          { opacity: 0, y: 42 },
+          { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" },
+          start + 0.18,
+        );
+        fromToIfExists(
+          scene + " .subhead",
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" },
+          start + 0.76,
+        );
+        fromToIfExists(
+          scene + " .rule",
+          { opacity: 0, scaleX: 0 },
+          { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" },
+          start + 1.04,
+        );
+        fromToIfExists(
+          scene + " .command-chip",
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.09,
+            ease: "back.out(1.2)",
+            overwrite: "auto",
+          },
+          start + 1.18,
+        );
       }
 
       function pushTransition(fromScene, toScene, time) {
@@ -1006,48 +1053,161 @@
 
       function blurTransition(fromScene, toScene, time) {
         tl.set(toScene, { opacity: 0, scale: 0.985, x: 0, filter: "blur(10px)" }, time);
-        tl.to(fromScene, { opacity: 0, scale: 1.012, filter: "blur(10px)", duration: 0.64, ease: "sine.inOut" }, time);
-        tl.to(toScene, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.64, ease: "sine.inOut" }, time);
+        tl.to(
+          fromScene,
+          { opacity: 0, scale: 1.012, filter: "blur(10px)", duration: 0.64, ease: "sine.inOut" },
+          time,
+        );
+        tl.to(
+          toScene,
+          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.64, ease: "sine.inOut" },
+          time,
+        );
         tl.set(fromScene, { scale: 1, filter: "blur(0px)" }, time + 0.65);
       }
 
       enterCopy("#scene1", 0.16, -34);
-      tl.fromTo("#scene1 .terminal-card", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 0.52);
-      tl.fromTo("#scene1 .terminal-label", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" }, 1.0);
-      tl.fromTo("#scene1 .prompt-card", { opacity: 0, y: 42, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "back.out(1.2)" }, 1.22);
+      tl.fromTo(
+        "#scene1 .terminal-card",
+        { opacity: 0, y: 34, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" },
+        0.52,
+      );
+      tl.fromTo(
+        "#scene1 .terminal-label",
+        { opacity: 0, x: -18 },
+        { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" },
+        1.0,
+      );
+      tl.fromTo(
+        "#scene1 .prompt-card",
+        { opacity: 0, y: 42, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "back.out(1.2)" },
+        1.22,
+      );
 
       pushTransition("#scene1", "#scene2", 5.94);
       enterCopy("#scene2", 6.32, 34);
-      tl.fromTo("#scene2 .gate-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" }, 6.72);
-      tl.fromTo("#scene2 .gate-lock", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.46, ease: "back.out(1.45)" }, 6.9);
-      tl.fromTo("#scene2 .gate-card", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.16, ease: "power3.out" }, 7.08);
+      tl.fromTo(
+        "#scene2 .gate-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.6, ease: "power3.out" },
+        6.72,
+      );
+      tl.fromTo(
+        "#scene2 .gate-lock",
+        { opacity: 0, scale: 0.7 },
+        { opacity: 1, scale: 1, duration: 0.46, ease: "back.out(1.45)" },
+        6.9,
+      );
+      tl.fromTo(
+        "#scene2 .gate-card",
+        { opacity: 0, y: 42, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.16, ease: "power3.out" },
+        7.08,
+      );
 
       pushTransition("#scene2", "#scene3", 12.44);
       enterCopy("#scene3", 12.82, -34);
-      tl.fromTo("#scene3 .terminal-card", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 13.02);
-      tl.fromTo("#scene3 .terminal-label", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" }, 13.6);
+      tl.fromTo(
+        "#scene3 .terminal-card",
+        { opacity: 0, y: 34, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" },
+        13.02,
+      );
+      tl.fromTo(
+        "#scene3 .terminal-label",
+        { opacity: 0, x: -18 },
+        { opacity: 1, x: 0, duration: 0.38, ease: "expo.out" },
+        13.6,
+      );
 
       blurTransition("#scene3", "#scene4", 19.44);
       enterCopy("#scene4", 19.84, -34);
-      tl.fromTo("#scene4 .flow-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 20.72);
-      tl.fromTo("#scene4 .flow-dot", { opacity: 0, scale: 0.25 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.12, ease: "back.out(1.5)" }, 20.9);
-      tl.fromTo("#scene4 .chat-card", { opacity: 0, x: -52, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 21.02);
-      tl.fromTo("#scene4 .route-card", { opacity: 0, y: 38, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.12, ease: "power2.out" }, 21.2);
-      tl.fromTo("#scene4 .thread-card", { opacity: 0, x: 52, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 21.46);
+      tl.fromTo(
+        "#scene4 .flow-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" },
+        20.72,
+      );
+      tl.fromTo(
+        "#scene4 .flow-dot",
+        { opacity: 0, scale: 0.25 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.12, ease: "back.out(1.5)" },
+        20.9,
+      );
+      tl.fromTo(
+        "#scene4 .chat-card",
+        { opacity: 0, x: -52, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" },
+        21.02,
+      );
+      tl.fromTo(
+        "#scene4 .route-card",
+        { opacity: 0, y: 38, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.12, ease: "power2.out" },
+        21.2,
+      );
+      tl.fromTo(
+        "#scene4 .thread-card",
+        { opacity: 0, x: 52, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" },
+        21.46,
+      );
 
       pushTransition("#scene4", "#scene5", 26.44);
       enterCopy("#scene5", 26.82, -34);
-      tl.fromTo("#scene5 .approval-card", { opacity: 0, x: -44, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" }, 27.58);
-      tl.fromTo("#scene5 .daemon-card", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, ease: "back.out(1.2)" }, 27.82);
-      tl.fromTo("#scene5 .approval-arrow", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.46, ease: "power3.out" }, 28.2);
-      tl.fromTo("#scene5 .result-thread", { opacity: 0, x: 44, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" }, 28.28);
-      tl.fromTo("#scene5 .approval-actions span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.08, ease: "power2.out" }, 28.46);
+      tl.fromTo(
+        "#scene5 .approval-card",
+        { opacity: 0, x: -44, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" },
+        27.58,
+      );
+      tl.fromTo(
+        "#scene5 .daemon-card",
+        { opacity: 0, y: 40, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, ease: "back.out(1.2)" },
+        27.82,
+      );
+      tl.fromTo(
+        "#scene5 .approval-arrow",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.46, ease: "power3.out" },
+        28.2,
+      );
+      tl.fromTo(
+        "#scene5 .result-thread",
+        { opacity: 0, x: 44, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.56, ease: "power3.out" },
+        28.28,
+      );
+      tl.fromTo(
+        "#scene5 .approval-actions span",
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.34, stagger: 0.08, ease: "power2.out" },
+        28.46,
+      );
 
       pushTransition("#scene5", "#scene6", 33.44);
       enterCopy("#scene6", 33.82, -34);
-      tl.fromTo("#scene6 .local-ring", { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.72, ease: "sine.out" }, 34.3);
-      tl.fromTo("#scene6 .ownership-card", { opacity: 0, y: 44, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" }, 34.72);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 40.75);
+      tl.fromTo(
+        "#scene6 .local-ring",
+        { opacity: 0, scale: 0.86 },
+        { opacity: 1, scale: 1, duration: 0.72, ease: "sine.out" },
+        34.3,
+      );
+      tl.fromTo(
+        "#scene6 .ownership-card",
+        { opacity: 0, y: 44, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" },
+        34.72,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        40.75,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.34, ease: "sine.inOut" }, 43.66);
 
       window.__timelines["main"] = tl;

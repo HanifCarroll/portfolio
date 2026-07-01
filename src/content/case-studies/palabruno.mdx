@@ -1,147 +1,156 @@
 ---
-projectSlug: palabruno
 ---
 
-import CaseSection from '../../components/case-study/CaseSection.astro';
-import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
-import DeviceGrid from '../../components/case-study/DeviceGrid.astro';
-import DevicePlate from '../../components/case-study/DevicePlate.astro';
-import ProofRows from '../../components/case-study/ProofRows.astro';
-import { Image } from 'astro:assets';
-import palabrunoProductCover from '../../assets/img/projects/palabruno-founder-idea-launch.png';
-import teacherCreateReading from '../../assets/img/projects/palabruno-teacher-create-reading.png';
-import teacherGroups from '../../assets/img/projects/palabruno-teacher-groups.png';
-import teacherLibrary from '../../assets/img/projects/palabruno-teacher-library.png';
-import teacherRecentShares from '../../assets/img/projects/palabruno-teacher-recent-shares.png';
-import teacherStudents from '../../assets/img/projects/palabruno-teacher-students.png';
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import DeviceGrid from "../../components/case-study/DeviceGrid.astro";
+import DevicePlate from "../../components/case-study/DevicePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import { Image } from "astro:assets";
+import palabrunoProductCover from "../../assets/img/projects/palabruno-founder-idea-launch.png";
+import teacherCreateReading from "../../assets/img/projects/palabruno-teacher-create-reading.png";
+import teacherGroups from "../../assets/img/projects/palabruno-teacher-groups.png";
+import teacherLibrary from "../../assets/img/projects/palabruno-teacher-library.png";
+import teacherRecentShares from "../../assets/img/projects/palabruno-teacher-recent-shares.png";
+import teacherStudents from "../../assets/img/projects/palabruno-teacher-students.png";
 
 export const shippedRows = [
-	{
-		label: 'First buyer',
-		title: 'Teacher became the clearest first buyer.',
-		body: 'The web workspace gives tutors a reason to pay: class management, student groups, custom readings, and shareable material for lessons.'
-	},
-	{
-		label: 'Payment readiness',
-		title: 'The MVP can charge through the right channels.',
-		body: 'Premium uses Apple and Google subscriptions through RevenueCat. Teacher payments happen on the web, where tutors and small classes naturally buy.'
-	},
-	{
-		label: 'Launch surface',
-		title: 'The product shipped with the surrounding trust layer.',
-		body: 'The launch included the public site, pricing, legal pages, store screenshots, app listings, and release documentation.'
-	},
-	{
-		label: 'Founder handoff',
-		title: 'The founder left with a product he could test in market.',
-		body: 'The engagement ended with a working mobile app, teacher dashboard, shared backend, launch docs, store assets, and a clearer first segment to learn from.'
-	}
+  {
+    label: "First buyer",
+    title: "Teacher became the clearest first buyer.",
+    body: "The web workspace gives tutors a reason to pay: class management, student groups, custom readings, and shareable material for lessons.",
+  },
+  {
+    label: "Payment readiness",
+    title: "The MVP can charge through the right channels.",
+    body: "Premium uses Apple and Google subscriptions through RevenueCat. Teacher payments happen on the web, where tutors and small classes naturally buy.",
+  },
+  {
+    label: "Launch surface",
+    title: "The product shipped with the surrounding trust layer.",
+    body: "The launch included the public site, pricing, legal pages, store screenshots, app listings, and release documentation.",
+  },
+  {
+    label: "Founder handoff",
+    title: "The founder left with a product he could test in market.",
+    body: "The engagement ended with a working mobile app, teacher dashboard, shared backend, launch docs, store assets, and a clearer first segment to learn from.",
+  },
 ];
 
 export const teacherScreens = [
-	{
-		image: teacherCreateReading,
-		alt: 'Palabruno teacher workspace for creating a Spanish reading.',
-		label: 'Text creation',
-		title: 'Lesson notes can become level-matched readings.',
-		caption: 'Teachers can choose a topic, level, and length, then turn class material into Spanish reading practice.'
-	},
-	{
-		image: teacherStudents,
-		alt: 'Palabruno teacher roster with student records and invite status.',
-		label: 'Teacher roster',
-		title: 'Student records and invites live in the product.',
-		caption: 'The roster keeps student names, invite status, and next actions close to the reading workflow.'
-	},
-	{
-		image: teacherGroups,
-		alt: 'Palabruno teacher groups for recurring classes.',
-		label: 'Student groups',
-		title: 'Groups support recurring classes and tutoring cohorts.',
-		caption: 'Teachers can organize students by lesson group and share readings with the right class faster.'
-	},
-	{
-		image: teacherRecentShares,
-		alt: 'Palabruno recent shares view for assigned readings.',
-		label: 'Share history',
-		title: 'Teachers can see what was sent and when.',
-		caption: 'Recent shares make it easier to track assigned readings across email, links, and WhatsApp.'
-	}
+  {
+    image: teacherCreateReading,
+    alt: "Palabruno teacher workspace for creating a Spanish reading.",
+    label: "Text creation",
+    title: "Lesson notes can become level-matched readings.",
+    caption:
+      "Teachers can choose a topic, level, and length, then turn class material into Spanish reading practice.",
+  },
+  {
+    image: teacherStudents,
+    alt: "Palabruno teacher roster with student records and invite status.",
+    label: "Teacher roster",
+    title: "Student records and invites live in the product.",
+    caption:
+      "The roster keeps student names, invite status, and next actions close to the reading workflow.",
+  },
+  {
+    image: teacherGroups,
+    alt: "Palabruno teacher groups for recurring classes.",
+    label: "Student groups",
+    title: "Groups support recurring classes and tutoring cohorts.",
+    caption:
+      "Teachers can organize students by lesson group and share readings with the right class faster.",
+  },
+  {
+    image: teacherRecentShares,
+    alt: "Palabruno recent shares view for assigned readings.",
+    label: "Share history",
+    title: "Teachers can see what was sent and when.",
+    caption:
+      "Recent shares make it easier to track assigned readings across email, links, and WhatsApp.",
+  },
 ];
 
-<figure class='case-study-detail__product-cover'>
-	<Image src={palabrunoProductCover} alt="Palabruno teacher workspace and mobile reader product visual." class='case-study-detail__product-cover-img' loading='eager' />
+<figure class="case-study-detail__product-cover">
+  <Image
+    src={palabrunoProductCover}
+    alt="Palabruno teacher workspace and mobile reader product visual."
+    class="case-study-detail__product-cover-img"
+    loading="eager"
+  />
 </figure>
 
 <CaseSection title="Summary">
-	Palabruno is a Spanish reading product for learners and teachers. The engagement took a non-technical founder's idea from concept to launch across iOS, Android, and web.
+  Palabruno is a Spanish reading product for learners and teachers. The engagement took a non-technical founder's idea from concept to launch across iOS, Android, and web.
 
-	The work included product scoping, AI reading features, teacher workflows, Stripe and RevenueCat billing, App Store and Google Play launch work, and founder handoff.
+    The work included product scoping, AI reading features, teacher workflows, Stripe and RevenueCat billing, App Store and Google Play launch work, and founder handoff.
 
 </CaseSection>
 
 <CaseSection title="Context">
-	Palabruno began as a strong founder idea: make Spanish reading feel lower-friction by letting learners tap a word, get translation, grammar, and pronunciation help, and stay inside the reading flow.
+  Palabruno began as a strong founder idea: make Spanish reading feel lower-friction by letting learners tap a word, get translation, grammar, and pronunciation help, and stay inside the reading flow.
 
-	The harder question was not whether the app could be built. It was what the first commercial version should include, who it should serve first, and how a non-technical founder could own it after launch.
+    The harder question was not whether the app could be built. It was what the first commercial version should include, who it should serve first, and how a non-technical founder could own it after launch.
 
-	A student reader alone was useful, but teachers were the clearer first buyer. A tutor could turn lesson material into level-appropriate readings, send them to students, and bring those students into the app.
+    A student reader alone was useful, but teachers were the clearer first buyer. A tutor could turn lesson material into level-appropriate readings, send them to students, and bring those students into the app.
 
-	The founder needed a first version that could support Spanish learners on mobile while giving teachers a clear reason to adopt and pay for the product.
+    The founder needed a first version that could support Spanish learners on mobile while giving teachers a clear reason to adopt and pay for the product.
 
 </CaseSection>
 
 <CaseSection title="Approach">
-	<DecisionBlock title="Could a useful prototype become a commercial product teachers and learners could actually try?">
-		Palabruno started with a strong product instinct: make Spanish reading less brittle by keeping translation, grammar, and pronunciation help inside the reading flow.
+  <DecisionBlock title="Could a useful prototype become a commercial product teachers and learners could actually try?">
+    Palabruno started with a strong product instinct: make Spanish reading less brittle by keeping translation, grammar, and pronunciation help inside the reading flow.
 
-		The sharper question was who would pay first. Teachers had a repeated need: create readings, share them with students, and bring those students into the mobile app.
+      The sharper question was who would pay first. Teachers had a repeated need: create readings, share them with students, and bring those students into the mobile app.
     </DecisionBlock>
 
     <DecisionBlock title="Split the MVP into two connected surfaces instead of one overstuffed app.">
-		I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.
+      I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.
 
-		The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.
+      The mobile product stayed focused on reading, saved texts, translation support, and Premium upgrades. The teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.
     </DecisionBlock>
 
 </CaseSection>
 
 <CaseSection title="Solution">
-	The shipped product connected three surfaces: the mobile reader, the teacher web workspace, and the public launch site.
+  The shipped product connected three surfaces: the mobile reader, the teacher web workspace, and the public launch site.
 
-	On mobile, learners can read Spanish content, tap words for support, save useful readings, and upgrade to Premium through the app stores.
+    On mobile, learners can read Spanish content, tap words for support, save useful readings, and upgrade to Premium through the app stores.
 
-	On web, teachers can create custom readings from lesson notes, manage students and groups, share material, track recent shares, and buy the Teacher plan through Stripe.
+    On web, teachers can create custom readings from lesson notes, manage students and groups, share material, track recent shares, and buy the Teacher plan through Stripe.
 
 </CaseSection>
 
 <CaseSection title="The Work">
-	<DecisionBlock title="Treat payments, store review, positioning, and handoff as part of the MVP.">
-		I carried the launch work beyond the interface: Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and founder handoff.
+  <DecisionBlock title="Treat payments, store review, positioning, and handoff as part of the MVP.">
+    I carried the launch work beyond the interface: Supabase, RevenueCat, Stripe, App Store Connect, Google Play, legal pages, store assets, screenshots, release docs, public-site copy, and founder handoff.
 
-		That mattered because a non-technical founder does not just need code. He needs the product to be coherent enough to sell, trustworthy enough to launch, and documented enough to own after the engagement.
+      That mattered because a non-technical founder does not just need code. He needs the product to be coherent enough to sell, trustworthy enough to launch, and documented enough to own after the engagement.
     </DecisionBlock>
 
     <DecisionBlock title="A launched first version with a clear first buyer.">
-		The product can now take payments through the right channels: Premium through Apple and Google via RevenueCat, and Teacher through Stripe on the web.
+      The product can now take payments through the right channels: Premium through Apple and Google via RevenueCat, and Teacher through Stripe on the web.
 
-		The founder ended the engagement with a working cross-platform product, teacher dashboard, shared backend, launch documentation, store assets, and a clearer first market to test with real Spanish teachers.
+      The founder ended the engagement with a working cross-platform product, teacher dashboard, shared backend, launch documentation, store assets, and a clearer first market to test with real Spanish teachers.
     </DecisionBlock>
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>Impact</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<ProofRows rows={shippedRows}>
-			Palabruno launched with the real product and business surface needed to test demand: iOS, Android, teacher web workflows,
-			AI-assisted reading, working payments, store readiness, and a handoff the founder could own.
-		</ProofRows>
-	</div>
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>Impact</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      Palabruno launched with the real product and business surface needed to test demand: iOS,
+      Android, teacher web workflows, AI-assisted reading, working payments, store readiness, and a
+      handoff the founder could own.
+    </ProofRows>
+  </div>
 </section>
 
 <CaseSection title="Visuals" media wideMedia>
-	Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
+  Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
 
     <DeviceGrid screens={teacherScreens} />
 

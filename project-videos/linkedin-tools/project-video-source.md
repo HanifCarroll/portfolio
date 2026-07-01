@@ -72,29 +72,29 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/linkedin-tools.mdx:39-49` | The project is controller-led browser automation; the trust problem is action ownership, allowed behavior, evidence, and reconciliation. |
-| `src/content/case-studies/linkedin-tools.mdx:53-64` | Workflows have owners, action flags, and saved audit evidence. |
-| `src/content/case-studies/linkedin-tools.mdx:68-73` | The review UI is safe to show because it uses isolated temporary state. |
-| `src/content/case-studies/linkedin-tools.mdx:77-96` | The project has network, recruiter/agency, opportunity, comments, and review UI rails with separate responsibilities. |
-| `src/content/case-studies/linkedin-tools.mdx:100-115` | The shipped value is state first, action ownership second, audit evidence, and explainable automation. |
-| `src/lib/projects/linkedin-tools.json:18-20` | The public artifact cannot expose LinkedIn runtime state, browser artifacts, credentials, or live account data. |
-| `src/lib/projects/linkedin-tools.json:22-34` | Metadata confirms the problem, solution, and result framing. |
-| `src/lib/projects/linkedin-tools.json:36-39` | Metadata confirms CLI namespaces, explicit action flags, and tests covering workflow contracts. |
+| Source                                                | What it supports in plain language                                                                                                       |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/linkedin-tools.mdx:39-49`   | The project is controller-led browser automation; the trust problem is action ownership, allowed behavior, evidence, and reconciliation. |
+| `src/content/case-studies/linkedin-tools.mdx:53-64`   | Workflows have owners, action flags, and saved audit evidence.                                                                           |
+| `src/content/case-studies/linkedin-tools.mdx:68-73`   | The review UI is safe to show because it uses isolated temporary state.                                                                  |
+| `src/content/case-studies/linkedin-tools.mdx:77-96`   | The project has network, recruiter/agency, opportunity, comments, and review UI rails with separate responsibilities.                    |
+| `src/content/case-studies/linkedin-tools.mdx:100-115` | The shipped value is state first, action ownership second, audit evidence, and explainable automation.                                   |
+| `src/lib/projects/linkedin-tools.json:18-20`          | The public artifact cannot expose LinkedIn runtime state, browser artifacts, credentials, or live account data.                          |
+| `src/lib/projects/linkedin-tools.json:22-34`          | Metadata confirms the problem, solution, and result framing.                                                                             |
+| `src/lib/projects/linkedin-tools.json:36-39`          | Metadata confirms CLI namespaces, explicit action flags, and tests covering workflow contracts.                                          |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Browser automation was risky when scattered scripts could affect real LinkedIn account actions. | `src/content/case-studies/linkedin-tools.mdx:46-49` | Yes, as plain text | Yes |
-| Input | Networking, recruiter/agency outreach, opportunity research, and comment extraction enter separate workflow rails. | `src/content/case-studies/linkedin-tools.mdx:53-64` | Yes, as labels | Yes |
-| Product action | Controller-owned states and action flags gate risky browser behavior. | `src/content/case-studies/linkedin-tools.mdx:58-63` | Yes, as guardrail labels | Yes |
-| Durable output | Runs write artifacts, audits, ledgers, queues, blockers, rankings, and review state. | `src/content/case-studies/linkedin-tools.mdx:62-64` | Yes, as synthetic evidence cards | Yes |
-| Saved record | Review UI reads app-owned SQLite and JSON state. | `src/content/case-studies/linkedin-tools.mdx:68-73`, `src/content/case-studies/linkedin-tools.mdx:94-96` | Yes, via isolated screenshot | Yes |
-| Guardrail or warning | Network, recruiter/agency, and opportunity rails have different action boundaries; opportunity intelligence remains recommend-only. | `src/content/case-studies/linkedin-tools.mdx:53-60` | Yes, as simple lane labels | Yes |
-| Verification | Tests cover source registry contracts, browser behavior, reconciliation, recruiter/agency state, migrations, and review UI surfaces. | `src/lib/projects/linkedin-tools.json:36-39` | Yes as backing proof; not main copy | No |
-| Reviewer path | Portfolio case study and public GitHub repo provide inspectable repo context. | `src/content/case-studies/linkedin-tools.mdx:119-130` | Yes | No |
+| Proof type           | Exact proof                                                                                                                          | Source path, URL, or command                                                                             | Safe to show?                       | On-screen? |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------- |
+| Problem              | Browser automation was risky when scattered scripts could affect real LinkedIn account actions.                                      | `src/content/case-studies/linkedin-tools.mdx:46-49`                                                      | Yes, as plain text                  | Yes        |
+| Input                | Networking, recruiter/agency outreach, opportunity research, and comment extraction enter separate workflow rails.                   | `src/content/case-studies/linkedin-tools.mdx:53-64`                                                      | Yes, as labels                      | Yes        |
+| Product action       | Controller-owned states and action flags gate risky browser behavior.                                                                | `src/content/case-studies/linkedin-tools.mdx:58-63`                                                      | Yes, as guardrail labels            | Yes        |
+| Durable output       | Runs write artifacts, audits, ledgers, queues, blockers, rankings, and review state.                                                 | `src/content/case-studies/linkedin-tools.mdx:62-64`                                                      | Yes, as synthetic evidence cards    | Yes        |
+| Saved record         | Review UI reads app-owned SQLite and JSON state.                                                                                     | `src/content/case-studies/linkedin-tools.mdx:68-73`, `src/content/case-studies/linkedin-tools.mdx:94-96` | Yes, via isolated screenshot        | Yes        |
+| Guardrail or warning | Network, recruiter/agency, and opportunity rails have different action boundaries; opportunity intelligence remains recommend-only.  | `src/content/case-studies/linkedin-tools.mdx:53-60`                                                      | Yes, as simple lane labels          | Yes        |
+| Verification         | Tests cover source registry contracts, browser behavior, reconciliation, recruiter/agency state, migrations, and review UI surfaces. | `src/lib/projects/linkedin-tools.json:36-39`                                                             | Yes as backing proof; not main copy | No         |
+| Reviewer path        | Portfolio case study and public GitHub repo provide inspectable repo context.                                                        | `src/content/case-studies/linkedin-tools.mdx:119-130`                                                    | Yes                                 | No         |
 
 ## Selected Story
 
@@ -290,15 +290,15 @@ Reading-speed check: `5` words over `3s` = `100 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Browser automation is easy to demo. It is harder to trust. | 10 | 7s | 86 |
-| 2 | The question was ownership. Which workflow can act, and what proof remains? | 12 | 7s | 103 |
-| 3 | LinkedIn Tools puts workflows behind controllers. State, gates, and review come first. | 12 | 7s | 103 |
-| 4 | Each rail has a boundary. Network sends connections. Recruiter outreach sends drafts. Opportunity intel only recommends. | 14 | 7s | 120 |
-| 5 | Runs leave evidence behind. Artifacts, ledgers, audits, blockers, and review pages stay inspectable. | 13 | 7s | 111 |
-| 6 | This is safer workflow ownership. Automation runs where the system can explain what happened. | 13 | 7s | 111 |
-| End | LinkedIn Tools. Guarded automation with evidence. | 5 | 3s | 100 |
+| Scene | Text                                                                                                                     | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Browser automation is easy to demo. It is harder to trust.                                                               |         10 |       7s |  86 |
+| 2     | The question was ownership. Which workflow can act, and what proof remains?                                              |         12 |       7s | 103 |
+| 3     | LinkedIn Tools puts workflows behind controllers. State, gates, and review come first.                                   |         12 |       7s | 103 |
+| 4     | Each rail has a boundary. Network sends connections. Recruiter outreach sends drafts. Opportunity intel only recommends. |         14 |       7s | 120 |
+| 5     | Runs leave evidence behind. Artifacts, ledgers, audits, blockers, and review pages stay inspectable.                     |         13 |       7s | 111 |
+| 6     | This is safer workflow ownership. Automation runs where the system can explain what happened.                            |         13 |       7s | 111 |
+| End   | LinkedIn Tools. Guarded automation with evidence.                                                                        |          5 |       3s | 100 |
 
 Allowed short labels:
 
@@ -347,12 +347,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
+| Asset                | Purpose                                                          | Source                                                 | Redaction needed?                                                                     | Final path                                                             |
+| -------------------- | ---------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | Review UI screenshot | Product proof, solution scene, result crop, and final system map | `src/assets/img/projects/linkedin-tools-review-ui.png` | Already isolated temporary state according to case study; copied into redacted assets | `assets/redacted/review-ui.png` and `hyperframes/assets/review-ui.png` |
-| Browser action cards | Problem and cost scenes | Case-study problem framing | No private data | Build natively in HyperFrames |
-| Guardrail rails | How-it-works scene | Case-study workflow boundaries | No private data | Build natively in HyperFrames |
-| Evidence cards | Result scene | Case-study audit evidence list | No private data | Build natively in HyperFrames |
+| Browser action cards | Problem and cost scenes                                          | Case-study problem framing                             | No private data                                                                       | Build natively in HyperFrames                                          |
+| Guardrail rails      | How-it-works scene                                               | Case-study workflow boundaries                         | No private data                                                                       | Build natively in HyperFrames                                          |
+| Evidence cards       | Result scene                                                     | Case-study audit evidence list                         | No private data                                                                       | Build natively in HyperFrames                                          |
 
 ## Privacy Check
 

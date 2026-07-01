@@ -11,7 +11,7 @@ const navLinks = [
 ];
 
 const { pathname } = Astro.url;
-const currentRoot = `/${pathname.match(/[^\/]+/)?.[0] ?? ''}/`;
+const currentRoot = `/${pathname.match(/[^/]+/)?.[0] ?? ''}/`;
 const isActiveLink = (href: string) => href === pathname || href === currentRoot;
 ---
 

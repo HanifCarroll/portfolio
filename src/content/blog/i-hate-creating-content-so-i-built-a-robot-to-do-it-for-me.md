@@ -25,11 +25,11 @@ This system isn't writing _for_ me; it's automating the process I would have don
 
 The strategic core of this intelligence is a framework of **five distinct post types**, which AI helped me refine:
 
--   **Problem**: Builds empathy by highlighting a common pain point.
--   **Proof**: Builds credibility by showing concrete results.
--   **Framework**: Builds authority by teaching a systematic method.
--   **Contrarian Take**: Builds thought leadership by challenging conventional wisdom.
--   **Mental Model**: Builds a teaching reputation by explaining fundamental concepts.
+- **Problem**: Builds empathy by highlighting a common pain point.
+- **Proof**: Builds credibility by showing concrete results.
+- **Framework**: Builds authority by teaching a systematic method.
+- **Contrarian Take**: Builds thought leadership by challenging conventional wisdom.
+- **Mental Model**: Builds a teaching reputation by explaining fundamental concepts.
 
 This framework ensures my content is varied, valuable, and consistently demonstrates different facets of my expertise.
 

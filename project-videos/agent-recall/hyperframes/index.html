@@ -88,8 +88,16 @@
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(circle at 17% 16%, rgba(132, 185, 255, 0.2), rgba(132, 185, 255, 0) 340px),
-          radial-gradient(circle at 82% 80%, rgba(142, 227, 194, 0.24), rgba(142, 227, 194, 0) 430px),
+          radial-gradient(
+            circle at 17% 16%,
+            rgba(132, 185, 255, 0.2),
+            rgba(132, 185, 255, 0) 340px
+          ),
+          radial-gradient(
+            circle at 82% 80%,
+            rgba(142, 227, 194, 0.24),
+            rgba(142, 227, 194, 0) 430px
+          ),
           radial-gradient(circle at 70% 20%, rgba(228, 190, 85, 0.16), rgba(228, 190, 85, 0) 320px);
       }
 
@@ -735,7 +743,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="42">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="42"
+    >
       <section id="scene1" class="scene">
         <div class="bg" data-layout-ignore>
           <div class="bg-grid"></div>
@@ -927,7 +942,10 @@
           </div>
           <div class="proof-layout">
             <div class="asset-frame">
-              <img src="assets/agent-recall-proof.png" alt="Agent Recall CLI screenshot with doctor output" />
+              <img
+                src="assets/agent-recall-proof.png"
+                alt="Agent Recall CLI screenshot with doctor output"
+              />
             </div>
             <div class="status-stack">
               <div class="status-card card">
@@ -1013,11 +1031,36 @@
       var tl = gsap.timeline({ paused: true });
 
       function enterCopy(scene, start, fromX) {
-        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, start);
-        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: fromX }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, start + 0.04);
-        tl.fromTo(scene + " .headline", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, start + 0.18);
-        tl.fromTo(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, start + 0.76);
-        tl.fromTo(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, start + 1.06);
+        tl.fromTo(
+          scene + " .scene-number",
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+          start,
+        );
+        tl.fromTo(
+          scene + " .eyebrow",
+          { opacity: 0, x: fromX },
+          { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+          start + 0.04,
+        );
+        tl.fromTo(
+          scene + " .headline",
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" },
+          start + 0.18,
+        );
+        tl.fromTo(
+          scene + " .subhead",
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+          start + 0.76,
+        );
+        tl.fromTo(
+          scene + " .rule",
+          { opacity: 0, scaleX: 0 },
+          { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" },
+          start + 1.06,
+        );
       }
 
       function pushTransition(fromScene, toScene, time, direction) {
@@ -1030,41 +1073,124 @@
 
       function blurTransition(fromScene, toScene, time) {
         tl.set(toScene, { opacity: 0, x: 0, filter: "blur(10px)", scale: 0.985 }, time);
-        tl.to(fromScene, { filter: "blur(10px)", scale: 1.025, opacity: 0, duration: 0.54, ease: "power2.inOut" }, time);
-        tl.to(toScene, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.56, ease: "power2.inOut" }, time + 0.08);
+        tl.to(
+          fromScene,
+          { filter: "blur(10px)", scale: 1.025, opacity: 0, duration: 0.54, ease: "power2.inOut" },
+          time,
+        );
+        tl.to(
+          toScene,
+          { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.56, ease: "power2.inOut" },
+          time + 0.08,
+        );
       }
 
       enterCopy("#scene1", 0.18, -34);
-      tl.fromTo("#scene1 .archive-card", { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.56, stagger: 0.13, ease: "back.out(1.2)" }, 0.82);
-      tl.fromTo("#scene1 .connector", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" }, 1.24);
-      tl.fromTo("#scene1 .memory-target", { opacity: 0, x: 54, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.64, ease: "power3.out" }, 1.38);
+      tl.fromTo(
+        "#scene1 .archive-card",
+        { opacity: 0, y: 50, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.56, stagger: 0.13, ease: "back.out(1.2)" },
+        0.82,
+      );
+      tl.fromTo(
+        "#scene1 .connector",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" },
+        1.24,
+      );
+      tl.fromTo(
+        "#scene1 .memory-target",
+        { opacity: 0, x: 54, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.64, ease: "power3.out" },
+        1.38,
+      );
 
       pushTransition("#scene1", "#scene2", 6.12, 1);
       enterCopy("#scene2", 6.58, 34);
-      tl.fromTo("#scene2 .source-card", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 6.82);
-      tl.fromTo("#scene2 .source-anchor", { opacity: 0, y: 30, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.58, ease: "back.out(1.12)" }, 7.4);
-      tl.fromTo("#scene2 .source-anchor .dot", { opacity: 0, scale: 0.35 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(1.6)" }, 7.56);
+      tl.fromTo(
+        "#scene2 .source-card",
+        { opacity: 0, y: 42, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
+        6.82,
+      );
+      tl.fromTo(
+        "#scene2 .source-anchor",
+        { opacity: 0, y: 30, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.58, ease: "back.out(1.12)" },
+        7.4,
+      );
+      tl.fromTo(
+        "#scene2 .source-anchor .dot",
+        { opacity: 0, scale: 0.35 },
+        { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(1.6)" },
+        7.56,
+      );
 
       pushTransition("#scene2", "#scene3", 12.62, 1);
       enterCopy("#scene3", 13.08, -34);
-      tl.fromTo("#scene3 .pipeline-card", { opacity: 0, y: 34, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.1, ease: "power2.out" }, 13.18);
-      tl.fromTo("#scene3 .asset-frame", { opacity: 0, y: 36, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 13.72);
+      tl.fromTo(
+        "#scene3 .pipeline-card",
+        { opacity: 0, y: 34, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.1, ease: "power2.out" },
+        13.18,
+      );
+      tl.fromTo(
+        "#scene3 .asset-frame",
+        { opacity: 0, y: 36, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        13.72,
+      );
 
       blurTransition("#scene3", "#scene4", 19.08);
       enterCopy("#scene4", 19.62, 34);
-      tl.fromTo("#scene4 .memory-object", { opacity: 0, x: -44, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "power3.out" }, 19.76);
-      tl.fromTo("#scene4 .receipt-row", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.44, stagger: 0.11, ease: "power3.out" }, 20.04);
+      tl.fromTo(
+        "#scene4 .memory-object",
+        { opacity: 0, x: -44, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "power3.out" },
+        19.76,
+      );
+      tl.fromTo(
+        "#scene4 .receipt-row",
+        { opacity: 0, x: 46, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.44, stagger: 0.11, ease: "power3.out" },
+        20.04,
+      );
 
       pushTransition("#scene4", "#scene5", 25.58, 1);
       enterCopy("#scene5", 26.04, -34);
-      tl.fromTo("#scene5 .asset-frame", { opacity: 0, x: -44, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 26.46);
-      tl.fromTo("#scene5 .status-card", { opacity: 0, x: 50, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.44, stagger: 0.1, ease: "power3.out" }, 26.66);
-      tl.fromTo("#scene5 .status-dot", { opacity: 0, scale: 0.35 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 26.8);
+      tl.fromTo(
+        "#scene5 .asset-frame",
+        { opacity: 0, x: -44, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        26.46,
+      );
+      tl.fromTo(
+        "#scene5 .status-card",
+        { opacity: 0, x: 50, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.44, stagger: 0.1, ease: "power3.out" },
+        26.66,
+      );
+      tl.fromTo(
+        "#scene5 .status-dot",
+        { opacity: 0, scale: 0.35 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" },
+        26.8,
+      );
 
       blurTransition("#scene5", "#scene6", 32.08);
       enterCopy("#scene6", 32.64, -34);
-      tl.fromTo("#scene6 .review-card", { opacity: 0, y: 38, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" }, 33.08);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 38.4);
+      tl.fromTo(
+        "#scene6 .review-card",
+        { opacity: 0, y: 38, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" },
+        33.08,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        38.4,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.3, ease: "sine.inOut" }, 41.7);
 
       window.__timelines["main"] = tl;

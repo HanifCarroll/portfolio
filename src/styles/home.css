@@ -1,0 +1,743 @@
+.home-case-studies-title {
+  max-width: 60ch;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.home-hero-shell {
+  position: relative;
+  overflow: clip;
+  background: #f9f9f7;
+}
+
+.home-hero-shell::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(44rem, 62vw);
+  height: min(34rem, 56vw);
+  transform: translate(-4%, -12%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.4) 44%,
+    rgba(255, 255, 255, 0) 74%
+  );
+  pointer-events: none;
+}
+
+:is(.dark) .home-hero-shell {
+  background: radial-gradient(circle at 72% 12%, rgba(18, 38, 72, 0.34), transparent 30%), #090909;
+}
+
+:is(.dark) .home-hero-shell::before {
+  background: radial-gradient(
+    circle,
+    rgba(18, 38, 72, 0.46) 0%,
+    rgba(18, 38, 72, 0.12) 42%,
+    rgba(18, 38, 72, 0) 74%
+  );
+}
+
+.home-hero-stage {
+  position: relative;
+  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  container-type: inline-size;
+  container-name: home-hero;
+}
+
+.home-hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: start;
+  width: 100%;
+  max-width: 50rem;
+  margin-inline: auto;
+}
+
+.home-hero-media {
+  display: flex;
+  justify-content: center;
+}
+
+.home-hero-copy-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.home-hero-copy {
+  width: 100%;
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.3rem, 2.4vw, 1.85rem);
+}
+
+.home-hero-greeting {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--site-muted);
+}
+
+.home-hero-greeting__name {
+  color: var(--site-ink);
+  font-weight: 600;
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  width: 100%;
+}
+
+.home-hero-body {
+  max-width: 31rem;
+  font-size: clamp(1.08rem, 1.8vw, 1.42rem);
+  line-height: 1.62;
+  color: var(--site-muted);
+  text-wrap: pretty;
+}
+
+:is(.dark) .home-hero-body {
+  color: var(--site-muted);
+}
+
+.home-hero-subheadline {
+  max-width: 41rem;
+  color: var(--site-ink);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.home-hero-subheadline span {
+  display: inline;
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 0.2rem;
+}
+
+.home-hero-primary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.35rem;
+  padding: 0 1.35rem;
+  border: 1.5px solid rgb(12 12 12);
+  background: rgb(12 12 12);
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.home-hero-primary-link::after {
+  content: "→";
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.home-hero-primary-link:hover {
+  background: rgb(0 102 255);
+  border-color: rgb(0 102 255);
+  color: white;
+}
+
+:is(.dark) .home-hero-primary-link {
+  background: rgb(250 250 250);
+  border-color: rgb(250 250 250);
+  color: rgb(10 10 10);
+}
+
+:is(.dark) .home-hero-primary-link:hover {
+  background: rgb(0 102 255);
+  border-color: rgb(0 102 255);
+  color: white;
+}
+
+.home-hero-secondary-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--site-muted);
+  transition: color 180ms ease;
+}
+
+.home-hero-secondary-link::after {
+  content: "";
+  width: 2.75rem;
+  height: 1px;
+  background: currentColor;
+  transition: width 180ms ease;
+}
+
+.home-hero-secondary-link:hover {
+  color: rgb(0 102 255);
+}
+
+.home-hero-secondary-link:hover::after {
+  width: 3.35rem;
+}
+
+:is(.dark) .home-hero-secondary-link {
+  color: var(--site-muted);
+}
+
+.home-hero-image-wrap {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: min(100%, 23rem);
+  aspect-ratio: 0.92;
+  background: #ebe7df;
+  border: 8px solid #ffffff;
+  box-shadow:
+    0 18px 40px rgba(20, 18, 14, 0.08),
+    0 1px 0 rgba(0, 0, 0, 0.04);
+  isolation: isolate;
+  z-index: 2;
+}
+
+:is(.dark) .home-hero-image-wrap {
+  background: #101010;
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
+}
+
+.home-hero-portrait {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 68% 14%;
+  transform: scaleX(-1) scale(0.94);
+  transform-origin: center;
+}
+
+.case-study-rows {
+  border-top: 2px solid var(--site-ink);
+}
+
+.case-study-row {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(2rem, 5vw, 3.75rem) 0;
+  border-bottom: 2px solid var(--site-ink);
+  color: var(--site-ink);
+}
+
+.case-study-row__copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(3rem, 8vw, 10rem);
+}
+
+.case-study-row__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--site-muted);
+}
+
+.case-study-row__eyebrow span {
+  display: none;
+}
+
+.case-study-row__body {
+  display: grid;
+  gap: 2rem;
+  align-content: end;
+  max-width: 34rem;
+}
+
+.case-study-row__title {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(2rem, 1.55rem + 1.8vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.case-study-row__description {
+  max-width: 34rem;
+  font-size: clamp(1.12rem, 1.25vw, 1.28rem);
+  font-weight: 500;
+  line-height: 1.62;
+  color: #514b43;
+}
+
+.case-study-row__tech {
+  max-width: 34rem;
+  color: var(--site-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1.65;
+  text-transform: uppercase;
+}
+
+.case-study-row__button {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgb(12 12 12);
+  background: rgb(12 12 12);
+  padding: 0.95rem 1.7rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: white;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.case-study-row:hover .case-study-row__button {
+  border-color: rgb(0 102 255);
+  background: rgb(0 102 255);
+  color: white;
+}
+
+:is(.dark) .case-study-row__button {
+  border-color: rgb(250 250 250);
+  background: rgb(250 250 250);
+  color: rgb(10 10 10);
+}
+
+:is(.dark) .case-study-row:hover .case-study-row__button {
+  border-color: rgb(0 102 255);
+  background: rgb(0 102 255);
+  color: white;
+}
+
+.case-study-row__media {
+  overflow: hidden;
+}
+
+.case-study-row__image-frame {
+  overflow: hidden;
+  background: color-mix(in srgb, var(--site-ink) 8%, transparent);
+}
+
+.case-study-row__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.additional-work {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.25rem 0 1.75rem;
+}
+
+.additional-work__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.additional-work__header h3 {
+  color: var(--site-ink);
+}
+
+.additional-work__list {
+  display: grid;
+  gap: 1.65rem;
+}
+
+.additional-work__item {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+  padding: 0.25rem 0;
+  color: var(--site-ink);
+}
+
+.additional-work__media {
+  display: block;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--site-ink) 8%, transparent);
+  aspect-ratio: 1.12 / 1;
+}
+
+.additional-work__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.additional-work__copy {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+  padding-top: 0.1rem;
+}
+
+.additional-work__title {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.additional-work__body {
+  color: #514b43;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.additional-work__focus {
+  color: var(--site-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.case-study-archive-link {
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.case-study-archive-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--site-muted);
+  transition: color 180ms ease;
+}
+
+.case-study-archive-link a:hover {
+  color: rgb(0 102 255);
+}
+
+.home-fit-section__inner {
+  display: grid;
+  gap: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.home-fit-section__title {
+  max-width: 60ch;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.home-fit-section {
+  padding-block: clamp(5rem, 8vw, 7.25rem) clamp(6rem, 10vw, 8.5rem);
+}
+
+.home-tech-section {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.25rem);
+  padding-block: clamp(4.5rem, 8vw, 7rem) clamp(6rem, 10vw, 8.75rem);
+}
+
+.home-tech-section__heading {
+  display: grid;
+  gap: 1rem;
+  max-width: 52rem;
+}
+
+.home-tech-section__title {
+  max-width: 60ch;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.home-tech-section__intro {
+  max-width: 44rem;
+  color: var(--site-body);
+  font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.home-tech-grid {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+.home-tech-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.home-tech-group__title {
+  color: var(--site-ink);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.home-tech-group__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  max-width: 52rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-tech-group__tags li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.05rem;
+  padding: 0.38rem 0.68rem;
+  border: 1px solid var(--site-rule);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--site-body);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+:is(.dark) .home-tech-group__tags li {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Testimonials */
+/* Testimonials band — full-bleed dark zone */
+.home-testimonials-band {
+  background-color: #171512;
+}
+
+.home-testimonials {
+  padding-block: clamp(4rem, 7vw, 6rem);
+}
+
+.home-testimonials__eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa196;
+  margin-bottom: clamp(1.6rem, 4vw, 3rem);
+}
+
+.home-testimonials__grid {
+  display: grid;
+  gap: clamp(2.75rem, 6vw, 4.25rem);
+}
+
+@media (min-width: 1024px) {
+  .home-testimonials__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .home-tech-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+}
+
+.home-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: clamp(1rem, 4vw, 1.4rem);
+  background: rgba(246, 241, 232, 0.06);
+}
+
+.home-testimonial__quote {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.18rem, 4.8vw, 1.5rem);
+  line-height: 1.45;
+  color: #ded6ca;
+  text-wrap: pretty;
+}
+
+.home-testimonial__quote p {
+  margin: 0;
+}
+
+.home-testimonial__quote p::before {
+  content: "\201C";
+  margin-right: 0.15em;
+}
+
+.home-testimonial__quote p::after {
+  content: "\201D";
+  margin-left: 0.05em;
+}
+
+.home-testimonial__attr {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.7rem;
+  row-gap: 0.12rem;
+  align-items: start;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.home-testimonial__attr::before {
+  content: "";
+  grid-row: span 2;
+  width: 0.38rem;
+  height: 0.38rem;
+  margin-top: 0.38rem;
+  background: rgb(0 102 255);
+}
+
+.home-testimonial__name {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #f6f1e8;
+}
+
+.home-testimonial__role {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #aaa196;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .home-testimonial {
+    padding: 0;
+    background: transparent;
+  }
+
+  .home-testimonial__quote {
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.1rem);
+    line-height: 1.6;
+  }
+}
+
+/* Dark mode: band is already dark, no overrides needed */
+:is(.dark) .home-testimonials-band {
+  background-color: #0d0d0d;
+}
+
+/* About block */
+.home-about {
+  padding-block: clamp(4rem, 7vw, 6rem);
+}
+
+.home-about__inner {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-about__title {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.85rem, 1.45rem + 1.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--site-ink);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.home-about__body {
+  font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--site-body);
+  text-wrap: pretty;
+}
+
+.home-about__location {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--site-muted);
+  text-transform: uppercase;
+  padding-top: 0.5rem;
+}
+
+.home-fit-section__lede {
+  max-width: 52rem;
+  font-size: clamp(1.05rem, 0.95rem + 0.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--site-body);
+}
+
+.fit-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}

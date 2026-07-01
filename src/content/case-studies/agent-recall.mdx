@@ -1,133 +1,137 @@
 ---
-projectSlug: agent-recall
 ---
 
-import CaseSection from '../../components/case-study/CaseSection.astro';
-import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
-import ImagePlate from '../../components/case-study/ImagePlate.astro';
-import MacWindowFrame from '../../components/case-study/MacWindowFrame.astro';
-import ProofRows from '../../components/case-study/ProofRows.astro';
-import agentRecallCli from '../../assets/img/projects/agent-recall-cli.png';
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import MacWindowFrame from "../../components/case-study/MacWindowFrame.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import agentRecallCli from "../../assets/img/projects/agent-recall-cli.png";
 
 export const shippedRows = [
-	{
-		label: 'Local index',
-		title: 'Transcript archives became searchable without becoming the database.',
-		body: 'Agent Recall builds a disposable SQLite FTS5 index from local JSONL archives while keeping raw transcript files as the source of truth.'
-	},
-	{
-		label: 'Agent sources',
-		title: 'Recall works across more than one runtime.',
-		body: 'The parser supports Codex, OMP, Pi, and Claude transcript roots with explicit source labels in search, recent, show, bundle, and related-context output.'
-	},
-	{
-		label: 'Receipts',
-		title: 'Search results point back to evidence.',
-		body: 'Results group by session and carry the source kind, event kind, file path, line number, cwd, repo, and snippet needed to inspect the original transcript.'
-	},
-	{
-		label: 'Memory objects',
-		title: 'Memories are durable records, not loose summaries.',
-		body: 'Indexing extracts deterministic decision, task, fact, open-question, and blocker objects with stable ids, evidence counts, resource URIs, and delta cursors.'
-	},
-	{
-		label: 'Health checks',
-		title: 'The tool reports freshness and index health.',
-		body: 'The watcher, status, and doctor commands expose pending files, stale indexes, LaunchAgent status, SQLite checks, FTS integrity, and duplicate-source counts.'
-	}
+  {
+    label: "Local index",
+    title: "Transcript archives became searchable without becoming the database.",
+    body: "Agent Recall builds a disposable SQLite FTS5 index from local JSONL archives while keeping raw transcript files as the source of truth.",
+  },
+  {
+    label: "Agent sources",
+    title: "Recall works across more than one runtime.",
+    body: "The parser supports Codex, OMP, Pi, and Claude transcript roots with explicit source labels in search, recent, show, bundle, and related-context output.",
+  },
+  {
+    label: "Receipts",
+    title: "Search results point back to evidence.",
+    body: "Results group by session and carry the source kind, event kind, file path, line number, cwd, repo, and snippet needed to inspect the original transcript.",
+  },
+  {
+    label: "Memory objects",
+    title: "Memories are durable records, not loose summaries.",
+    body: "Indexing extracts deterministic decision, task, fact, open-question, and blocker objects with stable ids, evidence counts, resource URIs, and delta cursors.",
+  },
+  {
+    label: "Health checks",
+    title: "The tool reports freshness and index health.",
+    body: "The watcher, status, and doctor commands expose pending files, stale indexes, LaunchAgent status, SQLite checks, FTS integrity, and duplicate-source counts.",
+  },
 ];
 
 <CaseSection title="Summary">
-	Agent Recall is a local memory layer for agent work.
+  Agent Recall is a local memory layer for agent work.
 
     It indexes Codex, OMP, Pi, and Claude session archives into SQLite FTS5. That gives agents and humans a way to find prior decisions, commands, blockers, and facts without pasting raw transcript blobs into the next conversation.
 
 </CaseSection>
 
 <CaseSection title="The situation">
-	Agent work leaves a lot of useful history behind.
+  Agent work leaves a lot of useful history behind.
 
     The useful parts are usually buried in JSONL archives: why a decision was made, which command proved something, where a blocker appeared, or what the next thread should know. Plain "memory" is not enough if nobody can verify where it came from.
 
 </CaseSection>
 
 <CaseSection title="How it works">
-	<DecisionBlock title="Keep local archives as the source of truth.">
-		The index is disposable. Agent Recall can delete and rebuild SQLite state from raw transcript archives, while pins live outside the index so important anchors survive rebuilds.
-	</DecisionBlock>
+  <DecisionBlock title="Keep local archives as the source of truth.">
+    The index is disposable. Agent Recall can delete and rebuild SQLite state from raw transcript archives, while pins live outside the index so important anchors survive rebuilds.
+  </DecisionBlock>
 
     <DecisionBlock title="Return evidence, not loose summaries.">
-	Search, recent, show, bundle, memory, related, and resource commands expose source labels, session keys, event kinds, file paths, line numbers, snippets, and JSON output so another agent can inspect the receipt.
+    Search, recent, show, bundle, memory, related, and resource commands expose source labels, session keys, event kinds, file paths, line numbers, snippets, and JSON output so another agent can inspect the receipt.
     </DecisionBlock>
 
     <DecisionBlock title="Make freshness visible.">
-	The watcher avoids live-write churn with a quiet window, reports pending and waiting files, handles SQLite refresh locks, and exposes doctor/status output when the index is missing, stale, blocked, or healthy.
+    The watcher avoids live-write churn with a quiet window, reports pending and waiting files, handles SQLite refresh locks, and exposes doctor/status output when the index is missing, stale, blocked, or healthy.
     </DecisionBlock>
 
 </CaseSection>
 
 <section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-	<h2>Product surface</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<p>
-			The public surface is a CLI for humans and agents: readable grouped receipts by default, structured JSON when another tool needs to consume
-			the result.
-		</p>
+  <h2>Product surface</h2>
+  <div class='case-study-detail__editorial-copy'>
+    <p>
+      The public surface is a CLI for humans and agents: readable grouped receipts by default, structured JSON when another tool needs to consume
+      the result.
+    </p>
 
-	<MacWindowFrame title='agent-recall' ariaLabel='Agent Recall CLI evidence view'>
-		<ImagePlate image={agentRecallCli} alt='Agent Recall CLI view showing search receipts, memory objects, doctor freshness checks, SQLite FTS5, receipts, and local source labels.' />
-	</MacWindowFrame>
+    <MacWindowFrame title='agent-recall' ariaLabel='Agent Recall CLI evidence view'>
+      <ImagePlate image={agentRecallCli} alt='Agent Recall CLI view showing search receipts, memory objects, doctor freshness checks, SQLite FTS5, receipts, and local source labels.' />
+    </MacWindowFrame>
     </div>
 
 </section>
 
 <CaseSection title="What I built">
-	<DecisionBlock title="A parser for real agent archives.">
-		The parser reads JSONL line by line, accepts supported Codex, OMP, Pi, and Claude record shapes, extracts high-signal user, assistant, shell-command, and tool events, dedupes repeated content, and skips malformed records without aborting a full import.
-	</DecisionBlock>
+  <DecisionBlock title="A parser for real agent archives.">
+    The parser reads JSONL line by line, accepts supported Codex, OMP, Pi, and Claude record shapes, extracts high-signal user, assistant, shell-command, and tool events, dedupes repeated content, and skips malformed records without aborting a full import.
+  </DecisionBlock>
 
     <DecisionBlock title="SQLite as the retrieval layer.">
-	The store keeps sessions, events, source-file state, FTS rows, memory objects, evidence rows, deltas, and resource records. Indexing skips unchanged files by source metadata and batches session writes for large archives.
+    The store keeps sessions, events, source-file state, FTS rows, memory objects, evidence rows, deltas, and resource records. Indexing skips unchanged files by source metadata and batches session writes for large archives.
     </DecisionBlock>
 
     <DecisionBlock title="Recall commands for agents.">
-	Search supports repo, cwd, kind, date-window, phrase, NEAR, duplicate, and exclude-current filters. Memories, memory-show, delta, related, resources, and read-resource turn transcript history into addressable context objects.
+    Search supports repo, cwd, kind, date-window, phrase, NEAR, duplicate, and exclude-current filters. Memories, memory-show, delta, related, resources, and read-resource turn transcript history into addressable context objects.
     </DecisionBlock>
 
     <DecisionBlock title="Long-running local operations.">
-	The watcher can run once or continuously, install a macOS LaunchAgent, scope refreshes by repo and date, wait for quiet files, retry transient SQLite locks, and fall back to a stale-index state when refresh is blocked.
+    The watcher can run once or continuously, install a macOS LaunchAgent, scope refreshes by repo and date, wait for quiet files, retry transient SQLite locks, and fall back to a stale-index state when refresh is blocked.
     </DecisionBlock>
 
     <DecisionBlock title="Local handling for sensitive data.">
-	The tool reads local source roots, writes local XDG-style data/state files, and runs best-effort secret redaction before indexing common token, key, DSN, cookie, authorization, bearer, and private-key patterns.
+    The tool reads local source roots, writes local XDG-style data/state files, and runs best-effort secret redaction before indexing common token, key, DSN, cookie, authorization, bearer, and private-key patterns.
     </DecisionBlock>
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>What shipped</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<ProofRows rows={shippedRows}>
-			Agent Recall handles a practical problem in AI-assisted engineering: useful memory needs local control, fast retrieval, and receipts
-			strong enough for another agent to trust.
-		</ProofRows>
-	</div>
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What shipped</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      Agent Recall handles a practical problem in AI-assisted engineering: useful memory needs local
+      control, fast retrieval, and receipts strong enough for another agent to trust.
+    </ProofRows>
+  </div>
 </section>
 
 <CaseSection title="Verification">
-	The repo includes CLI tests for indexing, search receipts, help output, LaunchAgent defaults, watcher behavior, recent/day views, pins, memories, deltas, resources, and missing-database behavior.
+  The repo includes CLI tests for indexing, search receipts, help output, LaunchAgent defaults, watcher behavior, recent/day views, pins, memories, deltas, resources, and missing-database behavior.
 
     It also includes retrieval-quality fixtures that protect agent-workflow queries, plus redaction fixtures for bearer tokens, common API-key formats, private keys, webhook secrets, cookies, DSNs, and password-like values.
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section'>
-	<h2>Public repo</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<p>The project is public and installable as a Rust CLI.</p>
-		<a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/agent-recall' target='_blank' rel='noopener noreferrer'>
-			View GitHub repo
-			<span>&rarr;</span>
-		</a>
-	</div>
+<section class="case-study-detail__editorial-section">
+  <h2>Public repo</h2>
+  <div class="case-study-detail__editorial-copy">
+    <p>The project is public and installable as a Rust CLI.</p>
+    <a
+      class="btn-secondary w-fit"
+      href="https://github.com/HanifCarroll/agent-recall"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View GitHub repo
+      <span>&rarr;</span>
+    </a>
+  </div>
 </section>

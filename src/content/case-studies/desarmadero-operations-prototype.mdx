@@ -1,106 +1,112 @@
 ---
-projectSlug: desarmadero-operations-prototype
 ---
 
-import CaseSection from '../../components/case-study/CaseSection.astro';
-import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
-import ImagePlate from '../../components/case-study/ImagePlate.astro';
-import ProofRows from '../../components/case-study/ProofRows.astro';
-import ventasScreen from '../../assets/img/projects/desarmadero-operations-ventas.png';
-import mapaScreen from '../../assets/img/projects/desarmadero-operations-mapa.png';
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import ventasScreen from "../../assets/img/projects/desarmadero-operations-ventas.png";
+import mapaScreen from "../../assets/img/projects/desarmadero-operations-mapa.png";
 
 export const shippedRows = [
-	{
-		label: 'Discovery',
-		title: 'A single call became a product model.',
-		body: 'The workflow moved from spoken explanation, paper sheets, WhatsApp, and memory into a structured PRD and functional spec.'
-	},
-	{
-		label: 'Prototype',
-		title: 'The client could click through the operation.',
-		body: 'The SvelteKit prototype covered counter sales, cash desk release, dismantle assignments, the yard map, and mobile-friendly dismantler work.'
-	},
-	{
-		label: 'Alignment',
-		title: 'Scope moved from abstract to concrete.',
-		body: 'The client could validate whether the app matched the yard before the full quote and phase plan became the conversation.'
-	},
-	{
-		label: 'Artifacts',
-		title: 'The repo shows the full paper trail.',
-		body: 'The open work sample includes the discovery transcript, PRD, functional spec, live demo, seeded fake data, and prototype screenshots.'
-	}
+  {
+    label: "Discovery",
+    title: "A single call became a product model.",
+    body: "The workflow moved from spoken explanation, paper sheets, WhatsApp, and memory into a structured PRD and functional spec.",
+  },
+  {
+    label: "Prototype",
+    title: "The client could click through the operation.",
+    body: "The SvelteKit prototype covered counter sales, cash desk release, dismantle assignments, the yard map, and mobile-friendly dismantler work.",
+  },
+  {
+    label: "Alignment",
+    title: "Scope moved from abstract to concrete.",
+    body: "The client could validate whether the app matched the yard before the full quote and phase plan became the conversation.",
+  },
+  {
+    label: "Artifacts",
+    title: "The repo shows the full paper trail.",
+    body: "The open work sample includes the discovery transcript, PRD, functional spec, live demo, seeded fake data, and prototype screenshots.",
+  },
 ];
 
 <CaseSection title="Summary">
-	A returning client wanted to go beyond a searchable parts catalog and run the auto-dismantling yard itself.
+  A returning client wanted to go beyond a searchable parts catalog and run the auto-dismantling yard itself.
 
-	One discovery call became a clickable operations prototype, PRD, functional spec, and live demo. The point was not to finish the whole product immediately. It was to prove the workflow, expose misalignment early, and make the next scope conversation concrete.
+    One discovery call became a clickable operations prototype, PRD, functional spec, and live demo. The point was not to finish the whole product immediately. It was to prove the workflow, expose misalignment early, and make the next scope conversation concrete.
+
 </CaseSection>
 
 <CaseSection title="The Situation">
-	The first project for this client was a searchable parts catalog. It helped customers check stock before calling.
+  The first project for this client was a searchable parts catalog. It helped customers check stock before calling.
 
-	The second idea was bigger: counter sales, cash desk payments, dismantle orders, assignments, and finding vehicles inside a 301-position yard. The existing system lived across paper budget sheets, WhatsApp, Excel, and people remembering where cars were parked.
+    The second idea was bigger: counter sales, cash desk payments, dismantle orders, assignments, and finding vehicles inside a 301-position yard. The existing system lived across paper budget sheets, WhatsApp, Excel, and people remembering where cars were parked.
+
 </CaseSection>
 
 <CaseSection title="Forward-Deployed Move">
-	<DecisionBlock title="Start from the actual operating model.">
-		The work began with how the yard really runs, not a generic inventory app. A counter sale can happen before parts are physically pulled, so the prototype treats sales as the start of a dismantle workflow.
-	</DecisionBlock>
+  <DecisionBlock title="Start from the actual operating model.">
+    The work began with how the yard really runs, not a generic inventory app. A counter sale can happen before parts are physically pulled, so the prototype treats sales as the start of a dismantle workflow.
+  </DecisionBlock>
 
-	<DecisionBlock title="Build before quoting the full system.">
-		Instead of jumping straight to a quote, I built a working prototype first. A clickable app is often the fastest way to confirm whether I understood the business.
-	</DecisionBlock>
+    <DecisionBlock title="Build before quoting the full system.">
+      Instead of jumping straight to a quote, I built a working prototype first. A clickable app is often the fastest way to confirm whether I understood the business.
+    </DecisionBlock>
+
 </CaseSection>
 
 <CaseSection title="Prototype Surface" media>
-	The prototype follows the yard's daily operation: seller records the sale, cash desk confirms payment, the dismantle manager assigns the work, and the dismantler sees only the orders they need.
+  The prototype follows the yard's daily operation: seller records the sale, cash desk confirms payment, the dismantle manager assigns the work, and the dismantler sees only the orders they need.
 
-	<div class="case-study-screen-gallery">
-		<ImagePlate image={ventasScreen} alt="Desarmadero prototype counter-sales screen with customer, vehicle, parts, and live order summary." />
-		<ImagePlate image={mapaScreen} alt="Desarmadero prototype yard map with 301 locations and plate search." />
-	</div>
+    <div class="case-study-screen-gallery">
+      <ImagePlate image={ventasScreen} alt="Desarmadero prototype counter-sales screen with customer, vehicle, parts, and live order summary." />
+      <ImagePlate image={mapaScreen} alt="Desarmadero prototype yard map with 301 locations and plate search." />
+    </div>
+
 </CaseSection>
 
 <CaseSection title="What The Prototype Proved">
-	<DecisionBlock title="Payment gates the work.">
-		A dismantler cannot see the order until the cash desk records a deposit or full payment. That matched the business rule behind the real operation.
-	</DecisionBlock>
+  <DecisionBlock title="Payment gates the work.">
+    A dismantler cannot see the order until the cash desk records a deposit or full payment. That matched the business rule behind the real operation.
+  </DecisionBlock>
 
-	<DecisionBlock title="The yard map replaces memory.">
-		The 301-position map makes a vehicle searchable by plate, so the workflow no longer depends on someone remembering where a car is parked.
-	</DecisionBlock>
+    <DecisionBlock title="The yard map replaces memory.">
+      The 301-position map makes a vehicle searchable by plate, so the workflow no longer depends on someone remembering where a car is parked.
+    </DecisionBlock>
 
-	<DecisionBlock title="Roles shape the product surface.">
-		Administrator, seller, cash desk, dismantle manager, and dismantler each get a focused surface instead of one overloaded back office.
-	</DecisionBlock>
+    <DecisionBlock title="Roles shape the product surface.">
+      Administrator, seller, cash desk, dismantle manager, and dismantler each get a focused surface instead of one overloaded back office.
+    </DecisionBlock>
+
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>What Shipped</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<ProofRows rows={shippedRows}>
-			<p>
-				The shipped work sample shows the whole arc: messy spoken input on one side, a structured spec and clickable operations system on
-				the other.
-			</p>
-		</ProofRows>
-	</div>
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What Shipped</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      <p>
+        The shipped work sample shows the whole arc: messy spoken input on one side, a structured
+        spec and clickable operations system on the other.
+      </p>
+    </ProofRows>
+  </div>
 </section>
 
 <CaseSection title="Artifacts">
-	The prototype is public as an anonymized work sample.
+  The prototype is public as an anonymized work sample.
 
-	Live demo: <a href="https://desarmadero.pages.dev/" target="_blank" rel="noopener noreferrer">desarmadero.pages.dev</a>. Password: `asado`.
+    Live demo: <a href="https://desarmadero.pages.dev/" target="_blank" rel="noopener noreferrer">desarmadero.pages.dev</a>. Password: `asado`.
 
-	Repository: <a href="https://github.com/HanifCarroll/desarmadero" target="_blank" rel="noopener noreferrer">github.com/HanifCarroll/desarmadero</a>.
+    Repository: <a href="https://github.com/HanifCarroll/desarmadero" target="_blank" rel="noopener noreferrer">github.com/HanifCarroll/desarmadero</a>.
 
-	The repo includes the raw discovery call transcript, PRD, functional spec, screenshots, seeded fake data, and the live prototype code.
+    The repo includes the raw discovery call transcript, PRD, functional spec, screenshots, seeded fake data, and the live prototype code.
+
 </CaseSection>
 
 <CaseSection title="Why It Matters">
-	This is the kind of work that makes forward-deployed engineering valuable: enter an unfamiliar operating environment, understand how the business actually works, turn that into product structure, and use software to make the next decision clearer.
+  This is the kind of work that makes forward-deployed engineering valuable: enter an unfamiliar operating environment, understand how the business actually works, turn that into product structure, and use software to make the next decision clearer.
 
-	The prototype made the scope conversation better because the client could react to a real workflow instead of reviewing abstract requirements.
+    The prototype made the scope conversation better because the client could react to a real workflow instead of reviewing abstract requirements.
+
 </CaseSection>

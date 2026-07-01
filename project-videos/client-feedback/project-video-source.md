@@ -72,25 +72,25 @@ Technical proof can stay in this document as backing evidence, but the video sho
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/client-feedback.mdx:39-49` | The project exists because useful proof was scattered across chats, audio notes, emails, attachments, and screenshots. |
-| `src/content/case-studies/client-feedback.mdx:53-57` | The durable interface is the workflow contract: commands in, local artifacts out. |
-| `src/content/case-studies/client-feedback.mdx:60-71` | Evidence stays local by default, source rails are explicit, and ambiguous selections fail unless reviewed. |
-| `src/content/case-studies/client-feedback.mdx:75-90` | The CLI mirrors collection steps and writes auditable files, attachments, transcripts, and stable output. |
-| `src/content/case-studies/client-feedback.mdx:94-109` | The important value is turning private, scattered feedback into repeatable evidence with visible boundaries. |
-| `src/lib/projects/client-feedback.json:19-36` | Metadata confirms the privacy constraints, source rails, local artifacts, and tests around brittle parsing points. |
+| Source                                                | What it supports in plain language                                                                                     |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/client-feedback.mdx:39-49`  | The project exists because useful proof was scattered across chats, audio notes, emails, attachments, and screenshots. |
+| `src/content/case-studies/client-feedback.mdx:53-57`  | The durable interface is the workflow contract: commands in, local artifacts out.                                      |
+| `src/content/case-studies/client-feedback.mdx:60-71`  | Evidence stays local by default, source rails are explicit, and ambiguous selections fail unless reviewed.             |
+| `src/content/case-studies/client-feedback.mdx:75-90`  | The CLI mirrors collection steps and writes auditable files, attachments, transcripts, and stable output.              |
+| `src/content/case-studies/client-feedback.mdx:94-109` | The important value is turning private, scattered feedback into repeatable evidence with visible boundaries.           |
+| `src/lib/projects/client-feedback.json:19-36`         | Metadata confirms the privacy constraints, source rails, local artifacts, and tests around brittle parsing points.     |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Useful proof lived across chats, voice notes, emails, attachments, and screenshots. | `src/content/case-studies/client-feedback.mdx:46-49` | Yes, as synthetic labels | Yes |
-| Input | WhatsApp, Gmail, audio notes, and attachments enter source-specific rails. | `src/content/case-studies/client-feedback.mdx:39-42`, `src/lib/projects/client-feedback.json:24-31` | Yes, as source labels only | Yes |
-| Product action | The CLI pulls source artifacts into one local packet. | `src/content/case-studies/client-feedback.mdx:75-90` | Yes, as synthetic workflow cards | Yes |
-| Durable output | Pull runs write manifests, messages, evidence Markdown, attachments, audio, WAV files, and transcript artifacts. | `src/lib/projects/client-feedback.json:33-36` | Yes, as artifact labels | Yes |
-| Guardrail or warning | Ambiguous selections require review before continuing. | `src/content/case-studies/client-feedback.mdx:69-70` | Yes, as a simple review gate | Optional |
-| Reviewer path | Public repo and portfolio case study explain the workflow contracts. | `https://github.com/HanifCarroll/client-feedback`, `src/content/case-studies/client-feedback.mdx` | Yes | No |
+| Proof type           | Exact proof                                                                                                      | Source path, URL, or command                                                                        | Safe to show?                    | On-screen? |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- |
+| Problem              | Useful proof lived across chats, voice notes, emails, attachments, and screenshots.                              | `src/content/case-studies/client-feedback.mdx:46-49`                                                | Yes, as synthetic labels         | Yes        |
+| Input                | WhatsApp, Gmail, audio notes, and attachments enter source-specific rails.                                       | `src/content/case-studies/client-feedback.mdx:39-42`, `src/lib/projects/client-feedback.json:24-31` | Yes, as source labels only       | Yes        |
+| Product action       | The CLI pulls source artifacts into one local packet.                                                            | `src/content/case-studies/client-feedback.mdx:75-90`                                                | Yes, as synthetic workflow cards | Yes        |
+| Durable output       | Pull runs write manifests, messages, evidence Markdown, attachments, audio, WAV files, and transcript artifacts. | `src/lib/projects/client-feedback.json:33-36`                                                       | Yes, as artifact labels          | Yes        |
+| Guardrail or warning | Ambiguous selections require review before continuing.                                                           | `src/content/case-studies/client-feedback.mdx:69-70`                                                | Yes, as a simple review gate     | Optional   |
+| Reviewer path        | Public repo and portfolio case study explain the workflow contracts.                                             | `https://github.com/HanifCarroll/client-feedback`, `src/content/case-studies/client-feedback.mdx`   | Yes                              | No         |
 
 ## Selected Story
 
@@ -269,14 +269,14 @@ Reading-speed check: `8` words over `3.3s` = `145 WPM`; acceptable because the p
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart. | 12 | 5.7s | 126 |
-| 2 | Copying proof by hand broke the trail. The source was easy to lose. | 13 | 5.5s | 142 |
-| 3 | I built a local evidence packet. Private feedback stays on the machine. | 11 | 5.5s | 120 |
-| 4 | Each source gets a simple pull. Messages, files, audio, and transcripts are saved together. | 13 | 5.9s | 132 |
-| 5 | The packet can be reused later. Claim, source, and artifact stay together. | 12 | 5.6s | 129 |
-| End | Client Feedback Evidence CLI. Scattered feedback becomes reusable proof. | 8 | 3.3s | 145 |
+| Scene | Text                                                                                        | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.           |         12 |     5.7s | 126 |
+| 2     | Copying proof by hand broke the trail. The source was easy to lose.                         |         13 |     5.5s | 142 |
+| 3     | I built a local evidence packet. Private feedback stays on the machine.                     |         11 |     5.5s | 120 |
+| 4     | Each source gets a simple pull. Messages, files, audio, and transcripts are saved together. |         13 |     5.9s | 132 |
+| 5     | The packet can be reused later. Claim, source, and artifact stay together.                  |         12 |     5.6s | 129 |
+| End   | Client Feedback Evidence CLI. Scattered feedback becomes reusable proof.                    |          8 |     3.3s | 145 |
 
 Allowed short labels:
 
@@ -299,10 +299,10 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| `client-feedback-evidence-packet.png` | Public proof anchor for local packet outputs. | `src/assets/img/projects/client-feedback-evidence-packet.png` | Already public/redacted; do not zoom into private data because none is present. | `hyperframes/assets/client-feedback-evidence-packet.png` |
-| `client-feedback-evidence-packet-result.png` | Local HyperFrames alias for the result scene to avoid duplicate-media discovery warnings. | `hyperframes/assets/client-feedback-evidence-packet.png` | Same public/redacted asset. | `hyperframes/assets/client-feedback-evidence-packet-result.png` |
+| Asset                                        | Purpose                                                                                   | Source                                                        | Redaction needed?                                                               | Final path                                                      |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `client-feedback-evidence-packet.png`        | Public proof anchor for local packet outputs.                                             | `src/assets/img/projects/client-feedback-evidence-packet.png` | Already public/redacted; do not zoom into private data because none is present. | `hyperframes/assets/client-feedback-evidence-packet.png`        |
+| `client-feedback-evidence-packet-result.png` | Local HyperFrames alias for the result scene to avoid duplicate-media discovery warnings. | `hyperframes/assets/client-feedback-evidence-packet.png`      | Same public/redacted asset.                                                     | `hyperframes/assets/client-feedback-evidence-packet-result.png` |
 
 ## Privacy Notes
 

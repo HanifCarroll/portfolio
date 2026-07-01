@@ -22,8 +22,8 @@
 
 ## Asset Manifest
 
-| Asset | Source | Redacted copy | HyperFrames copy | Notes |
-| --- | --- | --- | --- | --- |
+| Asset                      | Source                                                       | Redacted copy                                                                             | HyperFrames copy                                                                             | Notes                                                             |
+| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Public terminal screenshot | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/assets/redacted/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/hyperframes/assets/codex-telegram-bridge-terminal.png` | Public synthetic terminal surface already used in the case study. |
 
 ## Privacy Boundary

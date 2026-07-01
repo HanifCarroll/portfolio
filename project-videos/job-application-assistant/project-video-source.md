@@ -68,16 +68,16 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/job-application-assistant.mdx:20-33` | The problem: the workflow had too many loose pieces across job boards, drafts, PDFs, and application history. |
-| `src/content/case-studies/job-application-assistant.mdx:54-68` | The user can review the job details before drafting. |
-| `src/content/case-studies/job-application-assistant.mdx:80-97` | The product connects drafting, saved PDFs, and application tracking. |
-| `src/content/case-studies/job-application-assistant.mdx:111-123` | The result: every draft stays tied to the job, proof, PDF, and history. |
-| `src/lib/projects/job-application-assistant.json:32-54` | Metadata confirms the problem, solution, and result. |
-| `/Users/hanifcarroll/projects/job-application-assistant/README.md:29-41` | The full local workflow exists end to end. |
-| `/Users/hanifcarroll/projects/job-application-assistant/README.md:225-260` | Application history and PDF export are real product features. |
-| `/Users/hanifcarroll/projects/job-application-assistant/scripts/check` | Current verification passed, but the video should not make this a main scene. |
+| Source                                                                     | What it supports in plain language                                                                            |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/job-application-assistant.mdx:20-33`             | The problem: the workflow had too many loose pieces across job boards, drafts, PDFs, and application history. |
+| `src/content/case-studies/job-application-assistant.mdx:54-68`             | The user can review the job details before drafting.                                                          |
+| `src/content/case-studies/job-application-assistant.mdx:80-97`             | The product connects drafting, saved PDFs, and application tracking.                                          |
+| `src/content/case-studies/job-application-assistant.mdx:111-123`           | The result: every draft stays tied to the job, proof, PDF, and history.                                       |
+| `src/lib/projects/job-application-assistant.json:32-54`                    | Metadata confirms the problem, solution, and result.                                                          |
+| `/Users/hanifcarroll/projects/job-application-assistant/README.md:29-41`   | The full local workflow exists end to end.                                                                    |
+| `/Users/hanifcarroll/projects/job-application-assistant/README.md:225-260` | Application history and PDF export are real product features.                                                 |
+| `/Users/hanifcarroll/projects/job-application-assistant/scripts/check`     | Current verification passed, but the video should not make this a main scene.                                 |
 
 Current verification, run on `2026-06-30` from `/Users/hanifcarroll/projects/job-application-assistant`:
 
@@ -224,15 +224,15 @@ Reading-speed check: `8` words over `3s` = `160 WPM`; acceptable because the pro
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart. | 13 | 6s | 130 |
-| 2 | It was easy to lose the thread. What did I send? Where is the PDF? Did I already apply? | 19 | 6.5s | 175 |
-| 3 | I built one local workflow. Review the job. Draft the letter. Save the record. | 13 | 6.5s | 120 |
-| 4 | The app keeps each step connected. Review. Draft. Export. Track. | 10 | 6s | 100 |
-| 5 | Every application gets a clear record. Draft, PDF, status, and history stay together. | 13 | 6.5s | 120 |
-| 6 | This is more than a cover-letter writer. It turns a messy workflow into a product. | 15 | 6.5s | 138 |
-| End | Job Application Assistant. Drafts, PDFs, status, and history. | 8 | 3s | 160 |
+| Scene | Text                                                                                     | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart. |         13 |       6s | 130 |
+| 2     | It was easy to lose the thread. What did I send? Where is the PDF? Did I already apply?  |         19 |     6.5s | 175 |
+| 3     | I built one local workflow. Review the job. Draft the letter. Save the record.           |         13 |     6.5s | 120 |
+| 4     | The app keeps each step connected. Review. Draft. Export. Track.                         |         10 |       6s | 100 |
+| 5     | Every application gets a clear record. Draft, PDF, status, and history stay together.    |         13 |     6.5s | 120 |
+| 6     | This is more than a cover-letter writer. It turns a messy workflow into a product.       |         15 |     6.5s | 138 |
+| End   | Job Application Assistant. Drafts, PDFs, status, and history.                            |          8 |       3s | 160 |
 
 Allowed short labels:
 
@@ -256,12 +256,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Product surface screenshot | Product proof, scene 3 full surface, scene 5 dashboard/PDF result | Synthetic HTML rendered from `assets/raw/product-surface.html` | Already synthetic and safe | `assets/redacted/product-surface.png` and `hyperframes/assets/product-surface.png` |
-| Scattered cards | Problem and cost scenes | This document and case study problem section | No private data | Build natively in HyperFrames |
-| Connected steps | How-it-works scene | This document and case study feature list | No private data | Build natively in HyperFrames |
-| PDF card | Result scene | README PDF behavior | Use synthetic company name only | Build natively in HyperFrames |
+| Asset                      | Purpose                                                           | Source                                                         | Redaction needed?               | Final path                                                                         |
+| -------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
+| Product surface screenshot | Product proof, scene 3 full surface, scene 5 dashboard/PDF result | Synthetic HTML rendered from `assets/raw/product-surface.html` | Already synthetic and safe      | `assets/redacted/product-surface.png` and `hyperframes/assets/product-surface.png` |
+| Scattered cards            | Problem and cost scenes                                           | This document and case study problem section                   | No private data                 | Build natively in HyperFrames                                                      |
+| Connected steps            | How-it-works scene                                                | This document and case study feature list                      | No private data                 | Build natively in HyperFrames                                                      |
+| PDF card                   | Result scene                                                      | README PDF behavior                                            | Use synthetic company name only | Build natively in HyperFrames                                                      |
 
 ## Privacy Check
 

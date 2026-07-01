@@ -1,74 +1,74 @@
 {
-	"slug": "job-application-assistant",
-	"title": "Job Application Assistant",
-	"description": "Built a local Chrome extension and FastAPI backend for job applications: extract the posting, draft with Codex, export the cover letter, and keep the application ledger in SQLite.",
-	"seoTitle": "Job Application Assistant Case Study | Auditable Local Application Workflow",
-	"seoDescription": "A case study on Job Application Assistant, a local Chrome extension and Python backend for structured job extraction, Codex-backed drafts, cover-letter PDFs, and SQLite application tracking.",
-	"proofType": "experiment",
-	"client": "Local Workflow Tool",
-	"service": "AI Workflow Automation System",
-	"detailVariant": "workflow",
-	"role": "Solo Product & Systems Engineer",
-	"category": "product",
-	"track": "workflow_automation",
-	"year": "2026",
-	"timeline": "Local system build, 2026",
-	"teamSize": "Solo build",
-	"technologies": [
-		"Python 3.13",
-		"FastAPI",
-		"SQLite",
-		"Pydantic",
-		"Chrome Extension MV3",
-		"JavaScript",
-		"Codex CLI",
-		"Typer",
-		"ReportLab",
-		"pypdf",
-		"pytest",
-		"mypy"
-	],
-	"repository": "https://github.com/HanifCarroll/job-application-assistant",
-	"constraints": [
-		"The tool handles sensitive job descriptions, profile context, draft text, application history, and generated PDFs, so storage needed to stay local and inspectable.",
-		"Job-board extraction could not rely on broad page text. Missing fields needed warnings instead of invented context."
-	],
-	"problem": [
-		"Applying to jobs was split across job boards, extension popups, local portfolio context, cover-letter drafts, PDFs, and a separate tracking habit.",
-		"Writing faster was only one part of the problem. The job snapshot, selected proof points, draft, final PDF, and application ledger also needed to stay tied together."
-	],
-	"solution": [
-		"Built a Manifest V3 Chrome extension that extracts normalized opportunity snapshots from supported job pages, lets the user review them, and sends them to a local FastAPI backend.",
-		"Indexed local profile, resume, offers, and project proof points into a context bundle, then ran one Codex draft pass that returns the draft plus angle, selected and rejected projects, decisions, claims, and warnings.",
-		"Stored draft jobs, draft JSON, generated cover-letter PDFs, and application records in SQLite, with lookup endpoints so the extension can show already-applied status."
-	],
-	"result": [
-		"Created a public local workflow where the applicant-facing text, audit trail, generated PDF, and application ledger remain inspectable on the machine.",
-		"Separated extraction, context selection, drafting, PDF export, and application logging into testable contracts instead of one fragile browser script.",
-		"Extended the workflow beyond drafting into supported Dice, Indeed, and LinkedIn apply flows while keeping manual review points and platform-confirmed logging."
-	],
-	"deliveryHighlights": [
-		"Chrome extension side panel for extraction review, draft requests, PDF actions, already-applied checks, and apply-enabled posting lists.",
-		"FastAPI backend with async draft jobs, context reindexing, draft lookup, application lookup, dashboard, and PDF export endpoints.",
-		"SQLite stores draft requests, draft JSON, job stages, timing metadata, and application records deduplicated by normalized source URL.",
-		"Contract tests cover extraction modules, prompt inputs, Codex JSON parsing, application storage, dashboard rendering, PDF export, and extension JavaScript syntax."
-	],
-	"images": {
-		"hero": "@src/assets/img/projects/job-application-assistant-sidepanel.png",
-		"feature": "@src/assets/img/projects/job-application-assistant-sidepanel.png"
-	},
-	"videos": {
-		"overview": {
-			"src": "/videos/projects/job-application-assistant/overview.mp4",
-			"poster": "/videos/projects/job-application-assistant/poster.png",
-			"duration": "41 seconds",
-			"label": "Project overview"
-		},
-		"preview": {
-			"src": "/videos/projects/job-application-assistant/preview.mp4",
-			"poster": "/videos/projects/job-application-assistant/poster.png",
-			"duration": "12 seconds",
-			"label": "Preview"
-		}
-	}
+  "slug": "job-application-assistant",
+  "title": "Job Application Assistant",
+  "description": "Built a local Chrome extension and FastAPI backend for job applications: extract the posting, draft with Codex, export the cover letter, and keep the application ledger in SQLite.",
+  "seoTitle": "Job Application Assistant Case Study | Auditable Local Application Workflow",
+  "seoDescription": "A case study on Job Application Assistant, a local Chrome extension and Python backend for structured job extraction, Codex-backed drafts, cover-letter PDFs, and SQLite application tracking.",
+  "proofType": "experiment",
+  "client": "Local Workflow Tool",
+  "service": "AI Workflow Automation System",
+  "detailVariant": "workflow",
+  "role": "Solo Product & Systems Engineer",
+  "category": "product",
+  "track": "workflow_automation",
+  "year": "2026",
+  "timeline": "Local system build, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "Python 3.13",
+    "FastAPI",
+    "SQLite",
+    "Pydantic",
+    "Chrome Extension MV3",
+    "JavaScript",
+    "Codex CLI",
+    "Typer",
+    "ReportLab",
+    "pypdf",
+    "pytest",
+    "mypy"
+  ],
+  "repository": "https://github.com/HanifCarroll/job-application-assistant",
+  "constraints": [
+    "The tool handles sensitive job descriptions, profile context, draft text, application history, and generated PDFs, so storage needed to stay local and inspectable.",
+    "Job-board extraction could not rely on broad page text. Missing fields needed warnings instead of invented context."
+  ],
+  "problem": [
+    "Applying to jobs was split across job boards, extension popups, local portfolio context, cover-letter drafts, PDFs, and a separate tracking habit.",
+    "Writing faster was only one part of the problem. The job snapshot, selected proof points, draft, final PDF, and application ledger also needed to stay tied together."
+  ],
+  "solution": [
+    "Built a Manifest V3 Chrome extension that extracts normalized opportunity snapshots from supported job pages, lets the user review them, and sends them to a local FastAPI backend.",
+    "Indexed local profile, resume, offers, and project proof points into a context bundle, then ran one Codex draft pass that returns the draft plus angle, selected and rejected projects, decisions, claims, and warnings.",
+    "Stored draft jobs, draft JSON, generated cover-letter PDFs, and application records in SQLite, with lookup endpoints so the extension can show already-applied status."
+  ],
+  "result": [
+    "Created a public local workflow where the applicant-facing text, audit trail, generated PDF, and application ledger remain inspectable on the machine.",
+    "Separated extraction, context selection, drafting, PDF export, and application logging into testable contracts instead of one fragile browser script.",
+    "Extended the workflow beyond drafting into supported Dice, Indeed, and LinkedIn apply flows while keeping manual review points and platform-confirmed logging."
+  ],
+  "deliveryHighlights": [
+    "Chrome extension side panel for extraction review, draft requests, PDF actions, already-applied checks, and apply-enabled posting lists.",
+    "FastAPI backend with async draft jobs, context reindexing, draft lookup, application lookup, dashboard, and PDF export endpoints.",
+    "SQLite stores draft requests, draft JSON, job stages, timing metadata, and application records deduplicated by normalized source URL.",
+    "Contract tests cover extraction modules, prompt inputs, Codex JSON parsing, application storage, dashboard rendering, PDF export, and extension JavaScript syntax."
+  ],
+  "images": {
+    "hero": "@src/assets/img/projects/job-application-assistant-sidepanel.png",
+    "feature": "@src/assets/img/projects/job-application-assistant-sidepanel.png"
+  },
+  "videos": {
+    "overview": {
+      "src": "/videos/projects/job-application-assistant/overview.mp4",
+      "poster": "/videos/projects/job-application-assistant/poster.png",
+      "duration": "41 seconds",
+      "label": "Project overview"
+    },
+    "preview": {
+      "src": "/videos/projects/job-application-assistant/preview.mp4",
+      "poster": "/videos/projects/job-application-assistant/poster.png",
+      "duration": "12 seconds",
+      "label": "Preview"
+    }
+  }
 }

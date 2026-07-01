@@ -99,7 +99,13 @@
         position: absolute;
         height: 3px;
         border-radius: 999px;
-        background: linear-gradient(90deg, rgba(79, 124, 255, 0), #4f7cff, #ff8a3d, rgba(255, 138, 61, 0));
+        background: linear-gradient(
+          90deg,
+          rgba(79, 124, 255, 0),
+          #4f7cff,
+          #ff8a3d,
+          rgba(255, 138, 61, 0)
+        );
         opacity: 0.46;
       }
 
@@ -666,7 +672,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="45">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="45"
+    >
       <section id="scene1" class="scene">
         <div class="scene-bg">
           <div class="mesh" data-layout-ignore></div>
@@ -686,7 +699,10 @@
           </div>
           <div>
             <div class="screen-frame hero-screen">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-projects"></div>
             </div>
             <div class="system-card-row">
@@ -771,11 +787,17 @@
           </div>
           <div class="layered-screens">
             <div class="screen-frame solution-primary">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-projects"></div>
             </div>
             <div class="screen-frame solution-secondary">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-dashboard-right"></div>
             </div>
           </div>
@@ -799,7 +821,10 @@
           </div>
           <div class="commercial-layout">
             <div class="screen-frame pricing-screen">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-pricing"></div>
             </div>
             <div class="commercial-cards">
@@ -835,12 +860,17 @@
         <div class="scene-number">05</div>
         <div class="scene-shell agent-layout">
           <div class="screen-frame agent-screen">
-            <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+            <div class="screen-dots">
+              <span class="screen-dot"></span><span class="screen-dot"></span
+              ><span class="screen-dot"></span>
+            </div>
             <div class="screen-img img-agent"></div>
           </div>
           <div class="copy">
             <p class="eyebrow teal">Agent access</p>
-            <h2 class="headline">Agents could run allowed workflows without seeing the whole app.</h2>
+            <h2 class="headline">
+              Agents could run allowed workflows without seeing the whole app.
+            </h2>
             <div class="allowed-panel">
               <div class="system-card agent-card">
                 <div class="agent-icon">01</div>
@@ -886,15 +916,24 @@
           </div>
           <div class="proof-strip">
             <div class="screen-frame proof-left">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-market"></div>
             </div>
             <div class="screen-frame proof-mid">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-aplus"></div>
             </div>
             <div class="screen-frame proof-right">
-              <div class="screen-dots"><span class="screen-dot"></span><span class="screen-dot"></span><span class="screen-dot"></span></div>
+              <div class="screen-dots">
+                <span class="screen-dot"></span><span class="screen-dot"></span
+                ><span class="screen-dot"></span>
+              </div>
               <div class="screen-img img-dashboard"></div>
             </div>
           </div>
@@ -906,7 +945,10 @@
           </div>
           <div>
             <strong>Commercially operable</strong>
-            <span>Commercial infrastructure, workflow reliability, and agent access worked as one product foundation.</span>
+            <span
+              >Commercial infrastructure, workflow reliability, and agent access worked as one
+              product foundation.</span
+            >
           </div>
         </div>
         <div id="end-card" class="end-card">
@@ -926,20 +968,57 @@
         defaults: { duration: 0.5, ease: "power2.out" },
       });
 
-      tl.to(".mesh", { x: 24, y: -18, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".mesh",
+        { x: 24, y: -18, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
       tl.to(".circuit-grid", { x: 26, y: 18, duration: 45, ease: "none" }, 0);
-      tl.to(".circuit-line.one", { x: 84, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
-      tl.to(".circuit-line.two", { x: -92, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".circuit-line.one",
+        { x: 84, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+      tl.to(
+        ".circuit-line.two",
+        { x: -92, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
 
       function enterCopy(scene, at) {
-        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, at);
-        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, at + 0.04);
-        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, at + 0.16);
+        tl.fromTo(
+          scene + " .scene-number",
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+          at,
+        );
+        tl.fromTo(
+          scene + " .eyebrow",
+          { opacity: 0, x: -34 },
+          { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+          at + 0.04,
+        );
+        tl.fromTo(
+          scene + " .headline",
+          { opacity: 0, y: 42 },
+          { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" },
+          at + 0.16,
+        );
         if (document.querySelector(scene + " .subhead")) {
-          tl.fromTo(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, at + 0.7);
+          tl.fromTo(
+            scene + " .subhead",
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+            at + 0.7,
+          );
         }
         if (document.querySelector(scene + " .rule")) {
-          tl.fromTo(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, at + 1.02);
+          tl.fromTo(
+            scene + " .rule",
+            { opacity: 0, scaleX: 0 },
+            { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" },
+            at + 1.02,
+          );
         }
       }
 
@@ -951,48 +1030,151 @@
       }
 
       function blurTransition(oldScene, newScene, at) {
-        tl.to(oldScene, { filter: "blur(10px)", scale: 1.025, opacity: 0, duration: 0.58, ease: "power2.inOut" }, at);
+        tl.to(
+          oldScene,
+          { filter: "blur(10px)", scale: 1.025, opacity: 0, duration: 0.58, ease: "power2.inOut" },
+          at,
+        );
         tl.set(newScene, { opacity: 1, filter: "blur(10px)", scale: 0.975 }, at);
-        tl.to(newScene, { filter: "blur(0px)", scale: 1, duration: 0.58, ease: "power2.inOut" }, at + 0.08);
+        tl.to(
+          newScene,
+          { filter: "blur(0px)", scale: 1, duration: 0.58, ease: "power2.inOut" },
+          at + 0.08,
+        );
         tl.set(oldScene, { filter: "blur(0px)", scale: 1 }, at + 0.66);
       }
 
       enterCopy("#scene1", 0.1);
-      tl.fromTo("#scene1 .screen-frame", { opacity: 0, y: 36, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" }, 0.54);
-      tl.fromTo("#scene1 .system-card", { opacity: 0, y: 34, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.11, ease: "back.out(1.2)" }, 1.12);
+      tl.fromTo(
+        "#scene1 .screen-frame",
+        { opacity: 0, y: 36, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.78, ease: "power3.out" },
+        0.54,
+      );
+      tl.fromTo(
+        "#scene1 .system-card",
+        { opacity: 0, y: 34, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.11, ease: "back.out(1.2)" },
+        1.12,
+      );
 
       pushTransition("#scene1", "#scene2", 5.92);
       enterCopy("#scene2", 6.28);
-      tl.fromTo("#scene2 .risk-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.8, ease: "power3.out" }, 7.28);
-      tl.fromTo("#scene2 .risk-card", { opacity: 0, y: 42, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" }, 7.48);
-      tl.fromTo("#scene2 .risk-node", { opacity: 0, scale: 0.22 }, { opacity: 1, scale: 1, duration: 0.36, stagger: 0.1, ease: "back.out(1.55)" }, 7.62);
+      tl.fromTo(
+        "#scene2 .risk-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.8, ease: "power3.out" },
+        7.28,
+      );
+      tl.fromTo(
+        "#scene2 .risk-card",
+        { opacity: 0, y: 42, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.1, ease: "power3.out" },
+        7.48,
+      );
+      tl.fromTo(
+        "#scene2 .risk-node",
+        { opacity: 0, scale: 0.22 },
+        { opacity: 1, scale: 1, duration: 0.36, stagger: 0.1, ease: "back.out(1.55)" },
+        7.62,
+      );
 
       blurTransition("#scene2", "#scene3", 12.4);
       enterCopy("#scene3", 12.78);
-      tl.fromTo("#scene3 .solution-primary", { opacity: 0, x: 48, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 13.24);
-      tl.fromTo("#scene3 .solution-secondary", { opacity: 0, x: -46, y: 28, scale: 0.955 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 13.72);
+      tl.fromTo(
+        "#scene3 .solution-primary",
+        { opacity: 0, x: 48, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" },
+        13.24,
+      );
+      tl.fromTo(
+        "#scene3 .solution-secondary",
+        { opacity: 0, x: -46, y: 28, scale: 0.955 },
+        { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        13.72,
+      );
 
       pushTransition("#scene3", "#scene4", 19.4);
       enterCopy("#scene4", 19.76);
-      tl.fromTo("#scene4 .pricing-screen", { opacity: 0, y: 36, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 20.7);
-      tl.fromTo("#scene4 .status-card", { opacity: 0, x: 46, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 21.04);
-      tl.fromTo("#scene4 .status-chip", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.32, stagger: 0.08, ease: "sine.out" }, 21.32);
+      tl.fromTo(
+        "#scene4 .pricing-screen",
+        { opacity: 0, y: 36, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.76, ease: "power3.out" },
+        20.7,
+      );
+      tl.fromTo(
+        "#scene4 .status-card",
+        { opacity: 0, x: 46, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" },
+        21.04,
+      );
+      tl.fromTo(
+        "#scene4 .status-chip",
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.32, stagger: 0.08, ease: "sine.out" },
+        21.32,
+      );
 
       pushTransition("#scene4", "#scene5", 26.4);
       enterCopy("#scene5", 26.76);
-      tl.fromTo("#scene5 .agent-screen", { opacity: 0, x: -50, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 27.2);
-      tl.fromTo("#scene5 .agent-card", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 28.2);
-      tl.fromTo("#scene5 .agent-icon", { opacity: 0, scale: 0.72, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.34, stagger: 0.12, ease: "back.out(1.4)" }, 28.32);
+      tl.fromTo(
+        "#scene5 .agent-screen",
+        { opacity: 0, x: -50, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.76, ease: "power3.out" },
+        27.2,
+      );
+      tl.fromTo(
+        "#scene5 .agent-card",
+        { opacity: 0, x: 46, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" },
+        28.2,
+      );
+      tl.fromTo(
+        "#scene5 .agent-icon",
+        { opacity: 0, scale: 0.72, rotation: -6 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 0.34, stagger: 0.12, ease: "back.out(1.4)" },
+        28.32,
+      );
 
       blurTransition("#scene5", "#scene6", 33.4);
       enterCopy("#scene6", 33.78);
-      tl.fromTo("#scene6 .proof-left", { opacity: 0, x: -42, y: 28, scale: 0.965 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 34.74);
-      tl.fromTo("#scene6 .proof-mid", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 34.94);
-      tl.fromTo("#scene6 .proof-right", { opacity: 0, x: 44, y: 26, scale: 0.965 }, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 35.18);
-      tl.fromTo("#result-card", { opacity: 0, y: 32, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.62, ease: "back.out(1.16)" }, 36.0);
-      tl.fromTo("#result-card .metric", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" }, 36.16);
+      tl.fromTo(
+        "#scene6 .proof-left",
+        { opacity: 0, x: -42, y: 28, scale: 0.965 },
+        { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" },
+        34.74,
+      );
+      tl.fromTo(
+        "#scene6 .proof-mid",
+        { opacity: 0, y: 42, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" },
+        34.94,
+      );
+      tl.fromTo(
+        "#scene6 .proof-right",
+        { opacity: 0, x: 44, y: 26, scale: 0.965 },
+        { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.66, ease: "power3.out" },
+        35.18,
+      );
+      tl.fromTo(
+        "#result-card",
+        { opacity: 0, y: 32, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.62, ease: "back.out(1.16)" },
+        36.0,
+      );
+      tl.fromTo(
+        "#result-card .metric",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "power2.out" },
+        36.16,
+      );
 
-      tl.fromTo("#end-card", { opacity: 0, y: 20, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "sine.out" }, 42.0);
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 20, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "sine.out" },
+        42.0,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.32, ease: "sine.inOut" }, 44.68);
 
       window.__timelines.main = tl;

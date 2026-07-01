@@ -360,7 +360,11 @@
         border-radius: 18px;
         background:
           linear-gradient(135deg, rgba(23, 50, 77, 0.18), rgba(23, 50, 77, 0)),
-          repeating-linear-gradient(90deg, rgba(47, 122, 98, 0.18) 0 14px, rgba(47, 122, 98, 0) 14px 32px),
+          repeating-linear-gradient(
+            90deg,
+            rgba(47, 122, 98, 0.18) 0 14px,
+            rgba(47, 122, 98, 0) 14px 32px
+          ),
           #eef3f0;
       }
 
@@ -368,7 +372,11 @@
       .photo-card:nth-child(5) .photo {
         background:
           linear-gradient(135deg, rgba(201, 137, 47, 0.2), rgba(201, 137, 47, 0)),
-          repeating-linear-gradient(0deg, rgba(23, 50, 77, 0.15) 0 12px, rgba(23, 50, 77, 0) 12px 30px),
+          repeating-linear-gradient(
+            0deg,
+            rgba(23, 50, 77, 0.15) 0 12px,
+            rgba(23, 50, 77, 0) 12px 30px
+          ),
           #f5f0e6;
       }
 
@@ -673,7 +681,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="apartment-finder-overview" data-width="1920" data-height="1080" data-start="0" data-duration="36">
+    <div
+      id="root"
+      data-composition-id="apartment-finder-overview"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="36"
+    >
       <section id="scene1" class="scene">
         <div class="backdrop">
           <div class="wash"></div>
@@ -734,12 +749,30 @@
         <div class="scene-number">02 / 06</div>
         <div class="scene-shell split-wide">
           <div class="photo-grid">
-            <div class="photo-card enter-card"><div class="photo"></div><p>Kitchen photo</p></div>
-            <div class="photo-card enter-card"><div class="photo"></div><p>Laundry room</p></div>
-            <div class="photo-card enter-card"><div class="photo"></div><p>Amenity text</p></div>
-            <div class="photo-card enter-card"><div class="photo"></div><p>Unit details</p></div>
-            <div class="photo-card enter-card"><div class="photo"></div><p>Shared area</p></div>
-            <div class="photo-card enter-card"><div class="photo"></div><p>Source link</p></div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Kitchen photo</p>
+            </div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Laundry room</p>
+            </div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Amenity text</p>
+            </div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Unit details</p>
+            </div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Shared area</p>
+            </div>
+            <div class="photo-card enter-card">
+              <div class="photo"></div>
+              <p>Source link</p>
+            </div>
           </div>
           <div class="copy">
             <p class="eyebrow enter">Cost</p>
@@ -771,7 +804,10 @@
           <div class="product-wrap">
             <div class="product-frame enter-product">
               <span class="screen-label">redacted product surface</span>
-              <img src="assets/apartment-finder-ui-redacted-final.png" alt="Redacted Apartment Finder product surface" />
+              <img
+                src="assets/apartment-finder-ui-redacted-final.png"
+                alt="Redacted Apartment Finder product surface"
+              />
             </div>
             <div class="scan-steps">
               <div class="scan-step enter-card"><i>1</i>Discover listings</div>
@@ -888,7 +924,10 @@
           <div class="product-wrap">
             <div class="product-frame enter-product">
               <span class="screen-label">portfolio-safe demo</span>
-              <img src="assets/apartment-finder-ui-redacted.png" alt="Redacted Apartment Finder product surface" />
+              <img
+                src="assets/apartment-finder-ui-redacted.png"
+                alt="Redacted Apartment Finder product surface"
+              />
             </div>
           </div>
         </div>
@@ -918,28 +957,90 @@
       }
 
       function intro(scene, start) {
-        fromToIf(scene + " .eyebrow", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, start + 0.25);
-        fromToIf(scene + " .headline", { y: 54, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power4.out" }, start + 0.45);
-        fromToIf(scene + " .rule", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.55, ease: "power3.out" }, start + 0.9);
-        fromToIf(scene + " .subhead", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out" }, start + 1.1);
-        fromToIf(scene + " .enter-card", { y: 42, opacity: 0, scale: 0.96, rotation: -2 }, { y: 0, opacity: 1, scale: 1, rotation: 0, duration: 0.62, ease: "back.out(1.25)", stagger: 0.09 }, start + 0.8);
-        fromToIf(scene + " .enter-product", { y: 42, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.72, ease: "power3.out" }, start + 0.65);
-        fromToIf(scene + " .enter-pop", { scale: 0.75, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" }, start + 1.15);
-        fromToIf(scene + " .enter-line", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.65, ease: "power3.out" }, start + 1.05);
+        fromToIf(
+          scene + " .eyebrow",
+          { y: 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+          start + 0.25,
+        );
+        fromToIf(
+          scene + " .headline",
+          { y: 54, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: "power4.out" },
+          start + 0.45,
+        );
+        fromToIf(
+          scene + " .rule",
+          { scaleX: 0, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.55, ease: "power3.out" },
+          start + 0.9,
+        );
+        fromToIf(
+          scene + " .subhead",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55, ease: "power2.out" },
+          start + 1.1,
+        );
+        fromToIf(
+          scene + " .enter-card",
+          { y: 42, opacity: 0, scale: 0.96, rotation: -2 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 0.62,
+            ease: "back.out(1.25)",
+            stagger: 0.09,
+          },
+          start + 0.8,
+        );
+        fromToIf(
+          scene + " .enter-product",
+          { y: 42, opacity: 0, scale: 0.97 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.72, ease: "power3.out" },
+          start + 0.65,
+        );
+        fromToIf(
+          scene + " .enter-pop",
+          { scale: 0.75, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" },
+          start + 1.15,
+        );
+        fromToIf(
+          scene + " .enter-line",
+          { scaleX: 0, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.65, ease: "power3.out" },
+          start + 1.05,
+        );
       }
 
       function push(oldScene, newScene, time) {
         tl.to(oldScene, { x: -1920, duration: 0.5, ease: "power3.inOut" }, time);
-        tl.fromTo(newScene, { x: 1920, opacity: 1 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, time);
+        tl.fromTo(
+          newScene,
+          { x: 1920, opacity: 1 },
+          { x: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" },
+          time,
+        );
       }
 
       function verticalPush(oldScene, newScene, time) {
         tl.to(oldScene, { y: -1080, duration: 0.5, ease: "power3.inOut" }, time);
-        tl.fromTo(newScene, { y: 1080, opacity: 1 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" }, time);
+        tl.fromTo(
+          newScene,
+          { y: 1080, opacity: 1 },
+          { y: 0, opacity: 1, duration: 0.5, ease: "power3.inOut" },
+          time,
+        );
       }
 
       function blurCrossfade(oldScene, newScene, time) {
-        tl.to(oldScene, { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, time);
+        tl.to(
+          oldScene,
+          { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" },
+          time,
+        );
         tl.fromTo(
           newScene,
           { filter: "blur(10px)", scale: 0.97, opacity: 0 },
@@ -960,10 +1061,28 @@
       push("#scene5", "#scene6", 27.1);
       intro("#scene6", 27.5);
 
-      tl.fromTo("#scene4 .meter-fill", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power3.out" }, 18.2);
-      tl.to("#scene5 .decision-card", { y: -12, duration: 0.7, ease: "sine.inOut", stagger: 0.08 }, 25.4);
-      tl.to("#scene5 .decision-card", { y: 0, duration: 0.7, ease: "sine.inOut", stagger: 0.08 }, 26.1);
-      tl.fromTo("#scene6 .end-card", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, ease: "power3.out" }, 33);
+      tl.fromTo(
+        "#scene4 .meter-fill",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 1.2, ease: "power3.out" },
+        18.2,
+      );
+      tl.to(
+        "#scene5 .decision-card",
+        { y: -12, duration: 0.7, ease: "sine.inOut", stagger: 0.08 },
+        25.4,
+      );
+      tl.to(
+        "#scene5 .decision-card",
+        { y: 0, duration: 0.7, ease: "sine.inOut", stagger: 0.08 },
+        26.1,
+      );
+      tl.fromTo(
+        "#scene6 .end-card",
+        { y: 28, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, ease: "power3.out" },
+        33,
+      );
       tl.to("#scene6 .final-map", { opacity: 0, y: -12, duration: 0.35, ease: "power1.in" }, 32.8);
       tl.to("#scene6 .end-fade", { opacity: 0.72, duration: 0.3, ease: "power1.in" }, 35.7);
 

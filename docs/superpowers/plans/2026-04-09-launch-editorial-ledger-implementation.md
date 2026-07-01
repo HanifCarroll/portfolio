@@ -59,6 +59,7 @@
 ### Task 1: Add a page-scoped layout hook and neutralize the `/launch/` background
 
 **Files:**
+
 - Modify: `src/layouts/BaseLayout.astro`
 - Modify: `src/pages/launch.astro`
 - Modify: `src/styles/global.css`
@@ -105,13 +106,13 @@ Add this block near the existing base `body` rules in `src/styles/global.css`:
 
 ```css
 body.page-launch {
-	background-color: #f4ede1;
-	background-image: none;
+  background-color: #f4ede1;
+  background-image: none;
 }
 
 :is(.dark) body.page-launch {
-	background-color: #0d0d0d;
-	background-image: none;
+  background-color: #0d0d0d;
+  background-image: none;
 }
 ```
 
@@ -142,6 +143,7 @@ git commit -m "feat: add launch page-specific body styling hook"
 ### Task 2: Add the editorial-ledger CSS primitives
 
 **Files:**
+
 - Modify: `src/styles/global.css`
 - Test: `bun run build`
 
@@ -151,101 +153,101 @@ Append these classes in the components layer of `src/styles/global.css`, near th
 
 ```css
 .ledger-section {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	padding-block: 3rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-block: 3rem;
 }
 
 .ledger-band {
-	border: 1px solid rgba(0, 0, 0, 0.08);
-	background: rgba(255, 255, 255, 0.36);
-	padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.36);
+  padding: 1.5rem;
 }
 
 .ledger-split {
-	display: grid;
-	gap: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
 }
 
 .ledger-rail {
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
 }
 
 .ledger-strong-panel {
-	border: 1px solid rgba(0, 0, 0, 0.18);
-	background: #fbf8f1;
-	padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: #fbf8f1;
+  padding: 1.5rem;
 }
 
 .launch-display {
-	font-family: var(--font-display, 'Syne', sans-serif);
-	font-size: clamp(3.25rem, 8vw, 6.25rem);
-	font-weight: 700;
-	line-height: 0.9;
-	letter-spacing: -0.075em;
-	text-transform: uppercase;
-	text-wrap: balance;
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: clamp(3.25rem, 8vw, 6.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .launch-body {
-	font-size: 1.125rem;
-	line-height: 1.8;
-	color: rgba(17, 17, 17, 0.78);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(17, 17, 17, 0.78);
 }
 
 .launch-meta {
-	font-family: 'IBM Plex Mono', ui-monospace, monospace;
-	font-size: 0.75rem;
-	line-height: 1.6;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: rgba(17, 17, 17, 0.64);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.64);
 }
 
 @media (min-width: 1024px) {
-	.ledger-split {
-		grid-template-columns: minmax(0, 1.08fr) minmax(16rem, 0.92fr);
-		gap: 2rem;
-	}
+  .ledger-split {
+    grid-template-columns: minmax(0, 1.08fr) minmax(16rem, 0.92fr);
+    gap: 2rem;
+  }
 
-	.ledger-rail {
-		border-top: 0;
-		border-left: 1px solid rgba(0, 0, 0, 0.1);
-		padding-top: 0;
-		padding-left: 1.25rem;
-	}
+  .ledger-rail {
+    border-top: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 0;
+    padding-left: 1.25rem;
+  }
 }
 
 :is(.dark) .ledger-section {
-	border-top-color: rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.12);
 }
 
 :is(.dark) .ledger-band {
-	border-color: rgba(255, 255, 255, 0.1);
-	background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 :is(.dark) .ledger-rail {
-	border-top-color: rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 1024px) {
-	:is(.dark) .ledger-rail {
-		border-left-color: rgba(255, 255, 255, 0.12);
-	}
+  :is(.dark) .ledger-rail {
+    border-left-color: rgba(255, 255, 255, 0.12);
+  }
 }
 
 :is(.dark) .ledger-strong-panel {
-	border-color: rgba(255, 255, 255, 0.16);
-	background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 :is(.dark) .launch-body {
-	color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 :is(.dark) .launch-meta {
-	color: rgba(255, 255, 255, 0.66);
+  color: rgba(255, 255, 255, 0.66);
 }
 ```
 
@@ -255,24 +257,24 @@ Add one more helper block for numbered/process and FAQ rows:
 
 ```css
 .ledger-entry {
-	display: grid;
-	gap: 0.75rem;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	padding-block: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-block: 1rem;
 }
 
 @media (min-width: 768px) {
-	.ledger-entry--process {
-		grid-template-columns: 72px minmax(0, 1fr);
-	}
+  .ledger-entry--process {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
 
-	.ledger-entry--faq {
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-	}
+  .ledger-entry--faq {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
 }
 
 :is(.dark) .ledger-entry {
-	border-top-color: rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.12);
 }
 ```
 
@@ -303,6 +305,7 @@ git commit -m "feat: add launch editorial-ledger layout primitives"
 ### Task 3: Rebuild the hero and proof sections around the ledger system
 
 **Files:**
+
 - Modify: `src/pages/launch.astro`
 - Test: `bun run build`
 
@@ -452,6 +455,7 @@ git commit -m "feat: rebuild launch hero and proof in ledger layout"
 ### Task 4: Rebuild the offer chooser and MVP section
 
 **Files:**
+
 - Modify: `src/pages/launch.astro`
 - Test: `bun run build`
 
@@ -577,6 +581,7 @@ git commit -m "feat: rebuild launch offers and MVP section"
 ### Task 5: Rebuild the automation section, objections, and final CTA
 
 **Files:**
+
 - Modify: `src/pages/launch.astro`
 - Modify: `src/styles/global.css`
 - Test: `bun run build`
@@ -753,6 +758,7 @@ git commit -m "feat: complete launch editorial-ledger redesign"
 ### Task 6: Final QA pass for hierarchy, spacing, and dark mode
 
 **Files:**
+
 - Modify: `src/pages/launch.astro`
 - Modify: `src/styles/global.css`
 - Test: `bun run build`
@@ -763,13 +769,13 @@ Adjust only if needed after visual review:
 
 ```css
 .ledger-section {
-	padding-block: 3.5rem;
+  padding-block: 3.5rem;
 }
 
 @media (min-width: 1024px) {
-	.ledger-section {
-		padding-block: 4rem;
-	}
+  .ledger-section {
+    padding-block: 4rem;
+  }
 }
 ```
 

@@ -76,30 +76,30 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/apartment-finder.mdx:40-55` | Listing sites blur private washers and shared laundry, and the product exists to inspect evidence instead of trusting the filter. |
-| `src/content/case-studies/apartment-finder.mdx:58-65` | The product keeps listing facts, photo galleries, washer evidence, confidence, and source links visible for review. |
-| `src/content/case-studies/apartment-finder.mdx:68-75` | The public UI screenshot proves the product surface exists. |
-| `src/content/case-studies/apartment-finder.mdx:79-93` | The implementation extracts provider evidence, runs a staged classification path, and keeps UI and eval behavior aligned. |
-| `src/content/case-studies/apartment-finder.mdx:97-110` | The shipped proof includes the product surface, auditable model evidence, evaluation results, cost control, and public repo. |
-| `src/lib/projects/apartment-finder.json:27-44` | Metadata confirms the constraints, product workflow, measured result, and evidence-backed product framing. |
-| `/Users/hanifcarroll/projects/apartment-finder/README.md:1-13` | The repo describes the washer decision categories, provider extraction, vision classification, and audit outputs. |
-| `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96` | The listing summary record keeps decisions, confidence, evidence, image counts, escalation indexes, and policy fields. |
+| Source                                                            | What it supports in plain language                                                                                                               |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/content/case-studies/apartment-finder.mdx:40-55`             | Listing sites blur private washers and shared laundry, and the product exists to inspect evidence instead of trusting the filter.                |
+| `src/content/case-studies/apartment-finder.mdx:58-65`             | The product keeps listing facts, photo galleries, washer evidence, confidence, and source links visible for review.                              |
+| `src/content/case-studies/apartment-finder.mdx:68-75`             | The public UI screenshot proves the product surface exists.                                                                                      |
+| `src/content/case-studies/apartment-finder.mdx:79-93`             | The implementation extracts provider evidence, runs a staged classification path, and keeps UI and eval behavior aligned.                        |
+| `src/content/case-studies/apartment-finder.mdx:97-110`            | The shipped proof includes the product surface, auditable model evidence, evaluation results, cost control, and public repo.                     |
+| `src/lib/projects/apartment-finder.json:27-44`                    | Metadata confirms the constraints, product workflow, measured result, and evidence-backed product framing.                                       |
+| `/Users/hanifcarroll/projects/apartment-finder/README.md:1-13`    | The repo describes the washer decision categories, provider extraction, vision classification, and audit outputs.                                |
+| `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96`   | The listing summary record keeps decisions, confidence, evidence, image counts, escalation indexes, and policy fields.                           |
 | `/Users/hanifcarroll/projects/apartment-finder/README.md:318-334` | Search scans use staged listing classification and the web UI supports provider filters, raw URLs, scans, result filtering, and expandable rows. |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Rental platforms collapse private washers and shared laundry into one signal. | `src/content/case-studies/apartment-finder.mdx:40-55`; `src/lib/projects/apartment-finder.json:27-34` | Yes, as plain text | Yes |
-| Input | Listing details, photos, provider metadata, and raw search URLs enter the workflow. | `src/content/case-studies/apartment-finder.mdx:46-65`; `/Users/hanifcarroll/projects/apartment-finder/README.md:52-96` | Yes, as synthetic labels | Yes |
-| Product action | The app discovers listings, scans photos and details, and keeps evidence reviewable. | `src/content/case-studies/apartment-finder.mdx:58-65`; `src/lib/projects/apartment-finder.json:35-39` | Yes, through redacted UI and synthetic cards | Yes |
-| Durable output | Each result has a washer decision and supporting evidence. | `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96`; `src/content/case-studies/apartment-finder.mdx:97-103` | Yes, as synthetic decision cards | Yes |
-| Saved record | Audit outputs and fixture evals exist in the project, but the video should keep them off-screen. | `/Users/hanifcarroll/projects/apartment-finder/README.md:1-13`; `src/lib/projects/apartment-finder.json:40-44` | Yes as backing proof, not visible | No |
-| Guardrail or warning | If evidence is uncertain, the listing stays reviewable instead of pretending confidence. | `src/content/case-studies/apartment-finder.mdx:58-65`; `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96` | Yes, as `Unclear` decision language | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster/preview, project metadata check, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | The case study and public repo explain the product surface and evidence workflow. | `src/content/case-studies/apartment-finder.mdx`; `https://github.com/HanifCarroll/apartment-finder` | Yes | No |
+| Proof type           | Exact proof                                                                                                                                              | Source path, URL, or command                                                                                            | Safe to show?                                | On-screen? |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ---------- |
+| Problem              | Rental platforms collapse private washers and shared laundry into one signal.                                                                            | `src/content/case-studies/apartment-finder.mdx:40-55`; `src/lib/projects/apartment-finder.json:27-34`                   | Yes, as plain text                           | Yes        |
+| Input                | Listing details, photos, provider metadata, and raw search URLs enter the workflow.                                                                      | `src/content/case-studies/apartment-finder.mdx:46-65`; `/Users/hanifcarroll/projects/apartment-finder/README.md:52-96`  | Yes, as synthetic labels                     | Yes        |
+| Product action       | The app discovers listings, scans photos and details, and keeps evidence reviewable.                                                                     | `src/content/case-studies/apartment-finder.mdx:58-65`; `src/lib/projects/apartment-finder.json:35-39`                   | Yes, through redacted UI and synthetic cards | Yes        |
+| Durable output       | Each result has a washer decision and supporting evidence.                                                                                               | `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96`; `src/content/case-studies/apartment-finder.mdx:97-103` | Yes, as synthetic decision cards             | Yes        |
+| Saved record         | Audit outputs and fixture evals exist in the project, but the video should keep them off-screen.                                                         | `/Users/hanifcarroll/projects/apartment-finder/README.md:1-13`; `src/lib/projects/apartment-finder.json:40-44`          | Yes as backing proof, not visible            | No         |
+| Guardrail or warning | If evidence is uncertain, the listing stays reviewable instead of pretending confidence.                                                                 | `src/content/case-studies/apartment-finder.mdx:58-65`; `/Users/hanifcarroll/projects/apartment-finder/README.md:85-96`  | Yes, as `Unclear` decision language          | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster/preview, project metadata check, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                                | Yes                                          | No         |
+| Reviewer path        | The case study and public repo explain the product surface and evidence workflow.                                                                        | `src/content/case-studies/apartment-finder.mdx`; `https://github.com/HanifCarroll/apartment-finder`                     | Yes                                          | No         |
 
 ## Selected Story
 
@@ -295,15 +295,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Apartment search got noisy. Listing sites mixed private washers with shared laundry. | 11 | 5.5s | 120 |
-| 2 | The real answer lived in photos. A filter alone could not answer the question. | 13 | 5.5s | 142 |
-| 3 | Apartment Finder reviews the listing. It reads details, photos, and washer clues together. | 12 | 5.5s | 131 |
-| 4 | The AI decision stays inspectable. Evidence, confidence, and source links remain visible. | 11 | 5.5s | 120 |
-| 5 | The result is easier to compare. Likely in-unit, shared building, or unclear. | 12 | 5.5s | 131 |
-| 6 | A messy search becomes a clearer decision. Fewer tabs, better evidence, less guessing. | 12 | 5.5s | 131 |
-| End | Apartment Finder. Messy listings to clear decisions. | 6 | 3s | 120 |
+| Scene | Text                                                                                       | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Apartment search got noisy. Listing sites mixed private washers with shared laundry.       |         11 |     5.5s | 120 |
+| 2     | The real answer lived in photos. A filter alone could not answer the question.             |         13 |     5.5s | 142 |
+| 3     | Apartment Finder reviews the listing. It reads details, photos, and washer clues together. |         12 |     5.5s | 131 |
+| 4     | The AI decision stays inspectable. Evidence, confidence, and source links remain visible.  |         11 |     5.5s | 120 |
+| 5     | The result is easier to compare. Likely in-unit, shared building, or unclear.              |         12 |     5.5s | 131 |
+| 6     | A messy search becomes a clearer decision. Fewer tabs, better evidence, less guessing.     |         12 |     5.5s | 131 |
+| End   | Apartment Finder. Messy listings to clear decisions.                                       |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -322,12 +322,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Redacted product surface | Product proof, scenes 3 and 6 | `src/assets/img/projects/apartment-finder-ui.png` | Yes. Listing titles, source URLs, IDs, and row details are masked. | `assets/redacted/apartment-finder-ui-redacted.png` and `hyperframes/assets/apartment-finder-ui-redacted.png` |
-| Messy listing cards | Problem scene | This source document and case-study problem section | No private data | Build natively in HyperFrames |
-| Photo evidence cards | Cost and AI review scenes | This source document and case-study product direction | No private data | Build natively in HyperFrames |
-| Decision cards | Result scene | README decision categories and case-study result | No private data | Build natively in HyperFrames |
+| Asset                    | Purpose                       | Source                                                | Redaction needed?                                                  | Final path                                                                                                   |
+| ------------------------ | ----------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| Redacted product surface | Product proof, scenes 3 and 6 | `src/assets/img/projects/apartment-finder-ui.png`     | Yes. Listing titles, source URLs, IDs, and row details are masked. | `assets/redacted/apartment-finder-ui-redacted.png` and `hyperframes/assets/apartment-finder-ui-redacted.png` |
+| Messy listing cards      | Problem scene                 | This source document and case-study problem section   | No private data                                                    | Build natively in HyperFrames                                                                                |
+| Photo evidence cards     | Cost and AI review scenes     | This source document and case-study product direction | No private data                                                    | Build natively in HyperFrames                                                                                |
+| Decision cards           | Result scene                  | README decision categories and case-study result      | No private data                                                    | Build natively in HyperFrames                                                                                |
 
 ## Privacy Check
 

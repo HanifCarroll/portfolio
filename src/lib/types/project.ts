@@ -21,7 +21,7 @@ export interface ProjectProofScreen {
   label: string;
   title: string;
   caption: string;
-  frame?: 'desktop' | 'mobile';
+  frame?: "desktop" | "mobile";
 }
 
 export interface ProjectProofQuote {
@@ -31,21 +31,15 @@ export interface ProjectProofQuote {
 }
 
 export type ProjectTrack =
-  | 'mvp_build'
-  | 'mvp_validation'
-  | 'workflow_automation'
-  | 'ai_systems'
-  | 'launch_site';
+  | "mvp_build"
+  | "mvp_validation"
+  | "workflow_automation"
+  | "ai_systems"
+  | "launch_site";
 
-export type ProjectTrackGroup =
-  | 'supporting_product_proof'
-  | 'mvp_and_validation'
-  | 'launch_sites';
+export type ProjectTrackGroup = "supporting_product_proof" | "mvp_and_validation" | "launch_sites";
 
-export type ProjectDetailVariant =
-  | 'product'
-  | 'workflow'
-  | 'launch_site';
+export type ProjectDetailVariant = "product" | "workflow" | "launch_site";
 
 export interface Project {
   slug: string;
@@ -54,11 +48,11 @@ export interface Project {
   seoTitle?: string;
   seoDescription?: string;
   client: string;
-  proofType: 'client' | 'founder' | 'experiment';
+  proofType: "client" | "founder" | "experiment";
   service: string;
   track: ProjectTrack;
   detailVariant: ProjectDetailVariant;
-  category?: 'product' | 'marketing-site';
+  category?: "product" | "marketing-site";
   year?: string;
   technologies: string[];
   liveUrl?: string;

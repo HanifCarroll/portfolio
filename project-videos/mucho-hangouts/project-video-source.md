@@ -69,26 +69,26 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/mucho-hangouts.mdx:34-45` | The product was live, and reliability plus team velocity were becoming risks. |
-| `src/content/case-studies/mucho-hangouts.mdx:48-62` | The work needed stronger product foundations and clearer development patterns without stopping the roadmap. |
-| `src/content/case-studies/mucho-hangouts.mdx:73-80` | Messaging, notifications, code review, pairing, and technical direction were the main contribution areas. |
-| `src/content/case-studies/mucho-hangouts.mdx:84-90` | The result improved reliability and team velocity without turning cleanup into a stalled rewrite. |
-| `src/lib/projects/mucho-hangouts.json:17-43` | Metadata confirms the constraints, problem, solution, and result framing. |
-| `src/assets/img/projects/mucho-hangouts-hero.png` | Public event-detail surface for proof of the product context. |
-| `src/assets/img/projects/mucho-hangouts-feature.png` | Public share-modal and notification surface for proof of social workflow context. |
+| Source                                               | What it supports in plain language                                                                          |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/mucho-hangouts.mdx:34-45`  | The product was live, and reliability plus team velocity were becoming risks.                               |
+| `src/content/case-studies/mucho-hangouts.mdx:48-62`  | The work needed stronger product foundations and clearer development patterns without stopping the roadmap. |
+| `src/content/case-studies/mucho-hangouts.mdx:73-80`  | Messaging, notifications, code review, pairing, and technical direction were the main contribution areas.   |
+| `src/content/case-studies/mucho-hangouts.mdx:84-90`  | The result improved reliability and team velocity without turning cleanup into a stalled rewrite.           |
+| `src/lib/projects/mucho-hangouts.json:17-43`         | Metadata confirms the constraints, problem, solution, and result framing.                                   |
+| `src/assets/img/projects/mucho-hangouts-hero.png`    | Public event-detail surface for proof of the product context.                                               |
+| `src/assets/img/projects/mucho-hangouts-feature.png` | Public share-modal and notification surface for proof of social workflow context.                           |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Live product with reliability and team-velocity risks | `src/content/case-studies/mucho-hangouts.mdx:34-45` | Yes, as simplified text | Yes |
-| Input | Social events product surface with event detail and organizer actions | `src/assets/img/projects/mucho-hangouts-hero.png` | Yes, public portfolio asset | Yes |
-| Product action | Messaging, notifications, and share flow context | `src/assets/img/projects/mucho-hangouts-feature.png` | Yes, public portfolio asset | Yes |
-| Engineering contribution | Targeted foundation work, clearer flows, code review, and pairing | `src/content/case-studies/mucho-hangouts.mdx:55-80` | Yes, as simplified labels | Yes |
-| Durable output | More dependable product and clearer delivery patterns | `src/content/case-studies/mucho-hangouts.mdx:84-90`; `src/lib/projects/mucho-hangouts.json:35-43` | Yes | Yes |
-| Reviewer path | Portfolio case study and metadata explain the work | `src/content/case-studies/mucho-hangouts.mdx`; `src/lib/projects/mucho-hangouts.json` | Yes | No |
+| Proof type               | Exact proof                                                           | Source path, URL, or command                                                                      | Safe to show?               | On-screen? |
+| ------------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------- | ---------- |
+| Problem                  | Live product with reliability and team-velocity risks                 | `src/content/case-studies/mucho-hangouts.mdx:34-45`                                               | Yes, as simplified text     | Yes        |
+| Input                    | Social events product surface with event detail and organizer actions | `src/assets/img/projects/mucho-hangouts-hero.png`                                                 | Yes, public portfolio asset | Yes        |
+| Product action           | Messaging, notifications, and share flow context                      | `src/assets/img/projects/mucho-hangouts-feature.png`                                              | Yes, public portfolio asset | Yes        |
+| Engineering contribution | Targeted foundation work, clearer flows, code review, and pairing     | `src/content/case-studies/mucho-hangouts.mdx:55-80`                                               | Yes, as simplified labels   | Yes        |
+| Durable output           | More dependable product and clearer delivery patterns                 | `src/content/case-studies/mucho-hangouts.mdx:84-90`; `src/lib/projects/mucho-hangouts.json:35-43` | Yes                         | Yes        |
+| Reviewer path            | Portfolio case study and metadata explain the work                    | `src/content/case-studies/mucho-hangouts.mdx`; `src/lib/projects/mucho-hangouts.json`             | Yes                         | No         |
 
 ## Selected Story
 
@@ -257,14 +257,14 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | The product was live. Reliability and team speed were becoming risks. | 10 | 5.6s | 107 |
-| 2 | I tightened the foundations. Core flows got clearer and easier to extend. | 11 | 5.7s | 116 |
-| 3 | Messaging and notifications got steadier. Everyday coordination needed fewer fragile moments. | 10 | 5.7s | 105 |
-| 4 | Senior judgment became repeatable. Code review and pairing gave juniors safer defaults. | 10 | 5.7s | 105 |
-| 5 | The team kept shipping. The product became more dependable during cleanup. | 10 | 5.9s | 102 |
-| End | Mucho Hangouts. Reliable social workflows, clearer delivery. | 6 | 3s | 120 |
+| Scene | Text                                                                                          | Word count | Duration | WPM |
+| ----- | --------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | The product was live. Reliability and team speed were becoming risks.                         |         10 |     5.6s | 107 |
+| 2     | I tightened the foundations. Core flows got clearer and easier to extend.                     |         11 |     5.7s | 116 |
+| 3     | Messaging and notifications got steadier. Everyday coordination needed fewer fragile moments. |         10 |     5.7s | 105 |
+| 4     | Senior judgment became repeatable. Code review and pairing gave juniors safer defaults.       |         10 |     5.7s | 105 |
+| 5     | The team kept shipping. The product became more dependable during cleanup.                    |         10 |     5.9s | 102 |
+| End   | Mucho Hangouts. Reliable social workflows, clearer delivery.                                  |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -289,13 +289,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Event detail screenshot | Product proof, problem frame, result frame, and poster frame | `src/assets/img/projects/mucho-hangouts-hero.png` | No; public portfolio asset | `assets/selected/mucho-hangouts-hero.png`; `hyperframes/assets/mucho-hangouts-hero.png` |
-| Share modal screenshot | Core workflow proof for messaging, notifications, and share context | `src/assets/img/projects/mucho-hangouts-feature.png` | No; public portfolio asset | `assets/selected/mucho-hangouts-feature.png`; `hyperframes/assets/mucho-hangouts-feature.png` |
-| Foundation rail | Contribution scene | Case-study product direction section | No private data | Build natively in HyperFrames |
-| Team pattern cards | Team patterns scene | Case-study work and shipped rows | No private data | Build natively in HyperFrames |
-| Result chips | Result scene | Case-study shipped rows and metadata result | No private data | Build natively in HyperFrames |
+| Asset                   | Purpose                                                             | Source                                               | Redaction needed?          | Final path                                                                                    |
+| ----------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
+| Event detail screenshot | Product proof, problem frame, result frame, and poster frame        | `src/assets/img/projects/mucho-hangouts-hero.png`    | No; public portfolio asset | `assets/selected/mucho-hangouts-hero.png`; `hyperframes/assets/mucho-hangouts-hero.png`       |
+| Share modal screenshot  | Core workflow proof for messaging, notifications, and share context | `src/assets/img/projects/mucho-hangouts-feature.png` | No; public portfolio asset | `assets/selected/mucho-hangouts-feature.png`; `hyperframes/assets/mucho-hangouts-feature.png` |
+| Foundation rail         | Contribution scene                                                  | Case-study product direction section                 | No private data            | Build natively in HyperFrames                                                                 |
+| Team pattern cards      | Team patterns scene                                                 | Case-study work and shipped rows                     | No private data            | Build natively in HyperFrames                                                                 |
+| Result chips            | Result scene                                                        | Case-study shipped rows and metadata result          | No private data            | Build natively in HyperFrames                                                                 |
 
 ## Privacy Check
 

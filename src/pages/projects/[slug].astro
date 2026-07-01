@@ -6,60 +6,19 @@ import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
 import ProjectVideo from '../../components/project-video/ProjectVideo.astro';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
+import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
-
-import acquireHero from '@src/assets/img/projects/acquire-pursuits.png';
-import agentRecallHero from '@src/assets/img/projects/agent-recall-cli.png';
-import baEventosHero from '@src/assets/img/projects/ba-eventos-hero.png';
-import casamoHero from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
-import clientFeedbackHero from '@src/assets/img/projects/client-feedback-evidence-packet.png';
-import codexTelegramBridgeHero from '@src/assets/img/projects/codex-telegram-bridge-terminal.png';
-import hablabaHero from '@src/assets/img/projects/hablaba-hero.png';
-import jobApplicationAssistantHero from '@src/assets/img/projects/job-application-assistant-sidepanel.png';
-import linkedinToolsHero from '@src/assets/img/projects/linkedin-tools-review-ui.png';
-import muchoHangoutsHero from '@src/assets/img/projects/mucho-hangouts-hero.png';
-import genruptHero from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
-import palabrunoHero from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
-import voxPrismaticHero from '@src/assets/img/projects/vox-prismatic-hero.png';
-import casaElariaHero from '@src/assets/img/projects/casa-elaria-hero.png';
-import desarmaderoOperationsHero from '@src/assets/img/projects/desarmadero-operations-ventas.png';
-import desarmaderoHero from '@src/assets/img/projects/desarmadero-parts-stockroom-photo.png';
-import maximoHero from '@src/assets/img/projects/maximo-hero.png';
-import redwriterHero from '@src/assets/img/projects/redwriter-hero.png';
-import apartmentFinderHero from '@src/assets/img/projects/apartment-finder-ui.png';
 
 interface PageProps {
 	project: Project;
 	caseStudy: CollectionEntry<'caseStudies'>;
 }
 
-const imageMap = {
-	acquire: acquireHero,
-	'job-application-assistant': jobApplicationAssistantHero,
-	'linkedin-tools': linkedinToolsHero,
-	'codex-telegram-bridge': codexTelegramBridgeHero,
-	'agent-recall': agentRecallHero,
-	'client-feedback': clientFeedbackHero,
-	palabruno: palabrunoHero,
-	casamo: casamoHero,
-	'ba-eventos': baEventosHero,
-	'apartment-finder': apartmentFinderHero,
-	'language-exchange': hablabaHero,
-	'mucho-hangouts': muchoHangoutsHero,
-	genrupt: genruptHero,
-	'vox-prismatic': voxPrismaticHero,
-	'casa-elaria': casaElariaHero,
-	'desarmadero-operations-prototype': desarmaderoOperationsHero,
-	'desarmadero-latorre': desarmaderoHero,
-	'maximo-interiorismo': maximoHero,
-	'redwriter-comics': redwriterHero
-} as const;
-
 export async function getStaticPaths() {
 	const caseStudies = await getCollection('caseStudies');
 
 	return caseStudies.map((caseStudy) => {
-		const slug = caseStudy.data.projectSlug ?? caseStudy.id;
+		const slug = caseStudy.id;
 		const project = getProject(slug);
 
 		if (!project) {
@@ -77,7 +36,7 @@ const { project, caseStudy } = Astro.props as PageProps;
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);
-const heroImage = imageMap[project.slug as keyof typeof imageMap];
+const heroImage = getProjectImage(project, 'hero');
 const seoTitle = project.seoTitle ?? `${project.title} · Case Study`;
 const seoDescription = project.seoDescription ?? project.description;
 const canonicalUrl = new URL(`/projects/${project.slug}/`, Astro.site).toString();

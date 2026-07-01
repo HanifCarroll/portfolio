@@ -74,33 +74,33 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/acquire.mdx:39-48` | Acquire is a local acquisition operating system built because the opportunity workflow was split across tools. |
-| `src/content/case-studies/acquire.mdx:51-62` | The system keeps the source of truth local, separates judgment from workflow ownership, and uses approval gates. |
-| `src/content/case-studies/acquire.mdx:65-68` | The public product surface is the native command center, especially the Pursuits workspace. |
-| `src/content/case-studies/acquire.mdx:71-90` | The work includes source monitoring, application workflow, answer reuse, typed app projections, daemon-owned execution, and blockers. |
-| `src/content/case-studies/acquire.mdx:105-108` | The broader value is mapping a business workflow, making the source of truth explicit, and adding accountable automation. |
-| `src/lib/projects/acquire.json:28-44` | Metadata confirms the constraints, problem, solution, and result framing. |
-| `/Users/hanifcarroll/projects/tools/acquire/README.md:1-6` | The local repo describes Acquire as acquisition CRM, source monitoring, and bounded automation backed by local state and approval gates. |
-| `/Users/hanifcarroll/projects/tools/acquire/README.md:72-95` | Scheduled source passes and browser-backed imports are governed by the daemon and import contracts. |
-| `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:35-41` | The command-center UI has Today, Opportunity Reviews, Pursuits, Sources, and Settings surfaces. |
-| `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:43-69` | Pursuits owns review, approved actions, questions, materials, submission evidence, completed history, and blockers. |
-| `/Users/hanifcarroll/projects/tools/acquire/docs/application-workflow.md:1-28` | Application submission is a governed final step with discovery, reusable answers, approval, snapshot comparison, and drift recovery. |
-| `/Users/hanifcarroll/projects/tools/acquire/macos/README.md:1-6` | The native app is a thin command center while the installed CLI remains the workflow source of truth. |
+| Source                                                                         | What it supports in plain language                                                                                                       |
+| ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/acquire.mdx:39-48`                                   | Acquire is a local acquisition operating system built because the opportunity workflow was split across tools.                           |
+| `src/content/case-studies/acquire.mdx:51-62`                                   | The system keeps the source of truth local, separates judgment from workflow ownership, and uses approval gates.                         |
+| `src/content/case-studies/acquire.mdx:65-68`                                   | The public product surface is the native command center, especially the Pursuits workspace.                                              |
+| `src/content/case-studies/acquire.mdx:71-90`                                   | The work includes source monitoring, application workflow, answer reuse, typed app projections, daemon-owned execution, and blockers.    |
+| `src/content/case-studies/acquire.mdx:105-108`                                 | The broader value is mapping a business workflow, making the source of truth explicit, and adding accountable automation.                |
+| `src/lib/projects/acquire.json:28-44`                                          | Metadata confirms the constraints, problem, solution, and result framing.                                                                |
+| `/Users/hanifcarroll/projects/tools/acquire/README.md:1-6`                     | The local repo describes Acquire as acquisition CRM, source monitoring, and bounded automation backed by local state and approval gates. |
+| `/Users/hanifcarroll/projects/tools/acquire/README.md:72-95`                   | Scheduled source passes and browser-backed imports are governed by the daemon and import contracts.                                      |
+| `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:35-41`                  | The command-center UI has Today, Opportunity Reviews, Pursuits, Sources, and Settings surfaces.                                          |
+| `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:43-69`                  | Pursuits owns review, approved actions, questions, materials, submission evidence, completed history, and blockers.                      |
+| `/Users/hanifcarroll/projects/tools/acquire/docs/application-workflow.md:1-28` | Application submission is a governed final step with discovery, reusable answers, approval, snapshot comparison, and drift recovery.     |
+| `/Users/hanifcarroll/projects/tools/acquire/macos/README.md:1-6`               | The native app is a thin command center while the installed CLI remains the workflow source of truth.                                    |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Work-search activity split across job boards, LinkedIn, Upwork, recruiters, notes, browser tabs, emails, and follow-up lists. | `src/lib/projects/acquire.json:32-35` | Yes, as plain text | Yes |
-| Input | Opportunities and source runs enter the local workflow. | `src/content/case-studies/acquire.mdx:71-74` | Yes, as synthetic labels | Yes |
-| Product action | Reviews, approvals, materials, answer review, and submission snapshots keep actions governed. | `src/content/case-studies/acquire.mdx:23-30`, `src/content/case-studies/acquire.mdx:76-89` | Yes, as plain labels | Yes |
-| Durable output | Pursuits keep materials, questions, answers, evidence, status, blockers, and history together. | `src/content/case-studies/acquire.mdx:65-68`, `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:35-41` | Yes, from public screenshot and synthetic labels | Yes |
-| Saved record | The local system stores opportunities, source runs, application packets, evidence events, worker jobs, schedules, and reports. | `src/content/case-studies/acquire.mdx:13-35` | Mention generally, not with private rows | No |
-| Guardrail or warning | Submission changes invalidate approval and return the pursuit to review. | `/Users/hanifcarroll/projects/tools/acquire/docs/application-workflow.md:18-28` | Yes, as a plain approval-gate concept | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshots, render, ffprobe, thumbnail, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study plus local repo docs explain the product surface and workflow contracts. | `src/content/case-studies/acquire.mdx`, `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md` | Yes | No |
+| Proof type           | Exact proof                                                                                                                    | Source path, URL, or command                                                                                | Safe to show?                                    | On-screen? |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------- |
+| Problem              | Work-search activity split across job boards, LinkedIn, Upwork, recruiters, notes, browser tabs, emails, and follow-up lists.  | `src/lib/projects/acquire.json:32-35`                                                                       | Yes, as plain text                               | Yes        |
+| Input                | Opportunities and source runs enter the local workflow.                                                                        | `src/content/case-studies/acquire.mdx:71-74`                                                                | Yes, as synthetic labels                         | Yes        |
+| Product action       | Reviews, approvals, materials, answer review, and submission snapshots keep actions governed.                                  | `src/content/case-studies/acquire.mdx:23-30`, `src/content/case-studies/acquire.mdx:76-89`                  | Yes, as plain labels                             | Yes        |
+| Durable output       | Pursuits keep materials, questions, answers, evidence, status, blockers, and history together.                                 | `src/content/case-studies/acquire.mdx:65-68`, `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md:35-41` | Yes, from public screenshot and synthetic labels | Yes        |
+| Saved record         | The local system stores opportunities, source runs, application packets, evidence events, worker jobs, schedules, and reports. | `src/content/case-studies/acquire.mdx:13-35`                                                                | Mention generally, not with private rows         | No         |
+| Guardrail or warning | Submission changes invalidate approval and return the pursuit to review.                                                       | `/Users/hanifcarroll/projects/tools/acquire/docs/application-workflow.md:18-28`                             | Yes, as a plain approval-gate concept            | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshots, render, ffprobe, thumbnail, and feedback are required for this video.          | `docs/project-videos/capture-and-production-workflow.md`                                                    | Yes                                              | No         |
+| Reviewer path        | Portfolio case study plus local repo docs explain the product surface and workflow contracts.                                  | `src/content/case-studies/acquire.mdx`, `/Users/hanifcarroll/projects/tools/acquire/docs/ui.md`             | Yes                                              | No         |
 
 ## Selected Story
 
@@ -296,15 +296,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart. | 13 | 6.5s | 120 |
-| 2 | The next step was unclear. What is worth acting on? What is approved? What is blocked? | 14 | 6.5s | 129 |
-| 3 | Acquire shows the whole workflow. Each opportunity has a status and next step. | 13 | 6.5s | 120 |
-| 4 | Acquire puts judgment before automation. Review first, approve next, then let the workflow run. | 14 | 6.5s | 129 |
-| 5 | Each pursuit keeps its history. Materials, answers, status, blockers, and run evidence stay inspectable. | 14 | 6.5s | 129 |
-| 6 | This is business-systems engineering in miniature. Map the workflow, set gates, make next actions obvious. | 15 | 6.5s | 138 |
-| End | Acquire. Clear next actions, with evidence. | 6 | 3s | 120 |
+| Scene | Text                                                                                                       | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart.           |         13 |     6.5s | 120 |
+| 2     | The next step was unclear. What is worth acting on? What is approved? What is blocked?                     |         14 |     6.5s | 129 |
+| 3     | Acquire shows the whole workflow. Each opportunity has a status and next step.                             |         13 |     6.5s | 120 |
+| 4     | Acquire puts judgment before automation. Review first, approve next, then let the workflow run.            |         14 |     6.5s | 129 |
+| 5     | Each pursuit keeps its history. Materials, answers, status, blockers, and run evidence stay inspectable.   |         14 |     6.5s | 129 |
+| 6     | This is business-systems engineering in miniature. Map the workflow, set gates, make next actions obvious. |         15 |     6.5s | 138 |
+| End   | Acquire. Clear next actions, with evidence.                                                                |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -350,12 +350,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Acquire Pursuits screenshot | Product proof, command-center surface, result scene crop, final frame background | `src/assets/img/projects/acquire-pursuits.png` | Already public case-study asset | `assets/redacted/acquire-pursuits.png` and `hyperframes/assets/acquire-pursuits.png` |
-| Scattered workflow cards | Problem and cost scenes | Case study problem section and metadata problem field | No private data | Build natively in HyperFrames |
-| Approval workflow rail | How-it-works scene | Case study approval gates and application workflow docs | No private data | Build natively in HyperFrames |
-| Evidence/status cards | Result scene | Case study Pursuits surface and UI docs | No private data | Build natively in HyperFrames |
+| Asset                       | Purpose                                                                          | Source                                                  | Redaction needed?               | Final path                                                                           |
+| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------ |
+| Acquire Pursuits screenshot | Product proof, command-center surface, result scene crop, final frame background | `src/assets/img/projects/acquire-pursuits.png`          | Already public case-study asset | `assets/redacted/acquire-pursuits.png` and `hyperframes/assets/acquire-pursuits.png` |
+| Scattered workflow cards    | Problem and cost scenes                                                          | Case study problem section and metadata problem field   | No private data                 | Build natively in HyperFrames                                                        |
+| Approval workflow rail      | How-it-works scene                                                               | Case study approval gates and application workflow docs | No private data                 | Build natively in HyperFrames                                                        |
+| Evidence/status cards       | Result scene                                                                     | Case study Pursuits surface and UI docs                 | No private data                 | Build natively in HyperFrames                                                        |
 
 ## Privacy Check
 

@@ -684,7 +684,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="42">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="42"
+    >
       <section id="scene1" class="scene">
         <div class="bg">
           <div class="bg-wash"></div>
@@ -759,7 +766,11 @@
           </div>
           <div class="surface-frame surface-large">
             <div class="window-dots"><span></span><span></span><span></span></div>
-            <img class="surface-image" src="assets/acquire-pursuits.png" alt="Acquire Pursuits workspace" />
+            <img
+              class="surface-image"
+              src="assets/acquire-pursuits.png"
+              alt="Acquire Pursuits workspace"
+            />
           </div>
         </div>
       </section>
@@ -822,7 +833,9 @@
           <div class="copy">
             <p class="eyebrow">The result</p>
             <h2 class="headline wide">Each pursuit keeps its history.</h2>
-            <p class="subhead">Materials, answers, status, blockers, and run evidence stay inspectable.</p>
+            <p class="subhead">
+              Materials, answers, status, blockers, and run evidence stay inspectable.
+            </p>
           </div>
           <div class="result-layout">
             <div class="surface-frame surface-crop">
@@ -873,9 +886,15 @@
             </div>
             <div class="map-board">
               <div class="map-line"></div>
-              <div class="map-card map-workflow"><strong>Workflow</strong><span>Make the real work visible.</span></div>
-              <div class="map-card map-gates"><strong>Gates</strong><span>Keep judgment in the right places.</span></div>
-              <div class="map-card map-next"><strong>Next action</strong><span>Show what should happen now.</span></div>
+              <div class="map-card map-workflow">
+                <strong>Workflow</strong><span>Make the real work visible.</span>
+              </div>
+              <div class="map-card map-gates">
+                <strong>Gates</strong><span>Keep judgment in the right places.</span>
+              </div>
+              <div class="map-card map-next">
+                <strong>Next action</strong><span>Show what should happen now.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -908,11 +927,36 @@
       }
 
       function enterCopy(scene, start, fromX) {
-        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" }, start);
-        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: fromX }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" }, start + 0.04);
-        tl.fromTo(scene + " .headline", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" }, start + 0.18);
-        fromToIfExists(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" }, start + 0.76);
-        fromToIfExists(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" }, start + 1.06);
+        tl.fromTo(
+          scene + " .scene-number",
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" },
+          start,
+        );
+        tl.fromTo(
+          scene + " .eyebrow",
+          { opacity: 0, x: fromX },
+          { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" },
+          start + 0.04,
+        );
+        tl.fromTo(
+          scene + " .headline",
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" },
+          start + 0.18,
+        );
+        fromToIfExists(
+          scene + " .subhead",
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" },
+          start + 0.76,
+        );
+        fromToIfExists(
+          scene + " .rule",
+          { opacity: 0, scaleX: 0 },
+          { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" },
+          start + 1.06,
+        );
       }
 
       function pushTransition(fromScene, toScene, time) {
@@ -930,36 +974,111 @@
       }
 
       enterCopy("#scene1", 0.16, -34);
-      tl.fromTo("#scene1 .scatter-path", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.62, ease: "power2.out" }, 0.78);
-      tl.fromTo("#scene1 .work-card", { opacity: 0, y: 48, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.12, ease: "back.out(1.25)" }, 0.96);
+      tl.fromTo(
+        "#scene1 .scatter-path",
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 0.62, ease: "power2.out" },
+        0.78,
+      );
+      tl.fromTo(
+        "#scene1 .work-card",
+        { opacity: 0, y: 48, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.12, ease: "back.out(1.25)" },
+        0.96,
+      );
 
       pushTransition("#scene1", "#scene2", 5.94);
       enterCopy("#scene2", 6.32, 34);
-      tl.fromTo("#scene2 .thread-path", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" }, 6.58);
-      tl.fromTo("#scene2 .question-card", { opacity: 0, x: -52, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" }, 6.8);
+      tl.fromTo(
+        "#scene2 .thread-path",
+        { opacity: 0, scaleY: 0 },
+        { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" },
+        6.58,
+      );
+      tl.fromTo(
+        "#scene2 .question-card",
+        { opacity: 0, x: -52, scale: 0.98 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" },
+        6.8,
+      );
 
       pushTransition("#scene2", "#scene3", 12.44);
       enterCopy("#scene3", 12.82, -34);
-      tl.fromTo("#scene3 .surface-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 13.0);
+      tl.fromTo(
+        "#scene3 .surface-frame",
+        { opacity: 0, y: 34, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" },
+        13.0,
+      );
 
       pushTransition("#scene3", "#scene4", 18.94);
       enterCopy("#scene4", 19.32, -34);
-      tl.fromTo("#scene4 .gate-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.74, ease: "power3.out" }, 20.24);
-      tl.fromTo("#scene4 .gate-card", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" }, 20.42);
-      tl.fromTo("#scene4 .gate-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 20.58);
+      tl.fromTo(
+        "#scene4 .gate-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.74, ease: "power3.out" },
+        20.24,
+      );
+      tl.fromTo(
+        "#scene4 .gate-card",
+        { opacity: 0, y: 42, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" },
+        20.42,
+      );
+      tl.fromTo(
+        "#scene4 .gate-dot",
+        { opacity: 0, scale: 0.2 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" },
+        20.58,
+      );
 
       crossTransition("#scene4", "#scene5", 25.44);
       enterCopy("#scene5", 25.86, -34);
-      tl.fromTo("#scene5 .surface-frame", { opacity: 0, x: -44, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 26.68);
-      tl.fromTo("#scene5 .evidence-card", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 26.9);
-      tl.fromTo("#scene5 .evidence-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 27.04);
+      tl.fromTo(
+        "#scene5 .surface-frame",
+        { opacity: 0, x: -44, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        26.68,
+      );
+      tl.fromTo(
+        "#scene5 .evidence-card",
+        { opacity: 0, x: 46, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
+        26.9,
+      );
+      tl.fromTo(
+        "#scene5 .evidence-dot",
+        { opacity: 0, scale: 0.2 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" },
+        27.04,
+      );
 
       pushTransition("#scene5", "#scene6", 31.94);
       enterCopy("#scene6", 32.32, -34);
-      tl.fromTo("#scene6 .final-surface", { opacity: 0, y: 18 }, { opacity: 0.18, y: 0, duration: 0.62, ease: "sine.out" }, 32.48);
-      tl.fromTo("#scene6 .map-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 33.18);
-      tl.fromTo("#scene6 .map-card", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 33.38);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 38.35);
+      tl.fromTo(
+        "#scene6 .final-surface",
+        { opacity: 0, y: 18 },
+        { opacity: 0.18, y: 0, duration: 0.62, ease: "sine.out" },
+        32.48,
+      );
+      tl.fromTo(
+        "#scene6 .map-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" },
+        33.18,
+      );
+      tl.fromTo(
+        "#scene6 .map-card",
+        { opacity: 0, y: 42, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" },
+        33.38,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        38.35,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 41.44);
 
       window.__timelines["main"] = tl;

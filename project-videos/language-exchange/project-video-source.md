@@ -73,28 +73,28 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
+| Source                                                 | What it supports in plain language                                                                                          |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | `src/content/case-studies/language-exchange.mdx:35-41` | HablaBA started from a local language-learning problem where profile browsing and large events made real conversation hard. |
-| `src/content/case-studies/language-exchange.mdx:48-55` | The useful product shape was small, local, social, and manageable. |
-| `src/content/case-studies/language-exchange.mdx:58-65` | The product direction centered practice over profiles and kept web and mobile connected to one backend. |
-| `src/content/case-studies/language-exchange.mdx:79-84` | The MVP covered the loop from entering the product to finding and coordinating language practice. |
-| `src/content/case-studies/language-exchange.mdx:89-94` | The result was a working MVP for testing practice behavior and coordination constraints. |
-| `src/lib/projects/language-exchange.json:4-31` | Metadata confirms the small-group practice, neighborhood discovery, group chat, and cross-platform coordination framing. |
-| `src/assets/img/projects/hablaba-hero.png` | Public product surface for exchange discovery. |
-| `src/assets/img/projects/hablaba-feature.png` | Public product surface for group chat and coordination. |
+| `src/content/case-studies/language-exchange.mdx:48-55` | The useful product shape was small, local, social, and manageable.                                                          |
+| `src/content/case-studies/language-exchange.mdx:58-65` | The product direction centered practice over profiles and kept web and mobile connected to one backend.                     |
+| `src/content/case-studies/language-exchange.mdx:79-84` | The MVP covered the loop from entering the product to finding and coordinating language practice.                           |
+| `src/content/case-studies/language-exchange.mdx:89-94` | The result was a working MVP for testing practice behavior and coordination constraints.                                    |
+| `src/lib/projects/language-exchange.json:4-31`         | Metadata confirms the small-group practice, neighborhood discovery, group chat, and cross-platform coordination framing.    |
+| `src/assets/img/projects/hablaba-hero.png`             | Public product surface for exchange discovery.                                                                              |
+| `src/assets/img/projects/hablaba-feature.png`          | Public product surface for group chat and coordination.                                                                     |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Existing exchange products felt like profile browsing, dating apps, or large events. | `src/content/case-studies/language-exchange.mdx:35-41`; `src/lib/projects/language-exchange.json:24-31` | Yes, as plain text | Yes |
-| Input | A learner looking for real local practice. | `src/content/case-studies/language-exchange.mdx:48-55` | Yes, as simplified text | Yes |
-| Product action | Explore nearby exchanges with language, neighborhood, time, group type, and open seats. | `src/assets/img/projects/hablaba-hero.png` | Yes, public/synthetic asset | Yes |
-| Product action | Coordinate with other learners in group chat. | `src/assets/img/projects/hablaba-feature.png` | Yes, public/synthetic asset | Yes |
-| Durable output | MVP loop connects onboarding, discovery, chat, and coordination. | `src/content/case-studies/language-exchange.mdx:79-94` | Yes, as native labels | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study and project metadata explain the product problem, direction, and result. | `src/content/case-studies/language-exchange.mdx`; `src/lib/projects/language-exchange.json` | Yes | No |
+| Proof type     | Exact proof                                                                                                                | Source path, URL, or command                                                                            | Safe to show?               | On-screen? |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- | ---------- |
+| Problem        | Existing exchange products felt like profile browsing, dating apps, or large events.                                       | `src/content/case-studies/language-exchange.mdx:35-41`; `src/lib/projects/language-exchange.json:24-31` | Yes, as plain text          | Yes        |
+| Input          | A learner looking for real local practice.                                                                                 | `src/content/case-studies/language-exchange.mdx:48-55`                                                  | Yes, as simplified text     | Yes        |
+| Product action | Explore nearby exchanges with language, neighborhood, time, group type, and open seats.                                    | `src/assets/img/projects/hablaba-hero.png`                                                              | Yes, public/synthetic asset | Yes        |
+| Product action | Coordinate with other learners in group chat.                                                                              | `src/assets/img/projects/hablaba-feature.png`                                                           | Yes, public/synthetic asset | Yes        |
+| Durable output | MVP loop connects onboarding, discovery, chat, and coordination.                                                           | `src/content/case-studies/language-exchange.mdx:79-94`                                                  | Yes, as native labels       | Yes        |
+| Verification   | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                | Yes                         | No         |
+| Reviewer path  | Portfolio case study and project metadata explain the product problem, direction, and result.                              | `src/content/case-studies/language-exchange.mdx`; `src/lib/projects/language-exchange.json`             | Yes                         | No         |
 
 ## Selected Story
 
@@ -273,14 +273,14 @@ Reading-speed check: `8` words over `3s` = `160 WPM`; acceptable because the pro
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Practice was hard to make real. Big events and profile swiping got in the way. | 14 | 5.5s | 153 |
-| 2 | HablaBA centers the exchange. Find small groups by neighborhood and language. | 11 | 5.5s | 120 |
-| 3 | Explore a nearby exchange. See time, place, language, and open seats. | 11 | 5.5s | 120 |
-| 4 | Join the group chat. People coordinate topics, timing, and practice together. | 10 | 5.5s | 109 |
-| 5 | The MVP connects the loop. Discovery, chat, and coordination work across web and mobile. | 13 | 5s | 156 |
-| End | Language Exchange Platform. Local practice, ready to test. | 8 | 3s | 160 |
+| Scene | Text                                                                                     | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Practice was hard to make real. Big events and profile swiping got in the way.           |         14 |     5.5s | 153 |
+| 2     | HablaBA centers the exchange. Find small groups by neighborhood and language.            |         11 |     5.5s | 120 |
+| 3     | Explore a nearby exchange. See time, place, language, and open seats.                    |         11 |     5.5s | 120 |
+| 4     | Join the group chat. People coordinate topics, timing, and practice together.            |         10 |     5.5s | 109 |
+| 5     | The MVP connects the loop. Discovery, chat, and coordination work across web and mobile. |         13 |       5s | 156 |
+| End   | Language Exchange Platform. Local practice, ready to test.                               |          8 |       3s | 160 |
 
 Allowed short labels:
 
@@ -300,9 +300,9 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| `hablaba-hero.png` | Discovery and exchange selection proof surface | `src/assets/img/projects/hablaba-hero.png` | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-hero.png` |
-| `hablaba-feature.png` | Group chat and coordination proof surface | `src/assets/img/projects/hablaba-feature.png` | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-feature.png` |
-| `hablaba-discovery.png`, `hablaba-exchange-focus.png`, `hablaba-loop-discovery.png` | HyperFrames-safe aliases for repeated discovery screenshot use | `src/assets/img/projects/hablaba-hero.png` | No; same public/synthetic asset | `project-videos/language-exchange/hyperframes/assets/` |
-| `hablaba-chat.png`, `hablaba-loop-chat.png` | HyperFrames-safe aliases for repeated group-chat screenshot use | `src/assets/img/projects/hablaba-feature.png` | No; same public/synthetic asset | `project-videos/language-exchange/hyperframes/assets/` |
+| Asset                                                                               | Purpose                                                         | Source                                        | Redaction needed?                                  | Final path                                                                |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| `hablaba-hero.png`                                                                  | Discovery and exchange selection proof surface                  | `src/assets/img/projects/hablaba-hero.png`    | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-hero.png`    |
+| `hablaba-feature.png`                                                               | Group chat and coordination proof surface                       | `src/assets/img/projects/hablaba-feature.png` | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-feature.png` |
+| `hablaba-discovery.png`, `hablaba-exchange-focus.png`, `hablaba-loop-discovery.png` | HyperFrames-safe aliases for repeated discovery screenshot use  | `src/assets/img/projects/hablaba-hero.png`    | No; same public/synthetic asset                    | `project-videos/language-exchange/hyperframes/assets/`                    |
+| `hablaba-chat.png`, `hablaba-loop-chat.png`                                         | HyperFrames-safe aliases for repeated group-chat screenshot use | `src/assets/img/projects/hablaba-feature.png` | No; same public/synthetic asset                    | `project-videos/language-exchange/hyperframes/assets/`                    |

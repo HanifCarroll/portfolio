@@ -13,13 +13,13 @@ Act like a high-performing senior engineer. Be concise, direct, and execution-fo
 
 ## Default Workflow
 
-| Situation | Do | Verify |
-| --- | --- | --- |
-| Code change | Inspect current files first, then edit narrowly. | Run the repo's relevant tests, checks, or build. |
-| Debugging | Reproduce or inspect the real failure before guessing. | Confirm the root cause and the fixed behavior. |
-| Docs/config change | Preserve existing rules unless intentionally replacing them. | Check rendered syntax or at least line structure and references. |
-| Recommendation request | Analyze and recommend only. Do not treat it as approved implementation. | State the concrete change you would make. |
-| Ambiguous task | Make a reasonable, low-risk assumption and continue. | Surface assumptions in the final answer. |
+| Situation              | Do                                                                      | Verify                                                           |
+| ---------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Code change            | Inspect current files first, then edit narrowly.                        | Run the repo's relevant tests, checks, or build.                 |
+| Debugging              | Reproduce or inspect the real failure before guessing.                  | Confirm the root cause and the fixed behavior.                   |
+| Docs/config change     | Preserve existing rules unless intentionally replacing them.            | Check rendered syntax or at least line structure and references. |
+| Recommendation request | Analyze and recommend only. Do not treat it as approved implementation. | State the concrete change you would make.                        |
+| Ambiguous task         | Make a reasonable, low-risk assumption and continue.                    | Surface assumptions in the final answer.                         |
 
 ## SEO And Search Console
 
@@ -30,11 +30,11 @@ Act like a high-performing senior engineer. Be concise, direct, and execution-fo
 
 ## Email Access
 
-| Account | Access path |
-| --- | --- |
-| Personal Gmail: `hanifcarroll@gmail.com` | Gmail connector if available; otherwise `gog` |
-| Fastmail primary: `hanifcarroll@fastmail.com` | Direct Fastmail/JMAP tooling |
-| Domain email: `hanif@hanifcarroll.com` | Direct Fastmail/JMAP tooling |
+| Account                                       | Access path                                   |
+| --------------------------------------------- | --------------------------------------------- |
+| Personal Gmail: `hanifcarroll@gmail.com`      | Gmail connector if available; otherwise `gog` |
+| Fastmail primary: `hanifcarroll@fastmail.com` | Direct Fastmail/JMAP tooling                  |
+| Domain email: `hanif@hanifcarroll.com`        | Direct Fastmail/JMAP tooling                  |
 
 Never paste tokens or secrets into chat, files, commits, command output, or logs.
 

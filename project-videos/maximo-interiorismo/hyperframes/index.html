@@ -76,7 +76,12 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(2, 2, 2, 0.76) 0%, rgba(2, 2, 2, 0.32) 38%, rgba(2, 2, 2, 0.08) 70%),
+          linear-gradient(
+            90deg,
+            rgba(2, 2, 2, 0.76) 0%,
+            rgba(2, 2, 2, 0.32) 38%,
+            rgba(2, 2, 2, 0.08) 70%
+          ),
           linear-gradient(0deg, rgba(2, 2, 2, 0.62) 0%, rgba(2, 2, 2, 0) 45%);
         pointer-events: none;
       }
@@ -327,7 +332,12 @@
       data-height="1080"
     >
       <section id="scene1" class="scene">
-        <img class="site-shot hero-shot" src="assets/maximo-hero.png" alt="Maximo Interiorismo hero site screenshot." data-layout-allow-overflow />
+        <img
+          class="site-shot hero-shot"
+          src="assets/maximo-hero.png"
+          alt="Maximo Interiorismo hero site screenshot."
+          data-layout-allow-overflow
+        />
         <div class="shade"></div>
         <div class="scene-shell">
           <div class="copy">
@@ -341,11 +351,18 @@
       <section id="scene2" class="scene">
         <div class="site-frame s2-frame">
           <div class="browser-top">
-            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="dots">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
             <p class="url-label">maximo-interiorismo.netlify.app</p>
             <p class="meta-label">Portfolio</p>
           </div>
-          <img class="frame-img s2-img" src="assets/maximo-feature-presentation.png" alt="Maximo portfolio project page screenshot." data-layout-allow-overflow />
+          <img
+            class="frame-img s2-img"
+            src="assets/maximo-feature-presentation.png"
+            alt="Maximo portfolio project page screenshot."
+            data-layout-allow-overflow
+          />
           <div class="frame-vignette"></div>
         </div>
         <div class="side-caption">
@@ -357,11 +374,18 @@
       <section id="scene3" class="scene">
         <div class="site-frame s3-frame">
           <div class="browser-top">
-            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <div class="dots">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
             <p class="url-label">Projects / FAQ / About</p>
             <p class="meta-label">Inquiry</p>
           </div>
-          <img class="frame-img s3-img" src="assets/maximo-feature-inquiry.png" alt="Maximo site navigation and project presentation." data-layout-allow-overflow />
+          <img
+            class="frame-img s3-img"
+            src="assets/maximo-feature-inquiry.png"
+            alt="Maximo site navigation and project presentation."
+            data-layout-allow-overflow
+          />
           <div class="frame-vignette"></div>
         </div>
         <div class="side-caption">
@@ -380,7 +404,9 @@
 
       <section id="scene4" class="scene">
         <div class="end-shell">
-          <div class="logo-wrap s4-logo"><img src="assets/maximo-logo.png" alt="Maximo logo." /></div>
+          <div class="logo-wrap s4-logo">
+            <img src="assets/maximo-logo.png" alt="Maximo logo." />
+          </div>
           <div class="end-copy">
             <p class="eyebrow s4-eyebrow">Launch site</p>
             <h2 class="end-title s4-title">Maximo Interiorismo</h2>
@@ -396,12 +422,16 @@
       const tl = gsap.timeline({ paused: true });
 
       function blurCrossfade(oldScene, newScene, at) {
-        tl.to(oldScene, { filter: "blur(24px)", scale: 1.035, opacity: 0, duration: 0.72, ease: "power1.inOut" }, at);
+        tl.to(
+          oldScene,
+          { filter: "blur(24px)", scale: 1.035, opacity: 0, duration: 0.72, ease: "power1.inOut" },
+          at,
+        );
         tl.fromTo(
           newScene,
           { filter: "blur(22px)", scale: 0.985, opacity: 0 },
           { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.82, ease: "power1.out" },
-          at + 0.12
+          at + 0.12,
         );
       }
 
@@ -425,7 +455,11 @@
       tl.from(".s3-eyebrow", { x: -24, opacity: 0, duration: 0.4, ease: "power3.out" }, 8.94);
       tl.from(".s3-title", { y: 38, opacity: 0, duration: 0.62, ease: "expo.out" }, 9.08);
       tl.from(".s3-note", { x: 26, opacity: 0, duration: 0.46, ease: "sine.out" }, 9.34);
-      tl.from(".s3-chip-a", { scale: 0.92, opacity: 0, duration: 0.36, ease: "back.out(1.6)" }, 9.48);
+      tl.from(
+        ".s3-chip-a",
+        { scale: 0.92, opacity: 0, duration: 0.36, ease: "back.out(1.6)" },
+        9.48,
+      );
       tl.from(".s3-line-a", { scaleX: 0, duration: 0.28, ease: "power2.out" }, 9.74);
       tl.from(".s3-chip-b", { y: 22, opacity: 0, duration: 0.36, ease: "power4.out" }, 9.88);
       tl.from(".s3-line-b", { scaleX: 0, duration: 0.28, ease: "power2.out" }, 10.12);

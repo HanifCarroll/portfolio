@@ -71,27 +71,27 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/codex-telegram-bridge.mdx:45-55` | Codex can keep working while the desktop app is unattended, so remote control needs presence, routing, approvals, and clean stop behavior. |
-| `src/content/case-studies/codex-telegram-bridge.mdx:60-68` | Remote delivery is explicitly gated by `/away` and `/back`, and local state owns routing back to Codex. |
-| `src/content/case-studies/codex-telegram-bridge.mdx:82-98` | The public surface includes setup, remote mode, daemon management, transport setup, project selection, waiting threads, replies, approvals, and secret-safe output. |
-| `src/content/case-studies/codex-telegram-bridge.mdx:111-125` | The result is a controlled local operating layer around agent work, with public docs, CI, release workflow, and tests. |
-| `src/lib/projects/codex-telegram-bridge.json:32-50` | Metadata confirms the product constraints, problem, solution, delivery highlights, and result. |
-| `src/assets/img/projects/codex-telegram-bridge-terminal.png` | Public terminal-style command surface that is safe to show. |
+| Source                                                       | What it supports in plain language                                                                                                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/codex-telegram-bridge.mdx:45-55`   | Codex can keep working while the desktop app is unattended, so remote control needs presence, routing, approvals, and clean stop behavior.                          |
+| `src/content/case-studies/codex-telegram-bridge.mdx:60-68`   | Remote delivery is explicitly gated by `/away` and `/back`, and local state owns routing back to Codex.                                                             |
+| `src/content/case-studies/codex-telegram-bridge.mdx:82-98`   | The public surface includes setup, remote mode, daemon management, transport setup, project selection, waiting threads, replies, approvals, and secret-safe output. |
+| `src/content/case-studies/codex-telegram-bridge.mdx:111-125` | The result is a controlled local operating layer around agent work, with public docs, CI, release workflow, and tests.                                              |
+| `src/lib/projects/codex-telegram-bridge.json:32-50`          | Metadata confirms the product constraints, problem, solution, delivery highlights, and result.                                                                      |
+| `src/assets/img/projects/codex-telegram-bridge-terminal.png` | Public terminal-style command surface that is safe to show.                                                                                                         |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Waiting prompts and approvals can remain on the desktop while Codex keeps working. | `src/content/case-studies/codex-telegram-bridge.mdx:45-55` | Yes, as plain text | Yes |
-| Input | Remote Telegram or Discord reply to a bridge message. | `src/content/case-studies/codex-telegram-bridge.mdx:86-90` | Yes, with synthetic labels only | Yes |
-| Product action | `/away` and `/back` explicitly open and close remote delivery. | `src/content/case-studies/codex-telegram-bridge.mdx:60-64`; public terminal image | Yes | Yes |
-| Product action | Local route state maps a chat reply back to the originating Codex thread. | `src/content/case-studies/codex-telegram-bridge.mdx:64-68`, `:89-94` | Yes, as safe diagram | Yes |
-| Durable output | The same Codex thread resumes after a reply or approval. | `src/lib/projects/codex-telegram-bridge.json:40-50` | Yes, with synthetic labels only | Yes |
-| Guardrail or warning | Remote mode is gated by presence and does not expose raw thread ids or tokens. | `src/lib/projects/codex-telegram-bridge.json:32-42`, `src/content/case-studies/codex-telegram-bridge.mdx:98-102` | Yes, as plain text | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, portfolio checks, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study and public GitHub repo explain the shipped CLI, daemon, transports, docs, CI, and tests. | `src/content/case-studies/codex-telegram-bridge.mdx:125-128`; `https://github.com/HanifCarroll/codex-telegram-bridge` | Yes | No |
+| Proof type           | Exact proof                                                                                                                        | Source path, URL, or command                                                                                          | Safe to show?                   | On-screen? |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ---------- |
+| Problem              | Waiting prompts and approvals can remain on the desktop while Codex keeps working.                                                 | `src/content/case-studies/codex-telegram-bridge.mdx:45-55`                                                            | Yes, as plain text              | Yes        |
+| Input                | Remote Telegram or Discord reply to a bridge message.                                                                              | `src/content/case-studies/codex-telegram-bridge.mdx:86-90`                                                            | Yes, with synthetic labels only | Yes        |
+| Product action       | `/away` and `/back` explicitly open and close remote delivery.                                                                     | `src/content/case-studies/codex-telegram-bridge.mdx:60-64`; public terminal image                                     | Yes                             | Yes        |
+| Product action       | Local route state maps a chat reply back to the originating Codex thread.                                                          | `src/content/case-studies/codex-telegram-bridge.mdx:64-68`, `:89-94`                                                  | Yes, as safe diagram            | Yes        |
+| Durable output       | The same Codex thread resumes after a reply or approval.                                                                           | `src/lib/projects/codex-telegram-bridge.json:40-50`                                                                   | Yes, with synthetic labels only | Yes        |
+| Guardrail or warning | Remote mode is gated by presence and does not expose raw thread ids or tokens.                                                     | `src/lib/projects/codex-telegram-bridge.json:32-42`, `src/content/case-studies/codex-telegram-bridge.mdx:98-102`      | Yes, as plain text              | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, portfolio checks, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                              | Yes                             | No         |
+| Reviewer path        | Portfolio case study and public GitHub repo explain the shipped CLI, daemon, transports, docs, CI, and tests.                      | `src/content/case-studies/codex-telegram-bridge.mdx:125-128`; `https://github.com/HanifCarroll/codex-telegram-bridge` | Yes                             | No         |
 
 ## Selected Story
 
@@ -287,15 +287,15 @@ Reading-speed check: `8` words over `2.8s` = `171 WPM`. This is acceptable becau
 
 Final text that may appear in the video. Keep this section short and plain. The composition should not introduce new main copy that is not listed here.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Codex kept working after I stepped away. Prompts could sit on the desktop. | 13 | 6.5s | 120 |
-| 2 | Remote control needed ownership. Chat should not become open automation. | 10 | 6.5s | 92 |
-| 3 | I built a local bridge. /away opens remote mode. /back closes it. | 13 | 7s | 111 |
-| 4 | Replies route back through local state. The chat carries a safe route, not private ids. | 14 | 7s | 120 |
-| 5 | Approvals return to the same thread. Approve or deny in chat; the daemon records the action. | 16 | 7s | 137 |
-| 6 | Remote Codex stays controlled. Presence, routing, approvals, and delivery stay local. | 11 | 7s | 94 |
-| End | Codex Telegram Bridge. Remote replies stay locally owned. | 8 | 2.8s | 171 |
+| Scene | Text                                                                                         | Word count | Duration | WPM |
+| ----- | -------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Codex kept working after I stepped away. Prompts could sit on the desktop.                   |         13 |     6.5s | 120 |
+| 2     | Remote control needed ownership. Chat should not become open automation.                     |         10 |     6.5s |  92 |
+| 3     | I built a local bridge. /away opens remote mode. /back closes it.                            |         13 |       7s | 111 |
+| 4     | Replies route back through local state. The chat carries a safe route, not private ids.      |         14 |       7s | 120 |
+| 5     | Approvals return to the same thread. Approve or deny in chat; the daemon records the action. |         16 |       7s | 137 |
+| 6     | Remote Codex stays controlled. Presence, routing, approvals, and delivery stay local.        |         11 |       7s |  94 |
+| End   | Codex Telegram Bridge. Remote replies stay locally owned.                                    |          8 |     2.8s | 171 |
 
 Reading-speed targets:
 
@@ -318,8 +318,8 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
+| Asset                                | Purpose                                 | Source                                                       | Redaction needed?                | Final path                                                                                   |
+| ------------------------------------ | --------------------------------------- | ------------------------------------------------------------ | -------------------------------- | -------------------------------------------------------------------------------------------- |
 | `codex-telegram-bridge-terminal.png` | Public command surface and proof anchor | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | No; already public and synthetic | `project-videos/codex-telegram-bridge/hyperframes/assets/codex-telegram-bridge-terminal.png` |
 
 ## Privacy Check

@@ -32,6 +32,7 @@ AI agents need the same thing. The faster they can verify their own work, the fa
 Yesterday I was working with Claude Code on a web scraper that imports events from Meetup. The import was "working"—no errors—but producing garbage data. Every event had `venue: null`.
 
 Without logs, this is what I'd have to do:
+
 1. Ask Claude what might be wrong
 2. Get a list of possibilities
 3. Manually add console.logs
@@ -58,13 +59,13 @@ The fix? Add a venue enrichment step that fetches individual event pages. Claude
 
 Logs are just one feedback loop. Here's the full toolkit I'm building out:
 
-| Tool | What it answers |
-|------|-----------------|
-| **Logs** | "What happened?" |
-| **Browser automation** (Playwriter) | "What does the user see?" |
-| **Type checking** | "Is it structurally valid?" |
-| **Tests** | "Does it still work?" |
-| **DevTools/Profiling** | "Is it fast enough?" |
+| Tool                                | What it answers             |
+| ----------------------------------- | --------------------------- |
+| **Logs**                            | "What happened?"            |
+| **Browser automation** (Playwriter) | "What does the user see?"   |
+| **Type checking**                   | "Is it structurally valid?" |
+| **Tests**                           | "Does it still work?"       |
+| **DevTools/Profiling**              | "Is it fast enough?"        |
 
 Each of these is a feedback loop that lets AI verify its own work without waiting for you to manually check.
 

@@ -1,132 +1,132 @@
 ---
-projectSlug: codex-telegram-bridge
 ---
 
-import CaseSection from '../../components/case-study/CaseSection.astro';
-import DecisionBlock from '../../components/case-study/DecisionBlock.astro';
-import ImagePlate from '../../components/case-study/ImagePlate.astro';
-import ProofRows from '../../components/case-study/ProofRows.astro';
-import bridgeTerminal from '../../assets/img/projects/codex-telegram-bridge-terminal.png';
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import bridgeTerminal from "../../assets/img/projects/codex-telegram-bridge-terminal.png";
 
 export const shippedRows = [
-	{
-		label: 'Public CLI',
-		title: 'The stable surface is a Rust command line tool.',
-		body: 'Default help exposes setup, doctor, away, remote, daemon, Telegram, Discord, projects, waiting, inbox, show, reply, approve, MCP, and Hermes commands. Lower-level sync, watch, follow, fork, archive, and unarchive commands stay hidden.'
-	},
-	{
-		label: 'Presence gate',
-		title: 'Remote notifications only run when remote mode is on.',
-		body: '`/away` starts or reuses the shared Codex live backend and enables outbound Telegram or Discord notifications. `/back` turns the gate off and clears pending outbound notifications.'
-	},
-	{
-		label: 'Reply routing',
-		title: 'Chat replies map back to exact Codex threads.',
-		body: 'The daemon stores Telegram and Discord message routes in SQLite, then uses those routes to resume the originating Codex thread when a remote reply or approval arrives.'
-	},
-	{
-		label: 'MCP adapter',
-		title: 'Hermes can inspect and act, but it does not own delivery.',
-		body: 'The MCP server exposes doctor, threads, inbox, waiting, show, reply, and approve. Setup, daemon control, Telegram/Discord transport management, watch streams, new threads, forks, and archive operations stay out of that surface.'
-	},
-	{
-		label: 'Desktop companion',
-		title: 'Remote mode has a macOS menu bar control.',
-		body: 'The AppKit companion shells out to `remote status`, `remote on`, `remote off`, and `remote repair`, then watches bridge state files so desktop and chat-side changes stay aligned.'
-	},
-	{
-		label: 'Public hardening',
-		title: 'The repo includes docs, CI, release workflow, and safety tests.',
-		body: 'Tests cover CLI parsing, hidden command boundaries, token redaction, Telegram route mapping, approval callbacks, SQLite state migration, MCP discovery, and the bounded MCP tool list.'
-	}
+  {
+    label: "Public CLI",
+    title: "The stable surface is a Rust command line tool.",
+    body: "Default help exposes setup, doctor, away, remote, daemon, Telegram, Discord, projects, waiting, inbox, show, reply, approve, MCP, and Hermes commands. Lower-level sync, watch, follow, fork, archive, and unarchive commands stay hidden.",
+  },
+  {
+    label: "Presence gate",
+    title: "Remote notifications only run when remote mode is on.",
+    body: "`/away` starts or reuses the shared Codex live backend and enables outbound Telegram or Discord notifications. `/back` turns the gate off and clears pending outbound notifications.",
+  },
+  {
+    label: "Reply routing",
+    title: "Chat replies map back to exact Codex threads.",
+    body: "The daemon stores Telegram and Discord message routes in SQLite, then uses those routes to resume the originating Codex thread when a remote reply or approval arrives.",
+  },
+  {
+    label: "MCP adapter",
+    title: "Hermes can inspect and act, but it does not own delivery.",
+    body: "The MCP server exposes doctor, threads, inbox, waiting, show, reply, and approve. Setup, daemon control, Telegram/Discord transport management, watch streams, new threads, forks, and archive operations stay out of that surface.",
+  },
+  {
+    label: "Desktop companion",
+    title: "Remote mode has a macOS menu bar control.",
+    body: "The AppKit companion shells out to `remote status`, `remote on`, `remote off`, and `remote repair`, then watches bridge state files so desktop and chat-side changes stay aligned.",
+  },
+  {
+    label: "Public hardening",
+    title: "The repo includes docs, CI, release workflow, and safety tests.",
+    body: "Tests cover CLI parsing, hidden command boundaries, token redaction, Telegram route mapping, approval callbacks, SQLite state migration, MCP discovery, and the bounded MCP tool list.",
+  },
 ];
 
 <CaseSection title="Summary">
-	Codex Telegram Bridge is a local bridge for controlling Codex when I am away from the computer.
+  Codex Telegram Bridge is a local bridge for controlling Codex when I am away from the computer.
 
     Telegram or Discord becomes a remote continuation surface for Codex threads, but chat is not the system of record. The Rust daemon owns sync, routing, retries, presence state, and delivery. Telegram, Discord, and Hermes are interfaces into that local system.
 
 </CaseSection>
 
 <CaseSection title="The situation">
-	Codex can keep working while I step away, but the default interaction model assumes I am still in front of the desktop app.
+  Codex can keep working while I step away, but the default interaction model assumes I am still in front of the desktop app.
 
     A message alone would not solve it. The bridge needed to know when I was away, start or repair the shared live backend, notify only for relevant events, let me reply to the right thread, handle approvals, and stop cleanly when I returned.
 
 </CaseSection>
 
 <CaseSection title="How it works">
-	<DecisionBlock title="Make presence the top-level gate.">
-		The README and CLI center one product rule: no remote notifications while I am present. `/away` and `remote on` make outbound delivery explicit. `/back` and `remote off` disable delivery and clear pending outbound events.
-	</DecisionBlock>
+  <DecisionBlock title="Make presence the top-level gate.">
+    The README and CLI center one product rule: no remote notifications while I am present. `/away` and `remote on` make outbound delivery explicit. `/back` and `remote off` disable delivery and clear pending outbound events.
+  </DecisionBlock>
 
     <DecisionBlock title="Let local state own routing.">
-	The bridge stores thread snapshots, outbound events, delivery logs, message routes, callback routes, inbound update dedupe rows, selected projects, and action history in local SQLite. Remote chat messages carry route handles. Local state maps them back to Codex.
+    The bridge stores thread snapshots, outbound events, delivery logs, message routes, callback routes, inbound update dedupe rows, selected projects, and action history in local SQLite. Remote chat messages carry route handles. Local state maps them back to Codex.
     </DecisionBlock>
 
     <DecisionBlock title="Separate transport from agent control.">
-	Telegram and Discord own delivery and reply UX. Hermes gets a small MCP adapter for trusted local agent workflows. The MCP server can inspect, reply, and approve, but it does not install the daemon, configure transports, process chat updates, or own proactive notifications.
+    Telegram and Discord own delivery and reply UX. Hermes gets a small MCP adapter for trusted local agent workflows. The MCP server can inspect, reply, and approve, but it does not install the daemon, configure transports, process chat updates, or own proactive notifications.
     </DecisionBlock>
 
 </CaseSection>
 
 <CaseSection title="Product surface" media>
-	The public surface is intentionally plain: install the Rust CLI, run setup, use `/away` before leaving, reply to bridge messages when Codex needs input, and use `/back` when returning.
+  The public surface is intentionally plain: install the Rust CLI, run setup, use `/away` before leaving, reply to bridge messages when Codex needs input, and use `/back` when returning.
 
     <ImagePlate image={bridgeTerminal} alt="Codex Telegram Bridge terminal-style command surface showing setup, remote, Telegram, Discord, project, reply, approve, and MCP commands." />
 
 </CaseSection>
 
 <CaseSection title="What I built">
-	<DecisionBlock title="A CLI shaped around the default path.">
-		The visible commands emphasize setup, remote mode, daemon management, transport setup, project selection, waiting threads, replies, approvals, and MCP. Advanced maintenance commands are still available, but hidden from default help.
-	</DecisionBlock>
+  <DecisionBlock title="A CLI shaped around the default path.">
+    The visible commands emphasize setup, remote mode, daemon management, transport setup, project selection, waiting threads, replies, approvals, and MCP. Advanced maintenance commands are still available, but hidden from default help.
+  </DecisionBlock>
 
     <DecisionBlock title="Daemon-owned delivery.">
-	The daemon syncs Codex state through the configured shared websocket backend, reconciles that backend only when remote mode requires it, enqueues new events after the away session starts, delivers due outbound events, and polls Telegram or Discord for replies.
+    The daemon syncs Codex state through the configured shared websocket backend, reconciles that backend only when remote mode requires it, enqueues new events after the away session starts, delivers due outbound events, and polls Telegram or Discord for replies.
     </DecisionBlock>
 
     <DecisionBlock title="Routable replies and approvals.">
-	Telegram notifications store local message routes. Approval prompts use opaque callback route ids with Approve and Deny buttons. Discord reuses the same prepared delivery model, then maps reply messages back through the local route table.
+    Telegram notifications store local message routes. Approval prompts use opaque callback route ids with Approve and Deny buttons. Discord reuses the same prepared delivery model, then maps reply messages back through the local route table.
     </DecisionBlock>
 
     <DecisionBlock title="Project selection without guessing.">
-	The project registry stores explicit working directories with ids, labels, and aliases. `/project` selects the current workspace, and `/new` starts a Codex thread in that registered cwd instead of guessing from chat text.
+    The project registry stores explicit working directories with ids, labels, and aliases. `/project` selects the current workspace, and `/new` starts a Codex thread in that registered cwd instead of guessing from chat text.
     </DecisionBlock>
 
     <DecisionBlock title="Secret-safe output.">
-	Setup writes the bridge config with user-only permissions, command output redacts bot tokens, allowed user ids can restrict inbound commands, and the public docs call out dedicated bot-token ownership and local retention.
+    Setup writes the bridge config with user-only permissions, command output redacts bot tokens, allowed user ids can restrict inbound commands, and the public docs call out dedicated bot-token ownership and local retention.
     </DecisionBlock>
 
     <DecisionBlock title="A practical desktop control.">
-	The macOS menu bar app embeds or resolves the bridge binary and exposes the actions needed from the desktop: start, stop, repair, refresh status, open config, and open state.
+    The macOS menu bar app embeds or resolves the bridge binary and exposes the actions needed from the desktop: start, stop, repair, refresh status, open config, and open state.
     </DecisionBlock>
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__launch-proof'>
-	<h2>What shipped</h2>
-	<div class='case-study-detail__editorial-copy'>
-		<ProofRows rows={shippedRows}>
-			Codex Telegram Bridge turns an agent workflow into a controlled local product. It defines ownership boundaries first, then adds
-			automation where state, routing, and recovery are explicit.
-		</ProofRows>
-	</div>
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What shipped</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      Codex Telegram Bridge turns an agent workflow into a controlled local product. It defines
+      ownership boundaries first, then adds automation where state, routing, and recovery are
+      explicit.
+    </ProofRows>
+  </div>
 </section>
 
 <CaseSection title="Why it matters">
-	This project is more than a notifier.
+  This project is more than a notifier.
 
     It is a small operating layer around agent work: presence state, live backend health, message delivery, reply routing, approval handling, project context, local retention, and trust boundaries. Those pieces make remote control useful without turning it into ambient automation.
 
 </CaseSection>
 
 <CaseSection title="Public repo">
-	The repository is public and includes the Rust bridge, Telegram and Discord transport docs, Hermes MCP adapter docs, macOS menu bar companion, example config files, CI, release workflow, and tests.
+  The repository is public and includes the Rust bridge, Telegram and Discord transport docs, Hermes MCP adapter docs, macOS menu bar companion, example config files, CI, release workflow, and tests.
 
     <a class='btn-secondary w-fit' href='https://github.com/HanifCarroll/codex-telegram-bridge' target='_blank' rel='noopener noreferrer'>
-	View GitHub repo
-	<span>&rarr;</span>
+    View GitHub repo
+    <span>&rarr;</span>
     </a>
 
 </CaseSection>

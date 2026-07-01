@@ -1,0 +1,393 @@
+.blog-post-hero {
+  display: grid;
+  gap: 2rem;
+}
+
+.blog-post-hero__copy {
+  display: grid;
+  gap: 1rem;
+  max-width: 54rem;
+}
+
+.blog-post-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.blog-post-hero__title {
+  font-size: clamp(2.15rem, 1.75rem + 1.95vw, 4.75rem);
+  max-width: 26ch;
+}
+
+.blog-post-hero__dek {
+  max-width: 42rem;
+}
+
+.blog-post-hero__media {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.22);
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+  outline-offset: -1px;
+}
+
+.blog-post-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.blog-post-layout {
+  display: grid;
+  gap: 3rem;
+  align-items: start;
+}
+
+.blog-post-main {
+  display: grid;
+  gap: 3rem;
+  min-width: 0;
+}
+
+.blog-post-article {
+  min-width: 0;
+}
+
+.blog-post-prose {
+  max-width: 78ch;
+}
+
+.blog-post-prose :where(h2) {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 4rem;
+}
+
+.blog-post-prose :where(h3) {
+  margin-top: 2.75rem;
+}
+
+.blog-post-prose :where(blockquote) {
+  border-left-width: 2px;
+  background: transparent;
+  padding-left: 1.5rem;
+  padding-right: 0;
+}
+
+.blog-post-author-inline {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.blog-post-rail {
+  display: none;
+}
+
+.blog-post-rail__block {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.about-the-author {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-the-author--compact {
+  gap: 0.75rem;
+  max-width: 34rem;
+}
+
+.about-the-author--compact .author-desc {
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+/* ==============================================
+   BLOG PROSE STYLES
+   Brutalist table styling and enhanced readability
+   ============================================== */
+
+.prose-blog {
+  /* Horizontal rules - thicker, more spacing */
+  & hr {
+    @apply border-t-2 border-black dark:border-white my-12;
+  }
+
+  /* Tables - brutalist style with thick borders */
+  & table {
+    @apply w-full border-collapse border-2 border-black dark:border-white my-8;
+    font-size: 0.9rem;
+  }
+
+  & thead {
+    @apply bg-black text-white dark:bg-white dark:text-black;
+  }
+
+  & th {
+    @apply px-4 py-3 text-left font-bold text-sm border-2 border-black dark:border-white text-white dark:text-black;
+  }
+
+  & td {
+    @apply px-4 py-3 border-2 border-black dark:border-white;
+  }
+
+  & tbody tr:nth-child(even) {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  & tbody tr:hover {
+    @apply bg-gray-200 dark:bg-gray-800;
+  }
+
+  /* First column styling for row headers */
+  & td:first-child {
+    @apply font-semibold;
+  }
+
+  /* Blockquotes - brutalist callout style */
+  & blockquote {
+    @apply border-l-4 border-black dark:border-white bg-gray-100 dark:bg-gray-900 pl-6 pr-4 py-4 my-8 not-italic;
+  }
+
+  & blockquote p {
+    @apply mb-0;
+  }
+
+  /* Lists - better spacing */
+  & ul,
+  & ol {
+    @apply my-6 space-y-2;
+  }
+
+  & li {
+    @apply pl-2;
+  }
+
+  /* Inline code - more visible */
+  & :not(pre) > code {
+    @apply bg-gray-200 dark:bg-gray-800 px-1.5 py-0.5 rounded-sm font-medium text-[0.9em] border border-gray-300 dark:border-gray-700;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Blog reading experience: serif body, refined hero, quieter rail.
+   Scoped to .blog-post-* so the rest of the site keeps its brutalist sans look.
+--------------------------------------------------------------------------- */
+.blog-post-prose {
+  max-width: 65ch;
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  color: #2a2a2a;
+}
+
+:is(.dark) .blog-post-prose {
+  color: #e6e6e6;
+}
+
+/* Headings inside the article: keep serif, restore mixed case, calmer weight. */
+.blog-post-prose :where(h2, h3, h4) {
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.blog-post-prose :where(h2) {
+  font-weight: 600;
+  font-size: clamp(1.65rem, 1.35rem + 1vw, 2.25rem);
+  line-height: 1.2;
+  margin-top: 3.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-post-prose :where(h3) {
+  font-weight: 600;
+  font-size: clamp(1.35rem, 1.2rem + 0.5vw, 1.7rem);
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-prose :where(h4) {
+  font-weight: 600;
+  font-size: clamp(1.15rem, 1.05rem + 0.3vw, 1.35rem);
+  line-height: 1.35;
+}
+
+/* Blockquote line-height matched to surrounding body. */
+.blog-post-prose :where(blockquote) {
+  line-height: 1.55;
+}
+
+/* Inline code: scale to body size so it doesn't read as small print. */
+.blog-post-prose :where(:not(pre) > code) {
+  font-size: 0.88em;
+}
+
+/* Pre/code blocks: a touch denser than body so monospace stays legible. */
+.blog-post-prose :where(pre) {
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+/* Hero title: drop the all-caps display brutalism, go editorial. */
+.blog-post-hero__title.heading-display,
+.blog-post-hero__title {
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  max-width: none;
+  text-wrap: balance;
+  color: #1a1a1a;
+}
+
+:is(.dark) .blog-post-hero__title.heading-display,
+:is(.dark) .blog-post-hero__title {
+  color: #f4f4f4;
+}
+
+/* Subtitle between h1 and dek, when a post sets one. */
+.blog-post-hero__subtitle {
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.65rem);
+  line-height: 1.35;
+  color: #5a5a5a;
+  max-width: none;
+  text-wrap: balance;
+  margin-top: -0.25rem;
+}
+
+:is(.dark) .blog-post-hero__subtitle {
+  color: #b0b0b0;
+}
+
+/* Dek / standfirst: italic serif, larger, softer. */
+.blog-post-hero__dek {
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 1rem + 0.45vw, 1.4rem);
+  line-height: 1.5;
+  color: #555;
+  max-width: 50ch;
+}
+
+:is(.dark) .blog-post-hero__dek {
+  color: #b5b5b5;
+}
+
+/* TOC: replace the mono uppercase eyebrow with a quieter serif italic label
+	   only inside the blog rail, so other pages keep the existing treatment. */
+.blog-post-rail .section-label {
+  font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  color: #888;
+}
+
+:is(.dark) .blog-post-rail .section-label {
+  color: #999;
+}
+
+.blog-post-rail__block {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Service callout inside the blog column: single-column stacked layout.
+	   The two-column subgrid is designed for full-width sections and breaks at narrow widths. */
+.blog-post-main .service-callout {
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  padding-inline: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+:is(.dark) .blog-post-main .service-callout {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.blog-post-main .service-callout__inner {
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.blog-post-main .service-callout__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  grid-template-columns: unset;
+}
+
+.blog-post-main .service-callout__copy > *,
+.blog-post-main .service-callout__copy .section-label {
+  grid-column: auto;
+}
+
+.blog-post-main .service-callout__actions {
+  grid-column: auto;
+  margin-top: 0.5rem;
+}
+
+/* Heading: drop the brutalist all-caps Syne, use a calmer mixed-case style. */
+.blog-post-main .service-callout .heading-display {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+/* Body copy: tighter than article prose, this is a CTA not an essay. */
+.blog-post-main .service-callout p {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+:is(.dark) .blog-post-main .service-callout p {
+  color: #999;
+}
+
+/* Actions row: align button and text link to the same baseline. */
+.blog-post-main .service-callout__actions {
+  align-items: center;
+}
+
+/* Primary CTA button: compact inline width, not a full-column block. */
+.blog-post-main .service-callout__actions > a {
+  display: inline-flex;
+  min-width: 0;
+  width: auto;
+}
+
+.blog-post-main .service-callout .home-hero-primary-link {
+  min-height: 0;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+}
+
+/* Soften block quote bar; serif italic for pull-quote feel. */
+.blog-post-prose :where(blockquote) {
+  font-style: italic;
+  color: #444;
+  border-left-color: rgba(0, 0, 0, 0.18);
+}
+
+:is(.dark) .blog-post-prose :where(blockquote) {
+  color: #c4c4c4;
+  border-left-color: rgba(255, 255, 255, 0.22);
+}

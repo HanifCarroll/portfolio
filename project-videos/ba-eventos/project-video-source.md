@@ -76,29 +76,29 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/ba-eventos.mdx` | Event information was scattered across Instagram, Facebook, Eventbrite, Passline, venue sites, and WhatsApp groups. |
-| `src/content/case-studies/ba-eventos.mdx` | The product is a working discovery experience over messy local data, not just a chat interface. |
-| `src/content/case-studies/ba-eventos.mdx` | Users ask natural questions around mood, neighborhood, timing, and social context. |
-| `src/content/case-studies/ba-eventos.mdx` | The product uses semantic search and structured filters to keep answers tied to real records. |
-| `src/content/case-studies/ba-eventos.mdx` | The shipped catalog includes 800+ events and 190+ venues. |
-| `src/lib/projects/ba-eventos.json` | Metadata confirms the problem, solution, live URL, result, and product screenshots. |
-| `src/assets/img/projects/ba-eventos-hero.png` | Public product surface with suggested event-search questions. |
-| `src/assets/img/projects/ba-eventos-feature.png` | Public product surface with a search question, answer, and event result cards. |
+| Source                                           | What it supports in plain language                                                                                  |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/ba-eventos.mdx`        | Event information was scattered across Instagram, Facebook, Eventbrite, Passline, venue sites, and WhatsApp groups. |
+| `src/content/case-studies/ba-eventos.mdx`        | The product is a working discovery experience over messy local data, not just a chat interface.                     |
+| `src/content/case-studies/ba-eventos.mdx`        | Users ask natural questions around mood, neighborhood, timing, and social context.                                  |
+| `src/content/case-studies/ba-eventos.mdx`        | The product uses semantic search and structured filters to keep answers tied to real records.                       |
+| `src/content/case-studies/ba-eventos.mdx`        | The shipped catalog includes 800+ events and 190+ venues.                                                           |
+| `src/lib/projects/ba-eventos.json`               | Metadata confirms the problem, solution, live URL, result, and product screenshots.                                 |
+| `src/assets/img/projects/ba-eventos-hero.png`    | Public product surface with suggested event-search questions.                                                       |
+| `src/assets/img/projects/ba-eventos-feature.png` | Public product surface with a search question, answer, and event result cards.                                      |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Events are scattered across social posts, ticketing pages, venue sites, and chats. | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as plain text and synthetic cards | Yes |
-| Input | A visitor asks, "What's happening tonight?" | `src/assets/img/projects/ba-eventos-feature.png` | Yes, public case-study screenshot after sidebar identity redaction | Yes |
-| Product action | BA Eventos searches real event and venue records. | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as plain labels and screenshot context | Yes |
-| Durable output | The answer shows categories, event names, venues, times, prices, and links. | `src/assets/img/projects/ba-eventos-feature.png` | Yes, public case-study screenshot after sidebar identity redaction | Yes |
-| Saved record | The catalog launched with 800+ events and 190+ venues. | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes | Yes |
-| Guardrail or warning | Answers stay tied to real records instead of unsupported recommendations. | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as "grounded answer" copy | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project check, and build are required. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study and project metadata explain the product direction and shipped proof. | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes | No |
+| Proof type           | Exact proof                                                                                                                       | Source path, URL, or command                                                  | Safe to show?                                                      | On-screen? |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------- |
+| Problem              | Events are scattered across social posts, ticketing pages, venue sites, and chats.                                                | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as plain text and synthetic cards                             | Yes        |
+| Input                | A visitor asks, "What's happening tonight?"                                                                                       | `src/assets/img/projects/ba-eventos-feature.png`                              | Yes, public case-study screenshot after sidebar identity redaction | Yes        |
+| Product action       | BA Eventos searches real event and venue records.                                                                                 | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as plain labels and screenshot context                        | Yes        |
+| Durable output       | The answer shows categories, event names, venues, times, prices, and links.                                                       | `src/assets/img/projects/ba-eventos-feature.png`                              | Yes, public case-study screenshot after sidebar identity redaction | Yes        |
+| Saved record         | The catalog launched with 800+ events and 190+ venues.                                                                            | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes                                                                | Yes        |
+| Guardrail or warning | Answers stay tied to real records instead of unsupported recommendations.                                                         | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as "grounded answer" copy                                     | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project check, and build are required. | `docs/project-videos/capture-and-production-workflow.md`                      | Yes                                                                | No         |
+| Reviewer path        | Portfolio case study and project metadata explain the product direction and shipped proof.                                        | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes                                                                | No         |
 
 ## Selected Story
 
@@ -267,14 +267,14 @@ Reading-speed check: `5` words over `3s` = `100 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Buenos Aires plans were scattered. Posts, ticketing pages, venue sites, and chats lived apart. | 14 | 5.6s | 150 |
-| 2 | A visitor asks one plain question. What's happening tonight? | 8 | 5.6s | 86 |
-| 3 | BA Eventos searches real records. Events and venues stay attached to the answer. | 12 | 6s | 120 |
-| 4 | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible. | 14 | 6.1s | 138 |
-| 5 | The catalog can keep improving. 800+ events and 190+ venues stay organized. | 12 | 5.7s | 126 |
-| End | BA Eventos. One grounded search. | 5 | 3s | 100 |
+| Scene | Text                                                                                           | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Buenos Aires plans were scattered. Posts, ticketing pages, venue sites, and chats lived apart. |         14 |     5.6s | 150 |
+| 2     | A visitor asks one plain question. What's happening tonight?                                   |          8 |     5.6s |  86 |
+| 3     | BA Eventos searches real records. Events and venues stay attached to the answer.               |         12 |       6s | 120 |
+| 4     | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible.    |         14 |     6.1s | 138 |
+| 5     | The catalog can keep improving. 800+ events and 190+ venues stay organized.                    |         12 |     5.7s | 126 |
+| End   | BA Eventos. One grounded search.                                                               |          5 |       3s | 100 |
 
 Allowed short labels:
 
@@ -300,13 +300,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| BA Eventos hero screenshot | Search prompt and product context | `src/assets/img/projects/ba-eventos-hero.png` | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-hero.png` and `hyperframes/assets/ba-eventos-hero.png` |
-| BA Eventos feature screenshot | Search answer and result cards | `src/assets/img/projects/ba-eventos-feature.png` | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-feature.png` and `hyperframes/assets/ba-eventos-feature.png` |
-| Source cards | Problem scene | Case-study source list | No private data | Built natively in HyperFrames |
-| Record chips | Grounding scene | Case-study grounded answer framing | No private data | Built natively in HyperFrames |
-| Catalog stat cards | Result/catalog scene | Case-study shipped rows and metadata | No private data | Built natively in HyperFrames |
+| Asset                         | Purpose                           | Source                                           | Redaction needed?                | Final path                                                                               |
+| ----------------------------- | --------------------------------- | ------------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------------------------- |
+| BA Eventos hero screenshot    | Search prompt and product context | `src/assets/img/projects/ba-eventos-hero.png`    | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-hero.png` and `hyperframes/assets/ba-eventos-hero.png`       |
+| BA Eventos feature screenshot | Search answer and result cards    | `src/assets/img/projects/ba-eventos-feature.png` | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-feature.png` and `hyperframes/assets/ba-eventos-feature.png` |
+| Source cards                  | Problem scene                     | Case-study source list                           | No private data                  | Built natively in HyperFrames                                                            |
+| Record chips                  | Grounding scene                   | Case-study grounded answer framing               | No private data                  | Built natively in HyperFrames                                                            |
+| Catalog stat cards            | Result/catalog scene              | Case-study shipped rows and metadata             | No private data                  | Built natively in HyperFrames                                                            |
 
 ## Privacy Check
 

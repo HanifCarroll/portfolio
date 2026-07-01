@@ -71,26 +71,26 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
+| Source                                             | What it supports in plain language                                                                                                     |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `src/content/case-studies/vox-prismatic.mdx:34-44` | The summary and problem: long-form transcripts became reviewable content operations, and useful ideas were buried in long transcripts. |
-| `src/content/case-studies/vox-prismatic.mdx:48-62` | The goal: extract useful moments, preserve voice, and make AI processing operational through review and scheduling controls. |
-| `src/content/case-studies/vox-prismatic.mdx:73-80` | The work: chunk transcripts, extract candidate insights, draft posts, add hooks, scheduling, and progress updates. |
-| `src/content/case-studies/vox-prismatic.mdx:84-99` | The shipped result: a controllable system for extracting, drafting, reviewing, and scheduling content. |
-| `src/lib/projects/vox-prismatic.json:24-40` | Metadata confirms the constraints, problem, solution, and result framing. |
+| `src/content/case-studies/vox-prismatic.mdx:48-62` | The goal: extract useful moments, preserve voice, and make AI processing operational through review and scheduling controls.           |
+| `src/content/case-studies/vox-prismatic.mdx:73-80` | The work: chunk transcripts, extract candidate insights, draft posts, add hooks, scheduling, and progress updates.                     |
+| `src/content/case-studies/vox-prismatic.mdx:84-99` | The shipped result: a controllable system for extracting, drafting, reviewing, and scheduling content.                                 |
+| `src/lib/projects/vox-prismatic.json:24-40`        | Metadata confirms the constraints, problem, solution, and result framing.                                                              |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Content teams can lose useful ideas inside long transcripts. | `src/content/case-studies/vox-prismatic.mdx:41-44`; `src/lib/projects/vox-prismatic.json:28-31` | Yes, as plain text | Yes |
-| Input | Long transcripts enter the product workflow. | `src/content/case-studies/vox-prismatic.mdx:73-80` | Yes, as native synthetic transcript cards | Yes |
-| Product action | The product extracts candidate insights and creates reviewable post drafts. | `src/content/case-studies/vox-prismatic.mdx:73-80`; `src/lib/projects/vox-prismatic.json:32-36` | Yes | Yes |
-| Product action | The hook workbench lets someone preview and choose hooks before using them. | `src/assets/img/projects/vox-prismatic-feature.png` | Yes, after cropping | Yes |
-| Durable output | Reviewable posts can move toward scheduling while keeping a human in control. | `src/content/case-studies/vox-prismatic.mdx:34-38`; `src/lib/projects/vox-prismatic.json:37-40` | Yes | Yes |
-| Saved record | The public product surface shows pending posts and scheduling controls. | `src/assets/img/projects/vox-prismatic-hero.png` | Yes, after cropping out account footer text | Yes |
-| Guardrail or warning | Publishing stays human-led instead of auto-posting blind. | `src/content/case-studies/vox-prismatic.mdx:18-20`; `src/lib/projects/vox-prismatic.json:24-27` | Yes, as plain copy | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project metadata check, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
+| Proof type           | Exact proof                                                                                                                                               | Source path, URL, or command                                                                    | Safe to show?                               | On-screen? |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------- | ---------- |
+| Problem              | Content teams can lose useful ideas inside long transcripts.                                                                                              | `src/content/case-studies/vox-prismatic.mdx:41-44`; `src/lib/projects/vox-prismatic.json:28-31` | Yes, as plain text                          | Yes        |
+| Input                | Long transcripts enter the product workflow.                                                                                                              | `src/content/case-studies/vox-prismatic.mdx:73-80`                                              | Yes, as native synthetic transcript cards   | Yes        |
+| Product action       | The product extracts candidate insights and creates reviewable post drafts.                                                                               | `src/content/case-studies/vox-prismatic.mdx:73-80`; `src/lib/projects/vox-prismatic.json:32-36` | Yes                                         | Yes        |
+| Product action       | The hook workbench lets someone preview and choose hooks before using them.                                                                               | `src/assets/img/projects/vox-prismatic-feature.png`                                             | Yes, after cropping                         | Yes        |
+| Durable output       | Reviewable posts can move toward scheduling while keeping a human in control.                                                                             | `src/content/case-studies/vox-prismatic.mdx:34-38`; `src/lib/projects/vox-prismatic.json:37-40` | Yes                                         | Yes        |
+| Saved record         | The public product surface shows pending posts and scheduling controls.                                                                                   | `src/assets/img/projects/vox-prismatic-hero.png`                                                | Yes, after cropping out account footer text | Yes        |
+| Guardrail or warning | Publishing stays human-led instead of auto-posting blind.                                                                                                 | `src/content/case-studies/vox-prismatic.mdx:18-20`; `src/lib/projects/vox-prismatic.json:24-27` | Yes, as plain copy                          | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project metadata check, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                        | Yes                                         | No         |
 
 ## Selected Story
 
@@ -259,14 +259,14 @@ Reading-speed check: `7` words over `3s` = `140 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Long transcripts buried good ideas. Useful moments stayed hard to find. | 11 | 5.5s | 120 |
-| 2 | Drafting posts by hand was slow. Keeping the voice right took judgment. | 12 | 5.5s | 131 |
-| 3 | Vox Prismatic turns transcripts into reviewable drafts. People approve before anything is scheduled. | 13 | 6s | 130 |
-| 4 | The workflow moves in clear steps. Extract ideas, shape posts, review hooks, schedule. | 13 | 6.5s | 120 |
-| 5 | The result is a content operations loop. Long inputs become posts someone can trust. | 14 | 6.5s | 129 |
-| End | Vox Prismatic. Reviewable posts from long transcripts. | 7 | 3s | 140 |
+| Scene | Text                                                                                                 | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Long transcripts buried good ideas. Useful moments stayed hard to find.                              |         11 |     5.5s | 120 |
+| 2     | Drafting posts by hand was slow. Keeping the voice right took judgment.                              |         12 |     5.5s | 131 |
+| 3     | Vox Prismatic turns transcripts into reviewable drafts. People approve before anything is scheduled. |         13 |       6s | 130 |
+| 4     | The workflow moves in clear steps. Extract ideas, shape posts, review hooks, schedule.               |         13 |     6.5s | 120 |
+| 5     | The result is a content operations loop. Long inputs become posts someone can trust.                 |         14 |     6.5s | 129 |
+| End   | Vox Prismatic. Reviewable posts from long transcripts.                                               |          7 |       3s | 140 |
 
 Allowed short labels:
 
@@ -292,13 +292,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Cropped posts workspace | Product proof, solution scene, result scene, final frame background | `src/assets/img/projects/vox-prismatic-hero.png` | Yes; crop removes sidebar account footer text and private email | `assets/redacted/vox-prismatic-posts-crop.png`; HyperFrames aliases: `vox-prismatic-posts-crop.png`, `vox-prismatic-posts-result.png` |
-| Cropped hook workbench | Workflow proof and hook-review scene | `src/assets/img/projects/vox-prismatic-feature.png` | Yes; crop focuses the modal and avoids irrelevant background/account context | `assets/redacted/vox-prismatic-hook-workbench.png` and `hyperframes/assets/vox-prismatic-hook-workbench.png` |
-| Transcript cards | Problem and input scenes | Case-study About and Work sections | No private data | Build natively in HyperFrames |
-| Workflow rail | Workflow scene | Case-study Product Direction and The Work sections | No private data | Build natively in HyperFrames |
-| Result cards | Result scene | Case-study What Shipped and metadata result fields | No private data | Build natively in HyperFrames |
+| Asset                   | Purpose                                                             | Source                                              | Redaction needed?                                                            | Final path                                                                                                                            |
+| ----------------------- | ------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Cropped posts workspace | Product proof, solution scene, result scene, final frame background | `src/assets/img/projects/vox-prismatic-hero.png`    | Yes; crop removes sidebar account footer text and private email              | `assets/redacted/vox-prismatic-posts-crop.png`; HyperFrames aliases: `vox-prismatic-posts-crop.png`, `vox-prismatic-posts-result.png` |
+| Cropped hook workbench  | Workflow proof and hook-review scene                                | `src/assets/img/projects/vox-prismatic-feature.png` | Yes; crop focuses the modal and avoids irrelevant background/account context | `assets/redacted/vox-prismatic-hook-workbench.png` and `hyperframes/assets/vox-prismatic-hook-workbench.png`                          |
+| Transcript cards        | Problem and input scenes                                            | Case-study About and Work sections                  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
+| Workflow rail           | Workflow scene                                                      | Case-study Product Direction and The Work sections  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
+| Result cards            | Result scene                                                        | Case-study What Shipped and metadata result fields  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
 
 ## Privacy Check
 

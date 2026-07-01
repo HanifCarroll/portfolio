@@ -79,30 +79,30 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/casamo.mdx:36-43` | Casamo is for remote workers booking furnished stays for weeks at a time, and it turns noisy marketplace search into a ranked report. |
-| `src/content/case-studies/casamo.mdx:47-55` | The useful wedge is smaller than broad travel planning: check a shortlist across marketplaces and show which stays have enough evidence to trust. |
-| `src/content/case-studies/casamo.mdx:59-70` | Casamo leads with evidence and makes the report decision-first, with a paid Trip Scan Pass as the first commercial wedge. |
-| `src/content/case-studies/casamo.mdx:73-85` | The workflow collects trip needs, checks Airbnb and Booking.com options, saves reports, and preserves claims, evidence, concerns, and host questions. |
-| `src/content/case-studies/casamo.mdx:91-96` | Casamo is live as a focused MVP with automated scans, saved reports, payments, usage limits, analytics, and a clearer path from search to a stay worth checking with the host. |
-| `src/lib/projects/casamo.json:32-58` | Metadata confirms the problem, solution, commercial loop, report contents, and founder-style product path. |
-| `src/assets/img/projects/casamo-homepage-viewport.jpg` | Public portfolio screenshot shows the stay-search form and audit priorities. |
-| `https://casamo.app/` | Public current homepage describes trip needs, photo/amenity/review scans, a shortlist, and host questions. |
-| `https://casamo.app/sample-report` | Public sample report shows supported evidence, details needing confirmation, host questions, and backup options. |
+| Source                                                 | What it supports in plain language                                                                                                                                             |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src/content/case-studies/casamo.mdx:36-43`            | Casamo is for remote workers booking furnished stays for weeks at a time, and it turns noisy marketplace search into a ranked report.                                          |
+| `src/content/case-studies/casamo.mdx:47-55`            | The useful wedge is smaller than broad travel planning: check a shortlist across marketplaces and show which stays have enough evidence to trust.                              |
+| `src/content/case-studies/casamo.mdx:59-70`            | Casamo leads with evidence and makes the report decision-first, with a paid Trip Scan Pass as the first commercial wedge.                                                      |
+| `src/content/case-studies/casamo.mdx:73-85`            | The workflow collects trip needs, checks Airbnb and Booking.com options, saves reports, and preserves claims, evidence, concerns, and host questions.                          |
+| `src/content/case-studies/casamo.mdx:91-96`            | Casamo is live as a focused MVP with automated scans, saved reports, payments, usage limits, analytics, and a clearer path from search to a stay worth checking with the host. |
+| `src/lib/projects/casamo.json:32-58`                   | Metadata confirms the problem, solution, commercial loop, report contents, and founder-style product path.                                                                     |
+| `src/assets/img/projects/casamo-homepage-viewport.jpg` | Public portfolio screenshot shows the stay-search form and audit priorities.                                                                                                   |
+| `https://casamo.app/`                                  | Public current homepage describes trip needs, photo/amenity/review scans, a shortlist, and host questions.                                                                     |
+| `https://casamo.app/sample-report`                     | Public sample report shows supported evidence, details needing confirmation, host questions, and backup options.                                                               |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Marketplace filters can claim Wi-Fi, workspace, kitchen, or laundry without proving long-stay fit. | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json` | Yes, as simplified text | Yes |
-| Input | Destination, dates, guests, budget, and must-haves enter the scan. | `src/assets/img/projects/casamo-homepage-viewport.jpg`; `https://casamo.app/` | Yes, public product surface | Yes |
-| Product action | Casamo checks photos, listing details, amenities, reviews, missing proof, and host questions. | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report` | Yes, as public sample-report concepts | Yes |
-| Durable output | The report returns one recommended stay and two backups. | `src/lib/projects/casamo.json`; public OG report preview | Yes, public sample preview | Yes |
-| Saved record | Reports save so the traveler can return while deciding. | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json` | Yes, as simple label | Yes |
-| Guardrail or warning | Missing proof and host questions stay visible instead of being hidden. | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report` | Yes | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, project checks, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study and metadata explain the founder-owned product path. | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json` | Yes | No |
+| Proof type           | Exact proof                                                                                                                      | Source path, URL, or command                                                  | Safe to show?                         | On-screen? |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------- | ---------- |
+| Problem              | Marketplace filters can claim Wi-Fi, workspace, kitchen, or laundry without proving long-stay fit.                               | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes, as simplified text               | Yes        |
+| Input                | Destination, dates, guests, budget, and must-haves enter the scan.                                                               | `src/assets/img/projects/casamo-homepage-viewport.jpg`; `https://casamo.app/` | Yes, public product surface           | Yes        |
+| Product action       | Casamo checks photos, listing details, amenities, reviews, missing proof, and host questions.                                    | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes, as public sample-report concepts | Yes        |
+| Durable output       | The report returns one recommended stay and two backups.                                                                         | `src/lib/projects/casamo.json`; public OG report preview                      | Yes, public sample preview            | Yes        |
+| Saved record         | Reports save so the traveler can return while deciding.                                                                          | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes, as simple label                  | Yes        |
+| Guardrail or warning | Missing proof and host questions stay visible instead of being hidden.                                                           | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes                                   | Yes        |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, project checks, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                      | Yes                                   | No         |
+| Reviewer path        | Portfolio case study and metadata explain the founder-owned product path.                                                        | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes                                   | No         |
 
 ## Selected Story
 
@@ -298,15 +298,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Long-stay bookings are hard to trust. Marketplace filters do not prove the stay. | 13 | 6.5s | 120 |
-| 2 | Remote workers need evidence before paying. Photos, amenities, reviews, and gaps matter. | 12 | 6.5s | 111 |
-| 3 | Casamo scans a shortlist for practical fit. Enter destination, dates, budget, and must-haves. | 13 | 6.5s | 120 |
-| 4 | The audit keeps the decision checkable. Strong signals, concerns, missing proof, and host questions stay visible. | 16 | 6.5s | 148 |
-| 5 | One recommended stay. Two backups. The next question to ask the host is clear. | 14 | 6.5s | 129 |
-| 6 | Casamo is a focused founder-owned product. Paid scans, saved reports, and auditable recommendations. | 14 | 6.5s | 129 |
-| End | Casamo. Noisy search to bookable shortlist. | 6 | 3s | 120 |
+| Scene | Text                                                                                                              | Word count | Duration | WPM |
+| ----- | ----------------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Long-stay bookings are hard to trust. Marketplace filters do not prove the stay.                                  |         13 |     6.5s | 120 |
+| 2     | Remote workers need evidence before paying. Photos, amenities, reviews, and gaps matter.                          |         12 |     6.5s | 111 |
+| 3     | Casamo scans a shortlist for practical fit. Enter destination, dates, budget, and must-haves.                     |         13 |     6.5s | 120 |
+| 4     | The audit keeps the decision checkable. Strong signals, concerns, missing proof, and host questions stay visible. |         16 |     6.5s | 148 |
+| 5     | One recommended stay. Two backups. The next question to ask the host is clear.                                    |         14 |     6.5s | 129 |
+| 6     | Casamo is a focused founder-owned product. Paid scans, saved reports, and auditable recommendations.              |         14 |     6.5s | 129 |
+| End   | Casamo. Noisy search to bookable shortlist.                                                                       |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -331,16 +331,16 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| `casamo-homepage-viewport.jpg` | Homepage and intake proof surface | `src/assets/img/projects/casamo-homepage-viewport.jpg` | No, public portfolio asset | `project-videos/casamo/hyperframes/assets/casamo-homepage-viewport.jpg` |
-| `casamo-homepage-intake.jpg` | Local alias for intake scene | `src/assets/img/projects/casamo-homepage-viewport.jpg` | No, public portfolio asset | `project-videos/casamo/hyperframes/assets/casamo-homepage-intake.jpg` |
-| `casamo-homepage-final.jpg` | Local alias for final product surface | `src/assets/img/projects/casamo-homepage-viewport.jpg` | No, public portfolio asset | `project-videos/casamo/hyperframes/assets/casamo-homepage-final.jpg` |
-| `casamo-stay-audit-og.png` | Public report preview proof | `https://casamo.app/images/og/casamo-stay-audit.png` | No, public product image | `project-videos/casamo/hyperframes/assets/casamo-stay-audit-og.png` |
-| `casamo-shortlist-result.png` | Local alias for result scene | `https://casamo.app/images/og/casamo-stay-audit.png` | No, public product image | `project-videos/casamo/hyperframes/assets/casamo-shortlist-result.png` |
-| `casamo-end-result.png` | Local alias for end scene | `https://casamo.app/images/og/casamo-stay-audit.png` | No, public product image | `project-videos/casamo/hyperframes/assets/casamo-end-result.png` |
-| `casamo-report-studio.webp` | Public sample apartment evidence image | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-studio.webp` |
-| `casamo-report-audit.webp` | Local alias for audit scene | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-audit.webp` |
+| Asset                          | Purpose                                | Source                                                                           | Redaction needed?              | Final path                                                              |
+| ------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
+| `casamo-homepage-viewport.jpg` | Homepage and intake proof surface      | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-viewport.jpg` |
+| `casamo-homepage-intake.jpg`   | Local alias for intake scene           | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-intake.jpg`   |
+| `casamo-homepage-final.jpg`    | Local alias for final product surface  | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-final.jpg`    |
+| `casamo-stay-audit-og.png`     | Public report preview proof            | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-stay-audit-og.png`     |
+| `casamo-shortlist-result.png`  | Local alias for result scene           | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-shortlist-result.png`  |
+| `casamo-end-result.png`        | Local alias for end scene              | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-end-result.png`        |
+| `casamo-report-studio.webp`    | Public sample apartment evidence image | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-studio.webp`    |
+| `casamo-report-audit.webp`     | Local alias for audit scene            | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-audit.webp`     |
 
 ## Privacy Check
 

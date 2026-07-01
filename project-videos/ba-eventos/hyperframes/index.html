@@ -68,7 +68,11 @@
         overflow: hidden;
         background:
           radial-gradient(circle at 76% 16%, rgba(243, 171, 53, 0.14), rgba(243, 171, 53, 0) 410px),
-          radial-gradient(circle at 12% 88%, rgba(105, 201, 191, 0.1), rgba(105, 201, 191, 0) 430px),
+          radial-gradient(
+            circle at 12% 88%,
+            rgba(105, 201, 191, 0.1),
+            rgba(105, 201, 191, 0) 430px
+          ),
           #0b0705;
       }
 
@@ -502,7 +506,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="32">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="32"
+    >
       <section id="scene1" class="scene">
         <div class="stage-bg">
           <div class="stage-grid"></div>
@@ -673,61 +684,276 @@
 
       tl.to(".stage-grid", { x: 22, y: 18, duration: 32, ease: "none" }, 0);
 
-      tl.fromTo("#scene1 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0);
-      tl.fromTo("#scene1 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 0.04);
-      tl.fromTo("#scene1 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.14);
-      tl.fromTo("#scene1 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, 0.72);
-      tl.fromTo("#scene1 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" }, 1.06);
-      tl.fromTo("#scene1 .dashed-path", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.58, ease: "power2.out" }, 0.64);
-      tl.fromTo("#scene1 .source-card", { opacity: 0, y: 48, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" }, 0.9);
+      tl.fromTo(
+        "#scene1 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        0,
+      );
+      tl.fromTo(
+        "#scene1 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        0.04,
+      );
+      tl.fromTo(
+        "#scene1 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        0.14,
+      );
+      tl.fromTo(
+        "#scene1 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" },
+        0.72,
+      );
+      tl.fromTo(
+        "#scene1 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" },
+        1.06,
+      );
+      tl.fromTo(
+        "#scene1 .dashed-path",
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.58, ease: "power2.out" },
+        0.64,
+      );
+      tl.fromTo(
+        "#scene1 .source-card",
+        { opacity: 0, y: 48, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" },
+        0.9,
+      );
 
       tl.to("#scene1", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 5.1);
       tl.set("#scene1", { visibility: "hidden" }, 5.67);
-      tl.fromTo("#scene2", { opacity: 0, x: 1920, visibility: "visible" }, { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" }, 5.1);
-      tl.fromTo("#scene2 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 5.45);
-      tl.fromTo("#scene2 .screen-frame", { opacity: 0, y: 28, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 5.5);
-      tl.fromTo("#scene2 .query-card", { opacity: 0, y: -24, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "back.out(1.18)" }, 6.04);
-      tl.fromTo("#scene2 .search-highlight", { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.5, ease: "sine.out" }, 6.36);
-      tl.fromTo("#scene2 .eyebrow", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 5.62);
-      tl.fromTo("#scene2 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 5.78);
-      tl.fromTo("#scene2 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, 6.38);
-      tl.fromTo("#scene2 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" }, 6.72);
+      tl.fromTo(
+        "#scene2",
+        { opacity: 0, x: 1920, visibility: "visible" },
+        { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" },
+        5.1,
+      );
+      tl.fromTo(
+        "#scene2 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        5.45,
+      );
+      tl.fromTo(
+        "#scene2 .screen-frame",
+        { opacity: 0, y: 28, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" },
+        5.5,
+      );
+      tl.fromTo(
+        "#scene2 .query-card",
+        { opacity: 0, y: -24, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "back.out(1.18)" },
+        6.04,
+      );
+      tl.fromTo(
+        "#scene2 .search-highlight",
+        { opacity: 0, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "sine.out" },
+        6.36,
+      );
+      tl.fromTo(
+        "#scene2 .eyebrow",
+        { opacity: 0, x: 34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        5.62,
+      );
+      tl.fromTo(
+        "#scene2 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        5.78,
+      );
+      tl.fromTo(
+        "#scene2 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" },
+        6.38,
+      );
+      tl.fromTo(
+        "#scene2 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" },
+        6.72,
+      );
 
       tl.to("#scene2", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 10.7);
       tl.set("#scene2", { visibility: "hidden" }, 11.27);
-      tl.fromTo("#scene3", { opacity: 0, x: 1920, visibility: "visible" }, { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" }, 10.7);
-      tl.fromTo("#scene3 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 11.05);
-      tl.fromTo("#scene3 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 11.12);
-      tl.fromTo("#scene3 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 11.26);
-      tl.fromTo("#scene3 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, 11.86);
-      tl.fromTo("#scene3 .chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.07, ease: "power2.out" }, 12.28);
-      tl.fromTo("#scene3 .screen-frame", { opacity: 0, x: 44, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 11.22);
-      tl.fromTo("#scene3 .answer-highlight", { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.5, ease: "sine.out" }, 12.12);
+      tl.fromTo(
+        "#scene3",
+        { opacity: 0, x: 1920, visibility: "visible" },
+        { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" },
+        10.7,
+      );
+      tl.fromTo(
+        "#scene3 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        11.05,
+      );
+      tl.fromTo(
+        "#scene3 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        11.12,
+      );
+      tl.fromTo(
+        "#scene3 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        11.26,
+      );
+      tl.fromTo(
+        "#scene3 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" },
+        11.86,
+      );
+      tl.fromTo(
+        "#scene3 .chip",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.34, stagger: 0.07, ease: "power2.out" },
+        12.28,
+      );
+      tl.fromTo(
+        "#scene3 .screen-frame",
+        { opacity: 0, x: 44, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" },
+        11.22,
+      );
+      tl.fromTo(
+        "#scene3 .answer-highlight",
+        { opacity: 0, scale: 0.97 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "sine.out" },
+        12.12,
+      );
 
       tl.to("#scene3", { opacity: 0, scale: 0.985, duration: 0.56, ease: "sine.inOut" }, 16.7);
       tl.set("#scene3", { visibility: "hidden" }, 17.27);
-      tl.fromTo("#scene4", { opacity: 0, x: 1920, visibility: "visible" }, { opacity: 1, x: 0, duration: 0.56, ease: "sine.inOut" }, 16.7);
-      tl.fromTo("#scene4 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 17.04);
-      tl.fromTo("#scene4 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 17.08);
-      tl.fromTo("#scene4 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 17.2);
-      tl.fromTo("#scene4 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, 17.78);
-      tl.fromTo("#scene4 .screen-frame", { opacity: 0, x: -42, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 18.0);
-      tl.fromTo("#scene4 .result-note", { opacity: 0, x: 44, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "power3.out" }, 18.22);
-      tl.fromTo("#scene4 .answer-highlight", { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "sine.out" }, 18.54);
-      tl.fromTo("#scene4 .result-highlight", { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.44, ease: "sine.out" }, 18.82);
-      tl.fromTo("#scene4 .detail-item", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: "power2.out" }, 18.86);
+      tl.fromTo(
+        "#scene4",
+        { opacity: 0, x: 1920, visibility: "visible" },
+        { opacity: 1, x: 0, duration: 0.56, ease: "sine.inOut" },
+        16.7,
+      );
+      tl.fromTo(
+        "#scene4 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        17.04,
+      );
+      tl.fromTo(
+        "#scene4 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        17.08,
+      );
+      tl.fromTo(
+        "#scene4 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        17.2,
+      );
+      tl.fromTo(
+        "#scene4 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" },
+        17.78,
+      );
+      tl.fromTo(
+        "#scene4 .screen-frame",
+        { opacity: 0, x: -42, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" },
+        18.0,
+      );
+      tl.fromTo(
+        "#scene4 .result-note",
+        { opacity: 0, x: 44, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "power3.out" },
+        18.22,
+      );
+      tl.fromTo(
+        "#scene4 .answer-highlight",
+        { opacity: 0, scale: 0.97 },
+        { opacity: 1, scale: 1, duration: 0.44, ease: "sine.out" },
+        18.54,
+      );
+      tl.fromTo(
+        "#scene4 .result-highlight",
+        { opacity: 0, scale: 0.97 },
+        { opacity: 1, scale: 1, duration: 0.44, ease: "sine.out" },
+        18.82,
+      );
+      tl.fromTo(
+        "#scene4 .detail-item",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: "power2.out" },
+        18.86,
+      );
 
       tl.to("#scene4", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 22.8);
       tl.set("#scene4", { visibility: "hidden" }, 23.37);
-      tl.fromTo("#scene5", { opacity: 0, x: 1920, visibility: "visible" }, { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" }, 22.8);
-      tl.fromTo("#scene5 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 23.14);
-      tl.fromTo("#scene5 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 23.18);
-      tl.fromTo("#scene5 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 23.3);
-      tl.fromTo("#scene5 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, 23.88);
-      tl.fromTo("#scene5 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" }, 24.24);
-      tl.fromTo("#scene5 .stat-card", { opacity: 0, y: 42, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 23.76);
-      tl.fromTo("#scene5 .final-screen", { opacity: 0, y: 32, scale: 0.965 }, { opacity: 0.5, y: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 24.76);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 28.7);
+      tl.fromTo(
+        "#scene5",
+        { opacity: 0, x: 1920, visibility: "visible" },
+        { opacity: 1, x: 0, duration: 0.56, ease: "power3.inOut" },
+        22.8,
+      );
+      tl.fromTo(
+        "#scene5 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        23.14,
+      );
+      tl.fromTo(
+        "#scene5 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        23.18,
+      );
+      tl.fromTo(
+        "#scene5 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        23.3,
+      );
+      tl.fromTo(
+        "#scene5 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" },
+        23.88,
+      );
+      tl.fromTo(
+        "#scene5 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" },
+        24.24,
+      );
+      tl.fromTo(
+        "#scene5 .stat-card",
+        { opacity: 0, y: 42, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" },
+        23.76,
+      );
+      tl.fromTo(
+        "#scene5 .final-screen",
+        { opacity: 0, y: 32, scale: 0.965 },
+        { opacity: 0.5, y: 0, scale: 1, duration: 0.66, ease: "power3.out" },
+        24.76,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        28.7,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.35, ease: "sine.inOut" }, 31.65);
       tl.set("#scene5", { visibility: "hidden" }, 32);
 

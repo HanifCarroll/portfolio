@@ -1,55 +1,65 @@
 {
-	"slug": "agent-recall",
-	"title": "Agent Recall",
-	"description": "Built a local Rust CLI that makes Codex, OMP, Pi, and Claude transcript archives searchable, with receipts, memory records, and freshness checks.",
-	"seoTitle": "Agent Recall Case Study | Local AI Agent Memory Infrastructure",
-	"seoDescription": "A case study on Agent Recall, an open-source Rust CLI for local transcript search, SQLite FTS5 indexing, memory extraction, and receipt-backed AI agent context retrieval.",
-	"proofType": "experiment",
-	"client": "Open Source Tooling",
-	"service": "AI Workflow Infrastructure",
-	"detailVariant": "workflow",
-	"role": "Solo Product & Systems Engineer",
-	"category": "product",
-	"track": "ai_systems",
-	"year": "2026",
-	"timeline": "Public release and multi-agent expansion, 2026",
-	"teamSize": "Solo build",
-	"technologies": ["Rust", "SQLite FTS5", "rusqlite", "Clap", "serde_json", "JSONL", "macOS LaunchAgent", "GitHub Actions", "crates.io"],
-	"repository": "https://github.com/HanifCarroll/agent-recall",
-	"constraints": [
-		"Agent transcripts can contain sensitive project context, so raw archives needed to remain local and stay the source of truth.",
-		"Search results and memory records had to point back to source files and line numbers instead of becoming unverifiable summaries."
-	],
-	"problem": [
-		"Useful decisions, blockers, commands, and implementation details were scattered across local agent session archives.",
-		"Plain text search over raw JSONL was too noisy. Treating transcripts as the database would also make recall brittle and hard to audit."
-	],
-	"solution": [
-		"Built a Rust CLI that streams supported transcript archives, redacts common secret patterns, parses high-signal events, and indexes them into a disposable SQLite FTS5 database.",
-		"Added search, recent, day, show, bundle, pins, memories, related context, delta cursors, MCP-style resources, doctor, stats, and JSON output for agent-facing workflows.",
-		"Added a watcher with macOS LaunchAgent support, freshness state, repo/date filters, lock handling, and an optional forensic importer for archived Codex SQLite logs."
-	],
-	"result": [
-		"Shipped a public, installable tool for local recall across Codex, OMP, Pi, Claude, and optional archived Codex log sources.",
-		"Made retrieval auditable: search results group by session and include source labels, event kinds, file paths, and exact line receipts.",
-		"Covered the risky paths with CLI, ranking, redaction, parser, memory extraction, watcher, and LaunchAgent tests so the tool can change without quietly breaking recall quality."
-	],
-	"videos": {
-		"overview": {
-			"src": "/videos/projects/agent-recall/overview.mp4",
-			"poster": "/videos/projects/agent-recall/poster.png",
-			"duration": "42 seconds",
-			"label": "Project overview"
-		},
-		"preview": {
-			"src": "/videos/projects/agent-recall/preview.mp4",
-			"poster": "/videos/projects/agent-recall/poster.png",
-			"duration": "12 seconds",
-			"label": "Preview"
-		}
-	},
-	"images": {
-		"hero": "@src/assets/img/projects/agent-recall-cli.png",
-		"feature": "@src/assets/img/projects/agent-recall-cli.png"
-	}
+  "slug": "agent-recall",
+  "title": "Agent Recall",
+  "description": "Built a local Rust CLI that makes Codex, OMP, Pi, and Claude transcript archives searchable, with receipts, memory records, and freshness checks.",
+  "seoTitle": "Agent Recall Case Study | Local AI Agent Memory Infrastructure",
+  "seoDescription": "A case study on Agent Recall, an open-source Rust CLI for local transcript search, SQLite FTS5 indexing, memory extraction, and receipt-backed AI agent context retrieval.",
+  "proofType": "experiment",
+  "client": "Open Source Tooling",
+  "service": "AI Workflow Infrastructure",
+  "detailVariant": "workflow",
+  "role": "Solo Product & Systems Engineer",
+  "category": "product",
+  "track": "ai_systems",
+  "year": "2026",
+  "timeline": "Public release and multi-agent expansion, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "Rust",
+    "SQLite FTS5",
+    "rusqlite",
+    "Clap",
+    "serde_json",
+    "JSONL",
+    "macOS LaunchAgent",
+    "GitHub Actions",
+    "crates.io"
+  ],
+  "repository": "https://github.com/HanifCarroll/agent-recall",
+  "constraints": [
+    "Agent transcripts can contain sensitive project context, so raw archives needed to remain local and stay the source of truth.",
+    "Search results and memory records had to point back to source files and line numbers instead of becoming unverifiable summaries."
+  ],
+  "problem": [
+    "Useful decisions, blockers, commands, and implementation details were scattered across local agent session archives.",
+    "Plain text search over raw JSONL was too noisy. Treating transcripts as the database would also make recall brittle and hard to audit."
+  ],
+  "solution": [
+    "Built a Rust CLI that streams supported transcript archives, redacts common secret patterns, parses high-signal events, and indexes them into a disposable SQLite FTS5 database.",
+    "Added search, recent, day, show, bundle, pins, memories, related context, delta cursors, MCP-style resources, doctor, stats, and JSON output for agent-facing workflows.",
+    "Added a watcher with macOS LaunchAgent support, freshness state, repo/date filters, lock handling, and an optional forensic importer for archived Codex SQLite logs."
+  ],
+  "result": [
+    "Shipped a public, installable tool for local recall across Codex, OMP, Pi, Claude, and optional archived Codex log sources.",
+    "Made retrieval auditable: search results group by session and include source labels, event kinds, file paths, and exact line receipts.",
+    "Covered the risky paths with CLI, ranking, redaction, parser, memory extraction, watcher, and LaunchAgent tests so the tool can change without quietly breaking recall quality."
+  ],
+  "videos": {
+    "overview": {
+      "src": "/videos/projects/agent-recall/overview.mp4",
+      "poster": "/videos/projects/agent-recall/poster.png",
+      "duration": "42 seconds",
+      "label": "Project overview"
+    },
+    "preview": {
+      "src": "/videos/projects/agent-recall/preview.mp4",
+      "poster": "/videos/projects/agent-recall/poster.png",
+      "duration": "12 seconds",
+      "label": "Preview"
+    }
+  },
+  "images": {
+    "hero": "@src/assets/img/projects/agent-recall-cli.png",
+    "feature": "@src/assets/img/projects/agent-recall-cli.png"
+  }
 }

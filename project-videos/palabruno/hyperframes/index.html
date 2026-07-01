@@ -633,7 +633,11 @@
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
               </div>
-              <img class="screen-img" src="assets/palabruno-product-problem.png" alt="Palabruno mobile and teacher workspace product composite." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-product-problem.png"
+                alt="Palabruno mobile and teacher workspace product composite."
+              />
               <div class="idea-ribbon" data-layout-ignore>
                 <span class="ribbon-mark"></span>
                 <span class="ribbon-mark sage"></span>
@@ -668,7 +672,11 @@
               </div>
             </div>
             <div id="s2-window" class="screen-frame teacher-window">
-              <img class="screen-img" src="assets/palabruno-teacher-library.png" alt="Palabruno teacher library workspace." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-teacher-library.png"
+                alt="Palabruno teacher library workspace."
+              />
             </div>
           </div>
         </div>
@@ -684,7 +692,9 @@
         <div class="scene-shell stack">
           <div class="copy">
             <p id="s3-eyebrow" class="eyebrow">Product shape</p>
-            <h1 id="s3-title" class="headline compact">I shaped Palabruno into two connected surfaces.</h1>
+            <h1 id="s3-title" class="headline compact">
+              I shaped Palabruno into two connected surfaces.
+            </h1>
             <p id="s3-subtitle" class="subhead">Mobile for learners. Web for teachers.</p>
             <span id="s3-rule" class="rule"></span>
           </div>
@@ -694,7 +704,11 @@
               <span class="dot yellow"></span>
               <span class="dot green"></span>
             </div>
-            <img class="screen-img" src="assets/palabruno-product-solution.png" alt="Palabruno mobile reader and web teacher workspace." />
+            <img
+              class="screen-img"
+              src="assets/palabruno-product-solution.png"
+              alt="Palabruno mobile reader and web teacher workspace."
+            />
           </div>
           <div id="s3-map" class="surface-map">
             <span class="surface-pill sage">Mobile reader</span>
@@ -714,18 +728,32 @@
         <div class="scene-shell workflow-shell">
           <div class="copy">
             <p id="s4-eyebrow" class="eyebrow">Teacher workflow</p>
-            <h1 id="s4-title" class="headline compact">Teachers create readings, manage students, organize groups, and share lesson material.</h1>
+            <h1 id="s4-title" class="headline compact">
+              Teachers create readings, manage students, organize groups, and share lesson material.
+            </h1>
             <span id="s4-rule" class="rule"></span>
           </div>
           <div class="proof-strip">
             <div id="s4-shot-a" class="mini-screen">
-              <img class="screen-img" src="assets/palabruno-teacher-create-reading.png" alt="Teacher create reading workspace." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-teacher-create-reading.png"
+                alt="Teacher create reading workspace."
+              />
             </div>
             <div id="s4-shot-b" class="mini-screen">
-              <img class="screen-img" src="assets/palabruno-teacher-groups.png" alt="Teacher groups workspace." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-teacher-groups.png"
+                alt="Teacher groups workspace."
+              />
             </div>
             <div id="s4-shot-c" class="mini-screen">
-              <img class="screen-img" src="assets/palabruno-teacher-recent-shares.png" alt="Teacher recent shares workspace." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-teacher-recent-shares.png"
+                alt="Teacher recent shares workspace."
+              />
             </div>
           </div>
           <div class="action-row">
@@ -747,12 +775,18 @@
         <div class="scene-shell launch-wrap">
           <div class="copy">
             <p id="s5-eyebrow" class="eyebrow">Launch surface</p>
-            <h1 id="s5-title" class="headline compact">The launch included iOS, Android, web, payments, store assets, and handoff docs.</h1>
+            <h1 id="s5-title" class="headline compact">
+              The launch included iOS, Android, web, payments, store assets, and handoff docs.
+            </h1>
             <span id="s5-rule" class="rule"></span>
           </div>
           <div>
             <div id="s5-photo" class="screen-frame launch-photo">
-              <img class="screen-img" src="assets/palabruno-teacher-create-launch.png" alt="Palabruno teacher create reading workspace." />
+              <img
+                class="screen-img"
+                src="assets/palabruno-teacher-create-launch.png"
+                alt="Palabruno teacher create reading workspace."
+              />
             </div>
             <div class="launch-grid">
               <div id="s5-card-a" class="launch-card">
@@ -807,7 +841,11 @@
               <span class="dot yellow"></span>
               <span class="dot green"></span>
             </div>
-            <img class="screen-img" src="assets/palabruno-product-final.png" alt="Palabruno launched product composite." />
+            <img
+              class="screen-img"
+              src="assets/palabruno-product-final.png"
+              alt="Palabruno launched product composite."
+            />
           </div>
         </div>
         <div id="end-card" class="end-card">
@@ -835,72 +873,149 @@
       }
 
       function blurTransition(oldScene, newScene, time) {
-        tl.to(oldScene, { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: 0.52, ease: "power2.inOut" }, time);
+        tl.to(
+          oldScene,
+          { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: 0.52, ease: "power2.inOut" },
+          time,
+        );
         tl.set(newScene, { filter: "blur(12px)", scale: 0.975, opacity: 0 }, time);
-        tl.to(newScene, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.58, ease: "power2.inOut" }, time + 0.1);
+        tl.to(
+          newScene,
+          { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.58, ease: "power2.inOut" },
+          time + 0.1,
+        );
       }
 
       tl.from("#s1-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 0.24);
       tl.from("#s1-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 0.38);
       tl.from("#s1-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 0.58);
       tl.from("#s1-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 0.74);
-      tl.from("#s1-shot", { x: 70, scale: 0.95, opacity: 0, duration: 0.72, ease: "power3.out" }, 0.44);
-      tl.from(".idea-ribbon .ribbon-mark", { scaleX: 0, opacity: 0, duration: 0.32, stagger: 0.08, ease: "expo.out" }, 1.08);
+      tl.from(
+        "#s1-shot",
+        { x: 70, scale: 0.95, opacity: 0, duration: 0.72, ease: "power3.out" },
+        0.44,
+      );
+      tl.from(
+        ".idea-ribbon .ribbon-mark",
+        { scaleX: 0, opacity: 0, duration: 0.32, stagger: 0.08, ease: "expo.out" },
+        1.08,
+      );
 
       pushTransition("#scene1", "#scene2", 5.55, "left");
       tl.from("#s2-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 6.14);
       tl.from("#s2-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 6.28);
       tl.from("#s2-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 6.48);
       tl.from("#s2-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 6.64);
-      tl.from("#s2-card-a", { x: -46, y: 18, opacity: 0, duration: 0.48, ease: "power2.out" }, 6.28);
-      tl.from("#s2-card-b", { x: -24, scale: 0.95, opacity: 0, duration: 0.5, ease: "back.out(1.3)" }, 6.48);
-      tl.from("#s2-window", { x: 72, scale: 0.96, opacity: 0, duration: 0.64, ease: "power3.out" }, 6.58);
+      tl.from(
+        "#s2-card-a",
+        { x: -46, y: 18, opacity: 0, duration: 0.48, ease: "power2.out" },
+        6.28,
+      );
+      tl.from(
+        "#s2-card-b",
+        { x: -24, scale: 0.95, opacity: 0, duration: 0.5, ease: "back.out(1.3)" },
+        6.48,
+      );
+      tl.from(
+        "#s2-window",
+        { x: 72, scale: 0.96, opacity: 0, duration: 0.64, ease: "power3.out" },
+        6.58,
+      );
 
       blurTransition("#scene2", "#scene3", 11.55);
       tl.from("#s3-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 12.18);
       tl.from("#s3-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 12.32);
       tl.from("#s3-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 12.52);
       tl.from("#s3-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 12.68);
-      tl.from("#s3-shot", { y: 58, scale: 0.94, opacity: 0, duration: 0.7, ease: "power3.out" }, 12.46);
-      tl.from("#s3-map", { y: 34, scale: 0.96, opacity: 0, duration: 0.48, ease: "back.out(1.4)" }, 12.94);
+      tl.from(
+        "#s3-shot",
+        { y: 58, scale: 0.94, opacity: 0, duration: 0.7, ease: "power3.out" },
+        12.46,
+      );
+      tl.from(
+        "#s3-map",
+        { y: 34, scale: 0.96, opacity: 0, duration: 0.48, ease: "back.out(1.4)" },
+        12.94,
+      );
       tl.from("#s3-map .surface-line", { scaleX: 0, duration: 0.38, ease: "expo.out" }, 13.18);
 
       pushTransition("#scene3", "#scene4", 18.0, "left");
       tl.from("#s4-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 18.62);
       tl.from("#s4-title", { y: 46, opacity: 0, duration: 0.58, ease: "power3.out" }, 18.78);
       tl.from("#s4-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 19.18);
-      tl.from("#s4-shot-a", { y: 42, rotate: -1.5, opacity: 0, duration: 0.48, ease: "power2.out" }, 19.28);
-      tl.from("#s4-shot-b", { y: 60, scale: 0.96, opacity: 0, duration: 0.52, ease: "back.out(1.2)" }, 19.46);
-      tl.from("#s4-shot-c", { y: 42, rotate: 1.5, opacity: 0, duration: 0.48, ease: "sine.out" }, 19.64);
-      tl.from("#s4-chip-a, #s4-chip-b, #s4-chip-c, #s4-chip-d", {
-        y: 26,
-        opacity: 0,
-        duration: 0.34,
-        stagger: 0.08,
-        ease: "power2.out"
-      }, 20.0);
+      tl.from(
+        "#s4-shot-a",
+        { y: 42, rotate: -1.5, opacity: 0, duration: 0.48, ease: "power2.out" },
+        19.28,
+      );
+      tl.from(
+        "#s4-shot-b",
+        { y: 60, scale: 0.96, opacity: 0, duration: 0.52, ease: "back.out(1.2)" },
+        19.46,
+      );
+      tl.from(
+        "#s4-shot-c",
+        { y: 42, rotate: 1.5, opacity: 0, duration: 0.48, ease: "sine.out" },
+        19.64,
+      );
+      tl.from(
+        "#s4-chip-a, #s4-chip-b, #s4-chip-c, #s4-chip-d",
+        {
+          y: 26,
+          opacity: 0,
+          duration: 0.34,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        20.0,
+      );
 
       pushTransition("#scene4", "#scene5", 24.0, "up");
       tl.from("#s5-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 24.62);
       tl.from("#s5-title", { y: 46, opacity: 0, duration: 0.58, ease: "power3.out" }, 24.78);
       tl.from("#s5-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 25.18);
-      tl.from("#s5-photo", { x: 50, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" }, 24.88);
-      tl.from("#s5-card-a, #s5-card-b, #s5-card-c, #s5-card-d, #s5-card-e, #s5-card-f", {
-        y: 34,
-        scale: 0.96,
-        opacity: 0,
-        duration: 0.36,
-        stagger: 0.07,
-        ease: "power2.out"
-      }, 25.4);
+      tl.from(
+        "#s5-photo",
+        { x: 50, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" },
+        24.88,
+      );
+      tl.from(
+        "#s5-card-a, #s5-card-b, #s5-card-c, #s5-card-d, #s5-card-e, #s5-card-f",
+        {
+          y: 34,
+          scale: 0.96,
+          opacity: 0,
+          duration: 0.36,
+          stagger: 0.07,
+          ease: "power2.out",
+        },
+        25.4,
+      );
 
       blurTransition("#scene5", "#scene6", 30.55);
-      tl.from("#s6-card", { x: -58, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" }, 31.18);
+      tl.from(
+        "#s6-card",
+        { x: -58, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" },
+        31.18,
+      );
       tl.from("#s6-eyebrow", { y: 18, opacity: 0, duration: 0.28, ease: "power2.out" }, 31.32);
       tl.from("#s6-title", { y: 42, opacity: 0, duration: 0.54, ease: "power3.out" }, 31.48);
-      tl.from("#s6-markets .market-chip", { y: 22, scale: 0.94, opacity: 0, duration: 0.32, stagger: 0.08, ease: "back.out(1.4)" }, 32.0);
-      tl.from("#s6-shot", { x: 64, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" }, 31.34);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 36.28);
+      tl.from(
+        "#s6-markets .market-chip",
+        { y: 22, scale: 0.94, opacity: 0, duration: 0.32, stagger: 0.08, ease: "back.out(1.4)" },
+        32.0,
+      );
+      tl.from(
+        "#s6-shot",
+        { x: 64, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" },
+        31.34,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        36.28,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 39.44);
 
       window.__timelines["main"] = tl;

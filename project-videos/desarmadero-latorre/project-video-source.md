@@ -68,27 +68,27 @@ Do not show:
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/lib/projects/desarmadero-latorre.json:4-21` | The project turned phone-heavy sales into a searchable 24/7 digital catalog. |
-| `src/content/case-studies/desarmadero-latorre.mdx:34-45` | The business had changing auto-parts inventory and customers depended on calls or visits. |
-| `src/content/case-studies/desarmadero-latorre.mdx:54-80` | The product centered on search by make, model, and year plus a direct inquiry path. |
-| `src/content/case-studies/desarmadero-latorre.mdx:84-99` | The shipped result made the workflow less dependent on repetitive phone checks. |
-| `src/assets/img/projects/desarmadero-feature.png` | Public catalog screenshot showing search filters, result cards, photos, year, and details buttons. |
-| `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Public stockroom photo showing the parts inventory context. |
+| Source                                                          | What it supports in plain language                                                                 |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `src/lib/projects/desarmadero-latorre.json:4-21`                | The project turned phone-heavy sales into a searchable 24/7 digital catalog.                       |
+| `src/content/case-studies/desarmadero-latorre.mdx:34-45`        | The business had changing auto-parts inventory and customers depended on calls or visits.          |
+| `src/content/case-studies/desarmadero-latorre.mdx:54-80`        | The product centered on search by make, model, and year plus a direct inquiry path.                |
+| `src/content/case-studies/desarmadero-latorre.mdx:84-99`        | The shipped result made the workflow less dependent on repetitive phone checks.                    |
+| `src/assets/img/projects/desarmadero-feature.png`               | Public catalog screenshot showing search filters, result cards, photos, year, and details buttons. |
+| `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Public stockroom photo showing the parts inventory context.                                        |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Customers had to call or visit to check stock. | `src/lib/projects/desarmadero-latorre.json:19` | Yes, as plain text | Yes |
-| Input | Make, model, and year search filters. | `src/assets/img/projects/desarmadero-feature.png` | Yes, public screenshot | Yes |
-| Product action | Customer searches the catalog before contacting the shop. | `src/content/case-studies/desarmadero-latorre.mdx:56-57` | Yes | Yes |
-| Listing context | Vehicle photos, year, and details buttons. | `src/assets/img/projects/desarmadero-feature.png` | Yes, public screenshot | Yes |
-| Durable output | The business gained an always-on digital stockroom. | `src/lib/projects/desarmadero-latorre.json:21` | Yes | Yes |
-| Guardrail or warning | Staff workflow stayed lightweight for changing inventory. | `src/lib/projects/desarmadero-latorre.json:16-20` | Yes, as backing note | No |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project check, build, and feedback. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study explains the business workflow and shipped surface. | `src/content/case-studies/desarmadero-latorre.mdx` | Yes | No |
+| Proof type           | Exact proof                                                                                                          | Source path, URL, or command                             | Safe to show?          | On-screen? |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------- | ---------- |
+| Problem              | Customers had to call or visit to check stock.                                                                       | `src/lib/projects/desarmadero-latorre.json:19`           | Yes, as plain text     | Yes        |
+| Input                | Make, model, and year search filters.                                                                                | `src/assets/img/projects/desarmadero-feature.png`        | Yes, public screenshot | Yes        |
+| Product action       | Customer searches the catalog before contacting the shop.                                                            | `src/content/case-studies/desarmadero-latorre.mdx:56-57` | Yes                    | Yes        |
+| Listing context      | Vehicle photos, year, and details buttons.                                                                           | `src/assets/img/projects/desarmadero-feature.png`        | Yes, public screenshot | Yes        |
+| Durable output       | The business gained an always-on digital stockroom.                                                                  | `src/lib/projects/desarmadero-latorre.json:21`           | Yes                    | Yes        |
+| Guardrail or warning | Staff workflow stayed lightweight for changing inventory.                                                            | `src/lib/projects/desarmadero-latorre.json:16-20`        | Yes, as backing note   | No         |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project check, build, and feedback. | `docs/project-videos/capture-and-production-workflow.md` | Yes                    | No         |
+| Reviewer path        | Portfolio case study explains the business workflow and shipped surface.                                             | `src/content/case-studies/desarmadero-latorre.mdx`       | Yes                    | No         |
 
 ## Selected Story
 
@@ -229,13 +229,13 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Stock checks started by phone. Staff repeated availability checks. | 8 | 4.4s | 109 |
-| 2 | The catalog made stock searchable. Make and model come first. | 10 | 4.4s | 136 |
-| 3 | Listings carry context. Photos, year, and vehicle details. | 7 | 4.4s | 95 |
-| 4 | The workflow got clearer. Search, inspect, then contact. | 7 | 4.8s | 88 |
-| End | Desarmadero Latorre. A searchable digital stockroom. | 6 | 3s | 120 |
+| Scene | Text                                                               | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Stock checks started by phone. Staff repeated availability checks. |          8 |     4.4s | 109 |
+| 2     | The catalog made stock searchable. Make and model come first.      |         10 |     4.4s | 136 |
+| 3     | Listings carry context. Photos, year, and vehicle details.         |          7 |     4.4s |  95 |
+| 4     | The workflow got clearer. Search, inspect, then contact.           |          7 |     4.8s |  88 |
+| End   | Desarmadero Latorre. A searchable digital stockroom.               |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -253,11 +253,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Catalog screenshot | Search surface, listing cards, part context, end frame | `src/assets/img/projects/desarmadero-feature.png` | Already public | `assets/selected/desarmadero-catalog.png`; `hyperframes/assets/desarmadero-catalog.png` |
-| Stockroom photo | Business context for phone-heavy inventory checks | `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Already public | `assets/selected/parts-stockroom.png`; `hyperframes/assets/parts-stockroom.png` |
-| Workflow rail | Search-to-contact explanation | Built natively in HyperFrames | No private data | `hyperframes/index.html` |
+| Asset              | Purpose                                                | Source                                                          | Redaction needed? | Final path                                                                              |
+| ------------------ | ------------------------------------------------------ | --------------------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------- |
+| Catalog screenshot | Search surface, listing cards, part context, end frame | `src/assets/img/projects/desarmadero-feature.png`               | Already public    | `assets/selected/desarmadero-catalog.png`; `hyperframes/assets/desarmadero-catalog.png` |
+| Stockroom photo    | Business context for phone-heavy inventory checks      | `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Already public    | `assets/selected/parts-stockroom.png`; `hyperframes/assets/parts-stockroom.png`         |
+| Workflow rail      | Search-to-contact explanation                          | Built natively in HyperFrames                                   | No private data   | `hyperframes/index.html`                                                                |
 
 ## Privacy Check
 

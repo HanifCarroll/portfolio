@@ -63,25 +63,25 @@ Do not show:
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/maximo-interiorismo.mdx` | The site made the designer look as established online as he already was in person. |
+| Source                                             | What it supports in plain language                                                            |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/maximo-interiorismo.mdx` | The site made the designer look as established online as he already was in person.            |
 | `src/content/case-studies/maximo-interiorismo.mdx` | The design kept the interior work in the foreground instead of burying it under generic copy. |
-| `src/content/case-studies/maximo-interiorismo.mdx` | The site gave prospects a cleaner way to inspect the work before reaching out. |
-| `src/lib/projects/maximo-interiorismo.json` | Metadata confirms the credibility, cleaner presentation, and consultation-path framing. |
-| `src/assets/img/projects/maximo-hero.png` | Public hero screenshot shows the branded portfolio opening. |
-| `src/assets/img/projects/maximo-feature.png` | Public feature screenshot shows project presentation and navigation. |
+| `src/content/case-studies/maximo-interiorismo.mdx` | The site gave prospects a cleaner way to inspect the work before reaching out.                |
+| `src/lib/projects/maximo-interiorismo.json`        | Metadata confirms the credibility, cleaner presentation, and consultation-path framing.       |
+| `src/assets/img/projects/maximo-hero.png`          | Public hero screenshot shows the branded portfolio opening.                                   |
+| `src/assets/img/projects/maximo-feature.png`       | Public feature screenshot shows project presentation and navigation.                          |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | The designer needed a stronger public home for high-end interior work. | `src/content/case-studies/maximo-interiorismo.mdx` | Yes, as simplified text | Yes |
-| Product surface | Branded hero and project detail screenshots. | `src/assets/img/projects/maximo-hero.png`; `src/assets/img/projects/maximo-feature.png` | Yes, public assets | Yes |
-| Product action | Prospects can review projects through a clean portfolio presentation. | `src/content/case-studies/maximo-interiorismo.mdx`; `src/assets/img/projects/maximo-feature.png` | Yes | Yes |
-| Durable output | The designer has a credible, shareable portfolio site. | `src/lib/projects/maximo-interiorismo.json` | Yes | Yes |
-| Inquiry path | Navigation and case-study copy support the path from review to conversation. | `src/content/case-studies/maximo-interiorismo.mdx`; `src/lib/projects/maximo-interiorismo.json` | Yes | Yes, as plain labels |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, build checks, and feedback. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
+| Proof type      | Exact proof                                                                                 | Source path, URL, or command                                                                     | Safe to show?           | On-screen?           |
+| --------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------- | -------------------- |
+| Problem         | The designer needed a stronger public home for high-end interior work.                      | `src/content/case-studies/maximo-interiorismo.mdx`                                               | Yes, as simplified text | Yes                  |
+| Product surface | Branded hero and project detail screenshots.                                                | `src/assets/img/projects/maximo-hero.png`; `src/assets/img/projects/maximo-feature.png`          | Yes, public assets      | Yes                  |
+| Product action  | Prospects can review projects through a clean portfolio presentation.                       | `src/content/case-studies/maximo-interiorismo.mdx`; `src/assets/img/projects/maximo-feature.png` | Yes                     | Yes                  |
+| Durable output  | The designer has a credible, shareable portfolio site.                                      | `src/lib/projects/maximo-interiorismo.json`                                                      | Yes                     | Yes                  |
+| Inquiry path    | Navigation and case-study copy support the path from review to conversation.                | `src/content/case-studies/maximo-interiorismo.mdx`; `src/lib/projects/maximo-interiorismo.json`  | Yes                     | Yes, as plain labels |
+| Verification    | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, build checks, and feedback. | `docs/project-videos/capture-and-production-workflow.md`                                         | Yes                     | No                   |
 
 ## Selected Story
 
@@ -189,12 +189,12 @@ Reading-speed check: `5` words over `5s` = `60 WPM`.
 
 ## On-Screen Text Lock
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | A stronger public home. | 4 | 4.4s | 55 |
-| 2 | The work stays first. | 4 | 4.3s | 56 |
-| 3 | Review leads to inquiry. | 4 | 4.3s | 56 |
-| End | Maximo Interiorismo. Portfolio to consultation. | 5 | 5s | 60 |
+| Scene | Text                                            | Word count | Duration | WPM |
+| ----- | ----------------------------------------------- | ---------: | -------: | --: |
+| 1     | A stronger public home.                         |          4 |     4.4s |  55 |
+| 2     | The work stays first.                           |          4 |     4.3s |  56 |
+| 3     | Review leads to inquiry.                        |          4 |     4.3s |  56 |
+| End   | Maximo Interiorismo. Portfolio to consultation. |          5 |       5s |  60 |
 
 Allowed short labels:
 
@@ -205,11 +205,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Maximo hero screenshot | Opening proof surface | `src/assets/img/projects/maximo-hero.png` | No; public asset | `assets/selected/maximo-hero.png`; `hyperframes/assets/maximo-hero.png` |
-| Maximo feature screenshot | Portfolio presentation and inquiry path proof | `src/assets/img/projects/maximo-feature.png` | No; public asset | `assets/selected/maximo-feature.png`; HyperFrames aliases: `maximo-feature-presentation.png`, `maximo-feature-inquiry.png` |
-| Maximo logo | Ending beat brand mark | `public/logos/maximo.png` | No; public asset | `assets/selected/maximo-logo.png`; `hyperframes/assets/maximo-logo.png` |
+| Asset                     | Purpose                                       | Source                                       | Redaction needed? | Final path                                                                                                                 |
+| ------------------------- | --------------------------------------------- | -------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Maximo hero screenshot    | Opening proof surface                         | `src/assets/img/projects/maximo-hero.png`    | No; public asset  | `assets/selected/maximo-hero.png`; `hyperframes/assets/maximo-hero.png`                                                    |
+| Maximo feature screenshot | Portfolio presentation and inquiry path proof | `src/assets/img/projects/maximo-feature.png` | No; public asset  | `assets/selected/maximo-feature.png`; HyperFrames aliases: `maximo-feature-presentation.png`, `maximo-feature-inquiry.png` |
+| Maximo logo               | Ending beat brand mark                        | `public/logos/maximo.png`                    | No; public asset  | `assets/selected/maximo-logo.png`; `hyperframes/assets/maximo-logo.png`                                                    |
 
 ## Privacy Check
 

@@ -76,23 +76,23 @@ For plain overview videos, keep stack names, schema names, API endpoint names, c
 Map source evidence to plain-language claims. The video should pull from this table instead of inventing structure inside the composition.
 
 | Source | What it supports in plain language |
-| --- | --- |
-|  |  |
+| ------ | ---------------------------------- |
+|        |                                    |
 
 ## Proof Inventory
 
 List only proof that can be shown or inspected. Technical proof can support the video without appearing on screen.
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem |  |  |  |  |
-| Input |  |  |  |  |
-| Product action |  |  |  |  |
-| Durable output |  |  |  |  |
-| Saved record |  |  |  |  |
-| Guardrail or warning |  |  |  |  |
-| Verification |  |  |  |  |
-| Reviewer path |  |  |  |  |
+| Proof type           | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
+| -------------------- | ----------- | ---------------------------- | ------------- | ---------- |
+| Problem              |             |                              |               |            |
+| Input                |             |                              |               |            |
+| Product action       |             |                              |               |            |
+| Durable output       |             |                              |               |            |
+| Saved record         |             |                              |               |            |
+| Guardrail or warning |             |                              |               |            |
+| Verification         |             |                              |               |            |
+| Reviewer path        |             |                              |               |            |
 
 ## Selected Story
 
@@ -300,15 +300,15 @@ If the chosen mode is evidence tour, rename the scenes to fit this structure:
 
 Final text that may appear in the video. Keep this section short and plain. The composition should not introduce new main copy that is not listed here.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| End | Project name plus one short result line. |  | 2.5-3s |  |
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
-| 6 |  |  |  |  |
+| Scene | Text                                     | Word count | Duration | WPM |
+| ----- | ---------------------------------------- | ---------: | -------: | --: |
+| End   | Project name plus one short result line. |            |   2.5-3s |     |
+| 1     |                                          |            |          |     |
+| 2     |                                          |            |          |     |
+| 3     |                                          |            |          |     |
+| 4     |                                          |            |          |     |
+| 5     |                                          |            |          |     |
+| 6     |                                          |            |          |     |
 
 Reading-speed targets:
 
@@ -325,8 +325,8 @@ Allowed short labels:
 ## Asset Manifest
 
 | Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| ----- | ------- | ------ | ----------------- | ---------- |
+|       |         |        |                   |            |
 
 ## Privacy Check
 

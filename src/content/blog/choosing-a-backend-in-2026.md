@@ -39,13 +39,13 @@ If you're on an enterprise team with dedicated DevOps, or you need on-prem compl
 
 Here's the quick overview before we go deep:
 
-| | **Supabase** | **Convex** | **InsForge** |
-|---|---|---|---|
-| **One-liner** | Postgres for everything | Real-time by default | Backend your AI agent can control |
-| **Database** | PostgreSQL (relational) | Document store (reactive) | PostgreSQL |
-| **Founded** | 2020 | 2021 | 2025 |
-| **Open source** | Yes | Yes | Yes |
-| **Best for** | CRUD apps, SQL fans | Collaborative/real-time apps | AI-driven development with Cursor/Claude Code |
+|                 | **Supabase**            | **Convex**                   | **InsForge**                                  |
+| --------------- | ----------------------- | ---------------------------- | --------------------------------------------- |
+| **One-liner**   | Postgres for everything | Real-time by default         | Backend your AI agent can control             |
+| **Database**    | PostgreSQL (relational) | Document store (reactive)    | PostgreSQL                                    |
+| **Founded**     | 2020                    | 2021                         | 2025                                          |
+| **Open source** | Yes                     | Yes                          | Yes                                           |
+| **Best for**    | CRUD apps, SQL fans     | Collaborative/real-time apps | AI-driven development with Cursor/Claude Code |
 
 Now let's break down each one.
 
@@ -99,7 +99,7 @@ Convex takes a different approach. Instead of bolting real-time onto a tradition
 
 ```typescript
 // This automatically updates when data changes
-const events = useQuery(api.events.list)
+const events = useQuery(api.events.list);
 ```
 
 That's it. No channels, no subscriptions to manage, no cleanup. When the data changes, your UI updates.
@@ -112,10 +112,10 @@ const events = defineTable({
   name: v.string(),
   date: v.string(),
   venueId: v.id("venues"),
-})
+});
 
 // Frontend automatically knows the shape
-const events = useQuery(api.events.list)
+const events = useQuery(api.events.list);
 // events is typed as Array<{ name: string, date: string, venueId: Id<"venues"> }>
 ```
 
@@ -127,9 +127,9 @@ const events = useQuery(api.events.list)
 export const create = mutation({
   args: { name: v.string(), date: v.string() },
   handler: async (ctx, args) => {
-    return await ctx.db.insert("events", args)
+    return await ctx.db.insert("events", args);
   },
-})
+});
 ```
 
 **Open source and self-hostable.** If you need to self-host for compliance or cost reasons, you can. Convex open-sourced their backend, dashboard, and CLI in early 2025.
@@ -143,11 +143,11 @@ export const create = mutation({
 export const sendEmail = action({
   args: { to: v.string(), subject: v.string() },
   handler: async (ctx, args) => {
-    await sendgrid.send({ to: args.to, subject: args.subject })
+    await sendgrid.send({ to: args.to, subject: args.subject });
     // Can also call mutations to update database
-    await ctx.runMutation(api.emails.markSent, { to: args.to })
+    await ctx.runMutation(api.emails.markSent, { to: args.to });
   },
-})
+});
 ```
 
 **TypeScript-first schema.** Instead of writing SQL migrations, you define your schema in TypeScript and Convex generates everything. No more "did I run that migration?" questions. Your schema is code, versioned with your app.
@@ -208,6 +208,7 @@ npx @insforge/install --client claude-code \
 ```
 
 **The agent becomes the developer.** Tell Claude Code "build me an Instagram clone" and it can autonomously:
+
 - Create users, posts, comments, and likes tables
 - Configure Google OAuth and email/password auth
 - Set up image storage buckets
@@ -248,35 +249,35 @@ Let's look at the same tasks across all three platforms.
 ### Real-Time Data Subscription
 
 **Supabase:**
+
 ```typescript
 // Setup: enable realtime on table first
 const channel = supabase
-  .channel('events')
-  .on('postgres_changes',
-    { event: '*', schema: 'public', table: 'events' },
-    (payload) => {
-      console.log('Change received:', payload)
-      // Manually update your state
-    }
-  )
-  .subscribe()
+  .channel("events")
+  .on("postgres_changes", { event: "*", schema: "public", table: "events" }, (payload) => {
+    console.log("Change received:", payload);
+    // Manually update your state
+  })
+  .subscribe();
 
 // Don't forget to unsubscribe
-return () => supabase.removeChannel(channel)
+return () => supabase.removeChannel(channel);
 ```
 
 **Convex:**
+
 ```typescript
 // Just works
-const events = useQuery(api.events.list)
+const events = useQuery(api.events.list);
 // Automatically re-renders when data changes
 // No cleanup needed
 ```
 
 **InsForge:**
+
 ```typescript
 // Similar to Supabase. InsForge uses PostgreSQL under the hood
-const { data } = useInsForge('events', { realtime: true })
+const { data } = useInsForge("events", { realtime: true });
 // The difference: your AI agent set this up without you touching a dashboard
 ```
 
@@ -285,29 +286,32 @@ const { data } = useInsForge('events', { realtime: true })
 ### Creating a Record
 
 **Supabase:**
+
 ```typescript
 const { data, error } = await supabase
-  .from('events')
-  .insert({ name: 'Concert', date: '2025-01-15' })
-  .select()
+  .from("events")
+  .insert({ name: "Concert", date: "2025-01-15" })
+  .select();
 
 if (error) {
-  console.error('Error:', error)
+  console.error("Error:", error);
 }
 ```
 
 **Convex:**
+
 ```typescript
-const createEvent = useMutation(api.events.create)
+const createEvent = useMutation(api.events.create);
 
 // Type-safe, auto-validated against schema
-await createEvent({ name: 'Concert', date: '2025-01-15' })
+await createEvent({ name: "Concert", date: "2025-01-15" });
 ```
 
 **InsForge:**
+
 ```typescript
 // The code looks similar to Supabase
-await insforge.events.create({ name: 'Concert', date: '2025-01-15' })
+await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 
 // But the setup was different: you told Claude Code "add an events table"
 // and it created the table, types, and API via MCP. No dashboard needed
@@ -317,31 +321,31 @@ await insforge.events.create({ name: 'Concert', date: '2025-01-15' })
 
 ### Real-Time Capabilities
 
-| | Supabase | Convex | InsForge |
-|---|---|---|---|
-| **Setup required** | Yes (enable per table) | None | Minimal |
-| **Mechanism** | WAL-based | Native subscriptions | WebSocket + LISTEN/NOTIFY |
-| **Latency under load** | 100-200ms p99 | Sub-50ms | Varies |
-| **Mental model** | Events you subscribe to | Queries that auto-update | Standard real-time |
+|                        | Supabase                | Convex                   | InsForge                  |
+| ---------------------- | ----------------------- | ------------------------ | ------------------------- |
+| **Setup required**     | Yes (enable per table)  | None                     | Minimal                   |
+| **Mechanism**          | WAL-based               | Native subscriptions     | WebSocket + LISTEN/NOTIFY |
+| **Latency under load** | 100-200ms p99           | Sub-50ms                 | Varies                    |
+| **Mental model**       | Events you subscribe to | Queries that auto-update | Standard real-time        |
 
 ### Developer Experience
 
-| | Supabase | Convex | InsForge |
-|---|---|---|---|
-| **Type safety** | Manual or generated | Automatic end-to-end | Standard |
-| **Learning curve** | Low if you know SQL | Medium (new mental model) | Low if using AI tools |
-| **Setup workflow** | Dashboard + copy-paste | CLI + code | AI agent via MCP |
-| **Documentation** | Excellent | Good | Growing |
-| **Community size** | Large | Medium | Small |
+|                    | Supabase               | Convex                    | InsForge              |
+| ------------------ | ---------------------- | ------------------------- | --------------------- |
+| **Type safety**    | Manual or generated    | Automatic end-to-end      | Standard              |
+| **Learning curve** | Low if you know SQL    | Medium (new mental model) | Low if using AI tools |
+| **Setup workflow** | Dashboard + copy-paste | CLI + code                | AI agent via MCP      |
+| **Documentation**  | Excellent              | Good                      | Growing               |
+| **Community size** | Large                  | Medium                    | Small                 |
 
 ### Maturity and Risk
 
-| | Supabase | Convex | InsForge |
-|---|---|---|---|
-| **Age** | 5 years | 4 years | <1 year |
-| **Funding** | $116M+ | $26M | $1.5M |
+|                      | Supabase          | Convex  | InsForge       |
+| -------------------- | ----------------- | ------- | -------------- |
+| **Age**              | 5 years           | 4 years | <1 year        |
+| **Funding**          | $116M+            | $26M    | $1.5M          |
 | **Production usage** | Thousands of apps | Growing | Early adopters |
-| **Self-hosting** | Yes | Yes | Yes |
+| **Self-hosting**     | Yes               | Yes     | Yes            |
 
 ![Comparison chart infographic - Supabase vs Convex vs InsForge](/blog/backend-comparison/comparison-chart.jpg)
 

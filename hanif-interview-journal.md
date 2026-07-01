@@ -1,5 +1,6 @@
 # Hanif Carroll — Interview Journal
-*A personal document capturing beliefs, motivations, and philosophy. June 2026.*
+
+_A personal document capturing beliefs, motivations, and philosophy. June 2026._
 
 ---
 

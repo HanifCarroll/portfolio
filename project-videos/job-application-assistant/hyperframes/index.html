@@ -548,7 +548,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="41">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="41"
+    >
       <section id="scene1" class="scene">
         <div class="bg">
           <div class="bg-grid"></div>
@@ -735,73 +742,297 @@
       });
 
       tl.to(".panel-left", { y: 30, duration: 20.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
-      tl.to(".panel-right", { y: -26, duration: 20.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".panel-right",
+        { y: -26, duration: 20.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
       tl.to(".bg-grid", { x: 18, y: 14, duration: 41, ease: "none" }, 0);
 
-      tl.fromTo("#scene1 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0);
-      tl.fromTo("#scene1 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 0.02);
-      tl.fromTo("#scene1 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.12);
-      tl.fromTo("#scene1 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 0.62);
-      tl.fromTo("#scene1 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 0.94);
-      tl.fromTo("#scene1 .broken-line", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0.7);
-      tl.fromTo("#scene1 .paper", { opacity: 0, y: 46, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" }, 0.92);
+      tl.fromTo(
+        "#scene1 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        0,
+      );
+      tl.fromTo(
+        "#scene1 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        0.02,
+      );
+      tl.fromTo(
+        "#scene1 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" },
+        0.12,
+      );
+      tl.fromTo(
+        "#scene1 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+        0.62,
+      );
+      tl.fromTo(
+        "#scene1 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" },
+        0.94,
+      );
+      tl.fromTo(
+        "#scene1 .broken-line",
+        { opacity: 0, scale: 0.94 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" },
+        0.7,
+      );
+      tl.fromTo(
+        "#scene1 .paper",
+        { opacity: 0, y: 46, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" },
+        0.92,
+      );
 
       tl.to("#scene1", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 5.74);
       tl.set("#scene2", { opacity: 1, visibility: "visible" }, 5.74);
-      tl.fromTo("#scene2", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 5.74);
+      tl.fromTo(
+        "#scene2",
+        { x: 1920 },
+        { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false },
+        5.74,
+      );
       tl.set("#scene1", { visibility: "hidden" }, 6.31);
-      tl.fromTo("#scene2 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 6.12);
-      tl.fromTo("#scene2 .eyebrow", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 6.16);
-      tl.fromTo("#scene2 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 6.28);
-      tl.fromTo("#scene2 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" }, 6.92);
-      tl.fromTo("#scene2 .thread-path", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" }, 6.4);
-      tl.fromTo("#scene2 .question-card", { opacity: 0, x: -52, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" }, 6.62);
+      tl.fromTo(
+        "#scene2 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        6.12,
+      );
+      tl.fromTo(
+        "#scene2 .eyebrow",
+        { opacity: 0, x: 34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        6.16,
+      );
+      tl.fromTo(
+        "#scene2 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        6.28,
+      );
+      tl.fromTo(
+        "#scene2 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" },
+        6.92,
+      );
+      tl.fromTo(
+        "#scene2 .thread-path",
+        { opacity: 0, scaleY: 0 },
+        { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" },
+        6.4,
+      );
+      tl.fromTo(
+        "#scene2 .question-card",
+        { opacity: 0, x: -52, scale: 0.98 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" },
+        6.62,
+      );
 
       tl.to("#scene2", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 12.18);
       tl.set("#scene3", { opacity: 1, visibility: "visible" }, 12.18);
-      tl.fromTo("#scene3", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 12.18);
+      tl.fromTo(
+        "#scene3",
+        { x: 1920 },
+        { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false },
+        12.18,
+      );
       tl.set("#scene2", { visibility: "hidden" }, 12.75);
-      tl.fromTo("#scene3 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 12.54);
-      tl.fromTo("#scene3 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 12.58);
-      tl.fromTo("#scene3 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 12.72);
-      tl.fromTo("#scene3 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 13.28);
-      tl.fromTo("#scene3 .action-pill", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.38, stagger: 0.09, ease: "power2.out" }, 13.78);
-      tl.fromTo("#scene3 .surface-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 12.88);
+      tl.fromTo(
+        "#scene3 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        12.54,
+      );
+      tl.fromTo(
+        "#scene3 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        12.58,
+      );
+      tl.fromTo(
+        "#scene3 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        12.72,
+      );
+      tl.fromTo(
+        "#scene3 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+        13.28,
+      );
+      tl.fromTo(
+        "#scene3 .action-pill",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.38, stagger: 0.09, ease: "power2.out" },
+        13.78,
+      );
+      tl.fromTo(
+        "#scene3 .surface-frame",
+        { opacity: 0, y: 34, scale: 0.965 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        12.88,
+      );
 
       tl.to("#scene3", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 18.64);
       tl.set("#scene4", { opacity: 1, visibility: "visible" }, 18.64);
-      tl.fromTo("#scene4", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 18.64);
+      tl.fromTo(
+        "#scene4",
+        { x: 1920 },
+        { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false },
+        18.64,
+      );
       tl.set("#scene3", { visibility: "hidden" }, 19.21);
-      tl.fromTo("#scene4 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 19.0);
-      tl.fromTo("#scene4 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 19.04);
-      tl.fromTo("#scene4 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 19.18);
-      tl.fromTo("#scene4 .step-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 19.86);
-      tl.fromTo("#scene4 .step", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" }, 20.04);
-      tl.fromTo("#scene4 .step-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 20.18);
+      tl.fromTo(
+        "#scene4 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        19.0,
+      );
+      tl.fromTo(
+        "#scene4 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        19.04,
+      );
+      tl.fromTo(
+        "#scene4 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        19.18,
+      );
+      tl.fromTo(
+        "#scene4 .step-line",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" },
+        19.86,
+      );
+      tl.fromTo(
+        "#scene4 .step",
+        { opacity: 0, y: 42, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" },
+        20.04,
+      );
+      tl.fromTo(
+        "#scene4 .step-dot",
+        { opacity: 0, scale: 0.2 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" },
+        20.18,
+      );
 
       tl.to("#scene4", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 24.68);
       tl.set("#scene5", { opacity: 1, visibility: "visible" }, 24.68);
-      tl.fromTo("#scene5", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 24.68);
+      tl.fromTo(
+        "#scene5",
+        { x: 1920 },
+        { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false },
+        24.68,
+      );
       tl.set("#scene4", { visibility: "hidden" }, 25.25);
-      tl.fromTo("#scene5 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 25.04);
-      tl.fromTo("#scene5 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 25.08);
-      tl.fromTo("#scene5 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 25.22);
-      tl.fromTo("#scene5 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 25.78);
-      tl.fromTo("#scene5 .dashboard-window", { opacity: 0, x: -42, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 26.14);
-      tl.fromTo("#scene5 .pdf-card", { opacity: 0, x: 46, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 26.38);
-      tl.fromTo("#scene5 .result-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.36, stagger: 0.07, ease: "power2.out" }, 26.9);
+      tl.fromTo(
+        "#scene5 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        25.04,
+      );
+      tl.fromTo(
+        "#scene5 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        25.08,
+      );
+      tl.fromTo(
+        "#scene5 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        25.22,
+      );
+      tl.fromTo(
+        "#scene5 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+        25.78,
+      );
+      tl.fromTo(
+        "#scene5 .dashboard-window",
+        { opacity: 0, x: -42, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" },
+        26.14,
+      );
+      tl.fromTo(
+        "#scene5 .pdf-card",
+        { opacity: 0, x: 46, scale: 0.95 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.66, ease: "power3.out" },
+        26.38,
+      );
+      tl.fromTo(
+        "#scene5 .result-chip",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.36, stagger: 0.07, ease: "power2.out" },
+        26.9,
+      );
 
       tl.to("#scene5", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 31.14);
       tl.set("#scene6", { opacity: 1, visibility: "visible" }, 31.14);
-      tl.fromTo("#scene6", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 31.14);
+      tl.fromTo(
+        "#scene6",
+        { x: 1920 },
+        { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false },
+        31.14,
+      );
       tl.set("#scene5", { visibility: "hidden" }, 31.71);
-      tl.fromTo("#scene6 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 31.52);
-      tl.fromTo("#scene6 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 31.56);
-      tl.fromTo("#scene6 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 31.7);
-      tl.fromTo("#scene6 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 32.32);
-      tl.fromTo("#scene6 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 32.72);
-      tl.fromTo("#scene6 .surface-frame", { opacity: 0, x: 46, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 32.06);
-      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 37.2);
+      tl.fromTo(
+        "#scene6 .scene-number",
+        { opacity: 0, y: -14 },
+        { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+        31.52,
+      );
+      tl.fromTo(
+        "#scene6 .eyebrow",
+        { opacity: 0, x: -34 },
+        { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" },
+        31.56,
+      );
+      tl.fromTo(
+        "#scene6 .headline",
+        { opacity: 0, y: 38 },
+        { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" },
+        31.7,
+      );
+      tl.fromTo(
+        "#scene6 .subhead",
+        { opacity: 0, y: 22 },
+        { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+        32.32,
+      );
+      tl.fromTo(
+        "#scene6 .rule",
+        { opacity: 0, scaleX: 0 },
+        { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" },
+        32.72,
+      );
+      tl.fromTo(
+        "#scene6 .surface-frame",
+        { opacity: 0, x: 46, scale: 0.965 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" },
+        32.06,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" },
+        37.2,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 40.44);
       window.__timelines.main = tl;
     </script>

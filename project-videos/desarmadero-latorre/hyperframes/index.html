@@ -37,8 +37,7 @@
         overflow: hidden;
         background:
           linear-gradient(135deg, rgba(48, 69, 77, 0.08) 0 1px, rgba(48, 69, 77, 0) 1px 56px),
-          linear-gradient(90deg, rgba(180, 122, 72, 0.09), rgba(85, 191, 232, 0.06)),
-          #f3f1ec;
+          linear-gradient(90deg, rgba(180, 122, 72, 0.09), rgba(85, 191, 232, 0.06)), #f3f1ec;
       }
 
       #scene1 {
@@ -92,8 +91,16 @@
         position: absolute;
         inset: 0;
         background-image:
-          repeating-linear-gradient(0deg, rgba(32, 33, 31, 0.035) 0 1px, rgba(32, 33, 31, 0) 1px 5px),
-          repeating-linear-gradient(90deg, rgba(32, 33, 31, 0.024) 0 1px, rgba(32, 33, 31, 0) 1px 7px);
+          repeating-linear-gradient(
+            0deg,
+            rgba(32, 33, 31, 0.035) 0 1px,
+            rgba(32, 33, 31, 0) 1px 5px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(32, 33, 31, 0.024) 0 1px,
+            rgba(32, 33, 31, 0) 1px 7px
+          );
         opacity: 0.38;
       }
 
@@ -252,7 +259,12 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(36, 52, 58, 0.78), rgba(36, 52, 58, 0.12) 54%, rgba(36, 52, 58, 0.4)),
+          linear-gradient(
+            90deg,
+            rgba(36, 52, 58, 0.78),
+            rgba(36, 52, 58, 0.12) 54%,
+            rgba(36, 52, 58, 0.4)
+          ),
           url("./assets/parts-stockroom.png");
         background-position: center;
         background-size: cover;
@@ -399,7 +411,12 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(243, 241, 236, 0.94), rgba(243, 241, 236, 0.3) 40%, rgba(243, 241, 236, 0)),
+          linear-gradient(
+            90deg,
+            rgba(243, 241, 236, 0.94),
+            rgba(243, 241, 236, 0.3) 40%,
+            rgba(243, 241, 236, 0)
+          ),
           linear-gradient(0deg, rgba(36, 52, 58, 0.16), rgba(36, 52, 58, 0));
       }
 
@@ -593,7 +610,12 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, rgba(36, 52, 58, 0.92), rgba(36, 52, 58, 0.58) 46%, rgba(36, 52, 58, 0.1)),
+          linear-gradient(
+            90deg,
+            rgba(36, 52, 58, 0.92),
+            rgba(36, 52, 58, 0.58) 46%,
+            rgba(36, 52, 58, 0.1)
+          ),
           linear-gradient(0deg, rgba(32, 33, 31, 0.22), rgba(32, 33, 31, 0));
         content: "";
       }
@@ -659,7 +681,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="21">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="21"
+    >
       <section id="scene1" class="scene">
         <div class="bg-system">
           <div class="grid-layer"></div>
@@ -874,11 +903,36 @@
       });
 
       function enterCopy(scene, time) {
-        tl.fromTo(scene + " .scene-tag", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, time);
-        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.44, ease: "expo.out" }, time + 0.04);
-        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, time + 0.14);
-        tl.fromTo(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, time + 0.58);
-        tl.fromTo(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, time + 0.9);
+        tl.fromTo(
+          scene + " .scene-tag",
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+          time,
+        );
+        tl.fromTo(
+          scene + " .eyebrow",
+          { opacity: 0, x: -36 },
+          { opacity: 1, x: 0, duration: 0.44, ease: "expo.out" },
+          time + 0.04,
+        );
+        tl.fromTo(
+          scene + " .headline",
+          { opacity: 0, y: 42 },
+          { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+          time + 0.14,
+        );
+        tl.fromTo(
+          scene + " .subhead",
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" },
+          time + 0.58,
+        );
+        tl.fromTo(
+          scene + " .rule",
+          { opacity: 0, scaleX: 0 },
+          { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" },
+          time + 0.9,
+        );
       }
 
       function pushScene(fromScene, toScene, time) {
@@ -890,43 +944,139 @@
 
       function blurToEnd(fromScene, toScene, time) {
         tl.set(toScene, { opacity: 0, filter: "blur(12px)", scale: 0.985 }, time);
-        tl.to(fromScene, { opacity: 0, filter: "blur(12px)", scale: 1.02, duration: 0.62, ease: "power2.inOut" }, time);
-        tl.to(toScene, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.72, ease: "power2.out" }, time + 0.12);
+        tl.to(
+          fromScene,
+          { opacity: 0, filter: "blur(12px)", scale: 1.02, duration: 0.62, ease: "power2.inOut" },
+          time,
+        );
+        tl.to(
+          toScene,
+          { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.72, ease: "power2.out" },
+          time + 0.12,
+        );
         tl.set(fromScene, { filter: "blur(0px)", scale: 1 }, time + 0.76);
       }
 
       tl.to(".grid-layer", { x: 22, y: 18, duration: 21, ease: "none" }, 0);
-      tl.to(".ambient-panel.left", { y: 26, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
-      tl.to(".ambient-panel.right", { y: -24, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".ambient-panel.left",
+        { y: 26, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+      tl.to(
+        ".ambient-panel.right",
+        { y: -24, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
 
       enterCopy("#scene1", 0.18);
-      tl.fromTo("#scene1 .stock-frame", { opacity: 0, x: 64, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 0.34);
-      tl.fromTo("#scene1 .inventory-note", { opacity: 0, y: -22, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, ease: "power2.out" }, 0.92);
-      tl.fromTo("#scene1 .call-card", { opacity: 0, y: 36, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(1.25)" }, 1.18);
+      tl.fromTo(
+        "#scene1 .stock-frame",
+        { opacity: 0, x: 64, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        0.34,
+      );
+      tl.fromTo(
+        "#scene1 .inventory-note",
+        { opacity: 0, y: -22, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.48, ease: "power2.out" },
+        0.92,
+      );
+      tl.fromTo(
+        "#scene1 .call-card",
+        { opacity: 0, y: 36, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(1.25)" },
+        1.18,
+      );
 
       pushScene("#scene1", "#scene2", 4.08);
       enterCopy("#scene2", 4.62);
-      tl.fromTo("#scene2 .catalog-frame", { opacity: 0, y: 34, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 4.58);
-      tl.fromTo("#scene2 .search-callout", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.54, ease: "power2.out" }, 5.18);
-      tl.fromTo("#scene2 .filter-chip", { opacity: 0, x: 40, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" }, 5.38);
+      tl.fromTo(
+        "#scene2 .catalog-frame",
+        { opacity: 0, y: 34, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        4.58,
+      );
+      tl.fromTo(
+        "#scene2 .search-callout",
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.54, ease: "power2.out" },
+        5.18,
+      );
+      tl.fromTo(
+        "#scene2 .filter-chip",
+        { opacity: 0, x: 40, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" },
+        5.38,
+      );
 
       pushScene("#scene2", "#scene3", 8.48);
       enterCopy("#scene3", 9.02);
-      tl.fromTo("#scene3 .results-frame", { opacity: 0, x: 54, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 8.96);
-      tl.fromTo("#scene3 .detail-chip", { opacity: 0, x: -38, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" }, 9.48);
-      tl.fromTo("#scene3 .listing-card", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.16, ease: "back.out(1.2)" }, 9.72);
+      tl.fromTo(
+        "#scene3 .results-frame",
+        { opacity: 0, x: 54, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+        8.96,
+      );
+      tl.fromTo(
+        "#scene3 .detail-chip",
+        { opacity: 0, x: -38, scale: 0.96 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" },
+        9.48,
+      );
+      tl.fromTo(
+        "#scene3 .listing-card",
+        { opacity: 0, y: 40, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.16, ease: "back.out(1.2)" },
+        9.72,
+      );
 
       pushScene("#scene3", "#scene4", 12.88);
       enterCopy("#scene4", 13.42);
-      tl.fromTo("#scene4 .workflow-panel", { opacity: 0, y: 34, scale: 0.975 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 13.3);
-      tl.fromTo("#scene4 .rail-line", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.74, ease: "power3.out" }, 13.92);
-      tl.fromTo("#scene4 .workflow-step", { opacity: 0, x: 42, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.14, ease: "power3.out" }, 14.08);
-      tl.fromTo("#scene4 .step-index", { opacity: 0, scale: 0.35 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.14, ease: "back.out(1.5)" }, 14.2);
-      tl.fromTo("#scene4 .question-note", { opacity: 0, y: 28, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "power2.out" }, 15.08);
+      tl.fromTo(
+        "#scene4 .workflow-panel",
+        { opacity: 0, y: 34, scale: 0.975 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" },
+        13.3,
+      );
+      tl.fromTo(
+        "#scene4 .rail-line",
+        { opacity: 0, scaleY: 0 },
+        { opacity: 1, scaleY: 1, duration: 0.74, ease: "power3.out" },
+        13.92,
+      );
+      tl.fromTo(
+        "#scene4 .workflow-step",
+        { opacity: 0, x: 42, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.14, ease: "power3.out" },
+        14.08,
+      );
+      tl.fromTo(
+        "#scene4 .step-index",
+        { opacity: 0, scale: 0.35 },
+        { opacity: 1, scale: 1, duration: 0.34, stagger: 0.14, ease: "back.out(1.5)" },
+        14.2,
+      );
+      tl.fromTo(
+        "#scene4 .question-note",
+        { opacity: 0, y: 28, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "power2.out" },
+        15.08,
+      );
 
       blurToEnd("#scene4", "#scene5", 17.62);
-      tl.fromTo("#scene5 .end-surface", { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, 17.86);
-      tl.fromTo("#scene5 .end-lockup", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.54, ease: "sine.out" }, 18.02);
+      tl.fromTo(
+        "#scene5 .end-surface",
+        { opacity: 0, scale: 1.02 },
+        { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" },
+        17.86,
+      );
+      tl.fromTo(
+        "#scene5 .end-lockup",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.54, ease: "sine.out" },
+        18.02,
+      );
       tl.to("#end-fade", { opacity: 1, duration: 0.22, ease: "sine.inOut" }, 20.78);
 
       window.__timelines["main"] = tl;

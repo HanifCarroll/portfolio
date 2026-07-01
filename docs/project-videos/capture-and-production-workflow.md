@@ -77,12 +77,12 @@ After the brief, copy `docs/project-videos/project-video-source-template.md` int
 
 Choose the viewer and story mode before writing scene copy. Do not start from a title-card sequence or from the implementation details.
 
-| Viewer | Default story mode | What the video should do |
-| --- | --- | --- |
-| Hiring manager or general portfolio viewer | Plain overview | Explain the problem, solution, and result in everyday language. |
-| Technical reviewer | Evidence tour | Show concrete inputs, outputs, guardrails, and inspection paths. |
-| Product/customer viewer | Product walkthrough | Show the user path and outcome without repo or stack details. |
-| Social/thumbnail viewer | Short demo | Show one clear transformation or product moment quickly. |
+| Viewer                                     | Default story mode  | What the video should do                                         |
+| ------------------------------------------ | ------------------- | ---------------------------------------------------------------- |
+| Hiring manager or general portfolio viewer | Plain overview      | Explain the problem, solution, and result in everyday language.  |
+| Technical reviewer                         | Evidence tour       | Show concrete inputs, outputs, guardrails, and inspection paths. |
+| Product/customer viewer                    | Product walkthrough | Show the user path and outcome without repo or stack details.    |
+| Social/thumbnail viewer                    | Short demo          | Show one clear transformation or product moment quickly.         |
 
 Use the plain overview mode when the goal is broad understanding. Keep technical evidence in the source document as backing notes, but keep it off the screen unless the chosen viewer needs it.
 

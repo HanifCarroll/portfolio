@@ -1,0 +1,19 @@
+---
+import ServiceOfferPage from '../components/ServiceOfferPage.astro';
+import { serviceOffers, type ServiceOffer } from '../lib/service-offers';
+
+interface PageProps {
+	offer: ServiceOffer;
+}
+
+export function getStaticPaths() {
+	return Object.values(serviceOffers).map((offer) => ({
+		params: { service: offer.path.split('/').filter(Boolean).join('/') },
+		props: { offer }
+	}));
+}
+
+const { offer } = Astro.props as PageProps;
+---
+
+<ServiceOfferPage offer={offer} />

@@ -13,4 +13,3 @@ I'm looking for a full-time product engineering home: a team building a product 
 ## Fitness
 
 My ankles, knees, and hips are feeling better than ever! I'm beyond thrilled to be feeling like this again. Still have room to improve, but I'm already a different person than I was before.
-

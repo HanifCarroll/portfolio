@@ -3,14 +3,9 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL, RESUME_URL } from '../consts';
 import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
+import { getProject } from '../lib/projects';
+import { getProjectImage } from '../lib/project-images';
 import HeroImage from '@src/assets/img/portrait-brick.webp';
-import acquirePhoto from '@src/assets/img/projects/acquire-pursuits.png';
-import apartmentFinderPhoto from '@src/assets/img/projects/apartment-finder-ui.png';
-import baEventosPhoto from '@src/assets/img/projects/ba-eventos-feature.png';
-import casamoPhoto from '@src/assets/img/projects/casamo-homepage-viewport.jpg';
-import desarmaderoOperationsPhoto from '@src/assets/img/projects/desarmadero-operations-ventas.png';
-import genruptPhoto from '@src/assets/img/projects/genrupt-creative-ops-photo.png';
-import palabrunoPhoto from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
 
 const title = 'Hanif Carroll | Product Engineer';
 const description =
@@ -52,6 +47,16 @@ const homepageJsonLd = [
 	}
 ];
 
+const projectImage = (slug: string, imageKey: 'hero' | 'feature' = 'feature') => {
+	const project = getProject(slug);
+
+	if (!project) {
+		throw new Error(`Missing project metadata for homepage card "${slug}".`);
+	}
+
+	return getProjectImage(project, imageKey);
+};
+
 const caseStudyBySlug = {
 	acquire: {
 		slug: 'acquire',
@@ -59,7 +64,7 @@ const caseStudyBySlug = {
 		title: 'Acquire',
 		body: 'Built a local-first acquisition operating system that turns sourcing, review, application prep, outreach, and submission into one governed workflow.',
 		tech: 'Rust • SQLite • SwiftUI • Codex • Playwriter',
-		image: acquirePhoto,
+		image: projectImage('acquire'),
 		imageAlt: 'Acquire macOS command center showing the Pursuits workflow for submitted applications.',
 		imageClass: 'object-left-top'
 	},
@@ -69,7 +74,7 @@ const caseStudyBySlug = {
 		title: 'Palabruno',
 		body: "Took a non-technical founder's idea from concept to live iOS, Android, and web app — including teacher workflows, AI features, Stripe/RevenueCat billing, and App Store launch.",
 		tech: 'React Native / Expo • Supabase • Stripe • RevenueCat • OpenAI',
-		image: palabrunoPhoto,
+		image: projectImage('palabruno'),
 		imageAlt: 'Spanish reading materials with vocabulary, grammar, and pronunciation cards.',
 		imageClass: undefined
 	},
@@ -79,7 +84,7 @@ const caseStudyBySlug = {
 		title: 'Genrupt',
 		body: 'Evolved an AI media MVP into a production platform for Amazon sellers with subscriptions, credit billing, agent access, and background jobs — enabled the first 100 paying customers.',
 		tech: 'Next.js • PostgreSQL • Stripe • OpenAI • MCP',
-		image: genruptPhoto,
+		image: projectImage('genrupt'),
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
@@ -89,7 +94,7 @@ const caseStudyBySlug = {
 		title: 'Desarmadero Operations',
 		body: 'Turned one discovery call with an auto-dismantling yard into a clickable operations prototype, PRD, functional spec, and live demo before quoting the full build.',
 		tech: 'SvelteKit • Drizzle • Cloudflare D1 • Product discovery',
-		image: desarmaderoOperationsPhoto,
+		image: projectImage('desarmadero-operations-prototype', 'hero'),
 		imageAlt: 'Desarmadero operations prototype showing the counter-sales workflow and live order summary.',
 		imageClass: 'object-left-top'
 	},
@@ -99,7 +104,7 @@ const caseStudyBySlug = {
 		title: 'Casamo',
 		body: 'Built an AI-powered travel decision tool that helps remote workers find quality long-stay accommodations, with automated scanning, payments, and analytics.',
 		tech: 'TanStack Start • PostgreSQL • Stripe • Playwright • OpenAI',
-		image: casamoPhoto,
+		image: projectImage('casamo'),
 		imageAlt: 'Casamo homepage showing the stay search form and audit priorities over a furnished apartment.',
 		imageClass: 'object-left-top'
 	}
@@ -113,21 +118,21 @@ const additionalWork = [
 		title: 'Casamo',
 		focus: 'Stay-audit MVP',
 		body: 'A live travel decision tool that turns noisy Airbnb and Booking.com searches into evidence-backed stay reports.',
-		image: casamoPhoto
+		image: projectImage('casamo')
 	},
 	{
 		slug: 'apartment-finder',
 		title: 'Apartment Finder',
 		focus: 'AI listing triage',
 		body: 'An evidence-backed apartment search workflow with labeled evals, cost controls, source links, and inspectable model judgments.',
-		image: apartmentFinderPhoto
+		image: projectImage('apartment-finder')
 	},
 	{
 		slug: 'ba-eventos',
 		title: 'BA Eventos',
 		focus: 'Grounded AI discovery',
 		body: 'A local event discovery product built around messy source ingestion, venue cleanup, semantic search, and grounded answers.',
-		image: baEventosPhoto
+		image: projectImage('ba-eventos')
 	}
 ] as const;
 

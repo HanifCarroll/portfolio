@@ -44,8 +44,7 @@
         overflow: hidden;
         background:
           radial-gradient(circle at 14% 18%, rgba(255, 247, 232, 0.22), transparent 26%),
-          radial-gradient(circle at 84% 76%, rgba(246, 177, 74, 0.24), transparent 28%),
-          #e8342a;
+          radial-gradient(circle at 84% 76%, rgba(246, 177, 74, 0.24), transparent 28%), #e8342a;
       }
 
       .backdrop::before {
@@ -56,7 +55,9 @@
         background-image:
           radial-gradient(circle, rgba(9, 6, 6, 0.6) 1.6px, transparent 1.8px),
           linear-gradient(90deg, rgba(9, 6, 6, 0.12) 1px, transparent 1px);
-        background-size: 18px 18px, 120px 120px;
+        background-size:
+          18px 18px,
+          120px 120px;
       }
 
       .red-wash {
@@ -462,7 +463,14 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="16.5">
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="16.5"
+    >
       <section id="scene1" class="scene">
         <div class="backdrop" data-layout-ignore>
           <div class="red-wash"></div>
@@ -480,10 +488,16 @@
           </div>
           <div class="art-board">
             <div id="card-left" class="art-card left">
-              <img src="assets/redwriter-feature-scatter-a.png" alt="Redwriter Comics artwork surface" />
+              <img
+                src="assets/redwriter-feature-scatter-a.png"
+                alt="Redwriter Comics artwork surface"
+              />
             </div>
             <div id="card-main" class="art-card large">
-              <img src="assets/redwriter-feature-scatter-b.png" alt="Redwriter Comics portfolio artwork" />
+              <img
+                src="assets/redwriter-feature-scatter-b.png"
+                alt="Redwriter Comics portfolio artwork"
+              />
             </div>
             <div id="card-bottom" class="art-card bottom">
               <img src="assets/redwriter-hero-scatter.png" alt="Redwriter Comics site hero" />
@@ -511,9 +525,16 @@
           </div>
           <div>
             <div id="review-frame" class="shot-frame">
-              <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="window-bar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
               <div class="feature-viewport">
-                <img id="feature-scroll" src="assets/redwriter-feature-review.png" alt="Redwriter Comics portfolio page" data-layout-allow-overflow />
+                <img
+                  id="feature-scroll"
+                  src="assets/redwriter-feature-review.png"
+                  alt="Redwriter Comics portfolio page"
+                  data-layout-allow-overflow
+                />
               </div>
             </div>
             <div class="surface-labels">
@@ -555,7 +576,9 @@
           </div>
           <div class="copy">
             <p id="s3-eyebrow" class="eyebrow">Commission path</p>
-            <h2 id="s3-title" class="headline tight">Review could turn into commission conversations.</h2>
+            <h2 id="s3-title" class="headline tight">
+              Review could turn into commission conversations.
+            </h2>
             <span id="s3-rule" class="rule"></span>
           </div>
         </div>
@@ -589,16 +612,40 @@
       var tl = gsap.timeline({ paused: true, defaults: { duration: 0.46, ease: "power2.out" } });
 
       tl.to(".ink-grid", { x: 28, y: -18, duration: 16.5, ease: "none" }, 0);
-      tl.to(".red-wash", { scale: 1.035, duration: 8.25, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(
+        ".red-wash",
+        { scale: 1.035, duration: 8.25, repeat: 1, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
 
       function enterCopy(scene, start, xOffset) {
-        tl.from(scene + " .scene-index", { opacity: 0, y: -12, duration: 0.28, ease: "power2.out", overwrite: "auto" }, start);
-        tl.from(scene + " .eyebrow", { opacity: 0, x: xOffset, duration: 0.34, ease: "expo.out", overwrite: "auto" }, start + 0.04);
-        tl.from(scene + " .headline", { opacity: 0, y: 44, duration: 0.58, ease: "power3.out", overwrite: "auto" }, start + 0.16);
+        tl.from(
+          scene + " .scene-index",
+          { opacity: 0, y: -12, duration: 0.28, ease: "power2.out", overwrite: "auto" },
+          start,
+        );
+        tl.from(
+          scene + " .eyebrow",
+          { opacity: 0, x: xOffset, duration: 0.34, ease: "expo.out", overwrite: "auto" },
+          start + 0.04,
+        );
+        tl.from(
+          scene + " .headline",
+          { opacity: 0, y: 44, duration: 0.58, ease: "power3.out", overwrite: "auto" },
+          start + 0.16,
+        );
         if (document.querySelector(scene + " .subhead")) {
-          tl.from(scene + " .subhead", { opacity: 0, y: 24, duration: 0.42, ease: "sine.out", overwrite: "auto" }, start + 0.58);
+          tl.from(
+            scene + " .subhead",
+            { opacity: 0, y: 24, duration: 0.42, ease: "sine.out", overwrite: "auto" },
+            start + 0.58,
+          );
         }
-        tl.from(scene + " .rule", { opacity: 0, scaleX: 0, duration: 0.48, ease: "expo.out", overwrite: "auto" }, start + 0.72);
+        tl.from(
+          scene + " .rule",
+          { opacity: 0, scaleX: 0, duration: 0.48, ease: "expo.out", overwrite: "auto" },
+          start + 0.72,
+        );
       }
 
       function pushTransition(fromScene, toScene, time) {
@@ -609,26 +656,71 @@
       }
 
       enterCopy("#scene1", 0.16, -36);
-      tl.from("#card-left", { opacity: 0, x: -80, y: 38, rotation: -13, duration: 0.58, ease: "back.out(1.25)" }, 0.44);
-      tl.from("#card-main", { opacity: 0, y: 72, scale: 0.92, rotation: 6, duration: 0.64, ease: "power3.out" }, 0.66);
-      tl.from("#card-bottom", { opacity: 0, x: 74, y: 46, rotation: 10, duration: 0.56, ease: "back.out(1.2)" }, 0.9);
+      tl.from(
+        "#card-left",
+        { opacity: 0, x: -80, y: 38, rotation: -13, duration: 0.58, ease: "back.out(1.25)" },
+        0.44,
+      );
+      tl.from(
+        "#card-main",
+        { opacity: 0, y: 72, scale: 0.92, rotation: 6, duration: 0.64, ease: "power3.out" },
+        0.66,
+      );
+      tl.from(
+        "#card-bottom",
+        { opacity: 0, x: 74, y: 46, rotation: 10, duration: 0.56, ease: "back.out(1.2)" },
+        0.9,
+      );
       pushTransition("#scene1", "#scene2", 4.0);
       enterCopy("#scene2", 4.54, 36);
-      tl.from("#hero-shot", { opacity: 0, y: 34, scale: 0.96, duration: 0.52, ease: "power3.out" }, 4.92);
-      tl.from("#review-frame", { opacity: 0, x: 62, scale: 0.955, duration: 0.64, ease: "power3.out" }, 4.7);
-      tl.from(".surface-label", { opacity: 0, y: 20, duration: 0.3, stagger: 0.08, ease: "power2.out" }, 5.32);
+      tl.from(
+        "#hero-shot",
+        { opacity: 0, y: 34, scale: 0.96, duration: 0.52, ease: "power3.out" },
+        4.92,
+      );
+      tl.from(
+        "#review-frame",
+        { opacity: 0, x: 62, scale: 0.955, duration: 0.64, ease: "power3.out" },
+        4.7,
+      );
+      tl.from(
+        ".surface-label",
+        { opacity: 0, y: 20, duration: 0.3, stagger: 0.08, ease: "power2.out" },
+        5.32,
+      );
       tl.to("#feature-scroll", { y: -190, duration: 3.1, ease: "sine.inOut" }, 5.24);
 
       pushTransition("#scene2", "#scene3", 8.52);
       enterCopy("#scene3", 9.04, -36);
       tl.from("#path-line", { opacity: 0, scaleX: 0, duration: 0.56, ease: "expo.out" }, 9.32);
-      tl.from("#path-art", { opacity: 0, y: 48, rotation: -2, duration: 0.48, ease: "power3.out" }, 9.36);
-      tl.from("#path-review", { opacity: 0, y: 48, scale: 0.96, duration: 0.5, ease: "back.out(1.2)" }, 9.56);
-      tl.from("#path-connect", { opacity: 0, y: 48, rotation: 2, duration: 0.48, ease: "power3.out" }, 9.78);
+      tl.from(
+        "#path-art",
+        { opacity: 0, y: 48, rotation: -2, duration: 0.48, ease: "power3.out" },
+        9.36,
+      );
+      tl.from(
+        "#path-review",
+        { opacity: 0, y: 48, scale: 0.96, duration: 0.5, ease: "back.out(1.2)" },
+        9.56,
+      );
+      tl.from(
+        "#path-connect",
+        { opacity: 0, y: 48, rotation: 2, duration: 0.48, ease: "power3.out" },
+        9.78,
+      );
 
       pushTransition("#scene3", "#scene4", 13.06);
-      tl.from("#scene4 .scene-index", { opacity: 0, y: -12, duration: 0.28, ease: "power2.out" }, 13.58);
-      tl.fromTo("#end-card", { opacity: 0, y: 28, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 13.62);
+      tl.from(
+        "#scene4 .scene-index",
+        { opacity: 0, y: -12, duration: 0.28, ease: "power2.out" },
+        13.58,
+      );
+      tl.fromTo(
+        "#end-card",
+        { opacity: 0, y: 28, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" },
+        13.62,
+      );
 
       window.__timelines["main"] = tl;
     </script>

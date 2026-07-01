@@ -65,25 +65,25 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/redwriter-comics.mdx:35-45` | The work was impressive, but the presentation was fragmented and made professional review harder. |
-| `src/content/case-studies/redwriter-comics.mdx:48-50` | The business objective was to make commission conversations easier through one professional home. |
+| Source                                                | What it supports in plain language                                                                  |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/redwriter-comics.mdx:35-45` | The work was impressive, but the presentation was fragmented and made professional review harder.   |
+| `src/content/case-studies/redwriter-comics.mdx:48-50` | The business objective was to make commission conversations easier through one professional home.   |
 | `src/content/case-studies/redwriter-comics.mdx:55-62` | The galleries were organized around how editors inspect sequential art, covers, and character work. |
-| `src/content/case-studies/redwriter-comics.mdx:76-82` | The site connected portfolio review with a direct path to reach out for professional work. |
-| `src/content/case-studies/redwriter-comics.mdx:86-89` | The shipped result was a professional review surface for editors, publishers, and commissions. |
-| `src/lib/projects/redwriter-comics.json:15-20` | Metadata confirms the constraint, problem, solution, and result framing. |
+| `src/content/case-studies/redwriter-comics.mdx:76-82` | The site connected portfolio review with a direct path to reach out for professional work.          |
+| `src/content/case-studies/redwriter-comics.mdx:86-89` | The shipped result was a professional review surface for editors, publishers, and commissions.      |
+| `src/lib/projects/redwriter-comics.json:15-20`        | Metadata confirms the constraint, problem, solution, and result framing.                            |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Artwork and social proof were scattered before the portfolio hub. | `src/content/case-studies/redwriter-comics.mdx:35-45` | Yes, as plain text and synthetic artwork cards | Yes |
-| Product surface | Redwriter Comics public hero and portfolio surface. | `src/assets/img/projects/redwriter-hero.png`; `src/assets/img/projects/redwriter-feature.png` | Yes, public portfolio assets | Yes |
-| Product action | Galleries organized for editorial scan and comparison. | `src/content/case-studies/redwriter-comics.mdx:55-62` | Yes, as short labels | Yes |
-| Durable output | One professional review surface for editors, publishers, and commissions. | `src/content/case-studies/redwriter-comics.mdx:86-89` | Yes | Yes |
-| Commission path | Review could move to inquiry without asking for links or files first. | `src/content/case-studies/redwriter-comics.mdx:76-82`; `src/lib/projects/redwriter-comics.json:20` | Yes | Yes |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project checks, build, and feedback. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
+| Proof type      | Exact proof                                                                                                           | Source path, URL, or command                                                                       | Safe to show?                                  | On-screen? |
+| --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ---------- |
+| Problem         | Artwork and social proof were scattered before the portfolio hub.                                                     | `src/content/case-studies/redwriter-comics.mdx:35-45`                                              | Yes, as plain text and synthetic artwork cards | Yes        |
+| Product surface | Redwriter Comics public hero and portfolio surface.                                                                   | `src/assets/img/projects/redwriter-hero.png`; `src/assets/img/projects/redwriter-feature.png`      | Yes, public portfolio assets                   | Yes        |
+| Product action  | Galleries organized for editorial scan and comparison.                                                                | `src/content/case-studies/redwriter-comics.mdx:55-62`                                              | Yes, as short labels                           | Yes        |
+| Durable output  | One professional review surface for editors, publishers, and commissions.                                             | `src/content/case-studies/redwriter-comics.mdx:86-89`                                              | Yes                                            | Yes        |
+| Commission path | Review could move to inquiry without asking for links or files first.                                                 | `src/content/case-studies/redwriter-comics.mdx:76-82`; `src/lib/projects/redwriter-comics.json:20` | Yes                                            | Yes        |
+| Verification    | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project checks, build, and feedback. | `docs/project-videos/capture-and-production-workflow.md`                                           | Yes                                            | No         |
 
 ## Selected Story
 
@@ -221,12 +221,12 @@ Reading-speed check: `8` words over `3s` = `160 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | Artwork was scattered. Editors needed one review path. | 8 | 4.5s | 107 |
-| 2 | One portfolio hub made review easier. | 6 | 4.5s | 80 |
-| 3 | Review could turn into commission conversations. | 6 | 4.5s | 80 |
-| End | Redwriter Comics. Portfolio review, ready for commissions. | 8 | 3s | 160 |
+| Scene | Text                                                       | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Artwork was scattered. Editors needed one review path.     |          8 |     4.5s | 107 |
+| 2     | One portfolio hub made review easier.                      |          6 |     4.5s |  80 |
+| 3     | Review could turn into commission conversations.           |          6 |     4.5s |  80 |
+| End   | Redwriter Comics. Portfolio review, ready for commissions. |          8 |       3s | 160 |
 
 Allowed short labels:
 
@@ -243,11 +243,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Redwriter hero | Brand/site proof and ending frame | `src/assets/img/projects/redwriter-hero.png` | No; public portfolio asset | `assets/selected/redwriter-hero.png`; `hyperframes/assets/redwriter-hero.png` |
+| Asset             | Purpose                                     | Source                                          | Redaction needed?          | Final path                                                                          |
+| ----------------- | ------------------------------------------- | ----------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------- |
+| Redwriter hero    | Brand/site proof and ending frame           | `src/assets/img/projects/redwriter-hero.png`    | No; public portfolio asset | `assets/selected/redwriter-hero.png`; `hyperframes/assets/redwriter-hero.png`       |
 | Redwriter feature | Artwork review surface and scattered sheets | `src/assets/img/projects/redwriter-feature.png` | No; public portfolio asset | `assets/selected/redwriter-feature.png`; `hyperframes/assets/redwriter-feature.png` |
-| Redwriter logo | Ending mark and path card | `public/logos/redwriter.webp` | No; public logo | `assets/selected/redwriter-logo.webp`; `hyperframes/assets/redwriter-logo.webp` |
+| Redwriter logo    | Ending mark and path card                   | `public/logos/redwriter.webp`                   | No; public logo            | `assets/selected/redwriter-logo.webp`; `hyperframes/assets/redwriter-logo.webp`     |
 
 The HyperFrames composition also keeps local aliases of repeated public screenshots in `hyperframes/assets/` so the renderer does not report duplicate-media discovery warnings.
 

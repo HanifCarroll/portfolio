@@ -75,29 +75,29 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/palabruno.mdx` | The project took a nontechnical founder's idea from concept to launch across mobile and web. |
-| `src/content/case-studies/palabruno.mdx` | The harder question was what the first commercial version should include and who it should serve first. |
-| `src/content/case-studies/palabruno.mdx` | Teachers were the clearer first buyer because they could create readings, send them to students, and bring students into the app. |
-| `src/content/case-studies/palabruno.mdx` | The solution split the MVP into a mobile reader and teacher web workspace. |
-| `src/content/case-studies/palabruno.mdx` | The launch included payments, store assets, legal pages, release docs, public-site copy, and founder handoff. |
-| `src/lib/projects/palabruno.json` | Metadata confirms the live iOS, Android, and web surfaces, teacher workflows, AI reading features, payments, and launch support. |
-| `/Users/hanifcarroll/projects/palabruno/docs/current-state.md` | Current state confirms the shipped mobile app, live web app, App Store, Google Play, and public web URLs. |
-| `/Users/hanifcarroll/projects/palabruno/docs/PRD.md` | Original product requirements support the teacher-led commercial engine and learner reading flow. |
-| `/Users/hanifcarroll/projects/palabruno/apps/mobile/lib/design-system.ts` | Brand colors for the video palette: warm canvas, ink text, burnt-orange brand, soft warm surfaces, and restrained dark accents. |
+| Source                                                                    | What it supports in plain language                                                                                                |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/palabruno.mdx`                                  | The project took a nontechnical founder's idea from concept to launch across mobile and web.                                      |
+| `src/content/case-studies/palabruno.mdx`                                  | The harder question was what the first commercial version should include and who it should serve first.                           |
+| `src/content/case-studies/palabruno.mdx`                                  | Teachers were the clearer first buyer because they could create readings, send them to students, and bring students into the app. |
+| `src/content/case-studies/palabruno.mdx`                                  | The solution split the MVP into a mobile reader and teacher web workspace.                                                        |
+| `src/content/case-studies/palabruno.mdx`                                  | The launch included payments, store assets, legal pages, release docs, public-site copy, and founder handoff.                     |
+| `src/lib/projects/palabruno.json`                                         | Metadata confirms the live iOS, Android, and web surfaces, teacher workflows, AI reading features, payments, and launch support.  |
+| `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`            | Current state confirms the shipped mobile app, live web app, App Store, Google Play, and public web URLs.                         |
+| `/Users/hanifcarroll/projects/palabruno/docs/PRD.md`                      | Original product requirements support the teacher-led commercial engine and learner reading flow.                                 |
+| `/Users/hanifcarroll/projects/palabruno/apps/mobile/lib/design-system.ts` | Brand colors for the video palette: warm canvas, ink text, burnt-orange brand, soft warm surfaces, and restrained dark accents.   |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Case study states the founder idea needed MVP and buyer-path shaping | `src/content/case-studies/palabruno.mdx` | Yes | Yes, as simplified text |
-| Input | Founder idea and Spanish reading concept | `src/content/case-studies/palabruno.mdx`; `/Users/hanifcarroll/projects/palabruno/docs/PRD.md` | Yes | Yes, as simplified text |
-| Product action | Teacher creates readings from lesson material | `src/assets/img/projects/palabruno-teacher-create-reading.png` | Yes, public/synthetic asset | Yes |
-| Product action | Teacher manages students and groups | `src/assets/img/projects/palabruno-teacher-students.png`; `src/assets/img/projects/palabruno-teacher-groups.png` | Yes, public/synthetic asset; composition avoids emphasizing names | Yes |
-| Durable output | Teacher shares reading material and can review share history | `src/assets/img/projects/palabruno-teacher-recent-shares.png` | Yes, public/synthetic asset; composition crops lightly | Optional |
-| Launch surface | iOS, Android, web, payments, store assets, handoff docs | `src/lib/projects/palabruno.json`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md` | Yes | Yes, as native cards |
-| Reviewer path | Portfolio case study and local app docs | `src/content/case-studies/palabruno.mdx`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md` | Yes | No |
+| Proof type     | Exact proof                                                          | Source path, URL, or command                                                                                     | Safe to show?                                                     | On-screen?              |
+| -------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------- |
+| Problem        | Case study states the founder idea needed MVP and buyer-path shaping | `src/content/case-studies/palabruno.mdx`                                                                         | Yes                                                               | Yes, as simplified text |
+| Input          | Founder idea and Spanish reading concept                             | `src/content/case-studies/palabruno.mdx`; `/Users/hanifcarroll/projects/palabruno/docs/PRD.md`                   | Yes                                                               | Yes, as simplified text |
+| Product action | Teacher creates readings from lesson material                        | `src/assets/img/projects/palabruno-teacher-create-reading.png`                                                   | Yes, public/synthetic asset                                       | Yes                     |
+| Product action | Teacher manages students and groups                                  | `src/assets/img/projects/palabruno-teacher-students.png`; `src/assets/img/projects/palabruno-teacher-groups.png` | Yes, public/synthetic asset; composition avoids emphasizing names | Yes                     |
+| Durable output | Teacher shares reading material and can review share history         | `src/assets/img/projects/palabruno-teacher-recent-shares.png`                                                    | Yes, public/synthetic asset; composition crops lightly            | Optional                |
+| Launch surface | iOS, Android, web, payments, store assets, handoff docs              | `src/lib/projects/palabruno.json`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`                | Yes                                                               | Yes, as native cards    |
+| Reviewer path  | Portfolio case study and local app docs                              | `src/content/case-studies/palabruno.mdx`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`         | Yes                                                               | No                      |
 
 ## Selected Story
 
@@ -290,15 +290,15 @@ Reading-speed check: `5` words over `3s` = `100 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | A founder had a strong idea. The harder question was what to launch first. | 14 | 6s | 140 |
-| 2 | A student reader helped learners. Teachers were the clearer first buyer. | 11 | 6s | 110 |
-| 3 | I shaped Palabruno into two connected surfaces. Mobile for learners. Web for teachers. | 13 | 6.5s | 120 |
-| 4 | Teachers create readings, manage students, organize groups, and share lesson material. | 11 | 6s | 110 |
-| 5 | The launch included iOS, Android, web, payments, store assets, and handoff docs. | 12 | 6.5s | 111 |
-| 6 | Ready for real teacher testing. | 5 | 6s | 50 |
-| End | Palabruno. Ready for teacher testing. | 5 | 3s | 100 |
+| Scene | Text                                                                                   | Word count | Duration | WPM |
+| ----- | -------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | A founder had a strong idea. The harder question was what to launch first.             |         14 |       6s | 140 |
+| 2     | A student reader helped learners. Teachers were the clearer first buyer.               |         11 |       6s | 110 |
+| 3     | I shaped Palabruno into two connected surfaces. Mobile for learners. Web for teachers. |         13 |     6.5s | 120 |
+| 4     | Teachers create readings, manage students, organize groups, and share lesson material. |         11 |       6s | 110 |
+| 5     | The launch included iOS, Android, web, payments, store assets, and handoff docs.       |         12 |     6.5s | 111 |
+| 6     | Ready for real teacher testing.                                                        |          5 |       6s |  50 |
+| End   | Palabruno. Ready for teacher testing.                                                  |          5 |       3s | 100 |
 
 Allowed short labels:
 
@@ -325,13 +325,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
-| Product composite | Product proof and thumbnail frame | `src/assets/img/projects/palabruno-founder-idea-launch.png` | No; public case-study asset | `assets/selected/palabruno-founder-idea-launch.png`; HyperFrames aliases: `palabruno-product-problem.png`, `palabruno-product-solution.png`, `palabruno-product-final.png` |
-| Teacher create reading | Scene 4 product action and scene 5 background proof | `src/assets/img/projects/palabruno-teacher-create-reading.png` | No; crop sidebar emphasis in composition | `assets/selected/palabruno-teacher-create-reading.png`; `hyperframes/assets/palabruno-teacher-create-reading.png`; alias: `palabruno-teacher-create-launch.png` |
-| Teacher library | Scene 2 teacher workspace proof | `src/assets/img/projects/palabruno-teacher-library.png` | No; crop/sidebar de-emphasis in composition | `assets/selected/palabruno-teacher-library.png`; `hyperframes/assets/palabruno-teacher-library.png` |
-| Teacher groups | Scene 4 class organization proof | `src/assets/img/projects/palabruno-teacher-groups.png` | No; synthetic/public example | `assets/selected/palabruno-teacher-groups.png`; `hyperframes/assets/palabruno-teacher-groups.png` |
-| Recent shares | Scene 4 sharing proof | `src/assets/img/projects/palabruno-teacher-recent-shares.png` | No; synthetic/public example; do not zoom into recipient names | `assets/selected/palabruno-teacher-recent-shares.png`; `hyperframes/assets/palabruno-teacher-recent-shares.png` |
+| Asset                  | Purpose                                             | Source                                                         | Redaction needed?                                              | Final path                                                                                                                                                                 |
+| ---------------------- | --------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Product composite      | Product proof and thumbnail frame                   | `src/assets/img/projects/palabruno-founder-idea-launch.png`    | No; public case-study asset                                    | `assets/selected/palabruno-founder-idea-launch.png`; HyperFrames aliases: `palabruno-product-problem.png`, `palabruno-product-solution.png`, `palabruno-product-final.png` |
+| Teacher create reading | Scene 4 product action and scene 5 background proof | `src/assets/img/projects/palabruno-teacher-create-reading.png` | No; crop sidebar emphasis in composition                       | `assets/selected/palabruno-teacher-create-reading.png`; `hyperframes/assets/palabruno-teacher-create-reading.png`; alias: `palabruno-teacher-create-launch.png`            |
+| Teacher library        | Scene 2 teacher workspace proof                     | `src/assets/img/projects/palabruno-teacher-library.png`        | No; crop/sidebar de-emphasis in composition                    | `assets/selected/palabruno-teacher-library.png`; `hyperframes/assets/palabruno-teacher-library.png`                                                                        |
+| Teacher groups         | Scene 4 class organization proof                    | `src/assets/img/projects/palabruno-teacher-groups.png`         | No; synthetic/public example                                   | `assets/selected/palabruno-teacher-groups.png`; `hyperframes/assets/palabruno-teacher-groups.png`                                                                          |
+| Recent shares          | Scene 4 sharing proof                               | `src/assets/img/projects/palabruno-teacher-recent-shares.png`  | No; synthetic/public example; do not zoom into recipient names | `assets/selected/palabruno-teacher-recent-shares.png`; `hyperframes/assets/palabruno-teacher-recent-shares.png`                                                            |
 
 ## Privacy Check
 

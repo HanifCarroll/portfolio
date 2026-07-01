@@ -73,29 +73,29 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Source Review Notes
 
-| Source | What it supports in plain language |
-| --- | --- |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:35-39` | One discovery call became a clickable operations prototype, PRD, spec, and live demo. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:41-45` | The old operating model depended on paper sheets, messages, spreadsheets, memory, and a 301-position yard. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:47-54` | The work started from the real operating model and built a prototype before quoting the full system. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:57-63` | The prototype follows seller, cash desk, dismantle manager, and dismantler workflow surfaces. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:66-77` | Payment gates work, the yard map replaces memory, and roles shape focused product surfaces. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99` | The public work sample includes discovery artifacts, PRD, functional spec, live demo, seeded fake data, and screenshots. |
-| `src/content/case-studies/desarmadero-operations-prototype.mdx:102-106` | The prototype made the scope conversation clearer because the client could react to a working model. |
-| `src/lib/projects/desarmadero-operations-prototype.json:29-43` | Metadata confirms the constraints, problem, solution, result, and modeled roles. |
+| Source                                                                  | What it supports in plain language                                                                                       |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:35-39`   | One discovery call became a clickable operations prototype, PRD, spec, and live demo.                                    |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:41-45`   | The old operating model depended on paper sheets, messages, spreadsheets, memory, and a 301-position yard.               |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:47-54`   | The work started from the real operating model and built a prototype before quoting the full system.                     |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:57-63`   | The prototype follows seller, cash desk, dismantle manager, and dismantler workflow surfaces.                            |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:66-77`   | Payment gates work, the yard map replaces memory, and roles shape focused product surfaces.                              |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99`   | The public work sample includes discovery artifacts, PRD, functional spec, live demo, seeded fake data, and screenshots. |
+| `src/content/case-studies/desarmadero-operations-prototype.mdx:102-106` | The prototype made the scope conversation clearer because the client could react to a working model.                     |
+| `src/lib/projects/desarmadero-operations-prototype.json:29-43`          | Metadata confirms the constraints, problem, solution, result, and modeled roles.                                         |
 
 ## Proof Inventory
 
-| Proof type | Exact proof | Source path, URL, or command | Safe to show? | On-screen? |
-| --- | --- | --- | --- | --- |
-| Problem | Operating model spread across paper budget sheets, WhatsApp, Excel, memory, and a 301-position yard. | `src/content/case-studies/desarmadero-operations-prototype.mdx:41-45`; `src/lib/projects/desarmadero-operations-prototype.json:29-33` | Yes, as plain text | Yes |
-| Input | One discovery call and spoken business workflow. | `src/content/case-studies/desarmadero-operations-prototype.mdx:35-39` | Yes, as generalized text | Yes |
-| Product action | Seller records the sale, cash desk confirms payment, manager assigns work, dismantler sees orders. | `src/content/case-studies/desarmadero-operations-prototype.mdx:57-58` | Yes, as role labels | Yes |
-| Durable output | Clickable prototype, PRD, functional spec, live demo, seeded demo, and screenshots. | `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99` | Yes, as artifact cards | Yes |
-| Saved record | Counter-sales screen includes customer, vehicle, parts, and live order summary. | `src/assets/img/projects/desarmadero-operations-ventas.png`; case-study alt text | Yes, public anonymized screenshot | Yes |
-| Guardrail or warning | Payment gates dismantler work until cash desk records deposit or full payment. | `src/content/case-studies/desarmadero-operations-prototype.mdx:66-69` | Yes, as simple payment gate concept | Optional |
-| Verification | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project metadata check, and build are required for this video. | `docs/project-videos/capture-and-production-workflow.md` | Yes | No |
-| Reviewer path | Portfolio case study and public repo expose the anonymized work sample. | `src/content/case-studies/desarmadero-operations-prototype.mdx:92-99` | Yes | No |
+| Proof type           | Exact proof                                                                                                                                               | Source path, URL, or command                                                                                                          | Safe to show?                       | On-screen? |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---------- |
+| Problem              | Operating model spread across paper budget sheets, WhatsApp, Excel, memory, and a 301-position yard.                                                      | `src/content/case-studies/desarmadero-operations-prototype.mdx:41-45`; `src/lib/projects/desarmadero-operations-prototype.json:29-33` | Yes, as plain text                  | Yes        |
+| Input                | One discovery call and spoken business workflow.                                                                                                          | `src/content/case-studies/desarmadero-operations-prototype.mdx:35-39`                                                                 | Yes, as generalized text            | Yes        |
+| Product action       | Seller records the sale, cash desk confirms payment, manager assigns work, dismantler sees orders.                                                        | `src/content/case-studies/desarmadero-operations-prototype.mdx:57-58`                                                                 | Yes, as role labels                 | Yes        |
+| Durable output       | Clickable prototype, PRD, functional spec, live demo, seeded demo, and screenshots.                                                                       | `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99`                                                                 | Yes, as artifact cards              | Yes        |
+| Saved record         | Counter-sales screen includes customer, vehicle, parts, and live order summary.                                                                           | `src/assets/img/projects/desarmadero-operations-ventas.png`; case-study alt text                                                      | Yes, public anonymized screenshot   | Yes        |
+| Guardrail or warning | Payment gates dismantler work until cash desk records deposit or full payment.                                                                            | `src/content/case-studies/desarmadero-operations-prototype.mdx:66-69`                                                                 | Yes, as simple payment gate concept | Optional   |
+| Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project metadata check, and build are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                                              | Yes                                 | No         |
+| Reviewer path        | Portfolio case study and public repo expose the anonymized work sample.                                                                                   | `src/content/case-studies/desarmadero-operations-prototype.mdx:92-99`                                                                 | Yes                                 | No         |
 
 ## Selected Story
 
@@ -291,15 +291,15 @@ Reading-speed check: `8` words over `3s` = `160 WPM`.
 
 Final text that may appear in the video. Keep this section short and plain. The composition should not introduce new main copy that is not listed here.
 
-| Scene | Text | Word count | Duration | WPM |
-| --- | --- | ---: | ---: | ---: |
-| 1 | The yard ran on paper and memory. Sales, payments, sheets, messages, and locations lived apart. | 15 | 6.5s | 138 |
-| 2 | Every handoff had to stay aligned. Sale, payment, assignment, and yard location. | 12 | 6.5s | 111 |
-| 3 | One discovery call became a prototype. The client could click through the real operation. | 14 | 6.5s | 129 |
-| 4 | The workflow follows the yard. Seller, cash desk, manager, and dismantler each see their part. | 15 | 6.5s | 138 |
-| 5 | The map replaced memory. 301 yard positions became searchable by plate. | 11 | 6.5s | 102 |
-| 6 | The result was clearer scope. The client reacted to a working model, not abstract requirements. | 15 | 6.5s | 138 |
-| End | Desarmadero Operations Prototype. One call became a clickable model. | 8 | 3s | 160 |
+| Scene | Text                                                                                            | Word count | Duration | WPM |
+| ----- | ----------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | The yard ran on paper and memory. Sales, payments, sheets, messages, and locations lived apart. |         15 |     6.5s | 138 |
+| 2     | Every handoff had to stay aligned. Sale, payment, assignment, and yard location.                |         12 |     6.5s | 111 |
+| 3     | One discovery call became a prototype. The client could click through the real operation.       |         14 |     6.5s | 129 |
+| 4     | The workflow follows the yard. Seller, cash desk, manager, and dismantler each see their part.  |         15 |     6.5s | 138 |
+| 5     | The map replaced memory. 301 yard positions became searchable by plate.                         |         11 |     6.5s | 102 |
+| 6     | The result was clearer scope. The client reacted to a working model, not abstract requirements. |         15 |     6.5s | 138 |
+| End   | Desarmadero Operations Prototype. One call became a clickable model.                            |          8 |       3s | 160 |
 
 Reading-speed targets:
 
@@ -323,10 +323,10 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| --- | --- | --- | --- | --- |
+| Asset                               | Purpose                                                       | Source                                                      | Redaction needed?                                       | Final path                                                                                             |
+| ----------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `desarmadero-operations-ventas.png` | Show the clickable counter-sales prototype and order summary. | `src/assets/img/projects/desarmadero-operations-ventas.png` | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/hyperframes/assets/desarmadero-operations-ventas.png` |
-| `desarmadero-operations-mapa.png` | Show the yard map and plate search proof. | `src/assets/img/projects/desarmadero-operations-mapa.png` | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/hyperframes/assets/desarmadero-operations-mapa.png` |
+| `desarmadero-operations-mapa.png`   | Show the yard map and plate search proof.                     | `src/assets/img/projects/desarmadero-operations-mapa.png`   | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/hyperframes/assets/desarmadero-operations-mapa.png`   |
 
 ## Privacy Check
 
