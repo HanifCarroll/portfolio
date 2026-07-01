@@ -277,8 +277,8 @@ Reserve the final `2.5-3s` for a settled ending. This is not a new argument. It 
 End-card text:
 
 ```text
-Desarmadero Operations Prototype
-One call became a clickable model.
+Desarmadero Ops
+One call. Clickable model.
 ```
 
 Duration: `3s`
@@ -299,7 +299,7 @@ Final text that may appear in the video. Keep this section short and plain. The 
 | 4     | The workflow follows the yard. Seller, cash desk, manager, and dismantler each see their part.  |         15 |     6.5s | 138 |
 | 5     | The map replaced memory. 301 yard positions became searchable by plate.                         |         11 |     6.5s | 102 |
 | 6     | The result was clearer scope. The client reacted to a working model, not abstract requirements. |         15 |     6.5s | 138 |
-| End   | Desarmadero Operations Prototype. One call became a clickable model.                            |          8 |       3s | 160 |
+| End   | Desarmadero Ops. One call. Clickable model.                                                     |          6 |       3s | 120 |
 
 Reading-speed targets:
 

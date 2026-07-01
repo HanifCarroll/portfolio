@@ -185,7 +185,7 @@ On-screen text:
 
 ```text
 Redwriter Comics
-Portfolio review, ready for commissions.
+Portfolio to commissions.
 ```
 
 Narration: none
@@ -221,12 +221,12 @@ Reading-speed check: `8` words over `3s` = `160 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                       | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Artwork was scattered. Editors needed one review path.     |          8 |     4.5s | 107 |
-| 2     | One portfolio hub made review easier.                      |          6 |     4.5s |  80 |
-| 3     | Review could turn into commission conversations.           |          6 |     4.5s |  80 |
-| End   | Redwriter Comics. Portfolio review, ready for commissions. |          8 |       3s | 160 |
+| Scene | Text                                                   | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Artwork was scattered. Editors needed one review path. |          8 |     4.5s | 107 |
+| 2     | One portfolio hub made review easier.                  |          6 |     4.5s |  80 |
+| 3     | Review could turn into commission conversations.       |          6 |     4.5s |  80 |
+| End   | Redwriter Comics. Portfolio to commissions.            |          5 |       3s | 100 |
 
 Allowed short labels:
 

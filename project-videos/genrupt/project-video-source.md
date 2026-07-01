@@ -28,7 +28,7 @@ Problem: Genrupt had AI image and video generation working, but paid seller team
 
 Solution: the work moved Genrupt into a seller workflow platform with subscriptions, credits, safer long-running jobs, and a permissioned agent surface.
 
-Result: the platform became commercially operable and helped support the first 100 paying customers.
+Result: the platform became ready for paying teams and helped support the first 100 paying customers.
 
 ## One-Line Job
 
@@ -36,7 +36,7 @@ Genrupt turns AI media generation into a commercial Amazon seller workflow platf
 
 ## Viewer Takeaway
 
-This is production AI systems work that made a fast-moving product commercially operable for seller teams.
+This is production AI systems work that made a fast-moving product ready for seller teams.
 
 ## Language Rules
 
@@ -106,8 +106,8 @@ Technical proof can stay in this document as backing evidence, but it should not
 2. Each new workflow raised the stakes for billing, credits, retries, and recovery.
 3. The work turned Genrupt into a seller workflow platform with one shared foundation.
 4. Paid teams could subscribe, buy credits, and track usage.
-5. Agents could run allowed workflows through a safer surface.
-6. Seller workflows became product surfaces, and the platform supported the first 100 paying customers.
+5. AI helpers could only do the work they were allowed to do.
+6. Seller work became easier to run, and the platform supported the first 100 paying customers.
 
 ## Scene Cards
 
@@ -150,7 +150,7 @@ On-screen text:
 
 ```text
 Each new workflow raised the stakes.
-Billing, credits, retries, and recovery had to hold together.
+Payments, credits, and long-running work had to hold together.
 ```
 
 Narration: none.
@@ -177,7 +177,7 @@ On-screen text:
 
 ```text
 I helped turn Genrupt into a seller workflow platform.
-Projects, billing, and jobs shared one foundation.
+Projects, billing, and work shared one system.
 ```
 
 Narration: none.
@@ -229,7 +229,7 @@ Visual source: redacted Agent Access screenshot with native allowed-workflow car
 On-screen text:
 
 ```text
-Agents could run allowed workflows without seeing the whole app.
+AI helpers could only do the work they were allowed to do.
 ```
 
 Narration: none.
@@ -248,14 +248,14 @@ Reading-speed check: `10` words over `7s` = `86 WPM`.
 
 Purpose: close the story with the outcome.
 
-Viewer should understand: the product became commercially operable and supported real customers.
+Viewer should understand: the product became ready for paying teams and supported real customers.
 
 Visual source: collage of seller workflow screens and native result card.
 
 On-screen text:
 
 ```text
-Seller workflows became product surfaces.
+Seller work became easier to run.
 The platform supported the first 100 paying customers.
 ```
 
@@ -279,7 +279,7 @@ On-screen text:
 
 ```text
 Genrupt
-AI workflows became commercially operable.
+AI tools ready for paying teams.
 ```
 
 Duration: `3s`
@@ -292,15 +292,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                      | Word count | Duration | WPM |
-| ----- | --------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | AI media was working. Paid seller teams needed more than generation screens.                              |         12 |     6.5s | 111 |
-| 2     | Each new workflow raised the stakes. Billing, credits, retries, and recovery had to hold together.        |         15 |     6.5s | 138 |
-| 3     | I helped turn Genrupt into a seller workflow platform. Projects, billing, and jobs shared one foundation. |         16 |       7s | 137 |
-| 4     | Paid teams could subscribe, buy credits, and track usage.                                                 |          9 |       7s |  77 |
-| 5     | Agents could run allowed workflows without seeing the whole app.                                          |         10 |       7s |  86 |
-| 6     | Seller workflows became product surfaces. The platform supported the first 100 paying customers.          |         13 |       8s |  98 |
-| End   | Genrupt. AI workflows became commercially operable.                                                       |          6 |       3s | 120 |
+| Scene | Text                                                                                                  | Word count | Duration | WPM |
+| ----- | ----------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | AI media was working. Paid seller teams needed more than generation screens.                          |         12 |     6.5s | 111 |
+| 2     | Each new workflow raised the stakes. Payments, credits, and long-running work had to hold together.   |         14 |     6.5s | 129 |
+| 3     | I helped turn Genrupt into a seller workflow platform. Projects, billing, and work shared one system. |         16 |       7s | 137 |
+| 4     | Paid teams could subscribe, buy credits, and track usage.                                             |          9 |       7s |  77 |
+| 5     | AI helpers could only do the work they were allowed to do.                                            |         12 |       7s | 103 |
+| 6     | Seller work became easier to run. The platform supported the first 100 paying customers.              |         13 |       8s |  98 |
+| End   | Genrupt. AI tools ready for paying teams.                                                             |          7 |       3s | 140 |
 
 Allowed short labels:
 
@@ -340,7 +340,7 @@ Aspect ratio: `16:9`, `1920x1080`
 Scenes to build:
 
 1. AI media MVP needed a platform.
-2. Billing, credits, retries, and recovery risk.
+2. Payment, credit, and recovery risk.
 3. Seller workflow platform with shared foundation.
 4. Commercial foundation for paid teams.
 5. Agent access for allowed workflows.

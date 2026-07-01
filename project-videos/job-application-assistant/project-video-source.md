@@ -120,7 +120,7 @@ On-screen text:
 
 ```text
 It was easy to lose the thread.
-What did I send? Where is the PDF? Did I already apply?
+What did I send? Did I already apply?
 ```
 
 Duration: `6.5s`
@@ -211,7 +211,7 @@ On-screen text:
 
 ```text
 Job Application Assistant
-Drafts, PDFs, status, and history.
+Clear application records.
 ```
 
 Duration: `3s`
@@ -227,12 +227,12 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | Scene | Text                                                                                     | Word count | Duration | WPM |
 | ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
 | 1     | Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart. |         13 |       6s | 130 |
-| 2     | It was easy to lose the thread. What did I send? Where is the PDF? Did I already apply?  |         19 |     6.5s | 175 |
+| 2     | It was easy to lose the thread. What did I send? Did I already apply?                    |         13 |     6.5s | 120 |
 | 3     | I built one local workflow. Review the job. Draft the letter. Save the record.           |         13 |     6.5s | 120 |
 | 4     | The app keeps each step connected. Review. Draft. Export. Track.                         |         10 |       6s | 100 |
 | 5     | Every application gets a clear record. Draft, PDF, status, and history stay together.    |         13 |     6.5s | 120 |
 | 6     | This is more than a cover-letter writer. It turns a messy workflow into a product.       |         15 |     6.5s | 138 |
-| End   | Job Application Assistant. Drafts, PDFs, status, and history.                            |          8 |       3s | 160 |
+| End   | Job Application Assistant. Clear application records.                                    |          6 |       3s | 120 |
 
 Allowed short labels:
 

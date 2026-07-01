@@ -304,3 +304,15 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - `git diff --check` passed for the changed blog, layout, head, CSS, and SEO log files.
 - Built HTML includes the post title, canonical URL, meta description, `BlogPosting` JSON-LD, Blog index entry, RSS item, and sitemap URL.
 - Built blog index renders full-entry links and no longer renders the `Read note` CTA.
+
+## 2026-07-01
+
+### Homepage Simplification
+
+- Removed the homepage tech-stack section, homepage project metadata labels, and the homepage Point of View snippet.
+- Deleted the `/point-of-view/` page source and removed internal links to that route from shared layout navigation and the About page.
+
+### Verification
+
+- `bun run build` passed and generated 41 pages, with `/point-of-view/` absent from the route list.
+- Built output no longer includes `dist/point-of-view/index.html`.

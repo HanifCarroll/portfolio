@@ -123,7 +123,7 @@ On-screen text:
 
 ```text
 Buenos Aires plans were scattered.
-Posts, ticketing pages, venue sites, and chats lived apart.
+Posts and event sites lived apart.
 ```
 
 Narration: none.
@@ -176,7 +176,7 @@ Visual source: public feature screenshot with answer visible.
 On-screen text:
 
 ```text
-BA Eventos searches real records.
+BA Eventos searches real event records.
 Events and venues stay attached to the answer.
 ```
 
@@ -230,7 +230,7 @@ Visual source: native stat cards over the product surface.
 On-screen text:
 
 ```text
-The catalog can keep improving.
+The event list can keep improving.
 800+ events and 190+ venues stay organized.
 ```
 
@@ -267,14 +267,14 @@ Reading-speed check: `5` words over `3s` = `100 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                           | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Buenos Aires plans were scattered. Posts, ticketing pages, venue sites, and chats lived apart. |         14 |     5.6s | 150 |
-| 2     | A visitor asks one plain question. What's happening tonight?                                   |          8 |     5.6s |  86 |
-| 3     | BA Eventos searches real records. Events and venues stay attached to the answer.               |         12 |       6s | 120 |
-| 4     | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible.    |         14 |     6.1s | 138 |
-| 5     | The catalog can keep improving. 800+ events and 190+ venues stay organized.                    |         12 |     5.7s | 126 |
-| End   | BA Eventos. One grounded search.                                                               |          5 |       3s | 100 |
+| Scene | Text                                                                                        | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Buenos Aires plans were scattered. Posts and event sites lived apart.                       |         10 |     5.6s | 107 |
+| 2     | A visitor asks one plain question. What's happening tonight?                                |          8 |     5.6s |  86 |
+| 3     | BA Eventos searches real event records. Events and venues stay attached to the answer.      |         13 |       6s | 130 |
+| 4     | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible. |         14 |     6.1s | 138 |
+| 5     | The event list can keep improving. 800+ events and 190+ venues stay organized.              |         13 |     5.7s | 137 |
+| End   | BA Eventos. One grounded search.                                                            |          5 |       3s | 100 |
 
 Allowed short labels:
 

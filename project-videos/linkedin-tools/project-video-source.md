@@ -28,7 +28,7 @@ Problem: browser automation is easy to demo but hard to trust when actions can a
 
 Solution: LinkedIn Tools separates workflows into controller-owned rails with explicit action boundaries, review gates, and saved evidence.
 
-Result: runs leave artifacts, ledgers, audits, blockers, and review pages that can be inspected before and after automation acts.
+Result: runs leave notes, blockers, review pages, and results that can be checked before and after automation acts.
 
 ## One-Line Job
 
@@ -102,7 +102,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 2. The hard question is ownership: which workflow can act, and what proof remains?
 3. LinkedIn Tools puts workflows behind controller-owned state.
 4. Each rail has a boundary: some actions are send-capable, some only recommend.
-5. Runs leave artifacts, ledgers, audits, blockers, and review pages.
+5. Runs leave notes, blockers, review pages, and results.
 6. The system matters because automation runs where it can explain what happened.
 
 ## Scene Cards
@@ -165,15 +165,15 @@ Reading-speed check: `12` words over `7s` = `103 WPM`.
 
 Purpose: introduce the product in plain language.
 
-Viewer should understand: LinkedIn Tools puts the work behind controllers and review surfaces.
+Viewer should understand: LinkedIn Tools adds review before risky actions.
 
 Visual source: public isolated review UI screenshot.
 
 On-screen text:
 
 ```text
-LinkedIn Tools puts workflows behind controllers.
-State, gates, and review come first.
+LinkedIn Tools adds review before action.
+The workflow must be approved first.
 ```
 
 Narration: none.
@@ -186,21 +186,21 @@ Asset path: `hyperframes/assets/review-ui.png`.
 
 Motion notes: screenshot settles into frame; guardrail chips enter after the headline.
 
-Reading-speed check: `12` words over `7s` = `103 WPM`.
+Reading-speed check: `11` words over `7s` = `94 WPM`.
 
 ### Scene 4: How It Works
 
 Purpose: explain the boundaries without exposing private data.
 
-Viewer should understand: each rail has a clear permission level.
+Viewer should understand: each workflow has a clear limit.
 
 Visual source: guarded workflow rail.
 
 On-screen text:
 
 ```text
-Each rail has a boundary.
-Network sends connections. Recruiter outreach sends drafts. Opportunity intel only recommends.
+Each workflow has a clear limit.
+Some can send, some only suggest.
 ```
 
 Narration: none.
@@ -213,48 +213,48 @@ Asset path: built natively in HyperFrames.
 
 Motion notes: lane cards lock one by one; recommend-only lane stays visually distinct.
 
-Reading-speed check: `14` words over `7s` = `120 WPM`.
+Reading-speed check: `12` words over `7s` = `103 WPM`.
 
 ### Scene 5: Result
 
 Purpose: show the durable proof trail.
 
-Viewer should understand: after a run, the system leaves inspectable evidence.
+Viewer should understand: after a run, the system leaves visible proof.
 
 Visual source: evidence ledger cards and review UI crop.
 
 On-screen text:
 
 ```text
-Runs leave evidence behind.
-Artifacts, ledgers, audits, blockers, and review pages stay inspectable.
+Runs leave proof behind.
+Notes, blockers, review pages, and results stay visible.
 ```
 
 Narration: none.
 
 Duration: `7s`
 
-Proof shown: saved source runs, capture artifacts, audit results, candidate reservoirs, acceptance ledgers, browser artifacts, blockers, and review state.
+Proof shown: saved source runs, result cards, blockers, and review state.
 
 Asset path: `hyperframes/assets/review-ui.png` plus native evidence cards.
 
 Motion notes: evidence cards enter as a controlled stack; product crop holds steady.
 
-Reading-speed check: `13` words over `7s` = `111 WPM`.
+Reading-speed check: `12` words over `7s` = `103 WPM`.
 
 ### Scene 6: Why It Matters
 
 Purpose: close with the project value.
 
-Viewer should understand: this is a reusable pattern for explainable automation.
+Viewer should understand: automation is easier to trust when it can explain itself.
 
 Visual source: final system map backed by the review UI.
 
 On-screen text:
 
 ```text
-This is safer workflow ownership.
-Automation runs where the system can explain what happened.
+Automation is easier to trust.
+The system can explain what happened.
 ```
 
 Narration: none.
@@ -267,7 +267,7 @@ Asset path: `hyperframes/assets/review-ui.png`.
 
 Motion notes: system map settles; end card enters after the value statement has held.
 
-Reading-speed check: `13` words over `7s` = `111 WPM`.
+Reading-speed check: `11` words over `7s` = `94 WPM`.
 
 ## Ending Beat
 
@@ -277,28 +277,28 @@ On-screen text:
 
 ```text
 LinkedIn Tools
-Guarded automation with evidence.
+Automation with review and proof.
 ```
 
 Duration: `3s`
 
 Motion notes: hold the final system map, bring in the end card, then use a short fade after the settled beat.
 
-Reading-speed check: `5` words over `3s` = `100 WPM`.
+Reading-speed check: `7` words over `3s` = `140 WPM`.
 
 ## On-Screen Text Lock
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                                     | Word count | Duration | WPM |
-| ----- | ------------------------------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
-| 1     | Browser automation is easy to demo. It is harder to trust.                                                               |         10 |       7s |  86 |
-| 2     | The question was ownership. Which workflow can act, and what proof remains?                                              |         12 |       7s | 103 |
-| 3     | LinkedIn Tools puts workflows behind controllers. State, gates, and review come first.                                   |         12 |       7s | 103 |
-| 4     | Each rail has a boundary. Network sends connections. Recruiter outreach sends drafts. Opportunity intel only recommends. |         14 |       7s | 120 |
-| 5     | Runs leave evidence behind. Artifacts, ledgers, audits, blockers, and review pages stay inspectable.                     |         13 |       7s | 111 |
-| 6     | This is safer workflow ownership. Automation runs where the system can explain what happened.                            |         13 |       7s | 111 |
-| End   | LinkedIn Tools. Guarded automation with evidence.                                                                        |          5 |       3s | 100 |
+| Scene | Text                                                                              | Word count | Duration | WPM |
+| ----- | --------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Browser automation is easy to demo. It is harder to trust.                        |         10 |       7s |  86 |
+| 2     | The question was ownership. Which workflow can act, and what proof remains?       |         12 |       7s | 103 |
+| 3     | LinkedIn Tools adds review before action. The workflow must be approved first.    |         11 |       7s |  94 |
+| 4     | Each workflow has a clear limit. Some can send, some only suggest.                |         12 |       7s | 103 |
+| 5     | Runs leave proof behind. Notes, blockers, review pages, and results stay visible. |         12 |       7s | 103 |
+| 6     | Automation is easier to trust. The system can explain what happened.              |         11 |       7s |  94 |
+| End   | LinkedIn Tools. Automation with review and proof.                                 |          7 |       3s | 140 |
 
 Allowed short labels:
 

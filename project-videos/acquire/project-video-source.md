@@ -198,15 +198,15 @@ Reading-speed check: `13` words over `6.5s` = `120 WPM`.
 
 Purpose: explain the governing idea without stack terms.
 
-Viewer should understand: automation is allowed after judgment and approval.
+Viewer should understand: action happens after review.
 
 Visual source: governed workflow rail.
 
 On-screen text:
 
 ```text
-Acquire puts judgment before automation.
-Review first, approve next, then let the workflow run.
+Acquire keeps review before action.
+Check it first, then let the work move.
 ```
 
 Narration: none.
@@ -217,15 +217,15 @@ Proof shown: approval gates and application-workflow invariants.
 
 Asset path: built natively in HyperFrames.
 
-Motion notes: gate cards assemble along a rail; approval marker locks before the run card appears.
+Motion notes: gate cards assemble along a rail; approval marker locks before the move card appears.
 
-Reading-speed check: `14` words over `6.5s` = `129 WPM`.
+Reading-speed check: `12` words over `6.5s` = `111 WPM`.
 
 ### Scene 5: Result
 
 Purpose: explain the outcome.
 
-Viewer should understand: a pursuit keeps state, evidence, and blockers inspectable.
+Viewer should understand: a pursuit keeps materials, answers, status, and blockers together.
 
 Visual source: public Pursuits screenshot crop plus synthetic evidence cards.
 
@@ -233,7 +233,7 @@ On-screen text:
 
 ```text
 Each pursuit keeps its history.
-Materials, answers, status, blockers, and run evidence stay inspectable.
+Materials, answers, status, and blockers stay together.
 ```
 
 Narration: none.
@@ -246,7 +246,7 @@ Asset path: `hyperframes/assets/acquire-pursuits.png`.
 
 Motion notes: crop holds steady; evidence chips enter after the headline.
 
-Reading-speed check: `14` words over `6.5s` = `129 WPM`.
+Reading-speed check: `11` words over `6.5s` = `102 WPM`.
 
 ### Scene 6: Why It Matters
 
@@ -296,15 +296,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                       | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart.           |         13 |     6.5s | 120 |
-| 2     | The next step was unclear. What is worth acting on? What is approved? What is blocked?                     |         14 |     6.5s | 129 |
-| 3     | Acquire shows the whole workflow. Each opportunity has a status and next step.                             |         13 |     6.5s | 120 |
-| 4     | Acquire puts judgment before automation. Review first, approve next, then let the workflow run.            |         14 |     6.5s | 129 |
-| 5     | Each pursuit keeps its history. Materials, answers, status, blockers, and run evidence stay inspectable.   |         14 |     6.5s | 129 |
-| 6     | This is business-systems engineering in miniature. Map the workflow, set gates, make next actions obvious. |         15 |     6.5s | 138 |
-| End   | Acquire. Clear next actions, with evidence.                                                                |          6 |       3s | 120 |
+| Scene | Text                                                                                             | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart. |         13 |     6.5s | 120 |
+| 2     | The next step was unclear. What is worth acting on? What is approved? What is blocked?           |         14 |     6.5s | 129 |
+| 3     | Acquire shows the whole workflow. Each opportunity has a status and next step.                   |         13 |     6.5s | 120 |
+| 4     | Acquire keeps review before action. Check it first, then let the work move.                      |         12 |     6.5s | 111 |
+| 5     | Each pursuit keeps its history. Materials, answers, status, and blockers stay together.          |         11 |     6.5s | 102 |
+| 6     | The result is simple. Work is easier to review, approve, and move forward.                       |         13 |     6.5s | 120 |
+| End   | Acquire. Clear next actions.                                                                     |          4 |       3s |  80 |
 
 Allowed short labels:
 
@@ -395,9 +395,9 @@ Scenes to build:
 1. Scattered opportunity pieces.
 2. Unclear next-step questions.
 3. One local command center with product surface visible.
-4. Judgment and approval before automation.
+4. Review before action.
 5. Pursuit history and evidence stay together.
-6. Business-systems value statement.
+6. Clear result statement.
 7. Ending beat with project name and short result line.
 
 Assets to copy into `hyperframes/assets/`:

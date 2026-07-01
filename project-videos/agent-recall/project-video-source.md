@@ -289,15 +289,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                    | Word count | Duration | WPM |
-| ----- | --------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Agents need memory they can inspect and reuse. Not raw transcript piles.                |         11 |     6.5s | 102 |
-| 2     | Input: local session archives. Codex, OMP, Pi, and Claude remain source files.          |         12 |     6.5s | 111 |
-| 3     | Agent Recall builds a local index. Redact secrets, parse events, write search rows.     |         12 |     6.5s | 111 |
-| 4     | Output: memories with receipts. Each record points back to source, file, and line.      |         13 |     6.5s | 120 |
-| 5     | Freshness is visible. Doctor and watcher states show fresh, stale, blocked, or waiting. |         12 |     6.5s | 111 |
-| 6     | Result: prior work becomes reusable. A reviewer can inspect the trail.                  |         10 |     6.5s |  92 |
-| End   | Agent Recall. Inspectable memory for agent work.                                        |          6 |       3s | 120 |
+| Scene | Text                                                                          | Word count | Duration | WPM |
+| ----- | ----------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Past agent work was hard to reuse. Important context got buried.              |         10 |     6.5s |  92 |
+| 2     | The input is old work sessions. Each one stays tied to its source.            |         12 |     6.5s | 111 |
+| 3     | Agent Recall turns sessions into searchable memory. Secrets are hidden first. |         10 |     6.5s |  92 |
+| 4     | Each memory points back to where it came from.                                |          9 |     6.5s |  83 |
+| 5     | Freshness is visible. You can see what is current, stale, or blocked.         |         12 |     6.5s | 111 |
+| 6     | Prior work becomes reusable. A reviewer can follow the trail.                 |         10 |     6.5s |  92 |
+| End   | Agent Recall. Searchable memory with proof.                                   |          5 |       3s | 100 |
 
 Allowed short labels:
 

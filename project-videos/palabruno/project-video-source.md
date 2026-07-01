@@ -96,7 +96,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | Product action | Teacher creates readings from lesson material                        | `src/assets/img/projects/palabruno-teacher-create-reading.png`                                                   | Yes, public/synthetic asset                                       | Yes                     |
 | Product action | Teacher manages students and groups                                  | `src/assets/img/projects/palabruno-teacher-students.png`; `src/assets/img/projects/palabruno-teacher-groups.png` | Yes, public/synthetic asset; composition avoids emphasizing names | Yes                     |
 | Durable output | Teacher shares reading material and can review share history         | `src/assets/img/projects/palabruno-teacher-recent-shares.png`                                                    | Yes, public/synthetic asset; composition crops lightly            | Optional                |
-| Launch surface | iOS, Android, web, payments, store assets, handoff docs              | `src/lib/projects/palabruno.json`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`                | Yes                                                               | Yes, as native cards    |
+| Launch surface | iOS, Android, web, payments, store pages, handoff notes              | `src/lib/projects/palabruno.json`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`                | Yes                                                               | Yes, as native cards    |
 | Reviewer path  | Portfolio case study and local app docs                              | `src/content/case-studies/palabruno.mdx`; `/Users/hanifcarroll/projects/palabruno/docs/current-state.md`         | Yes                                                               | No                      |
 
 ## Selected Story
@@ -228,7 +228,7 @@ Visual source: native launch-surface cards backed by metadata and current-state 
 On-screen text:
 
 ```text
-The launch included iOS, Android, web, payments, store assets, and handoff docs.
+The launch included mobile apps, web, payments, store pages, and handoff notes.
 ```
 
 Narration: none
@@ -296,7 +296,7 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | 2     | A student reader helped learners. Teachers were the clearer first buyer.               |         11 |       6s | 110 |
 | 3     | I shaped Palabruno into two connected surfaces. Mobile for learners. Web for teachers. |         13 |     6.5s | 120 |
 | 4     | Teachers create readings, manage students, organize groups, and share lesson material. |         11 |       6s | 110 |
-| 5     | The launch included iOS, Android, web, payments, store assets, and handoff docs.       |         12 |     6.5s | 111 |
+| 5     | The launch included mobile apps, web, payments, store pages, and handoff notes.        |         11 |     6.5s | 102 |
 | 6     | Ready for real teacher testing.                                                        |          5 |       6s |  50 |
 | End   | Palabruno. Ready for teacher testing.                                                  |          5 |       3s | 100 |
 
@@ -395,7 +395,7 @@ Required transitions:
 Required callouts:
 
 - Short labels only: Problem, First buyer, Product shape, Teacher workflow, Launch surface, Market test.
-- Native launch cards for iOS, Android, web, payments, store assets, and handoff docs.
+- Native launch cards for iOS, Android, web, payments, store pages, and handoff notes.
 
 Thumbnail frame:
 

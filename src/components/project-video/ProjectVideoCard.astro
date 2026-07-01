@@ -12,7 +12,6 @@ const video = project.videos?.preview ?? project.videos?.overview;
 const resolvedVariant = variant ?? (featured ? 'lead' : 'card');
 const className = `project-video-card project-video-card--${resolvedVariant}`;
 const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
-const proofTypeDisplay = project.proofTypeLabel.charAt(0) + project.proofTypeLabel.slice(1).toLowerCase();
 ---
 
 {
@@ -44,10 +43,6 @@ const proofTypeDisplay = project.proofTypeLabel.charAt(0) + project.proofTypeLab
 			<div class='project-video-card__copy'>
 				<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
 				<p>{project.description}</p>
-				<p class='project-video-card__meta'>
-					<span>{proofTypeDisplay}</span>
-					<span>{project.client}</span>
-				</p>
 			</div>
 		</a>
 	)

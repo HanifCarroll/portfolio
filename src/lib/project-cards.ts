@@ -11,7 +11,6 @@ export interface ProjectCard {
   year: string;
   client: string;
   proofType: Project["proofType"];
-  proofTypeLabel: string;
   service: string;
   track: Project["track"];
   trackLabel: string;
@@ -20,13 +19,6 @@ export interface ProjectCard {
   category: "product" | "marketing-site";
   videos: Project["videos"];
 }
-
-const getProofTypeLabel = (proofType: Project["proofType"]) =>
-  proofType === "client"
-    ? "Client Work"
-    : proofType === "founder"
-      ? "Founder-Led Product"
-      : "Selected Experiment";
 
 const toCard = (project: Project): ProjectCard => {
   const trackMeta = getProjectTrackMeta(project.track);
@@ -40,7 +32,6 @@ const toCard = (project: Project): ProjectCard => {
     year: project.year ?? "",
     client: project.client,
     proofType: project.proofType,
-    proofTypeLabel: getProofTypeLabel(project.proofType),
     service: project.service,
     track: project.track,
     trackLabel: trackMeta.label,

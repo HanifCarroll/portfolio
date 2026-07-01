@@ -106,7 +106,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 1. Apartment search got noisy.
 2. The important evidence lived across photos and details.
 3. Apartment Finder reviews the listing evidence in one product surface.
-4. The AI decision stays inspectable.
+4. The decision stays easy to check.
 5. Results become easier to compare.
 6. A messy search becomes a clearer decision.
 
@@ -150,8 +150,8 @@ Visual source: synthetic photo grid, details card, and question marker.
 On-screen text:
 
 ```text
-The real answer lived in photos.
-A filter alone could not answer the question.
+The answer lived in photos.
+Filters could not answer it.
 ```
 
 Narration: none.
@@ -204,7 +204,7 @@ Visual source: evidence cards for photos, details, confidence, and source link.
 On-screen text:
 
 ```text
-The AI decision stays inspectable.
+The decision stays easy to check.
 Evidence, confidence, and source links remain visible.
 ```
 
@@ -298,9 +298,9 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | Scene | Text                                                                                       | Word count | Duration | WPM |
 | ----- | ------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
 | 1     | Apartment search got noisy. Listing sites mixed private washers with shared laundry.       |         11 |     5.5s | 120 |
-| 2     | The real answer lived in photos. A filter alone could not answer the question.             |         13 |     5.5s | 142 |
+| 2     | The answer lived in photos. Filters could not answer it.                                   |         10 |     5.5s | 109 |
 | 3     | Apartment Finder reviews the listing. It reads details, photos, and washer clues together. |         12 |     5.5s | 131 |
-| 4     | The AI decision stays inspectable. Evidence, confidence, and source links remain visible.  |         11 |     5.5s | 120 |
+| 4     | The decision stays easy to check. Evidence, confidence, and source links remain visible.   |         12 |     5.5s | 131 |
 | 5     | The result is easier to compare. Likely in-unit, shared building, or unclear.              |         12 |     5.5s | 131 |
 | 6     | A messy search becomes a clearer decision. Fewer tabs, better evidence, less guessing.     |         12 |     5.5s | 131 |
 | End   | Apartment Finder. Messy listings to clear decisions.                                       |          6 |       3s | 120 |

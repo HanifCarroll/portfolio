@@ -142,7 +142,7 @@ On-screen text:
 
 ```text
 Copying proof by hand broke the trail.
-The source was easy to lose.
+Sources got lost.
 ```
 
 Narration: none.
@@ -168,7 +168,7 @@ Visual source: public evidence-packet image plus simple packet labels.
 On-screen text:
 
 ```text
-I built a local evidence packet.
+I built a local proof packet.
 Private feedback stays on the machine.
 ```
 
@@ -195,8 +195,8 @@ Visual source: source-to-packet rail with synthetic artifact cards.
 On-screen text:
 
 ```text
-Each source gets a simple pull.
-Messages, files, audio, and transcripts are saved together.
+The tool gathers each source.
+Messages, files, audio, and transcripts stay together.
 ```
 
 Narration: none.
@@ -223,7 +223,7 @@ On-screen text:
 
 ```text
 The packet can be reused later.
-Claim, source, and artifact stay together.
+Claim, source, and proof stay together.
 ```
 
 Narration: none.
@@ -249,7 +249,7 @@ Visual source: settled final packet frame.
 On-screen text:
 
 ```text
-Client Feedback Evidence CLI
+Client Feedback Evidence
 Scattered feedback becomes reusable proof.
 ```
 
@@ -269,14 +269,14 @@ Reading-speed check: `8` words over `3.3s` = `145 WPM`; acceptable because the p
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                        | Word count | Duration | WPM |
-| ----- | ------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.           |         12 |     5.7s | 126 |
-| 2     | Copying proof by hand broke the trail. The source was easy to lose.                         |         13 |     5.5s | 142 |
-| 3     | I built a local evidence packet. Private feedback stays on the machine.                     |         11 |     5.5s | 120 |
-| 4     | Each source gets a simple pull. Messages, files, audio, and transcripts are saved together. |         13 |     5.9s | 132 |
-| 5     | The packet can be reused later. Claim, source, and artifact stay together.                  |         12 |     5.6s | 129 |
-| End   | Client Feedback Evidence CLI. Scattered feedback becomes reusable proof.                    |          8 |     3.3s | 145 |
+| Scene | Text                                                                                 | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.    |         12 |     5.7s | 126 |
+| 2     | Copying proof by hand broke the trail. Sources got lost.                             |         10 |     5.5s | 109 |
+| 3     | I built a local proof packet. Private feedback stays on the machine.                 |         11 |     5.5s | 120 |
+| 4     | The tool gathers each source. Messages, files, audio, and transcripts stay together. |         12 |     5.9s | 122 |
+| 5     | The packet can be reused later. Claim, source, and proof stay together.              |         12 |     5.6s | 129 |
+| End   | Client Feedback Evidence. Scattered feedback becomes reusable proof.                 |          7 |     3.3s | 127 |
 
 Allowed short labels:
 
@@ -294,7 +294,7 @@ Allowed short labels:
 - Evidence note
 - File receipt
 - Claim
-- Artifact
+- Proof
 - Reusable proof
 
 ## Asset Manifest

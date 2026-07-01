@@ -139,8 +139,8 @@ Visual source: native foundation rail and product screenshot crop.
 On-screen text:
 
 ```text
-I tightened the foundations.
-Core flows got clearer and easier to extend.
+I made the product easier to maintain.
+Key flows got clearer.
 ```
 
 Narration: none.
@@ -193,8 +193,8 @@ Visual source: native review, pairing, and safer-default cards.
 On-screen text:
 
 ```text
-Senior judgment became repeatable.
-Code review and pairing gave juniors safer defaults.
+The team got clearer patterns.
+Review and pairing made everyday changes safer.
 ```
 
 Narration: none.
@@ -260,9 +260,9 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | Scene | Text                                                                                          | Word count | Duration | WPM |
 | ----- | --------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
 | 1     | The product was live. Reliability and team speed were becoming risks.                         |         10 |     5.6s | 107 |
-| 2     | I tightened the foundations. Core flows got clearer and easier to extend.                     |         11 |     5.7s | 116 |
+| 2     | I made the product easier to maintain. Key flows got clearer.                                 |         10 |     5.7s | 105 |
 | 3     | Messaging and notifications got steadier. Everyday coordination needed fewer fragile moments. |         10 |     5.7s | 105 |
-| 4     | Senior judgment became repeatable. Code review and pairing gave juniors safer defaults.       |         10 |     5.7s | 105 |
+| 4     | The team got clearer patterns. Review and pairing made everyday changes safer.                |         11 |     5.7s | 116 |
 | 5     | The team kept shipping. The product became more dependable during cleanup.                    |         10 |     5.9s | 102 |
 | End   | Mucho Hangouts. Reliable social workflows, clearer delivery.                                  |          6 |       3s | 120 |
 
@@ -355,7 +355,7 @@ Required callouts:
 
 Thumbnail frame:
 
-- Scene 2 after the foundation cards appear, with the headline `I tightened the foundations.`
+- Scene 2 after the product-maintenance cards appear, with the headline `I made the product easier to maintain.`
 
 ## Acceptance Checklist
 

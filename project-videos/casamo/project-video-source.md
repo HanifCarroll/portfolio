@@ -111,7 +111,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 3. Casamo collects destination, dates, budget, and must-haves.
 4. Casamo keeps the audit checkable by preserving signals, concerns, missing proof, and host questions.
 5. The report gives one recommended stay, two backups, and a clear host question.
-6. Casamo is a focused founder-owned product with paid scans, saved reports, and auditable recommendations.
+6. Casamo is a focused founder-owned product with paid scans, saved reports, and clear recommendations.
 
 ## Scene Cards
 
@@ -207,8 +207,8 @@ Visual source: native report cards backed by public sample-report language.
 On-screen text:
 
 ```text
-The audit keeps the decision checkable.
-Strong signals, concerns, missing proof, and host questions stay visible.
+The report keeps the decision checkable.
+Good signs, concerns, and questions stay visible.
 ```
 
 Narration: none
@@ -262,7 +262,7 @@ On-screen text:
 
 ```text
 Casamo is a focused founder-owned product.
-Paid scans, saved reports, and auditable recommendations.
+Paid scans, saved reports, and clear recommendations.
 ```
 
 Narration: none
@@ -298,15 +298,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                              | Word count | Duration | WPM |
-| ----- | ----------------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Long-stay bookings are hard to trust. Marketplace filters do not prove the stay.                                  |         13 |     6.5s | 120 |
-| 2     | Remote workers need evidence before paying. Photos, amenities, reviews, and gaps matter.                          |         12 |     6.5s | 111 |
-| 3     | Casamo scans a shortlist for practical fit. Enter destination, dates, budget, and must-haves.                     |         13 |     6.5s | 120 |
-| 4     | The audit keeps the decision checkable. Strong signals, concerns, missing proof, and host questions stay visible. |         16 |     6.5s | 148 |
-| 5     | One recommended stay. Two backups. The next question to ask the host is clear.                                    |         14 |     6.5s | 129 |
-| 6     | Casamo is a focused founder-owned product. Paid scans, saved reports, and auditable recommendations.              |         14 |     6.5s | 129 |
-| End   | Casamo. Noisy search to bookable shortlist.                                                                       |          6 |       3s | 120 |
+| Scene | Text                                                                                             | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Long-stay bookings are hard to trust. Marketplace filters do not prove the stay.                 |         13 |     6.5s | 120 |
+| 2     | Remote workers need evidence before paying. Photos, amenities, reviews, and gaps matter.         |         12 |     6.5s | 111 |
+| 3     | Casamo scans a shortlist for practical fit. Enter destination, dates, budget, and must-haves.    |         13 |     6.5s | 120 |
+| 4     | The report keeps the decision checkable. Good signs, concerns, and questions stay visible.       |         13 |     6.5s | 120 |
+| 5     | One recommended stay. Two backups. The next question to ask the host is clear.                   |         14 |     6.5s | 129 |
+| 6     | Casamo is a focused founder-owned product. Paid scans, saved reports, and clear recommendations. |         13 |     6.5s | 120 |
+| End   | Casamo. Noisy search to bookable shortlist.                                                      |          6 |       3s | 120 |
 
 Allowed short labels:
 

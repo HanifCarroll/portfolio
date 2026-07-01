@@ -60,50 +60,40 @@ const projectImage = (slug: string, imageKey: 'hero' | 'feature' = 'feature') =>
 const caseStudyBySlug = {
 	acquire: {
 		slug: 'acquire',
-		label: 'Operating system',
 		title: 'Acquire',
 		body: 'Built a local-first acquisition operating system that turns sourcing, review, application prep, outreach, and submission into one governed workflow.',
-		tech: 'Rust • SQLite • SwiftUI • Codex • Playwriter',
 		image: projectImage('acquire'),
 		imageAlt: 'Acquire macOS command center showing the Pursuits workflow for submitted applications.',
 		imageClass: 'object-left-top'
 	},
 	palabruno: {
 		slug: 'palabruno',
-		label: 'MVP build',
 		title: 'Palabruno',
 		body: "Took a non-technical founder's idea from concept to live iOS, Android, and web app — including teacher workflows, AI features, Stripe/RevenueCat billing, and App Store launch.",
-		tech: 'React Native / Expo • Supabase • Stripe • RevenueCat • OpenAI',
 		image: projectImage('palabruno'),
 		imageAlt: 'Spanish reading materials with vocabulary, grammar, and pronunciation cards.',
 		imageClass: undefined
 	},
 	genrupt: {
 		slug: 'genrupt',
-		label: 'Product platform',
 		title: 'Genrupt',
 		body: 'Evolved an AI media MVP into a production platform for Amazon sellers with subscriptions, credit billing, agent access, and background jobs — enabled the first 100 paying customers.',
-		tech: 'Next.js • PostgreSQL • Stripe • OpenAI • MCP',
 		image: projectImage('genrupt'),
 		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
 		imageClass: 'object-left-top'
 	},
 	'desarmadero-operations-prototype': {
 		slug: 'desarmadero-operations-prototype',
-		label: 'Operations prototype',
 		title: 'Desarmadero Operations',
 		body: 'Turned one discovery call with an auto-dismantling yard into a clickable operations prototype, PRD, functional spec, and live demo before quoting the full build.',
-		tech: 'SvelteKit • Drizzle • Cloudflare D1 • Product discovery',
 		image: projectImage('desarmadero-operations-prototype', 'hero'),
 		imageAlt: 'Desarmadero operations prototype showing the counter-sales workflow and live order summary.',
 		imageClass: 'object-left-top'
 	},
 	casamo: {
 		slug: 'casamo',
-		label: 'Travel decision MVP',
 		title: 'Casamo',
 		body: 'Built an AI-powered travel decision tool that helps remote workers find quality long-stay accommodations, with automated scanning, payments, and analytics.',
-		tech: 'TanStack Start • PostgreSQL • Stripe • Playwright • OpenAI',
 		image: projectImage('casamo'),
 		imageAlt: 'Casamo homepage showing the stay search form and audit priorities over a furnished apartment.',
 		imageClass: 'object-left-top'
@@ -116,43 +106,22 @@ const additionalWork = [
 	{
 		slug: 'casamo',
 		title: 'Casamo',
-		focus: 'Stay-audit MVP',
 		body: 'A live travel decision tool that turns noisy Airbnb and Booking.com searches into evidence-backed stay reports.',
 		image: projectImage('casamo')
 	},
 	{
 		slug: 'apartment-finder',
 		title: 'Apartment Finder',
-		focus: 'AI listing triage',
 		body: 'An evidence-backed apartment search workflow with labeled evals, cost controls, source links, and inspectable model judgments.',
 		image: projectImage('apartment-finder')
 	},
 	{
 		slug: 'ba-eventos',
 		title: 'BA Eventos',
-		focus: 'Grounded AI discovery',
 		body: 'A local event discovery product built around messy source ingestion, venue cleanup, semantic search, and grounded answers.',
 		image: projectImage('ba-eventos')
 	}
 ] as const;
-
-const techStackGroups = [
-	{
-		id: 'core-stack',
-		title: 'Core Stack',
-		items: ['TypeScript', 'React', 'Next.js', 'Supabase', 'React Native / Expo', 'Node.js', 'PostgreSQL']
-	},
-	{
-		id: 'ai-agents',
-		title: 'AI & Agents',
-		items: ['OpenAI', 'Anthropic', 'MCP', 'RAG', 'Evals', 'Agent Workflows']
-	},
-	{
-		id: 'tools-infrastructure',
-		title: 'Tools & Infrastructure',
-		items: ['Stripe', 'RevenueCat', 'Vercel', 'Docker', 'Playwright', 'Claude Code', 'ChatGPT Codex']
-	}
-];
 
 const testimonials = [
 	{
@@ -257,7 +226,6 @@ const testimonials = [
 								<div class='space-y-5'>
 									<h3 class='case-study-row__title'>{study.title}</h3>
 									<p class='case-study-row__description'>{study.body}</p>
-									<p class='case-study-row__tech'>{study.tech}</p>
 								</div>
 								<span class='case-study-row__button'>View case study</span>
 							</div>
@@ -290,7 +258,6 @@ const testimonials = [
 								<span class='additional-work__copy'>
 									<span class='additional-work__title'>{work.title}</span>
 									<span class='additional-work__body'>{work.body}</span>
-									<span class='additional-work__focus'>{work.focus}</span>
 								</span>
 							</a>
 						))
@@ -301,30 +268,6 @@ const testimonials = [
 			<p class='case-study-archive-link'>
 				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
 			</p>
-		</div>
-	</section>
-
-	<section class='container home-tech-section' aria-labelledby='home-tech-title'>
-		<div class='home-tech-section__heading'>
-			<h2 id='home-tech-title' class='home-tech-section__title'>What I Work With</h2>
-			<p class='home-tech-section__intro'>Tools I use to build internal tools, workflow automation, AI systems, and production products.</p>
-		</div>
-
-		<div class='home-tech-grid'>
-			{
-				techStackGroups.map((group) => (
-					<section class='home-tech-group' aria-labelledby={`home-tech-${group.id}`}>
-						<h3 id={`home-tech-${group.id}`} class='home-tech-group__title'>
-							{group.title}
-						</h3>
-						<ul class='home-tech-group__tags'>
-							{group.items.map((item) => (
-								<li>{item}</li>
-							))}
-						</ul>
-					</section>
-				))
-			}
 		</div>
 	</section>
 
@@ -365,24 +308,6 @@ const testimonials = [
 					class='inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 transition-colors hover:text-primary dark:text-zinc-400'
 				>
 					More about me <span aria-hidden='true'>→</span>
-				</a>
-			</p>
-		</div>
-	</section>
-
-	<section class='container home-about' aria-labelledby='home-pov-title'>
-		<div class='home-about__inner'>
-			<h2 id='home-pov-title' class='home-about__title'>Point of View</h2>
-			<p class='home-about__body'>
-				In the age of AI, taste gets a lot of attention. But the harder skill is deciding what’s actually worth building and following
-				through. Implementation is getting easier while clear judgment and execution are becoming more rare.
-			</p>
-			<p class='home-about__location'>
-				<a
-					href='/point-of-view/'
-					class='inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 transition-colors hover:text-primary dark:text-zinc-400'
-				>
-					More points of view <span aria-hidden='true'>→</span>
 				</a>
 			</p>
 		</div>

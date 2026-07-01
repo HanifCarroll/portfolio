@@ -449,6 +449,12 @@
         height: 450px;
       }
 
+      .surface-frame.solution {
+        width: 1610px;
+        height: 760px;
+        margin: 0 auto;
+      }
+
       .surface-frame img {
         position: relative;
         z-index: 1;
@@ -474,6 +480,11 @@
         object-fit: contain;
         object-position: center center;
         background: #ffffff;
+      }
+
+      .surface-frame.solution img {
+        object-position: center top;
+        opacity: 0.96;
       }
 
       .surface-frame.modal img {
@@ -511,6 +522,45 @@
         height: 12px;
         border-radius: 50%;
         background: #00a871;
+      }
+
+      .solution-shell {
+        align-content: center;
+        grid-template-rows: auto 1fr;
+        gap: 30px;
+        padding-top: 100px;
+        padding-bottom: 76px;
+      }
+
+      .solution-caption {
+        position: absolute;
+        left: 54px;
+        bottom: 48px;
+        z-index: 4;
+        display: grid;
+        gap: 12px;
+        width: 575px;
+        padding: 24px 26px;
+        border: 2px solid rgba(0, 168, 113, 0.26);
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 22px 58px rgba(23, 24, 31, 0.16);
+      }
+
+      .solution-caption .eyebrow {
+        font-size: 16px;
+      }
+
+      .solution-caption .headline {
+        max-width: none;
+        font-size: 38px;
+        line-height: 1.06;
+      }
+
+      .solution-caption .subhead {
+        max-width: none;
+        font-size: 22px;
+        line-height: 1.22;
       }
 
       .workflow-shell {
@@ -767,23 +817,18 @@
           <div class="frame-mark br"></div>
         </div>
         <div class="scene-number">03 / SOLUTION</div>
-        <div class="scene-shell split">
-          <div class="copy">
-            <p class="eyebrow">Product workflow</p>
-            <h2 class="headline">Vox Prismatic turns transcripts into reviewable drafts.</h2>
-            <p class="subhead">People approve before anything is scheduled.</p>
-            <div class="label-row">
-              <span class="pill">human-led</span>
-              <span class="pill">reviewable</span>
-              <span class="pill">schedule-ready</span>
-            </div>
-          </div>
-          <figure class="surface-frame large">
+        <div class="scene-shell stack solution-shell">
+          <figure class="surface-frame solution">
             <img
               src="assets/vox-prismatic-posts-crop.png"
               alt="Cropped Vox Prismatic posts workspace"
             />
             <figcaption class="proof-badge">product surface</figcaption>
+            <div class="solution-caption">
+              <p class="eyebrow">Product workflow</p>
+              <h2 class="headline">Reviewable drafts from long transcripts.</h2>
+              <p class="subhead">People approve before anything is scheduled.</p>
+            </div>
           </figure>
         </div>
       </section>
@@ -801,7 +846,7 @@
           <div class="copy">
             <p class="eyebrow">Workflow steps</p>
             <h2 class="headline wide">The workflow moves in clear steps.</h2>
-            <p class="subhead">Extract ideas, shape posts, review hooks, schedule.</p>
+            <p class="subhead">Find ideas, shape posts, review options, schedule.</p>
           </div>
           <figure class="surface-frame modal">
             <img
@@ -812,9 +857,9 @@
           </figure>
           <div class="workflow-line"></div>
           <div class="workflow-strip">
-            <div class="workflow-card"><span>01</span><strong>Extract ideas</strong></div>
+            <div class="workflow-card"><span>01</span><strong>Find ideas</strong></div>
             <div class="workflow-card"><span>02</span><strong>Shape posts</strong></div>
-            <div class="workflow-card"><span>03</span><strong>Review hooks</strong></div>
+            <div class="workflow-card"><span>03</span><strong>Review options</strong></div>
             <div class="workflow-card"><span>04</span><strong>Schedule</strong></div>
           </div>
         </div>
@@ -832,7 +877,7 @@
         <div class="scene-shell result-layout">
           <div class="copy">
             <p class="eyebrow">Useful result</p>
-            <h2 class="headline">The result is a content operations loop.</h2>
+            <h2 class="headline">The result is a repeatable content workflow.</h2>
             <p class="subhead">Long inputs become posts someone can trust.</p>
             <span class="rule"></span>
           </div>
@@ -989,12 +1034,6 @@
         { opacity: 0, y: 34, scale: 0.965 },
         { opacity: 1, y: 0, scale: 1, duration: 0.76, ease: "power3.out" },
         11.04,
-      );
-      tl.fromTo(
-        "#scene3 .pill",
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.36, stagger: 0.08, ease: "power2.out" },
-        11.82,
       );
       tl.fromTo(
         "#scene3 .proof-badge",

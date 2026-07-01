@@ -102,7 +102,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 2. HablaBA centers small local exchanges instead of profile browsing.
 3. A learner can explore exchanges by neighborhood, language, time, and seats.
 4. The group chat lets people coordinate topics, timing, and practice.
-5. The MVP connects discovery, chat, and coordination across web and mobile.
+5. The product connects discovery, chat, and coordination across web and mobile.
 6. The ending beat frames the project as local practice ready to test.
 
 ## Scene Cards
@@ -119,7 +119,7 @@ On-screen text:
 
 ```text
 Practice was hard to make real.
-Big events and profile swiping got in the way.
+Big events got in the way.
 ```
 
 Narration: none.
@@ -226,8 +226,8 @@ Visual source: native cross-platform loop rail plus both product screenshots.
 On-screen text:
 
 ```text
-The MVP connects the loop.
-Discovery, chat, and coordination work across web and mobile.
+Discovery, chat, and planning stay connected.
+Web and mobile work together.
 ```
 
 Narration: none.
@@ -253,7 +253,7 @@ Visual source: settled final card over the product loop.
 On-screen text:
 
 ```text
-Language Exchange Platform
+Language Exchange
 Local practice, ready to test.
 ```
 
@@ -273,14 +273,14 @@ Reading-speed check: `8` words over `3s` = `160 WPM`; acceptable because the pro
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                     | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Practice was hard to make real. Big events and profile swiping got in the way.           |         14 |     5.5s | 153 |
-| 2     | HablaBA centers the exchange. Find small groups by neighborhood and language.            |         11 |     5.5s | 120 |
-| 3     | Explore a nearby exchange. See time, place, language, and open seats.                    |         11 |     5.5s | 120 |
-| 4     | Join the group chat. People coordinate topics, timing, and practice together.            |         10 |     5.5s | 109 |
-| 5     | The MVP connects the loop. Discovery, chat, and coordination work across web and mobile. |         13 |       5s | 156 |
-| End   | Language Exchange Platform. Local practice, ready to test.                               |          8 |       3s | 160 |
+| Scene | Text                                                                          | Word count | Duration | WPM |
+| ----- | ----------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Practice was hard to make real. Big events got in the way.                    |         11 |     5.5s | 120 |
+| 2     | HablaBA centers the exchange. Find small groups by neighborhood and language. |         11 |     5.5s | 120 |
+| 3     | Explore a nearby exchange. See time, place, language, and open seats.         |         11 |     5.5s | 120 |
+| 4     | Join the group chat. People coordinate topics, timing, and practice together. |         10 |     5.5s | 109 |
+| 5     | Discovery, chat, and planning stay connected. Web and mobile work together.   |         11 |       5s | 132 |
+| End   | Language Exchange. Local practice, ready to test.                             |          7 |       3s | 140 |
 
 Allowed short labels:
 

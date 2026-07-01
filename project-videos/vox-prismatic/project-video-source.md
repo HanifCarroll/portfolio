@@ -98,7 +98,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 2. Manual post drafting was slow because voice still needed judgment.
 3. Vox Prismatic turns transcripts into reviewable drafts.
 4. The workflow extracts ideas, shapes posts, reviews hooks, and schedules selected output.
-5. The result is a content operations loop, not a blind auto-poster.
+5. The result is a repeatable content workflow, not a blind auto-poster.
 6. Vox Prismatic creates reviewable posts from long transcripts.
 
 ## Scene Cards
@@ -163,12 +163,12 @@ Purpose: introduce the product workflow in one sentence.
 
 Viewer should understand: Vox Prismatic turns transcripts into reviewable drafts and keeps publishing human-led.
 
-Visual source: cropped public posts workspace screenshot.
+Visual source: cropped public posts workspace screenshot, shown as the main visual.
 
 On-screen text:
 
 ```text
-Vox Prismatic turns transcripts into reviewable drafts.
+Reviewable drafts from long transcripts.
 People approve before anything is scheduled.
 ```
 
@@ -180,9 +180,9 @@ Proof shown: public product surface and source text about review before publishi
 
 Asset path: `hyperframes/assets/vox-prismatic-posts-crop.png`
 
-Motion notes: product surface slides in, then human-led approval chips settle over the edge.
+Motion notes: product surface is dominant; a compact opaque caption card sits over the lower-left corner so the thumbnail reads as a product screen instead of a text slide.
 
-Reading-speed check: `13` words over `6s` = `130 WPM`.
+Reading-speed check: `11` words over `6s` = `110 WPM`.
 
 ### Scene 4: Workflow
 
@@ -196,7 +196,7 @@ On-screen text:
 
 ```text
 The workflow moves in clear steps.
-Extract ideas, shape posts, review hooks, schedule.
+Find ideas, shape posts, review options, schedule.
 ```
 
 Narration: none.
@@ -215,14 +215,14 @@ Reading-speed check: `13` words over `6.5s` = `120 WPM`.
 
 Purpose: explain the output.
 
-Viewer should understand: the result is a content operations loop where long inputs become reviewable posts.
+Viewer should understand: the result is a repeatable content workflow where long inputs become reviewable posts.
 
 Visual source: cropped posts workspace screenshot plus native result cards.
 
 On-screen text:
 
 ```text
-The result is a content operations loop.
+The result is a repeatable content workflow.
 Long inputs become posts someone can trust.
 ```
 
@@ -259,14 +259,14 @@ Reading-speed check: `7` words over `3s` = `140 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                 | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Long transcripts buried good ideas. Useful moments stayed hard to find.                              |         11 |     5.5s | 120 |
-| 2     | Drafting posts by hand was slow. Keeping the voice right took judgment.                              |         12 |     5.5s | 131 |
-| 3     | Vox Prismatic turns transcripts into reviewable drafts. People approve before anything is scheduled. |         13 |       6s | 130 |
-| 4     | The workflow moves in clear steps. Extract ideas, shape posts, review hooks, schedule.               |         13 |     6.5s | 120 |
-| 5     | The result is a content operations loop. Long inputs become posts someone can trust.                 |         14 |     6.5s | 129 |
-| End   | Vox Prismatic. Reviewable posts from long transcripts.                                               |          7 |       3s | 140 |
+| Scene | Text                                                                                     | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Long transcripts buried good ideas. Useful moments stayed hard to find.                  |         11 |     5.5s | 120 |
+| 2     | Drafting posts by hand was slow. Keeping the voice right took judgment.                  |         12 |     5.5s | 131 |
+| 3     | Reviewable drafts from long transcripts. People approve before anything is scheduled.    |         11 |       6s | 110 |
+| 4     | The workflow moves in clear steps. Find ideas, shape posts, review options, schedule.    |         13 |     6.5s | 120 |
+| 5     | The result is a repeatable content workflow. Long inputs become posts someone can trust. |         14 |     6.5s | 129 |
+| End   | Vox Prismatic. Reviewable posts from long transcripts.                                   |          7 |       3s | 140 |
 
 Allowed short labels:
 
@@ -360,7 +360,7 @@ Required transitions:
 
 Thumbnail frame:
 
-- Scene 3 after the posts workspace appears, with the headline `Vox Prismatic turns transcripts into reviewable drafts.`
+- Scene 3 after the posts workspace appears, with the product surface dominant and the caption card visible.
 
 ## Acceptance Checklist
 

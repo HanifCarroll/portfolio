@@ -142,8 +142,8 @@ Visual source: presence gate with present and away states.
 On-screen text:
 
 ```text
-Remote control needed ownership.
-Chat should not become open automation.
+Remote control needed clear ownership.
+Chat should not become an open door.
 ```
 
 Narration: none.
@@ -170,7 +170,7 @@ On-screen text:
 
 ```text
 I built a local bridge.
-/away opens remote mode. /back closes it.
+Away mode opens remote replies. Back mode closes them.
 ```
 
 Narration: none.
@@ -196,8 +196,8 @@ Visual source: synthetic Telegram/Discord message, route handle, local route tab
 On-screen text:
 
 ```text
-Replies route back through local state.
-The chat carries a safe route, not private ids.
+Replies go back to the right thread.
+Chat never needs private details.
 ```
 
 Narration: none.
@@ -224,7 +224,7 @@ On-screen text:
 
 ```text
 Approvals return to the same thread.
-Approve or deny in chat; the daemon records the action.
+Approve or deny, and the action is recorded.
 ```
 
 Narration: none.
@@ -251,7 +251,7 @@ On-screen text:
 
 ```text
 Remote Codex stays controlled.
-Presence, routing, approvals, and delivery stay local.
+Replies, approvals, and delivery stay tied to my machine.
 ```
 
 Narration: none.
@@ -274,7 +274,7 @@ End-card text:
 
 ```text
 Codex Telegram Bridge
-Remote replies stay locally owned.
+Replies under control.
 ```
 
 Duration: `2.8s`
@@ -287,15 +287,15 @@ Reading-speed check: `8` words over `2.8s` = `171 WPM`. This is acceptable becau
 
 Final text that may appear in the video. Keep this section short and plain. The composition should not introduce new main copy that is not listed here.
 
-| Scene | Text                                                                                         | Word count | Duration | WPM |
-| ----- | -------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Codex kept working after I stepped away. Prompts could sit on the desktop.                   |         13 |     6.5s | 120 |
-| 2     | Remote control needed ownership. Chat should not become open automation.                     |         10 |     6.5s |  92 |
-| 3     | I built a local bridge. /away opens remote mode. /back closes it.                            |         13 |       7s | 111 |
-| 4     | Replies route back through local state. The chat carries a safe route, not private ids.      |         14 |       7s | 120 |
-| 5     | Approvals return to the same thread. Approve or deny in chat; the daemon records the action. |         16 |       7s | 137 |
-| 6     | Remote Codex stays controlled. Presence, routing, approvals, and delivery stay local.        |         11 |       7s |  94 |
-| End   | Codex Telegram Bridge. Remote replies stay locally owned.                                    |          8 |     2.8s | 171 |
+| Scene | Text                                                                                     | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Codex kept working after I stepped away. Prompts could sit on the desktop.               |         13 |     6.5s | 120 |
+| 2     | Remote control needed clear ownership. Chat should not become an open door.              |         12 |     6.5s | 111 |
+| 3     | I built a local bridge. Away mode opens remote replies. Back mode closes them.           |         13 |       7s | 111 |
+| 4     | Replies go back to the right thread. Chat never needs private details.                   |         11 |       7s |  94 |
+| 5     | Approvals return to the same thread. Approve or deny, and the action is recorded.        |         14 |       7s | 120 |
+| 6     | Remote Codex stays controlled. Replies, approvals, and delivery stay tied to my machine. |         12 |       7s | 103 |
+| End   | Codex Telegram Bridge. Replies under control.                                            |          6 |     2.8s | 129 |
 
 Reading-speed targets:
 
