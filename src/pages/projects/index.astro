@@ -36,13 +36,13 @@ const compactProjects = orderedProjects.slice(5);
 		{
 			leadProject && (
 				<section class='projects-index__ranked-work' aria-label='Ranked project work'>
-					<ProjectVideoCard project={leadProject} index={0} variant='lead' />
+					<ProjectVideoCard project={leadProject} variant='lead' />
 
 					{
 						priorityProjects.length > 0 && (
 							<div class='projects-index__priority-grid'>
-								{priorityProjects.map((project, index) => (
-									<ProjectVideoCard project={project} index={index + 1} variant='card' />
+								{priorityProjects.map((project) => (
+									<ProjectVideoCard project={project} variant='card' />
 								))}
 							</div>
 						)
@@ -51,8 +51,8 @@ const compactProjects = orderedProjects.slice(5);
 					{
 						compactProjects.length > 0 && (
 							<div class='projects-index__compact-list'>
-								{compactProjects.map((project, index) => (
-									<ProjectVideoCard project={project} index={index + 5} variant='compact' />
+								{compactProjects.map((project) => (
+									<ProjectVideoCard project={project} variant='compact' />
 								))}
 							</div>
 						)

@@ -3,16 +3,16 @@ import type { ProjectCard } from '@src/lib/project-cards';
 
 interface Props {
 	project: ProjectCard;
-	index: number;
 	featured?: boolean;
 	variant?: 'lead' | 'card' | 'compact';
 }
 
-const { project, index, featured = false, variant } = Astro.props;
+const { project, featured = false, variant } = Astro.props;
 const video = project.videos?.preview ?? project.videos?.overview;
 const resolvedVariant = variant ?? (featured ? 'lead' : 'card');
 const className = `project-video-card project-video-card--${resolvedVariant}`;
 const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
+const proofTypeDisplay = project.proofTypeLabel.charAt(0) + project.proofTypeLabel.slice(1).toLowerCase();
 ---
 
 {
@@ -42,17 +42,12 @@ const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 				<span class='project-video-card__play-indicator' aria-hidden='true'></span>
 			</div>
 			<div class='project-video-card__copy'>
-				<p class='project-video-card__eyebrow'>
-					<span>{String(index + 1).padStart(2, '0')}</span>
-					{project.trackShortLabel}
-				</p>
 				<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
 				<p>{project.outcome}</p>
 				<p class='project-video-card__meta'>
-					<span>{project.proofTypeLabel}</span>
+					<span>{proofTypeDisplay}</span>
 					<span>{project.client}</span>
 				</p>
-				<span class='project-video-card__cta'>Open case study</span>
 			</div>
 		</a>
 	)

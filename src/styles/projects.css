@@ -22,10 +22,10 @@
   text-transform: none;
 }
 
-.project-video-card__copy > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
+.project-video-card__copy > p:not(.project-video-card__meta) {
   color: var(--site-body);
-  font-size: clamp(1rem, 0.96rem + 0.18vw, 1.12rem);
-  line-height: 1.85;
+  font-size: clamp(0.98rem, 0.95rem + 0.14vw, 1.08rem);
+  line-height: 1.72;
 }
 
 .projects-index__ranked-work {
@@ -150,28 +150,17 @@
   max-width: 42rem;
 }
 
-.project-video-card__eyebrow,
-.project-video-card__cta {
-  margin: 0;
-  color: var(--site-muted);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.project-video-card__eyebrow {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-}
-
 .project-video-card__copy h3 {
   color: var(--site-ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: clamp(1.35rem, 1.14rem + 0.65vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  text-transform: none;
 }
 
-.project-video-card__copy p:not(.project-video-card__eyebrow) {
+.project-video-card__copy p {
   margin: 0;
   color: var(--site-body);
 }
@@ -181,22 +170,17 @@
   flex-wrap: wrap;
   gap: 0.45rem 0.75rem;
   color: var(--site-muted);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-transform: none;
 }
 
 .project-video-card__meta span + span::before {
-  content: "/";
+  content: "·";
   margin-right: 0.75rem;
   color: color-mix(in oklch, var(--site-muted) 62%, transparent);
-}
-
-.project-video-card__cta {
-  color: var(--site-ink);
 }
 
 @media (min-width: 760px) {
@@ -218,15 +202,13 @@
   }
 
   .project-video-card--compact .project-video-card__copy h3 {
-    font-size: clamp(1.25rem, 1.05rem + 0.55vw, 1.8rem);
+    font-size: clamp(1.2rem, 1.05rem + 0.38vw, 1.55rem);
   }
 
-  .project-video-card--compact
-    .project-video-card__copy
-    > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
+  .project-video-card--compact .project-video-card__copy > p:not(.project-video-card__meta) {
     max-width: 58rem;
-    font-size: clamp(0.96rem, 0.92rem + 0.12vw, 1.05rem);
-    line-height: 1.65;
+    font-size: clamp(0.94rem, 0.91rem + 0.1vw, 1rem);
+    line-height: 1.58;
   }
 }
 
@@ -242,13 +224,11 @@
   }
 
   .project-video-card--lead .project-video-card__copy h3 {
-    font-size: clamp(2.1rem, 1.2rem + 3vw, 4.6rem);
+    font-size: clamp(1.8rem, 1.35rem + 1.2vw, 2.8rem);
   }
 
-  .project-video-card--lead
-    .project-video-card__copy
-    > p:not(.project-video-card__eyebrow, .project-video-card__meta) {
+  .project-video-card--lead .project-video-card__copy > p:not(.project-video-card__meta) {
     font-size: clamp(1.08rem, 1rem + 0.3vw, 1.28rem);
-    line-height: 1.75;
+    line-height: 1.65;
   }
 }
