@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Vox Prismatic Workflow Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f7f6;
+        color: #15171d;
+        font-family: Montserrat, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f7f6;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f7f6;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(11, 114, 185, 0.12) 2px, rgba(11, 114, 185, 0) 2px),
+          linear-gradient(90deg, rgba(0, 168, 113, 0.1) 2px, rgba(0, 168, 113, 0) 2px);
+        background-position: -30px -30px;
+        background-size: 120px 120px;
+        opacity: 0.3;
+      }
+
+      .bg-rail {
+        position: absolute;
+        border: 2px solid rgba(11, 114, 185, 0.18);
+        background: rgba(232, 244, 253, 0.62);
+      }
+
+      .bg-rail.left {
+        left: -150px;
+        top: 126px;
+        width: 370px;
+        height: 820px;
+        transform: rotate(-7deg);
+      }
+
+      .bg-rail.right {
+        right: -180px;
+        top: 182px;
+        width: 420px;
+        height: 760px;
+        transform: rotate(8deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        border-color: #00a871;
+        opacity: 0.74;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-number {
+        position: absolute;
+        left: 104px;
+        top: 78px;
+        z-index: 4;
+        color: #0b72b9;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 116px 104px 84px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.88fr 1.12fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+      }
+
+      .stack {
+        grid-template-rows: auto 1fr;
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        color: #00a871;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline {
+        max-width: 850px;
+        font-family: "Archivo Black", Arial, sans-serif;
+        font-size: 82px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 0.95;
+      }
+
+      .headline.wide {
+        max-width: 980px;
+      }
+
+      .subhead {
+        max-width: 830px;
+        color: #5f6470;
+        font-size: 35px;
+        font-weight: 700;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 520px;
+        height: 5px;
+        background: #00a871;
+        transform-origin: left center;
+      }
+
+      .label-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 16px;
+        border: 2px solid rgba(0, 168, 113, 0.28);
+        border-radius: 999px;
+        background: #e9f8f2;
+        color: #15171d;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .surface-frame,
+      .transcript-panel,
+      .draft-board,
+      .workflow-card,
+      .result-card,
+      .end-card {
+        border: 2px solid #d9dee7;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 34px 92px rgba(23, 24, 31, 0.15);
+      }
+
+      .transcript-panel {
+        position: relative;
+        width: 835px;
+        min-height: 660px;
+        padding: 34px;
+        overflow: hidden;
+      }
+
+      .panel-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 26px;
+        color: #15171d;
+        font-size: 26px;
+        font-weight: 800;
+      }
+
+      .panel-title span {
+        color: #5f6470;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .line-strip {
+        position: relative;
+        display: grid;
+        gap: 14px;
+        margin-bottom: 16px;
+        padding: 20px;
+        border: 2px solid #d9dee7;
+        border-radius: 14px;
+        background: #ffffff;
+      }
+
+      .line-strip strong {
+        color: #15171d;
+        font-size: 22px;
+        line-height: 1.22;
+      }
+
+      .line-strip p {
+        color: #5f6470;
+        font-size: 19px;
+        line-height: 1.32;
+      }
+
+      .line-strip.is-highlight {
+        border-color: rgba(0, 168, 113, 0.48);
+        background: #e9f8f2;
+      }
+
+      .tag {
+        display: inline-flex;
+        width: fit-content;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #e8f4fd;
+        color: #0b72b9;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .signal-stack {
+        position: absolute;
+        right: 28px;
+        bottom: 28px;
+        display: grid;
+        gap: 12px;
+        width: 310px;
+      }
+
+      .signal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 14px;
+        border: 2px solid rgba(11, 114, 185, 0.22);
+        border-radius: 12px;
+        background: rgba(232, 244, 253, 0.96);
+        color: #15171d;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .signal b {
+        color: #00a871;
+      }
+
+      .draft-board {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 24px;
+        width: 860px;
+        min-height: 610px;
+        padding: 30px;
+      }
+
+      .queue {
+        display: grid;
+        gap: 18px;
+      }
+
+      .draft-card {
+        display: grid;
+        gap: 12px;
+        padding: 22px;
+        border: 2px solid #d9dee7;
+        border-radius: 14px;
+        background: #ffffff;
+      }
+
+      .draft-card.is-pending {
+        border-color: rgba(199, 131, 32, 0.5);
+        background: #fff8ec;
+      }
+
+      .draft-card.is-approved {
+        border-color: rgba(0, 168, 113, 0.42);
+        background: #e9f8f2;
+      }
+
+      .draft-card strong {
+        font-size: 24px;
+      }
+
+      .draft-card p {
+        color: #5f6470;
+        font-size: 19px;
+        line-height: 1.32;
+      }
+
+      .review-column {
+        display: grid;
+        align-content: stretch;
+        gap: 18px;
+      }
+
+      .review-metric {
+        display: grid;
+        gap: 10px;
+        padding: 22px;
+        border: 2px solid #d9dee7;
+        border-radius: 14px;
+        background: #ffffff;
+      }
+
+      .review-metric span {
+        color: #5f6470;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .bar {
+        width: 100%;
+        height: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e7ebf0;
+      }
+
+      .bar-fill {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: #00a871;
+        transform-origin: left center;
+      }
+
+      .bar-fill.blue {
+        background: #0b72b9;
+      }
+
+      .surface-frame {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .surface-frame.large {
+        width: 940px;
+        height: 529px;
+      }
+
+      .surface-frame.modal {
+        width: 1160px;
+        height: 620px;
+      }
+
+      .surface-frame.result {
+        width: 1000px;
+        height: 450px;
+      }
+
+      .surface-frame img {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .surface-frame.large::after,
+      .surface-frame.result::after {
+        content: "";
+        position: absolute;
+        top: 12px;
+        right: 0;
+        z-index: 2;
+        width: 138px;
+        height: 62px;
+        background: #ffffff;
+      }
+
+      .surface-frame.large img {
+        object-fit: contain;
+        object-position: center center;
+        background: #ffffff;
+      }
+
+      .surface-frame.modal img {
+        object-position: center top;
+      }
+
+      .surface-frame.result img {
+        object-fit: contain;
+        object-position: center center;
+        background: #ffffff;
+        opacity: 0.88;
+      }
+
+      .proof-badge {
+        position: absolute;
+        right: 24px;
+        top: 24px;
+        z-index: 3;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 999px;
+        background: rgba(233, 248, 242, 0.98);
+        color: #15171d;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .proof-badge::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #00a871;
+      }
+
+      .workflow-shell {
+        align-content: center;
+        grid-template-rows: auto 456px 132px;
+        gap: 28px;
+        padding-top: 116px;
+        padding-bottom: 70px;
+      }
+
+      .workflow-shell .copy {
+        gap: 18px;
+      }
+
+      .workflow-shell .headline {
+        max-width: 1220px;
+        font-size: 64px;
+        line-height: 1;
+      }
+
+      .workflow-shell .subhead {
+        max-width: 1080px;
+        font-size: 30px;
+      }
+
+      .workflow-shell .surface-frame.modal {
+        width: 1712px;
+        height: 456px;
+      }
+
+      .workflow-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 0;
+      }
+
+      .workflow-card {
+        position: relative;
+        min-height: 132px;
+        padding: 18px 20px;
+      }
+
+      .workflow-card span {
+        color: #0b72b9;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .workflow-card strong {
+        display: block;
+        margin-top: 14px;
+        color: #15171d;
+        font-size: 24px;
+        line-height: 1.08;
+      }
+
+      .workflow-line {
+        position: absolute;
+        left: 210px;
+        right: 210px;
+        bottom: 198px;
+        z-index: 1;
+        height: 5px;
+        border-radius: 999px;
+        background: #00a871;
+        transform-origin: left center;
+      }
+
+      .result-layout {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+      }
+
+      .result-stack {
+        position: relative;
+        display: grid;
+        gap: 14px;
+      }
+
+      .result-card {
+        padding: 18px 22px;
+      }
+
+      .result-card span {
+        color: #0b72b9;
+        font-family: "Space Mono", "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .result-card strong {
+        display: block;
+        margin-top: 12px;
+        color: #15171d;
+        font-size: 24px;
+        line-height: 1.12;
+      }
+
+      .result-card.approved {
+        border-color: rgba(0, 168, 113, 0.48);
+        background: #e9f8f2;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 76px;
+        z-index: 10;
+        display: grid;
+        gap: 10px;
+        width: 560px;
+        padding: 24px 28px;
+        border-color: rgba(0, 168, 113, 0.36);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #15171d;
+        font-family: "Archivo Black", Arial, sans-serif;
+        font-size: 38px;
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #5f6470;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.18;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 30;
+        background: #f3f7f6;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="33">
+      <section id="scene1" class="scene">
+        <div class="bg" data-layout-ignore>
+          <div class="bg-grid"></div>
+          <div class="bg-rail left"></div>
+          <div class="bg-rail right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01 / PROBLEM</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Transcript backlog</p>
+            <h1 class="headline">Long transcripts buried good ideas.</h1>
+            <p class="subhead">Useful moments stayed hard to find.</p>
+            <span class="rule"></span>
+          </div>
+          <div class="transcript-panel">
+            <div class="panel-title">Transcript source <span>02:18:44</span></div>
+            <div class="line-strip">
+              <strong>Recorded discussion</strong>
+              <p>Hours of useful source material, notes, stories, objections, and rough phrasing.</p>
+            </div>
+            <div class="line-strip is-highlight">
+              <span class="tag">candidate insight</span>
+              <strong>One practical point is worth turning into a post.</strong>
+              <p>The product needs to find the moment before anyone starts writing.</p>
+            </div>
+            <div class="line-strip">
+              <strong>More raw material</strong>
+              <p>Good ideas stay mixed with repeats, side notes, setup, and half-finished thoughts.</p>
+            </div>
+            <div class="signal-stack">
+              <div class="signal"><span>moments found</span><b>08</b></div>
+              <div class="signal"><span>ready to shape</span><b>03</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg" data-layout-ignore>
+          <div class="bg-grid"></div>
+          <div class="bg-rail left"></div>
+          <div class="bg-rail right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02 / BOTTLENECK</div>
+        <div class="scene-shell split-reverse">
+          <div class="draft-board">
+            <div class="queue">
+              <div class="panel-title">Draft queue <span>pending</span></div>
+              <div class="draft-card is-pending">
+                <strong>Raw idea</strong>
+                <p>Good point, but not ready for an audience.</p>
+              </div>
+              <div class="draft-card">
+                <strong>Rough post</strong>
+                <p>Needs stronger opening and cleaner voice.</p>
+              </div>
+              <div class="draft-card is-approved">
+                <strong>Reviewed draft</strong>
+                <p>Ready only after someone approves the shape.</p>
+              </div>
+            </div>
+            <div class="review-column">
+              <div class="review-metric">
+                <span>voice fit</span>
+                <div class="bar"><i class="bar-fill" style="width: 74%"></i></div>
+              </div>
+              <div class="review-metric">
+                <span>hook clarity</span>
+                <div class="bar"><i class="bar-fill blue" style="width: 66%"></i></div>
+              </div>
+              <div class="review-metric">
+                <span>human review</span>
+                <div class="bar"><i class="bar-fill" style="width: 92%"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">Manual bottleneck</p>
+            <h2 class="headline">Drafting posts by hand was slow.</h2>
+            <p class="subhead">Keeping the voice right took judgment.</p>
+            <span class="rule"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg" data-layout-ignore>
+          <div class="bg-grid"></div>
+          <div class="bg-rail left"></div>
+          <div class="bg-rail right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03 / SOLUTION</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Product workflow</p>
+            <h2 class="headline">Vox Prismatic turns transcripts into reviewable drafts.</h2>
+            <p class="subhead">People approve before anything is scheduled.</p>
+            <div class="label-row">
+              <span class="pill">human-led</span>
+              <span class="pill">reviewable</span>
+              <span class="pill">schedule-ready</span>
+            </div>
+          </div>
+          <figure class="surface-frame large">
+            <img src="assets/vox-prismatic-posts-crop.png" alt="Cropped Vox Prismatic posts workspace" />
+            <figcaption class="proof-badge">product surface</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg" data-layout-ignore>
+          <div class="bg-grid"></div>
+          <div class="bg-rail left"></div>
+          <div class="bg-rail right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04 / WORKFLOW</div>
+        <div class="scene-shell stack workflow-shell">
+          <div class="copy">
+            <p class="eyebrow">Workflow steps</p>
+            <h2 class="headline wide">The workflow moves in clear steps.</h2>
+            <p class="subhead">Extract ideas, shape posts, review hooks, schedule.</p>
+          </div>
+          <figure class="surface-frame modal">
+            <img src="assets/vox-prismatic-hook-workbench.png" alt="Cropped Vox Prismatic hook workbench" />
+            <figcaption class="proof-badge">hook review</figcaption>
+          </figure>
+          <div class="workflow-line"></div>
+          <div class="workflow-strip">
+            <div class="workflow-card"><span>01</span><strong>Extract ideas</strong></div>
+            <div class="workflow-card"><span>02</span><strong>Shape posts</strong></div>
+            <div class="workflow-card"><span>03</span><strong>Review hooks</strong></div>
+            <div class="workflow-card"><span>04</span><strong>Schedule</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg" data-layout-ignore>
+          <div class="bg-grid"></div>
+          <div class="bg-rail left"></div>
+          <div class="bg-rail right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05 / USEFUL RESULT</div>
+        <div class="scene-shell result-layout">
+          <div class="copy">
+            <p class="eyebrow">Useful result</p>
+            <h2 class="headline">The result is a content operations loop.</h2>
+            <p class="subhead">Long inputs become posts someone can trust.</p>
+            <span class="rule"></span>
+          </div>
+          <div class="result-stack">
+            <figure class="surface-frame result">
+              <img src="assets/vox-prismatic-posts-result.png" alt="Cropped Vox Prismatic posts workflow result" />
+              <figcaption class="proof-badge">review to schedule</figcaption>
+            </figure>
+            <div class="result-card"><span>input</span><strong>Long transcript</strong></div>
+            <div class="result-card"><span>review</span><strong>Hook and draft approval</strong></div>
+            <div class="result-card approved"><span>output</span><strong>Reviewable post ready to schedule</strong></div>
+          </div>
+        </div>
+        <div class="end-card">
+          <strong>Vox Prismatic</strong>
+          <span>Reviewable posts from long transcripts.</span>
+        </div>
+        <div class="end-fade"></div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.58, ease: "power2.out" },
+      });
+
+      tl.to(".bg-rail.left", { x: 34, duration: 4, repeat: 7, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-rail.right", { x: -34, duration: 4.4, repeat: 6, yoyo: true, ease: "sine.inOut" }, 0);
+
+      function enterCopy(scene, time, direction, hasRule = true) {
+        tl.fromTo(`${scene} .scene-number`, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, time);
+        tl.fromTo(`${scene} .eyebrow`, { opacity: 0, x: direction * 34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, time + 0.04);
+        tl.fromTo(`${scene} .headline`, { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, time + 0.16);
+        tl.fromTo(`${scene} .subhead`, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, time + 0.68);
+        if (hasRule) {
+          tl.fromTo(`${scene} .rule`, { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.54, ease: "power3.out" }, time + 0.96);
+        }
+      }
+
+      function pushTransition(oldScene, newScene, time, axis) {
+        const vertical = axis === "up";
+        const oldVars = vertical ? { y: -1080 } : { x: -1920 };
+        const newStart = vertical ? { y: 1080, x: 0 } : { x: 1920, y: 0 };
+        const newEnd = vertical ? { y: 0 } : { x: 0 };
+
+        tl.set(newScene, { opacity: 1, visibility: "visible", ...newStart }, time);
+        tl.to(oldScene, { ...oldVars, duration: 0.55, ease: "power3.inOut" }, time);
+        tl.to(newScene, { ...newEnd, duration: 0.55, ease: "power3.inOut" }, time);
+        tl.set(oldScene, { visibility: "hidden" }, time + 0.56);
+      }
+
+      function blurTransition(oldScene, newScene, time) {
+        tl.set(newScene, { opacity: 0, visibility: "visible", filter: "blur(10px)", scale: 0.97, x: 0, y: 0 }, time);
+        tl.to(oldScene, { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.55, ease: "power2.inOut" }, time);
+        tl.to(newScene, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.55, ease: "power2.inOut" }, time + 0.1);
+        tl.set(oldScene, { visibility: "hidden" }, time + 0.66);
+      }
+
+      enterCopy("#scene1", 0.08, -1);
+      tl.fromTo("#scene1 .transcript-panel", { opacity: 0, x: 48, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.68, ease: "power3.out" }, 0.55);
+      tl.fromTo("#scene1 .line-strip", { opacity: 0, y: 34, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, 0.92);
+      tl.fromTo("#scene1 .signal", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.36, stagger: 0.08, ease: "power3.out" }, 1.42);
+
+      pushTransition("#scene1", "#scene2", 5.0, "left");
+      enterCopy("#scene2", 5.38, 1);
+      tl.fromTo("#scene2 .draft-board", { opacity: 0, x: -48, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.68, ease: "power3.out" }, 5.66);
+      tl.fromTo("#scene2 .draft-card", { opacity: 0, y: 32, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.44, stagger: 0.1, ease: "back.out(1.2)" }, 6.02);
+      tl.fromTo("#scene2 .bar-fill", { scaleX: 0 }, { scaleX: 1, duration: 0.72, stagger: 0.12, ease: "power3.out" }, 6.34);
+
+      pushTransition("#scene2", "#scene3", 10.5, "left");
+      enterCopy("#scene3", 10.88, -1, false);
+      tl.fromTo("#scene3 .surface-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.76, ease: "power3.out" }, 11.04);
+      tl.fromTo("#scene3 .pill", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.36, stagger: 0.08, ease: "power2.out" }, 11.82);
+      tl.fromTo("#scene3 .proof-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(1.3)" }, 12.1);
+
+      pushTransition("#scene3", "#scene4", 15.9, "up");
+      enterCopy("#scene4", 16.32, -1, false);
+      tl.fromTo("#scene4 .surface-frame", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 17.56);
+      tl.fromTo("#scene4 .workflow-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 18.2);
+      tl.fromTo("#scene4 .workflow-card", { opacity: 0, y: 36, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.09, ease: "power3.out" }, 18.38);
+      tl.fromTo("#scene4 .proof-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(1.3)" }, 18.68);
+
+      blurTransition("#scene4", "#scene5", 22.95);
+      enterCopy("#scene5", 23.36, -1);
+      tl.fromTo("#scene5 .surface-frame", { opacity: 0, x: 42, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 23.7);
+      tl.fromTo("#scene5 .result-card", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.1, ease: "power3.out" }, 24.24);
+      tl.fromTo("#scene5 .proof-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.36, ease: "back.out(1.3)" }, 24.5);
+
+      tl.fromTo("#scene5 .end-card", { opacity: 0, y: 22, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: "power3.out" }, 30.0);
+      tl.to("#scene5 .end-fade", { opacity: 1, duration: 0.35, ease: "sine.inOut" }, 32.65);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
