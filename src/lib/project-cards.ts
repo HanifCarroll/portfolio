@@ -6,7 +6,6 @@ export interface ProjectCard {
   slug: string;
   name: string;
   description: string;
-  outcome: string;
   demoLink: string;
   tags: string[];
   year: string;
@@ -22,8 +21,6 @@ export interface ProjectCard {
   videos: Project["videos"];
 }
 
-const firstText = (value: string | string[]) => (Array.isArray(value) ? value[0] : value);
-
 const getProofTypeLabel = (proofType: Project["proofType"]) =>
   proofType === "client"
     ? "Client Work"
@@ -38,7 +35,6 @@ const toCard = (project: Project): ProjectCard => {
     slug: project.slug,
     name: project.title,
     description: project.description,
-    outcome: firstText(project.result),
     demoLink: project.liveUrl ?? "",
     tags: project.technologies ?? [],
     year: project.year ?? "",

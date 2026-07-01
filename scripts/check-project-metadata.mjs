@@ -30,6 +30,10 @@ for (const file of localProjectFiles) {
     errors.push(`${file}: slug "${project.slug}" does not match filename "${slug}".`);
   }
 
+  if (typeof project.description !== "string" || project.description.trim() === "") {
+    errors.push(`${file}: description must be a non-empty string.`);
+  }
+
   const caseStudyPath = join(caseStudiesDir, `${slug}.mdx`);
   if (!existsSync(caseStudyPath)) {
     errors.push(`${file}: missing case study at src/content/case-studies/${slug}.mdx.`);
