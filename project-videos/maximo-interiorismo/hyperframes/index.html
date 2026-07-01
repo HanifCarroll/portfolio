@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Maximo Interiorismo Site Loop</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #090807;
+        color: #f5f1ea;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body,
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #090807;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background-color: #090807;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      .site-shot {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .shade {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(2, 2, 2, 0.76) 0%, rgba(2, 2, 2, 0.32) 38%, rgba(2, 2, 2, 0.08) 70%),
+          linear-gradient(0deg, rgba(2, 2, 2, 0.62) 0%, rgba(2, 2, 2, 0) 45%);
+        pointer-events: none;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 88px 112px;
+      }
+
+      .copy {
+        align-self: end;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 720px;
+        padding-bottom: 70px;
+      }
+
+      .eyebrow,
+      .chip,
+      .meta-label {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        color: #d1a85a;
+      }
+
+      .headline {
+        max-width: 760px;
+        color: #f7f4ef;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 82px;
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .rule {
+        width: 390px;
+        height: 4px;
+        background: #b65b55;
+        transform-origin: left center;
+      }
+
+      .site-frame {
+        position: absolute;
+        inset: 94px 116px 106px 116px;
+        overflow: hidden;
+        border: 2px solid rgba(216, 208, 200, 0.72);
+        border-radius: 18px;
+        background: #020202;
+        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.38);
+      }
+
+      .browser-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+        padding: 0 30px;
+        border-bottom: 1px solid rgba(23, 21, 19, 0.12);
+        background: rgba(247, 244, 239, 0.96);
+        color: #171513;
+      }
+
+      .dots {
+        display: flex;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 13px;
+        height: 13px;
+        border-radius: 999px;
+        background: #b65b55;
+      }
+
+      .dot:nth-child(2) {
+        background: #d1a85a;
+      }
+
+      .dot:nth-child(3) {
+        background: #506b42;
+      }
+
+      .url-label {
+        color: #5b524a;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .frame-img {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+
+      .frame-vignette {
+        position: absolute;
+        inset: 68px 0 0 0;
+        z-index: 2;
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(2, 2, 2, 0.86) 94%),
+          linear-gradient(90deg, rgba(2, 2, 2, 0.5) 0%, rgba(2, 2, 2, 0) 42%);
+        pointer-events: none;
+      }
+
+      .side-caption {
+        position: absolute;
+        z-index: 4;
+        left: 148px;
+        bottom: 132px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        max-width: 580px;
+        color: #f7f4ef;
+      }
+
+      .side-caption .headline {
+        font-size: 68px;
+      }
+
+      .quiet-note {
+        max-width: 520px;
+        color: #c8beb4;
+        font-size: 29px;
+        font-weight: 600;
+        line-height: 1.22;
+      }
+
+      .proof-path {
+        position: absolute;
+        right: 142px;
+        bottom: 128px;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .chip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 188px;
+        min-height: 58px;
+        padding: 16px 22px;
+        border: 1px solid rgba(247, 244, 239, 0.26);
+        border-radius: 999px;
+        background: rgba(9, 8, 7, 0.72);
+        color: #f7f4ef;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+      }
+
+      .path-line {
+        width: 52px;
+        height: 2px;
+        background: #d1a85a;
+        transform-origin: left center;
+      }
+
+      .end-shell {
+        display: grid;
+        grid-template-columns: 0.84fr 1.16fr;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 104px 126px;
+        gap: 72px;
+        background:
+          radial-gradient(circle at 74% 22%, rgba(209, 168, 90, 0.24), rgba(209, 168, 90, 0) 32%),
+          radial-gradient(circle at 30% 80%, rgba(80, 107, 66, 0.18), rgba(80, 107, 66, 0) 36%),
+          #090807;
+      }
+
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 520px;
+        height: 520px;
+        border: 1px solid rgba(216, 208, 200, 0.28);
+        border-radius: 50%;
+        background: rgba(247, 244, 239, 0.95);
+      }
+
+      .logo-wrap img {
+        width: 430px;
+        height: auto;
+        opacity: 0.92;
+      }
+
+      .end-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .end-title {
+        color: #f7f4ef;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 92px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .end-line {
+        color: #c8beb4;
+        font-size: 42px;
+        font-weight: 650;
+        line-height: 1.15;
+      }
+
+      .accent-rule {
+        width: 520px;
+        height: 5px;
+        background: #b65b55;
+        transform-origin: left center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="18"
+      data-width="1920"
+      data-height="1080"
+    >
+      <section id="scene1" class="scene">
+        <img class="site-shot hero-shot" src="assets/maximo-hero.png" alt="Maximo Interiorismo hero site screenshot." data-layout-allow-overflow />
+        <div class="shade"></div>
+        <div class="scene-shell">
+          <div class="copy">
+            <p class="eyebrow s1-eyebrow">Design portfolio</p>
+            <h1 class="headline s1-title">A stronger public home.</h1>
+            <span class="rule s1-rule"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="site-frame s2-frame">
+          <div class="browser-top">
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <p class="url-label">maximo-interiorismo.netlify.app</p>
+            <p class="meta-label">Portfolio</p>
+          </div>
+          <img class="frame-img s2-img" src="assets/maximo-feature-presentation.png" alt="Maximo portfolio project page screenshot." data-layout-allow-overflow />
+          <div class="frame-vignette"></div>
+        </div>
+        <div class="side-caption">
+          <p class="eyebrow s2-eyebrow">Cleaner presentation</p>
+          <h2 class="headline s2-title">The work stays first.</h2>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="site-frame s3-frame">
+          <div class="browser-top">
+            <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <p class="url-label">Projects / FAQ / About</p>
+            <p class="meta-label">Inquiry</p>
+          </div>
+          <img class="frame-img s3-img" src="assets/maximo-feature-inquiry.png" alt="Maximo site navigation and project presentation." data-layout-allow-overflow />
+          <div class="frame-vignette"></div>
+        </div>
+        <div class="side-caption">
+          <p class="eyebrow s3-eyebrow">Inquiry path</p>
+          <h2 class="headline s3-title">Review leads to inquiry.</h2>
+          <p class="quiet-note s3-note">A clean route from portfolio proof to a conversation.</p>
+        </div>
+        <div class="proof-path">
+          <span class="chip s3-chip-a">Review work</span>
+          <span class="path-line s3-line-a"></span>
+          <span class="chip s3-chip-b">Trust proof</span>
+          <span class="path-line s3-line-b"></span>
+          <span class="chip s3-chip-c">Consultation</span>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="end-shell">
+          <div class="logo-wrap s4-logo"><img src="assets/maximo-logo.png" alt="Maximo logo." /></div>
+          <div class="end-copy">
+            <p class="eyebrow s4-eyebrow">Launch site</p>
+            <h2 class="end-title s4-title">Maximo Interiorismo</h2>
+            <span class="accent-rule s4-rule"></span>
+            <p class="end-line s4-line">Portfolio to consultation.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      function blurCrossfade(oldScene, newScene, at) {
+        tl.to(oldScene, { filter: "blur(24px)", scale: 1.035, opacity: 0, duration: 0.72, ease: "power1.inOut" }, at);
+        tl.fromTo(
+          newScene,
+          { filter: "blur(22px)", scale: 0.985, opacity: 0 },
+          { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.82, ease: "power1.out" },
+          at + 0.12
+        );
+      }
+
+      tl.from(".hero-shot", { opacity: 0.82, duration: 0.66, ease: "sine.out" }, 0.2);
+      tl.from(".s1-eyebrow", { x: -28, opacity: 0, duration: 0.44, ease: "power3.out" }, 0.36);
+      tl.from(".s1-title", { y: 42, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.5);
+      tl.from(".s1-rule", { scaleX: 0, duration: 0.52, ease: "power2.out" }, 0.82);
+      tl.to(".hero-shot", { scale: 1.08, x: -34, y: -16, duration: 4.1, ease: "sine.inOut" }, 0.35);
+
+      blurCrossfade("#scene1", "#scene2", 4.08);
+
+      tl.from(".s2-frame", { y: 36, scale: 0.985, duration: 0.72, ease: "power4.out" }, 4.62);
+      tl.from(".s2-eyebrow", { x: -22, opacity: 0, duration: 0.42, ease: "power3.out" }, 4.74);
+      tl.from(".s2-title", { y: 34, opacity: 0, duration: 0.64, ease: "expo.out" }, 4.9);
+      tl.from(".s2-img", { y: 0, duration: 0.1, ease: "none" }, 4.6);
+      tl.to(".s2-img", { y: -116, duration: 3.55, ease: "sine.inOut" }, 4.86);
+
+      blurCrossfade("#scene2", "#scene3", 8.34);
+
+      tl.from(".s3-frame", { scale: 0.99, opacity: 0.8, duration: 0.68, ease: "power2.out" }, 8.84);
+      tl.from(".s3-eyebrow", { x: -24, opacity: 0, duration: 0.4, ease: "power3.out" }, 8.94);
+      tl.from(".s3-title", { y: 38, opacity: 0, duration: 0.62, ease: "expo.out" }, 9.08);
+      tl.from(".s3-note", { x: 26, opacity: 0, duration: 0.46, ease: "sine.out" }, 9.34);
+      tl.from(".s3-chip-a", { scale: 0.92, opacity: 0, duration: 0.36, ease: "back.out(1.6)" }, 9.48);
+      tl.from(".s3-line-a", { scaleX: 0, duration: 0.28, ease: "power2.out" }, 9.74);
+      tl.from(".s3-chip-b", { y: 22, opacity: 0, duration: 0.36, ease: "power4.out" }, 9.88);
+      tl.from(".s3-line-b", { scaleX: 0, duration: 0.28, ease: "power2.out" }, 10.12);
+      tl.from(".s3-chip-c", { x: 24, opacity: 0, duration: 0.38, ease: "sine.out" }, 10.26);
+      tl.to(".s3-img", { y: -74, duration: 3.4, ease: "sine.inOut" }, 8.98);
+
+      blurCrossfade("#scene3", "#scene4", 12.68);
+
+      tl.from(".s4-logo", { scale: 0.9, opacity: 0, duration: 0.82, ease: "power3.out" }, 13.24);
+      tl.from(".s4-eyebrow", { x: -28, opacity: 0, duration: 0.42, ease: "power3.out" }, 13.48);
+      tl.from(".s4-title", { y: 40, opacity: 0, duration: 0.72, ease: "expo.out" }, 13.62);
+      tl.from(".s4-rule", { scaleX: 0, duration: 0.52, ease: "power2.out" }, 13.96);
+      tl.from(".s4-line", { y: 24, opacity: 0, duration: 0.5, ease: "sine.out" }, 14.18);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
