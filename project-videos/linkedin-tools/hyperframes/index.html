@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>LinkedIn Tools Systems Proof</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef3f6;
+        color: #111827;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef3f6;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(28, 124, 91, 0.1) 2px, rgba(28, 124, 91, 0) 2px),
+          linear-gradient(90deg, rgba(28, 124, 91, 0.08) 2px, rgba(28, 124, 91, 0) 2px);
+        background-position: -28px -28px;
+        background-size: 92px 92px;
+        opacity: 0.3;
+      }
+
+      .bg-slate {
+        position: absolute;
+        left: -340px;
+        top: 86px;
+        width: 330px;
+        height: 875px;
+        background: #172331;
+        border: 2px solid rgba(23, 35, 49, 0.5);
+        transform: rotate(-7deg);
+        opacity: 0.92;
+      }
+
+      .bg-mint {
+        position: absolute;
+        right: -185px;
+        top: 140px;
+        width: 430px;
+        height: 785px;
+        background: rgba(221, 244, 232, 0.78);
+        border: 2px solid rgba(28, 124, 91, 0.16);
+        transform: rotate(8deg);
+      }
+
+      .bg-amber {
+        position: absolute;
+        right: 210px;
+        bottom: 70px;
+        width: 285px;
+        height: 72px;
+        background: #b87513;
+        opacity: 0.16;
+        transform: rotate(-4deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 66px;
+        height: 66px;
+        border-color: #1c7c5b;
+        opacity: 0.68;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 82px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #1c7c5b;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 870px;
+        color: #111827;
+        font-family: Georgia, serif;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 0.99;
+      }
+
+      .headline.wide {
+        max-width: 1040px;
+      }
+
+      .subhead {
+        max-width: 850px;
+        color: #52627a;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 540px;
+        height: 5px;
+        background: #1c7c5b;
+        transform-origin: left center;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 82px;
+        z-index: 3;
+        color: rgba(28, 124, 91, 0.78);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .surface-card,
+      .question-card,
+      .browser-card,
+      .lane-card,
+      .evidence-card,
+      .system-node,
+      .end-card {
+        border: 2px solid #cbd6e2;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 34px 88px rgba(23, 35, 49, 0.15);
+      }
+
+      .browser-board {
+        position: relative;
+        width: 980px;
+        height: 675px;
+      }
+
+      .browser-card {
+        position: absolute;
+        display: grid;
+        align-content: center;
+        gap: 14px;
+        width: 330px;
+        min-height: 154px;
+        padding: 28px 30px;
+        color: #111827;
+      }
+
+      .browser-card strong,
+      .question-card strong,
+      .lane-card strong,
+      .evidence-card strong,
+      .system-node strong {
+        display: block;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .browser-card span,
+      .question-card span,
+      .lane-card span,
+      .evidence-card span,
+      .system-node span {
+        color: #52627a;
+        font-size: 22px;
+        font-weight: 750;
+        line-height: 1.18;
+      }
+
+      .browser-card.card-a {
+        left: 48px;
+        top: 62px;
+        transform: rotate(-5deg);
+      }
+
+      .browser-card.card-b {
+        right: 72px;
+        top: 88px;
+        transform: rotate(4deg);
+      }
+
+      .browser-card.card-c {
+        left: 286px;
+        bottom: 68px;
+        transform: rotate(-2deg);
+      }
+
+      .warning-line {
+        position: absolute;
+        left: 186px;
+        top: 248px;
+        width: 605px;
+        height: 270px;
+        border: 5px dashed rgba(184, 117, 19, 0.54);
+        border-radius: 54px;
+      }
+
+      .warning-badge {
+        position: absolute;
+        right: 54px;
+        bottom: 206px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 56px;
+        padding: 12px 18px;
+        border: 2px solid rgba(184, 117, 19, 0.42);
+        border-radius: 999px;
+        background: #fff2cf;
+        color: #8a560f;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 21px;
+        font-weight: 900;
+      }
+
+      .proof-trail {
+        position: relative;
+        width: 880px;
+        height: 600px;
+      }
+
+      .trail-line {
+        position: absolute;
+        left: 92px;
+        top: 112px;
+        width: 5px;
+        height: 380px;
+        background: #1c7c5b;
+        transform-origin: top center;
+      }
+
+      .question-card {
+        position: absolute;
+        width: 620px;
+        min-height: 130px;
+        padding: 32px 38px;
+      }
+
+      .question-card.q1 {
+        left: 138px;
+        top: 40px;
+      }
+
+      .question-card.q2 {
+        left: 228px;
+        top: 226px;
+      }
+
+      .question-card.q3 {
+        left: 138px;
+        top: 410px;
+      }
+
+      .dot {
+        position: absolute;
+        left: 73px;
+        width: 42px;
+        height: 42px;
+        border: 5px solid #1c7c5b;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .dot.d1 {
+        top: 78px;
+      }
+
+      .dot.d2 {
+        top: 264px;
+      }
+
+      .dot.d3 {
+        top: 448px;
+      }
+
+      .surface-card {
+        position: relative;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .surface-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background-image: url("assets/review-ui.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .surface-large {
+        width: 1040px;
+        height: 664px;
+      }
+
+      .surface-crop {
+        width: 825px;
+        height: 548px;
+      }
+
+      .surface-crop .surface-image {
+        background-position: 50% 28%;
+        background-size: 112% 112%;
+      }
+
+      .guardrail-chips {
+        display: flex;
+        gap: 14px;
+        margin-top: 4px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 54px;
+        padding: 12px 18px;
+        border: 2px solid rgba(28, 124, 91, 0.3);
+        border-radius: 999px;
+        background: #ddf4e8;
+        color: #1c7c5b;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 21px;
+        font-weight: 900;
+      }
+
+      .lane-flow {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+        margin-top: 28px;
+      }
+
+      .lane-line {
+        position: absolute;
+        left: 104px;
+        right: 104px;
+        top: 126px;
+        height: 5px;
+        background: #1c7c5b;
+        transform-origin: left center;
+      }
+
+      .lane-card {
+        position: relative;
+        min-height: 295px;
+        padding: 34px 32px;
+      }
+
+      .lane-card::before {
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin-bottom: 42px;
+        border: 6px solid #1c7c5b;
+        border-radius: 50%;
+        background: #ffffff;
+        content: "";
+      }
+
+      .lane-card.opportunity::before {
+        border-color: #b87513;
+      }
+
+      .lane-label {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 26px;
+        min-height: 48px;
+        padding: 10px 14px;
+        border: 2px solid rgba(23, 35, 49, 0.12);
+        border-radius: 999px;
+        background: #f7fafc;
+        color: #172331;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 19px;
+        font-weight: 900;
+      }
+
+      .lane-card.opportunity .lane-label {
+        border-color: rgba(184, 117, 19, 0.34);
+        background: #fff2cf;
+        color: #8a560f;
+      }
+
+      .evidence-layout {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        align-items: center;
+        gap: 42px;
+      }
+
+      .evidence-stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .evidence-card {
+        min-height: 142px;
+        padding: 28px;
+      }
+
+      .evidence-card.review-pages {
+        grid-column: span 2;
+        min-height: 126px;
+        border-color: rgba(28, 124, 91, 0.34);
+        background: #f2fbf6;
+      }
+
+      .evidence-rule {
+        display: block;
+        width: 86px;
+        height: 5px;
+        margin-top: 20px;
+        background: #b87513;
+        transform-origin: left center;
+      }
+
+      .system-map {
+        position: relative;
+        width: 100%;
+        height: 660px;
+      }
+
+      .system-node {
+        position: absolute;
+        width: 315px;
+        min-height: 150px;
+        padding: 28px;
+      }
+
+      .system-node.state {
+        left: 92px;
+        top: 70px;
+      }
+
+      .system-node.gates {
+        right: 126px;
+        top: 82px;
+      }
+
+      .system-node.evidence {
+        left: 256px;
+        bottom: 54px;
+      }
+
+      .system-core {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: grid;
+        place-items: center;
+        width: 290px;
+        height: 290px;
+        border: 4px solid #1c7c5b;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #111827;
+        font-family: Georgia, serif;
+        font-size: 44px;
+        font-weight: 800;
+        line-height: 0.98;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 40px 95px rgba(23, 35, 49, 0.15);
+      }
+
+      .map-line {
+        position: absolute;
+        left: 350px;
+        top: 312px;
+        width: 620px;
+        height: 5px;
+        background: #1c7c5b;
+        transform-origin: left center;
+      }
+
+      .map-line.diag-a {
+        top: 250px;
+        transform: rotate(-18deg);
+      }
+
+      .map-line.diag-b {
+        top: 462px;
+        transform: rotate(18deg);
+      }
+
+      .final-wrap {
+        display: grid;
+        grid-template-columns: 0.86fr 1.14fr;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 54px;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 76px;
+        z-index: 8;
+        display: grid;
+        gap: 10px;
+        width: 610px;
+        padding: 24px 30px;
+        border-color: rgba(28, 124, 91, 0.32);
+        background: rgba(255, 255, 255, 0.97);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #111827;
+        font-family: Georgia, serif;
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #52627a;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.16;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #eef3f6;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="45">
+      <section id="scene1" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Problem</p>
+            <h1 class="headline">Browser automation is easy to demo.</h1>
+            <p class="subhead">It is harder to trust.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="browser-board">
+            <div class="warning-line"></div>
+            <div class="browser-card card-a">
+              <strong>Browser action</strong>
+              <span>Can change account state</span>
+            </div>
+            <div class="browser-card card-b">
+              <strong>Guardrail</strong>
+              <span>Must be close to the action</span>
+            </div>
+            <div class="browser-card card-c">
+              <strong>Evidence</strong>
+              <span>Needed after the run</span>
+            </div>
+            <div class="warning-badge">risky without ownership</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-shell split-reverse">
+          <div class="proof-trail">
+            <div class="trail-line"></div>
+            <div class="dot d1"></div>
+            <div class="dot d2"></div>
+            <div class="dot d3"></div>
+            <div class="question-card q1">
+              <strong>Owner</strong>
+              <span>Which workflow is responsible?</span>
+            </div>
+            <div class="question-card q2">
+              <strong>Permission</strong>
+              <span>What is allowed to act?</span>
+            </div>
+            <div class="question-card q3">
+              <strong>Proof</strong>
+              <span>What remains after the browser moves?</span>
+            </div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">Ownership</p>
+            <h2 class="headline">The question was ownership.</h2>
+            <p class="subhead">Which workflow can act, and what proof remains?</p>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Controller</p>
+            <h2 class="headline">LinkedIn Tools puts workflows behind controllers.</h2>
+            <p class="subhead">State, gates, and review come first.</p>
+            <div class="guardrail-chips">
+              <span class="chip">State</span>
+              <span class="chip">Gates</span>
+              <span class="chip">Review</span>
+            </div>
+          </div>
+          <div class="surface-card surface-large">
+            <div class="surface-image"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p class="eyebrow">Guardrail</p>
+            <h2 class="headline wide">Each rail has a boundary.</h2>
+            <p class="subhead">Network sends connections. Recruiter outreach sends drafts. Opportunity intel only recommends.</p>
+          </div>
+          <div class="lane-flow">
+            <div class="lane-line"></div>
+            <div class="lane-card network">
+              <strong>Network</strong>
+              <span>Connection requests and follow-ups.</span>
+              <div class="lane-label">send-capable</div>
+            </div>
+            <div class="lane-card recruiter">
+              <strong>Recruiter</strong>
+              <span>Drafted outreach with guarded sends.</span>
+              <div class="lane-label">draft-send</div>
+            </div>
+            <div class="lane-card opportunity">
+              <strong>Opportunity</strong>
+              <span>Buyer-signal research and ranking.</span>
+              <div class="lane-label">recommend-only</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-shell">
+          <div class="copy">
+            <p class="eyebrow">Evidence</p>
+            <h2 class="headline wide">Runs leave evidence behind.</h2>
+            <p class="subhead">Artifacts, ledgers, audits, blockers, and review pages stay inspectable.</p>
+          </div>
+          <div class="evidence-layout">
+            <div class="surface-card surface-crop">
+              <div class="surface-image"></div>
+            </div>
+            <div class="evidence-stack">
+              <div class="evidence-card">
+                <strong>Artifacts</strong>
+                <span>Captured run outputs</span>
+                <div class="evidence-rule"></div>
+              </div>
+              <div class="evidence-card">
+                <strong>Ledgers</strong>
+                <span>Accepted and pending state</span>
+                <div class="evidence-rule"></div>
+              </div>
+              <div class="evidence-card">
+                <strong>Audits</strong>
+                <span>Reconciliation reports</span>
+                <div class="evidence-rule"></div>
+              </div>
+              <div class="evidence-card">
+                <strong>Blockers</strong>
+                <span>Explicit stop states</span>
+                <div class="evidence-rule"></div>
+              </div>
+              <div class="evidence-card review-pages">
+                <strong>Review pages</strong>
+                <span>One place to inspect the workflow.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-slate"></div>
+          <div class="bg-mint"></div>
+          <div class="bg-amber"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">06</div>
+        <div class="scene-shell">
+          <div class="final-wrap">
+            <div class="copy">
+              <p class="eyebrow">Why it matters</p>
+              <h2 class="headline">This is safer workflow ownership.</h2>
+              <p class="subhead">Automation runs where the system can explain what happened.</p>
+              <div class="rule"></div>
+            </div>
+            <div class="system-map">
+              <div class="map-line diag-a"></div>
+              <div class="map-line"></div>
+              <div class="map-line diag-b"></div>
+              <div class="system-node state">
+                <strong>State</strong>
+                <span>Workflow memory before action.</span>
+              </div>
+              <div class="system-node gates">
+                <strong>Gates</strong>
+                <span>Permission close to risk.</span>
+              </div>
+              <div class="system-node evidence">
+                <strong>Evidence</strong>
+                <span>Proof after automation.</span>
+              </div>
+              <div class="system-core">LinkedIn<br />Tools</div>
+            </div>
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>LinkedIn Tools</strong>
+          <span>Guarded automation with evidence.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 45;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      tl.to(".bg-slate", { y: 28, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-mint", { y: -24, duration: 22.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-amber", { x: -28, duration: 15, repeat: 2, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-grid", { x: 18, y: 14, duration: 45, ease: "none" }, 0);
+
+      tl.fromTo("#scene1 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0);
+      tl.fromTo("#scene1 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 0.02);
+      tl.fromTo("#scene1 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.74, ease: "power3.out" }, 0.12);
+      tl.fromTo("#scene1 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 0.72);
+      tl.fromTo("#scene1 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 1.02);
+      tl.fromTo("#scene1 .warning-line", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0.7);
+      tl.fromTo("#scene1 .browser-card", { opacity: 0, y: 46, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" }, 0.92);
+      tl.fromTo("#scene1 .warning-badge", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.48, ease: "power3.out" }, 1.46);
+
+      tl.to("#scene1", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 6.45);
+      tl.set("#scene2", { opacity: 1, visibility: "visible" }, 6.45);
+      tl.fromTo("#scene2", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 6.45);
+      tl.set("#scene1", { visibility: "hidden" }, 7.02);
+      tl.fromTo("#scene2 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 6.82);
+      tl.fromTo("#scene2 .eyebrow", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 6.86);
+      tl.fromTo("#scene2 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 7.0);
+      tl.fromTo("#scene2 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 7.58);
+      tl.fromTo("#scene2 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" }, 7.98);
+      tl.fromTo("#scene2 .trail-line", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.62, ease: "power2.out" }, 6.92);
+      tl.fromTo("#scene2 .dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.12, ease: "back.out(1.5)" }, 7.04);
+      tl.fromTo("#scene2 .question-card", { opacity: 0, x: -52, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" }, 7.18);
+
+      tl.to("#scene2", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 13.35);
+      tl.set("#scene3", { opacity: 1, visibility: "visible" }, 13.35);
+      tl.fromTo("#scene3", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 13.35);
+      tl.set("#scene2", { visibility: "hidden" }, 13.92);
+      tl.fromTo("#scene3 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 13.72);
+      tl.fromTo("#scene3 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 13.76);
+      tl.fromTo("#scene3 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 13.9);
+      tl.fromTo("#scene3 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 14.5);
+      tl.fromTo("#scene3 .chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.38, stagger: 0.09, ease: "power2.out" }, 14.96);
+      tl.fromTo("#scene3 .surface-card", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 14.06);
+
+      tl.to("#scene3", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 20.25);
+      tl.set("#scene4", { opacity: 1, visibility: "visible" }, 20.25);
+      tl.fromTo("#scene4", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 20.25);
+      tl.set("#scene3", { visibility: "hidden" }, 20.82);
+      tl.fromTo("#scene4 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 20.62);
+      tl.fromTo("#scene4 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 20.66);
+      tl.fromTo("#scene4 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 20.8);
+      tl.fromTo("#scene4 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.54, ease: "sine.out" }, 21.4);
+      tl.fromTo("#scene4 .lane-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 22.02);
+      tl.fromTo("#scene4 .lane-card", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 22.16);
+      tl.fromTo("#scene4 .lane-label", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.34, stagger: 0.12, ease: "power2.out" }, 22.74);
+
+      tl.to("#scene4", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 27.84);
+      tl.set("#scene5", { opacity: 1, visibility: "visible" }, 27.84);
+      tl.fromTo("#scene5", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 27.84);
+      tl.set("#scene4", { visibility: "hidden" }, 28.41);
+      tl.fromTo("#scene5 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 28.21);
+      tl.fromTo("#scene5 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 28.25);
+      tl.fromTo("#scene5 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 28.39);
+      tl.fromTo("#scene5 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 29.01);
+      tl.fromTo("#scene5 .surface-card", { opacity: 0, x: -42, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 29.43);
+      tl.fromTo("#scene5 .evidence-card", { opacity: 0, x: 46, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.08, ease: "power3.out" }, 29.61);
+      tl.fromTo("#scene5 .evidence-rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.36, stagger: 0.08, ease: "power2.out" }, 30.11);
+
+      tl.to("#scene5", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 34.74);
+      tl.set("#scene6", { opacity: 1, visibility: "visible" }, 34.74);
+      tl.fromTo("#scene6", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 34.74);
+      tl.set("#scene5", { visibility: "hidden" }, 35.31);
+      tl.fromTo("#scene6 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 35.11);
+      tl.fromTo("#scene6 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 35.15);
+      tl.fromTo("#scene6 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.74, ease: "power3.out" }, 35.29);
+      tl.fromTo("#scene6 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 35.91);
+      tl.fromTo("#scene6 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 36.35);
+      tl.fromTo("#scene6 .map-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.62, stagger: 0.08, ease: "power3.out" }, 35.55);
+      tl.fromTo("#scene6 .system-core", { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.58, ease: "back.out(1.18)" }, 35.85);
+      tl.fromTo("#scene6 .system-node", { opacity: 0, y: 34, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.12, ease: "power3.out" }, 36.15);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 41.64);
+      tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 44.52);
+
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>
