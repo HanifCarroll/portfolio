@@ -43,6 +43,17 @@ for (const file of localProjectFiles) {
 		}
 	}
 
+	for (const [videoKey, video] of Object.entries(project.videos ?? {})) {
+		for (const assetKey of ['src', 'poster']) {
+			const value = video?.[assetKey];
+			const assetPath = toAssetPath(value);
+			if (!assetPath) continue;
+			if (!existsSync(assetPath)) {
+				errors.push(`${file}: videos.${videoKey}.${assetKey} points to missing asset "${value}".`);
+			}
+		}
+	}
+
 	for (const urlField of ['liveUrl', 'repository']) {
 		const url = project[urlField];
 		if (!url) continue;

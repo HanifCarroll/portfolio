@@ -4,14 +4,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "portless",
-		"dev:app": "astro dev --host 127.0.0.1 --port ${PORT:-4321}",
-		"dev:direct": "astro dev",
-		"start": "astro dev",
+		"dev:app": "node node_modules/astro/bin/astro.mjs dev --host 127.0.0.1 --port ${PORT:-4321}",
+		"dev:direct": "node node_modules/astro/bin/astro.mjs dev",
+		"start": "node node_modules/astro/bin/astro.mjs dev",
 		"check:projects": "node scripts/check-project-metadata.mjs",
 		"one-pager:pdf": "node scripts/export-one-pager-pdf.mjs",
-		"build": "astro check && astro build",
-		"preview": "astro preview",
-		"astro": "astro",
+		"build": "node node_modules/astro/bin/astro.mjs check && node node_modules/astro/bin/astro.mjs build",
+		"preview": "node node_modules/astro/bin/astro.mjs preview",
+		"astro": "node node_modules/astro/bin/astro.mjs",
 		"prepare": "husky"
 	},
 	"portless": {
@@ -33,9 +33,11 @@
 		"unist-util-visit": "^5.0.0"
 	},
 	"devDependencies": {
+		"@hyperframes/producer": "0.7.21",
 		"@tailwindcss/typography": "^0.5.20",
 		"baseline-browser-mapping": "^2.10.38",
 		"husky": "^9.1.7",
+		"hyperframes": "0.7.21",
 		"playwright-core": "^1.61.0",
 		"prettier": "^3.8.4",
 		"prettier-plugin-astro": "^0.14.1"

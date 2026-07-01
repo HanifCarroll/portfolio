@@ -1,6 +1,8 @@
 export const HOMEPAGE_CASE_STUDY_SLUGS = ['acquire', 'desarmadero-operations-prototype', 'genrupt', 'palabruno'] as const;
 
-export const CLIENT_PROJECT_ORDER = [
+export const PROJECT_INDEX_FEATURED_ORDER = ['palabruno', 'acquire', 'job-application-assistant'] as const;
+
+export const MAIN_PROJECT_ORDER = [
 	'palabruno',
 	'casamo',
 	'genrupt',

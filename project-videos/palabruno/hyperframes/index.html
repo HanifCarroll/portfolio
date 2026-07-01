@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Palabruno Project Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f7f3ef;
+        color: #1f1f1d;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f7f3ef;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background-color: #f7f3ef;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+      }
+
+      .backdrop {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .paper-wash {
+        position: absolute;
+        inset: -160px;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(164, 207, 179, 0.38), rgba(164, 207, 179, 0) 34%),
+          radial-gradient(circle at 82% 18%, rgba(244, 221, 210, 0.75), rgba(244, 221, 210, 0) 34%),
+          radial-gradient(circle at 80% 82%, rgba(194, 214, 229, 0.45), rgba(194, 214, 229, 0) 30%),
+          #f7f3ef;
+      }
+
+      .grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(31, 31, 29, 0.055) 1px, rgba(31, 31, 29, 0) 1px),
+          linear-gradient(90deg, rgba(31, 31, 29, 0.045) 1px, rgba(31, 31, 29, 0) 1px);
+        background-size: 96px 96px;
+        opacity: 0.55;
+      }
+
+      .corner {
+        position: absolute;
+        width: 76px;
+        height: 76px;
+        border-color: #a8552f;
+        opacity: 0.58;
+      }
+
+      .corner.tl {
+        top: 54px;
+        left: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .corner.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 88px 108px;
+        gap: 58px;
+      }
+
+      .split {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+      }
+
+      .split-wide {
+        grid-template-columns: 0.72fr 1.28fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #8d4326;
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 840px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 82px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .headline.compact {
+        max-width: 1040px;
+        font-size: 72px;
+      }
+
+      .subhead {
+        max-width: 770px;
+        color: #6f6962;
+        font-size: 34px;
+        font-weight: 600;
+        line-height: 1.22;
+        letter-spacing: 0;
+      }
+
+      .rule {
+        display: block;
+        width: 520px;
+        max-width: 100%;
+        height: 5px;
+        background: #a8552f;
+        transform-origin: left center;
+      }
+
+      .screen-frame,
+      .mini-screen,
+      .story-card,
+      .launch-card,
+      .surface-map,
+      .final-card {
+        border: 2px solid #d8cec6;
+        background: rgba(255, 252, 248, 0.96);
+        box-shadow: 0 24px 70px rgba(31, 26, 23, 0.12);
+      }
+
+      .screen-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: 34px;
+      }
+
+      .screen-frame.dark {
+        border-color: rgba(255, 252, 248, 0.16);
+        background: #1f1a17;
+        box-shadow: 0 34px 90px rgba(31, 26, 23, 0.25);
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 54px;
+        padding: 0 26px;
+        background: rgba(31, 26, 23, 0.88);
+      }
+
+      .dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 999px;
+      }
+
+      .dot.red {
+        background: #f19a93;
+      }
+
+      .dot.yellow {
+        background: #e8c465;
+      }
+
+      .dot.green {
+        background: #84b88a;
+      }
+
+      .screen-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .browser-bar + .screen-img {
+        height: calc(100% - 54px);
+      }
+
+      .screen-img.fit {
+        object-fit: contain;
+      }
+
+      .scene1-visual {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .hero-product {
+        width: 960px;
+        height: 600px;
+      }
+
+      .hero-product .screen-img {
+        object-position: 58% center;
+      }
+
+      .idea-ribbon {
+        position: absolute;
+        left: 54px;
+        bottom: 42px;
+        display: flex;
+        gap: 12px;
+      }
+
+      .ribbon-mark {
+        width: 72px;
+        height: 12px;
+        border-radius: 999px;
+        background: #a8552f;
+      }
+
+      .ribbon-mark.sage {
+        background: #256245;
+      }
+
+      .ribbon-mark.blue {
+        background: #315a92;
+      }
+
+      .audience-wrap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .audience-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .story-card {
+        min-height: 170px;
+        padding: 30px;
+        border-radius: 26px;
+      }
+
+      .story-card strong {
+        display: block;
+        color: #1f1f1d;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      .story-card.primary {
+        border-color: #d9aa95;
+        background: #f4ddd2;
+      }
+
+      .story-card.sage {
+        border-color: rgba(37, 98, 69, 0.28);
+      }
+
+      .teacher-window {
+        height: 610px;
+        border-radius: 32px;
+      }
+
+      .teacher-window .screen-img {
+        object-position: 72% center;
+      }
+
+      .surface-map {
+        position: absolute;
+        left: 120px;
+        bottom: 96px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 20px 24px;
+        border-radius: 22px;
+      }
+
+      .surface-pill {
+        min-width: 190px;
+        padding: 18px 24px;
+        border-radius: 999px;
+        color: #fffdf9;
+        background: #1f1a17;
+        font-size: 24px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .surface-pill.sage {
+        background: #256245;
+      }
+
+      .surface-line {
+        width: 86px;
+        height: 4px;
+        border-radius: 999px;
+        background: #a8552f;
+      }
+
+      .solution-shot {
+        width: 1120px;
+        height: 600px;
+        margin-left: auto;
+      }
+
+      .solution-shot .screen-img {
+        object-position: 58% center;
+      }
+
+      .workflow-shell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 34px;
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+
+      .mini-screen {
+        overflow: hidden;
+        height: 300px;
+        border-radius: 28px;
+      }
+
+      .mini-screen .screen-img {
+        object-position: 74% center;
+      }
+
+      .mini-screen:nth-child(2) .screen-img {
+        object-position: 76% center;
+      }
+
+      .mini-screen:nth-child(3) .screen-img {
+        object-position: 78% center;
+      }
+
+      .action-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .action-chip {
+        min-height: 96px;
+        padding: 22px 20px;
+        border: 2px solid #d8cec6;
+        border-radius: 22px;
+        background: #fffcf8;
+        color: #1f1f1d;
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.12;
+        text-align: center;
+      }
+
+      .action-chip:nth-child(1) {
+        border-color: #d9aa95;
+        background: #f4ddd2;
+        color: #8d4326;
+      }
+
+      .action-chip:nth-child(3) {
+        border-color: rgba(37, 98, 69, 0.28);
+        color: #256245;
+      }
+
+      .action-chip:nth-child(4) {
+        border-color: rgba(49, 90, 146, 0.28);
+        color: #315a92;
+      }
+
+      .launch-wrap {
+        display: grid;
+        grid-template-columns: 0.78fr 1.22fr;
+        align-items: center;
+        gap: 56px;
+      }
+
+      .launch-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .launch-card {
+        min-height: 182px;
+        padding: 26px;
+        border-radius: 28px;
+      }
+
+      .launch-card .kicker {
+        display: block;
+        color: #8d4326;
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .launch-card strong {
+        display: block;
+        margin-top: 18px;
+        color: #1f1f1d;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.05;
+      }
+
+      .launch-card:nth-child(2),
+      .launch-card:nth-child(5) {
+        border-color: rgba(37, 98, 69, 0.28);
+      }
+
+      .launch-card:nth-child(3),
+      .launch-card:nth-child(6) {
+        border-color: rgba(49, 90, 146, 0.28);
+      }
+
+      .launch-photo {
+        height: 520px;
+        border-radius: 32px;
+      }
+
+      .launch-photo .screen-img {
+        object-position: 72% center;
+        filter: saturate(0.9);
+      }
+
+      .final-wrap {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        align-items: center;
+        gap: 52px;
+      }
+
+      .final-card {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        padding: 44px;
+        border-radius: 32px;
+      }
+
+      .final-card .headline {
+        max-width: 710px;
+        font-size: 74px;
+      }
+
+      .final-proof {
+        height: 650px;
+        border-radius: 36px;
+      }
+
+      .final-proof .screen-img {
+        object-position: 58% center;
+      }
+
+      .market-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 8px;
+      }
+
+      .market-chip {
+        padding: 16px 22px;
+        border-radius: 999px;
+        background: #1f1a17;
+        color: #fffdf9;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .market-chip.sage {
+        background: #256245;
+      }
+
+      .market-chip.blue {
+        background: #315a92;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #1f1a17;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 108px;
+        bottom: 70px;
+        z-index: 12;
+        display: grid;
+        gap: 10px;
+        width: 690px;
+        padding: 24px 30px;
+        border: 2px solid rgba(168, 85, 47, 0.24);
+        border-radius: 22px;
+        background: rgba(255, 252, 248, 0.96);
+        box-shadow: 0 28px 80px rgba(31, 26, 23, 0.16);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #1f1f1d;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #6f6962;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.18;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="40"
+    >
+      <section id="scene1" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p id="s1-eyebrow" class="eyebrow">Problem</p>
+            <h1 id="s1-title" class="headline">A founder had a strong idea.</h1>
+            <p id="s1-subtitle" class="subhead">The harder question was what to launch first.</p>
+            <span id="s1-rule" class="rule"></span>
+          </div>
+          <div class="scene1-visual">
+            <div id="s1-shot" class="screen-frame dark hero-product">
+              <div class="browser-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <img class="screen-img" src="assets/palabruno-product-problem.png" alt="Palabruno mobile and teacher workspace product composite." />
+              <div class="idea-ribbon" data-layout-ignore>
+                <span class="ribbon-mark"></span>
+                <span class="ribbon-mark sage"></span>
+                <span class="ribbon-mark blue"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell split-wide">
+          <div class="copy">
+            <p id="s2-eyebrow" class="eyebrow">First buyer</p>
+            <h1 id="s2-title" class="headline compact">A student reader helped learners.</h1>
+            <p id="s2-subtitle" class="subhead">Teachers were the clearer first buyer.</p>
+            <span id="s2-rule" class="rule"></span>
+          </div>
+          <div class="audience-wrap">
+            <div class="audience-cards">
+              <div id="s2-card-a" class="story-card sage">
+                <strong>Learners</strong>
+              </div>
+              <div id="s2-card-b" class="story-card primary">
+                <strong>Teachers</strong>
+              </div>
+            </div>
+            <div id="s2-window" class="screen-frame teacher-window">
+              <img class="screen-img" src="assets/palabruno-teacher-library.png" alt="Palabruno teacher library workspace." />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p id="s3-eyebrow" class="eyebrow">Product shape</p>
+            <h1 id="s3-title" class="headline compact">I shaped Palabruno into two connected surfaces.</h1>
+            <p id="s3-subtitle" class="subhead">Mobile for learners. Web for teachers.</p>
+            <span id="s3-rule" class="rule"></span>
+          </div>
+          <div id="s3-shot" class="screen-frame dark solution-shot">
+            <div class="browser-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <img class="screen-img" src="assets/palabruno-product-solution.png" alt="Palabruno mobile reader and web teacher workspace." />
+          </div>
+          <div id="s3-map" class="surface-map">
+            <span class="surface-pill sage">Mobile reader</span>
+            <span class="surface-line"></span>
+            <span class="surface-pill">Web workspace</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell workflow-shell">
+          <div class="copy">
+            <p id="s4-eyebrow" class="eyebrow">Teacher workflow</p>
+            <h1 id="s4-title" class="headline compact">Teachers create readings, manage students, organize groups, and share lesson material.</h1>
+            <span id="s4-rule" class="rule"></span>
+          </div>
+          <div class="proof-strip">
+            <div id="s4-shot-a" class="mini-screen">
+              <img class="screen-img" src="assets/palabruno-teacher-create-reading.png" alt="Teacher create reading workspace." />
+            </div>
+            <div id="s4-shot-b" class="mini-screen">
+              <img class="screen-img" src="assets/palabruno-teacher-groups.png" alt="Teacher groups workspace." />
+            </div>
+            <div id="s4-shot-c" class="mini-screen">
+              <img class="screen-img" src="assets/palabruno-teacher-recent-shares.png" alt="Teacher recent shares workspace." />
+            </div>
+          </div>
+          <div class="action-row">
+            <div id="s4-chip-a" class="action-chip">Create readings</div>
+            <div id="s4-chip-b" class="action-chip">Students</div>
+            <div id="s4-chip-c" class="action-chip">Groups</div>
+            <div id="s4-chip-d" class="action-chip">Share material</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell launch-wrap">
+          <div class="copy">
+            <p id="s5-eyebrow" class="eyebrow">Launch surface</p>
+            <h1 id="s5-title" class="headline compact">The launch included iOS, Android, web, payments, store assets, and handoff docs.</h1>
+            <span id="s5-rule" class="rule"></span>
+          </div>
+          <div>
+            <div id="s5-photo" class="screen-frame launch-photo">
+              <img class="screen-img" src="assets/palabruno-teacher-create-launch.png" alt="Palabruno teacher create reading workspace." />
+            </div>
+            <div class="launch-grid">
+              <div id="s5-card-a" class="launch-card">
+                <span class="kicker">01</span>
+                <strong>iOS</strong>
+              </div>
+              <div id="s5-card-b" class="launch-card">
+                <span class="kicker">02</span>
+                <strong>Android</strong>
+              </div>
+              <div id="s5-card-c" class="launch-card">
+                <span class="kicker">03</span>
+                <strong>Web</strong>
+              </div>
+              <div id="s5-card-d" class="launch-card">
+                <span class="kicker">04</span>
+                <strong>Payments</strong>
+              </div>
+              <div id="s5-card-e" class="launch-card">
+                <span class="kicker">05</span>
+                <strong>Store assets</strong>
+              </div>
+              <div id="s5-card-f" class="launch-card">
+                <span class="kicker">06</span>
+                <strong>Handoff docs</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="backdrop" data-layout-ignore>
+          <div class="paper-wash"></div>
+          <div class="grid-lines"></div>
+          <div class="corner tl"></div>
+          <div class="corner br"></div>
+        </div>
+        <div class="scene-shell final-wrap">
+          <div id="s6-card" class="final-card">
+            <p id="s6-eyebrow" class="eyebrow">Market test</p>
+            <h1 id="s6-title" class="headline">Ready for real teacher testing.</h1>
+            <div id="s6-markets" class="market-row">
+              <span class="market-chip">Market test</span>
+              <span class="market-chip sage">Teachers</span>
+              <span class="market-chip blue">Launch surface</span>
+            </div>
+          </div>
+          <div id="s6-shot" class="screen-frame dark final-proof">
+            <div class="browser-bar">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <img class="screen-img" src="assets/palabruno-product-final.png" alt="Palabruno launched product composite." />
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Palabruno</strong>
+          <span>Ready for teacher testing.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 40;
+      var tl = gsap.timeline({ paused: true });
+
+      function pushTransition(oldScene, newScene, time, direction) {
+        var xOld = direction === "left" ? -1920 : 0;
+        var xNew = direction === "left" ? 1920 : 0;
+        var yOld = direction === "up" ? -1080 : 0;
+        var yNew = direction === "up" ? 1080 : 0;
+        tl.to(oldScene, { x: xOld, y: yOld, duration: 0.52, ease: "power3.inOut" }, time);
+        tl.set(newScene, { x: xNew, y: yNew, opacity: 1 }, time);
+        tl.to(newScene, { x: 0, y: 0, opacity: 1, duration: 0.52, ease: "power3.inOut" }, time);
+        tl.set(oldScene, { opacity: 0 }, time + 0.54);
+      }
+
+      function blurTransition(oldScene, newScene, time) {
+        tl.to(oldScene, { filter: "blur(12px)", scale: 1.025, opacity: 0, duration: 0.52, ease: "power2.inOut" }, time);
+        tl.set(newScene, { filter: "blur(12px)", scale: 0.975, opacity: 0 }, time);
+        tl.to(newScene, { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.58, ease: "power2.inOut" }, time + 0.1);
+      }
+
+      tl.from("#s1-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 0.24);
+      tl.from("#s1-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 0.38);
+      tl.from("#s1-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 0.58);
+      tl.from("#s1-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 0.74);
+      tl.from("#s1-shot", { x: 70, scale: 0.95, opacity: 0, duration: 0.72, ease: "power3.out" }, 0.44);
+      tl.from(".idea-ribbon .ribbon-mark", { scaleX: 0, opacity: 0, duration: 0.32, stagger: 0.08, ease: "expo.out" }, 1.08);
+
+      pushTransition("#scene1", "#scene2", 5.55, "left");
+      tl.from("#s2-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 6.14);
+      tl.from("#s2-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 6.28);
+      tl.from("#s2-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 6.48);
+      tl.from("#s2-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 6.64);
+      tl.from("#s2-card-a", { x: -46, y: 18, opacity: 0, duration: 0.48, ease: "power2.out" }, 6.28);
+      tl.from("#s2-card-b", { x: -24, scale: 0.95, opacity: 0, duration: 0.5, ease: "back.out(1.3)" }, 6.48);
+      tl.from("#s2-window", { x: 72, scale: 0.96, opacity: 0, duration: 0.64, ease: "power3.out" }, 6.58);
+
+      blurTransition("#scene2", "#scene3", 11.55);
+      tl.from("#s3-eyebrow", { y: 22, opacity: 0, duration: 0.36, ease: "power2.out" }, 12.18);
+      tl.from("#s3-title", { y: 54, opacity: 0, duration: 0.58, ease: "power3.out" }, 12.32);
+      tl.from("#s3-subtitle", { x: -24, opacity: 0, duration: 0.46, ease: "sine.out" }, 12.52);
+      tl.from("#s3-rule", { scaleX: 0, opacity: 0, duration: 0.48, ease: "expo.out" }, 12.68);
+      tl.from("#s3-shot", { y: 58, scale: 0.94, opacity: 0, duration: 0.7, ease: "power3.out" }, 12.46);
+      tl.from("#s3-map", { y: 34, scale: 0.96, opacity: 0, duration: 0.48, ease: "back.out(1.4)" }, 12.94);
+      tl.from("#s3-map .surface-line", { scaleX: 0, duration: 0.38, ease: "expo.out" }, 13.18);
+
+      pushTransition("#scene3", "#scene4", 18.0, "left");
+      tl.from("#s4-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 18.62);
+      tl.from("#s4-title", { y: 46, opacity: 0, duration: 0.58, ease: "power3.out" }, 18.78);
+      tl.from("#s4-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 19.18);
+      tl.from("#s4-shot-a", { y: 42, rotate: -1.5, opacity: 0, duration: 0.48, ease: "power2.out" }, 19.28);
+      tl.from("#s4-shot-b", { y: 60, scale: 0.96, opacity: 0, duration: 0.52, ease: "back.out(1.2)" }, 19.46);
+      tl.from("#s4-shot-c", { y: 42, rotate: 1.5, opacity: 0, duration: 0.48, ease: "sine.out" }, 19.64);
+      tl.from("#s4-chip-a, #s4-chip-b, #s4-chip-c, #s4-chip-d", {
+        y: 26,
+        opacity: 0,
+        duration: 0.34,
+        stagger: 0.08,
+        ease: "power2.out"
+      }, 20.0);
+
+      pushTransition("#scene4", "#scene5", 24.0, "up");
+      tl.from("#s5-eyebrow", { y: 20, opacity: 0, duration: 0.34, ease: "power2.out" }, 24.62);
+      tl.from("#s5-title", { y: 46, opacity: 0, duration: 0.58, ease: "power3.out" }, 24.78);
+      tl.from("#s5-rule", { scaleX: 0, opacity: 0, duration: 0.42, ease: "expo.out" }, 25.18);
+      tl.from("#s5-photo", { x: 50, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" }, 24.88);
+      tl.from("#s5-card-a, #s5-card-b, #s5-card-c, #s5-card-d, #s5-card-e, #s5-card-f", {
+        y: 34,
+        scale: 0.96,
+        opacity: 0,
+        duration: 0.36,
+        stagger: 0.07,
+        ease: "power2.out"
+      }, 25.4);
+
+      blurTransition("#scene5", "#scene6", 30.55);
+      tl.from("#s6-card", { x: -58, scale: 0.96, opacity: 0, duration: 0.58, ease: "power3.out" }, 31.18);
+      tl.from("#s6-eyebrow", { y: 18, opacity: 0, duration: 0.28, ease: "power2.out" }, 31.32);
+      tl.from("#s6-title", { y: 42, opacity: 0, duration: 0.54, ease: "power3.out" }, 31.48);
+      tl.from("#s6-markets .market-chip", { y: 22, scale: 0.94, opacity: 0, duration: 0.32, stagger: 0.08, ease: "back.out(1.4)" }, 32.0);
+      tl.from("#s6-shot", { x: 64, scale: 0.95, opacity: 0, duration: 0.68, ease: "power3.out" }, 31.34);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 36.28);
+      tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 39.44);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

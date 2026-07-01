@@ -19,13 +19,18 @@ export interface ProjectCard {
   trackShortLabel: string;
   trackGroup: ReturnType<typeof getProjectTrackMeta>['group'];
   category: 'product' | 'marketing-site';
+  videos: Project['videos'];
 }
 
 const firstText = (value: string | string[]) =>
   Array.isArray(value) ? value[0] : value;
 
 const getProofTypeLabel = (proofType: Project['proofType']) =>
-  proofType === 'client' ? 'Client Work' : 'Selected Experiment';
+  proofType === 'client'
+    ? 'Client Work'
+    : proofType === 'founder'
+      ? 'Founder-Led Product'
+      : 'Selected Experiment';
 
 const toCard = (project: Project): ProjectCard => {
   const trackMeta = getProjectTrackMeta(project.track);
@@ -47,6 +52,7 @@ const toCard = (project: Project): ProjectCard => {
     trackShortLabel: trackMeta.shortLabel,
     trackGroup: trackMeta.group,
     category: project.category ?? 'product',
+    videos: project.videos,
   };
 };
 

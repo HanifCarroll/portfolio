@@ -1,0 +1,35 @@
+---
+import type { ProjectVideoAsset } from '@src/lib/types/project';
+
+interface Props {
+	video: ProjectVideoAsset;
+	title: string;
+	description?: string;
+}
+
+const { video, title, description } = Astro.props;
+const label = video.label ?? `${title} video`;
+---
+
+<section class='project-video' aria-labelledby='project-video-title'>
+	<div class='project-video__copy'>
+		<p class='section-label'>{label}</p>
+		<h2 id='project-video-title' class='heading-display heading-display--section'>{title}</h2>
+		{
+			description && <p>{description}</p>
+		}
+	</div>
+	<figure class='project-video__frame'>
+		<video
+			class='project-video__media'
+			controls
+			playsinline
+			preload='metadata'
+			poster={video.poster}
+			aria-label={`${title} project overview video`}
+		>
+			<source src={video.src} type='video/mp4' />
+			<a href={video.src}>Watch the project overview video</a>
+		</video>
+	</figure>
+</section>

@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Job Application Assistant Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef3ee;
+        color: #14211c;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef3ee;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef3ee;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 76px;
+        z-index: 8;
+        display: grid;
+        gap: 10px;
+        width: 690px;
+        padding: 24px 30px;
+        border: 2px solid rgba(31, 111, 85, 0.24);
+        border-radius: 18px;
+        background: rgba(251, 252, 249, 0.96);
+        box-shadow: 0 28px 80px rgba(40, 61, 52, 0.16);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #14211c;
+        font-family: Georgia, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #52625a;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.18;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #eef3ee;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(31, 111, 85, 0.11) 2px, rgba(31, 111, 85, 0) 2px),
+          linear-gradient(90deg, rgba(31, 111, 85, 0.08) 2px, rgba(31, 111, 85, 0) 2px);
+        background-position: -24px -24px;
+        background-size: 96px 96px;
+        opacity: 0.28;
+      }
+
+      .bg-panel {
+        position: absolute;
+        border: 2px solid rgba(31, 111, 85, 0.18);
+        background: rgba(223, 238, 231, 0.62);
+      }
+
+      .panel-left {
+        left: -130px;
+        top: 92px;
+        width: 360px;
+        height: 850px;
+        transform: rotate(-7deg);
+      }
+
+      .panel-right {
+        right: -190px;
+        top: 168px;
+        width: 430px;
+        height: 780px;
+        transform: rotate(8deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        border-color: #1f6f55;
+        opacity: 0.72;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 82px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.86fr 1.14fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #1f6f55;
+        font-family: "Space Mono", "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 830px;
+        font-family: Georgia, serif;
+        font-size: 80px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .headline.wide {
+        max-width: 980px;
+      }
+
+      .subhead {
+        max-width: 840px;
+        color: #52625a;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 540px;
+        height: 5px;
+        background: #1f6f55;
+        transform-origin: left center;
+      }
+
+      .surface-frame,
+      .paper,
+      .question-card,
+      .step,
+      .pdf-card,
+      .dashboard-window {
+        border: 2px solid #d5ded6;
+        border-radius: 18px;
+        background: rgba(251, 252, 249, 0.96);
+        box-shadow: 0 34px 90px rgba(40, 61, 52, 0.16);
+      }
+
+      .surface-frame {
+        position: relative;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .surface-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        background-image: url("assets/product-surface.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .surface-large {
+        width: 1060px;
+        height: 704px;
+      }
+
+      .surface-final {
+        width: 930px;
+        height: 618px;
+        opacity: 0.92;
+      }
+
+      .scatter-board {
+        position: relative;
+        width: 980px;
+        height: 680px;
+      }
+
+      .paper {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 300px;
+        height: 134px;
+        color: #14211c;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .paper::after {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 28px;
+        height: 4px;
+        content: "";
+        background: #b56b2a;
+        opacity: 0.66;
+      }
+
+      .paper-job {
+        left: 66px;
+        top: 66px;
+        transform: rotate(-5deg);
+      }
+
+      .paper-notes {
+        right: 96px;
+        top: 38px;
+        transform: rotate(4deg);
+      }
+
+      .paper-draft {
+        left: 292px;
+        top: 250px;
+        transform: rotate(-2deg);
+      }
+
+      .paper-pdf {
+        left: 78px;
+        bottom: 76px;
+        transform: rotate(3deg);
+      }
+
+      .paper-follow {
+        right: 84px;
+        bottom: 92px;
+        transform: rotate(-4deg);
+      }
+
+      .broken-line {
+        position: absolute;
+        left: 220px;
+        top: 224px;
+        width: 535px;
+        height: 256px;
+        border: 4px dashed rgba(31, 111, 85, 0.42);
+        border-radius: 44px;
+      }
+
+      .question-panel {
+        position: relative;
+        display: grid;
+        gap: 26px;
+        width: 860px;
+      }
+
+      .question-card {
+        min-height: 130px;
+        padding: 34px 40px;
+        color: #14211c;
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1.12;
+      }
+
+      .question-card:nth-child(2) {
+        margin-left: 82px;
+      }
+
+      .question-card:nth-child(3) {
+        margin-left: 164px;
+      }
+
+      .thread-path {
+        position: absolute;
+        left: 36px;
+        top: 72px;
+        width: 5px;
+        height: 348px;
+        background: #1f6f55;
+        opacity: 0.68;
+        transform-origin: top center;
+      }
+
+      .action-rail {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        gap: 14px;
+        margin-top: 4px;
+      }
+
+      .action-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 54px;
+        border: 2px solid #b9dacb;
+        border-radius: 999px;
+        background: #fbfcf9;
+        color: #1f6f55;
+        font-family: "Space Mono", "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        padding: 12px 18px;
+      }
+
+      .step-flow {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 26px;
+      }
+
+      .step-line {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 116px;
+        height: 5px;
+        background: #1f6f55;
+        transform-origin: left center;
+      }
+
+      .step {
+        position: relative;
+        min-height: 240px;
+        padding: 34px 30px;
+      }
+
+      .step-dot {
+        width: 42px;
+        height: 42px;
+        border: 5px solid #1f6f55;
+        border-radius: 50%;
+        background: #fbfcf9;
+      }
+
+      .step strong {
+        display: block;
+        margin-top: 50px;
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .result-layout {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        align-items: center;
+        gap: 38px;
+      }
+
+      .dashboard-window {
+        position: relative;
+        width: 850px;
+        height: 560px;
+        overflow: hidden;
+      }
+
+      .dashboard-image {
+        position: absolute;
+        left: -556px;
+        top: -74px;
+        width: 1440px;
+        height: 912px;
+        background-image: url("assets/product-surface.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .pdf-card {
+        position: relative;
+        min-height: 420px;
+        padding: 38px;
+      }
+
+      .pdf-icon {
+        width: 138px;
+        height: 164px;
+        border: 4px solid #1f6f55;
+        border-radius: 14px;
+        background: #fbfcf9;
+      }
+
+      .pdf-icon::after {
+        display: block;
+        width: 90px;
+        height: 5px;
+        margin: 42px 20px 0;
+        content: "";
+        background: #1f6f55;
+        box-shadow:
+          0 26px 0 #1f6f55,
+          0 52px 0 #b56b2a;
+      }
+
+      .pdf-card strong {
+        display: block;
+        margin-top: 30px;
+        font-size: 42px;
+        line-height: 1;
+      }
+
+      .result-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .result-chip {
+        border: 2px solid #d5ded6;
+        border-radius: 999px;
+        background: #eef3ee;
+        color: #14211c;
+        font-size: 22px;
+        font-weight: 800;
+        padding: 10px 14px;
+      }
+
+      .final-wrap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.96fr 1.04fr;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 52px;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 82px;
+        z-index: 3;
+        color: rgba(31, 111, 85, 0.78);
+        font-family: "Space Mono", "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="41">
+      <section id="scene1" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The problem</p>
+            <h1 class="headline">Applications were scattered.</h1>
+            <p class="subhead">Job posts, notes, drafts, PDFs, and follow-ups lived apart.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="scatter-board">
+            <div class="broken-line"></div>
+            <div class="paper paper-job">Job post</div>
+            <div class="paper paper-notes">Notes</div>
+            <div class="paper paper-draft">Draft</div>
+            <div class="paper paper-pdf">PDF</div>
+            <div class="paper paper-follow">Follow-up</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-shell split-reverse">
+          <div class="question-panel">
+            <div class="thread-path"></div>
+            <div class="question-card">What did I send?</div>
+            <div class="question-card">Where is the PDF?</div>
+            <div class="question-card">Did I already apply?</div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">The cost</p>
+            <h2 class="headline">It was easy to lose the thread.</h2>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The solution</p>
+            <h2 class="headline">I built one local workflow.</h2>
+            <p class="subhead">Review the job. Draft the letter. Save the record.</p>
+            <div class="action-rail">
+              <span class="action-pill">Review</span>
+              <span class="action-pill">Draft</span>
+              <span class="action-pill">Save</span>
+            </div>
+          </div>
+          <div class="surface-frame surface-large">
+            <div class="surface-image"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p class="eyebrow">How it works</p>
+            <h2 class="headline wide">The app keeps each step connected.</h2>
+          </div>
+          <div class="step-flow">
+            <div class="step-line"></div>
+            <div class="step">
+              <div class="step-dot"></div>
+              <strong>Review</strong>
+            </div>
+            <div class="step">
+              <div class="step-dot"></div>
+              <strong>Draft</strong>
+            </div>
+            <div class="step">
+              <div class="step-dot"></div>
+              <strong>Export</strong>
+            </div>
+            <div class="step">
+              <div class="step-dot"></div>
+              <strong>Track</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-shell">
+          <div class="copy">
+            <p class="eyebrow">The result</p>
+            <h2 class="headline wide">Every application gets a clear record.</h2>
+            <p class="subhead">Draft, PDF, status, and history stay together.</p>
+          </div>
+          <div class="result-layout">
+            <div class="dashboard-window">
+              <div class="dashboard-image" data-layout-allow-overflow></div>
+            </div>
+            <div class="pdf-card">
+              <div class="pdf-icon"></div>
+              <strong>PDF</strong>
+              <div class="result-chips">
+                <span class="result-chip">Draft</span>
+                <span class="result-chip">PDF</span>
+                <span class="result-chip">Status</span>
+                <span class="result-chip">History</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="bg">
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">06</div>
+        <div class="scene-shell">
+          <div class="final-wrap">
+            <div class="copy">
+              <p class="eyebrow">Why it matters</p>
+              <h2 class="headline">This is more than a cover-letter writer.</h2>
+              <p class="subhead">It turns a messy workflow into a product.</p>
+              <div class="rule"></div>
+            </div>
+            <div class="surface-frame surface-final">
+              <div class="surface-image"></div>
+            </div>
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Job Application Assistant</strong>
+          <span>Drafts, PDFs, status, and history.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 41;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      tl.to(".panel-left", { y: 30, duration: 20.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".panel-right", { y: -26, duration: 20.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-grid", { x: 18, y: 14, duration: 41, ease: "none" }, 0);
+
+      tl.fromTo("#scene1 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0);
+      tl.fromTo("#scene1 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 0.02);
+      tl.fromTo("#scene1 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 0.12);
+      tl.fromTo("#scene1 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 0.62);
+      tl.fromTo("#scene1 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 0.94);
+      tl.fromTo("#scene1 .broken-line", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0.7);
+      tl.fromTo("#scene1 .paper", { opacity: 0, y: 46, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "back.out(1.25)" }, 0.92);
+
+      tl.to("#scene1", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 5.74);
+      tl.set("#scene2", { opacity: 1, visibility: "visible" }, 5.74);
+      tl.fromTo("#scene2", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 5.74);
+      tl.set("#scene1", { visibility: "hidden" }, 6.31);
+      tl.fromTo("#scene2 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 6.12);
+      tl.fromTo("#scene2 .eyebrow", { opacity: 0, x: 34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 6.16);
+      tl.fromTo("#scene2 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 6.28);
+      tl.fromTo("#scene2 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power3.out" }, 6.92);
+      tl.fromTo("#scene2 .thread-path", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" }, 6.4);
+      tl.fromTo("#scene2 .question-card", { opacity: 0, x: -52, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" }, 6.62);
+
+      tl.to("#scene2", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 12.18);
+      tl.set("#scene3", { opacity: 1, visibility: "visible" }, 12.18);
+      tl.fromTo("#scene3", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 12.18);
+      tl.set("#scene2", { visibility: "hidden" }, 12.75);
+      tl.fromTo("#scene3 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 12.54);
+      tl.fromTo("#scene3 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 12.58);
+      tl.fromTo("#scene3 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 12.72);
+      tl.fromTo("#scene3 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 13.28);
+      tl.fromTo("#scene3 .action-pill", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.38, stagger: 0.09, ease: "power2.out" }, 13.78);
+      tl.fromTo("#scene3 .surface-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 12.88);
+
+      tl.to("#scene3", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 18.64);
+      tl.set("#scene4", { opacity: 1, visibility: "visible" }, 18.64);
+      tl.fromTo("#scene4", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 18.64);
+      tl.set("#scene3", { visibility: "hidden" }, 19.21);
+      tl.fromTo("#scene4 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 19.0);
+      tl.fromTo("#scene4 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 19.04);
+      tl.fromTo("#scene4 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 19.18);
+      tl.fromTo("#scene4 .step-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 19.86);
+      tl.fromTo("#scene4 .step", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" }, 20.04);
+      tl.fromTo("#scene4 .step-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 20.18);
+
+      tl.to("#scene4", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 24.68);
+      tl.set("#scene5", { opacity: 1, visibility: "visible" }, 24.68);
+      tl.fromTo("#scene5", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 24.68);
+      tl.set("#scene4", { visibility: "hidden" }, 25.25);
+      tl.fromTo("#scene5 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 25.04);
+      tl.fromTo("#scene5 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 25.08);
+      tl.fromTo("#scene5 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 25.22);
+      tl.fromTo("#scene5 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 25.78);
+      tl.fromTo("#scene5 .dashboard-window", { opacity: 0, x: -42, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 26.14);
+      tl.fromTo("#scene5 .pdf-card", { opacity: 0, x: 46, scale: 0.95 }, { opacity: 1, x: 0, scale: 1, duration: 0.66, ease: "power3.out" }, 26.38);
+      tl.fromTo("#scene5 .result-chip", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.36, stagger: 0.07, ease: "power2.out" }, 26.9);
+
+      tl.to("#scene5", { x: -1920, duration: 0.56, ease: "power3.inOut" }, 31.14);
+      tl.set("#scene6", { opacity: 1, visibility: "visible" }, 31.14);
+      tl.fromTo("#scene6", { x: 1920 }, { x: 0, duration: 0.56, ease: "power3.inOut", immediateRender: false }, 31.14);
+      tl.set("#scene5", { visibility: "hidden" }, 31.71);
+      tl.fromTo("#scene6 .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 31.52);
+      tl.fromTo("#scene6 .eyebrow", { opacity: 0, x: -34 }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out" }, 31.56);
+      tl.fromTo("#scene6 .headline", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out" }, 31.7);
+      tl.fromTo("#scene6 .subhead", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, 32.32);
+      tl.fromTo("#scene6 .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, 32.72);
+      tl.fromTo("#scene6 .surface-frame", { opacity: 0, x: 46, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 32.06);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 37.2);
+      tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 40.44);
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>

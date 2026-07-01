@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Application Assistant Product Surface</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 760px;
+        overflow: hidden;
+        background: #eef3ee;
+        color: #14211c;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body::before {
+        position: absolute;
+        inset: 34px;
+        content: "";
+        border: 1px solid #d5ded6;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 24% 26%, rgba(31, 111, 85, 0.13), rgba(31, 111, 85, 0) 32%),
+          radial-gradient(circle at 76% 76%, rgba(31, 111, 85, 0.16), rgba(31, 111, 85, 0) 34%),
+          #f5f8f4;
+      }
+
+      .frame {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .panel {
+        position: absolute;
+        border: 1px solid #cfdad2;
+        border-radius: 12px;
+        background: rgba(251, 252, 249, 0.94);
+        box-shadow: 0 24px 70px rgba(40, 61, 52, 0.17);
+      }
+
+      .side-panel {
+        left: 110px;
+        top: 52px;
+        width: 430px;
+        height: 760px;
+        padding: 16px 14px 22px;
+      }
+
+      .dashboard {
+        left: 525px;
+        top: 86px;
+        width: 560px;
+        height: 416px;
+        padding: 14px 22px 22px;
+      }
+
+      .window-dots {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #ccd6ce;
+      }
+
+      .url {
+        position: absolute;
+        top: 9px;
+        right: 14px;
+        width: 484px;
+        height: 20px;
+        border: 1px solid #d5ded6;
+        border-radius: 999px;
+        color: #52625a;
+        font-size: 11px;
+        line-height: 18px;
+        padding-left: 14px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 18px;
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .status,
+      .muted {
+        color: #52625a;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      button {
+        border: 1px solid #d5ded6;
+        border-radius: 7px;
+        background: #fbfcf9;
+        color: #14211c;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px 12px;
+      }
+
+      .progress {
+        height: 5px;
+        margin: 10px 0 9px;
+        border-radius: 999px;
+        background: #dfeee7;
+        overflow: hidden;
+      }
+
+      .progress span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #1f6f55;
+      }
+
+      .progress-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #52625a;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .count {
+        display: grid;
+        grid-template-columns: 1fr 104px;
+        gap: 18px;
+        border: 1px solid #cfdad2;
+        border-radius: 8px;
+        padding: 12px 10px;
+        margin-bottom: 12px;
+        background: #f8faf7;
+      }
+
+      .count strong {
+        display: inline-block;
+        margin-right: 6px;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #637169;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      input,
+      textarea {
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+        border: 1px solid #d5ded6;
+        border-radius: 7px;
+        background: #fbfcf9;
+        color: #14211c;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1.25;
+        padding: 9px 10px;
+      }
+
+      textarea {
+        min-height: 72px;
+        resize: none;
+      }
+
+      .note textarea {
+        min-height: 52px;
+      }
+
+      .dashboard h2 {
+        font-size: 22px;
+        line-height: 1.1;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 16px 0 14px;
+      }
+
+      .metric {
+        border: 1px solid #d5ded6;
+        border-radius: 8px;
+        padding: 12px 10px;
+        background: #fbfcf9;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 28px;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .metric span {
+        color: #52625a;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border: 1px solid #d5ded6;
+        border-radius: 8px;
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 11px 12px;
+        text-align: left;
+        border-bottom: 1px solid #e1e7e1;
+      }
+
+      th {
+        color: #637169;
+        background: #eef3ee;
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .pill {
+        display: inline-block;
+        border-radius: 999px;
+        background: #dfeee7;
+        color: #1f6f55;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 3px 8px;
+      }
+
+      .caption {
+        position: absolute;
+        left: 590px;
+        top: 588px;
+        width: 500px;
+      }
+
+      .caption h2 {
+        font-size: 36px;
+        line-height: 0.95;
+        letter-spacing: 0;
+        margin: 0 0 8px;
+      }
+
+      .caption p {
+        color: #52625a;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <section class="panel side-panel">
+        <div class="topbar">
+          <div>
+            <h1>Job application assistant</h1>
+            <p class="status">Draft ready.</p>
+          </div>
+          <div class="button-row">
+            <button>Settings</button>
+            <button>Extract</button>
+          </div>
+        </div>
+
+        <div class="progress"><span></span></div>
+        <div class="progress-meta">
+          <span>Done</span>
+          <span>142s</span>
+        </div>
+
+        <section class="count">
+          <div>
+            <strong>7</strong>
+            <span>applied today</span>
+            <p class="muted">Saved 2 min ago.</p>
+          </div>
+          <label>
+            Days
+            <input value="1" />
+          </label>
+        </section>
+
+        <div class="grid">
+          <label>
+            Source
+            <input value="dice" />
+          </label>
+          <label>
+            Employment type
+            <input value="Contract" />
+          </label>
+        </div>
+        <label>
+          Source URL
+          <input value="https://www.dice.com/job-detail/sample" />
+        </label>
+        <label>
+          Role title
+          <input value="Senior Full Stack Engineer" />
+        </label>
+        <div class="grid">
+          <label>
+            Company
+            <input value="Acme Systems" />
+          </label>
+          <label>
+            Location
+            <input value="Remote" />
+          </label>
+        </div>
+        <label>
+          Skills
+          <input value="React, TypeScript, FastAPI, PostgreSQL" />
+        </label>
+        <label>
+          Description
+          <textarea>Build customer-facing workflow tools and improve async jobs.</textarea>
+        </label>
+        <label class="note">
+          Notes for this draft
+          <textarea>Use product engineering examples.</textarea>
+        </label>
+      </section>
+
+      <section class="panel dashboard">
+        <div class="window-dots" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="url">127.0.0.1:8787/dashboard</div>
+
+        <h2>Application history</h2>
+        <p class="muted">Saved applications with draft links and dates.</p>
+
+        <div class="metrics">
+          <div class="metric"><strong>184</strong><span>Total</span></div>
+          <div class="metric"><strong>7</strong><span>Today</span></div>
+          <div class="metric"><strong>22</strong><span>This week</span></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Company</th>
+              <th>Source</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Senior Full Stack Engineer</td>
+              <td>Acme Systems</td>
+              <td>Dice</td>
+              <td><span class="pill">Applied</span></td>
+            </tr>
+            <tr>
+              <td>Frontend Product Engineer</td>
+              <td>Orbit Labs</td>
+              <td>LinkedIn</td>
+              <td><span class="pill">Applied</span></td>
+            </tr>
+            <tr>
+              <td>Automation Builder</td>
+              <td>Northstar</td>
+              <td>Indeed</td>
+              <td><span class="pill">Applied</span></td>
+            </tr>
+            <tr>
+              <td>React Platform Engineer</td>
+              <td>SignalWorks</td>
+              <td>Upwork</td>
+              <td><span class="pill">Draft</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="caption">
+        <h2>One local workflow</h2>
+        <p>Capture job details, draft a cover letter, save the PDF, and track the application.</p>
+      </section>
+    </div>
+  </body>
+</html>

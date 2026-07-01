@@ -1,10 +1,13 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVideoCard from '../../components/project-video/ProjectVideoCard.astro';
 import { projects } from '../../lib/project-cards';
-import { CLIENT_PROJECT_ORDER, EXPERIMENT_PROJECT_ORDER, PROJECT_OUTCOME_HIGHLIGHTS } from '../../lib/project-curation';
-
-import palabrunoHero from '@src/assets/img/projects/palabruno-reading-materials-photo.png';
+import {
+	EXPERIMENT_PROJECT_ORDER,
+	MAIN_PROJECT_ORDER,
+	PROJECT_INDEX_FEATURED_ORDER,
+	PROJECT_OUTCOME_HIGHLIGHTS
+} from '../../lib/project-curation';
 
 const title = 'Case Studies';
 const description = 'Selected product work by Hanif Carroll: AI products, web and mobile builds, and the product decisions behind them.';
@@ -19,9 +22,9 @@ const orderProjects = (projectList: typeof projects, preferredOrder: readonly st
 	});
 };
 
-const clientProjects = orderProjects(
-	projects.filter((project) => project.proofType === 'client'),
-	CLIENT_PROJECT_ORDER
+const mainProjects = orderProjects(
+	projects.filter((project) => project.proofType === 'client' || project.proofType === 'founder'),
+	MAIN_PROJECT_ORDER
 );
 
 const experimentProjects = orderProjects(
@@ -29,8 +32,15 @@ const experimentProjects = orderProjects(
 	EXPERIMENT_PROJECT_ORDER
 );
 
-const featuredProject = clientProjects[0];
-const visibleClientProjects = clientProjects.filter((project) => project.slug !== featuredProject?.slug);
+const featuredProjectSlugs = new Set<string>(PROJECT_INDEX_FEATURED_ORDER);
+const featuredProjects = orderProjects(
+	projects.filter((project) => featuredProjectSlugs.has(project.slug)),
+	PROJECT_INDEX_FEATURED_ORDER
+);
+const visibleExperimentProjects = experimentProjects.filter((project) => !featuredProjectSlugs.has(project.slug));
+const visibleMainProjects = mainProjects.filter((project) => !featuredProjectSlugs.has(project.slug));
+
+const getProjectContextLabel = (project: (typeof projects)[number]) => (project.proofType === 'client' ? 'Client' : 'Type');
 ---
 
 <BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
@@ -41,57 +51,27 @@ const visibleClientProjects = clientProjects.filter((project) => project.slug !=
 					Selected product work
 				</h1>
 			</div>
-			<div class='projects-index__hero-side'>
-				<p>Product strategy, UX, and engineering, and the decisions that make a first version actually usable in the real world.</p>
-			</div>
 		</header>
 
-		{
-			featuredProject && (
-				<section class='projects-index__feature-section' aria-labelledby='featured-work-title'>
-					<a href={`/projects/${featuredProject.slug}/`} class='projects-index__feature group'>
-						<div class='projects-index__feature-copy'>
-							<p class='section-label'>Featured Case Study</p>
-							<h2 id='featured-work-title' class='heading-display heading-display--section'>
-								{featuredProject.name}
-							</h2>
-							<p>{featuredProject.description}</p>
-							<figure class='projects-index__feature-media'>
-								<Image
-									src={palabrunoHero}
-									alt='Spanish reading materials with vocabulary, grammar, and pronunciation cards representing the Palabruno launch.'
-									class='projects-index__image transition duration-700 ease-out group-hover:scale-[1.015]'
-									loading='eager'
-								/>
-							</figure>
-							<dl class='projects-index__meta'>
-								<div>
-									<dt>Client</dt>
-									<dd>{featuredProject.client}</dd>
-								</div>
-								<div>
-									<dt>Services</dt>
-									<dd>{featuredProject.service}</dd>
-								</div>
-								<div>
-									<dt>Result</dt>
-									<dd>{PROJECT_OUTCOME_HIGHLIGHTS[featuredProject.slug] ?? featuredProject.outcome}</dd>
-								</div>
-							</dl>
-							<span class='arrow-link w-fit'>Read case study</span>
-						</div>
-					</a>
+			{
+				featuredProjects.length > 0 && (
+					<section class='projects-index__featured-section' aria-label='Featured projects'>
+						<div class='projects-index__featured-grid'>
+							{featuredProjects.map((project, index) => (
+								<ProjectVideoCard project={project} index={index} featured={index === 0} />
+						))}
+					</div>
 				</section>
 			)
 		}
 
-		<section class='projects-index__archive' aria-labelledby='client-work-title'>
+		<section class='projects-index__archive' aria-labelledby='main-work-title'>
 			<div class='projects-index__archive-heading'>
-				<h2 id='client-work-title' class='heading-display heading-display--section'>Client work</h2>
+				<h2 id='main-work-title' class='heading-display heading-display--section'>More case studies</h2>
 			</div>
 			<div class='projects-index__rows'>
 				{
-					visibleClientProjects.map((project, index) => (
+					visibleMainProjects.map((project, index) => (
 						<article class='projects-index__row'>
 							<a href={`/projects/${project.slug}/`} class='projects-index__row-hit' aria-label={`Read ${project.name} case study`} />
 							<span class='projects-index__row-number'>{String(index + 1).padStart(2, '0')}</span>
@@ -103,7 +83,7 @@ const visibleClientProjects = clientProjects.filter((project) => project.slug !=
 							</div>
 							<div class='projects-index__row-meta' aria-label={`${project.name} details`}>
 								<p>
-									<span>Client</span>
+									<span>{getProjectContextLabel(project)}</span>
 									{project.client}
 								</p>
 								<p>
@@ -119,13 +99,13 @@ const visibleClientProjects = clientProjects.filter((project) => project.slug !=
 		</section>
 
 		{
-			experimentProjects.length > 0 && (
+			visibleExperimentProjects.length > 0 && (
 				<section class='projects-index__experiments' aria-labelledby='experiments-title'>
 					<h2 id='experiments-title' class='heading-display heading-display--subsection projects-index__experiments-title'>
 						Smaller builds and studies
 					</h2>
 					<div class='projects-index__experiment-list'>
-						{experimentProjects.map((project) => (
+						{visibleExperimentProjects.map((project) => (
 							<a href={`/projects/${project.slug}/`} class='projects-index__experiment-row group'>
 								<span class='projects-index__experiment-track'>{project.trackShortLabel}</span>
 								<span class='projects-index__experiment-name'>{project.name}</span>

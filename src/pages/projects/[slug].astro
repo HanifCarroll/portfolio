@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
+import ProjectVideo from '../../components/project-video/ProjectVideo.astro';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
@@ -106,6 +107,7 @@ const caseStudyFacts = [
 const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
 const firstProblem = Array.isArray(project.problem) ? project.problem[0] : project.problem;
 const firstSolution = Array.isArray(project.solution) ? project.solution[0] : project.solution;
+const overviewVideo = project.videos?.overview;
 const proofSnapshot = [
 	{ label: 'Starting Point', value: firstProblem },
 	{ label: 'What Shipped', value: project.deliveryHighlights?.[0] ?? firstSolution },
@@ -191,6 +193,16 @@ const heroActions = [
 				</aside>
 			</div>
 		</header>
+
+		{
+			overviewVideo && (
+				<ProjectVideo
+					video={overviewVideo}
+					title={`${project.title} overview`}
+					description='A short overview of the problem, solution, and result.'
+				/>
+			)
+		}
 
 		<section class='case-study-detail__proof-snapshot' aria-label='Case study proof points'>
 			<div class:list={['case-study-detail__proof-snapshot-grid', `case-study-detail__proof-snapshot-grid--${proofSnapshot.length}`]}>

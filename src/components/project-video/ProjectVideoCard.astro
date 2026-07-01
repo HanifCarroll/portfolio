@@ -1,0 +1,109 @@
+---
+import type { ProjectCard } from '@src/lib/project-cards';
+
+interface Props {
+	project: ProjectCard;
+	index: number;
+	featured?: boolean;
+}
+
+const { project, index, featured = false } = Astro.props;
+const video = project.videos?.preview ?? project.videos?.overview;
+const className = featured ? 'project-video-card project-video-card--featured' : 'project-video-card';
+---
+
+{
+	video && (
+		<a href={`/projects/${project.slug}/`} class={className} data-project-video-card>
+			<div class='project-video-card__media-wrap'>
+				<video
+					class='project-video-card__media'
+					muted
+					loop
+					playsinline
+					preload='metadata'
+					poster={video.poster}
+					aria-hidden='true'
+					tabindex='-1'
+				>
+					<source src={video.src} type='video/mp4' />
+				</video>
+				<img
+					class='project-video-card__poster'
+					src={video.poster}
+					alt=''
+					loading={featured ? 'eager' : 'lazy'}
+					decoding='async'
+					aria-hidden='true'
+				/>
+				<span class='project-video-card__play-indicator' aria-hidden='true'></span>
+			</div>
+			<div class='project-video-card__copy'>
+				<p class='project-video-card__eyebrow'>
+					<span>{String(index + 1).padStart(2, '0')}</span>
+					{project.trackShortLabel}
+				</p>
+				<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
+				<p>{project.outcome}</p>
+				<span class='project-video-card__cta'>Open case study</span>
+			</div>
+		</a>
+	)
+}
+
+<script>
+	const installProjectVideoCards = () => {
+		const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const saveData = 'connection' in navigator && Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+		if (reduceMotion || saveData) return;
+
+		document.querySelectorAll<HTMLAnchorElement>('[data-project-video-card]').forEach((card) => {
+			const video = card.querySelector('video');
+			if (!video) return;
+
+			const setPlaying = (isPlaying: boolean) => {
+				card.classList.toggle('is-playing', isPlaying);
+			};
+			const play = () => {
+				video.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+			};
+			const pause = () => {
+				video.pause();
+				video.currentTime = 0;
+				setPlaying(false);
+			};
+
+			video.addEventListener('playing', () => setPlaying(true));
+			video.addEventListener('pause', () => setPlaying(false));
+			video.addEventListener('ended', () => setPlaying(false));
+			video.addEventListener('error', () => setPlaying(false));
+
+			if (canHover) {
+				card.addEventListener('mouseenter', play);
+				card.addEventListener('focusin', play);
+				card.addEventListener('mouseleave', pause);
+				card.addEventListener('focusout', pause);
+				return;
+			}
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							play();
+							return;
+						}
+
+						pause();
+					});
+				},
+				{ threshold: 0.6 }
+			);
+
+			observer.observe(card);
+		});
+	};
+
+	installProjectVideoCards();
+</script>

@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Acquire Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+        color: #15201b;
+        font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #eef2ed;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      #scene6 {
+        z-index: 6;
+        opacity: 0;
+      }
+
+      .end-card {
+        position: absolute;
+        left: 104px;
+        bottom: 76px;
+        z-index: 8;
+        display: grid;
+        gap: 10px;
+        width: 690px;
+        padding: 24px 30px;
+        border: 2px solid rgba(29, 111, 88, 0.24);
+        border-radius: 18px;
+        background: rgba(251, 252, 248, 0.96);
+        box-shadow: 0 28px 80px rgba(35, 55, 47, 0.16);
+        opacity: 0;
+      }
+
+      .end-card strong {
+        color: #15201b;
+        font-family: Georgia, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .end-card span {
+        color: #55645d;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.18;
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: #eef2ed;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bg-grid {
+        position: absolute;
+        inset: -80px;
+        background-image:
+          linear-gradient(rgba(29, 111, 88, 0.14) 2px, rgba(29, 111, 88, 0) 2px),
+          linear-gradient(90deg, rgba(29, 111, 88, 0.1) 2px, rgba(29, 111, 88, 0) 2px);
+        background-position: -36px -36px;
+        background-size: 112px 112px;
+        opacity: 0.26;
+      }
+
+      .bg-wash {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 16% 18%, rgba(199, 134, 47, 0.2), rgba(199, 134, 47, 0) 360px),
+          radial-gradient(circle at 86% 78%, rgba(29, 111, 88, 0.22), rgba(29, 111, 88, 0) 430px);
+      }
+
+      .bg-panel {
+        position: absolute;
+        border: 2px solid rgba(29, 111, 88, 0.2);
+        background: rgba(223, 238, 230, 0.68);
+      }
+
+      .panel-left {
+        left: -148px;
+        top: 94px;
+        width: 380px;
+        height: 850px;
+        transform: rotate(-7deg);
+      }
+
+      .panel-right {
+        right: -190px;
+        top: 150px;
+        width: 452px;
+        height: 790px;
+        transform: rotate(8deg);
+      }
+
+      .ghost-word {
+        position: absolute;
+        right: 84px;
+        bottom: 72px;
+        width: 560px;
+        height: 176px;
+        border: 2px solid rgba(29, 111, 88, 0.22);
+        border-radius: 28px;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(29, 111, 88, 0.18) 0,
+            rgba(29, 111, 88, 0.18) 12px,
+            rgba(29, 111, 88, 0) 12px,
+            rgba(29, 111, 88, 0) 34px
+          ),
+          rgba(251, 252, 248, 0.42);
+        opacity: 0.58;
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 68px;
+        height: 68px;
+        border-color: #1d6f58;
+        opacity: 0.72;
+      }
+
+      .frame-mark.tl {
+        left: 54px;
+        top: 54px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 54px;
+        bottom: 54px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-number {
+        position: absolute;
+        right: 104px;
+        top: 82px;
+        z-index: 4;
+        color: rgba(29, 111, 88, 0.8);
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 82px 104px;
+        gap: 54px;
+      }
+
+      .split {
+        grid-template-columns: 0.86fr 1.14fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+      }
+
+      .stack {
+        align-content: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: #1d6f58;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .headline {
+        max-width: 850px;
+        font-family: Georgia, serif;
+        font-size: 78px;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 0.98;
+      }
+
+      .headline.wide {
+        max-width: 1040px;
+      }
+
+      .subhead {
+        max-width: 830px;
+        color: #55645d;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.22;
+      }
+
+      .rule {
+        display: block;
+        width: 560px;
+        height: 5px;
+        background: #1d6f58;
+        transform-origin: left center;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 54px;
+        border: 2px solid #b9d9ca;
+        border-radius: 999px;
+        background: #fbfcf8;
+        color: #1d6f58;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 22px;
+        font-weight: 800;
+        padding: 12px 18px;
+      }
+
+      .surface-frame,
+      .work-card,
+      .question-card,
+      .gate-card,
+      .evidence-card,
+      .map-card {
+        border: 2px solid #d3ddd5;
+        border-radius: 18px;
+        background: rgba(251, 252, 248, 0.96);
+        box-shadow: 0 34px 90px rgba(35, 55, 47, 0.16);
+      }
+
+      .scatter-board {
+        position: relative;
+        width: 980px;
+        height: 690px;
+      }
+
+      .scatter-path {
+        position: absolute;
+        left: 210px;
+        top: 174px;
+        width: 560px;
+        height: 328px;
+        border: 4px dashed rgba(29, 111, 88, 0.42);
+        border-radius: 54px;
+      }
+
+      .work-card {
+        position: absolute;
+        display: grid;
+        align-content: center;
+        width: 316px;
+        min-height: 132px;
+        padding: 28px 30px;
+        color: #15201b;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .work-card span {
+        display: block;
+        margin-top: 12px;
+        color: #55645d;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .work-card::after {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 24px;
+        height: 4px;
+        content: "";
+        background: #c7862f;
+        opacity: 0.72;
+      }
+
+      .card-opportunity {
+        left: 52px;
+        top: 70px;
+        transform: rotate(-5deg);
+      }
+
+      .card-notes {
+        right: 92px;
+        top: 36px;
+        transform: rotate(4deg);
+      }
+
+      .card-drafts {
+        left: 292px;
+        top: 254px;
+        transform: rotate(-2deg);
+      }
+
+      .card-followups {
+        left: 78px;
+        bottom: 76px;
+        transform: rotate(3deg);
+      }
+
+      .card-inbox {
+        right: 82px;
+        bottom: 94px;
+        transform: rotate(-4deg);
+      }
+
+      .question-panel {
+        position: relative;
+        display: grid;
+        gap: 26px;
+        width: 880px;
+      }
+
+      .thread-path {
+        position: absolute;
+        left: 34px;
+        top: 72px;
+        width: 5px;
+        height: 350px;
+        background: #1d6f58;
+        opacity: 0.68;
+        transform-origin: top center;
+      }
+
+      .question-card {
+        min-height: 130px;
+        padding: 34px 40px;
+        color: #15201b;
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1.12;
+      }
+
+      .question-card:nth-child(2) {
+        margin-left: 82px;
+      }
+
+      .question-card:nth-child(3) {
+        margin-left: 164px;
+      }
+
+      .surface-frame {
+        position: relative;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .surface-frame::before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 58px;
+        content: "";
+        background: #17231e;
+        opacity: 0.96;
+      }
+
+      .window-dots {
+        position: absolute;
+        left: 34px;
+        top: 22px;
+        z-index: 2;
+        display: flex;
+        gap: 10px;
+      }
+
+      .window-dots span {
+        display: block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #c7862f;
+      }
+
+      .window-dots span:nth-child(2) {
+        background: #dfeee6;
+      }
+
+      .window-dots span:nth-child(3) {
+        background: #1d6f58;
+      }
+
+      .surface-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .surface-large {
+        width: 1054px;
+        height: 662px;
+      }
+
+      .surface-crop {
+        width: 840px;
+        height: 528px;
+      }
+
+      .surface-crop .surface-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .surface-crop .crop-image {
+        width: 1160px;
+        height: 728px;
+        max-width: none;
+        background-image: url("assets/acquire-pursuits.png");
+        background-size: cover;
+        background-position: 60% 58%;
+        transform: translate(-260px, -36px);
+      }
+
+      .gate-flow {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 26px;
+      }
+
+      .gate-line {
+        position: absolute;
+        left: 110px;
+        right: 110px;
+        top: 118px;
+        height: 5px;
+        background: #1d6f58;
+        transform-origin: left center;
+      }
+
+      .gate-card {
+        position: relative;
+        min-height: 244px;
+        padding: 34px 30px;
+      }
+
+      .gate-dot {
+        width: 44px;
+        height: 44px;
+        border: 5px solid #1d6f58;
+        border-radius: 50%;
+        background: #fbfcf8;
+      }
+
+      .gate-card strong {
+        display: block;
+        margin-top: 50px;
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .gate-card span {
+        display: block;
+        margin-top: 16px;
+        color: #55645d;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.14;
+      }
+
+      .approval-card {
+        border-color: rgba(199, 134, 47, 0.76);
+      }
+
+      .approval-card .gate-dot {
+        border-color: #c7862f;
+      }
+
+      .result-layout {
+        display: grid;
+        grid-template-columns: 0.98fr 1.02fr;
+        align-items: center;
+        gap: 42px;
+      }
+
+      .evidence-stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .evidence-card {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        align-items: center;
+        min-height: 106px;
+        padding: 22px 28px;
+      }
+
+      .evidence-dot {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: #dfeee6;
+        color: #1d6f58;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .evidence-card strong {
+        display: block;
+        font-size: 30px;
+        line-height: 1;
+      }
+
+      .evidence-card span {
+        display: block;
+        margin-top: 8px;
+        color: #55645d;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.12;
+      }
+
+      .final-wrap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.96fr 1.04fr;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 52px;
+      }
+
+      .map-board {
+        position: relative;
+        width: 900px;
+        height: 650px;
+      }
+
+      .map-line {
+        position: absolute;
+        left: 108px;
+        right: 118px;
+        top: 318px;
+        height: 6px;
+        background: #1d6f58;
+        transform-origin: left center;
+      }
+
+      .map-card {
+        position: absolute;
+        display: grid;
+        align-content: center;
+        width: 270px;
+        min-height: 150px;
+        padding: 28px;
+      }
+
+      .map-card strong {
+        display: block;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .map-card span {
+        display: block;
+        margin-top: 12px;
+        color: #55645d;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.12;
+      }
+
+      .map-workflow {
+        left: 24px;
+        top: 236px;
+      }
+
+      .map-gates {
+        left: 314px;
+        top: 148px;
+        border-color: rgba(199, 134, 47, 0.76);
+      }
+
+      .map-next {
+        right: 18px;
+        top: 236px;
+      }
+
+      .final-surface {
+        position: absolute;
+        left: 118px;
+        right: 104px;
+        bottom: 82px;
+        height: 182px;
+        border: 2px solid rgba(29, 111, 88, 0.18);
+        border-radius: 18px;
+        background-image: url("assets/acquire-pursuits.png");
+        background-size: cover;
+        background-position: center 54%;
+        opacity: 0.18;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="42">
+      <section id="scene1" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">01</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The problem</p>
+            <h1 class="headline">Opportunities were spread across too many tools.</h1>
+            <p class="subhead">Notes, drafts, and follow-ups were split apart.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="scatter-board">
+            <div class="scatter-path"></div>
+            <div class="work-card card-opportunity">Opportunity<span>source</span></div>
+            <div class="work-card card-notes">Notes<span>context</span></div>
+            <div class="work-card card-drafts">Drafts<span>review</span></div>
+            <div class="work-card card-followups">Follow-ups<span>timing</span></div>
+            <div class="work-card card-inbox">Inbox<span>replies</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">02</div>
+        <div class="scene-shell split-reverse">
+          <div class="question-panel">
+            <div class="thread-path"></div>
+            <div class="question-card">What is worth acting on?</div>
+            <div class="question-card">What is approved?</div>
+            <div class="question-card">What is blocked?</div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">The cost</p>
+            <h2 class="headline">The next step was unclear.</h2>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">03</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">The solution</p>
+            <h2 class="headline">Acquire shows the whole workflow.</h2>
+            <p class="subhead">Each opportunity has a status and next step.</p>
+          </div>
+          <div class="surface-frame surface-large">
+            <div class="window-dots"><span></span><span></span><span></span></div>
+            <img class="surface-image" src="assets/acquire-pursuits.png" alt="Acquire Pursuits workspace" />
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">04</div>
+        <div class="scene-shell stack">
+          <div class="copy">
+            <p class="eyebrow">How it works</p>
+            <h2 class="headline wide">Acquire puts judgment before automation.</h2>
+            <p class="subhead">Review first, approve next, then let the workflow run.</p>
+          </div>
+          <div class="gate-flow">
+            <div class="gate-line"></div>
+            <div class="gate-card">
+              <div class="gate-dot"></div>
+              <strong>Review</strong>
+              <span>Worth acting on</span>
+            </div>
+            <div class="gate-card approval-card">
+              <div class="gate-dot"></div>
+              <strong>Approve</strong>
+              <span>Approved input</span>
+            </div>
+            <div class="gate-card">
+              <div class="gate-dot"></div>
+              <strong>Run</strong>
+              <span>Bounded work</span>
+            </div>
+            <div class="gate-card">
+              <div class="gate-dot"></div>
+              <strong>Evidence</strong>
+              <span>Attached proof</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-number">05</div>
+        <div class="scene-shell">
+          <div class="copy">
+            <p class="eyebrow">The result</p>
+            <h2 class="headline wide">Each pursuit keeps its history.</h2>
+            <p class="subhead">Materials, answers, status, blockers, and run evidence stay inspectable.</p>
+          </div>
+          <div class="result-layout">
+            <div class="surface-frame surface-crop">
+              <div class="window-dots"><span></span><span></span><span></span></div>
+              <div class="surface-image crop-image" data-layout-allow-overflow></div>
+            </div>
+            <div class="evidence-stack">
+              <div class="evidence-card">
+                <div class="evidence-dot">01</div>
+                <div><strong>Materials</strong><span>Prepared</span></div>
+              </div>
+              <div class="evidence-card">
+                <div class="evidence-dot">02</div>
+                <div><strong>Answers</strong><span>Approved</span></div>
+              </div>
+              <div class="evidence-card">
+                <div class="evidence-dot">03</div>
+                <div><strong>Status</strong><span>Ready or blocked</span></div>
+              </div>
+              <div class="evidence-card">
+                <div class="evidence-dot">04</div>
+                <div><strong>Run evidence</strong><span>Last event</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene6" class="scene">
+        <div class="bg">
+          <div class="bg-wash"></div>
+          <div class="bg-grid"></div>
+          <div class="bg-panel panel-left"></div>
+          <div class="bg-panel panel-right"></div>
+          <div class="ghost-word" data-layout-ignore></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="final-surface"></div>
+        <div class="scene-number">06</div>
+        <div class="scene-shell">
+          <div class="final-wrap">
+            <div class="copy">
+              <p class="eyebrow">Why it matters</p>
+              <h2 class="headline">This is business-systems engineering in miniature.</h2>
+              <p class="subhead">Map the workflow, set gates, make next actions obvious.</p>
+              <div class="rule"></div>
+            </div>
+            <div class="map-board">
+              <div class="map-line"></div>
+              <div class="map-card map-workflow"><strong>Workflow</strong><span>Make the real work visible.</span></div>
+              <div class="map-card map-gates"><strong>Gates</strong><span>Keep judgment in the right places.</span></div>
+              <div class="map-card map-next"><strong>Next action</strong><span>Show what should happen now.</span></div>
+            </div>
+          </div>
+        </div>
+        <div id="end-card" class="end-card">
+          <strong>Acquire</strong>
+          <span>Clear next actions, with evidence.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 42;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      tl.to(".panel-left", { y: 30, duration: 21, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".panel-right", { y: -26, duration: 21, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".bg-grid", { x: 20, y: 15, duration: 42, ease: "none" }, 0);
+      tl.to(".ghost-word", { y: -18, duration: 14, repeat: 2, yoyo: true, ease: "sine.inOut" }, 0);
+
+      function fromToIfExists(selector, fromVars, toVars, position) {
+        if (document.querySelector(selector)) {
+          tl.fromTo(selector, fromVars, toVars, position);
+        }
+      }
+
+      function enterCopy(scene, start, fromX) {
+        tl.fromTo(scene + " .scene-number", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out", overwrite: "auto" }, start);
+        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: fromX }, { opacity: 1, x: 0, duration: 0.42, ease: "expo.out", overwrite: "auto" }, start + 0.04);
+        tl.fromTo(scene + " .headline", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.72, ease: "power3.out", overwrite: "auto" }, start + 0.18);
+        fromToIfExists(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out", overwrite: "auto" }, start + 0.76);
+        fromToIfExists(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out", overwrite: "auto" }, start + 1.06);
+      }
+
+      function pushTransition(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 1, x: 1920 }, time);
+        tl.to(fromScene, { x: -1920, duration: 0.56, ease: "power3.inOut" }, time);
+        tl.to(toScene, { x: 0, duration: 0.56, ease: "power3.inOut" }, time);
+        tl.set(fromScene, { opacity: 0, x: 0 }, time + 0.57);
+      }
+
+      function crossTransition(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 0, scale: 0.985, x: 0 }, time);
+        tl.to(fromScene, { opacity: 0, scale: 1.015, duration: 0.62, ease: "sine.inOut" }, time);
+        tl.to(toScene, { opacity: 1, scale: 1, duration: 0.62, ease: "sine.inOut" }, time);
+        tl.set(fromScene, { scale: 1 }, time + 0.63);
+      }
+
+      enterCopy("#scene1", 0.16, -34);
+      tl.fromTo("#scene1 .scatter-path", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.62, ease: "power2.out" }, 0.78);
+      tl.fromTo("#scene1 .work-card", { opacity: 0, y: 48, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.12, ease: "back.out(1.25)" }, 0.96);
+
+      pushTransition("#scene1", "#scene2", 5.94);
+      enterCopy("#scene2", 6.32, 34);
+      tl.fromTo("#scene2 .thread-path", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.55, ease: "power2.out" }, 6.58);
+      tl.fromTo("#scene2 .question-card", { opacity: 0, x: -52, scale: 0.98 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.18, ease: "power3.out" }, 6.8);
+
+      pushTransition("#scene2", "#scene3", 12.44);
+      enterCopy("#scene3", 12.82, -34);
+      tl.fromTo("#scene3 .surface-frame", { opacity: 0, y: 34, scale: 0.965 }, { opacity: 1, y: 0, scale: 1, duration: 0.74, ease: "power3.out" }, 13.0);
+
+      pushTransition("#scene3", "#scene4", 18.94);
+      enterCopy("#scene4", 19.32, -34);
+      tl.fromTo("#scene4 .gate-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.74, ease: "power3.out" }, 20.24);
+      tl.fromTo("#scene4 .gate-card", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.1, ease: "power3.out" }, 20.42);
+      tl.fromTo("#scene4 .gate-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 20.58);
+
+      crossTransition("#scene4", "#scene5", 25.44);
+      enterCopy("#scene5", 25.86, -34);
+      tl.fromTo("#scene5 .surface-frame", { opacity: 0, x: -44, scale: 0.965 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 26.68);
+      tl.fromTo("#scene5 .evidence-card", { opacity: 0, x: 46, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 26.9);
+      tl.fromTo("#scene5 .evidence-dot", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.1, ease: "back.out(1.5)" }, 27.04);
+
+      pushTransition("#scene5", "#scene6", 31.94);
+      enterCopy("#scene6", 32.32, -34);
+      tl.fromTo("#scene6 .final-surface", { opacity: 0, y: 18 }, { opacity: 0.18, y: 0, duration: 0.62, ease: "sine.out" }, 32.48);
+      tl.fromTo("#scene6 .map-line", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.72, ease: "power3.out" }, 33.18);
+      tl.fromTo("#scene6 .map-card", { opacity: 0, y: 42, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.52, stagger: 0.12, ease: "power3.out" }, 33.38);
+      tl.fromTo("#end-card", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.42, ease: "sine.out" }, 38.35);
+      tl.to("#end-fade", { opacity: 1, duration: 0.46, ease: "sine.inOut" }, 41.44);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
