@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Desarmadero Latorre Catalog Workflow Loop</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f1ec;
+        color: #20211f;
+        font-family: Montserrat, Helvetica, Arial, sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f3f1ec;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          linear-gradient(135deg, rgba(48, 69, 77, 0.08) 0 1px, rgba(48, 69, 77, 0) 1px 56px),
+          linear-gradient(90deg, rgba(180, 122, 72, 0.09), rgba(85, 191, 232, 0.06)),
+          #f3f1ec;
+      }
+
+      #scene1 {
+        z-index: 1;
+      }
+
+      #scene2 {
+        z-index: 2;
+        opacity: 0;
+      }
+
+      #scene3 {
+        z-index: 3;
+        opacity: 0;
+      }
+
+      #scene4 {
+        z-index: 4;
+        opacity: 0;
+      }
+
+      #scene5 {
+        z-index: 5;
+        opacity: 0;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      .bg-system {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .grid-layer {
+        position: absolute;
+        inset: -80px;
+        background-image:
+          linear-gradient(rgba(48, 69, 77, 0.12) 2px, rgba(48, 69, 77, 0) 2px),
+          linear-gradient(90deg, rgba(48, 69, 77, 0.1) 2px, rgba(48, 69, 77, 0) 2px);
+        background-position: -26px -26px;
+        background-size: 118px 118px;
+        opacity: 0.24;
+      }
+
+      .grain {
+        position: absolute;
+        inset: 0;
+        background-image:
+          repeating-linear-gradient(0deg, rgba(32, 33, 31, 0.035) 0 1px, rgba(32, 33, 31, 0) 1px 5px),
+          repeating-linear-gradient(90deg, rgba(32, 33, 31, 0.024) 0 1px, rgba(32, 33, 31, 0) 1px 7px);
+        opacity: 0.38;
+      }
+
+      .ambient-panel {
+        position: absolute;
+        border: 3px solid rgba(48, 69, 77, 0.16);
+        background: rgba(255, 253, 248, 0.42);
+      }
+
+      .ambient-panel.left {
+        left: -150px;
+        top: 88px;
+        width: 376px;
+        height: 850px;
+        transform: rotate(-6deg);
+      }
+
+      .ambient-panel.right {
+        right: -180px;
+        top: 150px;
+        width: 450px;
+        height: 800px;
+        transform: rotate(7deg);
+      }
+
+      .frame-mark {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-color: #30454d;
+        opacity: 0.7;
+      }
+
+      .frame-mark.tl {
+        left: 56px;
+        top: 56px;
+        border-top: 3px solid;
+        border-left: 3px solid;
+      }
+
+      .frame-mark.br {
+        right: 56px;
+        bottom: 56px;
+        border-right: 3px solid;
+        border-bottom: 3px solid;
+      }
+
+      .scene-tag {
+        position: absolute;
+        right: 100px;
+        top: 80px;
+        z-index: 6;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: #30454d;
+        font-family: "Space Mono", monospace;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .scene-tag::before {
+        display: block;
+        width: 86px;
+        height: 3px;
+        background: #55bfe8;
+        content: "";
+      }
+
+      .scene-shell {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        padding: 96px 112px;
+        gap: 58px;
+      }
+
+      .split {
+        grid-template-columns: 0.78fr 1.22fr;
+        align-items: center;
+      }
+
+      .split-reverse {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+      }
+
+      .eyebrow {
+        color: #55bfe8;
+        font-family: "Space Mono", monospace;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline {
+        max-width: 760px;
+        color: #20211f;
+        font-family: Oswald, sans-serif;
+        font-size: 98px;
+        font-weight: 700;
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .headline.wide {
+        max-width: 980px;
+      }
+
+      .subhead {
+        max-width: 670px;
+        color: #4f5653;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      .rule {
+        width: 360px;
+        height: 6px;
+        transform-origin: left center;
+        background: #b47a48;
+      }
+
+      .stock-frame,
+      .catalog-frame,
+      .results-frame,
+      .workflow-panel,
+      .end-surface {
+        position: relative;
+        overflow: hidden;
+        border: 4px solid rgba(48, 69, 77, 0.22);
+        border-radius: 26px;
+        background: #fffdf8;
+        box-shadow: 0 36px 110px rgba(36, 52, 58, 0.18);
+      }
+
+      .stock-frame {
+        height: 760px;
+      }
+
+      .stock-photo {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(36, 52, 58, 0.78), rgba(36, 52, 58, 0.12) 54%, rgba(36, 52, 58, 0.4)),
+          url("./assets/parts-stockroom.png");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .call-stack {
+        position: absolute;
+        left: 56px;
+        bottom: 52px;
+        display: grid;
+        gap: 18px;
+        width: 420px;
+      }
+
+      .call-card {
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: 18px;
+        align-items: center;
+        padding: 20px 22px;
+        border: 2px solid rgba(255, 253, 248, 0.42);
+        border-radius: 18px;
+        background: rgba(255, 253, 248, 0.92);
+        color: #20211f;
+        box-shadow: 0 20px 48px rgba(32, 33, 31, 0.18);
+      }
+
+      .phone-icon {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        place-items: center;
+        border-radius: 50%;
+        background: #55bfe8;
+        color: #fffdf8;
+        font-family: "Space Mono", monospace;
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .call-card strong,
+      .inventory-note strong,
+      .filter-chip strong,
+      .detail-chip strong,
+      .workflow-step strong,
+      .question-note strong {
+        color: #20211f;
+        font-size: 25px;
+        line-height: 1.1;
+      }
+
+      .call-card span,
+      .inventory-note span,
+      .filter-chip span,
+      .detail-chip span,
+      .workflow-step span,
+      .question-note span {
+        color: #62635f;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+
+      .inventory-note {
+        position: absolute;
+        right: 46px;
+        top: 42px;
+        display: grid;
+        gap: 8px;
+        width: 300px;
+        padding: 20px 22px;
+        border: 2px solid rgba(85, 191, 232, 0.48);
+        border-radius: 18px;
+        background: rgba(217, 243, 251, 0.9);
+      }
+
+      .catalog-frame {
+        height: 760px;
+      }
+
+      .catalog-image {
+        position: absolute;
+        inset: 0;
+        background-image: url("./assets/desarmadero-catalog.png");
+        background-position: center top;
+        background-size: cover;
+      }
+
+      .catalog-vignette {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 253, 248, 0) 0 52%, rgba(255, 253, 248, 0.72));
+      }
+
+      .search-callout {
+        position: absolute;
+        left: 70px;
+        top: 272px;
+        width: 362px;
+        height: 330px;
+        border: 5px solid #55bfe8;
+        border-radius: 18px;
+        box-shadow: 0 0 0 10px rgba(85, 191, 232, 0.18);
+      }
+
+      .filter-stack {
+        position: absolute;
+        right: 52px;
+        top: 78px;
+        display: grid;
+        gap: 16px;
+        width: 360px;
+      }
+
+      .filter-chip,
+      .detail-chip {
+        display: grid;
+        gap: 6px;
+        padding: 18px 22px;
+        border: 2px solid rgba(48, 69, 77, 0.18);
+        border-radius: 18px;
+        background: rgba(255, 253, 248, 0.95);
+        box-shadow: 0 18px 42px rgba(36, 52, 58, 0.12);
+      }
+
+      .filter-chip.accent {
+        border-color: rgba(85, 191, 232, 0.78);
+        background: #d9f3fb;
+      }
+
+      .results-frame {
+        height: 760px;
+      }
+
+      .results-crop {
+        position: absolute;
+        inset: 0;
+        background-image: url("./assets/desarmadero-catalog.png");
+        background-position: 61% 50%;
+        background-size: 132%;
+      }
+
+      .results-mask {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(243, 241, 236, 0.94), rgba(243, 241, 236, 0.3) 40%, rgba(243, 241, 236, 0)),
+          linear-gradient(0deg, rgba(36, 52, 58, 0.16), rgba(36, 52, 58, 0));
+      }
+
+      .listing-card {
+        position: absolute;
+        width: 326px;
+        min-height: 238px;
+        overflow: hidden;
+        border: 3px solid rgba(48, 69, 77, 0.18);
+        border-radius: 18px;
+        background: #fffdf8;
+        box-shadow: 0 22px 52px rgba(32, 33, 31, 0.16);
+      }
+
+      .listing-card.one {
+        right: 438px;
+        top: 118px;
+      }
+
+      .listing-card.two {
+        right: 96px;
+        top: 196px;
+      }
+
+      .listing-photo {
+        height: 116px;
+        background-image: url("./assets/desarmadero-catalog.png");
+        background-size: 1120px auto;
+      }
+
+      .listing-card.one .listing-photo {
+        background-position: -438px -182px;
+      }
+
+      .listing-card.two .listing-photo {
+        background-position: -740px -337px;
+      }
+
+      .listing-body {
+        display: grid;
+        gap: 8px;
+        padding: 18px 20px 22px;
+      }
+
+      .listing-body strong {
+        color: #20211f;
+        font-size: 27px;
+        line-height: 1.1;
+      }
+
+      .listing-body span {
+        color: #62635f;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .listing-button {
+        margin-top: 4px;
+        padding: 14px 18px;
+        border-radius: 10px;
+        background: #30454d;
+        color: #fffdf8;
+        font-family: "Space Mono", monospace;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .detail-stack {
+        position: absolute;
+        left: 54px;
+        top: 332px;
+        display: grid;
+        gap: 14px;
+        width: 342px;
+      }
+
+      .detail-chip {
+        border-left: 8px solid #b47a48;
+      }
+
+      .workflow-panel {
+        display: grid;
+        min-height: 624px;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 34px;
+        padding: 28px 34px;
+      }
+
+      #scene4 .scene-shell {
+        gap: 34px;
+        padding-top: 86px;
+        padding-bottom: 76px;
+      }
+
+      .workflow-catalog {
+        position: relative;
+        overflow: hidden;
+        border: 3px solid rgba(48, 69, 77, 0.18);
+        border-radius: 20px;
+        background: #fffdf8;
+      }
+
+      .workflow-catalog::before {
+        position: absolute;
+        inset: 0;
+        background-image: url("./assets/desarmadero-catalog.png");
+        background-position: center top;
+        background-size: cover;
+        content: "";
+      }
+
+      .workflow-catalog::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(36, 52, 58, 0.24), rgba(36, 52, 58, 0));
+        content: "";
+      }
+
+      .workflow-rail {
+        position: relative;
+        display: grid;
+        align-content: center;
+        gap: 24px;
+        padding: 20px 8px;
+      }
+
+      .rail-line {
+        position: absolute;
+        left: 62px;
+        top: 138px;
+        bottom: 138px;
+        width: 6px;
+        transform-origin: top center;
+        background: #55bfe8;
+      }
+
+      .workflow-step {
+        position: relative;
+        display: grid;
+        grid-template-columns: 94px 1fr;
+        gap: 22px;
+        align-items: center;
+        padding: 20px 22px 20px 0;
+      }
+
+      .step-index {
+        display: grid;
+        width: 94px;
+        height: 94px;
+        place-items: center;
+        border: 4px solid #55bfe8;
+        border-radius: 50%;
+        background: #fffdf8;
+        color: #30454d;
+        font-family: "Space Mono", monospace;
+        font-size: 32px;
+        font-weight: 700;
+        box-shadow: 0 16px 38px rgba(48, 69, 77, 0.16);
+      }
+
+      .workflow-step div:last-child {
+        display: grid;
+        gap: 7px;
+      }
+
+      .question-note {
+        margin-left: 116px;
+        padding: 22px 24px;
+        border: 3px solid rgba(180, 122, 72, 0.38);
+        border-radius: 18px;
+        background: rgba(255, 253, 248, 0.94);
+        box-shadow: 0 18px 42px rgba(36, 52, 58, 0.12);
+      }
+
+      .end-surface {
+        position: absolute;
+        inset: 86px 110px;
+      }
+
+      .end-surface::before {
+        position: absolute;
+        inset: 0;
+        background-image: url("./assets/desarmadero-catalog.png");
+        background-position: center top;
+        background-size: cover;
+        content: "";
+      }
+
+      .end-surface::after {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(36, 52, 58, 0.92), rgba(36, 52, 58, 0.58) 46%, rgba(36, 52, 58, 0.1)),
+          linear-gradient(0deg, rgba(32, 33, 31, 0.22), rgba(32, 33, 31, 0));
+        content: "";
+      }
+
+      .end-lockup {
+        position: absolute;
+        left: 164px;
+        bottom: 144px;
+        z-index: 4;
+        display: grid;
+        gap: 20px;
+        width: 840px;
+        padding: 42px 48px;
+        border: 3px solid rgba(85, 191, 232, 0.48);
+        border-radius: 24px;
+        background: rgba(255, 253, 248, 0.94);
+        box-shadow: 0 32px 90px rgba(32, 33, 31, 0.3);
+      }
+
+      .end-lockup strong {
+        color: #20211f;
+        font-family: Oswald, sans-serif;
+        font-size: 78px;
+        font-weight: 700;
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .end-lockup span {
+        color: #30454d;
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.12;
+      }
+
+      .end-meta {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        color: #62635f;
+        font-family: "Space Mono", monospace;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .end-meta::before {
+        display: block;
+        width: 120px;
+        height: 4px;
+        background: #b47a48;
+        content: "";
+      }
+
+      .end-fade {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        background: #f3f1ec;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-start="0" data-duration="21">
+      <section id="scene1" class="scene">
+        <div class="bg-system">
+          <div class="grid-layer"></div>
+          <div class="grain"></div>
+          <div class="ambient-panel left"></div>
+          <div class="ambient-panel right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-tag">01 / STOCK CHECK</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Before the catalog</p>
+            <h1 class="headline">Stock checks started by phone.</h1>
+            <p class="subhead">Staff repeated availability checks.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="stock-frame">
+            <div class="stock-photo"></div>
+            <div class="inventory-note">
+              <strong>Changing stock</strong>
+              <span>Parts, vehicles, and availability kept moving.</span>
+            </div>
+            <div class="call-stack">
+              <div class="call-card">
+                <div class="phone-icon">?</div>
+                <div>
+                  <strong>Do you have this part?</strong>
+                  <span>Repeated first question</span>
+                </div>
+              </div>
+              <div class="call-card">
+                <div class="phone-icon">?</div>
+                <div>
+                  <strong>What model and year?</strong>
+                  <span>Manual qualification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg-system">
+          <div class="grid-layer"></div>
+          <div class="grain"></div>
+          <div class="ambient-panel left"></div>
+          <div class="ambient-panel right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-tag">02 / SEARCH</div>
+        <div class="scene-shell split-reverse">
+          <div class="catalog-frame">
+            <div class="catalog-image"></div>
+            <div class="catalog-vignette"></div>
+            <div class="search-callout"></div>
+            <div class="filter-stack">
+              <div class="filter-chip">
+                <strong>Make</strong>
+                <span>Start with the vehicle brand.</span>
+              </div>
+              <div class="filter-chip">
+                <strong>Model</strong>
+                <span>Narrow the stock question.</span>
+              </div>
+              <div class="filter-chip accent">
+                <strong>Search</strong>
+                <span>Check the catalog first.</span>
+              </div>
+            </div>
+          </div>
+          <div class="copy">
+            <p class="eyebrow">Customer surface</p>
+            <h2 class="headline">The catalog made stock searchable.</h2>
+            <p class="subhead">Make and model come first.</p>
+            <div class="rule"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg-system">
+          <div class="grid-layer"></div>
+          <div class="grain"></div>
+          <div class="ambient-panel left"></div>
+          <div class="ambient-panel right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-tag">03 / PART CONTEXT</div>
+        <div class="scene-shell split">
+          <div class="copy">
+            <p class="eyebrow">Listing information</p>
+            <h2 class="headline">Listings carry context.</h2>
+            <p class="subhead">Photos, year, and vehicle details.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="results-frame">
+            <div class="results-crop"></div>
+            <div class="results-mask"></div>
+            <div class="detail-stack">
+              <div class="detail-chip">
+                <strong>Photo</strong>
+                <span>Customers can inspect the vehicle first.</span>
+              </div>
+              <div class="detail-chip">
+                <strong>Year</strong>
+                <span>The inquiry starts with better context.</span>
+              </div>
+              <div class="detail-chip">
+                <strong>Details</strong>
+                <span>The next step is visible.</span>
+              </div>
+            </div>
+            <div class="listing-card one">
+              <div class="listing-photo"></div>
+              <div class="listing-body">
+                <strong>Volkswagen Gol</strong>
+                <span>Year 2010</span>
+                <div class="listing-button">VIEW DETAILS</div>
+              </div>
+            </div>
+            <div class="listing-card two">
+              <div class="listing-photo"></div>
+              <div class="listing-body">
+                <strong>Nissan Frontier</strong>
+                <span>Year 2023</span>
+                <div class="listing-button">VIEW DETAILS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg-system">
+          <div class="grid-layer"></div>
+          <div class="grain"></div>
+          <div class="ambient-panel left"></div>
+          <div class="ambient-panel right"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="scene-tag">04 / WORKFLOW</div>
+        <div class="scene-shell">
+          <div class="copy">
+            <p class="eyebrow">Clearer path</p>
+            <h2 class="headline wide">The workflow got clearer.</h2>
+            <p class="subhead">Search, inspect, then contact.</p>
+            <div class="rule"></div>
+          </div>
+          <div class="workflow-panel">
+            <div class="workflow-catalog"></div>
+            <div class="workflow-rail">
+              <div class="rail-line"></div>
+              <div class="workflow-step">
+                <div class="step-index">01</div>
+                <div>
+                  <strong>Search the stock</strong>
+                  <span>Use make and model before calling.</span>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-index">02</div>
+                <div>
+                  <strong>Inspect the listing</strong>
+                  <span>Confirm year, photo, and details.</span>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-index">03</div>
+                <div>
+                  <strong>Contact with context</strong>
+                  <span>The shop gets a clearer part question.</span>
+                </div>
+              </div>
+              <div class="question-note">
+                <strong>Specific question</strong>
+                <span>Do you have parts for this vehicle?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg-system">
+          <div class="grid-layer"></div>
+          <div class="grain"></div>
+          <div class="frame-mark tl"></div>
+          <div class="frame-mark br"></div>
+        </div>
+        <div class="end-surface"></div>
+        <div class="end-lockup">
+          <div class="end-meta">CATALOG LOOP</div>
+          <strong>Desarmadero Latorre</strong>
+          <span>A searchable digital stockroom.</span>
+        </div>
+        <div id="end-fade" class="end-fade"></div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__duration = 21;
+
+      var tl = gsap.timeline({
+        paused: true,
+        defaults: { duration: 0.5, ease: "power2.out" },
+      });
+
+      function enterCopy(scene, time) {
+        tl.fromTo(scene + " .scene-tag", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, time);
+        tl.fromTo(scene + " .eyebrow", { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.44, ease: "expo.out" }, time + 0.04);
+        tl.fromTo(scene + " .headline", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, time + 0.14);
+        tl.fromTo(scene + " .subhead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.52, ease: "sine.out" }, time + 0.58);
+        tl.fromTo(scene + " .rule", { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.56, ease: "power3.out" }, time + 0.9);
+      }
+
+      function pushScene(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 1, x: 1920 }, time);
+        tl.to(fromScene, { x: -1920, duration: 0.54, ease: "power3.inOut" }, time);
+        tl.to(toScene, { x: 0, duration: 0.54, ease: "power3.inOut" }, time);
+        tl.set(fromScene, { opacity: 0, x: 0 }, time + 0.56);
+      }
+
+      function blurToEnd(fromScene, toScene, time) {
+        tl.set(toScene, { opacity: 0, filter: "blur(12px)", scale: 0.985 }, time);
+        tl.to(fromScene, { opacity: 0, filter: "blur(12px)", scale: 1.02, duration: 0.62, ease: "power2.inOut" }, time);
+        tl.to(toScene, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.72, ease: "power2.out" }, time + 0.12);
+        tl.set(fromScene, { filter: "blur(0px)", scale: 1 }, time + 0.76);
+      }
+
+      tl.to(".grid-layer", { x: 22, y: 18, duration: 21, ease: "none" }, 0);
+      tl.to(".ambient-panel.left", { y: 26, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+      tl.to(".ambient-panel.right", { y: -24, duration: 10.5, repeat: 1, yoyo: true, ease: "sine.inOut" }, 0);
+
+      enterCopy("#scene1", 0.18);
+      tl.fromTo("#scene1 .stock-frame", { opacity: 0, x: 64, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 0.34);
+      tl.fromTo("#scene1 .inventory-note", { opacity: 0, y: -22, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.48, ease: "power2.out" }, 0.92);
+      tl.fromTo("#scene1 .call-card", { opacity: 0, y: 36, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.14, ease: "back.out(1.25)" }, 1.18);
+
+      pushScene("#scene1", "#scene2", 4.08);
+      enterCopy("#scene2", 4.62);
+      tl.fromTo("#scene2 .catalog-frame", { opacity: 0, y: 34, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 4.58);
+      tl.fromTo("#scene2 .search-callout", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.54, ease: "power2.out" }, 5.18);
+      tl.fromTo("#scene2 .filter-chip", { opacity: 0, x: 40, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" }, 5.38);
+
+      pushScene("#scene2", "#scene3", 8.48);
+      enterCopy("#scene3", 9.02);
+      tl.fromTo("#scene3 .results-frame", { opacity: 0, x: 54, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" }, 8.96);
+      tl.fromTo("#scene3 .detail-chip", { opacity: 0, x: -38, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.42, stagger: 0.1, ease: "power3.out" }, 9.48);
+      tl.fromTo("#scene3 .listing-card", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.54, stagger: 0.16, ease: "back.out(1.2)" }, 9.72);
+
+      pushScene("#scene3", "#scene4", 12.88);
+      enterCopy("#scene4", 13.42);
+      tl.fromTo("#scene4 .workflow-panel", { opacity: 0, y: 34, scale: 0.975 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 13.3);
+      tl.fromTo("#scene4 .rail-line", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.74, ease: "power3.out" }, 13.92);
+      tl.fromTo("#scene4 .workflow-step", { opacity: 0, x: 42, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.48, stagger: 0.14, ease: "power3.out" }, 14.08);
+      tl.fromTo("#scene4 .step-index", { opacity: 0, scale: 0.35 }, { opacity: 1, scale: 1, duration: 0.34, stagger: 0.14, ease: "back.out(1.5)" }, 14.2);
+      tl.fromTo("#scene4 .question-note", { opacity: 0, y: 28, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "power2.out" }, 15.08);
+
+      blurToEnd("#scene4", "#scene5", 17.62);
+      tl.fromTo("#scene5 .end-surface", { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, 17.86);
+      tl.fromTo("#scene5 .end-lockup", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.54, ease: "sine.out" }, 18.02);
+      tl.to("#end-fade", { opacity: 1, duration: 0.22, ease: "sine.inOut" }, 20.78);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
