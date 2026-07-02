@@ -1,6 +1,6 @@
 # Project Video Source
 
-This is the source of truth for the Agent Recall technical proof video. The video should prove the workflow in simple terms: problem, input, action, durable output, proof, and result. The composition must pull its on-screen copy, proof moments, timing, and asset use from this document.
+This is the source of truth for the Agent Recall searchable memory video. The video should explain the workflow in simple terms: problem, input, action, durable output, source links, and result. The composition must pull its on-screen copy, proof moments, timing, and asset use from this document.
 
 ## Project
 
@@ -18,7 +18,7 @@ Primary viewer: technical reviewer or hiring manager checking implementation dep
 
 Target duration: `42s`
 
-Video type: technical proof video
+Video type: searchable memory overview
 
 Story mode: Evidence tour
 
@@ -53,7 +53,7 @@ Say:
 - Search rows
 - Memory records
 - Receipts
-- File and line proof
+- File and line links
 - Freshness
 - Doctor
 - Watcher
@@ -87,10 +87,10 @@ Do not show:
 | Proof type           | Exact proof                                                                                                                       | Source path, URL, or command                                                                  | Safe to show?                                             | On-screen? |
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------- |
 | Problem              | Useful agent history is buried in local archives and loose memory is not enough without receipts.                                 | `src/content/case-studies/agent-recall.mdx:41-48`                                             | Yes, as plain text                                        | Yes        |
-| Input                | Codex, OMP, Pi, and Claude session archives remain local source files.                                                            | `src/lib/projects/agent-recall.json:24-31`                                                    | Yes, as source labels                                     | Yes        |
+| Input                | Codex, other agents, chats, and Claude session archives remain local source files.                                                | `src/lib/projects/agent-recall.json:24-31`                                                    | Yes, as source labels                                     | Yes        |
 | Product action       | The tool redacts common secrets, parses high-signal events, and writes a disposable search index.                                 | `src/content/case-studies/agent-recall.mdx:91-101`                                            | Yes, as synthetic labels                                  | Yes        |
 | Durable output       | Search results and memory records point back to source labels, session keys, file paths, line numbers, snippets, and JSON output. | `src/content/case-studies/agent-recall.mdx:63-68`                                             | Yes, as synthetic receipt cards and the public screenshot | Yes        |
-| Saved record         | Memory objects have stable ids, evidence counts, resource URIs, and delta cursors.                                                | `src/lib/projects/agent-recall.json:28-35`                                                    | Yes, summarized                                           | Yes        |
+| Saved record         | Saved memories link back to the original sessions.                                                                                | `src/lib/projects/agent-recall.json:28-35`                                                    | Yes, summarized                                           | Yes        |
 | Guardrail or warning | The watcher and doctor report stale, blocked, pending, or healthy states instead of hiding freshness problems.                    | `src/content/case-studies/agent-recall.mdx:67-68`, `src/lib/projects/agent-recall.json:28-31` | Yes, as labels                                            | Yes        |
 | Verification         | The case study lists CLI, ranking, redaction, parser, memory extraction, watcher, LaunchAgent, and resource tests.                | `src/content/case-studies/agent-recall.mdx:113-119`                                           | Yes, summarized                                           | No         |
 | Reviewer path        | Public GitHub repo plus portfolio case study and public CLI screenshot.                                                           | `https://github.com/HanifCarroll/agent-recall`, `src/content/case-studies/agent-recall.mdx`   | Yes                                                       | Yes        |
@@ -145,14 +145,14 @@ On-screen text:
 
 ```text
 Input: local session archives.
-Codex, OMP, Pi, and Claude remain source files.
+Codex, other agents, chats, and Claude remain source files.
 ```
 
 Narration: none.
 
 Duration: `6.5s`
 
-Proof shown: supported transcript roots and local-first source contract.
+Proof shown: supported work-log roots and local-first source contract.
 
 Asset path: built natively in HyperFrames.
 
@@ -292,12 +292,12 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | Scene | Text                                                                          | Word count | Duration | WPM |
 | ----- | ----------------------------------------------------------------------------- | ---------: | -------: | --: |
 | 1     | Past agent work was hard to reuse. Important context got buried.              |         10 |     6.5s |  92 |
-| 2     | The input is old work sessions. Each one stays tied to its source.            |         12 |     6.5s | 111 |
+| 2     | The input is past work. Each memory stays tied to where it came from.         |         13 |     6.5s | 120 |
 | 3     | Agent Recall turns sessions into searchable memory. Secrets are hidden first. |         10 |     6.5s |  92 |
 | 4     | Each memory points back to where it came from.                                |          9 |     6.5s |  83 |
 | 5     | Freshness is visible. You can see what is current, stale, or blocked.         |         12 |     6.5s | 111 |
 | 6     | Prior work becomes reusable. A reviewer can follow the trail.                 |         10 |     6.5s |  92 |
-| End   | Agent Recall. Searchable memory with proof.                                   |          5 |       3s | 100 |
+| End   | Agent Recall. Searchable memory with source links.                            |          7 |       3s | 140 |
 
 Allowed short labels:
 
@@ -305,7 +305,7 @@ Allowed short labels:
 - Input
 - Action
 - Output
-- Proof
+- Source links
 - Result
 - Local archives
 - Redact
@@ -314,7 +314,7 @@ Allowed short labels:
 - Receipts
 - Memory object
 - Source file
-- Line proof
+- Line links
 - Fresh
 - Stale
 - Blocked

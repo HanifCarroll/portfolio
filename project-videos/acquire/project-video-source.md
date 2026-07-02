@@ -178,7 +178,7 @@ Visual source: public Pursuits screenshot.
 On-screen text:
 
 ```text
-Acquire shows the whole workflow.
+Acquire puts each opportunity in one place.
 Each opportunity has a status and next step.
 ```
 
@@ -206,7 +206,7 @@ On-screen text:
 
 ```text
 Acquire keeps review before action.
-Check it first, then let the work move.
+Review first, then move the work forward.
 ```
 
 Narration: none.
@@ -300,8 +300,8 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | ----- | ------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
 | 1     | Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart. |         13 |     6.5s | 120 |
 | 2     | The next step was unclear. What is worth acting on? What is approved? What is blocked?           |         14 |     6.5s | 129 |
-| 3     | Acquire shows the whole workflow. Each opportunity has a status and next step.                   |         13 |     6.5s | 120 |
-| 4     | Acquire keeps review before action. Check it first, then let the work move.                      |         12 |     6.5s | 111 |
+| 3     | Acquire puts each opportunity in one place. Each opportunity has a status and next step.         |         15 |     6.5s | 138 |
+| 4     | Acquire keeps review before action. Review first, then move the work forward.                    |         12 |     6.5s | 111 |
 | 5     | Each pursuit keeps its history. Materials, answers, status, and blockers stay together.          |         11 |     6.5s | 102 |
 | 6     | The result is simple. Work is easier to review, approve, and move forward.                       |         13 |     6.5s | 120 |
 | End   | Acquire. Clear next actions.                                                                     |          4 |       3s |  80 |
@@ -342,7 +342,7 @@ Allowed short labels:
 - Worth acting on
 - Approved input
 - Bounded work
-- Attached proof
+- Evidence attached
 - Prepared
 - Approved
 - Ready or blocked
@@ -414,7 +414,7 @@ Required transitions:
 
 Thumbnail frame:
 
-- Scene 3 after the product surface appears, with the headline `Acquire shows the whole workflow.`
+- Scene 3 after the product surface appears, with the headline `Acquire puts each opportunity in one place.`
 
 ## Acceptance Checklist
 

@@ -24,7 +24,7 @@ Story mode: Plain overview
 
 ## Plain Story
 
-Problem: Genrupt had AI image and video generation working, but paid seller teams needed more than generation screens.
+Problem: Genrupt had AI image and video tools working, but paid seller teams needed more than AI tools.
 
 Solution: the work moved Genrupt into a seller workflow platform with subscriptions, credits, safer long-running jobs, and a permissioned agent surface.
 
@@ -102,8 +102,8 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Selected Story
 
-1. AI media was working, but paid seller teams needed more than generation screens.
-2. Each new workflow raised the stakes for billing, credits, retries, and recovery.
+1. AI media was working, but paid seller teams needed more than AI tools.
+2. Each new workflow needed stronger support for billing, credits, retries, and recovery.
 3. The work turned Genrupt into a seller workflow platform with one shared foundation.
 4. Paid teams could subscribe, buy credits, and track usage.
 5. AI helpers could only do the work they were allowed to do.
@@ -123,7 +123,7 @@ On-screen text:
 
 ```text
 AI media was working.
-Paid seller teams needed more than generation screens.
+Paid seller teams needed more than AI tools.
 ```
 
 Narration: none.
@@ -149,7 +149,7 @@ Visual source: native risk rail with billing, credits, retries, and recovery nod
 On-screen text:
 
 ```text
-Each new workflow raised the stakes.
+Each new workflow needed stronger support.
 Payments, credits, and long-running work had to hold together.
 ```
 
@@ -292,15 +292,15 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                                  | Word count | Duration | WPM |
-| ----- | ----------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | AI media was working. Paid seller teams needed more than generation screens.                          |         12 |     6.5s | 111 |
-| 2     | Each new workflow raised the stakes. Payments, credits, and long-running work had to hold together.   |         14 |     6.5s | 129 |
-| 3     | I helped turn Genrupt into a seller workflow platform. Projects, billing, and work shared one system. |         16 |       7s | 137 |
-| 4     | Paid teams could subscribe, buy credits, and track usage.                                             |          9 |       7s |  77 |
-| 5     | AI helpers could only do the work they were allowed to do.                                            |         12 |       7s | 103 |
-| 6     | Seller work became easier to run. The platform supported the first 100 paying customers.              |         13 |       8s |  98 |
-| End   | Genrupt. AI tools ready for paying teams.                                                             |          7 |       3s | 140 |
+| Scene | Text                                                                                                      | Word count | Duration | WPM |
+| ----- | --------------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | AI media was working. Paid seller teams needed more than AI tools.                                        |         12 |     6.5s | 111 |
+| 2     | Each new workflow needed stronger support. Payments, credits, and long-running work had to hold together. |         15 |     6.5s | 138 |
+| 3     | I helped turn Genrupt into a seller workflow platform. Projects, billing, and work shared one system.     |         16 |       7s | 137 |
+| 4     | Paid teams could subscribe, buy credits, and track usage.                                                 |          9 |       7s |  77 |
+| 5     | AI helpers could only do the work they were allowed to do.                                                |         12 |       7s | 103 |
+| 6     | Seller work became easier to run. The platform supported the first 100 paying customers.                  |         13 |       8s |  98 |
+| End   | Genrupt. AI tools ready for paying teams.                                                                 |          7 |       3s | 140 |
 
 Allowed short labels:
 

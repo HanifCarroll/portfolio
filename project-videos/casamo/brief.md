@@ -17,7 +17,7 @@ Viewer takeaway: This is a founder-owned product that turns a noisy stay search 
 Plain story:
 
 - Problem: remote workers cannot trust marketplace filters alone when booking furnished stays for weeks at a time.
-- Solution: Casamo scans candidate listings against photos, amenities, reviews, missing proof, and trip must-haves.
+- Solution: Casamo scans candidate listings against photos, amenities, reviews, missing evidence, and trip must-haves.
 - Result: the traveler gets one recommended stay, two backups, visible evidence, concerns, and the host questions to ask before booking.
 
 Scene arc:

@@ -16,7 +16,7 @@ Viewer takeaway: This is production AI systems work that made a fast-moving prod
 
 Plain story:
 
-- Problem: Genrupt had AI media working, but paid seller teams needed more than generation screens.
+- Problem: Genrupt had AI media working, but paid seller teams needed more than AI tools.
 - Solution: the product gained commercial foundations, recoverable long-running jobs, and a narrow agent workflow surface.
 - Result: the platform supported the first 100 paying customers and made newer seller workflows safer to ship.
 

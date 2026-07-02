@@ -24,19 +24,19 @@ Story mode: Plain overview with evidence-pipeline visuals
 
 ## Plain Story
 
-Problem: useful client proof was scattered across chats, emails, audio notes, attachments, and screenshots.
+Problem: useful client evidence was scattered across chats, emails, audio notes, attachments, and screenshots.
 
-Solution: one CLI pulls from source-specific rails and writes a local evidence packet.
+Solution: one CLI pulls from source-specific rails and writes a local evidence folder.
 
 Result: the packet can be reused later because the claim, source, and artifacts stay together.
 
 ## One-Line Job
 
-Client Feedback Evidence CLI helps a solo operator turn scattered private feedback into a local evidence packet by collecting source artifacts, transcripts, and manifests together.
+Client Feedback Evidence CLI helps a solo operator turn scattered private feedback into a local evidence folder by collecting source artifacts, transcripts, and manifests together.
 
 ## Viewer Takeaway
 
-This is a local evidence workflow that turns scattered feedback into reusable proof without putting private evidence in the public repo.
+This is a local evidence workflow that turns scattered feedback into reusable evidence without putting private evidence in the public repo.
 
 ## Language Rules
 
@@ -49,11 +49,11 @@ Say:
 - Emails
 - Voice notes
 - Files
-- Local packet
+- Local folder
 - Source
 - Artifact
 - Transcript
-- Reusable proof
+- Reusable evidence
 
 Do not show:
 
@@ -72,20 +72,20 @@ Technical proof can stay in this document as backing evidence, but the video sho
 
 ## Source Review Notes
 
-| Source                                                | What it supports in plain language                                                                                     |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `src/content/case-studies/client-feedback.mdx:39-49`  | The project exists because useful proof was scattered across chats, audio notes, emails, attachments, and screenshots. |
-| `src/content/case-studies/client-feedback.mdx:53-57`  | The durable interface is the workflow contract: commands in, local artifacts out.                                      |
-| `src/content/case-studies/client-feedback.mdx:60-71`  | Evidence stays local by default, source rails are explicit, and ambiguous selections fail unless reviewed.             |
-| `src/content/case-studies/client-feedback.mdx:75-90`  | The CLI mirrors collection steps and writes auditable files, attachments, transcripts, and stable output.              |
-| `src/content/case-studies/client-feedback.mdx:94-109` | The important value is turning private, scattered feedback into repeatable evidence with visible boundaries.           |
-| `src/lib/projects/client-feedback.json:19-36`         | Metadata confirms the privacy constraints, source rails, local artifacts, and tests around brittle parsing points.     |
+| Source                                                | What it supports in plain language                                                                                        |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `src/content/case-studies/client-feedback.mdx:39-49`  | The project exists because useful evidence was scattered across chats, audio notes, emails, attachments, and screenshots. |
+| `src/content/case-studies/client-feedback.mdx:53-57`  | The durable interface is the workflow contract: commands in, local artifacts out.                                         |
+| `src/content/case-studies/client-feedback.mdx:60-71`  | Evidence stays local by default, source rails are explicit, and ambiguous selections fail unless reviewed.                |
+| `src/content/case-studies/client-feedback.mdx:75-90`  | The CLI mirrors collection steps and writes auditable files, attachments, transcripts, and stable output.                 |
+| `src/content/case-studies/client-feedback.mdx:94-109` | The important value is turning private, scattered feedback into repeatable evidence with visible boundaries.              |
+| `src/lib/projects/client-feedback.json:19-36`         | Metadata confirms the privacy constraints, source rails, local artifacts, and tests around brittle parsing points.        |
 
 ## Proof Inventory
 
 | Proof type           | Exact proof                                                                                                      | Source path, URL, or command                                                                        | Safe to show?                    | On-screen? |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------- | ---------- |
-| Problem              | Useful proof lived across chats, voice notes, emails, attachments, and screenshots.                              | `src/content/case-studies/client-feedback.mdx:46-49`                                                | Yes, as synthetic labels         | Yes        |
+| Problem              | Useful evidence lived across chats, voice notes, emails, attachments, and screenshots.                           | `src/content/case-studies/client-feedback.mdx:46-49`                                                | Yes, as synthetic labels         | Yes        |
 | Input                | WhatsApp, Gmail, audio notes, and attachments enter source-specific rails.                                       | `src/content/case-studies/client-feedback.mdx:39-42`, `src/lib/projects/client-feedback.json:24-31` | Yes, as source labels only       | Yes        |
 | Product action       | The CLI pulls source artifacts into one local packet.                                                            | `src/content/case-studies/client-feedback.mdx:75-90`                                                | Yes, as synthetic workflow cards | Yes        |
 | Durable output       | Pull runs write manifests, messages, evidence Markdown, attachments, audio, WAV files, and transcript artifacts. | `src/lib/projects/client-feedback.json:33-36`                                                       | Yes, as artifact labels          | Yes        |
@@ -95,11 +95,11 @@ Technical proof can stay in this document as backing evidence, but the video sho
 ## Selected Story
 
 1. Useful feedback was scattered.
-2. Copying proof by hand made the source trail easy to lose.
+2. Copying evidence by hand made the source trail easy to lose.
 3. The CLI builds a local packet instead of exposing private material.
 4. Each source rail saves messages, files, audio, transcripts, and receipts together.
-5. The packet can be reused later because claim, source, and artifact stay attached.
-6. The project matters because scattered feedback becomes reusable proof.
+5. The folder can be reused later because claim, source, and artifact stay attached.
+6. The project matters because scattered feedback becomes reusable evidence.
 
 ## Scene Cards
 
@@ -136,12 +136,12 @@ Purpose: make the practical cost clear.
 
 Viewer should understand: manual copying breaks the source trail.
 
-Visual source: broken trail and loose proof cards.
+Visual source: broken trail and loose evidence cards.
 
 On-screen text:
 
 ```text
-Copying proof by hand broke the trail.
+Copying evidence by hand broke the trail.
 Sources got lost.
 ```
 
@@ -168,7 +168,7 @@ Visual source: public evidence-packet image plus simple packet labels.
 On-screen text:
 
 ```text
-I built a local proof packet.
+I built a local evidence folder.
 Private feedback stays on the machine.
 ```
 
@@ -195,7 +195,7 @@ Visual source: source-to-packet rail with synthetic artifact cards.
 On-screen text:
 
 ```text
-The tool gathers each source.
+The tool gathers each place feedback lives.
 Messages, files, audio, and transcripts stay together.
 ```
 
@@ -217,13 +217,13 @@ Purpose: explain the reusable output.
 
 Viewer should understand: the packet keeps the claim, source, and artifact attached.
 
-Visual source: reusable proof packet with public packet image and synthetic proof cards.
+Visual source: reusable evidence packet with public packet image and synthetic evidence cards.
 
 On-screen text:
 
 ```text
-The packet can be reused later.
-Claim, source, and proof stay together.
+The folder can be reused later.
+Claim, source, and evidence stay connected.
 ```
 
 Narration: none.
@@ -250,7 +250,7 @@ On-screen text:
 
 ```text
 Client Feedback Evidence
-Scattered feedback becomes reusable proof.
+Scattered feedback becomes reusable evidence.
 ```
 
 Narration: none.
@@ -269,14 +269,14 @@ Reading-speed check: `8` words over `3.3s` = `145 WPM`; acceptable because the p
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                 | Word count | Duration | WPM |
-| ----- | ------------------------------------------------------------------------------------ | ---------: | -------: | --: |
-| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.    |         12 |     5.7s | 126 |
-| 2     | Copying proof by hand broke the trail. Sources got lost.                             |         10 |     5.5s | 109 |
-| 3     | I built a local proof packet. Private feedback stays on the machine.                 |         11 |     5.5s | 120 |
-| 4     | The tool gathers each source. Messages, files, audio, and transcripts stay together. |         12 |     5.9s | 122 |
-| 5     | The packet can be reused later. Claim, source, and proof stay together.              |         12 |     5.6s | 129 |
-| End   | Client Feedback Evidence. Scattered feedback becomes reusable proof.                 |          7 |     3.3s | 127 |
+| Scene | Text                                                                                               | Word count | Duration | WPM |
+| ----- | -------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.                  |         12 |     5.7s | 126 |
+| 2     | Copying evidence by hand broke the trail. Sources got lost.                                        |         10 |     5.5s | 109 |
+| 3     | I built a local evidence folder. Private feedback stays on the machine.                            |         11 |     5.5s | 120 |
+| 4     | The tool gathers each place feedback lives. Messages, files, audio, and transcripts stay together. |         15 |     5.9s | 153 |
+| 5     | The folder can be reused later. Claim, source, and evidence stay connected.                        |         12 |     5.6s | 129 |
+| End   | Client Feedback Evidence. Scattered feedback becomes reusable evidence.                            |          7 |     3.3s | 127 |
 
 Allowed short labels:
 
@@ -286,7 +286,7 @@ Allowed short labels:
 - File
 - Source
 - Review
-- Local packet
+- Local folder
 - Messages
 - Files
 - Audio
@@ -294,8 +294,8 @@ Allowed short labels:
 - Evidence note
 - File receipt
 - Claim
-- Proof
-- Reusable proof
+- Evidence
+- Reusable evidence
 
 ## Asset Manifest
 

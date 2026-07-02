@@ -244,7 +244,7 @@ On-screen text:
 
 ```text
 Mucho Hangouts
-Reliable social workflows, clearer delivery.
+Steadier social flows, clearer delivery.
 ```
 
 Duration: `3s`
@@ -264,7 +264,7 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | 3     | Messaging and notifications got steadier. Everyday coordination needed fewer fragile moments. |         10 |     5.7s | 105 |
 | 4     | The team got clearer patterns. Review and pairing made everyday changes safer.                |         11 |     5.7s | 116 |
 | 5     | The team kept shipping. The product became more dependable during cleanup.                    |         10 |     5.9s | 102 |
-| End   | Mucho Hangouts. Reliable social workflows, clearer delivery.                                  |          6 |       3s | 120 |
+| End   | Mucho Hangouts. Steadier social flows, clearer delivery.                                      |          6 |       3s | 120 |
 
 Allowed short labels:
 

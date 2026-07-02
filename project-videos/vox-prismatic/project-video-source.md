@@ -87,7 +87,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | Input                | Long transcripts enter the product workflow.                                                                                                              | `src/content/case-studies/vox-prismatic.mdx:73-80`                                              | Yes, as native synthetic transcript cards   | Yes        |
 | Product action       | The product extracts candidate insights and creates reviewable post drafts.                                                                               | `src/content/case-studies/vox-prismatic.mdx:73-80`; `src/lib/projects/vox-prismatic.json:32-36` | Yes                                         | Yes        |
 | Product action       | The hook workbench lets someone preview and choose hooks before using them.                                                                               | `src/assets/img/projects/vox-prismatic-feature.png`                                             | Yes, after cropping                         | Yes        |
-| Durable output       | Reviewable posts can move toward scheduling while keeping a human in control.                                                                             | `src/content/case-studies/vox-prismatic.mdx:34-38`; `src/lib/projects/vox-prismatic.json:37-40` | Yes                                         | Yes        |
+| Durable output       | Posts can move toward review and scheduling while keeping a human in control.                                                                             | `src/content/case-studies/vox-prismatic.mdx:34-38`; `src/lib/projects/vox-prismatic.json:37-40` | Yes                                         | Yes        |
 | Saved record         | The public product surface shows pending posts and scheduling controls.                                                                                   | `src/assets/img/projects/vox-prismatic-hero.png`                                                | Yes, after cropping out account footer text | Yes        |
 | Guardrail or warning | Publishing stays human-led instead of auto-posting blind.                                                                                                 | `src/content/case-studies/vox-prismatic.mdx:18-20`; `src/lib/projects/vox-prismatic.json:24-27` | Yes, as plain copy                          | Yes        |
 | Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project metadata check, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                        | Yes                                         | No         |
@@ -168,7 +168,7 @@ Visual source: cropped public posts workspace screenshot, shown as the main visu
 On-screen text:
 
 ```text
-Reviewable drafts from long transcripts.
+Drafts ready to review from long transcripts.
 People approve before anything is scheduled.
 ```
 
@@ -195,7 +195,7 @@ Visual source: cropped public hook workbench screenshot and native workflow rail
 On-screen text:
 
 ```text
-The workflow moves in clear steps.
+The work moves in clear steps.
 Find ideas, shape posts, review options, schedule.
 ```
 
@@ -246,7 +246,7 @@ On-screen text:
 
 ```text
 Vox Prismatic
-Reviewable posts from long transcripts.
+Posts ready to review from long transcripts.
 ```
 
 Duration: `3s`
@@ -259,14 +259,14 @@ Reading-speed check: `7` words over `3s` = `140 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                     | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Long transcripts buried good ideas. Useful moments stayed hard to find.                  |         11 |     5.5s | 120 |
-| 2     | Drafting posts by hand was slow. Keeping the voice right took judgment.                  |         12 |     5.5s | 131 |
-| 3     | Reviewable drafts from long transcripts. People approve before anything is scheduled.    |         11 |       6s | 110 |
-| 4     | The workflow moves in clear steps. Find ideas, shape posts, review options, schedule.    |         13 |     6.5s | 120 |
-| 5     | The result is a repeatable content workflow. Long inputs become posts someone can trust. |         14 |     6.5s | 129 |
-| End   | Vox Prismatic. Reviewable posts from long transcripts.                                   |          7 |       3s | 140 |
+| Scene | Text                                                                                       | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Long transcripts buried good ideas. Useful moments stayed hard to find.                    |         11 |     5.5s | 120 |
+| 2     | Drafting posts by hand was slow. Keeping the voice right took judgment.                    |         12 |     5.5s | 131 |
+| 3     | Drafts ready to review from long transcripts. People approve before anything is scheduled. |         12 |       6s | 120 |
+| 4     | The work moves in clear steps. Find ideas, shape posts, review options, schedule.          |         13 |     6.5s | 120 |
+| 5     | The result is a repeatable content workflow. Long inputs become posts someone can trust.   |         14 |     6.5s | 129 |
+| End   | Vox Prismatic. Posts ready to review from long transcripts.                                |          8 |       3s | 160 |
 
 Allowed short labels:
 

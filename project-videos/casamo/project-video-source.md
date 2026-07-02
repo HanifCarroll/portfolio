@@ -26,7 +26,7 @@ Story mode: Product walkthrough
 
 Problem: remote workers booking 2-8 week furnished stays face a high-trust decision with low-trust marketplace data.
 
-Solution: Casamo scans candidate listings against photos, amenities, reviews, missing proof, and trip must-haves.
+Solution: Casamo scans candidate listings against photos, amenities, reviews, missing evidence, and trip must-haves.
 
 Result: the traveler gets one recommended stay, two backups, visible evidence, concerns, and the host questions to ask before booking.
 
@@ -50,7 +50,7 @@ Say:
 - Photos
 - Amenities
 - Reviews
-- Missing proof
+- Missing evidence
 - Host questions
 - Recommended stay
 - Backups
@@ -97,10 +97,10 @@ Technical proof can stay in this document as backing evidence, but it should not
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------- | ---------- |
 | Problem              | Marketplace filters can claim Wi-Fi, workspace, kitchen, or laundry without proving long-stay fit.                               | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes, as simplified text               | Yes        |
 | Input                | Destination, dates, guests, budget, and must-haves enter the scan.                                                               | `src/assets/img/projects/casamo-homepage-viewport.jpg`; `https://casamo.app/` | Yes, public product surface           | Yes        |
-| Product action       | Casamo checks photos, listing details, amenities, reviews, missing proof, and host questions.                                    | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes, as public sample-report concepts | Yes        |
+| Product action       | Casamo checks photos, listing details, amenities, reviews, missing evidence, and host questions.                                 | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes, as public sample-report concepts | Yes        |
 | Durable output       | The report returns one recommended stay and two backups.                                                                         | `src/lib/projects/casamo.json`; public OG report preview                      | Yes, public sample preview            | Yes        |
 | Saved record         | Reports save so the traveler can return while deciding.                                                                          | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes, as simple label                  | Yes        |
-| Guardrail or warning | Missing proof and host questions stay visible instead of being hidden.                                                           | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes                                   | Yes        |
+| Guardrail or warning | Missing evidence and host questions stay visible instead of being hidden.                                                        | `src/content/case-studies/casamo.mdx`; `https://casamo.app/sample-report`     | Yes                                   | Yes        |
 | Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, project checks, build, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                      | Yes                                   | No         |
 | Reviewer path        | Portfolio case study and metadata explain the founder-owned product path.                                                        | `src/content/case-studies/casamo.mdx`; `src/lib/projects/casamo.json`         | Yes                                   | No         |
 
@@ -109,7 +109,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 1. Long-stay bookings are hard to trust when filters do not prove the stay.
 2. Remote workers need evidence before they pay.
 3. Casamo collects destination, dates, budget, and must-haves.
-4. Casamo keeps the audit checkable by preserving signals, concerns, missing proof, and host questions.
+4. Casamo keeps the audit checkable by preserving signals, concerns, missing evidence, and host questions.
 5. The report gives one recommended stay, two backups, and a clear host question.
 6. Casamo is a focused founder-owned product with paid scans, saved reports, and clear recommendations.
 
@@ -200,7 +200,7 @@ Reading-speed check: `13` words over `6.5s` = `120 WPM`.
 
 Purpose: explain what makes the recommendation trustworthy.
 
-Viewer should understand: the report keeps evidence, concerns, missing proof, and host questions visible.
+Viewer should understand: the report keeps evidence, concerns, missing evidence, and host questions visible.
 
 Visual source: native report cards backed by public sample-report language.
 
@@ -322,7 +322,7 @@ Allowed short labels:
 - Photos
 - Amenities
 - Reviews
-- Missing proof
+- Missing evidence
 - Host questions
 - Top pick
 - Backups

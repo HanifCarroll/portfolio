@@ -96,7 +96,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 ## Selected Story
 
-1. A beauty product idea needed proof before inventory.
+1. A beauty product idea needed a real test before inventory.
 2. The storefront let visitors behave like buyers.
 3. Checkout captured launch-list interest instead of payment.
 4. Product intent and emails became the demand signal.
@@ -108,14 +108,14 @@ Technical proof can stay in this document as backing evidence, but it should not
 
 Purpose: show why the validation build existed.
 
-Viewer should understand: the idea was promising, but inventory needed proof first.
+Viewer should understand: the idea was promising, but inventory needed a real test first.
 
 Visual source: Casa Elaria storefront hero plus native risk cards.
 
 On-screen text:
 
 ```text
-A beauty idea needed proof.
+A beauty idea needed a real test.
 Inventory came later.
 ```
 
@@ -235,7 +235,7 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 
 | Scene | Text                                                                        | Word count | Duration | WPM |
 | ----- | --------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | A beauty idea needed proof. Inventory came later.                           |          8 |       5s |  96 |
+| 1     | A beauty idea needed a real test. Inventory came later.                     |         10 |       5s | 120 |
 | 2     | The storefront looked real. Visitors could browse, choose, and add to cart. |         11 |       5s | 132 |
 | 3     | Checkout became the test. No payment, just launch-list interest.            |          9 |       4s | 135 |
 | 4     | The signal was simple. Which products earned buyer intent?                  |          9 |       4s | 135 |

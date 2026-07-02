@@ -22,7 +22,7 @@ Plain story:
 
 Scene arc:
 
-1. Product idea: a beauty concept needed proof before inventory.
+1. Product idea: a beauty concept needed a real test before inventory.
 2. Storefront test: the site looked and behaved like a real store.
 3. Fake-door moment: checkout captured launch-list interest instead of payment.
 4. Demand signal: product intent and emails showed what to stock first.

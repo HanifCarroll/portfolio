@@ -17,7 +17,7 @@ Viewer takeaway: This is forward-deployed product engineering: understand the re
 Plain story:
 
 - Problem: the yard operation was spread across paper budget sheets, WhatsApp, Excel, and memory.
-- Solution: one discovery call became a PRD, functional spec, and role-based clickable prototype.
+- Solution: one discovery call became a plan, role map, and role-based clickable prototype.
 - Result: the client could validate the operating model through a working app before committing to the full scope.
 
 Scene arc:
@@ -40,7 +40,7 @@ Assets needed:
 
 - Screenshot: public counter-sales prototype screen from the portfolio case study.
 - Screenshot: public yard-map prototype screen from the portfolio case study.
-- Artifact: native cards for discovery call, PRD, functional spec, role surfaces, and scope alignment.
+- Artifact: native cards for discovery call, plan, role map, role surfaces, and scope alignment.
 - Diagram/data point: simple handoff rail and 301-position map callout.
 
 Privacy notes:

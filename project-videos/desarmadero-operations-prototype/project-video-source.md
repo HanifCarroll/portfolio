@@ -26,7 +26,7 @@ Story mode: Plain overview
 
 Problem: the yard operation was spread across paper budget sheets, WhatsApp, Excel, and memory.
 
-Solution: one discovery call became a PRD, functional spec, and role-based clickable prototype.
+Solution: one discovery call became a plan, role map, and role-based clickable prototype.
 
 Result: the client could validate the operating model through a working app before committing to the full scope.
 
@@ -91,7 +91,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | Problem              | Operating model spread across paper budget sheets, WhatsApp, Excel, memory, and a 301-position yard.                                                      | `src/content/case-studies/desarmadero-operations-prototype.mdx:41-45`; `src/lib/projects/desarmadero-operations-prototype.json:29-33` | Yes, as plain text                  | Yes        |
 | Input                | One discovery call and spoken business workflow.                                                                                                          | `src/content/case-studies/desarmadero-operations-prototype.mdx:35-39`                                                                 | Yes, as generalized text            | Yes        |
 | Product action       | Seller records the sale, cash desk confirms payment, manager assigns work, dismantler sees orders.                                                        | `src/content/case-studies/desarmadero-operations-prototype.mdx:57-58`                                                                 | Yes, as role labels                 | Yes        |
-| Durable output       | Clickable prototype, PRD, functional spec, live demo, seeded demo, and screenshots.                                                                       | `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99`                                                                 | Yes, as artifact cards              | Yes        |
+| Durable output       | Clickable prototype, plan, role map, live demo, seeded demo, and screenshots.                                                                             | `src/content/case-studies/desarmadero-operations-prototype.mdx:80-99`                                                                 | Yes, as artifact cards              | Yes        |
 | Saved record         | Counter-sales screen includes customer, vehicle, parts, and live order summary.                                                                           | `src/assets/img/projects/desarmadero-operations-ventas.png`; case-study alt text                                                      | Yes, public anonymized screenshot   | Yes        |
 | Guardrail or warning | Payment gates dismantler work until cash desk records deposit or full payment.                                                                            | `src/content/case-studies/desarmadero-operations-prototype.mdx:66-69`                                                                 | Yes, as simple payment gate concept | Optional   |
 | Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project metadata check, and build are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                                              | Yes                                 | No         |
@@ -185,7 +185,7 @@ Proof shown: public counter-sales prototype screen and case-study summary.
 
 Asset path: `hyperframes/assets/desarmadero-operations-ventas.png`
 
-Motion notes: screenshot settles large while PRD/spec/demo cards lock beside it.
+Motion notes: screenshot settles large while plan, role-map, and demo cards lock beside it.
 
 Reading-speed check: `14` words over `6.5s` = `129 WPM`.
 
@@ -309,8 +309,8 @@ Reading-speed targets:
 Allowed short labels:
 
 - Discovery call
-- PRD
-- Functional spec
+- Plan
+- Role map
 - Live demo
 - Seller
 - Cash desk
@@ -359,7 +359,7 @@ Required transitions:
 
 Required callouts:
 
-- Discovery artifacts: discovery call, PRD, functional spec, live demo.
+- Discovery artifacts: discovery call, plan, role map, live demo.
 - Workflow roles: seller, cash desk, manager, dismantler.
 - Result callouts: 301 positions, plate search, working model.
 

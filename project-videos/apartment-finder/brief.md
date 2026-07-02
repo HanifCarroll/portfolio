@@ -38,7 +38,7 @@ Reading-speed constraint:
 
 Assets needed:
 
-- Screenshot: redacted product surface made from the public Apartment Finder UI image.
+- Screenshot: review screen made from the public Apartment Finder UI image.
 - UI clip: not needed; motion is handled in HyperFrames around static and synthetic product surfaces.
 - Artifact: synthetic listing cards, photo evidence cards, and decision cards.
 - Diagram/data point: simple evidence-to-decision rail, not technical architecture.

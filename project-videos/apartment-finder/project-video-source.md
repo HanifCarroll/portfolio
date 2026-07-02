@@ -1,6 +1,6 @@
 # Project Video Source
 
-This is the source of truth for the Apartment Finder short AI proof demo. The video should show one transformation: messy listing evidence becomes a clearer washer decision. The composition must pull its on-screen copy, proof moments, timing, asset use, and privacy constraints from this document.
+This is the source of truth for the Apartment Finder washer evidence demo. The video should show one transformation: messy listing evidence becomes a clearer washer decision. The composition must pull its on-screen copy, proof moments, timing, asset use, and privacy constraints from this document.
 
 ## Project
 
@@ -18,7 +18,7 @@ Primary viewer: hiring manager or general portfolio viewer
 
 Target duration: `36s`
 
-Video type: short AI proof demo
+Video type: washer evidence demo
 
 Story mode: Short demo
 
@@ -253,7 +253,7 @@ Purpose: close with the value.
 
 Viewer should understand: the product turns a frustrating search into a clearer decision.
 
-Visual source: final redacted product surface and evidence-to-decision map.
+Visual source: final review screen and evidence-to-decision map.
 
 On-screen text:
 

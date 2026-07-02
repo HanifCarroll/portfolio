@@ -17,14 +17,14 @@ Viewer takeaway: This is a local workflow that keeps the proof, source, and arti
 Plain story:
 
 - Problem: useful client proof was scattered across chats, emails, audio notes, and files.
-- Solution: one CLI pulls from source-specific rails and writes a local evidence packet.
+- Solution: one CLI pulls from source-specific rails and writes a local evidence folder.
 - Result: the packet can be reused later because the claim, source, and artifacts stay together.
 
 Scene arc:
 
 1. Problem: feedback was scattered.
 2. Cost: copying proof by hand broke the trail.
-3. Solution: a local evidence packet keeps private material on the machine.
+3. Solution: a local evidence folder keeps private material on the machine.
 4. How it works: each source is pulled into saved messages, files, audio, and transcripts.
 5. Result: the packet can be reused later.
 6. Ending beat: project name plus the result line.
