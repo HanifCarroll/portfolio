@@ -288,6 +288,8 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 ### Verification
 
 - `bun run build` passed.
+- `bun run check:projects` passed.
+- `git diff --check` passed.
 - `git diff --check` passed.
 - Built service offer pages show the updated work-sample labels and no longer render the old `Relevant ... proof` headings.
 
@@ -316,3 +318,16 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 - `bun run build` passed and generated 41 pages, with `/point-of-view/` absent from the route list.
 - Built output no longer includes `dist/point-of-view/index.html`.
+
+## 2026-07-04
+
+### Navigation
+
+- Restored `/tools/` to the shared header navigation so the tools library is discoverable from desktop and mobile menus.
+- Updated the `/tools/` page title and meta/hero description around the agent tools library framing.
+- Removed non-agent-facing entries from `/tools/` and rewrote the remaining descriptions to emphasize agent workflow benefits.
+- Removed `codex-telegram-bridge` and `transcribe-audio` from `/tools/`, added `site-capture` and `social-read`, and verified Apartment Finder remains available as a project case study.
+
+### Verification
+
+- `bun run build` passed.
