@@ -330,9 +330,10 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Added a second `/tools/` hero paragraph plus a copyable prompt for visitors to ask their own agent which tools fit their work.
 - Restyled the copyable `/tools/` prompt as a markdown-style code block and fixed the copy button width across copied-state label changes.
 - Removed the nested prompt-card treatment and moved the copy action to a fixed-size icon button inside the code block.
+- Added the `Here's a prompt to get you started:` sentence and animated the copy icon into a checkmark after successful copy.
 
 ### Verification
 
 - `bun run build` passed.
 - `git diff --check` passed.
-- Browser single-code-block/copy-icon check passed against the built `/tools/` page with Playwright and local Chrome.
+- Browser single-code-block/copy-icon/checkmark-animation check passed against the built `/tools/` page with Playwright and local Chrome.
