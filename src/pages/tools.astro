@@ -80,7 +80,7 @@ const tools = [
 						Copy prompt
 					</button>
 				</div>
-				<p id='agent-tools-prompt' class='tools-prompt__body'>{agentPrompt}</p>
+				<pre class='tools-prompt__code'><code id='agent-tools-prompt'>{agentPrompt}</code></pre>
 			</section>
 		</header>
 
@@ -127,6 +127,15 @@ const tools = [
 
 			const defaultLabel = copyButton.textContent?.trim() || 'Copy prompt';
 			let resetTimer;
+
+			const lockButtonWidth = () => {
+				const width = copyButton.getBoundingClientRect().width;
+				if (width > 0) {
+					copyButton.style.inlineSize = `${Math.ceil(width)}px`;
+				}
+			};
+
+			lockButtonWidth();
 
 			copyButton.addEventListener('click', async () => {
 				window.clearTimeout(resetTimer);
@@ -200,16 +209,30 @@ const tools = [
 			color: #f9f9f7;
 		}
 
-		.tools-prompt__body {
+		.tools-prompt__code {
 			margin: 0;
+			overflow-x: auto;
+			border: 1px solid rgba(12, 12, 12, 0.12);
+			padding: 1rem;
+			background: rgba(12, 12, 12, 0.045);
+			white-space: pre-wrap;
+		}
+
+		.tools-prompt__code code {
 			font-size: var(--font-size-sm);
 			line-height: var(--line-height-relaxed);
 			color: var(--site-body);
+			font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 		}
 
 		:global(.dark) .tools-prompt {
 			border-color: rgba(255, 255, 255, 0.16);
 			background: rgba(255, 255, 255, 0.04);
+		}
+
+		:global(.dark) .tools-prompt__code {
+			border-color: rgba(255, 255, 255, 0.12);
+			background: rgba(255, 255, 255, 0.06);
 		}
 
 		:global(.dark) .tools-prompt__button:hover {
