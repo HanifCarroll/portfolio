@@ -2,74 +2,118 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Agent Tools Library';
-const description = 'A growing library of local tools shaped by real workflows.';
-const agentInstruction =
-	"Point your agent to this page and ask whether any of these tools would help with the work you do. Here's a prompt to get you started:";
+const description = 'A public library of small workflow tools agents can inspect, install, and use for repeatable jobs.';
 const agentPrompt = [
 	'Review this Agent Tools Library: https://www.hanifcarroll.com/tools/.',
 	'',
 	'Based on the work I do and the tasks I ask you to help with, tell me which tools here would be useful, why they fit, and how I should use them.'
 ].join('\n');
 
+const filters = [
+	{ label: 'Memory and recall', color: '#0066FF' },
+	{ label: 'Capture source evidence', color: '#0C8B68' },
+	{ label: 'Mailbox and meetings', color: '#B45C2A' },
+	{ label: 'Local app control', color: '#6D4BC3' },
+	{ label: 'Safe workspaces', color: '#171512' }
+];
+
 const tools = [
 	{
 		name: 'agent-recall',
 		focus: 'Session recall',
-		body: 'Help agents find prior work and cite where it came from, so old decisions, fixes, and context do not disappear in buried chat history.',
-		repo: 'https://github.com/HanifCarroll/agent-recall'
+		category: 'Memory and recall',
+		body: 'Find prior decisions, fixes, commands, and citations from old agent sessions.',
+		repo: 'https://github.com/HanifCarroll/agent-recall',
+		featured: true
 	},
 	{
 		name: 'site-capture',
 		focus: 'Website context',
-		body: 'Capture websites into screenshots, readable pages, and source records so agents can review a site without losing the evidence trail.',
-		repo: 'https://github.com/HanifCarroll/site-capture'
+		category: 'Capture source evidence',
+		body: 'Turn websites into screenshots, readable pages, links, metadata, and evidence records.',
+		repo: 'https://github.com/HanifCarroll/site-capture',
+		featured: true
 	},
 	{
 		name: 'social-read',
-		focus: 'Social post context',
-		body: 'Save LinkedIn and X posts, comments, and screenshots into structured files agents can read without wandering through a social feed.',
-		repo: 'https://github.com/HanifCarroll/social-read'
+		focus: 'Social context',
+		category: 'Capture source evidence',
+		body: 'Save public posts, comments, screenshots, and source files for later agent review.',
+		repo: 'https://github.com/HanifCarroll/social-read',
+		featured: true
 	},
 	{
 		name: 'chatgpt-share-export',
 		focus: 'Shared conversation export',
-		body: 'Turn public ChatGPT shared conversations into clean files an agent can review, summarize, and use as source material.',
+		category: 'Memory and recall',
+		body: 'Convert public ChatGPT shared conversations into clean Markdown or JSON source files.',
 		repo: 'https://github.com/HanifCarroll/chatgpt-share-export'
 	},
 	{
 		name: 'devtree',
 		focus: 'Safe project workspaces',
-		body: 'Set up isolated project copies with the right environment, server, and logs, so an agent can test changes without disturbing the main workspace.',
+		category: 'Safe workspaces',
+		body: 'Create isolated project copies with the right env, server, logs, and cleanup path.',
 		repo: 'https://github.com/HanifCarroll/devtree'
 	},
 	{
 		name: 'mailbridge',
 		focus: 'Mailbox context',
-		body: 'Give agents a controlled way to search, read, and draft from Gmail and Fastmail without handing them broad mailbox access.',
+		category: 'Mailbox and meetings',
+		body: 'Controlled search, read, and draft workflows across Gmail and Fastmail.',
 		repo: 'https://github.com/HanifCarroll/mailbridge'
 	},
 	{
 		name: 'macos-automation-cli',
 		focus: 'macOS app automation',
-		body: 'Let agents work with local Mac apps like Mail, Calendar, Contacts, Reminders, Notes, and Messages through clear, limited commands.',
+		category: 'Local app control',
+		body: 'Let agents use local apps like Mail, Calendar, Contacts, Notes, and Reminders.',
 		repo: 'https://github.com/HanifCarroll/macos-automation-cli'
 	},
 	{
 		name: 'granola-notes-cli',
-		focus: 'Meeting-note retrieval',
-		body: 'Bring Granola notes and transcripts into agent conversations so meeting context is easy to find and reuse.',
+		focus: 'Meeting notes',
+		category: 'Mailbox and meetings',
+		body: 'Bring meeting notes and transcripts into agent conversations when they matter.',
 		repo: 'https://github.com/HanifCarroll/granola-notes-cli'
+	},
+	{
+		name: 'next tools',
+		focus: 'Workflow ideas',
+		category: 'Roadmap',
+		body: 'A public backlog of tools that should exist once recurring workflow pain is clear.',
+		repo: 'https://github.com/HanifCarroll?tab=repositories'
 	}
 ];
+
+const featuredTools = tools.filter((tool) => tool.featured);
+const catalogTools = tools.filter((tool) => !tool.featured);
+
+const icons = {
+	copy: '<rect width="14" height="14" x="8" y="8" rx="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>',
+	externalLink: '<path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>',
+	search: '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>'
+};
 ---
 
-<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='content-page container max-w-4xl'>
-		<header class='content-page__hero'>
-			<h1 class='content-page__title'>{title}</h1>
-			<p class='content-page__lede'>{description}</p>
-			<p class='content-page__lede'>{agentInstruction}</p>
-			<div class='tools-prompt'>
+<BaseLayout
+	title={`${title} · Hanif Carroll`}
+	description={description}
+	showFooterCta={false}
+	footerLinksOnly
+	flushTop
+	bodyClass='page-tools'
+>
+	<article class='tools-page' data-tools-page>
+		<section class='tools-hero' aria-labelledby='tools-title'>
+			<div class='tools-hero__copy'>
+				<h1 id='tools-title'>Tools your agent can inspect, install, and use in real work.</h1>
+				<p>{description}</p>
+			</div>
+
+			<aside class='tools-prompt' aria-labelledby='tools-prompt-title'>
+				<p id='tools-prompt-title' class='tools-prompt__label'>Hand this to your agent</p>
+				<p class='tools-prompt__body' id='agent-tools-prompt'>{agentPrompt}</p>
 				<button
 					type='button'
 					class='tools-prompt__button'
@@ -77,74 +121,101 @@ const tools = [
 					data-copy-source='agent-tools-prompt'
 					aria-label='Copy prompt'
 					aria-live='polite'
-					title='Copy prompt'
 				>
-					<svg
-						class='tools-prompt__copy-icon'
-						aria-hidden='true'
-						xmlns='http://www.w3.org/2000/svg'
-						width='18'
-						height='18'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'
-						stroke-width='2'
-						stroke-linecap='round'
-						stroke-linejoin='round'
-					>
-						<rect width='14' height='14' x='8' y='8' rx='2' ry='2'></rect>
-						<path d='M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2'></path>
-					</svg>
-					<svg
-						class='tools-prompt__check-icon'
-						aria-hidden='true'
-						xmlns='http://www.w3.org/2000/svg'
-						width='18'
-						height='18'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'
-						stroke-width='2.4'
-						stroke-linecap='round'
-						stroke-linejoin='round'
-					>
+					<svg class='tools-icon tools-prompt__copy-icon' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.copy}></svg>
+					<svg class='tools-icon tools-prompt__check-icon' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'>
 						<path d='M20 6 9 17l-5-5'></path>
 					</svg>
+					<span>Copy prompt</span>
 				</button>
-				<pre class='tools-prompt__code'><code id='agent-tools-prompt'>{agentPrompt}</code></pre>
-			</div>
-		</header>
+			</aside>
+		</section>
 
-		<section aria-label='Tools'>
-			<div class='content-page__list'>
+		<section class='tools-featured' aria-labelledby='tools-featured-title'>
+			<div class='tools-section-heading'>
+				<h2 id='tools-featured-title'>Best first installs</h2>
+			</div>
+
+			<div class='tools-featured__grid'>
 				{
-					tools.map((tool) => (
-						<article class='content-page__entry'>
-							<h2 class='content-page__entry-title'>{tool.name}</h2>
-							<p class='content-page__entry-meta'>{tool.focus}</p>
-							<p class='content-page__entry-body'>{tool.body}</p>
-							<p class='content-page__aside'>
-								<a
-									href={tool.repo}
-									class='content-page__link'
-									target='_blank'
-									rel='noopener noreferrer'
-									aria-label={`View ${tool.name} repository`}
-									data-track-event='tool_repo_clicked'
-									data-track-location='tools_page'
-								>
-									View repo
-								</a>
-							</p>
-						</article>
+					featuredTools.map((tool) => (
+						<a
+							class='tools-card tools-card--featured'
+							href={tool.repo}
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label={`View ${tool.name} repository`}
+							data-track-event='tool_repo_clicked'
+							data-track-location='tools_page_featured'
+						>
+							<span class='tools-card__top'>
+								<span class='tools-card__focus'>{tool.focus}</span>
+								<svg class='tools-card__external' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.externalLink}></svg>
+							</span>
+							<span class='tools-card__name'>{tool.name}</span>
+							<span class='tools-card__body'>{tool.body}</span>
+						</a>
 					))
 				}
 			</div>
 		</section>
 
-		<footer class='content-page__footer'>
-			<a href='/projects/' class='content-page__link'>See client case studies</a>
-		</footer>
+		<section class='tools-catalog' aria-labelledby='tools-catalog-title'>
+			<aside class='tools-filter' aria-label='Filter tools by job'>
+				<h2 id='tools-catalog-title'>Filter by job</h2>
+				<div class='tools-filter__buttons'>
+					{
+						filters.map((filter) => (
+							<button type='button' class='tools-filter__button' data-filter-value={filter.label} aria-pressed='false'>
+								<span style={`--dot-color: ${filter.color}`} aria-hidden='true'></span>
+								{filter.label}
+							</button>
+						))
+					}
+				</div>
+			</aside>
+
+			<div class='tools-catalog__main'>
+				<label class='sr-only' for='tools-search'>Search tools by workflow</label>
+				<div class='tools-search'>
+					<svg class='tools-search__icon' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.search}></svg>
+					<input
+						id='tools-search'
+						type='search'
+						data-tools-search
+						placeholder='Search tools by workflow...'
+						autocomplete='off'
+					/>
+				</div>
+
+				<div class='tools-grid' data-tools-grid>
+					{
+						catalogTools.map((tool) => (
+							<a
+								class='tools-card'
+								href={tool.repo}
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label={`View ${tool.name} repository`}
+								data-tool-card
+								data-category={tool.category}
+								data-search={`${tool.name} ${tool.focus} ${tool.category} ${tool.body}`}
+								data-track-event='tool_repo_clicked'
+								data-track-location='tools_page_catalog'
+							>
+								<span class='tools-card__top'>
+									<span class='tools-card__focus'>{tool.focus}</span>
+									<svg class='tools-card__external' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.externalLink}></svg>
+								</span>
+								<span class='tools-card__name'>{tool.name}</span>
+								<span class='tools-card__body'>{tool.body}</span>
+							</a>
+						))
+					}
+				</div>
+				<p class='tools-empty' data-tools-empty hidden>No tools match that filter.</p>
+			</div>
+		</section>
 	</article>
 
 	<script is:inline>
@@ -177,104 +248,442 @@ const tools = [
 			});
 		};
 
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', setupPromptCopy, { once: true });
-		} else {
+		const setupToolsFiltering = () => {
+			const root = document.querySelector('[data-tools-page]');
+			if (!root) return;
+
+			const search = root.querySelector('[data-tools-search]');
+			const cards = Array.from(root.querySelectorAll('[data-tool-card]'));
+			const filterButtons = Array.from(root.querySelectorAll('[data-filter-value]'));
+			const empty = root.querySelector('[data-tools-empty]');
+			let activeFilter = '';
+
+			const updateCards = () => {
+				const query = search?.value?.trim().toLowerCase() || '';
+				let visibleCount = 0;
+
+				cards.forEach((card) => {
+					const matchesFilter = !activeFilter || card.dataset.category === activeFilter;
+					const searchText = card.dataset.search?.toLowerCase() || '';
+					const matchesSearch = !query || searchText.includes(query);
+					const isVisible = matchesFilter && matchesSearch;
+					card.hidden = !isVisible;
+					if (isVisible) visibleCount += 1;
+				});
+
+				if (empty) empty.hidden = visibleCount > 0;
+			};
+
+			filterButtons.forEach((button) => {
+				button.addEventListener('click', () => {
+					const nextFilter = button.dataset.filterValue || '';
+					activeFilter = activeFilter === nextFilter ? '' : nextFilter;
+					filterButtons.forEach((filterButton) => {
+						filterButton.setAttribute('aria-pressed', String(filterButton.dataset.filterValue === activeFilter));
+					});
+					updateCards();
+				});
+			});
+
+			search?.addEventListener('input', updateCards);
+		};
+
+		const setupToolsPage = () => {
 			setupPromptCopy();
+			setupToolsFiltering();
+		};
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', setupToolsPage, { once: true });
+		} else {
+			setupToolsPage();
 		}
 	</script>
 
 	<style>
+		:global(body.page-tools) {
+			background: #f9f9f7;
+			color: #3a352f;
+		}
+
+		.tools-page {
+			--tools-ink: #171512;
+			--tools-body: #3a352f;
+			--tools-muted: #696158;
+			--tools-rule: rgba(23, 21, 18, 0.14);
+			--tools-surface: #ffffff;
+			--tools-surface-soft: #f0efeb;
+			--tools-blue: #0066ff;
+			display: flex;
+			flex-direction: column;
+			gap: clamp(3rem, 5vw, 4rem);
+			max-width: 72rem;
+			margin: 0 auto;
+			padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 5vw, 3.6rem) clamp(4.5rem, 7vw, 5.6rem);
+		}
+
+		.tools-card__top,
+		.tools-prompt__button,
+		.tools-search,
+		.tools-filter__button {
+			display: flex;
+			align-items: center;
+		}
+
+		.tools-hero {
+			display: grid;
+			grid-template-columns: minmax(0, 38rem) minmax(16rem, 1fr);
+			gap: clamp(2.5rem, 5vw, 4rem);
+			align-items: start;
+		}
+
+		.tools-hero__copy {
+			display: flex;
+			flex-direction: column;
+			gap: 1.2rem;
+		}
+
+		.tools-prompt__label,
+		.tools-card__focus,
+		.tools-filter h2 {
+			font-family: "IBM Plex Mono", ui-monospace, monospace;
+			letter-spacing: 0;
+		}
+
+		.tools-prompt__label,
+		.tools-card__focus {
+			color: var(--tools-muted);
+			font-size: 0.65rem;
+			font-weight: 700;
+			line-height: 1.35;
+			text-transform: uppercase;
+		}
+
+		.tools-prompt__label {
+			color: var(--tools-blue);
+		}
+
+		.tools-hero h1 {
+			max-width: 34rem;
+			color: var(--tools-ink);
+			font-family: "IBM Plex Sans", system-ui, sans-serif;
+			font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+			font-weight: 600;
+			line-height: var(--line-height-display);
+			letter-spacing: -0.03em;
+			text-wrap: balance;
+		}
+
+		.tools-hero__copy > p {
+			max-width: 34rem;
+			color: var(--tools-body);
+			font-size: clamp(1rem, 2vw, 1.1rem);
+			line-height: 1.36;
+		}
+
 		.tools-prompt {
-			position: relative;
-			max-width: var(--measure-default);
+			display: flex;
+			flex-direction: column;
+			gap: 0.8rem;
+			border: 1px solid var(--tools-rule);
+			padding: 1rem;
+			background: var(--tools-surface-soft);
+		}
+
+		.tools-prompt__body {
+			max-width: 30rem;
+			color: var(--tools-ink);
+			font-family: "IBM Plex Mono", ui-monospace, monospace;
+			font-size: 0.75rem;
+			line-height: 1.46;
+			white-space: pre-wrap;
 		}
 
 		.tools-prompt__button {
-			position: absolute;
-			top: 0.75rem;
-			right: 0.75rem;
-			display: inline-grid;
-			align-items: center;
-			justify-content: center;
-			place-items: center;
-			width: 2rem;
-			height: 2rem;
-			border: 1px solid rgba(12, 12, 12, 0.16);
+			width: fit-content;
+			gap: 0.4rem;
+			margin-top: 0.2rem;
+			border: 0;
 			padding: 0;
 			background: transparent;
-			color: var(--site-ink);
-			overflow: hidden;
-			transition:
-				background-color 150ms ease,
-				border-color 150ms ease,
-				color 150ms ease;
+			color: var(--tools-ink);
+			font-size: 0.7rem;
+			font-weight: 700;
+			line-height: 1.3;
+			cursor: pointer;
 		}
 
-		.tools-prompt__button:hover {
-			background: var(--site-ink);
-			border-color: var(--site-ink);
-			color: #f9f9f7;
+		.tools-prompt__button:hover span {
+			text-decoration: underline;
+			text-underline-offset: 0.18em;
 		}
 
-		.tools-prompt__button[data-copy-state='copied'] {
-			background: rgba(12, 12, 12, 0.08);
+		.tools-icon {
+			width: 0.8rem;
+			height: 0.8rem;
+			flex: 0 0 auto;
 		}
 
 		.tools-prompt__copy-icon,
 		.tools-prompt__check-icon {
-			grid-area: 1 / 1;
 			transition:
 				opacity 160ms ease,
 				transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 		}
 
 		.tools-prompt__check-icon {
+			display: none;
 			opacity: 0;
-			transform: scale(0.72) rotate(-8deg);
+			transform: scale(0.72);
 		}
 
 		.tools-prompt__button[data-copy-state='copied'] .tools-prompt__copy-icon {
+			display: none;
 			opacity: 0;
-			transform: scale(0.72) rotate(8deg);
 		}
 
 		.tools-prompt__button[data-copy-state='copied'] .tools-prompt__check-icon {
+			display: block;
 			opacity: 1;
-			transform: scale(1) rotate(0);
+			transform: scale(1);
 		}
 
-		.tools-prompt__code {
-			margin: 0;
-			overflow-x: auto;
-			border: 1px solid rgba(12, 12, 12, 0.12);
-			padding: 1rem 3.4rem 1rem 1rem;
-			background: rgba(12, 12, 12, 0.045);
-			white-space: pre-wrap;
+		.tools-featured {
+			display: flex;
+			flex-direction: column;
+			gap: 0.9rem;
 		}
 
-		.tools-prompt__code code {
-			font-size: var(--font-size-sm);
-			line-height: var(--line-height-relaxed);
-			color: var(--site-body);
-			font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+		.tools-section-heading {
+			display: block;
 		}
 
-		:global(.dark) .tools-prompt__code {
-			border-color: rgba(255, 255, 255, 0.12);
-			background: rgba(255, 255, 255, 0.06);
+		.tools-section-heading h2 {
+			color: var(--tools-ink);
+			font-size: clamp(1.35rem, 3vw, 1.5rem);
+			font-weight: 700;
+			line-height: 1.2;
+			letter-spacing: 0;
 		}
 
-		:global(.dark) .tools-prompt__button {
-			border-color: rgba(255, 255, 255, 0.18);
+		.tools-featured__grid,
+		.tools-grid {
+			display: grid;
+			gap: 1rem;
 		}
 
-		:global(.dark) .tools-prompt__button:hover {
-			color: #090909;
+		.tools-featured__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
 
-		:global(.dark) .tools-prompt__button[data-copy-state='copied'] {
-			background: rgba(255, 255, 255, 0.1);
+		.tools-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.tools-card {
+			display: flex;
+			min-height: 8.9rem;
+			flex-direction: column;
+			gap: 0.7rem;
+			border: 1px solid var(--tools-rule);
+			padding: 1rem;
+			background: var(--tools-surface);
+			color: inherit;
+			text-decoration: none;
+			transition:
+				border-color 150ms ease,
+				transform 150ms ease;
+		}
+
+		.tools-card:hover,
+		.tools-card:focus-visible {
+			border-color: rgba(23, 21, 18, 0.34);
+			transform: translateY(-1px);
+		}
+
+		.tools-card[hidden] {
+			display: none;
+		}
+
+		.tools-card--featured {
+			min-height: 9.4rem;
+		}
+
+		.tools-card__top {
+			justify-content: space-between;
+			gap: 0.8rem;
+		}
+
+		.tools-card__name {
+			color: var(--tools-ink);
+			font-size: clamp(1.05rem, 2vw, 1.3rem);
+			font-weight: 700;
+			line-height: 1.08;
+		}
+
+		.tools-card__body {
+			color: var(--tools-body);
+			font-size: 0.75rem;
+			line-height: 1.35;
+		}
+
+		.tools-card__external {
+			width: 0.8rem;
+			height: 0.8rem;
+			flex: 0 0 auto;
+			color: var(--tools-ink);
+		}
+
+		.tools-catalog {
+			display: grid;
+			grid-template-columns: minmax(11.5rem, 12.5rem) minmax(0, 1fr);
+			align-items: start;
+			gap: 1.5rem;
+		}
+
+		.tools-filter {
+			display: flex;
+			flex-direction: column;
+			gap: 0.9rem;
+			border: 1px solid var(--tools-rule);
+			padding: 0.9rem;
+			background: var(--tools-surface);
+		}
+
+		.tools-filter h2 {
+			color: var(--tools-muted);
+			font-size: 0.65rem;
+			font-weight: 700;
+			line-height: 1.35;
+			text-transform: uppercase;
+		}
+
+		.tools-filter__buttons {
+			display: flex;
+			flex-direction: column;
+			gap: 0.8rem;
+		}
+
+		.tools-filter__button {
+			gap: 0.45rem;
+			justify-content: flex-start;
+			width: 100%;
+			min-height: 1.5rem;
+			border: 0;
+			padding: 0.3rem 0;
+			background: transparent;
+			color: var(--tools-body);
+			font-family: "IBM Plex Mono", ui-monospace, monospace;
+			font-size: 0.58rem;
+			font-weight: 700;
+			line-height: 1.25;
+			text-align: left;
+			cursor: pointer;
+		}
+
+		.tools-filter__button[aria-pressed='true'] {
+			color: var(--tools-ink);
+		}
+
+		.tools-filter__button span {
+			width: 0.35rem;
+			height: 0.35rem;
+			border-radius: 50%;
+			background: var(--dot-color);
+			flex: 0 0 auto;
+		}
+
+		.tools-catalog__main {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			min-width: 0;
+		}
+
+		.tools-search {
+			min-height: 2.7rem;
+			gap: 0.7rem;
+			border: 1px solid var(--tools-rule);
+			padding: 0 1rem;
+			background: var(--tools-surface);
+			color: var(--tools-muted);
+		}
+
+		.tools-search__icon {
+			width: 0.9rem;
+			height: 0.9rem;
+			flex: 0 0 auto;
+		}
+
+		.tools-search input {
+			width: 100%;
+			min-width: 0;
+			border: 0;
+			padding: 0.6rem 0;
+			background: transparent;
+			color: var(--tools-ink);
+			font: inherit;
+			font-size: 0.8rem;
+			line-height: 1.4;
+		}
+
+		.tools-search input::placeholder {
+			color: var(--tools-muted);
+			opacity: 0.9;
+		}
+
+		.tools-search input:focus {
+			outline: none;
+		}
+
+		.tools-empty {
+			border: 1px solid var(--tools-rule);
+			padding: 1rem;
+			background: var(--tools-surface);
+			color: var(--tools-muted);
+			font-size: 0.8rem;
+			line-height: 1.4;
+		}
+
+		@media (max-width: 64rem) {
+			.tools-page {
+				max-width: 48rem;
+			}
+
+			.tools-hero,
+			.tools-catalog {
+				grid-template-columns: 1fr;
+			}
+
+			.tools-prompt {
+				min-height: 0;
+			}
+
+			.tools-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 48rem) {
+			.tools-page {
+				gap: 2.2rem;
+				padding-inline: 1rem;
+			}
+
+			.tools-hero h1 {
+				max-width: 100%;
+				font-size: clamp(2.4rem, 13vw, 3.1rem);
+			}
+
+			.tools-featured__grid,
+			.tools-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.tools-card,
+			.tools-card--featured {
+				min-height: 0;
+			}
 		}
 	</style>
 </BaseLayout>

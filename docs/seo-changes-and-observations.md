@@ -2,6 +2,16 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-04
+
+### Agent Tools Catalog Page
+
+- Rebuilt `/tools/` as a catalog-first Agent Tools Library page with a prompt handoff panel, best-first-install cards, job filters, search, and a broader tool grid.
+- Kept the shared site header and aligned the catalog hero typography with the rest of the site.
+- Simplified tool cards to category, tool name, one sentence, and a single repository affordance; restored the older copy prompt text.
+- Verified with `bun run check:projects`, `bun run format:check`, `git diff --check`, and `bun run build`.
+- After deployment, verify the live `/tools/` page, prompt-copy interaction, filter/search behavior, and repository links.
+
 ## 2026-06-30
 
 ### Workflow Tool Repo Split
