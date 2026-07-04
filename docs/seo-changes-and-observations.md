@@ -329,9 +329,10 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Removed `codex-telegram-bridge` and `transcribe-audio` from `/tools/`, added `site-capture` and `social-read`, and verified Apartment Finder remains available as a project case study.
 - Added a second `/tools/` hero paragraph plus a copyable prompt for visitors to ask their own agent which tools fit their work.
 - Restyled the copyable `/tools/` prompt as a markdown-style code block and fixed the copy button width across copied-state label changes.
+- Removed the nested prompt-card treatment and moved the copy action to a fixed-size icon button inside the code block.
 
 ### Verification
 
 - `bun run build` passed.
 - `git diff --check` passed.
-- Browser copy/code-block/width check passed against the built `/tools/` page with Playwright and local Chrome.
+- Browser single-code-block/copy-icon check passed against the built `/tools/` page with Playwright and local Chrome.
