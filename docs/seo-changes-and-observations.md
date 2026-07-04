@@ -332,6 +332,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Removed the nested prompt-card treatment and moved the copy action to a fixed-size icon button inside the code block.
 - Added the `Here's a prompt to get you started:` sentence and animated the copy icon into a checkmark after successful copy.
 - Added line breaks to the copyable prompt so the code block and copied text are easier to scan.
+- Removed the final `If none fit, say so.` line from the copyable prompt.
 
 ### Verification
 
