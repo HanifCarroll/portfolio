@@ -5,8 +5,13 @@ const title = 'Agent Tools Library';
 const description = 'A growing library of local tools shaped by real workflows.';
 const agentInstruction =
 	"Point your agent to this page and ask whether any of these tools would help with the work you do. Here's a prompt to get you started:";
-const agentPrompt =
-	'Review this Agent Tools Library: https://www.hanifcarroll.com/tools/. Based on the work I do and the tasks I ask you to help with, tell me which tools here would be useful, why they fit, and how I should use them. If none fit, say so.';
+const agentPrompt = [
+	'Review this Agent Tools Library: https://www.hanifcarroll.com/tools/.',
+	'',
+	'Based on the work I do and the tasks I ask you to help with, tell me which tools here would be useful, why they fit, and how I should use them.',
+	'',
+	'If none fit, say so.'
+].join('\n');
 
 const tools = [
 	{
