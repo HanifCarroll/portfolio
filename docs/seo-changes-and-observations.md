@@ -327,7 +327,10 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Updated the `/tools/` page title and meta/hero description around the agent tools library framing.
 - Removed non-agent-facing entries from `/tools/` and rewrote the remaining descriptions to emphasize agent workflow benefits.
 - Removed `codex-telegram-bridge` and `transcribe-audio` from `/tools/`, added `site-capture` and `social-read`, and verified Apartment Finder remains available as a project case study.
+- Added a second `/tools/` hero paragraph plus a copyable prompt for visitors to ask their own agent which tools fit their work.
 
 ### Verification
 
 - `bun run build` passed.
+- `git diff --check` passed.
+- Browser copy check passed against the built `/tools/` page with Playwright and local Chrome.

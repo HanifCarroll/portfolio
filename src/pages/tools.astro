@@ -3,6 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Agent Tools Library';
 const description = 'A growing library of local tools shaped by real workflows.';
+const agentInstruction =
+	'Point your agent to this page and ask whether any of these tools would help with the work you do.';
+const agentPrompt =
+	'Review this Agent Tools Library: https://www.hanifcarroll.com/tools/. Based on the work I do and the tasks I ask you to help with, tell me which tools here would be useful, why they fit, and how I should use them. If none fit, say so.';
 
 const tools = [
 	{
@@ -61,6 +65,23 @@ const tools = [
 		<header class='content-page__hero'>
 			<h1 class='content-page__title'>{title}</h1>
 			<p class='content-page__lede'>{description}</p>
+			<p class='content-page__lede'>{agentInstruction}</p>
+			<section class='tools-prompt' aria-labelledby='tools-prompt-heading'>
+				<div class='tools-prompt__header'>
+					<h2 id='tools-prompt-heading' class='tools-prompt__title'>Prompt</h2>
+					<button
+						type='button'
+						class='tools-prompt__button'
+						data-copy-prompt
+						data-copy-source='agent-tools-prompt'
+						aria-label='Copy agent tools prompt'
+						aria-live='polite'
+					>
+						Copy prompt
+					</button>
+				</div>
+				<p id='agent-tools-prompt' class='tools-prompt__body'>{agentPrompt}</p>
+			</section>
 		</header>
 
 		<section aria-label='Tools'>
@@ -94,4 +115,112 @@ const tools = [
 			<a href='/projects/' class='content-page__link'>See client case studies</a>
 		</footer>
 	</article>
+
+	<script is:inline>
+		const setupPromptCopy = () => {
+			const copyButton = document.querySelector('[data-copy-prompt]');
+			if (!copyButton) return;
+
+			const sourceId = copyButton.getAttribute('data-copy-source');
+			const source = sourceId ? document.getElementById(sourceId) : null;
+			if (!source?.textContent) return;
+
+			const defaultLabel = copyButton.textContent?.trim() || 'Copy prompt';
+			let resetTimer;
+
+			copyButton.addEventListener('click', async () => {
+				window.clearTimeout(resetTimer);
+				try {
+					await navigator.clipboard.writeText(source.textContent.trim());
+					copyButton.textContent = 'Copied';
+				} catch {
+					copyButton.textContent = 'Copy failed';
+				}
+
+				resetTimer = window.setTimeout(() => {
+					copyButton.textContent = defaultLabel;
+				}, 1800);
+			});
+		};
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', setupPromptCopy, { once: true });
+		} else {
+			setupPromptCopy();
+		}
+	</script>
+
+	<style>
+		.tools-prompt {
+			display: flex;
+			flex-direction: column;
+			gap: 0.9rem;
+			max-width: var(--measure-default);
+			border: 1px solid rgba(12, 12, 12, 0.14);
+			padding: 1rem;
+			background: rgba(255, 255, 255, 0.62);
+		}
+
+		.tools-prompt__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		.tools-prompt__title {
+			font-family: "IBM Plex Sans", system-ui, sans-serif;
+			font-size: 0.95rem;
+			font-weight: 600;
+			line-height: var(--line-height-snug);
+			color: var(--site-ink);
+		}
+
+		.tools-prompt__button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid var(--site-ink);
+			padding: 0.65rem 0.8rem;
+			background: transparent;
+			color: var(--site-ink);
+			font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+			font-size: 0.68rem;
+			font-weight: 600;
+			line-height: 1;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			transition:
+				background-color 150ms ease,
+				color 150ms ease;
+		}
+
+		.tools-prompt__button:hover {
+			background: var(--site-ink);
+			color: #f9f9f7;
+		}
+
+		.tools-prompt__body {
+			margin: 0;
+			font-size: var(--font-size-sm);
+			line-height: var(--line-height-relaxed);
+			color: var(--site-body);
+		}
+
+		:global(.dark) .tools-prompt {
+			border-color: rgba(255, 255, 255, 0.16);
+			background: rgba(255, 255, 255, 0.04);
+		}
+
+		:global(.dark) .tools-prompt__button:hover {
+			color: #090909;
+		}
+
+		@media (max-width: 520px) {
+			.tools-prompt__header {
+				align-items: flex-start;
+				flex-direction: column;
+			}
+		}
+	</style>
 </BaseLayout>
