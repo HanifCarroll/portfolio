@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-05
+
+### Agent Tools Catalog Cleanup
+
+- Removed the placeholder `/tools/` catalog card for `next tools`.
+- Verified with `bun run check:projects`, `bun run format:check`, `git diff --check`, and `bun run build`.
+- After deployment, verify the live `/tools/` page no longer shows the `next tools` card.
+
 ## 2026-07-04
 
 ### Agent Tools Catalog Page
