@@ -1,5 +1,6 @@
 ---
 import type { ProjectVideoAsset } from '@src/lib/types/project';
+import { getVideoPosterSources } from '@src/lib/video-posters';
 
 interface Props {
 	video: ProjectVideoAsset;
@@ -9,6 +10,7 @@ interface Props {
 
 const { video, title, description } = Astro.props;
 const label = video.label ?? `${title} video`;
+const posterSources = getVideoPosterSources(video.poster);
 ---
 
 <section class='project-video' aria-labelledby='project-video-title'>
@@ -24,8 +26,8 @@ const label = video.label ?? `${title} video`;
 			class='project-video__media'
 			controls
 			playsinline
-			preload='metadata'
-			poster={video.poster}
+			preload='none'
+			poster={posterSources.large}
 			aria-label={`${title} project overview video`}
 		>
 			<source src={video.src} type='video/mp4' />

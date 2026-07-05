@@ -4,6 +4,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-07-05
 
+### Project Video Poster Loading
+
+- Added responsive WebP poster variants for all project videos at 480w, 960w, and 1440w.
+- Updated `/projects/` video cards to use the WebP poster `srcset`, prioritize only the lead poster image, and avoid loading video posters or preview metadata before interaction.
+- Updated project detail videos to use WebP posters and `preload="none"`.
+- Verified with `bun run check:projects`, `bun run format:check`, `git diff --check`, `bun run build`, built HTML inspection, and local Playwright request checks for `/projects/` and `/projects/palabruno/`.
+- After deployment, verify the live `/projects/` page no longer streams PNG posters or preview MP4s on initial load.
+
 ### Agent Tools Catalog Cleanup
 
 - Removed the placeholder `/tools/` catalog card for `next tools`.

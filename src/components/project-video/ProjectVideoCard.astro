@@ -1,5 +1,6 @@
 ---
 import type { ProjectCard } from '@src/lib/project-cards';
+import { getVideoPosterSources } from '@src/lib/video-posters';
 
 interface Props {
 	project: ProjectCard;
@@ -12,10 +13,18 @@ const video = project.videos?.preview ?? project.videos?.overview;
 const resolvedVariant = variant ?? (featured ? 'lead' : 'card');
 const className = `project-video-card project-video-card--${resolvedVariant}`;
 const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
+const fetchPriority = resolvedVariant === 'lead' ? 'high' : undefined;
+const posterSources = video ? getVideoPosterSources(video.poster) : null;
+const posterSizes =
+	resolvedVariant === 'lead'
+		? '(min-width: 980px) min(52vw, 40rem), calc(100vw - 2rem)'
+		: resolvedVariant === 'compact'
+			? '(min-width: 760px) 24rem, calc(100vw - 2rem)'
+			: '(min-width: 760px) min(50vw, 34rem), calc(100vw - 2rem)';
 ---
 
 {
-	video && (
+	video && posterSources && (
 		<a href={`/projects/${project.slug}/`} class={className} data-project-video-card>
 			<div class='project-video-card__media-wrap'>
 				<video
@@ -23,8 +32,7 @@ const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 					muted
 					loop
 					playsinline
-					preload='metadata'
-					poster={video.poster}
+					preload='none'
 					aria-hidden='true'
 					tabindex='-1'
 				>
@@ -32,10 +40,15 @@ const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 				</video>
 				<img
 					class='project-video-card__poster'
-					src={video.poster}
+					src={posterSources.src}
+					srcset={posterSources.srcset}
+					sizes={posterSizes}
+					width='960'
+					height='540'
 					alt=''
 					loading={loading}
 					decoding='async'
+					fetchpriority={fetchPriority}
 					aria-hidden='true'
 				/>
 				<span class='project-video-card__play-indicator' aria-hidden='true'></span>
