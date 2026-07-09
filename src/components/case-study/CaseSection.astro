@@ -20,3 +20,44 @@ const { title, media = false, wideMedia = false } = Astro.props;
 		<slot />
 	</div>
 </section>
+
+<script>
+	const setupStickyCaseStudyHeadings = () => {
+		const desktop = window.matchMedia('(min-width: 768px)');
+		const sections = Array.from(document.querySelectorAll<HTMLElement>('.case-study-detail__editorial-section'));
+		if (sections.length === 0) return;
+
+		const updateStickyHeadings = () => {
+			const stickyTop = (Number.parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) * 6;
+			const availableContentHeight = window.innerHeight - stickyTop;
+
+			sections.forEach((section) => {
+				const copy = section.querySelector<HTMLElement>('.case-study-detail__editorial-copy');
+				const isMediaSection = section.classList.contains('case-study-detail__editorial-section--media');
+				const isWideMediaSection = section.classList.contains('case-study-detail__editorial-section--wide-media');
+				const hasScrollableContent = (copy?.getBoundingClientRect().height ?? 0) > availableContentHeight;
+
+				section.classList.toggle(
+					'case-study-detail__editorial-section--sticky-heading',
+					desktop.matches && !isMediaSection && !isWideMediaSection && hasScrollableContent
+				);
+			});
+		};
+
+		const resizeObserver = new ResizeObserver(() => requestAnimationFrame(updateStickyHeadings));
+		sections.forEach((section) => {
+			const copy = section.querySelector('.case-study-detail__editorial-copy');
+			if (copy) resizeObserver.observe(copy);
+		});
+
+		desktop.addEventListener('change', updateStickyHeadings);
+		window.addEventListener('resize', updateStickyHeadings, { passive: true });
+		updateStickyHeadings();
+	};
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupStickyCaseStudyHeadings, { once: true });
+	} else {
+		setupStickyCaseStudyHeadings();
+	}
+</script>
