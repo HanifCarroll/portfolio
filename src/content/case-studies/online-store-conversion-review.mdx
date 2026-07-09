@@ -1,0 +1,172 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import reportPreview from "../../assets/img/projects/online-store-conversion-review.png";
+
+export const shippedRows = [
+  {
+    label: "Store walk-through",
+    title: "I followed the same path a shopper would.",
+    body: "The review moved from the homepage to the skin assessment, product list, and product page instead of judging each screen in isolation.",
+  },
+  {
+    label: "Desktop and mobile",
+    title: "The same 18 public pages were checked on both devices.",
+    body: "All 36 page captures completed successfully. The final report uses the four clearest examples to show where shoppers could get stuck.",
+  },
+  {
+    label: "Main findings",
+    title: "Five problems made choosing and buying harder.",
+    body: "The report covers the empty skin assessment, unclear product fit, sold-out inventory, unanswered product questions, and mobile speed.",
+  },
+  {
+    label: "Fix order",
+    title: "The findings became seven steps in a clear order.",
+    body: "Each step explains what to change and what result the owner should watch afterward.",
+  },
+  {
+    label: "Next pass",
+    title: "The report names the store data needed next.",
+    body: "An 11-item request covers sales, devices, traffic, searches, inventory, abandoned checkouts, reviews, email, and real-user speed data.",
+  },
+];
+
+<CaseSection title="Summary">
+  An online skincare store owner wanted to know what might be stopping more visitors from buying.
+
+I reviewed the public store from a shopper's point of view, found the moments where choosing or buying became harder, and turned them into a report with clear next steps. The recommendations have not yet been implemented, so this case study does not claim a sales increase.
+
+</CaseSection>
+
+<CaseSection title="The situation">
+  The store sells premium botanical oils. That gives the brand a strong story, but it also asks shoppers to understand unfamiliar ingredient names before they can choose the right product.
+
+The central question was simple: does the store help a new visitor decide what fits their needs, trust the product, and feel ready to buy?
+
+</CaseSection>
+
+<CaseSection title="Constraints">
+  <DecisionBlock title="Use public information only.">
+    I did not have the store's private dashboard, sales reports, customer information, or website admin access. The first review had to stand on what a shopper could see and experience.
+  </DecisionBlock>
+
+<DecisionBlock title="Do not change the live store during the review.">
+  The report needed to explain each problem clearly enough for the owner or website team to act on
+  later, without testing changes on real customers first.
+</DecisionBlock>
+
+  <DecisionBlock title="Separate visible problems from business results.">
+    A public review can show where shopping becomes confusing or slow. It cannot prove how much revenue a fix will create without store data and a before-and-after test.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="What the report covered" media>
+  The report leads with the five most important findings, the order I would fix them, and the numbers behind the recommendations.
+
+  <ImagePlate image={reportPreview} alt="Online store conversion report showing five recommended fixes, stock availability, mobile speed, and the first priority finding." />
+</CaseSection>
+
+<CaseSection title="What I reviewed">
+  <DecisionBlock title="The full shopping path.">
+    I followed the route from the homepage to the skin assessment, product list, and a representative product page. This showed how one confusing step affected the next one.
+  </DecisionBlock>
+
+<DecisionBlock title="Choice and availability.">
+  Six of the 11 visible products were out of stock. The products were also presented mainly by
+  botanical name, leaving shoppers to work out which oil matched concerns such as dryness,
+  sensitivity, glow, or hair care.
+</DecisionBlock>
+
+<DecisionBlock title="Desktop and mobile pages.">
+  The same 18 public pages were captured on desktop and mobile, with no failed pages. The report
+  keeps the four clearest screenshots instead of making the owner work through a wall of evidence.
+</DecisionBlock>
+
+  <DecisionBlock title="Page speed where buying happens.">
+    The homepage and one product page scored 91 and 90 on desktop, but 63 and 60 on mobile. In the slower mobile product-page check, the page took about 10.5 seconds to become ready to use.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="What the review found">
+  <DecisionBlock title="The skin assessment led shoppers to a dead end.">
+    The homepage promoted a personal skin assessment, but the destination showed no assessment questions and did not guide visitors toward a product. That became the first fix.
+  </DecisionBlock>
+
+<DecisionBlock title="Shoppers needed help choosing by concern.">
+  Botanical names can support the brand story, but they do not tell a new shopper which product fits
+  their needs. The report recommends clearer product labels and filters based on the problems
+  shoppers are trying to solve.
+</DecisionBlock>
+
+<DecisionBlock title="Sold-out products made the store feel unavailable.">
+  With more than half of the visible products out of stock, shoppers could run into repeated dead
+  ends. The report recommends moving unavailable items down, collecting restock requests, and
+  pointing people to available alternatives.
+</DecisionBlock>
+
+<DecisionBlock title="Product pages asked for the purchase before earning confidence.">
+  The buying area appeared before quick answers about who the product was for, how to use it, why to
+  trust it, shipping and returns, or how it compared with another oil.
+</DecisionBlock>
+
+  <DecisionBlock title="Mobile speed deserved its own fix.">
+    Desktop and mobile told different stories. The report treats mobile images, store add-ons, and page speed as a separate workstream because that is where the slower checks appeared.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="What the owner received">
+  <DecisionBlock title="A full report and a shorter summary.">
+    The report website contains the findings, speed checks, fix list, screenshots, follow-up questions, and sources. A shorter summary page is generated from the same content so the two versions stay consistent.
+  </DecisionBlock>
+
+<DecisionBlock title="Seven fixes in a practical order.">
+  The list starts with the skin assessment and sold-out products, then moves to product finding,
+  product-page confidence, mobile speed, educational content, and accurate product information in
+  search results.
+</DecisionBlock>
+
+<DecisionBlock title="A clear way to judge the work later.">
+  Each fix includes a result to watch, such as assessment completion, product-page visits,
+  add-to-cart rate, checkout starts, email signups, or mobile sales.
+</DecisionBlock>
+
+  <DecisionBlock title="The questions needed for a deeper second pass.">
+    The report asks for 11 groups of store data, including sales steps, devices, traffic sources, searches, inventory history, abandoned checkouts, reviews, email performance, and real-user speed data.
+  </DecisionBlock>
+</CaseSection>
+
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What the owner can use</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      The useful result is not a list of vague advice. It is a shared view of where shoppers get
+      stuck, which fixes come first, and what numbers should show whether those fixes worked.
+    </ProofRows>
+  </div>
+</section>
+
+<CaseSection title="Deliverables">
+  <DecisionBlock title="Report website.">
+    A focused report with five findings, seven fixes in order, four screenshot examples, speed results, 13 source links, and 11 questions for the next review.
+  </DecisionBlock>
+
+<DecisionBlock title="Executive summary.">
+  A shorter page generated from the same content for a quick read without maintaining a second set
+  of recommendations.
+</DecisionBlock>
+
+  <DecisionBlock title="Reusable evidence.">
+    Desktop and mobile captures, clear stock counts, repeatable speed checks, and cited research keep the recommendations tied to something the owner can inspect again.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="What could be added later">
+  The next useful update depends on what happens after the owner reviews the report.
+
+Add the owner's approved feedback, any fixes made from the report, and before-and-after numbers from the store once there is enough data to judge the result.
+
+</CaseSection>

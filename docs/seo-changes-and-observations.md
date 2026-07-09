@@ -4,6 +4,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-07-09
 
+### Online Store Conversion Review Case Study
+
+- Added `/projects/online-store-conversion-review/` as an anonymized, plain-language case study for an online skincare store review.
+- Grounded the page in the current report: 5 findings, 7 fixes in order, 4 screenshot examples, 13 source links, 11 follow-up questions, and desktop/mobile speed results.
+- Kept the report URL, owner name, private store data, and unverified sales claims out of the public page.
+- Added the case study to the project archive only; homepage curation remains unchanged until there is approved client feedback or measured results from implemented changes.
+- After deployment, verify the live route, archive card, sitemap entry, social preview image, and public copy.
+
 ### Health Services AI Search Case Study Plain-Language Pass
 
 - Reviewed the current private audit project and updated `/projects/health-ai-search-audit/` so the public case study describes the work as a practical health-services AI-search audit, not as a technical implementation note.
