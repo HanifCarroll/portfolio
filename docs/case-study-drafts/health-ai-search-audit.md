@@ -7,7 +7,7 @@ Draft a public-safe portfolio case study for a health-services AI-search audit n
 ## Desired Outcome
 
 - Public case-study route: `/projects/health-ai-search-audit/`
-- Public framing: `AI Search Visibility Audit` for a `Health Services Startup`
+- Public framing: `Helping a Health Services Startup Show Up in AI Search`
 - Site placement now: project archive only
 - Site placement later: homepage only if follow-up, screenshot, implementation, or before/after evidence creates a stronger signal than the current homepage case studies
 

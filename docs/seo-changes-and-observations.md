@@ -9,6 +9,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Reviewed the current private audit project and updated `/projects/health-ai-search-audit/` so the public case study describes the work as a practical health-services AI-search audit, not as a technical implementation note.
 - Kept the final evidence facts visible: 74 search-result rows, 33 browser-checked rows, 12 final retest rows, the remaining ChatGPT/Gemini gaps, and the private report with 9 action cards.
 - Replaced public-facing workbook and portal wording with private action report wording, and kept homepage placement unchanged because this still proves delivery and evidence quality rather than client implementation or measured post-fix impact.
+- Updated the archive-card title, description, detail-page framing, and generated preview image to lead with the user-facing story: where the health-services business appears in AI search, where it is missed, and what to fix next.
 - After deployment, verify the live public portfolio page keeps the plain-language framing and does not expose protected URLs, credentials, or client-sensitive report details.
 
 ## 2026-07-08
