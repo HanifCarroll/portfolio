@@ -1,0 +1,158 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import auditReportPreview from "../../assets/img/projects/health-ai-search-audit-report.png";
+
+export const shippedRows = [
+  {
+    label: "Public evidence",
+    title: "The audit started from what AI tools and search engines could see.",
+    body: "The first pass checked the public website, blog, site maps, search access rules, visible page text, headings, and page labels before recommending changes.",
+  },
+  {
+    label: "Evidence files",
+    title: "The final evidence file has 74 search-result rows.",
+    body: "The files include Perplexity tests, live search notes, browser retests, older manual rows kept for history, source notes, action-card notes, and handoff notes.",
+  },
+  {
+    label: "Browser retest",
+    title: "The final retest added 12 rows checked in a browser.",
+    body: "Browser-checked evidence now covers every earlier to-check item, with 33 rows checked in a browser total. The old manual rows stay only for history.",
+  },
+  {
+    label: "Findings",
+    title: "The evidence shows where the company appears and where it does not.",
+    body: "Google and ChatGPT now mention the company for several Medellin and brand-name searches. ChatGPT still misses broad Spanish Buenos Aires at-home blood-test searches, and Gemini still misses Spanish Medellin sexual-health searches.",
+  },
+  {
+    label: "Private report",
+    title: "The evidence became a private action report.",
+    body: "The private report turns the audit into pages for first fixes, next improvements, results, monthly retesting, appendix material, and 9 action cards.",
+  },
+];
+
+<CaseSection title="Summary">
+A founder asked how a health-services business could show up when people ask AI tools for help.
+
+I turned that question into a website audit, search-testing plan, finalized evidence files, and private action report. The public case study stays framed as a careful audit, not a finished impact story.
+
+</CaseSection>
+
+<CaseSection title="The situation">
+  The useful answer was not "publish more content" or "add AI keywords."
+
+The founder needed to know what AI tools could already find, which public sources seemed to help, what the site made easy or hard to mention, and which fixes were practical enough to bring into a follow-up conversation.
+
+</CaseSection>
+
+<CaseSection title="Constraints">
+  <DecisionBlock title="Use public evidence only.">
+    The audit did not have a private search dashboard, analytics account, website admin, or server access. That made the boundary clear: inspect the public website, public blog, what search engines could see, and live AI answers.
+  </DecisionBlock>
+
+<DecisionBlock title="Do not change the site during diagnosis.">
+  Recommendations had to be useful without making live changes first. The output needed to help the
+  founder talk with a developer or give clear tasks to an AI website helper.
+</DecisionBlock>
+
+  <DecisionBlock title="Keep health-service claims cautious.">
+    The public case study avoids private client details and does not claim medical, compliance, ranking, or conversion outcomes that have not happened.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Audit direction" media>
+  The preview shows the shape of the private report: site checks, test questions, observations, tasks, and update points in one place.
+
+  <ImagePlate image={auditReportPreview} alt="AI search audit report preview with search checks, evidence counts, findings, and action cards." />
+</CaseSection>
+
+<CaseSection title="What I checked">
+  <DecisionBlock title="Site and blog setup.">
+    The main site appeared to be custom-coded, while the blog appeared to be a separate WordPress site. That split matters because AI tools may read the main site and the blog differently.
+  </DecisionBlock>
+
+<DecisionBlock title="Can search engines read it?">
+  The site had useful site maps and pages that search engines could read. The main site's
+  search-instructions file, `robots.txt`, returned 404 during the audit, which became a concrete fix
+  instead of a guessed blocker.
+</DecisionBlock>
+
+<DecisionBlock title="Clear labels for the business and services.">
+  Some detail pages had machine-readable labels for FAQs, page type, and breadcrumbs. The homepage,
+  city pages, and about page did not clearly label the business and its services, so the fix was to
+  make that context explicit.
+</DecisionBlock>
+
+  <DecisionBlock title="AI answer testing.">
+    The final evidence file has 74 search-result rows: 15 Perplexity answer rows, 8 live web-search rows, 33 rows checked in a browser, and 18 older manual rows kept for history. The final browser retest added 12 rows: 7 ChatGPT Search, 2 Gemini, and 3 Google AI Mode / AI Overview.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Final evidence files">
+  <DecisionBlock title="Browser checks replaced the open to-check items.">
+    Rows checked in a browser now cover every earlier manual follow-up item. The older manual rows remain in the spreadsheet for history, but the browser-checked rows are the current evidence.
+  </DecisionBlock>
+
+<DecisionBlock title="The evidence separated where the company appeared from where it did not.">
+  ChatGPT Search still missed broad Spanish Buenos Aires at-home blood-test searches. Gemini still
+  missed Spanish Medellin sexual-health searches. Google and ChatGPT now mentioned the company for
+  several Medellin and brand-name searches.
+</DecisionBlock>
+
+  <DecisionBlock title="The result is a reusable audit system, not a claimed increase in AI mentions.">
+    The evidence files give the founder and whoever helps with the site a test-question list, results spreadsheet, source notes, action-card notes, and handoff notes. It does not claim that the recommendations have been implemented or that AI mentions improved after implementation.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Private delivery">
+  <DecisionBlock title="The report became a private report site.">
+    The audit project now builds pages for the overview, first fixes, next improvements, results, monthly testing, and appendix sections. The private site uses the evidence files and shows 9 action cards without putting the private report on the public portfolio.
+  </DecisionBlock>
+
+<DecisionBlock title="Access is private and search engines are blocked.">
+  The report site requires a password before showing the content and tells search engines not to
+  list it. The public case study does not include the protected URL, password, or client-sensitive
+  report details.
+</DecisionBlock>
+
+  <DecisionBlock title="Verification proves delivery, not client impact.">
+    The private report builds and checks locally, and the live private site blocks public access as expected. That verifies delivery, not implementation by the client or a measured increase in AI mentions.
+  </DecisionBlock>
+</CaseSection>
+
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What shipped</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      The value of the work is the audit system: checks tied to real sources, answer tests, evidence
+      files, action cards, a private report site, and a results spreadsheet that can be rerun after
+      site changes.
+    </ProofRows>
+  </div>
+</section>
+
+<CaseSection title="Files">
+  <DecisionBlock title="Early diagnostic files.">
+    The first deliverables were a practical AI-search checklist and a longer diagnostic PDF, created before the follow-up conversation so the discussion could start from concrete evidence.
+  </DecisionBlock>
+
+<DecisionBlock title="Private action report.">
+  The private report site is built from the evidence files and password-gated. The public page does
+  not include the protected URL, password, or client-sensitive report details.
+</DecisionBlock>
+
+  <DecisionBlock title="Evidence files.">
+    The final research packet includes the test-question list, results spreadsheet, source observations, action-card notes, and handoff notes so the findings can be reused, rechecked, or handed to someone making the fixes.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Update hooks">
+  The evidence counts and private report delivery are now represented. The remaining updates depend on a real follow-up or fixes made from the report.
+
+Add an approved report screenshot, any approved client quote or follow-up result, and any before/after metric from implemented recommendations.
+
+</CaseSection>

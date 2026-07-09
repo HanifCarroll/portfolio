@@ -16,6 +16,7 @@ export const PROJECT_INDEX_ORDER = [
   "codex-telegram-bridge",
   "agent-recall",
   "client-feedback",
+  "health-ai-search-audit",
   "apartment-finder",
   "ba-eventos",
   "language-exchange",

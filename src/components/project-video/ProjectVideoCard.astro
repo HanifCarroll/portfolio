@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
 import { getVideoPosterSources } from '@src/lib/video-posters';
 
@@ -15,7 +16,7 @@ const className = `project-video-card project-video-card--${resolvedVariant}`;
 const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 const fetchPriority = resolvedVariant === 'lead' ? 'high' : undefined;
 const posterSources = video ? getVideoPosterSources(video.poster) : null;
-const posterSizes =
+const mediaSizes =
 	resolvedVariant === 'lead'
 		? '(min-width: 980px) min(52vw, 40rem), calc(100vw - 2rem)'
 		: resolvedVariant === 'compact'
@@ -24,9 +25,11 @@ const posterSizes =
 ---
 
 {
-	video && posterSources && (
-		<a href={`/projects/${project.slug}/`} class={className} data-project-video-card>
-			<div class='project-video-card__media-wrap'>
+	<a href={`/projects/${project.slug}/`} class={className} data-project-video-card={video ? true : undefined}>
+		<div class='project-video-card__media-wrap'>
+			{
+				video && posterSources ? (
+					<>
 				<video
 					class='project-video-card__media'
 					muted
@@ -42,7 +45,7 @@ const posterSizes =
 					class='project-video-card__poster'
 					src={posterSources.src}
 					srcset={posterSources.srcset}
-					sizes={posterSizes}
+					sizes={mediaSizes}
 					width='960'
 					height='540'
 					alt=''
@@ -52,13 +55,26 @@ const posterSizes =
 					aria-hidden='true'
 				/>
 				<span class='project-video-card__play-indicator' aria-hidden='true'></span>
-			</div>
-			<div class='project-video-card__copy'>
-				<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
-				<p>{project.description}</p>
-			</div>
-		</a>
-	)
+					</>
+				) : (
+					<Image
+						class='project-video-card__poster'
+						src={project.image}
+						alt=''
+						sizes={mediaSizes}
+						loading={loading}
+						decoding='async'
+						fetchpriority={fetchPriority}
+						aria-hidden='true'
+					/>
+				)
+			}
+		</div>
+		<div class='project-video-card__copy'>
+			<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
+			<p>{project.description}</p>
+		</div>
+	</a>
 }
 
 <script>

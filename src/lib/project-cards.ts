@@ -1,4 +1,6 @@
 import type { Project } from "@src/lib/types/project";
+import type { ImageMetadata } from "astro";
+import { getProjectImage } from "./project-images";
 import { getAllProjects } from "@src/lib/projects";
 import { getProjectTrackMeta } from "./project-tracks";
 
@@ -18,6 +20,7 @@ export interface ProjectCard {
   trackGroup: ReturnType<typeof getProjectTrackMeta>["group"];
   category: "product" | "marketing-site";
   videos: Project["videos"];
+  image: ImageMetadata;
 }
 
 const toCard = (project: Project): ProjectCard => {
@@ -39,6 +42,7 @@ const toCard = (project: Project): ProjectCard => {
     trackGroup: trackMeta.group,
     category: project.category ?? "product",
     videos: project.videos,
+    image: getProjectImage(project, "feature"),
   };
 };
 

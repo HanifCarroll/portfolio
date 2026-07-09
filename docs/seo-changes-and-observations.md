@@ -2,6 +2,41 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-09
+
+### Health Services AI Search Case Study Plain-Language Pass
+
+- Reviewed the current private audit project and updated `/projects/health-ai-search-audit/` so the public case study describes the work as a practical health-services AI-search audit, not as a technical implementation note.
+- Kept the final evidence facts visible: 74 search-result rows, 33 browser-checked rows, 12 final retest rows, the remaining ChatGPT/Gemini gaps, and the private report with 9 action cards.
+- Replaced public-facing workbook and portal wording with private action report wording, and kept homepage placement unchanged because this still proves delivery and evidence quality rather than client implementation or measured post-fix impact.
+- After deployment, verify the live public portfolio page keeps the plain-language framing and does not expose protected URLs, credentials, or client-sensitive report details.
+
+## 2026-07-08
+
+### Health Services AI Search Audit Case Study Draft
+
+- Added `/projects/health-ai-search-audit/` as a public-safe, anonymized case-study draft for health-services AI-search visibility audit work.
+- Kept homepage curation unchanged while the protected Netlify workbook and evidence packet are still in progress; the page is available through the project archive instead.
+- Added `docs/case-study-drafts/health-ai-search-audit.md` with update hooks and homepage-promotion criteria for when final workbook, prompt, source, and implementation evidence lands.
+- Verified with `bun run check:projects`, `bun run format:check`, `git diff --check`, `bun run lint`, `bun run build`, built HTML inspection, and a public-safety grep for client names, thread IDs, local paths, and protected-password text.
+- After deployment, verify the live project page, sitemap entry, and public-safe copy before requesting indexing.
+
+### Health Services AI Search Evidence Packet Update
+
+- Updated `/projects/health-ai-search-audit/` with the finalized evidence-packet counts: 74 total result rows, 33 Chrome-observed rows, and 12 new Chrome-observed rows from the final retest.
+- Noted that Chrome-observed rows now cover every earlier manual follow-up prompt/platform pair, while retained manual rows are historical placeholders.
+- Kept homepage curation unchanged; protected workbook delivery/update and any client outcome remain future update triggers.
+- Verified with `bun run check:projects`, `bun run format:check`, `git diff --check`, `bun run lint`, `bun run build`, built HTML inspection, and a public-safety grep for client names, thread IDs, local paths, and protected-password text.
+- After deployment, verify the live project page still uses public-safe anonymized copy and does not expose protected workbook credentials or client-sensitive details.
+
+### Protected Audit Portal Review
+
+- Reviewed the current protected audit repo and updated `/projects/health-ai-search-audit/` from "workbook update" framing to "protected Netlify action portal" framing.
+- Added public-safe delivery details: generated static pages for overview, first fixes, next improvements, results, monthly testing, and appendix; 9 implementation task cards; Netlify Edge Function auth; signed `HttpOnly` session; and noindex/nofollow/noarchive headers.
+- Kept homepage curation unchanged because this is delivery proof, not client implementation or measured post-fix impact.
+- Verified the audit portal locally with its own `npm run build`, and verified the live protected response returns `HTTP/2 401` plus `X-Robots-Tag: noindex, nofollow, noarchive`.
+- After deployment, verify the live public portfolio page keeps this anonymized and does not expose protected URLs, credentials, or client-sensitive report details.
+
 ## 2026-07-05
 
 ### Project Video Poster Loading
