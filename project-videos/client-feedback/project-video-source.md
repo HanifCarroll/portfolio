@@ -195,7 +195,7 @@ Visual source: source-to-packet rail with synthetic artifact cards.
 On-screen text:
 
 ```text
-The tool gathers each place feedback lives.
+The tool gathers feedback from every source.
 Messages, files, audio, and transcripts stay together.
 ```
 
@@ -269,14 +269,14 @@ Reading-speed check: `8` words over `3.3s` = `145 WPM`; acceptable because the p
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                               | Word count | Duration | WPM |
-| ----- | -------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.                  |         12 |     5.7s | 126 |
-| 2     | Copying evidence by hand broke the trail. Sources got lost.                                        |         10 |     5.5s | 109 |
-| 3     | I built a local evidence folder. Private feedback stays on the machine.                            |         11 |     5.5s | 120 |
-| 4     | The tool gathers each place feedback lives. Messages, files, audio, and transcripts stay together. |         15 |     5.9s | 153 |
-| 5     | The folder can be reused later. Claim, source, and evidence stay connected.                        |         12 |     5.6s | 129 |
-| End   | Client Feedback Evidence. Scattered feedback becomes reusable evidence.                            |          7 |     3.3s | 127 |
+| Scene | Text                                                                                                | Word count | Duration | WPM |
+| ----- | --------------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Useful feedback was scattered. Chats, emails, voice notes, and files lived apart.                   |         12 |     5.7s | 126 |
+| 2     | Copying evidence by hand broke the trail. Sources got lost.                                         |         10 |     5.5s | 109 |
+| 3     | I built a local evidence folder. Private feedback stays on the machine.                             |         11 |     5.5s | 120 |
+| 4     | The tool gathers feedback from every source. Messages, files, audio, and transcripts stay together. |         15 |     5.9s | 153 |
+| 5     | The folder can be reused later. Claim, source, and evidence stay connected.                         |         12 |     5.6s | 129 |
+| End   | Client Feedback Evidence. Scattered feedback becomes reusable evidence.                             |          7 |     3.3s | 127 |
 
 Allowed short labels:
 
