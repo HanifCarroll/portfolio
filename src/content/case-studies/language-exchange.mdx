@@ -6,95 +6,127 @@ import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import hablabaFeature from "../../assets/img/projects/hablaba-feature.png";
+import hablabaHero from "../../assets/img/projects/hablaba-hero.png";
+import hablabaHostExchangeFlow from "../../assets/img/projects/hablaba-host-exchange-flow.png";
 
 export const shippedRows = [
   {
-    label: "Local discovery",
-    title: "Learners could find practice around place.",
-    body: "Neighborhood discovery made the product feel tied to real-world coordination instead of endless profile browsing.",
+    label: "Research",
+    title: "The product direction came from three rounds of evidence.",
+    body: "A three-person, 90-minute group interview, an 11-response survey, and six usability sessions shaped the beta before the full build.",
   },
   {
-    label: "Group practice",
-    title: "The product centered on small exchanges.",
-    body: "Small group matching gave learners a more useful practice format than large events or swipe-heavy apps.",
+    label: "Core loop",
+    title: "Exchange sessions replaced open-ended profile browsing.",
+    body: "People could create or join one-to-one and small-group sessions, then filter them by language, neighborhood, date, type, and open seats.",
   },
   {
-    label: "Cross-platform use",
-    title: "Web and mobile shared the same product foundation.",
-    body: "The backend supported both discovery and coordination without splitting the product into separate systems.",
+    label: "Trust",
+    title: "Access and identity became part of the product.",
+    body: "Invite codes, verified email, guided profiles, real photos, two-factor authentication, and admin invite controls supported a more intentional beta.",
   },
   {
-    label: "Trust-heavy MVP",
-    title: "The build tested behavior, not just screens.",
-    body: "The MVP gave me a useful proof point for product trust, coordination, and local marketplace constraints.",
+    label: "Coordination",
+    title: "Each exchange carried its own plan from discovery to meetup.",
+    body: "Private real-time chat, in-app notifications, and browser push kept the work of coordinating attached to the exchange.",
   },
 ];
 
 <CaseSection title="Summary">
-  HablaBA started from a local language-learning problem: most exchange products feel like profile browsing, dating apps, or large events where meaningful conversation is hard.
+  HablaBA is an invite-only language-exchange product for people in Buenos Aires who want smaller, more intentional ways to practice in person.
 
-    I turned the idea into a working web and mobile product around small-group practice, neighborhood discovery, and real-world coordination.
-
-</CaseSection>
-
-<CaseSection title="About">
-  Language learners want focused practice with real people, but many platforms optimize for profiles or event volume.
-
-    The useful product shape was smaller and more intentional: help people find practice opportunities that feel local, social, and manageable.
+I took the idea through research, an interactive prototype, usability testing, and a working web beta. The final product covers invitation, profile setup, exchange discovery, session creation and joining, private chat, and notifications.
 
 </CaseSection>
 
-<CaseSection title="Business Objective">
-  The product needed to make practice feel more intentional than swiping through profiles while staying lightweight enough for people to actually use.
+<CaseSection title="The Problem">
+  Buenos Aires already had language-exchange apps and large events. The gap was not access to more profiles or another crowded meetup. It was a practical way to find a small group, agree on the language and place, and make the session happen.
 
-    That meant focusing the MVP on groups, discovery, chat, and coordination instead of trying to become a full social network from day one.
+The first research round was a three-person, 90-minute group interview. I followed it with an 11-response survey and six usability sessions. Across those stages, the useful product shape became clearer: organize around a specific exchange, keep groups small, make neighborhood and timing visible, and give participants one focused place to coordinate.
 
 </CaseSection>
 
-<CaseSection title="Product Direction">
-  <DecisionBlock title="Center the experience on practice, not profiles.">
-    The product prioritized small group exchanges and neighborhood-based discovery so learners could find real opportunities to practice.
+<CaseSection title="Research Into Product Decisions">
+  <DecisionBlock title="Make the exchange the main object, not the member profile.">
+    The prototype started from a simple question: what if people browsed concrete practice opportunities instead of browsing people?
+
+    Each exchange sets the languages, neighborhood, start and end time, one-to-one or group format, participant limit, and description. That gives learners enough context to decide whether a session fits before they join.
+
   </DecisionBlock>
 
-    <DecisionBlock title="Keep web and mobile connected to one backend.">
-    Shared foundations let mobile coordination and web discovery support the same usage pattern without splitting into separate products.
-    </DecisionBlock>
+  <DecisionBlock title="Use real identity where people are planning an in-person meeting.">
+    An early concept used generated avatars to reduce the dating-app feel. Usability feedback exposed the cost: people wanted to see who they might meet in a one-to-one or small-group setting.
 
+    The beta moved to real profile photos and paired that choice with invite-only registration, verified email, profile completion, and optional two-factor authentication.
+
+  </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="Product Surface" media>
-  The MVP shows how trust-heavy local products need product shape, coordination, and launch constraints to work together.
+<CaseSection title="From Wireflow to Product" media wideMedia>
+  Before the full build, I mapped the host journey from exchange type and language through time, place, review, and confirmation. That made the session itself the product's organizing unit before the implementation changed underneath it.
 
-    <ImagePlate image={hablabaFeature} alt="HablaBA language exchange product interface." />
-
+  <ImagePlate image={hablabaHostExchangeFlow} alt="Early HablaBA wireflow for creating and publishing a language exchange." />
 </CaseSection>
 
-<CaseSection title="The Work">
-  <DecisionBlock title="Built around small-group behavior.">
-    The product framed discovery around groups and neighborhoods so the experience could feel practical rather than abstract.
+<CaseSection title="Exchange Discovery" media>
+  The Explore view keeps the decision tied to the session. People can compare the format, languages, neighborhood, timing, host, and available places without entering a profile feed.
+
+  <ImagePlate image={hablabaHero} alt="HablaBA exchange discovery screen with one-to-one and small-group sessions." />
+</CaseSection>
+
+<CaseSection title="The Product Loop">
+  <DecisionBlock title="Keep coordination inside the exchange.">
+    Joining creates access to that exchange's private chat. Participants can discuss topics, timing, and the meetup without starting a separate social thread or losing the original session details.
+
+    Live messages use private WebSocket channels. In-app and browser notifications cover new participants, chat activity, and canceled sessions, while an activity heartbeat avoids notifying someone who already has the chat open.
+
   </DecisionBlock>
 
-    <DecisionBlock title="Connected onboarding, chat, and coordination.">
-    The MVP covered the first loop from entering the product to finding and coordinating language practice.
-    </DecisionBlock>
+  <DecisionBlock title="Model the session as a lifecycle, not a static event card.">
+    The exchange data model represents active, canceled, and completed states alongside join and leave records. That gives the beta a domain model for the session lifecycle without implying that completed meetups were measured.
 
+    Those states matter because the product is trying to help a group complete a real-world plan, not collect passive interest around an event listing.
+
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Private Coordination" media>
+  Each exchange has one chat for turning interest into a concrete plan. The screenshot uses seeded demo accounts and synthetic conversations from the repository's development data.
+
+  <ImagePlate image={hablabaFeature} alt="HablaBA private group chat for coordinating a language exchange." />
+</CaseSection>
+
+<CaseSection title="Engineering Direction">
+  <DecisionBlock title="Consolidate the maintained product into one web stack.">
+    The implementation moved through several forms: an early Rails API, a separate web client, and mobile experiments. I eventually consolidated the maintained product into Laravel 12, Inertia, and Vue 3.
+
+    The final repository keeps server-side product rules, typed routes, Vue pages, real-time events, queues, and deployment configuration together. PostgreSQL stores product state, Redis supports cache and real-time infrastructure, and the production setup separates the app, queue worker, WebSocket server, proxy, and data services in containers.
+
+  </DecisionBlock>
+
+  <DecisionBlock title="Build the trust and operating surfaces with the core experience.">
+    The beta includes admin-issued invitation links, invitation revocation, a throttled interest form, email verification, password recovery, two-factor authentication, profile deletion, notifications, and light and dark themes.
+
+    Together, they moved the product beyond a clickable prototype and into the surrounding work required to test a real community product.
+
+  </DecisionBlock>
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
   <h2>What Shipped</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
-      <p>
-        HablaBA became a working MVP for a local language-exchange concept, with enough product
-        surface to test practice behavior and coordination constraints.
-      </p>
+      HablaBA reached a working web beta with the central invitation, discovery, session, and chat
+      flow implemented. The honest outcome is the product and the decisions it made testable; the
+      project did not establish adoption, retention, or completed-meetup results, and it is not
+      presented as a currently live service.
     </ProofRows>
   </div>
 </section>
 
-<CaseSection title="Product Screens" media>
-  The product surface shows the small-group practice experience and local discovery direction.
+<CaseSection title="What I Learned">
+  The most important decisions came from testing the product model, not adding features. Research moved the experience away from profile browsing. Usability sessions changed the identity approach. Building the beta showed that chat, notifications, invitations, and session states were all part of the same coordination problem.
 
-    <ImagePlate image={hablabaFeature} alt="HablaBA product surface." />
+The architecture also changed as the product became clearer. That history is useful evidence in its own right: I could preserve the product loop while replacing the implementation underneath it, then leave a public repository that shows both the final system and the decisions that shaped it.
 
 </CaseSection>

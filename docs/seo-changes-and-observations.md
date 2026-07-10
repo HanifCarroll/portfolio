@@ -2,6 +2,19 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-10
+
+### HablaBA Case Study And Video Refresh
+
+- Reworked the existing `/projects/language-exchange/` page in place so the stable canonical URL now presents the product as HablaBA instead of the generic `Language Exchange Platform` title.
+- Audited the public HablaBA repository at commit `caf27a21ca42beb5458cf843b7750cac6a28c039` and restored the earlier research record from portfolio commit `623514802f9e55d025fedf15129308081e600518`.
+- Corrected the maintained stack to Laravel 12, Inertia 2, Vue 3, TypeScript, Reverb, PostgreSQL, Redis, and Docker. Historical mobile work is described as an earlier iteration rather than a current shipped surface.
+- Added the original host-exchange wireflow plus distinct seeded Explore and private-chat proof. The public story explicitly describes a working beta, not a currently live service or a measured adoption result.
+- Rebuilt the HablaBA HyperFrames source through the shared manifest pipeline. After human visual approval, rendered and promoted the 30-second overview, 12-second preview, responsive posters, and generation receipt at high quality.
+- Fixed the video wrapper so unrelated HyperFrames skill-update notices do not block generation when the installed `general-video` hash still matches the repository pin, then reviewed and adopted the Figma-guidance-only `general-video` revision `67f3dae100541eed`.
+- Verified with project metadata checks, 12 project-video tests, HyperFrames manifest/QA checks, lint, Astro check/build, built HTML and sitemap inspection, desktop/mobile browser QA, CTA navigation, and `git diff --check`.
+- After deployment, verify the live title, canonical URL, social metadata, research wireflow, seeded product screens, project card, and final approved video assets.
+
 ## 2026-07-09
 
 ### Online Store Conversion Review Case Study

@@ -8,7 +8,7 @@ Current contract versions:
 - Template version: `1.0.0`
 - HyperFrames: `0.7.46`
 - Generation model: `gpt-5.6-sol`
-- Generation skill: `general-video` at revision `e26710c3537b3a07`
+- Generation skill: `general-video` at revision `67f3dae100541eed`
 - Output: `1920x1080`, `30fps`, silent MP4
 
 ## Architecture
@@ -79,7 +79,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 | Genrupt                                                | `genrupt`                          | `system-proof`    | `standard` |      45s |
 | Helping a Health Services Startup Show Up in AI Search | `health-ai-search-audit`           | `system-proof`    | `standard` |      42s |
 | Job Application Assistant                              | `job-application-assistant`        | `product-journey` | `standard` |      41s |
-| Language Exchange Platform                             | `language-exchange`                | `product-journey` | `short`    |      30s |
+| HablaBA                                                | `language-exchange`                | `product-journey` | `short`    |      30s |
 | LinkedIn Tools                                         | `linkedin-tools`                   | `system-proof`    | `standard` |      45s |
 | Making a Skincare Store Easier to Shop                 | `online-store-conversion-review`   | `system-proof`    | `standard` |      42s |
 | Maximo Interiorismo                                    | `maximo-interiorismo`              | `visual-showcase` | `loop`     |      18s |
@@ -344,7 +344,11 @@ Do not hand-edit `overview.mp4`, derived previews, posters, or `generation.json`
 
 Keep `hyperframes` and `@hyperframes/producer` pinned to the same version.
 
-Generation also enforces `general-video` revision `e26710c3537b3a07` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
+Generation also enforces `general-video` revision `67f3dae100541eed` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
+
+The `67f3dae100541eed` revision adds Figma-source routing guidance only (`heygen-com/hyperframes@d13c96d4`). It does not alter this repository's manifest generator, renderer, or non-Figma asset path, so adopting it did not require a template-version change.
+
+`hyperframes skills check --json` exits `1` when any installed skill has an update available. The project wrapper accepts that status only long enough to parse the report, then still requires the installed `general-video` hash to match the repository pin above. Unrelated update notices must not block reproducible generation, and a mismatched generation skill must still fail.
 
 1. Check package and skill state:
 

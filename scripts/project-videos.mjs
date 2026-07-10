@@ -90,7 +90,11 @@ function parseArguments(argv) {
   return { command, options, slugs };
 }
 
-async function run(program, args, { capture = false, cwd = repoRoot } = {}) {
+async function run(
+  program,
+  args,
+  { capture = false, cwd = repoRoot, acceptedExitCodes = [0] } = {},
+) {
   return new Promise((resolve, reject) => {
     const child = spawn(program, args, {
       cwd,
@@ -111,8 +115,8 @@ async function run(program, args, { capture = false, cwd = repoRoot } = {}) {
     }
     child.on("error", reject);
     child.on("exit", (code, signal) => {
-      if (code === 0) {
-        resolve({ stdout, stderr });
+      if (acceptedExitCodes.includes(code)) {
+        resolve({ stdout, stderr, exitCode: code });
         return;
       }
       const detail = capture ? `\n${stdout}${stderr}`.trimEnd() : "";
@@ -163,6 +167,9 @@ async function validateProjects(slugs) {
 async function verifyGenerationSkillRevision() {
   const { stdout } = await runHyperframes(["skills", "check", "--json"], {
     capture: true,
+    // HyperFrames exits 1 when any installed skill has an update available.
+    // The repository pin below remains the generation gate for general-video.
+    acceptedExitCodes: [0, 1],
   });
   const result = parseJsonOutput(stdout, "HyperFrames skill check");
   const installed = result.skills?.find((skill) => skill.name === generationSkill);

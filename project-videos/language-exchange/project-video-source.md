@@ -1,44 +1,50 @@
 # Project Video Source
 
-This is the source of truth for the Language Exchange Platform MVP walkthrough clip. The video should explain the problem, product flow, and result to a general portfolio viewer. The composition must pull its on-screen copy, proof moments, timing, and asset use from this document.
+This is the evidence record for the HablaBA project video. The composition must use the on-screen copy, proof moments, timing, and approved assets documented here. Generated HyperFrames HTML is disposable and must not become an evidence source.
 
 ## Project
 
-Project name: Language Exchange Platform
-
-Product surface name: HablaBA
+Project name: HablaBA
 
 Repository: `https://github.com/HanifCarroll/HablaBA`
 
-Local repo: not required for this clip; the portfolio case study and public assets provide the proof surface.
+Analyzed repository commit: `caf27a21ca42beb5458cf843b7750cac6a28c039`
+
+Historical product-flow commit: `4d6dc45`
+
+Archived research case study commit: `623514802f9e55d025fedf15129308081e600518`
 
 Portfolio page source: `src/content/case-studies/language-exchange.mdx`
 
 Project metadata: `src/lib/projects/language-exchange.json`
 
-Primary viewer: hiring manager or general portfolio viewer
+Primary viewer: Hiring manager or general portfolio viewer
 
 Target duration: `30s`
 
-Video type: MVP walkthrough clip
+Video type: Research-to-beta product walkthrough
 
-Story mode: Product walkthrough
+Story family: `product-journey`
+
+Timing profile: `short`
 
 ## Plain Story
 
-Problem: language learners wanted focused practice with real people, but existing products often felt like dating apps, endless profile browsing, or large events.
+Problem: profile-first apps and large events made focused language practice hard to arrange.
 
-Solution: HablaBA centered the MVP on small-group exchanges, neighborhood discovery, and real-time coordination.
+Research: a three-person group interview, an 11-response survey, and six usability sessions pointed toward smaller, exchange-first sessions.
 
-Result: the product connected onboarding, discovery, group chat, and cross-platform coordination closely enough to test local practice behavior.
+Solution: HablaBA lets invited members compare a concrete session by language, neighborhood, time, format, and open seats, then coordinate in its private chat.
+
+Result: the web beta connects invitation, profiles, discovery, sessions, chat, and notifications. It does not prove adoption or completed meetups.
 
 ## One-Line Job
 
-Language Exchange Platform helps local language learners find and coordinate small practice exchanges through neighborhood discovery and group chat.
+HablaBA helps language learners in Buenos Aires find and coordinate small local practice sessions through exchange discovery and private chat.
 
 ## Viewer Takeaway
 
-This is a working MVP that turns a messy local practice problem into a testable product loop.
+This is a research-shaped beta that turns a local coordination problem into one inspectable product loop.
 
 ## Language Rules
 
@@ -47,260 +53,324 @@ Use words a nontechnical viewer understands.
 Say:
 
 - Local practice
-- Small groups
+- Small exchanges
+- Research
+- Language
 - Neighborhood
-- Exchange
+- Time
 - Open seats
-- Group chat
-- Coordinate
-- Web and mobile
-- MVP loop
+- Private chat
+- Invitation
+- Discovery
+- Beta
 
 Do not show:
 
-- `Laravel`
-- `Vue`
-- `Flutter`
-- `PostgreSQL`
-- `Redis`
-- `Tailwind CSS`
-- Backend names
-- API endpoints
-- Test counts
-- Command output
+- Laravel, Inertia, Vue, Reverb, Redis, or PostgreSQL
+- Rails, Flutter, React Native, or architecture history
+- API endpoints, policies, queues, or WebSocket terminology
+- Test counts, CI state, command output, or repository defects
+- Adoption, retention, completed-meetup, revenue, or growth claims
 
-Technical proof can stay in this document as backing evidence, but it should not appear as main on-screen copy.
+Technical and historical proof stays in this document and `sources.md`.
 
 ## Source Review Notes
 
-| Source                                                 | What it supports in plain language                                                                                          |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `src/content/case-studies/language-exchange.mdx:35-41` | HablaBA started from a local language-learning problem where profile browsing and large events made real conversation hard. |
-| `src/content/case-studies/language-exchange.mdx:48-55` | The useful product shape was small, local, social, and manageable.                                                          |
-| `src/content/case-studies/language-exchange.mdx:58-65` | The product direction centered practice over profiles and kept web and mobile connected to one backend.                     |
-| `src/content/case-studies/language-exchange.mdx:79-84` | The MVP covered the loop from entering the product to finding and coordinating language practice.                           |
-| `src/content/case-studies/language-exchange.mdx:89-94` | The result was a working MVP for testing practice behavior and coordination constraints.                                    |
-| `src/lib/projects/language-exchange.json:4-31`         | Metadata confirms the small-group practice, neighborhood discovery, group chat, and cross-platform coordination framing.    |
-| `src/assets/img/projects/hablaba-hero.png`             | Public product surface for exchange discovery.                                                                              |
-| `src/assets/img/projects/hablaba-feature.png`          | Public product surface for group chat and coordination.                                                                     |
+| Source                                                                                       | What it supports in plain language                                                                                      |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Archived portfolio case study at `6235148:src/content/projects/language-exchange.md:34-43`   | One three-person, 90-minute group interview and an 11-response survey informed the concept.                             |
+| Archived portfolio case study at `6235148:src/content/projects/language-exchange.md:145-160` | Testing shifted identity toward real photos and kept the experience exchange-first and neighborhood-based.              |
+| Archived portfolio case study at `6235148:src/content/projects/language-exchange.md:273-277` | Six usability sessions informed the move from prototype to MVP.                                                         |
+| HablaBA `README.md:3-24` at `caf27a2`                                                        | The maintained web product includes invite-only access, profiles, exchange sessions, real-time chat, and notifications. |
+| HablaBA `app/Http/Requests/StoreExchangeRequest.php:18-55` at `caf27a2`                      | Exchanges support one-to-one or groups of three to six with bounded duration.                                           |
+| HablaBA `resources/js/pages/Explore.vue:36-158,189-219` at `caf27a2`                         | Members can explore sessions by type, language, neighborhood, date, availability, and popularity, with live updates.    |
+| HablaBA `resources/js/pages/exchanges/Chat.vue:52-199` at `caf27a2`                          | Each exchange has real-time chat with optimistic sending and retry behavior.                                            |
+| HablaBA `app/Http/Controllers/Web/ExchangeController.php:138-217,294-405` at `caf27a2`       | Joining, leaving, messaging, activity, and notification behavior connect discovery to coordination.                     |
+| HablaBA `database/seeders/DevExchangeSeeder.php:30-360,435-542` at `caf27a2`                 | The public screenshots use seeded names, avatars, exchanges, counts, and conversations rather than live-user data.      |
+| HablaBA `4d6dc45:docs/flows/Host Exchange.png`                                               | The early host wireflow mapped exchange definition, time and place, review, publish, and confirmation.                  |
 
 ## Proof Inventory
 
-| Proof type     | Exact proof                                                                                                                | Source path, URL, or command                                                                            | Safe to show?               | On-screen? |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------- | ---------- |
-| Problem        | Existing exchange products felt like profile browsing, dating apps, or large events.                                       | `src/content/case-studies/language-exchange.mdx:35-41`; `src/lib/projects/language-exchange.json:24-31` | Yes, as plain text          | Yes        |
-| Input          | A learner looking for real local practice.                                                                                 | `src/content/case-studies/language-exchange.mdx:48-55`                                                  | Yes, as simplified text     | Yes        |
-| Product action | Explore nearby exchanges with language, neighborhood, time, group type, and open seats.                                    | `src/assets/img/projects/hablaba-hero.png`                                                              | Yes, public/synthetic asset | Yes        |
-| Product action | Coordinate with other learners in group chat.                                                                              | `src/assets/img/projects/hablaba-feature.png`                                                           | Yes, public/synthetic asset | Yes        |
-| Durable output | MVP loop connects onboarding, discovery, chat, and coordination.                                                           | `src/content/case-studies/language-exchange.mdx:79-94`                                                  | Yes, as native labels       | Yes        |
-| Verification   | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, and feedback are required for this video. | `docs/project-videos/capture-and-production-workflow.md`                                                | Yes                         | No         |
-| Reviewer path  | Portfolio case study and project metadata explain the product problem, direction, and result.                              | `src/content/case-studies/language-exchange.mdx`; `src/lib/projects/language-exchange.json`             | Yes                         | No         |
+| Proof type     | Exact proof                                                                                 | Source path, URL, or command                                              | Safe to show?         | On-screen?                                                         |
+| -------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------ |
+| Problem        | Research identified friction with large events and profile-first language apps.             | Archived portfolio case study at `6235148`                                | Yes, as plain summary | Yes                                                                |
+| Research       | One group interview, 11 survey responses, and six usability sessions shaped the beta.       | Archived portfolio case study at `6235148:34-43,273-277`                  | Yes                   | Summarized; 11 responses and six sessions remain numeric on screen |
+| Product model  | The experience is organized around a specific one-to-one or small-group exchange.           | `StoreExchangeRequest.php:18-55`; `Explore.vue:36-158`                    | Yes                   | Yes                                                                |
+| Early artifact | A four-state wireflow covers defining, scheduling, reviewing, and publishing an exchange.   | `assets/selected/hablaba-host-exchange-flow.png`; source commit `4d6dc45` | Yes                   | Yes                                                                |
+| Product action | Members compare language, neighborhood, time, format, and open seats.                       | `assets/redacted/hablaba-hero.png`; `Explore.vue`                         | Yes; seeded data      | Yes                                                                |
+| Product action | Participants coordinate inside the exchange's private live chat.                            | `assets/redacted/hablaba-feature.png`; `Chat.vue`                         | Yes; seeded data      | Yes                                                                |
+| Durable result | Invitation, profiles, discovery, sessions, chat, and notifications form one beta loop.      | `README.md:3-24`; current routes and controllers                          | Yes, as plain labels  | Yes                                                                |
+| Boundary       | The source supports a working beta, not adoption, reliability, or a currently live service. | Repository audit at `caf27a2`; recorded in `sources.md`                   | Yes                   | The video calls it a beta only                                     |
+| Verification   | The portfolio manifest and HyperFrames QA must pass before render.                          | `docs/project-videos/template-system.md`                                  | Yes                   | No                                                                 |
 
 ## Selected Story
 
-1. Language practice was hard to make real.
-2. HablaBA centers small local exchanges instead of profile browsing.
-3. A learner can explore exchanges by neighborhood, language, time, and seats.
-4. The group chat lets people coordinate topics, timing, and practice.
-5. The product connects discovery, chat, and coordination across web and mobile.
-6. The ending beat frames the project as local practice ready to test.
+1. Practice was hard to arrange despite having plenty to browse.
+2. Research narrowed the idea toward small, concrete exchanges.
+3. A member chooses an exchange by the details that make a meetup practical.
+4. Participants coordinate inside one private chat tied to the session.
+5. The beta connects invitation, discovery, exchange details, and chat.
+6. The held ending identifies HablaBA as local practice shaped by research.
 
 ## Scene Cards
 
 ### Scene 1: Problem
 
-Purpose: show why the product exists.
+Purpose: establish why the product exists.
 
-Viewer should understand: practice products often got in the way of real conversation.
+Viewer should understand: available profiles and large events did not solve the coordination job.
 
-Visual source: native scattered profile/event cards around a muted product frame.
+Visual source: native disconnected profile and event cards around a muted session rail.
 
 On-screen text:
 
 ```text
-Practice was hard to make real.
-Big events got in the way.
+Practice was hard to arrange.
+Big events made focused practice harder.
 ```
 
 Narration: none.
 
 Duration: `5.5s`
 
-Proof shown: problem from case study and metadata.
+Proof shown: archived research problem summary.
 
-Asset path: built natively in HyperFrames.
+Asset path: built natively by the shared template.
 
-Motion notes: cards enter as disconnected choices, then dim behind the first product frame.
-
-Reading-speed check: `14` words over `5.5s` = `153 WPM`; acceptable because the words are short and familiar.
-
-### Scene 2: Solution
-
-Purpose: introduce the product shape.
-
-Viewer should understand: HablaBA focuses the MVP on small local exchanges.
-
-Visual source: exchange discovery screenshot.
-
-On-screen text:
-
-```text
-HablaBA centers the exchange.
-Find small groups by neighborhood and language.
-```
-
-Narration: none.
-
-Duration: `5.5s`
-
-Proof shown: project direction and public discovery surface.
-
-Asset path: `assets/redacted/hablaba-hero.png`
-
-Motion notes: screenshot slides in and settles; copy stays short so the viewer can inspect the product.
+Motion notes: disconnected choices assemble, then clear space for the research artifact.
 
 Reading-speed check: `11` words over `5.5s` = `120 WPM`.
 
-### Scene 3: Product Flow
+### Scene 2: Research
 
-Purpose: show the first action in the MVP loop.
+Purpose: show that the product model came from evidence rather than feature invention.
 
-Viewer should understand: a learner can choose a nearby exchange based on practical details.
+Viewer should understand: interviews, a survey, and usability testing pointed toward smaller exchanges.
 
-Visual source: exchange card crop plus native detail chips.
+Visual source: early host-exchange wireflow.
 
 On-screen text:
 
 ```text
-Explore a nearby exchange.
-See time, place, language, and open seats.
+Research shaped the beta.
+One interview, 11 responses, and six usability sessions.
 ```
 
 Narration: none.
 
-Duration: `5.5s`
+Duration: `6s`
 
-Proof shown: discovery screenshot and small-group metadata.
+Proof shown: archived research case study plus the repository wireflow.
 
-Asset path: `assets/redacted/hablaba-hero.png`
+Asset path: `assets/selected/hablaba-host-exchange-flow.png`
 
-Motion notes: selected exchange card scales forward; detail chips assemble beside it.
+Motion notes: the wireflow settles as a whole; do not crop away the define, schedule, review, and confirmation states.
 
-Reading-speed check: `11` words over `5.5s` = `120 WPM`.
+Reading-speed check: `12` words over `6s` = `120 WPM`.
 
-### Scene 4: Product Flow
+### Scene 3: Exchange Discovery
 
-Purpose: show coordination after discovery.
+Purpose: show the central product action.
 
-Viewer should understand: group chat makes the practice plan concrete.
+Viewer should understand: a member evaluates a session, not a person in a feed.
 
-Visual source: group chat screenshot.
-
-On-screen text:
-
-```text
-Join the group chat.
-People coordinate topics, timing, and practice together.
-```
-
-Narration: none.
-
-Duration: `5.5s`
-
-Proof shown: public group-chat product surface.
-
-Asset path: `assets/redacted/hablaba-feature.png`
-
-Motion notes: chat surface rises in, with message bubbles emphasized by subtle native callouts.
-
-Reading-speed check: `10` words over `5.5s` = `109 WPM`.
-
-### Scene 5: Result
-
-Purpose: summarize what the MVP proves.
-
-Viewer should understand: the product loop connects discovery and coordination across surfaces.
-
-Visual source: native cross-platform loop rail plus both product screenshots.
+Visual source: current Explore UI captured against seeded data.
 
 On-screen text:
 
 ```text
-Discovery, chat, and planning stay connected.
-Web and mobile work together.
+Choose the exchange.
+Compare language, neighborhood, time, and seats.
 ```
 
 Narration: none.
 
 Duration: `5s`
 
-Proof shown: case-study result and metadata.
+Proof shown: repository Explore flow and seeded screenshot.
 
-Asset path: `assets/redacted/hablaba-hero.png`; `assets/redacted/hablaba-feature.png`
+Asset path: `assets/redacted/hablaba-hero.png`
 
-Motion notes: loop rail locks; two screenshots hold in the background.
+Motion notes: screenshot settles quickly; practical exchange details appear as compact labels.
 
-Reading-speed check: `13` words over `5s` = `156 WPM`; acceptable for a short result line with familiar nouns.
+Reading-speed check: `9` words over `5s` = `108 WPM`.
 
-### Scene 6: Ending Beat
+### Scene 4: Private Coordination
 
-Purpose: give the video a clean stopping point.
+Purpose: show how interest becomes a concrete plan.
 
-Viewer should understand: this is a testable MVP for local language practice.
+Viewer should understand: each exchange has one private place to coordinate.
 
-Visual source: settled final card over the product loop.
+Visual source: current exchange chat captured against seeded data.
 
 On-screen text:
 
 ```text
-Language Exchange
-Local practice, ready to test.
+Each exchange has a private chat.
+Coordinate the plan live.
+```
+
+Narration: none.
+
+Duration: `5s`
+
+Proof shown: repository chat flow and seeded screenshot.
+
+Asset path: `assets/redacted/hablaba-feature.png`
+
+Motion notes: the chat rises into view, then stays still enough to inspect.
+
+Reading-speed check: `10` words over `5s` = `120 WPM`.
+
+### Scene 5: Result
+
+Purpose: summarize the honest beta outcome.
+
+Viewer should understand: the core exchange workflow is connected without implying adoption.
+
+Visual source: native loop rail with seeded Explore and chat surfaces.
+
+On-screen text:
+
+```text
+One connected beta loop.
+Invitation, discovery, exchange details, and chat stay connected.
+```
+
+Narration: none.
+
+Duration: `5.5s`
+
+Proof shown: current README, routes, controllers, and product surfaces.
+
+Asset path: `assets/redacted/hablaba-hero.png`; `assets/redacted/hablaba-feature.png`
+
+Motion notes: the loop locks and holds; no metric or growth claim appears.
+
+Reading-speed check: `11` words over `5.5s` = `120 WPM`.
+
+### Scene 6: Ending Beat
+
+Purpose: identify the product and end on the research-led value.
+
+Viewer should understand: HablaBA is local practice shaped by research.
+
+Visual source: settled Explore surface.
+
+On-screen text:
+
+```text
+HablaBA
+Local practice, shaped by research.
 ```
 
 Narration: none.
 
 Duration: `3s`
 
-Proof shown: final value statement.
+Proof shown: held conclusion, no new claim.
 
-Asset path: built natively in HyperFrames.
+Asset path: `assets/redacted/hablaba-hero.png`
 
-Motion notes: end card appears quickly, then holds for a clean 2.5-3 second ending beat.
+Motion notes: settle within the first half-second and hold cleanly.
 
-Reading-speed check: `8` words over `3s` = `160 WPM`; acceptable because the project name is already known and the result line is short.
+Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 ## On-Screen Text Lock
 
-Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
-
-| Scene | Text                                                                          | Word count | Duration | WPM |
-| ----- | ----------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Practice was hard to make real. Big events got in the way.                    |         11 |     5.5s | 120 |
-| 2     | HablaBA centers the exchange. Find small groups by neighborhood and language. |         11 |     5.5s | 120 |
-| 3     | Explore a nearby exchange. See time, place, language, and open seats.         |         11 |     5.5s | 120 |
-| 4     | Join the group chat. People coordinate topics, timing, and practice together. |         10 |     5.5s | 109 |
-| 5     | Discovery, chat, and planning stay connected. Web and mobile work together.   |         11 |       5s | 132 |
-| End   | Language Exchange. Local practice, ready to test.                             |          7 |       3s | 140 |
+| Scene | Text                                                                                       | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Practice was hard to arrange. Big events made focused practice harder.                     |         11 |     5.5s | 120 |
+| 2     | Research shaped the beta. One interview, 11 responses, and six usability sessions.         |         12 |       6s | 120 |
+| 3     | Choose the exchange. Compare language, neighborhood, time, and seats.                      |          9 |       5s | 108 |
+| 4     | Each exchange has a private chat. Coordinate the plan live.                                |         10 |       5s | 120 |
+| 5     | One connected beta loop. Invitation, discovery, exchange details, and chat stay connected. |         11 |     5.5s | 120 |
+| End   | HablaBA. Local practice, shaped by research.                                               |          6 |       3s | 120 |
 
 Allowed short labels:
 
-- Dating-app feel
-- Big events
-- Small groups
-- Neighborhood
+- Large events
+- Profile apps
+- Group interview
+- Survey
+- Six usability sessions
+- Small exchanges
 - Language
+- Neighborhood
+- Time
 - Open seats
-- Explore
-- Join
+- Private chat
+- Invitation
+- Profile
+- Discovery
+- Session
 - Chat
-- Coordinate
-- Web
-- Mobile
-- Ready to test
 
 ## Asset Manifest
 
-| Asset                 | Purpose                                        | Source                                        | Redaction needed?                                  | Final path                            |
-| --------------------- | ---------------------------------------------- | --------------------------------------------- | -------------------------------------------------- | ------------------------------------- |
-| `hablaba-hero.png`    | Discovery and exchange selection proof surface | `src/assets/img/projects/hablaba-hero.png`    | No; public portfolio asset with synthetic examples | `assets/redacted/hablaba-hero.png`    |
-| `hablaba-feature.png` | Group chat and coordination proof surface      | `src/assets/img/projects/hablaba-feature.png` | No; public portfolio asset with synthetic examples | `assets/redacted/hablaba-feature.png` |
+| Asset                            | Purpose                                    | Source                                                                            | Redaction needed?                                    | Final path                                       |
+| -------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------ |
+| `hablaba-host-exchange-flow.png` | Show the early exchange-first host journey | HablaBA commit `4d6dc45:docs/flows/Host Exchange.png`                             | No; public historical wireflow                       | `assets/selected/hablaba-host-exchange-flow.png` |
+| `hablaba-hero.png`               | Show current exchange discovery            | `src/assets/img/projects/hablaba-hero.png`; traceable to current UI and seeder    | No private data; seeded demo identities              | `assets/redacted/hablaba-hero.png`               |
+| `hablaba-feature.png`            | Show current private coordination chat     | `src/assets/img/projects/hablaba-feature.png`; traceable to current UI and seeder | No private data; seeded demo identities and messages | `assets/redacted/hablaba-feature.png`            |
+
+## Privacy Check
+
+Hide:
+
+- Real production accounts, messages, emails, profile details, analytics, and notifications
+- Tokens, credentials, cookies, environment values, and secret-bearing paths
+- Any adoption, meetup, retention, reliability, or current-live-service claim not supported by evidence
+
+Safe to show:
+
+- The public historical host-exchange wireflow
+- Current product UI captured against `DevExchangeSeeder.php`
+- Seeded names, usernames, RandomUser avatar fixtures, exchange titles, counts, and conversations that map to that development seeder
+- Public project name and plain product-flow labels
+
+Synthetic data used: every identity and conversation visible in the selected Explore and chat captures is repository seed data, not live-user data.
+
+Redaction notes: the files remain under the established `assets/redacted/` rail, but no pixel masking is required because their visible account state is traced to the public development seeder. The privacy contract hides real production identity and message data, not these seeded fixtures.
+
+## Manifest Handoff
+
+Composition duration: `30s`
+
+Aspect ratio: `16:9`
+
+Story family: `product-journey`
+
+Timing profile: `short`
+
+Theme: crisp editorial product surfaces, navy text, blue action accents, green coordination markers, and a path motif.
+
+Scenes: problem, research, exchange discovery, private coordination, beta result, held ending.
+
+Approved manifest assets:
+
+- `assets/selected/hablaba-host-exchange-flow.png`
+- `assets/redacted/hablaba-hero.png`
+- `assets/redacted/hablaba-feature.png`
+
+Transitions: push and dissolve transitions only.
+
+Motion: assemble the problem, settle research and screenshots, lock the result rail, settle the ending.
+
+`posterAt`: a settled frame inside Scene 3 around `14s`.
+
+Privacy: use the hide and safe lists above.
+
+Generation: keep the repository-pinned model, template version, HyperFrames version, and `general-video` skill revision.
+
+## Acceptance Checklist
+
+- [x] The story explains the problem, research, product action, and honest result.
+- [x] Every on-screen claim maps to an archived research record or the pinned HablaBA source.
+- [x] No mobile, adoption, growth, reliability, or current-live-service claim appears.
+- [x] Each scene contains one idea and stays within the manifest word limit.
+- [x] Selected identities and conversations are traced to seeded demo data.
+- [x] `video.json` validates against the manifest schema.
+- [x] Generated HyperFrames QA passes.
+- [x] Every snapshot passes visual and privacy review.
+- [x] The user approves the generated preview before final render.
