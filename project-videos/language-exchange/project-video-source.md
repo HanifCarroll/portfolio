@@ -155,7 +155,7 @@ Duration: `5.5s`
 
 Proof shown: project direction and public discovery surface.
 
-Asset path: `hyperframes/assets/hablaba-hero.png`
+Asset path: `assets/redacted/hablaba-hero.png`
 
 Motion notes: screenshot slides in and settles; copy stays short so the viewer can inspect the product.
 
@@ -182,7 +182,7 @@ Duration: `5.5s`
 
 Proof shown: discovery screenshot and small-group metadata.
 
-Asset path: `hyperframes/assets/hablaba-hero.png`
+Asset path: `assets/redacted/hablaba-hero.png`
 
 Motion notes: selected exchange card scales forward; detail chips assemble beside it.
 
@@ -209,7 +209,7 @@ Duration: `5.5s`
 
 Proof shown: public group-chat product surface.
 
-Asset path: `hyperframes/assets/hablaba-feature.png`
+Asset path: `assets/redacted/hablaba-feature.png`
 
 Motion notes: chat surface rises in, with message bubbles emphasized by subtle native callouts.
 
@@ -236,7 +236,7 @@ Duration: `5s`
 
 Proof shown: case-study result and metadata.
 
-Asset path: `hyperframes/assets/hablaba-hero.png`; `hyperframes/assets/hablaba-feature.png`
+Asset path: `assets/redacted/hablaba-hero.png`; `assets/redacted/hablaba-feature.png`
 
 Motion notes: loop rail locks; two screenshots hold in the background.
 
@@ -300,9 +300,7 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                                                                               | Purpose                                                         | Source                                        | Redaction needed?                                  | Final path                                                                |
-| ----------------------------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
-| `hablaba-hero.png`                                                                  | Discovery and exchange selection proof surface                  | `src/assets/img/projects/hablaba-hero.png`    | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-hero.png`    |
-| `hablaba-feature.png`                                                               | Group chat and coordination proof surface                       | `src/assets/img/projects/hablaba-feature.png` | No; public portfolio asset with synthetic examples | `project-videos/language-exchange/hyperframes/assets/hablaba-feature.png` |
-| `hablaba-discovery.png`, `hablaba-exchange-focus.png`, `hablaba-loop-discovery.png` | HyperFrames-safe aliases for repeated discovery screenshot use  | `src/assets/img/projects/hablaba-hero.png`    | No; same public/synthetic asset                    | `project-videos/language-exchange/hyperframes/assets/`                    |
-| `hablaba-chat.png`, `hablaba-loop-chat.png`                                         | HyperFrames-safe aliases for repeated group-chat screenshot use | `src/assets/img/projects/hablaba-feature.png` | No; same public/synthetic asset                    | `project-videos/language-exchange/hyperframes/assets/`                    |
+| Asset                 | Purpose                                        | Source                                        | Redaction needed?                                  | Final path                            |
+| --------------------- | ---------------------------------------------- | --------------------------------------------- | -------------------------------------------------- | ------------------------------------- |
+| `hablaba-hero.png`    | Discovery and exchange selection proof surface | `src/assets/img/projects/hablaba-hero.png`    | No; public portfolio asset with synthetic examples | `assets/redacted/hablaba-hero.png`    |
+| `hablaba-feature.png` | Group chat and coordination proof surface      | `src/assets/img/projects/hablaba-feature.png` | No; public portfolio asset with synthetic examples | `assets/redacted/hablaba-feature.png` |

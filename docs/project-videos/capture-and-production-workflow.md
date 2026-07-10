@@ -1,330 +1,192 @@
 # Capture And Production Workflow
 
-Goal: turn each portfolio project into a reusable proof asset by capturing real product moments, then composing them into a short HyperFrames video.
+Goal: turn each portfolio case study into a short, repeatable proof asset using safe evidence, a structured `video.json` manifest, and the shared HyperFrames generator.
+
+Start with [template-system.md](template-system.md). This document covers the evidence and asset work that happens before the manifest pipeline.
 
 ## Tool Roles
 
-Use Browser Use for web products, portfolio pages, app flows, and repeatable browser captures. It should be the default for screenshots, scroll captures, page state checks, and browser-session footage.
+- Use Browser Use for web products, public portfolio pages, app flows, screenshots, page-state checks, and exploratory browser capture.
+- Use scripted Playwright capture when a browser state must be repeatable from seed data.
+- Use Computer Use for native Mac apps, local desktop workflows, app-store surfaces, terminal-adjacent UI, and states Browser Use cannot reach.
+- Use the repository's `bun run videos:*` commands for manifest validation, composition generation, HyperFrames QA, rendering, media derivation, and verification.
 
-Use Computer Use for native Mac apps, local desktop workflows, app-store views, terminal-adjacent UI, and anything that requires direct interaction with the visible operating system.
-
-Use HyperFrames for the final composition: title cards, footage timing, captions, callouts, zooms, transitions, motion graphics, and final MP4 rendering.
-
-Use scripted Playwright capture when a project needs repeatable screenshots or browser video from deterministic page states. Browser Use can still drive exploratory capture first.
+Do not author a new bespoke per-project composition. The shared generator creates modular HyperFrames compositions from `video.json`.
 
 ## Folder Shape
 
-Each video should have one project folder:
-
 ```text
 project-videos/
-  acquire/
+  <slug>/
     brief.md
+    project-video-source.md
+    design.md
+    sources.md
+    video.json
     assets/
       raw/
       selected/
       redacted/
-    hyperframes/
-      DESIGN.md
-      index.html
-      output/
 ```
 
-Keep raw capture separate from selected and redacted assets. HyperFrames should only use `selected/` or `redacted/` assets.
+The source roles are different:
 
-## Per-Project Brief
+- `brief.md`: audience, one-sentence job, plain problem/solution/result, initial scene arc, and privacy notes.
+- `project-video-source.md`: claim inventory, scene reasoning, text lock, asset manifest, and evidence trail.
+- `design.md`: project-specific visual direction retained from the original composition or written for a new case study.
+- `sources.md`: source paths, URLs, capture provenance, and verification notes.
+- `video.json`: the canonical renderer input.
 
-Write a short `brief.md` before capturing footage:
+Keep raw capture separate from approved assets. Manifest scenes should prefer `assets/redacted/`, then `assets/selected/`, then an explicit public repository asset.
 
-```text
-# Project Video Brief
+## Source And Audience Gate
 
-Project:
-Video type:
-Target duration:
-Primary viewer:
-Story mode:
-One-sentence job:
-Viewer takeaway:
+Choose the viewer and story family before capturing or writing scene copy:
 
-Plain story:
-- Problem:
-- Solution:
-- Result:
+| Viewer or proof need                                   | Default family    | Story job                                                                  |
+| ------------------------------------------------------ | ----------------- | -------------------------------------------------------------------------- |
+| Systems, automation, audits, technical operating proof | `system-proof`    | Show the real state, intervention, evidence boundary, and durable result.  |
+| Product, MVP, customer, or general portfolio story     | `product-journey` | Show the user problem, core action, decision or output, and shipped value. |
+| Site, artwork, interior, or visual portfolio work      | `visual-showcase` | Let the real visual work carry the story and keep copy minimal.            |
 
-Scene arc:
-1.
-2.
-3.
-4.
-5.
-6.
+For general portfolio traffic, explain the problem, solution, and result in everyday language. Keep stack names, schemas, commands, and test output in the source record unless the viewer explicitly needs technical detail.
 
-Assets needed:
-- Screenshot:
-- UI clip:
-- Artifact:
-- Diagram/data point:
+One scene should say one thing. Use one headline and one short sentence, normally no more than 18 must-read words total. The final scene is a settled 3-second hold and introduces no new claim.
 
-Privacy notes:
-- Hide:
-- Safe to show:
-```
+## Evidence Selection
 
-After the brief, copy `docs/project-videos/project-video-source-template.md` into the project folder as `project-video-source.md`. Fill that source document before editing HyperFrames. The source document locks the proof inventory, scene cards, on-screen text, assets, timing, privacy notes, and HyperFrames handoff.
+Before capturing, identify three to six proof moments that can be shown or inspected:
 
-## Audience And Story Gate
+- Input entering the product or workflow
+- Review or approval gate
+- Core user action
+- Generated or saved artifact
+- Report, dashboard, row, file, receipt, or audit trail
+- Verification result or warning
+- Before and after as named concrete states
+- System boundary or handoff
+- Missing-data behavior or guardrail
+- Real visual work and the inquiry or validation path around it
 
-Choose the viewer and story mode before writing scene copy. Do not start from a title-card sequence or from the implementation details.
-
-| Viewer                                     | Default story mode  | What the video should do                                         |
-| ------------------------------------------ | ------------------- | ---------------------------------------------------------------- |
-| Hiring manager or general portfolio viewer | Plain overview      | Explain the problem, solution, and result in everyday language.  |
-| Technical reviewer                         | Evidence tour       | Show concrete inputs, outputs, guardrails, and inspection paths. |
-| Product/customer viewer                    | Product walkthrough | Show the user path and outcome without repo or stack details.    |
-| Social/thumbnail viewer                    | Short demo          | Show one clear transformation or product moment quickly.         |
-
-Use the plain overview mode when the goal is broad understanding. Keep technical evidence in the source document as backing notes, but keep it off the screen unless the chosen viewer needs it.
-
-## Story Structures
-
-### Plain Overview
-
-Use this for nontechnical viewers, hiring managers, and general portfolio traffic. The viewer should understand why the project exists, what it does, and what changed.
-
-Default arc:
-
-1. **Problem**: name the messy situation in plain language.
-2. **Cost**: show the practical friction or question the user was stuck with.
-3. **Solution**: name the product or workflow in one clear sentence.
-4. **How it works**: show 3-4 simple actions with familiar words.
-5. **Result**: show the saved state, artifact, or outcome.
-6. **Why it matters**: close with the project value, not the tech stack.
-
-Strong:
-
-```text
-Applications were scattered.
-I built one local workflow.
-Every application gets a clear record.
-```
-
-Weak:
-
-```text
-Capture. Review. Draft. Save. Track.
-Chrome sends details to FastAPI.
-Before: scattered. After: connected.
-```
-
-Plain overview videos should not make implementation terms the main message. Avoid stack names, schema names, API endpoint names, command output, and test counts unless the viewer is explicitly technical.
-
-### Pilot Lessons
-
-The Job Application Assistant pilot produced the reusable rules below:
-
-- Create the intermediate `project-video-source.md` before writing composition HTML. The source document should decide the story, copy, reading speed, and asset use.
-- If the video feels repetitive or vague, fix the source document first. Do not try to solve unclear story structure with more motion.
-- For nontechnical viewers, lead with problem, cost, solution, result. Technical proof should support the story, not become the story.
-- Use clear nouns from the workflow: job post, notes, draft, PDF, status, history, record. Avoid internal implementation nouns on screen.
-- One scene should say one thing. Prefer one headline plus one short sentence.
-- Product screenshots should prove the product exists, but the text should explain why the viewer is seeing them.
-- Short action labels are useful only when they outline what the app does. A list like `Review. Draft. Export. Track.` works when the surrounding scene says why those steps matter.
-- The final frame should state the value of the project, not introduce new technical evidence.
-- Every overview video should reserve the final `2.5-3s` for a settled ending beat: either a held result/product frame or a simple end card with the project name and one short result line.
-
-### Evidence Tour
-
-Project videos should work as evidence tours, not slogan sequences or generic feature tours. The viewer should be able to name what the product does, what state enters the system, what state leaves it, and what proof exists that the workflow is real.
-
-Use this structure when the target viewer is technical or when the video must prove implementation depth:
-
-1. **Concrete job**: state the actual task the project performs in one sentence.
-2. **Real input**: show the source state, such as a job page, issue, dataset, browser page, CLI command, or user request.
-3. **Product actions**: show the specific actions the app performs. Use outcome labels, not vague verbs.
-4. **Durable output**: show the saved file, exported PDF, dashboard row, ledger entry, report, diff, or generated artifact.
-5. **Trust signal**: show tests, validation, warnings, guardrails, logs, redaction, or system boundaries.
-6. **Reviewer path**: show where a technical reviewer can inspect the repo, commands, architecture notes, or generated artifacts.
-
-Every scene should end on an inspectable state: a row, file, PDF, log line, test result, dashboard, diff, or explicit warning. Avoid abstract before/after claims unless the before and after are named concrete states.
-
-Weak:
-
-```text
-Before: scattered
-After: connected
-```
-
-Strong:
-
-```text
-Input: job page
-Output: cover-letter PDF
-Record: SQLite application row
-```
-
-Scene titles should describe outcomes rather than process labels. For example, use `Job page to saved record` instead of `Capture, review, draft, save, track`.
-
-## Reading-Speed Rules
-
-Treat text as something the viewer must read while also inspecting UI. Use caption pacing as the ceiling, then slow down for dense product shots.
-
-- Target `100-140` words per minute for plain overview scenes.
-- Target `140-160` words per minute for technical proof scenes.
-- Treat `180` words per minute as the upper bound only for short, familiar questions or labels.
-- Keep overlays to one headline plus one short sentence. Prefer labels over full narration.
-- Add at least `0.5-1.0s` when the viewer must inspect a screenshot, terminal, chart, or moving UI.
-- If a scene needs more than `16-18` words, split the idea or hold the frame longer.
-- If the screen has dense UI, reduce the text instead of asking the viewer to read and inspect at the same time.
-
-For a 35-40 second overview, six scenes of roughly `6-7s` each is a good default. Most scenes should have fewer than `15` must-read words.
+Every on-screen claim must map to a listed source. If evidence is missing, omit the claim or capture a safe artifact. Do not replace missing evidence with a guessed metric, generic card, or inferred page text.
 
 ## Capture Workflow
 
-1. Open the project, docs, demo, or local app.
-2. Identify the 3-6 proof moments worth showing.
-3. Capture clean screenshots of stable states.
-4. Capture short clips only where motion explains the workflow better than a still image.
-5. Save raw assets under `assets/raw/`.
-6. Select the best assets and copy them into `assets/selected/`.
-7. Redact private data before any asset reaches HyperFrames.
+1. Open the source project, docs, public demo, or local app.
+2. Prepare a clean state with public or synthetic data.
+3. Set a consistent viewport, normally `1440x900` for source capture or `1920x1080` when capturing video-native framing.
+4. Capture stable screenshots for inspectable states.
+5. Capture short footage only when motion explains the product better than a still.
+6. Save original material under `assets/raw/` with descriptive names.
+7. Record the source URL or path, viewport, login state, seed data, and capture method in `sources.md`.
+8. Copy the strongest public-safe assets into `assets/selected/`.
+9. Redact before an asset reaches `assets/redacted/` or `video.json`.
 
-Good proof moments include:
+Prefer deterministic synthetic seed data for anything involving users, applications, messages, transactions, reports, or account state.
 
-- Input entering the system
-- Review or approval gate
-- Automation/controller step
-- Generated artifact
-- Verification result
-- Before/after state
-- Ledger, manifest, receipt, or audit trail
-- System boundary or handoff
-- Guardrail, warning, or missing-data behavior
+## Browser Capture Rail
 
-## Browser Use Capture Rail
+Use this for web apps and browser-visible product flows:
 
-Use this for web apps and browser-visible product flows.
+1. Launch the exact route or local app state.
+2. Remove browser chrome, unrelated tabs, notifications, and overlays.
+3. Navigate to the state named in the source document.
+4. Capture the smallest useful surface: element, viewport, or full page.
+5. Repeat only for distinct proof moments.
+6. Verify that the capture still makes sense without the live app open.
 
-1. Launch the relevant app or page.
-2. Set a consistent viewport, usually desktop `1440x900` or video-native `1920x1080`.
-3. Navigate to the exact state needed for the scene.
-4. Capture screenshot, full-page screenshot, element screenshot, or short session footage.
-5. Record the URL, viewport, login state, and any seed data needed to reproduce the state.
-6. Repeat only for scenes that show distinct proof.
-
-Use Browser Use first for:
-
-- Palabruno
-- Genrupt
-- Acquire
-- Job Application Assistant extension screens
-- Casamo
-- BA Eventos
-- Apartment Finder
-- Vox Prismatic
-- Launch sites and portfolio scroll loops
+Browser capture is normally appropriate for Palabruno, Genrupt, Acquire, Job Application Assistant extension screens, Casamo, BA Eventos, Apartment Finder, Vox Prismatic, audit report previews, and launch-site or portfolio loops.
 
 ## Computer Use Capture Rail
 
-Use this when the proof is outside a browser automation-friendly surface.
+Use this when the proof sits outside a browser-friendly surface:
 
-1. Open the local app, native app, or desktop workflow.
-2. Prepare the UI state manually or with a local command.
-3. Capture the smallest useful screen area.
-4. Avoid showing unrelated desktop content.
-5. Save raw footage immediately with a descriptive filename.
-6. Redact before composition.
+1. Open the local or native app.
+2. Prepare the smallest useful state manually or with a documented local command.
+3. Crop away unrelated desktop content.
+4. Avoid menu bars, notifications, inboxes, or personal windows unless they are the approved proof.
+5. Save the raw capture immediately and record how to reproduce it.
+6. Redact before manifest use.
 
-Use Computer Use for:
-
-- Codex Telegram Bridge native/menu bar moments
-- Telegram or Discord routing views
-- App Store or Google Play views
-- Local-only tools with desktop output
-- Any workflow where Browser Use cannot access the actual UI state
+This rail is appropriate for menu-bar tools, Telegram or Discord routing views, app-store surfaces, terminal products, and local-only outputs.
 
 ## Redaction Checklist
 
-Before using captured assets in HyperFrames, check for:
+Check every pixel for:
 
-- Names, emails, phone numbers, handles, and profile photos
-- Client-sensitive data
+- Names, emails, phone numbers, handles, profile photos, and usernames
+- Client-sensitive records or private correspondence
 - LinkedIn messages, connection lists, or private profiles
-- Job applications, company-specific drafts, and personal employment data
+- Job applications, company-specific drafts, resumes, and employment data
 - Gmail, WhatsApp, Telegram, Discord, and notification content
-- API keys, tokens, cookies, session IDs, file paths with secrets, and environment variables
-- Revenue, billing, or account data that is not already public
+- Customer, student, listing, inventory, transaction, or account data
+- Analytics, billing, revenue, and payment details not already public
+- API keys, tokens, cookies, session IDs, environment values, and secret-bearing paths
+- Admin, CMS, database, or local runtime surfaces not approved for publication
 
-Prefer synthetic seed data for repeatable captures. If real data is necessary, crop tightly or mask it.
+Crop tightly or mask the data. Do not rely on the generated template to hide it. Record what is hidden and what is safe in both the source document and `video.json.privacy`.
 
-## HyperFrames Production Workflow
+## Manifest Handoff
 
-1. Create the project video folder and `DESIGN.md`.
-2. Create `project-video-source.md` from the template and lock the proof inventory, scene cards, and on-screen text.
-3. Choose the audience and story mode from `project-video-source.md`.
-4. Define the plain overview, evidence tour, or walkthrough arc from that source.
-5. Place redacted selected assets beside the composition.
-6. Build static layouts first.
-7. Add entrance animations and transitions.
-8. Add captions or callouts only where they clarify the story.
-9. Check reading load before rendering.
-10. Add the ending beat: the final message settles, the last `2.5-3s` hold cleanly, and any fade happens only after that hold.
-11. Run HyperFrames lint, validate, inspect, and snapshot checks.
-12. Render the video with the normal HyperFrames CLI.
-13. Verify the final MP4 duration, dimensions, and thumbnail.
+After evidence review:
 
-Every video should produce:
+1. Create `video.json` using the schema at `docs/project-videos/video-manifest.schema.json`.
+2. Copy the exact audience, takeaway, plain-language claims, approved assets, privacy rules, and sources from the source record.
+3. Choose `system-proof`, `product-journey`, or `visual-showcase`.
+4. Choose `standard`, `short`, or `loop` based on the summed scene duration.
+5. Use four to six scenes. The final scene is `kind: "end"`, `motion: "settle"`, and `duration: 3`.
+6. Set `posterAt` to a settled frame with readable proof and useful portfolio-card composition.
+7. Keep generation metadata aligned with the shared template and installed HyperFrames versions.
 
-- `final.mp4`
-- `thumbnail.png`
-- `brief.md`
-- `project-video-source.md`
-- `sources.md` or asset manifest
-- HyperFrames source files
+Then run:
 
-## Video Types
+```bash
+bun run videos:validate -- <slug>
+bun run videos:generate -- <slug>
+bun run videos:qa -- <slug>
+```
 
-Plain overview videos should be 35-45 seconds and explain problem, solution, and result to a nontechnical viewer.
+## Visual Review And Render Gate
 
-Flagship case-study evidence tours should be 45-75 seconds and include concrete job, input, product actions, durable output, trust signal, and reviewer path.
+Review every generated snapshot under `project-videos/.generated/<slug>/snapshots/`. Check copy, asset legibility, scene hierarchy, transitions, privacy, and the final hold.
 
-Workflow proof videos should be 35-60 seconds and focus on the core flow, guardrails, artifacts, and verification.
+Open Studio when a still frame is not enough:
 
-Short product demos should be 20-40 seconds and show the core user path.
+```bash
+bunx hyperframes preview project-videos/.generated/<slug> --port 3017
+```
 
-Scroll loops should be 10-25 seconds and work as silent page embeds.
+Rendering is user-gated. After approval:
 
-## Pilot Workflow
+```bash
+bun run videos:render -- <slug> --approve-visuals --quality high
+```
 
-Start with one pilot before producing the full set.
+The explicit flag records that visual approval happened. The wrapper renders into a staging release, derives the preview and posters, verifies the media, writes a generation receipt, and atomically promotes the release with synchronized project metadata.
 
-Recommended pilot: `Job Application Assistant`.
+## Deliverables
 
-Why: it has a clear input-to-output workflow, browser UI, local backend behavior, generated artifacts, and an inspectable ledger. It also forces the privacy/redaction rules early.
+Tracked public outputs live under `public/videos/projects/<slug>/`:
 
-Pilot acceptance criteria:
+- `overview.mp4`
+- `preview.mp4`
+- `poster.png`
+- `poster-480.webp`
+- `poster-960.webp`
+- `poster-1440.webp`
+- `generation.json`
 
-- The video explains the project without needing the case-study page open.
-- The footage shows real product behavior, not only title cards.
-- No private data is visible.
-- The HyperFrames source can be reused as a template for the next project.
-- The final video has one thumbnail and one MP4 ready for portfolio use.
+Generated source under `project-videos/.generated/` is disposable and ignored. The bespoke per-project compositions were removed after migration and are available only through Git history.
 
-## Sources Reviewed
+## Final Checks
 
-- [Playwright screenshots](https://playwright.dev/docs/screenshots)
-- [Playwright video recording](https://playwright.dev/docs/videos)
-- [Browser Use CLI](https://docs.browser-use.com/open-source/browser-use-cli)
-- [Browser Use available tools](https://docs.browser-use.com/open-source/customize/tools/available)
-- [HyperFrames introduction](https://hyperframes.heygen.com/introduction)
-- [HyperFrames quickstart](https://hyperframes.heygen.com/quickstart)
-- [Wistia explainer videos](https://wistia.com/learn/marketing/explainer-videos)
-- [Vidyard demo videos](https://www.vidyard.com/blog/demo-videos/)
-- [Atlassian/Loom product demonstration guide](https://www.atlassian.com/blog/loom/product-demonstration)
-- [Section508 captions and transcripts](https://www.section508.gov/create/captions-transcripts/)
-- [DCMP captioning key](https://dcmp.org/captioningkey/print)
-- [NN/g UX portfolios](https://www.nngroup.com/articles/ux-design-portfolios/)
-- [GitHub about READMEs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes)
-- [Vercel product tour](https://vercel.com/product-tour)
-- [Linear customer requests](https://linear.app/changelog/2024-12-09-customer-requests)
-- [Cursor blog](https://cursor.com/blog)
+```bash
+bun run videos:test
+bun run check:projects
+bun run format:check
+bun run lint
+bun run build
+git diff --check
+```
+
+See [template-system.md](template-system.md) for batch commands, failure recovery, family pilots, tracked-output rules, and version upgrades.

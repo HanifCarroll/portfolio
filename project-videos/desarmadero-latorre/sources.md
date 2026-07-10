@@ -18,8 +18,8 @@
 
 - `assets/selected/desarmadero-catalog.png`
 - `assets/selected/parts-stockroom.png`
-- `hyperframes/assets/desarmadero-catalog.png`
-- `hyperframes/assets/parts-stockroom.png`
+- `assets/selected/desarmadero-catalog.png`
+- `assets/selected/parts-stockroom.png`
 
 ## Redaction Notes
 

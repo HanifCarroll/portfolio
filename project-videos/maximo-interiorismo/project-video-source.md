@@ -112,7 +112,7 @@ Duration: `4.4s`
 
 Proof shown: public hero screenshot and project metadata.
 
-Asset path: `hyperframes/assets/maximo-hero.png`
+Asset path: `assets/selected/maximo-hero.png`
 
 Motion notes: full-bleed hero image enters with a slow push; text lands quietly over the image.
 
@@ -138,7 +138,7 @@ Duration: `4.3s`
 
 Proof shown: public feature screenshot and case-study product-direction notes.
 
-Asset path: `hyperframes/assets/maximo-feature-presentation.png`
+Asset path: `assets/selected/maximo-feature.png`
 
 Motion notes: framed screenshot scrolls gently to create the site-loop feel.
 
@@ -164,7 +164,7 @@ Duration: `4.3s`
 
 Proof shown: portfolio navigation and case-study consultation-path framing.
 
-Asset path: `hyperframes/assets/maximo-feature-inquiry.png`
+Asset path: `assets/selected/maximo-feature.png`
 
 Motion notes: navigation and inquiry labels enter as small proof chips over the site surface.
 
@@ -205,11 +205,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                     | Purpose                                       | Source                                       | Redaction needed? | Final path                                                                                                                 |
-| ------------------------- | --------------------------------------------- | -------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Maximo hero screenshot    | Opening proof surface                         | `src/assets/img/projects/maximo-hero.png`    | No; public asset  | `assets/selected/maximo-hero.png`; `hyperframes/assets/maximo-hero.png`                                                    |
-| Maximo feature screenshot | Portfolio presentation and inquiry path proof | `src/assets/img/projects/maximo-feature.png` | No; public asset  | `assets/selected/maximo-feature.png`; HyperFrames aliases: `maximo-feature-presentation.png`, `maximo-feature-inquiry.png` |
-| Maximo logo               | Ending beat brand mark                        | `public/logos/maximo.png`                    | No; public asset  | `assets/selected/maximo-logo.png`; `hyperframes/assets/maximo-logo.png`                                                    |
+| Asset                     | Purpose                                       | Source                                       | Redaction needed? | Final path                           |
+| ------------------------- | --------------------------------------------- | -------------------------------------------- | ----------------- | ------------------------------------ |
+| Maximo hero screenshot    | Opening proof surface                         | `src/assets/img/projects/maximo-hero.png`    | No; public asset  | `assets/selected/maximo-hero.png`    |
+| Maximo feature screenshot | Portfolio presentation and inquiry path proof | `src/assets/img/projects/maximo-feature.png` | No; public asset  | `assets/selected/maximo-feature.png` |
+| Maximo logo               | Ending beat brand mark                        | `public/logos/maximo.png`                    | No; public asset  | `assets/selected/maximo-logo.png`    |
 
 ## Privacy Check
 
@@ -234,12 +234,11 @@ Scenes to build:
 3. Inquiry path
 4. Ending beat
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
-- `maximo-hero.png`
-- `maximo-feature-presentation.png`
-- `maximo-feature-inquiry.png`
-- `maximo-logo.png`
+- `assets/selected/maximo-hero.png`
+- `assets/selected/maximo-feature.png`
+- `assets/selected/maximo-logo.png`
 
 Required transitions: calm blur crossfades between scenes.
 

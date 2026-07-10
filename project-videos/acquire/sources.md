@@ -17,12 +17,12 @@
 - Source template: `docs/project-videos/project-video-source-template.md`
 - Prior pilot structure: `project-videos/job-application-assistant/brief.md`
 - Prior pilot source lock: `project-videos/job-application-assistant/project-video-source.md`
-- Prior pilot HyperFrames source: `project-videos/job-application-assistant/hyperframes/index.html`
+- Prior pilot manifest: `project-videos/job-application-assistant/video.json`
 
 ## Captured Assets
 
 - `assets/redacted/acquire-pursuits.png`: public case-study screenshot copied from `src/assets/img/projects/acquire-pursuits.png`.
-- `hyperframes/assets/acquire-pursuits.png`: root-contained copy used by the HyperFrames CLI renderer.
+- `assets/redacted/acquire-pursuits.png`: canonical manifest asset.
 
 ## Redaction Notes
 

@@ -20,12 +20,6 @@
 - `assets/selected/redwriter-hero.png`: public Redwriter hero/site surface copied from `src/assets/img/projects/redwriter-hero.png`.
 - `assets/selected/redwriter-feature.png`: public Redwriter portfolio feature surface copied from `src/assets/img/projects/redwriter-feature.png`.
 - `assets/selected/redwriter-logo.webp`: public Redwriter logo copied from `public/logos/redwriter.webp`.
-- `hyperframes/assets/redwriter-hero.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/redwriter-feature.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/redwriter-logo.webp`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/redwriter-feature-scatter-a.png`, `redwriter-feature-scatter-b.png`, `redwriter-feature-review.png`, and `redwriter-feature-path.png`: local aliases of the public feature screenshot used to avoid duplicate-media discovery warnings.
-- `hyperframes/assets/redwriter-hero-scatter.png`, `redwriter-hero-review.png`, `redwriter-hero-path.png`, and `redwriter-hero-end.png`: local aliases of the public hero screenshot used to avoid duplicate-media discovery warnings.
-- `hyperframes/assets/redwriter-logo-connect.webp`: local alias of the public Redwriter logo used to avoid duplicate-media discovery warnings.
 
 ## Redaction Notes
 

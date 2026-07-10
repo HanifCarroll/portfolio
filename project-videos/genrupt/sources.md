@@ -40,12 +40,12 @@
 
 ## HyperFrames Assets
 
-- `hyperframes/assets/product-surface-projects-grid.png`
-- `hyperframes/assets/commercial-readiness-dashboard.png`
-- `hyperframes/assets/subscriptions-pricing.png`
-- `hyperframes/assets/agent-access.png`
-- `hyperframes/assets/aplus-project-setup.png`
-- `hyperframes/assets/market-analysis.png`
+- `assets/redacted/product-surface-projects-grid.png`
+- `assets/redacted/commercial-readiness-dashboard.png`
+- `assets/redacted/subscriptions-pricing.png`
+- `assets/redacted/agent-access.png`
+- `assets/selected/aplus-project-setup.png`
+- `assets/redacted/market-analysis.png`
 
 ## Redaction Notes
 

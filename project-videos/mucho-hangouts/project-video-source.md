@@ -122,7 +122,7 @@ Duration: `5.6s`
 
 Proof shown: problem from case study and metadata.
 
-Asset path: `hyperframes/assets/mucho-hangouts-hero.png`
+Asset path: `assets/selected/mucho-hangouts-hero.png`
 
 Motion notes: screenshot settles while risk chips enter.
 
@@ -149,7 +149,7 @@ Duration: `5.7s`
 
 Proof shown: case-study product direction and metadata solution.
 
-Asset path: `hyperframes/assets/mucho-hangouts-hero.png`
+Asset path: `assets/selected/mucho-hangouts-hero.png`
 
 Motion notes: foundation cards connect into one rail.
 
@@ -176,7 +176,7 @@ Duration: `5.7s`
 
 Proof shown: case-study work section and public product surface.
 
-Asset path: `hyperframes/assets/mucho-hangouts-feature.png`
+Asset path: `assets/selected/mucho-hangouts-feature.png`
 
 Motion notes: product surface holds while small workflow chips enter.
 
@@ -230,7 +230,7 @@ Duration: `5.9s`
 
 Proof shown: case-study shipped rows and metadata result.
 
-Asset path: `hyperframes/assets/mucho-hangouts-hero.png`
+Asset path: `assets/selected/mucho-hangouts-hero.png`
 
 Motion notes: product screenshot returns with result chips.
 
@@ -289,13 +289,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                   | Purpose                                                             | Source                                               | Redaction needed?          | Final path                                                                                    |
-| ----------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
-| Event detail screenshot | Product proof, problem frame, result frame, and poster frame        | `src/assets/img/projects/mucho-hangouts-hero.png`    | No; public portfolio asset | `assets/selected/mucho-hangouts-hero.png`; `hyperframes/assets/mucho-hangouts-hero.png`       |
-| Share modal screenshot  | Core workflow proof for messaging, notifications, and share context | `src/assets/img/projects/mucho-hangouts-feature.png` | No; public portfolio asset | `assets/selected/mucho-hangouts-feature.png`; `hyperframes/assets/mucho-hangouts-feature.png` |
-| Foundation rail         | Contribution scene                                                  | Case-study product direction section                 | No private data            | Build natively in HyperFrames                                                                 |
-| Team pattern cards      | Team patterns scene                                                 | Case-study work and shipped rows                     | No private data            | Build natively in HyperFrames                                                                 |
-| Result chips            | Result scene                                                        | Case-study shipped rows and metadata result          | No private data            | Build natively in HyperFrames                                                                 |
+| Asset                   | Purpose                                                             | Source                                               | Redaction needed?          | Final path                                                                                 |
+| ----------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------ |
+| Event detail screenshot | Product proof, problem frame, result frame, and poster frame        | `src/assets/img/projects/mucho-hangouts-hero.png`    | No; public portfolio asset | `assets/selected/mucho-hangouts-hero.png`; `assets/selected/mucho-hangouts-hero.png`       |
+| Share modal screenshot  | Core workflow proof for messaging, notifications, and share context | `src/assets/img/projects/mucho-hangouts-feature.png` | No; public portfolio asset | `assets/selected/mucho-hangouts-feature.png`; `assets/selected/mucho-hangouts-feature.png` |
+| Foundation rail         | Contribution scene                                                  | Case-study product direction section                 | No private data            | Build natively in HyperFrames                                                              |
+| Team pattern cards      | Team patterns scene                                                 | Case-study work and shipped rows                     | No private data            | Build natively in HyperFrames                                                              |
+| Result chips            | Result scene                                                        | Case-study shipped rows and metadata result          | No private data            | Build natively in HyperFrames                                                              |
 
 ## Privacy Check
 
@@ -337,7 +337,7 @@ Scenes to build:
 5. Delivery and reliability result.
 6. Ending beat with project name and short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/selected/mucho-hangouts-hero.png`
 - `assets/selected/mucho-hangouts-feature.png`

@@ -178,7 +178,7 @@ Duration: `5.5s`
 
 Proof shown: public packet image and case-study local-artifact workflow.
 
-Asset path: `hyperframes/assets/client-feedback-evidence-packet.png`.
+Asset path: `assets/redacted/client-feedback-evidence-packet.png`.
 
 Motion notes: proof surface slides in and settles; packet chips enter after headline.
 
@@ -232,7 +232,7 @@ Duration: `5.6s`
 
 Proof shown: repeatable evidence workflow from case study.
 
-Asset path: `hyperframes/assets/client-feedback-evidence-packet.png`.
+Asset path: `assets/redacted/client-feedback-evidence-packet.png`.
 
 Motion notes: packet and proof cards lock together into a reviewable state.
 
@@ -299,10 +299,9 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                                        | Purpose                                                                                   | Source                                                        | Redaction needed?                                                               | Final path                                                      |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `client-feedback-evidence-packet.png`        | Public proof anchor for local packet outputs.                                             | `src/assets/img/projects/client-feedback-evidence-packet.png` | Already public/redacted; do not zoom into private data because none is present. | `hyperframes/assets/client-feedback-evidence-packet.png`        |
-| `client-feedback-evidence-packet-result.png` | Local HyperFrames alias for the result scene to avoid duplicate-media discovery warnings. | `hyperframes/assets/client-feedback-evidence-packet.png`      | Same public/redacted asset.                                                     | `hyperframes/assets/client-feedback-evidence-packet-result.png` |
+| Asset                                 | Purpose                                       | Source                                                        | Redaction needed?                                                               | Final path                                            |
+| ------------------------------------- | --------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| `client-feedback-evidence-packet.png` | Public proof anchor for local packet outputs. | `src/assets/img/projects/client-feedback-evidence-packet.png` | Already public/redacted; do not zoom into private data because none is present. | `assets/redacted/client-feedback-evidence-packet.png` |
 
 ## Privacy Notes
 

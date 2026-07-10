@@ -19,9 +19,9 @@
 
 - `assets/selected/casa-elaria-hero.png`
 - `assets/selected/casa-elaria-product-page.png`
-- `hyperframes/assets/casa-elaria-hero.png`
-- `hyperframes/assets/casa-elaria-product-page.png`
-- `hyperframes/assets/casa-elaria-final.png`
+- `assets/selected/casa-elaria-hero.png`
+- `assets/selected/casa-elaria-product-page.png`
+- `assets/selected/casa-elaria-hero.png`
 
 ## Redaction Notes
 

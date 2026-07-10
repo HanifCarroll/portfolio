@@ -1,8 +1,8 @@
 # Project Video Source Template
 
-Use this document before writing or editing a HyperFrames composition. It is the source of truth for what the video says, shows, and proves.
+Use this document before writing or editing `video.json`. It is the evidence record for what the video may say, show, and prove. The manifest is the renderer input; generated HyperFrames HTML is disposable.
 
-Copy this file into the project video folder as `project-video-source.md`.
+Copy this file into the project video folder as `project-video-source.md`, complete the review, then transfer the approved story and assets into `video.json`.
 
 ## Project
 
@@ -22,14 +22,15 @@ Target duration:
 
 Video type:
 
-Story mode:
+Story family:
 
 Choose one:
 
-- Plain overview: for hiring managers, nontechnical viewers, and general portfolio traffic.
-- Evidence tour: for technical reviewers who need concrete implementation proof.
-- Product walkthrough: for showing a user path.
-- Short demo: for one fast transformation or product moment.
+- `system-proof`: operating problem, concrete state, intervention, evidence or guardrail, durable result, held conclusion.
+- `product-journey`: user problem, entry or setup, core action, decision or output, shipped value, held conclusion.
+- `visual-showcase`: need or opportunity, visual introduction, work or gallery, inquiry or validation path, held result.
+
+Timing profile: `standard`, `short`, or `loop`
 
 ## Plain Story
 
@@ -107,8 +108,7 @@ Use this for hiring managers, nontechnical viewers, and general portfolio traffi
 2. The mess created a practical cost.
 3. The project brings the workflow into one place.
 4. The product performs a few simple actions.
-5. The result is a clear saved record or artifact.
-6. The project matters because it turns a real workflow into a product.
+5. The result is a clear saved record, artifact, or outcome that explains why the project matters.
 ```
 
 ### Evidence Tour Arc
@@ -126,6 +126,8 @@ Use this only when the viewer needs technical proof.
 ## Scene Cards
 
 Keep each scene focused on one idea. If a scene needs more than one idea, split it.
+
+The final manifest must contain four to six total scenes, including the ending. Use only the story scenes the chosen family needs; visual showcases and loops often need fewer than five.
 
 For plain overview videos, use one headline plus one short sentence at most. For evidence tours, technical labels are allowed only when they are the point of the scene.
 
@@ -217,29 +219,7 @@ Motion notes:
 
 Reading-speed check:
 
-### Scene 5: Result
-
-Purpose:
-
-Viewer should understand:
-
-Visual source:
-
-On-screen text:
-
-Narration:
-
-Duration:
-
-Proof shown:
-
-Asset path:
-
-Motion notes:
-
-Reading-speed check:
-
-### Scene 6: Why It Matters
+### Scene 5: Result And Value
 
 Purpose:
 
@@ -263,7 +243,7 @@ Reading-speed check:
 
 ## Ending Beat
 
-Reserve the final `2.5-3s` for a settled ending. This is not a new argument. It should give the viewer a clean place to stop.
+Reserve the final `3s` for a settled ending. This is not a new argument. It should give the viewer a clean place to stop.
 
 Use either:
 
@@ -283,32 +263,28 @@ Motion notes:
 
 Reading-speed check:
 
-Reading-speed check:
-
 ## Evidence-Tour Scene Names
 
-If the chosen mode is evidence tour, rename the scenes to fit this structure:
+If the chosen mode is evidence tour, rename the five story scenes to fit this structure:
 
 1. Concrete job
 2. Real input
 3. Product actions
-4. Durable output
-5. Trust signal
-6. Reviewer path
+4. Evidence or guardrail
+5. Durable output and reviewer path
 
 ## On-Screen Text Lock
 
-Final text that may appear in the video. Keep this section short and plain. The composition should not introduce new main copy that is not listed here.
+Final text that may appear in the video. Keep this section short and plain. Manifest scene copy should not introduce a new main claim that is not listed here.
 
 | Scene | Text                                     | Word count | Duration | WPM |
 | ----- | ---------------------------------------- | ---------: | -------: | --: |
-| End   | Project name plus one short result line. |            |   2.5-3s |     |
+| End   | Project name plus one short result line. |            |       3s |     |
 | 1     |                                          |            |          |     |
 | 2     |                                          |            |          |     |
 | 3     |                                          |            |          |     |
 | 4     |                                          |            |          |     |
 | 5     |                                          |            |          |     |
-| 6     |                                          |            |          |     |
 
 Reading-speed targets:
 
@@ -338,21 +314,33 @@ Synthetic data used:
 
 Redaction notes:
 
-## HyperFrames Handoff
+## Manifest Handoff
 
 Composition duration:
 
 Aspect ratio:
 
-Scenes to build:
+Story family: `system-proof`, `product-journey`, or `visual-showcase`
 
-Assets to copy into `hyperframes/assets/`:
+Timing profile: `standard`, `short`, or `loop`
+
+Theme colors, fonts, and motif:
+
+Scenes to encode in `video.json`:
+
+Approved manifest asset paths:
 
 Required transitions:
 
-Required callouts:
+Required motion and labels:
 
-Thumbnail frame:
+`posterAt` frame:
+
+Privacy `hide` and `safe` lists:
+
+Source paths to include:
+
+Generation model, template version, and HyperFrames version:
 
 ## Acceptance Checklist
 
@@ -363,4 +351,6 @@ Thumbnail frame:
 - [ ] Each scene has one clear idea.
 - [ ] Product screenshots remain legible.
 - [ ] No private data is visible.
-- [ ] The final render is created with the normal HyperFrames CLI.
+- [ ] `video.json` validates against `video-manifest.schema.json`.
+- [ ] Generated snapshots have passed visual and privacy review.
+- [ ] After user approval, the final render is created through `bun run videos:render -- <slug> --approve-visuals`.

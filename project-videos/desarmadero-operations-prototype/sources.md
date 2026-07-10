@@ -24,8 +24,8 @@
 - `assets/selected/desarmadero-operations-mapa.png`: public case-study screenshot copied from `src/assets/img/projects/desarmadero-operations-mapa.png`.
 - `assets/redacted/desarmadero-operations-ventas.png`: same public/anonymized screenshot, staged through the redacted folder.
 - `assets/redacted/desarmadero-operations-mapa.png`: same public/anonymized screenshot, staged through the redacted folder.
-- `hyperframes/assets/desarmadero-operations-ventas.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/desarmadero-operations-mapa.png`: root-contained copy used by the HyperFrames CLI renderer.
+- `assets/redacted/desarmadero-operations-ventas.png`: canonical manifest asset.
+- `assets/redacted/desarmadero-operations-mapa.png`: canonical manifest asset.
 
 ## Redaction Notes
 

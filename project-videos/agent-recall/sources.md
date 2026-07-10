@@ -22,10 +22,7 @@
 ## Selected Assets
 
 - `assets/selected/agent-recall-cli.png`: public case-study screenshot copied from `src/assets/img/projects/agent-recall-cli.png`.
-- `assets/redacted/agent-recall-cli.png`: same public screenshot retained as the redacted production asset.
-- `hyperframes/assets/agent-recall-cli.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/agent-recall-action.png`: local HyperFrames alias of the same public screenshot for the action scene.
-- `hyperframes/assets/agent-recall-proof.png`: local HyperFrames alias of the same public screenshot for the proof scene.
+- `assets/redacted/agent-recall-cli.png`: canonical manifest asset retained on the redacted production rail.
 
 ## Redaction Notes
 

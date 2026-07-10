@@ -178,7 +178,7 @@ Duration: `6s`
 
 Proof shown: public product surface and source text about review before publishing.
 
-Asset path: `hyperframes/assets/vox-prismatic-posts-crop.png`
+Asset path: `assets/redacted/vox-prismatic-posts-crop.png`
 
 Motion notes: product surface is dominant; a compact opaque caption card sits over the lower-left corner so the thumbnail reads as a product screen instead of a text slide.
 
@@ -205,7 +205,7 @@ Duration: `6.5s`
 
 Proof shown: hook workbench screenshot and case-study work section.
 
-Asset path: `hyperframes/assets/vox-prismatic-hook-workbench.png`
+Asset path: `assets/redacted/vox-prismatic-hook-workbench.png`
 
 Motion notes: hook workbench appears as proof; four workflow steps lock onto a rail.
 
@@ -232,7 +232,7 @@ Duration: `6.5s`
 
 Proof shown: source text about extracting, drafting, reviewing, and scheduling.
 
-Asset path: `hyperframes/assets/vox-prismatic-posts-crop.png`
+Asset path: `assets/redacted/vox-prismatic-posts-crop.png`
 
 Motion notes: result cards assemble over the product surface; scheduled output card holds steady.
 
@@ -292,13 +292,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                   | Purpose                                                             | Source                                              | Redaction needed?                                                            | Final path                                                                                                                            |
-| ----------------------- | ------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Cropped posts workspace | Product proof, solution scene, result scene, final frame background | `src/assets/img/projects/vox-prismatic-hero.png`    | Yes; crop removes sidebar account footer text and private email              | `assets/redacted/vox-prismatic-posts-crop.png`; HyperFrames aliases: `vox-prismatic-posts-crop.png`, `vox-prismatic-posts-result.png` |
-| Cropped hook workbench  | Workflow proof and hook-review scene                                | `src/assets/img/projects/vox-prismatic-feature.png` | Yes; crop focuses the modal and avoids irrelevant background/account context | `assets/redacted/vox-prismatic-hook-workbench.png` and `hyperframes/assets/vox-prismatic-hook-workbench.png`                          |
-| Transcript cards        | Problem and input scenes                                            | Case-study About and Work sections                  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
-| Workflow rail           | Workflow scene                                                      | Case-study Product Direction and The Work sections  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
-| Result cards            | Result scene                                                        | Case-study What Shipped and metadata result fields  | No private data                                                              | Build natively in HyperFrames                                                                                                         |
+| Asset                   | Purpose                                                             | Source                                              | Redaction needed?                                                            | Final path                                         |
+| ----------------------- | ------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------- |
+| Cropped posts workspace | Product proof, solution scene, result scene, final frame background | `src/assets/img/projects/vox-prismatic-hero.png`    | Yes; crop removes sidebar account footer text and private email              | `assets/redacted/vox-prismatic-posts-crop.png`     |
+| Cropped hook workbench  | Workflow proof and hook-review scene                                | `src/assets/img/projects/vox-prismatic-feature.png` | Yes; crop focuses the modal and avoids irrelevant background/account context | `assets/redacted/vox-prismatic-hook-workbench.png` |
+| Transcript cards        | Problem and input scenes                                            | Case-study About and Work sections                  | No private data                                                              | Build natively in HyperFrames                      |
+| Workflow rail           | Workflow scene                                                      | Case-study Product Direction and The Work sections  | No private data                                                              | Build natively in HyperFrames                      |
+| Result cards            | Result scene                                                        | Case-study What Shipped and metadata result fields  | No private data                                                              | Build natively in HyperFrames                      |
 
 ## Privacy Check
 
@@ -327,7 +327,7 @@ Redaction notes:
 - `vox-prismatic-posts-crop.png` crops out the original screenshot sidebar account footer.
 - The video does not use the full uncropped hero screenshot.
 - The hook workbench screenshot is cropped to the product modal and does not show account footer text.
-- `vox-prismatic-posts-result.png` is a HyperFrames-local alias of the cropped posts screenshot so repeated proof surfaces use separate media paths.
+- Repeated proof scenes reuse `assets/redacted/vox-prismatic-posts-crop.png` through the manifest.
 
 ## HyperFrames Handoff
 
@@ -344,11 +344,10 @@ Scenes to build:
 5. Long inputs become trustworthy reviewable posts.
 6. Ending beat with project name and short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/redacted/vox-prismatic-posts-crop.png`
 - `assets/redacted/vox-prismatic-hook-workbench.png`
-- HyperFrames-local alias `vox-prismatic-posts-result.png`
 
 Required transitions:
 

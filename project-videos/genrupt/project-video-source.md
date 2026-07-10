@@ -132,7 +132,7 @@ Duration: `6.5s`
 
 Proof shown: case study summary and project grid surface.
 
-Asset path: `hyperframes/assets/product-surface-projects-grid.png`
+Asset path: `assets/redacted/product-surface-projects-grid.png`
 
 Motion notes: product surface settles in, then platform cards assemble over it.
 
@@ -186,7 +186,7 @@ Duration: `7s`
 
 Proof shown: case study solution section and public product surfaces.
 
-Asset path: `hyperframes/assets/product-surface-projects-grid.png`; `hyperframes/assets/commercial-readiness-dashboard.png`
+Asset path: `assets/redacted/product-surface-projects-grid.png`; `assets/redacted/commercial-readiness-dashboard.png`
 
 Motion notes: two proof surfaces slide into a layered platform frame.
 
@@ -212,7 +212,7 @@ Duration: `7s`
 
 Proof shown: subscriptions, credit accounting, billing, and account overview.
 
-Asset path: `hyperframes/assets/subscriptions-pricing.png`; `hyperframes/assets/commercial-readiness-dashboard.png`
+Asset path: `assets/redacted/subscriptions-pricing.png`; `assets/redacted/commercial-readiness-dashboard.png`
 
 Motion notes: pricing surface holds while native credit and billing cards lock in.
 
@@ -238,7 +238,7 @@ Duration: `7s`
 
 Proof shown: permissioned agent surface and recoverable workflow constraints.
 
-Asset path: `hyperframes/assets/agent-access.png`
+Asset path: `assets/redacted/agent-access.png`
 
 Motion notes: central access surface appears first, then allowed workflow cards connect to it.
 
@@ -265,7 +265,7 @@ Duration: `8s`
 
 Proof shown: A+ setup, market analysis, dashboard, and result section.
 
-Asset path: `hyperframes/assets/aplus-project-setup.png`; `hyperframes/assets/market-analysis.png`; `hyperframes/assets/commercial-readiness-dashboard.png`
+Asset path: `assets/selected/aplus-project-setup.png`; `assets/redacted/market-analysis.png`; `assets/redacted/commercial-readiness-dashboard.png`
 
 Motion notes: workflow screenshots settle into a proof strip, then the 100-customer result card appears and holds.
 
@@ -322,14 +322,14 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                     | Purpose                                           | Source                                                               | Redaction needed?            | Final path                                                                                                       |
-| ------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Projects surface          | Problem and solution proof                        | `src/assets/img/projects/genrupt/product-surface-projects-grid.png`  | Mask account footer          | `assets/redacted/product-surface-projects-grid.png` and `hyperframes/assets/product-surface-projects-grid.png`   |
-| Dashboard/account surface | Solution, commercial foundation, and result proof | `src/assets/img/projects/genrupt/commercial-readiness-dashboard.png` | Mask account name and footer | `assets/redacted/commercial-readiness-dashboard.png` and `hyperframes/assets/commercial-readiness-dashboard.png` |
-| Pricing surface           | Commercial foundation proof                       | `src/assets/img/projects/genrupt/subscriptions-pricing.png`          | Mask account footer          | `assets/redacted/subscriptions-pricing.png` and `hyperframes/assets/subscriptions-pricing.png`                   |
-| Agent Access surface      | Agent access proof                                | `src/assets/img/projects/genrupt/agent-access.png`                   | Mask provider labels         | `assets/redacted/agent-access.png` and `hyperframes/assets/agent-access.png`                                     |
-| A+ setup surface          | Seller workflow proof                             | `src/assets/img/projects/genrupt/aplus-project-setup.png`            | No private data identified   | `assets/selected/aplus-project-setup.png` and `hyperframes/assets/aplus-project-setup.png`                       |
-| Market analysis surface   | Seller workflow proof                             | `src/assets/img/projects/genrupt/market-analysis.png`                | Mask account footer          | `assets/redacted/market-analysis.png` and `hyperframes/assets/market-analysis.png`                               |
+| Asset                     | Purpose                                           | Source                                                               | Redaction needed?            | Final path                                           |
+| ------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------- |
+| Projects surface          | Problem and solution proof                        | `src/assets/img/projects/genrupt/product-surface-projects-grid.png`  | Mask account footer          | `assets/redacted/product-surface-projects-grid.png`  |
+| Dashboard/account surface | Solution, commercial foundation, and result proof | `src/assets/img/projects/genrupt/commercial-readiness-dashboard.png` | Mask account name and footer | `assets/redacted/commercial-readiness-dashboard.png` |
+| Pricing surface           | Commercial foundation proof                       | `src/assets/img/projects/genrupt/subscriptions-pricing.png`          | Mask account footer          | `assets/redacted/subscriptions-pricing.png`          |
+| Agent Access surface      | Agent access proof                                | `src/assets/img/projects/genrupt/agent-access.png`                   | Mask provider labels         | `assets/redacted/agent-access.png`                   |
+| A+ setup surface          | Seller workflow proof                             | `src/assets/img/projects/genrupt/aplus-project-setup.png`            | No private data identified   | `assets/selected/aplus-project-setup.png`            |
+| Market analysis surface   | Seller workflow proof                             | `src/assets/img/projects/genrupt/market-analysis.png`                | Mask account footer          | `assets/redacted/market-analysis.png`                |
 
 ## HyperFrames Handoff
 

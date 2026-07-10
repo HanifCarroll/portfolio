@@ -13,18 +13,18 @@
 
 - `project-videos/acquire/brief.md`
 - `project-videos/acquire/project-video-source.md`
-- `project-videos/acquire/hyperframes/DESIGN.md`
-- `project-videos/acquire/hyperframes/index.html`
+- `project-videos/acquire/design.md`
+- `project-videos/acquire/video.json`
 - `project-videos/job-application-assistant/project-video-source.md`
-- `project-videos/job-application-assistant/hyperframes/DESIGN.md`
-- `project-videos/job-application-assistant/hyperframes/index.html`
+- `project-videos/job-application-assistant/design.md`
+- `project-videos/job-application-assistant/video.json`
 - `project-videos/palabruno/project-video-source.md`
 
 ## Asset Manifest
 
-| Asset                      | Source                                                       | Redacted copy                                                                             | HyperFrames copy                                                                             | Notes                                                             |
-| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Public terminal screenshot | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/assets/redacted/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/hyperframes/assets/codex-telegram-bridge-terminal.png` | Public synthetic terminal surface already used in the case study. |
+| Asset                      | Source                                                       | Redacted copy                                                                             | HyperFrames copy                                                                          | Notes                                                             |
+| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Public terminal screenshot | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/assets/redacted/codex-telegram-bridge-terminal.png` | `project-videos/codex-telegram-bridge/assets/redacted/codex-telegram-bridge-terminal.png` | Public synthetic terminal surface already used in the case study. |
 
 ## Privacy Boundary
 

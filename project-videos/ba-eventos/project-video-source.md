@@ -132,7 +132,7 @@ Duration: `5.6s`
 
 Proof shown: case-study problem and project metadata.
 
-Asset path: `hyperframes/assets/ba-eventos-hero.png`
+Asset path: `assets/redacted/ba-eventos-hero.png`
 
 Motion notes: source cards enter from different directions while the product surface sits behind them.
 
@@ -159,7 +159,7 @@ Duration: `5.6s`
 
 Proof shown: public screenshot includes the same question pattern.
 
-Asset path: `hyperframes/assets/ba-eventos-hero.png`
+Asset path: `assets/redacted/ba-eventos-hero.png`
 
 Motion notes: query bubble slides in and the search input gets a soft highlight.
 
@@ -186,7 +186,7 @@ Duration: `6s`
 
 Proof shown: screenshot answer and metadata around grounded event records.
 
-Asset path: `hyperframes/assets/ba-eventos-feature.png`
+Asset path: `assets/redacted/ba-eventos-feature.png`
 
 Motion notes: feature screenshot lands, then record chips reveal.
 
@@ -213,7 +213,7 @@ Duration: `6.1s`
 
 Proof shown: visible answer and event cards in the public screenshot.
 
-Asset path: `hyperframes/assets/ba-eventos-feature.png`
+Asset path: `assets/redacted/ba-eventos-feature.png`
 
 Motion notes: answer area and event cards get subtle highlights.
 
@@ -240,7 +240,7 @@ Duration: `5.7s`
 
 Proof shown: case-study shipped rows and project metadata.
 
-Asset path: `hyperframes/assets/ba-eventos-feature.png`
+Asset path: `assets/redacted/ba-eventos-feature.png`
 
 Motion notes: stat cards assemble, then settle before the end card appears.
 
@@ -300,13 +300,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                         | Purpose                           | Source                                           | Redaction needed?                | Final path                                                                               |
-| ----------------------------- | --------------------------------- | ------------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------------------------- |
-| BA Eventos hero screenshot    | Search prompt and product context | `src/assets/img/projects/ba-eventos-hero.png`    | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-hero.png` and `hyperframes/assets/ba-eventos-hero.png`       |
-| BA Eventos feature screenshot | Search answer and result cards    | `src/assets/img/projects/ba-eventos-feature.png` | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-feature.png` and `hyperframes/assets/ba-eventos-feature.png` |
-| Source cards                  | Problem scene                     | Case-study source list                           | No private data                  | Built natively in HyperFrames                                                            |
-| Record chips                  | Grounding scene                   | Case-study grounded answer framing               | No private data                  | Built natively in HyperFrames                                                            |
-| Catalog stat cards            | Result/catalog scene              | Case-study shipped rows and metadata             | No private data                  | Built natively in HyperFrames                                                            |
+| Asset                         | Purpose                           | Source                                           | Redaction needed?                | Final path                               |
+| ----------------------------- | --------------------------------- | ------------------------------------------------ | -------------------------------- | ---------------------------------------- |
+| BA Eventos hero screenshot    | Search prompt and product context | `src/assets/img/projects/ba-eventos-hero.png`    | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-hero.png`    |
+| BA Eventos feature screenshot | Search answer and result cards    | `src/assets/img/projects/ba-eventos-feature.png` | Cover signed-in sidebar identity | `assets/redacted/ba-eventos-feature.png` |
+| Source cards                  | Problem scene                     | Case-study source list                           | No private data                  | Built natively in HyperFrames            |
+| Record chips                  | Grounding scene                   | Case-study grounded answer framing               | No private data                  | Built natively in HyperFrames            |
+| Catalog stat cards            | Result/catalog scene              | Case-study shipped rows and metadata             | No private data                  | Built natively in HyperFrames            |
 
 ## Privacy Check
 
@@ -350,7 +350,7 @@ Scenes to build:
 5. Organized catalog proof.
 6. Ending beat with project name and result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/redacted/ba-eventos-hero.png`
 - `assets/redacted/ba-eventos-feature.png`

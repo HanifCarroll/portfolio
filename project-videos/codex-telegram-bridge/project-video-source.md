@@ -125,7 +125,7 @@ Duration: `6.5s`
 
 Proof shown: problem from case study and metadata.
 
-Asset path: `hyperframes/assets/codex-telegram-bridge-terminal.png`
+Asset path: `assets/redacted/codex-telegram-bridge-terminal.png`
 
 Motion notes: terminal proof settles first, then the waiting prompt card appears.
 
@@ -179,7 +179,7 @@ Duration: `7s`
 
 Proof shown: public command surface and case-study remote flow.
 
-Asset path: `hyperframes/assets/codex-telegram-bridge-terminal.png`
+Asset path: `assets/redacted/codex-telegram-bridge-terminal.png`
 
 Motion notes: screenshot reveals with command chips for `/away` and `/back`.
 
@@ -318,9 +318,9 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                                | Purpose                                 | Source                                                       | Redaction needed?                | Final path                                                                                   |
-| ------------------------------------ | --------------------------------------- | ------------------------------------------------------------ | -------------------------------- | -------------------------------------------------------------------------------------------- |
-| `codex-telegram-bridge-terminal.png` | Public command surface and proof anchor | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | No; already public and synthetic | `project-videos/codex-telegram-bridge/hyperframes/assets/codex-telegram-bridge-terminal.png` |
+| Asset                                | Purpose                                 | Source                                                       | Redaction needed?                | Final path                                                                                |
+| ------------------------------------ | --------------------------------------- | ------------------------------------------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------- |
+| `codex-telegram-bridge-terminal.png` | Public command surface and proof anchor | `src/assets/img/projects/codex-telegram-bridge-terminal.png` | No; already public and synthetic | `project-videos/codex-telegram-bridge/assets/redacted/codex-telegram-bridge-terminal.png` |
 
 ## Privacy Check
 
@@ -366,9 +366,9 @@ Scenes to build:
 5. Approval
 6. Result plus end card
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
-- `codex-telegram-bridge-terminal.png`
+- `assets/redacted/codex-telegram-bridge-terminal.png`
 
 Required transitions:
 

@@ -1,0 +1,163 @@
+{
+  "$schema": "../../docs/project-videos/video-manifest.schema.json",
+  "version": 1,
+  "slug": "codex-telegram-bridge",
+  "title": "Codex Telegram Bridge",
+  "family": "system-proof",
+  "timing": "standard",
+  "viewer": "Hiring manager or general portfolio viewer",
+  "takeaway": "This is a controlled remote continuation product, not an open-ended chat automation channel.",
+  "theme": {
+    "canvas": "#eef2ed",
+    "surface": "#fbfcf8",
+    "ink": "#14211c",
+    "muted": "#52625a",
+    "border": "#d3ddd5",
+    "accent": "#1f6f55",
+    "accentSoft": "#dfeee7",
+    "accent2": "#18a7d8",
+    "deep": "#101820",
+    "fontDisplay": "EB Garamond, serif",
+    "fontBody": "Inter, sans-serif",
+    "fontMono": "JetBrains Mono, monospace",
+    "motif": "rails"
+  },
+  "scenes": [
+    {
+      "id": "away-from-desktop",
+      "kind": "problem",
+      "eyebrow": "Problem",
+      "headline": "Codex kept working after I stepped away.",
+      "body": "Prompts could sit on the desktop.",
+      "duration": 8.2,
+      "layout": "copy-left",
+      "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
+      "assetAlt": "Public terminal-style Codex Telegram Bridge command surface.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "push-left",
+      "motion": "settle"
+    },
+    {
+      "id": "ownership-boundary",
+      "kind": "context",
+      "eyebrow": "Ownership",
+      "headline": "Remote control needed clear ownership.",
+      "body": "Chat should not become an open door.",
+      "duration": 8.2,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Local state",
+          "body": "Owns routing"
+        },
+        {
+          "title": "Away mode",
+          "body": "Opens replies"
+        },
+        {
+          "title": "Back mode",
+          "body": "Closes replies"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "local-bridge",
+      "kind": "action",
+      "eyebrow": "The bridge",
+      "headline": "I built a local bridge.",
+      "body": "Away mode opens replies. Back mode closes them.",
+      "duration": 8.2,
+      "layout": "copy-right",
+      "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
+      "assetAlt": "Public bridge command surface showing explicit remote-mode controls.",
+      "assetFit": "cover",
+      "assetPosition": "center 44%",
+      "transition": "dissolve",
+      "motion": "scroll"
+    },
+    {
+      "id": "route-and-approve",
+      "kind": "workflow",
+      "eyebrow": "Routing",
+      "headline": "Replies go back to the right thread.",
+      "body": "Approvals return to the same thread.",
+      "duration": 8.2,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Message",
+          "body": "Remote reply"
+        },
+        {
+          "title": "Route",
+          "body": "Local lookup"
+        },
+        {
+          "title": "Thread",
+          "body": "Right destination"
+        },
+        {
+          "title": "Approval",
+          "body": "Recorded"
+        }
+      ],
+      "transition": "push-up",
+      "motion": "assemble"
+    },
+    {
+      "id": "local-ownership-result",
+      "kind": "result",
+      "eyebrow": "Result",
+      "headline": "Remote Codex stays controlled.",
+      "body": "Replies, approvals, and delivery stay tied to my machine.",
+      "duration": 8.2,
+      "layout": "copy-left",
+      "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
+      "assetAlt": "Public bridge proof surface used for the controlled-delivery result.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "push-left",
+      "motion": "settle"
+    },
+    {
+      "id": "codex-telegram-bridge-end",
+      "kind": "end",
+      "eyebrow": "Codex Telegram Bridge",
+      "headline": "Replies under control.",
+      "body": "Local state keeps ownership.",
+      "duration": 3,
+      "layout": "full",
+      "transition": "dissolve",
+      "motion": "settle"
+    }
+  ],
+  "posterAt": 20,
+  "privacy": {
+    "hide": [
+      "bot tokens, raw thread identifiers, and local paths",
+      "private messages, real Telegram or Discord handles, and runtime state",
+      "local database rows and private delivery details"
+    ],
+    "safe": [
+      "public terminal screenshot and command names",
+      "public project name",
+      "synthetic route, approval, and delivery labels"
+    ]
+  },
+  "sources": [
+    "brief.md",
+    "project-video-source.md",
+    "design.md",
+    "sources.md",
+    "../../src/content/case-studies/codex-telegram-bridge.mdx",
+    "../../src/lib/projects/codex-telegram-bridge.json"
+  ],
+  "generation": {
+    "model": "gpt-5.6-sol",
+    "templateVersion": "1.0.0",
+    "hyperframesVersion": "0.7.46"
+  }
+}

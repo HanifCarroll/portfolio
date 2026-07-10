@@ -121,7 +121,7 @@ Duration: `4.4s`
 
 Proof shown: case-study problem and public stockroom photo.
 
-Asset path: `hyperframes/assets/parts-stockroom.png`.
+Asset path: `assets/selected/parts-stockroom.png`.
 
 Motion notes: photo lands as the business context; call cards stack over it.
 
@@ -148,7 +148,7 @@ Duration: `4.4s`
 
 Proof shown: catalog screenshot and case-study product direction.
 
-Asset path: `hyperframes/assets/desarmadero-catalog.png`.
+Asset path: `assets/selected/desarmadero-catalog.png`.
 
 Motion notes: screenshot slides in; search fields and button receive native callouts.
 
@@ -175,7 +175,7 @@ Duration: `4.4s`
 
 Proof shown: catalog result cards with photos, year, and details actions.
 
-Asset path: `hyperframes/assets/desarmadero-catalog.png`.
+Asset path: `assets/selected/desarmadero-catalog.png`.
 
 Motion notes: listing cards float forward; context chips assemble beside them.
 
@@ -202,7 +202,7 @@ Duration: `4.8s`
 
 Proof shown: case-study result and direct inquiry path.
 
-Asset path: `hyperframes/assets/desarmadero-catalog.png`.
+Asset path: `assets/selected/desarmadero-catalog.png`.
 
 Motion notes: three-step rail builds from left to right; contact card appears last.
 
@@ -253,11 +253,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset              | Purpose                                                | Source                                                          | Redaction needed? | Final path                                                                              |
-| ------------------ | ------------------------------------------------------ | --------------------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------- |
-| Catalog screenshot | Search surface, listing cards, part context, end frame | `src/assets/img/projects/desarmadero-feature.png`               | Already public    | `assets/selected/desarmadero-catalog.png`; `hyperframes/assets/desarmadero-catalog.png` |
-| Stockroom photo    | Business context for phone-heavy inventory checks      | `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Already public    | `assets/selected/parts-stockroom.png`; `hyperframes/assets/parts-stockroom.png`         |
-| Workflow rail      | Search-to-contact explanation                          | Built natively in HyperFrames                                   | No private data   | `hyperframes/index.html`                                                                |
+| Asset              | Purpose                                                | Source                                                          | Redaction needed? | Final path                                                                           |
+| ------------------ | ------------------------------------------------------ | --------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------ |
+| Catalog screenshot | Search surface, listing cards, part context, end frame | `src/assets/img/projects/desarmadero-feature.png`               | Already public    | `assets/selected/desarmadero-catalog.png`; `assets/selected/desarmadero-catalog.png` |
+| Stockroom photo    | Business context for phone-heavy inventory checks      | `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Already public    | `assets/selected/parts-stockroom.png`; `assets/selected/parts-stockroom.png`         |
+| Workflow rail      | Search-to-contact explanation                          | Built natively by the shared generator                          | No private data   | `video.json`                                                                         |
 
 ## Privacy Check
 
@@ -297,10 +297,10 @@ Scenes to build:
 4. Clearer workflow
 5. Ending beat
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
-- `desarmadero-catalog.png`
-- `parts-stockroom.png`
+- `assets/selected/desarmadero-catalog.png`
+- `assets/selected/parts-stockroom.png`
 
 Required transitions:
 

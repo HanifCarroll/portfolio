@@ -14,7 +14,7 @@
 
 - The public Apartment Finder screenshot contains listing row text, source URL fragments, and listing IDs.
 - The video uses a redacted copy at `assets/redacted/apartment-finder-ui-redacted.png`.
-- HyperFrames uses the copied redacted asset at `hyperframes/assets/apartment-finder-ui-redacted.png`.
+- HyperFrames uses the copied redacted asset at `assets/redacted/apartment-finder-ui-redacted.png`.
 - Synthetic cards are used for listing examples, evidence, confidence, and decision states.
 
 ## Production Notes

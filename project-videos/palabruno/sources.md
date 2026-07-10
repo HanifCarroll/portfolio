@@ -40,17 +40,6 @@
 - `assets/selected/palabruno-teacher-library.png`
 - `assets/selected/palabruno-teacher-groups.png`
 - `assets/selected/palabruno-teacher-recent-shares.png`
-- `hyperframes/assets/palabruno-founder-idea-launch.png`
-- `hyperframes/assets/palabruno-teacher-create-reading.png`
-- `hyperframes/assets/palabruno-teacher-library.png`
-- `hyperframes/assets/palabruno-teacher-groups.png`
-- `hyperframes/assets/palabruno-teacher-recent-shares.png`
-- `hyperframes/assets/palabruno-product-problem.png`
-- `hyperframes/assets/palabruno-product-solution.png`
-- `hyperframes/assets/palabruno-product-final.png`
-- `hyperframes/assets/palabruno-teacher-create-launch.png`
-
-The `palabruno-product-*` and `palabruno-teacher-create-launch.png` files are local HyperFrames aliases of selected public screenshots. They avoid duplicate-media discovery warnings while keeping the source asset inventory unchanged.
 
 ## Redaction Notes
 

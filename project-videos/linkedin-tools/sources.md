@@ -19,7 +19,7 @@
 ## Captured Assets
 
 - `assets/redacted/review-ui.png`: copied from the public portfolio asset `src/assets/img/projects/linkedin-tools-review-ui.png`.
-- `hyperframes/assets/review-ui.png`: root-contained copy used by the HyperFrames CLI renderer.
+- `assets/redacted/review-ui.png`: canonical manifest asset.
 
 ## Redaction Notes
 

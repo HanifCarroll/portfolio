@@ -187,7 +187,7 @@ Duration: `5.5s`
 
 Proof shown: public product surface, redacted for listing safety.
 
-Asset path: `hyperframes/assets/apartment-finder-ui-redacted.png`
+Asset path: `assets/redacted/apartment-finder-ui-redacted.png`
 
 Motion notes: product surface slides in and scanning cards attach to it.
 
@@ -268,7 +268,7 @@ Duration: `5.5s` plus `3s` ending beat.
 
 Proof shown: case-study result and metadata framing.
 
-Asset path: `hyperframes/assets/apartment-finder-ui-redacted.png`
+Asset path: `assets/redacted/apartment-finder-ui-redacted.png`
 
 Motion notes: final product surface settles, then end card appears and holds from `33s` to `36s`.
 
@@ -322,12 +322,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                    | Purpose                       | Source                                                | Redaction needed?                                                  | Final path                                                                                                   |
-| ------------------------ | ----------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Redacted product surface | Product proof, scenes 3 and 6 | `src/assets/img/projects/apartment-finder-ui.png`     | Yes. Listing titles, source URLs, IDs, and row details are masked. | `assets/redacted/apartment-finder-ui-redacted.png` and `hyperframes/assets/apartment-finder-ui-redacted.png` |
-| Messy listing cards      | Problem scene                 | This source document and case-study problem section   | No private data                                                    | Build natively in HyperFrames                                                                                |
-| Photo evidence cards     | Cost and AI review scenes     | This source document and case-study product direction | No private data                                                    | Build natively in HyperFrames                                                                                |
-| Decision cards           | Result scene                  | README decision categories and case-study result      | No private data                                                    | Build natively in HyperFrames                                                                                |
+| Asset                    | Purpose                       | Source                                                | Redaction needed?                                                  | Final path                                         |
+| ------------------------ | ----------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------- |
+| Redacted product surface | Product proof, scenes 3 and 6 | `src/assets/img/projects/apartment-finder-ui.png`     | Yes. Listing titles, source URLs, IDs, and row details are masked. | `assets/redacted/apartment-finder-ui-redacted.png` |
+| Messy listing cards      | Problem scene                 | This source document and case-study problem section   | No private data                                                    | Build natively in HyperFrames                      |
+| Photo evidence cards     | Cost and AI review scenes     | This source document and case-study product direction | No private data                                                    | Build natively in HyperFrames                      |
+| Decision cards           | Result scene                  | README decision categories and case-study result      | No private data                                                    | Build natively in HyperFrames                      |
 
 ## Privacy Check
 

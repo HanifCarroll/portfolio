@@ -1,39 +1,89 @@
 # Project Video Plan
 
-Recommendation: make a video asset for every current portfolio project, but choose the story mode by audience. Use plain overview videos for broad portfolio viewing. Reserve technical evidence tours for the strongest proof pieces or for case-study detail pages where implementation depth matters.
+Every current portfolio case study has a manifest-driven video. The active plan is to maintain one shared template system, keep each project's evidence and design tokens explicit in `video.json`, and regenerate through the repository scripts.
 
-Default broad-portfolio structure: use a plain overview. Each video should explain the problem, solution, and result in everyday language. Show proof visually, but keep stack details, schema names, commands, and test output off-screen unless the viewer is explicitly technical.
+Canonical documentation: [template-system.md](template-system.md).
 
-Use an evidence tour only when the video is meant for a technical reviewer. Evidence tours should name the concrete job, show the real input, show specific product actions, show the durable output, show a trust signal, and end with the reviewer path. Avoid vague before/after language unless both sides are concrete states.
+## Editorial Rule
 
-| Project                            | Video type                                      |
-| ---------------------------------- | ----------------------------------------------- |
-| `Acquire`                          | Flagship workflow proof video, 45-75s           |
-| `Palabruno`                        | Flagship client launch video, 45-75s            |
-| `Genrupt`                          | Flagship AI systems video, 45-75s               |
-| `Job Application Assistant`        | Plain overview video, 36-40s                    |
-| `LinkedIn Tools`                   | Systems/guardrails proof video, 45-60s          |
-| `Codex Telegram Bridge`            | Product demo video, 35-50s                      |
-| `Agent Recall`                     | Technical proof video, 35-50s                   |
-| `Desarmadero Operations Prototype` | Discovery-to-prototype case-study video, 35-50s |
-| `Casamo`                           | Product walkthrough video, 35-50s               |
-| `Client Feedback Evidence CLI`     | Evidence pipeline demo, 25-40s                  |
-| `BA Eventos`                       | Short product demo, 25-40s                      |
-| `Apartment Finder`                 | Short AI proof demo, 25-40s                     |
-| `Vox Prismatic`                    | Short workflow demo, 25-40s                     |
-| `Mucho Hangouts`                   | Engineering contribution clip, 20-35s           |
-| `Language Exchange Platform`       | MVP walkthrough clip, 20-35s                    |
-| `Desarmadero Latorre`              | Catalog/workflow walkthrough loop, 15-25s       |
-| `Casa Elaria`                      | Fake-door validation loop, 15-25s               |
-| `Maximo Interiorismo`              | Visual site scroll loop, 10-20s                 |
-| `Redwriter Comics`                 | Visual portfolio scroll loop, 10-20s            |
+Broad portfolio videos explain the problem, solution, and result in everyday language. Real screenshots, reports, product states, and safe artifacts carry the proof. Stack names, schemas, commands, and test output stay off-screen unless the chosen viewer is explicitly technical.
 
-First batch:
+Use one story family:
 
-1. `Acquire`
-2. `Palabruno`
-3. `Genrupt`
-4. `Job Application Assistant`
-5. `LinkedIn Tools`
-6. `Codex Telegram Bridge`
-7. `Agent Recall`
+- `system-proof`: automation, operating systems, audits, evidence pipelines, and engineering contributions.
+- `product-journey`: products and MVPs where a user takes an action and reaches a decision or output.
+- `visual-showcase`: visual sites and portfolios where the real imagery is the primary evidence.
+
+The complete 21-project family, timing, and duration map is maintained in [template-system.md](template-system.md#current-project-map) and is printed by:
+
+```bash
+bun run videos:list
+```
+
+The inventory includes the two audit case studies:
+
+- `health-ai-search-audit`: `system-proof`, `standard`, 42 seconds.
+- `online-store-conversion-review`: `system-proof`, `standard`, 42 seconds.
+
+## Source Rule
+
+For every project:
+
+1. Use the case study, project metadata, `brief.md`, `project-video-source.md`, `sources.md`, and approved assets as the evidence record.
+2. Use `project-videos/<slug>/video.json` as the build source of truth.
+3. Use `project-videos/frame.md` and the shared generator for layout and motion.
+4. Treat `project-videos/.generated/` as disposable output.
+5. Treat the removed bespoke compositions as superseded historical work, not regeneration inputs.
+
+## Change Paths
+
+### New case study
+
+Capture safe proof, create the source record and manifest, then validate, generate, and review that project before rendering.
+
+```bash
+bun run videos:validate -- <slug>
+bun run videos:generate -- <slug>
+bun run videos:qa -- <slug>
+```
+
+### Project-specific copy, timing, theme, or asset change
+
+Edit only the source record and `video.json`. Do not patch generated HTML. Regenerate and visually review the affected project.
+
+### Shared template, schema, frame, or HyperFrames upgrade
+
+Run the automated tests, then review one pilot from every family:
+
+```bash
+bun run videos:test
+bun run videos:qa -- acquire job-application-assistant redwriter-comics
+```
+
+Only after those pilots are approved should the complete set be rendered.
+
+## Acceptance Gate
+
+A project is ready to render when:
+
+- The viewer can explain the problem, product or intervention, and result without opening the case study.
+- Every claim and number maps to a listed source.
+- Every visual is public, synthetic, selected, or redacted.
+- Each scene says one thing and normally stays within 18 must-read words.
+- Screenshots remain readable after motion settles.
+- HyperFrames lint, runtime validation, transition inspection, and snapshots pass.
+- Every sampled frame passes visual and privacy review.
+- The final scene holds cleanly for 3 seconds without introducing new evidence.
+- The user has approved the generated preview.
+
+After approval:
+
+```bash
+bun run videos:render -- <slug> --approve-visuals --quality high
+```
+
+For an approved full regeneration:
+
+```bash
+bun run videos:all -- --approve-visuals --quality high
+```

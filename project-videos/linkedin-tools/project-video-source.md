@@ -182,7 +182,7 @@ Duration: `7s`
 
 Proof shown: isolated review UI screenshot and controller-led framing.
 
-Asset path: `hyperframes/assets/review-ui.png`.
+Asset path: `assets/redacted/review-ui.png`.
 
 Motion notes: screenshot settles into frame; guardrail chips enter after the headline.
 
@@ -236,7 +236,7 @@ Duration: `7s`
 
 Proof shown: saved source runs, result cards, blockers, and review state.
 
-Asset path: `hyperframes/assets/review-ui.png` plus native evidence cards.
+Asset path: `assets/redacted/review-ui.png` plus native evidence cards.
 
 Motion notes: evidence cards enter as a controlled stack; product crop holds steady.
 
@@ -263,7 +263,7 @@ Duration: `7s`
 
 Proof shown: final case-study value statement.
 
-Asset path: `hyperframes/assets/review-ui.png`.
+Asset path: `assets/redacted/review-ui.png`.
 
 Motion notes: system map settles; end card enters after the value statement has held.
 
@@ -347,12 +347,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                | Purpose                                                          | Source                                                 | Redaction needed?                                                                     | Final path                                                             |
-| -------------------- | ---------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Review UI screenshot | Product proof, solution scene, result crop, and final system map | `src/assets/img/projects/linkedin-tools-review-ui.png` | Already isolated temporary state according to case study; copied into redacted assets | `assets/redacted/review-ui.png` and `hyperframes/assets/review-ui.png` |
-| Browser action cards | Problem and cost scenes                                          | Case-study problem framing                             | No private data                                                                       | Build natively in HyperFrames                                          |
-| Guardrail rails      | How-it-works scene                                               | Case-study workflow boundaries                         | No private data                                                                       | Build natively in HyperFrames                                          |
-| Evidence cards       | Result scene                                                     | Case-study audit evidence list                         | No private data                                                                       | Build natively in HyperFrames                                          |
+| Asset                | Purpose                                                          | Source                                                 | Redaction needed?                                                                     | Final path                      |
+| -------------------- | ---------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------- |
+| Review UI screenshot | Product proof, solution scene, result crop, and final system map | `src/assets/img/projects/linkedin-tools-review-ui.png` | Already isolated temporary state according to case study; copied into redacted assets | `assets/redacted/review-ui.png` |
+| Browser action cards | Problem and cost scenes                                          | Case-study problem framing                             | No private data                                                                       | Build natively in HyperFrames   |
+| Guardrail rails      | How-it-works scene                                               | Case-study workflow boundaries                         | No private data                                                                       | Build natively in HyperFrames   |
+| Evidence cards       | Result scene                                                     | Case-study audit evidence list                         | No private data                                                                       | Build natively in HyperFrames   |
 
 ## Privacy Check
 
@@ -399,7 +399,7 @@ Scenes to build:
 6. Explainable automation value.
 7. Ending beat with project name and one short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/redacted/review-ui.png`
 

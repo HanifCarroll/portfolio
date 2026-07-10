@@ -1,0 +1,181 @@
+{
+  "$schema": "../../docs/project-videos/video-manifest.schema.json",
+  "version": 1,
+  "slug": "client-feedback",
+  "title": "Client Feedback Evidence CLI",
+  "family": "system-proof",
+  "timing": "short",
+  "viewer": "Hiring manager or general portfolio viewer",
+  "takeaway": "This local workflow keeps the proof, source, and artifact together without exposing private feedback.",
+  "theme": {
+    "canvas": "#F2EEE6",
+    "surface": "#FFFCF6",
+    "ink": "#17211E",
+    "muted": "#5F665F",
+    "border": "#D6CCBD",
+    "accent": "#167A6F",
+    "accentSoft": "#DDEEE8",
+    "accent2": "#B8682D",
+    "deep": "#111A24",
+    "fontDisplay": "Montserrat, sans-serif",
+    "fontBody": "Montserrat, sans-serif",
+    "fontMono": "IBM Plex Mono, monospace",
+    "motif": "rails"
+  },
+  "scenes": [
+    {
+      "id": "scattered-feedback",
+      "kind": "problem",
+      "eyebrow": "Problem",
+      "headline": "Useful feedback was scattered.",
+      "body": "Chats, emails, voice notes, and files lived apart.",
+      "duration": 5.7,
+      "layout": "stack",
+      "labels": [
+        {
+          "title": "Chat",
+          "body": "Message"
+        },
+        {
+          "title": "Email",
+          "body": "Thread"
+        },
+        {
+          "title": "Voice note",
+          "body": "Audio"
+        },
+        {
+          "title": "File",
+          "body": "Attachment"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "broken-trail",
+      "kind": "context",
+      "eyebrow": "The cost",
+      "headline": "Copying evidence by hand broke the trail.",
+      "body": "Sources got lost.",
+      "duration": 5.5,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Claim",
+          "body": "Copied"
+        },
+        {
+          "title": "Source",
+          "body": "Lost"
+        },
+        {
+          "title": "Evidence",
+          "body": "Disconnected"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "local-packet",
+      "kind": "action",
+      "eyebrow": "The solution",
+      "headline": "I built a local evidence folder.",
+      "body": "Private feedback stays on the machine.",
+      "duration": 5.5,
+      "layout": "copy-left",
+      "asset": "assets/redacted/client-feedback-evidence-packet.png",
+      "assetAlt": "Public redacted client-feedback evidence packet.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "push-up",
+      "motion": "settle"
+    },
+    {
+      "id": "gather-sources",
+      "kind": "workflow",
+      "eyebrow": "How it works",
+      "headline": "The tool gathers each place feedback lives.",
+      "body": "Messages, files, audio, and transcripts stay together.",
+      "duration": 5.9,
+      "layout": "report",
+      "asset": "assets/redacted/client-feedback-evidence-packet.png",
+      "assetAlt": "Evidence packet showing locally saved artifacts.",
+      "assetFit": "cover",
+      "assetPosition": "center 38%",
+      "labels": [
+        {
+          "title": "Messages",
+          "body": "Saved"
+        },
+        {
+          "title": "Files",
+          "body": "Attached"
+        },
+        {
+          "title": "Audio",
+          "body": "Preserved"
+        },
+        {
+          "title": "Transcript",
+          "body": "Connected"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "scroll"
+    },
+    {
+      "id": "reusable-evidence",
+      "kind": "result",
+      "eyebrow": "The result",
+      "headline": "The folder can be reused later.",
+      "body": "Claim, source, and evidence stay connected.",
+      "duration": 5.9,
+      "layout": "copy-right",
+      "asset": "assets/redacted/client-feedback-evidence-packet.png",
+      "assetAlt": "Reusable evidence packet with connected source artifacts.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "dissolve",
+      "motion": "settle"
+    },
+    {
+      "id": "client-feedback-end",
+      "kind": "end",
+      "eyebrow": "Client Feedback Evidence",
+      "headline": "Scattered feedback becomes reusable evidence.",
+      "body": "The source stays attached.",
+      "duration": 3,
+      "layout": "full",
+      "transition": "dissolve",
+      "motion": "settle"
+    }
+  ],
+  "posterAt": 19.65,
+  "privacy": {
+    "hide": [
+      "private feedback text, contact information, emails, and profile photos",
+      "recordings, transcript text, raw evidence folders, and local paths",
+      "browser storage, OAuth state, cookies, and tokens"
+    ],
+    "safe": [
+      "public redacted evidence-packet image",
+      "public project name and source labels",
+      "synthetic redacted message cards and artifact labels"
+    ]
+  },
+  "sources": [
+    "brief.md",
+    "project-video-source.md",
+    "design.md",
+    "sources.md",
+    "../../src/content/case-studies/client-feedback.mdx",
+    "../../src/lib/projects/client-feedback.json"
+  ],
+  "generation": {
+    "model": "gpt-5.6-sol",
+    "templateVersion": "1.0.0",
+    "hyperframesVersion": "0.7.46"
+  }
+}

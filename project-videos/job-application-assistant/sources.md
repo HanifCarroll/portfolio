@@ -26,7 +26,7 @@
 - `assets/raw/product-surface.html`: synthetic, safe UI capture source based on the extension side panel and dashboard surfaces.
 - `assets/raw/render_product_surface.py`: deterministic Pillow renderer used after Chrome headless capture hung in this environment.
 - `assets/redacted/product-surface.png`: generated synthetic product-surface screenshot.
-- `hyperframes/assets/product-surface.png`: root-contained copy used by the HyperFrames CLI renderer.
+- `assets/redacted/product-surface.png`: canonical manifest asset.
 
 ## Redaction Notes
 

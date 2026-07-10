@@ -181,7 +181,7 @@ Duration: `6.5s`
 
 Proof shown: parser, redaction, and SQLite retrieval notes.
 
-Asset path: `hyperframes/assets/agent-recall-cli.png`.
+Asset path: `assets/redacted/agent-recall-cli.png`.
 
 Motion notes: three pipeline cards assemble before the screenshot lands.
 
@@ -235,7 +235,7 @@ Duration: `6.5s`
 
 Proof shown: doctor, watcher, freshness, and index-health notes.
 
-Asset path: `hyperframes/assets/agent-recall-cli.png`.
+Asset path: `assets/redacted/agent-recall-cli.png`.
 
 Motion notes: screenshot holds steady; status chips light up one by one.
 
@@ -325,8 +325,6 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                     | Purpose                                                                    | Source                                         | Redaction needed?                  | Final path                                                                                                                |
-| ------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `agent-recall-cli.png`    | Public proof surface for CLI search, memories, receipts, and doctor output | `src/assets/img/projects/agent-recall-cli.png` | No; already public portfolio asset | `assets/selected/agent-recall-cli.png`, `assets/redacted/agent-recall-cli.png`, `hyperframes/assets/agent-recall-cli.png` |
-| `agent-recall-action.png` | HyperFrames render alias for the action scene screenshot                   | `src/assets/img/projects/agent-recall-cli.png` | No; same public asset              | `hyperframes/assets/agent-recall-action.png`                                                                              |
-| `agent-recall-proof.png`  | HyperFrames render alias for the proof scene screenshot                    | `src/assets/img/projects/agent-recall-cli.png` | No; same public asset              | `hyperframes/assets/agent-recall-proof.png`                                                                               |
+| Asset                  | Purpose                                                                    | Source                                         | Redaction needed?                  | Final path                             |
+| ---------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------- | -------------------------------------- |
+| `agent-recall-cli.png` | Public proof surface for CLI search, memories, receipts, and doctor output | `src/assets/img/projects/agent-recall-cli.png` | No; already public portfolio asset | `assets/redacted/agent-recall-cli.png` |

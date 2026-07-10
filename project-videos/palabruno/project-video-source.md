@@ -131,7 +131,7 @@ Duration: `6s`
 
 Proof shown: simplified problem from case study and metadata.
 
-Asset path: `hyperframes/assets/palabruno-founder-idea-launch.png`
+Asset path: `assets/selected/palabruno-founder-idea-launch.png`
 
 Motion notes: warm opening, image reveal, idea cards slide in.
 
@@ -158,7 +158,7 @@ Duration: `6s`
 
 Proof shown: case study and original PRD both support learner reader plus teacher-led commercial engine.
 
-Asset path: `hyperframes/assets/palabruno-teacher-library.png`
+Asset path: `assets/selected/palabruno-teacher-library.png`
 
 Motion notes: two audience cards connect into the teacher workspace.
 
@@ -185,7 +185,7 @@ Duration: `6.5s`
 
 Proof shown: portfolio case study and project metadata list mobile reader and teacher web workspace.
 
-Asset path: `hyperframes/assets/palabruno-founder-idea-launch.png`
+Asset path: `assets/selected/palabruno-founder-idea-launch.png`
 
 Motion notes: product composite lands as the hero proof.
 
@@ -211,7 +211,7 @@ Duration: `6s`
 
 Proof shown: public teacher workspace screenshots and case-study teacher screen notes.
 
-Asset path: `hyperframes/assets/palabruno-teacher-create-reading.png`; `hyperframes/assets/palabruno-teacher-groups.png`; `hyperframes/assets/palabruno-teacher-recent-shares.png`
+Asset path: `assets/selected/palabruno-teacher-create-reading.png`; `assets/selected/palabruno-teacher-groups.png`; `assets/selected/palabruno-teacher-recent-shares.png`
 
 Motion notes: three product surfaces enter as a horizontal proof strip.
 
@@ -263,7 +263,7 @@ Duration: `6s`
 
 Proof shown: case-study result and metadata outcomes.
 
-Asset path: `hyperframes/assets/palabruno-founder-idea-launch.png`
+Asset path: `assets/selected/palabruno-founder-idea-launch.png`
 
 Motion notes: final statement and product surface hold long enough for thumbnail inspection.
 
@@ -325,13 +325,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                  | Purpose                                             | Source                                                         | Redaction needed?                                              | Final path                                                                                                                                                                 |
-| ---------------------- | --------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Product composite      | Product proof and thumbnail frame                   | `src/assets/img/projects/palabruno-founder-idea-launch.png`    | No; public case-study asset                                    | `assets/selected/palabruno-founder-idea-launch.png`; HyperFrames aliases: `palabruno-product-problem.png`, `palabruno-product-solution.png`, `palabruno-product-final.png` |
-| Teacher create reading | Scene 4 product action and scene 5 background proof | `src/assets/img/projects/palabruno-teacher-create-reading.png` | No; crop sidebar emphasis in composition                       | `assets/selected/palabruno-teacher-create-reading.png`; `hyperframes/assets/palabruno-teacher-create-reading.png`; alias: `palabruno-teacher-create-launch.png`            |
-| Teacher library        | Scene 2 teacher workspace proof                     | `src/assets/img/projects/palabruno-teacher-library.png`        | No; crop/sidebar de-emphasis in composition                    | `assets/selected/palabruno-teacher-library.png`; `hyperframes/assets/palabruno-teacher-library.png`                                                                        |
-| Teacher groups         | Scene 4 class organization proof                    | `src/assets/img/projects/palabruno-teacher-groups.png`         | No; synthetic/public example                                   | `assets/selected/palabruno-teacher-groups.png`; `hyperframes/assets/palabruno-teacher-groups.png`                                                                          |
-| Recent shares          | Scene 4 sharing proof                               | `src/assets/img/projects/palabruno-teacher-recent-shares.png`  | No; synthetic/public example; do not zoom into recipient names | `assets/selected/palabruno-teacher-recent-shares.png`; `hyperframes/assets/palabruno-teacher-recent-shares.png`                                                            |
+| Asset                  | Purpose                                             | Source                                                         | Redaction needed?                                              | Final path                                             |
+| ---------------------- | --------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
+| Product composite      | Product proof and thumbnail frame                   | `src/assets/img/projects/palabruno-founder-idea-launch.png`    | No; public case-study asset                                    | `assets/selected/palabruno-founder-idea-launch.png`    |
+| Teacher create reading | Scene 4 product action and scene 5 background proof | `src/assets/img/projects/palabruno-teacher-create-reading.png` | No; crop sidebar emphasis in composition                       | `assets/selected/palabruno-teacher-create-reading.png` |
+| Teacher library        | Scene 2 teacher workspace proof                     | `src/assets/img/projects/palabruno-teacher-library.png`        | No; crop/sidebar de-emphasis in composition                    | `assets/selected/palabruno-teacher-library.png`        |
+| Teacher groups         | Scene 4 class organization proof                    | `src/assets/img/projects/palabruno-teacher-groups.png`         | No; synthetic/public example                                   | `assets/selected/palabruno-teacher-groups.png`         |
+| Recent shares          | Scene 4 sharing proof                               | `src/assets/img/projects/palabruno-teacher-recent-shares.png`  | No; synthetic/public example; do not zoom into recipient names | `assets/selected/palabruno-teacher-recent-shares.png`  |
 
 ## Privacy Check
 
@@ -376,14 +376,14 @@ Scenes to build:
 6. Product ready for real teacher testing.
 7. Ending beat with project name and short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/selected/palabruno-founder-idea-launch.png`
 - `assets/selected/palabruno-teacher-create-reading.png`
 - `assets/selected/palabruno-teacher-library.png`
 - `assets/selected/palabruno-teacher-groups.png`
 - `assets/selected/palabruno-teacher-recent-shares.png`
-- HyperFrames-local aliases of repeated screenshots to avoid duplicate media discovery warnings.
+- The manifest reuses the canonical selected screenshots directly.
 
 Required transitions:
 

@@ -125,7 +125,7 @@ Duration: `5s`
 
 Proof shown: case study summary and metadata problem.
 
-Asset path: `hyperframes/assets/casa-elaria-hero.png`
+Asset path: `assets/selected/casa-elaria-hero.png`
 
 Motion notes: hero image settles in while two validation cards enter.
 
@@ -152,7 +152,7 @@ Duration: `5s`
 
 Proof shown: public Casa Elaria product page screenshot.
 
-Asset path: `hyperframes/assets/casa-elaria-product-page.png`
+Asset path: `assets/selected/casa-elaria-product-page.png`
 
 Motion notes: product page slides in as the buy-path labels appear.
 
@@ -179,7 +179,7 @@ Duration: `4s`
 
 Proof shown: case study product direction and project metadata solution.
 
-Asset path: `hyperframes/assets/casa-elaria-product-page.png`
+Asset path: `assets/selected/casa-elaria-product-page.png`
 
 Motion notes: checkout and email cards connect with a simple validation rail.
 
@@ -258,11 +258,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                    | Purpose                            | Source                                            | Redaction needed?              | Final path                                                                                           |
-| ------------------------ | ---------------------------------- | ------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| Casa Elaria hero         | Product idea and final frame proof | `src/assets/img/projects/casa-elaria-hero.png`    | Already public portfolio asset | `assets/selected/casa-elaria-hero.png` and `hyperframes/assets/casa-elaria-hero.png`                 |
-| Casa Elaria product page | Storefront test and checkout proof | `src/assets/img/projects/casa-elaria-feature.png` | Already public portfolio asset | `assets/selected/casa-elaria-product-page.png` and `hyperframes/assets/casa-elaria-product-page.png` |
-| Validation loop cards    | Explain fake-door flow and signal  | This source document and case study               | No private data                | Built natively in HyperFrames                                                                        |
+| Asset                    | Purpose                            | Source                                            | Redaction needed?              | Final path                                     |
+| ------------------------ | ---------------------------------- | ------------------------------------------------- | ------------------------------ | ---------------------------------------------- |
+| Casa Elaria hero         | Product idea and final frame proof | `src/assets/img/projects/casa-elaria-hero.png`    | Already public portfolio asset | `assets/selected/casa-elaria-hero.png`         |
+| Casa Elaria product page | Storefront test and checkout proof | `src/assets/img/projects/casa-elaria-feature.png` | Already public portfolio asset | `assets/selected/casa-elaria-product-page.png` |
+| Validation loop cards    | Explain fake-door flow and signal  | This source document and case study               | No private data                | Built natively in HyperFrames                  |
 
 ## Privacy Check
 
@@ -303,11 +303,10 @@ Scenes to build:
 4. Demand signal decision board.
 5. Ending beat with project name and result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/selected/casa-elaria-hero.png`
 - `assets/selected/casa-elaria-product-page.png`
-- `casa-elaria-final.png` as a render-safe alias of the public hero screenshot
 
 Required transitions:
 

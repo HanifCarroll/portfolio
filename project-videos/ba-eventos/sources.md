@@ -22,8 +22,8 @@
 - `assets/selected/ba-eventos-feature.png`: public case-study screenshot copied from `src/assets/img/projects/ba-eventos-feature.png`.
 - `assets/redacted/ba-eventos-hero.png`: selected hero screenshot with the signed-in sidebar identity covered.
 - `assets/redacted/ba-eventos-feature.png`: selected feature screenshot with the signed-in sidebar identity covered.
-- `hyperframes/assets/ba-eventos-hero.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/ba-eventos-feature.png`: root-contained copy used by the HyperFrames CLI renderer.
+- `assets/redacted/ba-eventos-hero.png`: canonical manifest asset.
+- `assets/redacted/ba-eventos-feature.png`: canonical manifest asset.
 
 ## Redaction Notes
 

@@ -34,16 +34,6 @@
 - `assets/selected/casamo-homepage-viewport.jpg`
 - `assets/selected/casamo-stay-audit-og.png`
 - `assets/selected/casamo-report-studio.webp`
-- `hyperframes/assets/casamo-homepage-viewport.jpg`
-- `hyperframes/assets/casamo-homepage-intake.jpg`
-- `hyperframes/assets/casamo-homepage-final.jpg`
-- `hyperframes/assets/casamo-stay-audit-og.png`
-- `hyperframes/assets/casamo-shortlist-result.png`
-- `hyperframes/assets/casamo-end-result.png`
-- `hyperframes/assets/casamo-report-studio.webp`
-- `hyperframes/assets/casamo-report-audit.webp`
-
-The `casamo-homepage-*`, `casamo-shortlist-result.png`, `casamo-end-result.png`, and `casamo-report-audit.webp` files are local HyperFrames aliases of selected public assets. They keep scene intent explicit and avoid duplicate-media discovery warnings.
 
 ## Redaction Notes
 

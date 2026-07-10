@@ -22,10 +22,6 @@
 - `assets/selected/hablaba-feature.png`: public case-study group-chat screenshot copied from `src/assets/img/projects/hablaba-feature.png`.
 - `assets/redacted/hablaba-hero.png`: same public/synthetic asset, retained in the redacted rail for workflow consistency.
 - `assets/redacted/hablaba-feature.png`: same public/synthetic asset, retained in the redacted rail for workflow consistency.
-- `hyperframes/assets/hablaba-hero.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/hablaba-feature.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/hablaba-discovery.png`, `hyperframes/assets/hablaba-exchange-focus.png`, and `hyperframes/assets/hablaba-loop-discovery.png`: aliases of the discovery screenshot used to avoid duplicate-media discovery warnings.
-- `hyperframes/assets/hablaba-chat.png` and `hyperframes/assets/hablaba-loop-chat.png`: aliases of the group-chat screenshot used to avoid duplicate-media discovery warnings.
 
 ## Redaction Notes
 

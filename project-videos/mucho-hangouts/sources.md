@@ -12,8 +12,7 @@
 
 ## Generated Assets
 
-- `project-videos/mucho-hangouts/hyperframes/output/final.mp4`
-- `project-videos/mucho-hangouts/hyperframes/output/thumbnail.png`
+- `project-videos/mucho-hangouts/video.json`
 - `public/videos/projects/mucho-hangouts/overview.mp4`
 - `public/videos/projects/mucho-hangouts/poster.png`
 - `public/videos/projects/mucho-hangouts/preview.mp4`

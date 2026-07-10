@@ -256,12 +256,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                      | Purpose                                                           | Source                                                         | Redaction needed?               | Final path                                                                         |
-| -------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
-| Product surface screenshot | Product proof, scene 3 full surface, scene 5 dashboard/PDF result | Synthetic HTML rendered from `assets/raw/product-surface.html` | Already synthetic and safe      | `assets/redacted/product-surface.png` and `hyperframes/assets/product-surface.png` |
-| Scattered cards            | Problem and cost scenes                                           | This document and case study problem section                   | No private data                 | Build natively in HyperFrames                                                      |
-| Connected steps            | How-it-works scene                                                | This document and case study feature list                      | No private data                 | Build natively in HyperFrames                                                      |
-| PDF card                   | Result scene                                                      | README PDF behavior                                            | Use synthetic company name only | Build natively in HyperFrames                                                      |
+| Asset                      | Purpose                                                           | Source                                                         | Redaction needed?               | Final path                            |
+| -------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------- | ------------------------------------- |
+| Product surface screenshot | Product proof, scene 3 full surface, scene 5 dashboard/PDF result | Synthetic HTML rendered from `assets/raw/product-surface.html` | Already synthetic and safe      | `assets/redacted/product-surface.png` |
+| Scattered cards            | Problem and cost scenes                                           | This document and case study problem section                   | No private data                 | Build natively in HyperFrames         |
+| Connected steps            | How-it-works scene                                                | This document and case study feature list                      | No private data                 | Build natively in HyperFrames         |
+| PDF card                   | Result scene                                                      | README PDF behavior                                            | Use synthetic company name only | Build natively in HyperFrames         |
 
 ## Privacy Check
 
@@ -304,7 +304,7 @@ Scenes to build:
 6. Final value statement over the product surface.
 7. Ending beat with project name and short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/redacted/product-surface.png`
 

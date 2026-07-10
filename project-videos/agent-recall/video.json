@@ -1,0 +1,183 @@
+{
+  "$schema": "../../docs/project-videos/video-manifest.schema.json",
+  "version": 1,
+  "slug": "agent-recall",
+  "title": "Agent Recall",
+  "family": "system-proof",
+  "timing": "standard",
+  "viewer": "Technical reviewer or hiring manager checking implementation depth",
+  "takeaway": "Agents need memory they can inspect and reuse, not unverifiable summaries.",
+  "theme": {
+    "canvas": "#F2EFE7",
+    "surface": "#FFF9EF",
+    "ink": "#101A23",
+    "muted": "#61706B",
+    "border": "#D9D0C2",
+    "accent": "#84B9FF",
+    "accentSoft": "#8EE3C2",
+    "accent2": "#E4BE55",
+    "deep": "#0E1726",
+    "fontDisplay": "EB Garamond, serif",
+    "fontBody": "Inter, sans-serif",
+    "fontMono": "JetBrains Mono, monospace",
+    "motif": "rails"
+  },
+  "scenes": [
+    {
+      "id": "buried-context",
+      "kind": "problem",
+      "eyebrow": "Problem",
+      "headline": "Past agent work was hard to reuse.",
+      "body": "Important context got buried.",
+      "duration": 7.8,
+      "layout": "stack",
+      "labels": [
+        {
+          "title": "Decisions",
+          "body": "Buried"
+        },
+        {
+          "title": "Commands",
+          "body": "Hard to find"
+        },
+        {
+          "title": "Blockers",
+          "body": "Disconnected"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "local-source",
+      "kind": "context",
+      "eyebrow": "Input",
+      "headline": "The input is past work.",
+      "body": "Each memory stays tied to where it came from.",
+      "duration": 7.8,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Local archives",
+          "body": "Source of truth"
+        },
+        {
+          "title": "Source file",
+          "body": "Receipt"
+        },
+        {
+          "title": "Line links",
+          "body": "Review path"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "searchable-memory",
+      "kind": "action",
+      "eyebrow": "Action",
+      "headline": "Agent Recall turns sessions into searchable memory.",
+      "body": "Secrets are hidden first.",
+      "duration": 7.8,
+      "layout": "copy-left",
+      "asset": "assets/redacted/agent-recall-cli.png",
+      "assetAlt": "Public Agent Recall command-line proof surface.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "push-up",
+      "motion": "settle"
+    },
+    {
+      "id": "receipt-backed-output",
+      "kind": "evidence",
+      "eyebrow": "Source links",
+      "headline": "Each memory points back to where it came from.",
+      "body": "Receipts keep the trail inspectable.",
+      "duration": 7.8,
+      "layout": "report",
+      "asset": "assets/redacted/agent-recall-cli.png",
+      "assetAlt": "Agent Recall search output with receipt-backed memory proof.",
+      "assetFit": "cover",
+      "assetPosition": "center 38%",
+      "labels": [
+        {
+          "title": "Memory object",
+          "body": "Reusable context"
+        },
+        {
+          "title": "Source file",
+          "body": "Origin"
+        },
+        {
+          "title": "Line links",
+          "body": "Inspection"
+        }
+      ],
+      "transition": "dissolve",
+      "motion": "scroll"
+    },
+    {
+      "id": "visible-freshness",
+      "kind": "result",
+      "eyebrow": "Result",
+      "headline": "Freshness is visible.",
+      "body": "A reviewer can follow the trail.",
+      "duration": 7.8,
+      "layout": "stack",
+      "labels": [
+        {
+          "title": "Fresh",
+          "body": "Current"
+        },
+        {
+          "title": "Stale",
+          "body": "Needs refresh"
+        },
+        {
+          "title": "Blocked",
+          "body": "Needs attention"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "agent-recall-end",
+      "kind": "end",
+      "eyebrow": "Agent Recall",
+      "headline": "Searchable memory.",
+      "body": "With source links.",
+      "duration": 3,
+      "layout": "full",
+      "transition": "dissolve",
+      "motion": "settle"
+    }
+  ],
+  "posterAt": 20,
+  "privacy": {
+    "hide": [
+      "private transcript contents and memory records",
+      "raw local archive data and secret-bearing command output",
+      "tokens, cookies, API keys, and private local paths"
+    ],
+    "safe": [
+      "public Agent Recall CLI screenshot",
+      "public project name, repository URL, and release metadata",
+      "synthetic source, receipt, memory, and health labels"
+    ]
+  },
+  "sources": [
+    "brief.md",
+    "project-video-source.md",
+    "design.md",
+    "sources.md",
+    "../../src/content/case-studies/agent-recall.mdx",
+    "../../src/lib/projects/agent-recall.json"
+  ],
+  "generation": {
+    "model": "gpt-5.6-sol",
+    "templateVersion": "1.0.0",
+    "hyperframesVersion": "0.7.46"
+  }
+}

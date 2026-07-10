@@ -20,9 +20,6 @@
 
 - `assets/redacted/vox-prismatic-posts-crop.png`: cropped from `src/assets/img/projects/vox-prismatic-hero.png` to avoid sidebar account footer text and focus the posts workflow.
 - `assets/redacted/vox-prismatic-hook-workbench.png`: cropped from `src/assets/img/projects/vox-prismatic-feature.png` to focus the hook workbench modal.
-- `hyperframes/assets/vox-prismatic-posts-crop.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/vox-prismatic-posts-result.png`: HyperFrames-local alias of the cropped posts screenshot for repeated result-scene use.
-- `hyperframes/assets/vox-prismatic-hook-workbench.png`: root-contained copy used by the HyperFrames CLI renderer.
 
 ## Redaction Notes
 

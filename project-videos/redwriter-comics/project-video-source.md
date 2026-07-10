@@ -115,7 +115,7 @@ Duration: `4.5s`
 
 Proof shown: case-study problem and metadata constraint.
 
-Asset path: `hyperframes/assets/redwriter-feature.png`
+Asset path: `assets/selected/redwriter-feature.png`
 
 Motion notes: artwork sheets drift in from different directions over a red editorial canvas.
 
@@ -141,7 +141,7 @@ Duration: `4.5s`
 
 Proof shown: public project surface and case-study product direction.
 
-Asset path: `hyperframes/assets/redwriter-hero.png`; `hyperframes/assets/redwriter-feature.png`
+Asset path: `assets/selected/redwriter-hero.png`; `assets/selected/redwriter-feature.png`
 
 Motion notes: the site surface settles, then the artwork panel scrolls slightly.
 
@@ -167,7 +167,7 @@ Duration: `4.5s`
 
 Proof shown: case-study work and result sections.
 
-Asset path: `hyperframes/assets/redwriter-feature.png`; `hyperframes/assets/redwriter-logo.webp`
+Asset path: `assets/selected/redwriter-feature.png`; `assets/selected/redwriter-logo.webp`
 
 Motion notes: three path cards connect from artwork to review to connect.
 
@@ -194,7 +194,7 @@ Duration: `3s`
 
 Proof shown: project result.
 
-Asset path: `hyperframes/assets/redwriter-logo.webp`; `hyperframes/assets/redwriter-hero.png`
+Asset path: `assets/selected/redwriter-logo.webp`; `assets/selected/redwriter-hero.png`
 
 Motion notes: logo and result line appear quickly, then hold without introducing a new idea.
 
@@ -243,13 +243,13 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset             | Purpose                                     | Source                                          | Redaction needed?          | Final path                                                                          |
-| ----------------- | ------------------------------------------- | ----------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------- |
-| Redwriter hero    | Brand/site proof and ending frame           | `src/assets/img/projects/redwriter-hero.png`    | No; public portfolio asset | `assets/selected/redwriter-hero.png`; `hyperframes/assets/redwriter-hero.png`       |
-| Redwriter feature | Artwork review surface and scattered sheets | `src/assets/img/projects/redwriter-feature.png` | No; public portfolio asset | `assets/selected/redwriter-feature.png`; `hyperframes/assets/redwriter-feature.png` |
-| Redwriter logo    | Ending mark and path card                   | `public/logos/redwriter.webp`                   | No; public logo            | `assets/selected/redwriter-logo.webp`; `hyperframes/assets/redwriter-logo.webp`     |
+| Asset             | Purpose                                     | Source                                          | Redaction needed?          | Final path                              |
+| ----------------- | ------------------------------------------- | ----------------------------------------------- | -------------------------- | --------------------------------------- |
+| Redwriter hero    | Brand/site proof and ending frame           | `src/assets/img/projects/redwriter-hero.png`    | No; public portfolio asset | `assets/selected/redwriter-hero.png`    |
+| Redwriter feature | Artwork review surface and scattered sheets | `src/assets/img/projects/redwriter-feature.png` | No; public portfolio asset | `assets/selected/redwriter-feature.png` |
+| Redwriter logo    | Ending mark and path card                   | `public/logos/redwriter.webp`                   | No; public logo            | `assets/selected/redwriter-logo.webp`   |
 
-The HyperFrames composition also keeps local aliases of repeated public screenshots in `hyperframes/assets/` so the renderer does not report duplicate-media discovery warnings.
+The manifest reuses the canonical public screenshots in `assets/selected/`; the generator copies each unique asset into the generated composition.
 
 ## Privacy Check
 
@@ -288,7 +288,7 @@ Scenes to build:
 3. Path from review to inquiry.
 4. Ending beat with project name and result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/selected/redwriter-hero.png`
 - `assets/selected/redwriter-feature.png`

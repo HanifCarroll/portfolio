@@ -136,7 +136,7 @@ Duration: `6.5s`
 
 Proof shown: problem from case study and metadata.
 
-Asset path: `hyperframes/assets/casamo-homepage-viewport.jpg`
+Asset path: `assets/selected/casamo-homepage-viewport.jpg`
 
 Motion notes: screenshot enters as the proof anchor; filter cards appear as unproven claims.
 
@@ -163,7 +163,7 @@ Duration: `6.5s`
 
 Proof shown: case-study explanation and sample-report evidence categories.
 
-Asset path: `hyperframes/assets/casamo-report-studio.webp`
+Asset path: `assets/selected/casamo-report-studio.webp`
 
 Motion notes: apartment proof image settles; evidence cards assemble around it.
 
@@ -190,7 +190,7 @@ Duration: `6.5s`
 
 Proof shown: homepage product surface and case-study intake description.
 
-Asset path: `hyperframes/assets/casamo-homepage-intake.jpg`
+Asset path: `assets/selected/casamo-homepage-viewport.jpg`
 
 Motion notes: form window enters with trip-need chips and a scan rail.
 
@@ -217,7 +217,7 @@ Duration: `6.5s`
 
 Proof shown: sample report and case-study report workflow.
 
-Asset path: native HyperFrames cards plus `hyperframes/assets/casamo-report-studio.webp`
+Asset path: native HyperFrames cards plus `assets/selected/casamo-report-studio.webp`
 
 Motion notes: status cards and host-question card assemble after the report image.
 
@@ -244,7 +244,7 @@ Duration: `6.5s`
 
 Proof shown: report preview with top pick, runner-up, backup, and supported evidence labels.
 
-Asset path: `hyperframes/assets/casamo-shortlist-result.png`
+Asset path: `assets/selected/casamo-stay-audit-og.png`
 
 Motion notes: report preview lands as the payoff; result chips enter after it settles.
 
@@ -271,7 +271,7 @@ Duration: `6.5s`
 
 Proof shown: case-study result, metadata delivery highlights, and public pricing language.
 
-Asset path: `hyperframes/assets/casamo-end-result.png`
+Asset path: `assets/selected/casamo-stay-audit-og.png`
 
 Motion notes: paid scan and saved report cards assemble, then the end card holds for 3 seconds.
 
@@ -331,16 +331,11 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                          | Purpose                                | Source                                                                           | Redaction needed?              | Final path                                                              |
-| ------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
-| `casamo-homepage-viewport.jpg` | Homepage and intake proof surface      | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-viewport.jpg` |
-| `casamo-homepage-intake.jpg`   | Local alias for intake scene           | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-intake.jpg`   |
-| `casamo-homepage-final.jpg`    | Local alias for final product surface  | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `project-videos/casamo/hyperframes/assets/casamo-homepage-final.jpg`    |
-| `casamo-stay-audit-og.png`     | Public report preview proof            | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-stay-audit-og.png`     |
-| `casamo-shortlist-result.png`  | Local alias for result scene           | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-shortlist-result.png`  |
-| `casamo-end-result.png`        | Local alias for end scene              | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `project-videos/casamo/hyperframes/assets/casamo-end-result.png`        |
-| `casamo-report-studio.webp`    | Public sample apartment evidence image | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-studio.webp`    |
-| `casamo-report-audit.webp`     | Local alias for audit scene            | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `project-videos/casamo/hyperframes/assets/casamo-report-audit.webp`     |
+| Asset                          | Purpose                                | Source                                                                           | Redaction needed?              | Final path                                     |
+| ------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------- |
+| `casamo-homepage-viewport.jpg` | Homepage and intake proof surface      | `src/assets/img/projects/casamo-homepage-viewport.jpg`                           | No, public portfolio asset     | `assets/selected/casamo-homepage-viewport.jpg` |
+| `casamo-stay-audit-og.png`     | Public report preview proof            | `https://casamo.app/images/og/casamo-stay-audit.png`                             | No, public product image       | `assets/selected/casamo-stay-audit-og.png`     |
+| `casamo-report-studio.webp`    | Public sample apartment evidence image | `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp` | No, public sample-report image | `assets/selected/casamo-report-studio.webp`    |
 
 ## Privacy Check
 
@@ -382,16 +377,11 @@ Scenes to build:
 5. Result
 6. Product State with ending beat
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
-- `casamo-homepage-viewport.jpg`
-- `casamo-homepage-intake.jpg`
-- `casamo-homepage-final.jpg`
-- `casamo-stay-audit-og.png`
-- `casamo-shortlist-result.png`
-- `casamo-end-result.png`
-- `casamo-report-studio.webp`
-- `casamo-report-audit.webp`
+- `assets/selected/casamo-homepage-viewport.jpg`
+- `assets/selected/casamo-stay-audit-og.png`
+- `assets/selected/casamo-report-studio.webp`
 
 Required transitions:
 

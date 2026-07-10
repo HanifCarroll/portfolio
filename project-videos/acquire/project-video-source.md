@@ -188,7 +188,7 @@ Duration: `6.5s`
 
 Proof shown: public native product surface from the case study.
 
-Asset path: `hyperframes/assets/acquire-pursuits.png`.
+Asset path: `assets/redacted/acquire-pursuits.png`.
 
 Motion notes: screenshot slides in with a quiet scale settle. Keep the copy quiet so the product surface carries the scene.
 
@@ -242,7 +242,7 @@ Duration: `6.5s`
 
 Proof shown: case-study Pursuits surface and UI docs.
 
-Asset path: `hyperframes/assets/acquire-pursuits.png`.
+Asset path: `assets/redacted/acquire-pursuits.png`.
 
 Motion notes: crop holds steady; evidence chips enter after the headline.
 
@@ -350,12 +350,12 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                       | Purpose                                                                          | Source                                                  | Redaction needed?               | Final path                                                                           |
-| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------ |
-| Acquire Pursuits screenshot | Product proof, command-center surface, result scene crop, final frame background | `src/assets/img/projects/acquire-pursuits.png`          | Already public case-study asset | `assets/redacted/acquire-pursuits.png` and `hyperframes/assets/acquire-pursuits.png` |
-| Scattered workflow cards    | Problem and cost scenes                                                          | Case study problem section and metadata problem field   | No private data                 | Build natively in HyperFrames                                                        |
-| Approval workflow rail      | How-it-works scene                                                               | Case study approval gates and application workflow docs | No private data                 | Build natively in HyperFrames                                                        |
-| Evidence/status cards       | Result scene                                                                     | Case study Pursuits surface and UI docs                 | No private data                 | Build natively in HyperFrames                                                        |
+| Asset                       | Purpose                                                                          | Source                                                  | Redaction needed?               | Final path                             |
+| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------- | -------------------------------------- |
+| Acquire Pursuits screenshot | Product proof, command-center surface, result scene crop, final frame background | `src/assets/img/projects/acquire-pursuits.png`          | Already public case-study asset | `assets/redacted/acquire-pursuits.png` |
+| Scattered workflow cards    | Problem and cost scenes                                                          | Case study problem section and metadata problem field   | No private data                 | Build natively in HyperFrames          |
+| Approval workflow rail      | How-it-works scene                                                               | Case study approval gates and application workflow docs | No private data                 | Build natively in HyperFrames          |
+| Evidence/status cards       | Result scene                                                                     | Case study Pursuits surface and UI docs                 | No private data                 | Build natively in HyperFrames          |
 
 ## Privacy Check
 
@@ -400,7 +400,7 @@ Scenes to build:
 6. Clear result statement.
 7. Ending beat with project name and short result line.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
 - `assets/redacted/acquire-pursuits.png`
 

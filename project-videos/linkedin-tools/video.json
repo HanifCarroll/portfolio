@@ -1,0 +1,187 @@
+{
+  "$schema": "../../docs/project-videos/video-manifest.schema.json",
+  "version": 1,
+  "slug": "linkedin-tools",
+  "title": "LinkedIn Tools",
+  "family": "system-proof",
+  "timing": "standard",
+  "viewer": "Hiring manager or general portfolio viewer",
+  "takeaway": "This is a guarded automation system where workflow ownership and proof are part of the product.",
+  "theme": {
+    "canvas": "#EEF3F6",
+    "surface": "#FFFFFF",
+    "ink": "#111827",
+    "muted": "#52627A",
+    "border": "#CBD6E2",
+    "accent": "#1C7C5B",
+    "accentSoft": "#DDF4E8",
+    "accent2": "#B87513",
+    "deep": "#172331",
+    "fontDisplay": "EB Garamond, serif",
+    "fontBody": "Inter, sans-serif",
+    "fontMono": "JetBrains Mono, monospace",
+    "motif": "rails"
+  },
+  "scenes": [
+    {
+      "id": "hard-to-trust",
+      "kind": "problem",
+      "eyebrow": "Problem",
+      "headline": "Browser automation is easy to demo.",
+      "body": "It is harder to trust.",
+      "duration": 8.4,
+      "layout": "stack",
+      "labels": [
+        {
+          "title": "Browser action",
+          "body": "Can change the account"
+        },
+        {
+          "title": "Review",
+          "body": "Must be close to action"
+        },
+        {
+          "title": "Evidence",
+          "body": "Needed after the run"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "workflow-ownership",
+      "kind": "context",
+      "eyebrow": "Ownership",
+      "headline": "The question was ownership.",
+      "body": "Which workflow can act, and what record remains?",
+      "duration": 8.4,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Owner",
+          "body": "Responsible workflow"
+        },
+        {
+          "title": "Permission",
+          "body": "Allowed action"
+        },
+        {
+          "title": "Record",
+          "body": "Saved evidence"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "review-before-action",
+      "kind": "action",
+      "eyebrow": "Review gate",
+      "headline": "LinkedIn Tools adds review before action.",
+      "body": "The workflow must be approved first.",
+      "duration": 8.4,
+      "layout": "copy-left",
+      "asset": "assets/redacted/review-ui.png",
+      "assetAlt": "Public isolated LinkedIn Tools review interface.",
+      "assetFit": "contain",
+      "assetPosition": "center center",
+      "transition": "push-up",
+      "motion": "settle"
+    },
+    {
+      "id": "clear-workflow-limits",
+      "kind": "workflow",
+      "eyebrow": "Guardrails",
+      "headline": "Each workflow has a clear limit.",
+      "body": "Some can send, some only suggest.",
+      "duration": 8.4,
+      "layout": "rail",
+      "labels": [
+        {
+          "title": "Network",
+          "body": "Guarded sends"
+        },
+        {
+          "title": "Recruiter",
+          "body": "Drafted outreach"
+        },
+        {
+          "title": "Opportunity",
+          "body": "Recommend-only"
+        }
+      ],
+      "transition": "push-left",
+      "motion": "assemble"
+    },
+    {
+      "id": "inspectable-records",
+      "kind": "result",
+      "eyebrow": "Evidence",
+      "headline": "Runs leave records behind.",
+      "body": "The system can explain what happened.",
+      "duration": 8.4,
+      "layout": "copy-right",
+      "asset": "assets/redacted/review-ui.png",
+      "assetAlt": "LinkedIn Tools review UI used as evidence of inspectable workflow state.",
+      "assetFit": "cover",
+      "assetPosition": "center 40%",
+      "labels": [
+        {
+          "title": "Artifacts",
+          "body": "Captured outputs"
+        },
+        {
+          "title": "Ledgers",
+          "body": "Accepted state"
+        },
+        {
+          "title": "Audits",
+          "body": "Reconciliation"
+        },
+        {
+          "title": "Blockers",
+          "body": "Explicit stops"
+        }
+      ],
+      "transition": "dissolve",
+      "motion": "scroll"
+    },
+    {
+      "id": "linkedin-tools-end",
+      "kind": "end",
+      "eyebrow": "LinkedIn Tools",
+      "headline": "Automation with review and records.",
+      "body": "Every run leaves proof.",
+      "duration": 3,
+      "layout": "full",
+      "transition": "dissolve",
+      "motion": "settle"
+    }
+  ],
+  "posterAt": 21,
+  "privacy": {
+    "hide": [
+      "private LinkedIn messages, profile names, photos, contact lists, and handles",
+      "browser profiles, cookies, credentials, sessions, and tokens",
+      "live account state, local state paths, real drafts, and send queues"
+    ],
+    "safe": [
+      "public isolated review UI screenshot",
+      "public project name and workflow labels",
+      "synthetic guardrail, lane, and evidence graphics"
+    ]
+  },
+  "sources": [
+    "brief.md",
+    "project-video-source.md",
+    "design.md",
+    "sources.md",
+    "../../src/content/case-studies/linkedin-tools.mdx",
+    "../../src/lib/projects/linkedin-tools.json"
+  ],
+  "generation": {
+    "model": "gpt-5.6-sol",
+    "templateVersion": "1.0.0",
+    "hyperframesVersion": "0.7.46"
+  }
+}

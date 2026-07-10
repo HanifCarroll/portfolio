@@ -183,7 +183,7 @@ Duration: `6.5s`
 
 Proof shown: public counter-sales prototype screen and case-study summary.
 
-Asset path: `hyperframes/assets/desarmadero-operations-ventas.png`
+Asset path: `assets/redacted/desarmadero-operations-ventas.png`
 
 Motion notes: screenshot settles large while plan, role-map, and demo cards lock beside it.
 
@@ -210,7 +210,7 @@ Duration: `6.5s`
 
 Proof shown: modeled roles and prototype surface from case study and metadata.
 
-Asset path: `hyperframes/assets/desarmadero-operations-ventas.png`
+Asset path: `assets/redacted/desarmadero-operations-ventas.png`
 
 Motion notes: four role cards enter in order; payment gate locks before work assignment appears.
 
@@ -237,7 +237,7 @@ Duration: `6.5s`
 
 Proof shown: public yard-map screen and case-study proof note.
 
-Asset path: `hyperframes/assets/desarmadero-operations-mapa.png`
+Asset path: `assets/redacted/desarmadero-operations-mapa.png`
 
 Motion notes: map screenshot lands full, plate-search callout and 301 marker enter on top.
 
@@ -323,10 +323,10 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset                               | Purpose                                                       | Source                                                      | Redaction needed?                                       | Final path                                                                                             |
-| ----------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `desarmadero-operations-ventas.png` | Show the clickable counter-sales prototype and order summary. | `src/assets/img/projects/desarmadero-operations-ventas.png` | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/hyperframes/assets/desarmadero-operations-ventas.png` |
-| `desarmadero-operations-mapa.png`   | Show the yard map and plate search proof.                     | `src/assets/img/projects/desarmadero-operations-mapa.png`   | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/hyperframes/assets/desarmadero-operations-mapa.png`   |
+| Asset                               | Purpose                                                       | Source                                                      | Redaction needed?                                       | Final path                                                                                          |
+| ----------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `desarmadero-operations-ventas.png` | Show the clickable counter-sales prototype and order summary. | `src/assets/img/projects/desarmadero-operations-ventas.png` | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/assets/redacted/desarmadero-operations-ventas.png` |
+| `desarmadero-operations-mapa.png`   | Show the yard map and plate search proof.                     | `src/assets/img/projects/desarmadero-operations-mapa.png`   | Already public/anonymized; copied into redacted folder. | `project-videos/desarmadero-operations-prototype/assets/redacted/desarmadero-operations-mapa.png`   |
 
 ## Privacy Check
 
@@ -346,10 +346,10 @@ Aspect ratio: `16:9`, `1920x1080`
 
 Scenes to build: six plain-overview scenes plus a settled ending beat inside scene 6.
 
-Assets to copy into `hyperframes/assets/`:
+Manifest asset paths:
 
-- `desarmadero-operations-ventas.png`
-- `desarmadero-operations-mapa.png`
+- `assets/redacted/desarmadero-operations-ventas.png`
+- `assets/redacted/desarmadero-operations-mapa.png`
 
 Required transitions:
 

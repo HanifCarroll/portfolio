@@ -18,9 +18,7 @@
 ## Captured Assets
 
 - `assets/selected/client-feedback-evidence-packet.png`: public case-study image copied from `src/assets/img/projects/client-feedback-evidence-packet.png`.
-- `assets/redacted/client-feedback-evidence-packet.png`: same public image stored under the redacted rail for the video package.
-- `hyperframes/assets/client-feedback-evidence-packet.png`: root-contained copy used by the HyperFrames CLI renderer.
-- `hyperframes/assets/client-feedback-evidence-packet-result.png`: local alias of the same public image used to avoid duplicate-media discovery warnings.
+- `assets/redacted/client-feedback-evidence-packet.png`: canonical manifest asset stored on the redacted production rail.
 
 ## Redaction Notes
 
