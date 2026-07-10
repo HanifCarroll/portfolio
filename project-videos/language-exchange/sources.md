@@ -7,6 +7,7 @@
 - Current README: `https://github.com/HanifCarroll/HablaBA/blob/caf27a21ca42beb5458cf843b7750cac6a28c039/README.md`
 - Development history: 164 commits; product work from July 27 to October 13, 2025, followed by a README-only update on June 17, 2026.
 - Architecture history: Rails API at `e15a994`; imported web and API histories at `6961585` and `57abd27`; Laravel/Inertia/Vue consolidation from `c58fc6` through `2e6fefd`.
+- Mobile client history: `375a822:INTEGRATION_STATUS.md` documents a separate React Native/Expo client connected to the Rails API. Commit `84a6fb1` then replaces Expo Push with Firebase Cloud Messaging for a Flutter client, including Flutter-compatible payloads and physical-device testing instructions. The mobile clients lived outside this repository; no Dart, React Native, or `pubspec.yaml` source survives in its Git history.
 
 Current source files reviewed at `caf27a2`:
 
@@ -19,6 +20,13 @@ Current source files reviewed at `caf27a2`:
 - `resources/js/pages/exchanges/Chat.vue:52-199`
 - `database/seeders/DevExchangeSeeder.php:30-360,435-542`
 - `docker-compose.prod.yml:1-149`
+
+Historical mobile evidence reviewed:
+
+- `375a822:INTEGRATION_STATUS.md:16-21,97-101`
+- `84a6fb1:FIREBASE_SETUP.md:64-101`
+- `84a6fb1:app/services/push_notification_service.rb:4-28`
+- `84a6fb1:scripts/test_fcm_notification.rb:100`
 
 These sources support invite-only registration, profile setup, one-to-one and small-group exchanges, filtered discovery, private real-time chat, in-app and browser notifications, and a containerized web deployment shape.
 

@@ -367,7 +367,7 @@ Generation: keep the repository-pinned model, template version, HyperFrames vers
 
 - [x] The story explains the problem, research, product action, and honest result.
 - [x] Every on-screen claim maps to an archived research record or the pinned HablaBA source.
-- [x] No mobile, adoption, growth, reliability, or current-live-service claim appears.
+- [x] No mobile, adoption, growth, reliability, or current-live-service claim appears in the video.
 - [x] Each scene contains one idea and stays within the manifest word limit.
 - [x] Selected identities and conversations are traced to seeded demo data.
 - [x] `video.json` validates against the manifest schema.

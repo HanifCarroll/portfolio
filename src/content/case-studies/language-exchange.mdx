@@ -98,9 +98,11 @@ The first research round was a three-person, 90-minute group interview. I follow
 
 <CaseSection title="Engineering Direction">
   <DecisionBlock title="Consolidate the maintained product into one web stack.">
-    The implementation moved through several forms: an early Rails API, a separate web client, and mobile experiments. I eventually consolidated the maintained product into Laravel 12, Inertia, and Vue 3.
+    The implementation began as a Rails 8 API with a separate React Native/Expo client. I later built a Flutter client and migrated mobile notifications from Expo Push to Firebase Cloud Messaging. A separate React web client followed. Both mobile clients lived outside this repository and are not part of the maintained codebase.
 
-    The final repository keeps server-side product rules, typed routes, Vue pages, real-time events, queues, and deployment configuration together. PostgreSQL stores product state, Redis supports cache and real-time infrastructure, and the production setup separates the app, queue worker, WebSocket server, proxy, and data services in containers.
+    I eventually consolidated the maintained product into one Laravel 12, Inertia 2, and Vue 3 web application. That kept the product rules, typed routes, Vue pages, real-time events, queues, and deployment configuration together.
+
+    PostgreSQL stores product state, Redis supports cache and real-time infrastructure, and the production setup separates the app, queue worker, WebSocket server, proxy, and data services in containers.
 
   </DecisionBlock>
 
