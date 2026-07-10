@@ -1,28 +1,40 @@
 # Storyboard: Project Video AI Workflow
 
-This video tells LinkedIn viewers that practical AI work becomes more useful when judgment operates inside reliable software and reusable abstractions.
+The reel shows that practical AI work comes from combining judgment with deterministic tools and useful abstractions.
 
-Format: `1080x1080`, `30fps`, `39.5s`, silent MP4.
+Format: `1080x1080`, `30fps`, `45.5s`, silent MP4.
 
-| Scene                              |       Time | On screen                                                                                        | Why                                                                |
-| ---------------------------------- | ---------: | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| 01 - One system                    |   0.0-4.0s | Six project proofs assemble around `21 case studies / one video system`.                         | Opens with the maintainability outcome, not implementation detail. |
-| 02 - The old setup                 |   4.0-8.5s | `Every video was its own little system` with `19 compositions` and `19,366 lines`.               | Makes the original manual cost concrete.                           |
-| 03 - The abstraction               |  8.5-14.0s | One structured recipe feeds System proof, Product journey, and Visual showcase.                  | Shows why one shared system can still fit different project types. |
-| 04 - The division of labor         | 14.0-20.5s | AI judgment and deterministic software meet in a controlled split frame.                         | States the central thesis and keeps human approval visible.        |
-| 05 - The proof                     | 20.5-31.5s | Six public project clips across all three families; `21 full videos / 21 previews / 84 posters`. | Demonstrates breadth with the actual outputs.                      |
-| 06 - The maintainability result    | 31.5-35.5s | One shared layout/motion change updates three representative frames together.                    | Directly resolves the original frustration.                        |
-| 07 - Ready for the next case study | 35.5-39.5s | `One place to change. A workflow ready for the next case study.`                                 | Holds the practical implication without adding a new claim.        |
+| Scene                  |       Time | Intent                                                        | Viewer text                                                                  |
+| ---------------------- | ---------: | ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 01 - Outcome           |   0.0-4.0s | Open with the scale and shared-system result.                 | `21 projects. One video system.`                                             |
+| 02 - Manual burden     |  4.0-10.0s | Make the former maintenance cost concrete.                    | `One style change meant editing 19 separate videos.`                         |
+| 03 - Abstraction       | 10.0-16.5s | Explain the recipe and shared engine.                         | `Each project supplies a recipe. One engine builds the video.`               |
+| 04 - Division of labor | 16.5-24.5s | Separate AI judgment, repeatable execution, and human review. | `AI decides what matters. Software repeats it reliably.` plus `Human review` |
+| 05 - Proof             | 24.5-35.5s | Let six public project clips demonstrate range.               | `Six projects. One shared system.`                                           |
+| 06 - Maintainability   | 35.5-40.5s | Resolve the original styling problem.                         | `Change one shared file. Every video updates.`                               |
+| 07 - Practical close   | 40.5-45.5s | Close on the useful result, not the technology.               | `AI judgment. Reliable tools. Practical results.` plus `hanifcarroll.com`    |
+
+`editorial.json` is the machine-readable text lock. It declares scene intent, every renderer-created text element and canonical role, entrance timing, and the scene-local reading-window end. Every text element repeats its entrance as `data-text-start` and `data-text-duration`, and its GSAP call reads those attributes. `npm run check:editorial` rejects timing drift and verifies the actual outgoing transition start before calculating safety margins.
 
 ## Source clips
 
 | Project                | Family          | Source range used |
 | ---------------------- | --------------- | ----------------: |
-| Agent Recall           | System proof    |    16.200–18.033s |
-| Health AI Search Audit | System proof    |    15.800–17.633s |
-| Palabruno              | Product journey |    12.800–14.633s |
-| Casamo                 | Product journey |    22.800–24.633s |
-| Maximo Interiorismo    | Visual showcase |      5.500–7.333s |
-| Redwriter Comics       | Visual showcase |     9.400–11.235s |
+| Agent Recall           | System proof    |    16.200-18.033s |
+| Health AI Search Audit | System proof    |    15.800-17.633s |
+| Palabruno              | Product journey |    12.800-14.633s |
+| Casamo                 | Product journey |    22.800-24.633s |
+| Maximo Interiorismo    | Visual showcase |      5.500-7.333s |
+| Redwriter Comics       | Visual showcase |     9.400-11.235s |
 
-Only public portfolio assets are used. All source videos are 1920x1080, 30fps, H.264, and silent. The frozen excerpts under `assets/clips/` use H.264 at CRF 18, 30fps, `yuv420p`, and fast-start metadata so inspection and rendering do not need to probe the six full-length source files.
+Only public portfolio assets are used. The frozen excerpts under `assets/clips/` are silent H.264 files at 30fps.
+
+## Visual review
+
+- Read each sentence once at normal speed without pausing.
+- Confirm that the sentence remains the clear focal point after it settles.
+- Confirm that graphical chrome contains no undeclared words.
+- Confirm that the outgoing transition does not cover the scene before its declared reading-window end.
+- Check the six proof cuts for intact 16:9 framing and recognizable evidence.
+- Check every transition boundary and the final five-second hold.
+- Confirm no private data, unsupported claim, missing asset, clipped text, or interface overlap appears.

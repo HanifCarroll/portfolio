@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "desarmadero-operations-prototype",
   "title": "Desarmadero Operations Prototype",
   "family": "system-proof",
@@ -26,67 +27,37 @@
     {
       "id": "paper-and-memory",
       "kind": "problem",
-      "eyebrow": "The problem",
+      "intent": "The yard ran on paper and memory. Sales, payments, sheets, messages, and locations lived apart.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "The yard ran on paper and memory.",
-      "body": "Sales, payments, sheets, messages, and locations lived apart.",
       "duration": 8.4,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Sale",
-          "body": "Paper"
-        },
-        {
-          "title": "Payment",
-          "body": "Message"
-        },
-        {
-          "title": "Assignment",
-          "body": "Sheet"
-        },
-        {
-          "title": "Location",
-          "body": "Memory"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "fragile-handoffs",
       "kind": "context",
-      "eyebrow": "The cost",
+      "intent": "Every handoff had to stay aligned. Sale, payment, assignment, and yard location.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Every handoff had to stay aligned.",
-      "body": "Sale, payment, assignment, and yard location.",
       "duration": 8.4,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Sale",
-          "body": "Seller"
-        },
-        {
-          "title": "Payment",
-          "body": "Cash desk"
-        },
-        {
-          "title": "Assignment",
-          "body": "Manager"
-        },
-        {
-          "title": "Location",
-          "body": "Yard"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "clickable-prototype",
       "kind": "action",
-      "eyebrow": "The prototype",
-      "headline": "One discovery call became a prototype.",
-      "body": "The client could click through the real operation.",
+      "intent": "One discovery call became a prototype. The client could click through the real operation.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "One call became a clickable prototype.",
       "duration": 8.4,
       "layout": "copy-left",
       "asset": "assets/redacted/desarmadero-operations-ventas.png",
@@ -99,42 +70,28 @@
     {
       "id": "role-based-workflow",
       "kind": "workflow",
-      "eyebrow": "The workflow",
-      "headline": "The workflow follows the yard.",
-      "body": "Each role sees its part.",
+      "intent": "The workflow follows the yard. Each role sees its part.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The workflow follows each yard role.",
       "duration": 8.4,
       "layout": "copy-right",
       "asset": "assets/redacted/desarmadero-operations-ventas.png",
       "assetAlt": "Prototype role workflow for the seller, cash desk, manager, and dismantler.",
       "assetFit": "cover",
       "assetPosition": "center 42%",
-      "labels": [
-        {
-          "title": "Seller",
-          "body": "Sale"
-        },
-        {
-          "title": "Cash desk",
-          "body": "Payment"
-        },
-        {
-          "title": "Manager",
-          "body": "Assignment"
-        },
-        {
-          "title": "Dismantler",
-          "body": "Yard work"
-        }
-      ],
       "transition": "dissolve",
       "motion": "scroll"
     },
     {
       "id": "searchable-yard-map",
       "kind": "result",
-      "eyebrow": "The result",
-      "headline": "The map replaced memory.",
-      "body": "The client reacted to a working model.",
+      "intent": "The map replaced memory. The client reacted to a working model.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "A searchable map replaced memory.",
       "duration": 8.4,
       "layout": "report",
       "asset": "assets/redacted/desarmadero-operations-mapa.png",
@@ -142,6 +99,7 @@
       "assetFit": "contain",
       "assetPosition": "center center",
       "stat": {
+        "role": "status",
         "value": "301",
         "label": "yard positions"
       },
@@ -151,10 +109,14 @@
     {
       "id": "desarmadero-ops-end",
       "kind": "end",
-      "eyebrow": "Desarmadero Ops",
-      "headline": "One call. Clickable model.",
-      "body": "Clearer operating scope.",
-      "duration": 3,
+      "intent": "One call. Clickable model. Clearer operating scope.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
+      "eyebrow": "Desarmadero Operations",
+      "headline": "One call became a working model.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -183,7 +145,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

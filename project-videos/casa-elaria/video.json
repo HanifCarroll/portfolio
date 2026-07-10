@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "casa-elaria",
   "title": "Casa Elaria",
   "family": "product-journey",
@@ -26,34 +27,28 @@
     {
       "id": "product-idea",
       "kind": "problem",
-      "eyebrow": "Product idea",
-      "headline": "A beauty idea needed a real test.",
-      "body": "Inventory came later.",
+      "intent": "A beauty idea needed a real test. Inventory came later.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Demand was unclear before inventory.",
       "duration": 5,
       "layout": "copy-left",
       "asset": "assets/selected/casa-elaria-hero.png",
       "assetAlt": "Casa Elaria storefront hero",
       "assetFit": "cover",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Product idea",
-          "body": "Promising direction"
-        },
-        {
-          "title": "Inventory risk",
-          "body": "Real upfront spend"
-        }
-      ],
       "transition": "push-left",
       "motion": "settle"
     },
     {
       "id": "storefront-test",
       "kind": "showcase",
-      "eyebrow": "Storefront test",
-      "headline": "The storefront looked real.",
-      "body": "Visitors could browse, choose, and add to cart.",
+      "intent": "The storefront looked real. Visitors could browse, choose, and add to cart.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "A storefront made the idea tangible.",
       "duration": 5,
       "layout": "copy-right",
       "asset": "assets/selected/casa-elaria-product-page.png",
@@ -66,64 +61,44 @@
     {
       "id": "checkout-test",
       "kind": "action",
-      "eyebrow": "Checkout",
-      "headline": "Checkout became the test.",
-      "body": "No payment, just launch-list interest.",
+      "intent": "Checkout became the test. No payment, just launch-list interest.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Checkout captured launch interest.",
       "duration": 4,
       "layout": "rail",
       "asset": "assets/selected/casa-elaria-product-page.png",
       "assetAlt": "Casa Elaria product page used for the checkout test",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Browse",
-          "body": "Review the products"
-        },
-        {
-          "title": "Choose",
-          "body": "Show product intent"
-        },
-        {
-          "title": "Checkout",
-          "body": "Join the launch list"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "demand-signal",
       "kind": "result",
-      "eyebrow": "Demand signal",
-      "headline": "The signal was simple.",
-      "body": "Which products earned buyer intent?",
+      "intent": "The signal was simple. Which products earned buyer intent?",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Intent guided stock decisions.",
       "duration": 4,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Product clicks",
-          "body": "What drew attention"
-        },
-        {
-          "title": "Launch list",
-          "body": "Who wanted updates"
-        },
-        {
-          "title": "Stock decision",
-          "body": "What to test next"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Casa Elaria Demand before inventory.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Casa Elaria",
-      "headline": "Casa Elaria",
-      "body": "Demand before inventory.",
-      "duration": 3,
+      "headline": "Demand before inventory.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/selected/casa-elaria-hero.png",
       "assetAlt": "Settled Casa Elaria storefront",
@@ -161,7 +136,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

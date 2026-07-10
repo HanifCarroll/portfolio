@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "acquire",
   "title": "Acquire",
   "family": "system-proof",
@@ -26,63 +27,37 @@
     {
       "id": "scattered-work",
       "kind": "problem",
-      "eyebrow": "The problem",
-      "headline": "Opportunities were spread across too many tools.",
-      "body": "Notes, drafts, and follow-ups were split apart.",
+      "intent": "Opportunities were spread across too many tools. Notes, drafts, and follow-ups were split apart.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Work was scattered across too many tools.",
       "duration": 7.8,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Notes",
-          "body": "Context"
-        },
-        {
-          "title": "Drafts",
-          "body": "Materials"
-        },
-        {
-          "title": "Follow-ups",
-          "body": "Timing"
-        },
-        {
-          "title": "Inbox",
-          "body": "Replies"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "unclear-next-step",
       "kind": "context",
-      "eyebrow": "The cost",
-      "headline": "The next step was unclear.",
-      "body": "What is approved? What is blocked?",
+      "intent": "The next step was unclear. What is approved? What is blocked?",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The next action stayed unclear.",
       "duration": 7.8,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Worth acting on",
-          "body": "Review"
-        },
-        {
-          "title": "Approved input",
-          "body": "Approval"
-        },
-        {
-          "title": "Ready or blocked",
-          "body": "Status"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "command-center",
       "kind": "action",
-      "eyebrow": "The solution",
-      "headline": "Acquire puts each opportunity in one place.",
-      "body": "Each has a status and next step.",
+      "intent": "Acquire puts each opportunity in one place. Each has a status and next step.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Acquire gives every opportunity one home.",
       "duration": 7.8,
       "layout": "copy-left",
       "asset": "assets/redacted/acquire-pursuits.png",
@@ -95,72 +70,44 @@
     {
       "id": "review-before-action",
       "kind": "workflow",
-      "eyebrow": "How it works",
-      "headline": "Acquire keeps review before action.",
-      "body": "Review first, then move the work forward.",
+      "intent": "Acquire keeps review before action. Review first, then move the work forward.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Review happens before the work moves.",
       "duration": 7.8,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Review",
-          "body": "Worth acting on"
-        },
-        {
-          "title": "Approve",
-          "body": "Approved input"
-        },
-        {
-          "title": "Run",
-          "body": "Bounded work"
-        },
-        {
-          "title": "Evidence",
-          "body": "Evidence attached"
-        }
-      ],
       "transition": "dissolve",
       "motion": "assemble"
     },
     {
       "id": "pursuit-history",
       "kind": "result",
-      "eyebrow": "The result",
-      "headline": "Each pursuit keeps its history.",
-      "body": "Materials, status, blockers, and evidence stay together.",
+      "intent": "Each pursuit keeps its history. Materials, status, blockers, and evidence stay together.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Every pursuit keeps its history.",
       "duration": 7.8,
       "layout": "copy-right",
       "asset": "assets/redacted/acquire-pursuits.png",
       "assetAlt": "Acquire Pursuits workspace used as public product proof.",
       "assetFit": "cover",
       "assetPosition": "center 42%",
-      "labels": [
-        {
-          "title": "Materials",
-          "body": "Prepared"
-        },
-        {
-          "title": "Status",
-          "body": "Approved"
-        },
-        {
-          "title": "Blockers",
-          "body": "Visible"
-        },
-        {
-          "title": "Evidence",
-          "body": "Attached"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "acquire-end",
       "kind": "end",
+      "intent": "Clear next actions. With evidence.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Acquire",
-      "headline": "Clear next actions.",
-      "body": "With evidence.",
-      "duration": 3,
+      "headline": "Clear actions, backed by evidence.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -189,7 +136,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

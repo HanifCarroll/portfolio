@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "redwriter-comics",
   "title": "Redwriter Comics",
   "family": "visual-showcase",
@@ -26,38 +27,28 @@
     {
       "id": "scattered-artwork",
       "kind": "context",
-      "eyebrow": "Artwork",
-      "headline": "Artwork was scattered.",
-      "body": "Editors needed one review path.",
+      "intent": "Artwork was scattered. Editors needed one review path.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Artwork needed one review path.",
       "duration": 4.5,
       "layout": "stack",
       "asset": "assets/selected/redwriter-feature.png",
       "assetAlt": "Redwriter Comics public artwork surface",
       "assetFit": "cover",
       "assetPosition": "top center",
-      "labels": [
-        {
-          "title": "Sequential",
-          "body": "Story pages"
-        },
-        {
-          "title": "Covers",
-          "body": "Editorial artwork"
-        },
-        {
-          "title": "Character",
-          "body": "Design work"
-        }
-      ],
       "transition": "push-left",
       "motion": "drift"
     },
     {
       "id": "portfolio-hub",
       "kind": "showcase",
-      "eyebrow": "Portfolio",
-      "headline": "One portfolio hub made review easier.",
-      "body": "The artwork stays easy to inspect.",
+      "intent": "One portfolio hub made review easier. The artwork stays easy to inspect.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "One portfolio made review easier.",
       "duration": 4.5,
       "layout": "full",
       "asset": "assets/selected/redwriter-hero.png",
@@ -70,44 +61,42 @@
     {
       "id": "commission-path",
       "kind": "result",
-      "eyebrow": "Connect",
-      "headline": "Review could turn into commission conversations.",
-      "body": "Editors and publishers can move toward inquiry.",
+      "intent": "Review could turn into commission conversations. Editors and publishers can move toward inquiry.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Review could lead to commissions.",
       "duration": 4.5,
       "layout": "rail",
       "asset": "assets/selected/redwriter-feature.png",
       "assetAlt": "Redwriter Comics artwork and review path",
       "assetFit": "cover",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Artwork",
-          "body": "See the work"
-        },
-        {
-          "title": "Review",
-          "body": "Inspect the portfolio"
-        },
-        {
-          "title": "Connect",
-          "body": "Start a commission conversation"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Redwriter Comics Portfolio to commissions.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Redwriter Comics",
-      "headline": "Redwriter Comics",
-      "body": "Portfolio to commissions.",
-      "duration": 3,
+      "headline": "Portfolio to commissions.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/selected/redwriter-logo.webp",
       "assetAlt": "Redwriter Comics logo",
       "assetFit": "contain",
       "assetPosition": "center center",
+      "assetText": [
+        {
+          "role": "orientation",
+          "text": "Redwriter Comics"
+        }
+      ],
       "transition": "dissolve",
       "motion": "settle"
     }
@@ -140,7 +129,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

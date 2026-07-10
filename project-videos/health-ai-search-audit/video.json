@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "health-ai-search-audit",
   "title": "Helping a Health Services Startup Show Up in AI Search",
   "family": "system-proof",
@@ -26,84 +27,45 @@
     {
       "id": "unclear-visibility",
       "kind": "problem",
-      "eyebrow": "The question",
-      "headline": "AI search visibility was hard to see.",
-      "body": "The founder needed evidence, not generic tips.",
+      "intent": "AI search visibility was hard to see. The founder needed evidence, not generic tips.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The founder needed evidence, not generic tips.",
       "duration": 7.4,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Appeared",
-          "body": "Where?"
-        },
-        {
-          "title": "Missing",
-          "body": "Which searches?"
-        },
-        {
-          "title": "Next steps",
-          "body": "What can change?"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "public-evidence-only",
       "kind": "context",
-      "eyebrow": "The boundary",
+      "intent": "The review used public evidence only. No analytics, website admin, or server access.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "The review used public evidence only.",
-      "body": "No analytics, website admin, or server access.",
       "duration": 7.6,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Public website",
-          "body": "Readable pages"
-        },
-        {
-          "title": "Public blog",
-          "body": "Separate source"
-        },
-        {
-          "title": "Search answers",
-          "body": "Live evidence"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "search-coverage",
       "kind": "workflow",
-      "eyebrow": "Search tests",
-      "headline": "I tested 74 search situations.",
-      "body": "Spanish and English questions covered four major search tools.",
+      "intent": "I tested 74 search situations. Spanish and English questions covered four major search tools.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The test covered four search tools.",
       "duration": 8,
       "layout": "report",
       "asset": "../../src/assets/img/projects/health-ai-search-audit-report.png",
       "assetAlt": "Public AI-search audit preview with tested, checked, rechecked, and fix-list counts.",
       "assetFit": "contain",
       "assetPosition": "center 34%",
-      "labels": [
-        {
-          "title": "ChatGPT Search",
-          "body": "Search answers"
-        },
-        {
-          "title": "Gemini",
-          "body": "Search answers"
-        },
-        {
-          "title": "Google",
-          "body": "Search answers"
-        },
-        {
-          "title": "Perplexity",
-          "body": "Search answers"
-        }
-      ],
       "stat": {
+        "role": "status",
         "value": "74",
         "label": "search situations"
       },
@@ -113,9 +75,11 @@
     {
       "id": "browser-checked-evidence",
       "kind": "evidence",
-      "eyebrow": "Direct evidence",
-      "headline": "The checks showed where the business appeared or went missing.",
-      "body": "Thirty-three results were checked directly in the browser.",
+      "intent": "The checks showed where the business appeared or went missing. Thirty-three results were checked directly in the browser.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Browser checks showed where visibility disappeared.",
       "duration": 8,
       "layout": "copy-left",
       "asset": "../../src/assets/img/projects/health-ai-search-audit-report.png",
@@ -123,6 +87,7 @@
       "assetFit": "contain",
       "assetPosition": "center 48%",
       "stat": {
+        "role": "status",
         "value": "33",
         "label": "browser-checked results"
       },
@@ -132,9 +97,11 @@
     {
       "id": "private-report",
       "kind": "report",
-      "eyebrow": "The report",
-      "headline": "The findings became a private report with 9 fixes.",
-      "body": "Evidence and monthly checks keep the review reusable.",
+      "intent": "The findings became a private report with 9 fixes. Evidence and monthly checks keep the review reusable.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The findings became an ordered fix plan.",
       "duration": 8,
       "layout": "copy-right",
       "asset": "../../src/assets/img/projects/health-ai-search-audit-report.png",
@@ -142,6 +109,7 @@
       "assetFit": "contain",
       "assetPosition": "center 62%",
       "stat": {
+        "role": "status",
         "value": "9",
         "label": "website fixes"
       },
@@ -151,10 +119,14 @@
     {
       "id": "health-ai-search-audit-end",
       "kind": "end",
-      "eyebrow": "AI Search Visibility Review",
-      "headline": "Public evidence.",
-      "body": "Clear next steps.",
-      "duration": 3,
+      "intent": "Public evidence. Clear next steps.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
+      "eyebrow": "AI Search Review",
+      "headline": "Public evidence. Clear next steps.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -183,7 +155,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

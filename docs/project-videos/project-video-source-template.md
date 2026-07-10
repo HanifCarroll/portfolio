@@ -32,6 +32,8 @@ Choose one:
 
 Timing profile: `standard`, `short`, or `loop`
 
+Editorial profile: `silent-proof-v1`
+
 ## Plain Story
 
 Fill this even for technical videos. If this section is unclear, the video will drift.
@@ -129,11 +131,13 @@ Keep each scene focused on one idea. If a scene needs more than one idea, split 
 
 The final manifest must contain four to six total scenes, including the ending. Use only the story scenes the chosen family needs; visual showcases and loops often need fewer than five.
 
-For plain overview videos, use one headline plus one short sentence at most. For evidence tours, technical labels are allowed only when they are the point of the scene.
+Default to one `primary` headline. Add an eyebrow, body, label, or stat only when it earns a canonical role: `supporting`, `orientation`, or `status`. For evidence tours, technical labels are allowed only when they are the point of the scene.
 
 ### Scene 1: Problem
 
 Purpose:
+
+Manifest intent (not rendered):
 
 Viewer should understand:
 
@@ -157,6 +161,8 @@ Reading-speed check:
 
 Purpose:
 
+Manifest intent (not rendered):
+
 Viewer should understand:
 
 Visual source:
@@ -178,6 +184,8 @@ Reading-speed check:
 ### Scene 3: Solution
 
 Purpose:
+
+Manifest intent (not rendered):
 
 Viewer should understand:
 
@@ -201,6 +209,8 @@ Reading-speed check:
 
 Purpose:
 
+Manifest intent (not rendered):
+
 Viewer should understand:
 
 Visual source:
@@ -223,6 +233,8 @@ Reading-speed check:
 
 Purpose:
 
+Manifest intent (not rendered):
+
 Viewer should understand:
 
 Visual source:
@@ -243,7 +255,7 @@ Reading-speed check:
 
 ## Ending Beat
 
-Reserve the final `3s` for a settled ending. This is not a new argument. It should give the viewer a clean place to stop.
+Reserve at least `3s` for a settled ending and extend it when the explicit project name and result need more reading time. This is not a new argument. It should give the viewer a clean place to stop.
 
 Use either:
 
@@ -277,22 +289,27 @@ If the chosen mode is evidence tour, rename the five story scenes to fit this st
 
 Final text that may appear in the video. Keep this section short and plain. Manifest scene copy should not introduce a new main claim that is not listed here.
 
-| Scene | Text                                     | Word count | Duration | WPM |
-| ----- | ---------------------------------------- | ---------: | -------: | --: |
-| End   | Project name plus one short result line. |            |       3s |     |
-| 1     |                                          |            |          |     |
-| 2     |                                          |            |          |     |
-| 3     |                                          |            |          |     |
-| 4     |                                          |            |          |     |
-| 5     |                                          |            |          |     |
+| Scene | Manifest path | Role | Explicit rendered text | Words | Text settled | Reading window end | Settled hold | Read time | Margin |
+| ----- | ------------- | ---- | ---------------------- | ----: | -----------: | -----------------: | -----------: | --------: | -----: |
+| End   |               |      |                        |       |              |                    |              |           |        |
+| 1     |               |      |                        |       |              |                    |              |           |        |
+| 2     |               |      |                        |       |              |                    |              |           |        |
+| 3     |               |      |                        |       |              |                    |              |           |        |
+| 4     |               |      |                        |       |              |                    |              |           |        |
+| 5     |               |      |                        |       |              |                    |              |           |        |
 
-Reading-speed targets:
+Executable reading check for `silent-proof-v1`:
 
-- Plain overview: `100-140` WPM.
-- Technical proof: `140-160` WPM.
-- Upper bound: `180` WPM only for short, familiar questions or labels.
+- Pin the canonical standard as `silent-designed-video-v1` and the tokenizer as `whitespace-v1`.
+- Count `eyebrow`, `headline`, `body`, every label title and body, every stat value and label, and declared words inside logos or screenshots. Use `assetText` when the scene depends on reading words inside an image. Do not count non-rendered `intent` or `assetAlt`.
+- For `whitespace-v1`, trim each rendered field, split on one or more whitespace characters, and remove empty or punctuation-only tokens. Punctuation attached to a word stays attached; numbers, URLs, handles, contractions, and hyphenated terms count as one token.
+- Use `140 WPM`: `requiredReadingTime = viewerFacingWordCount / (140 / 60)`.
+- Normal copy settles at `1.1s`; ending copy settles at `0.5s`; a label cascade can settle later.
+- End the reading window at the outgoing transition start, or at scene end when there is no outgoing transition.
+- `usableSettledHold = readingWindowEnd - textSettledAt`; `readingMargin = usableSettledHold - requiredReadingTime`.
+- Require at least `2s` of settled hold and `0.75s` margin for story scenes. Require `0.5s` margin for the ending.
 
-If a scene has more than `16-18` must-read words, split it or hold the frame longer.
+If the check fails, remove nonessential copy, shorten the remaining copy, or extend the hold within the timing profile.
 
 Allowed short labels:
 
@@ -300,9 +317,9 @@ Allowed short labels:
 
 ## Asset Manifest
 
-| Asset | Purpose | Source | Redaction needed? | Final path |
-| ----- | ------- | ------ | ----------------- | ---------- |
-|       |         |        |                   |            |
+| Asset | Purpose | Source | Redaction needed? | Required readable text and role | Final path |
+| ----- | ------- | ------ | ----------------- | ------------------------------- | ---------- |
+|       |         |        |                   |                                 |            |
 
 ## Privacy Check
 
@@ -324,6 +341,8 @@ Story family: `system-proof`, `product-journey`, or `visual-showcase`
 
 Timing profile: `standard`, `short`, or `loop`
 
+Editorial profile: `silent-proof-v1`
+
 Theme colors, fonts, and motif:
 
 Scenes to encode in `video.json`:
@@ -332,7 +351,7 @@ Approved manifest asset paths:
 
 Required transitions:
 
-Required motion and labels:
+Required motion and text roles (`primary`, `supporting`, `orientation`, or `status`):
 
 `posterAt` frame:
 
@@ -348,7 +367,8 @@ Generation model, template version, and HyperFrames version:
 - [ ] The video can be understood by the chosen viewer without opening the case study.
 - [ ] On-screen copy is pulled from the text lock above.
 - [ ] Technical implementation details stay off-screen unless the chosen story mode requires them.
-- [ ] Each scene has one clear idea.
+- [ ] Each scene has a concise non-rendered `intent` and one clear idea.
+- [ ] Every viewer-facing word is explicit in the text lock and passes the post-settle reading check.
 - [ ] Product screenshots remain legible.
 - [ ] No private data is visible.
 - [ ] `video.json` validates against `video-manifest.schema.json`.

@@ -3,6 +3,38 @@
   <body>
     <template>
       <style>
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio EB Garamond";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio IBM Plex Mono";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+        }
+
         #root {
           position: absolute;
           inset: 0;
@@ -11,7 +43,7 @@
           overflow: hidden;
           padding: 92px;
           color: #171512;
-          font-family: "Inter", sans-serif;
+          font-family: "Portfolio Inter", sans-serif;
           pointer-events: none;
         }
 
@@ -19,37 +51,9 @@
           position: absolute;
           top: 220px;
           right: 42px;
-          color: rgba(23, 21, 18, 0.06);
-          font:
-            700 430px/0.8 "IBM Plex Mono",
-            monospace;
-          letter-spacing: -0.12em;
-        }
-
-        .topline {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          color: #696158;
-          font:
-            700 24px/1 "IBM Plex Mono",
-            monospace;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-        }
-
-        .topline b {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          color: #c7862f;
-        }
-
-        .topline b::before {
-          width: 14px;
-          height: 14px;
-          content: "";
-          background: #c7862f;
+          width: 330px;
+          height: 330px;
+          border: 38px solid rgba(23, 21, 18, 0.045);
           border-radius: 50%;
         }
 
@@ -59,7 +63,7 @@
           width: 820px;
           margin: 42px 0 0;
           font:
-            700 82px/0.92 "EB Garamond",
+            700 82px/0.92 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.04em;
         }
@@ -84,7 +88,7 @@
         .stat strong {
           display: block;
           font:
-            700 66px/0.9 "IBM Plex Mono",
+            700 66px/0.9 "Portfolio IBM Plex Mono",
             monospace;
           font-variant-numeric: tabular-nums;
           letter-spacing: -0.06em;
@@ -95,7 +99,7 @@
           margin-top: 18px;
           color: #3a352f;
           font:
-            700 22px/1 "IBM Plex Mono",
+            700 22px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.05em;
           text-transform: uppercase;
@@ -107,23 +111,44 @@
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 16px;
-          margin-top: 38px;
+          margin-top: 92px;
         }
 
         .file-card {
-          min-height: 124px;
-          padding: 18px;
+          min-height: 170px;
+          padding: 24px;
           border: 2px solid #171512;
           background: #f9f9f7;
           box-shadow: 0 12px 26px rgba(23, 21, 18, 0.12);
           transform-origin: center;
         }
 
+        .file-card::before {
+          display: block;
+          width: 54px;
+          height: 14px;
+          content: "";
+          background: #c7862f;
+          box-shadow: 78px 0 0 rgba(23, 21, 18, 0.16);
+        }
+
+        .file-card::after {
+          display: block;
+          width: 82%;
+          height: 12px;
+          margin-top: 38px;
+          content: "";
+          background: #171512;
+          box-shadow:
+            0 30px 0 rgba(23, 21, 18, 0.34),
+            0 60px 0 rgba(23, 21, 18, 0.16);
+        }
+
         .file-card code {
           display: block;
           color: #c7862f;
           font:
-            700 21px/1.2 "IBM Plex Mono",
+            700 21px/1.2 "Portfolio IBM Plex Mono",
             monospace;
         }
 
@@ -131,7 +156,7 @@
           display: block;
           margin-top: 12px;
           font:
-            700 26px/1.05 "Inter",
+            700 26px/1.05 "Portfolio Inter",
             sans-serif;
         }
 
@@ -140,7 +165,7 @@
           margin-top: 10px;
           color: #696158;
           font:
-            700 18px/1 "IBM Plex Mono",
+            700 18px/1 "Portfolio IBM Plex Mono",
             monospace;
         }
 
@@ -156,7 +181,7 @@
           border-top: 3px solid #171512;
           color: #696158;
           font:
-            700 20px/1 "IBM Plex Mono",
+            700 20px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.05em;
           text-transform: uppercase;
@@ -172,50 +197,20 @@
         data-composition-id="scene-02-manual"
         data-width="1080"
         data-height="1080"
-        data-duration="4.5"
+        data-duration="6"
       >
-        <div class="ghost-number" data-layout-ignore>19</div>
-        <div id="scene-02-topline" class="topline">
-          <b>Before</b>
-          <span>02 / 07</span>
-        </div>
-        <h1 id="scene-02-headline" class="headline">Every video was its own little system.</h1>
-
-        <div class="stat-row">
-          <div id="scene-02-stat-a" class="stat">
-            <strong id="scene-02-count-compositions">0</strong>
-            <span>separate compositions</span>
-          </div>
-          <div id="scene-02-stat-b" class="stat">
-            <strong id="scene-02-count-lines">0</strong>
-            <span>lines to maintain</span>
-          </div>
-        </div>
+        <div class="ghost-number" data-layout-ignore aria-hidden="true"></div>
+        <h1 id="scene-02-headline" class="headline" data-text-start="0.28" data-text-duration="0.7">
+          One style change meant editing 19 separate videos.
+        </h1>
 
         <div class="file-grid">
-          <div class="file-card">
-            <code>index.html</code><strong>Acquire</strong><small>separate layout</small>
-          </div>
-          <div class="file-card">
-            <code>index.html</code><strong>Agent Recall</strong><small>separate files</small>
-          </div>
-          <div class="file-card">
-            <code>index.html</code><strong>Palabruno</strong><small>separate styling</small>
-          </div>
-          <div class="file-card">
-            <code>index.html</code><strong>Casamo</strong><small>separate motion</small>
-          </div>
-          <div class="file-card">
-            <code>index.html</code><strong>Maximo</strong><small>separate files</small>
-          </div>
-          <div class="file-card">
-            <code>index.html</code><strong>Redwriter</strong><small>separate updates</small>
-          </div>
-        </div>
-
-        <div id="scene-02-status" class="status-strip">
-          <span>Styling change</span>
-          <b>Repeated in many places</b>
+          <div class="file-card"></div>
+          <div class="file-card"></div>
+          <div class="file-card"></div>
+          <div class="file-card"></div>
+          <div class="file-card"></div>
+          <div class="file-card"></div>
         </div>
       </div>
 
@@ -223,47 +218,17 @@
         window.__timelines = window.__timelines || {};
         const root = document.querySelector('[data-composition-id="scene-02-manual"]');
         const tl = gsap.timeline({ paused: true });
-        const compositionCounter = root.querySelector("#scene-02-count-compositions");
-        const lineCounter = root.querySelector("#scene-02-count-lines");
-        const state = { compositions: 0, lines: 0 };
-
+        const headline = root.querySelector("#scene-02-headline");
         tl.fromTo(
-          root.querySelector("#scene-02-topline"),
-          { opacity: 0, x: -36 },
-          { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" },
-          0.18,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-02-headline"),
+          headline,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" },
-          0.28,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-02-stat-a"),
-          { opacity: 0, x: -70, scale: 0.86 },
-          { opacity: 1, x: 0, scale: 1, duration: 0.58, ease: "power3.out" },
-          0.62,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-02-stat-b"),
-          { opacity: 0, x: 70, scale: 0.86 },
-          { opacity: 1, x: 0, scale: 1, duration: 0.62, ease: "power4.out" },
-          0.72,
-        );
-        tl.to(
-          state,
           {
-            compositions: 19,
-            lines: 19366,
-            duration: 1.25,
-            ease: "power3.out",
-            onUpdate: () => {
-              compositionCounter.textContent = Math.round(state.compositions).toLocaleString();
-              lineCounter.textContent = Math.round(state.lines).toLocaleString();
-            },
+            opacity: 1,
+            y: 0,
+            duration: Number(headline.dataset.textDuration),
+            ease: "power4.out",
           },
-          0.76,
+          Number(headline.dataset.textStart),
         );
         tl.fromTo(
           root.querySelectorAll(".file-card"),
@@ -279,13 +244,6 @@
           },
           1.15,
         );
-        tl.fromTo(
-          root.querySelector("#scene-02-status"),
-          { opacity: 0, scaleX: 0.72 },
-          { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out" },
-          1.76,
-        );
-
         window.__timelines["scene-02-manual"] = tl;
       </script>
     </template>

@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "palabruno",
   "title": "Palabruno",
   "family": "product-journey",
@@ -26,9 +27,11 @@
     {
       "id": "founder-idea",
       "kind": "problem",
-      "eyebrow": "Founder idea",
-      "headline": "A founder had a strong idea.",
-      "body": "The harder question was what to launch first.",
+      "intent": "A founder had a strong idea. The harder question was what to launch first.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "A strong idea needed a launch focus.",
       "duration": 6,
       "layout": "copy-left",
       "asset": "assets/selected/palabruno-founder-idea-launch.png",
@@ -41,34 +44,28 @@
     {
       "id": "first-buyer",
       "kind": "context",
-      "eyebrow": "First buyer",
-      "headline": "A student reader helped learners.",
-      "body": "Teachers were the clearer first buyer.",
+      "intent": "A student reader helped learners. Teachers were the clearer first buyer.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Teachers became the clearer first buyer.",
       "duration": 6,
       "layout": "copy-right",
       "asset": "assets/selected/palabruno-teacher-library.png",
       "assetAlt": "Palabruno teacher reading library",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Learners",
-          "body": "Read on mobile"
-        },
-        {
-          "title": "Teachers",
-          "body": "Create and share material"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "connected-surfaces",
       "kind": "action",
-      "eyebrow": "Product shape",
-      "headline": "I shaped Palabruno into two connected surfaces.",
-      "body": "Mobile for learners. Web for teachers.",
+      "intent": "I shaped Palabruno into two connected surfaces. Mobile for learners. Web for teachers.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Two product surfaces worked together.",
       "duration": 7,
       "layout": "full",
       "asset": "assets/selected/palabruno-founder-idea-launch.png",
@@ -81,76 +78,48 @@
     {
       "id": "teacher-workflow",
       "kind": "workflow",
-      "eyebrow": "Teacher workflow",
-      "headline": "Teachers create readings and manage students.",
-      "body": "Groups and shared lesson material stay organized.",
+      "intent": "Teachers create readings and manage students. Groups and shared lesson material stay organized.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Teachers create and organize readings.",
       "duration": 8,
       "layout": "rail",
       "asset": "assets/selected/palabruno-teacher-create-reading.png",
       "assetAlt": "Palabruno teacher reading creation workspace",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Create readings",
-          "body": "Prepare lesson material"
-        },
-        {
-          "title": "Students",
-          "body": "Keep learners organized"
-        },
-        {
-          "title": "Groups",
-          "body": "Structure the class"
-        },
-        {
-          "title": "Share",
-          "body": "Send material"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "launch-result",
       "kind": "result",
-      "eyebrow": "Launch result",
-      "headline": "The launch included mobile apps, web, and payments.",
-      "body": "Store pages and support notes completed the handoff.",
+      "intent": "The launch included mobile apps, web, and payments. Store pages and support notes completed the handoff.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The launch covered product and handoff.",
       "duration": 10,
       "layout": "report",
       "asset": "assets/selected/palabruno-founder-idea-launch.png",
       "assetAlt": "Palabruno launched across mobile and web",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "iOS and Android",
-          "body": "Learner apps"
-        },
-        {
-          "title": "Web",
-          "body": "Teacher workspace"
-        },
-        {
-          "title": "Payments",
-          "body": "Commercial surface"
-        },
-        {
-          "title": "Support notes",
-          "body": "Owner handoff"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Palabruno Ready for teacher testing.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Palabruno",
-      "headline": "Palabruno",
-      "body": "Ready for teacher testing.",
-      "duration": 3,
+      "headline": "Ready for teacher testing.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/selected/palabruno-founder-idea-launch.png",
       "assetAlt": "Settled Palabruno learner and teacher product composite",
@@ -189,7 +158,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

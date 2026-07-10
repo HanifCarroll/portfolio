@@ -13,8 +13,8 @@ Build a reusable 16:9 HyperFrames system for portfolio proof videos. Use the exa
 ## Global Direction
 
 - Canvas: project theme color with grid texture and edge framing.
-- Typography: project display font for claims, body font for explanation, mono font for evidence labels.
-- Density: background texture, primary proof, secondary structural proof, and foreground metadata in every scene.
+- Typography: project display font for claims, body font for explanation, mono font for manifest-declared labels.
+- Density: background texture, primary proof, secondary structural proof, and graphical chrome in every scene. Chrome must not introduce viewer-facing vocabulary.
 - Primary transition: horizontal push, `0.5s`, `power3.inOut`.
 - Accent transition: scale dissolve, `0.5s`, `power2.inOut`, at the proof or result shift.
 - Motion is deterministic and seekable. Use explicit `fromTo()` entrances and finite ambient movement.
@@ -26,7 +26,7 @@ Build a reusable 16:9 HyperFrames system for portfolio proof videos. Use the exa
 
 Concept: Show the messy starting state as a real operational tension rather than an abstract slogan. Copy anchors one side; labeled fragments, the public product surface, or an evidence card occupies the other.
 
-Depth: BG grid, ghost motif, edge panels. MG copy and proof fragments. FG scene number, family label, rule, and two compact state labels.
+Depth: BG grid, ghost motif, edge panels. MG copy and proof fragments. FG nonverbal rule and optional manifest-declared labels.
 
 Choreography: headline SLIDES, rule DRAWS, fragments ASSEMBLE from mixed directions, background DRIFTS. Transition with a push.
 
@@ -34,15 +34,15 @@ Choreography: headline SLIDES, rule DRAWS, fragments ASSEMBLE from mixed directi
 
 Concept: Make the practical cost or decision visible. The frame feels like a case file opening: one concrete question, state, or user need becomes the focus.
 
-Depth: BG paper/grid texture and one offset color panel. MG screenshot or report crop with supporting copy. FG status chip, registration marks, and source label.
+Depth: BG paper/grid texture and one offset color panel. MG screenshot or report crop with supporting copy. FG registration marks plus an optional manifest-declared orientation label.
 
-Choreography: proof surface SETTLES with a slight perspective change; labels LOCK IN; one edge panel FLOATS. Push or vertical push into the next action.
+Choreography: proof surface SETTLES with a slight perspective change; any manifest-declared labels LOCK IN; one edge panel FLOATS. Push or vertical push into the next action.
 
 ### Action Or Workflow
 
 Concept: Show what the product or system actually does. Use a rail, steps, screens, or compact evidence cards so the viewer can name the transformation.
 
-Depth: BG route/grid. MG proof surface and 3-4 action nodes. FG input/output labels, rule, scene metadata.
+Depth: BG route/grid. MG proof surface and action nodes. FG nonverbal rule and only manifest-declared labels.
 
 Choreography: rail DRAWS, nodes STEP in under 500ms total stagger, product surface SLIDES and settles, one accent PULSES. Push to related work; dissolve if the next beat changes register.
 
@@ -50,33 +50,37 @@ Choreography: rail DRAWS, nodes STEP in under 500ms total stagger, product surfa
 
 Concept: Move from claim to inspectable proof. The artifact should feel mounted for review, with a clear callout to the result, guardrail, finding, or report.
 
-Depth: BG deep proof panel and subtle grid. MG large artifact frame. FG evidence chips, one stat when sourced, and a trust label.
+Depth: BG deep proof panel and subtle grid. MG large artifact frame. FG only manifest-declared labels or a source-backed stat.
 
-Choreography: frame EXPANDS, image CLARIFIES, evidence chips LOCK IN, background rail BREATHES. Scale-dissolve into the result.
+Choreography: frame EXPANDS, image CLARIFIES, any declared evidence LOCKS IN, background rail BREATHES. Scale-dissolve into the result.
 
 ### Result
 
 Concept: Hold the saved state or outcome and state why it matters in plain language. Use the strongest safe proof asset with minimal supporting labels.
 
-Depth: BG project canvas and motif. MG result artifact plus conclusion copy. FG result label, border marks, and one compact proof line.
+Depth: BG project canvas and motif. MG result artifact plus conclusion copy. FG border marks and only essential manifest-declared evidence.
 
 Choreography: result surface SETTLES, conclusion ASSEMBLES, ambient motion slows. Gentle push or dissolve into the ending.
 
 ### End
 
-Concept: A clean labeled cabinet card for the project. It repeats the project name and one short result line; it makes no new claim.
+Concept: A clean cabinet card for the project. Its explicit manifest fields state the project name and one short result line; it makes no new claim.
 
-Depth: BG project canvas and family motif. MG project name, result, and optional safe project image. FG small family label, rule, and registration marks.
+Depth: BG project canvas and family motif. MG explicit manifest eyebrow, headline, and optional safe project image. FG rule and registration marks.
 
 Choreography: name SLIDES, rule DRAWS, result FLOATS into place. Settle within 0.5 seconds, then hold through the end.
 
 ## Recurring Motifs
 
-- Scene number and story-family label in the upper-left.
+- Nonverbal rule in the upper-left.
 - Registration marks at opposite corners.
 - One rule that grows from the copy toward the proof surface.
 - Family motif geometry behind the content: rails for system proof, a path for product journey, and a gallery frame for visual showcase.
-- Evidence labels use the project mono font and full-strength accent color.
+- Manifest-declared labels use the project mono font and full-strength accent color.
+
+## Editorial Contract
+
+Use `silent-proof-v1`, implementing editorial standard `silent-designed-video-v1` with tokenizer `whitespace-v1`. `intent` guides the scene but never renders. Give every text element one canonical role: `primary`, `supporting`, `orientation`, or `status`. Count rendered text by trimming each field, splitting on one or more whitespace characters, and removing punctuation-only tokens. Hold copy long enough after the final text entrance and before the outgoing transition starts: at least `2s` settled hold, `0.75s` reading margin for story scenes, and `0.5s` for the ending at `140 WPM`. Never synthesize scene numbers, family names, scene kinds, proof-header text, fallback steps, or end-card copy.
 
 ## Negative Prompt
 

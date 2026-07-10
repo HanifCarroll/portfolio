@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "online-store-conversion-review",
   "title": "Making a Skincare Store Easier to Shop",
   "family": "system-proof",
@@ -26,88 +27,45 @@
     {
       "id": "shopper-confidence",
       "kind": "problem",
-      "eyebrow": "The question",
-      "headline": "Shoppers could lose confidence before choosing a product.",
-      "body": "The owner needed to know where and why.",
+      "intent": "Shoppers could lose confidence before choosing a product. The owner needed to know where and why.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Shoppers could lose confidence before choosing.",
       "duration": 7.4,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Choose",
-          "body": "What fits?"
-        },
-        {
-          "title": "Trust",
-          "body": "Why this product?"
-        },
-        {
-          "title": "Buy",
-          "body": "What blocks action?"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "shopper-path",
       "kind": "context",
-      "eyebrow": "Store walk-through",
-      "headline": "I followed the same path a shopper would.",
-      "body": "Homepage, assessment, product list, and product page.",
+      "intent": "I followed the same path a shopper would. Homepage, assessment, product list, and product page.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "I followed the shopper's full path.",
       "duration": 7.6,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Homepage",
-          "body": "Entry"
-        },
-        {
-          "title": "Assessment",
-          "body": "Guidance"
-        },
-        {
-          "title": "Product list",
-          "body": "Choice"
-        },
-        {
-          "title": "Product page",
-          "body": "Decision"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "five-findings",
       "kind": "evidence",
-      "eyebrow": "Main findings",
-      "headline": "Five problems made choosing and buying harder.",
-      "body": "The empty assessment became the first fix.",
+      "intent": "Five problems made choosing and buying harder. The empty assessment became the first fix.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Five problems made buying harder.",
       "duration": 8,
       "layout": "report",
       "asset": "../../src/assets/img/projects/online-store-conversion-review.png",
       "assetAlt": "Public online-store review showing shopper friction and the recommended priority order.",
       "assetFit": "contain",
       "assetPosition": "center 44%",
-      "labels": [
-        {
-          "title": "Skin assessment",
-          "body": "Dead end"
-        },
-        {
-          "title": "Product fit",
-          "body": "Unclear"
-        },
-        {
-          "title": "Sold-out products",
-          "body": "Repeated friction"
-        },
-        {
-          "title": "Mobile speed",
-          "body": "Slower checks"
-        }
-      ],
       "stat": {
+        "role": "status",
         "value": "5",
         "label": "main findings"
       },
@@ -117,9 +75,11 @@
     {
       "id": "desktop-mobile-evidence",
       "kind": "evidence",
-      "eyebrow": "Desktop and mobile",
-      "headline": "The same 18 public pages were checked on both devices.",
-      "body": "All 36 page captures completed successfully.",
+      "intent": "The same 18 public pages were checked on both devices. All 36 page captures completed successfully.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Desktop and mobile checks matched.",
       "duration": 8,
       "layout": "copy-left",
       "asset": "../../src/assets/img/projects/online-store-conversion-review.png",
@@ -127,6 +87,7 @@
       "assetFit": "contain",
       "assetPosition": "center 58%",
       "stat": {
+        "role": "status",
         "value": "36",
         "label": "successful page captures"
       },
@@ -136,9 +97,11 @@
     {
       "id": "ordered-fix-list",
       "kind": "report",
-      "eyebrow": "Fix order",
-      "headline": "The findings became seven fixes in a clear order.",
-      "body": "Each fix names a result to watch.",
+      "intent": "The findings became seven fixes in a clear order. Each fix names a result to watch.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The findings became an ordered fix list.",
       "duration": 8,
       "layout": "copy-right",
       "asset": "../../src/assets/img/projects/online-store-conversion-review.png",
@@ -146,6 +109,7 @@
       "assetFit": "contain",
       "assetPosition": "center 30%",
       "stat": {
+        "role": "status",
         "value": "7",
         "label": "ordered fixes"
       },
@@ -155,10 +119,14 @@
     {
       "id": "online-store-review-end",
       "kind": "end",
-      "eyebrow": "Making a Skincare Store Easier to Shop",
-      "headline": "Five findings.",
-      "body": "Seven ordered fixes.",
-      "duration": 3,
+      "intent": "Five findings. Seven ordered fixes.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
+      "eyebrow": "Skincare Store Review",
+      "headline": "Five findings. Seven ordered fixes.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -187,7 +155,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

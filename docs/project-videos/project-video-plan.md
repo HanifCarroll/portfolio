@@ -69,7 +69,7 @@ A project is ready to render when:
 - The viewer can explain the problem, product or intervention, and result without opening the case study.
 - Every claim and number maps to a listed source.
 - Every visual is public, synthetic, selected, or redacted.
-- Each scene says one thing and normally stays within 18 must-read words.
+- Each scene says one thing, defaults to one headline, and passes the `silent-proof-v1` post-settle reading margin.
 - Screenshots remain readable after motion settles.
 - HyperFrames lint, runtime validation, transition inspection, and snapshots pass.
 - Every sampled frame passes visual and privacy review.

@@ -3,6 +3,38 @@
   <body>
     <template>
       <style>
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio EB Garamond";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio IBM Plex Mono";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+        }
+
         #root {
           position: absolute;
           inset: 0;
@@ -11,26 +43,15 @@
           overflow: hidden;
           padding: 92px;
           color: #171512;
-          font-family: "Inter", sans-serif;
+          font-family: "Portfolio Inter", sans-serif;
           pointer-events: none;
-        }
-
-        .topline {
-          display: flex;
-          justify-content: space-between;
-          color: #696158;
-          font:
-            700 22px/1 "IBM Plex Mono",
-            monospace;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
         }
 
         .headline {
           width: 850px;
           margin: 34px 0 0;
           font:
-            700 84px/0.9 "EB Garamond",
+            700 84px/0.9 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.045em;
         }
@@ -51,13 +72,26 @@
         }
 
         .control {
+          position: relative;
+          width: 92px;
+          height: 42px;
           padding: 12px 14px;
           border: 2px solid #171512;
           color: #3a352f;
           font:
-            700 18px/1 "IBM Plex Mono",
+            700 18px/1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
+        }
+
+        .control::after {
+          position: absolute;
+          top: 17px;
+          left: 14px;
+          width: 58px;
+          height: 7px;
+          content: "";
+          background: #171512;
         }
 
         .switch {
@@ -75,7 +109,7 @@
           display: grid;
           place-items: center;
           font:
-            700 18px/1 "IBM Plex Mono",
+            700 18px/1 "Portfolio IBM Plex Mono",
             monospace;
         }
 
@@ -112,11 +146,48 @@
           background: #171512;
         }
 
+        .proof-visual {
+          display: block;
+          width: 100%;
+          height: 210px;
+          border: 2px solid #171512;
+          background:
+            linear-gradient(90deg, #0066ff 0 36%, transparent 36%) 22px 24px / calc(100% - 44px)
+              14px no-repeat,
+            linear-gradient(90deg, #171512 0 72%, transparent 72%) 22px 72px / calc(100% - 44px)
+              12px no-repeat,
+            linear-gradient(90deg, #696158 0 52%, transparent 52%) 22px 112px / calc(100% - 44px)
+              10px no-repeat,
+            #f9f9f7;
+        }
+
+        .proof-card:nth-child(2) .proof-visual {
+          background:
+            linear-gradient(90deg, #1d6f58 0 48%, transparent 48%) 22px 24px / calc(100% - 44px)
+              14px no-repeat,
+            linear-gradient(90deg, #171512 0 62%, transparent 62%) 22px 72px / calc(100% - 44px)
+              12px no-repeat,
+            linear-gradient(90deg, #696158 0 78%, transparent 78%) 22px 112px / calc(100% - 44px)
+              10px no-repeat,
+            #f9f9f7;
+        }
+
+        .proof-card:nth-child(3) .proof-visual {
+          background:
+            linear-gradient(90deg, #c7862f 0 30%, transparent 30%) 22px 24px / calc(100% - 44px)
+              14px no-repeat,
+            linear-gradient(90deg, #171512 0 84%, transparent 84%) 22px 72px / calc(100% - 44px)
+              12px no-repeat,
+            linear-gradient(90deg, #696158 0 58%, transparent 58%) 22px 112px / calc(100% - 44px)
+              10px no-repeat,
+            #f9f9f7;
+        }
+
         .proof-card strong {
           display: block;
           margin-top: 16px;
           font:
-            700 28px/1 "EB Garamond",
+            700 28px/1 "Portfolio EB Garamond",
             serif;
         }
 
@@ -125,7 +196,7 @@
           margin-top: 9px;
           color: #696158;
           font:
-            700 16px/1 "IBM Plex Mono",
+            700 16px/1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -153,7 +224,7 @@
           margin-top: 64px;
           color: #3a352f;
           font:
-            700 22px/1.2 "IBM Plex Mono",
+            700 22px/1.2 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -168,47 +239,42 @@
         data-composition-id="scene-06-change"
         data-width="1080"
         data-height="1080"
-        data-duration="4"
+        data-duration="5"
       >
-        <div id="scene-06-topline" class="topline">
-          <span>Maintainability proof</span><span>06 / 07</span>
-        </div>
-        <h1 id="scene-06-headline" class="headline">Change the shared system once.</h1>
+        <h1
+          id="scene-06-headline"
+          class="headline"
+          data-text-start="0.22"
+          data-text-duration="0.58"
+        >
+          Change one shared file. Every video updates.
+        </h1>
 
         <div id="scene-06-controls" class="control-rail">
           <div class="controls">
-            <span class="control">Frame</span>
-            <span class="control">Safe margin</span>
-            <span class="control">Motion</span>
+            <span class="control"></span>
+            <span class="control"></span>
+            <span class="control"></span>
           </div>
           <div class="switch">
             <div id="scene-06-knob" class="switch-knob"></div>
-            <span id="scene-06-local">Local</span>
-            <span id="scene-06-shared">Shared</span>
           </div>
         </div>
 
         <div class="proof-row">
           <article class="proof-card">
-            <img src="assets/posters/agent-recall.png" alt="Agent Recall poster" />
-            <strong>Agent Recall</strong><small>System proof</small>
+            <span class="proof-visual"></span>
             <div class="sync-outline"></div>
           </article>
           <article class="proof-card">
-            <img src="assets/posters/palabruno.png" alt="Palabruno poster" />
-            <strong>Palabruno</strong><small>Product journey</small>
+            <span class="proof-visual"></span>
             <div class="sync-outline"></div>
           </article>
           <article class="proof-card">
-            <img src="assets/posters/maximo-interiorismo.png" alt="Maximo Interiorismo poster" />
-            <strong>Maximo</strong><small>Visual showcase</small>
+            <span class="proof-visual"></span>
             <div class="sync-outline"></div>
           </article>
           <div id="scene-06-path" class="system-path"></div>
-        </div>
-
-        <div id="scene-06-result" class="result">
-          <span>Project proof stays distinct</span><b>Shared frame updates together</b>
         </div>
       </div>
 
@@ -216,18 +282,18 @@
         window.__timelines = window.__timelines || {};
         const root = document.querySelector('[data-composition-id="scene-06-change"]');
         const tl = gsap.timeline({ paused: true });
+        const headline = root.querySelector("#scene-06-headline");
 
         tl.fromTo(
-          root.querySelector("#scene-06-topline"),
-          { opacity: 0, x: -34 },
-          { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" },
-          0.14,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-06-headline"),
+          headline,
           { opacity: 0, y: 34 },
-          { opacity: 1, y: 0, duration: 0.58, ease: "power4.out" },
-          0.22,
+          {
+            opacity: 1,
+            y: 0,
+            duration: Number(headline.dataset.textDuration),
+            ease: "power4.out",
+          },
+          Number(headline.dataset.textStart),
         );
         tl.fromTo(
           root.querySelector("#scene-06-controls"),
@@ -247,17 +313,6 @@
           { x: 122, duration: 0.48, ease: "power4.inOut" },
           1.24,
         );
-        tl.to(
-          root.querySelector("#scene-06-local"),
-          { opacity: 0.28, duration: 0.26, ease: "power2.in" },
-          1.28,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-06-shared"),
-          { color: "#171512" },
-          { color: "#FFFCF6", duration: 0.32, ease: "power2.out" },
-          1.38,
-        );
         tl.fromTo(
           root.querySelector("#scene-06-path"),
           { scaleX: 0 },
@@ -270,13 +325,6 @@
           { opacity: 1, scale: 1, duration: 0.38, ease: "power4.out", stagger: 0.06 },
           1.64,
         );
-        tl.fromTo(
-          root.querySelector("#scene-06-result"),
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" },
-          1.92,
-        );
-
         window.__timelines["scene-06-change"] = tl;
       </script>
     </template>

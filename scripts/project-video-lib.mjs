@@ -21,9 +21,12 @@ export const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 export const projectVideosDir = join(repoRoot, "project-videos");
 export const generatedVideosDir = join(projectVideosDir, ".generated");
 export const publicVideosDir = join(repoRoot, "public/videos/projects");
-export const templateVersion = "1.0.0";
+export const templateVersion = "2.0.0";
 export const hyperframesVersion = "0.7.46";
 export const generationModel = "gpt-5.6-sol";
+export const editorialProfile = "silent-proof-v1";
+export const editorialStandardVersion = "silent-designed-video-v1";
+export const editorialTokenizerVersion = "whitespace-v1";
 export const generationSkill = "general-video";
 export const generationSkillRevision = "67f3dae100541eed";
 export const transitionDuration = 0.5;
@@ -63,6 +66,7 @@ const allowedKinds = new Set([
 const allowedLayouts = new Set(["copy-left", "copy-right", "full", "stack", "rail", "report"]);
 const allowedTransitions = new Set(["push-left", "push-up", "dissolve"]);
 const allowedMotions = new Set(["assemble", "settle", "scroll", "drift"]);
+const allowedTextRoles = new Set(["primary", "supporting", "orientation", "status"]);
 const requiredThemeKeys = [
   "canvas",
   "surface",
@@ -102,7 +106,150 @@ const slugify = (value) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const countWords = (value) => String(value).trim().split(/\s+/).filter(Boolean).length;
+const tokenizeViewerText = (value) =>
+  String(value)
+    .trim()
+    .split(/\s+/u)
+    .filter((token) => token !== "" && !/^\p{P}+$/u.test(token));
+
+const countWords = (value) => tokenizeViewerText(value).length;
+
+const editorialTiming = Object.freeze({
+  wordsPerMinute: 140,
+  normalTextSettledAt: 1.1,
+  finalTextSettledAt: 0.5,
+  labelStart: 0.74,
+  labelDuration: 0.42,
+  labelStagger: 0.09,
+  minimumSettledHold: 2,
+  requiredComprehensionMargin: 0.75,
+  finalRequiredComprehensionMargin: 0.5,
+});
+
+function viewerTextElements(scene) {
+  const elements = [];
+  const add = (path, text, role) => {
+    if (typeof text !== "string" || text.trim() === "") return;
+    elements.push({ path, role: role ?? null, text, wordCount: countWords(text) });
+  };
+  add("eyebrow", scene?.eyebrow, scene?.textRoles?.eyebrow);
+  add("headline", scene?.headline, scene?.textRoles?.headline);
+  add("body", scene?.body, scene?.textRoles?.body);
+  for (const [index, element] of (Array.isArray(scene?.assetText)
+    ? scene.assetText
+    : []
+  ).entries()) {
+    add(`assetText[${index}]`, element?.text, element?.role);
+  }
+  if (scene?.kind !== "end") {
+    for (const [index, label] of (Array.isArray(scene?.labels) ? scene.labels : []).entries()) {
+      add(`labels[${index}].title`, label?.title, label?.role);
+      add(`labels[${index}].body`, label?.body, label?.role);
+    }
+    add("stat.value", scene?.stat?.value, scene?.stat?.role);
+    add("stat.label", scene?.stat?.label, scene?.stat?.role);
+  }
+  return elements;
+}
+
+export function analyzeEditorialScene(
+  scene,
+  { isFinal = scene?.kind === "end", outgoingTransitionStart } = {},
+) {
+  const labelCount = isFinal || !Array.isArray(scene?.labels) ? 0 : scene.labels.length;
+  const labelSettledAt =
+    labelCount > 0
+      ? editorialTiming.labelStart +
+        editorialTiming.labelDuration +
+        editorialTiming.labelStagger * (labelCount - 1)
+      : 0;
+  const textSettledAt = roundTime(
+    Math.max(
+      isFinal ? editorialTiming.finalTextSettledAt : editorialTiming.normalTextSettledAt,
+      labelSettledAt,
+    ),
+  );
+  const textElements = viewerTextElements(scene);
+  const viewerFacingWordCount = textElements.reduce(
+    (total, element) => total + element.wordCount,
+    0,
+  );
+  const duration = Number.isFinite(scene?.duration) ? scene.duration : 0;
+  const readingWindowEnd = roundTime(
+    isFinal
+      ? duration
+      : Number.isFinite(outgoingTransitionStart)
+        ? outgoingTransitionStart
+        : duration,
+  );
+  const readingWindowEndBasis = isFinal ? "scene-end" : "outgoing-transition-start";
+  const usableSettledHold = roundTime(Math.max(0, readingWindowEnd - textSettledAt));
+  const requiredReadingTime = roundTime(
+    viewerFacingWordCount / (editorialTiming.wordsPerMinute / 60),
+  );
+  const readingMargin = roundTime(usableSettledHold - requiredReadingTime);
+  const requiredComprehensionMargin = isFinal
+    ? editorialTiming.finalRequiredComprehensionMargin
+    : editorialTiming.requiredComprehensionMargin;
+  const findings = [];
+  if (usableSettledHold < editorialTiming.minimumSettledHold) {
+    findings.push(
+      `${usableSettledHold}s settled hold is below ${editorialTiming.minimumSettledHold}s`,
+    );
+  }
+  if (readingMargin < requiredComprehensionMargin) {
+    findings.push(`${readingMargin}s reading margin is below ${requiredComprehensionMargin}s`);
+  }
+  return {
+    intent: typeof scene?.intent === "string" ? scene.intent : null,
+    textElements,
+    viewerFacingWordCount,
+    textSettledAt,
+    readingWindowEnd,
+    readingWindowEndBasis,
+    usableSettledHold,
+    requiredReadingTime,
+    readingMargin,
+    minimumSettledHold: editorialTiming.minimumSettledHold,
+    requiredComprehensionMargin,
+    wordsPerMinute: editorialTiming.wordsPerMinute,
+    passed: findings.length === 0,
+    findings,
+  };
+}
+
+export function analyzeEditorialManifest(manifest) {
+  const scenes = Array.isArray(manifest?.scenes) ? manifest.scenes : [];
+  return scenes.map((scene, index) => {
+    const isFinal = index === scenes.length - 1;
+    return {
+      id: typeof scene?.id === "string" ? scene.id : `scene-${index + 1}`,
+      ...analyzeEditorialScene(scene, {
+        isFinal,
+        outgoingTransitionStart: isFinal ? undefined : scene?.duration,
+      }),
+    };
+  });
+}
+
+export function createEditorialReport(manifest) {
+  const scenes = analyzeEditorialManifest(manifest);
+  const findings = scenes.flatMap((scene) =>
+    scene.findings.map((finding) => `${scene.id}: ${finding}`),
+  );
+  return {
+    editorialProfile: manifest?.editorialProfile ?? null,
+    editorialStandardVersion,
+    editorialTokenizerVersion,
+    wordsPerMinute: editorialTiming.wordsPerMinute,
+    minimumSettledHold: editorialTiming.minimumSettledHold,
+    requiredComprehensionMargin: editorialTiming.requiredComprehensionMargin,
+    finalRequiredComprehensionMargin: editorialTiming.finalRequiredComprehensionMargin,
+    passed: findings.length === 0,
+    findings,
+    scenes,
+  };
+}
 
 const isHex = (value) => /^#[0-9a-f]{6}$/i.test(value);
 
@@ -149,13 +296,6 @@ const isInside = (parent, child) => {
 };
 
 const canonicalPath = (path) => (existsSync(path) ? realpathSync(path) : path);
-
-const familyLabel = (family) =>
-  ({
-    "system-proof": "System proof",
-    "product-journey": "Product journey",
-    "visual-showcase": "Visual showcase",
-  })[family];
 
 function runtimeFontAssets(manifest) {
   const assets = [];
@@ -248,7 +388,6 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
       ? manifest.slug
       : undefined;
   const error = (message) => errors.push(`${prefix}: ${message}`);
-  const warn = (message) => warnings.push(`${prefix}: ${message}`);
 
   if (!manifest || typeof manifest !== "object" || Array.isArray(manifest)) {
     validateSchema(manifest);
@@ -264,7 +403,10 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
       error(`schema ${item.instancePath || "/"} ${item.message}.`);
     }
   }
-  if (manifest.version !== 1) error("version must be 1.");
+  if (manifest.version !== 2) error("version must be 2.");
+  if (manifest.editorialProfile !== editorialProfile) {
+    error(`editorialProfile must be ${editorialProfile}.`);
+  }
   if (typeof manifest.slug !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(manifest.slug)) {
     error("slug must be kebab-case.");
   }
@@ -341,9 +483,37 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
       if (!allowedLayouts.has(scene.layout)) error(`${label}.layout is invalid.`);
       if (!allowedTransitions.has(scene.transition)) error(`${label}.transition is invalid.`);
       if (!allowedMotions.has(scene.motion)) error(`${label}.motion is invalid.`);
-      for (const key of ["eyebrow", "headline", "body"]) {
+      for (const key of ["intent", "headline"]) {
         if (typeof scene[key] !== "string" || scene[key].trim() === "") {
           error(`${label}.${key} must be a non-empty string.`);
+        }
+      }
+      for (const key of ["eyebrow", "body"]) {
+        if (
+          scene[key] !== undefined &&
+          (typeof scene[key] !== "string" || scene[key].trim() === "")
+        ) {
+          error(`${label}.${key} must be a non-empty string when present.`);
+        }
+      }
+      if (
+        !scene.textRoles ||
+        typeof scene.textRoles !== "object" ||
+        Array.isArray(scene.textRoles)
+      ) {
+        error(`${label}.textRoles must declare a role for every rendered copy field.`);
+      } else {
+        for (const key of ["eyebrow", "headline", "body"]) {
+          const hasText = typeof scene[key] === "string" && scene[key].trim() !== "";
+          const hasRole = scene.textRoles[key] !== undefined;
+          if (hasText && !allowedTextRoles.has(scene.textRoles[key])) {
+            error(`${label}.textRoles.${key} must use a canonical text role.`);
+          } else if (!hasText && hasRole) {
+            error(`${label}.textRoles.${key} has no matching rendered ${key}.`);
+          }
+        }
+        if (scene.textRoles.headline !== "primary") {
+          error(`${label}.textRoles.headline must be primary.`);
         }
       }
       if (
@@ -355,11 +525,16 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
       } else if (scene.duration < 2.5) {
         error(`${label}.duration must be at least 2.5 seconds.`);
       }
-      const mustReadWords = countWords(`${scene.headline || ""} ${scene.body || ""}`);
-      if (scene.kind !== "end" && mustReadWords > 28) {
-        error(`${label} has ${mustReadWords} must-read words; maximum is 28.`);
-      } else if (scene.kind !== "end" && mustReadWords > 18) {
-        warn(`${label} has ${mustReadWords} must-read words; review reading load.`);
+      const editorial = analyzeEditorialScene(scene);
+      if (editorial.usableSettledHold < editorial.minimumSettledHold) {
+        error(
+          `${label} has ${editorial.usableSettledHold}s of settled hold before its ${editorial.readingWindowEndBasis}; minimum is ${editorial.minimumSettledHold}s.`,
+        );
+      }
+      if (editorial.readingMargin < editorial.requiredComprehensionMargin) {
+        error(
+          `${label} has a ${editorial.readingMargin}s reading margin at ${editorial.wordsPerMinute} WPM; minimum is ${editorial.requiredComprehensionMargin}s.`,
+        );
       }
       if (scene.asset) {
         if (typeof scene.asset !== "string") {
@@ -383,6 +558,22 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
           error(`${label}.assetAlt is required when asset is present.`);
         }
       }
+      if (scene.assetText !== undefined) {
+        if (!Array.isArray(scene.assetText) || scene.assetText.length === 0) {
+          error(`${label}.assetText must contain at least one declared readable element.`);
+        } else {
+          for (const [elementIndex, element] of scene.assetText.entries()) {
+            if (
+              !element ||
+              !allowedTextRoles.has(element.role) ||
+              typeof element.text !== "string" ||
+              element.text.trim() === ""
+            ) {
+              error(`${label}.assetText[${elementIndex}] requires a canonical role and text.`);
+            }
+          }
+        }
+      }
       if (scene.labels !== undefined) {
         if (!Array.isArray(scene.labels) || scene.labels.length > 4) {
           error(`${label}.labels must be an array with at most 4 entries.`);
@@ -390,12 +581,13 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
           for (const [labelIndex, item] of scene.labels.entries()) {
             if (
               !item ||
+              !allowedTextRoles.has(item.role) ||
               typeof item.title !== "string" ||
               item.title.trim() === "" ||
               typeof item.body !== "string" ||
               item.body.trim() === ""
             ) {
-              error(`${label}.labels[${labelIndex}] requires title and body.`);
+              error(`${label}.labels[${labelIndex}] requires a canonical role, title, and body.`);
             }
           }
         }
@@ -403,12 +595,25 @@ export function validateManifest(manifest, { expectedSlug } = {}) {
       if (
         scene.stat !== undefined &&
         (!scene.stat ||
+          !allowedTextRoles.has(scene.stat.role) ||
           typeof scene.stat.value !== "string" ||
           scene.stat.value.trim() === "" ||
           typeof scene.stat.label !== "string" ||
           scene.stat.label.trim() === "")
       ) {
-        error(`${label}.stat requires value and label.`);
+        error(`${label}.stat requires a canonical role, value, and label.`);
+      }
+      const primaryBlocks = [
+        ...Object.values(scene.textRoles ?? {}),
+        ...(Array.isArray(scene.labels) ? scene.labels.map((item) => item?.role) : []),
+        scene.stat?.role,
+        ...(Array.isArray(scene.assetText) ? scene.assetText.map((item) => item?.role) : []),
+      ].filter((role) => role === "primary").length;
+      if (primaryBlocks > 1) {
+        error(`${label} has ${primaryBlocks} primary text blocks; maximum is 1.`);
+      }
+      if (scene.kind === "end" && (scene.labels !== undefined || scene.stat !== undefined)) {
+        error(`${label} cannot declare labels or a stat because end scenes do not render them.`);
       }
     });
 
@@ -503,9 +708,12 @@ function renderLabels(labels = []) {
   if (labels.length === 0) return "";
   return `<div class="evidence-list" data-layout-allow-occlusion>${labels
     .map(
-      (label, index) => `<article class="evidence-card evidence-card-${index + 1}">
-        <strong>${escapeHtml(label.title)}</strong>
-        <span>${escapeHtml(label.body)}</span>
+      (
+        label,
+        index,
+      ) => `<article class="evidence-card evidence-card-${index + 1} evidence-card-${escapeHtml(label.role)}">
+        <strong data-text-role="${escapeHtml(label.role)}">${escapeHtml(label.title)}</strong>
+        <span data-text-role="${escapeHtml(label.role)}">${escapeHtml(label.body)}</span>
       </article>`,
     )
     .join("")}</div>`;
@@ -514,8 +722,8 @@ function renderLabels(labels = []) {
 function renderStat(stat) {
   if (!stat) return "";
   return `<div class="stat-card">
-    <strong>${escapeHtml(stat.value)}</strong>
-    <span>${escapeHtml(stat.label)}</span>
+    <strong data-text-role="${escapeHtml(stat.role)}">${escapeHtml(stat.value)}</strong>
+    <span data-text-role="${escapeHtml(stat.role)}">${escapeHtml(stat.label)}</span>
   </div>`;
 }
 
@@ -528,13 +736,11 @@ function renderProof(scene, assetTarget) {
       <div class="proof-native-bar"><span></span><span></span><span></span></div>
       <div class="native-grid">
         <div class="native-primary">
-          <span class="native-kicker">${escapeHtml(scene.kind)}</span>
-          <strong>${escapeHtml(scene.eyebrow)}</strong>
           <div class="native-rail"></div>
         </div>
         ${stat || `<div class="native-signal"><i></i><i></i><i></i><i></i></div>`}
       </div>
-      ${labels || `<div class="native-footer"><span>Input</span><span>Review</span><span>Result</span></div>`}
+      ${labels}
     </div>`;
   }
   const fit = scene.assetFit || "cover";
@@ -542,15 +748,13 @@ function renderProof(scene, assetTarget) {
   return `<div class="proof proof-window">
     <div class="window-bar">
       <div class="window-dots"><i></i><i></i><i></i></div>
-      <span>${escapeHtml(scene.eyebrow)}</span>
-      <b>${escapeHtml(scene.kind)}</b>
     </div>
     <div class="image-viewport">
       <img
         class="proof-image"
         data-layout-allow-overflow
         src="${escapeHtml(assetTarget)}"
-        alt="${escapeHtml(scene.assetAlt || `${scene.eyebrow} proof`)}"
+        alt="${escapeHtml(scene.assetAlt)}"
         style="object-fit:${fit};object-position:${escapeHtml(position)}"
       />
     </div>
@@ -559,18 +763,9 @@ function renderProof(scene, assetTarget) {
   </div>`;
 }
 
-function renderSceneHtml({
-  manifest,
-  scene,
-  index,
-  compId,
-  assetTarget,
-  renderDuration,
-  fontFaces,
-}) {
+function renderSceneHtml({ manifest, scene, compId, assetTarget, renderDuration, fontFaces }) {
   const theme = manifest.theme;
   const rootId = `${compId}-root`;
-  const number = String(index + 1).padStart(2, "0");
   const headlineSize = scene.headline.length > 58 ? 68 : scene.headline.length > 38 ? 80 : 94;
   const copyFirst = scene.layout !== "copy-right";
   const proof = renderProof(scene, assetTarget);
@@ -586,11 +781,6 @@ function renderSceneHtml({
   const deepAlpha = withAlpha(theme.deep, "E8");
   const accentOnCanvas = accessibleTextColor(theme.canvas, [theme.accent, theme.ink, theme.deep]);
   const accentOnSurface = accessibleTextColor(theme.surface, [theme.accent, theme.ink, theme.deep]);
-  const accentOnDeep = accessibleTextColor(theme.deep, [
-    theme.accent,
-    theme.accentSoft,
-    theme.surface,
-  ]);
   const inkOnCanvas = accessibleTextColor(theme.canvas, [theme.ink, theme.deep, theme.surface]);
   const inkOnSurface = accessibleTextColor(theme.surface, [theme.ink, theme.deep, theme.canvas]);
   const mutedOnCanvas = accessibleTextColor(theme.canvas, [theme.muted, theme.ink, theme.deep]);
@@ -614,9 +804,9 @@ function renderSceneHtml({
   const proofMarkup = endScene
     ? `<div class="end-lockup${endAsset ? " has-media" : ""}">
         <div class="end-copy">
-          <span>${escapeHtml(manifest.title)} · ${escapeHtml(familyLabel(manifest.family))}</span>
-          <strong>${escapeHtml(scene.headline)}</strong>
-          <p>${escapeHtml(scene.body)}</p>
+          ${scene.eyebrow ? `<span data-text-role="${escapeHtml(scene.textRoles.eyebrow)}">${escapeHtml(scene.eyebrow)}</span>` : ""}
+          <strong data-text-role="${escapeHtml(scene.textRoles.headline)}">${escapeHtml(scene.headline)}</strong>
+          ${scene.body ? `<p data-text-role="${escapeHtml(scene.textRoles.body)}">${escapeHtml(scene.body)}</p>` : ""}
           <i></i>
         </div>
         ${endAsset}
@@ -625,10 +815,10 @@ function renderSceneHtml({
   const copyMarkup = endScene
     ? ""
     : `<div class="copy">
-        <p class="eyebrow">${escapeHtml(scene.eyebrow)}</p>
-        <h1 class="headline">${escapeHtml(scene.headline)}</h1>
+        ${scene.eyebrow ? `<p class="eyebrow" data-text-role="${escapeHtml(scene.textRoles.eyebrow)}">${escapeHtml(scene.eyebrow)}</p>` : ""}
+        <h1 class="headline" data-text-role="${escapeHtml(scene.textRoles.headline)}">${escapeHtml(scene.headline)}</h1>
         <span class="copy-rule"></span>
-        <p class="body-copy">${escapeHtml(scene.body)}</p>
+        ${scene.body ? `<p class="body-copy" data-text-role="${escapeHtml(scene.textRoles.body)}">${escapeHtml(scene.body)}</p>` : ""}
       </div>`;
 
   const imageMotion =
@@ -788,7 +978,6 @@ function renderSceneHtml({
           letter-spacing: 0.04em;
           text-transform: uppercase;
         }
-        .scene-meta b { font-size: 28px; }
         .scene-meta i { display: block; width: 72px; height: 3px; background: ${theme.accent}; }
         .scene-content {
           position: relative;
@@ -864,8 +1053,7 @@ function renderSceneHtml({
         .family-visual-showcase .proof { height: 790px; border-radius: 8px; }
         .family-visual-showcase .headline { font-size: ${Math.min(headlineSize, 78)}px; }
         .window-bar {
-          display: grid;
-          grid-template-columns: 100px 1fr auto;
+          display: flex;
           align-items: center;
           height: 62px;
           padding: 0 24px;
@@ -877,7 +1065,6 @@ function renderSceneHtml({
           letter-spacing: 0.03em;
           text-transform: uppercase;
         }
-        .window-bar b { color: ${accentOnSurface}; }
         .window-dots { display: flex; gap: 9px; }
         .window-dots i { width: 13px; height: 13px; border-radius: 50%; background: ${theme.border}; }
         .window-dots i:first-child { background: ${theme.accent2}; }
@@ -933,8 +1120,6 @@ function renderSceneHtml({
         .proof-native-bar span:nth-child(3) { background: ${theme.border}; }
         .native-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 26px; padding-top: 34px; }
         .native-primary { display: grid; align-content: center; gap: 18px; min-height: 310px; padding: 32px; border: 2px solid ${theme.accent}; background: ${theme.deep}; }
-        .native-primary strong { font-family: ${fontDisplay}; font-size: 54px; line-height: 0.98; }
-        .native-kicker { color: ${accentOnDeep}; font-family: ${fontMono}; font-size: 17px; text-transform: uppercase; }
         .native-rail { display: block; width: 100%; height: 8px; background: ${theme.accent}; }
         .native-signal { display: flex; align-items: end; gap: 18px; min-height: 310px; padding: 30px; border: 2px solid ${theme.border}; }
         .native-signal i { flex: 1; background: ${theme.accent}; }
@@ -942,8 +1127,6 @@ function renderSceneHtml({
         .native-signal i:nth-child(2) { height: 66%; background: ${theme.accent2}; }
         .native-signal i:nth-child(3) { height: 48%; }
         .native-signal i:nth-child(4) { height: 88%; background: ${theme.surface}; }
-        .native-footer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
-        .native-footer span { padding: 16px; border: 2px solid ${theme.border}; color: ${surfaceOnDeep}; font-family: ${fontMono}; font-size: 16px; text-align: center; text-transform: uppercase; }
         .end-lockup {
           display: grid;
           align-content: center;
@@ -982,7 +1165,7 @@ function renderSceneHtml({
           <div class="motif ${motifClass}" data-layout-ignore data-layout-allow-overflow></div>
           <div class="registration top"></div>
           <div class="registration bottom"></div>
-          <div class="scene-meta"><b>${number}</b><i></i><span>${escapeHtml(familyLabel(manifest.family))}</span></div>
+          <div class="scene-meta"><i></i></div>
           <div class="scene-content ${layoutClass}">
             ${copyMarkup}
             ${proofMarkup}
@@ -1061,7 +1244,7 @@ function renderIndexHtml(manifest, scenes, { includeTransitions = true } = {}) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>${escapeHtml(manifest.title)} Overview</title>
+    <title>${escapeHtml(manifest.title)}</title>
     <script src="assets/gsap.min.js"></script>
     <style>
       * { box-sizing: border-box; }
@@ -1258,6 +1441,7 @@ export async function generateProject(slug, { outputDir = generatedPathFor(slug)
     stagingDir = await createGeneratedStaging(slug, outputDir);
     const { targets, copiedAssets } = await copySceneAssets(manifest, stagingDir);
     const runtimeAssets = await copyRuntimeAssets(manifest, stagingDir);
+    const editorialReport = createEditorialReport(manifest);
     let cursor = 0;
     const scenes = [];
     for (const [index, scene] of manifest.scenes.entries()) {
@@ -1269,7 +1453,6 @@ export async function generateProject(slug, { outputDir = generatedPathFor(slug)
         renderSceneHtml({
           manifest,
           scene,
-          index,
           compId,
           assetTarget: targets[index],
           renderDuration,
@@ -1295,12 +1478,19 @@ export async function generateProject(slug, { outputDir = generatedPathFor(slug)
           title: manifest.title,
           family: manifest.family,
           timing: manifest.timing,
+          editorialProfile: manifest.editorialProfile,
+          editorialStandardVersion,
+          editorialTokenizerVersion,
+          editorialReport: {
+            passed: editorialReport.passed,
+            findings: editorialReport.findings,
+          },
           duration: totalDuration(manifest),
           templateVersion,
           hyperframesVersion,
           generationSkill,
           generationSkillRevision,
-          scenes: scenes.map(({ scene, compId, start, renderDuration, filename }) => ({
+          scenes: scenes.map(({ scene, compId, start, renderDuration, filename }, index) => ({
             id: scene.id,
             kind: scene.kind,
             compId,
@@ -1308,6 +1498,7 @@ export async function generateProject(slug, { outputDir = generatedPathFor(slug)
             duration: scene.duration,
             renderDuration,
             filename,
+            editorial: editorialReport.scenes[index],
           })),
           assets: copiedAssets
             .map(([source, target]) => ({

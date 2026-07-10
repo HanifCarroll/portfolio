@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "casamo",
   "title": "Casamo",
   "family": "product-journey",
@@ -26,38 +27,28 @@
     {
       "id": "hard-to-trust",
       "kind": "problem",
-      "eyebrow": "The problem",
-      "headline": "Long-stay bookings are hard to trust.",
-      "body": "Marketplace filters do not prove the stay.",
+      "intent": "Long-stay bookings are hard to trust. Marketplace filters do not prove the stay.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Marketplace filters did not prove the stay.",
       "duration": 7,
       "layout": "copy-left",
       "asset": "assets/selected/casamo-homepage-viewport.jpg",
       "assetAlt": "Casamo homepage and trip scan form",
       "assetFit": "cover",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Wi-Fi",
-          "body": "A label is not evidence"
-        },
-        {
-          "title": "Workspace",
-          "body": "A photo may tell more"
-        },
-        {
-          "title": "Kitchen",
-          "body": "Details matter for weeks"
-        }
-      ],
       "transition": "push-left",
       "motion": "settle"
     },
     {
       "id": "evidence-first",
       "kind": "context",
-      "eyebrow": "Decision support",
-      "headline": "Remote workers need evidence before paying.",
-      "body": "Photos, amenities, reviews, and gaps matter.",
+      "intent": "Remote workers need evidence before paying. Photos, amenities, reviews, and gaps matter.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Remote workers needed evidence before paying.",
       "duration": 7,
       "layout": "copy-right",
       "asset": "assets/selected/casamo-report-studio.webp",
@@ -70,101 +61,65 @@
     {
       "id": "trip-intake",
       "kind": "action",
-      "eyebrow": "Trip needs",
-      "headline": "Casamo scans a shortlist for practical fit.",
-      "body": "Enter destination, dates, budget, and must-haves.",
+      "intent": "Casamo scans a shortlist for practical fit. Enter destination, dates, budget, and must-haves.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Casamo scans trips for practical fit.",
       "duration": 8,
       "layout": "copy-left",
       "asset": "assets/selected/casamo-homepage-viewport.jpg",
       "assetAlt": "Casamo trip scan intake surface",
       "assetFit": "cover",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Destination",
-          "body": "Where the stay is"
-        },
-        {
-          "title": "Dates",
-          "body": "How long it lasts"
-        },
-        {
-          "title": "Budget",
-          "body": "What fits"
-        },
-        {
-          "title": "Must-haves",
-          "body": "What cannot be missed"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "checkable-report",
       "kind": "report",
-      "eyebrow": "Stay audit",
-      "headline": "The report keeps the decision checkable.",
-      "body": "Good signs, concerns, and questions stay visible.",
+      "intent": "The report keeps the decision checkable. Good signs, concerns, and questions stay visible.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The report keeps every decision checkable.",
       "duration": 8,
       "layout": "report",
       "asset": "assets/selected/casamo-stay-audit-og.png",
       "assetAlt": "Public Casamo stay audit report preview",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Good signs",
-          "body": "What the listing supports"
-        },
-        {
-          "title": "Concerns",
-          "body": "What needs caution"
-        },
-        {
-          "title": "Host questions",
-          "body": "What to confirm"
-        }
-      ],
       "transition": "dissolve",
       "motion": "assemble"
     },
     {
       "id": "ranked-shortlist",
       "kind": "result",
-      "eyebrow": "The result",
-      "headline": "One recommended stay. Two backups.",
-      "body": "The next question to ask the host is clear.",
+      "intent": "One recommended stay. Two backups. The next question to ask the host is clear.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "One recommendation. Two supported backups.",
       "duration": 9,
       "layout": "full",
       "asset": "assets/selected/casamo-stay-audit-og.png",
       "assetAlt": "Casamo ranked stay report",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Top pick",
-          "body": "Best practical fit"
-        },
-        {
-          "title": "Backup one",
-          "body": "A supported alternative"
-        },
-        {
-          "title": "Backup two",
-          "body": "Another clear option"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Casamo Noisy search to bookable shortlist.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Casamo",
-      "headline": "Casamo",
-      "body": "Noisy search to bookable shortlist.",
-      "duration": 3,
+      "headline": "Noisy search becomes a shortlist.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/selected/casamo-stay-audit-og.png",
       "assetAlt": "Settled Casamo stay report",
@@ -206,7 +161,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

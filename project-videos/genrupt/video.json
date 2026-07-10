@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "genrupt",
   "title": "Genrupt",
   "family": "system-proof",
@@ -26,9 +27,11 @@
     {
       "id": "platform-stakes",
       "kind": "problem",
-      "eyebrow": "The problem",
-      "headline": "Paid seller teams needed more than AI tools.",
-      "body": "Payments, credits, and long-running work had to hold together.",
+      "intent": "Paid seller teams needed more than AI tools. Payments, credits, and long-running work had to hold together.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Paid teams needed one reliable platform.",
       "duration": 8.4,
       "layout": "copy-left",
       "asset": "assets/redacted/product-surface-projects-grid.png",
@@ -41,9 +44,11 @@
     {
       "id": "seller-workflow-platform",
       "kind": "action",
-      "eyebrow": "The solution",
-      "headline": "I helped turn Genrupt into a seller workflow platform.",
-      "body": "Projects, billing, and work shared one system.",
+      "intent": "I helped turn Genrupt into a seller workflow platform. Projects, billing, and work shared one system.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Genrupt became a seller workflow platform.",
       "duration": 8.4,
       "layout": "copy-right",
       "asset": "assets/redacted/commercial-readiness-dashboard.png",
@@ -56,38 +61,28 @@
     {
       "id": "commercial-foundation",
       "kind": "evidence",
-      "eyebrow": "Commercial foundation",
-      "headline": "Paid teams could subscribe, buy credits, and track usage.",
-      "body": "Billing and work stayed connected.",
+      "intent": "Paid teams could subscribe, buy credits, and track usage. Billing and work stayed connected.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Billing and work stayed connected.",
       "duration": 8.4,
       "layout": "copy-left",
       "asset": "assets/redacted/subscriptions-pricing.png",
       "assetAlt": "Public redacted Genrupt subscription and pricing surface.",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Paid accounts",
-          "body": "Subscribe"
-        },
-        {
-          "title": "Credits",
-          "body": "Buy and track"
-        },
-        {
-          "title": "Jobs",
-          "body": "Follow status"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "allowed-agent-work",
       "kind": "workflow",
-      "eyebrow": "Agent access",
-      "headline": "AI helpers could only do allowed work.",
-      "body": "Each workflow kept a clear boundary.",
+      "intent": "AI helpers could only do allowed work. Each workflow kept a clear boundary.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "AI helpers stayed inside clear boundaries.",
       "duration": 8.4,
       "layout": "copy-right",
       "asset": "assets/redacted/agent-access.png",
@@ -100,9 +95,11 @@
     {
       "id": "first-paying-customers",
       "kind": "result",
-      "eyebrow": "The result",
-      "headline": "Seller work became easier to run.",
-      "body": "The platform supported the first 100 paying customers.",
+      "intent": "Seller work became easier to run. The platform supported the first 100 paying customers.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The platform supported real paying teams.",
       "duration": 8.4,
       "layout": "copy-left",
       "asset": "assets/redacted/market-analysis.png",
@@ -110,6 +107,7 @@
       "assetFit": "cover",
       "assetPosition": "center 42%",
       "stat": {
+        "role": "status",
         "value": "100",
         "label": "first paying customers"
       },
@@ -119,10 +117,14 @@
     {
       "id": "genrupt-end",
       "kind": "end",
+      "intent": "AI tools ready for paying teams. One commercial workflow platform.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Genrupt",
-      "headline": "AI tools ready for paying teams.",
-      "body": "One commercial workflow platform.",
-      "duration": 3,
+      "headline": "AI work ready for paying teams.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -151,7 +153,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

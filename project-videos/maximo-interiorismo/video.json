@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "maximo-interiorismo",
   "title": "Maximo Interiorismo",
   "family": "visual-showcase",
@@ -26,9 +27,11 @@
     {
       "id": "public-home",
       "kind": "showcase",
-      "eyebrow": "Design portfolio",
+      "intent": "A stronger public home. High-end interior work was underrepresented online.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "A stronger public home.",
-      "body": "High-end interior work was underrepresented online.",
       "duration": 5,
       "layout": "full",
       "asset": "assets/selected/maximo-hero.png",
@@ -41,9 +44,11 @@
     {
       "id": "work-first",
       "kind": "showcase",
-      "eyebrow": "Project presentation",
+      "intent": "The work stays first. Project imagery remains in the foreground.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "The work stays first.",
-      "body": "Project imagery remains in the foreground.",
       "duration": 5,
       "layout": "copy-left",
       "asset": "assets/selected/maximo-feature.png",
@@ -56,40 +61,42 @@
     {
       "id": "inquiry-path",
       "kind": "result",
-      "eyebrow": "Inquiry path",
-      "headline": "Review leads to inquiry.",
-      "body": "Prospects move from the portfolio toward a conversation.",
+      "intent": "Review leads to inquiry. Prospects move from the portfolio toward a conversation.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Portfolio review leads to inquiry.",
       "duration": 5,
       "layout": "copy-right",
       "asset": "assets/selected/maximo-feature.png",
       "assetAlt": "Maximo Interiorismo portfolio and inquiry path",
       "assetFit": "cover",
       "assetPosition": "bottom center",
-      "labels": [
-        {
-          "title": "Portfolio review",
-          "body": "See the work"
-        },
-        {
-          "title": "Inquiry path",
-          "body": "Start a conversation"
-        }
-      ],
       "transition": "push-up",
       "motion": "scroll"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Maximo Interiorismo Portfolio to consultation.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Maximo Interiorismo",
-      "headline": "Maximo Interiorismo",
-      "body": "Portfolio to consultation.",
-      "duration": 3,
+      "headline": "Portfolio to consultation.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/selected/maximo-logo.png",
       "assetAlt": "Maximo Interiorismo logo",
       "assetFit": "contain",
       "assetPosition": "center center",
+      "assetText": [
+        {
+          "role": "orientation",
+          "text": "Maximo Interiorismo"
+        }
+      ],
       "transition": "dissolve",
       "motion": "settle"
     }
@@ -117,7 +124,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

@@ -3,6 +3,38 @@
   <body>
     <template>
       <style>
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio EB Garamond";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio IBM Plex Mono";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+        }
+
         #root {
           position: absolute;
           inset: 0;
@@ -10,19 +42,8 @@
           height: 1080px;
           overflow: hidden;
           color: #171512;
-          font-family: "Inter", sans-serif;
+          font-family: "Portfolio Inter", sans-serif;
           pointer-events: none;
-        }
-
-        .scene-number {
-          position: absolute;
-          top: 94px;
-          right: 92px;
-          color: #696158;
-          font:
-            700 24px/1 "IBM Plex Mono",
-            monospace;
-          letter-spacing: 0.12em;
         }
 
         .kicker {
@@ -34,7 +55,7 @@
           gap: 14px;
           color: #0066ff;
           font:
-            700 24px/1 "IBM Plex Mono",
+            700 24px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.08em;
           text-transform: uppercase;
@@ -51,16 +72,20 @@
           position: absolute;
           top: 146px;
           left: 92px;
-          width: 710px;
+          width: 896px;
           margin: 0;
           font:
-            700 96px/0.96 "EB Garamond",
+            700 96px/1.02 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.045em;
         }
 
         .headline span {
           display: block;
+        }
+
+        .headline span + span {
+          margin-top: 18px;
         }
 
         .count-chip {
@@ -79,7 +104,7 @@
         .count-chip strong {
           align-self: end;
           font:
-            700 68px/0.8 "IBM Plex Mono",
+            700 68px/0.8 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: -0.07em;
         }
@@ -87,7 +112,7 @@
         .count-chip span {
           color: #3a352f;
           font:
-            700 20px/1.1 "IBM Plex Mono",
+            700 20px/1.1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -128,6 +153,24 @@
           border-radius: 6px;
         }
 
+        .proof-card::before {
+          position: absolute;
+          inset: 22px;
+          content: "";
+          background:
+            linear-gradient(90deg, #0066ff 0 32%, transparent 32% 100%) 0 0 / 100% 12px no-repeat,
+            linear-gradient(90deg, #171512 0 78%, transparent 78% 100%) 0 40px / 100% 10px no-repeat,
+            linear-gradient(90deg, #696158 0 56%, transparent 56% 100%) 0 72px / 100% 8px no-repeat;
+          opacity: 0.88;
+        }
+
+        .proof-card:nth-child(2n)::before {
+          background:
+            linear-gradient(90deg, #1d6f58 0 44%, transparent 44% 100%) 0 0 / 100% 12px no-repeat,
+            linear-gradient(90deg, #171512 0 64%, transparent 64% 100%) 0 40px / 100% 10px no-repeat,
+            linear-gradient(90deg, #696158 0 82%, transparent 82% 100%) 0 72px / 100% 8px no-repeat;
+        }
+
         .meta-rail {
           position: absolute;
           right: 92px;
@@ -139,7 +182,7 @@
           border-top: 3px solid #171512;
           color: #3a352f;
           font:
-            700 22px/1 "IBM Plex Mono",
+            700 22px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.04em;
           text-transform: uppercase;
@@ -178,49 +221,25 @@
         data-height="1080"
         data-duration="4"
       >
-        <div id="scene-01-kicker" class="kicker">Portfolio video workflow</div>
-        <div class="scene-number">01 / 07</div>
-        <h1 id="scene-01-headline" class="headline">
-          <span>21 case studies.</span>
+        <h1
+          id="scene-01-headline"
+          class="headline"
+          data-text-start="0.08"
+          data-text-duration="0.54"
+        >
+          <span>21 projects.</span>
           <span>One video system.</span>
         </h1>
-        <div id="scene-01-count" class="count-chip">
-          <strong>21</strong>
-          <span>case studies</span>
-        </div>
 
         <div class="proof-stage">
-          <div class="proof-card" data-target-x="-300" data-target-y="70">
-            <img src="assets/posters/agent-recall.png" alt="Agent Recall video proof" />
-          </div>
-          <div class="proof-card" data-target-x="0" data-target-y="70">
-            <img
-              src="assets/posters/health-ai-search-audit.png"
-              alt="Health AI Search Audit video proof"
-            />
-          </div>
-          <div class="proof-card" data-target-x="300" data-target-y="70">
-            <img src="assets/posters/palabruno.png" alt="Palabruno video proof" />
-          </div>
-          <div class="proof-card" data-target-x="-300" data-target-y="260">
-            <img src="assets/posters/casamo.png" alt="Casamo video proof" />
-          </div>
-          <div class="proof-card" data-target-x="0" data-target-y="260">
-            <img
-              src="assets/posters/maximo-interiorismo.png"
-              alt="Maximo Interiorismo video proof"
-            />
-          </div>
-          <div class="proof-card" data-target-x="300" data-target-y="260">
-            <img src="assets/posters/redwriter-comics.png" alt="Redwriter Comics video proof" />
-          </div>
+          <div class="proof-card" data-target-x="-300" data-target-y="70"></div>
+          <div class="proof-card" data-target-x="0" data-target-y="70"></div>
+          <div class="proof-card" data-target-x="300" data-target-y="70"></div>
+          <div class="proof-card" data-target-x="-300" data-target-y="260"></div>
+          <div class="proof-card" data-target-x="0" data-target-y="260"></div>
+          <div class="proof-card" data-target-x="300" data-target-y="260"></div>
         </div>
 
-        <div id="scene-01-meta" class="meta-rail">
-          <span>AI judgment</span>
-          <b>+</b>
-          <span>Deterministic software</span>
-        </div>
         <div class="registration top-left" data-layout-ignore></div>
         <div class="registration bottom-right" data-layout-ignore></div>
       </div>
@@ -230,24 +249,18 @@
         const root = document.querySelector('[data-composition-id="scene-01-hook"]');
         const tl = gsap.timeline({ paused: true });
         const cards = root.querySelectorAll(".proof-card");
+        const headline = root.querySelector("#scene-01-headline");
 
         tl.fromTo(
-          root.querySelector("#scene-01-count"),
-          { opacity: 0, scale: 0.72, rotation: -3 },
-          { opacity: 1, scale: 1, rotation: 0, duration: 0.58, ease: "power4.out" },
-          0.12,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-01-kicker"),
-          { opacity: 0, x: -44 },
-          { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" },
-          0.2,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-01-headline"),
+          headline,
           { opacity: 0, y: 38 },
-          { opacity: 1, y: 0, duration: 0.72, ease: "power4.out" },
-          0.3,
+          {
+            opacity: 1,
+            y: 0,
+            duration: Number(headline.dataset.textDuration),
+            ease: "power4.out",
+          },
+          Number(headline.dataset.textStart),
         );
 
         cards.forEach((card, index) => {
@@ -276,13 +289,6 @@
             0.56 + index * 0.055,
           );
         });
-
-        tl.fromTo(
-          root.querySelector("#scene-01-meta"),
-          { opacity: 0, scaleX: 0.76 },
-          { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out" },
-          1.22,
-        );
 
         window.__timelines["scene-01-hook"] = tl;
       </script>

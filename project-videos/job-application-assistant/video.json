@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "job-application-assistant",
   "title": "Job Application Assistant",
   "family": "product-journey",
@@ -26,63 +27,37 @@
     {
       "id": "scattered-applications",
       "kind": "problem",
-      "eyebrow": "The problem",
+      "intent": "Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Applications were scattered.",
-      "body": "Job posts, notes, drafts, PDFs, and follow-ups lived apart.",
       "duration": 7,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Job post",
-          "body": "The role details"
-        },
-        {
-          "title": "Notes",
-          "body": "What mattered"
-        },
-        {
-          "title": "Draft",
-          "body": "What to send"
-        },
-        {
-          "title": "Follow-up",
-          "body": "What comes next"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "lost-thread",
       "kind": "context",
-      "eyebrow": "The cost",
+      "intent": "It was easy to lose the thread. What did I send? Did I already apply?",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "It was easy to lose the thread.",
-      "body": "What did I send? Did I already apply?",
       "duration": 6,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Draft",
-          "body": "Which version?"
-        },
-        {
-          "title": "PDF",
-          "body": "Was it exported?"
-        },
-        {
-          "title": "Status",
-          "body": "Was it submitted?"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "local-workflow",
       "kind": "action",
-      "eyebrow": "The solution",
+      "intent": "I built one local workflow. Review the job. Draft the letter. Save the record.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "I built one local workflow.",
-      "body": "Review the job. Draft the letter. Save the record.",
       "duration": 8,
       "layout": "copy-left",
       "asset": "assets/redacted/product-surface.png",
@@ -95,76 +70,48 @@
     {
       "id": "connected-steps",
       "kind": "workflow",
-      "eyebrow": "How it works",
-      "headline": "The app keeps each step connected.",
-      "body": "Review. Draft. Export. Track.",
+      "intent": "The app keeps each step connected. Review. Draft. Export. Track.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The app keeps every step connected.",
       "duration": 8,
       "layout": "rail",
       "asset": "assets/redacted/product-surface.png",
       "assetAlt": "Job Application Assistant workflow interface",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Review",
-          "body": "Check the job"
-        },
-        {
-          "title": "Draft",
-          "body": "Prepare the letter"
-        },
-        {
-          "title": "Export",
-          "body": "Save the PDF"
-        },
-        {
-          "title": "Track",
-          "body": "Keep the history"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "clear-record",
       "kind": "result",
-      "eyebrow": "The result",
+      "intent": "Every application gets a clear record. Draft, PDF, status, and history stay together.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Every application gets a clear record.",
-      "body": "Draft, PDF, status, and history stay together.",
       "duration": 9,
       "layout": "report",
       "asset": "assets/redacted/product-surface.png",
       "assetAlt": "Synthetic application dashboard and saved record",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Draft",
-          "body": "The working letter"
-        },
-        {
-          "title": "PDF",
-          "body": "The saved file"
-        },
-        {
-          "title": "Status",
-          "body": "Where it stands"
-        },
-        {
-          "title": "History",
-          "body": "What happened"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Job Application Assistant Clear application records.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Job Application Assistant",
-      "headline": "Job Application Assistant",
-      "body": "Clear application records.",
-      "duration": 3,
+      "headline": "Clear application records.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/redacted/product-surface.png",
       "assetAlt": "Settled Job Application Assistant product screen",
@@ -201,7 +148,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

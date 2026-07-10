@@ -6,6 +6,38 @@
     <title>Project Video AI Workflow</title>
     <script src="./assets/runtime/gsap.min.js"></script>
     <style>
+      @font-face {
+        font-family: "Portfolio Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url("./assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Portfolio Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: url("./assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Portfolio EB Garamond";
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: url("./assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Portfolio IBM Plex Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+        src: url("./assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -21,7 +53,7 @@
 
       body {
         color: #171512;
-        font-family: "Inter", sans-serif;
+        font-family: "Portfolio Inter", sans-serif;
       }
 
       #root {
@@ -74,6 +106,31 @@
         z-index: 20;
       }
 
+      #font-contract-probe {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #font-contract-probe .inter-400 {
+        font: 400 16px/1 "Portfolio Inter";
+      }
+
+      #font-contract-probe .inter-700 {
+        font: 700 16px/1 "Portfolio Inter";
+      }
+
+      #font-contract-probe .garamond-700 {
+        font: 700 16px/1 "Portfolio EB Garamond";
+      }
+
+      #font-contract-probe .plex-700 {
+        font: 700 16px/1 "Portfolio IBM Plex Mono";
+      }
+
       .proof-video {
         position: absolute;
         top: 238px;
@@ -121,11 +178,18 @@
       data-start="0"
       data-width="1080"
       data-height="1080"
-      data-duration="39.5"
+      data-duration="45.5"
       data-fps="30"
     >
-      <div id="background" class="clip" data-start="0" data-duration="39.5" data-track-index="0">
+      <div id="background" class="clip" data-start="0" data-duration="45.5" data-track-index="0">
         <div id="background-grid" data-layout-ignore></div>
+      </div>
+
+      <div id="font-contract-probe" data-layout-ignore aria-hidden="true">
+        <span class="inter-400">Ag</span>
+        <span class="inter-700">Ag</span>
+        <span class="garamond-700">Ag</span>
+        <span class="plex-700">Ag</span>
       </div>
 
       <div
@@ -145,7 +209,7 @@
         data-composition-id="scene-02-manual"
         data-composition-src="compositions/scene-02-manual.html"
         data-start="4"
-        data-duration="4.5"
+        data-duration="6"
         data-track-index="1"
         data-width="1080"
         data-height="1080"
@@ -155,8 +219,8 @@
         class="clip scene-host"
         data-composition-id="scene-03-system"
         data-composition-src="compositions/scene-03-system.html"
-        data-start="8.5"
-        data-duration="5.5"
+        data-start="10"
+        data-duration="6.5"
         data-track-index="1"
         data-width="1080"
         data-height="1080"
@@ -166,8 +230,8 @@
         class="clip scene-host"
         data-composition-id="scene-04-split"
         data-composition-src="compositions/scene-04-split.html"
-        data-start="14"
-        data-duration="6.5"
+        data-start="16.5"
+        data-duration="8"
         data-track-index="1"
         data-width="1080"
         data-height="1080"
@@ -177,7 +241,7 @@
         class="clip scene-host"
         data-composition-id="scene-05-proof"
         data-composition-src="compositions/scene-05-proof.html"
-        data-start="20.5"
+        data-start="24.5"
         data-duration="11"
         data-track-index="1"
         data-width="1080"
@@ -188,8 +252,8 @@
         class="clip scene-host"
         data-composition-id="scene-06-change"
         data-composition-src="compositions/scene-06-change.html"
-        data-start="31.5"
-        data-duration="4"
+        data-start="35.5"
+        data-duration="5"
         data-track-index="1"
         data-width="1080"
         data-height="1080"
@@ -199,8 +263,8 @@
         class="clip scene-host"
         data-composition-id="scene-07-close"
         data-composition-src="compositions/scene-07-close.html"
-        data-start="35.5"
-        data-duration="4"
+        data-start="40.5"
+        data-duration="5"
         data-track-index="1"
         data-width="1080"
         data-height="1080"
@@ -210,7 +274,7 @@
         id="proof-agent-recall"
         class="clip proof-video"
         src="assets/clips/agent-recall.mp4"
-        data-start="20.5"
+        data-start="24.5"
         data-duration="1.833"
         data-track-index="2"
         muted
@@ -220,7 +284,7 @@
         id="proof-health-ai-search-audit"
         class="clip proof-video"
         src="assets/clips/health-ai-search-audit.mp4"
-        data-start="22.333"
+        data-start="26.333"
         data-duration="1.833"
         data-track-index="2"
         muted
@@ -230,7 +294,7 @@
         id="proof-palabruno"
         class="clip proof-video"
         src="assets/clips/palabruno.mp4"
-        data-start="24.166"
+        data-start="28.166"
         data-duration="1.833"
         data-track-index="2"
         muted
@@ -240,7 +304,7 @@
         id="proof-casamo"
         class="clip proof-video"
         src="assets/clips/casamo.mp4"
-        data-start="25.999"
+        data-start="29.999"
         data-duration="1.833"
         data-track-index="2"
         muted
@@ -250,7 +314,7 @@
         id="proof-maximo-interiorismo"
         class="clip proof-video"
         src="assets/clips/maximo-interiorismo.mp4"
-        data-start="27.832"
+        data-start="31.832"
         data-duration="1.833"
         data-track-index="2"
         muted
@@ -260,7 +324,7 @@
         id="proof-redwriter-comics"
         class="clip proof-video"
         src="assets/clips/redwriter-comics.mp4"
-        data-start="29.665"
+        data-start="33.665"
         data-duration="1.835"
         data-track-index="2"
         muted
@@ -280,7 +344,7 @@
       <div
         id="transition-02"
         class="clip transition"
-        data-start="8.18"
+        data-start="9.68"
         data-duration="0.72"
         data-track-index="4"
       >
@@ -290,7 +354,7 @@
       <div
         id="transition-03"
         class="clip transition"
-        data-start="13.68"
+        data-start="16.18"
         data-duration="0.72"
         data-track-index="5"
       >
@@ -300,7 +364,7 @@
       <div
         id="transition-04"
         class="clip transition"
-        data-start="20.18"
+        data-start="24.18"
         data-duration="0.72"
         data-track-index="6"
       >
@@ -310,7 +374,7 @@
       <div
         id="transition-05"
         class="clip transition"
-        data-start="31.18"
+        data-start="35.18"
         data-duration="0.72"
         data-track-index="7"
       >
@@ -320,7 +384,7 @@
       <div
         id="transition-06"
         class="clip transition"
-        data-start="35.18"
+        data-start="40.18"
         data-duration="0.72"
         data-track-index="8"
       >
@@ -336,17 +400,17 @@
       tl.fromTo(
         "#background-grid",
         { x: 0, y: 0 },
-        { x: -12, y: 8, duration: 39.5, ease: "none" },
+        { x: -12, y: 8, duration: 45.5, ease: "none" },
         0,
       );
 
       const proofClips = [
-        ["#proof-agent-recall", 20.5],
-        ["#proof-health-ai-search-audit", 22.333],
-        ["#proof-palabruno", 24.166],
-        ["#proof-casamo", 25.999],
-        ["#proof-maximo-interiorismo", 27.832],
-        ["#proof-redwriter-comics", 29.665],
+        ["#proof-agent-recall", 24.5],
+        ["#proof-health-ai-search-audit", 26.333],
+        ["#proof-palabruno", 28.166],
+        ["#proof-casamo", 29.999],
+        ["#proof-maximo-interiorismo", 31.832],
+        ["#proof-redwriter-comics", 33.665],
       ];
 
       proofClips.forEach(([selector, start]) => {
@@ -371,11 +435,11 @@
       }
 
       addCoverWipe("transition-01", 3.62, 4);
-      addCoverWipe("transition-02", 8.18, 8.5);
-      addCoverWipe("transition-03", 13.68, 14);
-      addCoverWipe("transition-04", 20.18, 20.5);
-      addCoverWipe("transition-05", 31.18, 31.5);
-      addCoverWipe("transition-06", 35.18, 35.5);
+      addCoverWipe("transition-02", 9.68, 10);
+      addCoverWipe("transition-03", 16.18, 16.5);
+      addCoverWipe("transition-04", 24.18, 24.5);
+      addCoverWipe("transition-05", 35.18, 35.5);
+      addCoverWipe("transition-06", 40.18, 40.5);
 
       window.__timelines["project-video-ai-workflow"] = tl;
     </script>

@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "apartment-finder",
   "title": "Apartment Finder",
   "family": "product-journey",
@@ -26,30 +27,24 @@
     {
       "id": "noisy-search",
       "kind": "problem",
-      "eyebrow": "The problem",
-      "headline": "Apartment search got noisy.",
-      "body": "Listing sites mixed private washers with shared laundry.",
+      "intent": "Apartment search got noisy. Listing sites mixed private washers with shared laundry.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Apartment search mixed different laundry setups.",
       "duration": 6,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Washer filter",
-          "body": "One broad signal"
-        },
-        {
-          "title": "Shared laundry",
-          "body": "A different answer"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "listing-review",
       "kind": "action",
-      "eyebrow": "The review",
-      "headline": "Apartment Finder reviews the listing.",
-      "body": "It reads details, photos, and washer clues together.",
+      "intent": "Apartment Finder reviews the listing. It reads details, photos, and washer clues together.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The app reviews each listing.",
       "duration": 6,
       "layout": "copy-left",
       "asset": "assets/redacted/apartment-finder-ui-redacted.png",
@@ -62,63 +57,41 @@
     {
       "id": "visible-evidence",
       "kind": "evidence",
-      "eyebrow": "The evidence",
-      "headline": "The decision stays easy to check.",
-      "body": "Evidence, confidence, and source links remain visible.",
+      "intent": "The decision stays easy to check. Evidence, confidence, and source links remain visible.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Every decision keeps visible evidence.",
       "duration": 7,
       "layout": "report",
       "asset": "assets/redacted/apartment-finder-ui-redacted.png",
       "assetAlt": "Redacted product surface with washer evidence and confidence",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Evidence",
-          "body": "Photos and details"
-        },
-        {
-          "title": "Confidence",
-          "body": "How certain is the call?"
-        },
-        {
-          "title": "Source link",
-          "body": "Where the listing came from"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "clear-comparison",
       "kind": "result",
-      "eyebrow": "The result",
-      "headline": "The result is easier to compare.",
-      "body": "Likely in-unit, shared building, or unclear.",
+      "intent": "The result is easier to compare. Likely in-unit, shared building, or unclear.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Results become easier to compare.",
       "duration": 7,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Likely in-unit",
-          "body": "Evidence supports it"
-        },
-        {
-          "title": "Shared building",
-          "body": "Laundry is outside the unit"
-        },
-        {
-          "title": "Unclear",
-          "body": "More checking is needed"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "clearer-decision",
       "kind": "result",
-      "eyebrow": "Why it matters",
-      "headline": "A messy search becomes a clearer decision.",
-      "body": "Fewer tabs, better evidence, less guessing.",
+      "intent": "A messy search becomes a clearer decision. Fewer tabs, better evidence, less guessing.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Less tab switching. Less guessing.",
       "duration": 7,
       "layout": "full",
       "asset": "assets/redacted/apartment-finder-ui-redacted.png",
@@ -131,10 +104,14 @@
     {
       "id": "end",
       "kind": "end",
+      "intent": "Apartment Finder Messy listings to clear decisions.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Apartment Finder",
-      "headline": "Apartment Finder",
-      "body": "Messy listings to clear decisions.",
-      "duration": 3,
+      "headline": "Messy listings become clear decisions.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/redacted/apartment-finder-ui-redacted.png",
       "assetAlt": "Settled Apartment Finder product screen",
@@ -173,7 +150,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

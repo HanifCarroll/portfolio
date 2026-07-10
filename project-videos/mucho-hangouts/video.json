@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "mucho-hangouts",
   "title": "Mucho Hangouts",
   "family": "system-proof",
@@ -26,9 +27,11 @@
     {
       "id": "live-product-risk",
       "kind": "problem",
-      "eyebrow": "Problem",
-      "headline": "The product was live.",
-      "body": "Reliability and team speed were becoming risks.",
+      "intent": "The product was live. Reliability and team speed were becoming risks.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "A live product needed more reliability.",
       "duration": 5.2,
       "layout": "copy-left",
       "asset": "assets/selected/mucho-hangouts-hero.png",
@@ -41,88 +44,54 @@
     {
       "id": "clearer-foundation",
       "kind": "action",
-      "eyebrow": "Contribution",
-      "headline": "I made the product easier to maintain.",
-      "body": "Key flows got clearer.",
+      "intent": "I made the product easier to maintain. Key flows got clearer.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The product became easier to maintain.",
       "duration": 5.4,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Live product",
-          "body": "Keep shipping"
-        },
-        {
-          "title": "Clearer flows",
-          "body": "Safer changes"
-        },
-        {
-          "title": "Foundation",
-          "body": "Easier to extend"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "steadier-social-flows",
       "kind": "workflow",
-      "eyebrow": "Core workflows",
-      "headline": "Messaging and notifications got steadier.",
-      "body": "Everyday coordination needed fewer fragile moments.",
+      "intent": "Messaging and notifications got steadier. Everyday coordination needed fewer fragile moments.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Social flows became steadier.",
       "duration": 5.4,
       "layout": "copy-right",
       "asset": "assets/selected/mucho-hangouts-feature.png",
       "assetAlt": "Public Mucho Hangouts share modal and news feed surface.",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Message",
-          "body": "Steadier"
-        },
-        {
-          "title": "Notify",
-          "body": "Clearer"
-        },
-        {
-          "title": "Share",
-          "body": "Connected"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "safer-team-patterns",
       "kind": "evidence",
-      "eyebrow": "Team patterns",
-      "headline": "The team got clearer patterns.",
-      "body": "Review and pairing made everyday changes safer.",
+      "intent": "The team got clearer patterns. Review and pairing made everyday changes safer.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Team patterns made changes safer.",
       "duration": 5.4,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Review",
-          "body": "Shared context"
-        },
-        {
-          "title": "Pair",
-          "body": "Repeatable patterns"
-        },
-        {
-          "title": "Safer defaults",
-          "body": "Everyday changes"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "dependable-delivery",
       "kind": "result",
-      "eyebrow": "Result",
+      "intent": "The team kept shipping. The product became more dependable during cleanup.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "The team kept shipping.",
-      "body": "The product became more dependable during cleanup.",
       "duration": 5.6,
       "layout": "copy-left",
       "asset": "assets/selected/mucho-hangouts-hero.png",
@@ -135,10 +104,14 @@
     {
       "id": "mucho-hangouts-end",
       "kind": "end",
+      "intent": "Steadier social flows. Clearer delivery.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Mucho Hangouts",
-      "headline": "Steadier social flows.",
-      "body": "Clearer delivery.",
-      "duration": 3,
+      "headline": "Steadier flows. Clearer delivery.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -167,7 +140,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

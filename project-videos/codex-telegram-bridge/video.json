@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "codex-telegram-bridge",
   "title": "Codex Telegram Bridge",
   "family": "system-proof",
@@ -26,9 +27,11 @@
     {
       "id": "away-from-desktop",
       "kind": "problem",
-      "eyebrow": "Problem",
-      "headline": "Codex kept working after I stepped away.",
-      "body": "Prompts could sit on the desktop.",
+      "intent": "Codex kept working after I stepped away. Prompts could sit on the desktop.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Prompts could wait on the desktop.",
       "duration": 8.2,
       "layout": "copy-left",
       "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
@@ -41,34 +44,24 @@
     {
       "id": "ownership-boundary",
       "kind": "context",
-      "eyebrow": "Ownership",
+      "intent": "Remote control needed clear ownership. Chat should not become an open door.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Remote control needed clear ownership.",
-      "body": "Chat should not become an open door.",
       "duration": 8.2,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Local state",
-          "body": "Owns routing"
-        },
-        {
-          "title": "Away mode",
-          "body": "Opens replies"
-        },
-        {
-          "title": "Back mode",
-          "body": "Closes replies"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "local-bridge",
       "kind": "action",
-      "eyebrow": "The bridge",
-      "headline": "I built a local bridge.",
-      "body": "Away mode opens replies. Back mode closes them.",
+      "intent": "I built a local bridge. Away mode opens replies. Back mode closes them.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "A local bridge opens only when needed.",
       "duration": 8.2,
       "layout": "copy-right",
       "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
@@ -81,38 +74,24 @@
     {
       "id": "route-and-approve",
       "kind": "workflow",
-      "eyebrow": "Routing",
-      "headline": "Replies go back to the right thread.",
-      "body": "Approvals return to the same thread.",
+      "intent": "Replies go back to the right thread. Approvals return to the same thread.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Replies return to the right thread.",
       "duration": 8.2,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Message",
-          "body": "Remote reply"
-        },
-        {
-          "title": "Route",
-          "body": "Local lookup"
-        },
-        {
-          "title": "Thread",
-          "body": "Right destination"
-        },
-        {
-          "title": "Approval",
-          "body": "Recorded"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "local-ownership-result",
       "kind": "result",
-      "eyebrow": "Result",
-      "headline": "Remote Codex stays controlled.",
-      "body": "Replies, approvals, and delivery stay tied to my machine.",
+      "intent": "Remote Codex stays controlled. Replies, approvals, and delivery stay tied to my machine.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Remote Codex stays locally controlled.",
       "duration": 8.2,
       "layout": "copy-left",
       "asset": "assets/redacted/codex-telegram-bridge-terminal.png",
@@ -125,10 +104,14 @@
     {
       "id": "codex-telegram-bridge-end",
       "kind": "end",
+      "intent": "Replies under control. Local state keeps ownership.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Codex Telegram Bridge",
-      "headline": "Replies under control.",
-      "body": "Local state keeps ownership.",
-      "duration": 3,
+      "headline": "Remote replies under local control.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -157,7 +140,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

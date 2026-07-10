@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "language-exchange",
   "title": "HablaBA",
   "family": "product-journey",
@@ -26,159 +27,95 @@
     {
       "id": "hard-to-arrange",
       "kind": "problem",
-      "eyebrow": "The problem",
-      "headline": "Practice was hard to arrange.",
-      "body": "Big events made focused practice harder.",
+      "intent": "Practice was hard to arrange. Big events made focused practice harder.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Focused practice was hard to arrange.",
       "duration": 5.5,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Profile apps",
-          "body": "Plenty to browse"
-        },
-        {
-          "title": "Big events",
-          "body": "Hard to focus"
-        },
-        {
-          "title": "Local practice",
-          "body": "Still hard to arrange"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "research-shaped-beta",
       "kind": "context",
-      "eyebrow": "Research",
+      "intent": "Research shaped the beta. One interview, 11 responses, and six usability sessions.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Research shaped the beta.",
-      "body": "One interview, 11 responses, and six usability sessions.",
       "duration": 6,
       "layout": "copy-left",
       "asset": "assets/selected/hablaba-host-exchange-flow.png",
       "assetAlt": "Early HablaBA host-exchange wireflow from definition through confirmation",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Interview",
-          "body": "Listen first"
-        },
-        {
-          "title": "Survey",
-          "body": "Check the pattern"
-        },
-        {
-          "title": "Six sessions",
-          "body": "Test the flow"
-        }
-      ],
       "transition": "dissolve",
       "motion": "settle"
     },
     {
       "id": "choose-the-exchange",
       "kind": "action",
-      "eyebrow": "Exchange first",
-      "headline": "Choose the exchange.",
-      "body": "Compare language, neighborhood, time, and seats.",
+      "intent": "Choose the exchange. Compare language, neighborhood, time, and seats.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Choose the exchange first.",
       "duration": 5,
       "layout": "copy-right",
       "asset": "assets/redacted/hablaba-hero.png",
       "assetAlt": "HablaBA Explore screen with seeded one-to-one and small-group exchanges",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Language",
-          "body": "What to practice"
-        },
-        {
-          "title": "Neighborhood",
-          "body": "Where to meet"
-        },
-        {
-          "title": "Time",
-          "body": "When it happens"
-        },
-        {
-          "title": "Open seats",
-          "body": "Who can join"
-        }
-      ],
       "transition": "push-left",
       "motion": "settle"
     },
     {
       "id": "private-chat",
       "kind": "workflow",
-      "eyebrow": "Coordinate",
+      "intent": "Each exchange has a private chat. Coordinate the plan live.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Each exchange has a private chat.",
-      "body": "Coordinate the plan live.",
       "duration": 5,
       "layout": "copy-left",
       "asset": "assets/redacted/hablaba-feature.png",
       "assetAlt": "HablaBA private exchange chat with seeded demo messages",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Topics",
-          "body": "What to practice"
-        },
-        {
-          "title": "Timing",
-          "body": "When to meet"
-        },
-        {
-          "title": "Private chat",
-          "body": "One shared plan"
-        }
-      ],
       "transition": "push-up",
       "motion": "settle"
     },
     {
       "id": "connected-beta-loop",
       "kind": "result",
-      "eyebrow": "The result",
+      "intent": "One connected beta loop. Invitation, discovery, exchange details, and chat stay connected.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "One connected beta loop.",
-      "body": "Invitation, discovery, exchange details, and chat stay connected.",
       "duration": 5.5,
       "layout": "rail",
       "asset": "assets/redacted/hablaba-feature.png",
       "assetAlt": "HablaBA seeded exchange chat inside the connected beta workflow",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Invitation",
-          "body": "Intentional access"
-        },
-        {
-          "title": "Discovery",
-          "body": "Find a session"
-        },
-        {
-          "title": "Exchange",
-          "body": "Join the group"
-        },
-        {
-          "title": "Chat",
-          "body": "Coordinate the plan"
-        }
-      ],
       "transition": "dissolve",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "HablaBA Local practice, shaped by research.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "HablaBA",
-      "headline": "HablaBA",
-      "body": "Local practice, shaped by research.",
-      "duration": 3,
+      "headline": "Local practice shaped by research.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/redacted/hablaba-hero.png",
       "assetAlt": "Settled HablaBA exchange discovery screen with seeded demo data",
@@ -215,7 +152,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

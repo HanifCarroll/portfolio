@@ -3,6 +3,38 @@
   <body>
     <template>
       <style>
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio EB Garamond";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio IBM Plex Mono";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+        }
+
         #root {
           position: absolute;
           inset: 0;
@@ -11,27 +43,15 @@
           overflow: hidden;
           padding: 92px;
           color: #171512;
-          font-family: "Inter", sans-serif;
+          font-family: "Portfolio Inter", sans-serif;
           perspective: 1800px;
           pointer-events: none;
-        }
-
-        .topline {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          color: #696158;
-          font:
-            700 24px/1 "IBM Plex Mono",
-            monospace;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
         }
 
         .headline {
           margin: 34px 0 0;
           font:
-            700 82px/0.9 "EB Garamond",
+            700 82px/0.9 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.045em;
         }
@@ -76,7 +96,7 @@
           align-items: center;
           gap: 12px;
           font:
-            700 22px/1 "IBM Plex Mono",
+            700 22px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.06em;
           text-transform: uppercase;
@@ -109,7 +129,7 @@
         .card h2 {
           margin: 28px 0 0;
           font:
-            700 54px/0.94 "EB Garamond",
+            700 54px/0.94 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.035em;
         }
@@ -129,7 +149,7 @@
           color: #3a352f;
           background: #f9f9f7;
           font:
-            700 25px/1.1 "Inter",
+            700 25px/1.1 "Portfolio Inter",
             sans-serif;
         }
 
@@ -147,7 +167,7 @@
           border: 4px solid #f9f9f7;
           border-radius: 50%;
           font:
-            700 26px/1 "IBM Plex Mono",
+            700 26px/1 "Portfolio IBM Plex Mono",
             monospace;
           transform: translateX(-50%);
         }
@@ -165,7 +185,7 @@
         .approval {
           position: absolute;
           right: 92px;
-          bottom: 48px;
+          bottom: 92px;
           left: 92px;
           display: flex;
           align-items: center;
@@ -174,7 +194,7 @@
           color: #fffcf6;
           background: #1d6f58;
           font:
-            700 21px/1 "IBM Plex Mono",
+            700 21px/1 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: 0.03em;
           text-transform: uppercase;
@@ -190,36 +210,35 @@
         data-composition-id="scene-04-split"
         data-width="1080"
         data-height="1080"
-        data-duration="6.5"
+        data-duration="8"
       >
-        <div id="scene-04-topline" class="topline">
-          <span>The useful combination</span>
-          <span>04 / 07</span>
-        </div>
-        <h1 id="scene-04-headline" class="headline">
-          AI judgment <span>+</span> deterministic software
+        <h1
+          id="scene-04-headline"
+          class="headline"
+          data-text-start="0.24"
+          data-text-duration="0.66"
+        >
+          AI decides what matters. Software repeats it reliably.
         </h1>
 
         <div class="split-stage">
           <section id="scene-04-card-left" class="card card-left">
-            <div class="card-eyebrow">AI judgment</div>
-            <h2>Decide what matters.</h2>
+            <div class="card-eyebrow" aria-hidden="true"></div>
             <div class="responsibility-list">
-              <div class="responsibility">Read the sources</div>
-              <div class="responsibility">Choose the story</div>
-              <div class="responsibility">Select the evidence</div>
-              <div class="responsibility">Write the scenes</div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
             </div>
           </section>
 
           <section id="scene-04-card-right" class="card card-right">
-            <div class="card-eyebrow">Deterministic software</div>
-            <h2>Make it repeatable.</h2>
+            <div class="card-eyebrow" aria-hidden="true"></div>
             <div class="responsibility-list">
-              <div class="responsibility">Apply shared layout</div>
-              <div class="responsibility">Validate the recipe</div>
-              <div class="responsibility">Run quality checks</div>
-              <div class="responsibility">Render the assets</div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
+              <div class="responsibility"></div>
             </div>
           </section>
 
@@ -227,9 +246,14 @@
           <div id="scene-04-rule" class="center-rule"></div>
         </div>
 
-        <div id="scene-04-approval" class="approval">
-          <span>Human visual + privacy review</span>
-          <b>Required before render</b>
+        <div
+          id="scene-04-approval"
+          class="approval"
+          data-text-start="2.06"
+          data-text-duration="0.48"
+        >
+          <span>Human review</span>
+          <b>✓</b>
         </div>
       </div>
 
@@ -237,18 +261,19 @@
         window.__timelines = window.__timelines || {};
         const root = document.querySelector('[data-composition-id="scene-04-split"]');
         const tl = gsap.timeline({ paused: true });
+        const headline = root.querySelector("#scene-04-headline");
+        const approval = root.querySelector("#scene-04-approval");
 
         tl.fromTo(
-          root.querySelector("#scene-04-topline"),
-          { opacity: 0, x: -38 },
-          { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" },
-          0.16,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-04-headline"),
+          headline,
           { opacity: 0, y: 34 },
-          { opacity: 1, y: 0, duration: 0.66, ease: "power4.out" },
-          0.24,
+          {
+            opacity: 1,
+            y: 0,
+            duration: Number(headline.dataset.textDuration),
+            ease: "power4.out",
+          },
+          Number(headline.dataset.textStart),
         );
         tl.fromTo(
           root.querySelector("#scene-04-card-left"),
@@ -281,10 +306,15 @@
           1.7,
         );
         tl.fromTo(
-          root.querySelector("#scene-04-approval"),
+          approval,
           { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" },
-          2.06,
+          {
+            opacity: 1,
+            y: 0,
+            duration: Number(approval.dataset.textDuration),
+            ease: "power3.out",
+          },
+          Number(approval.dataset.textStart),
         );
         tl.to(
           root.querySelector("#scene-04-card-left"),

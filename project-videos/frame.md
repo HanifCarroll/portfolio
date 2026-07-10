@@ -1,6 +1,6 @@
 ---
 name: portfolio-project-proof
-version: 1.0.0
+version: 2.0.0
 canvas: manifest.theme.canvas
 surface: manifest.theme.surface
 ink: manifest.theme.ink
@@ -33,9 +33,23 @@ Every scene contains three depth layers:
 
 1. Background: tinted canvas, subtle grid, two edge panels, and one family-specific geometric motif.
 2. Midground: one primary proof surface plus the scene copy.
-3. Foreground: scene number, family label, rule, registration marks, and compact evidence labels.
+3. Foreground: a nonverbal rule, registration marks, and only the compact labels explicitly declared in the manifest.
 
-The frame should feel produced at rest: two focal points and roughly eight visible elements, without covering the proof surface.
+The frame should feel produced at rest: two focal points and enough structure to orient the viewer, without covering the proof surface. Graphical chrome carries atmosphere; it does not add vocabulary.
+
+## Silent Editorial Profile
+
+Every manifest uses `editorialProfile: "silent-proof-v1"`. The manifest is the complete source of viewer-facing language. Graphical chrome stays nonverbal; the renderer does not add scene numbers, story-family names, scene-kind labels, proof-header copy, fallback workflow words, or end-card titles.
+
+The profile pins the canonical `silent-designed-video-v1` editorial standard and `whitespace-v1` tokenizer. The tokenizer trims each rendered field, splits on one or more whitespace characters, removes empty and punctuation-only tokens, and leaves punctuation attached to words. Numbers, URLs, handles, contractions, and hyphenated terms count as one token.
+
+- `intent` records the non-rendered job of the scene.
+- `textRoles` declares the role of every copy field; the required headline is the single `primary` block.
+- `eyebrow`, `body`, `labels`, and `stat` are optional. Keep one only when it earns `supporting`, `orientation`, or `status`.
+- Allowed roles are `primary`, `supporting`, `orientation`, and `status`. Labels and stats carry their role inline.
+- `assetText` declares and counts readable logo or screenshot words when the scene depends on them; dedicated readable logos are always declared.
+- Readability is calculated at `140 WPM` after text settles. Normal copy settles at `1.1s`; ending copy at `0.5s`; label cascades extend the settled time when they finish later. The reading window ends when the outgoing transition starts, or at scene end for the final scene.
+- Every scene needs at least `2s` of settled hold and `0.75s` of reading safety margin. Endings use a `0.5s` safety margin.
 
 ## Story Families
 
@@ -53,9 +67,9 @@ Need or opportunity -> visual introduction -> work or gallery -> inquiry or vali
 
 ## Timing Profiles
 
-- `standard`: five story scenes plus a 3-second ending, normally `40-45s`.
-- `short`: four or five story scenes plus a 3-second ending, normally `30-36s`.
-- `loop`: three or four story scenes plus a 3-second ending, normally `16.5-24s`.
+- `standard`: five story scenes plus a held ending, normally `40-48s`.
+- `short`: four or five story scenes plus a held ending, normally `30-36s`.
+- `loop`: three or four story scenes plus a held ending, normally `18-24s`.
 
 ## Motion
 
@@ -63,7 +77,7 @@ Need or opportunity -> visual introduction -> work or gallery -> inquiry or vali
 - Push transitions carry related ideas; scale dissolves mark a topic or proof shift.
 - Entrances use explicit `fromTo()` tweens with varied direction, scale, opacity, duration, and ease.
 - One ambient motion runs during each scene's breathe phase: grid drift, panel float, screenshot settle, rail pulse, or slow image scroll.
-- The final scene settles within the first half-second and holds through the end. It introduces no new argument.
+- The final scene settles within the first half-second and holds through the end. Its duration is at least `3s` and extends when its explicit project orientation and conclusion need more reading time. It introduces no new argument.
 
 ## Constraints
 

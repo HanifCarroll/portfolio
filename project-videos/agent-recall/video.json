@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "agent-recall",
   "title": "Agent Recall",
   "family": "system-proof",
@@ -26,59 +27,37 @@
     {
       "id": "buried-context",
       "kind": "problem",
-      "eyebrow": "Problem",
+      "intent": "Past agent work was hard to reuse. Important context got buried.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Past agent work was hard to reuse.",
-      "body": "Important context got buried.",
       "duration": 7.8,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Decisions",
-          "body": "Buried"
-        },
-        {
-          "title": "Commands",
-          "body": "Hard to find"
-        },
-        {
-          "title": "Blockers",
-          "body": "Disconnected"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "local-source",
       "kind": "context",
-      "eyebrow": "Input",
-      "headline": "The input is past work.",
-      "body": "Each memory stays tied to where it came from.",
+      "intent": "The input is past work. Each memory stays tied to where it came from.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Every memory stays tied to its source.",
       "duration": 7.8,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Local archives",
-          "body": "Source of truth"
-        },
-        {
-          "title": "Source file",
-          "body": "Receipt"
-        },
-        {
-          "title": "Line links",
-          "body": "Review path"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "searchable-memory",
       "kind": "action",
-      "eyebrow": "Action",
-      "headline": "Agent Recall turns sessions into searchable memory.",
-      "body": "Secrets are hidden first.",
+      "intent": "Agent Recall turns sessions into searchable memory. Secrets are hidden first.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Sessions become searchable memory.",
       "duration": 7.8,
       "layout": "copy-left",
       "asset": "assets/redacted/agent-recall-cli.png",
@@ -91,64 +70,44 @@
     {
       "id": "receipt-backed-output",
       "kind": "evidence",
-      "eyebrow": "Source links",
-      "headline": "Each memory points back to where it came from.",
-      "body": "Receipts keep the trail inspectable.",
+      "intent": "Each memory points back to where it came from. Receipts keep the trail inspectable.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Source links keep the trail inspectable.",
       "duration": 7.8,
       "layout": "report",
       "asset": "assets/redacted/agent-recall-cli.png",
       "assetAlt": "Agent Recall search output with receipt-backed memory proof.",
       "assetFit": "cover",
       "assetPosition": "center 38%",
-      "labels": [
-        {
-          "title": "Memory object",
-          "body": "Reusable context"
-        },
-        {
-          "title": "Source file",
-          "body": "Origin"
-        },
-        {
-          "title": "Line links",
-          "body": "Inspection"
-        }
-      ],
       "transition": "dissolve",
       "motion": "scroll"
     },
     {
       "id": "visible-freshness",
       "kind": "result",
-      "eyebrow": "Result",
-      "headline": "Freshness is visible.",
-      "body": "A reviewer can follow the trail.",
+      "intent": "Freshness is visible. A reviewer can follow the trail.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Freshness stays visible.",
       "duration": 7.8,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Fresh",
-          "body": "Current"
-        },
-        {
-          "title": "Stale",
-          "body": "Needs refresh"
-        },
-        {
-          "title": "Blocked",
-          "body": "Needs attention"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "agent-recall-end",
       "kind": "end",
+      "intent": "Searchable memory. With source links.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Agent Recall",
-      "headline": "Searchable memory.",
-      "body": "With source links.",
-      "duration": 3,
+      "headline": "Searchable memory with source links.",
+      "duration": 5,
       "layout": "full",
       "transition": "dissolve",
       "motion": "settle"
@@ -177,7 +136,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

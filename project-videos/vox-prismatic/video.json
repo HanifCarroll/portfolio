@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "vox-prismatic",
   "title": "Vox Prismatic",
   "family": "product-journey",
@@ -26,59 +27,37 @@
     {
       "id": "buried-ideas",
       "kind": "problem",
-      "eyebrow": "The problem",
+      "intent": "Long transcripts buried good ideas. Useful moments stayed hard to find.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Long transcripts buried good ideas.",
-      "body": "Useful moments stayed hard to find.",
       "duration": 5.5,
       "layout": "stack",
-      "labels": [
-        {
-          "title": "Long transcript",
-          "body": "Raw material"
-        },
-        {
-          "title": "Useful moment",
-          "body": "Hard to find"
-        },
-        {
-          "title": "Draft post",
-          "body": "Still unwritten"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "manual-bottleneck",
       "kind": "context",
-      "eyebrow": "Manual bottleneck",
-      "headline": "Drafting posts by hand was slow.",
-      "body": "Keeping the voice right took judgment.",
+      "intent": "Drafting posts by hand was slow. Keeping the voice right took judgment.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Drafting needed time and judgment.",
       "duration": 5.5,
       "layout": "rail",
-      "labels": [
-        {
-          "title": "Draft",
-          "body": "Shape the idea"
-        },
-        {
-          "title": "Voice",
-          "body": "Keep it recognizable"
-        },
-        {
-          "title": "Review",
-          "body": "A person decides"
-        }
-      ],
       "transition": "push-up",
       "motion": "assemble"
     },
     {
       "id": "reviewable-drafts",
       "kind": "action",
-      "eyebrow": "Product workflow",
-      "headline": "Drafts ready to review from long transcripts.",
-      "body": "People approve before anything is scheduled.",
+      "intent": "Drafts ready to review from long transcripts. People approve before anything is scheduled.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Long transcripts became reviewable drafts.",
       "duration": 6,
       "layout": "copy-left",
       "asset": "assets/redacted/vox-prismatic-posts-crop.png",
@@ -91,72 +70,48 @@
     {
       "id": "clear-steps",
       "kind": "workflow",
-      "eyebrow": "Workflow steps",
-      "headline": "The work moves in clear steps.",
-      "body": "Find ideas, shape posts, review options, schedule.",
+      "intent": "The work moves in clear steps. Find ideas, shape posts, review options, schedule.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Ideas moved through clear steps.",
       "duration": 6.5,
       "layout": "rail",
       "asset": "assets/redacted/vox-prismatic-hook-workbench.png",
       "assetAlt": "Cropped Vox Prismatic hook review workbench",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Find",
-          "body": "Pull out useful ideas"
-        },
-        {
-          "title": "Shape",
-          "body": "Turn ideas into posts"
-        },
-        {
-          "title": "Choose",
-          "body": "Review the options"
-        },
-        {
-          "title": "Schedule",
-          "body": "Approve the next step"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "repeatable-workflow",
       "kind": "result",
-      "eyebrow": "Useful result",
-      "headline": "The result is a repeatable content workflow.",
-      "body": "Long inputs become posts someone can trust.",
+      "intent": "The result is a repeatable content workflow. Long inputs become posts someone can trust.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "The workflow stayed human-led.",
       "duration": 6.5,
       "layout": "report",
       "asset": "assets/redacted/vox-prismatic-posts-crop.png",
       "assetAlt": "Vox Prismatic posts ready for human review",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Pending",
-          "body": "Waiting for review"
-        },
-        {
-          "title": "Approved",
-          "body": "Ready for scheduling"
-        },
-        {
-          "title": "Human-led",
-          "body": "A person stays in control"
-        }
-      ],
       "transition": "dissolve",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "Vox Prismatic Posts ready to review from long transcripts.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "Vox Prismatic",
-      "headline": "Vox Prismatic",
-      "body": "Posts ready to review from long transcripts.",
-      "duration": 3,
+      "headline": "Posts ready for human review.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/redacted/vox-prismatic-posts-crop.png",
       "assetAlt": "Settled Vox Prismatic posts workspace",
@@ -195,7 +150,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

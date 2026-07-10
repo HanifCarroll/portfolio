@@ -3,6 +3,38 @@
   <body>
     <template>
       <style>
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio EB Garamond";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+        }
+
+        @font-face {
+          font-family: "Portfolio IBM Plex Mono";
+          font-style: normal;
+          font-weight: 700;
+          font-display: block;
+          src: url("assets/fonts/ibm-plex-mono-latin-700-normal.woff2") format("woff2");
+        }
+
         #root {
           position: absolute;
           inset: 0;
@@ -11,7 +43,7 @@
           overflow: hidden;
           padding: 92px;
           color: #171512;
-          font-family: "Inter", sans-serif;
+          font-family: "Portfolio Inter", sans-serif;
           pointer-events: none;
         }
 
@@ -21,24 +53,13 @@
           bottom: 110px;
           color: rgba(23, 21, 18, 0.055);
           font:
-            700 220px/0.8 "IBM Plex Mono",
+            700 220px/0.8 "Portfolio IBM Plex Mono",
             monospace;
           letter-spacing: -0.12em;
         }
 
         .ghost-word::before {
-          content: "NEXT";
-        }
-
-        .topline {
-          display: flex;
-          justify-content: space-between;
-          color: #696158;
-          font:
-            700 22px/1 "IBM Plex Mono",
-            monospace;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
+          content: "";
         }
 
         .statement {
@@ -46,13 +67,17 @@
           z-index: 2;
           margin: 180px 0 0;
           font:
-            700 104px/0.94 "EB Garamond",
+            700 104px/1.02 "Portfolio EB Garamond",
             serif;
           letter-spacing: -0.05em;
         }
 
         .statement span {
           display: block;
+        }
+
+        .statement span + span {
+          margin-top: 18px;
         }
 
         .statement span:last-child {
@@ -69,7 +94,7 @@
           margin-top: 82px;
           color: #3a352f;
           font:
-            700 21px/1 "IBM Plex Mono",
+            700 21px/1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -91,7 +116,7 @@
           color: #fffcf6;
           background: #1d6f58;
           font:
-            700 21px/1 "IBM Plex Mono",
+            700 21px/1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -107,7 +132,7 @@
         .footer {
           position: absolute;
           right: 92px;
-          bottom: 64px;
+          bottom: 92px;
           left: 92px;
           display: flex;
           justify-content: space-between;
@@ -115,7 +140,7 @@
           border-top: 3px solid #171512;
           color: #696158;
           font:
-            700 19px/1 "IBM Plex Mono",
+            700 19px/1 "Portfolio IBM Plex Mono",
             monospace;
           text-transform: uppercase;
         }
@@ -130,22 +155,20 @@
         data-composition-id="scene-07-close"
         data-width="1080"
         data-height="1080"
-        data-duration="4"
+        data-duration="5"
       >
         <div class="ghost-word" data-layout-ignore aria-hidden="true"></div>
-        <div id="scene-07-topline" class="topline">
-          <span>Practical AI workflow</span><span>07 / 07</span>
-        </div>
-        <h1 id="scene-07-statement" class="statement">
-          <span>One place to change.</span>
-          <span>A workflow ready for the next case study.</span>
+        <h1
+          id="scene-07-statement"
+          class="statement"
+          data-text-start="0.14"
+          data-text-duration="0.52"
+        >
+          <span>AI judgment.</span>
+          <span>Reliable tools. Practical results.</span>
         </h1>
-        <div id="scene-07-rail" class="workflow-rail">
-          <span>Judgment</span><i></i><span>System</span><i></i><span>Result</span>
-        </div>
-        <div id="scene-07-verified" class="verified">Documented + repeatable</div>
-        <div id="scene-07-footer" class="footer">
-          <span>AI judgment + deterministic software</span><b>hanifcarroll.com</b>
+        <div id="scene-07-footer" class="footer" data-text-start="0.62" data-text-duration="0.36">
+          <b>hanifcarroll.com</b>
         </div>
       </div>
 
@@ -153,42 +176,31 @@
         window.__timelines = window.__timelines || {};
         const root = document.querySelector('[data-composition-id="scene-07-close"]');
         const tl = gsap.timeline({ paused: true });
+        const statement = root.querySelector("#scene-07-statement");
+        const footer = root.querySelector("#scene-07-footer");
 
         tl.fromTo(
-          root.querySelector("#scene-07-topline"),
-          { opacity: 0, x: -34 },
-          { opacity: 1, x: 0, duration: 0.34, ease: "power3.out" },
-          0.1,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-07-statement"),
+          statement,
           { opacity: 0, y: 46, scale: 0.97 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.52, ease: "power4.out" },
-          0.14,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: Number(statement.dataset.textDuration),
+            ease: "power4.out",
+          },
+          Number(statement.dataset.textStart),
         );
         tl.fromTo(
-          root.querySelectorAll(".workflow-rail i"),
-          { scaleX: 0 },
-          { scaleX: 1, duration: 0.46, ease: "power3.out", stagger: 0.08 },
-          0.38,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-07-rail"),
-          { opacity: 0 },
-          { opacity: 1, duration: 0.34, ease: "power2.out" },
-          0.34,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-07-verified"),
-          { opacity: 0, scale: 0.82 },
-          { opacity: 1, scale: 1, duration: 0.4, ease: "power4.out" },
-          0.52,
-        );
-        tl.fromTo(
-          root.querySelector("#scene-07-footer"),
+          footer,
           { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.36, ease: "power3.out" },
-          0.62,
+          {
+            opacity: 1,
+            y: 0,
+            duration: Number(footer.dataset.textDuration),
+            ease: "power3.out",
+          },
+          Number(footer.dataset.textStart),
         );
 
         window.__timelines["scene-07-close"] = tl;

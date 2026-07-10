@@ -1,6 +1,7 @@
 {
   "$schema": "../../docs/project-videos/video-manifest.schema.json",
-  "version": 1,
+  "version": 2,
+  "editorialProfile": "silent-proof-v1",
   "slug": "ba-eventos",
   "title": "BA Eventos",
   "family": "product-journey",
@@ -26,38 +27,28 @@
     {
       "id": "scattered-plans",
       "kind": "problem",
-      "eyebrow": "The problem",
+      "intent": "Buenos Aires plans were scattered. Posts and event sites lived apart.",
+      "textRoles": {
+        "headline": "primary"
+      },
       "headline": "Buenos Aires plans were scattered.",
-      "body": "Posts and event sites lived apart.",
       "duration": 6,
       "layout": "copy-left",
       "asset": "assets/redacted/ba-eventos-hero.png",
       "assetAlt": "Redacted BA Eventos search page",
       "assetFit": "cover",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Social posts",
-          "body": "One source"
-        },
-        {
-          "title": "Event sites",
-          "body": "Another source"
-        },
-        {
-          "title": "Venue pages",
-          "body": "More searching"
-        }
-      ],
       "transition": "push-left",
       "motion": "assemble"
     },
     {
       "id": "plain-question",
       "kind": "action",
-      "eyebrow": "One question",
-      "headline": "A visitor asks one plain question.",
-      "body": "What is happening tonight?",
+      "intent": "A visitor asks one plain question. What is happening tonight?",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Ask one plain question.",
       "duration": 7,
       "layout": "copy-right",
       "asset": "assets/redacted/ba-eventos-hero.png",
@@ -70,68 +61,48 @@
     {
       "id": "grounded-search",
       "kind": "evidence",
-      "eyebrow": "Grounded search",
-      "headline": "BA Eventos searches real event records.",
-      "body": "Events and venues stay attached to the answer.",
+      "intent": "BA Eventos searches real event records. Events and venues stay attached to the answer.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Search grounded event records.",
       "duration": 8,
       "layout": "report",
       "asset": "assets/redacted/ba-eventos-feature.png",
       "assetAlt": "Redacted BA Eventos answer with event results",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Events",
-          "body": "Real catalog entries"
-        },
-        {
-          "title": "Venues",
-          "body": "Attached to each answer"
-        }
-      ],
       "transition": "dissolve",
       "motion": "assemble"
     },
     {
       "id": "usable-plan",
       "kind": "result",
-      "eyebrow": "Useful result",
-      "headline": "The answer becomes a usable plan.",
-      "body": "Categories, times, venues, prices, and links stay visible.",
+      "intent": "The answer becomes a usable plan. Categories, times, venues, prices, and links stay visible.",
+      "textRoles": {
+        "headline": "primary"
+      },
+      "headline": "Get a plan with useful details.",
       "duration": 8,
       "layout": "copy-left",
       "asset": "assets/redacted/ba-eventos-feature.png",
       "assetAlt": "BA Eventos result cards with plan details",
       "assetFit": "contain",
       "assetPosition": "center center",
-      "labels": [
-        {
-          "title": "Time",
-          "body": "When it starts"
-        },
-        {
-          "title": "Venue",
-          "body": "Where it happens"
-        },
-        {
-          "title": "Price",
-          "body": "What it costs"
-        },
-        {
-          "title": "Link",
-          "body": "Where to continue"
-        }
-      ],
       "transition": "push-left",
       "motion": "settle"
     },
     {
       "id": "end",
       "kind": "end",
+      "intent": "BA Eventos One grounded search.",
+      "textRoles": {
+        "headline": "primary",
+        "eyebrow": "orientation"
+      },
       "eyebrow": "BA Eventos",
-      "headline": "BA Eventos",
-      "body": "One grounded search.",
-      "duration": 3,
+      "headline": "One grounded event search.",
+      "duration": 5,
       "layout": "full",
       "asset": "assets/redacted/ba-eventos-feature.png",
       "assetAlt": "Settled BA Eventos result screen",
@@ -168,7 +139,7 @@
   ],
   "generation": {
     "model": "gpt-5.6-sol",
-    "templateVersion": "1.0.0",
+    "templateVersion": "2.0.0",
     "hyperframesVersion": "0.7.46"
   }
 }

@@ -10,7 +10,7 @@ project-videos/<slug>/video.json
 
 Supporting briefs, source records, design guidance, source lists, and selected/redacted assets establish what the manifest may claim and show. The shared generator turns the manifest into modular HyperFrames compositions under the ignored `.generated/` directory.
 
-The current inventory has 21 manifests across the `system-proof`, `product-journey`, and `visual-showcase` families. GSAP and the approved Fontsource files are copied locally into generated projects so compositions do not depend on CDN assets.
+The current inventory has 21 version-2 manifests across the `system-proof`, `product-journey`, and `visual-showcase` families. Every manifest uses the executable `silent-proof-v1` editorial profile, which checks all rendered words against the post-entrance reading window. GSAP and the approved Fontsource files are copied locally into generated projects so compositions do not depend on CDN assets.
 
 The bespoke per-project compositions were removed after migration. Regenerate videos only through the manifest pipeline; Git history preserves the old implementations.
 

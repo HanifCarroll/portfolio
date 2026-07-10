@@ -51,7 +51,9 @@ Choose the viewer and story family before capturing or writing scene copy:
 
 For general portfolio traffic, explain the problem, solution, and result in everyday language. Keep stack names, schemas, commands, and test output in the source record unless the viewer explicitly needs technical detail.
 
-One scene should say one thing. Use one headline and one short sentence, normally no more than 18 must-read words total. The final scene is a settled 3-second hold and introduces no new claim.
+One scene should say one thing. Start with one `primary` headline. Add an eyebrow, body, label, or stat only when it earns `supporting`, `orientation`, or `status`. The final scene settles in the first half-second, holds for at least 3 seconds, and introduces no new claim.
+
+Every video uses `editorialProfile: "silent-proof-v1"`. Count all rendered manifest copy at `140 WPM` after its actual entrance settles. Each scene needs at least 2 seconds of settled hold and 0.75 seconds of reading safety margin; endings require 0.5 seconds of safety margin. `intent` and `assetAlt` do not render and are excluded.
 
 ## Evidence Selection
 
@@ -81,6 +83,8 @@ Every on-screen claim must map to a listed source. If evidence is missing, omit 
 7. Record the source URL or path, viewport, login state, seed data, and capture method in `sources.md`.
 8. Copy the strongest public-safe assets into `assets/selected/`.
 9. Redact before an asset reaches `assets/redacted/` or `video.json`.
+
+If a scene depends on reading words inside a screenshot or logo, inventory those words and their canonical roles in `assetText` so they are counted in editorial QA. Dedicated readable logo words are always declared. If screenshot text is not declared, the headline and visual form must carry comprehension without requiring the viewer to read the embedded interface.
 
 Prefer deterministic synthetic seed data for anything involving users, applications, messages, transactions, reports, or account state.
 
@@ -130,11 +134,11 @@ Crop tightly or mask the data. Do not rely on the generated template to hide it.
 
 After evidence review:
 
-1. Create `video.json` using the schema at `docs/project-videos/video-manifest.schema.json`.
-2. Copy the exact audience, takeaway, plain-language claims, approved assets, privacy rules, and sources from the source record.
+1. Create a version-2 `video.json` using the schema at `docs/project-videos/video-manifest.schema.json` and set `editorialProfile` to `silent-proof-v1`.
+2. Copy the exact audience, takeaway, plain-language claims, concise non-rendered scene intents, approved assets, privacy rules, and sources from the source record.
 3. Choose `system-proof`, `product-journey`, or `visual-showcase`.
 4. Choose `standard`, `short`, or `loop` based on the summed scene duration.
-5. Use four to six scenes. The final scene is `kind: "end"`, `motion: "settle"`, and `duration: 3`.
+5. Use four to six scenes. The final scene is `kind: "end"`, `motion: "settle"`, and at least 3 seconds long. Extend it when its explicit copy needs more reading time.
 6. Set `posterAt` to a settled frame with readable proof and useful portfolio-card composition.
 7. Keep generation metadata aligned with the shared template and installed HyperFrames versions.
 
@@ -148,7 +152,7 @@ bun run videos:qa -- <slug>
 
 ## Visual Review And Render Gate
 
-Review every generated snapshot under `project-videos/.generated/<slug>/snapshots/`. Check copy, asset legibility, scene hierarchy, transitions, privacy, and the final hold.
+Review every generated snapshot under `project-videos/.generated/<slug>/snapshots/`. Check copy, asset legibility, scene hierarchy, transitions, privacy, and the final hold. Review `generation-plan.json` and `qa-report.json` for each scene's intent, text elements and roles, `viewerFacingWordCount`, `textSettledAt`, `readingWindowEnd`, `usableSettledHold`, `requiredReadingTime`, `readingMargin`, and findings.
 
 Open Studio when a still frame is not enough:
 
