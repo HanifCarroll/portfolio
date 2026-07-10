@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 1080px;
+          height: 1080px;
+          overflow: hidden;
+          color: #171512;
+          font-family: "Inter", sans-serif;
+          pointer-events: none;
+        }
+
+        .topline {
+          position: absolute;
+          top: 82px;
+          right: 92px;
+          left: 92px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #696158;
+          font:
+            700 22px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+
+        .stat-row {
+          position: absolute;
+          top: 126px;
+          right: 92px;
+          left: 92px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+        }
+
+        .stat {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          min-height: 82px;
+          padding: 15px 18px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+        }
+
+        .stat strong {
+          font:
+            700 48px/1 "IBM Plex Mono",
+            monospace;
+          font-variant-numeric: tabular-nums;
+          letter-spacing: -0.07em;
+        }
+
+        .stat span {
+          max-width: 92px;
+          color: #3a352f;
+          font:
+            700 16px/1.05 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+        }
+
+        .proof-frame {
+          position: absolute;
+          top: 220px;
+          left: 74px;
+          width: 932px;
+          height: 540px;
+          border: 4px solid #171512;
+          border-radius: 24px;
+          box-shadow: 0 28px 70px rgba(23, 21, 18, 0.14);
+        }
+
+        .proof-frame::before,
+        .proof-frame::after {
+          position: absolute;
+          width: 34px;
+          height: 34px;
+          content: "";
+          border-color: #0066ff;
+        }
+
+        .proof-frame::before {
+          top: -14px;
+          left: -14px;
+          border-top: 5px solid #0066ff;
+          border-left: 5px solid #0066ff;
+        }
+
+        .proof-frame::after {
+          right: -14px;
+          bottom: -14px;
+          border-right: 5px solid #0066ff;
+          border-bottom: 5px solid #0066ff;
+        }
+
+        .labels {
+          position: absolute;
+          top: 796px;
+          right: 92px;
+          left: 92px;
+          min-height: 100px;
+        }
+
+        .label-phase {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          opacity: 0;
+        }
+
+        .label-phase strong {
+          max-width: 660px;
+          font:
+            700 54px/0.94 "EB Garamond",
+            serif;
+          letter-spacing: -0.03em;
+        }
+
+        .family-chip {
+          padding: 14px 16px;
+          color: #fffcf6;
+          background: #171512;
+          font:
+            700 18px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+
+        .progress-shell {
+          position: absolute;
+          right: 92px;
+          bottom: 96px;
+          left: 92px;
+          height: 18px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+        }
+
+        .progress-fill {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #0066ff;
+          transform-origin: left center;
+        }
+
+        .progress-meta {
+          position: absolute;
+          right: 92px;
+          bottom: 48px;
+          left: 92px;
+          display: flex;
+          justify-content: space-between;
+          color: #696158;
+          font:
+            700 18px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="scene-05-proof"
+        data-width="1080"
+        data-height="1080"
+        data-duration="11"
+      >
+        <div id="scene-05-topline" class="topline">
+          <span>Real public outputs</span>
+          <span>05 / 07</span>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <strong id="scene-05-count-full">0</strong><span>full videos</span>
+          </div>
+          <div class="stat">
+            <strong id="scene-05-count-preview">0</strong><span>previews</span>
+          </div>
+          <div class="stat"><strong id="scene-05-count-posters">0</strong><span>posters</span></div>
+        </div>
+
+        <div id="scene-05-frame" class="proof-frame"></div>
+
+        <div class="labels">
+          <div class="label-phase" data-label-start="0">
+            <strong>Agent Recall</strong><span class="family-chip">System proof</span>
+          </div>
+          <div class="label-phase" data-label-start="1.833">
+            <strong>Health AI Search Audit</strong><span class="family-chip">System proof</span>
+          </div>
+          <div class="label-phase" data-label-start="3.666">
+            <strong>Palabruno</strong><span class="family-chip">Product journey</span>
+          </div>
+          <div class="label-phase" data-label-start="5.499">
+            <strong>Casamo</strong><span class="family-chip">Product journey</span>
+          </div>
+          <div class="label-phase" data-label-start="7.332">
+            <strong>Maximo Interiorismo</strong><span class="family-chip">Visual showcase</span>
+          </div>
+          <div class="label-phase" data-label-start="9.165">
+            <strong>Redwriter Comics</strong><span class="family-chip">Visual showcase</span>
+          </div>
+        </div>
+
+        <div class="progress-shell"><span id="scene-05-progress" class="progress-fill"></span></div>
+        <div class="progress-meta">
+          <span>6 examples / 3 story families</span><span>42 videos + 84 posters</span>
+        </div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="scene-05-proof"]');
+        const tl = gsap.timeline({ paused: true });
+        const fullCounter = root.querySelector("#scene-05-count-full");
+        const previewCounter = root.querySelector("#scene-05-count-preview");
+        const posterCounter = root.querySelector("#scene-05-count-posters");
+        const labels = Array.from(root.querySelectorAll(".label-phase"));
+        const state = { full: 0, previews: 0, posters: 0 };
+
+        tl.fromTo(
+          root.querySelector("#scene-05-topline"),
+          { opacity: 0, x: -32 },
+          { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" },
+          0.12,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".stat"),
+          { opacity: 0, y: -28, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.46, ease: "power4.out", stagger: 0.06 },
+          0.16,
+        );
+        tl.to(
+          state,
+          {
+            full: 21,
+            previews: 21,
+            posters: 84,
+            duration: 1.18,
+            ease: "power3.out",
+            onUpdate: () => {
+              fullCounter.textContent = Math.round(state.full).toLocaleString();
+              previewCounter.textContent = Math.round(state.previews).toLocaleString();
+              posterCounter.textContent = Math.round(state.posters).toLocaleString();
+            },
+          },
+          0.24,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-05-frame"),
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" },
+          0.26,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-05-progress"),
+          { scaleX: 0 },
+          { scaleX: 1, duration: 11, ease: "none" },
+          0,
+        );
+
+        labels.forEach((label, index) => {
+          const start = Number(label.dataset.labelStart);
+          tl.set(label, { opacity: 1 }, start);
+          if (index < labels.length - 1)
+            tl.set(label, { opacity: 0 }, Number(labels[index + 1].dataset.labelStart));
+        });
+
+        window.__timelines["scene-05-proof"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

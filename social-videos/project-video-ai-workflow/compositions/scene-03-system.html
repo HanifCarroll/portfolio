@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 1080px;
+          height: 1080px;
+          overflow: hidden;
+          padding: 92px;
+          color: #171512;
+          font-family: "Inter", sans-serif;
+          pointer-events: none;
+        }
+
+        .topline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #696158;
+          font:
+            700 24px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .topline b {
+          color: #0066ff;
+        }
+
+        .headline {
+          width: 880px;
+          margin: 34px 0 0;
+          font:
+            700 76px/0.94 "EB Garamond",
+            serif;
+          letter-spacing: -0.042em;
+        }
+
+        .system-stage {
+          position: relative;
+          display: grid;
+          grid-template-columns: 390px 1fr;
+          gap: 86px;
+          height: 620px;
+          margin-top: 36px;
+        }
+
+        .manifest {
+          position: relative;
+          align-self: center;
+          min-height: 478px;
+          padding: 30px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+          box-shadow: 12px 12px 0 #0066ff;
+        }
+
+        .manifest-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 20px;
+          border-bottom: 3px solid #171512;
+          font:
+            700 25px/1 "IBM Plex Mono",
+            monospace;
+        }
+
+        .manifest-header span:last-child {
+          color: #1d6f58;
+        }
+
+        .field {
+          display: grid;
+          grid-template-columns: 104px 1fr;
+          gap: 14px;
+          padding: 17px 0;
+          border-bottom: 2px solid rgba(23, 21, 18, 0.12);
+          font:
+            700 22px/1.05 "IBM Plex Mono",
+            monospace;
+        }
+
+        .field span:first-child {
+          color: #696158;
+        }
+
+        .field span:last-child {
+          color: #171512;
+        }
+
+        .family-list {
+          display: grid;
+          align-content: center;
+          gap: 18px;
+        }
+
+        .family-card {
+          display: grid;
+          grid-template-columns: 170px 1fr auto;
+          align-items: center;
+          gap: 22px;
+          min-height: 154px;
+          padding: 18px;
+          border: 3px solid #171512;
+          background: #f9f9f7;
+          box-shadow: 0 14px 30px rgba(23, 21, 18, 0.12);
+        }
+
+        .family-card img {
+          display: block;
+          width: 170px;
+          height: 96px;
+          object-fit: contain;
+          background: #171512;
+          border: 2px solid #171512;
+        }
+
+        .family-card strong {
+          display: block;
+          font:
+            700 30px/1 "EB Garamond",
+            serif;
+        }
+
+        .family-card small {
+          display: block;
+          margin-top: 10px;
+          color: #696158;
+          font:
+            700 19px/1.15 "IBM Plex Mono",
+            monospace;
+          text-transform: uppercase;
+        }
+
+        .status-dot {
+          width: 18px;
+          height: 18px;
+          border: 3px solid #171512;
+          border-radius: 50%;
+          background: #1d6f58;
+        }
+
+        .route-lines {
+          position: absolute;
+          top: 0;
+          left: 366px;
+          z-index: -1;
+          width: 118px;
+          height: 620px;
+          overflow: visible;
+        }
+
+        .route-lines path {
+          fill: none;
+          stroke: #0066ff;
+          stroke-width: 5;
+          stroke-linecap: square;
+          stroke-dasharray: 500;
+          stroke-dashoffset: 500;
+        }
+
+        .engine-label {
+          position: absolute;
+          right: 0;
+          bottom: -8px;
+          padding: 14px 18px;
+          color: #fffcf6;
+          background: #0066ff;
+          font:
+            700 20px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="scene-03-system"
+        data-width="1080"
+        data-height="1080"
+        data-duration="5.5"
+      >
+        <div id="scene-03-topline" class="topline">
+          <b>Structured recipe</b>
+          <span>03 / 07</span>
+        </div>
+        <h1 id="scene-03-headline" class="headline">
+          Every project starts with the same production contract.
+        </h1>
+
+        <div class="system-stage">
+          <div id="scene-03-manifest" class="manifest">
+            <div class="manifest-header"><span>video.json</span><span>VALID</span></div>
+            <div class="field"><span>viewer</span><span>who needs this?</span></div>
+            <div class="field"><span>family</span><span>story shape</span></div>
+            <div class="field"><span>scenes</span><span>4-6 beats</span></div>
+            <div class="field"><span>evidence</span><span>public proof</span></div>
+            <div class="field"><span>privacy</span><span>safe boundary</span></div>
+          </div>
+
+          <svg class="route-lines" viewBox="0 0 118 620" aria-hidden="true">
+            <path id="scene-03-route-a" d="M 0 310 C 58 310, 34 95, 118 95" />
+            <path id="scene-03-route-b" d="M 0 310 C 62 310, 62 310, 118 310" />
+            <path id="scene-03-route-c" d="M 0 310 C 58 310, 34 525, 118 525" />
+          </svg>
+
+          <div class="family-list">
+            <div class="family-card">
+              <img src="assets/posters/agent-recall.png" alt="System proof example" />
+              <div><strong>System proof</strong><small>systems, audits, evidence</small></div>
+              <span class="status-dot"></span>
+            </div>
+            <div class="family-card">
+              <img src="assets/posters/palabruno.png" alt="Product journey example" />
+              <div><strong>Product journey</strong><small>problem, action, result</small></div>
+              <span class="status-dot"></span>
+            </div>
+            <div class="family-card">
+              <img src="assets/posters/maximo-interiorismo.png" alt="Visual showcase example" />
+              <div><strong>Visual showcase</strong><small>real visual work first</small></div>
+              <span class="status-dot"></span>
+            </div>
+          </div>
+
+          <div id="scene-03-engine" class="engine-label">One shared engine</div>
+        </div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="scene-03-system"]');
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo(
+          root.querySelector("#scene-03-topline"),
+          { opacity: 0, x: -38 },
+          { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" },
+          0.16,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-03-headline"),
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.68, ease: "power4.out" },
+          0.24,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-03-manifest"),
+          { opacity: 0, x: -88, scale: 0.92 },
+          { opacity: 1, x: 0, scale: 1, duration: 0.72, ease: "power3.out" },
+          0.54,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".field"),
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.36, ease: "power2.out", stagger: 0.07 },
+          0.92,
+        );
+        tl.to(
+          root.querySelectorAll(".route-lines path"),
+          { strokeDashoffset: 0, duration: 0.86, ease: "power2.out", stagger: 0.08 },
+          1.18,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".family-card"),
+          { opacity: 0, x: 72, scale: 0.9 },
+          { opacity: 1, x: 0, scale: 1, duration: 0.58, ease: "power3.out", stagger: 0.1 },
+          1.36,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".status-dot"),
+          { opacity: 0, scale: 0.35 },
+          { opacity: 1, scale: 1, duration: 0.38, ease: "power4.out", stagger: 0.08 },
+          1.92,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-03-engine"),
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.46, ease: "power3.out" },
+          2.1,
+        );
+
+        window.__timelines["scene-03-system"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

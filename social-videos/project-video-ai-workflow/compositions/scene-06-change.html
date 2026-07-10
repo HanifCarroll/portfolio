@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 1080px;
+          height: 1080px;
+          overflow: hidden;
+          padding: 92px;
+          color: #171512;
+          font-family: "Inter", sans-serif;
+          pointer-events: none;
+        }
+
+        .topline {
+          display: flex;
+          justify-content: space-between;
+          color: #696158;
+          font:
+            700 22px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+        }
+
+        .headline {
+          width: 850px;
+          margin: 34px 0 0;
+          font:
+            700 84px/0.9 "EB Garamond",
+            serif;
+          letter-spacing: -0.045em;
+        }
+
+        .control-rail {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 38px;
+          padding: 18px 22px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+        }
+
+        .controls {
+          display: flex;
+          gap: 12px;
+        }
+
+        .control {
+          padding: 12px 14px;
+          border: 2px solid #171512;
+          color: #3a352f;
+          font:
+            700 18px/1 "IBM Plex Mono",
+            monospace;
+          text-transform: uppercase;
+        }
+
+        .switch {
+          position: relative;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 250px;
+          height: 58px;
+          border: 3px solid #171512;
+          background: #f9f9f7;
+        }
+
+        .switch span {
+          z-index: 2;
+          display: grid;
+          place-items: center;
+          font:
+            700 18px/1 "IBM Plex Mono",
+            monospace;
+        }
+
+        .switch-knob {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 122px;
+          height: 52px;
+          background: #0066ff;
+        }
+
+        .proof-row {
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 48px;
+        }
+
+        .proof-card {
+          position: relative;
+          padding: 14px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+          box-shadow: 0 16px 32px rgba(23, 21, 18, 0.14);
+        }
+
+        .proof-card img {
+          display: block;
+          width: 100%;
+          height: 154px;
+          object-fit: contain;
+          background: #171512;
+        }
+
+        .proof-card strong {
+          display: block;
+          margin-top: 16px;
+          font:
+            700 28px/1 "EB Garamond",
+            serif;
+        }
+
+        .proof-card small {
+          display: block;
+          margin-top: 9px;
+          color: #696158;
+          font:
+            700 16px/1 "IBM Plex Mono",
+            monospace;
+          text-transform: uppercase;
+        }
+
+        .sync-outline {
+          position: absolute;
+          inset: -9px;
+          border: 5px solid #0066ff;
+          opacity: 0;
+        }
+
+        .system-path {
+          position: absolute;
+          right: 0;
+          bottom: -36px;
+          left: 0;
+          height: 8px;
+          background: #0066ff;
+          transform-origin: left center;
+        }
+
+        .result {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 64px;
+          color: #3a352f;
+          font:
+            700 22px/1.2 "IBM Plex Mono",
+            monospace;
+          text-transform: uppercase;
+        }
+
+        .result b {
+          color: #1d6f58;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="scene-06-change"
+        data-width="1080"
+        data-height="1080"
+        data-duration="4"
+      >
+        <div id="scene-06-topline" class="topline">
+          <span>Maintainability proof</span><span>06 / 07</span>
+        </div>
+        <h1 id="scene-06-headline" class="headline">Change the shared system once.</h1>
+
+        <div id="scene-06-controls" class="control-rail">
+          <div class="controls">
+            <span class="control">Frame</span>
+            <span class="control">Safe margin</span>
+            <span class="control">Motion</span>
+          </div>
+          <div class="switch">
+            <div id="scene-06-knob" class="switch-knob"></div>
+            <span id="scene-06-local">Local</span>
+            <span id="scene-06-shared">Shared</span>
+          </div>
+        </div>
+
+        <div class="proof-row">
+          <article class="proof-card">
+            <img src="assets/posters/agent-recall.png" alt="Agent Recall poster" />
+            <strong>Agent Recall</strong><small>System proof</small>
+            <div class="sync-outline"></div>
+          </article>
+          <article class="proof-card">
+            <img src="assets/posters/palabruno.png" alt="Palabruno poster" />
+            <strong>Palabruno</strong><small>Product journey</small>
+            <div class="sync-outline"></div>
+          </article>
+          <article class="proof-card">
+            <img src="assets/posters/maximo-interiorismo.png" alt="Maximo Interiorismo poster" />
+            <strong>Maximo</strong><small>Visual showcase</small>
+            <div class="sync-outline"></div>
+          </article>
+          <div id="scene-06-path" class="system-path"></div>
+        </div>
+
+        <div id="scene-06-result" class="result">
+          <span>Project proof stays distinct</span><b>Shared frame updates together</b>
+        </div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="scene-06-change"]');
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo(
+          root.querySelector("#scene-06-topline"),
+          { opacity: 0, x: -34 },
+          { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" },
+          0.14,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-headline"),
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.58, ease: "power4.out" },
+          0.22,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-controls"),
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.44, ease: "power3.out" },
+          0.48,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".proof-card"),
+          { opacity: 0, y: 56, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.58, ease: "power3.out", stagger: 0.08 },
+          0.7,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-knob"),
+          { x: 0 },
+          { x: 122, duration: 0.48, ease: "power4.inOut" },
+          1.24,
+        );
+        tl.to(
+          root.querySelector("#scene-06-local"),
+          { opacity: 0.28, duration: 0.26, ease: "power2.in" },
+          1.28,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-shared"),
+          { color: "#171512" },
+          { color: "#FFFCF6", duration: 0.32, ease: "power2.out" },
+          1.38,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-path"),
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.66, ease: "power3.out" },
+          1.42,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".sync-outline"),
+          { opacity: 0, scale: 0.96 },
+          { opacity: 1, scale: 1, duration: 0.38, ease: "power4.out", stagger: 0.06 },
+          1.64,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-06-result"),
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" },
+          1.92,
+        );
+
+        window.__timelines["scene-06-change"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

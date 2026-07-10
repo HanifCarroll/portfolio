@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" data-resolution="square">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <title>Project Video AI Workflow</title>
+    <script src="./assets/runtime/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f9f9f7;
+      }
+
+      body {
+        color: #171512;
+        font-family: "Inter", sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      #background {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background-color: #f9f9f7;
+      }
+
+      #background-grid {
+        position: absolute;
+        inset: -32px;
+        background-image:
+          linear-gradient(rgba(23, 21, 18, 0.055) 2px, rgba(23, 21, 18, 0) 2px),
+          linear-gradient(90deg, rgba(23, 21, 18, 0.055) 2px, rgba(23, 21, 18, 0) 2px);
+        background-size: 54px 54px;
+      }
+
+      #background::before,
+      #background::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 28px;
+        content: "";
+        background-color: rgba(23, 21, 18, 0.035);
+        border-right: 2px solid rgba(23, 21, 18, 0.08);
+        border-left: 2px solid rgba(23, 21, 18, 0.08);
+      }
+
+      #background::before {
+        left: 26px;
+      }
+
+      #background::after {
+        right: 26px;
+      }
+
+      .scene-host {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+      }
+
+      .proof-video {
+        position: absolute;
+        top: 238px;
+        left: 92px;
+        z-index: 10;
+        width: 896px;
+        height: 504px;
+        object-fit: contain;
+        background-color: #171512;
+        border: 3px solid #171512;
+        border-radius: 18px;
+        box-shadow: 0 26px 70px rgba(23, 21, 18, 0.22);
+        transform-origin: center center;
+      }
+
+      .transition {
+        position: absolute;
+        inset: 0;
+        z-index: 50;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .wipe-block {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1080px;
+        will-change: transform;
+      }
+
+      .wipe-blue {
+        background-color: #0066ff;
+      }
+
+      .wipe-paper {
+        background-color: #fffcf6;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="project-video-ai-workflow"
+      data-start="0"
+      data-width="1080"
+      data-height="1080"
+      data-duration="39.5"
+      data-fps="30"
+    >
+      <div id="background" class="clip" data-start="0" data-duration="39.5" data-track-index="0">
+        <div id="background-grid" data-layout-ignore></div>
+      </div>
+
+      <div
+        id="el-scene-01-hook"
+        class="clip scene-host"
+        data-composition-id="scene-01-hook"
+        data-composition-src="compositions/scene-01-hook.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-02-manual"
+        class="clip scene-host"
+        data-composition-id="scene-02-manual"
+        data-composition-src="compositions/scene-02-manual.html"
+        data-start="4"
+        data-duration="4.5"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-03-system"
+        class="clip scene-host"
+        data-composition-id="scene-03-system"
+        data-composition-src="compositions/scene-03-system.html"
+        data-start="8.5"
+        data-duration="5.5"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-04-split"
+        class="clip scene-host"
+        data-composition-id="scene-04-split"
+        data-composition-src="compositions/scene-04-split.html"
+        data-start="14"
+        data-duration="6.5"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-05-proof"
+        class="clip scene-host"
+        data-composition-id="scene-05-proof"
+        data-composition-src="compositions/scene-05-proof.html"
+        data-start="20.5"
+        data-duration="11"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-06-change"
+        class="clip scene-host"
+        data-composition-id="scene-06-change"
+        data-composition-src="compositions/scene-06-change.html"
+        data-start="31.5"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="el-scene-07-close"
+        class="clip scene-host"
+        data-composition-id="scene-07-close"
+        data-composition-src="compositions/scene-07-close.html"
+        data-start="35.5"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+
+      <video
+        id="proof-agent-recall"
+        class="clip proof-video"
+        src="assets/clips/agent-recall.mp4"
+        data-start="20.5"
+        data-duration="1.833"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="proof-health-ai-search-audit"
+        class="clip proof-video"
+        src="assets/clips/health-ai-search-audit.mp4"
+        data-start="22.333"
+        data-duration="1.833"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="proof-palabruno"
+        class="clip proof-video"
+        src="assets/clips/palabruno.mp4"
+        data-start="24.166"
+        data-duration="1.833"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="proof-casamo"
+        class="clip proof-video"
+        src="assets/clips/casamo.mp4"
+        data-start="25.999"
+        data-duration="1.833"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="proof-maximo-interiorismo"
+        class="clip proof-video"
+        src="assets/clips/maximo-interiorismo.mp4"
+        data-start="27.832"
+        data-duration="1.833"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+      <video
+        id="proof-redwriter-comics"
+        class="clip proof-video"
+        src="assets/clips/redwriter-comics.mp4"
+        data-start="29.665"
+        data-duration="1.835"
+        data-track-index="2"
+        muted
+        playsinline
+      ></video>
+
+      <div
+        id="transition-01"
+        class="clip transition"
+        data-start="3.62"
+        data-duration="0.78"
+        data-track-index="3"
+      >
+        <div id="transition-01-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-01-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+      <div
+        id="transition-02"
+        class="clip transition"
+        data-start="8.18"
+        data-duration="0.72"
+        data-track-index="4"
+      >
+        <div id="transition-02-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-02-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+      <div
+        id="transition-03"
+        class="clip transition"
+        data-start="13.68"
+        data-duration="0.72"
+        data-track-index="5"
+      >
+        <div id="transition-03-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-03-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+      <div
+        id="transition-04"
+        class="clip transition"
+        data-start="20.18"
+        data-duration="0.72"
+        data-track-index="6"
+      >
+        <div id="transition-04-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-04-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+      <div
+        id="transition-05"
+        class="clip transition"
+        data-start="31.18"
+        data-duration="0.72"
+        data-track-index="7"
+      >
+        <div id="transition-05-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-05-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+      <div
+        id="transition-06"
+        class="clip transition"
+        data-start="35.18"
+        data-duration="0.72"
+        data-track-index="8"
+      >
+        <div id="transition-06-a" class="wipe-block wipe-blue" data-layout-allow-overflow></div>
+        <div id="transition-06-b" class="wipe-block wipe-paper" data-layout-allow-overflow></div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(
+        "#background-grid",
+        { x: 0, y: 0 },
+        { x: -12, y: 8, duration: 39.5, ease: "none" },
+        0,
+      );
+
+      const proofClips = [
+        ["#proof-agent-recall", 20.5],
+        ["#proof-health-ai-search-audit", 22.333],
+        ["#proof-palabruno", 24.166],
+        ["#proof-casamo", 25.999],
+        ["#proof-maximo-interiorismo", 27.832],
+        ["#proof-redwriter-comics", 29.665],
+      ];
+
+      proofClips.forEach(([selector, start]) => {
+        tl.fromTo(
+          selector,
+          { opacity: 0, scale: 1.025 },
+          { opacity: 1, scale: 1, duration: 0.28, ease: "power3.out" },
+          start,
+        );
+      });
+
+      function addCoverWipe(prefix, start, boundary) {
+        tl.fromTo(`#${prefix}-a`, { x: -1080 }, { x: 0, duration: 0.24, ease: "power3.in" }, start);
+        tl.fromTo(
+          `#${prefix}-b`,
+          { x: -1080 },
+          { x: 0, duration: 0.24, ease: "power3.in" },
+          start + 0.06,
+        );
+        tl.to(`#${prefix}-a`, { x: 1080, duration: 0.24, ease: "power3.out" }, boundary + 0.02);
+        tl.to(`#${prefix}-b`, { x: 1080, duration: 0.24, ease: "power3.out" }, boundary + 0.08);
+      }
+
+      addCoverWipe("transition-01", 3.62, 4);
+      addCoverWipe("transition-02", 8.18, 8.5);
+      addCoverWipe("transition-03", 13.68, 14);
+      addCoverWipe("transition-04", 20.18, 20.5);
+      addCoverWipe("transition-05", 31.18, 31.5);
+      addCoverWipe("transition-06", 35.18, 35.5);
+
+      window.__timelines["project-video-ai-workflow"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 1080px;
+          height: 1080px;
+          overflow: hidden;
+          padding: 92px;
+          color: #171512;
+          font-family: "Inter", sans-serif;
+          perspective: 1800px;
+          pointer-events: none;
+        }
+
+        .topline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #696158;
+          font:
+            700 24px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .headline {
+          margin: 34px 0 0;
+          font:
+            700 82px/0.9 "EB Garamond",
+            serif;
+          letter-spacing: -0.045em;
+        }
+
+        .headline span {
+          color: #0066ff;
+        }
+
+        .split-stage {
+          position: relative;
+          display: flex;
+          gap: 58px;
+          margin-top: 44px;
+          transform-style: preserve-3d;
+        }
+
+        .card {
+          position: relative;
+          width: 419px;
+          min-height: 492px;
+          padding: 32px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+          transform-style: preserve-3d;
+          will-change: transform;
+        }
+
+        .card-left {
+          box-shadow:
+            -14px 20px 42px rgba(23, 21, 18, 0.14),
+            9px 9px 0 rgba(199, 134, 47, 0.35);
+        }
+
+        .card-right {
+          box-shadow:
+            14px 20px 42px rgba(23, 21, 18, 0.14),
+            -9px 9px 0 rgba(0, 102, 255, 0.25);
+        }
+
+        .card-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font:
+            700 22px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+
+        .card-eyebrow::before {
+          width: 16px;
+          height: 16px;
+          content: "";
+          border: 3px solid #171512;
+          border-radius: 50%;
+        }
+
+        .card-left .card-eyebrow {
+          color: #171512;
+        }
+
+        .card-left .card-eyebrow::before {
+          background: #c7862f;
+        }
+
+        .card-right .card-eyebrow {
+          color: #0066ff;
+        }
+
+        .card-right .card-eyebrow::before {
+          background: #0066ff;
+        }
+
+        .card h2 {
+          margin: 28px 0 0;
+          font:
+            700 54px/0.94 "EB Garamond",
+            serif;
+          letter-spacing: -0.035em;
+        }
+
+        .responsibility-list {
+          display: grid;
+          gap: 14px;
+          margin-top: 32px;
+        }
+
+        .responsibility {
+          display: flex;
+          align-items: center;
+          min-height: 58px;
+          padding: 12px 16px;
+          border: 2px solid rgba(23, 21, 18, 0.18);
+          color: #3a352f;
+          background: #f9f9f7;
+          font:
+            700 25px/1.1 "Inter",
+            sans-serif;
+        }
+
+        .center-lock {
+          position: absolute;
+          top: 128px;
+          left: 50%;
+          z-index: 4;
+          display: grid;
+          place-items: center;
+          width: 66px;
+          height: 66px;
+          color: #fffcf6;
+          background: #171512;
+          border: 4px solid #f9f9f7;
+          border-radius: 50%;
+          font:
+            700 26px/1 "IBM Plex Mono",
+            monospace;
+          transform: translateX(-50%);
+        }
+
+        .center-rule {
+          position: absolute;
+          top: 192px;
+          bottom: 54px;
+          left: 50%;
+          width: 4px;
+          background: #171512;
+          transform-origin: top center;
+        }
+
+        .approval {
+          position: absolute;
+          right: 92px;
+          bottom: 48px;
+          left: 92px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 14px 18px;
+          color: #fffcf6;
+          background: #1d6f58;
+          font:
+            700 21px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+        }
+
+        .approval b {
+          color: #fffcf6;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="scene-04-split"
+        data-width="1080"
+        data-height="1080"
+        data-duration="6.5"
+      >
+        <div id="scene-04-topline" class="topline">
+          <span>The useful combination</span>
+          <span>04 / 07</span>
+        </div>
+        <h1 id="scene-04-headline" class="headline">
+          AI judgment <span>+</span> deterministic software
+        </h1>
+
+        <div class="split-stage">
+          <section id="scene-04-card-left" class="card card-left">
+            <div class="card-eyebrow">AI judgment</div>
+            <h2>Decide what matters.</h2>
+            <div class="responsibility-list">
+              <div class="responsibility">Read the sources</div>
+              <div class="responsibility">Choose the story</div>
+              <div class="responsibility">Select the evidence</div>
+              <div class="responsibility">Write the scenes</div>
+            </div>
+          </section>
+
+          <section id="scene-04-card-right" class="card card-right">
+            <div class="card-eyebrow">Deterministic software</div>
+            <h2>Make it repeatable.</h2>
+            <div class="responsibility-list">
+              <div class="responsibility">Apply shared layout</div>
+              <div class="responsibility">Validate the recipe</div>
+              <div class="responsibility">Run quality checks</div>
+              <div class="responsibility">Render the assets</div>
+            </div>
+          </section>
+
+          <div id="scene-04-lock" class="center-lock">+</div>
+          <div id="scene-04-rule" class="center-rule"></div>
+        </div>
+
+        <div id="scene-04-approval" class="approval">
+          <span>Human visual + privacy review</span>
+          <b>Required before render</b>
+        </div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="scene-04-split"]');
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo(
+          root.querySelector("#scene-04-topline"),
+          { opacity: 0, x: -38 },
+          { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" },
+          0.16,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-headline"),
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 0.66, ease: "power4.out" },
+          0.24,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-card-left"),
+          { opacity: 0, x: -150, rotationY: 18 },
+          { opacity: 1, x: 0, rotationY: 8, duration: 0.84, ease: "power3.out" },
+          0.64,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-card-right"),
+          { opacity: 0, x: 150, rotationY: -18 },
+          { opacity: 1, x: 0, rotationY: -8, duration: 0.88, ease: "power4.out" },
+          0.74,
+        );
+        tl.fromTo(
+          root.querySelectorAll(".responsibility"),
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", stagger: 0.055 },
+          1.16,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-rule"),
+          { scaleY: 0 },
+          { scaleY: 1, duration: 0.52, ease: "power3.out" },
+          1.56,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-lock"),
+          { opacity: 0, scale: 0.35, rotation: -30 },
+          { opacity: 1, scale: 1, rotation: 0, duration: 0.46, ease: "power4.out" },
+          1.7,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-04-approval"),
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" },
+          2.06,
+        );
+        tl.to(
+          root.querySelector("#scene-04-card-left"),
+          { y: -3, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 },
+          2.62,
+        );
+        tl.to(
+          root.querySelector("#scene-04-card-right"),
+          { y: 3, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 },
+          2.62,
+        );
+
+        window.__timelines["scene-04-split"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

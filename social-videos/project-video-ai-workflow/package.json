@@ -1,0 +1,13 @@
+{
+  "name": "project-video-ai-workflow",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.7.46 preview",
+    "check": "npx --yes hyperframes@0.7.46 lint && npx --yes hyperframes@0.7.46 validate && npx --yes hyperframes@0.7.46 inspect",
+    "snapshot": "npx --yes hyperframes@0.7.46 snapshot --at 2,6.25,11.25,17.25,21.4,23.25,25.1,26.9,28.75,30.6,33.5,37.5",
+    "render": "npx --yes hyperframes@0.7.46 render",
+    "render:final": "mkdir -p ../../public/videos/social && npx --yes hyperframes@0.7.46 render --quality high --fps 30 --strict --output ../../public/videos/social/project-video-ai-workflow-linkedin.mp4",
+    "publish": "npx --yes hyperframes@0.7.46 publish"
+  }
+}

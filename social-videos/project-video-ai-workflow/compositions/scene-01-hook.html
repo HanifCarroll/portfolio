@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 1080px;
+          height: 1080px;
+          overflow: hidden;
+          color: #171512;
+          font-family: "Inter", sans-serif;
+          pointer-events: none;
+        }
+
+        .scene-number {
+          position: absolute;
+          top: 94px;
+          right: 92px;
+          color: #696158;
+          font:
+            700 24px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.12em;
+        }
+
+        .kicker {
+          position: absolute;
+          top: 92px;
+          left: 92px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          color: #0066ff;
+          font:
+            700 24px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .kicker::before {
+          width: 42px;
+          height: 4px;
+          content: "";
+          background: #0066ff;
+        }
+
+        .headline {
+          position: absolute;
+          top: 146px;
+          left: 92px;
+          width: 710px;
+          margin: 0;
+          font:
+            700 96px/0.96 "EB Garamond",
+            serif;
+          letter-spacing: -0.045em;
+        }
+
+        .headline span {
+          display: block;
+        }
+
+        .count-chip {
+          position: absolute;
+          top: 166px;
+          right: 92px;
+          display: grid;
+          width: 168px;
+          height: 136px;
+          padding: 18px;
+          border: 3px solid #171512;
+          background: #fffcf6;
+          box-shadow: 12px 12px 0 #0066ff;
+        }
+
+        .count-chip strong {
+          align-self: end;
+          font:
+            700 68px/0.8 "IBM Plex Mono",
+            monospace;
+          letter-spacing: -0.07em;
+        }
+
+        .count-chip span {
+          color: #3a352f;
+          font:
+            700 20px/1.1 "IBM Plex Mono",
+            monospace;
+          text-transform: uppercase;
+        }
+
+        .proof-stage {
+          position: absolute;
+          inset: 0;
+        }
+
+        .proof-card {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 260px;
+          height: 146px;
+          overflow: hidden;
+          border: 3px solid #171512;
+          border-radius: 12px;
+          background: #fffcf6;
+          box-shadow: 0 16px 34px rgba(23, 21, 18, 0.18);
+          transform: translate(-50%, -50%);
+          will-change: transform;
+        }
+
+        .proof-card img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          background: #171512;
+        }
+
+        .proof-card::after {
+          position: absolute;
+          inset: 8px;
+          content: "";
+          border: 2px solid rgba(255, 252, 246, 0.78);
+          border-radius: 6px;
+        }
+
+        .meta-rail {
+          position: absolute;
+          right: 92px;
+          bottom: 92px;
+          left: 92px;
+          display: flex;
+          justify-content: space-between;
+          padding-top: 16px;
+          border-top: 3px solid #171512;
+          color: #3a352f;
+          font:
+            700 22px/1 "IBM Plex Mono",
+            monospace;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+
+        .meta-rail b {
+          color: #0066ff;
+        }
+
+        .registration {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          border-color: #0066ff;
+        }
+
+        .registration.top-left {
+          top: 392px;
+          left: 72px;
+          border-top: 4px solid #0066ff;
+          border-left: 4px solid #0066ff;
+        }
+
+        .registration.bottom-right {
+          right: 72px;
+          bottom: 138px;
+          border-right: 4px solid #0066ff;
+          border-bottom: 4px solid #0066ff;
+        }
+      </style>
+
+      <div
+        id="root"
+        data-composition-id="scene-01-hook"
+        data-width="1080"
+        data-height="1080"
+        data-duration="4"
+      >
+        <div id="scene-01-kicker" class="kicker">Portfolio video workflow</div>
+        <div class="scene-number">01 / 07</div>
+        <h1 id="scene-01-headline" class="headline">
+          <span>21 case studies.</span>
+          <span>One video system.</span>
+        </h1>
+        <div id="scene-01-count" class="count-chip">
+          <strong>21</strong>
+          <span>case studies</span>
+        </div>
+
+        <div class="proof-stage">
+          <div class="proof-card" data-target-x="-300" data-target-y="70">
+            <img src="assets/posters/agent-recall.png" alt="Agent Recall video proof" />
+          </div>
+          <div class="proof-card" data-target-x="0" data-target-y="70">
+            <img
+              src="assets/posters/health-ai-search-audit.png"
+              alt="Health AI Search Audit video proof"
+            />
+          </div>
+          <div class="proof-card" data-target-x="300" data-target-y="70">
+            <img src="assets/posters/palabruno.png" alt="Palabruno video proof" />
+          </div>
+          <div class="proof-card" data-target-x="-300" data-target-y="260">
+            <img src="assets/posters/casamo.png" alt="Casamo video proof" />
+          </div>
+          <div class="proof-card" data-target-x="0" data-target-y="260">
+            <img
+              src="assets/posters/maximo-interiorismo.png"
+              alt="Maximo Interiorismo video proof"
+            />
+          </div>
+          <div class="proof-card" data-target-x="300" data-target-y="260">
+            <img src="assets/posters/redwriter-comics.png" alt="Redwriter Comics video proof" />
+          </div>
+        </div>
+
+        <div id="scene-01-meta" class="meta-rail">
+          <span>AI judgment</span>
+          <b>+</b>
+          <span>Deterministic software</span>
+        </div>
+        <div class="registration top-left" data-layout-ignore></div>
+        <div class="registration bottom-right" data-layout-ignore></div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="scene-01-hook"]');
+        const tl = gsap.timeline({ paused: true });
+        const cards = root.querySelectorAll(".proof-card");
+
+        tl.fromTo(
+          root.querySelector("#scene-01-count"),
+          { opacity: 0, scale: 0.72, rotation: -3 },
+          { opacity: 1, scale: 1, rotation: 0, duration: 0.58, ease: "power4.out" },
+          0.12,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-01-kicker"),
+          { opacity: 0, x: -44 },
+          { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" },
+          0.2,
+        );
+        tl.fromTo(
+          root.querySelector("#scene-01-headline"),
+          { opacity: 0, y: 38 },
+          { opacity: 1, y: 0, duration: 0.72, ease: "power4.out" },
+          0.3,
+        );
+
+        cards.forEach((card, index) => {
+          const targetX = Number(card.dataset.targetX);
+          const targetY = Number(card.dataset.targetY);
+          tl.fromTo(
+            card,
+            {
+              xPercent: -50,
+              yPercent: -50,
+              x: targetX * 0.24,
+              y: targetY * 0.24,
+              scale: 0.58,
+              opacity: 0,
+              rotation: index % 2 === 0 ? -5 : 5,
+            },
+            {
+              x: targetX,
+              y: targetY,
+              scale: 1,
+              opacity: 1,
+              rotation: 0,
+              duration: 1.05,
+              ease: "power3.out",
+            },
+            0.56 + index * 0.055,
+          );
+        });
+
+        tl.fromTo(
+          root.querySelector("#scene-01-meta"),
+          { opacity: 0, scaleX: 0.76 },
+          { opacity: 1, scaleX: 1, duration: 0.55, ease: "power2.out" },
+          1.22,
+        );
+
+        window.__timelines["scene-01-hook"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
