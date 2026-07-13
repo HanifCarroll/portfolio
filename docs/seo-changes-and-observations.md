@@ -422,3 +422,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - `bun run build` passed.
 - `git diff --check` passed.
 - Browser single-code-block/copy-icon/checkmark-animation/line-break check passed against the built `/tools/` page with Playwright and local Chrome.
+
+## 2026-07-13
+
+### Genrupt Milestone
+
+- Updated the Genrupt case study, supporting site copy, project metadata, and embedded project video from the first 100 to the first 200 paying customers.
+
+### Verification
+
+- `bun run check:projects`, `bun run videos:validate`, video QA, and `bun run build` passed.
+- The rendered 47-second overview video shows `200 first paying customers` in the result scene.

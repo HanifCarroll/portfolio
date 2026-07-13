@@ -31,7 +31,7 @@ Use a flagship AI systems case-study style that feels commercial, precise, and u
 - Every scene starts with entrance animation on the headline, proof surface, and native cards.
 - Keep screenshots readable after entry; native overlays should frame the proof, not cover it.
 - Use ambient circuit-line drift and small status pulses so the product frames feel alive without becoming a generic tech promo.
-- Hold the final result card long enough for the first-100-customers line to land.
+- Hold the final result card long enough for the first-200-customers line to land.
 
 ## What NOT to Do
 

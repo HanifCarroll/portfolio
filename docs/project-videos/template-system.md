@@ -11,7 +11,7 @@ Current contract versions:
 - Editorial tokenizer: `whitespace-v1`
 - HyperFrames: `0.7.46`
 - Generation model: `gpt-5.6-sol`
-- Generation skill: `general-video` at revision `67f3dae100541eed`
+- Generation skill: `general-video` at revision `1aed9f4f68414a45`
 - Output: `1920x1080`, `30fps`, silent MP4
 
 ## Architecture
@@ -382,9 +382,9 @@ Do not hand-edit `overview.mp4`, derived previews, posters, or `generation.json`
 
 Keep `hyperframes` and `@hyperframes/producer` pinned to the same version.
 
-Generation also enforces `general-video` revision `67f3dae100541eed` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
+Generation also enforces `general-video` revision `1aed9f4f68414a45` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
 
-The `67f3dae100541eed` revision adds Figma-source routing guidance only (`heygen-com/hyperframes@d13c96d4`). It does not alter this repository's manifest generator, renderer, or non-Figma asset path, so adopting it did not require a template-version change.
+The `1aed9f4f68414a45` revision replaces the skill's separate `lint`, `validate`, and `inspect` checklist commands with `hyperframes check` (`heygen-com/hyperframes@758a6d21`). It does not alter this repository's manifest generator or renderer, so adopting it did not require a template-version change.
 
 `hyperframes skills check --json` exits `1` when any installed skill has an update available. The project wrapper accepts that status only long enough to parse the report, then still requires the installed `general-video` hash to match the repository pin above. Unrelated update notices must not block reproducible generation, and a mismatched generation skill must still fail.
 

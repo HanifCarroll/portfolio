@@ -28,7 +28,7 @@ Problem: Genrupt had AI image and video tools working, but paid seller teams nee
 
 Solution: the work moved Genrupt into a seller workflow platform with subscriptions, credits, safer long-running jobs, and a permissioned agent surface.
 
-Result: the platform became ready for paying teams and helped support the first 100 paying customers.
+Result: the platform became ready for paying teams and helped support the first 200 paying customers.
 
 ## One-Line Job
 
@@ -55,7 +55,7 @@ Say:
 - Agent access
 - Allowed workflows
 - Product foundation
-- First 100 paying customers
+- First 200 paying customers
 
 Do not show:
 
@@ -81,7 +81,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | `src/content/case-studies/genrupt.mdx:55-62` | The approach focused on seller-team operations and treating agents as a real product surface.                                                                     |
 | `src/content/case-studies/genrupt.mdx:66-74` | The solution connected projects, accounts, billing, and workflow surfaces for paid seller teams.                                                                  |
 | `src/content/case-studies/genrupt.mdx:78-89` | The work included billing, credits, recoverable long-running workflows, and permissioned agent access.                                                            |
-| `src/content/case-studies/genrupt.mdx:93-99` | The result connected commercial infrastructure, AI workflow reliability, and agent access into one foundation that helped support the first 100 paying customers. |
+| `src/content/case-studies/genrupt.mdx:93-99` | The result connected commercial infrastructure, AI workflow reliability, and agent access into one foundation that helped support the first 200 paying customers. |
 | `src/lib/projects/genrupt.json:35-44`        | Metadata confirms the paid-team foundation, background jobs, agent access, seller workflows, and core constraints.                                                |
 | `src/lib/projects/genrupt.json:51-65`        | Metadata confirms the product work and outcomes in plain result language.                                                                                         |
 
@@ -107,7 +107,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 3. The work turned Genrupt into a seller workflow platform with one shared foundation.
 4. Paid teams could subscribe, buy credits, and track usage.
 5. AI helpers could only do the work they were allowed to do.
-6. Seller work became easier to run, and the platform supported the first 100 paying customers.
+6. Seller work became easier to run, and the platform supported the first 200 paying customers.
 
 ## Scene Cards
 
@@ -256,7 +256,7 @@ On-screen text:
 
 ```text
 Seller work became easier to run.
-The platform supported the first 100 paying customers.
+The platform supported the first 200 paying customers.
 ```
 
 Narration: none.
@@ -267,7 +267,7 @@ Proof shown: A+ setup, market analysis, dashboard, and result section.
 
 Asset path: `assets/selected/aplus-project-setup.png`; `assets/redacted/market-analysis.png`; `assets/redacted/commercial-readiness-dashboard.png`
 
-Motion notes: workflow screenshots settle into a proof strip, then the 100-customer result card appears and holds.
+Motion notes: workflow screenshots settle into a proof strip, then the 200-customer result card appears and holds.
 
 Reading-speed check: `13` words over `8s` = `98 WPM`.
 
@@ -299,7 +299,7 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | 3     | I helped turn Genrupt into a seller workflow platform. Projects, billing, and work shared one system.     |         16 |       7s | 137 |
 | 4     | Paid teams could subscribe, buy credits, and track usage.                                                 |          9 |       7s |  77 |
 | 5     | AI helpers could only do the work they were allowed to do.                                                |         12 |       7s | 103 |
-| 6     | Seller work became easier to run. The platform supported the first 100 paying customers.                  |         13 |       8s |  98 |
+| 6     | Seller work became easier to run. The platform supported the first 200 paying customers.                  |         13 |       8s |  98 |
 | End   | Genrupt. AI tools ready for paying teams.                                                                 |          7 |       3s | 140 |
 
 Allowed short labels:
@@ -318,7 +318,7 @@ Allowed short labels:
 - Result
 - Allowed workflows
 - Seller workflows
-- 100 paying customers
+- 200 paying customers
 
 ## Asset Manifest
 
@@ -344,7 +344,7 @@ Scenes to build:
 3. Seller workflow platform with shared foundation.
 4. Commercial foundation for paid teams.
 5. Agent access for allowed workflows.
-6. Seller workflows plus first 100 paying customers.
+6. Seller workflows plus first 200 paying customers.
 7. Ending beat with project name and short result line.
 
 Required transitions:
@@ -373,4 +373,4 @@ Safe to show:
 - Public project name
 - Public portfolio screenshots after redaction
 - Plain product labels like paid accounts, credits, billing, jobs, status, result, and allowed workflows
-- The first-100-customers outcome already stated in the portfolio case study
+- The first-200-customers outcome already stated in the portfolio case study

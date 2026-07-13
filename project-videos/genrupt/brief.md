@@ -18,7 +18,7 @@ Plain story:
 
 - Problem: Genrupt had AI media working, but paid seller teams needed more than AI tools.
 - Solution: the product gained commercial foundations, recoverable long-running jobs, and a narrow agent workflow surface.
-- Result: the platform supported the first 100 paying customers and made newer seller workflows safer to ship.
+- Result: the platform supported the first 200 paying customers and made newer seller workflows safer to ship.
 
 Scene arc:
 
@@ -27,7 +27,7 @@ Scene arc:
 3. Solution: Genrupt became a seller workflow platform with one shared foundation.
 4. Commercial foundation: subscriptions, credits, billing, and account state supported paid teams.
 5. Agent access: allowed workflows could run through a safer product surface.
-6. Result: seller workflows became product surfaces, and the platform supported the first 100 paying customers.
+6. Result: seller workflows became product surfaces, and the platform supported the first 200 paying customers.
 
 Reading-speed constraint:
 
