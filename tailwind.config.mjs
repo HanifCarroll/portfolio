@@ -32,21 +32,21 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
-        mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
-        display: ["Syne", '"IBM Plex Sans"', "system-ui", "sans-serif"],
-        serif: ['"Source Serif 4"', "Georgia", "Cambria", '"Times New Roman"', "serif"],
+        sans: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+        mono: ['"SFMono-Regular"', "Consolas", '"Liberation Mono"', "monospace"],
+        display: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+        serif: ["Georgia", "Cambria", '"Times New Roman"', "serif"],
       },
       colors: {
         primary: {
-          DEFAULT: "#0066FF",
-          light: "#3385FF",
-          dark: "#0052CC",
+          DEFAULT: "#274C77",
+          light: "#8DBBE8",
+          dark: "#152235",
           foreground: "#ffffff",
         },
         surface: {
           DEFAULT: "#FFFFFF",
-          dark: "#000000",
+          dark: "#132A47",
         },
       },
       typography: {

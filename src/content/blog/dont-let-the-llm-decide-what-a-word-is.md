@@ -3,7 +3,7 @@ title: "Don't Let the LLM Decide What a Word Is"
 subtitle: "Where to draw the line between code and the model"
 pubDate: "2026-05-21"
 description: "A reading app for Spanish learners taught me which decisions belong to an LLM and which belong in code. The boundary is sharper than I thought."
-ctaVariant: fractional
+ctaVariant: systemsBuild
 ---
 
 I'm building a reading app for Spanish learners. You open a story, tap any word, and a card shows the English meaning, a short grammar note, and how to pronounce it. The hard part isn't the cards. It's deciding what counts as one tap.

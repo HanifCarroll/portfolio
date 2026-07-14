@@ -1,17 +1,17 @@
 ---
 import { Image } from 'astro:assets';
+import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
+import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
+import AcquirePaperSystem from '../assets/img/projects/acquire-paper-system.png';
+import DesarmaderoPaperSystem from '../assets/img/projects/desarmadero-operations-paper-system.png';
+import GenruptPaperSystem from '../assets/img/projects/genrupt-paper-system.png';
+import PalabrunoPaperSystem from '../assets/img/projects/palabruno-paper-system.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL, RESUME_URL } from '../consts';
-import { HOMEPAGE_CASE_STUDY_SLUGS } from '../lib/project-curation';
-import { getProject } from '../lib/projects';
-import { getProjectImage } from '../lib/project-images';
-import HeroImage from '@src/assets/img/portrait-brick.webp';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { serviceOfferList } from '../lib/service-offers';
 
-const title = 'Hanif Carroll | Product Engineer';
-const description =
-	'Product engineer helping growing businesses improve operations with custom software, workflow automation, and AI systems. Based in Buenos Aires, working US hours.';
-const socialDescription =
-	'Product engineer helping growing businesses improve operations with custom software, workflow automation, and AI systems.';
+const title = 'Hanif Carroll | Technical Consultant for Founder-Led Businesses';
+const description = 'I help founder-led businesses fix difficult workflows with custom software, automation, and AI.';
 
 const homepageJsonLd = [
 	{
@@ -19,24 +19,11 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'Product Engineer',
+		jobTitle: 'Technical Consultant',
 		description,
+		affiliation: { '@type': 'Organization', name: 'HC Studio' },
 		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
-		knowsAbout: [
-			'Product engineering',
-			'Business systems',
-			'Workflow automation',
-			'AI operations systems',
-			'Internal tools',
-			'AI products',
-			'LLMs',
-			'RAG',
-			'AI agents',
-			'React',
-			'Next.js',
-			'React Native',
-			'TypeScript'
-		]
+		knowsAbout: ['Business systems engineering', 'Workflow automation', 'Internal tools', 'AI-assisted operations', 'Product engineering']
 	},
 	{
 		'@context': 'https://schema.org',
@@ -47,286 +34,257 @@ const homepageJsonLd = [
 	}
 ];
 
-const projectImage = (slug: string, imageKey: 'hero' | 'feature' = 'feature') => {
-	const project = getProject(slug);
-
-	if (!project) {
-		throw new Error(`Missing project metadata for homepage card "${slug}".`);
-	}
-
-	return getProjectImage(project, imageKey);
-};
-
-const caseStudyBySlug = {
-	acquire: {
-		slug: 'acquire',
-		title: 'Acquire',
-		body: 'Built a local-first acquisition operating system that turns sourcing, review, application prep, outreach, and submission into one governed workflow.',
-		image: projectImage('acquire'),
-		imageAlt: 'Acquire macOS command center showing the Pursuits workflow for submitted applications.',
-		imageClass: 'object-left-top'
-	},
-	palabruno: {
-		slug: 'palabruno',
-		title: 'Palabruno',
-		body: "Took a non-technical founder's idea from concept to live iOS, Android, and web app — including teacher workflows, AI features, Stripe/RevenueCat billing, and App Store launch.",
-		image: projectImage('palabruno'),
-		imageAlt: 'Spanish reading materials with vocabulary, grammar, and pronunciation cards.',
-		imageClass: undefined
-	},
-	genrupt: {
-		slug: 'genrupt',
-		title: 'Genrupt',
-		body: 'Evolved an AI media MVP into a production platform for Amazon sellers with subscriptions, credit billing, agent access, and background jobs — enabled the first 200 paying customers.',
-		image: projectImage('genrupt'),
-		imageAlt: 'E-commerce creative operations desk with packages, notes, and product materials.',
-		imageClass: 'object-left-top'
-	},
-	'desarmadero-operations-prototype': {
+const featuredProjects = [
+	{
 		slug: 'desarmadero-operations-prototype',
+		label: 'Client work',
 		title: 'Desarmadero Operations',
-		body: 'Turned one discovery call with an auto-dismantling yard into a clickable operations prototype, PRD, functional spec, and live demo before quoting the full build.',
-		image: projectImage('desarmadero-operations-prototype', 'hero'),
-		imageAlt: 'Desarmadero operations prototype showing the counter-sales workflow and live order summary.',
-		imageClass: 'object-left-top'
+		heading: 'A working operations prototype from one discovery call.',
+		body: 'An auto-dismantling yard was running sales and fulfillment through paper sheets, WhatsApp, Excel, and memory. I turned the workflow into a PRD, functional specification, and role-based prototype the client could validate before committing to the full build.',
+		image: DesarmaderoPaperSystem,
+		alt: 'Paper model of a vehicle order moving through sales, payment, dismantling, and billing.'
 	},
-	casamo: {
-		slug: 'casamo',
-		title: 'Casamo',
-		body: 'Built an AI-powered travel decision tool that helps remote workers find quality long-stay accommodations, with automated scanning, payments, and analytics.',
-		image: projectImage('casamo'),
-		imageAlt: 'Casamo homepage showing the stay search form and audit priorities over a furnished apartment.',
-		imageClass: 'object-left-top'
+	{
+		slug: 'genrupt',
+		label: 'Client work',
+		title: 'Genrupt',
+		heading: 'Making Genrupt ready for paying teams.',
+		body: 'I helped build the billing, credit accounting, background jobs, and agent workflows that made Genrupt ready for paying teams and helped it support its first 200 paying customers.',
+		image: GenruptPaperSystem,
+		alt: 'Paper model of creative assets, team access, usage events, and pricing rules flowing through the Genrupt system.'
+	},
+	{
+		slug: 'acquire',
+		label: 'Independent work',
+		title: 'Acquire',
+		heading: 'One place to manage a scattered acquisition workflow.',
+		body: 'Acquire brings sourcing, review, applications, outreach, evidence, and follow-up into one local system. It keeps agent activity behind clear review steps and stores the state needed to recover interrupted activity.',
+		image: AcquirePaperSystem,
+		alt: 'Paper model of scattered opportunity inputs passing through review, qualification, and decision gates.'
+	},
+	{
+		slug: 'palabruno',
+		label: 'Client work',
+		title: 'Palabruno',
+		heading: 'Launching Palabruno across mobile and web.',
+		body: 'I helped a nontechnical founder narrow the product, build the learner and teacher workflows, add mobile and web payments, launch on iOS, Android, and web, and leave with the documentation and assets needed to own the product.',
+		image: PalabrunoPaperSystem,
+		alt: 'Paper model of a Spanish reading, vocabulary, teacher handoff, and learner progress across tablet and mobile.'
 	}
-} as const;
+];
 
-const caseStudies = HOMEPAGE_CASE_STUDY_SLUGS.map((slug) => caseStudyBySlug[slug]);
+const serviceComparison = serviceOfferList.map((offer) => ({
+	...offer,
+	bestFor: {
+		audit: 'Gaining clarity, identifying risks, and planning the right solution.',
+		systemsBuild: 'Building new tools, automations, dashboards, and integrations your team will use.',
+		ongoing: 'Keeping systems reliable, improving them over time, and handling new technical needs.'
+	}[offer.key]
+}));
 
-const additionalWork = [
+const method = [
 	{
-		slug: 'casamo',
-		title: 'Casamo',
-		body: 'A live travel decision tool that turns noisy Airbnb and Booking.com searches into evidence-backed stay reports.',
-		image: projectImage('casamo')
+		title: 'See the whole workflow',
+		body: 'We trace each workflow from request to outcome: who is involved, which tools they use, where information changes hands, and where the process breaks down.'
 	},
 	{
-		slug: 'apartment-finder',
-		title: 'Apartment Finder',
-		body: 'An evidence-backed apartment search workflow with labeled evals, cost controls, source links, and inspectable model judgments.',
-		image: projectImage('apartment-finder')
+		title: 'Find where the workflow gets stuck',
+		body: 'I look for the step causing delays, repeated effort, or confusion. The best fix may be software, a small process change, or better use of a tool you already have.'
 	},
 	{
-		slug: 'ba-eventos',
-		title: 'BA Eventos',
-		body: 'A local event discovery product built around messy source ingestion, venue cleanup, semantic search, and grounded answers.',
-		image: projectImage('ba-eventos')
+		title: 'Build a useful first version',
+		body: 'When software is the best fix, I build a focused first version and use what we learn to decide what should happen next.'
+	},
+	{
+		title: 'Make sure your team can run it',
+		body: 'You keep the maps, software, documentation, and notes behind important decisions. Everything should be clear enough for your business to run and maintain.'
 	}
-] as const;
+];
 
 const testimonials = [
 	{
-		quote:
-			'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time.',
+		quote: 'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time.',
 		name: 'Monica Londoño',
-		role: 'Co-founder',
-		company: 'Punto de Partida'
+		role: 'Co-founder, Punto de Partida'
 	},
 	{
-		quote:
-			"He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
+		quote: "He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
 		name: 'Markis Zarate',
-		role: 'Founder',
-		company: 'Zarate Studios'
+		role: 'Founder, Zarate Studios'
 	},
 	{
-		quote:
-			'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.',
+		quote: 'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.',
 		name: 'Sarah Hibner',
-		role: 'Senior Product Designer',
-		company: 'LeagueApps'
+		role: 'Senior Product Designer, LeagueApps'
 	}
 ];
 ---
 
-<BaseLayout
-	title={title}
-	description={description}
-	socialDescription={socialDescription}
-	jsonLd={homepageJsonLd}
-	flushTop
-	showFooterCta={false}
-	footerLinksOnly
-	padContentBeforeFooter={false}
->
-	<section class='home-hero-shell'>
-		<div class='container home-hero-stage'>
-			<header class='home-hero'>
-				<h1 class='sr-only'>{title}</h1>
-				<div class='home-hero-split'>
-					<div class='home-hero-copy-wrap'>
-						<div class='home-hero-copy'>
-							<p class='home-hero-greeting'>Hey, I'm <span class='home-hero-greeting__name'>Hanif</span>.</p>
-							<p class='home-hero-subheadline'>
-								<span>I’m a product engineer who helps </span>
-								<span>growing businesses improve operations </span>
-								<span>with software, automation, and AI.</span>
-							</p>
-							<p class='home-hero-body'>
-								8+ years building web and mobile software, with recent work focused on internal operating systems, AI workflows, and
-								business-critical product platforms.
-							</p>
-							<div class='home-hero-actions'>
-								<a
-									class='home-hero-primary-link'
-									href={RESUME_URL}
-									data-track-event='resume_clicked'
-									data-track-location='home_hero_primary'
-								>
-									View resume
-								</a>
-								<a
-									class='home-hero-secondary-link'
-									href={BOOK_CALL_URL}
-									target='_blank'
-									rel='noopener noreferrer'
-									data-track-event='book_call_clicked'
-									data-track-location='home_hero_secondary'
-								>
-									Book a Business Systems Audit
-								</a>
-							</div>
+<BaseLayout title={title} description={description} jsonLd={homepageJsonLd} showFooterCta={false} bodyClass='hc-home'>
+	<article>
+		<header class='hc-home-hero'>
+			<div class='hc-home-hero__inner'>
+				<div class='hc-home-hero__copy'>
+					<h1 class='hc-home-hero__title' aria-label='Fix the workflows slowing down your business'>
+						<span>Fix the</span>
+						<span class='hc-home-hero__title-accent'>workflows</span>
+						<span>slowing down</span>
+						<span>your business</span>
+					</h1>
+					<p class='hc-home-hero__lead'>I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.</p>
+					<div class='hc-home-hero__actions'>
+						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a Business Systems Audit</a>
+						<a class='hc-home-hero__secondary' href='/projects/'>See case studies</a>
+					</div>
+				</div>
+				<figure class='hc-home-hero__portrait'>
+					<Image class='hc-home-hero__backdrop-image' src={HeroBackdrop} alt='' aria-hidden='true' loading='eager' widths={[640, 960, 1122]} sizes='(max-width: 900px) 100vw, 53vw' quality={92} />
+					<Image class='hc-home-hero__portrait-image' src={HeroPortrait} alt='Hanif Carroll looking toward the homepage introduction' loading='eager' widths={[640, 960, 1122]} sizes='(max-width: 900px) 100vw, 53vw' quality={95} />
+				</figure>
+			</div>
+		</header>
+
+		<section class='hc-section hc-recognition-section'>
+			<div class='hc-container hc-recognition'>
+				<div class='hc-recognition__copy'>
+					<h2 class='hc-recognition__title'>As the business grows,<br /> manual work gets <span>harder to manage.</span></h2>
+					<p>The business is growing, but day-to-day operations are getting harder to run. Requests arrive through inboxes and chats. Important status lives in spreadsheets. Approvals depend on one person. Reporting means pulling information from several tools.</p>
+				</div>
+
+				<div class='hc-workflow-diagram' role='img' aria-label='Requests from inbox and chat, spreadsheet status, and approval decisions all depend on one person before reporting can happen.'>
+					<div class='hc-workflow-sources'>
+						<div class='hc-workflow-source'>
+							<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='2.5' y='4.5' width='19' height='15' rx='2'></rect><path d='m3.5 6 8.5 7 8.5-7'></path></svg>
+							<span>Inbox</span>
+						</div>
+						<div class='hc-workflow-source'>
+							<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4.5 4.5h15a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-4.5 3v-3H4.5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z'></path><circle cx='8' cy='11' r='.7'></circle><circle cx='12' cy='11' r='.7'></circle><circle cx='16' cy='11' r='.7'></circle></svg>
+							<span>Chat</span>
 						</div>
 					</div>
 
-					<div class='home-hero-media'>
-						<figure class='home-hero-image-wrap'>
-							<Image src={HeroImage} alt='Hanif Carroll' class='home-hero-portrait' loading='eager' />
-						</figure>
+					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
+					<div class='hc-workflow-node hc-workflow-node--requests'>
+						<span>Requests</span>
+						<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M6 2.5h8l4 4v15H6z'></path><path d='M14 2.5v5h4M9 12h6M9 16h6'></path></svg>
+					</div>
+
+					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
+					<div class='hc-workflow-bottleneck'>
+						<div class='hc-workflow-input'>
+							<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='4' y='3' width='16' height='18' rx='1.5'></rect><path d='M4 8h16M4 13h16M4 18h16M10 3v18'></path></svg>
+							<span>Spreadsheet status</span>
+						</div>
+						<span class='hc-workflow-arrow hc-workflow-arrow--down' aria-hidden='true'>↓</span>
+						<div class='hc-workflow-node hc-workflow-node--person'>
+							<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='7.5' r='3.5'></circle><path d='M5.5 21v-3.5a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5V21'></path></svg>
+							<strong>One person</strong>
+						</div>
+						<span class='hc-workflow-arrow hc-workflow-arrow--up' aria-hidden='true'>↑</span>
+						<div class='hc-workflow-input'>
+							<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='12' r='9'></circle><path d='m8 12 2.5 2.5L16.5 8.5'></path></svg>
+							<span>Approval decisions</span>
+						</div>
+						<p class='hc-workflow-warning'><span aria-hidden='true'>!</span> Only they know what happens next.</p>
+					</div>
+
+					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
+					<div class='hc-workflow-node hc-workflow-node--reporting'>
+						<span>Reporting</span>
+						<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 21v-6h4v6M10 21V9h4v12M16 21V3h4v18'></path></svg>
 					</div>
 				</div>
-			</header>
-		</div>
-	</section>
 
-	<section class='container py-16 md:py-20' id='case-studies'>
-		<div class='space-y-5'>
-			<h2 class='heading-display home-case-studies-title'>Case Studies</h2>
-		</div>
+				<p class='hc-recognition__close'>A clear look at the entire workflow can show you where to begin.</p>
+			</div>
+		</section>
 
-		<div class='case-study-rows mt-8'>
-			{
-				caseStudies.map((study, index) => (
-					<a href={`/projects/${study.slug}/`} class='case-study-row group'>
-						<div class='case-study-row__copy'>
-							<p class='case-study-row__eyebrow'>
-								<span aria-hidden='true' />
-								CASE STUDY {String(index + 1).padStart(2, '0')}
-							</p>
-							<div class='case-study-row__body'>
-								<div class='space-y-5'>
-									<h3 class='case-study-row__title'>{study.title}</h3>
-									<p class='case-study-row__description'>{study.body}</p>
-								</div>
-								<span class='case-study-row__button'>View case study</span>
-							</div>
-						</div>
-						<figure class='case-study-row__media'>
-							<div class='case-study-row__image-frame'>
-								<Image
-									src={study.image}
-									alt={study.imageAlt}
-									class:list={['case-study-row__image transition duration-700 ease-out group-hover:scale-[1.025]', study.imageClass]}
-									loading='eager'
-								/>
-							</div>
-						</figure>
-					</a>
-				))
-			}
-
-			<section class='additional-work' aria-labelledby='additional-work-title'>
-				<div class='additional-work__header'>
-					<h3 id='additional-work-title'>Additional work</h3>
+		<section class='hc-section' id='services'>
+			<div class='hc-container'>
+				<div class='hc-section-header hc-services-header'>
+					<h2 class='hc-section-title'>Let's get clear on the problem first.</h2>
+					<p class='hc-section-intro'>Each engagement produces something useful on its own, which means you don't have to commit to the next stage.</p>
 				</div>
-				<div class='additional-work__list'>
-					{
-						additionalWork.map((work) => (
-							<a href={`/projects/${work.slug}/`} class='additional-work__item'>
-								<span class='additional-work__media' aria-hidden='true'>
-									<Image src={work.image} alt='' class='additional-work__image' loading='lazy' />
-								</span>
-								<span class='additional-work__copy'>
-									<span class='additional-work__title'>{work.title}</span>
-									<span class='additional-work__body'>{work.body}</span>
-								</span>
-							</a>
-						))
-					}
+				<div class='hc-service-comparison hc-service-comparison--desktop'>
+					<div class='hc-service-comparison__head'>
+						<span>Engagement</span>
+						{serviceComparison.map((offer, index) => <strong><span>{String(index + 1).padStart(2, '0')}</span>{offer.label}</strong>)}
+					</div>
+					<div class='hc-service-comparison__group hc-service-comparison__group--description'>
+						<h3>What it is</h3>
+						{serviceComparison.map((offer) => <div class='hc-service-comparison__cell'><h4>{offer.chooserHeading}</h4><p>{offer.chooserSummary}</p></div>)}
+					</div>
+					<div class='hc-service-comparison__group hc-service-comparison__group--best'>
+						<h3>Best for</h3>
+						{serviceComparison.map((offer) => <p>{offer.bestFor}</p>)}
+					</div>
+					<div class='hc-service-comparison__group hc-service-comparison__group--commercial'>
+						<h3>Commercial note</h3>
+						{serviceComparison.map((offer) => <p>{offer.commercialNote}</p>)}
+					</div>
+					<div class='hc-service-comparison__group hc-service-comparison__group--explore'>
+						<h3>Explore</h3>
+						{serviceComparison.map((offer) => <a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a>)}
+					</div>
 				</div>
-			</section>
 
-			<p class='case-study-archive-link'>
-				<a href='/projects/'>See all case studies <span aria-hidden='true'>→</span></a>
-			</p>
-		</div>
-	</section>
-
-	<section class='home-testimonials-band' aria-labelledby='home-testimonials-title'>
-		<div class='container home-testimonials'>
-			<p class='home-testimonials__eyebrow' id='home-testimonials-title'>What People I've Worked With Say</p>
-			<div class='home-testimonials__grid'>
-				{
-					testimonials.map((t) => (
-						<figure class='home-testimonial'>
-							<blockquote class='home-testimonial__quote'>
-								<p>{t.quote}</p>
-							</blockquote>
-							<figcaption class='home-testimonial__attr'>
-								<span class='home-testimonial__name'>{t.name}</span>
-								<span class='home-testimonial__role'>
-									{t.role}, {t.company}
-								</span>
-							</figcaption>
-						</figure>
-					))
-				}
+				<div class='hc-service-comparison-mobile'>
+					{serviceComparison.map((offer, index) => <article class='hc-service-mobile'><p class='hc-service-mobile__number'>{String(index + 1).padStart(2, '0')}</p><p class='hc-service-mobile__label'>{offer.label}</p><h3>{offer.chooserHeading}</h3><p>{offer.chooserSummary}</p><dl><div><dt>Best for</dt><dd>{offer.bestFor}</dd></div><div><dt>Commercial note</dt><dd>{offer.commercialNote}</dd></div></dl><a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a></article>)}
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class='container home-about' aria-labelledby='home-about-title'>
-		<div class='home-about__inner'>
-			<h2 id='home-about-title' class='home-about__title'>A Bit About Me</h2>
-			<p class='home-about__body'>
-				I partner with founders and teams to turn messy operational workflows into software that is easier to run, inspect, and improve. I’m
-				also building Casamo, an AI tool that helps remote workers find good long-term stays.
-			</p>
-			<p class='home-about__location'>Based in Buenos Aires, working US hours. US clients contract with me through HC Studio, my LLC.</p>
-			<p class='home-about__location'>
-				<a
-					href='/about/'
-					class='inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 transition-colors hover:text-primary dark:text-zinc-400'
-				>
-					More about me <span aria-hidden='true'>→</span>
-				</a>
-			</p>
-		</div>
-	</section>
-
-	<section class='container home-fit-section' aria-labelledby='home-contact-title'>
-		<div class='home-fit-section__inner'>
-			<div class='space-y-3'>
-				<h2 id='home-contact-title' class='home-fit-section__title'>Let's Talk</h2>
-				<p class='home-fit-section__lede'>
-					If your business has outgrown the way it operates, I can help diagnose the system and build the next version.
-				</p>
+		<section class='hc-proof-section hc-section'>
+			<div class='hc-container-wide hc-proof-section__header'>
+				<div class='hc-section-header'>
+					<h2 class='hc-section-title'>Selected client and independent projects.</h2>
+					<p class='hc-section-intro'>These projects show how I handle discovery, product decisions, building, and handoff.</p>
+				</div>
 			</div>
-
-			<div class='fit-actions'>
-				<a class='home-hero-primary-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_contact_primary'>
-					Let's talk
-				</a>
+			<div class='hc-proof-list'>
+				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/projects/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={92} /></figure></div></article>)}
 			</div>
-		</div>
-	</section>
+			<div class='hc-container-wide hc-proof-section__actions'><a class='hc-text-link' href='/projects/'>See all case studies</a></div>
+		</section>
+
+		<section class='hc-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2></div>
+				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+				<div class='hc-actions'><a class='hc-text-link' href='/services/'>See all services</a></div>
+			</div>
+		</section>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>What people have said about working with me</h2></div>
+				<div class='hc-testimonials'>{testimonials.map((item) => <figure class='hc-testimonial'><blockquote>“{item.quote}”</blockquote><figcaption><strong>{item.name}</strong>{item.role}</figcaption></figure>)}</div>
+			</div>
+		</section>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-about-preview'>
+					<h2>About me</h2>
+					<div class='hc-about-preview__body'>
+						<p>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems. I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
+						<p>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
+						<a class='hc-text-link' href='/about/'>More about how I work</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-cta-panel'>
+					<h2>Tell me what's getting harder to run.</h2>
+					<div class='hc-cta-panel__body'>
+						<p>You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step.</p>
+						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</article>
 </BaseLayout>

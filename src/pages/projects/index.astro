@@ -5,7 +5,7 @@ import { projects } from '../../lib/project-cards';
 import { PROJECT_INDEX_ORDER } from '../../lib/project-curation';
 
 const title = 'Case Studies';
-const description = 'Selected work by Hanif Carroll: AI products, web and mobile builds, and the product decisions behind them.';
+const description = 'Selected client and independent projects showing workflow diagnosis, product decisions, software systems, and supported results.';
 
 const orderProjects = (projectList: typeof projects, preferredOrder: readonly string[]) => {
 	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
@@ -23,19 +23,18 @@ const priorityProjects = orderedProjects.slice(1, 5);
 const compactProjects = orderedProjects.slice(5);
 ---
 
-<BaseLayout title={`${title} · Hanif Carroll`} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='projects-index container max-w-6xl py-8 md:py-10'>
+<BaseLayout title={`${title} | Hanif Carroll`} description={description}>
+	<article class='projects-index'>
 		<header class='projects-index__hero'>
-			<div class='projects-index__hero-main'>
-				<h1 class='heading-display heading-display--hero' data-fit-heading data-fit-min-rem='2' data-fit-max-rem='6.8'>
-					Selected work
-				</h1>
+			<div class='projects-index__hero-main hc-container-wide'>
+				<h1 class='heading-display heading-display--hero'>Selected client and independent projects.</h1>
+				<p class='projects-index__intro'>These case studies show the workflow, decisions, systems, and evidence behind each project. Client and independent projects are labeled separately.</p>
 			</div>
 		</header>
 
 		{
 			leadProject && (
-				<section class='projects-index__ranked-work' aria-label='Ranked project work'>
+				<section class='projects-index__ranked-work hc-container-wide' aria-label='Ranked project work'>
 					<ProjectVideoCard project={leadProject} variant='lead' />
 
 					{

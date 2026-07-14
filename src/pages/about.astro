@@ -1,125 +1,105 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { EMAIL_URL } from '../consts';
+import { Image } from 'astro:assets';
+import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
+import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
-const title = 'About Hanif Carroll';
+const title = 'About Hanif Carroll | Technical Consultant';
 const description =
-	'Product engineer helping founders and teams turn AI product ideas into shipped software. Based in Buenos Aires, working US hours through HC Studio.';
+	'I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.';
 
-const workingStyle = [
+const principles = [
 	{
-		title: 'I start with the real constraint.',
-		body: 'Good products usually begin with the actual bottleneck, not a long feature list. That’s usually where the leverage is.'
+		title: 'Understand the workflow first',
+		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.'
 	},
 	{
-		title: 'I reduce before I build.',
-		body: 'The first version should be smaller and sharper than what most teams aim for. That is how good products stay shippable.'
+		title: 'Use the simplest fix that will work',
+		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.'
 	},
 	{
-		title: 'I explain tradeoffs directly.',
-		body: 'Scope, UX, architecture, and implementation decisions only help if they are understandable. I do not hide the reasoning behind technical language.'
+		title: 'Make important state visible',
+		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter, especially when automation is involved.'
+	},
+	{
+		title: 'Plan the handoff from the start',
+		body: 'You keep the maps, software, documentation, and reasoning needed to run or extend what we build.'
 	}
 ];
 
-const backgroundMoments = [
+const background = [
 	{
-		label: 'Capgemini',
-		body: 'Learned structured delivery, stakeholder management, and how larger organizations make decisions when the systems are real.'
+		title: 'Capgemini',
+		body: 'I learned structured delivery, stakeholder management, and how larger organizations make decisions around systems that affect many people.'
 	},
 	{
-		label: 'LeagueApps',
-		body: 'Worked as a front end engineer inside a strong product team, keeping growth, UX, and implementation connected.'
+		title: 'LeagueApps',
+		body: 'I worked inside a product team where UX, engineering, and business goals had to stay connected through delivery.'
 	},
 	{
-		label: 'HC Studio',
-		body: 'My studio for working with founders and teams on AI-powered products, MVPs, and internal tools.'
+		title: 'HC Studio',
+		body: 'I now work directly with founders and operators on internal tools, automation, AI-assisted workflows, and business-critical product systems.'
 	}
 ];
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
-	<article class='content-page container max-w-4xl'>
-		<header class='content-page__hero'>
-			<h1 class='content-page__title'>
-				I help founders and teams build and launch AI-powered products.
-			</h1>
-			<p class='content-page__lede'>
-				I’m an 8+ year full-stack product engineer who works closest to founders and users — shaping the product, narrowing scope, building
-				the software, and getting it shipped.
-			</p>
-			<p class='content-page__lede'>
-				I’m based in Buenos Aires and work US hours. US clients hire me through my LLC, HC Studio.
-			</p>
-			<p class='content-page__lede'>
-				Recent projects include evolving an AI platform for Amazon sellers (first 200 paying customers), launching a Spanish reading
-				app on iOS, Android, and web for a non-technical founder, and building Casamo — my own AI tool for remote workers choosing long-term
-				stays.
-			</p>
+<BaseLayout title={title} description={description} showFooterCta={false}>
+	<article>
+		<header class='hc-hero hc-about-hero'>
+			<div class='hc-container-wide hc-about-hero__grid'>
+				<div class='hc-hero-copy'>
+					<h1 class='hc-display'>I help growing businesses fix workflows that have become hard to run.</h1>
+					<p class='hc-lead'>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
+					<p class='hc-trust-note'>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
+				</div>
+				<figure class='hc-about-hero__portrait'>
+					<Image src={HeroBackdrop} alt='' aria-hidden='true' class='hc-about-hero__backdrop' loading='eager' />
+					<Image src={HeroPortrait} alt='Hanif Carroll, technical consultant' class='hc-about-hero__image' loading='eager' />
+				</figure>
+			</div>
 		</header>
 
-		<section class='content-page__section' aria-labelledby='about-how-i-work'>
-			<h2 id='about-how-i-work' class='content-page__heading'>How I work</h2>
-			<p class='content-page__intro'>
-				The real value isn’t just writing code — it’s knowing what to build, what to leave out, and how it should feel to use.
-			</p>
-			<dl class='content-page__list'>
-				{
-					workingStyle.map((item) => (
-						<div class='content-page__item'>
-							<dt>{item.title}</dt>
-							<dd>{item.body}</dd>
-						</div>
-					))
-				}
-			</dl>
+		<section class='hc-section'>
+			<div class='hc-container hc-recognition'>
+				<div class='hc-section-header'>
+					<h2 class='hc-section-title'>One person from the first conversation through handoff.</h2>
+				</div>
+				<div class='hc-detail-content'>
+					<p>I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
+					<p>That continuity matters when the workflow spans people, software, data, business rules, and decisions that can't be handed between separate teams without losing context.</p>
+				</div>
+			</div>
 		</section>
 
-		<section class='content-page__section' aria-labelledby='about-point-of-view'>
-			<h2 id='about-point-of-view' class='content-page__heading'>Point of view</h2>
-			<p class='content-page__intro'>
-				I believe the most important part of using AI well is knowing what you actually want before you start building. AI can make you
-				faster, but it can’t decide what matters.
-			</p>
-			<p class='content-page__intro'>
-				I stay close to the people who will use the product. The best decisions usually come from real conversations, not assumptions. I
-				also work best with real autonomy — when I can see the full problem, form an opinion, and move on it.
-			</p>
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>How I work</h2></div>
+				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+			</div>
 		</section>
 
-		<section class='content-page__section' aria-labelledby='about-background'>
-			<h2 id='about-background' class='content-page__heading'>Background</h2>
-			<p class='content-page__intro'>
-				I’ve worked across large delivery environments, product-led teams, and my own studio — places where owning the full outcome mattered
-				as much as the code.
-			</p>
-			<dl class='content-page__list content-page__list--compact'>
-				{
-					backgroundMoments.map((item) => (
-						<div class='content-page__item'>
-							<dt>{item.label}</dt>
-							<dd>{item.body}</dd>
-						</div>
-					))
-				}
-			</dl>
+		<section class='hc-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'>
+					<h2 class='hc-section-title'>Experience across product teams, client projects, and independent systems.</h2>
+					<p class='hc-section-intro'>My background covers large delivery environments, product-led teams, direct client engagements, and systems I have designed and built for my own operations.</p>
+				</div>
+				<div class='hc-service-list'>{background.map((item, index) => <div class='hc-service-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.body}</p></div>)}</div>
+				<div class='hc-actions'><a class='hc-text-link' href='/projects/'>View case studies</a><a class='hc-text-link' href='/services/'>See all services</a></div>
+			</div>
 		</section>
 
-		<section class='content-page__section content-page__section--closing' aria-labelledby='about-contact'>
-			<h2 id='about-contact' class='content-page__heading'>Get in touch</h2>
-			<p class='content-page__intro'>
-				Building an AI product and want help shipping a focused first version? I take on contract and freelance work through HC Studio. The
-				fastest way to reach me is by email.
-			</p>
-			<p class='content-page__aside'>
-				<a
-					href={EMAIL_URL}
-					class='content-page__link'
-					data-track-event='email_clicked'
-					data-track-location='about_closing'
-				>
-					hanif@hanifcarroll.com
-				</a>
-			</p>
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-cta-panel'>
+					<h2>Which workflow is giving your team trouble?</h2>
+					<div class='hc-cta-panel__body'>
+						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits.</p>
+						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</article>
 </BaseLayout>

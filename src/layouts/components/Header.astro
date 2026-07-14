@@ -1,372 +1,69 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { EMAIL_URL, RESUME_URL } from '../../consts';
+import { BOOK_CALL_URL } from '../../consts';
 
 const navLinks = [
+	{ href: '/services/', label: 'Services' },
 	{ href: '/projects/', label: 'Case Studies' },
-	{ href: '/tools/', label: 'Tools' },
-	{ href: '/about/', label: 'About' },
-	{ href: RESUME_URL, label: 'Resume', trackEvent: 'resume_clicked', trackLocation: 'header_nav' },
 	{ href: '/blog/', label: 'Blog' },
-	{ href: '/work-with-me/', label: 'Work with me' }
+	{ href: '/about/', label: 'About' }
 ];
 
 const { pathname } = Astro.url;
-const currentRoot = `/${pathname.match(/[^/]+/)?.[0] ?? ''}/`;
-const isActiveLink = (href: string) => href === pathname || href === currentRoot;
+const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
+const isActiveLink = (href: string) => normalizePath(pathname).startsWith(normalizePath(href));
 ---
 
-<header class='site-header sticky top-0 z-[1001]' id='siteHeader'>
-	<div class='container relative z-[70] flex items-center justify-between gap-2 py-2.5 lg:gap-4 lg:py-6'>
-		<a href='/' id='logoLink' class='flex flex-col gap-0.5 transition hover:opacity-80 focus-visible:outline-none'>
-			<span class='font-display text-base font-semibold uppercase tracking-[0.08em] lg:text-xl'>Hanif Carroll</span>
-			<span class='font-mono text-[8px] uppercase tracking-[0.14em] opacity-70 lg:text-[10px] lg:tracking-[0.18em]'>
-				Product Engineer
-			</span>
+<header class='site-header' id='siteHeader' data-over-surface='light'>
+	<div class='hc-header'>
+		<a href='/' class='hc-brand' aria-label='HC Studio home'>
+			<img class='hc-brand__default' src='/brand/hc-studio-wordmark.svg' alt='HC Studio' width='4463' height='795' />
+			<img class='hc-brand__reverse' src='/brand/hc-studio-wordmark-reverse.svg' alt='HC Studio' width='4463' height='795' />
 		</a>
 
-		<nav class='hidden items-center gap-8 lg:flex'>
-			{
-				navLinks.map((link) => (
-					<HeaderLink href={link.href} data-track-event={link.trackEvent} data-track-location={link.trackLocation}>
-						{link.label}
-					</HeaderLink>
-				))
-			}
+		<nav class='hc-nav' aria-label='Primary navigation'>
+			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
 			<a
-				href={EMAIL_URL}
-				class='inline-flex items-center justify-center gap-2.5 rounded-[0.35rem] border border-primary bg-primary px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
-				data-track-event='email_clicked'
+				class='hc-button'
+				href={BOOK_CALL_URL}
+				target='_blank'
+				rel='noopener noreferrer'
+				data-track-event='book_call_clicked'
 				data-track-location='header_primary'
 			>
-				Get in touch
-				<span aria-hidden='true' class='text-base leading-none'>→</span>
+				Book an Audit
 			</a>
 		</nav>
 
-		<button
-			class='inline-flex h-8 w-8 items-center justify-center border border-white/60 text-white transition hover:border-white hover:bg-white/10 lg:hidden'
-			id='mobileMenuToggle'
-			aria-label='Toggle navigation'
-			aria-expanded='false'
-			aria-controls='mobileMenu'
-		>
-			<svg
-				class='menu-icon'
-				xmlns='http://www.w3.org/2000/svg'
-				width='16'
-				height='16'
-				viewBox='0 0 24 24'
-				fill='none'
-				stroke='currentColor'
-				stroke-width='2'
-				stroke-linecap='round'
-				stroke-linejoin='round'
-			>
-				<line x1='4' x2='20' y1='6' y2='6'></line>
-				<line x1='4' x2='20' y1='12' y2='12'></line>
-				<line x1='4' x2='20' y1='18' y2='18'></line>
-			</svg>
-			<svg
-				class='close-icon hidden'
-				xmlns='http://www.w3.org/2000/svg'
-				width='16'
-				height='16'
-				viewBox='0 0 24 24'
-				fill='none'
-				stroke='currentColor'
-				stroke-width='2'
-				stroke-linecap='round'
-				stroke-linejoin='round'
-			>
-				<path d='M18 6 6 18'></path>
-				<path d='m6 6 12 12'></path>
-			</svg>
-		</button>
-	</div>
-
-	<script is:inline>
-		const root = document.documentElement;
-		const darkModeMedia = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-
-		const applySystemTheme = (isDark) => {
-			root.classList.toggle('dark', Boolean(isDark));
-		};
-
-		applySystemTheme(darkModeMedia?.matches);
-
-		try {
-			localStorage.removeItem('theme');
-		} catch {}
-
-		if (darkModeMedia) {
-			const handleThemeChange = (event) => applySystemTheme(event.matches);
-			if (typeof darkModeMedia.addEventListener === 'function') {
-				darkModeMedia.addEventListener('change', handleThemeChange);
-			} else {
-				darkModeMedia.onchange = handleThemeChange;
-			}
-		}
-
-		const setupHeaderInteractions = () => {
-			const mobileToggle = document.getElementById('mobileMenuToggle');
-			const mobileMenu = document.getElementById('mobileMenu');
-			const menuIcon = mobileToggle?.querySelector('.menu-icon');
-			const closeIcon = mobileToggle?.querySelector('.close-icon');
-			let lockedScrollY = 0;
-			let menuCloseTimer;
-			let scrollLockStyles;
-			const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
-			const menuCloseDelay = () => (reducedMotionMedia.matches ? 0 : 220);
-
-			const lockScroll = () => {
-				if (scrollLockStyles) return;
-				lockedScrollY = window.scrollY || window.pageYOffset || 0;
-				const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
-				scrollLockStyles = {
-					rootOverflow: document.documentElement.style.overflow,
-					rootScrollbarGutter: document.documentElement.style.scrollbarGutter,
-					rootScrollBehavior: document.documentElement.style.scrollBehavior,
-					bodyPosition: document.body.style.position,
-					bodyTop: document.body.style.top,
-					bodyLeft: document.body.style.left,
-					bodyRight: document.body.style.right,
-					bodyWidth: document.body.style.width,
-					bodyPaddingRight: document.body.style.paddingRight
-				};
-				document.documentElement.style.overflow = 'hidden';
-				document.documentElement.style.scrollbarGutter = 'stable';
-				document.body.style.position = 'fixed';
-				document.body.style.top = `-${lockedScrollY}px`;
-				document.body.style.left = '0';
-				document.body.style.right = '0';
-				document.body.style.width = '100%';
-				if (scrollbarWidth > 0) {
-					document.body.style.paddingRight = `${scrollbarWidth}px`;
+		<div class='hc-mobile-nav'>
+			<button class='hc-mobile-nav__toggle' type='button' aria-expanded='false' aria-controls='mobileNavigation' aria-label='Open navigation'>
+				<span></span><span></span>
+			</button>
+			<div class='hc-mobile-nav__panel' id='mobileNavigation' aria-hidden='true'>
+				<nav class='hc-mobile-nav__links' aria-label='Mobile navigation'>
+				{
+					navLinks.map((link) => (
+						<a class='hc-mobile-nav__link' href={link.href} aria-current={isActiveLink(link.href) ? 'page' : undefined}>
+							{link.label}
+						</a>
+					))
 				}
-			};
-
-			const unlockScroll = () => {
-				if (!scrollLockStyles) return;
-				document.documentElement.style.scrollBehavior = 'auto';
-				document.documentElement.style.overflow = scrollLockStyles.rootOverflow;
-				document.documentElement.style.scrollbarGutter = scrollLockStyles.rootScrollbarGutter;
-				document.body.style.position = scrollLockStyles.bodyPosition;
-				document.body.style.top = scrollLockStyles.bodyTop;
-				document.body.style.left = scrollLockStyles.bodyLeft;
-				document.body.style.right = scrollLockStyles.bodyRight;
-				document.body.style.width = scrollLockStyles.bodyWidth;
-				document.body.style.paddingRight = scrollLockStyles.bodyPaddingRight;
-				const previousScrollBehavior = scrollLockStyles.rootScrollBehavior;
-				scrollLockStyles = undefined;
-				window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'auto' });
-				requestAnimationFrame(() => {
-					document.documentElement.style.scrollBehavior = previousScrollBehavior;
-				});
-			};
-
-			const setMobileMenuOpen = (isOpen) => {
-				if (!mobileMenu) return;
-				window.clearTimeout(menuCloseTimer);
-				if (isOpen) {
-					mobileMenu.dataset.state = 'closed';
-					mobileMenu.removeAttribute('hidden');
-					requestAnimationFrame(() => {
-						mobileMenu.dataset.state = 'open';
-						mobileMenu.querySelector('[data-mobile-menu-item]')?.focus({ preventScroll: true });
-					});
-					menuIcon?.classList.add('hidden');
-					closeIcon?.classList.remove('hidden');
-					mobileToggle?.setAttribute('aria-expanded', 'true');
-					lockScroll();
-				} else {
-					mobileMenu.dataset.state = 'closing';
-					menuIcon?.classList.remove('hidden');
-					closeIcon?.classList.add('hidden');
-					mobileToggle?.setAttribute('aria-expanded', 'false');
-					menuCloseTimer = window.setTimeout(() => {
-						mobileMenu.setAttribute('hidden', 'true');
-						mobileMenu.dataset.state = 'closed';
-						unlockScroll();
-					}, menuCloseDelay());
-				}
-			};
-
-			mobileToggle?.addEventListener('click', () => {
-				if (!mobileMenu) return;
-				setMobileMenuOpen(mobileMenu.hasAttribute('hidden'));
-			});
-
-			mobileMenu?.querySelectorAll('a').forEach((link) => {
-				link.addEventListener('click', () => {
-					setMobileMenuOpen(false);
-				});
-			});
-
-			document.addEventListener('keydown', (event) => {
-				if (event.key === 'Escape' && mobileMenu && !mobileMenu.hasAttribute('hidden')) {
-					setMobileMenuOpen(false);
-					mobileToggle?.focus();
-				}
-			});
-
-			window.addEventListener('resize', () => {
-				if (window.innerWidth >= 1024 && mobileMenu && !mobileMenu.hasAttribute('hidden')) {
-					setMobileMenuOpen(false);
-				}
-			});
-
-			const handleHomeClick = (e) => {
-				const currentPath = window.location.pathname;
-				if (currentPath === '/') {
-					e.preventDefault();
-					window.scrollTo({ top: 0, behavior: 'smooth' });
-				}
-			};
-
-			const logoLink = document.getElementById('logoLink');
-			logoLink?.addEventListener('click', handleHomeClick);
-		};
-
-		const setupScrollBehavior = () => {
-			const header = document.getElementById('siteHeader');
-			if (!header) return;
-
-			let lastScrollY = window.scrollY;
-			let ticking = false;
-			const SCROLL_THRESHOLD = 80;
-
-			const updateHeader = () => {
-				const currentScrollY = window.scrollY;
-				const scrollingDown = currentScrollY > lastScrollY;
-				const menu = document.getElementById('mobileMenu');
-				const menuOpen = menu && !menu.hasAttribute('hidden');
-
-				if (menuOpen || currentScrollY <= SCROLL_THRESHOLD) {
-					header.style.transform = '';
-				} else if (scrollingDown) {
-					header.style.transform = 'translateY(-100%)';
-				} else {
-					header.style.transform = 'translateY(0)';
-				}
-
-				lastScrollY = currentScrollY;
-				ticking = false;
-			};
-
-			window.addEventListener(
-				'scroll',
-				() => {
-					if (!ticking) {
-						requestAnimationFrame(updateHeader);
-						ticking = true;
-					}
-				},
-				{ passive: true }
-			);
-		};
-
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', setupHeaderInteractions, { once: true });
-			document.addEventListener('DOMContentLoaded', setupScrollBehavior, { once: true });
-		} else {
-			setupHeaderInteractions();
-			setupScrollBehavior();
-		}
-	</script>
-</header>
-
-<div class='fixed inset-0 z-[1000] min-h-dvh overflow-y-auto bg-[#0c0c0c] pt-16 lg:hidden' id='mobileMenu' data-state='closed' hidden>
-	<nav class='container flex min-h-[calc(100dvh-4rem)] flex-col gap-4 py-5'>
-		{
-			navLinks.map((link, index) => (
 				<a
-					href={link.href}
-					class:list={[
-						'text-xl font-display font-semibold uppercase tracking-[0.10em] text-white/80 transition hover:text-white focus-visible:outline-none focus-visible:text-white',
-						isActiveLink(link.href) && 'text-primary'
-					]}
-					aria-current={isActiveLink(link.href) ? 'page' : undefined}
-					data-track-event={link.trackEvent}
-					data-track-location={link.trackLocation?.replace('header_nav', 'header_mobile_nav')}
-					data-mobile-menu-item
-					style={`--mobile-menu-index: ${index}`}
+					class='hc-button'
+					href={BOOK_CALL_URL}
+					target='_blank'
+					rel='noopener noreferrer'
+					data-track-event='book_call_clicked'
+					data-track-location='header_mobile'
 				>
-					{link.label}
+					Book an Audit
 				</a>
-			))
-		}
-		<a
-			href={EMAIL_URL}
-			class='mt-3 inline-flex w-fit items-center justify-center gap-2.5 rounded-[0.35rem] border border-primary bg-primary px-4 py-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.10em] text-white transition-colors duration-200 hover:border-primary-dark hover:bg-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0c] dark:hover:border-primary-light dark:hover:bg-primary-light dark:focus-visible:ring-offset-[#090909]'
-			data-track-event='email_clicked'
-			data-track-location='header_mobile'
-			data-mobile-menu-item
-			style={`--mobile-menu-index: ${navLinks.length}`}
-		>
-			Get in touch
-			<span aria-hidden='true' class='text-base leading-none'>→</span>
-		</a>
-	</nav>
-</div>
-
-<style>
-	#siteHeader {
-		transition:
-			transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-			background-color 200ms ease,
-			border-color 200ms ease;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		#siteHeader {
-			transition: none;
-		}
-	}
-
-	#mobileMenu {
-		opacity: 0;
-		transition: opacity 180ms ease-in;
-	}
-
-	#mobileMenu[data-state='open'] {
-		opacity: 1;
-		transition-duration: 220ms;
-		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	#mobileMenu[data-state='closing'] {
-		opacity: 0;
-	}
-
-	#mobileMenu [data-mobile-menu-item] {
-		opacity: 0;
-		transform: translateY(12px);
-		transition:
-			opacity 180ms ease-in,
-			transform 180ms ease-in;
-		transition-delay: 0ms;
-	}
-
-	#mobileMenu[data-state='open'] [data-mobile-menu-item] {
-		opacity: 1;
-		transform: translateY(0);
-		transition-duration: 240ms;
-		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-		transition-delay: calc(var(--mobile-menu-index) * 32ms + 55ms);
-	}
-
-	#mobileMenu[data-state='closing'] [data-mobile-menu-item] {
-		opacity: 0;
-		transform: translateY(8px);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		#mobileMenu,
-		#mobileMenu [data-mobile-menu-item] {
-			transition: none;
-			transition-delay: 0ms;
-			transform: none;
-		}
-	}
-</style>
+				</nav>
+				<p class='hc-mobile-nav__note'>Technical consulting for founder-led businesses.</p>
+			</div>
+		</div>
+	</div>
+</header>
+<script>
+	import '../../scripts/site-header';
+</script>

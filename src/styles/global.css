@@ -57,28 +57,6 @@
     background-image: none;
   }
 
-  body.page-launch {
-    background-color: #f9f9f7;
-    background-image: none;
-  }
-
-  :is(.dark) body.page-launch {
-    background-color: #0d0d0d;
-    background-image: none;
-  }
-
-  body.page-work-with-me {
-    background: #fbfbfd;
-    background-image: none;
-    color: #1d1d1f;
-  }
-
-  :is(.dark) body.page-work-with-me {
-    background: #0b0b0c;
-    background-image: none;
-    color: #f5f5f7;
-  }
-
   pre,
   code {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -643,7 +621,6 @@
     border-color: rgba(255, 255, 255, 0.12);
   }
 
-  :is(.dark) .service-launch-step,
   :is(.dark) .blog-post-hero__media {
     background: rgba(255, 255, 255, 0.03);
     border-color: rgba(255, 255, 255, 0.1);
@@ -671,12 +648,6 @@
   :is(.dark) .blog-post-author-inline,
   :is(.dark) .blog-post-rail__block {
     border-top-color: rgba(255, 255, 255, 0.12);
-  }
-
-  :is(.dark) .service-launch-step {
-    background: rgba(255, 255, 255, 0.03);
-    outline-color: rgba(255, 255, 255, 0.1);
-    box-shadow: none;
   }
 
   :is(.dark) .about-positioning-item :is(p:last-child),
@@ -707,25 +678,6 @@
   @media (min-width: 768px) {
     .service-page-stack {
       gap: 6.5rem;
-    }
-
-    .work-with-me-offers {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: stretch;
-      column-gap: 1rem;
-      row-gap: 2.15rem;
-    }
-
-    .work-with-me-offer {
-      grid-template-rows: minmax(2.8rem, auto) minmax(17.5rem, auto) minmax(16.5rem, auto) minmax(
-          2rem,
-          1fr
-        );
-    }
-
-    .work-with-me-closing {
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      align-items: start;
     }
 
     .service-hero-grid {
@@ -760,11 +712,6 @@
     .service-proof-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2rem;
-    }
-
-    .service-launch-steps {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.85rem;
     }
 
     .about-editorial-split {
@@ -1282,77 +1229,11 @@
       padding-inline: 1.2rem;
     }
 
-    .work-with-me-page {
-      gap: 4rem;
-      padding-block: 3.5rem 4.75rem;
-    }
-
-    .work-with-me-hero {
-      text-align: left;
-      justify-items: start;
-      margin-inline: 0;
-    }
-
-    .work-with-me-hero h1 {
-      max-width: 11ch;
-      font-size: 3.1rem;
-      letter-spacing: 0;
-    }
-
-    .work-with-me-hero p {
-      font-size: 1.08rem;
-    }
-
-    .work-with-me-actions {
-      justify-content: flex-start;
-      width: 100%;
-    }
-
-    .work-with-me-button {
-      width: 100%;
-    }
-
-    .work-with-me-link {
-      font-size: 1rem;
-    }
-
-    .work-with-me-offer {
-      padding: 1.45rem;
-    }
-
-    .work-with-me-offer__meta {
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    .work-with-me-offer h2 {
-      max-width: 10.5ch;
-      font-size: 2.55rem;
-    }
-
-    .work-with-me-closing {
-      gap: 1.45rem;
-      padding-top: 2.5rem;
-    }
-
-    .work-with-me-closing h2 {
-      max-width: 9.5ch;
-      font-size: 3.15rem;
-      line-height: 1;
-    }
-
     .home-hero-image-wrap {
       width: 100%;
       max-width: 22rem;
       border-width: 8px;
     }
-  }
-
-  .launch-meta {
-    @apply font-mono font-semibold uppercase text-zinc-500 dark:text-zinc-300;
-    font-size: clamp(0.82rem, 0.78rem + 0.14vw, 0.92rem);
-    line-height: 1.45;
-    letter-spacing: 0.06em;
   }
 
   /* Primary button - black with white text */

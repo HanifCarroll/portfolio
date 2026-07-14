@@ -2,6 +2,17 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-12
+
+### Technical Consulting Site Cutover
+
+- Repositioned the homepage and shared site shell around technical consulting for founder-led businesses, using the approved Audit → Build → Ongoing engagement path and proof labels `Client work` and `Independent work`.
+- Added `/services/`, `/services/business-systems-audit/`, `/services/business-systems-build/`, and `/services/ongoing-technical-partnership/` with distinct titles, descriptions, canonical URLs, proof, FAQs, and internal links.
+- Removed the obsolete employment, MVP, and prior offer routes without redirects: `/work-with-me/`, `/mvp-launch/`, `/launch/`, `/automation-ai-agents/`, `/contract-product-engineer-one-pager/`, `/business-systems-audit/`, `/business-systems-build/`, and `/fractional-product-engineering/`.
+- Removed the public resume and contract-product-engineer PDFs, and removed their source references so the site no longer presents employment-first conversion paths.
+- Applied the HC Studio identity and current visual system across the shared header, footer, homepage, services pages, about page, project archive, and case-study surfaces.
+- After deployment, verify the four service routes and their canonical metadata, confirm retired routes and PDFs return 404 without redirecting, inspect the generated sitemap, and review Search Console for newly indexed service pages and retired URL reports.
+
 ## 2026-07-10
 
 ### HablaBA Case Study And Video Refresh

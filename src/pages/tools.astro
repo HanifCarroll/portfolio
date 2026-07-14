@@ -309,18 +309,18 @@ const icons = {
 
 	<style>
 		:global(body.page-tools) {
-			background: #f9f9f7;
-			color: #3a352f;
+			background: var(--hc-canvas);
+			color: var(--hc-text);
 		}
 
 		.tools-page {
-			--tools-ink: #171512;
-			--tools-body: #3a352f;
-			--tools-muted: #696158;
-			--tools-rule: rgba(23, 21, 18, 0.14);
+			--tools-ink: var(--hc-text);
+			--tools-body: var(--hc-text-muted);
+			--tools-muted: #667282;
+			--tools-rule: rgba(16, 37, 63, 0.1);
 			--tools-surface: #ffffff;
-			--tools-surface-soft: #f0efeb;
-			--tools-blue: #0066ff;
+			--tools-surface-soft: #f7f5ed;
+			--tools-blue: var(--hc-accent-text);
 			display: flex;
 			flex-direction: column;
 			gap: clamp(3rem, 5vw, 4rem);
@@ -341,7 +341,10 @@ const icons = {
 			display: grid;
 			grid-template-columns: minmax(0, 38rem) minmax(16rem, 1fr);
 			gap: clamp(2.5rem, 5vw, 4rem);
-			align-items: start;
+			align-items: center;
+			padding: clamp(2rem, 6vw, 5rem);
+			border-radius: var(--hc-radius-surface);
+			background: var(--hc-proof-surface);
 		}
 
 		.tools-hero__copy {
@@ -372,18 +375,18 @@ const icons = {
 
 		.tools-hero h1 {
 			max-width: 34rem;
-			color: var(--tools-ink);
+			color: var(--hc-proof-text);
 			font-family: "IBM Plex Sans", system-ui, sans-serif;
-			font-size: clamp(2.25rem, 4.8vw, 3.5rem);
-			font-weight: 600;
-			line-height: var(--line-height-display);
-			letter-spacing: -0.03em;
+			font-size: clamp(2.7rem, 5.5vw, 5.3rem);
+			font-weight: 700;
+			line-height: 0.96;
+			letter-spacing: -0.05em;
 			text-wrap: balance;
 		}
 
 		.tools-hero__copy > p {
 			max-width: 34rem;
-			color: var(--tools-body);
+			color: var(--hc-proof-text-muted);
 			font-size: clamp(1rem, 2vw, 1.1rem);
 			line-height: 1.36;
 		}
@@ -392,7 +395,8 @@ const icons = {
 			display: flex;
 			flex-direction: column;
 			gap: 0.8rem;
-			border: 1px solid var(--tools-rule);
+			border: 0;
+			border-radius: var(--hc-radius-surface);
 			padding: 1rem;
 			background: var(--tools-surface-soft);
 		}
@@ -492,20 +496,22 @@ const icons = {
 			min-height: 8.9rem;
 			flex-direction: column;
 			gap: 0.7rem;
-			border: 1px solid var(--tools-rule);
+			border: 0;
+			border-radius: var(--hc-radius-surface);
 			padding: 1rem;
 			background: var(--tools-surface);
 			color: inherit;
 			text-decoration: none;
 			transition:
-				border-color 150ms ease,
-				transform 150ms ease;
+				transform 220ms ease,
+				box-shadow 220ms ease;
+			box-shadow: 0 12px 36px rgba(16, 37, 63, 0.055);
 		}
 
 		.tools-card:hover,
 		.tools-card:focus-visible {
-			border-color: rgba(23, 21, 18, 0.34);
-			transform: translateY(-1px);
+			transform: translateY(-4px);
+			box-shadow: 0 20px 46px rgba(16, 37, 63, 0.11);
 		}
 
 		.tools-card[hidden] {
@@ -514,6 +520,7 @@ const icons = {
 
 		.tools-card--featured {
 			min-height: 9.4rem;
+			background: color-mix(in srgb, var(--hc-accent) 16%, white);
 		}
 
 		.tools-card__top {
@@ -552,7 +559,8 @@ const icons = {
 			display: flex;
 			flex-direction: column;
 			gap: 0.9rem;
-			border: 1px solid var(--tools-rule);
+			border: 0;
+			border-radius: var(--hc-radius-surface);
 			padding: 0.9rem;
 			background: var(--tools-surface);
 		}
@@ -610,10 +618,12 @@ const icons = {
 		.tools-search {
 			min-height: 2.7rem;
 			gap: 0.7rem;
-			border: 1px solid var(--tools-rule);
+			border: 0;
+			border-radius: 999px;
 			padding: 0 1rem;
 			background: var(--tools-surface);
 			color: var(--tools-muted);
+			box-shadow: 0 8px 24px rgba(16, 37, 63, 0.055);
 		}
 
 		.tools-search__icon {

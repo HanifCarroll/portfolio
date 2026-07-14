@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import { serviceOfferList } from '../../lib/service-offers';
+import { getProject } from '../../lib/projects';
+import { getProjectImage } from '../../lib/project-images';
+import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
+
+const title = 'Technical Consulting Services | Hanif Carroll';
+const description =
+	"Technical consulting for founder-led businesses: find what's slowing the team down, build the right software, or get ongoing support as your systems and technical needs change.";
+
+const projectImage = (slug: string, imageKey: 'hero' | 'feature' = 'feature') => {
+	const project = getProject(slug);
+	if (!project) throw new Error(`Missing project metadata for Services proof "${slug}".`);
+	return getProjectImage(project, imageKey);
+};
+
+const proof = [
+	{
+		slug: 'desarmadero-operations-prototype',
+		label: 'Client work',
+		title: 'Desarmadero Operations',
+		body: 'After one discovery call, I created a workflow map, PRD, functional specification, and role-based prototype the client could review before a full build.',
+		image: projectImage('desarmadero-operations-prototype', 'hero'),
+		alt: 'Desarmadero operations prototype showing the counter-sales workflow.'
+	},
+	{
+		slug: 'genrupt',
+		label: 'Client work',
+		title: 'Genrupt',
+		body: 'I helped make Genrupt ready for paying teams by building billing, credit accounting, reliable background jobs, and agent access. The platform went on to support its first 200 paying customers.',
+		image: projectImage('genrupt'),
+		alt: 'Genrupt commercial readiness dashboard.'
+	},
+	{
+		slug: 'mucho-hangouts',
+		label: 'Client work',
+		title: 'Mucho Hangouts',
+		body: 'I helped improve messaging, notifications, delivery patterns, and the way the team worked while the live product kept shipping.',
+		image: projectImage('mucho-hangouts'),
+		alt: 'Mucho Hangouts product interface.'
+	},
+	{
+		slug: 'acquire',
+		label: 'Independent work',
+		title: 'Acquire',
+		body: 'A local-first tool brings workflow status, review steps, evidence, agent activity, and recovery into one place.',
+		image: projectImage('acquire'),
+		alt: 'Acquire command center showing workflow status and review steps.'
+	}
+];
+
+const principles = [
+	{
+		title: 'Understand the workflow first',
+		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.'
+	},
+	{
+		title: 'Use the simplest fix that will work',
+		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.'
+	},
+	{
+		title: 'Make the important parts easy to see',
+		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter.'
+	},
+	{
+		title: 'You keep everything we produce',
+		body: 'You keep the useful artifacts, software, documentation, and context needed to run or extend the system.'
+	}
+];
+
+const faqs = [
+	{
+		title: 'Where should I start?',
+		body: "Start with the Business Systems Audit when you can see the problem but aren't sure what will fix it. If the workflow and result are already clear, we may be able to scope a build directly."
+	},
+	{
+		title: 'Do I need custom software?',
+		body: 'The audit may point to custom software, an automation, an integration, better use of an existing tool, or a process change.'
+	},
+	{
+		title: 'Can you work with the tools we already use?',
+		body: 'Yes. I look at the tools and data you already have. If they can do the job, we use them.'
+	},
+	{
+		title: 'Is this AI consulting?',
+		body: 'No. I help improve the way your business runs. AI is one tool I may use when it fits the job and can be made reliable enough for daily use.'
+	},
+	{
+		title: 'What happens when the engagement ends?',
+		body: 'You keep the maps, software, documentation, and notes behind important decisions. I plan the handoff as part of the engagement.'
+	},
+	{
+		title: 'How much does it cost?',
+		body: 'The Business Systems Audit starts at $2,500. I price builds after we define the scope. Ongoing partnerships are monthly and scoped around agreed priorities and available time.'
+	}
+];
+---
+
+<BaseLayout title={title} description={description} showFooterCta={false}>
+	<article>
+		<header class='hc-hero hc-hero--inverse'>
+			<div class='hc-container'>
+				<div class='hc-hero-surface'>
+					<div class='hc-hero-copy'>
+						<h1 class='hc-display'>Technical help for the parts of your business that are getting harder to run.</h1>
+						<p class='hc-lead'>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
+						<div class='hc-actions'>
+							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book a Business Systems Audit</a>
+							<a class='hc-text-link' href='#services'>Compare the services</a>
+						</div>
+						<p class='hc-hero-note'>For founder-led businesses with customers, demand, or a repeatable service whose day-to-day operations have become harder to see and manage.</p>
+					</div>
+					<figure class='hc-artifact-stack hc-artifact-stack--inverse hc-artifact-stack--single'>
+						<Image src={DesarmaderoPaperSystem} alt='Paper model of a business workflow moving through sales, payment, fulfillment, and billing.' loading='eager' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 50vw' />
+						<figcaption>From diagnosis and validation to software used in daily operations.</figcaption>
+					</figure>
+				</div>
+			</div>
+		</header>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-fit-panel'>
+					<h2>For businesses that already have customers and recurring work.</h2>
+					<div class='hc-fit-panel__body'>
+						<ul class='hc-signal-list'>
+							<li>Recurring work is spread across spreadsheets, inboxes, forms, chats, and disconnected tools.</li>
+							<li>Handoffs, approvals, reporting, or customer workflows depend on manual checking.</li>
+							<li>Important status lives in people's heads, so the team has to ask around.</li>
+							<li>The team knows software or AI may help but doesn't know what should be built first.</li>
+							<li>A known workflow needs ongoing help from someone who can make decisions and build.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section' id='services'>
+			<div class='hc-container'>
+				<div class='hc-section-header'>
+					<h2 class='hc-section-title'>Use the service that matches where you are.</h2>
+				</div>
+				<div class='hc-service-list'>
+					{
+						serviceOfferList.map((offer, index) => (
+							<a class='hc-service-item' href={offer.path}>
+								<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
+								<h3>{offer.label}</h3>
+								<p>{offer.chooserSummary}</p>
+								<span class='hc-service-item__meta'><span>{offer.commercialNote}</span><span class='hc-text-link'>{offer.chooserCta}</span></span>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-section-header'>
+					<h2 class='hc-section-title'>Every engagement leaves you with something you can use.</h2>
+					<p class='hc-section-intro'>After the audit, you can use the findings with your own team, another partner, or me. A build includes a usable system and a clear handoff. The ongoing partnership covers connected priorities as they come up.</p>
+				</div>
+				<div class='hc-flow' aria-label='Engagement path'>
+					<div class='hc-flow-node'><strong>Business Systems Audit</strong><span>Map the workflow</span></div>
+					<div class='hc-flow-node'><strong>Business Systems Build</strong><span>Build what the team needs first</span></div>
+					<div class='hc-flow-node'><strong>Ongoing Technical Partnership</strong><span>Handle ongoing technical priorities</span></div>
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>How I work</h2></div>
+				<div class='hc-principles-grid'>
+					{principles.map((item, index) => <div class='hc-principle'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>Project examples.</h2></div>
+				<div class='hc-proof-grid'>
+					{proof.map((item) => <a class='hc-proof-card' href={`/projects/${item.slug}/`}><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>Questions people ask before starting</h2></div>
+				<div class='hc-faq-list'>
+					{faqs.map((faq) => <div class='hc-faq-item'><h3>{faq.title}</h3><p>{faq.body}</p></div>)}
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section--compact'>
+			<div class='hc-container'>
+				<div class='hc-cta-panel'>
+					<h2>Which workflow is giving your team trouble?</h2>
+					<div class='hc-cta-panel__body'>
+						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits. We'll work out whether an audit is the best place to begin.</p>
+						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</article>
+</BaseLayout>

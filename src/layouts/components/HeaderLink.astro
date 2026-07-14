@@ -4,21 +4,11 @@ import type { HTMLAttributes } from 'astro/types';
 type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
-
-const { pathname } = Astro.url;
-const subpath = pathname.match(/[^/]+/g);
-const hrefPath = href instanceof URL ? href.pathname : typeof href === 'string' ? href : undefined;
-const normalizePath = (value?: string) => (value ? (value.endsWith('/') ? value : `${value}/`) : '/');
-const normalizedHref = normalizePath(hrefPath);
-const currentRoot = normalizePath(subpath?.[0] ? `/${subpath[0]}` : '/');
-const isActive = normalizedHref === normalizePath(pathname) || normalizedHref === currentRoot;
+const hrefPath = href instanceof URL ? href.pathname : typeof href === 'string' ? href : '/';
+const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
+const isActive = normalizePath(Astro.url.pathname).startsWith(normalizePath(hrefPath));
 ---
 
-<a
-	href={href}
-	aria-current={isActive ? 'page' : undefined}
-	class:list={['nav-link', { 'text-primary after:w-full': isActive }, className]}
-	{...props}
->
+<a href={href} aria-current={isActive ? 'page' : undefined} class:list={['hc-nav-link', className]} {...props}>
 	<slot />
 </a>

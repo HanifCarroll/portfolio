@@ -1,7 +1,7 @@
 export const HOMEPAGE_CASE_STUDY_SLUGS = [
-  "acquire",
   "desarmadero-operations-prototype",
   "genrupt",
+  "acquire",
   "palabruno",
 ] as const;
 

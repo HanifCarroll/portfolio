@@ -3,7 +3,7 @@ title: "Expensive Tokens Reward Good Architecture"
 seoTitle: "Expensive Tokens Reward Good Architecture"
 pubDate: "2026-05-27"
 description: "As AI token subsidies fade, engineers with modular systems, fast feedback loops, and swappable model components will have a cost advantage."
-ctaVariant: fractional
+ctaVariant: systemsBuild
 tags:
   - AI agents
   - software architecture

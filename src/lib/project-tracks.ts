@@ -4,7 +4,7 @@ export interface ProjectTrackMeta {
   label: string;
   shortLabel: string;
   group: ProjectTrackGroup;
-  ctaVariant: "audit" | "systemsBuild" | "mvp" | "fractional";
+  ctaVariant: "audit" | "systemsBuild" | "ongoing";
   rank: number;
 }
 
@@ -24,24 +24,24 @@ export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
     rank: 4,
   },
   mvp_build: {
-    label: "MVP Build",
-    shortLabel: "MVP",
+    label: "Product System",
+    shortLabel: "Build",
     group: "mvp_and_validation",
-    ctaVariant: "mvp",
+    ctaVariant: "systemsBuild",
     rank: 0,
   },
   mvp_validation: {
-    label: "Validation Build",
-    shortLabel: "Validation",
+    label: "Product Prototype",
+    shortLabel: "Build",
     group: "mvp_and_validation",
-    ctaVariant: "mvp",
+    ctaVariant: "systemsBuild",
     rank: 1,
   },
   launch_site: {
-    label: "Launch Site",
-    shortLabel: "Site",
+    label: "Client Website",
+    shortLabel: "Client work",
     group: "launch_sites",
-    ctaVariant: "mvp",
+    ctaVariant: "systemsBuild",
     rank: 2,
   },
 };

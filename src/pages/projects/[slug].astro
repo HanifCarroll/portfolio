@@ -57,6 +57,7 @@ const caseStudyJsonLd = {
 };
 
 const caseStudyFacts = [
+	{ label: 'Project', value: project.proofType === 'client' ? 'Client work' : 'Independent work' },
 	{ label: 'Role', value: project.role },
 	{ label: 'Timeline', value: project.timeline ?? project.year },
 	{ label: 'Team', value: project.teamSize },
@@ -229,7 +230,7 @@ const heroActions = [
 					quote={project.proofQuote.quote}
 					name={project.proofQuote.author}
 					role={project.proofQuote.role ?? 'Client'}
-					label='Proof'
+					label='Client feedback'
 				/>
 			)
 		}

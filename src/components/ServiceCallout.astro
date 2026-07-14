@@ -1,7 +1,7 @@
 ---
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
-type Variant = 'general' | 'audit' | 'systemsBuild' | 'mvp' | 'fractional';
+type Variant = 'general' | 'audit' | 'systemsBuild' | 'ongoing';
 type Context = 'blog' | 'case-study';
 
 interface Props {
@@ -11,142 +11,54 @@ interface Props {
 	class?: string;
 }
 
-const { variant = 'general', context = 'blog', location, class: className = '' } = Astro.props as Props;
+const { variant = 'general', location, class: className = '' } = Astro.props as Props;
 
 const offers = {
-	blog: {
-		general: {
-			label: 'Work with me',
-			title: "If your business has outgrown the way it operates, start by finding the operating constraint.",
-			body: 'I help growing teams diagnose the workflow, then build the internal tools, automation, and AI systems that make the next version easier to run.',
-			secondaryHref: '/work-with-me/',
-			secondaryLabel: 'Compare Work Options',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Business Systems Audit',
-			primaryExternal: true
-		},
-		audit: {
-			label: 'Business Systems Audit',
-			title: 'Need to map the bottleneck before you build?',
-			body: 'Start with a diagnostic that turns messy workflows, manual handoffs, and scattered tools into a clear first-system plan.',
-			secondaryHref: '/business-systems-audit/',
-			secondaryLabel: 'Explore Business Systems Audit',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Business Systems Audit',
-			primaryExternal: true
-		},
-		systemsBuild: {
-			label: 'Business Systems Build',
-			title: 'Have a workflow ready to turn into software?',
-			body: 'I build internal tools, automations, dashboards, and AI workflows once the operating constraint is clear.',
-			secondaryHref: '/business-systems-build/',
-			secondaryLabel: 'Explore Systems Build',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Build Scoping Call',
-			primaryExternal: true
-		},
-		mvp: {
-			label: 'Need an MVP?',
-			title: 'Need help cutting scope and getting v1 live?',
-			body: 'If the problem in this post looks familiar, send me an email and we’ll narrow the first version before code starts.',
-			secondaryHref: '/mvp-launch/',
-			secondaryLabel: 'Explore MVP Launch'
-		},
-		fractional: {
-			label: "Work with me",
-			title: "Working through something similar?",
-			body: "Bring the constraint and we’ll figure out whether I can help move it forward.",
-			secondaryHref: '/fractional-product-engineering/',
-			secondaryLabel: 'Explore Fractional Engineering'
-		}
+	general: {
+		title: "Which workflow is giving your team trouble?",
+		body: "Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits.",
+		secondaryHref: '/services/',
+		secondaryLabel: 'Compare all services',
+		primaryLabel: 'Book a Business Systems Audit'
 	},
-	'case-study': {
-		general: {
-			label: 'Similar work?',
-			title: 'Need something like this for your team?',
-			body: 'If the case study looks close to the way your business operates, start by diagnosing the workflow and deciding what system is worth building first.',
-			secondaryHref: '/work-with-me/',
-			secondaryLabel: 'Compare Work Options',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Business Systems Audit',
-			primaryExternal: true
-		},
-		audit: {
-			label: 'Similar system problem?',
-			title: 'Need to map an operating bottleneck like this?',
-			body: 'A Business Systems Audit turns the current workflow, handoffs, tools, and failure points into a clear first build plan.',
-			secondaryHref: '/business-systems-audit/',
-			secondaryLabel: 'Explore Business Systems Audit',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Business Systems Audit',
-			primaryExternal: true
-		},
-		systemsBuild: {
-			label: 'Similar build?',
-			title: 'Need a system like this built?',
-			body: 'If the workflow is already clear, I can help turn it into a focused internal tool, automation, dashboard, or AI workflow.',
-			secondaryHref: '/business-systems-build/',
-			secondaryLabel: 'Explore Systems Build',
-			primaryHref: BOOK_CALL_URL,
-			primaryLabel: 'Book a Build Scoping Call',
-			primaryExternal: true
-		},
-		mvp: {
-			label: 'Similar build?',
-			title: 'Need a first version like this?',
-			body: 'If you need a real v1 in front of users without dragging the build out for months, start by scoping the smallest useful version.',
-			secondaryHref: '/mvp-launch/',
-			secondaryLabel: 'Explore MVP Launch'
-		},
-		fractional: {
-			label: 'Similar product work?',
-			title: 'Need senior product engineering like this?',
-			body: 'If this case study looks close to your product constraint, send me an email and we’ll scope the support needed to move it forward.',
-			secondaryHref: '/fractional-product-engineering/',
-			secondaryLabel: 'Explore Fractional Engineering'
-		}
+	audit: {
+		title: "Find what's slowing your operations down.",
+		body: 'A Business Systems Audit maps the workflow, identifies where the process gets stuck, and gives you a first build plan.',
+		secondaryHref: '/services/business-systems-audit/',
+		secondaryLabel: 'See the Business Systems Audit',
+		primaryLabel: 'Book a Business Systems Audit'
+	},
+	systemsBuild: {
+		title: 'Have a workflow ready to become software?',
+		body: 'I design and build internal tools, automations, dashboards, integrations, and AI-assisted workflows around the people who need to use them.',
+		secondaryHref: '/services/business-systems-build/',
+		secondaryLabel: 'See the Business Systems Build',
+		primaryLabel: 'Start a scoping conversation'
+	},
+	ongoing: {
+		title: 'Need ongoing technical help from someone who knows your systems?',
+		body: 'An Ongoing Technical Partnership can cover connected priorities across a defined area of your business.',
+		secondaryHref: '/services/ongoing-technical-partnership/',
+		secondaryLabel: 'See the Ongoing Technical Partnership',
+		primaryLabel: 'Book a fit call'
 	}
 } as const;
 
-const offer = offers[context][variant];
-const primaryHref = 'primaryHref' in offer ? offer.primaryHref : EMAIL_URL;
-const primaryLabel = 'primaryLabel' in offer ? offer.primaryLabel : 'Get in touch';
-const primaryExternal = 'primaryExternal' in offer ? offer.primaryExternal : false;
+const offer = offers[variant];
 ---
 
-<section class:list={['service-callout px-6 py-10 md:px-8 md:py-12', context === 'case-study' && 'service-callout--case-study', className]}>
-	<div class='service-callout__inner'>
-		<div class='service-callout__copy space-y-5'>
-			{context !== 'case-study' && <span class='section-label'>{offer.label}</span>}
-			<h2 class='heading-display heading-display--section max-w-3xl'>
-				{offer.title}
-			</h2>
-			<p class='max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 md:text-lg md:leading-8'>
-				{offer.body}
-			</p>
-		</div>
-
-		<div class='service-callout__actions'>
-			<a
-				class='home-hero-primary-link'
-				href={primaryHref}
-				target={primaryExternal ? '_blank' : undefined}
-				rel={primaryExternal ? 'noopener noreferrer' : undefined}
-				data-track-event={primaryExternal ? 'book_call_clicked' : 'email_clicked'}
-				data-track-location={`${location}_primary`}
-			>
-				<span class='service-callout__button-label'>{primaryLabel}</span>
-				<span class='service-callout__button-arrow' aria-hidden='true'>→</span>
+<section class:list={['hc-cta-panel', className]}>
+	<h2>{offer.title}</h2>
+	<div class='hc-cta-panel__body'>
+		<p>{offer.body}</p>
+		<div class='hc-actions'>
+			<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${location}_primary`}>
+				{offer.primaryLabel}
 			</a>
-			<a
-				class='fit-secondary-link'
-				href={offer.secondaryHref}
-				data-track-event='service_page_clicked'
-				data-track-location={`${location}_secondary`}
-			>
-				<span class='service-callout__button-label'>{offer.secondaryLabel}</span>
-				<span class='service-callout__button-arrow' aria-hidden='true'>→</span>
+			<a class='hc-text-link' href={offer.secondaryHref} data-track-event='service_page_clicked' data-track-location={`${location}_secondary`}>
+				{offer.secondaryLabel}
 			</a>
+			<a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={`${location}_email`}>Email Hanif</a>
 		</div>
 	</div>
 </section>
