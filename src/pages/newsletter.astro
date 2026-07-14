@@ -1,0 +1,181 @@
+---
+import { Image } from 'astro:assets';
+import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
+import OpenProofMark from '../components/newsletter/OpenProofMark.astro';
+import SubscribeForm from '../components/newsletter/SubscribeForm.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/newsletter.css';
+
+const title = 'A Working Theory | Newsletter by Hanif Carroll';
+const description = 'Field notes on AI, judgment, and better ways of working.';
+
+const workBehindTheNotes = [
+	{
+		label: 'Guarded automation',
+		title: 'LinkedIn Tools',
+		body: 'A browser-automation system with review queues, approval gates, and reconciliation around risky actions.',
+		href: '/projects/linkedin-tools/'
+	},
+	{
+		label: 'AI memory',
+		title: 'Agent Recall',
+		body: 'A public Rust tool that makes past agent sessions searchable and points each result back to its source.',
+		href: '/projects/agent-recall/'
+	},
+	{
+		label: 'Grounded recommendations',
+		title: 'BA Eventos',
+		body: 'A live event-discovery product built around 800+ events and 190+ venues, with data-quality tools that keep AI answers grounded.',
+		href: '/projects/ba-eventos/'
+	}
+];
+
+const newsletterJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: 'A Working Theory by Hanif Carroll',
+	url: 'https://www.hanifcarroll.com/newsletter/',
+	description,
+	author: {
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	},
+	isPartOf: {
+		'@type': 'WebSite',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	}
+};
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	socialDescription='Practical notes from using AI in real work—what helps, what fails, and where judgment still matters.'
+	image='/img/a-working-theory-thumbnail-1200x630.png'
+	jsonLd={newsletterJsonLd}
+	showFooterCta={false}
+	bodyClass='page-newsletter'
+>
+	<article class='awt-page'>
+		<header class='awt-hero' data-motion-intro>
+			<div class='hc-container-wide awt-hero__grid'>
+				<div class='awt-hero__copy'>
+					<div class='awt-lockup' data-motion-intro-item>
+						<h1>
+							<span>A Working Theory</span>
+							<OpenProofMark class='awt-lockup__mark' />
+						</h1>
+						<p>by Hanif Carroll</p>
+					</div>
+
+					<p class='awt-hero__descriptor' data-motion-deck>Field notes on AI, judgment,<br /> and better ways of working.</p>
+					<p class='awt-hero__benefit' data-motion-intro-item>Practical notes from using AI in real work—what helps, what fails, and where judgment still matters.</p>
+					<div data-motion-intro-item>
+						<SubscribeForm location='hero' />
+					</div>
+				</div>
+
+				<figure class='awt-hero__portrait' data-motion-intro-item>
+					<Image
+						class='awt-hero__portrait-image'
+						src={HeroPortrait}
+						alt='Hanif Carroll looking toward the A Working Theory introduction'
+						loading='eager'
+						widths={[640, 960, 1122]}
+						sizes='(max-width: 900px) 100vw, 46vw'
+						quality={95}
+					/>
+				</figure>
+			</div>
+		</header>
+
+		<section class='awt-section awt-feature' data-header-surface='dark' data-motion-section aria-labelledby='awt-first-issue'>
+			<div class='hc-container-wide'>
+				<div class='awt-feature__panel'>
+					<div class='awt-feature__copy' data-motion-item>
+						<p class='awt-feature__label'>Issue 001 · In progress</p>
+						<h2 id='awt-first-issue'>Where should<br /> automation stop?</h2>
+						<span class='awt-feature__rule' aria-hidden='true'></span>
+						<p class='awt-feature__excerpt'>The question isn’t what AI can do. It’s where handing a task to AI starts weakening the judgment needed to do it well.</p>
+						<p class='awt-feature__status'>First issue coming soon</p>
+					</div>
+
+					<article class='awt-issue-cover' aria-label='Preview of A Working Theory issue 001' data-motion-item>
+						<header class='awt-issue-cover__header'>
+							<div>
+								<p>A Working Theory</p>
+								<span>by Hanif Carroll</span>
+							</div>
+							<OpenProofMark class='awt-issue-cover__mark' />
+						</header>
+						<div class='awt-issue-cover__body'>
+							<span class='awt-issue-cover__number'>001</span>
+							<OpenProofMark class='awt-issue-cover__symbol' />
+							<p>Automation · Judgment · Work</p>
+						</div>
+						<footer class='awt-issue-cover__footer'>
+							<span>Issue 001 · In progress</span>
+							<div class='awt-issue-cover__bars' aria-hidden='true'><i></i><i></i></div>
+						</footer>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class='awt-section awt-receive' data-motion-section aria-labelledby='awt-receive-title'>
+			<div class='hc-container-wide'>
+				<div class='awt-receive__band' data-motion-item>
+					<h2 id='awt-receive-title'>What you’ll receive</h2>
+					<ul>
+						<li>Practical AI workflows</li>
+						<li>Judgment automation cannot make</li>
+						<li>Better ways of organizing real work</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class='awt-section awt-work' data-motion-section aria-labelledby='awt-work-title'>
+			<div class='hc-container-wide'>
+				<div class='awt-work__heading' data-motion-item>
+					<h2 id='awt-work-title'>The work behind the notes</h2>
+					<p>These notes draw from client projects, public tools, and systems I use to run my own work.</p>
+				</div>
+				<div class='awt-work__grid'>
+					{
+						workBehindTheNotes.map((item, index) => (
+							<a class='awt-work-card' href={item.href} data-motion-item>
+								<span class='awt-work-card__number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+								<p class='awt-work-card__label'>{item.label}</p>
+								<h3>{item.title}</h3>
+								<p class='awt-work-card__body'>{item.body}</p>
+								<span class='awt-work-card__link'>View case study <span aria-hidden='true'>↗</span></span>
+							</a>
+						))
+					}
+				</div>
+
+				<aside class='awt-author' data-motion-item>
+					<figure>
+						<Image src={HeroPortrait} alt='' aria-hidden='true' loading='lazy' widths={[120, 180]} sizes='72px' quality={90} />
+					</figure>
+					<p>Written by Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
+				</aside>
+			</div>
+		</section>
+
+		<section class='awt-section awt-closing' data-header-surface='dark' data-motion-section aria-labelledby='awt-closing-title'>
+			<div class='hc-container-wide'>
+				<div class='awt-closing__panel' data-motion-item>
+					<div>
+						<h2 id='awt-closing-title'>Get the next issue when it’s ready.</h2>
+						<p>Field notes on AI, judgment, and better ways of working.</p>
+					</div>
+					<SubscribeForm location='closing' />
+				</div>
+			</div>
+		</section>
+	</article>
+</BaseLayout>

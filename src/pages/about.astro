@@ -3,6 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
 import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
+import AcquirePaperSystem from '../assets/img/projects/acquire-paper-system.png';
+import DesarmaderoPaperSystem from '../assets/img/projects/desarmadero-operations-paper-system.png';
+import GenruptPaperSystem from '../assets/img/projects/genrupt-paper-system.png';
+import PalabrunoPaperSystem from '../assets/img/projects/palabruno-paper-system.png';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
 const title = 'About Hanif Carroll | Technical Consultant';
@@ -12,19 +16,27 @@ const description =
 const principles = [
 	{
 		title: 'Understand the workflow first',
-		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.'
+		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
+		image: DesarmaderoPaperSystem,
+		alt: 'Paper model of a business workflow moving through distinct operating roles.'
 	},
 	{
 		title: 'Use the simplest fix that will work',
-		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.'
+		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.',
+		image: AcquirePaperSystem,
+		alt: 'Paper model of several inputs passing through a focused decision system.'
 	},
 	{
 		title: 'Make important state visible',
-		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter, especially when automation is involved.'
+		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter, especially when automation is involved.',
+		image: GenruptPaperSystem,
+		alt: 'Paper model showing inputs, system state, and a completed business outcome.'
 	},
 	{
 		title: 'Plan the handoff from the start',
-		body: 'You keep the maps, software, documentation, and reasoning needed to run or extend what we build.'
+		body: 'You keep the maps, software, documentation, and reasoning needed to run or extend what we build.',
+		image: PalabrunoPaperSystem,
+		alt: 'Paper model showing a product moving between people, devices, and progress states.'
 	}
 ];
 
@@ -49,7 +61,6 @@ const background = [
 		<header class='hc-hero hc-about-hero' data-motion-intro>
 			<div class='hc-container-wide hc-about-hero__grid'>
 				<div class='hc-hero-copy'>
-					<p class='hc-section-kicker' data-motion-intro-item>About Hanif</p>
 					<h1 class='hc-display' data-motion-headline>I help growing businesses fix workflows that have become hard to run.</h1>
 					<p class='hc-lead' data-motion-deck>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
 					<p class='hc-trust-note' data-motion-intro-item>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
@@ -61,7 +72,7 @@ const background = [
 			</div>
 		</header>
 
-		<section class='hc-section hc-about-statement' data-motion-section>
+		<section class='hc-section hc-about-statement' data-motion-section data-header-surface='dark'>
 			<div class='hc-container hc-recognition'>
 				<div class='hc-section-header'>
 					<h2 class='hc-section-title' data-motion-section-label>One person from the first conversation through handoff.</h2>
@@ -75,8 +86,8 @@ const background = [
 
 		<section class='hc-section--compact hc-about-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I work</h2></div>
-				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I approach a system.</h2></div>
+				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
 			</div>
 		</section>
 

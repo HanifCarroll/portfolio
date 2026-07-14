@@ -3,19 +3,14 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
 import { serviceOfferList } from '../../lib/service-offers';
-import { getProject } from '../../lib/projects';
-import { getProjectImage } from '../../lib/project-images';
 import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
+import GenruptPaperSystem from '../../assets/img/projects/genrupt-paper-system.png';
+import AcquirePaperSystem from '../../assets/img/projects/acquire-paper-system.png';
+import PalabrunoPaperSystem from '../../assets/img/projects/palabruno-paper-system.png';
 
 const title = 'Technical Consulting Services | Hanif Carroll';
 const description =
 	"Technical consulting for founder-led businesses: find what's slowing the team down, build the right software, or get ongoing support as your systems and technical needs change.";
-
-const projectImage = (slug: string, imageKey: 'hero' | 'feature' = 'feature') => {
-	const project = getProject(slug);
-	if (!project) throw new Error(`Missing project metadata for Services proof "${slug}".`);
-	return getProjectImage(project, imageKey);
-};
 
 const proof = [
 	{
@@ -23,51 +18,59 @@ const proof = [
 		label: 'Client work',
 		title: 'Desarmadero Operations',
 		body: 'After one discovery call, I created a workflow map, PRD, functional specification, and role-based prototype the client could review before a full build.',
-		image: projectImage('desarmadero-operations-prototype', 'hero'),
-		alt: 'Desarmadero operations prototype showing the counter-sales workflow.'
+		image: DesarmaderoPaperSystem,
+		alt: 'Paper model of the Desarmadero operations workflow.'
 	},
 	{
 		slug: 'genrupt',
 		label: 'Client work',
 		title: 'Genrupt',
 		body: 'I helped make Genrupt ready for paying teams by building billing, credit accounting, reliable background jobs, and agent access. The platform went on to support its first 200 paying customers.',
-		image: projectImage('genrupt'),
-		alt: 'Genrupt commercial readiness dashboard.'
-	},
-	{
-		slug: 'mucho-hangouts',
-		label: 'Client work',
-		title: 'Mucho Hangouts',
-		body: 'I helped improve messaging, notifications, delivery patterns, and the way the team worked while the live product kept shipping.',
-		image: projectImage('mucho-hangouts'),
-		alt: 'Mucho Hangouts product interface.'
+		image: GenruptPaperSystem,
+		alt: 'Paper model of the Genrupt commercial system.'
 	},
 	{
 		slug: 'acquire',
 		label: 'Independent work',
 		title: 'Acquire',
 		body: 'A local-first tool brings workflow status, review steps, evidence, agent activity, and recovery into one place.',
-		image: projectImage('acquire'),
-		alt: 'Acquire command center showing workflow status and review steps.'
+		image: AcquirePaperSystem,
+		alt: 'Paper model of the Acquire review and decision workflow.'
+	},
+	{
+		slug: 'palabruno',
+		label: 'Client work',
+		title: 'Palabruno',
+		body: 'I helped a founder narrow the product, build the learner and teacher workflows, add payments, and launch across mobile and web.',
+		image: PalabrunoPaperSystem,
+		alt: 'Paper model of the Palabruno learning workflow across mobile and web.'
 	}
 ];
 
 const principles = [
 	{
 		title: 'Understand the workflow first',
-		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.'
+		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
+		image: DesarmaderoPaperSystem,
+		alt: 'Paper model of a workflow moving through several operating roles.'
 	},
 	{
 		title: 'Use the simplest fix that will work',
-		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.'
+		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.',
+		image: AcquirePaperSystem,
+		alt: 'Paper model of scattered inputs moving through a focused system.'
 	},
 	{
 		title: 'Make the important parts easy to see',
-		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter.'
+		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter.',
+		image: GenruptPaperSystem,
+		alt: 'Paper model showing inputs, system state, and a completed outcome.'
 	},
 	{
 		title: 'You keep everything we produce',
-		body: 'You keep the useful artifacts, software, documentation, and context needed to run or extend the system.'
+		body: 'You keep the useful artifacts, software, documentation, and context needed to run or extend the system.',
+		image: PalabrunoPaperSystem,
+		alt: 'Paper model showing a system shared across people and devices.'
 	}
 ];
 
@@ -160,14 +163,14 @@ const faqs = [
 
 		<section class='hc-section hc-services-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I work</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I approach a system.</h2></div>
 				<div class='hc-principles-grid'>
-					{principles.map((item, index) => <div class='hc-principle' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
+					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section hc-services-proof' data-motion-section>
+		<section class='hc-section hc-services-proof' data-motion-section data-header-surface='dark'>
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Project examples.</h2></div>
 				<div class='hc-proof-grid'>

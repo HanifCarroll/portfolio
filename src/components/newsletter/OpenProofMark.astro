@@ -1,0 +1,23 @@
+---
+interface Props {
+	class?: string;
+	title?: string;
+}
+
+const { class: className, title } = Astro.props;
+---
+
+<svg
+	class={className}
+	viewBox='0 0 800 800'
+	role={title ? 'img' : undefined}
+	aria-label={title}
+	aria-hidden={title ? undefined : 'true'}
+	focusable='false'
+>
+	{title && <title>{title}</title>}
+	<g fill='none' stroke-linecap='square' stroke-linejoin='miter' stroke-width='64'>
+		<path stroke='currentColor' d='M400 256H160V640H560V464'></path>
+		<path class='awt-open-proof__corner' stroke='#F8D651' d='M496 160H640V368'></path>
+	</g>
+</svg>

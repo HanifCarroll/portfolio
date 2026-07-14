@@ -1783,6 +1783,389 @@ body {
   }
 }
 
+/* July 14 feedback pass --------------------------------------------------- */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.site-header .hc-header,
+.site-header .hc-mobile-nav__panel {
+  pointer-events: auto;
+}
+
+.hc-main {
+  padding-top: 6rem;
+}
+
+.hc-home .hc-main,
+.page-about .hc-main,
+.page-services .hc-main,
+.page-service-detail .hc-main,
+.page-blog-index .hc-main,
+.page-projects-index .hc-main {
+  padding-top: 0;
+}
+
+.hc-home-hero {
+  margin-top: 0;
+}
+
+.site-header[data-over-surface="dark"] .hc-brand--personal {
+  color: var(--hc-proof-surface);
+}
+
+.site-header.is-menu-open .hc-brand--personal {
+  color: var(--hc-proof-text);
+}
+
+.hc-services-page .hc-hero,
+.hc-about-hero,
+.projects-index__catalog,
+.hc-blog-index__layout {
+  padding-top: clamp(7.5rem, 10vw, 9rem);
+}
+
+.hc-service-detail-page > .hc-container {
+  padding-top: clamp(7.5rem, 10vw, 9rem);
+}
+
+/* Homepage lower sections */
+
+.hc-method-section .hc-section-title {
+  max-width: 20ch;
+  font-size: clamp(2.6rem, 4.5vw, 4.15rem);
+  line-height: 0.98;
+}
+
+.hc-method-section .hc-method-grid {
+  grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  gap: clamp(3rem, 6vw, 5rem) clamp(4rem, 8vw, 8rem);
+}
+
+.hc-method-section .hc-method-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.hc-method-section .hc-method-item > div {
+  max-width: 34rem;
+}
+
+.hc-method-section .hc-index {
+  font-size: clamp(3.25rem, 5vw, 4.75rem);
+}
+
+.hc-testimonial-section .hc-testimonials {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+.hc-testimonial-section .hc-testimonial,
+.hc-testimonial-section .hc-testimonial--featured {
+  grid-column: auto;
+}
+
+.hc-testimonial-section .hc-testimonial--featured blockquote,
+.hc-testimonial-section .hc-testimonial blockquote {
+  max-width: 32ch;
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  line-height: 1.4;
+}
+
+.hc-about-preview-section .hc-about-preview {
+  grid-template-columns: minmax(24rem, 0.9fr) minmax(26rem, 1.1fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.hc-about-preview__title h2 {
+  max-width: 13ch;
+  font-size: clamp(2.8rem, 4.5vw, 4.25rem);
+  line-height: 0.98;
+}
+
+.hc-about-preview__visual figure {
+  min-height: 36rem;
+}
+
+.hc-home-closing .hc-cta-panel--editorial {
+  min-height: 28rem;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  align-items: center;
+}
+
+.hc-cta-panel__content {
+  width: min(100%, 52rem);
+}
+
+.hc-home-closing .hc-cta-panel h2 {
+  max-width: 15ch;
+  font-size: clamp(2.8rem, 4.5vw, 4.25rem);
+}
+
+/* Services */
+
+.hc-services-page .hc-hero {
+  padding-bottom: clamp(5rem, 8vw, 8rem);
+}
+
+.hc-services-page .hc-hero-surface {
+  min-height: min(42rem, calc(100svh - 3rem));
+  align-items: center;
+}
+
+.hc-services-page .hc-artifact-stack--single {
+  min-height: 31rem;
+  align-self: start;
+  margin-top: -1.5rem;
+}
+
+.hc-services-fit .hc-fit-panel {
+  grid-template-columns: minmax(26rem, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(3rem, 7vw, 7rem);
+}
+
+.hc-services-fit .hc-fit-panel h2 {
+  max-width: 20ch;
+  font-size: clamp(2.35rem, 3.2vw, 3.25rem);
+  line-height: 1.04;
+}
+
+.hc-services-principles {
+  background: color-mix(in srgb, var(--hc-accent) 11%, var(--hc-canvas));
+}
+
+.hc-services-principles .hc-principles-grid,
+.hc-about-principles .hc-principles-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.hc-services-principles .hc-principle,
+.hc-about-principles .hc-principle,
+.hc-about-principles .hc-principle:nth-child(even) {
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.75rem 1.5rem;
+}
+
+.hc-services-principles .hc-principle figure,
+.hc-about-principles .hc-principle figure {
+  grid-column: 1 / -1;
+  min-height: 19rem;
+  margin: 0 0 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.hc-services-principles .hc-principle figure img,
+.hc-about-principles .hc-principle figure img {
+  width: 100%;
+  height: 100%;
+  max-height: 22rem;
+  object-fit: contain;
+  filter: drop-shadow(0 1rem 0.8rem rgb(16 37 63 / 0.12));
+}
+
+.hc-services-principles .hc-principle .hc-index,
+.hc-about-principles .hc-principle .hc-index {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.hc-services-proof .hc-proof-card figure {
+  min-height: 23rem;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.hc-services-proof .hc-proof-card figure picture,
+.hc-services-proof .hc-proof-card figure img {
+  background: transparent;
+}
+
+.hc-services-proof .hc-proof-card figure img {
+  width: 100%;
+  height: 100%;
+  max-height: 28rem;
+  object-fit: contain;
+  filter: drop-shadow(0 1.25rem 1rem rgb(0 0 0 / 0.22));
+}
+
+.hc-services-faq .hc-faq-list {
+  width: min(100%, 52rem);
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.hc-services-faq .hc-faq-item,
+.hc-services-faq .hc-faq-item:nth-child(even) {
+  grid-column: 1;
+  padding-block: 2rem;
+}
+
+.hc-services-faq .hc-faq-item + .hc-faq-item {
+  border-top: 1px solid var(--hc-border);
+}
+
+.hc-page-closing {
+  padding: clamp(4rem, 7vw, 7rem) var(--hc-gutter-desktop);
+  background: var(--hc-canvas);
+}
+
+.hc-page-closing > .hc-container {
+  width: min(100%, var(--hc-content-max));
+  margin-inline: auto;
+}
+
+.hc-page-closing .hc-cta-panel {
+  grid-template-columns: minmax(0, 0.8fr) minmax(20rem, 1.2fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  border: 1px solid var(--hc-border);
+  border-radius: var(--hc-radius-surface);
+  background: var(--hc-surface);
+  box-shadow: 0 1.25rem 3rem rgb(16 37 63 / 0.08);
+}
+
+.hc-page-closing .hc-cta-panel h2 {
+  max-width: 15ch;
+  font-size: clamp(2.2rem, 3.5vw, 3.35rem);
+}
+
+/* Directories */
+
+.projects-index__rail,
+.hc-blog-index .content-page__hero {
+  position: static;
+}
+
+.projects-index__rail h1 {
+  max-width: 12ch;
+  font-size: clamp(2.7rem, 4.6vw, 4.25rem);
+}
+
+.hc-blog-index__layout {
+  align-items: start;
+}
+
+.hc-blog-index .content-page__hero {
+  min-height: 0;
+  gap: 1.25rem;
+}
+
+.hc-blog-index .content-page__title {
+  max-width: 100%;
+  font-size: clamp(4.5rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+.hc-blog-index .content-page__intro {
+  color: color-mix(in srgb, var(--hc-proof-text) 82%, transparent);
+}
+
+/* About */
+
+.hc-about-hero .hc-display {
+  max-width: 15ch;
+  font-size: clamp(3rem, 4.6vw, 4.75rem);
+}
+
+.hc-about-principles {
+  background: color-mix(in srgb, var(--hc-accent) 9%, var(--hc-canvas));
+}
+
+.hc-about-experience .hc-service-item {
+  min-height: 0;
+  padding: 1rem 0;
+}
+
+.hc-about-experience .hc-service-item:nth-child(2) {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .hc-services-page .hc-artifact-stack--single {
+    margin-top: 0;
+  }
+
+  .hc-testimonial-section .hc-testimonials,
+  .hc-services-principles .hc-principles-grid,
+  .hc-about-principles .hc-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hc-about-preview-section .hc-about-preview {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding-inline: 0;
+  }
+
+  .hc-main {
+    padding-top: 5.75rem;
+  }
+
+  .hc-home .hc-main,
+  .page-about .hc-main,
+  .page-services .hc-main,
+  .page-service-detail .hc-main,
+  .page-blog-index .hc-main,
+  .page-projects-index .hc-main {
+    padding-top: 0;
+  }
+
+  .hc-services-page .hc-hero,
+  .hc-about-hero,
+  .projects-index__catalog,
+  .hc-blog-index__layout,
+  .hc-service-detail-page > .hc-container {
+    padding-top: 7.5rem;
+  }
+
+  .hc-method-section .hc-method-grid,
+  .hc-about-preview-section .hc-about-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .hc-about-preview__visual {
+    order: 2;
+  }
+
+  .hc-about-preview__visual figure {
+    min-height: 28rem;
+  }
+
+  .hc-page-closing {
+    padding-inline: var(--hc-gutter-narrow);
+  }
+
+  .hc-page-closing .hc-cta-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hc-services-principles .hc-principle,
+  .hc-about-principles .hc-principle {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .hc-blog-index__layout {
+    padding-inline: var(--hc-gutter-narrow);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(page-content),
   ::view-transition-new(page-content) {

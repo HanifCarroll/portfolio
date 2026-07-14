@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-14
+
+### A Working Theory Newsletter Page
+
+- Added `/newsletter/` as the portfolio home for A Working Theory, with distinct title, description, canonical URL, Open Graph metadata, WebPage structured data, and a sitemap entry.
+- Added the approved 1200 × 630 newsletter thumbnail and a quiet footer link so the page has a durable social preview and an internal discovery path without changing the primary navigation.
+- Connected both subscribe calls to the verified Beehiiv publication at `hanifcarroll.beehiiv.com`; the portfolio page uses an explicit handoff because the Beehiiv account does not yet have an embeddable subscribe form.
+- After deployment, verify the live route, canonical and social metadata, footer link, sitemap entry, and end-to-end Beehiiv signup handoff.
+
 ## 2026-07-12
 
 ### Technical Consulting Site Cutover

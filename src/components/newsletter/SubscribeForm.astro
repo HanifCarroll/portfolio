@@ -1,0 +1,43 @@
+---
+import { NEWSLETTER_URL } from '../../consts';
+
+interface Props {
+	location: 'hero' | 'closing';
+}
+
+const { location } = Astro.props;
+const labelId = `awt-signup-${location}-label`;
+const beehiivFormId = '35125e12-8fca-4f74-b609-4861f4b66cbb';
+---
+
+<div class='awt-signup' data-track-location={`newsletter_${location}`}>
+	<p class='awt-signup__label' id={labelId}>Email address</p>
+	<div class='awt-signup__embed' aria-labelledby={labelId}>
+		<script async src='https://subscribe-forms.beehiiv.com/v3/loader.js' data-beehiiv-form={beehiivFormId} is:inline></script>
+	</div>
+	<noscript>
+		<a class='awt-signup__fallback' href={NEWSLETTER_URL}>Subscribe on beehiiv</a>
+	</noscript>
+</div>
+
+<script>
+	const subscribeEmbeds = document.querySelectorAll('.awt-signup__embed');
+
+	for (const embed of subscribeEmbeds) {
+		const label = embed.getAttribute('aria-labelledby');
+		const labelText = label ? document.getElementById(label)?.textContent?.trim() : undefined;
+		const titleFrame = () => {
+			const frame = embed.querySelector('iframe');
+			if (!frame) return false;
+			frame.title = labelText ? `${labelText} for A Working Theory` : 'Subscribe to A Working Theory';
+			return true;
+		};
+
+		if (!titleFrame()) {
+			const observer = new MutationObserver(() => {
+				if (titleFrame()) observer.disconnect();
+			});
+			observer.observe(embed, { childList: true, subtree: true });
+		}
+	}
+</script>

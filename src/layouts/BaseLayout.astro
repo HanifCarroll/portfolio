@@ -73,6 +73,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 						<a href='/services/'>Services</a>
 						<a href='/projects/'>Case Studies</a>
 						<a href='/blog/'>Blog</a>
+						<a href='/newsletter/'>Newsletter</a>
+						<a href='/tools/'>Tools</a>
 						<a href='/about/'>About</a>
 						<a href={EMAIL_URL}>Email Hanif</a>
 					</nav>
@@ -111,6 +113,15 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 		</script>
 		<script>
 			import '../scripts/motion';
+		</script>
+		<script is:inline>
+			history.scrollRestoration = 'manual';
+			document.addEventListener('astro:page-load', () => {
+				history.scrollRestoration = 'manual';
+				if (!window.location.hash) {
+					window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 150);
+				}
+			});
 		</script>
 	</body>
 </html>
