@@ -39,7 +39,7 @@ const { Content } = await render(caseStudy);
 const heroImage = getProjectImage(project, 'hero');
 const seoTitle = project.seoTitle ?? `${project.title} · Case Study`;
 const seoDescription = project.seoDescription ?? project.description;
-const canonicalUrl = new URL(`/projects/${project.slug}/`, Astro.site).toString();
+const canonicalUrl = new URL(`/case-studies/${project.slug}/`, Astro.site).toString();
 const caseStudyJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'CreativeWork',
@@ -239,7 +239,7 @@ const heroActions = [
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 
 		<div class='pt-8'>
-			<a href='/projects/' class='arrow-link'>Back to All Case Studies</a>
+			<a href='/case-studies/' class='arrow-link'>Back to All Case Studies</a>
 		</div>
 	</article>
 </BaseLayout>

@@ -244,8 +244,8 @@ body {
 }
 
 .site-header[data-over-surface="dark"] .hc-mobile-nav__toggle {
-  border-color: rgba(16, 37, 63, 0.28);
-  color: #10253f;
+  border-color: var(--hc-accent);
+  color: var(--hc-accent);
 }
 
 body.hc-nav-open {
@@ -1827,9 +1827,9 @@ pre {
     height: 2.75rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    border: 1px solid var(--hc-accent);
     border-radius: 999px;
-    color: var(--hc-proof-text);
+    color: var(--hc-accent);
     background: transparent;
     cursor: pointer;
   }
@@ -1840,22 +1840,33 @@ pre {
     height: 1px;
     border-radius: 999px;
     background: currentColor;
-    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease;
   }
 
   .hc-mobile-nav__toggle span:first-child {
-    transform: translateY(-0.2rem);
+    transform: translateY(-0.3rem);
   }
 
-  .hc-mobile-nav__toggle span:last-child {
-    transform: translateY(0.2rem);
+  .hc-mobile-nav__toggle span:nth-child(2) {
+    transform: translateY(0);
+  }
+
+  .hc-mobile-nav__toggle span:nth-child(3) {
+    transform: translateY(0.3rem);
   }
 
   .hc-mobile-nav__toggle.is-open span:first-child {
     transform: rotate(45deg);
   }
 
-  .hc-mobile-nav__toggle.is-open span:last-child {
+  .hc-mobile-nav__toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.4);
+  }
+
+  .hc-mobile-nav__toggle.is-open span:nth-child(3) {
     transform: rotate(-45deg);
   }
 

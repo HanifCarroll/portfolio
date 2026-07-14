@@ -1,12 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import { BOOK_CALL_URL } from '../../consts';
 import { serviceOfferList } from '../../lib/service-offers';
 import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
 import GenruptPaperSystem from '../../assets/img/projects/genrupt-paper-system.png';
 import AcquirePaperSystem from '../../assets/img/projects/acquire-paper-system.png';
 import PalabrunoPaperSystem from '../../assets/img/projects/palabruno-paper-system.png';
+import ServiceOverview from '../../assets/img/illustrations/service-overview.svg';
+import ServiceAuditMap from '../../assets/img/illustrations/service-audit-map.svg';
+import ServiceSolutionOptions from '../../assets/img/illustrations/service-solution-options.svg';
+import ServiceFocusedBuild from '../../assets/img/illustrations/service-focused-build.svg';
+import ServiceHandoffSystem from '../../assets/img/illustrations/service-handoff-system.svg';
 
 const title = 'Technical Consulting Services | Hanif Carroll';
 const description =
@@ -51,26 +56,26 @@ const principles = [
 	{
 		title: 'Understand the workflow first',
 		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
-		image: DesarmaderoPaperSystem,
-		alt: 'Paper model of a workflow moving through several operating roles.'
+		image: ServiceAuditMap,
+		alt: 'Paper model of scattered requests and status cards becoming a clear workflow map.'
 	},
 	{
 		title: 'Use the simplest fix that will work',
 		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.',
-		image: AcquirePaperSystem,
-		alt: 'Paper model of scattered inputs moving through a focused system.'
+		image: ServiceSolutionOptions,
+		alt: 'Paper model comparing several possible technical approaches before one is selected.'
 	},
 	{
 		title: 'Make the important parts easy to see',
 		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter.',
-		image: GenruptPaperSystem,
-		alt: 'Paper model showing inputs, system state, and a completed outcome.'
+		image: ServiceFocusedBuild,
+		alt: 'Paper model of workflow components assembled into a useful first system.'
 	},
 	{
 		title: 'You keep everything we produce',
 		body: 'You keep the useful artifacts, software, documentation, and context needed to run or extend the system.',
-		image: PalabrunoPaperSystem,
-		alt: 'Paper model showing a system shared across people and devices.'
+		image: ServiceHandoffSystem,
+		alt: 'Paper model of a working system, documentation, and access packaged for a team to own.'
 	}
 ];
 
@@ -102,7 +107,14 @@ const faqs = [
 ];
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false} bodyClass='page-services'>
+<BaseLayout
+	title={title}
+	description={description}
+	bodyClass='page-services'
+	footerCtaTitle='Which workflow is giving your team trouble?'
+	footerCtaBody="Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits. We'll work out whether an audit is the best place to begin."
+	footerCtaLocation='services_footer_cta'
+>
 	<article class='hc-services-page'>
 		<header class='hc-hero hc-hero--inverse' data-motion-intro>
 			<div class='hc-container'>
@@ -117,7 +129,7 @@ const faqs = [
 						<p class='hc-hero-note'>For founder-led businesses with customers, demand, or a repeatable service whose day-to-day operations have become harder to see and manage.</p>
 					</div>
 					<figure class='hc-artifact-stack hc-artifact-stack--inverse hc-artifact-stack--single' data-motion-intro-item>
-						<Image src={DesarmaderoPaperSystem} alt='Paper model of a business workflow moving through sales, payment, fulfillment, and billing.' loading='eager' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 50vw' />
+						<Image src={ServiceOverview} alt='Paper model of a business constraint moving through diagnosis into a useful system.' loading='eager' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 50vw' />
 						<figcaption>From diagnosis and validation to software used in daily operations.</figcaption>
 					</figure>
 				</div>
@@ -163,7 +175,7 @@ const faqs = [
 
 		<section class='hc-section hc-services-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I approach a system.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How the right solution takes shape.</h2></div>
 				<div class='hc-principles-grid'>
 					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
 				</div>
@@ -174,7 +186,7 @@ const faqs = [
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Project examples.</h2></div>
 				<div class='hc-proof-grid'>
-					{proof.map((item) => <a class='hc-proof-card' href={`/projects/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
+					{proof.map((item) => <a class='hc-proof-card' href={`/case-studies/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
 				</div>
 			</div>
 		</section>
@@ -188,16 +200,5 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section--compact hc-page-closing' data-motion-section>
-			<div class='hc-container'>
-				<div class='hc-cta-panel' data-motion-item>
-					<h2>Which workflow is giving your team trouble?</h2>
-					<div class='hc-cta-panel__body'>
-						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits. We'll work out whether an audit is the best place to begin.</p>
-						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
-					</div>
-				</div>
-			</div>
-		</section>
 	</article>
 </BaseLayout>

@@ -6,13 +6,11 @@ interface Props {
 }
 
 const { location } = Astro.props;
-const labelId = `awt-signup-${location}-label`;
 const beehiivFormId = '35125e12-8fca-4f74-b609-4861f4b66cbb';
 ---
 
 <div class='awt-signup' data-track-location={`newsletter_${location}`}>
-	<p class='awt-signup__label' id={labelId}>Email address</p>
-	<div class='awt-signup__embed' aria-labelledby={labelId}>
+	<div class='awt-signup__embed' aria-label='Subscribe to A Working Theory'>
 		<script async src='https://subscribe-forms.beehiiv.com/v3/loader.js' data-beehiiv-form={beehiivFormId} is:inline></script>
 	</div>
 	<noscript>
@@ -24,12 +22,11 @@ const beehiivFormId = '35125e12-8fca-4f74-b609-4861f4b66cbb';
 	const subscribeEmbeds = document.querySelectorAll('.awt-signup__embed');
 
 	for (const embed of subscribeEmbeds) {
-		const label = embed.getAttribute('aria-labelledby');
-		const labelText = label ? document.getElementById(label)?.textContent?.trim() : undefined;
+		const accessibleName = embed.getAttribute('aria-label') ?? 'Subscribe to A Working Theory';
 		const titleFrame = () => {
 			const frame = embed.querySelector('iframe');
 			if (!frame) return false;
-			frame.title = labelText ? `${labelText} for A Working Theory` : 'Subscribe to A Working Theory';
+			frame.title = accessibleName;
 			return true;
 		};
 

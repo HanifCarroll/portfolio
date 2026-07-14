@@ -3,11 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
 import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
-import AcquirePaperSystem from '../assets/img/projects/acquire-paper-system.png';
-import DesarmaderoPaperSystem from '../assets/img/projects/desarmadero-operations-paper-system.png';
-import GenruptPaperSystem from '../assets/img/projects/genrupt-paper-system.png';
-import PalabrunoPaperSystem from '../assets/img/projects/palabruno-paper-system.png';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import AboutListenContext from '../assets/img/illustrations/about-listen-context.svg';
+import AboutTradeoffs from '../assets/img/illustrations/about-tradeoffs.svg';
+import AboutReviewLoop from '../assets/img/illustrations/about-review-loop.svg';
+import AboutClearHandoff from '../assets/img/illustrations/about-clear-handoff.svg';
+import AboutContinuity from '../assets/img/illustrations/about-continuity.svg';
+import AboutContinuityMobile from '../assets/img/illustrations/about-continuity-mobile.svg';
 
 const title = 'About Hanif Carroll | Technical Consultant';
 const description =
@@ -15,28 +16,28 @@ const description =
 
 const principles = [
 	{
-		title: 'Understand the workflow first',
-		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
-		image: DesarmaderoPaperSystem,
-		alt: 'Paper model of a business workflow moving through distinct operating roles.'
+		title: 'I listen for the context behind the request',
+		body: 'The first conversation is about how the business runs, who depends on the system, and what would make a meaningful difference.',
+		image: AboutListenContext,
+		alt: 'Paper model of a direct conversation becoming organized notes about people, tools, and constraints.'
 	},
 	{
-		title: 'Use the simplest fix that will work',
-		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.',
-		image: AcquirePaperSystem,
-		alt: 'Paper model of several inputs passing through a focused decision system.'
+		title: 'I make the tradeoffs visible',
+		body: 'I explain the options, costs, and risks in plain language so you can make a decision without guessing what the technical details mean.',
+		image: AboutTradeoffs,
+		alt: 'Paper model comparing effort, value, and two possible technical paths.'
 	},
 	{
-		title: 'Make important state visible',
-		body: 'Your team should be able to see the status, decisions, approvals, and failures that matter, especially when automation is involved.',
-		image: GenruptPaperSystem,
-		alt: 'Paper model showing inputs, system state, and a completed business outcome.'
+		title: 'I keep decisions close to the build',
+		body: 'The person who learns the business problem stays involved through product decisions, implementation, review, and revision.',
+		image: AboutReviewLoop,
+		alt: 'Paper model of a short loop connecting a decision, working version, feedback, and revision.'
 	},
 	{
-		title: 'Plan the handoff from the start',
-		body: 'You keep the maps, software, documentation, and reasoning needed to run or extend what we build.',
-		image: PalabrunoPaperSystem,
-		alt: 'Paper model showing a product moving between people, devices, and progress states.'
+		title: 'I leave a clear path forward',
+		body: 'You leave with the system, documentation, decisions, and next steps needed to operate it or keep improving it.',
+		image: AboutClearHandoff,
+		alt: 'Paper model of a completed system packaged with documentation, decisions, and next steps.'
 	}
 ];
 
@@ -56,7 +57,15 @@ const background = [
 ];
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false} bodyClass='page-about'>
+<BaseLayout
+	title={title}
+	description={description}
+	bodyClass='page-about'
+	footerCtaTitle='Which workflow is giving your team trouble?'
+	footerCtaBody='Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits.'
+	footerCtaLocation='about_footer_cta'
+	footerCtaSurface='navy'
+>
 	<article class='hc-about-page'>
 		<header class='hc-hero hc-about-hero' data-motion-intro>
 			<div class='hc-container-wide hc-about-hero__grid'>
@@ -72,45 +81,37 @@ const background = [
 			</div>
 		</header>
 
-		<section class='hc-section hc-about-statement' data-motion-section data-header-surface='dark'>
-			<div class='hc-container hc-recognition'>
-				<div class='hc-section-header'>
+		<section class='hc-section hc-about-statement' data-motion-section>
+			<div class='hc-container hc-about-continuity'>
+				<div class='hc-section-header hc-about-continuity__heading'>
 					<h2 class='hc-section-title' data-motion-section-label>One person from the first conversation through handoff.</h2>
 				</div>
-				<div class='hc-detail-content' data-motion-item>
+				<div class='hc-detail-content hc-about-continuity__copy' data-motion-item>
 					<p>I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
 					<p>That continuity matters when the workflow spans people, software, data, business rules, and decisions that can't be handed between separate teams without losing context.</p>
 				</div>
+				<figure class='hc-about-continuity__figure' data-motion-item>
+					<Image class='hc-about-continuity__desktop' src={AboutContinuity} alt='A founder conversation, decision record, focused build plan, and handoff document connected by one continuous path.' loading='lazy' />
+					<Image class='hc-about-continuity__mobile' src={AboutContinuityMobile} alt='' loading='lazy' />
+				</figure>
 			</div>
 		</section>
 
 		<section class='hc-section--compact hc-about-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I approach a system.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>What you can expect from me.</h2></div>
 				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
 			</div>
 		</section>
 
-		<section class='hc-section hc-about-experience' data-motion-section>
-			<div class='hc-container'>
-				<div class='hc-section-header'>
-					<h2 class='hc-section-title' data-motion-section-label>Experience across product teams, client projects, and independent systems.</h2>
+		<section class='hc-section hc-about-experience' data-motion-section data-header-surface='dark'>
+			<div class='hc-container hc-about-experience__layout'>
+				<div class='hc-about-experience__intro'>
+					<h2 class='hc-section-title' data-motion-section-label>Eight years across consulting and product teams.</h2>
 					<p class='hc-section-intro'>My background covers large delivery environments, product-led teams, direct client engagements, and systems I have designed and built for my own operations.</p>
+					<div class='hc-actions'><a class='hc-text-link' href='/case-studies/'>View case studies</a><a class='hc-text-link' href='/services/'>See all services</a></div>
 				</div>
-				<div class='hc-service-list'>{background.map((item, index) => <div class='hc-service-item' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.body}</p></div>)}</div>
-				<div class='hc-actions'><a class='hc-text-link' href='/projects/'>View case studies</a><a class='hc-text-link' href='/services/'>See all services</a></div>
-			</div>
-		</section>
-
-		<section class='hc-section--compact hc-page-closing' data-motion-section>
-			<div class='hc-container'>
-				<div class='hc-cta-panel' data-motion-item>
-					<h2>Which workflow is giving your team trouble?</h2>
-					<div class='hc-cta-panel__body'>
-						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits.</p>
-						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
-					</div>
-				</div>
+				<ol class='hc-about-experience__list'>{background.map((item, index) => <li data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></li>)}</ol>
 			</div>
 		</section>
 	</article>

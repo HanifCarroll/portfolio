@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectVideoCard from '../../components/project-video/ProjectVideoCard.astro';
+import { projects } from '../../lib/project-cards';
+import { PROJECT_INDEX_ORDER } from '../../lib/project-curation';
+
+const title = 'Case Studies';
+const description = 'Selected client and independent projects showing workflow diagnosis, product decisions, software systems, and supported results.';
+
+const orderProjects = (projectList: typeof projects, preferredOrder: readonly string[]) => {
+	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
+
+	return [...projectList].sort((a, b) => {
+		const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
+		const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
+		return aIndex - bIndex;
+	});
+};
+
+const orderedProjects = orderProjects(projects, PROJECT_INDEX_ORDER);
+const spotlightProject = orderedProjects[0];
+const panoramaProject = orderedProjects[1];
+const trioProjects = orderedProjects.slice(2, 5);
+const closingProject = orderedProjects[5];
+const archiveProjects = orderedProjects.slice(6);
+---
+
+<BaseLayout title={`${title} | Hanif Carroll`} description={description} bodyClass='page-projects-index'>
+	<article class='projects-index projects-index--spotlight'>
+		<header class='projects-index__intro-band hc-container-wide' data-motion-intro>
+			<h1 data-motion-headline>Case Studies</h1>
+			<div class='projects-index__intro-copy'>
+				<p data-motion-deck>Client and independent projects showing how I understand an operation, make product decisions, and build systems people can use.</p>
+				<div class='projects-index__filters' aria-label='Filter case studies'>
+					<button class='is-active' type='button' data-project-filter='all' aria-pressed='true'>All projects</button>
+					<button type='button' data-project-filter='client' aria-pressed='false'>Client</button>
+					<button type='button' data-project-filter='independent' aria-pressed='false'>Independent</button>
+				</div>
+			</div>
+		</header>
+
+		<section class='projects-index__filtered hc-container-wide' data-project-filtered-results aria-live='polite' hidden>
+			<div class='projects-index__filtered-grid' data-project-filtered-grid></div>
+		</section>
+
+		<section class='projects-index__spotlight hc-container-wide' data-project-group data-motion-section>
+			<ProjectVideoCard project={spotlightProject} variant='lead' index={1} />
+		</section>
+
+		<section class='projects-index__panorama' data-project-group data-motion-section>
+			<div class='hc-container-wide'>
+				<ProjectVideoCard project={panoramaProject} variant='lead' index={2} />
+			</div>
+		</section>
+
+		<section class='projects-index__trio hc-container-wide' data-project-group data-motion-section>
+			{trioProjects.map((project, index) => (
+				<ProjectVideoCard project={project} variant='compact' index={index + 3} />
+			))}
+		</section>
+
+		<section class='projects-index__closing-feature' data-project-group data-motion-section>
+			<div class='hc-container-wide'>
+				<ProjectVideoCard project={closingProject} variant='lead' index={6} />
+			</div>
+		</section>
+
+		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-section>
+			<div class='projects-index__archive-heading'>
+				<h2>More systems, launches, and operating tools</h2>
+			</div>
+			<div class='projects-index__archive-grid'>
+				{archiveProjects.map((project, index) => (
+					<ProjectVideoCard project={project} variant='compact' index={index + 7} />
+				))}
+			</div>
+		</section>
+	</article>
+</BaseLayout>
+
+<script>
+	const installProjectFilters = () => {
+		const root = document.querySelector<HTMLElement>('.projects-index');
+		if (!root || root.dataset.filtersReady === 'true') return;
+
+		const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-project-filter]'));
+		const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-project-proof]'));
+		const groups = Array.from(root.querySelectorAll<HTMLElement>('[data-project-group]'));
+		const filteredResults = root.querySelector<HTMLElement>('[data-project-filtered-results]');
+		const filteredGrid = root.querySelector<HTMLElement>('[data-project-filtered-grid]');
+		if (!filteredResults || !filteredGrid) return;
+
+		root.dataset.filtersReady = 'true';
+		const cardRecords = cards.map((card) => {
+			const origin = document.createComment('project-card-origin');
+			const index = card.querySelector<HTMLElement>('.project-video-card__index');
+			card.before(origin);
+			return { card, origin, originalIndex: index?.textContent ?? '' };
+		});
+
+		const restoreOriginalLayout = () => {
+			cardRecords.forEach(({ card, origin, originalIndex }) => {
+				origin.parentNode?.insertBefore(card, origin.nextSibling);
+				card.hidden = false;
+				const index = card.querySelector<HTMLElement>('.project-video-card__index');
+				if (index) index.textContent = originalIndex;
+			});
+		};
+
+		const applyFilter = (filter: string, activeButton: HTMLButtonElement) => {
+			restoreOriginalLayout();
+			buttons.forEach((item) => {
+				const active = item === activeButton;
+				item.classList.toggle('is-active', active);
+				item.setAttribute('aria-pressed', String(active));
+			});
+
+			if (filter === 'all') {
+				filteredResults.hidden = true;
+				groups.forEach((group) => { group.hidden = false; });
+				return;
+			}
+
+			groups.forEach((group) => { group.hidden = true; });
+			filteredGrid.replaceChildren();
+			const matches = cardRecords.filter(({ card }) => {
+				const isClient = card.dataset.projectProof === 'client';
+				return filter === 'client' ? isClient : !isClient;
+			});
+
+			matches.forEach(({ card }, index) => {
+				const cardIndex = card.querySelector<HTMLElement>('.project-video-card__index');
+				if (cardIndex) cardIndex.textContent = String(index + 1).padStart(2, '0');
+				filteredGrid.append(card);
+			});
+			filteredResults.hidden = false;
+		};
+
+		buttons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const filter = button.dataset.projectFilter ?? 'all';
+				applyFilter(filter, button);
+			});
+		});
+	};
+
+	installProjectFilters();
+	document.addEventListener('astro:page-load', installProjectFilters);
+</script>

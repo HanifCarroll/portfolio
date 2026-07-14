@@ -1,8 +1,9 @@
 ---
 import BaseHead from './components/BaseHead.astro';
 import Header from './components/Header.astro';
+import PageClosingCta from '../components/PageClosingCta.astro';
 import { ClientRouter, fade } from 'astro:transitions';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { EMAIL_URL } from '../consts';
 
 const {
 	title,
@@ -13,6 +14,11 @@ const {
 	ogType,
 	robots,
 	showFooterCta = true,
+	footerCtaTitle,
+	footerCtaBody,
+	footerCtaPrimaryLabel,
+	footerCtaLocation = 'footer_cta',
+	footerCtaSurface = 'canvas',
 	bodyClass = ''
 } = Astro.props;
 
@@ -40,27 +46,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 			<slot />
 		</main>
 
-		{
-			showFooterCta && (
-				<section class='hc-footer-cta' data-motion-section data-header-surface='dark'>
-					<div class='hc-container'>
-						<div class='hc-cta-panel' data-motion-item>
-							<p class='hc-footer-cta__label'>Start a conversation</p>
-							<h2>Tell me what's getting harder to run.</h2>
-							<div class='hc-cta-panel__body'>
-								<p>Start with the workflow that's causing delays, repeated effort, missed handoffs, or unreliable reporting.</p>
-								<div class='hc-actions'>
-									<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='footer_cta'>
-										Book a Business Systems Audit
-									</a>
-									<a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='footer_cta'>Email Hanif</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			)
-		}
+		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} surface={footerCtaSurface} />}
 
 		<footer class='hc-footer' data-header-surface='dark' transition:name='site-footer'>
 			<div class='hc-container-page'>
@@ -71,7 +57,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 					</div>
 					<nav class='hc-footer-nav' aria-label='Footer navigation'>
 						<a href='/services/'>Services</a>
-						<a href='/projects/'>Case Studies</a>
+						<a href='/case-studies/'>Case Studies</a>
 						<a href='/blog/'>Blog</a>
 						<a href='/newsletter/'>Newsletter</a>
 						<a href='/tools/'>Tools</a>

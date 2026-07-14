@@ -1,0 +1,26 @@
+---
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+
+const {
+	title = "Tell me what's getting harder to run.",
+	body = "Start with the workflow that's causing delays, repeated effort, missed handoffs, or unreliable reporting.",
+	primaryLabel = 'Book a Business Systems Audit',
+	location = 'footer_cta',
+	surface = 'canvas'
+} = Astro.props;
+---
+
+<section class={`hc-page-cta hc-page-cta--${surface}`} data-motion-section data-header-surface={surface === 'navy' ? 'dark' : 'light'}>
+	<div class='hc-container'>
+		<div class='hc-page-cta__card' data-motion-item>
+			<h2>{title}</h2>
+			<div class='hc-page-cta__body'>
+				<p>{body}</p>
+				<div class='hc-actions'>
+					<a class='hc-button hc-page-cta__primary' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>{primaryLabel}</a>
+					<a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={location}>Email Hanif</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

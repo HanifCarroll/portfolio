@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import type { ServiceOffer } from '../lib/service-offers';
 
 interface Props {
@@ -23,7 +23,16 @@ const serviceJsonLd = {
 };
 ---
 
-<BaseLayout title={offer.metaTitle} description={offer.description} jsonLd={serviceJsonLd} showFooterCta={false} bodyClass='page-service-detail'>
+<BaseLayout
+	title={offer.metaTitle}
+	description={offer.description}
+	jsonLd={serviceJsonLd}
+	bodyClass='page-service-detail'
+	footerCtaTitle={offer.finalHeading}
+	footerCtaBody={offer.finalBody}
+	footerCtaPrimaryLabel={offer.primaryCta}
+	footerCtaLocation={`${offer.key}_final`}
+>
 	<article class='hc-service-detail-page'>
 		<div class='hc-container'>
 			<header class='hc-detail-hero' data-motion-intro>
@@ -159,18 +168,6 @@ const serviceJsonLd = {
 				</div>
 			</section>
 
-			<section class='hc-cta-panel hc-detail-section' aria-labelledby={`${offer.key}-cta`}>
-				<h2 id={`${offer.key}-cta`}>{offer.finalHeading}</h2>
-				<div class='hc-cta-panel__body'>
-					<p>{offer.finalBody}</p>
-					<div class='hc-actions'>
-						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_final`}>
-							{offer.primaryCta}
-						</a>
-						<a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={`${offer.key}_final`}>Email Hanif</a>
-					</div>
-				</div>
-			</section>
 		</div>
 	</article>
 </BaseLayout>

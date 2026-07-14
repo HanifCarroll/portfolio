@@ -7,7 +7,7 @@ import DesarmaderoPaperSystem from '../assets/img/projects/desarmadero-operation
 import GenruptPaperSystem from '../assets/img/projects/genrupt-paper-system.png';
 import PalabrunoPaperSystem from '../assets/img/projects/palabruno-paper-system.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import { serviceOfferList } from '../lib/service-offers';
 
 const title = 'Hanif Carroll | Technical Consultant for Founder-Led Businesses';
@@ -120,7 +120,15 @@ const testimonials = [
 ];
 ---
 
-<BaseLayout title={title} description={description} jsonLd={homepageJsonLd} showFooterCta={false} bodyClass='hc-home'>
+<BaseLayout
+	title={title}
+	description={description}
+	jsonLd={homepageJsonLd}
+	bodyClass='hc-home'
+	footerCtaTitle="Tell me what's getting harder to run."
+	footerCtaBody="You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step."
+	footerCtaLocation='home_footer_cta'
+>
 	<article>
 		<header class='hc-home-hero'>
 			<div class='hc-home-hero__inner'>
@@ -134,7 +142,7 @@ const testimonials = [
 					<p class='hc-home-hero__lead'>I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.</p>
 					<div class='hc-home-hero__actions'>
 						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a Business Systems Audit</a>
-						<a class='hc-home-hero__secondary' href='/projects/'>See case studies</a>
+						<a class='hc-home-hero__secondary' href='/case-studies/'>See case studies</a>
 					</div>
 				</div>
 				<figure class='hc-home-hero__portrait'>
@@ -242,9 +250,9 @@ const testimonials = [
 				</div>
 			</div>
 			<div class='hc-proof-list'>
-				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]} data-header-surface={index % 2 === 1 ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/projects/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>)}
+				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]} data-header-surface={index % 2 === 1 ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>)}
 			</div>
-			<div class='hc-container-wide hc-proof-section__actions'><a class='hc-text-link' href='/projects/'>See all case studies</a></div>
+			<div class='hc-proof-section__actions'><a class='hc-button hc-button--proof' href='/case-studies/'>Explore all case studies</a></div>
 		</section>
 
 		<section class='hc-section hc-method-section' data-header-surface='dark'>
@@ -269,7 +277,7 @@ const testimonials = [
 						<figure><Image src={HeroBackdrop} alt='' aria-hidden='true' class='hc-about-preview__backdrop' loading='lazy' /><Image src={HeroPortrait} alt='Hanif Carroll, technical consultant' class='hc-about-preview__portrait' loading='lazy' /></figure>
 					</div>
 					<div class='hc-about-preview__copy'>
-						<div class='hc-about-preview__title'><h2>Direct collaboration from first conversation through handoff.</h2></div>
+						<div class='hc-about-preview__title'><h2>Hi, I'm Hanif.</h2></div>
 						<div class='hc-about-preview__body'>
 							<p>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems. I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
 							<p>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
@@ -280,16 +288,5 @@ const testimonials = [
 			</div>
 		</section>
 
-		<section class='hc-section hc-home-closing'>
-			<div class='hc-container-wide'>
-				<div class='hc-cta-panel hc-cta-panel--editorial'>
-					<div class='hc-cta-panel__content'><h2>Tell me what's getting harder to run.</h2>
-					<div class='hc-cta-panel__body'>
-						<p>You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step.</p>
-						<div class='hc-actions'><a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a Business Systems Audit</a><a class='hc-text-link' href={EMAIL_URL}>Email Hanif</a></div>
-					</div></div>
-				</div>
-			</div>
-		</section>
 	</article>
 </BaseLayout>
