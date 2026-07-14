@@ -7,9 +7,10 @@ interface Props {
 	project: ProjectCard;
 	featured?: boolean;
 	variant?: 'lead' | 'card' | 'compact';
+	index?: number;
 }
 
-const { project, featured = false, variant } = Astro.props;
+const { project, featured = false, variant, index } = Astro.props;
 const video = project.videos?.preview ?? project.videos?.overview;
 const resolvedVariant = variant ?? (featured ? 'lead' : 'card');
 const className = `project-video-card project-video-card--${resolvedVariant}`;
@@ -26,7 +27,7 @@ const mediaSizes =
 ---
 
 {
-	<a href={`/projects/${project.slug}/`} class={className} data-project-video-card={video ? true : undefined}>
+	<a href={`/projects/${project.slug}/`} class={className} data-project-video-card={video ? true : undefined} data-project-proof={project.proofType}>
 		<div class='project-video-card__media-wrap'>
 			{
 				video && posterSources ? (
@@ -72,6 +73,7 @@ const mediaSizes =
 			}
 		</div>
 		<div class='project-video-card__copy'>
+			{index && <span class='project-video-card__index' aria-hidden='true'>{String(index).padStart(2, '0')}</span>}
 			<p class='project-video-card__proof-label'>{proofLabel}</p>
 			<h3 class='heading-display heading-display--subsection'>{project.name}</h3>
 			<p>{project.description}</p>

@@ -10,47 +10,19 @@ const description =
 	'Blog posts for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build posts are here too, but they support the client work rather than replace it.';
 
 const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const featuredPost = posts[0];
-const remainingPosts = posts.slice(1);
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-blog-index'>
 	<article class='content-page hc-blog-index'>
-		<header class='content-page__hero' data-motion-intro>
-			<p class='hc-blog-index__label' data-motion-intro-item>Field notes from HC Studio</p>
-			<h1 class='content-page__title' data-motion-headline>Ideas for building systems that hold up.</h1>
-			<p class='content-page__intro' data-motion-deck>Notes on dependable software, business workflows, and deciding where AI is useful.</p>
-		</header>
-
-		{
-			featuredPost && (
-				<section class='hc-blog-index__posts' aria-label='Blog posts' data-motion-section>
-					<a class='hc-blog-feature' href={`/blog/${featuredPost.id}/`} aria-label={`Read ${featuredPost.data.title}`} data-motion-item>
-						<div class='hc-blog-feature__meta'>
-							<span>Latest note</span>
-							<FormattedDate date={featuredPost.data.pubDate} />
-						</div>
-						<h2>{featuredPost.data.title}</h2>
-						<p>{featuredPost.data.description}</p>
-						<span class='hc-text-link'>Read the note</span>
-					</a>
-					<div class='content-page__list'>
-						{remainingPosts.map((post, index) => (
-							<a
-								class='content-page__entry content-page__entry--link'
-								href={`/blog/${post.id}/`}
-								aria-label={`Read ${post.data.title}`}
-								data-motion-item
-							>
-								<div class='content-page__entry-meta'><span>{String(index + 2).padStart(2, '0')}</span><FormattedDate date={post.data.pubDate} /></div>
-								<h2 class='content-page__entry-title'>{post.data.title}</h2>
-								<p class='content-page__entry-body'>{post.data.description}</p>
-								<span class='hc-text-link'>Read</span>
-							</a>
-						))}
-					</div>
-				</section>
-			)
-		}
+		<div class='hc-blog-index__layout'>
+			<header class='content-page__hero' data-motion-intro>
+				<p class='hc-blog-index__label' data-motion-intro-item>Field notes by Hanif Carroll</p>
+				<h1 class='content-page__title' data-motion-headline>Blog</h1>
+				<p class='content-page__intro' data-motion-deck>Notes on dependable software, business workflows, and deciding where AI is useful.</p>
+			</header>
+			<section class='hc-blog-index__posts' aria-label='Blog posts' data-motion-section>
+				{posts.map((post, index) => <a class='hc-blog-index__entry' href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`} data-motion-item><span class='hc-blog-index__number'>{String(index + 1).padStart(2, '0')}</span><FormattedDate date={post.data.pubDate} /><h2>{post.data.title}</h2><span class='hc-blog-index__arrow' aria-hidden='true'>↗</span></a>)}
+			</section>
+		</div>
 	</article>
 </BaseLayout>
