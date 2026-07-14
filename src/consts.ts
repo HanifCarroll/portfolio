@@ -7,4 +7,4 @@ export const SITE_DESCRIPTION =
   "I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.";
 export const EMAIL = "hanif@hanifcarroll.com";
 export const EMAIL_URL = "mailto:hanif@hanifcarroll.com";
-export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/roadmap-call";
+export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/business-systems-audit";
