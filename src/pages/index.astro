@@ -249,7 +249,7 @@ const testimonials = [
 
 		<section class='hc-section hc-method-section' data-header-surface='dark'>
 			<div class='hc-container'>
-				<div class='hc-section-header'><p class='hc-section-kicker'>How I work</p><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A clear path from understanding the workflow to a handoff your team can own.</p></div>
+				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A clear path from understanding the workflow to a handoff your team can own.</p></div>
 				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
 				<div class='hc-actions'><a class='hc-text-link' href='/services/'>See all services</a></div>
 			</div>
@@ -257,7 +257,7 @@ const testimonials = [
 
 		<section class='hc-section hc-testimonial-section'>
 			<div class='hc-container'>
-				<div class='hc-section-header'><p class='hc-section-kicker'>Client perspective</p><h2 class='hc-section-title'>What people have said about working with me</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title'>What people have said about working with me</h2></div>
 				<div class='hc-testimonials'>{testimonials.map((item, index) => <figure class:list={['hc-testimonial', { 'hc-testimonial--featured': index === 0 }]}><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{item.quote}”</blockquote><figcaption><strong>{item.name}</strong><span>{item.role}</span></figcaption></figure>)}</div>
 			</div>
 		</section>
@@ -265,11 +265,13 @@ const testimonials = [
 		<section class='hc-section hc-about-preview-section'>
 			<div class='hc-container-wide'>
 				<div class='hc-about-preview'>
-					<div class='hc-about-preview__title'><p class='hc-section-kicker'>About</p><h2>About Hanif</h2><p>Direct founder collaboration.<br />From first conversation through handoff.</p></div>
-					<div class='hc-about-preview__body'>
-						<p>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems. I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
-						<p>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
-						<a class='hc-text-link' href='/about/'>More about how I work</a>
+					<div class='hc-about-preview__copy'>
+						<div class='hc-about-preview__title'><h2>About Hanif</h2><p>Direct founder collaboration, from first conversation through handoff.</p></div>
+						<div class='hc-about-preview__body'>
+							<p>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems. I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
+							<p>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
+							<a class='hc-text-link' href='/about/'>More about how I work</a>
+						</div>
 					</div>
 					<div class='hc-about-preview__visual'>
 						<figure><Image src={HeroBackdrop} alt='' aria-hidden='true' class='hc-about-preview__backdrop' loading='lazy' /><Image src={HeroPortrait} alt='Hanif Carroll, technical consultant' class='hc-about-preview__portrait' loading='lazy' /></figure>

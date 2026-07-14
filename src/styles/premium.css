@@ -1062,14 +1062,14 @@ body {
 }
 
 .hc-method-section .hc-section-header {
-  max-width: 65rem;
+  max-width: 52rem;
 }
 
 .hc-method-section .hc-section-title {
-  max-width: 15ch;
+  max-width: 18ch;
   color: var(--hc-proof-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.2rem, 7vw, 6.4rem);
+  font-size: clamp(3rem, 5.5vw, 5rem);
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.05em;
@@ -1081,20 +1081,21 @@ body {
 }
 
 .hc-method-section .hc-method-grid {
-  gap: clamp(3.5rem, 7vw, 6rem) clamp(2rem, 7vw, 7rem);
-  margin-left: clamp(0rem, 19vw, 18rem);
+  grid-template-columns: repeat(2, minmax(24rem, 1fr));
+  gap: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 6rem);
+  margin-top: clamp(4rem, 7vw, 7rem);
 }
 
 .hc-method-section .hc-method-item {
-  grid-template-columns: clamp(5.5rem, 10vw, 9rem) minmax(0, 1fr);
-  gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: clamp(4.5rem, 7vw, 6rem) minmax(18rem, 1fr);
+  gap: clamp(1.25rem, 2vw, 2rem);
   align-items: start;
 }
 
 .hc-method-section .hc-index {
   color: var(--hc-accent);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.8rem, 9vw, 8.5rem);
+  font-size: clamp(4.25rem, 6vw, 6rem);
   font-weight: 400;
   line-height: 0.72;
   letter-spacing: -0.07em;
@@ -1102,13 +1103,12 @@ body {
 
 .hc-method-section .hc-method-item h3 {
   color: var(--hc-proof-text);
-  font-size: 0.82rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
 }
 
 .hc-method-section .hc-actions {
-  margin-left: clamp(0rem, 19vw, 18rem);
+  margin-top: clamp(3rem, 5vw, 5rem);
 }
 
 .hc-method-section .hc-text-link {
@@ -1120,7 +1120,7 @@ body {
 }
 
 .hc-testimonial-section .hc-section-header {
-  max-width: 44rem;
+  max-width: 50rem;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
@@ -1130,7 +1130,7 @@ body {
 
 .hc-testimonial-section .hc-testimonials {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(3rem, 7vw, 7rem) clamp(2rem, 7vw, 7rem);
+  gap: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 6rem);
 }
 
 .hc-testimonial-section .hc-testimonial {
@@ -1146,7 +1146,7 @@ body {
 
 .hc-testimonial-section .hc-testimonial--featured {
   grid-column: 1 / -1;
-  grid-template-columns: clamp(4rem, 8vw, 7rem) minmax(0, 1fr);
+  grid-template-columns: 3rem minmax(0, 1fr);
   color: var(--hc-text);
   background: transparent;
 }
@@ -1154,22 +1154,22 @@ body {
 .hc-testimonial__mark {
   color: var(--hc-accent-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: 3.5rem;
   line-height: 0.75;
 }
 
 .hc-testimonial-section .hc-testimonial blockquote {
   color: var(--hc-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.65rem, 3vw, 2.8rem);
-  line-height: 1.08;
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  line-height: 1.35;
   letter-spacing: -0.035em;
 }
 
 .hc-testimonial-section .hc-testimonial--featured blockquote {
-  max-width: 27ch;
-  font-size: clamp(2.8rem, 5.8vw, 5.75rem);
-  line-height: 0.98;
+  max-width: 38ch;
+  font-size: clamp(1.75rem, 2.8vw, 2.4rem);
+  line-height: 1.14;
 }
 
 .hc-testimonial-section .hc-testimonial figcaption {
@@ -1194,29 +1194,37 @@ body {
 }
 
 .hc-about-preview-section .hc-about-preview {
-  grid-template-columns: minmax(13rem, 0.62fr) minmax(18rem, 0.78fr) minmax(24rem, 0.9fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(24rem, 0.9fr) minmax(30rem, 1.1fr);
+  gap: clamp(4rem, 8vw, 8rem);
   align-items: start;
 }
 
+.hc-about-preview__copy {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  padding-block: clamp(1rem, 4vw, 3rem);
+}
+
 .hc-about-preview__title h2 {
-  max-width: 5ch;
+  max-width: 10ch;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.8rem, 9vw, 8rem);
+  font-size: clamp(3.8rem, 6vw, 6rem);
   font-weight: 400;
   line-height: 0.82;
   letter-spacing: -0.06em;
 }
 
 .hc-about-preview__title > p:last-child {
-  margin-top: clamp(3rem, 8vw, 7rem);
+  max-width: 28rem;
+  margin-top: 1.5rem;
   color: var(--hc-text);
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   line-height: 1.55;
 }
 
 .hc-about-preview__body {
-  padding-top: clamp(5rem, 10vw, 9rem);
+  max-width: 38rem;
+  padding-top: 0;
   font-size: 1.08rem;
 }
 
@@ -1242,28 +1250,29 @@ body {
 
 .hc-about-preview__visual dl {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
   margin: 1.5rem 0 0;
 }
 
 .hc-about-preview__visual dl > div {
   display: grid;
-  grid-template-columns: minmax(7rem, 0.7fr) 1fr;
-  gap: 1rem;
-  align-items: baseline;
+  gap: 0.5rem;
+  align-content: start;
 }
 
 .hc-about-preview__visual dt {
   color: var(--hc-accent-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.45rem, 3vw, 2.5rem);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
   line-height: 1;
 }
 
 .hc-about-preview__visual dd {
   margin: 0;
   color: var(--hc-text-muted);
-  font-size: 0.82rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
 }
 
 .hc-home-closing {
@@ -1274,9 +1283,9 @@ body {
 .hc-home-closing .hc-cta-panel--editorial {
   position: relative;
   display: grid;
-  min-height: 38rem;
-  grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
-  gap: clamp(2rem, 7vw, 7rem);
+  min-height: 32rem;
+  grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1.58fr);
+  gap: clamp(3rem, 7vw, 7rem);
   align-items: center;
   padding: 0;
   border-radius: 0;
@@ -1286,17 +1295,17 @@ body {
 }
 
 .hc-cta-panel__art {
-  align-self: stretch;
+  align-self: center;
   min-width: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
   color: var(--hc-accent) !important;
-  font-size: clamp(9rem, 22vw, 22rem);
+  font-size: clamp(4.5rem, 8vw, 7.5rem);
   font-weight: 800;
-  line-height: 0.63;
-  letter-spacing: -0.1em;
+  line-height: 0.78;
+  letter-spacing: -0.08em;
   text-transform: uppercase;
-  transform: translateX(-0.08em);
+  transform: none;
 }
 
 .hc-cta-panel__content {
@@ -1308,7 +1317,7 @@ body {
   max-width: 14ch;
   color: var(--hc-text) !important;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.2rem, 6.5vw, 6rem);
+  font-size: clamp(3rem, 5vw, 4.75rem);
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: -0.05em;
@@ -1784,31 +1793,13 @@ body {
 /* Responsive rules for approved editorial directions -------------------- */
 
 @media (max-width: 900px) {
-  .hc-method-section .hc-method-grid,
-  .hc-method-section .hc-actions {
-    margin-left: 0;
+  .hc-method-section .hc-method-grid {
+    grid-template-columns: 1fr;
   }
 
   .hc-about-preview-section .hc-about-preview {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .hc-about-preview__title {
-    display: grid;
-    grid-column: 1 / -1;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: end;
-  }
-
-  .hc-about-preview__title .hc-section-kicker {
-    grid-column: 1 / -1;
-  }
-
-  .hc-about-preview__title > p:last-child,
-  .hc-about-preview__body {
-    margin-top: 0;
-    padding-top: 0;
+    gap: 3rem;
   }
 
   .hc-home-closing .hc-cta-panel--editorial {
@@ -1858,11 +1849,12 @@ body {
   }
 
   .hc-method-section .hc-method-item {
-    grid-template-columns: 4.75rem minmax(0, 1fr);
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .hc-method-section .hc-index {
-    font-size: 4.5rem;
+    font-size: 3.75rem;
   }
 
   .hc-testimonial-section .hc-testimonial,
@@ -1872,16 +1864,11 @@ body {
   }
 
   .hc-testimonial-section .hc-testimonial--featured blockquote {
-    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    font-size: clamp(1.65rem, 7vw, 2rem);
   }
 
-  .hc-about-preview__title {
-    display: block;
-    grid-column: auto;
-  }
-
-  .hc-about-preview__title > p:last-child {
-    margin-top: 2rem;
+  .hc-about-preview-section .hc-about-preview {
+    grid-template-columns: 1fr;
   }
 
   .hc-about-preview__body {
@@ -1890,6 +1877,10 @@ body {
 
   .hc-about-preview__visual figure {
     min-height: 26rem;
+  }
+
+  .hc-about-preview__visual dl {
+    grid-template-columns: 1fr;
   }
 
   .hc-home-closing .hc-cta-panel--editorial {
