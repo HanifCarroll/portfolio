@@ -44,14 +44,14 @@ const background = [
 ];
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false}>
-	<article>
-		<header class='hc-hero hc-about-hero'>
+<BaseLayout title={title} description={description} showFooterCta={false} bodyClass='page-about'>
+	<article class='hc-about-page'>
+		<header class='hc-hero hc-about-hero' data-motion-intro>
 			<div class='hc-container-wide hc-about-hero__grid'>
 				<div class='hc-hero-copy'>
-					<h1 class='hc-display'>I help growing businesses fix workflows that have become hard to run.</h1>
-					<p class='hc-lead'>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
-					<p class='hc-trust-note'>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
+					<h1 class='hc-display' data-motion-headline>I help growing businesses fix workflows that have become hard to run.</h1>
+					<p class='hc-lead' data-motion-deck>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
+					<p class='hc-trust-note' data-motion-intro-item>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
 				</div>
 				<figure class='hc-about-hero__portrait'>
 					<Image src={HeroBackdrop} alt='' aria-hidden='true' class='hc-about-hero__backdrop' loading='eager' />
@@ -60,39 +60,39 @@ const background = [
 			</div>
 		</header>
 
-		<section class='hc-section'>
+		<section class='hc-section hc-about-statement' data-motion-section>
 			<div class='hc-container hc-recognition'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>One person from the first conversation through handoff.</h2>
+					<h2 class='hc-section-title' data-motion-section-label>One person from the first conversation through handoff.</h2>
 				</div>
-				<div class='hc-detail-content'>
+				<div class='hc-detail-content' data-motion-item>
 					<p>I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
 					<p>That continuity matters when the workflow spans people, software, data, business rules, and decisions that can't be handed between separate teams without losing context.</p>
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section--compact'>
+		<section class='hc-section--compact hc-about-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>How I work</h2></div>
-				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I work</h2></div>
+				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
 			</div>
 		</section>
 
-		<section class='hc-section'>
+		<section class='hc-section hc-about-experience' data-motion-section>
 			<div class='hc-container'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>Experience across product teams, client projects, and independent systems.</h2>
+					<h2 class='hc-section-title' data-motion-section-label>Experience across product teams, client projects, and independent systems.</h2>
 					<p class='hc-section-intro'>My background covers large delivery environments, product-led teams, direct client engagements, and systems I have designed and built for my own operations.</p>
 				</div>
-				<div class='hc-service-list'>{background.map((item, index) => <div class='hc-service-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.body}</p></div>)}</div>
+				<div class='hc-service-list'>{background.map((item, index) => <div class='hc-service-item' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.body}</p></div>)}</div>
 				<div class='hc-actions'><a class='hc-text-link' href='/projects/'>View case studies</a><a class='hc-text-link' href='/services/'>See all services</a></div>
 			</div>
 		</section>
 
-		<section class='hc-section--compact'>
+		<section class='hc-section--compact hc-page-closing' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-cta-panel'>
+				<div class='hc-cta-panel' data-motion-item>
 					<h2>Which workflow is giving your team trouble?</h2>
 					<div class='hc-cta-panel__body'>
 						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits.</p>

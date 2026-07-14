@@ -18,22 +18,23 @@ const lastUpdated = frontmatter.lastUpdated ?? '';
 
 <BaseLayout title={`Now · Hanif Carroll`} description={description} bodyClass='hc-now'>
 	<article class='container max-w-4xl space-y-16 py-10 hc-now-page'>
-		<header class='ledger-section space-y-4'>
+		<header class='ledger-section space-y-4' data-motion-intro>
 			<h1
 				class='heading-display heading-display--hero'
 				data-fit-heading
 				data-fit-min-rem='2'
 				data-fit-max-rem='4.85'
+				data-motion-headline
 			>
 				{title}
 			</h1>
-			<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl'>
+			<p class='text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-3xl' data-motion-deck>
 				{description}
 			</p>
 			{lastUpdated && <p class='font-mono text-xs text-zinc-500 dark:text-zinc-300 uppercase tracking-wide'>Last updated: {lastUpdated}</p>}
 		</header>
 
-		<section class='space-y-8'>
+		<section class='space-y-8' data-motion-section>
 			<div class='ledger-section p-8 md:p-10'>
 				<Prose
 					class='prose-h2:uppercase prose-h2:text-sm prose-h2:tracking-[0.15em] prose-h2:text-primary prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-p:text-base prose-p:text-zinc-600 dark:prose-p:text-zinc-300 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-black dark:prose-strong:text-white'

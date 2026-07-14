@@ -99,31 +99,31 @@ const faqs = [
 ];
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false}>
-	<article>
-		<header class='hc-hero hc-hero--inverse'>
+<BaseLayout title={title} description={description} showFooterCta={false} bodyClass='page-services'>
+	<article class='hc-services-page'>
+		<header class='hc-hero hc-hero--inverse' data-motion-intro>
 			<div class='hc-container'>
 				<div class='hc-hero-surface'>
 					<div class='hc-hero-copy'>
-						<h1 class='hc-display'>Technical help for the parts of your business that are getting harder to run.</h1>
-						<p class='hc-lead'>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
+						<h1 class='hc-display' data-motion-headline>Technical help for the parts of your business that are getting harder to run.</h1>
+						<p class='hc-lead' data-motion-deck>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
 						<div class='hc-actions'>
 							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book a Business Systems Audit</a>
 							<a class='hc-text-link' href='#services'>Compare the services</a>
 						</div>
 						<p class='hc-hero-note'>For founder-led businesses with customers, demand, or a repeatable service whose day-to-day operations have become harder to see and manage.</p>
 					</div>
-					<figure class='hc-artifact-stack hc-artifact-stack--inverse hc-artifact-stack--single'>
-						<Image src={DesarmaderoPaperSystem} alt='Paper model of a business workflow moving through sales, payment, fulfillment, and billing.' loading='eager' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 50vw' />
+					<figure class='hc-artifact-stack hc-artifact-stack--inverse hc-artifact-stack--single' data-motion-intro-item>
+						<Image src={DesarmaderoPaperSystem} alt='Paper model of a business workflow moving through sales, payment, fulfillment, and billing.' loading='eager' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 50vw' />
 						<figcaption>From diagnosis and validation to software used in daily operations.</figcaption>
 					</figure>
 				</div>
 			</div>
 		</header>
 
-		<section class='hc-section--compact'>
+		<section class='hc-section--compact hc-services-fit' data-motion-section data-header-surface='dark'>
 			<div class='hc-container'>
-				<div class='hc-fit-panel'>
+				<div class='hc-fit-panel' data-motion-item>
 					<h2>For businesses that already have customers and recurring work.</h2>
 					<div class='hc-fit-panel__body'>
 						<ul class='hc-signal-list'>
@@ -138,15 +138,15 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section' id='services'>
+		<section class='hc-section hc-services-offers' id='services' data-motion-section>
 			<div class='hc-container'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>Use the service that matches where you are.</h2>
+					<h2 class='hc-section-title' data-motion-section-label>Use the service that matches where you are.</h2>
 				</div>
 				<div class='hc-service-list'>
 					{
 						serviceOfferList.map((offer, index) => (
-							<a class='hc-service-item' href={offer.path}>
+							<a class='hc-service-item' href={offer.path} data-motion-item>
 								<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
 								<h3>{offer.label}</h3>
 								<p>{offer.chooserSummary}</p>
@@ -158,50 +158,50 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section--compact'>
+		<section class='hc-section--compact hc-engagement-path' data-motion-section>
 			<div class='hc-container'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>Every engagement leaves you with something you can use.</h2>
+					<h2 class='hc-section-title' data-motion-section-label>Every engagement leaves you with something you can use.</h2>
 					<p class='hc-section-intro'>After the audit, you can use the findings with your own team, another partner, or me. A build includes a usable system and a clear handoff. The ongoing partnership covers connected priorities as they come up.</p>
 				</div>
 				<div class='hc-flow' aria-label='Engagement path'>
-					<div class='hc-flow-node'><strong>Business Systems Audit</strong><span>Map the workflow</span></div>
-					<div class='hc-flow-node'><strong>Business Systems Build</strong><span>Build what the team needs first</span></div>
-					<div class='hc-flow-node'><strong>Ongoing Technical Partnership</strong><span>Handle ongoing technical priorities</span></div>
+					<div class='hc-flow-node' data-motion-item><strong>Business Systems Audit</strong><span>Map the workflow</span></div>
+					<div class='hc-flow-node' data-motion-item><strong>Business Systems Build</strong><span>Build what the team needs first</span></div>
+					<div class='hc-flow-node' data-motion-item><strong>Ongoing Technical Partnership</strong><span>Handle ongoing technical priorities</span></div>
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section'>
+		<section class='hc-section hc-services-principles' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>How I work</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I work</h2></div>
 				<div class='hc-principles-grid'>
-					{principles.map((item, index) => <div class='hc-principle'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
+					{principles.map((item, index) => <div class='hc-principle' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section'>
+		<section class='hc-section hc-services-proof' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>Project examples.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Project examples.</h2></div>
 				<div class='hc-proof-grid'>
-					{proof.map((item) => <a class='hc-proof-card' href={`/projects/${item.slug}/`}><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
+					{proof.map((item) => <a class='hc-proof-card' href={`/projects/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section'>
+		<section class='hc-section hc-services-faq' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>Questions people ask before starting</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Questions people ask before starting</h2></div>
 				<div class='hc-faq-list'>
-					{faqs.map((faq) => <div class='hc-faq-item'><h3>{faq.title}</h3><p>{faq.body}</p></div>)}
+					{faqs.map((faq) => <div class='hc-faq-item' data-motion-item><h3>{faq.title}</h3><p>{faq.body}</p></div>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section--compact'>
+		<section class='hc-section--compact hc-page-closing' data-motion-section>
 			<div class='hc-container'>
-				<div class='hc-cta-panel'>
+				<div class='hc-cta-panel' data-motion-item>
 					<h2>Which workflow is giving your team trouble?</h2>
 					<div class='hc-cta-panel__body'>
 						<p>Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits. We'll work out whether an audit is the best place to begin.</p>

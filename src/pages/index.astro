@@ -242,7 +242,7 @@ const testimonials = [
 				</div>
 			</div>
 			<div class='hc-proof-list'>
-				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/projects/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={92} /></figure></div></article>)}
+				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/projects/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>)}
 			</div>
 			<div class='hc-container-wide hc-proof-section__actions'><a class='hc-text-link' href='/projects/'>See all case studies</a></div>
 		</section>

@@ -1,7 +1,7 @@
 ---
 import BaseHead from './components/BaseHead.astro';
 import Header from './components/Header.astro';
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter, fade } from 'astro:transitions';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
 const {
@@ -36,15 +36,16 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 		}
 		<a class='skip-link' href='#main'>Skip to content</a>
 		<Header />
-		<main id='main' class='hc-main' data-motion-page>
+		<main id='main' class='hc-main' data-motion-page transition:name='page-content' transition:animate={fade({ duration: '0.42s' })}>
 			<slot />
 		</main>
 
 		{
 			showFooterCta && (
-				<section class='hc-footer-cta'>
+				<section class='hc-footer-cta' data-motion-section data-header-surface='dark'>
 					<div class='hc-container'>
-						<div class='hc-cta-panel'>
+						<div class='hc-cta-panel' data-motion-item>
+							<p class='hc-footer-cta__label'>Start a conversation</p>
 							<h2>Tell me what's getting harder to run.</h2>
 							<div class='hc-cta-panel__body'>
 								<p>Start with the workflow that's causing delays, repeated effort, missed handoffs, or unreliable reporting.</p>
@@ -61,7 +62,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 			)
 		}
 
-		<footer class='hc-footer' data-header-surface='dark'>
+		<footer class='hc-footer' data-header-surface='dark' transition:name='site-footer'>
 			<div class='hc-container-page'>
 				<div class='hc-footer-inner'>
 					<div class='hc-footer-brand'>

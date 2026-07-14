@@ -23,18 +23,19 @@ const priorityProjects = orderedProjects.slice(1, 5);
 const compactProjects = orderedProjects.slice(5);
 ---
 
-<BaseLayout title={`${title} | Hanif Carroll`} description={description}>
+<BaseLayout title={`${title} | Hanif Carroll`} description={description} bodyClass='page-projects-index'>
 	<article class='projects-index'>
-		<header class='projects-index__hero'>
+		<header class='projects-index__hero' data-motion-intro>
 			<div class='projects-index__hero-main hc-container-wide'>
-				<h1 class='heading-display heading-display--hero'>Selected client and independent projects.</h1>
-				<p class='projects-index__intro'>These case studies show the workflow, decisions, systems, and evidence behind each project. Client and independent projects are labeled separately.</p>
+				<p class='projects-index__label' data-motion-intro-item>Selected systems, launches, and operating tools</p>
+				<h1 class='heading-display heading-display--hero' data-motion-headline>Proof is in what changed.</h1>
+				<p class='projects-index__intro' data-motion-deck>These case studies show the workflow, decisions, systems, and evidence behind client and independent projects.</p>
 			</div>
 		</header>
 
 		{
 			leadProject && (
-				<section class='projects-index__ranked-work hc-container-wide' aria-label='Ranked project work'>
+				<section class='projects-index__ranked-work hc-container-wide' aria-label='Ranked project work' data-motion-section>
 					<ProjectVideoCard project={leadProject} variant='lead' />
 
 					{

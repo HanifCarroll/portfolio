@@ -23,15 +23,15 @@ const serviceJsonLd = {
 };
 ---
 
-<BaseLayout title={offer.metaTitle} description={offer.description} jsonLd={serviceJsonLd} showFooterCta={false}>
-	<article>
+<BaseLayout title={offer.metaTitle} description={offer.description} jsonLd={serviceJsonLd} showFooterCta={false} bodyClass='page-service-detail'>
+	<article class='hc-service-detail-page'>
 		<div class='hc-container'>
-			<header class='hc-detail-hero'>
+			<header class='hc-detail-hero' data-motion-intro>
 				<nav class='hc-breadcrumbs' aria-label='Breadcrumb'>
 					<a href='/'>Home</a><span aria-hidden='true'>/</span><a href='/services/'>Services</a><span aria-hidden='true'>/</span><span>{offer.label}</span>
 				</nav>
-				<h1>{offer.heroTitle}</h1>
-				<p class='hc-lead'>{offer.heroBody}</p>
+				<h1 data-motion-headline>{offer.heroTitle}</h1>
+				<p class='hc-lead' data-motion-deck>{offer.heroBody}</p>
 				<p class='hc-commercial-note'>{offer.commercialNote}</p>
 				<div class='hc-actions'>
 					<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>

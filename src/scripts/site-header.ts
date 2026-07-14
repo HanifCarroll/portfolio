@@ -52,6 +52,7 @@ function mountHeader() {
   const setOpenState = (open: boolean, restoreFocus = true) => {
     isOpen = open;
     if (open) setHeaderVisible(true);
+    if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     panel.setAttribute("aria-hidden", String(!open));
@@ -119,8 +120,11 @@ function mountHeader() {
     scheduledFrame = 0;
     const currentScrollY = Math.max(0, window.scrollY);
     const scrollDelta = currentScrollY - lastScrollY;
+    const usesCompactNavigation = window.innerWidth <= 900;
 
-    if (!isOpen && !siteHeader.contains(document.activeElement)) {
+    if (usesCompactNavigation) {
+      setHeaderVisible(true);
+    } else if (!isOpen && !siteHeader.contains(document.activeElement)) {
       if (currentScrollY <= 32 || scrollDelta < -4) setHeaderVisible(true);
       else if (currentScrollY > 140 && scrollDelta > 4) setHeaderVisible(false);
     }

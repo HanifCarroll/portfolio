@@ -52,7 +52,7 @@ const blogJsonLd = {
 	footerLinksOnly
 >
 	<div class='container max-w-6xl space-y-10 py-8 md:space-y-12'>
-		<header class='blog-post-hero'>
+		<header class='blog-post-hero' data-motion-intro>
 			<div class='blog-post-hero__copy'>
 				<div class='blog-post-hero__meta'>
 					<div class='text-sm text-zinc-700 dark:text-zinc-300'>
@@ -71,10 +71,10 @@ const blogJsonLd = {
 						{readingMinutes} min read
 					</div>
 				</div>
-				<h1 class='blog-post-hero__title'>{title}</h1>
-				{subtitle && <p class='blog-post-hero__subtitle'>{subtitle}</p>}
+				<h1 class='blog-post-hero__title' data-motion-headline>{title}</h1>
+				{subtitle && <p class='blog-post-hero__subtitle' data-motion-deck>{subtitle}</p>}
 				{!subtitle && (
-					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{description}</p>
+					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600 dark:text-zinc-300' data-motion-deck>{description}</p>
 				)}
 			</div>
 			{

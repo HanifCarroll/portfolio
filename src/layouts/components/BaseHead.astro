@@ -5,6 +5,7 @@ import '../../styles/projects.css';
 import '../../styles/case-study.css';
 import '../../styles/blog.css';
 import '../../styles/consulting.css';
+import '../../styles/premium.css';
 
 interface Props {
 	title: string;
@@ -92,10 +93,6 @@ const clarityLoaderScript = clarityProjectId
 <meta name='generator' content={Astro.generator} />
 {gscVerification && <meta name='google-site-verification' content={gscVerification} />}
 
-<script is:inline>
-	const media = window.matchMedia?.('(prefers-color-scheme: dark)');
-	document.documentElement.classList.toggle('dark', Boolean(media?.matches));
-</script>
 {gtmLoaderScript && <script is:inline set:html={gtmLoaderScript} />}
 {gaLoaderScript && <script is:inline set:html={gaLoaderScript} />}
 {clarityLoaderScript && <script is:inline set:html={clarityLoaderScript} />}

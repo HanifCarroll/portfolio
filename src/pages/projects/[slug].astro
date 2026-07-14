@@ -108,11 +108,12 @@ const heroActions = [
 			`case-study-detail case-study-detail--${project.detailVariant}`
 		]}
 	>
-		<header class='case-study-detail__hero case-study-detail__hero--product'>
+		<header class='case-study-detail__hero case-study-detail__hero--product' data-motion-intro>
 			<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
 				<div class='case-study-detail__hero-copy space-y-5'>
 					<h1
 						class='heading-display heading-display--hero'
+						data-motion-headline
 						data-fit-heading
 						data-fit-min-rem='1.75'
 						data-fit-max-rem='7.2'
@@ -122,7 +123,7 @@ const heroActions = [
 					>
 						{project.title}
 					</h1>
-					<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300'>{project.description}</p>
+					<p class='max-w-3xl text-lg leading-8 text-zinc-600 dark:text-zinc-300' data-motion-deck>{project.description}</p>
 					<div class='case-study-detail__hero-actions'>
 						{
 							heroActions.map((action, index) => (
@@ -141,7 +142,7 @@ const heroActions = [
 					</div>
 				</div>
 
-				<aside class='case-study-detail__hero-facts'>
+				<aside class='case-study-detail__hero-facts' data-motion-intro-item>
 					{
 						caseStudyFacts.map((detail) => (
 							<div class='case-study-detail__hero-fact'>
