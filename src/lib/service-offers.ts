@@ -350,7 +350,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     heroBody:
       "I work with your team on an agreed set of technical priorities. That can include improving existing systems, building smaller tools and automations, adding integrations, fixing reliability problems, and helping you make decisions as new needs come up.",
     commercialNote: "Monthly partnership scoped around priorities and available time",
-    chooserHeading: "Ongoing support for the systems behind your business.",
+    chooserHeading: "Ongoing help for the systems you rely on.",
     chooserSummary:
       "I work with your team on an agreed set of technical priorities. That can include improving existing systems, building smaller tools and automations, adding integrations, fixing reliability problems, and helping you make decisions as new needs come up.",
     chooserCta: "Explore the Ongoing Technical Partnership",
