@@ -129,6 +129,7 @@ const testimonials = [
 	footerCtaTitle="Tell me what's getting harder to run."
 	footerCtaBody="You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step."
 	footerCtaLocation='home_footer_cta'
+	footerCtaSurface='warm'
 >
 	<article>
 		<header class='hc-home-hero'>
@@ -267,7 +268,7 @@ const testimonials = [
 		<section class='hc-section hc-testimonial-section'>
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title'>What people have said about working with me</h2></div>
-				<div class='hc-testimonials'>{testimonials.map((item, index) => <figure class:list={['hc-testimonial', { 'hc-testimonial--featured': index === 0 }]}><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{item.quote}”</blockquote><figcaption><strong>{item.name}</strong><span>{item.role}</span></figcaption></figure>)}</div>
+				<div class='hc-testimonials'>{testimonials.map((item, index) => <figure class:list={['hc-testimonial', { 'hc-testimonial--featured': index === 0 }]}><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{item.quote}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{item.name}</strong><span>{item.role}</span></figcaption></figure>)}</div>
 			</div>
 		</section>
 

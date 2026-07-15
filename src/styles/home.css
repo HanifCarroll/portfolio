@@ -140,6 +140,7 @@ body.hc-home .hc-home-hero__title {
 .hc-home-hero__portrait-image {
   z-index: 1;
   object-position: 50% 50%;
+  transform: translateY(clamp(1rem, 1.8vw, 1.75rem));
 }
 
 .hc-recognition-section {
@@ -797,6 +798,10 @@ body.hc-home .hc-home-hero__title {
     object-position: 50% 24%;
   }
 
+  .hc-home-hero__portrait-image {
+    transform: translateY(0.75rem);
+  }
+
   .hc-proof-section__header {
     padding-bottom: var(--hc-space-7);
   }
@@ -1023,10 +1028,14 @@ body.hc-home .hc-home-hero__title {
 }
 
 .hc-testimonial__mark {
-  color: var(--hc-accent-text);
+  color: var(--hc-accent);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 3.5rem;
   line-height: 0.75;
+}
+
+.hc-testimonial__closing-mark {
+  color: var(--hc-accent);
 }
 
 .hc-testimonial-section .hc-testimonial blockquote {
@@ -1061,7 +1070,7 @@ body.hc-home .hc-home-hero__title {
 }
 
 .hc-about-preview-section {
-  background: color-mix(in srgb, var(--hc-accent) 5%, var(--hc-canvas));
+  background: var(--hc-surface-warm);
 }
 
 .hc-about-preview-section .hc-about-preview {
@@ -1431,11 +1440,11 @@ body.hc-home .hc-home-hero__title {
 }
 
 .hc-testimonial-section .hc-testimonial blockquote {
-  color: var(--hc-accent-text);
+  color: var(--hc-text);
 }
 
 .hc-testimonial-section .hc-testimonial--featured blockquote {
-  color: var(--hc-accent);
+  color: var(--hc-proof-text);
 }
 
 @media (min-width: 768px) {

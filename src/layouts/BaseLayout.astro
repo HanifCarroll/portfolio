@@ -102,12 +102,21 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 		</script>
 		<script is:inline>
 			history.scrollRestoration = 'manual';
-			document.addEventListener('astro:page-load', () => {
+			const scrollToLocationHash = () => {
 				history.scrollRestoration = 'manual';
-				if (!window.location.hash) {
+				const hash = window.location.hash;
+				if (!hash) {
 					window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 150);
+					return;
 				}
-			});
+
+				const targetId = decodeURIComponent(hash.slice(1));
+				const scrollToTarget = () => document.getElementById(targetId)?.scrollIntoView({ block: 'start', behavior: 'auto' });
+				window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToTarget));
+				window.setTimeout(scrollToTarget, 150);
+			};
+			document.addEventListener('astro:page-load', scrollToLocationHash);
+			window.addEventListener('hashchange', scrollToLocationHash);
 		</script>
 	</body>
 </html>

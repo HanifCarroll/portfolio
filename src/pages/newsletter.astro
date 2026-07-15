@@ -9,27 +9,6 @@ import '../styles/newsletter.css';
 const title = 'A Working Theory | Newsletter by Hanif Carroll';
 const description = 'Field notes on AI, judgment, and better ways of working.';
 
-const workBehindTheNotes = [
-	{
-		label: 'Guarded automation',
-		title: 'LinkedIn Tools',
-		body: 'A browser-automation system with review queues, approval gates, and reconciliation around risky actions.',
-		href: '/case-studies/linkedin-tools/'
-	},
-	{
-		label: 'AI memory',
-		title: 'Agent Recall',
-		body: 'A public Rust tool that makes past agent sessions searchable and points each result back to its source.',
-		href: '/case-studies/agent-recall/'
-	},
-	{
-		label: 'Grounded recommendations',
-		title: 'BA Eventos',
-		body: 'A live event-discovery product built around 800+ events and 190+ venues, with data-quality tools that keep AI answers grounded.',
-		href: '/case-studies/ba-eventos/'
-	}
-];
-
 const newsletterJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'WebPage',
@@ -134,35 +113,6 @@ const newsletterJsonLd = {
 						<li>Better ways of organizing real work</li>
 					</ul>
 				</div>
-			</div>
-		</section>
-
-		<section class='awt-section awt-work' data-motion-section aria-labelledby='awt-work-title'>
-			<div class='hc-container-wide'>
-				<div class='awt-work__heading' data-motion-item>
-					<h2 id='awt-work-title'>The work behind the notes</h2>
-					<p>These notes draw from client projects, public tools, and systems I use to run my own work.</p>
-				</div>
-				<div class='awt-work__grid'>
-					{
-						workBehindTheNotes.map((item, index) => (
-							<a class='awt-work-card' href={item.href} data-motion-item>
-								<span class='awt-work-card__number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
-								<p class='awt-work-card__label'>{item.label}</p>
-								<h3>{item.title}</h3>
-								<p class='awt-work-card__body'>{item.body}</p>
-								<span class='awt-work-card__link'>View case study <span aria-hidden='true'>↗</span></span>
-							</a>
-						))
-					}
-				</div>
-
-				<aside class='awt-author' data-motion-item>
-					<figure>
-						<Image src={HeroPortrait} alt='' aria-hidden='true' loading='lazy' widths={[120, 180]} sizes='72px' quality={90} />
-					</figure>
-					<p>Written by Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems.</p>
-				</aside>
 			</div>
 		</section>
 
