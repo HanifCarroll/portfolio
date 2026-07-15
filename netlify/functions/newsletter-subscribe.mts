@@ -1,4 +1,5 @@
 import type { Config } from "@netlify/functions";
+import { createElement } from "react";
 import { Resend } from "resend";
 import { ConfirmSubscription } from "../../src/emails/ConfirmSubscription";
 import { newsletterConfig, requireNewsletterEnv } from "../../src/lib/newsletter/config";
@@ -48,7 +49,7 @@ export default async function handler(request: Request) {
       to: email,
       replyTo: newsletterConfig.replyTo,
       subject: "Confirm your subscription to A Working Theory",
-      react: <ConfirmSubscription confirmationUrl={confirmationUrl.toString()} />,
+      react: createElement(ConfirmSubscription, { confirmationUrl: confirmationUrl.toString() }),
     },
     { idempotencyKey: `awt-confirm-${Buffer.from(email).toString("base64url").slice(0, 48)}` },
   );

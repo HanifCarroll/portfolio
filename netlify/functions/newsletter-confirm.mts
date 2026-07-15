@@ -3,7 +3,9 @@ import { Resend } from "resend";
 import { newsletterConfig, requireNewsletterEnv } from "../../src/lib/newsletter/config";
 import { readSubscriptionToken } from "../../src/lib/newsletter/token";
 
-function redirect(result: "confirmed" | "invalid" | "error") {
+type ConfirmationResult = "confirmed" | "invalid" | "error";
+
+function redirect(result: ConfirmationResult) {
   const url = new URL("/newsletter/", newsletterConfig.siteUrl);
   url.searchParams.set("subscription", result);
   return Response.redirect(url, 302);
