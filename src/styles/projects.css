@@ -609,8 +609,7 @@
   grid-template-columns: minmax(18rem, 0.62fr) minmax(0, 1.15fr);
   gap: clamp(2.5rem, 7vw, 7rem);
   align-items: center;
-  padding: clamp(2.5rem, 5vw, 5rem);
-  background: color-mix(in srgb, var(--hc-accent) 12%, var(--hc-canvas));
+  background: transparent;
 }
 
 .projects-index__spotlight .project-video-card__media-wrap {
@@ -676,6 +675,11 @@
 
 .projects-index__panorama .project-video-card__copy > p,
 .projects-index__closing-feature .project-video-card__copy > p {
+  color: var(--hc-proof-text-muted);
+}
+
+.projects-index__panorama .project-video-card__copy > p:last-child,
+.projects-index__closing-feature .project-video-card__copy > p:last-child {
   color: var(--hc-proof-text-muted);
 }
 
@@ -926,10 +930,6 @@
   }
 
   .projects-index__filtered .project-video-card {
-    padding: 1.25rem;
-  }
-
-  .projects-index__spotlight .project-video-card {
     padding: 1.25rem;
   }
 
