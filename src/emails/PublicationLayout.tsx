@@ -2,15 +2,19 @@ import * as React from "react";
 import {
   Body,
   Container,
+  Column,
   Head,
   Hr,
   Html,
+  Img,
   Link,
   Preview,
+  Row,
   Section,
   Text,
 } from "@react-email/components";
 import type { ReactNode } from "react";
+import { newsletterConfig } from "../lib/newsletter/config";
 
 interface PublicationLayoutProps {
   preview: string;
@@ -26,8 +30,21 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
       <Body style={styles.body}>
         <Container style={styles.container}>
           <Section style={styles.masthead}>
-            <Text style={styles.name}>A Working Theory</Text>
-            <Text style={styles.byline}>by Hanif Carroll</Text>
+            <Row>
+              <Column style={styles.logoColumn}>
+                <Img
+                  src={`${newsletterConfig.siteUrl}/brand/hc-studio-fine-ring-96.png`}
+                  alt="HC Studio"
+                  width="44"
+                  height="44"
+                  style={styles.logo}
+                />
+              </Column>
+              <Column>
+                <Text style={styles.name}>A Working Theory</Text>
+                <Text style={styles.byline}>by Hanif Carroll</Text>
+              </Column>
+            </Row>
           </Section>
           <Hr style={styles.accent} />
           {children}
@@ -67,6 +84,8 @@ const styles = {
     backgroundColor: "#fdfdfb",
   },
   masthead: { paddingBottom: "18px" },
+  logoColumn: { width: "58px", verticalAlign: "middle" },
+  logo: { display: "block", margin: "0" },
   name: { margin: "0", fontSize: "25px", fontWeight: "700", letterSpacing: "-0.5px" },
   byline: { margin: "5px 0 0", color: "#485463", fontSize: "13px" },
   accent: { width: "48px", margin: "0 0 34px", border: "0", borderTop: "4px solid #f8d651" },

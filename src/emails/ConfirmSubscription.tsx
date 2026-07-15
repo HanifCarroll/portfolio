@@ -7,7 +7,7 @@ export function ConfirmSubscription({ confirmationUrl }: { confirmationUrl: stri
     <PublicationLayout preview="Confirm your subscription to A Working Theory.">
       <Heading style={heading}>Confirm your subscription</Heading>
       <Text style={copy}>
-        You asked to receive A Working Theory. Confirm your email address and I’ll add you to the
+        You asked to receive A Working Theory. Confirm your email address, and I’ll add you to the
         list.
       </Text>
       <Button href={confirmationUrl} style={button}>
