@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Heading, Link, Text } from "@react-email/components";
 import { PublicationLayout } from "./PublicationLayout";
 
