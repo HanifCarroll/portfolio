@@ -115,11 +115,11 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     label: "Business Systems Audit",
     metaTitle: "Business Systems Audit | Hanif Carroll",
     description:
-      "Map a difficult workflow, find where it breaks down, and leave with priorities, risks, and a first build plan. Audits start at $2,500.",
+      "Map a difficult workflow, find where it breaks down, and leave with priorities, risks, and a first build plan. Audits start at $750.",
     heroTitle: "Find what's slowing your operations down.",
     heroBody:
       "I map the workflow, find where the process gets stuck, and recommend what to change first. You leave with a clear view of the problem and a first build plan you can use with your own team, another partner, or me.",
-    commercialNote: "Starts at $2,500",
+    commercialNote: "Starts at $750",
     chooserHeading: "Find what's slowing your operations down.",
     chooserSummary:
       "We look at the workflow, who's involved, which tools they use, where information gets handed off, and where things go wrong. You get a clear recommendation and first build plan, even if someone else does the build.",
@@ -194,7 +194,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Timely feedback on the workflow map and findings",
       "A decision-maker who can confirm priorities and next steps",
     ],
-    pricingHeading: "Audits start at $2,500.",
+    pricingHeading: "Audits start at $750.",
     pricingBody:
       "The final price and schedule depend on the workflow, the number of people involved, and the material that needs to be reviewed. I confirm both before the audit begins.",
     proof: [desarmaderoProof],

@@ -1,64 +1,37 @@
+/* Route-owned styles: blogDetail. */
+
+:is(.dark) .blog-post-hero__media {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:is(.dark) .blog-post-author-inline,
+:is(.dark) .blog-post-rail__block {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+@media (min-width: 768px) {
+  .blog-post-hero {
+    gap: 2.5rem;
+  }
+
+  .blog-post-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 18rem);
+    gap: 3.5rem;
+  }
+
+  .blog-post-rail {
+    position: sticky;
+    top: 6rem;
+    display: grid;
+    gap: 1.75rem;
+    align-self: start;
+  }
+}
+
 .blog-post-hero {
   display: grid;
   gap: 2rem;
-}
-
-/* Site-theme layer */
-.content-page {
-  width: min(100%, var(--hc-content-max));
-  max-width: none;
-}
-
-.content-page__hero {
-  padding: clamp(2.25rem, 7vw, 6rem);
-  border-radius: var(--hc-radius-surface);
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
-}
-
-.content-page__hero .content-page__title {
-  color: var(--hc-proof-text);
-  font-size: clamp(3rem, 8vw, 7.5rem);
-  line-height: 0.9;
-}
-
-.content-page__hero .content-page__intro {
-  max-width: 42rem;
-  color: var(--hc-proof-text-muted);
-  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.3rem);
-}
-
-.content-page__list {
-  display: grid;
-  max-width: none;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--hc-space-3);
-}
-
-.content-page__entry {
-  min-height: 16rem;
-  justify-content: flex-end;
-  padding: clamp(1.4rem, 3vw, 2.2rem);
-  border-radius: var(--hc-radius-surface);
-  background: var(--hc-surface);
-  box-shadow: 0 12px 36px rgba(16, 37, 63, 0.055);
-}
-
-.content-page__entry:first-child {
-  min-height: 22rem;
-  grid-column: 1 / -1;
-  background: color-mix(in srgb, var(--hc-accent) 22%, var(--hc-surface));
-}
-
-.content-page__entry-title {
-  max-width: 30ch;
-  font-size: clamp(1.35rem, 1.15rem + 0.7vw, 2rem);
-}
-
-.content-page__entry:first-child .content-page__entry-title {
-  max-width: 22ch;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1.04;
 }
 
 .blog-post-hero {
@@ -101,16 +74,6 @@
 .blog-post-author-inline,
 .blog-post-main .service-callout {
   padding: var(--hc-space-5);
-}
-
-@media (max-width: 700px) {
-  .content-page__list {
-    grid-template-columns: 1fr;
-  }
-
-  .content-page__entry:first-child {
-    grid-column: auto;
-  }
 }
 
 .blog-post-hero__copy {
@@ -203,103 +166,16 @@
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.about-the-author {
-  display: grid;
-  gap: 1rem;
-}
-
-.about-the-author--compact {
-  gap: 0.75rem;
-  max-width: 34rem;
-}
-
-.about-the-author--compact .author-desc {
-  font-size: 0.98rem;
-  line-height: 1.8;
-}
-
-/* ==============================================
-   BLOG PROSE STYLES
-   Brutalist table styling and enhanced readability
-   ============================================== */
-
-.prose-blog {
-  /* Horizontal rules - thicker, more spacing */
-  & hr {
-    @apply border-t-2 border-black dark:border-white my-12;
-  }
-
-  /* Tables - brutalist style with thick borders */
-  & table {
-    @apply w-full border-collapse border-2 border-black dark:border-white my-8;
-    font-size: 0.9rem;
-  }
-
-  & thead {
-    @apply bg-black text-white dark:bg-white dark:text-black;
-  }
-
-  & th {
-    @apply px-4 py-3 text-left font-bold text-sm border-2 border-black dark:border-white text-white dark:text-black;
-  }
-
-  & td {
-    @apply px-4 py-3 border-2 border-black dark:border-white;
-  }
-
-  & tbody tr:nth-child(even) {
-    @apply bg-gray-100 dark:bg-gray-900;
-  }
-
-  & tbody tr:hover {
-    @apply bg-gray-200 dark:bg-gray-800;
-  }
-
-  /* First column styling for row headers */
-  & td:first-child {
-    @apply font-semibold;
-  }
-
-  /* Blockquotes - brutalist callout style */
-  & blockquote {
-    @apply border-l-4 border-black dark:border-white bg-gray-100 dark:bg-gray-900 pl-6 pr-4 py-4 my-8 not-italic;
-  }
-
-  & blockquote p {
-    @apply mb-0;
-  }
-
-  /* Lists - better spacing */
-  & ul,
-  & ol {
-    @apply my-6 space-y-2;
-  }
-
-  & li {
-    @apply pl-2;
-  }
-
-  /* Inline code - more visible */
-  & :not(pre) > code {
-    @apply bg-gray-200 dark:bg-gray-800 px-1.5 py-0.5 rounded-sm font-medium text-[0.9em] border border-gray-300 dark:border-gray-700;
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   Blog reading experience: serif body, refined hero, quieter rail.
-   Scoped to .blog-post-* so the rest of the site keeps its brutalist sans look.
---------------------------------------------------------------------------- */
 .blog-post-prose {
   max-width: 65ch;
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
-  color: #2a2a2a;
+  color: var(--hc-text);
 }
 
 :is(.dark) .blog-post-prose {
-  color: #e6e6e6;
+  color: var(--hc-proof-text);
 }
 
-/* Headings inside the article: keep serif, restore mixed case, calmer weight. */
 .blog-post-prose :where(h2, h3, h4) {
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   letter-spacing: -0.005em;
@@ -328,23 +204,19 @@
   line-height: 1.35;
 }
 
-/* Blockquote line-height matched to surrounding body. */
 .blog-post-prose :where(blockquote) {
   line-height: 1.55;
 }
 
-/* Inline code: scale to body size so it doesn't read as small print. */
 .blog-post-prose :where(:not(pre) > code) {
   font-size: 0.88em;
 }
 
-/* Pre/code blocks: a touch denser than body so monospace stays legible. */
 .blog-post-prose :where(pre) {
   font-size: 0.92em;
   line-height: 1.55;
 }
 
-/* Hero title: drop the all-caps display brutalism, go editorial. */
 .blog-post-hero__title.heading-display,
 .blog-post-hero__title {
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
@@ -355,47 +227,43 @@
   text-transform: none;
   max-width: none;
   text-wrap: balance;
-  color: #1a1a1a;
+  color: var(--hc-text);
 }
 
 :is(.dark) .blog-post-hero__title.heading-display,
 :is(.dark) .blog-post-hero__title {
-  color: #f4f4f4;
+  color: var(--hc-proof-text);
 }
 
-/* Subtitle between h1 and dek, when a post sets one. */
 .blog-post-hero__subtitle {
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   font-style: italic;
   font-weight: 400;
   font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.65rem);
   line-height: 1.35;
-  color: #5a5a5a;
+  color: var(--hc-text-muted);
   max-width: none;
   text-wrap: balance;
   margin-top: -0.25rem;
 }
 
 :is(.dark) .blog-post-hero__subtitle {
-  color: #b0b0b0;
+  color: var(--hc-proof-text-muted);
 }
 
-/* Dek / standfirst: italic serif, larger, softer. */
 .blog-post-hero__dek {
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   font-style: italic;
   font-size: clamp(1.15rem, 1rem + 0.45vw, 1.4rem);
   line-height: 1.5;
-  color: #555;
+  color: var(--hc-text-muted);
   max-width: 50ch;
 }
 
 :is(.dark) .blog-post-hero__dek {
-  color: #b5b5b5;
+  color: var(--hc-proof-text-muted);
 }
 
-/* TOC: replace the mono uppercase eyebrow with a quieter serif italic label
-	   only inside the blog rail, so other pages keep the existing treatment. */
 .blog-post-rail .section-label {
   font-family: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
   font-weight: 400;
@@ -403,19 +271,17 @@
   text-transform: none;
   letter-spacing: 0;
   font-size: 0.95rem;
-  color: #888;
+  color: var(--hc-text-muted);
 }
 
 :is(.dark) .blog-post-rail .section-label {
-  color: #999;
+  color: var(--hc-proof-text-muted);
 }
 
 .blog-post-rail__block {
   border-top-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Service callout inside the blog column: single-column stacked layout.
-	   The two-column subgrid is designed for full-width sections and breaks at narrow widths. */
 .blog-post-main .service-callout {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
@@ -449,7 +315,6 @@
   margin-top: 0.5rem;
 }
 
-/* Heading: drop the brutalist all-caps Syne, use a calmer mixed-case style. */
 .blog-post-main .service-callout .heading-display {
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 1.5rem;
@@ -460,105 +325,42 @@
   text-wrap: balance;
 }
 
-/* Body copy: tighter than article prose, this is a CTA not an essay. */
 .blog-post-main .service-callout p {
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: #666;
+  color: var(--hc-text-muted);
 }
 
 :is(.dark) .blog-post-main .service-callout p {
-  color: #999;
+  color: var(--hc-proof-text-muted);
 }
 
-/* Actions row: align button and text link to the same baseline. */
 .blog-post-main .service-callout__actions {
   align-items: center;
 }
 
-/* Primary CTA button: compact inline width, not a full-column block. */
 .blog-post-main .service-callout__actions > a {
   display: inline-flex;
   min-width: 0;
   width: auto;
 }
 
-.blog-post-main .service-callout .home-hero-primary-link {
+.blog-post-main .service-callout .hc-button {
   min-height: 0;
   padding: 0.65rem 1.4rem;
   font-size: 0.9rem;
 }
 
-/* Soften block quote bar; serif italic for pull-quote feel. */
 .blog-post-prose :where(blockquote) {
   font-style: italic;
-  color: #444;
+  color: var(--hc-text);
   border-left-color: rgba(0, 0, 0, 0.18);
 }
 
 :is(.dark) .blog-post-prose :where(blockquote) {
-  color: #c4c4c4;
-  border-left-color: rgba(255, 255, 255, 0.22);
-}
-
-/* Keep the site-theme rules last so the earlier editorial defaults cannot
-   reintroduce the retired visual system. */
-.content-page {
-  width: min(100%, var(--hc-content-max));
-  max-width: none;
-}
-
-.content-page__hero {
-  padding: clamp(2.25rem, 7vw, 6rem);
-  border-radius: var(--hc-radius-surface);
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
-}
-
-.content-page__hero .content-page__title {
-  color: var(--hc-proof-text);
-  font-size: clamp(3rem, 8vw, 7.5rem);
-  line-height: 0.9;
-}
-
-.content-page__hero .content-page__intro {
-  max-width: 42rem;
   color: var(--hc-proof-text-muted);
-  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.3rem);
-}
-
-.content-page__list {
-  display: grid;
-  max-width: none;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--hc-space-3);
-}
-
-.content-page__entry {
-  min-height: 16rem;
-  justify-content: flex-end;
-  padding: clamp(1.4rem, 3vw, 2.2rem);
-  border-radius: var(--hc-radius-surface);
-  background: var(--hc-surface);
-  box-shadow: 0 12px 36px rgba(16, 37, 63, 0.055);
-}
-
-.content-page__entry:first-child {
-  min-height: 22rem;
-  grid-column: 1 / -1;
-  background: color-mix(in srgb, var(--hc-accent) 22%, var(--hc-surface));
-}
-
-.content-page__entry-title {
-  max-width: 30ch;
-  font-size: clamp(1.35rem, 1.15rem + 0.7vw, 2rem);
-}
-
-.content-page__entry:first-child .content-page__entry-title {
-  max-width: 22ch;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1.04;
+  border-left-color: rgba(255, 255, 255, 0.22);
 }
 
 .blog-post-hero {
@@ -603,12 +405,58 @@
   padding: var(--hc-space-5);
 }
 
-@media (max-width: 700px) {
-  .content-page__list {
-    grid-template-columns: 1fr;
-  }
+.blog-post-prose,
+.blog-post-prose :where(h1, h2, h3, h4, p, li, blockquote, a, strong, em) {
+  font-family: var(--hc-font-sans);
+}
 
-  .content-page__entry:first-child {
-    grid-column: auto;
+.blog-post-prose :where(code, pre) {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.blog-post-hero {
+  min-height: min(38rem, calc(100svh - 10rem));
+  align-content: end;
+  padding: clamp(3rem, 7vw, 7rem);
+  border-radius: 0;
+}
+
+.blog-post-hero .blog-post-hero__title {
+  color: var(--hc-proof-text) !important;
+}
+
+.blog-post-layout {
+  padding-block: clamp(3rem, 7vw, 7rem);
+}
+
+.blog-post-prose {
+  max-width: 68ch;
+}
+
+.blog-post-author-inline,
+.blog-post-main .service-callout {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .blog-post-hero {
+    min-height: 32rem;
+    padding: 2rem;
   }
+}
+
+.about-the-author {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-the-author--compact {
+  gap: 0.75rem;
+  max-width: 34rem;
+}
+
+.about-the-author--compact .author-desc {
+  font-size: 0.98rem;
+  line-height: 1.8;
 }

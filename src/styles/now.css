@@ -1,0 +1,115 @@
+/* Route-owned styles: now. */
+
+.ledger-section {
+  @apply rounded-[1.5rem] border px-5 py-6 text-black backdrop-blur-sm md:px-8 md:py-8;
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(249, 246, 239, 0.92);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+:is(.dark) .ledger-section {
+  @apply text-white;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.hc-now-page {
+  width: min(100%, 64rem);
+  max-width: none;
+  padding-top: var(--hc-space-6);
+}
+
+.hc-now-page > header {
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 0;
+  border-radius: var(--hc-radius-surface);
+  color: var(--hc-proof-text);
+  background: var(--hc-proof-surface);
+  box-shadow: 0 1.5rem 4rem rgba(16, 37, 63, 0.12);
+}
+
+.hc-now-page > header :where(h1, p) {
+  color: inherit !important;
+}
+
+.hc-now-page > header p:first-of-type {
+  color: var(--hc-proof-text-muted) !important;
+}
+
+.hc-now-page .ledger-section {
+  border: 0;
+  border-radius: var(--hc-radius-surface);
+  background: var(--hc-surface);
+  box-shadow: 0 12px 36px rgba(16, 37, 63, 0.055);
+}
+
+.hc-now-page {
+  width: min(100%, var(--hc-wide-max));
+  max-width: none;
+  padding-top: clamp(1rem, 2vw, 2rem) !important;
+}
+
+.hc-now-page > header.ledger-section {
+  min-height: min(38rem, calc(100svh - 10rem));
+  align-content: end;
+  padding: clamp(3rem, 7vw, 7rem);
+  border: 0;
+  border-radius: 0;
+  color: var(--hc-proof-text);
+  background: var(--hc-proof-surface);
+  box-shadow: none;
+}
+
+.hc-now-page > header :where(h1, p) {
+  max-width: 48rem;
+  color: var(--hc-proof-text) !important;
+}
+
+.hc-now-page > header > p:last-child {
+  color: var(--hc-accent) !important;
+}
+
+.hc-now-page > section {
+  padding-block: clamp(4rem, 9vw, 9rem);
+}
+
+.hc-now-page > section .ledger-section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hc-now-page .prose :where(h2) {
+  max-width: 18ch;
+  margin: clamp(3rem, 7vw, 7rem) 0 1.5rem;
+  padding: 0;
+  border: 0;
+  color: var(--hc-text);
+  font-family: var(--hc-font-sans);
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: none;
+}
+
+.hc-now-page .prose :where(h2:first-child) {
+  margin-top: 0;
+}
+
+.hc-now-page .prose :where(p) {
+  max-width: 62ch;
+  color: var(--hc-text-muted) !important;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.72;
+}
+
+@media (max-width: 640px) {
+  .hc-now-page > header.ledger-section {
+    min-height: 32rem;
+    padding: 2rem;
+  }
+}

@@ -8,6 +8,7 @@ import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
+import '../../styles/case-study.css';
 
 interface PageProps {
 	project: Project;
@@ -101,6 +102,7 @@ const heroActions = [
 	jsonLd={caseStudyJsonLd}
 	showFooterCta={false}
 	footerLinksOnly
+	bodyClass='page-case-study-detail'
 >
 	<article
 		class:list={[
@@ -128,7 +130,7 @@ const heroActions = [
 						{
 							heroActions.map((action, index) => (
 								<a
-									class={index === 0 ? 'home-hero-primary-link' : 'fit-secondary-link'}
+                        class={index === 0 ? 'hc-button' : 'fit-secondary-link'}
 									href={action.href}
 									target={action.external ? '_blank' : undefined}
 									rel={action.external ? 'noopener noreferrer' : undefined}
