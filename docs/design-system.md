@@ -18,6 +18,28 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 5. Respect reduced-motion preferences. Navigation and page transitions may enhance orientation, but content and controls must remain usable with motion disabled.
 6. Validate every durable layout change at desktop, tablet, and mobile widths, including horizontal overflow, focus visibility, menu behavior, and readable line lengths.
 
+## Typography
+
+Typography is role-based. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
+
+| Role          | Token                  | Size             | Use                                                 |
+| ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
+| Caption       | `--hc-type-caption`    | 12px             | Nonessential metadata, indices, and proof labels    |
+| Meta          | `--hc-type-meta`       | 14px             | Labels, dates, legal text, and secondary navigation |
+| UI            | `--hc-type-ui`         | 16px             | Navigation, buttons, links, and controls            |
+| Body          | `--hc-type-body`       | 18px             | Default prose and descriptions                      |
+| Body large    | `--hc-type-body-large` | 20px             | Prominent supporting copy                           |
+| Lead          | `--hc-type-lead`       | 24px             | Introductions and compact subheads                  |
+| Heading       | `--hc-type-heading-*`  | 32px and 40px    | Fixed-size content headings                         |
+| Display       | `--hc-type-display-*`  | Responsive clamp | Page titles and major editorial statements          |
+| Section title | `--hc-type-section`    | Responsive clamp | Primary section headings                            |
+
+The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-regular`, `--hc-weight-semibold`, and `--hc-weight-bold` for the shared 400, 600, and 700 weights.
+
+Font families are also semantic: `--hc-font-sans` is the default interface face, `--hc-font-display` is the bold homepage display face, `--hc-font-editorial` is the portfolio serif, `--hc-font-reading` is for long-form articles, and `--hc-font-technical` is for technical editorial surfaces. Case-study display and mono treatments use `--hc-font-case-display`, `--hc-font-mono`, and `--hc-font-technical-mono`.
+
+Use the existing line-height tokens and keep prose between roughly 45ch and 76ch. A route can choose a declared family role or responsive display size, but it should not create another unnamed type system.
+
 ## Route stylesheet ownership
 
 | File                 | Owner                                                      |
