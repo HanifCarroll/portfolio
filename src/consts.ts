@@ -8,4 +8,4 @@ export const SITE_DESCRIPTION =
 export const EMAIL = "hanif@hanifcarroll.com";
 export const EMAIL_URL = "mailto:hanif@hanifcarroll.com";
 export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/business-systems-audit";
-export const NEWSLETTER_URL = "https://hanifcarroll.beehiiv.com/";
+export const NEWSLETTER_URL = "https://www.hanifcarroll.com/newsletter/";

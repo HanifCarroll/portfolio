@@ -1,40 +1,63 @@
 ---
-import { NEWSLETTER_URL } from '../../consts';
-
 interface Props {
 	location: 'hero' | 'closing';
 }
 
 const { location } = Astro.props;
-const beehiivFormId = '35125e12-8fca-4f74-b609-4861f4b66cbb';
+const emailId = `awt-email-${location}`;
+const statusId = `awt-status-${location}`;
 ---
 
 <div class='awt-signup' data-track-location={`newsletter_${location}`}>
-	<div class='awt-signup__embed' aria-label='Subscribe to A Working Theory'>
-		<script async src='https://subscribe-forms.beehiiv.com/v3/loader.js' data-beehiiv-form={beehiivFormId} is:inline></script>
-	</div>
-	<noscript>
-		<a class='awt-signup__fallback' href={NEWSLETTER_URL}>Subscribe on beehiiv</a>
-	</noscript>
+	<form class='awt-signup__form' data-newsletter-form aria-describedby={statusId}>
+		<label class='awt-signup__label' for={emailId}>Email address</label>
+		<div class='awt-signup__controls'>
+			<input id={emailId} class='awt-signup__input' name='email' type='email' inputmode='email' autocomplete='email' placeholder='you@example.com' required />
+			<input class='awt-signup__honeypot' name='company' type='text' tabindex='-1' autocomplete='off' aria-hidden='true' />
+			<button class='awt-signup__button' type='submit'>Subscribe</button>
+		</div>
+		<p id={statusId} class='awt-signup__status' data-newsletter-status aria-live='polite'></p>
+	</form>
+	<noscript><p class='awt-signup__status'>JavaScript is required to subscribe from this page.</p></noscript>
 </div>
 
 <script>
-	const subscribeEmbeds = document.querySelectorAll('.awt-signup__embed');
+	const result = new URLSearchParams(window.location.search).get('subscription');
+	const resultMessages = {
+		confirmed: 'You’re subscribed. Check your inbox for a welcome note.',
+		invalid: 'That confirmation link is invalid or has expired. Subscribe again for a new link.',
+		error: 'Your email could not be confirmed. Please try again.'
+	};
 
-	for (const embed of subscribeEmbeds) {
-		const accessibleName = embed.getAttribute('aria-label') ?? 'Subscribe to A Working Theory';
-		const titleFrame = () => {
-			const frame = embed.querySelector('iframe');
-			if (!frame) return false;
-			frame.title = accessibleName;
-			return true;
-		};
+	for (const form of document.querySelectorAll('[data-newsletter-form]')) {
+		if (!(form instanceof HTMLFormElement)) continue;
+		const status = form.querySelector('[data-newsletter-status]');
+		const button = form.querySelector('button[type="submit"]');
+		if (!(status instanceof HTMLElement) || !(button instanceof HTMLButtonElement)) continue;
 
-		if (!titleFrame()) {
-			const observer = new MutationObserver(() => {
-				if (titleFrame()) observer.disconnect();
-			});
-			observer.observe(embed, { childList: true, subtree: true });
+		if (result && result in resultMessages) status.textContent = resultMessages[result as keyof typeof resultMessages];
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			button.disabled = true;
+			status.textContent = 'Sending confirmation…';
+			const data = new FormData(form);
+
+			try {
+				const response = await fetch('/api/newsletter/subscribe', {
+					method: 'POST',
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify({ email: data.get('email'), company: data.get('company') })
+				});
+				const body = await response.json();
+				if (!response.ok) throw new Error(body.error ?? 'Subscription failed.');
+				status.textContent = 'Check your inbox and confirm your email address.';
+				form.reset();
+			} catch (error) {
+				status.textContent = error instanceof Error ? error.message : 'Subscription failed. Please try again.';
+			} finally {
+				button.disabled = false;
+			}
+		});
 		}
-	}
 </script>
