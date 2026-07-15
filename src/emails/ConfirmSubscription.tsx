@@ -20,6 +20,12 @@ export function ConfirmSubscription({ confirmationUrl }: { confirmationUrl: stri
   );
 }
 
+ConfirmSubscription.PreviewProps = {
+  confirmationUrl: "https://www.hanifcarroll.com/newsletter/",
+};
+
+export default ConfirmSubscription;
+
 const heading = {
   margin: "0 0 18px",
   fontFamily: "Georgia, serif",

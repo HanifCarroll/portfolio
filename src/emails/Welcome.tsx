@@ -16,6 +16,8 @@ export function Welcome() {
   );
 }
 
+export default Welcome;
+
 const heading = {
   margin: "0 0 18px",
   fontFamily: "Georgia, serif",

@@ -2,6 +2,16 @@
 
 The portfolio owns the public signup page and the React Email source. Resend owns the contact list, topic preferences, welcome automation, broadcast drafts, delivery, and unsubscribe handling. The vault remains the editorial source of truth.
 
+## Local template previews
+
+Run the React Email development server to review the confirmation, welcome, and newsletter issue templates with hot reload, desktop and mobile presets, editable preview props, compatibility checks, and spam checks:
+
+```sh
+bun run email:dev
+```
+
+The gallery opens at `http://localhost:3001`. Each production email exports `PreviewProps` so the gallery has representative content without sending or creating anything in Resend. Shared layout components remain named exports only, which keeps them out of the preview sidebar.
+
 ## Runtime flow
 
 1. `/newsletter/` posts an email address to `/api/newsletter/subscribe`.
