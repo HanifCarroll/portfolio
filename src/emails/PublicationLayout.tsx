@@ -16,6 +16,11 @@ import {
 import type { ReactNode } from "react";
 import { newsletterConfig } from "../lib/newsletter/config";
 
+const publicationMarkUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/static/a-working-theory-mark-96.png"
+    : `${newsletterConfig.siteUrl}/brand/a-working-theory-mark-96.png`;
+
 interface PublicationLayoutProps {
   preview: string;
   children: ReactNode;
@@ -33,8 +38,8 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
             <Row>
               <Column style={styles.logoColumn}>
                 <Img
-                  src={`${newsletterConfig.siteUrl}/brand/hc-studio-fine-ring-96.png`}
-                  alt="HC Studio"
+                  src={publicationMarkUrl}
+                  alt="A Working Theory"
                   width="44"
                   height="44"
                   style={styles.logo}
