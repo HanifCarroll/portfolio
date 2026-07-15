@@ -140,7 +140,7 @@ body.hc-home .hc-home-hero__title {
 .hc-home-hero__portrait-image {
   z-index: 1;
   object-position: 50% 50%;
-  transform: translateY(clamp(1rem, 1.8vw, 1.75rem));
+  transform: translateY(clamp(5rem, 6vw, 6rem));
 }
 
 .hc-recognition-section {
@@ -336,7 +336,7 @@ body.hc-home .hc-home-hero__title {
   min-height: 4.6rem;
   border-radius: var(--hc-radius-surface);
   color: var(--hc-text);
-  background: #f3f3ef;
+  background: var(--hc-surface);
 }
 
 .hc-service-comparison__head > span {
@@ -362,6 +362,7 @@ body.hc-home .hc-home-hero__title {
 
 .hc-service-comparison__group {
   align-items: start;
+  border-top: 1px solid color-mix(in srgb, var(--hc-text) 10%, transparent);
   padding-block: var(--hc-space-5);
 }
 
@@ -403,7 +404,7 @@ body.hc-home .hc-home-hero__title {
 }
 
 .hc-service-comparison__group--best {
-  background: #f6f6f3;
+  background: var(--hc-surface);
 }
 
 .hc-service-comparison__group--commercial {
@@ -1081,6 +1082,7 @@ body.hc-home .hc-home-hero__title {
 
 .hc-about-preview__copy {
   display: grid;
+  order: -1;
   gap: clamp(2.5rem, 5vw, 4rem);
   padding-block: clamp(1rem, 4vw, 3rem);
 }

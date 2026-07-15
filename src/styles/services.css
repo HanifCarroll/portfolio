@@ -361,6 +361,26 @@
   background: color-mix(in srgb, var(--hc-secondary-accent) 6%, var(--hc-canvas));
 }
 
+.page-services .hc-page-cta {
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+  background: color-mix(in srgb, var(--hc-secondary-accent) 6%, var(--hc-canvas));
+}
+
+.page-services .hc-page-cta__card {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page-services .hc-page-cta__card h2 {
+  max-width: 18ch;
+  font-size: clamp(2.25rem, 3.3vw, 3.4rem);
+  line-height: 1.02;
+}
+
 .hc-services-faq h2,
 .hc-faq-list {
   max-width: 64rem;
@@ -529,11 +549,18 @@
   .hc-faq-item__answer {
     padding-right: 2.5rem;
   }
+
+  .page-services .hc-page-cta__card {
+    grid-template-columns: 1fr;
+    gap: var(--hc-space-5);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hc-service-item,
-  .hc-proof-card figure img {
+  .hc-proof-card figure img,
+  .hc-faq-item__icon::before,
+  .hc-faq-item__icon::after {
     transition: none;
   }
 }
