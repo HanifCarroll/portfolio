@@ -91,7 +91,7 @@ const styles = {
   },
   masthead: { paddingBottom: "18px" },
   titleColumn: { width: "190px", verticalAlign: "bottom" },
-  logoColumn: { width: "32px", verticalAlign: "bottom" },
+  logoColumn: { width: "40px", paddingLeft: "8px", verticalAlign: "bottom" },
   logo: { display: "block", margin: "0" },
   name: {
     margin: "0",
