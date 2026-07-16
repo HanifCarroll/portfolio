@@ -120,11 +120,8 @@ function mountHeader() {
     scheduledFrame = 0;
     const currentScrollY = Math.max(0, window.scrollY);
     const scrollDelta = currentScrollY - lastScrollY;
-    const usesCompactNavigation = window.innerWidth <= 900;
 
-    if (usesCompactNavigation) {
-      setHeaderVisible(true);
-    } else if (!isOpen && !siteHeader.contains(document.activeElement)) {
+    if (!isOpen && !siteHeader.contains(document.activeElement)) {
       if (currentScrollY <= 32 || scrollDelta < -4) setHeaderVisible(true);
       else if (currentScrollY > 140 && scrollDelta > 4) setHeaderVisible(false);
     }
