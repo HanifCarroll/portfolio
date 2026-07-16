@@ -132,8 +132,12 @@ function mountHeader() {
     const probeY = Math.min(window.innerHeight - 1, Math.ceil(headerBottom) + 1);
     const probeX = Math.max(0, Math.min(window.innerWidth - 1, Math.round(window.innerWidth / 2)));
     const surface = document.elementFromPoint(probeX, probeY)?.closest("[data-header-surface]");
-    siteHeader.dataset.overSurface =
-      surface?.getAttribute("data-header-surface") === "dark" ? "dark" : "light";
+    const surfaceType =
+      window.innerWidth <= 640
+        ? (surface?.getAttribute("data-header-surface-mobile") ??
+          surface?.getAttribute("data-header-surface"))
+        : surface?.getAttribute("data-header-surface");
+    siteHeader.dataset.overSurface = surfaceType === "dark" ? "dark" : "light";
   };
   const scheduleHeaderUpdate = () => {
     if (scheduledFrame) return;

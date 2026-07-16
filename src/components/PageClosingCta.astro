@@ -10,7 +10,12 @@ const {
 } = Astro.props;
 ---
 
-<section class={`hc-page-cta hc-page-cta--${surface}`} data-motion-section data-header-surface={surface === 'navy' ? 'dark' : 'light'}>
+<section
+	class={`hc-page-cta hc-page-cta--${surface} hc-page-cta--mobile-band`}
+	data-motion-section
+	data-header-surface={surface === 'navy' ? 'dark' : 'light'}
+	data-header-surface-mobile='dark'
+>
 	<div class='hc-container'>
 		<div class='hc-page-cta__card' data-motion-item>
 			<h2>{title}</h2>
