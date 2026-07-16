@@ -22,12 +22,19 @@ if (issue.approvedDigest !== issue.issueDigest) {
 if (approvedDigest !== issue.issueDigest)
   throw new Error(`Approval digest does not match the issue: expected ${issue.issueDigest}`);
 
+const broadcastName = issue.title;
+if (broadcastName.length > 70) {
+  throw new Error(
+    `Resend broadcast names are limited to 70 characters; the issue title has ${broadcastName.length}`,
+  );
+}
+
 const resend = new Resend(requireNewsletterEnv("RESEND_API_KEY"));
 const { data, error } = await resend.broadcasts.create({
   segmentId: requireNewsletterEnv("RESEND_SEGMENT_ID"),
   from: newsletterConfig.from,
   replyTo: newsletterConfig.replyTo,
-  name: `${issue.title} · ${issue.issueDigest.slice(0, 19)}`,
+  name: broadcastName,
   subject: issue.subject,
   react: <NewsletterIssue title={issue.title} preview={issue.preview} blocks={issue.blocks} />,
   send: false,
