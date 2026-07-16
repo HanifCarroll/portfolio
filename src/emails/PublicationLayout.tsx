@@ -96,7 +96,7 @@ const styles = {
   name: {
     margin: "0",
     fontSize: "23px",
-    fontWeight: "600",
+    fontWeight: "500",
     letterSpacing: "-0.45px",
     lineHeight: "1",
   },
