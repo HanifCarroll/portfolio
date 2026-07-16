@@ -384,7 +384,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "A monthly partnership scoped around priorities and available time.",
       },
     ],
-    sectionOrder: ["fit", "working", "deliverables", "proof", "commercial", "faq"],
+    sectionOrder: ["fit", "deliverables", "working", "proof", "commercial", "faq"],
     fitHeading: "The same part of the business keeps needing technical help.",
     fitBody:
       "The partnership covers one part of the business where systems need regular attention. Because I keep the business and technical context between priorities, your team doesn't have to explain the same systems from the beginning each time.",
@@ -455,7 +455,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Timely feedback from the people affected by a change",
       "Agreement on which priorities fit within the available time",
     ],
-    pricingHeading: "A monthly partnership defined before work begins.",
+    pricingHeading: "How the partnership is scoped and priced.",
     pricingBody:
       "We confirm which part of the business the partnership covers, the starting priorities, available time, monthly price, initial term, payment timing, and responsibilities before it begins.",
     proof: [

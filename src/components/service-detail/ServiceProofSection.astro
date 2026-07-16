@@ -10,13 +10,13 @@ interface Props {
 const { offer } = Astro.props as Props;
 const headings = {
 	audit: 'See how an audit becomes a practical plan.',
-	systemsBuild: 'A system used by paying teams.',
+	systemsBuild: 'See a Business Systems Build in practice.',
 	ongoing: "Systems I've improved as the business grew."
 } as const;
 const heading = headings[offer.key];
 ---
 
-<section class='hc-detail-section hc-detail-proof hc-section' aria-labelledby={`${offer.key}-proof`}>
+<section class='hc-detail-section hc-detail-proof hc-section' aria-labelledby={`${offer.key}-proof`} data-header-surface='dark'>
 	<div class='hc-container'>
 		<header class='hc-detail-section-header'>
 			<h2 id={`${offer.key}-proof`}>{heading}</h2>
