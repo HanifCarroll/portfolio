@@ -13,7 +13,9 @@ const realIssues: NewsletterArchiveIssue[] = entries.map((entry) => ({
 	description: entry.data.description,
 	pubDate: entry.data.pubDate,
 	issueNumber: entry.data.issueNumber,
-	tags: entry.data.tags
+	tags: entry.data.tags,
+	coverImage: entry.data.coverImage,
+	coverAlt: entry.data.coverAlt
 }));
 const issues = [...realIssues, ...sampleNewsletterIssues].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 ---
@@ -27,23 +29,32 @@ const issues = [...realIssues, ...sampleNewsletterIssues].sort((a, b) => b.pubDa
 >
 	<article class='awt-page awt-archive-page'>
 		<header class='awt-archive-hero' data-header-surface='dark' data-motion-intro>
-			<div class='hc-container-wide awt-archive-hero__grid'>
-				<div>
-					<a class='awt-back-link' href='/newsletter/'>A Working Theory</a>
-					<h1 data-motion-headline>Issue archive</h1>
-					<p data-motion-deck>Field notes on AI, judgment, and better ways of working, newest first.</p>
-				</div>
-				<div class='awt-archive-hero__signup' data-motion-intro-item>
-					<p>Get the next working theory by email.</p>
-					<SubscribeForm location='archive' />
-				</div>
+			<div class='hc-container-wide awt-archive-hero__inner'>
+				<a class='awt-back-link' href='/newsletter/'>A Working Theory</a>
+				<h1 data-motion-headline>Issue archive</h1>
+				<p data-motion-deck>Field notes on AI, judgment, and better ways of working. Browse every issue, newest first.</p>
 			</div>
 		</header>
 		<div class='hc-container-wide awt-preview-notice' role='note'>
 			<strong>Archive design preview.</strong> Issue 001 is real. The other entries are sample content used only to test the filled archive layout.
 		</div>
 		<section class='hc-container-wide awt-archive-section' aria-label='Published and sample issues' data-motion-section>
+			<div class='awt-archive-section__heading'>
+				<p>Published and sample issues</p>
+				<span>{issues.length} issues</span>
+			</div>
 			<ArchiveList issues={issues} />
+		</section>
+		<section class='awt-archive-subscribe' aria-labelledby='awt-preview-subscribe-title' data-motion-section>
+			<div class='hc-container-wide'>
+				<div class='awt-archive-subscribe__inner'>
+					<div>
+						<p>Keep reading</p>
+						<h2 id='awt-preview-subscribe-title'>Get the next working theory by email.</h2>
+					</div>
+					<SubscribeForm location='archive' />
+				</div>
+			</div>
 		</section>
 	</article>
 </BaseLayout>

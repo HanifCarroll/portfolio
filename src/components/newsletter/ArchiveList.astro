@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { issues } = Astro.props;
+const latestRealIssueNumber = Math.max(...issues.filter((issue) => !issue.isSample).map((issue) => issue.issueNumber));
 const dateFormatter = new Intl.DateTimeFormat('en', {
 	month: 'short',
 	day: 'numeric',
@@ -16,36 +17,57 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 
 <ol class='awt-archive-list'>
 	{
-		issues.map((issue) => (
+		issues.map((issue) => {
+			const isLatest = !issue.isSample && issue.issueNumber === latestRealIssueNumber;
+			const content = (
+				<>
+					<div class='awt-archive-entry__meta'>
+						<span>Issue {String(issue.issueNumber).padStart(3, '0')}</span>
+						<time datetime={issue.pubDate.toISOString()}>{dateFormatter.format(issue.pubDate)}</time>
+						{isLatest && <span class='awt-archive-entry__latest'>Latest</span>}
+						{issue.isSample && <span class='awt-archive-entry__sample'>Sample</span>}
+					</div>
+					<div class='awt-archive-entry__body'>
+						<h2>{issue.title}</h2>
+						<p>{issue.description}</p>
+						<ul class='awt-archive-entry__tags' aria-label='Topics'>
+							{issue.tags.map((tag) => <li>{tag}</li>)}
+						</ul>
+						{!issue.isSample && (
+							<span class='awt-archive-entry__read'>
+								Read issue
+								<svg viewBox='0 0 16 16' aria-hidden='true'>
+									<path d='M4 12 12 4M6 4h6v6' />
+								</svg>
+							</span>
+						)}
+					</div>
+					<div class='awt-archive-entry__visual' aria-hidden={issue.isSample ? 'true' : undefined}>
+						{issue.coverImage ? (
+							<img src={issue.coverImage} alt={issue.coverAlt ?? ''} width='1200' height='800' loading='lazy' />
+						) : (
+							<div class='awt-archive-entry__cover'>
+								<span>A Working Theory</span>
+								<strong>{String(issue.issueNumber).padStart(3, '0')}</strong>
+							</div>
+						)}
+					</div>
+				</>
+			);
+
+			return (
 			<li class:list={['awt-archive-entry', { 'awt-archive-entry--sample': issue.isSample }]}>
 				{issue.isSample ? (
 					<div class='awt-archive-entry__link' aria-label={`${issue.title}, sample issue`}>
-						<div class='awt-archive-entry__meta'>
-							<span>Issue {String(issue.issueNumber).padStart(3, '0')}</span>
-							<time datetime={issue.pubDate.toISOString()}>{dateFormatter.format(issue.pubDate)}</time>
-							<span class='awt-archive-entry__sample'>Sample</span>
-						</div>
-						<h2>{issue.title}</h2>
-						<p>{issue.description}</p>
-						<ul class='awt-archive-entry__tags' aria-label='Topics'>
-							{issue.tags.map((tag) => <li>{tag}</li>)}
-						</ul>
+						{content}
 					</div>
 				) : (
 					<a class='awt-archive-entry__link' href={`/newsletter/issues/${issue.slug}/`} aria-label={`Read ${issue.title}`}>
-						<div class='awt-archive-entry__meta'>
-							<span>Issue {String(issue.issueNumber).padStart(3, '0')}</span>
-							<time datetime={issue.pubDate.toISOString()}>{dateFormatter.format(issue.pubDate)}</time>
-						</div>
-						<h2>{issue.title}</h2>
-						<p>{issue.description}</p>
-						<ul class='awt-archive-entry__tags' aria-label='Topics'>
-							{issue.tags.map((tag) => <li>{tag}</li>)}
-						</ul>
-						<span class='awt-archive-entry__arrow' aria-hidden='true'>↗</span>
+						{content}
 					</a>
 				)}
 			</li>
-		))
+			);
+		})
 	}
 </ol>

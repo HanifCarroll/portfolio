@@ -34,6 +34,8 @@ const newsletter = defineCollection({
     pubDate: z.coerce.date(),
     issueNumber: z.number().int().positive(),
     tags: z.array(z.string()).default([]),
+    coverImage: z.string().optional(),
+    coverAlt: z.string().optional(),
   }),
 });
 

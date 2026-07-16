@@ -5,6 +5,8 @@ export interface NewsletterArchiveIssue {
   pubDate: Date;
   issueNumber: number;
   tags: string[];
+  coverImage?: string;
+  coverAlt?: string;
   isSample?: boolean;
 }
 
