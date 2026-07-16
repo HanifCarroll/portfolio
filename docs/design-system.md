@@ -20,7 +20,7 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 
 ## Typography
 
-Typography is role-based. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
+Typography is role-based, with Helvetica Neue as the single site typeface. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
 
 | Role          | Token                  | Size             | Use                                                 |
 | ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
@@ -36,7 +36,7 @@ Typography is role-based. Use the semantic tokens in `design-tokens.css`; do not
 
 The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-regular`, `--hc-weight-semibold`, and `--hc-weight-bold` for the shared 400, 600, and 700 weights.
 
-Font families are also semantic: `--hc-font-sans` is the default interface face, `--hc-font-display` is the bold homepage display face, `--hc-font-editorial` is the portfolio serif, `--hc-font-reading` is for long-form articles, and `--hc-font-technical` is for technical editorial surfaces. Case-study display and mono treatments use `--hc-font-case-display`, `--hc-font-mono`, and `--hc-font-technical-mono`.
+All proportional family roles resolve to the shared `--hc-font-sans` stack: Helvetica Neue, Helvetica, Arial, then sans-serif. The display, editorial, reading, technical, and case-study tokens remain semantic aliases so layouts can express their role without introducing another typeface. Only `--hc-font-mono` and `--hc-font-technical-mono` remain distinct for code and explicitly technical metadata.
 
 Use the existing line-height tokens and keep prose between roughly 45ch and 76ch. A route can choose a declared family role or responsive display size, but it should not create another unnamed type system.
 
