@@ -38,7 +38,6 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
             <Row>
               <Column style={styles.titleColumn}>
                 <Text style={styles.name}>A Working Theory</Text>
-                <Text style={styles.byline}>by Hanif Carroll</Text>
               </Column>
               <Column style={styles.logoColumn}>
                 <Img
@@ -51,6 +50,7 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
               </Column>
               <Column />
             </Row>
+            <Text style={styles.byline}>by Hanif Carroll</Text>
           </Section>
           <Hr style={styles.accent} />
           {children}
@@ -90,7 +90,7 @@ const styles = {
     backgroundColor: "#fdfdfb",
   },
   masthead: { paddingBottom: "18px" },
-  titleColumn: { width: "205px", verticalAlign: "middle" },
+  titleColumn: { width: "190px", verticalAlign: "middle" },
   logoColumn: { width: "54px", verticalAlign: "middle" },
   logo: { display: "block", margin: "0" },
   name: { margin: "0", fontSize: "23px", fontWeight: "700", letterSpacing: "-0.45px" },
