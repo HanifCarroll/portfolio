@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import type { ServiceOffer } from '../lib/service-offers';
+import ServiceAuditMap from '../assets/img/illustrations/service-audit-map.svg';
+import ServiceFocusedBuild from '../assets/img/illustrations/service-focused-build.svg';
+import ServiceHandoffSystem from '../assets/img/illustrations/service-handoff-system.svg';
 import '../styles/service-detail.css';
 
 interface Props {
@@ -10,6 +13,12 @@ interface Props {
 }
 
 const { offer } = Astro.props as Props;
+const heroIllustrations = {
+	audit: ServiceAuditMap,
+	systemsBuild: ServiceFocusedBuild,
+	ongoing: ServiceHandoffSystem
+};
+const heroIllustration = heroIllustrations[offer.key];
 const serviceJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'Service',
@@ -35,140 +44,88 @@ const serviceJsonLd = {
 	footerCtaLocation={`${offer.key}_final`}
 >
 	<article class='hc-service-detail-page'>
-		<div class='hc-container'>
-			<header class='hc-detail-hero' data-motion-intro>
-				<nav class='hc-breadcrumbs' aria-label='Breadcrumb'>
-					<a href='/'>Home</a><span aria-hidden='true'>/</span><a href='/services/'>Services</a><span aria-hidden='true'>/</span><span>{offer.label}</span>
-				</nav>
-				<h1 data-motion-headline>{offer.heroTitle}</h1>
-				<p class='hc-lead' data-motion-deck>{offer.heroBody}</p>
-				<p class='hc-commercial-note'>{offer.commercialNote}</p>
-				<div class='hc-actions'>
-					<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>
-						{offer.primaryCta}
-					</a>
-					<a class='hc-text-link' href={offer.secondaryHref}>{offer.secondaryCta}</a>
+		<header class='hc-detail-hero' data-motion-intro data-header-surface='dark'>
+			<div class='hc-container-wide hc-detail-hero__grid'>
+				<div class='hc-detail-hero__copy'>
+					<nav class='hc-breadcrumbs' aria-label='Breadcrumb'>
+						<a href='/'>Home</a><span aria-hidden='true'>/</span><a href='/services/'>Services</a><span aria-hidden='true'>/</span><span>{offer.label}</span>
+					</nav>
+					<p class='hc-detail-eyebrow'>{offer.label}</p>
+					<h1 data-motion-headline>{offer.heroTitle}</h1>
+					<p class='hc-lead' data-motion-deck>{offer.heroBody}</p>
+					<p class='hc-commercial-note'>{offer.commercialNote}</p>
+					<div class='hc-actions'>
+						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>{offer.primaryCta}</a>
+						<a class='hc-text-link' href={offer.secondaryHref}>{offer.secondaryCta}</a>
+					</div>
 				</div>
-			</header>
+				<figure class='hc-detail-hero__figure' data-motion-intro-item><Image src={heroIllustration} alt='' aria-hidden='true' loading='eager' /></figure>
+			</div>
+		</header>
 
-			<section class='hc-detail-grid hc-section--compact' aria-labelledby={`${offer.key}-fit`}>
-				<h2 id={`${offer.key}-fit`}>{offer.fitHeading}</h2>
+		<section class='hc-detail-section hc-detail-fit hc-section' aria-labelledby={`${offer.key}-fit`}>
+			<div class='hc-container hc-detail-grid'>
+				<div class='hc-detail-heading'><p class='hc-detail-section-number'>01</p><h2 id={`${offer.key}-fit`}>{offer.fitHeading}</h2></div>
 				<div class='hc-detail-content'>
 					<p>{offer.fitBody}</p>
-					<ul class='hc-signal-list'>
-						{offer.fitSignals.map((signal) => <li>{signal}</li>)}
-					</ul>
+					<ul class='hc-signal-list'>{offer.fitSignals.map((signal) => <li>{signal}</li>)}</ul>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class='hc-detail-section hc-section' aria-labelledby={`${offer.key}-deliverables`}>
-				<div class='hc-section-header'>
-					<h2 id={`${offer.key}-deliverables`} class='hc-section-title'>{offer.deliverablesHeading}</h2>
-				</div>
+		<section class='hc-detail-section hc-detail-deliverables hc-section' aria-labelledby={`${offer.key}-deliverables`}>
+			<div class='hc-container'>
+				<div class='hc-detail-section-header'><p class='hc-detail-section-number'>02</p><h2 id={`${offer.key}-deliverables`} class='hc-section-title'>{offer.deliverablesHeading}</h2></div>
 				<div class='hc-deliverables'>
-					{
-						offer.deliverables.map((item) => (
-							<div class='hc-deliverable'>
-								<h3>{item.title}</h3>
-								<p>{item.body}</p>
-							</div>
-						))
-					}
+					{offer.deliverables.map((item) => <div class='hc-deliverable'><h3>{item.title}</h3><p>{item.body}</p></div>)}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class='hc-scope-panel hc-detail-section' aria-labelledby={`${offer.key}-scope`}>
-				<h2 id={`${offer.key}-scope`}>{offer.scopeHeading}</h2>
+		<section class='hc-detail-section hc-scope-panel hc-section' aria-labelledby={`${offer.key}-scope`}>
+			<div class='hc-container'>
+				<div class='hc-detail-section-header'><p class='hc-detail-section-number'>03</p><h2 id={`${offer.key}-scope`}>{offer.scopeHeading}</h2></div>
 				<div class='hc-scope-columns'>
-					<div>
-						<h3>{offer.includedHeading}</h3>
-						<ul class='hc-check-list'>
-							{offer.included.map((item) => <li>{item}</li>)}
-						</ul>
-					</div>
-					<div>
-						<h3>Where the scope stops</h3>
-						<p class='hc-scope-boundary'>{offer.boundary}</p>
-					</div>
+					<div><h3>{offer.includedHeading}</h3><ul class='hc-check-list'>{offer.included.map((item) => <li>{item}</li>)}</ul></div>
+					<div><h3>Where the scope stops</h3><p class='hc-scope-boundary'>{offer.boundary}</p></div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class='hc-detail-section hc-section' aria-labelledby={`${offer.key}-process`}>
-				<div class='hc-section-header'>
-					<h2 id={`${offer.key}-process`} class='hc-section-title'>{offer.processHeading}</h2>
-				</div>
+		<section class='hc-detail-section hc-detail-process hc-section' aria-labelledby={`${offer.key}-process`} data-header-surface='dark'>
+			<div class='hc-container'>
+				<div class='hc-detail-section-header'><p class='hc-detail-section-number'>04</p><h2 id={`${offer.key}-process`} class='hc-section-title'>{offer.processHeading}</h2></div>
 				<div class='hc-process-list'>
-					{
-						offer.process.map((step, index) => (
-							<div class='hc-process-step'>
-								<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
-								<h3>{step.title}</h3>
-								<p>{step.body}</p>
-							</div>
-						))
-					}
+					{offer.process.map((step, index) => <div class='hc-process-step'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{step.title}</h3><p>{step.body}</p></div>)}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class='hc-detail-grid hc-section--compact' aria-labelledby={`${offer.key}-responsibilities`}>
-				<h2 id={`${offer.key}-responsibilities`}>What I need from you</h2>
-				<ul class='hc-check-list'>
-					{offer.responsibilities.map((item) => <li>{item}</li>)}
-				</ul>
-			</section>
+		<section class='hc-detail-section hc-detail-practical hc-section'>
+			<div class='hc-container hc-detail-practical__grid'>
+				<div aria-labelledby={`${offer.key}-responsibilities`}><h2 id={`${offer.key}-responsibilities`}>What I need from you</h2><ul class='hc-check-list'>{offer.responsibilities.map((item) => <li>{item}</li>)}</ul></div>
+				<div class='hc-commercial-panel' aria-labelledby={`${offer.key}-price`}><h2 id={`${offer.key}-price`}>{offer.pricingHeading}</h2><p>{offer.pricingBody}</p></div>
+			</div>
+		</section>
 
-			<section class='hc-commercial-panel hc-detail-section' aria-labelledby={`${offer.key}-price`}>
-				<h2 id={`${offer.key}-price`}>{offer.pricingHeading}</h2>
-				<div class='hc-commercial-panel__body'>
-					<p>{offer.pricingBody}</p>
-				</div>
-			</section>
-
-			<section class='hc-detail-section hc-section' aria-labelledby={`${offer.key}-proof`}>
-				<div class='hc-section-header'>
-					<h2 id={`${offer.key}-proof`} class='hc-section-title'>Relevant proof</h2>
-				</div>
+		<section class='hc-detail-section hc-detail-proof hc-section' aria-labelledby={`${offer.key}-proof`}>
+			<div class='hc-container'>
+				<div class='hc-detail-section-header'><p class='hc-detail-section-number'>05</p><h2 id={`${offer.key}-proof`} class='hc-section-title'>Relevant proof</h2></div>
 				<div class='hc-proof-grid'>
-					{
-						offer.proof.map((proof) => (
-							<a class='hc-proof-card' href={proof.href}>
-								<figure>
-									<Image src={proof.image} alt={proof.imageAlt} class={proof.imageClass} loading='lazy' />
-								</figure>
-								<div class='hc-proof-card__copy'>
-									<p class='hc-proof-label'>{proof.label}</p>
-									<h3>{proof.title}</h3>
-									<strong>{proof.heading}</strong>
-									<p>{proof.body}</p>
-									<span class='hc-text-link'>View {proof.title}</span>
-								</div>
-							</a>
-						))
-					}
+					{offer.proof.map((proof) => <a class='hc-proof-card' href={proof.href}><figure><Image src={proof.image} alt={proof.imageAlt} class={proof.imageClass} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{proof.label}</p><h3>{proof.title}</h3><strong>{proof.heading}</strong><p>{proof.body}</p><span class='hc-text-link'>View {proof.title}</span></div></a>)}
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section class='hc-ownership hc-detail-section' aria-labelledby={`${offer.key}-ownership`}>
-				<h2 id={`${offer.key}-ownership`}>{offer.ownershipHeading}</h2>
-				<div class='hc-ownership__body'><p>{offer.ownershipBody}</p></div>
-			</section>
+		<section class='hc-ownership hc-detail-section hc-section' aria-labelledby={`${offer.key}-ownership`}>
+			<div class='hc-container hc-detail-grid'><h2 id={`${offer.key}-ownership`}>{offer.ownershipHeading}</h2><div class='hc-ownership__body'><p>{offer.ownershipBody}</p></div></div>
+		</section>
 
-			<section class='hc-detail-section hc-section' aria-labelledby={`${offer.key}-faq`}>
-				<div class='hc-section-header'>
-					<h2 id={`${offer.key}-faq`} class='hc-section-title'>Questions people ask before starting</h2>
-				</div>
-				<div class='hc-faq-list'>
-					{
-						offer.faqs.map((faq) => (
-							<div class='hc-faq-item'>
-								<h3>{faq.title}</h3>
-								<p>{faq.body}</p>
-							</div>
-						))
-					}
-				</div>
-			</section>
-
-		</div>
+		<section class='hc-detail-section hc-detail-faq hc-section' aria-labelledby={`${offer.key}-faq`}>
+			<div class='hc-container'>
+				<div class='hc-detail-section-header'><h2 id={`${offer.key}-faq`} class='hc-section-title'>Questions people ask before starting</h2></div>
+				<div class='hc-faq-list'>{offer.faqs.map((faq) => <div class='hc-faq-item'><h3>{faq.title}</h3><p>{faq.body}</p></div>)}</div>
+			</div>
+		</section>
 	</article>
 </BaseLayout>

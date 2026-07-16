@@ -406,17 +406,15 @@ body.page-blog-index .hc-main {
 .hc-blog-index__layout {
   display: grid;
   width: min(100%, var(--hc-page-max));
-  grid-template-columns: minmax(17rem, 0.4fr) minmax(0, 1.2fr);
-  gap: clamp(3rem, 8vw, 8rem);
+  grid-template-columns: 1fr;
+  gap: clamp(4rem, 8vw, 7rem);
   margin-inline: auto;
   padding: clamp(6rem, 10vw, 10rem) var(--hc-gutter-desktop);
 }
 
 .hc-blog-index .content-page__hero {
-  position: sticky;
-  top: 8rem;
   display: grid;
-  min-height: 34rem;
+  min-height: 0;
   align-self: start;
   align-content: start;
   grid-template-columns: 1fr;
@@ -426,7 +424,7 @@ body.page-blog-index .hc-main {
 }
 
 .hc-blog-index .content-page__title {
-  max-width: none;
+  max-width: 100%;
   color: var(--hc-proof-text);
   font-size: clamp(5.5rem, 11vw, 9rem);
   font-weight: 800;
@@ -436,21 +434,21 @@ body.page-blog-index .hc-main {
 }
 
 .hc-blog-index .content-page__intro {
-  max-width: 25rem;
+  max-width: 62rem;
   color: var(--hc-proof-text-muted);
 }
 
 .hc-blog-index__posts {
   display: grid;
   gap: clamp(2.5rem, 5vw, 4.5rem);
-  width: auto;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
 .hc-blog-index__entry {
   display: grid;
-  grid-template-columns: 5rem 7rem minmax(0, 1fr) 2rem;
+  grid-template-columns: 6rem 8rem minmax(0, 1fr) 2rem;
   gap: clamp(1rem, 2vw, 2rem);
   align-items: start;
   color: var(--hc-proof-text);
@@ -542,7 +540,7 @@ body.page-blog-index .hc-main {
 }
 
 .hc-blog-index .content-page__intro {
-  color: color-mix(in srgb, var(--hc-proof-text) 82%, transparent);
+  color: var(--hc-proof-text);
 }
 
 @media (max-width: 900px) {
@@ -557,6 +555,30 @@ body.page-blog-index .hc-main {
 
   .hc-blog-index .content-page__title {
     font-size: clamp(5rem, 22vw, 9rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .hc-blog-index__entry {
+    grid-template-columns: 4rem minmax(0, 1fr) 1.5rem;
+  }
+
+  .hc-blog-index__entry time {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .hc-blog-index__number {
+    grid-row: 1 / span 2;
+  }
+
+  .hc-blog-index__entry h2 {
+    grid-column: 2;
+  }
+
+  .hc-blog-index__arrow {
+    grid-column: 3;
+    grid-row: 1 / span 2;
   }
 }
 

@@ -225,8 +225,8 @@
   max-width: 37rem;
   margin: var(--hc-space-3) 0 0;
   color: var(--hc-text-muted);
-  font-size: var(--hc-type-ui);
-  line-height: var(--hc-line-height-body);
+  font-size: clamp(var(--hc-font-size-lg), 1.75vw, var(--hc-font-size-2xl));
+  line-height: 1.65;
 }
 
 .hc-about-principles {
@@ -245,8 +245,7 @@
 .hc-about-principles .hc-principles-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
-  border-top: 1px solid var(--hc-border);
+  gap: clamp(3rem, 6vw, 6rem);
 }
 
 .hc-about-principles .hc-principle,
@@ -256,8 +255,7 @@
   grid-template-columns: minmax(17rem, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
-  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
-  border-bottom: 1px solid var(--hc-border);
+  padding: 0;
 }
 
 .hc-about-principles .hc-principle:nth-child(even) figure {

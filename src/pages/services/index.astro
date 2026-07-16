@@ -196,7 +196,7 @@ const faqs = [
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Questions people ask before starting</h2></div>
 				<div class='hc-faq-list'>
-					{faqs.map((faq, index) => <details class='hc-faq-item' data-motion-item open={index === 0}><summary><span>{faq.title}</span><span class='hc-faq-item__icon' aria-hidden='true'></span></summary><div class='hc-faq-item__answer'><p>{faq.body}</p></div></details>)}
+					{faqs.map((faq, index) => <div class:list={['hc-faq-item', { 'is-open': index === 0 }]} data-motion-item><button class='hc-faq-item__trigger' type='button' aria-expanded={index === 0 ? 'true' : 'false'}><span>{faq.title}</span><span class='hc-faq-item__icon' aria-hidden='true'></span></button><div class='hc-faq-item__answer'><div><p>{faq.body}</p></div></div></div>)}
 				</div>
 			</div>
 		</section>
@@ -206,56 +206,16 @@ const faqs = [
 
 <script>
 	const installFaqAnimations = () => {
-		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-		document.querySelectorAll<HTMLDetailsElement>('.hc-faq-item').forEach((item) => {
+		document.querySelectorAll<HTMLElement>('.hc-faq-item').forEach((item) => {
 			if (item.dataset.faqAnimationReady === 'true') return;
-
-			const summary = item.querySelector<HTMLElement>('summary');
-			const answer = item.querySelector<HTMLElement>('.hc-faq-item__answer');
-			if (!summary || !answer) return;
+			const trigger = item.querySelector<HTMLButtonElement>('.hc-faq-item__trigger');
+			if (!trigger) return;
 
 			item.dataset.faqAnimationReady = 'true';
-			let animation: Animation | null = null;
-			let isClosing = false;
-
-			const finish = (open: boolean) => {
-				item.open = open;
-				item.style.height = '';
-				item.style.overflow = '';
-				animation = null;
-				isClosing = false;
-			};
-
-			const animateHeight = (startHeight: number, endHeight: number, open: boolean) => {
-				animation?.cancel();
-				animation = item.animate(
-					{ height: [`${startHeight}px`, `${endHeight}px`] },
-					{ duration: 280, easing: 'cubic-bezier(0.32, 0.72, 0, 1)' }
-				);
-				animation.onfinish = () => finish(open);
-				animation.oncancel = () => {
-					animation = null;
-				};
-			};
-
-			summary.addEventListener('click', (event) => {
-				if (reduceMotion) return;
-
-				event.preventDefault();
-				item.style.overflow = 'hidden';
-
-				if (isClosing || !item.open) {
-					isClosing = false;
-					const startHeight = item.offsetHeight;
-					item.style.height = `${startHeight}px`;
-					item.open = true;
-					requestAnimationFrame(() => animateHeight(startHeight, summary.offsetHeight + answer.offsetHeight, true));
-					return;
-				}
-
-				isClosing = true;
-				animateHeight(item.offsetHeight, summary.offsetHeight, false);
+			trigger.addEventListener('click', () => {
+				const open = !item.classList.contains('is-open');
+				item.classList.toggle('is-open', open);
+				trigger.setAttribute('aria-expanded', String(open));
 			});
 		});
 	};
