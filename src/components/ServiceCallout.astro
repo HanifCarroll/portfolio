@@ -47,7 +47,11 @@ const offers = {
 const offer = offers[variant];
 ---
 
-<section class:list={['hc-cta-panel', `hc-cta-panel--${context}`, className]}>
+<section
+	class:list={['hc-cta-panel', 'hc-cta-panel--mobile-band', `hc-cta-panel--${context}`, className]}
+	data-header-surface={context === 'blog' ? 'dark' : 'light'}
+	data-header-surface-mobile='dark'
+>
 	<h2>{offer.title}</h2>
 	<div class='hc-cta-panel__body'>
 		<p>{offer.body}</p>

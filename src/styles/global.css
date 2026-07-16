@@ -454,10 +454,10 @@ li {
   place-content: center;
   gap: 0.28rem;
   padding: 0;
-  border: 1px solid var(--hc-accent);
+  border: 1px solid var(--hc-proof-text);
   border-radius: 50%;
   background: transparent;
-  color: var(--hc-accent);
+  color: var(--hc-proof-text);
   cursor: pointer;
   transition:
     border-color 220ms ease,
@@ -536,7 +536,7 @@ li {
   color: var(--hc-proof-text);
   font-size: clamp(2.25rem, 10vw, 4.75rem);
   font-weight: 600;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
   line-height: 1.05;
   text-decoration: none;
 }
@@ -996,6 +996,61 @@ li {
   }
 
   body .hc-page-cta--mobile-band .hc-text-link::after {
+    color: var(--hc-accent);
+  }
+
+  body .hc-cta-panel.hc-cta-panel--mobile-band {
+    width: 100vw;
+    grid-template-columns: 1fr;
+    gap: var(--hc-space-4);
+    margin-inline: calc(50% - 50vw);
+    padding: var(--hc-space-6) var(--hc-gutter-narrow);
+    border: 0;
+    border-radius: 0;
+    background: var(--hc-proof-surface);
+    box-shadow: none;
+    color: var(--hc-proof-text);
+  }
+
+  body .hc-cta-panel.hc-cta-panel--mobile-band h2 {
+    color: var(--hc-proof-text);
+    font-size: clamp(2rem, 9vw, 2.25rem);
+    line-height: 1.06;
+  }
+
+  body .hc-cta-panel--mobile-band .hc-cta-panel__body {
+    gap: var(--hc-space-5);
+  }
+
+  body .hc-cta-panel--mobile-band .hc-cta-panel__body > p {
+    color: var(--hc-proof-text);
+    font-size: var(--hc-type-body);
+    line-height: 1.5;
+  }
+
+  body .hc-cta-panel--mobile-band .hc-actions {
+    flex-direction: column;
+    gap: var(--hc-space-3);
+  }
+
+  body .hc-cta-panel--mobile-band .hc-button {
+    min-height: 3.5rem;
+    justify-content: space-between;
+    padding-inline: var(--hc-space-4);
+    border-color: var(--hc-accent);
+    background: var(--hc-accent);
+    color: var(--hc-on-accent);
+  }
+
+  body .hc-cta-panel--mobile-band .hc-text-link {
+    width: 100%;
+    min-height: 2.75rem;
+    justify-content: space-between;
+    padding-inline: var(--hc-space-4);
+    color: var(--hc-proof-text);
+  }
+
+  body .hc-cta-panel--mobile-band .hc-text-link::after {
     color: var(--hc-accent);
   }
 
