@@ -1331,15 +1331,33 @@ body.hc-home .hc-page-cta__card h2 {
     font-size: 3.75rem;
   }
 
-  .hc-testimonial-section .hc-testimonial,
-  .hc-testimonial-section .hc-testimonial--featured {
+  .hc-testimonial-section .hc-testimonial {
     grid-column: auto;
     grid-row: auto;
     grid-template-columns: 2.5rem minmax(0, 1fr);
   }
 
+  .hc-testimonial-section .hc-testimonial--featured {
+    grid-column: auto;
+    grid-row: auto;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: var(--hc-space-4);
+  }
+
+  .hc-testimonial-section .hc-testimonial--featured .hc-testimonial__mark {
+    font-size: 2.75rem;
+    line-height: 0.7;
+  }
+
   .hc-testimonial-section .hc-testimonial--featured blockquote {
-    font-size: clamp(1.65rem, 7vw, 2rem);
+    max-width: none;
+    font-size: clamp(1.4rem, 6vw, 1.55rem);
+    line-height: 1.25;
+  }
+
+  .hc-testimonial-section .hc-testimonial--featured figcaption {
+    grid-column: 1;
   }
 
   .hc-about-preview-section .hc-about-preview {
