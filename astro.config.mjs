@@ -11,7 +11,11 @@ const siteDomain = isDev ? "localhost" : "hanifcarroll.com";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.hanifcarroll.com",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [
+    mdx(),
+    sitemap({ filter: (page) => !page.endsWith("/newsletter/archive-preview/") }),
+    tailwind(),
+  ],
   markdown: {
     processor: unified({
       rehypePlugins: [

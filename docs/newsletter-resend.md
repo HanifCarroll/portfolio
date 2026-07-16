@@ -2,6 +2,18 @@
 
 The portfolio owns the public signup page and the React Email source. Resend owns the contact list, topic preferences, welcome automation, broadcast drafts, delivery, and unsubscribe handling. The vault remains the editorial source of truth.
 
+## Public issue archive
+
+The public newsletter has three distinct web surfaces:
+
+- `/newsletter/` remains the conversion-focused publication home. It shows the latest issue as proof and links to the archive without turning the first viewport into a content index.
+- `/newsletter/archive/` lists every real issue in reverse chronological order with its issue number, publication date, description, and topics.
+- `/newsletter/issues/<slug>/` gives each real issue a stable canonical URL with Article structured data, readable long-form typography, approved images and captions, and an in-context subscribe form.
+
+`/newsletter/archive-preview/` is a `noindex, nofollow, noarchive` filled-state design preview. It may contain clearly labeled sample entries, but those entries are not publication records, do not get issue pages, and must never appear in the real archive, sitemap as canonical content, Resend, or the vault publishing ledger.
+
+The vault issue remains canonical editorial state. The project-local Astro content entry is the public snapshot used by the deployed issue page; its reader-visible prose must match the approved vault body, while public-site image paths may be relative equivalents of the same manifest-backed HTTPS assets.
+
 ## Local template previews
 
 Run the React Email development server to review the confirmation, welcome, and newsletter issue templates with hot reload, desktop and mobile presets, editable preview props, compatibility checks, and spam checks:
@@ -41,14 +53,16 @@ Copy the returned segment and topic IDs into Netlify as `RESEND_SEGMENT_ID` and 
 
 ## Broadcast draft gate
 
-The draft command reads the canonical vault Markdown packet, recomputes the exact `Final Body` SHA-256 digest, and requires the explicitly approved issue-package digest:
+The draft command reads canonical `issue.md` and computes one digest over its title, selected subject, preview text, and exact `Final Body`. Draft creation requires both the issue's recorded `approved_digest` and the command-line approval digest to match that computed value:
 
 ```sh
-bun run newsletter:draft /absolute/path/to/issue-packet.md \
-  --approved-digest sha256:approved-package-digest
+bun run newsletter:draft /absolute/path/to/issue.md \
+  --approved-digest sha256:approved-issue-digest
 ```
 
 It creates a Resend broadcast with `send: false`. There is intentionally no send command in this repository; sending remains a separate, exact approval and verification step under the vault publishing workflow.
+
+A controlled test email is not a broadcast send. When Hanif explicitly authorizes one, render the exact approved digest and send it transactionally to the one named test address only. Do not add or select a segment, and do not treat the test delivery as publication evidence.
 
 ## Sending identity
 

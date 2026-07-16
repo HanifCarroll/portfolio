@@ -1,35 +1,35 @@
 import { Resend } from "resend";
 import { NewsletterIssue } from "../../src/emails/NewsletterIssue";
 import { newsletterConfig, requireNewsletterEnv } from "../../src/lib/newsletter/config";
-import { readNewsletterPacket } from "./packet.mjs";
+import { readNewsletterIssue } from "./packet.mjs";
 
-const packetPath = process.argv[2];
+const issuePath = process.argv[2];
 const approvalIndex = process.argv.indexOf("--approved-digest");
 const approvedDigest = approvalIndex >= 0 ? process.argv[approvalIndex + 1] : undefined;
 
-if (!packetPath || !approvedDigest) {
+if (!issuePath || !approvedDigest) {
   throw new Error(
-    "Usage: bun run newsletter:draft <packet.md> --approved-digest sha256:<approved issue package digest>",
+    "Usage: bun run newsletter:draft <issue.md> --approved-digest sha256:<approved issue digest>",
   );
 }
 
-const packet = await readNewsletterPacket(packetPath);
-if (approvedDigest !== packet.issuePackageDigest) {
+const issue = await readNewsletterIssue(issuePath);
+if (issue.approvedDigest !== issue.issueDigest) {
   throw new Error(
-    `Approval digest does not match the packet: expected ${packet.issuePackageDigest}`,
+    `Issue is not approved at its current digest: recorded ${issue.approvedDigest}, calculated ${issue.issueDigest}`,
   );
 }
+if (approvedDigest !== issue.issueDigest)
+  throw new Error(`Approval digest does not match the issue: expected ${issue.issueDigest}`);
 
 const resend = new Resend(requireNewsletterEnv("RESEND_API_KEY"));
 const { data, error } = await resend.broadcasts.create({
   segmentId: requireNewsletterEnv("RESEND_SEGMENT_ID"),
   from: newsletterConfig.from,
   replyTo: newsletterConfig.replyTo,
-  name: `${packet.title} · ${packet.issuePackageDigest.slice(0, 19)}`,
-  subject: packet.subject,
-  react: (
-    <NewsletterIssue title={packet.title} preview={packet.preview} paragraphs={packet.paragraphs} />
-  ),
+  name: `${issue.title} · ${issue.issueDigest.slice(0, 19)}`,
+  subject: issue.subject,
+  react: <NewsletterIssue title={issue.title} preview={issue.preview} blocks={issue.blocks} />,
   send: false,
 });
 
@@ -42,8 +42,8 @@ console.log(
     {
       broadcastId: data.id,
       send: false,
-      issuePackageDigest: packet.issuePackageDigest,
-      bodyDigest: packet.bodyDigest,
+      issueDigest: issue.issueDigest,
+      bodyDigest: issue.bodyDigest,
     },
     null,
     2,

@@ -1,0 +1,51 @@
+---
+import type { NewsletterArchiveIssue } from '../../lib/newsletter/archive';
+
+interface Props {
+	issues: NewsletterArchiveIssue[];
+}
+
+const { issues } = Astro.props;
+const dateFormatter = new Intl.DateTimeFormat('en', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+	timeZone: 'UTC'
+});
+---
+
+<ol class='awt-archive-list'>
+	{
+		issues.map((issue) => (
+			<li class:list={['awt-archive-entry', { 'awt-archive-entry--sample': issue.isSample }]}>
+				{issue.isSample ? (
+					<div class='awt-archive-entry__link' aria-label={`${issue.title}, sample issue`}>
+						<div class='awt-archive-entry__meta'>
+							<span>Issue {String(issue.issueNumber).padStart(3, '0')}</span>
+							<time datetime={issue.pubDate.toISOString()}>{dateFormatter.format(issue.pubDate)}</time>
+							<span class='awt-archive-entry__sample'>Sample</span>
+						</div>
+						<h2>{issue.title}</h2>
+						<p>{issue.description}</p>
+						<ul class='awt-archive-entry__tags' aria-label='Topics'>
+							{issue.tags.map((tag) => <li>{tag}</li>)}
+						</ul>
+					</div>
+				) : (
+					<a class='awt-archive-entry__link' href={`/newsletter/issues/${issue.slug}/`} aria-label={`Read ${issue.title}`}>
+						<div class='awt-archive-entry__meta'>
+							<span>Issue {String(issue.issueNumber).padStart(3, '0')}</span>
+							<time datetime={issue.pubDate.toISOString()}>{dateFormatter.format(issue.pubDate)}</time>
+						</div>
+						<h2>{issue.title}</h2>
+						<p>{issue.description}</p>
+						<ul class='awt-archive-entry__tags' aria-label='Topics'>
+							{issue.tags.map((tag) => <li>{tag}</li>)}
+						</ul>
+						<span class='awt-archive-entry__arrow' aria-hidden='true'>↗</span>
+					</a>
+				)}
+			</li>
+		))
+	}
+</ol>

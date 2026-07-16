@@ -24,4 +24,17 @@ const caseStudies = defineCollection({
   schema: z.object({}),
 });
 
-export const collections = { blog, caseStudies };
+const newsletter = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/newsletter" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    subject: z.string(),
+    preview: z.string(),
+    pubDate: z.coerce.date(),
+    issueNumber: z.number().int().positive(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog, caseStudies, newsletter };

@@ -1,0 +1,51 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import SubscribeForm from '../../../components/newsletter/SubscribeForm.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/newsletter.css';
+
+export async function getStaticPaths() {
+	const issues = await getCollection('newsletter');
+	return issues.map((issue) => ({ params: { slug: issue.id }, props: issue }));
+}
+
+type Props = CollectionEntry<'newsletter'>;
+const issue = Astro.props;
+const { Content } = await render(issue);
+const { title, description, pubDate, issueNumber, tags } = issue.data;
+const canonicalUrl = new URL(`/newsletter/issues/${issue.id}/`, Astro.site).toString();
+const wordCount = issue.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const readingMinutes = Math.max(1, Math.round(wordCount / 225));
+const dateFormatter = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const issueJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	description,
+	url: canonicalUrl,
+	datePublished: pubDate.toISOString(),
+	author: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' },
+	isPartOf: { '@type': 'CreativeWorkSeries', name: 'A Working Theory', url: 'https://www.hanifcarroll.com/newsletter/' }
+};
+---
+
+<BaseLayout title={`${title} | A Working Theory`} description={description} jsonLd={issueJsonLd} ogType='article' showFooterCta={false} bodyClass='page-newsletter'>
+	<article class='awt-page awt-issue-page'>
+		<header class='awt-issue-hero' data-header-surface='dark' data-motion-intro>
+			<div class='hc-container-wide awt-issue-hero__inner'>
+				<a class='awt-back-link' href='/newsletter/archive/'>A Working Theory archive</a>
+				<p class='awt-issue-hero__meta'>Issue {String(issueNumber).padStart(3, '0')} · {dateFormatter.format(pubDate)} · {readingMinutes} min read</p>
+				<h1 data-motion-headline>{title}</h1>
+				<p class='awt-issue-hero__dek' data-motion-deck>{description}</p>
+				<ul class='awt-issue-hero__tags' aria-label='Topics'>{tags.map((tag) => <li>{tag}</li>)}</ul>
+			</div>
+		</header>
+		<div class='hc-container-wide awt-issue-layout'>
+			<div class='awt-issue-prose'><Content /></div>
+			<aside class='awt-issue-signup'>
+				<p>Get the next working theory.</p>
+				<SubscribeForm location='issue' />
+			</aside>
+		</div>
+	</article>
+</BaseLayout>

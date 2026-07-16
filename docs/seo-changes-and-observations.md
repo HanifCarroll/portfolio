@@ -2,6 +2,16 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-15
+
+### A Working Theory Issue Pages And Archive
+
+- Kept `/newsletter/` as the focused signup page, replaced its coming-soon state with the latest real issue, and added direct links to that issue and the complete archive.
+- Added `/newsletter/archive/` as the reverse-chronological real-issue library and `/newsletter/issues/reliable-ai-workflows/` as the first canonical issue page with Article structured data, approved descriptive images, captions, topic metadata, and an in-context subscribe form.
+- Added `/newsletter/archive-preview/` as a filled-state design surface with five clearly labeled sample entries. The route is `noindex, nofollow, noarchive`; samples are excluded from the real archive and do not have canonical issue pages.
+- Chose a separate archive plus latest-issue proof on the signup page: current Buttondown, Mailchimp, MailerLite, Ghost, and Google guidance supports letting curious visitors sample recent work without turning the primary signup surface into an unbounded archive, while each real issue retains a crawlable URL.
+- After deployment, verify the public issue and image URLs, canonical and robots metadata, sitemap membership, archive-to-issue links, signup forms, and mobile reading layout. Request indexing only for the real archive and issue URL, never the preview route.
+
 ## 2026-07-14
 
 ### A Working Theory Newsletter Page

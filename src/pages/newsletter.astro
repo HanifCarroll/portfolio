@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
 import OpenProofMark from '../components/newsletter/OpenProofMark.astro';
 import SubscribeForm from '../components/newsletter/SubscribeForm.astro';
@@ -8,6 +9,11 @@ import '../styles/newsletter.css';
 
 const title = 'A Working Theory | Newsletter by Hanif Carroll';
 const description = 'Field notes on AI, judgment, and better ways of working.';
+const issues = (await getCollection('newsletter')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latestIssue = issues[0];
+const issueDate = latestIssue
+	? new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(latestIssue.data.pubDate)
+	: null;
 
 const newsletterJsonLd = {
 	'@context': 'https://schema.org',
@@ -74,11 +80,14 @@ const newsletterJsonLd = {
 			<div class='hc-container-wide'>
 				<div class='awt-feature__panel'>
 					<div class='awt-feature__copy' data-motion-item>
-						<p class='awt-feature__label'>Issue 001 · In progress</p>
-						<h2 id='awt-first-issue'>Reliable AI workflows are learned through failure</h2>
+						<p class='awt-feature__label'>Issue {latestIssue ? String(latestIssue.data.issueNumber).padStart(3, '0') : '001'} · {issueDate ?? 'Coming soon'}</p>
+						<h2 id='awt-first-issue'>{latestIssue?.data.title ?? 'Reliable AI workflows are learned through failure'}</h2>
 						<span class='awt-feature__rule' aria-hidden='true'></span>
-						<p class='awt-feature__excerpt'>A reliable AI workflow starts with a provisional procedure, then turns real failures into better context, boundaries, evaluations, and gates.</p>
-						<p class='awt-feature__status'>First issue coming soon</p>
+						<p class='awt-feature__excerpt'>{latestIssue?.data.description ?? 'A reliable AI workflow starts with a provisional procedure, then turns real failures into better context, boundaries, evaluations, and gates.'}</p>
+						<div class='awt-feature__actions'>
+							{latestIssue && <a href={`/newsletter/issues/${latestIssue.id}/`}>Read issue {String(latestIssue.data.issueNumber).padStart(3, '0')}</a>}
+							<a href='/newsletter/archive/'>Browse the archive</a>
+						</div>
 					</div>
 
 					<article class='awt-issue-cover' aria-label='Preview of A Working Theory issue 001' data-motion-item>
@@ -95,7 +104,7 @@ const newsletterJsonLd = {
 							<p>Automation · Judgment · Work</p>
 						</div>
 						<footer class='awt-issue-cover__footer'>
-							<span>Issue 001 · In progress</span>
+							<span>Issue 001 · Published</span>
 							<div class='awt-issue-cover__bars' aria-hidden='true'><i></i><i></i></div>
 						</footer>
 					</article>
