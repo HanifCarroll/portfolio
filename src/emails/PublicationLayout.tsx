@@ -36,19 +36,20 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
         <Container style={styles.container}>
           <Section style={styles.masthead}>
             <Row>
+              <Column style={styles.titleColumn}>
+                <Text style={styles.name}>A Working Theory</Text>
+                <Text style={styles.byline}>by Hanif Carroll</Text>
+              </Column>
               <Column style={styles.logoColumn}>
                 <Img
                   src={publicationMarkUrl}
                   alt="A Working Theory"
-                  width="44"
-                  height="44"
+                  width="48"
+                  height="48"
                   style={styles.logo}
                 />
               </Column>
-              <Column>
-                <Text style={styles.name}>A Working Theory</Text>
-                <Text style={styles.byline}>by Hanif Carroll</Text>
-              </Column>
+              <Column />
             </Row>
           </Section>
           <Hr style={styles.accent} />
@@ -89,9 +90,10 @@ const styles = {
     backgroundColor: "#fdfdfb",
   },
   masthead: { paddingBottom: "18px" },
-  logoColumn: { width: "58px", verticalAlign: "middle" },
+  titleColumn: { width: "205px", verticalAlign: "middle" },
+  logoColumn: { width: "54px", verticalAlign: "middle" },
   logo: { display: "block", margin: "0" },
-  name: { margin: "0", fontSize: "25px", fontWeight: "700", letterSpacing: "-0.5px" },
+  name: { margin: "0", fontSize: "23px", fontWeight: "700", letterSpacing: "-0.45px" },
   byline: { margin: "5px 0 0", color: "#485463", fontSize: "13px" },
   accent: { width: "48px", margin: "0 0 34px", border: "0", borderTop: "4px solid #f8d651" },
   rule: { margin: "38px 0 24px", border: "0", borderTop: "1px solid #d7dce2" },
