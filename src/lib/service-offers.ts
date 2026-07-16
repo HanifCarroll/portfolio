@@ -149,7 +149,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Important status lives in people's heads, so the team has to ask around.",
       "You suspect software, automation, or AI could help but don't know what should be built first.",
     ],
-    deliverablesHeading: "A workflow map, clear priorities, and a first build plan.",
+    deliverablesHeading: "What you'll receive from the audit.",
     deliverables: [
       {
         title: "Current workflow map",
@@ -269,7 +269,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Existing software can't support the workflow without repeated manual effort or unreliable handoffs.",
       "The first useful version can be separated from later improvements.",
     ],
-    deliverablesHeading: "A working first release your team can use and own.",
+    deliverablesHeading: "What you'll receive from the build.",
     deliverables: [
       {
         title: "Working software",
@@ -395,7 +395,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Software, vendor, or AI decisions require technical judgment and business context.",
       "Your team wants one person who can understand the need, recommend a direction, and implement the agreed change.",
     ],
-    deliverablesHeading: "What the partnership can cover.",
+    deliverablesHeading: "What ongoing support can cover.",
     deliverables: [
       {
         title: "Improve existing systems",
