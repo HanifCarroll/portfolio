@@ -557,7 +557,7 @@
 }
 
 .projects-index--spotlight .project-video-card__index {
-  color: var(--hc-accent-text);
+  color: var(--hc-text-muted);
   font-family: var(--hc-font-editorial);
   font-size: clamp(4rem, 8vw, 7.5rem);
   line-height: 0.72;
@@ -566,8 +566,9 @@
 
 .projects-index--spotlight .project-video-card__proof-label {
   margin-top: 1.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.13em;
+  color: var(--hc-text);
+  font-size: var(--hc-type-meta);
+  letter-spacing: 0.1em;
 }
 
 .projects-index--spotlight .project-video-card__copy h3 {
@@ -592,6 +593,10 @@
 }
 
 .projects-index__filtered .project-video-card__index {
+  color: var(--hc-text-muted);
+}
+
+.projects-index__filtered .project-video-card:nth-child(even) .project-video-card__index {
   color: var(--hc-accent);
 }
 
@@ -894,6 +899,19 @@
 @media (max-width: 640px) {
   .projects-index__intro-band {
     padding: 7.5rem var(--hc-gutter-narrow) 3rem;
+  }
+
+  .projects-index--spotlight .project-video-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .projects-index--spotlight .project-video-card__copy {
+    order: 1;
+  }
+
+  .projects-index--spotlight .project-video-card__media-wrap {
+    order: 2;
   }
 
   .projects-index__intro-band h1 {
