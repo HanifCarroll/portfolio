@@ -43,8 +43,8 @@ export function PublicationLayout({ preview, children, footer }: PublicationLayo
                 <Img
                   src={publicationMarkUrl}
                   alt="A Working Theory"
-                  width="48"
-                  height="48"
+                  width="38"
+                  height="38"
                   style={styles.logo}
                 />
               </Column>
@@ -91,7 +91,7 @@ const styles = {
   },
   masthead: { paddingBottom: "18px" },
   titleColumn: { width: "190px", verticalAlign: "middle" },
-  logoColumn: { width: "54px", verticalAlign: "middle" },
+  logoColumn: { width: "44px", verticalAlign: "middle" },
   logo: { display: "block", margin: "0" },
   name: { margin: "0", fontSize: "23px", fontWeight: "700", letterSpacing: "-0.45px" },
   byline: { margin: "5px 0 0", color: "#485463", fontSize: "13px" },
