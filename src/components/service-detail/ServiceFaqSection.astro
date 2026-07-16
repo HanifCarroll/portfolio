@@ -1,0 +1,18 @@
+---
+import type { ServiceOffer } from '../../lib/service-offers';
+
+interface Props {
+	offer: ServiceOffer;
+}
+
+const { offer } = Astro.props as Props;
+---
+
+<section class='hc-detail-section hc-detail-faq hc-section' aria-labelledby={`${offer.key}-faq`}>
+	<div class='hc-container hc-faq-layout'>
+		<header class='hc-detail-section-header'>
+			<h2 id={`${offer.key}-faq`}>Questions people ask before starting.</h2>
+		</header>
+		<div class='hc-faq-list'>{offer.faqs.map((faq) => <div class='hc-faq-item'><h3>{faq.title}</h3><p>{faq.body}</p></div>)}</div>
+	</div>
+</section>

@@ -1,0 +1,39 @@
+---
+import type { ServiceOffer } from '../../lib/service-offers';
+
+interface Props {
+	offer: ServiceOffer;
+}
+
+const { offer } = Astro.props as Props;
+const showContract = offer.key !== 'ongoing';
+---
+
+<section class='hc-detail-section hc-detail-process hc-section' aria-labelledby={`${offer.key}-process`} data-header-surface='light'>
+	<div class='hc-container'>
+		<header class='hc-detail-section-header'>
+			<h2 id={`${offer.key}-process`}>{offer.processHeading}</h2>
+		</header>
+		<ol class='hc-process-list'>
+			{offer.process.map((step, index) => (
+				<li class='hc-process-step'>
+					<span class='hc-index' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+					<h3>{step.title}</h3>
+					<p>{step.body}</p>
+				</li>
+			))}
+		</ol>
+		{showContract && (
+			<div class='hc-working-contract'>
+				<div>
+					<h3>Where the scope stops</h3>
+					<p>{offer.boundary}</p>
+				</div>
+				<div>
+					<h3>What I need from you</h3>
+					<ul class='hc-compact-list'>{offer.responsibilities.map((item) => <li>{item}</li>)}</ul>
+				</div>
+			</div>
+		)}
+	</div>
+</section>

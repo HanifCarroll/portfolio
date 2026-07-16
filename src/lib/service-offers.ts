@@ -3,6 +3,13 @@ import { getProjectImage } from "./project-images";
 import { getProject } from "./projects";
 
 export type ServiceOfferKey = "audit" | "systemsBuild" | "ongoing";
+export type ServiceOfferSection =
+  | "fit"
+  | "deliverables"
+  | "proof"
+  | "working"
+  | "commercial"
+  | "faq";
 
 export interface ServiceOfferProof {
   label: "Client work" | "Independent work";
@@ -31,6 +38,8 @@ export interface ServiceOffer {
   primaryCta: string;
   secondaryCta: string;
   secondaryHref: string;
+  summary: Array<{ label: string; body: string }>;
+  sectionOrder: ServiceOfferSection[];
   fitHeading: string;
   fitBody: string;
   fitSignals: string[];
@@ -86,17 +95,6 @@ const genruptBuildProof: ServiceOfferProof = {
   imageClass: "object-left-top",
 };
 
-const acquireProof: ServiceOfferProof = {
-  label: "Independent work",
-  title: "Acquire",
-  heading: "Bringing an acquisition workflow into one local system.",
-  body: "Acquire brings sourcing, review, applications, outreach, evidence, agent activity, and recovery into one place. Its review steps and saved state make automated activity easier to inspect and resume.",
-  href: "/case-studies/acquire/",
-  image: proofImage("acquire"),
-  imageAlt: "Acquire command center showing workflow state, evidence, and review steps.",
-  imageClass: "object-left-top",
-};
-
 const muchoProof: ServiceOfferProof = {
   label: "Client work",
   title: "Mucho Hangouts",
@@ -127,6 +125,21 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     primaryCta: "Book a Business Systems Audit",
     secondaryCta: "Compare all services",
     secondaryHref: "/services/",
+    summary: [
+      {
+        label: "Best for",
+        body: "One recurring workflow is getting harder to run, but the right fix isn't clear.",
+      },
+      {
+        label: "You leave with",
+        body: "A workflow map, priorities, recommendation, and first build plan.",
+      },
+      {
+        label: "Pricing",
+        body: "Starts at $750. Implementation is scoped separately.",
+      },
+    ],
+    sectionOrder: ["fit", "deliverables", "proof", "working", "commercial", "faq"],
     fitHeading: "You can see the problem, but you're unsure what will fix it.",
     fitBody:
       "The audit is for a recurring workflow that's getting harder to run. Your team may already have ideas for fixing it, but nobody has traced the entire process closely enough to know which change will help most.",
@@ -135,25 +148,24 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Handoffs, approvals, or reporting depend on reminders and manual checking.",
       "Important status lives in people's heads, so the team has to ask around.",
       "You suspect software, automation, or AI could help but don't know what should be built first.",
-      "Building the wrong system would cost more than taking time to understand the workflow.",
     ],
     deliverablesHeading: "A clear view of the workflow and what should change first.",
     deliverables: [
       {
         title: "Current workflow map",
-        body: "A map of the people, steps, tools, information, decisions, and handoffs involved from the first request to the final outcome.",
+        body: "The people, steps, tools, information, decisions, and handoffs from the first request to the final outcome.",
       },
       {
         title: "Findings and priorities",
-        body: "A written explanation of where delays, repeated effort, missed handoffs, and reliability problems are coming from, ordered by what matters most.",
+        body: "Where delays, repeated effort, missed handoffs, reliability problems, and gaps in visibility come from, ordered by what matters most to the business.",
       },
       {
         title: "Recommended first step",
-        body: "A recommendation for the smallest useful change. That may be custom software, an automation, an integration, better use of an existing tool, or a process change.",
+        body: "The smallest useful change. That may be a process change, better use of existing software, automation, an integration, AI, or custom software.",
       },
       {
         title: "First build plan",
-        body: "A practical scope for the first system worth building, including its users, purpose, requirements, risks, and important boundaries.",
+        body: "A practical scope covering the first system's users, purpose, requirements, constraints, risks, and boundaries.",
       },
     ],
     scopeHeading: "The audit stays focused on one core workflow.",
@@ -168,30 +180,25 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     ],
     boundary:
       "Implementation is scoped separately. If the review uncovers another substantial workflow, we decide whether it belongs in the current audit or needs its own review.",
-    processHeading: "How the audit works",
+    processHeading: "How the audit works.",
     process: [
       {
         title: "Walk through the workflow",
-        body: "We trace what happens from the first request to the final outcome. I ask who is involved, which tools they use, where information changes hands, and where the process tends to fail.",
+        body: "We trace the workflow from request to outcome: who is involved, which tools they use, where information changes hands, and where the process fails.",
       },
       {
         title: "Review the evidence",
-        body: "I inspect the documents, forms, spreadsheets, messages, screens, and system behavior that show how the workflow runs today.",
-      },
-      {
-        title: "Map the problems and options",
-        body: "I turn what I find into a workflow map, identify the most important problems, and compare the changes that could address them.",
+        body: "I inspect the relevant documents, forms, spreadsheets, messages, screens, data, and system behavior, then map the most important problems.",
       },
       {
         title: "Review the recommendation",
-        body: "We walk through the findings together. You leave knowing what should change first, what a first build would include, and which risks or dependencies need attention.",
+        body: "I compare the possible changes and walk you through the map, priorities, recommended first step, build plan, risks, and dependencies.",
       },
     ],
     responsibilities: [
       "Access to the people who know or use the workflow",
       "Examples of the tools, documents, data, and handoffs involved",
-      "Honest context about where delays, mistakes, or repeated effort occur",
-      "Timely feedback on the workflow map and findings",
+      "Honest context about known failures and timely feedback on the findings",
       "A decision-maker who can confirm priorities and next steps",
     ],
     pricingHeading: "Audits start at $750.",
@@ -200,15 +207,11 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     proof: [desarmaderoProof],
     ownershipHeading: "The findings are yours to use.",
     ownershipBody:
-      "You keep the workflow map, findings, priorities, recommendation, and first build plan. You can use them with your own team, another partner, or me. I also walk you through the reasoning so the documents don't become a report nobody uses.",
+      "You keep the map, findings, priorities, recommendation, and build plan. I walk you through the reasoning, and you can use the material with your team, another partner, or me.",
     faqs: [
       {
         title: "Do I need to know what should be built?",
         body: "No. The audit is useful when the workflow problem is visible but the best fix isn't clear yet.",
-      },
-      {
-        title: "Can we begin with a Business Systems Build instead?",
-        body: "Yes, when the workflow, users, desired result, and first scope are already clear enough to price and build responsibly.",
       },
       {
         title: "Does every audit lead to custom software?",
@@ -231,9 +234,9 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     metaTitle: "Business Systems Build | Hanif Carroll",
     description:
       "Design and build an internal tool, automation, dashboard, integration, or AI-assisted workflow around the way your team operates.",
-    heroTitle: "Build the tool your team needs.",
+    heroTitle: "Build the system your team needs.",
     heroBody:
-      "I design and build the internal tool, automation, dashboard, integration, or AI-assisted workflow your team needs. We choose the tools based on the job and what will be easiest for your team to run.",
+      "I turn a clear workflow problem into a working internal tool, automation, dashboard, integration, or AI-assisted workflow. We define the first useful version, build it around the people who will use it, and leave your team with the software, documentation, and decisions behind it.",
     commercialNote: "Priced after we define the scope",
     chooserHeading: "Build the tool your team needs.",
     chooserSummary:
@@ -242,25 +245,39 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     primaryCta: "Start a scoping conversation",
     secondaryCta: "See the Business Systems Audit",
     secondaryHref: "/services/business-systems-audit/",
+    summary: [
+      {
+        label: "Best for",
+        body: "The workflow, users, and first release are clear enough to scope.",
+      },
+      {
+        label: "You receive",
+        body: "Working software, integrations, documentation, and a clear handoff.",
+      },
+      {
+        label: "Pricing",
+        body: "Price and schedule are confirmed after the first release is defined.",
+      },
+    ],
+    sectionOrder: ["proof", "fit", "deliverables", "working", "commercial", "faq"],
     fitHeading: "You understand the workflow well enough to decide what should be built.",
     fitBody:
-      "A Business Systems Build turns a clear workflow problem into a usable system. It fits when the users, desired result, important requirements, and first release can be defined before implementation begins.",
+      "You should be able to identify who will use or manage the system, what it needs to produce, the important business rules, and what belongs in the first version. You don't need a finished specification, but the workflow needs to be clear enough to define and price the build.",
     fitSignals: [
       "Your team agrees on the workflow and the problem that needs to be fixed.",
       "You can identify the people who will use or manage the system.",
       "Existing software can't support the workflow without repeated manual effort or unreliable handoffs.",
       "The first useful version can be separated from later improvements.",
-      "You want one person to handle product decisions, design, implementation, and handoff.",
     ],
-    deliverablesHeading: "A usable system built around your team.",
+    deliverablesHeading: "A working first release your team can use and own.",
     deliverables: [
       {
         title: "Working software",
-        body: "A focused first version of the internal tool, automation, dashboard, integration, or AI-assisted workflow defined in the scope.",
+        body: "A usable first version built around the agreed users, workflow, business rules, and result.",
       },
       {
-        title: "Clear workflow states",
-        body: "The important statuses, decisions, approvals, failures, and next actions are visible to the people responsible for them.",
+        title: "Clear status and next steps",
+        body: "The people responsible for the workflow can see its important statuses, decisions, approvals, failures, and next actions.",
       },
       {
         title: "Connections to existing tools",
@@ -268,7 +285,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       },
       {
         title: "Documentation and handoff",
-        body: "Your team receives the information needed to use, maintain, and extend the system, along with the reasoning behind important product and technical decisions.",
+        body: "Your team receives setup information, operating guidance, and the reasoning behind important product and technical decisions.",
       },
     ],
     scopeHeading: "Each build centers on one workflow and a defined first release.",
@@ -283,23 +300,23 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     ],
     boundary:
       "The agreed first release, integrations, users, and handoff requirements are written into the scope before implementation begins. Additional workflows, major adjacent systems, and ongoing improvements are scoped separately.",
-    processHeading: "How the build works",
+    processHeading: "How the build works.",
     process: [
       {
         title: "Confirm the first release",
-        body: "We turn the audit findings or existing requirements into a clear scope. We agree on the users, workflow, necessary features, integrations, risks, and what can wait.",
+        body: "We turn audit findings or existing requirements into a clear scope. We agree on the users, workflow, required features, integrations, risks, review points, ownership, and what can wait.",
       },
       {
         title: "Design the system",
-        body: "I map the screens, data, decisions, permissions, and failure states the system needs. You review the important product decisions before implementation goes too far.",
+        body: "I map the screens, data, permissions, decisions, and failure states the system needs. You review the product decisions that would be costly to change after implementation.",
       },
       {
         title: "Build and review",
-        body: "I build the system in usable pieces and review them with the people who will use it. Feedback is tied to the agreed workflow and first-release scope.",
+        body: "I build the system in usable pieces and review them with the people who will use or manage it. Feedback stays tied to the agreed workflow and first-release scope.",
       },
       {
         title: "Put it into use",
-        body: "I help your team move the system into daily use, document what matters, and identify the next changes without hiding them inside the original scope.",
+        body: "I prepare the agreed setup, documentation, and handoff, help the team understand how the system fits the workflow, and separate later improvements from the completed release.",
       },
     ],
     responsibilities: [
@@ -312,8 +329,8 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     pricingHeading: "I confirm the price and schedule before the build begins.",
     pricingBody:
       "I confirm the price, schedule, milestones, and responsibilities after the workflow and first release are clear. If they aren't clear yet, the Business Systems Audit is the better place to begin.",
-    proof: [genruptBuildProof, acquireProof, desarmaderoProof],
-    ownershipHeading: "Your business keeps the system and the context behind it.",
+    proof: [genruptBuildProof],
+    ownershipHeading: "Your business keeps the system and the decisions behind it.",
     ownershipBody:
       "You keep the software, designs, documentation, setup information, and notes behind important decisions. I explain how the system fits the workflow, where its boundaries are, and what your team should know before changing it.",
     faqs: [
@@ -324,10 +341,6 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       {
         title: "Do you have to replace the tools we already use?",
         body: "No. I look at the tools and data you already have. The build may improve them, connect them, automate steps between them, or replace only the part that no longer fits.",
-      },
-      {
-        title: "Will you use AI?",
-        body: "Only when it helps with a specific part of the workflow and can be made reliable enough for daily use. Many useful systems don't need it.",
       },
       {
         title: "What happens after the first release?",
@@ -357,18 +370,32 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     primaryCta: "Book a fit call",
     secondaryCta: "Compare all services",
     secondaryHref: "/services/",
-    fitHeading:
-      "Your business has ongoing technical needs that would benefit from one person who already understands your systems and operations.",
+    summary: [
+      {
+        label: "Best for",
+        body: "Several connected technical needs keep coming up in the same part of the business.",
+      },
+      {
+        label: "You receive",
+        body: "Ongoing decisions and improvements from someone who already knows the systems.",
+      },
+      {
+        label: "Pricing",
+        body: "A monthly partnership scoped around priorities and available time.",
+      },
+    ],
+    sectionOrder: ["fit", "working", "deliverables", "proof", "commercial", "faq"],
+    fitHeading: "The same part of the business keeps needing technical help.",
     fitBody:
-      "The partnership gives your team continued help across a defined area of the business. It fits when several connected priorities keep coming up and each one is easier to handle with the context from the last.",
+      "The partnership covers one part of the business where systems need regular attention. Because I keep the business and technical context between priorities, your team doesn't have to explain the same systems from the beginning each time.",
     fitSignals: [
       "Existing systems need regular improvements as the business changes.",
       "Smaller tools, automations, integrations, or reports need to be built over time.",
       "Reliability problems are interrupting a workflow your team depends on.",
       "Software, vendor, or AI decisions require technical judgment and business context.",
-      "Your team would benefit from one person who can understand the need, make the decision, and implement the change.",
+      "Your team wants one person who can understand the need, recommend a direction, and implement the agreed change.",
     ],
-    deliverablesHeading: "What I can help with each month.",
+    deliverablesHeading: "What the partnership can cover.",
     deliverables: [
       {
         title: "Improve existing systems",
@@ -387,11 +414,11 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "Investigate failures, strengthen the parts of the system causing trouble, and document what your team should watch.",
       },
       {
-        title: "Help with technical decisions",
-        body: "Evaluate software, vendors, architecture choices, and possible uses of AI when your team needs a recommendation and someone who can follow through.",
+        title: "Support technical decisions",
+        body: "Evaluate software, vendors, architecture choices, and possible uses of AI, then follow through when implementation belongs inside the partnership.",
       },
     ],
-    scopeHeading: "We agree on the area of the business, current priorities, and available time.",
+    scopeHeading: "We agree which part of the business the partnership covers.",
     includedHeading: "Examples of an agreed area",
     included: [
       "Customer intake, approvals, and fulfillment",
@@ -401,24 +428,24 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Product administration and customer support systems",
     ],
     boundary:
-      "Priorities can change as new information comes up, as long as they stay within the agreed area and available time. A new operational area, a larger standalone system, or a fixed delivery deadline is scoped separately.",
-    processHeading: "How the partnership works",
+      "Priorities can change as new information comes up, as long as they stay within the agreed part of the business and available time. Work in another part of the business, a larger standalone system, or a fixed delivery deadline is scoped separately.",
+    processHeading: "How the partnership operates.",
     process: [
       {
-        title: "Agree on the operating area",
-        body: "We define which part of the business the partnership covers, which systems are involved, who sets priorities, and how much time is available.",
+        title: "Agree what the partnership covers",
+        body: "We define the part of the business the partnership covers, the systems involved, the person who sets priorities, and the time available.",
       },
       {
         title: "Set the current priorities",
-        body: "We keep a shared list of improvements, problems, decisions, and smaller builds. Your team decides what matters most with my input on effort, risk, and dependencies.",
+        body: "We keep a shared list of improvements, problems, decisions, and smaller builds. Your team sets the order with my input on effort, risk, and dependencies.",
       },
       {
         title: "Make and review changes",
         body: "I investigate, recommend, design, and build within the agreed priorities. The people affected review changes before they become part of the workflow.",
       },
       {
-        title: "Update the next priorities",
-        body: "We review what changed, what the team learned, and what needs attention next. Decisions and documentation stay with the systems they affect.",
+        title: "Keep the context with the systems",
+        body: "We update priorities as the business changes. Decisions and documentation stay with the systems they affect, so each next step starts from what we've already learned.",
       },
     ],
     responsibilities: [
@@ -428,20 +455,20 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Timely feedback from the people affected by a change",
       "Agreement on which priorities fit within the available time",
     ],
-    pricingHeading: "A monthly partnership based on agreed priorities and available time.",
+    pricingHeading: "A monthly partnership defined before work begins.",
     pricingBody:
-      "We confirm the monthly price, available time, initial term, responsibilities, and starting priorities before the partnership begins.",
+      "We confirm which part of the business the partnership covers, the starting priorities, available time, monthly price, initial term, payment timing, and responsibilities before it begins.",
     proof: [
       {
         ...genruptBuildProof,
-        heading: "Improving commercial and reliability systems as the platform grew.",
+        heading: "Improving billing and reliability as the platform grew.",
         body: "I helped build subscriptions, credit accounting, background jobs, and agent access while Genrupt moved from early product development to supporting its first 200 paying customers.",
       },
       muchoProof,
     ],
     ownershipHeading: "Your team keeps the systems, decisions, and documentation.",
     ownershipBody:
-      "You keep every tool, automation, integration, update, and the documentation behind it. Important decisions are recorded with the systems they affect, so the business can continue without depending on information held only by me.",
+      "Your team keeps every tool, automation, integration, update, and the documentation and decisions behind it. If the partnership ends, I prepare a clear handoff for any active priority or unfinished change, so the business doesn't depend on information that only I have.",
     faqs: [
       {
         title: "Can the partnership begin without an audit or build?",
@@ -452,16 +479,8 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "It can include both. I can evaluate options, recommend a direction, change existing systems, and build smaller tools or automations within the agreed priorities.",
       },
       {
-        title: "Can priorities change from month to month?",
-        body: "Yes. We review them together and use the available time on the needs that matter most within the agreed area of the business.",
-      },
-      {
         title: "How is this different from a Business Systems Build?",
         body: "The partnership covers a continuing set of connected priorities. A Business Systems Build has one defined first release, price, and delivery scope. A larger standalone system that comes up during the partnership is scoped as a build.",
-      },
-      {
-        title: "What happens when the partnership ends?",
-        body: "You keep the systems, updates, documentation, and decision history. I prepare a clear handoff for any active priority or unfinished change.",
       },
     ],
     finalHeading: "Need ongoing technical help from someone who knows your systems?",

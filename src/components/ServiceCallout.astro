@@ -11,7 +11,7 @@ interface Props {
 	class?: string;
 }
 
-const { variant = 'general', location, class: className = '' } = Astro.props as Props;
+const { variant = 'general', context = 'blog', location, class: className = '' } = Astro.props as Props;
 
 const offers = {
 	general: {
@@ -47,7 +47,7 @@ const offers = {
 const offer = offers[variant];
 ---
 
-<section class:list={['hc-cta-panel', className]}>
+<section class:list={['hc-cta-panel', `hc-cta-panel--${context}`, className]}>
 	<h2>{offer.title}</h2>
 	<div class='hc-cta-panel__body'>
 		<p>{offer.body}</p>
@@ -58,7 +58,7 @@ const offer = offers[variant];
 			<a class='hc-text-link' href={offer.secondaryHref} data-track-event='service_page_clicked' data-track-location={`${location}_secondary`}>
 				{offer.secondaryLabel}
 			</a>
-			<a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={`${location}_email`}>Email Hanif</a>
+			{context === 'case-study' && <a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={`${location}_email`}>Email Hanif</a>}
 		</div>
 	</div>
 </section>

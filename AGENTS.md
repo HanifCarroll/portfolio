@@ -42,6 +42,7 @@ Never paste tokens or secrets into chat, files, commits, command output, or logs
 
 Work tracking: GitHub Issues are canonical for repo-bound bugs, features, refactors, and release tasks. Local markdown is for scratch thinking before promotion.
 
+- When Hanif says `push` or `push everything` without asking for a branch or pull request, commit the requested work and push it directly to `main`. Do not create a branch or pull request solely as a publishing step; use one only when Hanif explicitly asks or repository protection prevents a direct push.
 - Use gstack as the default SDLC rail: `gstack-office-hours` for idea shaping, `gstack-plan-eng-review` or `gstack-autoplan` for plan review, `gstack-investigate` for debugging, `gstack-qa` or `gstack-qa-only` for QA, `gstack-review` for pre-landing review, `gstack-ship` for PR/ship flow, and `gstack-land-and-deploy` or `gstack-canary` for deploy verification.
 - Use Matt Pocock skills selectively: `to-prd` for formal client/product PRDs, `to-issues` for splitting approved plans into issue-ready slices, `triage` for issue-state management, `tdd` for test-first implementation, `improve-codebase-architecture` for refactor discovery, and `grill-with-docs` for domain-aware plan pressure-testing.
 - Treat Superpowers as explicit heavy mode for large or risky work that needs specs, worktrees, subagent execution, code-review gates, and verification discipline. Do not use it by default for one-off bugs, small UI tweaks, routine refactors, or urgent fixes.
