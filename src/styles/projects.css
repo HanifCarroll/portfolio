@@ -904,10 +904,30 @@
   .projects-index--spotlight .project-video-card {
     display: flex;
     flex-direction: column;
+    gap: var(--hc-space-5);
   }
 
   .projects-index--spotlight .project-video-card__copy {
+    gap: 0;
     order: 1;
+  }
+
+  .projects-index--spotlight .project-video-card__index {
+    font-size: 3rem;
+  }
+
+  .projects-index--spotlight .project-video-card__proof-label {
+    margin-top: var(--hc-space-2);
+    font-weight: var(--hc-weight-semibold);
+    letter-spacing: normal;
+  }
+
+  .projects-index--spotlight .project-video-card__copy h3 {
+    margin-top: var(--hc-space-3);
+  }
+
+  .projects-index--spotlight .project-video-card__copy > p:last-child {
+    margin-top: var(--hc-space-3);
   }
 
   .projects-index--spotlight .project-video-card__media-wrap {
@@ -949,17 +969,39 @@
   .projects-index__trio,
   .projects-index__archive-grid {
     grid-template-columns: 1fr;
+    gap: var(--hc-space-7);
   }
 
   .projects-index__trio,
   .projects-index__archive {
-    padding: 6rem var(--hc-gutter-narrow);
+    padding: var(--hc-space-7) var(--hc-gutter-narrow);
   }
 
   .projects-index--spotlight .project-video-card__copy h3,
   .projects-index__spotlight .project-video-card__copy h3,
   .projects-index__panorama .project-video-card__copy h3,
   .projects-index__closing-feature .project-video-card__copy h3 {
-    font-size: clamp(2.15rem, 10vw, 3.25rem);
+    font-size: clamp(2rem, 8.5vw, 2.5rem);
+  }
+
+  .projects-index__trio .project-video-card,
+  .projects-index__archive .project-video-card {
+    gap: var(--hc-space-4);
+  }
+
+  .projects-index__trio .project-video-card__index,
+  .projects-index__archive .project-video-card__index {
+    font-size: 2.5rem;
+  }
+
+  .projects-index__trio .project-video-card__copy h3,
+  .projects-index__archive .project-video-card__copy h3 {
+    margin-top: 0.75rem;
+    font-size: 1.75rem;
+  }
+
+  .projects-index__trio .project-video-card__copy > p:last-child,
+  .projects-index__archive .project-video-card__copy > p:last-child {
+    margin-top: 0.75rem;
   }
 }
