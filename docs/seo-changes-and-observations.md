@@ -487,3 +487,16 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - `bun run check:projects` passed.
 - `bun run build` passed with 0 errors, warnings, or hints and generated 43 pages.
 - Desktop and 390px mobile browser reviews confirmed the new proof, service, project, and method sequence without layout overflow.
+
+### Homepage Conversion Path
+
+- Changed the homepage and shared calls to action to describe the real next step as a 30-minute Business Systems Audit fit call rather than the audit itself.
+- Reframed the hero around finding and fixing difficult workflows before choosing software, and added the audit starting price beside the first conversion point.
+- Made the Business Systems Audit the recommended starting point, added a second booking opportunity after the service paths, and kept Build and Ongoing Partnership as later paths once the workflow is clear.
+- Reduced homepage proof from four projects to two consulting examples, replaced conceptual paper-system images with real product artifacts, kept one founder testimonial, added concise audit objection handling, and removed the repeated About section.
+
+### Verification
+
+- `bun run check:projects`, `bun run lint`, `bun run build`, and `git diff --check` passed.
+- Desktop and 390px mobile browser reviews confirmed the revised hero, Audit-first service hierarchy, mid-page booking CTA, real project artifacts, founder testimonial, process, and FAQ with no horizontal overflow.
+- Verified the new mid-page CTA resolves to the live 30-minute Business Systems Audit Fit Call on Cal.com.

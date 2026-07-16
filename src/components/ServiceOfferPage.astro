@@ -59,9 +59,12 @@ const serviceJsonLd = {
 					</nav>
 					<h1 data-motion-headline>{offer.heroTitle}</h1>
 					<p class='hc-lead' data-motion-deck>{offer.heroBody}</p>
-					<div class='hc-actions hc-actions--paired'>
-						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>{offer.primaryCta}</a>
-						<a class='hc-text-link' href={offer.secondaryHref}>{offer.secondaryCta}</a>
+					<div class='hc-detail-hero__cta'>
+						<div class='hc-actions hc-actions--paired'>
+							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>{offer.primaryCta}</a>
+							<a class='hc-text-link' href={offer.secondaryHref}>{offer.secondaryCta}</a>
+						</div>
+						{offer.key === 'audit' && <p class='hc-detail-hero__cta-note'>The first call is to see whether an audit is the right place to begin.</p>}
 					</div>
 				</div>
 				<figure class='hc-detail-hero__figure' data-motion-intro-item><Image src={heroIllustration} alt='' aria-hidden='true' loading='eager' /></figure>

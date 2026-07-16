@@ -6,7 +6,8 @@ interface Props {
 }
 
 const { offer } = Astro.props as Props;
-const showContract = offer.key !== 'ongoing';
+const showStandardContract = offer.key !== 'ongoing';
+const showOngoingResponsibilities = offer.key === 'ongoing';
 ---
 
 <section class='hc-detail-section hc-detail-process hc-section' aria-labelledby={`${offer.key}-process`} data-header-surface='light'>
@@ -23,7 +24,7 @@ const showContract = offer.key !== 'ongoing';
 				</li>
 			))}
 		</ol>
-		{showContract && (
+		{showStandardContract && (
 			<div class='hc-working-contract'>
 				<div>
 					<h3>Where the scope stops</h3>
@@ -31,6 +32,14 @@ const showContract = offer.key !== 'ongoing';
 				</div>
 				<div>
 					<h3>What I need from you</h3>
+					<ul class='hc-compact-list'>{offer.responsibilities.map((item) => <li>{item}</li>)}</ul>
+				</div>
+			</div>
+		)}
+		{showOngoingResponsibilities && (
+			<div class='hc-working-contract hc-working-contract--single'>
+				<div>
+					<h3>What I need from your team</h3>
 					<ul class='hc-compact-list'>{offer.responsibilities.map((item) => <li>{item}</li>)}</ul>
 				</div>
 			</div>

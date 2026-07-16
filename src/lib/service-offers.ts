@@ -122,7 +122,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     chooserSummary:
       "We look at the workflow, who's involved, which tools they use, where information gets handed off, and where things go wrong. You get a clear recommendation and first build plan, even if someone else does the build.",
     chooserCta: "Explore the Business Systems Audit",
-    primaryCta: "Book a Business Systems Audit",
+    primaryCta: "Book an audit fit call",
     secondaryCta: "Compare all services",
     secondaryHref: "/services/",
     summary: [
@@ -259,7 +259,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "Price and schedule are confirmed after the first release is defined.",
       },
     ],
-    sectionOrder: ["proof", "fit", "deliverables", "working", "commercial", "faq"],
+    sectionOrder: ["fit", "deliverables", "proof", "working", "commercial", "faq"],
     fitHeading: "You understand the workflow well enough to decide what should be built.",
     fitBody:
       "You should be able to identify who will use or manage the system, what it needs to produce, the important business rules, and what belongs in the first version. You don't need a finished specification, but the workflow needs to be clear enough to define and price the build.",
@@ -304,7 +304,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     process: [
       {
         title: "Confirm the first release",
-        body: "We turn audit findings or existing requirements into a clear scope. We agree on the users, workflow, required features, integrations, risks, review points, ownership, and what can wait.",
+        body: "After the scoping conversation, if the workflow is clear enough to build, I turn the audit findings or existing requirements into a written first-release scope. We agree on the users, workflow, required features, integrations, risks, review points, ownership, and what can wait before implementation begins.",
       },
       {
         title: "Design the system",
@@ -316,7 +316,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       },
       {
         title: "Put it into use",
-        body: "I prepare the agreed setup, documentation, and handoff, help the team understand how the system fits the workflow, and separate later improvements from the completed release.",
+        body: "The first release is complete when the agreed workflow is usable, the required setup and documentation are delivered, and your team understands the system and handoff. I separate later improvements from that completed release so they don't expand the agreed scope.",
       },
     ],
     responsibilities: [
@@ -334,6 +334,10 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     ownershipBody:
       "You keep the software, designs, documentation, setup information, and notes behind important decisions. I explain how the system fits the workflow, where its boundaries are, and what your team should know before changing it.",
     faqs: [
+      {
+        title: "What happens after the scoping conversation?",
+        body: "If the workflow and first release are clear enough to build, I write the scope, price, schedule, milestones, and responsibilities for review before implementation begins. If important questions are still open, I recommend starting with the Business Systems Audit.",
+      },
       {
         title: "Can a build start without an audit?",
         body: "Yes, when the workflow, users, desired result, and first release are already clear enough to scope. If important questions are still open, the audit can settle them before implementation begins.",
@@ -384,7 +388,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "A monthly partnership scoped around priorities and available time.",
       },
     ],
-    sectionOrder: ["fit", "deliverables", "working", "proof", "commercial", "faq"],
+    sectionOrder: ["fit", "deliverables", "proof", "working", "commercial", "faq"],
     fitHeading: "The same part of the business keeps needing technical help.",
     fitBody:
       "The partnership covers one part of the business where systems need regular attention. Because I keep the business and technical context between priorities, your team doesn't have to explain the same systems from the beginning each time.",
@@ -470,6 +474,10 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     ownershipBody:
       "Your team keeps every tool, automation, integration, update, and the documentation and decisions behind it. If the partnership ends, I prepare a clear handoff for any active priority or unfinished change, so the business doesn't depend on information that only I have.",
     faqs: [
+      {
+        title: "What happens if the partnership ends?",
+        body: "Your team keeps every tool, automation, integration, update, and the documentation and decisions behind it. I prepare a clear handoff for any active priority or unfinished change, so the business doesn't depend on information that only I have.",
+      },
       {
         title: "Can the partnership begin without an audit or build?",
         body: "Yes, when the systems, business area, and first priorities are already clear enough to define. If they aren't, a Business Systems Audit can create that starting point.",

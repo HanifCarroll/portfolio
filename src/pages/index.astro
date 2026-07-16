@@ -2,17 +2,15 @@
 import { Image } from 'astro:assets';
 import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
 import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
-import AcquirePaperSystem from '../assets/img/projects/acquire-paper-system.png';
-import DesarmaderoPaperSystem from '../assets/img/projects/desarmadero-operations-paper-system.png';
-import GenruptPaperSystem from '../assets/img/projects/genrupt-paper-system.png';
-import PalabrunoPaperSystem from '../assets/img/projects/palabruno-paper-system.png';
+import DesarmaderoOperations from '../assets/img/projects/desarmadero-operations-ventas.png';
+import GenruptCreativeOperations from '../assets/img/projects/genrupt-creative-ops-photo.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import { serviceOfferList } from '../lib/service-offers';
 import '../styles/home.css';
 
 const title = 'Hanif Carroll | Technical Consultant for Founder-Led Businesses';
-const description = 'I help founder-led businesses fix difficult workflows with custom software, automation, and AI.';
+const description = 'I help founder-led businesses find and fix difficult workflows through practical process changes, automation, and custom software.';
 
 const homepageJsonLd = [
 	{
@@ -42,8 +40,8 @@ const featuredProjects = [
 		title: 'Desarmadero Operations',
 		heading: 'A working operations prototype from one discovery call.',
 		body: 'An auto-dismantling yard was running sales and fulfillment through paper sheets, WhatsApp, Excel, and memory. I turned the workflow into a PRD, functional specification, and role-based prototype the client could validate before committing to the full build.',
-		image: DesarmaderoPaperSystem,
-		alt: 'Paper model of a vehicle order moving through sales, payment, dismantling, and billing.'
+		image: DesarmaderoOperations,
+		alt: 'Desarmadero operations prototype showing the counter sales workflow and live order summary.'
 	},
 	{
 		slug: 'genrupt',
@@ -51,26 +49,8 @@ const featuredProjects = [
 		title: 'Genrupt',
 		heading: 'Making Genrupt ready for paying teams.',
 		body: 'I helped build the billing, credit accounting, background jobs, and agent workflows that made Genrupt ready for paying teams and helped it support its first 200 paying customers.',
-		image: GenruptPaperSystem,
-		alt: 'Paper model of creative assets, team access, usage events, and pricing rules flowing through the Genrupt system.'
-	},
-	{
-		slug: 'acquire',
-		label: 'Independent work',
-		title: 'Acquire',
-		heading: 'One place to manage a scattered acquisition workflow.',
-		body: 'Acquire brings sourcing, review, applications, outreach, evidence, and follow-up into one local system. It keeps agent activity behind clear review steps and stores the state needed to recover interrupted activity.',
-		image: AcquirePaperSystem,
-		alt: 'Paper model of scattered opportunity inputs passing through review, qualification, and decision gates.'
-	},
-	{
-		slug: 'palabruno',
-		label: 'Client work',
-		title: 'Palabruno',
-		heading: 'Launching Palabruno across mobile and web.',
-		body: 'I helped a nontechnical founder narrow the product, build the learner and teacher workflows, add mobile and web payments, launch on iOS, Android, and web, and leave with the documentation and assets needed to own the product.',
-		image: PalabrunoPaperSystem,
-		alt: 'Paper model of a Spanish reading, vocabulary, teacher handoff, and learner progress across tablet and mobile.'
+		image: GenruptCreativeOperations,
+		alt: 'Genrupt creative operations workspace for Amazon seller teams.'
 	}
 ];
 
@@ -98,23 +78,30 @@ const method = [
 	}
 ];
 
-const testimonials = [
+const faqs = [
 	{
-		quote: 'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time.',
-		name: 'Monica Londoño',
-		role: 'Co-founder, Punto de Partida'
+		question: 'Do I need a specification before we talk?',
+		answer: "No. Start with the workflow that's causing delays, repeated effort, missed handoffs, or unreliable reporting. The first call is for understanding the problem and deciding whether an audit is the right next step."
 	},
 	{
-		quote: "He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
-		name: 'Markis Zarate',
-		role: 'Founder, Zarate Studios'
+		question: 'Does every audit lead to custom software?',
+		answer: 'No. The recommendation may be a process change, better use of an existing tool, an automation, an integration, or custom software. The audit is meant to show which change is worth making first.'
 	},
 	{
-		quote: 'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.',
-		name: 'Sarah Hibner',
-		role: 'Senior Product Designer, LeagueApps'
+		question: 'What do I receive from an audit?',
+		answer: 'You receive a workflow map, findings and priorities, a recommended first step, and a practical first build plan. You can use them with your team, another partner, or me.'
+	},
+	{
+		question: 'What does an audit cost?',
+		answer: 'Audits start at $750. I confirm the price and schedule before the audit begins, based on the workflow, the people involved, and the material that needs to be reviewed.'
 	}
 ];
+
+const founderTestimonial = {
+	quote: "He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
+	name: 'Markis Zarate',
+	role: 'Founder, Zarate Studios'
+};
 ---
 
 <BaseLayout
@@ -124,6 +111,7 @@ const testimonials = [
 	bodyClass='hc-home'
 	footerCtaTitle="Tell me what's getting harder to run."
 	footerCtaBody="You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step."
+	footerCtaPrimaryLabel='Book a 30-minute audit fit call'
 	footerCtaLocation='home_footer_cta'
 	footerCtaSurface='canvas'
 >
@@ -131,17 +119,18 @@ const testimonials = [
 		<header class='hc-home-hero'>
 			<div class='hc-home-hero__inner'>
 				<div class='hc-home-hero__copy'>
-					<h1 class='hc-home-hero__title' aria-label='Fix the workflows slowing down your business'>
-						<span>Fix the</span> <span class='hc-home-hero__title-accent'>workflows</span> <span>slowing down</span> <span>your business</span>
+					<h1 class='hc-home-hero__title' aria-label='Find and fix the workflows slowing down your business'>
+						<span>Find and fix</span> <span class='hc-home-hero__title-accent'>the workflows</span> <span>slowing down</span> <span>your business</span>
 					</h1>
-					<p class='hc-home-hero__lead'>I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.</p>
+					<p class='hc-home-hero__lead'>I help founder-led businesses find and fix repeated manual work, unreliable handoffs, and scattered information, then choose the smallest useful change.</p>
 					<div class='hc-home-hero__actions'>
-						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a Business Systems Audit</a>
+						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a 30-minute audit fit call</a>
 						<a class='hc-home-hero__secondary' href='/case-studies/'>See case studies</a>
 					</div>
+					<p class='hc-home-hero__commitment'>The call isn't the audit. If we decide an audit is the right next step, engagements start at $750.</p>
 					<aside class='hc-home-hero__proof' aria-label='Selected client result'>
 						<p class='hc-home-hero__proof-label'>Selected client result</p>
-						<p>Helped Genrupt build the systems behind its first 200 paying customers.</p>
+						<p>Helped build Genrupt's billing, credit accounting, background jobs, and agent workflows as it grew to its first 200 paying customers.</p>
 						<a class='hc-text-link' href='/case-studies/genrupt/'>View the Genrupt case study</a>
 					</aside>
 				</div>
@@ -210,61 +199,54 @@ const testimonials = [
 		<section class='hc-section' id='services'>
 			<div class='hc-container'>
 				<div class='hc-section-header hc-services-header'>
-					<h2 class='hc-section-title'>Three ways we can work together.</h2>
-					<p class='hc-section-intro'>Start with the level of help that matches what you already know. Each engagement produces something useful on its own.</p>
+					<h2 class='hc-section-title'>Start with the problem. Build only when the next step is clear.</h2>
+					<p class='hc-section-intro'>The Business Systems Audit is the recommended starting point when you can see the problem but aren't sure what will fix it. Build and ongoing support follow when the workflow and priorities are clear.</p>
 				</div>
 				<div class='hc-service-paths'>
-					{homepageServices.map((offer, index) => <article class='hc-service-path'><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
+					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]}><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
+				</div>
+				<div class='hc-home-decision-cta'>
+					<div>
+						<h3>Not sure which path fits?</h3>
+						<p>Start with a 30-minute fit call. We'll talk through the workflow and decide whether an audit, a focused build, or a smaller first step makes sense.</p>
+					</div>
+					<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_services'>Book a 30-minute audit fit call</a>
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-proof-section hc-section'>
+		<section class='hc-proof-section hc-section' id='case-studies'>
 			<div class='hc-container-wide hc-proof-section__header'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>Selected client and independent projects.</h2>
-					<p class='hc-section-intro'>These projects show how I handle discovery, product decisions, building, and handoff.</p>
+					<h2 class='hc-section-title'>See how difficult workflows became working systems.</h2>
+					<p class='hc-section-intro'>These client projects show the path from discovery and product decisions to software people could use.</p>
 				</div>
 			</div>
 			<div class='hc-proof-list'>
 				{featuredProjects.map((project, index) => {
 					const isDark = (featuredProjects.length - index) % 2 === 0;
-					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>;
+					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={88} /></figure></div></article>;
 				})}
 			</div>
 			<div class='hc-proof-section__actions'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>
+		</section>
+
+		<section class='hc-section hc-testimonial-section'>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title'>A founder's view of the working relationship.</h2></div>
+				<figure class='hc-testimonial hc-testimonial--featured'><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{founderTestimonial.quote}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{founderTestimonial.name}</strong><span>{founderTestimonial.role}</span></figcaption></figure>
+			</div>
 		</section>
 
 		<section class='hc-section hc-method-section' id='method' data-header-surface='dark'>
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A simple path from understanding the workflow to a system your team can own.</p></div>
 				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
-				<div class='hc-actions'><a class='hc-text-link' href='/services/'>See all services</a></div>
-			</div>
-		</section>
-
-		<section class='hc-section hc-testimonial-section'>
-			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>What people have said about working with me</h2></div>
-				<div class='hc-testimonials'>{testimonials.map((item, index) => <figure class:list={['hc-testimonial', { 'hc-testimonial--featured': index === 0 }]}><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{item.quote}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{item.name}</strong><span>{item.role}</span></figcaption></figure>)}</div>
-			</div>
-		</section>
-
-		<section class='hc-section hc-about-preview-section'>
-			<div class='hc-container-wide'>
-				<div class='hc-about-preview'>
-					<div class='hc-about-preview__visual'>
-						<figure><Image src={HeroBackdrop} alt='' aria-hidden='true' class='hc-about-preview__backdrop' loading='lazy' /><Image src={HeroPortrait} alt='Hanif Carroll, technical consultant' class='hc-about-preview__portrait' loading='lazy' /></figure>
-					</div>
-					<div class='hc-about-preview__copy'>
-						<div class='hc-about-preview__title'><h2>Hi, I'm Hanif.</h2></div>
-						<div class='hc-about-preview__body'>
-							<p>I'm Hanif Carroll, a technical consultant and product engineer with more than eight years of experience building web, mobile, automation, and AI systems. I work directly with founders and operators from the first conversations through product decisions, implementation, and handoff.</p>
-							<p>I'm based in Buenos Aires, work US hours, and contract with US clients through my LLC, HC Studio.</p>
-							<a class='hc-text-link' href='/about/'>More about how I work</a>
-						</div>
-					</div>
+				<div class='hc-home-faq'>
+					<div class='hc-home-faq__heading'><h3>Questions before the first call.</h3><p>You can start with the workflow problem. You don't need to decide on software, scope, or a preferred tool first.</p></div>
+					<div class='hc-home-faq__items'>{faqs.map((item) => <div class='hc-home-faq__item'><h4>{item.question}</h4><p>{item.answer}</p></div>)}</div>
 				</div>
+				<div class='hc-actions'><a class='hc-text-link' href='/services/business-systems-audit/'>See the Business Systems Audit</a></div>
 			</div>
 		</section>
 

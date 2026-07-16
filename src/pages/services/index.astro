@@ -5,8 +5,7 @@ import { BOOK_CALL_URL } from '../../consts';
 import { serviceOfferList } from '../../lib/service-offers';
 import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
 import GenruptPaperSystem from '../../assets/img/projects/genrupt-paper-system.png';
-import AcquirePaperSystem from '../../assets/img/projects/acquire-paper-system.png';
-import PalabrunoPaperSystem from '../../assets/img/projects/palabruno-paper-system.png';
+import MuchoHangoutsFeature from '../../assets/img/projects/mucho-hangouts-feature.png';
 import ServiceOverview from '../../assets/img/illustrations/service-overview.svg';
 import ServiceAuditMap from '../../assets/img/illustrations/service-audit-map.svg';
 import ServiceSolutionOptions from '../../assets/img/illustrations/service-solution-options.svg';
@@ -36,20 +35,12 @@ const proof = [
 		alt: 'Paper model of the Genrupt commercial system.'
 	},
 	{
-		slug: 'acquire',
-		label: 'Independent work',
-		title: 'Acquire',
-		body: 'A local-first tool brings workflow status, review steps, evidence, agent activity, and recovery into one place.',
-		image: AcquirePaperSystem,
-		alt: 'Paper model of the Acquire review and decision workflow.'
-	},
-	{
-		slug: 'palabruno',
+		slug: 'mucho-hangouts',
 		label: 'Client work',
-		title: 'Palabruno',
-		body: 'I helped a founder narrow the product, build the learner and teacher workflows, add payments, and launch across mobile and web.',
-		image: PalabrunoPaperSystem,
-		alt: 'Paper model of the Palabruno learning workflow across mobile and web.'
+		title: 'Mucho Hangouts',
+		body: 'I helped improve messaging, notifications, delivery patterns, and team practices while the product remained active and priorities continued to change.',
+		image: MuchoHangoutsFeature,
+		alt: 'Mucho Hangouts product interface for social events and group discovery.'
 	}
 ];
 
@@ -124,7 +115,7 @@ const faqs = [
 						<h1 class='hc-display' data-motion-headline>Technical help when work gets harder to run.</h1>
 						<p class='hc-lead' data-motion-deck>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
 						<div class='hc-actions'>
-							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book a Business Systems Audit</a>
+							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book an audit fit call</a>
 							<a class='hc-text-link' href='#services'>Compare the services</a>
 						</div>
 					</div>
@@ -134,23 +125,6 @@ const faqs = [
 				</div>
 			</div>
 		</header>
-
-		<section class='hc-section--compact hc-services-fit' data-motion-section data-header-surface='dark'>
-			<div class='hc-container'>
-				<div class='hc-fit-panel' data-motion-item>
-					<h2>For businesses that already have customers and recurring work.</h2>
-					<div class='hc-fit-panel__body'>
-						<ul class='hc-signal-list'>
-							<li>Recurring work is spread across spreadsheets, inboxes, forms, chats, and disconnected tools.</li>
-							<li>Handoffs, approvals, reporting, or customer workflows depend on manual checking.</li>
-							<li>Important status lives in people's heads, so the team has to ask around.</li>
-							<li>The team knows software or AI may help but doesn't know what should be built first.</li>
-							<li>A known workflow needs ongoing help from someone who can make decisions and build.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<section class='hc-section hc-services-offers' id='services' data-motion-section>
 			<div class='hc-container'>
@@ -174,11 +148,19 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section hc-services-principles' data-motion-section>
+		<section class='hc-section--compact hc-services-fit' data-motion-section data-header-surface='dark'>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I turn a difficult workflow into a working system.</h2></div>
-				<div class='hc-principles-grid'>
-					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-principle__copy'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div></div>)}
+				<div class='hc-fit-panel' data-motion-item>
+					<h2>For businesses that already have customers and recurring work.</h2>
+					<div class='hc-fit-panel__body'>
+						<ul class='hc-signal-list'>
+							<li>Recurring work is spread across spreadsheets, inboxes, forms, chats, and disconnected tools.</li>
+							<li>Handoffs, approvals, reporting, or customer workflows depend on manual checking.</li>
+							<li>Important status lives in people's heads, so the team has to ask around.</li>
+							<li>The team knows software or AI may help but doesn't know what should be built first.</li>
+							<li>A known workflow needs ongoing help from someone who can make decisions and build.</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -188,6 +170,15 @@ const faqs = [
 				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Project examples.</h2></div>
 				<div class='hc-proof-grid'>
 					{proof.map((item) => <a class='hc-proof-card' href={`/case-studies/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
+				</div>
+			</div>
+		</section>
+
+		<section class='hc-section hc-services-principles' data-motion-section>
+			<div class='hc-container'>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I turn a difficult workflow into a working system.</h2></div>
+				<div class='hc-principles-grid'>
+					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-principle__copy'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div></div>)}
 				</div>
 			</div>
 		</section>

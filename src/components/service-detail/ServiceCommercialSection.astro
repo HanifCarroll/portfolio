@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { offer } = Astro.props as Props;
-const showPartnershipContract = offer.key === 'ongoing';
 ---
 
 <section class='hc-detail-section hc-detail-commercial hc-section' aria-labelledby={`${offer.key}-price`}>
@@ -17,12 +16,5 @@ const showPartnershipContract = offer.key === 'ongoing';
 			<p>{offer.pricingBody}</p>
 			<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_commercial`}>{offer.primaryCta}</a>
 		</div>
-		{showPartnershipContract && (
-			<div class='hc-commercial-context'>
-				<h2>What I need from your team.</h2>
-				<ul class='hc-compact-list'>{offer.responsibilities.map((item) => <li>{item}</li>)}</ul>
-				<p>{offer.ownershipBody}</p>
-			</div>
-		)}
 	</div>
 </section>

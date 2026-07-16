@@ -35,6 +35,15 @@ const heading = headings[offer.key];
 				</a>
 			))}
 		</div>
+		{offer.key === 'ongoing' && (
+			<blockquote class='hc-service-testimonial'>
+				<div>
+					<p class='hc-proof-label'>Client note</p>
+					<footer><strong>Markis Zarate</strong><span>Founder, Zarate Studios</span></footer>
+				</div>
+				<p>“He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.”</p>
+			</blockquote>
+		)}
 		<a class='hc-text-link hc-proof-action' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_proof`}>{offer.primaryCta}</a>
 	</div>
 </section>
