@@ -90,7 +90,7 @@ const styles = {
     backgroundColor: "#fdfdfb",
   },
   masthead: { paddingBottom: "18px" },
-  titleColumn: { width: "190px", verticalAlign: "bottom" },
+  titleColumn: { width: "175px", verticalAlign: "bottom" },
   logoColumn: { width: "36px", paddingLeft: "4px", verticalAlign: "bottom" },
   logo: { display: "block", margin: "0" },
   name: {
