@@ -459,6 +459,14 @@ li {
   background: transparent;
   color: var(--hc-accent);
   cursor: pointer;
+  transition:
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.site-header[data-over-surface="dark"]:not(.is-menu-open) .hc-mobile-nav__toggle {
+  border-color: var(--hc-text);
+  color: var(--hc-text);
 }
 
 .hc-mobile-nav__toggle span {
