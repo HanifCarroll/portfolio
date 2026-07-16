@@ -80,7 +80,7 @@
   color: var(--hc-text);
   font-family: var(--hc-font-sans);
   font-size: clamp(1.9rem, 3vw, 2.7rem);
-  font-weight: 500;
+  font-weight: var(--hc-weight-regular);
   line-height: 1.02;
   letter-spacing: -0.03em;
   text-wrap: balance;
@@ -299,10 +299,7 @@
 }
 
 .page-newsletter .awt-issue-cover__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  display: block;
 }
 
 .page-newsletter .awt-issue-cover__header p {
@@ -319,13 +316,6 @@
   color: var(--hc-text-muted);
   font-size: 0.48rem;
   line-height: 1.3;
-}
-
-.page-newsletter .awt-issue-cover__mark {
-  width: 2.25rem;
-  height: 2.25rem;
-  flex: 0 0 auto;
-  color: var(--hc-text);
 }
 
 .page-newsletter .awt-issue-cover__body {
@@ -361,32 +351,6 @@
   line-height: 1.3;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.page-newsletter .awt-issue-cover__footer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.page-newsletter .awt-issue-cover__bars {
-  display: flex;
-  height: 3.75rem;
-  align-items: flex-end;
-  gap: 0.5rem;
-}
-
-.page-newsletter .awt-issue-cover__bars i {
-  display: block;
-  width: 0.65rem;
-  height: 100%;
-  background: var(--hc-proof-surface);
-}
-
-.page-newsletter .awt-issue-cover__bars i:last-child {
-  height: 46%;
-  background: var(--hc-accent);
 }
 
 .page-newsletter .awt-receive {
@@ -1035,11 +999,7 @@
   }
 
   .page-newsletter .awt-hero__portrait {
-    aspect-ratio: 3 / 2;
-  }
-
-  .page-newsletter .awt-hero__portrait-image {
-    object-position: 58% 100%;
+    display: none;
   }
 
   .page-newsletter .awt-feature {

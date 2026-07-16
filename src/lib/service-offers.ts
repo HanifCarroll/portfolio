@@ -149,7 +149,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "Important status lives in people's heads, so the team has to ask around.",
       "You suspect software, automation, or AI could help but don't know what should be built first.",
     ],
-    deliverablesHeading: "A clear view of the workflow and what should change first.",
+    deliverablesHeading: "A workflow map, clear priorities, and a first build plan.",
     deliverables: [
       {
         title: "Current workflow map",

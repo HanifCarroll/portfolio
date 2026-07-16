@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/tools.css';
 
-const title = 'Agent Tools Library';
+const title = 'Tools for Agents';
 const description = 'A public library of small workflow tools agents can inspect, install, and use for repeatable jobs.';
 const agentPrompt = [
 	'Review this Agent Tools Library: https://www.hanifcarroll.com/tools/.',
@@ -115,7 +115,7 @@ const icons = {
 	<article class='tools-page' data-tools-page>
 		<section class='tools-hero' aria-labelledby='tools-title'>
 			<div class='tools-hero__copy'>
-				<h1 id='tools-title'>Tools your agent can inspect, install, and use in real work.</h1>
+				<h1 id='tools-title'>Tools for Agents</h1>
 				<p>{description}</p>
 			</div>
 
@@ -174,8 +174,8 @@ const icons = {
 				<div class='tools-filter__buttons'>
 					{
 						filters.map((filter) => (
-							<button type='button' class='tools-filter__button' data-filter-value={filter.label} aria-pressed='false'>
-								<span style={`--dot-color: ${filter.color}`} aria-hidden='true'></span>
+							<button type='button' class='tools-filter__button' data-filter-value={filter.label} aria-pressed='false' style={`--filter-color: ${filter.color}`}>
+								<span aria-hidden='true'></span>
 								{filter.label}
 							</button>
 						))
@@ -266,9 +266,10 @@ const icons = {
 			const empty = root.querySelector('[data-tools-empty]');
 			let activeFilter = '';
 
-			const updateCards = () => {
+			const updateCards = ({ animate = false } = {}) => {
 				const query = search?.value?.trim().toLowerCase() || '';
 				let visibleCount = 0;
+				const visibleCards = [];
 
 				cards.forEach((card) => {
 					const matchesFilter = !activeFilter || card.dataset.category === activeFilter;
@@ -276,10 +277,25 @@ const icons = {
 					const matchesSearch = !query || searchText.includes(query);
 					const isVisible = matchesFilter && matchesSearch;
 					card.hidden = !isVisible;
-					if (isVisible) visibleCount += 1;
+					if (isVisible) {
+						visibleCount += 1;
+						visibleCards.push(card);
+					}
 				});
 
 				if (empty) empty.hidden = visibleCount > 0;
+
+				if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+					visibleCards.forEach((card, index) => {
+						card.animate(
+							[
+								{ opacity: 0.6, transform: 'translateY(4px)' },
+								{ opacity: 1, transform: 'translateY(0)' }
+							],
+							{ duration: 180, delay: Math.min(index * 20, 80), easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+						);
+					});
+				}
 			};
 
 			filterButtons.forEach((button) => {
@@ -289,7 +305,7 @@ const icons = {
 					filterButtons.forEach((filterButton) => {
 						filterButton.setAttribute('aria-pressed', String(filterButton.dataset.filterValue === activeFilter));
 					});
-					updateCards();
+					updateCards({ animate: true });
 				});
 			});
 
@@ -583,9 +599,10 @@ const icons = {
 			gap: 0.45rem;
 			justify-content: flex-start;
 			width: 100%;
-			min-height: 1.5rem;
-			border: 0;
-			padding: 0.3rem 0;
+			min-height: 2rem;
+			border: 1px solid transparent;
+			border-radius: var(--hc-radius-control);
+			padding: 0.45rem 0.55rem;
 			background: transparent;
 			color: var(--tools-body);
 			font-family: var(--hc-font-technical-mono);
@@ -594,18 +611,39 @@ const icons = {
 			line-height: 1.25;
 			text-align: left;
 			cursor: pointer;
+			transition:
+				color 160ms ease,
+				background-color 160ms ease,
+				border-color 160ms ease,
+				transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 		}
 
 		.tools-filter__button[aria-pressed='true'] {
 			color: var(--tools-ink);
+			border-color: color-mix(in srgb, var(--filter-color) 35%, var(--tools-rule));
+			background: color-mix(in srgb, var(--filter-color) 11%, var(--tools-surface));
+			transform: translateX(2px);
+		}
+
+		.tools-filter__button:focus-visible {
+			outline: 2px solid color-mix(in srgb, var(--filter-color) 65%, var(--hc-text));
+			outline-offset: 2px;
 		}
 
 		.tools-filter__button span {
 			width: 0.35rem;
 			height: 0.35rem;
 			border-radius: 50%;
-			background: var(--dot-color);
+			background: var(--filter-color);
 			flex: 0 0 auto;
+			transition:
+				transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+				box-shadow 160ms ease;
+		}
+
+		.tools-filter__button[aria-pressed='true'] span {
+			box-shadow: 0 0 0 3px color-mix(in srgb, var(--filter-color) 18%, transparent);
+			transform: scale(1.25);
 		}
 
 		.tools-catalog__main {
@@ -660,6 +698,13 @@ const icons = {
 			color: var(--tools-muted);
 			font-size: 0.8rem;
 			line-height: 1.4;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.tools-filter__button,
+			.tools-filter__button span {
+				transition: none;
+			}
 		}
 
 		@media (max-width: 64rem) {

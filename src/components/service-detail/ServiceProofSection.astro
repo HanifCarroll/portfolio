@@ -8,7 +8,12 @@ interface Props {
 }
 
 const { offer } = Astro.props as Props;
-const heading = offer.key === 'systemsBuild' ? 'A system used by paying teams.' : 'Relevant proof.';
+const headings = {
+	audit: 'See how an audit becomes a practical plan.',
+	systemsBuild: 'A system used by paying teams.',
+	ongoing: "Systems I've improved as the business grew."
+} as const;
+const heading = headings[offer.key];
 ---
 
 <section class='hc-detail-section hc-detail-proof hc-section' aria-labelledby={`${offer.key}-proof`}>

@@ -3,6 +3,7 @@ title: "AI Makes Open Source More Important, Not Less"
 seoTitle: "AI Makes Open Source More Important, Not Less"
 pubDate: "2026-06-30"
 description: "AI makes custom software easier, but reliable open-source building blocks become more valuable as teams build more ambitious systems."
+hidden: true
 ctaVariant: systemsBuild
 tags:
   - AI

@@ -9,10 +9,11 @@ const navLinks = [
 	{ href: '/about/', label: 'About' },
 	{ href: '/newsletter/', label: 'Newsletter' }
 ];
+const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 
 const { pathname } = Astro.url;
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
-const isActiveLink = (href: string) => normalizePath(pathname).startsWith(normalizePath(href));
+const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
 ---
 
 <header class='site-header' id='siteHeader' data-over-surface='light' transition:name='site-header'>
@@ -42,7 +43,7 @@ const isActiveLink = (href: string) => normalizePath(pathname).startsWith(normal
 			<div class='hc-mobile-nav__panel' id='mobileNavigation' aria-hidden='true'>
 				<nav class='hc-mobile-nav__links' aria-label='Mobile navigation'>
 				{
-					navLinks.map((link) => (
+					mobileNavLinks.map((link) => (
 						<a class='hc-mobile-nav__link' href={link.href} aria-current={isActiveLink(link.href) ? 'page' : undefined}>
 							{link.label}
 						</a>

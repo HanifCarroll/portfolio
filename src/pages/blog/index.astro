@@ -10,7 +10,7 @@ const title = 'Blog on products, workflows, and AI';
 const description =
 	'Blog posts for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build posts are here too, but they support the client work rather than replace it.';
 
-const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-blog-index'>
@@ -21,7 +21,7 @@ const posts = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b
 				<p class='content-page__intro' data-motion-deck>Notes on dependable software, business workflows, and deciding where AI is useful.</p>
 			</header>
 			<section class='hc-blog-index__posts' aria-label='Blog posts' data-motion-section>
-				{posts.map((post, index) => <a class='hc-blog-index__entry' href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`} data-motion-item><span class='hc-blog-index__number'>{String(index + 1).padStart(2, '0')}</span><FormattedDate date={post.data.pubDate} /><h2>{post.data.title}</h2><span class='hc-blog-index__arrow' aria-hidden='true'>↗</span></a>)}
+				{posts.map((post, index) => <a class='hc-blog-index__entry' href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`} data-motion-item><span class='hc-blog-index__number'>{String(index + 1).padStart(2, '0')}</span><FormattedDate date={post.data.pubDate} /><h2>{post.data.title}</h2><span class='hc-blog-index__arrow' aria-hidden='true'>→</span></a>)}
 			</section>
 		</div>
 	</article>

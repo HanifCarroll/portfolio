@@ -39,14 +39,14 @@ export const shippedRows = [
 <CaseSection title="Summary">
   Job Application Assistant is a local tool for drafting and tracking job applications.
 
-    It combines a Chrome extension, a FastAPI backend, SQLite, local portfolio context, Codex draft generation, and cover-letter PDF export. The important part is that the draft, the source job, the chosen proof, and the application ledger stay connected.
+    It combines a Chrome extension, a FastAPI backend, SQLite, local portfolio context, Codex draft generation, and cover-letter PDF export. The important part is that the draft, the source job, the chosen project evidence, and the application ledger stay connected.
 
 </CaseSection>
 
 <CaseSection title="The situation">
   The application workflow had too many loose pieces.
 
-    The job board had the posting. Local files had positioning and project proof. Drafts lived in a chat or text box. Cover letters had to become PDFs somewhere else. Application history was another habit to maintain. It was too easy to lose the link between the role, the claim used, the final PDF, and whether the application was already logged.
+    The job board had the posting. Local files had positioning and project examples. Drafts lived in a chat or text box. Cover letters had to become PDFs somewhere else. Application history was another habit to maintain. It was too easy to lose the link between the role, the claim used, the final PDF, and whether the application was already logged.
 
 </CaseSection>
 
@@ -60,7 +60,7 @@ export const shippedRows = [
     </DecisionBlock>
 
     <DecisionBlock title="Make the draft inspectable.">
-    The backend builds one prompt from the job snapshot plus local profile, resume, offers, and project proof. The model has to return strict JSON, including the draft and the audit fields needed to check why a claim was used.
+    The backend builds one prompt from the job snapshot plus local profile, resume, offers, and project evidence. The model has to return strict JSON, including the draft and the audit fields needed to check why a claim was used.
     </DecisionBlock>
 
 </CaseSection>
@@ -80,7 +80,7 @@ export const shippedRows = [
   </DecisionBlock>
 
     <DecisionBlock title="A local context and drafting backend.">
-    The backend indexes profile Markdown, offer JSON, project proof JSON, and resume text into a ContextBundle. Draft jobs run asynchronously, persist request and result JSON, expose polling status, and record stage and Codex subprocess timing metadata.
+    The backend indexes profile Markdown, offer JSON, project evidence JSON, and resume text into a ContextBundle. Draft jobs run asynchronously, persist request and result JSON, expose polling status, and record stage and Codex subprocess timing metadata.
     </DecisionBlock>
 
     <DecisionBlock title="Application tracking in the same workflow.">
@@ -110,7 +110,7 @@ export const shippedRows = [
 <CaseSection title="Why it matters">
   The useful part is not that the system can write a cover letter.
 
-    The useful part is that every draft stays tied to the job snapshot and the allowed portfolio proof. Every application can be checked against the ledger, and every generated PDF remains part of the same local workflow.
+    The useful part is that every draft stays tied to the job snapshot and the allowed portfolio evidence. Every application can be checked against the ledger, and every generated PDF remains part of the same local workflow.
 
 </CaseSection>
 

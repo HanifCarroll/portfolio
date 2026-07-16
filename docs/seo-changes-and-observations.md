@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-16
+
+### Blog Positioning Cleanup
+
+- Kept the three articles most closely aligned with workflow automation and dependable business systems visible on the blog, in RSS, and in the sitemap.
+- Withdrew four developer-focused articles from public routes and discovery surfaces while retaining their source content: `ai-makes-open-source-more-important-not-less`, `choosing-a-backend-in-2026`, `dont-let-the-llm-decide-what-a-word-is`, and `expensive-tokens-reward-good-architecture`.
+- Verified the withdrawn routes are not generated, return 404 in the production preview, and are absent from RSS and the sitemap.
+- After deployment, confirm the four withdrawn URLs return 404, inspect Search Console for their retirement, and verify the three retained articles remain discoverable.
+
 ## 2026-07-15
 
 ### A Working Theory Issue Pages And Archive

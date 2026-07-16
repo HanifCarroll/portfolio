@@ -15,6 +15,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       tags: z.array(z.string()).optional(),
       coverImage: image().optional(),
+      hidden: z.boolean().default(false),
       ctaVariant: z.enum(["general", "audit", "systemsBuild", "ongoing"]).default("general"),
     }),
 });

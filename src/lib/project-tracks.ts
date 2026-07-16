@@ -11,14 +11,14 @@ export interface ProjectTrackMeta {
 export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
   workflow_automation: {
     label: "Operational Product System",
-    shortLabel: "Systems proof",
+    shortLabel: "Systems work",
     group: "supporting_product_proof",
     ctaVariant: "audit",
     rank: 3,
   },
   ai_systems: {
-    label: "AI Product Proof",
-    shortLabel: "AI proof",
+    label: "AI Product System",
+    shortLabel: "AI systems",
     group: "supporting_product_proof",
     ctaVariant: "systemsBuild",
     rank: 4,
