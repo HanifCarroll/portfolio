@@ -74,31 +74,27 @@ const featuredProjects = [
 	}
 ];
 
-const serviceComparison = serviceOfferList.map((offer) => ({
+const homepageServices = serviceOfferList.map((offer) => ({
 	...offer,
-	bestFor: {
-		audit: 'Gaining clarity, identifying risks, and planning the right solution.',
-		systemsBuild: 'Building new tools, automations, dashboards, and integrations your team will use.',
-		ongoing: 'Keeping systems reliable, improving them over time, and handling new technical needs.'
+	homepageSummary: {
+		audit: 'Map one difficult workflow, find where it breaks down, and leave with a recommendation and first build plan.',
+		systemsBuild: 'Design and build an internal tool, automation, dashboard, integration, or AI-assisted workflow around your team.',
+		ongoing: 'Improve and support the systems your team relies on through an agreed set of technical priorities.'
 	}[offer.key]
 }));
 
 const method = [
 	{
-		title: 'See the whole workflow',
+		title: 'Understand the complete workflow',
 		body: 'We trace each workflow from request to outcome: who is involved, which tools they use, where information changes hands, and where the process breaks down.'
 	},
 	{
-		title: 'Find where the workflow gets stuck',
-		body: 'I look for the step causing delays, repeated effort, or confusion. The best fix may be software, a small process change, or better use of a tool you already have.'
+		title: 'Choose the smallest useful change',
+		body: 'The best fix may be a process change, better use of an existing tool, an automation, or custom software. We choose based on what the workflow needs.'
 	},
 	{
-		title: 'Build a useful first version',
-		body: 'When software is the best fix, I build a focused first version and use what we learn to decide what should happen next.'
-	},
-	{
-		title: 'Make sure your team can run it',
-		body: 'You keep the maps, software, documentation, and notes behind important decisions. Everything should be clear enough for your business to run and maintain.'
+		title: 'Build, document, and hand it over',
+		body: 'When software is the right fix, I build a focused version around your team. You keep the maps, software, documentation, and notes behind important decisions.'
 	}
 ];
 
@@ -129,23 +125,25 @@ const testimonials = [
 	footerCtaTitle="Tell me what's getting harder to run."
 	footerCtaBody="You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs an audit, a focused build, or a smaller first step."
 	footerCtaLocation='home_footer_cta'
-	footerCtaSurface='warm'
+	footerCtaSurface='canvas'
 >
 	<article>
 		<header class='hc-home-hero'>
 			<div class='hc-home-hero__inner'>
 				<div class='hc-home-hero__copy'>
 					<h1 class='hc-home-hero__title' aria-label='Fix the workflows slowing down your business'>
-						<span>Fix the</span>
-						<span class='hc-home-hero__title-accent'>workflows</span>
-						<span>slowing down</span>
-						<span>your business</span>
+						<span>Fix the</span> <span class='hc-home-hero__title-accent'>workflows</span> <span>slowing down</span> <span>your business</span>
 					</h1>
 					<p class='hc-home-hero__lead'>I help growing businesses replace repeated manual work and scattered information with clear workflows and software their team can use.</p>
 					<div class='hc-home-hero__actions'>
 						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a Business Systems Audit</a>
 						<a class='hc-home-hero__secondary' href='/case-studies/'>See case studies</a>
 					</div>
+					<aside class='hc-home-hero__proof' aria-label='Selected client result'>
+						<p class='hc-home-hero__proof-label'>Selected client result</p>
+						<p>Helped Genrupt build the systems behind its first 200 paying customers.</p>
+						<a class='hc-text-link' href='/case-studies/genrupt/'>View the Genrupt case study</a>
+					</aside>
 				</div>
 				<figure class='hc-home-hero__portrait'>
 					<Image class='hc-home-hero__backdrop-image' src={HeroBackdrop} alt='' aria-hidden='true' loading='eager' widths={[640, 960, 1122]} sizes='(max-width: 900px) 100vw, 53vw' quality={92} />
@@ -157,7 +155,7 @@ const testimonials = [
 		<section class='hc-section hc-recognition-section'>
 			<div class='hc-container hc-recognition'>
 				<div class='hc-recognition__copy'>
-					<h2 class='hc-recognition__title'>As the business grows,<br /> manual work gets <span>harder to manage.</span></h2>
+					<h2 class='hc-recognition__title'>As the business grows, manual work gets <span>harder to manage.</span></h2>
 					<p>The business is growing, but day-to-day operations are getting harder to run. Requests arrive through inboxes and chats. Important status lives in spreadsheets. Approvals depend on one person. Reporting means pulling information from several tools.</p>
 				</div>
 
@@ -212,34 +210,11 @@ const testimonials = [
 		<section class='hc-section' id='services'>
 			<div class='hc-container'>
 				<div class='hc-section-header hc-services-header'>
-					<h2 class='hc-section-title'>Let's get clear on the problem first.</h2>
-					<p class='hc-section-intro'>Each engagement produces something useful on its own, which means you don't have to commit to the next stage.</p>
+					<h2 class='hc-section-title'>Three ways we can work together.</h2>
+					<p class='hc-section-intro'>Start with the level of help that matches what you already know. Each engagement produces something useful on its own.</p>
 				</div>
-				<div class='hc-service-comparison hc-service-comparison--desktop'>
-					<div class='hc-service-comparison__head'>
-						<span>Engagement</span>
-						{serviceComparison.map((offer, index) => <strong><span>{String(index + 1).padStart(2, '0')}</span>{offer.label}</strong>)}
-					</div>
-					<div class='hc-service-comparison__group hc-service-comparison__group--description'>
-						<h3>What it is</h3>
-						{serviceComparison.map((offer) => <div class='hc-service-comparison__cell'><h4>{offer.chooserHeading}</h4><p>{offer.chooserSummary}</p></div>)}
-					</div>
-					<div class='hc-service-comparison__group hc-service-comparison__group--best'>
-						<h3>Best for</h3>
-						{serviceComparison.map((offer) => <p>{offer.bestFor}</p>)}
-					</div>
-					<div class='hc-service-comparison__group hc-service-comparison__group--commercial'>
-						<h3>Commercial note</h3>
-						{serviceComparison.map((offer) => <p>{offer.commercialNote}</p>)}
-					</div>
-					<div class='hc-service-comparison__group hc-service-comparison__group--explore'>
-						<h3>Explore</h3>
-						{serviceComparison.map((offer) => <a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a>)}
-					</div>
-				</div>
-
-				<div class='hc-service-comparison-mobile'>
-					{serviceComparison.map((offer, index) => <article class='hc-service-mobile'><p class='hc-service-mobile__number'>{String(index + 1).padStart(2, '0')}</p><p class='hc-service-mobile__label'>{offer.label}</p><h3>{offer.chooserHeading}</h3><p>{offer.chooserSummary}</p><dl><div><dt>Best for</dt><dd>{offer.bestFor}</dd></div><div><dt>Commercial note</dt><dd>{offer.commercialNote}</dd></div></dl><a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a></article>)}
+				<div class='hc-service-paths'>
+					{homepageServices.map((offer, index) => <article class='hc-service-path'><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
 				</div>
 			</div>
 		</section>
@@ -252,14 +227,17 @@ const testimonials = [
 				</div>
 			</div>
 			<div class='hc-proof-list'>
-				{featuredProjects.map((project, index) => <article class:list={['hc-proof-row', { 'hc-proof-row--dark': index % 2 === 1 }]} data-header-surface={index % 2 === 1 ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>)}
+				{featuredProjects.map((project, index) => {
+					const isDark = (featuredProjects.length - index) % 2 === 0;
+					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='png' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={100} /></figure></div></article>;
+				})}
 			</div>
-			<div class='hc-proof-section__actions'><a class='hc-button hc-button--proof' href='/case-studies/'>Explore all case studies</a></div>
+			<div class='hc-proof-section__actions'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>
 		</section>
 
-		<section class='hc-section hc-method-section' data-header-surface='dark'>
+		<section class='hc-section hc-method-section' id='method' data-header-surface='dark'>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A clear path from understanding the workflow to a handoff your team can own.</p></div>
+				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A simple path from understanding the workflow to a system your team can own.</p></div>
 				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
 				<div class='hc-actions'><a class='hc-text-link' href='/services/'>See all services</a></div>
 			</div>

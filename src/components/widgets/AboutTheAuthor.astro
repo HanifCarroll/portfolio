@@ -9,6 +9,7 @@ const { compact = false } = Astro.props as Props;
 ---
 
 <div class:list={['about-the-author', compact && 'about-the-author--compact']}>
+	{compact && <p class='about-the-author__label'>About the author</p>}
 	<Author picSize={compact ? 'sm' : 'md'} />
 	<div class:list={['author-desc mt-4 space-y-3 text-[0.95rem] leading-7 text-zinc-600 dark:text-zinc-300', compact && 'mt-3 space-y-0']}>
 		<p>

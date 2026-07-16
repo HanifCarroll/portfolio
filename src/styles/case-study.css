@@ -199,10 +199,8 @@
 
   .case-study-detail .heading-display--hero,
   .case-study-detail--product .heading-display--hero {
-    width: min(100%, 15rem);
     font-size: 2rem !important;
     line-height: 0.98;
-    max-width: 15rem;
     overflow-wrap: break-word;
     text-wrap: wrap;
     white-space: normal;
@@ -217,8 +215,7 @@
   }
 
   .case-study-detail p,
-  .case-study-detail strong,
-  .case-study-detail h3 {
+  .case-study-detail strong {
     max-width: 15rem;
     overflow-wrap: break-word;
   }
@@ -379,7 +376,6 @@
 }
 
 .case-study-detail__launch-proof-row h3 {
-  max-width: 42rem;
   color: var(--hc-text);
   font-family: var(--hc-font-case-display);
   font-size: clamp(1.3rem, 1.12rem + 0.6vw, 1.9rem);
@@ -422,7 +418,6 @@
 }
 
 .case-study-detail .heading-display--hero {
-  max-width: 54rem;
   font-family: var(--hc-font-editorial);
   font-size: clamp(3rem, 2rem + 4.2vw, 7.2rem);
   font-weight: 400;
@@ -560,7 +555,6 @@
 
 .case-study-detail__decision-block h3,
 .case-study-detail__launch-proof-row h3 {
-  max-width: 40rem;
   color: var(--hc-text);
   font-family: var(--hc-font-case-display);
   font-size: clamp(1.45rem, 1.18rem + 0.72vw, 2.05rem);
@@ -807,7 +801,6 @@
 }
 
 .case-study-detail--product .case-study-detail__launch-proof-row h3 {
-  max-width: 34rem;
   font-family: inherit;
   font-size: clamp(1.12rem, 1rem + 0.3vw, 1.35rem);
   font-weight: 650;
@@ -859,7 +852,6 @@
 
 .case-study-detail .heading-display--hero,
 .case-study-detail--product .heading-display--hero {
-  max-width: 20ch;
   color: var(--hc-proof-text);
   font-family: var(--hc-font-sans);
   font-size: clamp(2.75rem, 6vw, 6rem);
@@ -954,7 +946,6 @@
 }
 
 .case-study-detail .heading-display--hero {
-  max-width: 13ch;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
@@ -963,7 +954,8 @@
 .case-study-detail__proof-snapshot {
   margin-bottom: clamp(3rem, 8vw, 8rem);
   padding: clamp(2rem, 5vw, 4rem);
-  background: color-mix(in srgb, var(--hc-accent) 9%, var(--hc-canvas));
+  background: var(--hc-canvas);
+  border-block: 1px solid var(--hc-border);
 }
 
 .case-study-detail__proof-snapshot-grid {
@@ -987,7 +979,6 @@
 }
 
 .case-study-detail__editorial-section h2 {
-  max-width: 9ch;
   font-family: var(--hc-font-sans);
   font-size: clamp(2.3rem, 5vw, 5rem);
   font-weight: 700;
@@ -1038,7 +1029,6 @@
   }
 
   .case-study-detail__editorial-section h2 {
-    max-width: 13ch;
     position: static;
   }
 }

@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import { BOOK_CALL_URL } from '../../consts';
+import type { ServiceOffer } from '../../lib/service-offers';
+
+interface Props {
+	offer: ServiceOffer;
+}
+
+const { offer } = Astro.props as Props;
+const heading = offer.key === 'systemsBuild' ? 'A system used by paying teams.' : 'Relevant proof.';
+---
+
+<section class='hc-detail-section hc-detail-proof hc-section' aria-labelledby={`${offer.key}-proof`}>
+	<div class='hc-container'>
+		<header class='hc-detail-section-header'>
+			<h2 id={`${offer.key}-proof`}>{heading}</h2>
+		</header>
+		<div class='hc-proof-grid'>
+			{offer.proof.map((proof) => (
+				<a class='hc-proof-card' href={proof.href}>
+					<figure><Image src={proof.image} alt={proof.imageAlt} class={proof.imageClass} loading='lazy' /></figure>
+					<div class='hc-proof-card__copy'>
+						<p class='hc-proof-label'>{proof.label}</p>
+						<h3>{proof.title}</h3>
+						<strong>{proof.heading}</strong>
+						<p>{proof.body}</p>
+						<span class='hc-text-link'>View {proof.title}</span>
+					</div>
+				</a>
+			))}
+		</div>
+		<a class='hc-text-link hc-proof-action' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_proof`}>{offer.primaryCta}</a>
+	</div>
+</section>

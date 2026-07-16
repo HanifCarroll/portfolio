@@ -463,3 +463,18 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 - `bun run check:projects`, `bun run videos:validate`, video QA, and `bun run build` passed.
 - The rendered 47-second overview video shows `200 first paying customers` in the result scene.
+
+## 2026-07-16
+
+### Homepage Structure
+
+- Added a Genrupt result inside the hero so the homepage establishes concrete client proof without separating it from the positioning and primary actions.
+- Replaced the detailed service comparison matrix with three concise engagement paths, keeping commercial context and links to the full service pages.
+- Reduced the working-together section from four steps to three so it reinforces the delivery method after the case studies without repeating the service explanation.
+- Updated the canonical homepage copy deck to match the implemented structure and current 200-customer Genrupt milestone.
+
+### Verification
+
+- `bun run check:projects` passed.
+- `bun run build` passed with 0 errors, warnings, or hints and generated 43 pages.
+- Desktop and 390px mobile browser reviews confirmed the new proof, service, project, and method sequence without layout overflow.
