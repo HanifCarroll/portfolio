@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceTestimonial from '../../components/ServiceTestimonial.astro';
 import { BOOK_CALL_URL } from '../../consts';
 import { serviceOfferList } from '../../lib/service-offers';
+import { testimonials } from '../../lib/testimonials';
 import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
 import GenruptPaperSystem from '../../assets/img/projects/genrupt-paper-system.png';
 import MuchoHangoutsFeature from '../../assets/img/projects/mucho-hangouts-feature.png';
@@ -171,6 +173,7 @@ const faqs = [
 				<div class='hc-proof-grid'>
 					{proof.map((item) => <a class='hc-proof-card' href={`/case-studies/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
 				</div>
+				<ServiceTestimonial testimonial={testimonials.markisZarate} />
 			</div>
 		</section>
 

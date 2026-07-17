@@ -1,6 +1,7 @@
 import type { ImageMetadata } from "astro";
 import { getProjectImage } from "./project-images";
 import { getProject } from "./projects";
+import { testimonials, type Testimonial } from "./testimonials";
 
 export type ServiceOfferKey = "audit" | "systemsBuild" | "ongoing";
 export type ServiceOfferSection =
@@ -55,6 +56,7 @@ export interface ServiceOffer {
   pricingHeading: string;
   pricingBody: string;
   proof: ServiceOfferProof[];
+  testimonial: Testimonial;
   ownershipHeading: string;
   ownershipBody: string;
   faqs: Array<{ title: string; body: string }>;
@@ -205,6 +207,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     pricingBody:
       "The final price and schedule depend on the workflow, the number of people involved, and the material that needs to be reviewed. I confirm both before the audit begins.",
     proof: [desarmaderoProof],
+    testimonial: testimonials.sarahHibner,
     ownershipHeading: "The findings are yours to use.",
     ownershipBody:
       "You keep the map, findings, priorities, recommendation, and build plan. I walk you through the reasoning, and you can use the material with your team, another partner, or me.",
@@ -330,6 +333,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     pricingBody:
       "I confirm the price, schedule, milestones, and responsibilities after the workflow and first release are clear. If they aren't clear yet, the Business Systems Audit is the better place to begin.",
     proof: [genruptBuildProof],
+    testimonial: testimonials.monicaLondono,
     ownershipHeading: "Your business keeps the system and the decisions behind it.",
     ownershipBody:
       "You keep the software, designs, documentation, setup information, and notes behind important decisions. I explain how the system fits the workflow, where its boundaries are, and what your team should know before changing it.",
@@ -470,6 +474,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       },
       muchoProof,
     ],
+    testimonial: testimonials.markisZarate,
     ownershipHeading: "Your team keeps the systems, decisions, and documentation.",
     ownershipBody:
       "Your team keeps every tool, automation, integration, update, and the documentation and decisions behind it. If the partnership ends, I prepare a clear handoff for any active priority or unfinished change, so the business doesn't depend on information that only I have.",

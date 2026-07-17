@@ -7,6 +7,7 @@ import GenruptCreativeOperations from '../assets/img/projects/genrupt-creative-o
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import { serviceOfferList } from '../lib/service-offers';
+import { testimonials } from '../lib/testimonials';
 import '../styles/home.css';
 
 const title = 'Hanif Carroll | Technical Consultant for Founder-Led Businesses';
@@ -97,11 +98,7 @@ const faqs = [
 	}
 ];
 
-const founderTestimonial = {
-	quote: "He's reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
-	name: 'Markis Zarate',
-	role: 'Founder, Zarate Studios'
-};
+const founderTestimonial = testimonials.markisZarate;
 ---
 
 <BaseLayout
@@ -233,7 +230,7 @@ const founderTestimonial = {
 		<section class='hc-section hc-testimonial-section'>
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title'>A founder's view of the working relationship.</h2></div>
-				<figure class='hc-testimonial hc-testimonial--featured'><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{founderTestimonial.quote}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{founderTestimonial.name}</strong><span>{founderTestimonial.role}</span></figcaption></figure>
+				<figure class='hc-testimonial hc-testimonial--featured'><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{founderTestimonial.featuredText}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{founderTestimonial.name}</strong><span>{founderTestimonial.attribution}</span></figcaption></figure>
 			</div>
 		</section>
 

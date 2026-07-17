@@ -1,0 +1,18 @@
+---
+import type { Testimonial } from '../lib/testimonials';
+import '../styles/service-testimonial.css';
+
+interface Props {
+	testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props as Props;
+---
+
+<blockquote class='hc-service-testimonial'>
+	<div>
+		{testimonial.label && <p class='hc-proof-label'>{testimonial.label}</p>}
+		<footer><strong>{testimonial.name}</strong><span>{testimonial.attribution}</span></footer>
+	</div>
+	<p>“{testimonial.featuredText}”</p>
+</blockquote>
