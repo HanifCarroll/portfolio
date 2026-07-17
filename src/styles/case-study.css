@@ -493,10 +493,12 @@
 .case-study-detail__hero-actions .fit-secondary-link::after {
   content: "→";
   color: var(--hc-accent-text);
-  transition: transform 180ms ease;
+  transition: transform var(--hc-dur-base) var(--hc-ease-out);
 }
 
-.case-study-detail__hero-actions .fit-secondary-link:hover::after {
+.case-study-detail__hero-actions .fit-secondary-link:hover::after,
+.case-study-detail__hero-actions .fit-secondary-link:focus-visible::after,
+.case-study-detail__hero-actions .fit-secondary-link:active::after {
   transform: translateX(var(--hc-space-1));
 }
 
@@ -633,6 +635,13 @@
   color: var(--case-muted);
   font-size: 0.86rem;
   letter-spacing: 0.14em;
+  transition: color var(--hc-dur-fast) var(--hc-ease-out);
+}
+
+.case-study-detail > .pt-8 .arrow-link:hover,
+.case-study-detail > .pt-8 .arrow-link:focus-visible,
+.case-study-detail > .pt-8 .arrow-link:active {
+  color: var(--case-ink);
 }
 
 .case-study-detail__image-plate-img {
@@ -792,7 +801,7 @@
 
 .case-study-detail__device-caption p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: var(--hc-type-meta);
   line-height: 1.65;
   color: var(--hc-text-muted);
 }

@@ -112,7 +112,7 @@ const faqs = [
 			<div class='hc-container'>
 				<div class='hc-hero-surface'>
 					<div class='hc-hero-copy'>
-						<h1 class='hc-display' data-motion-headline>Technical help when work gets harder to run.</h1>
+						<h1 class='hc-display' data-motion='headline'>Technical help when work gets harder to run.</h1>
 						<p class='hc-lead' data-motion-deck>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
 						<div class='hc-actions'>
 							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book an audit fit call</a>
@@ -126,10 +126,10 @@ const faqs = [
 			</div>
 		</header>
 
-		<section class='hc-section hc-services-offers' id='services' data-motion-section>
+		<section class='hc-section hc-services-offers' id='services' data-motion-group>
 			<div class='hc-container'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title' data-motion-section-label>Use the service that matches where you are.</h2>
+					<h2 class='hc-section-title' data-motion='reveal'>Use the service that matches where you are.</h2>
 				</div>
 				<div class='hc-service-list'>
 					{
@@ -148,7 +148,7 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section--compact hc-services-fit' data-motion-section data-header-surface='dark'>
+		<section class='hc-section--compact hc-services-fit' data-motion-group data-header-surface='dark'>
 			<div class='hc-container'>
 				<div class='hc-fit-panel' data-motion-item>
 					<h2>For businesses that already have customers and recurring work.</h2>
@@ -165,27 +165,27 @@ const faqs = [
 			</div>
 		</section>
 
-		<section class='hc-section hc-services-proof' data-motion-section data-header-surface='dark'>
+		<section class='hc-section hc-services-proof' data-motion-group data-header-surface='dark'>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Project examples.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>Project examples.</h2></div>
 				<div class='hc-proof-grid'>
 					{proof.map((item) => <a class='hc-proof-card' href={`/case-studies/${item.slug}/`} data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-proof-card__copy'><p class='hc-proof-label'>{item.label}</p><h3>{item.title}</h3><p>{item.body}</p><span class='hc-text-link'>View {item.title}</span></div></a>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section hc-services-principles' data-motion-section>
+		<section class='hc-section hc-services-principles' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>How I turn a difficult workflow into a working system.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>How I turn a difficult workflow into a working system.</h2></div>
 				<div class='hc-principles-grid'>
 					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-principle__copy'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div></div>)}
 				</div>
 			</div>
 		</section>
 
-		<section class='hc-section hc-services-faq' id='faq' data-motion-section>
+		<section class='hc-section hc-services-faq' id='faq' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion-section-label>Questions people ask before starting</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>Questions people ask before starting</h2></div>
 				<div class='hc-faq-list'>
 					{faqs.map((faq, index) => <div class:list={['hc-faq-item', { 'is-open': index === 0 }]} data-motion-item><button class='hc-faq-item__trigger' type='button' aria-expanded={index === 0 ? 'true' : 'false'}><span>{faq.title}</span><span class='hc-faq-item__icon' aria-hidden='true'></span></button><div class='hc-faq-item__answer'><div><p>{faq.body}</p></div></div></div>)}
 				</div>

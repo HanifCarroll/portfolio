@@ -31,21 +31,21 @@ const issues = [...realIssues, ...sampleNewsletterIssues].sort((a, b) => b.pubDa
 		<header class='awt-archive-hero' data-header-surface='dark' data-motion-intro>
 			<div class='hc-container-wide awt-archive-hero__inner'>
 				<a class='awt-back-link' href='/newsletter/'>A Working Theory</a>
-				<h1 data-motion-headline>Issue archive</h1>
+				<h1 data-motion='headline'>Issue archive</h1>
 				<p data-motion-deck>Field notes on AI, judgment, and better ways of working. Browse every issue, newest first.</p>
 			</div>
 		</header>
 		<div class='hc-container-wide awt-preview-notice' role='note'>
 			<strong>Archive design preview.</strong> Issue 001 is real. The other entries are sample content used only to test the filled archive layout.
 		</div>
-		<section class='hc-container-wide awt-archive-section' aria-label='Published and sample issues' data-motion-section>
+		<section class='hc-container-wide awt-archive-section' aria-label='Published and sample issues' data-motion-group>
 			<div class='awt-archive-section__heading'>
 				<p>Published and sample issues</p>
 				<span>{issues.length} issues</span>
 			</div>
 			<ArchiveList issues={issues} />
 		</section>
-		<section class='awt-archive-subscribe' aria-labelledby='awt-preview-subscribe-title' data-motion-section>
+		<section class='awt-archive-subscribe' aria-labelledby='awt-preview-subscribe-title' data-motion-group>
 			<div class='hc-container-wide'>
 				<div class='awt-archive-subscribe__inner'>
 					<div>

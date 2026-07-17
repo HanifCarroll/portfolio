@@ -50,7 +50,7 @@ const archiveProjects = orderedProjects.slice(6);
 <BaseLayout title={`${title} | Hanif Carroll`} description={description} bodyClass='page-projects-index'>
 	<article class='projects-index projects-index--spotlight'>
 		<header class='projects-index__intro-band hc-container-wide' data-motion-intro>
-			<h1 data-motion-headline>Case Studies</h1>
+			<h1 data-motion='headline'>Case Studies</h1>
 			<div class='projects-index__intro-copy'>
 				<p data-motion-deck>Client and independent projects showing how I understand an operation, make product decisions, and build systems people can use.</p>
 				<div class='projects-index__filters' aria-label='Filter case studies'>
@@ -65,32 +65,29 @@ const archiveProjects = orderedProjects.slice(6);
 			<div class='projects-index__filtered-grid' data-project-filtered-grid></div>
 		</section>
 
-		<section class='projects-index__spotlight hc-container-wide' data-project-group data-motion-section>
+		<section class='projects-index__spotlight hc-container-wide' data-project-group data-motion-group>
 			<ProjectVideoCard project={spotlightProject} variant='lead' index={1} />
 		</section>
 
-		<section class='projects-index__panorama' data-project-group data-motion-section>
+		<section class='projects-index__panorama' data-project-group data-motion-group>
 			<div class='hc-container-wide'>
 				<ProjectVideoCard project={panoramaProject} variant='lead' index={2} />
 			</div>
 		</section>
 
-		<section class='projects-index__trio hc-container-wide' data-project-group data-motion-section>
+		<section class='projects-index__trio hc-container-wide' data-project-group data-motion-group>
 			{trioProjects.map((project, index) => (
 				<ProjectVideoCard project={project} variant='compact' index={index + 3} />
 			))}
 		</section>
 
-		<section class='projects-index__closing-feature' data-project-group data-motion-section>
+		<section class='projects-index__closing-feature' data-project-group data-motion-group>
 			<div class='hc-container-wide'>
 				<ProjectVideoCard project={closingProject} variant='lead' index={6} />
 			</div>
 		</section>
 
-		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-section>
-			<div class='projects-index__archive-heading'>
-				<h2>More client and workflow systems</h2>
-			</div>
+		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-group>
 			<div class='projects-index__archive-grid'>
 				{archiveProjects.map((project, index) => (
 					<ProjectVideoCard project={project} variant='compact' index={index + 7} />
@@ -98,7 +95,7 @@ const archiveProjects = orderedProjects.slice(6);
 			</div>
 		</section>
 
-		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-section>
+		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-group>
 			<div class='projects-index__archive-heading'>
 				<h2>Independent systems and R&amp;D</h2>
 			</div>

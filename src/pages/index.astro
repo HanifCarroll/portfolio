@@ -116,39 +116,39 @@ const founderTestimonial = {
 	footerCtaSurface='canvas'
 >
 	<article>
-		<header class='hc-home-hero'>
+		<header class='hc-home-hero' data-motion-intro>
 			<div class='hc-home-hero__inner'>
 				<div class='hc-home-hero__copy'>
-					<h1 class='hc-home-hero__title' aria-label='Find and fix the workflows slowing down your business'>
+					<h1 class='hc-home-hero__title' aria-label='Find and fix the workflows slowing down your business' data-motion='headline'>
 						<span>Find and fix</span> <span class='hc-home-hero__title-accent'>the workflows</span> <span>slowing down</span> <span>your business</span>
 					</h1>
-					<p class='hc-home-hero__lead'>I help founder-led businesses find and fix repeated manual work, unreliable handoffs, and scattered information, then choose the smallest useful change.</p>
+					<p class='hc-home-hero__lead' data-motion-deck>I help founder-led businesses find and fix repeated manual work, unreliable handoffs, and scattered information, then choose the smallest useful change.</p>
 					<div class='hc-home-hero__actions'>
-						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a 30-minute audit fit call</a>
-						<a class='hc-home-hero__secondary' href='/case-studies/'>See case studies</a>
+						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero' data-motion-intro-item>Book a 30-minute audit fit call</a>
+						<a class='hc-home-hero__secondary' href='/case-studies/' data-motion-intro-item>See case studies</a>
 					</div>
-					<p class='hc-home-hero__commitment'>The call isn't the audit. If we decide an audit is the right next step, engagements start at $750.</p>
-					<aside class='hc-home-hero__proof' aria-label='Selected client result'>
+					<p class='hc-home-hero__commitment' data-motion-intro-item>The call isn't the audit. If we decide an audit is the right next step, engagements start at $750.</p>
+					<aside class='hc-home-hero__proof' aria-label='Selected client result' data-motion-intro-item>
 						<p class='hc-home-hero__proof-label'>Selected client result</p>
 						<p>Helped build Genrupt's billing, credit accounting, background jobs, and agent workflows as it grew to its first 200 paying customers.</p>
 						<a class='hc-text-link' href='/case-studies/genrupt/'>View the Genrupt case study</a>
 					</aside>
 				</div>
-				<figure class='hc-home-hero__portrait'>
+				<figure class='hc-home-hero__portrait' data-motion-intro-item='media'>
 					<Image class='hc-home-hero__backdrop-image' src={HeroBackdrop} alt='' aria-hidden='true' loading='eager' widths={[640, 960, 1122]} sizes='(max-width: 900px) 100vw, 53vw' quality={92} />
 					<Image class='hc-home-hero__portrait-image' src={HeroPortrait} alt='Hanif Carroll looking toward the homepage introduction' loading='eager' widths={[640, 960, 1122]} sizes='(max-width: 900px) 100vw, 53vw' quality={95} />
 				</figure>
 			</div>
 		</header>
 
-		<section class='hc-section hc-recognition-section'>
+		<section class='hc-section hc-recognition-section' data-motion-group>
 			<div class='hc-container hc-recognition'>
-				<div class='hc-recognition__copy'>
+				<div class='hc-recognition__copy' data-motion='reveal'>
 					<h2 class='hc-recognition__title'>As the business grows, manual work gets <span>harder to manage.</span></h2>
 					<p>The business is growing, but day-to-day operations are getting harder to run. Requests arrive through inboxes and chats. Important status lives in spreadsheets. Approvals depend on one person. Reporting means pulling information from several tools.</p>
 				</div>
 
-				<div class='hc-workflow-diagram' role='img' aria-label='Requests from inbox and chat, spreadsheet status, and approval decisions all depend on one person before reporting can happen.'>
+				<div class='hc-workflow-diagram' data-motion-item role='img' aria-label='Requests from inbox and chat, spreadsheet status, and approval decisions all depend on one person before reporting can happen.'>
 					<div class='hc-workflow-sources'>
 						<div class='hc-workflow-source'>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='2.5' y='4.5' width='19' height='15' rx='2'></rect><path d='m3.5 6 8.5 7 8.5-7'></path></svg>
@@ -192,20 +192,20 @@ const founderTestimonial = {
 					</div>
 				</div>
 
-				<p class='hc-recognition__close'>A clear look at the entire workflow can show you where to begin.</p>
+				<p class='hc-recognition__close' data-motion-item>A clear look at the entire workflow can show you where to begin.</p>
 			</div>
 		</section>
 
-		<section class='hc-section' id='services'>
+		<section class='hc-section' id='services' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header hc-services-header'>
+				<div class='hc-section-header hc-services-header' data-motion='reveal'>
 					<h2 class='hc-section-title'>Start with the problem. Build only when the next step is clear.</h2>
 					<p class='hc-section-intro'>The Business Systems Audit is the recommended starting point when you can see the problem but aren't sure what will fix it. Build and ongoing support follow when the workflow and priorities are clear.</p>
 				</div>
 				<div class='hc-service-paths'>
-					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]}><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
+					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]} data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
 				</div>
-				<div class='hc-home-decision-cta'>
+				<div class='hc-home-decision-cta' data-motion-item>
 					<div>
 						<h3>Not sure which path fits?</h3>
 						<p>Start with a 30-minute fit call. We'll talk through the workflow and decide whether an audit, a focused build, or a smaller first step makes sense.</p>
@@ -216,16 +216,16 @@ const founderTestimonial = {
 		</section>
 
 		<section class='hc-proof-section hc-section' id='case-studies'>
-			<div class='hc-container-wide hc-proof-section__header'>
+			<div class='hc-container-wide hc-proof-section__header' data-motion-group>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title'>See how difficult workflows became working systems.</h2>
-					<p class='hc-section-intro'>These client projects show the path from discovery and product decisions to software people could use.</p>
+					<h2 class='hc-section-title' data-motion='reveal'>See how difficult workflows became working systems.</h2>
+					<p class='hc-section-intro' data-motion-item>These client projects show the path from discovery and product decisions to software people could use.</p>
 				</div>
 			</div>
 			<div class='hc-proof-list'>
 				{featuredProjects.map((project, index) => {
 					const isDark = (featuredProjects.length - index) % 2 === 0;
-					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy'><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media'><Image src={project.image} alt={project.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={88} /></figure></div></article>;
+					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'} data-motion-group data-motion-from={index % 2 === 0 ? 'left' : 'right'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy' data-motion-item><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media' data-motion-item data-motion='parallax'><Image src={project.image} alt={project.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={88} /></figure></div></article>;
 				})}
 			</div>
 			<div class='hc-proof-section__actions'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>

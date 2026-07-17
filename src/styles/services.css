@@ -153,8 +153,8 @@
   box-shadow: none;
   text-decoration: none;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform var(--hc-dur-base) var(--hc-ease-out),
+    box-shadow var(--hc-dur-base) var(--hc-ease-out);
 }
 
 .hc-service-item__body {
@@ -168,7 +168,8 @@
   grid-row: 1 / span 2;
 }
 
-.hc-service-item:hover {
+.hc-service-item:hover,
+.hc-service-item:focus-visible {
   transform: translateX(0.35rem);
   box-shadow: none;
 }
@@ -177,6 +178,7 @@
   color: var(--hc-accent-text);
   font-size: 1rem;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.08em;
 }
 
@@ -254,6 +256,7 @@
 .hc-principle__number {
   color: var(--hc-accent-text);
   font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .hc-principle h3 {
@@ -307,11 +310,13 @@
   width: min(100%, 31rem);
   max-height: 22rem;
   object-fit: contain;
-  filter: drop-shadow(0 1.25rem 1rem rgb(0 0 0 / 0.2));
-  transition: transform 240ms ease;
+  border-radius: var(--hc-radius-artifact);
+  box-shadow: var(--hc-shadow-artifact);
+  transition: transform var(--hc-dur-base) var(--hc-ease-out);
 }
 
-.hc-proof-card:hover figure img {
+.hc-proof-card:hover figure img,
+.hc-proof-card:focus-visible figure img {
   transform: scale(1.025);
 }
 
@@ -398,6 +403,12 @@
   border: 0;
   background: transparent;
   text-align: left;
+  transition: color var(--hc-dur-fast) var(--hc-ease-out);
+}
+
+.hc-faq-item__trigger:hover,
+.hc-faq-item__trigger:focus-visible {
+  color: var(--hc-accent-text);
 }
 
 .hc-faq-item__icon {
@@ -416,7 +427,7 @@
   background: var(--hc-accent-text);
   content: "";
   transform: translateY(-50%);
-  transition: transform 180ms ease;
+  transition: transform var(--hc-dur-base) var(--hc-ease-out);
 }
 
 .hc-faq-item__icon::after {
@@ -432,8 +443,8 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 320ms cubic-bezier(0.32, 0.72, 0, 1),
-    opacity 180ms ease;
+    grid-template-rows var(--hc-dur-slow) var(--hc-ease-in-out),
+    opacity var(--hc-dur-fast) var(--hc-ease-out);
 }
 
 .hc-faq-item__answer > div {
