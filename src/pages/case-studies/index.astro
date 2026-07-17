@@ -2,23 +2,44 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectVideoCard from '../../components/project-video/ProjectVideoCard.astro';
 import { projects } from '../../lib/project-cards';
-import { PROJECT_INDEX_ORDER } from '../../lib/project-curation';
+import {
+	DELISTED_CASE_STUDY_SLUGS,
+	PROJECT_INDEX_ORDER,
+	PROJECT_R_AND_D_ORDER,
+} from '../../lib/project-curation';
 import '../../styles/projects.css';
 
 const title = 'Case Studies';
 const description = 'Selected client and independent projects showing workflow diagnosis, product decisions, software systems, and supported results.';
 
-const orderProjects = (projectList: typeof projects, preferredOrder: readonly string[]) => {
-	const orderMap = new Map(preferredOrder.map((slug, index) => [slug, index]));
+const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
 
-	return [...projectList].sort((a, b) => {
-		const aIndex = orderMap.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
-		const bIndex = orderMap.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
-		return aIndex - bIndex;
+const selectProjects = (preferredOrder: readonly string[]) => {
+	return preferredOrder.map((slug) => {
+		const project = projectBySlug.get(slug);
+		if (!project) throw new Error(`Missing project metadata for curated case study "${slug}".`);
+		return project;
 	});
 };
 
-const orderedProjects = orderProjects(projects, PROJECT_INDEX_ORDER);
+const categorizedSlugs = [
+	...PROJECT_INDEX_ORDER,
+	...PROJECT_R_AND_D_ORDER,
+	...DELISTED_CASE_STUDY_SLUGS,
+];
+const duplicateSlugs = categorizedSlugs.filter((slug, index) => categorizedSlugs.indexOf(slug) !== index);
+if (duplicateSlugs.length > 0) {
+	throw new Error(`Case-study curation contains duplicate slugs: ${[...new Set(duplicateSlugs)].join(', ')}`);
+}
+
+const categorizedSlugSet = new Set<string>(categorizedSlugs);
+const uncategorizedProjects = projects.filter((project) => !categorizedSlugSet.has(project.slug));
+if (uncategorizedProjects.length > 0) {
+	throw new Error(`Case studies need a visibility tier: ${uncategorizedProjects.map((project) => project.slug).join(', ')}`);
+}
+
+const orderedProjects = selectProjects(PROJECT_INDEX_ORDER);
+const researchProjects = selectProjects(PROJECT_R_AND_D_ORDER);
 const spotlightProject = orderedProjects[0];
 const panoramaProject = orderedProjects[1];
 const trioProjects = orderedProjects.slice(2, 5);
@@ -68,11 +89,22 @@ const archiveProjects = orderedProjects.slice(6);
 
 		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-section>
 			<div class='projects-index__archive-heading'>
-				<h2>More systems, launches, and operating tools</h2>
+				<h2>More client and workflow systems</h2>
 			</div>
 			<div class='projects-index__archive-grid'>
 				{archiveProjects.map((project, index) => (
 					<ProjectVideoCard project={project} variant='compact' index={index + 7} />
+				))}
+			</div>
+		</section>
+
+		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-section>
+			<div class='projects-index__archive-heading'>
+				<h2>Independent systems and R&amp;D</h2>
+			</div>
+			<div class='projects-index__archive-grid'>
+				{researchProjects.map((project, index) => (
+					<ProjectVideoCard project={project} variant='compact' index={index + orderedProjects.length + 1} />
 				))}
 			</div>
 		</section>
