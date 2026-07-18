@@ -9,6 +9,7 @@
     "dev:direct": "node node_modules/astro/bin/astro.mjs dev",
     "start": "node node_modules/astro/bin/astro.mjs dev",
     "check:projects": "node scripts/check-project-metadata.mjs",
+    "check:copy": "node scripts/check-user-facing-copy.mjs",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "lint": "oxlint .",
@@ -25,7 +26,7 @@
     "email:dev": "email dev --dir src/emails --port 3001",
     "newsletter:test": "bun test src/lib/newsletter/token.test.ts scripts/newsletter/packet.test.mjs",
     "newsletter:verify": "bun scripts/newsletter/verify.tsx",
-    "build": "node node_modules/astro/bin/astro.mjs check && node node_modules/astro/bin/astro.mjs build",
+    "build": "node node_modules/astro/bin/astro.mjs check && node node_modules/astro/bin/astro.mjs build && node scripts/check-user-facing-copy.mjs",
     "preview": "node node_modules/astro/bin/astro.mjs preview",
     "astro": "node node_modules/astro/bin/astro.mjs",
     "prepare": "husky"
@@ -72,6 +73,7 @@
     "hyperframes": "0.7.46",
     "oxfmt": "0.57.0",
     "oxlint": "1.72.0",
+    "parse5": "^8.0.1",
     "playwright-core": "^1.61.0",
     "react-email": "6.9.0"
   },

@@ -59,6 +59,8 @@ The fix? Add a venue enrichment step that fetches individual event pages. Claude
 
 Logs are just one feedback loop. Here's the full toolkit I'm building out:
 
+[Compare three browser automation options](/blog/browser-automation-tools-comparison-2026/) if you need to choose how an agent will inspect and use a browser.
+
 | Tool                                | What it answers             |
 | ----------------------------------- | --------------------------- |
 | **Logs**                            | "What happened?"            |

@@ -243,6 +243,28 @@ const heroActions = [
 
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 
+		{
+			project.relatedLinks && project.relatedLinks.length > 0 && (
+				<nav class='case-study-detail__related' aria-labelledby={`related-${project.slug}`}>
+					<p id={`related-${project.slug}`} class='case-study-detail__related-heading'>
+						See another example
+					</p>
+					<div class='case-study-detail__related-links'>
+						{project.relatedLinks.map((link) => (
+							<a
+								class='arrow-link'
+								href={link.href}
+								data-track-event='related_case_study_clicked'
+								data-track-location={`case_study_${project.slug}`}
+							>
+								{link.label}
+							</a>
+						))}
+					</div>
+				</nav>
+			)
+		}
+
 		<div class='pt-8'>
 			<a href='/case-studies/' class='arrow-link'>Back to All Case Studies</a>
 		</div>

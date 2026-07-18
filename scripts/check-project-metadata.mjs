@@ -67,6 +67,15 @@ for (const file of localProjectFiles) {
       errors.push(`${file}: ${urlField} is not a valid URL.`);
     }
   }
+
+  for (const [index, link] of (project.relatedLinks ?? []).entries()) {
+    if (typeof link?.href !== "string" || !link.href.startsWith("/")) {
+      errors.push(`${file}: relatedLinks.${index}.href must be a root-relative path.`);
+    }
+    if (typeof link?.label !== "string" || link.label.trim() === "") {
+      errors.push(`${file}: relatedLinks.${index}.label must be a non-empty string.`);
+    }
+  }
 }
 
 if (errors.length > 0) {

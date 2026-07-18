@@ -97,6 +97,17 @@ const genruptBuildProof: ServiceOfferProof = {
   imageClass: "object-left-top",
 };
 
+const palabrunoBuildExample: ServiceOfferProof = {
+  label: "Client work",
+  title: "Palabruno",
+  heading: "An early product idea became a launched reading product.",
+  body: "I built the iOS, Android, and web product around AI reading features, teacher workflows, and payments, then helped move it through launch.",
+  href: "/case-studies/palabruno/",
+  image: proofImage("palabruno", "hero"),
+  imageAlt: "Spanish reading materials and learner interface from Palabruno.",
+  imageClass: "object-left-top",
+};
+
 const muchoProof: ServiceOfferProof = {
   label: "Client work",
   title: "Mucho Hangouts",
@@ -332,7 +343,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     pricingHeading: "I confirm the price and schedule before the build begins.",
     pricingBody:
       "I confirm the price, schedule, milestones, and responsibilities after the workflow and first release are clear. If they aren't clear yet, the Business Systems Audit is the better place to begin.",
-    proof: [genruptBuildProof],
+    proof: [genruptBuildProof, palabrunoBuildExample],
     testimonial: testimonials.monicaLondono,
     ownershipHeading: "Your business keeps the system and the decisions behind it.",
     ownershipBody:

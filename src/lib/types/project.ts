@@ -30,6 +30,11 @@ export interface ProjectProofQuote {
   role?: string;
 }
 
+export interface ProjectRelatedLink {
+  href: string;
+  label: string;
+}
+
 export type ProjectTrack =
   | "mvp_build"
   | "mvp_validation"
@@ -73,4 +78,5 @@ export interface Project {
   repository?: string;
   architectureImage?: string;
   proofQuote?: ProjectProofQuote;
+  relatedLinks?: ProjectRelatedLink[];
 }

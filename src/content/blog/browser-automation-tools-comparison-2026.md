@@ -102,6 +102,8 @@ What happens when you try to click a non-existent element?
 
 All three handle errors gracefully. Agent-Browser's suggestion to run `snapshot` is particularly helpful.
 
+[How I give agents a way to check their own work](/blog/give-ai-agents-tools-to-verify-their-own-work/) explains how browser access fits into a wider development loop.
+
 ## Feature Comparison
 
 Here's the full feature matrix:
@@ -163,6 +165,8 @@ agent-browser install  # Downloads Chromium
 ## My Recommendation
 
 **For AI agent development**, Playwriter wins. The labeled screenshots are a game-changer for visual debugging, and the CDP access gives you deep browser control when you need it.
+
+[See guarded browser automation in a working system.](/case-studies/linkedin-tools/)
 
 **For automation scripts**, Agent-Browser is the better choice. It's fast, simple, and doesn't require MCP infrastructure.
 

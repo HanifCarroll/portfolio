@@ -24,6 +24,10 @@ const tools = [
 		category: 'Memory and recall',
 		body: 'Find prior decisions, fixes, commands, and citations from old agent sessions.',
 		repo: 'https://github.com/HanifCarroll/agent-recall',
+		caseStudy: {
+			href: '/case-studies/agent-recall/',
+			label: 'Read the Agent Recall case study'
+		},
 		featured: true
 	},
 	{
@@ -146,22 +150,34 @@ const icons = {
 			<div class='tools-featured__grid'>
 				{
 					featuredTools.map((tool) => (
-						<a
-							class='tools-card tools-card--featured'
-							href={tool.repo}
-							target='_blank'
-							rel='noopener noreferrer'
-							aria-label={`View ${tool.name} repository`}
-							data-track-event='tool_repo_clicked'
-							data-track-location='tools_page_featured'
-						>
-							<span class='tools-card__top'>
-								<span class='tools-card__focus'>{tool.focus}</span>
-								<svg class='tools-card__external' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.externalLink}></svg>
-							</span>
-							<span class='tools-card__name'>{tool.name}</span>
-							<span class='tools-card__body'>{tool.body}</span>
-						</a>
+						<article class='tools-featured-item'>
+							<a
+								class='tools-card tools-card--featured'
+								href={tool.repo}
+								target='_blank'
+								rel='noopener noreferrer'
+								aria-label={`View ${tool.name} repository`}
+								data-track-event='tool_repo_clicked'
+								data-track-location='tools_page_featured'
+							>
+								<span class='tools-card__top'>
+									<span class='tools-card__focus'>{tool.focus}</span>
+									<svg class='tools-card__external' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.externalLink}></svg>
+								</span>
+								<span class='tools-card__name'>{tool.name}</span>
+								<span class='tools-card__body'>{tool.body}</span>
+							</a>
+							{tool.caseStudy && (
+								<a
+									class='tools-featured-item__case-study'
+									href={tool.caseStudy.href}
+									data-track-event='related_case_study_clicked'
+									data-track-location='tools_page_featured'
+								>
+									{tool.caseStudy.label}
+								</a>
+							)}
+						</article>
 					))
 				}
 			</div>
@@ -500,6 +516,24 @@ const icons = {
 
 		.tools-featured__grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.tools-featured-item {
+			display: grid;
+			gap: 0.55rem;
+		}
+
+		.tools-featured-item .tools-card {
+			height: 100%;
+		}
+
+		.tools-featured-item__case-study {
+			width: fit-content;
+			color: var(--tools-blue);
+			font-size: 0.72rem;
+			font-weight: 700;
+			line-height: 1.35;
+			text-underline-offset: 0.18em;
 		}
 
 		.tools-grid {
