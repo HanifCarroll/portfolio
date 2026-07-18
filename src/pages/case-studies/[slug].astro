@@ -8,6 +8,7 @@ import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
+import { DELISTED_CASE_STUDY_SLUGS } from '@src/lib/project-curation';
 import '../../styles/case-study.css';
 
 interface PageProps {
@@ -40,6 +41,7 @@ const { Content } = await render(caseStudy);
 const heroImage = getProjectImage(project, 'hero');
 const seoTitle = project.seoTitle ?? `${project.title} · Case Study`;
 const seoDescription = project.seoDescription ?? project.description;
+const isDelisted = (DELISTED_CASE_STUDY_SLUGS as readonly string[]).includes(project.slug);
 const canonicalUrl = new URL(`/case-studies/${project.slug}/`, Astro.site).toString();
 const caseStudyJsonLd = {
 	'@context': 'https://schema.org',
@@ -98,6 +100,7 @@ const heroActions = [
 <BaseLayout
 	title={seoTitle}
 	description={seoDescription}
+	robots={isDelisted ? 'noindex, follow' : undefined}
 	image={heroImage?.src}
 	jsonLd={caseStudyJsonLd}
 	showFooterCta={false}
