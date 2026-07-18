@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/newsletter.css';
 
 const title = 'A Working Theory | Newsletter by Hanif Carroll';
-const description = 'Field notes on AI, judgment, and better ways of working.';
+const description = 'A Working Theory is a newsletter about reliable AI workflows, human judgment, and better ways to build and operate technical systems.';
 const issues = (await getCollection('newsletter')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const latestIssue = issues[0];
 const issueDate = latestIssue

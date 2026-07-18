@@ -8,7 +8,7 @@ import '../../styles/blog-index.css';
 type BlogPost = CollectionEntry<'blog'>;
 const title = 'Blog on products, workflows, and AI';
 const description =
-	'Blog posts for founders and operator-led teams deciding what to build, what to automate, and where AI is useful. Technical build posts are here too, but they support the client work rather than replace it.';
+	'Practical notes for founders and operators on software, workflow automation, AI, and the technical decisions behind reliable systems.';
 
 const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
