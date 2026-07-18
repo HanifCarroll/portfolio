@@ -116,13 +116,13 @@ const icons = {
 	bodyClass='page-tools'
 >
 	<article class='tools-page' data-tools-page>
-		<section class='tools-hero' aria-labelledby='tools-title'>
+		<section class='tools-hero' aria-labelledby='tools-title' data-motion-intro>
 			<div class='tools-hero__copy'>
-				<h1 id='tools-title'>Tools for Agents</h1>
-				<p>{description}</p>
+				<h1 id='tools-title' data-motion='headline'>Tools for Agents</h1>
+				<p data-motion-deck>{description}</p>
 			</div>
 
-			<aside class='tools-prompt' aria-labelledby='tools-prompt-title'>
+			<aside class='tools-prompt' aria-labelledby='tools-prompt-title' data-motion-intro-item>
 				<p id='tools-prompt-title' class='tools-prompt__label'>Hand this to your agent</p>
 				<p class='tools-prompt__body' id='agent-tools-prompt'>{agentPrompt}</p>
 				<button
@@ -142,15 +142,15 @@ const icons = {
 			</aside>
 		</section>
 
-		<section class='tools-featured' aria-labelledby='tools-featured-title'>
-			<div class='tools-section-heading'>
+		<section class='tools-featured' aria-labelledby='tools-featured-title' data-motion-group>
+			<div class='tools-section-heading' data-motion='reveal'>
 				<h2 id='tools-featured-title'>Best first installs</h2>
 			</div>
 
 			<div class='tools-featured__grid'>
 				{
 					featuredTools.map((tool) => (
-						<article class='tools-featured-item'>
+						<article class='tools-featured-item' data-motion-item>
 							<a
 								class='tools-card tools-card--featured'
 								href={tool.repo}
@@ -183,8 +183,8 @@ const icons = {
 			</div>
 		</section>
 
-		<section class='tools-catalog' aria-labelledby='tools-catalog-title'>
-			<aside class='tools-filter' aria-label='Filter tools by job'>
+		<section class='tools-catalog' aria-labelledby='tools-catalog-title' data-motion-group>
+			<aside class='tools-filter' aria-label='Filter tools by job' data-motion-item>
 				<h2 id='tools-catalog-title'>Filter by job</h2>
 				<div class='tools-filter__buttons'>
 					{
@@ -198,7 +198,7 @@ const icons = {
 				</div>
 			</aside>
 
-			<div class='tools-catalog__main'>
+			<div class='tools-catalog__main' data-motion-item>
 				<label class='sr-only' for='tools-search'>Search tools by workflow</label>
 				<div class='tools-search'>
 					<svg class='tools-search__icon' aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' set:html={icons.search}></svg>

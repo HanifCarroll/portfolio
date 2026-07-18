@@ -42,6 +42,14 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
  *                                  of entrance/reveal timing; can combine with data-motion-item
  *                                  on the same element.
  *
+ * data-motion="sequence"          Scroll-triggered assembly for diagram-style content.
+ *   data-motion-step                Children play strictly in DOM order. Values:
+ *                                    (none) rise/fade · "draw" scaleX from the left ·
+ *                                    "draw-down" / "draw-up" scaleY along the flow axis,
+ *                                    so connector arrows read as being drawn in.
+ *   data-motion-pulse               After assembly, this element gets a brief scale pulse —
+ *                                    the diagram's focal point (e.g. the bottleneck node).
+ *
  * Every duration/stagger/offset lives in MOTION below so CSS and JS physics stay aligned
  * and so pacing changes happen in one place.
  */
@@ -105,14 +113,25 @@ const MOTION = {
     yPercent: -3,
     scrub: 0.8,
   },
+  sequence: {
+    triggerStartDesktop: "top 72%",
+    triggerStartMobile: "top 85%",
+    stepDuration: 0.34,
+    stepY: 14,
+    overlap: 0.16,
+    pulseScale: 1.03,
+    pulseDuration: 0.32,
+    pulseRepeats: 3,
+    pulseDelay: 0.25,
+  },
   refreshSettleDelay: 200,
 } as const;
 
 const ALL_MOTION_SELECTOR =
-  '[data-motion="headline"], [data-motion-deck], [data-motion-intro-item], [data-motion-item], [data-motion="reveal"], [data-motion="parallax"]';
+  '[data-motion="headline"], [data-motion-deck], [data-motion-intro-item], [data-motion-item], [data-motion="reveal"], [data-motion="parallax"], [data-motion-step]';
 
 const ANIMATED_SCOPE_SELECTOR =
-  '[data-motion-intro], [data-motion-group], [data-motion="reveal"], [data-motion="parallax"]';
+  '[data-motion-intro], [data-motion-group], [data-motion="reveal"], [data-motion="parallax"], [data-motion="sequence"]';
 
 const SESSION_VISITED_KEY = "hc-motion-visited";
 
@@ -154,7 +173,9 @@ function mountIntros(
     const deck = intro.querySelector<HTMLElement>("[data-motion-deck]");
     const allItems = Array.from(intro.querySelectorAll<HTMLElement>("[data-motion-intro-item]"));
     const items = allItems.filter((el) => el.getAttribute("data-motion-intro-item") !== "media");
-    const mediaItems = allItems.filter((el) => el.getAttribute("data-motion-intro-item") === "media");
+    const mediaItems = allItems.filter(
+      (el) => el.getAttribute("data-motion-intro-item") === "media",
+    );
     const timeline = gsap.timeline({ defaults: { ease: MOTION.ease } });
 
     if (headline) {
@@ -352,6 +373,64 @@ function mountParallax(root: HTMLElement) {
 }
 
 /**
+ * data-motion="sequence": children marked data-motion-step assemble in DOM order —
+ * connectors draw along their axis, nodes rise — then the data-motion-pulse element
+ * gets a short attention pulse. Built for workflow-style diagrams.
+ */
+function mountSequences(root: HTMLElement, desktop: boolean) {
+  root.querySelectorAll<HTMLElement>('[data-motion="sequence"]').forEach((seq) => {
+    const steps = Array.from(seq.querySelectorAll<HTMLElement>("[data-motion-step]"));
+    if (!steps.length) return;
+
+    const timeline = gsap.timeline({
+      defaults: { ease: MOTION.ease },
+      scrollTrigger: {
+        trigger: seq,
+        start: desktop ? MOTION.sequence.triggerStartDesktop : MOTION.sequence.triggerStartMobile,
+        once: true,
+      },
+    });
+
+    steps.forEach((step, index) => {
+      const kind = step.getAttribute("data-motion-step");
+      const from: gsap.TweenVars =
+        kind === "draw"
+          ? { scaleX: 0, transformOrigin: "left center", autoAlpha: 0 }
+          : kind === "draw-down"
+            ? { scaleY: 0, transformOrigin: "center top", autoAlpha: 0 }
+            : kind === "draw-up"
+              ? { scaleY: 0, transformOrigin: "center bottom", autoAlpha: 0 }
+              : { y: MOTION.sequence.stepY, autoAlpha: 0 };
+
+      timeline.from(
+        step,
+        {
+          ...from,
+          duration: MOTION.sequence.stepDuration,
+          clearProps: "transform,opacity,visibility",
+        },
+        index === 0 ? 0 : `-=${MOTION.sequence.overlap}`,
+      );
+    });
+
+    const pulse = seq.querySelector<HTMLElement>("[data-motion-pulse]");
+    if (pulse)
+      timeline.to(
+        pulse,
+        {
+          scale: MOTION.sequence.pulseScale,
+          duration: MOTION.sequence.pulseDuration,
+          repeat: MOTION.sequence.pulseRepeats,
+          yoyo: true,
+          ease: "power1.inOut",
+          clearProps: "transform",
+        },
+        `+=${MOTION.sequence.pulseDelay}`,
+      );
+  });
+}
+
+/**
  * Keeps ScrollTrigger positions honest against late layout shifts (images loading,
  * anchor-link scroll landing) so a reveal whose trigger point has already been passed
  * fires immediately instead of leaving content invisible.
@@ -416,6 +495,7 @@ function mountMotion() {
       mountStandaloneHeadlines(root, splits, desktop);
       mountStandaloneReveals(root, desktop);
       mountGroups(root, desktop);
+      mountSequences(root, desktop);
       if (desktop) mountParallax(root);
 
       requestAnimationFrame(() => ScrollTrigger.refresh());

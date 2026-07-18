@@ -144,45 +144,45 @@ const founderTestimonial = testimonials.markisZarate;
 					<p>The business is growing, but day-to-day operations are getting harder to run. Requests arrive through inboxes and chats. Important status lives in spreadsheets. Approvals depend on one person. Reporting means pulling information from several tools.</p>
 				</div>
 
-				<div class='hc-workflow-diagram' data-motion-item role='img' aria-label='Requests from inbox and chat, spreadsheet status, and approval decisions all depend on one person before reporting can happen.'>
+				<div class='hc-workflow-diagram' data-motion='sequence' role='img' aria-label='Requests from inbox and chat, spreadsheet status, and approval decisions all depend on one person before reporting can happen.'>
 					<div class='hc-workflow-sources'>
-						<div class='hc-workflow-source'>
+						<div class='hc-workflow-source' data-motion-step>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='2.5' y='4.5' width='19' height='15' rx='2'></rect><path d='m3.5 6 8.5 7 8.5-7'></path></svg>
 							<span>Inbox</span>
 						</div>
-						<div class='hc-workflow-source'>
+						<div class='hc-workflow-source' data-motion-step>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4.5 4.5h15a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-4.5 3v-3H4.5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z'></path><circle cx='8' cy='11' r='.7'></circle><circle cx='12' cy='11' r='.7'></circle><circle cx='16' cy='11' r='.7'></circle></svg>
 							<span>Chat</span>
 						</div>
 					</div>
 
-					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
-					<div class='hc-workflow-node hc-workflow-node--requests'>
+					<span class='hc-workflow-arrow' data-motion-step='draw' aria-hidden='true'>→</span>
+					<div class='hc-workflow-node hc-workflow-node--requests' data-motion-step>
 						<span>Requests</span>
 						<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M6 2.5h8l4 4v15H6z'></path><path d='M14 2.5v5h4M9 12h6M9 16h6'></path></svg>
 					</div>
 
-					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
+					<span class='hc-workflow-arrow' data-motion-step='draw' aria-hidden='true'>→</span>
 					<div class='hc-workflow-bottleneck'>
-						<div class='hc-workflow-input'>
+						<div class='hc-workflow-input' data-motion-step>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><rect x='4' y='3' width='16' height='18' rx='1.5'></rect><path d='M4 8h16M4 13h16M4 18h16M10 3v18'></path></svg>
 							<span>Spreadsheet status</span>
 						</div>
-						<span class='hc-workflow-arrow hc-workflow-arrow--down' aria-hidden='true'>↓</span>
-						<div class='hc-workflow-node hc-workflow-node--person'>
+						<span class='hc-workflow-arrow hc-workflow-arrow--down' data-motion-step='draw-down' aria-hidden='true'>↓</span>
+						<div class='hc-workflow-node hc-workflow-node--person' data-motion-step data-motion-pulse>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='7.5' r='3.5'></circle><path d='M5.5 21v-3.5a5 5 0 0 1 5-5h3a5 5 0 0 1 5 5V21'></path></svg>
 							<strong>One person</strong>
 						</div>
-						<span class='hc-workflow-arrow hc-workflow-arrow--up' aria-hidden='true'>↑</span>
-						<div class='hc-workflow-input'>
+						<span class='hc-workflow-arrow hc-workflow-arrow--up' data-motion-step='draw-up' aria-hidden='true'>↑</span>
+						<div class='hc-workflow-input' data-motion-step>
 							<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='12' r='9'></circle><path d='m8 12 2.5 2.5L16.5 8.5'></path></svg>
 							<span>Approval decisions</span>
 						</div>
-						<p class='hc-workflow-warning'><span aria-hidden='true'>!</span> Only they know what happens next.</p>
+						<p class='hc-workflow-warning' data-motion-step><span aria-hidden='true'>!</span> Only they know what happens next.</p>
 					</div>
 
-					<span class='hc-workflow-arrow' aria-hidden='true'>→</span>
-					<div class='hc-workflow-node hc-workflow-node--reporting'>
+					<span class='hc-workflow-arrow' data-motion-step='draw' aria-hidden='true'>→</span>
+					<div class='hc-workflow-node hc-workflow-node--reporting' data-motion-step>
 						<span>Reporting</span>
 						<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 21v-6h4v6M10 21V9h4v12M16 21V3h4v18'></path></svg>
 					</div>
@@ -199,7 +199,7 @@ const founderTestimonial = testimonials.markisZarate;
 					<p class='hc-section-intro'>The Business Systems Audit is the recommended starting point when you can see the problem but aren't sure what will fix it. Build and ongoing support follow when the workflow and priorities are clear.</p>
 				</div>
 				<div class='hc-service-paths'>
-					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]} data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><div class='hc-service-path__footer'><p>{offer.commercialNote}</p><a href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></div></article>)}
+					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]} data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><p class='hc-service-path__note'>{offer.commercialNote}</p><a class='hc-service-path__cta' href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></article>)}
 				</div>
 				<div class='hc-home-decision-cta' data-motion-item>
 					<div>
@@ -224,25 +224,25 @@ const founderTestimonial = testimonials.markisZarate;
 					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'} data-motion-group data-motion-from={index % 2 === 0 ? 'left' : 'right'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy' data-motion-item><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media' data-motion-item data-motion='parallax'><Image src={project.image} alt={project.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={88} /></figure></div></article>;
 				})}
 			</div>
-			<div class='hc-proof-section__actions'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>
+			<div class='hc-proof-section__actions' data-motion='reveal'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>
 		</section>
 
-		<section class='hc-section hc-testimonial-section'>
+		<section class='hc-section hc-testimonial-section' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>A founder's view of the working relationship.</h2></div>
-				<figure class='hc-testimonial hc-testimonial--featured'><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{founderTestimonial.featuredText}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{founderTestimonial.name}</strong><span>{founderTestimonial.attribution}</span></figcaption></figure>
+				<div class='hc-section-header' data-motion='reveal'><h2 class='hc-section-title'>A founder's view of the working relationship.</h2></div>
+				<figure class='hc-testimonial hc-testimonial--featured' data-motion-item><span class='hc-testimonial__mark' aria-hidden='true'>“</span><blockquote>{founderTestimonial.featuredText}<span class='hc-testimonial__closing-mark' aria-hidden='true'>”</span></blockquote><figcaption><strong>{founderTestimonial.name}</strong><span>{founderTestimonial.attribution}</span></figcaption></figure>
 			</div>
 		</section>
 
-		<section class='hc-section hc-method-section' id='method' data-header-surface='dark'>
+		<section class='hc-section hc-method-section' id='method' data-header-surface='dark' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A simple path from understanding the workflow to a system your team can own.</p></div>
-				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
-				<div class='hc-home-faq'>
+				<div class='hc-section-header' data-motion='reveal'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A simple path from understanding the workflow to a system your team can own.</p></div>
+				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+				<div class='hc-home-faq' data-motion-item>
 					<div class='hc-home-faq__heading'><h3>Questions before the first call.</h3><p>You can start with the workflow problem. You don't need to decide on software, scope, or a preferred tool first.</p></div>
 					<div class='hc-home-faq__items'>{faqs.map((item) => <div class='hc-home-faq__item'><h4>{item.question}</h4><p>{item.answer}</p></div>)}</div>
 				</div>
-				<div class='hc-actions'><a class='hc-text-link' href='/services/business-systems-audit/'>See the Business Systems Audit</a></div>
+				<div class='hc-actions' data-motion-item><a class='hc-text-link' href='/services/business-systems-audit/'>See the Business Systems Audit</a></div>
 			</div>
 		</section>
 

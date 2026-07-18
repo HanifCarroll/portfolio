@@ -371,14 +371,18 @@ body.hc-home .hc-home-hero__title {
 .hc-service-paths {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 1fr));
+  /* Shared rows: kicker / title / body / note / cta — cards subgrid onto these so
+     every slot lines up across the three columns. */
+  grid-template-rows: auto auto 1fr auto auto;
+  row-gap: var(--hc-space-4);
   border-block: 1px solid color-mix(in srgb, var(--hc-text) 14%, transparent);
 }
 
 .hc-service-path {
   display: grid;
   min-width: 0;
-  grid-template-rows: auto auto 1fr auto;
-  gap: var(--hc-space-4);
+  grid-row: span 5;
+  grid-template-rows: subgrid;
   padding: clamp(2rem, 4vw, 3.5rem);
 }
 
@@ -394,15 +398,14 @@ body.hc-home .hc-home-hero__title {
 .hc-service-path__heading {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: var(--hc-space-3);
+  gap: var(--hc-space-2);
 }
 
 .hc-service-path__heading span,
 .hc-service-path__heading p,
 .hc-service-path h3,
 .hc-service-path > p,
-.hc-service-path__footer p {
+.hc-service-path__note {
   margin: 0;
 }
 
@@ -417,7 +420,6 @@ body.hc-home .hc-home-hero__title {
   color: var(--hc-text);
   font-size: var(--hc-type-meta);
   font-weight: 700;
-  text-align: right;
 }
 
 .hc-service-path h3 {
@@ -435,23 +437,17 @@ body.hc-home .hc-home-hero__title {
   text-wrap: pretty;
 }
 
-.hc-service-path__footer {
-  display: grid;
-  gap: var(--hc-space-4);
-  padding-top: var(--hc-space-4);
-}
-
-.hc-service-path__footer p {
+.hc-service-path__note {
+  align-self: end;
   color: var(--hc-text);
   font-size: var(--hc-type-meta);
   font-weight: 700;
+  line-height: 1.45;
 }
 
-.hc-service-path__footer a {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 0.55rem;
+.hc-service-path__cta {
+  align-self: center;
+  justify-self: start;
   color: var(--hc-text);
   font-size: var(--hc-font-size-base);
   font-weight: 700;
@@ -459,18 +455,24 @@ body.hc-home .hc-home-hero__title {
   text-decoration: none;
 }
 
-.hc-service-path__footer a span {
+.hc-service-path__cta > span {
+  display: inline-block;
+  margin-left: 0.4em;
   color: var(--hc-secondary-accent);
   transition: transform var(--hc-dur-base) var(--hc-ease-out);
 }
 
-.hc-service-path__footer a:hover span,
-.hc-service-path__footer a:focus-visible span {
+.hc-service-path__cta:hover > span,
+.hc-service-path__cta:focus-visible > span {
   transform: translateX(3px);
 }
 
-.hc-service-path--starting-point .hc-service-path__footer a {
+.hc-service-path--starting-point .hc-service-path__cta {
+  display: inline-flex;
+  width: fit-content;
   min-height: 3rem;
+  align-items: center;
+  gap: 0.55rem;
   padding: 0.7rem 1.2rem;
   border-radius: 999px;
   color: var(--hc-on-accent);
@@ -481,18 +483,19 @@ body.hc-home .hc-home-hero__title {
     box-shadow var(--hc-dur-base) var(--hc-ease-out);
 }
 
-.hc-service-path--starting-point .hc-service-path__footer a:hover,
-.hc-service-path--starting-point .hc-service-path__footer a:focus-visible {
+.hc-service-path--starting-point .hc-service-path__cta:hover,
+.hc-service-path--starting-point .hc-service-path__cta:focus-visible {
   transform: translateY(-2px);
   background: var(--hc-warm-accent);
   box-shadow: var(--hc-shadow-surface);
 }
 
-.hc-service-path--starting-point .hc-service-path__footer a:active {
+.hc-service-path--starting-point .hc-service-path__cta:active {
   transform: translateY(0);
 }
 
-.hc-service-path--starting-point .hc-service-path__footer a span {
+.hc-service-path--starting-point .hc-service-path__cta > span {
+  margin-left: 0;
   color: currentColor;
 }
 
@@ -795,6 +798,23 @@ body.hc-home .hc-home-hero__title {
 
   .hc-service-paths {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .hc-service-path {
+    display: flex;
+    flex-direction: column;
+    grid-row: auto;
+    gap: var(--hc-space-4);
+  }
+
+  .hc-service-path__note {
+    align-self: flex-start;
+    margin-top: var(--hc-space-2);
+  }
+
+  .hc-service-path__cta {
+    align-self: flex-start;
   }
 
   .hc-home-decision-cta {

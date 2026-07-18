@@ -169,6 +169,24 @@ The system is flat by default. Depth comes first from color and spacing, then fr
 
 **The Flat-by-Default Rule.** If color, spacing, or content hierarchy already establishes the boundary, do not add a border or shadow.
 
+## Motion
+
+One physics vocabulary everywhere: CSS interactions and GSAP choreography share the same curves, so hovers and entrances feel like one system.
+
+### Tokens
+
+- **Easing:** `--hc-ease-out` (`cubic-bezier(0.215, 0.61, 0.355, 1)`, equals GSAP `power3.out`) for almost everything; `--hc-ease-in-out` for large surface state changes.
+- **Duration:** `--hc-dur-fast` (160ms) for color/opacity hovers, `--hc-dur-base` (240ms) for transform/shadow hovers, `--hc-dur-slow` (420ms) for panels and accordions.
+- **Choreography** lives in the `MOTION` config at the top of `src/scripts/motion.ts`; markup opts in via `data-motion-*` attributes only (see the API comment in that file). Primitives: intro (headline/deck/items), reveal, group with staggered items, directional two-up rows, parallax media, and diagram sequences.
+
+### Named Rules
+
+**The One Physics Rule.** No raw `ms` values or generic `ease` in stylesheets, and no page-specific selectors in motion code — new pages get motion by adding attributes, not by writing new tweens.
+
+**The First-Visit Rule.** The full entrance choreography plays once per session; client-side navigations get a shortened, subtler entrance so browsing feels fast.
+
+**The Never-Invisible Rule.** Scroll reveals must fail visible: reduced-motion users get the complete static layout, and triggers refresh after late image loads so content is never stranded at opacity 0.
+
 ## Components
 
 Components should feel direct and confident, with restrained shape and unmistakable states.
