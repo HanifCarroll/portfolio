@@ -1,5 +1,5 @@
 ---
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 
 type Variant = 'general' | 'audit' | 'systemsBuild' | 'ongoing';
 type Context = 'blog' | 'case-study';
@@ -29,11 +29,11 @@ const offers = {
 		primaryLabel: 'Book an audit fit call'
 	},
 	systemsBuild: {
-		title: 'Have a workflow ready to become software?',
-		body: 'I design and build internal tools, automations, dashboards, integrations, and AI-assisted workflows around the people who need to use them.',
+		title: "Have a workflow that's getting harder to run?",
+		body: "I'll help you identify where it's breaking down and decide whether the next step is a process change, existing software, automation, or a focused build.",
 		secondaryHref: '/services/business-systems-build/',
 		secondaryLabel: 'See the Business Systems Build',
-		primaryLabel: 'Start a scoping conversation'
+		primaryLabel: 'Book an audit fit call'
 	},
 	ongoing: {
 		title: 'Need ongoing technical help from someone who knows your systems?',
@@ -62,7 +62,6 @@ const offer = offers[variant];
 			<a class='hc-text-link' href={offer.secondaryHref} data-track-event='service_page_clicked' data-track-location={`${location}_secondary`}>
 				{offer.secondaryLabel}
 			</a>
-			{context === 'case-study' && <a class='hc-text-link' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={`${location}_email`}>Email Hanif</a>}
 		</div>
 	</div>
 </section>
