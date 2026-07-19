@@ -20,8 +20,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) =>
-        !excludedSitemapPaths.some((path) => page.endsWith(path)),
+      filter: (page) => !excludedSitemapPaths.some((path) => page.endsWith(path)),
     }),
     tailwind(),
   ],
