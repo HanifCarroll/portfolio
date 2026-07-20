@@ -17,7 +17,7 @@ const className = `project-video-card project-video-card--${resolvedVariant}`;
 const loading = resolvedVariant === 'lead' ? 'eager' : 'lazy';
 const fetchPriority = resolvedVariant === 'lead' ? 'high' : undefined;
 const posterSources = video ? getVideoPosterSources(video.poster) : null;
-const proofLabel = project.proofType === 'client' ? 'Client work' : 'Independent work';
+const proofLabel = project.cardLabel ?? (project.proofType === 'client' ? 'Client work' : 'Independent work');
 const mediaSizes =
 	resolvedVariant === 'lead'
 		? '(min-width: 980px) min(52vw, 40rem), calc(100vw - 2rem)'

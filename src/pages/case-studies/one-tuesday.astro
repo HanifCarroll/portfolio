@@ -1,195 +1,231 @@
 ---
+import OneTuesdayHero from '../../assets/img/projects/one-tuesday-hero.png';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TuesdayExperience from '../../components/tuesday/TuesdayExperience';
 import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import { getProject } from '../../lib/projects';
+import { ASSUMPTIONS } from '../../lib/tuesday-sim/engine';
+import {
+  TUESDAY_CHAPTERS,
+  TUESDAY_COMPANY,
+  TUESDAY_MIRROR_READOUTS,
+  TUESDAY_MIRROR_STATEMENTS,
+  TUESDAY_RESULTS,
+} from '../../lib/tuesday-sim/story';
 import '../../styles/tuesday.css';
 
-const title = 'One Tuesday, Twice — An Interactive Case Study';
-const description =
-  'A simulated Tuesday at a fictional 18-person service company, run twice: once with a scattered workflow, once with the system that replaced it. Every number is computed by a model you can inspect.';
+const project = getProject('one-tuesday');
+if (!project) throw new Error('Missing project metadata for one-tuesday.');
+const title = project.seoTitle ?? project.title;
+const description = project.seoDescription ?? project.description;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CreativeWork',
   name: title,
   description,
-  url: 'https://www.hanifcarroll.com/case-studies/one-tuesday/',
-  creator: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' }
+  url: project.liveUrl,
+  creator: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' },
 };
+const { before, after, stressedBefore, stressedAfter } = TUESDAY_RESULTS;
+const formatDuration = (minutes: number) => {
+  const rounded = Math.round(minutes);
+  if (rounded < 60) return `${rounded} minutes`;
+  const hours = Math.floor(rounded / 60);
+  const remainder = rounded % 60;
+  return remainder === 0 ? `${hours} hours` : `${hours}h ${remainder}m`;
+};
+const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
+const toReaderStatement = (statement: string) =>
+  statement === 'Requests reach us through more than two channels.'
+    ? 'Requests reach you through more than two channels.'
+    : statement;
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd} showFooterCta={false} bodyClass='page-one-tuesday'>
-  <TuesdayExperience client:only='react' />
+<BaseLayout
+  title={title}
+  description={description}
+  image={OneTuesdayHero.src}
+  jsonLd={jsonLd}
+  showFooterCta={false}
+  bodyClass='page-one-tuesday'
+>
+  <div id='tuesday-experience-root'></div>
 
-  <article id='tuesday-reader'>
+  <article id='tuesday-reader' tabindex='-1'>
+    <p class='t-reader-kicker'>Interactive workflow diagnostic</p>
     <h1>One Tuesday, twice.</h1>
     <p class='t-reader-deck'>
-      Meridian Facility Services is a fictional company built from real patterns: 18 people, about 45 jobs a week,
-      run on a shared inbox, a spreadsheet, a whiteboard, and one tired operations manager’s memory.
+      {TUESDAY_COMPANY.name} is a fictional composite: {TUESDAY_COMPANY.size}, {TUESDAY_COMPANY.weeklyWork}, {TUESDAY_COMPANY.requestContext}.
     </p>
     <p class='t-reader-deck'>
-      This is one of its Tuesdays, told twice — once with that workflow, and once with the system that replaced it,
-      six decisions later.
+      This is one modeled Tuesday, shown before and after six system changes. The numbers are outputs from the stated assumptions, not client results or a promise about another business.
     </p>
 
     <div class='t-reader-launch'>
-      <p>You can also run this instead of reading it: watch the day play out, build the system, and stress-test the result.</p>
-      <button type='button' class='hc-button' onclick="window.dispatchEvent(new CustomEvent('tuesday:launch'))">Launch the interactive experience</button>
+      <p>Run the three-part experience to feel the queue, build the system, and compare two tireless runs with the same demand.</p>
+      <button type='button' class='hc-button' data-tuesday-launch disabled>Run the interactive diagnostic</button>
     </div>
 
-    <h2>The old Tuesday</h2>
+    <h2 id='tuesday-reader-old' tabindex='-1'>The old Tuesday</h2>
     <p>
-      Requests arrive the way they always have: two email threads, a phone call, three texts, a walk-in, a sticky note
-      left on a keyboard. Nobody owns intake, so everyone does it a little.
+      Requests arrive through email threads, phone calls, texts, walk-ins, and sticky notes. Nobody owns intake, so everyone does it a little.
     </p>
     <p>
-      A request gets answered twice — or not at all. Finding the status of a job means finding the person who last
-      touched it.
+      A request gets answered twice or not at all. Finding the status of a job means finding the person who last touched it.
     </p>
     <p>
-      About 56 requests come in across a nine-and-a-half-hour day. Here’s that day, simulated from those constraints,
-      with an operator who never slows down:
+      With a tireless operator and the assumptions below, seed 42 produces {before.arrivals} requests across a nine-and-a-half-hour day:
     </p>
     <table>
-      <thead>
-        <tr><th>Measure</th><th>Old Tuesday</th></tr>
-      </thead>
+      <thead><tr><th>Measure</th><th>Old Tuesday</th></tr></thead>
       <tbody>
-        <tr><td>Requests arrived</td><td>56</td></tr>
-        <tr><td>Handled</td><td>30</td></tr>
-        <tr><td>Forgotten entirely</td><td>3</td></tr>
-        <tr><td>Carried into tomorrow</td><td>23</td></tr>
-        <tr><td>Duplicate requests</td><td>11</td></tr>
-        <tr><td>Angry customer calls</td><td>10</td></tr>
-        <tr><td>Average wait for an answer</td><td>2 hours 28 minutes</td></tr>
-        <tr><td>Operator time on coordination</td><td>9.3 hours</td></tr>
+        <tr><td>Requests arrived</td><td>{before.arrivals}</td></tr>
+        <tr><td>Handled</td><td>{before.completed}</td></tr>
+        <tr><td>Forgotten entirely</td><td>{before.dropped}</td></tr>
+        <tr><td>Carried into tomorrow</td><td>{before.carried}</td></tr>
+        <tr><td>Duplicate requests</td><td>{before.duplicates}</td></tr>
+        <tr><td>Angry customer calls</td><td>{before.complaints}</td></tr>
+        <tr><td>Average wait for an answer</td><td>{formatDuration(before.avgWaitMinutes)}</td></tr>
+        <tr><td>Operator time on coordination</td><td>{formatHours(before.manualMinutes)}</td></tr>
       </tbody>
     </table>
     <p>
-      The operator in that run never takes lunch. It doesn’t matter: most of the day goes to finding, re-keying,
-      forwarding, and apologizing — not to the jobs themselves.
+      The operator in that run never takes lunch. The modeled day still spends most of its available time finding, re-keying, forwarding, and confirming requests.
     </p>
-    <p>That was Tuesday. Every Tuesday.</p>
 
-    <h2>Six changes, one per week</h2>
-    <p>No platform rewrite and no big-bang migration. One decision per week, each one aimed at a number in the table.</p>
-
-    <h3>Week 1 — One front door</h3>
-    <p>Every request goes into one intake form, no matter what channel it started in.</p>
+    <h2 id='tuesday-reader-build' tabindex='-1'>Six modeled changes over 11 weeks</h2>
     <p>
-      Five buckets become one queue, and every request gets a confirmation right away. Duplicates fall from 11 a day
-      to 1, because the confirmation kills the “did they get it?” re-send.
+      Meridian's illustrative sequence changes one part of the workflow at a time. A real operation may need a different order, more capacity, or no new software at all.
     </p>
+    {TUESDAY_CHAPTERS.map((chapter) => (
+      <section class='t-reader-chapter'>
+        <h3>{chapter.week} — {chapter.title}</h3>
+        {chapter.body.map((paragraph) => <p>{paragraph}</p>)}
+        <p class='t-reader-note'>{chapter.stageNote}</p>
+      </section>
+    ))}
 
-    <h3>Week 3 — One record per job</h3>
-    <p>
-      The spreadsheet, the whiteboard, and the sticky notes become a single job record that everyone reads from and
-      nobody re-types. Nobody asks “who touched this last?” anymore.
-    </p>
-    <p>Misroutes — wrong row, stale copy, lost detail — fall by more than half, and nothing is forgotten outright anymore.</p>
-
-    <h3>Week 5 — Assignment rules</h3>
-    <p>New work routes itself to the right crew by zone and skill. The dispatcher stops assigning work by memory and handles only the exceptions.</p>
-    <p>
-      Handled requests go from 30 to 50 a day, and the average wait for an answer falls from two and a half hours to
-      25 minutes — with zero minutes of human coordination.
-    </p>
-
-    <h3>Week 7 — The customer hears first</h3>
-    <p>Confirmations, arrival windows, and running-late notices go out automatically.</p>
-    <p>Most of the angry calls were never about the job. They were about not knowing.</p>
-
-    <h3>Week 9 — AI reads the inbox</h3>
-    <p>Incoming requests are classified, key fields extracted, replies drafted. A person confirms; the software does the typing.</p>
-    <p>
-      It makes mistakes — roughly one in twenty-five gets misrouted — so every automated decision stays one click away
-      from a person, and every correction teaches the routing rules.
-    </p>
-    <p>Manual work per request drops from 18 minutes to 4. Most requests need none.</p>
-
-    <h3>Week 11 — The weekly number</h3>
-    <p>One screen shows the week: volume, response time, dropped balls.</p>
-    <p>That number used to be invisible. Now it’s zero.</p>
-
-    <h2>The new Tuesday</h2>
-    <p>Same 56 requests, same crew, different system underneath:</p>
+    <h2 id='tuesday-reader-new' tabindex='-1'>The same modeled demand, twice</h2>
+    <p>Two tireless runs receive the same {before.arrivals} requests. The workflow is the only difference:</p>
     <table>
-      <thead>
-        <tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr>
-      </thead>
+      <thead><tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
       <tbody>
-        <tr><td>Handled</td><td>30</td><td>53</td></tr>
-        <tr><td>Forgotten entirely</td><td>3</td><td>0</td></tr>
-        <tr><td>Carried into tomorrow</td><td>23</td><td>3</td></tr>
-        <tr><td>Duplicate requests</td><td>11</td><td>1</td></tr>
-        <tr><td>Angry customer calls</td><td>10</td><td>2</td></tr>
-        <tr><td>Average wait for an answer</td><td>2h 28m</td><td>14 minutes</td></tr>
-        <tr><td>Operator time on coordination</td><td>9.3 hours</td><td>~0 hours</td></tr>
+        <tr><td>Handled</td><td>{before.completed}</td><td>{after.completed}</td></tr>
+        <tr><td>Forgotten entirely</td><td>{before.dropped}</td><td>{after.dropped}</td></tr>
+        <tr><td>Carried into tomorrow</td><td>{before.carried}</td><td>{after.carried}</td></tr>
+        <tr><td>Duplicate requests</td><td>{before.duplicates}</td><td>{after.duplicates}</td></tr>
+        <tr><td>Angry customer calls</td><td>{before.complaints}</td><td>{after.complaints}</td></tr>
+        <tr><td>Average wait for an answer</td><td>{formatDuration(before.avgWaitMinutes)}</td><td>{formatDuration(after.avgWaitMinutes)}</td></tr>
+        <tr><td>Operator time on coordination</td><td>{formatHours(before.manualMinutes)}</td><td>{formatHours(after.manualMinutes)}</td></tr>
       </tbody>
     </table>
     <p>
-      Nine hours a day of coordination work doesn’t vanish — it turns into an hour of exceptions, review, and the
-      corrections that make the routing smarter. The rest becomes capacity the company already had.
+      The model turns coordination time into visible capacity, but it does not prove that another company can recover the same hours. That requires its own workflow and demand data.
     </p>
 
-    <div class='t-reader-desktop-only'>
+    <div class='t-reader-model'>
       <h2>The stress test</h2>
-      <p>
-        Does it hold up on a bad week? Double the volume, take the dispatcher out sick, and kill the scheduling tool’s
-        API, all at once:
-      </p>
+      <p>Double the modeled volume, take the dispatcher out, and disable the scheduling API:</p>
       <table>
-        <thead>
-          <tr><th>Under stress</th><th>Old Tuesday</th><th>New Tuesday</th></tr>
-        </thead>
+        <thead><tr><th>Under stress</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
         <tbody>
-          <tr><td>Requests arrived</td><td>94</td><td>94</td></tr>
-          <tr><td>Forgotten entirely</td><td>46</td><td>0</td></tr>
-          <tr><td>Carried into tomorrow</td><td>32</td><td>70</td></tr>
-          <tr><td>Angry customer calls</td><td>26</td><td>9</td></tr>
+          <tr><td>Requests arrived</td><td>{stressedBefore.arrivals}</td><td>{stressedAfter.arrivals}</td></tr>
+          <tr><td>Forgotten entirely</td><td>{stressedBefore.dropped}</td><td>{stressedAfter.dropped}</td></tr>
+          <tr><td>Carried into tomorrow</td><td>{stressedBefore.carried}</td><td>{stressedAfter.carried}</td></tr>
+          <tr><td>Angry customer calls</td><td>{stressedBefore.complaints}</td><td>{stressedAfter.complaints}</td></tr>
         </tbody>
       </table>
-      <p>
-        The old workflow forgets jobs because it runs on memory and goodwill. The system carries the overload where
-        everyone can see it — every stalled job has an owner and a timer — and forgets nothing.
-      </p>
-      <p>The record and the rules don’t call in sick. Carried work is visible work; forgotten work is a refund and a bad review.</p>
 
       <h2>The model</h2>
-      <p>The assumptions, in plain language:</p>
-      <ul>
-        <li><strong>Demand:</strong> about 5 requests an hour, roughly 56 a day, with rush hours at 9 AM and 1 PM running 1.6× heavier.</li>
-        <li><strong>Manual handling:</strong> 18 minutes per request — read, find the spreadsheet, re-key, forward, confirm.</li>
-        <li><strong>Misroutes:</strong> 18% before, 4% after — wrong person, stale row, lost detail.</li>
-        <li><strong>Duplicates:</strong> 12% before, 2% after — a confirmation message kills the re-send.</li>
-        <li><strong>Forgotten:</strong> anything untouched for four hours in the old system is effectively lost.</li>
-        <li><strong>Automation:</strong> routing rules assign in about 25 minutes, 14 with AI triage cleaning the data first.</li>
-      </ul>
+      <p>These inputs are illustrative. They make the simulation inspectable; they do not turn it into client evidence.</p>
+      <dl class='t-reader-assumptions'>
+        {ASSUMPTIONS.map((assumption) => (
+          <div>
+            <dt>{assumption.parameter}: {assumption.value}</dt>
+            <dd>{assumption.basis}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
 
-    <h2>The mirror</h2>
-    <p>Five questions. Count your yeses:</p>
+    <h2 id='tuesday-reader-mirror' tabindex='-1'>How much of that Tuesday is yours?</h2>
+    <p>Count the statements that describe your current operation:</p>
     <ul class='t-reader-mirror'>
-      <li>Requests reach you through more than two channels.</li>
-      <li>Finding the status of a job means asking a person.</li>
-      <li>The same information gets typed more than once.</li>
-      <li>A customer has been forgotten in the last month.</li>
-      <li>When one person is out, the work stalls.</li>
+      {TUESDAY_MIRROR_STATEMENTS.map((statement) => <li>{toReaderStatement(statement)}</li>)}
     </ul>
     <div class='t-reader-readouts'>
-      <p><span class='t-reader-score'>0–1</span> You’re running tight.</p>
-      <p><span class='t-reader-score'>2–3</span> You’re where Meridian was in week 0 — the cheapest moment to fix it.</p>
-      <p><span class='t-reader-score'>4–5</span> You’re living the old Tuesday, and none of this needs new people.</p>
+      {TUESDAY_MIRROR_READOUTS.map((readout) => (
+        <p><span class='t-reader-score'>{readout.min}–{readout.max}</span><span><strong>{readout.headline}</strong> {readout.body}</span></p>
+      ))}
     </div>
-    <p>It takes one decision per week for about a quarter.</p>
     <div class='t4-cta'>
-      <p class='t4-cta__line'>If any of that sounds like your week, tell me what’s getting harder to run.</p>
+      <p class='t4-cta__line'>If this resembles your week, start with the workflow that is getting harder to run.</p>
       <div class='t4-cta__actions'>
-        <a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a working session</a>
-        <a class='t4-cta__secondary' href={EMAIL_URL}>Or email me your Tuesday</a>
+        <a
+          class='hc-button'
+          href={BOOK_CALL_URL}
+          target='_blank'
+          rel='noopener noreferrer'
+          data-track-event='book_call_clicked'
+          data-track-location='one_tuesday_reader'
+        >Book a 30-minute audit fit call</a>
+        <a
+          class='t4-cta__secondary'
+          href={EMAIL_URL}
+          data-track-event='email_clicked'
+          data-track-location='one_tuesday_reader'
+        >Or email me your Tuesday</a>
       </div>
     </div>
-    <p>
-      <a href='/case-studies/'>See real client work</a>
-    </p>
+    <p><a href='/case-studies/'>See real client work</a></p>
   </article>
 </BaseLayout>
+
+<script>
+  import type { Root } from 'react-dom/client';
+
+  let experienceRoot: Root | undefined;
+  let experienceContainer: HTMLElement | null = null;
+  let experienceLoad: Promise<void> | undefined;
+
+  const loadExperience = async () => {
+    const container = document.getElementById('tuesday-experience-root');
+    if (!container) return;
+
+    if (experienceRoot && experienceContainer === container) {
+      window.dispatchEvent(new CustomEvent('tuesday:launch'));
+      return;
+    }
+
+    experienceLoad ??= Promise.all([
+      import('../../components/tuesday/TuesdayExperience'),
+      import('react'),
+      import('react-dom/client'),
+    ]).then(([{ default: TuesdayExperience }, { createElement }, { createRoot }]) => {
+      experienceContainer = container;
+      experienceRoot = createRoot(container);
+      experienceRoot.render(createElement(TuesdayExperience));
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+      });
+    }).finally(() => {
+      experienceLoad = undefined;
+    });
+
+    await experienceLoad;
+  };
+
+  const enableLaunchButtons = () => {
+    document.querySelectorAll<HTMLButtonElement>('[data-tuesday-launch]').forEach((button) => {
+      button.disabled = false;
+    });
+  };
+
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const launch = event.target.closest('[data-tuesday-launch]');
+    if (!launch) return;
+    void loadExperience();
+  });
+  document.addEventListener('astro:page-load', enableLaunchButtons);
+  enableLaunchButtons();
+</script>

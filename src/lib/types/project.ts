@@ -56,6 +56,8 @@ export interface Project {
   seoDescription?: string;
   client: string;
   proofType: "client" | "founder" | "experiment";
+  /** Reader-facing proof label when the standard client/independent labels are too broad. */
+  cardLabel?: string;
   service: string;
   track: ProjectTrack;
   detailVariant: ProjectDetailVariant;

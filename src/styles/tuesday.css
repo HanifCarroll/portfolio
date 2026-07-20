@@ -13,6 +13,17 @@ body.tuesday-live #tuesday-reader {
   display: none;
 }
 
+.page-one-tuesday.tuesday-live .site-header {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(-1rem) !important;
+}
+
+.page-one-tuesday.tuesday-live .hc-main {
+  padding-top: 0;
+}
+
 .t-root {
   background: var(--hc-canvas);
   color: var(--hc-text);
@@ -24,7 +35,7 @@ body.tuesday-live #tuesday-reader {
 .t-hud {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 70;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1597,6 +1608,35 @@ body.tuesday-live #tuesday-reader {
   margin: 0 0 var(--hc-space-3);
 }
 
+#tuesday-reader :where(h1, h2, h3)[tabindex="-1"] {
+  scroll-margin-top: 7rem;
+}
+
+#tuesday-reader .t-reader-assumptions {
+  display: grid;
+  gap: var(--hc-space-3);
+}
+
+#tuesday-reader .t-reader-assumptions div {
+  padding: var(--hc-space-3);
+  border: 1px solid var(--hc-border);
+  border-radius: var(--hc-radius-control);
+  background: var(--hc-surface);
+}
+
+#tuesday-reader .t-reader-assumptions :where(dt, dd) {
+  margin: 0;
+}
+
+#tuesday-reader .t-reader-assumptions dt {
+  font-weight: var(--hc-weight-semibold);
+}
+
+#tuesday-reader .t-reader-assumptions dd {
+  margin-top: var(--hc-space-1);
+  color: var(--hc-text-muted);
+}
+
 /* Mirror section: statement rows and scored read-outs. */
 #tuesday-reader .t-reader-mirror {
   padding-left: 0;
@@ -1641,8 +1681,10 @@ body.tuesday-live #tuesday-reader {
 /* ---------- small screens + reduced motion ---------- */
 
 @media (max-width: 900px) {
-  .t-reader-desktop-only {
-    display: none;
+  #tuesday-reader table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   .t1-stage {

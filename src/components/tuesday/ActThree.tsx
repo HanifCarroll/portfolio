@@ -4,13 +4,13 @@ import {
   compareDays,
   configFor,
   formatClock,
-  runDay,
   type DayMetrics,
   type InterventionId,
 } from "../../lib/tuesday-sim/engine";
+import { TUESDAY_RESULTS, TUESDAY_SEED } from "../../lib/tuesday-sim/story";
+import { trackTuesdayEvent } from "./analytics";
 import { useLiveSession, type LiveFrame } from "./useLiveSession";
 
-const SEED = 42;
 const ALL = new Set<InterventionId>(INTERVENTION_ORDER);
 const NONE = new Set<InterventionId>();
 /** The duel runs briskly: the whole day in about 40 seconds. */
@@ -34,6 +34,7 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
           setStarted(true);
+          trackTuesdayEvent("interactive_case_study_comparison_reached");
           observer.disconnect();
         }
       },
@@ -43,13 +44,25 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
     return () => observer.disconnect();
   }, [compact]);
 
-  const oldRun = useLiveSession(configFor(NONE), SEED, DUEL_SCALE, started && !compact, true);
-  const newRun = useLiveSession(configFor(ALL), SEED, DUEL_SCALE, started && !compact, false);
+  const oldRun = useLiveSession(
+    configFor(NONE),
+    TUESDAY_SEED,
+    DUEL_SCALE,
+    started && !compact,
+    true,
+  );
+  const newRun = useLiveSession(
+    configFor(ALL),
+    TUESDAY_SEED,
+    DUEL_SCALE,
+    started && !compact,
+    false,
+  );
   const bothOver = Boolean(oldRun.frame?.over && newRun.frame?.over);
 
   if (compact) {
-    const before = runDay(configFor(NONE), SEED);
-    const after = runDay(configFor(ALL), SEED);
+    const before = TUESDAY_RESULTS.before;
+    const after = TUESDAY_RESULTS.after;
     const diff = compareDays(before, after);
     return (
       <section className="t3">
@@ -68,7 +81,8 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
               {before.completed} of {before.arrivals} handled
             </strong>
             <span>
-              {before.dropped} forgotten · {before.carried} carried · {before.complaints} angry calls
+              {before.dropped} forgotten · {before.carried} carried · {before.complaints} angry
+              calls
             </span>
           </div>
           <div className="t3-stress__col">
@@ -97,6 +111,9 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
       <header className="t3-header">
         <p className="t3-kicker">Same Tuesday, twice</p>
         <h3 className="t3-title">What the same day looks like with the system in place</h3>
+        <p className="t3-deck">
+          Two tireless runs, the same modeled demand. The workflow is the only difference.
+        </p>
       </header>
 
       <div className="t3-duel">
@@ -143,9 +160,20 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function DuelPanel({ tone, label, frame }: { tone: "old" | "new"; label: string; frame: LiveFrame | null }) {
+function DuelPanel({
+  tone,
+  label,
+  frame,
+}: {
+  tone: "old" | "new";
+  label: string;
+  frame: LiveFrame | null;
+}) {
   const metrics = frame?.metrics;
-  const backlog = Math.max(0, (metrics?.arrivals ?? 0) - (metrics?.completed ?? 0) - (metrics?.dropped ?? 0));
+  const backlog = Math.max(
+    0,
+    (metrics?.arrivals ?? 0) - (metrics?.completed ?? 0) - (metrics?.dropped ?? 0),
+  );
   return (
     <div className={`t3-panel t3-panel--${tone}`}>
       <div className="t3-panel__head">
@@ -154,7 +182,11 @@ function DuelPanel({ tone, label, frame }: { tone: "old" | "new"; label: string;
       </div>
       <div className="t3-dots" aria-hidden="true">
         {(frame?.jobs ?? []).map((job) => (
-          <span key={job.id} className={`t3-dot t3-dot--${job.status}`} title={`${job.customer} · ${job.kind}`} />
+          <span
+            key={job.id}
+            className={`t3-dot t3-dot--${job.status}`}
+            title={`${job.customer} · ${job.kind}`}
+          />
         ))}
       </div>
       <div className="t3-panel__stats">

@@ -23,15 +23,15 @@ export function Hud({ act, onRead }: { act: string; onRead: () => void }) {
 export function Intro({ onStart, onRead }: { onStart: () => void; onRead: () => void }) {
   return (
     <section className="t-intro">
-      <p className="t-intro__kicker">An interactive case study</p>
+      <p className="t-intro__kicker">Interactive workflow diagnostic</p>
       <h1 className="t-intro__title">One Tuesday, twice.</h1>
       <p className="t-intro__deck">
-        {COMPANY.name} is a fictional company built from real patterns: {COMPANY.size},{" "}
-        {COMPANY.volume} to keep track of.
+        {COMPANY.name} is a fictional composite: {COMPANY.size}, {COMPANY.weeklyWork},{" "}
+        {COMPANY.requestContext}.
       </p>
       <p className="t-intro__deck">
-        You’ll run one of its Tuesdays twice — first with requests scattered across five inboxes
-        and one person’s memory, then with a system you’ll build yourself, one change at a time.
+        You’ll run one of its Tuesdays twice — first with requests scattered across five inboxes and
+        one person’s memory, then with a system you’ll build yourself, one change at a time.
       </p>
       <div className="t-intro__actions">
         <button type="button" className="hc-button" onClick={onStart}>
@@ -74,7 +74,11 @@ export function Interstitial({
         <strong>{metrics.dropped}</strong> were forgotten. <strong>{metrics.complaints}</strong>{" "}
         customers called angry. <strong>{metrics.carried}</strong> roll into tomorrow.
       </p>
-      <p className="t-interstitial__punch">That was Tuesday. Every Tuesday.</p>
+      <p className="t-interstitial__punch">That was your run through the old workflow.</p>
+      <p className="t-interstitial__line">
+        Next, build the modeled system. The final comparison gives both versions the same demand and
+        a tireless operator so the workflow is the only difference.
+      </p>
       <button type="button" className="hc-button" onClick={onContinue}>
         See what changed
       </button>

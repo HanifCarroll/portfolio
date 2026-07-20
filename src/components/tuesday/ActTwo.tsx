@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { configFor, INTERVENTION_ORDER, runDay, type InterventionId } from "../../lib/tuesday-sim/engine";
+import { configFor, runDay, type InterventionId } from "../../lib/tuesday-sim/engine";
+import { TUESDAY_RESULTS, TUESDAY_SEED } from "../../lib/tuesday-sim/story";
 import { CHAPTERS, CREW } from "./content";
-
-const SEED = 42;
 
 /**
  * Act 2 — The Build. A scrollytelling track: each chapter scrolls in, applies
@@ -54,9 +53,9 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
     return () => window.clearTimeout(timeout);
   }, [justApplied]);
 
-  const baseline = useMemo(() => runDay(configFor(new Set()), SEED), []);
-  const current = useMemo(() => runDay(configFor(applied), SEED), [applied]);
-  const finalDay = useMemo(() => runDay(configFor(new Set<InterventionId>(INTERVENTION_ORDER)), SEED), []);
+  const baseline = TUESDAY_RESULTS.before;
+  const current = useMemo(() => runDay(configFor(applied), TUESDAY_SEED), [applied]);
+  const finalDay = TUESDAY_RESULTS.after;
   const chapter = activeIndex >= 0 ? CHAPTERS[activeIndex] : null;
 
   const appliedClasses = CHAPTERS.map((c) => (applied.has(c.id) ? `sm-on--${c.id}` : "")).join(" ");
@@ -87,8 +86,18 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
         ))}
         <div className="t2-metrics" role="status">
           <Metric label="handled" before={baseline.completed} after={finalDay.completed} />
-          <Metric label="forgotten" before={baseline.dropped} after={finalDay.dropped} good="down" />
-          <Metric label="angry calls" before={baseline.complaints} after={finalDay.complaints} good="down" />
+          <Metric
+            label="forgotten"
+            before={baseline.dropped}
+            after={finalDay.dropped}
+            good="down"
+          />
+          <Metric
+            label="angry calls"
+            before={baseline.complaints}
+            after={finalDay.complaints}
+            good="down"
+          />
           <Metric
             label="avg wait"
             before={`${Math.round(baseline.avgWaitMinutes)}m`}

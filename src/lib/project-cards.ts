@@ -13,6 +13,7 @@ export interface ProjectCard {
   year: string;
   client: string;
   proofType: Project["proofType"];
+  cardLabel?: string;
   service: string;
   track: Project["track"];
   trackLabel: string;
@@ -35,6 +36,7 @@ const toCard = (project: Project): ProjectCard => {
     year: project.year ?? "",
     client: project.client,
     proofType: project.proofType,
+    cardLabel: project.cardLabel,
     service: project.service,
     track: project.track,
     trackLabel: trackMeta.label,

@@ -53,17 +53,17 @@ const featuredProjects = [
 		body: 'I helped build the billing, credit accounting, background jobs, and agent workflows that made Genrupt ready for paying teams and helped it support its first 200 paying customers.',
 		image: GenruptCreativeOperations,
 		alt: 'Genrupt creative operations workspace for Amazon seller teams.'
-	},
-	{
-		slug: 'one-tuesday',
-		label: 'Interactive piece',
-		title: 'One Tuesday, Twice',
-		heading: 'Feel the transformation instead of reading about it.',
-		body: 'Most case studies ask you to take the change on faith. This one is a playable simulation: run the worst day at a fictional service company, build the six changes one at a time, then watch the same day run through the system.',
-		image: OneTuesdayDuel,
-		alt: 'The same Tuesday simulated twice: the old workflow forgets requests and fills with backlog while the new system clears the day.'
 	}
 ];
+
+const interactiveDiagnostic = {
+	slug: 'one-tuesday',
+	label: 'Interactive workflow diagnostic',
+	heading: 'See what one difficult Tuesday costs—and what changes it.',
+	body: 'Run a fictional service company through the same modeled day twice. The diagnostic makes coordination costs visible, then lets you test six workflow changes without presenting the output as a client result.',
+	image: OneTuesdayDuel,
+	alt: 'The same modeled Tuesday shown through an old workflow and a redesigned workflow.'
+};
 
 const homepageServices = serviceOfferList.map((offer) => ({
 	...offer,
@@ -225,7 +225,7 @@ const founderTestimonial = testimonials.markisZarate;
 			<div class='hc-container-wide hc-proof-section__header' data-motion-group>
 				<div class='hc-section-header'>
 					<h2 class='hc-section-title' data-motion='reveal'>See how difficult workflows became working systems.</h2>
-					<p class='hc-section-intro' data-motion-item>Two client engagements from discovery and product decisions to software people could use — and one you can run yourself.</p>
+					<p class='hc-section-intro' data-motion-item>Two client engagements showing the path from discovery and product decisions to software people could use.</p>
 				</div>
 			</div>
 			<div class='hc-proof-list'>
@@ -234,6 +234,19 @@ const founderTestimonial = testimonials.markisZarate;
 					return <article class:list={['hc-proof-row', { 'hc-proof-row--dark': isDark }]} data-header-surface={isDark ? 'dark' : 'light'} data-motion-group data-motion-from={index % 2 === 0 ? 'left' : 'right'}><div class='hc-container-wide hc-proof-row__inner'><div class='hc-proof-copy' data-motion-item><p class='hc-proof-number' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</p><p class='hc-proof-label'>{project.label}</p><h3>{project.heading}</h3><p>{project.body}</p><a class='hc-text-link' href={`/case-studies/${project.slug}/`}>View {project.title}</a></div><figure class='hc-proof-media' data-motion-item data-motion='parallax'><Image src={project.image} alt={project.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 66vw' quality={88} /></figure></div></article>;
 				})}
 			</div>
+			<article class='hc-diagnostic' data-header-surface='dark' data-motion-group>
+				<div class='hc-container-wide hc-diagnostic__inner'>
+					<div class='hc-diagnostic__copy' data-motion-item>
+						<p class='hc-proof-label'>{interactiveDiagnostic.label}</p>
+						<h3>{interactiveDiagnostic.heading}</h3>
+						<p>{interactiveDiagnostic.body}</p>
+						<a class='hc-button hc-button--proof' href={`/case-studies/${interactiveDiagnostic.slug}/`} data-track-event='interactive_diagnostic_clicked' data-track-location='home_after_client_proof'>Run the interactive diagnostic</a>
+					</div>
+					<figure class='hc-diagnostic__media' data-motion-item data-motion='parallax'>
+						<Image src={interactiveDiagnostic.image} alt={interactiveDiagnostic.alt} loading='lazy' format='webp' widths={[640, 960, 1536]} sizes='(max-width: 900px) 100vw, 52vw' quality={88} />
+					</figure>
+				</div>
+			</article>
 			<div class='hc-proof-section__actions' data-motion='reveal'><a class='hc-button' href='/case-studies/'>Explore all case studies</a></div>
 		</section>
 

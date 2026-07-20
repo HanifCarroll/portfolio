@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const projectsDir = join(root, "src/lib/projects");
 const caseStudiesDir = join(root, "src/content/case-studies");
+const caseStudyPagesDir = join(root, "src/pages/case-studies");
 const srcDir = join(root, "src");
 
 const localProjectFiles = readdirSync(projectsDir)
@@ -34,9 +35,18 @@ for (const file of localProjectFiles) {
     errors.push(`${file}: description must be a non-empty string.`);
   }
 
-  const caseStudyPath = join(caseStudiesDir, `${slug}.mdx`);
-  if (!project.customPage && !existsSync(caseStudyPath)) {
-    errors.push(`${file}: missing case study at src/content/case-studies/${slug}.mdx.`);
+  if (project.customPage !== undefined && typeof project.customPage !== "boolean") {
+    errors.push(`${file}: customPage must be a boolean when provided.`);
+  }
+
+  const caseStudyPath = project.customPage
+    ? join(caseStudyPagesDir, `${slug}.astro`)
+    : join(caseStudiesDir, `${slug}.mdx`);
+  if (!existsSync(caseStudyPath)) {
+    const expectedPath = project.customPage
+      ? `src/pages/case-studies/${slug}.astro`
+      : `src/content/case-studies/${slug}.mdx`;
+    errors.push(`${file}: missing case study at ${expectedPath}.`);
   }
 
   for (const [key, value] of Object.entries(project.images ?? {})) {

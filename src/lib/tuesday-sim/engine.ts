@@ -424,56 +424,56 @@ export interface Assumption {
 export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "Demand",
-    value: "~5 requests/hour, ~47/day",
+    value: "~5 requests/hour; seed 42 produces 56 requests",
     basis:
-      "Composite of service businesses at 15–25 staff: calls, texts, emails, and walk-ins across a 9.5-hour day.",
+      "Illustrative input for the fictional company. Validate it against actual intake data before applying the model to a real operation.",
   },
   {
     parameter: "Rush windows",
     value: "×1.6 at 9 AM and 1 PM",
-    basis: "Request volume clusters after open and after lunch; evenings taper to ×0.7.",
+    basis:
+      "Illustrative demand pattern: requests cluster after opening and lunch, then taper late in the day.",
   },
   {
     parameter: "Manual handling",
     value: "18 min/request",
-    basis:
-      "Read the message, find the spreadsheet, re-key the details, message the right person, confirm back.",
+    basis: "Illustrative estimate for reading, re-keying, forwarding, and confirming one request.",
   },
   {
     parameter: "Misroute rate",
     value: "18% before, 4% after",
     basis:
-      "Wrong person, stale spreadsheet row, or a detail lost in re-keying. Drops when the record is typed and single.",
+      "Modeled rate chosen to show the effect of one shared record; it is not a measured client result.",
   },
   {
     parameter: "Duplicate requests",
     value: "12% before, 2% after",
     basis:
-      "The same request arrives by text and email and phone because nobody confirms receipt. A form with a confirmation kills most duplicates.",
+      "Modeled rate chosen to show how confirmation and one intake path affect repeated requests.",
   },
   {
     parameter: "Forgotten after",
     value: "4 hours untouched",
     basis:
-      "An untracked request older than half a day is effectively lost: buried thread, fallen sticky note.",
+      "Model rule for an untracked request; a real audit should define failure from actual service expectations.",
   },
   {
     parameter: "Auto-dispatch",
     value: "jobs route in ~25 min, 14 with triage",
     basis:
-      "Assignment rules match zone and skill; AI triage extracts fields so routing starts from clean data.",
+      "Illustrative routing delay under the modeled rules, not a promised implementation result.",
   },
   {
     parameter: "Crew capacity",
     value: "~65 requests/day",
     basis:
-      "The software removes the coordination bottleneck, not the physical one. Past this, work queues visibly instead of vanishing for free.",
+      "Illustrative capacity ceiling so excess demand remains visible instead of disappearing from the model.",
   },
   {
     parameter: "The company",
     value: "Meridian Facility Services, 18 people",
     basis:
-      "Meridian is a fictional company built from real engagements, not a real client. The names are invented.",
+      "Meridian is a fictional composite. Its names, demand, rates, and outcomes are illustrative.",
   },
 ];
 

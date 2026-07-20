@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { configFor, formatClock, type DayMetrics, type Job } from "../../lib/tuesday-sim/engine";
+import { TUESDAY_SEED } from "../../lib/tuesday-sim/story";
 import { useLiveSession } from "./useLiveSession";
 
-const SEED = 42;
 /** Desktop: the 565-minute day runs about a minute. Compact: about half that. */
 const TIME_SCALE = 9;
 const TIME_SCALE_COMPACT = 18;
@@ -25,6 +25,7 @@ const ACTION_VERBS: Record<Job["kind"], string> = {
 interface ActOneProps {
   active: boolean;
   onDayEnd: (metrics: DayMetrics) => void;
+  onSkip: () => void;
   /** Small screens: the day plays itself with a tireless operator — watch, don't tap. */
   compact?: boolean;
 }
@@ -34,11 +35,11 @@ interface ActOneProps {
  * requests one at a time. Compact: the always-on operator works the same day
  * and still falls behind. Either way, the day is unwinnable.
  */
-export function ActOne({ active, onDayEnd, compact = false }: ActOneProps) {
+export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProps) {
   const config = useMemo(() => configFor(new Set()), []);
   const { frame, handle, finishNow } = useLiveSession(
     config,
-    SEED,
+    TUESDAY_SEED,
     compact ? TIME_SCALE_COMPACT : TIME_SCALE,
     active,
     compact,
@@ -110,7 +111,14 @@ export function ActOne({ active, onDayEnd, compact = false }: ActOneProps) {
             {operatorBusy ? "You’re tied up…" : "You’re free — take a request"}
           </div>
         )}
-        <button type="button" className="t1-hud__skip" onClick={finishNow}>
+        <button
+          type="button"
+          className="t1-hud__skip"
+          onClick={() => {
+            onSkip();
+            finishNow();
+          }}
+        >
           Skip the day
         </button>
       </div>

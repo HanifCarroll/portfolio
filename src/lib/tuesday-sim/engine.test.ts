@@ -8,6 +8,7 @@ import {
   type InterventionId,
   type StressConfig,
 } from "./engine";
+import { TUESDAY_RESULTS, TUESDAY_SEED } from "./story";
 
 const ALL = new Set<InterventionId>(INTERVENTION_ORDER);
 const NONE = new Set<InterventionId>();
@@ -24,6 +25,12 @@ describe("tuesday-sim engine", () => {
     const before = runDay(configFor(NONE), 42);
     const after = runDay(configFor(ALL), 42);
     expect(after.arrivals).toBe(before.arrivals);
+  });
+
+  test("the reader and experience share one canonical result set", () => {
+    expect(TUESDAY_RESULTS.before).toEqual(runDay(configFor(NONE), TUESDAY_SEED));
+    expect(TUESDAY_RESULTS.after).toEqual(runDay(configFor(ALL), TUESDAY_SEED));
+    expect(TUESDAY_RESULTS.after.arrivals).toBe(TUESDAY_RESULTS.before.arrivals);
   });
 
   test("the old Tuesday is genuinely unwinnable", () => {

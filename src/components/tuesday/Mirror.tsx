@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BOOK_CALL_URL, EMAIL_URL } from "../../consts";
+import { trackTuesdayEvent } from "./analytics";
 import { MIRROR_READOUTS, MIRROR_STATEMENTS } from "./content";
 
 /**
@@ -9,6 +10,7 @@ import { MIRROR_READOUTS, MIRROR_STATEMENTS } from "./content";
  */
 export function Mirror() {
   const [answers, setAnswers] = useState<Map<number, boolean>>(new Map());
+  const completionTrackedRef = useRef(false);
   const score = [...answers.values()].filter(Boolean).length;
   const answeredAll = answers.size === MIRROR_STATEMENTS.length;
   const readout =
@@ -18,6 +20,12 @@ export function Mirror() {
     setAnswers((previous) => {
       const next = new Map(previous);
       next.set(index, value);
+      if (next.size === MIRROR_STATEMENTS.length && !completionTrackedRef.current) {
+        completionTrackedRef.current = true;
+        const completedScore = [...next.values()].filter(Boolean).length;
+        const scoreBand = completedScore <= 1 ? "0_1" : completedScore <= 3 ? "2_3" : "4_5";
+        trackTuesdayEvent("interactive_case_study_mirror_completed", { score_band: scoreBand });
+      }
       return next;
     });
 
@@ -29,9 +37,9 @@ export function Mirror() {
         {MIRROR_STATEMENTS.map((statement, index) => {
           const value = answers.get(index);
           return (
-            <div key={statement.text} className="t4-statement">
-              <p>{statement.text}</p>
-              <div className="t4-statement__buttons" role="group" aria-label={statement.text}>
+            <div key={statement} className="t4-statement">
+              <p>{statement}</p>
+              <div className="t4-statement__buttons" role="group" aria-label={statement}>
                 <button
                   type="button"
                   className={`t4-choice ${value === true ? "is-on" : ""}`}
@@ -69,10 +77,22 @@ export function Mirror() {
           If any of that sounds like your week, tell me what’s getting harder to run.
         </p>
         <div className="t4-cta__actions">
-          <a className="hc-button" href={BOOK_CALL_URL} target="_blank" rel="noopener noreferrer">
-            Book a working session
+          <a
+            className="hc-button"
+            href={BOOK_CALL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-event="book_call_clicked"
+            data-track-location="one_tuesday_mirror"
+          >
+            Book a 30-minute audit fit call
           </a>
-          <a className="t4-cta__secondary" href={EMAIL_URL}>
+          <a
+            className="t4-cta__secondary"
+            href={EMAIL_URL}
+            data-track-event="email_clicked"
+            data-track-location="one_tuesday_mirror"
+          >
             Or email me your Tuesday
           </a>
         </div>

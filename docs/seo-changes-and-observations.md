@@ -11,11 +11,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Verified the production build, the generated `dist/_redirects` file, all 25 redirect destinations in `dist`, and the absence of redirect chains.
 - After deployment, verify representative live responses return one-hop 301s to the final HTTPS URLs, then watch Search Console for old-URL consolidation into the new case-study and service URLs.
 
-### One Tuesday, Twice Interactive Case Study
+### One Tuesday, Twice Interactive Workflow Diagnostic
 
-- Added `/case-studies/one-tuesday/`, an interactive case study of a fictional 18-person service company built from real engagement patterns: a playable operations day, a scroll-driven system build, a same-seed duel replay, and a full prose version in the page for crawlers, reduced-motion visitors, and small screens.
-- Wired the piece into site discovery: project metadata with a `customPage` flag (no MDX entry — the page is the artifact), a closing-feature card on the case-study index, related-links from the Genrupt and Desarmadero operations case studies, and a third featured row on the homepage case-study section.
-- Watch indexing and engagement on the route after merge; the captured hero/feature screenshots are real states of the experience and should be recaptured if the piece changes materially.
+- Added `/case-studies/one-tuesday/`, a reader-first diagnostic for a fictional 18-person service company. The optional experience includes a playable operations day, a scroll-driven system build, and a same-seed comparison; its outputs are labeled as modeled assumptions rather than client results.
+- Kept the prose, model inputs, and stress test available on the initial page, then moved the React experience behind an explicit launch so search engines, assistive technology, small screens, and visitors who do not start the simulation do not depend on the interactive bundle.
+- Wired the diagnostic into site discovery without placing it alongside client proof: a separately labeled homepage feature, a closing card on the case-study index, and related links from the Genrupt and Desarmadero operations case studies. The route uses its hero as the social preview image and tracks the launch, major completion points, reader handoff, diagnostic answers, and calls to action.
+- Extended project validation so `customPage` metadata must point to a real static route instead of only bypassing the MDX check.
+- After deployment, verify the social preview, initial page weight, analytics events, reader-to-experience handoff, and desktop/mobile interaction flow. Recapture the hero and feature screenshots if the experience changes materially.
 
 ## 2026-07-16
 
