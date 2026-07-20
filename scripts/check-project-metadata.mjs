@@ -35,7 +35,7 @@ for (const file of localProjectFiles) {
   }
 
   const caseStudyPath = join(caseStudiesDir, `${slug}.mdx`);
-  if (!existsSync(caseStudyPath)) {
+  if (!project.customPage && !existsSync(caseStudyPath)) {
     errors.push(`${file}: missing case study at src/content/case-studies/${slug}.mdx.`);
   }
 

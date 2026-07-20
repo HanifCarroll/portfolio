@@ -29,12 +29,14 @@
     "build": "node node_modules/astro/bin/astro.mjs check && node node_modules/astro/bin/astro.mjs build && node scripts/check-user-facing-copy.mjs",
     "preview": "node node_modules/astro/bin/astro.mjs preview",
     "astro": "node node_modules/astro/bin/astro.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "tuesday:test": "bun test src/lib/tuesday-sim/"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/markdown-remark": "^7.2.0",
     "@astrojs/mdx": "^7.0.0",
+    "@astrojs/react": "^6.0.1",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/tailwind": "^6.0.2",

@@ -50,6 +50,8 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  /** True when the project has a hand-built page instead of an MDX collection entry. */
+  customPage?: boolean;
   seoTitle?: string;
   seoDescription?: string;
   client: string;

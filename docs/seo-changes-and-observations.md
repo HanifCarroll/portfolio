@@ -11,6 +11,12 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Verified the production build, the generated `dist/_redirects` file, all 25 redirect destinations in `dist`, and the absence of redirect chains.
 - After deployment, verify representative live responses return one-hop 301s to the final HTTPS URLs, then watch Search Console for old-URL consolidation into the new case-study and service URLs.
 
+### One Tuesday, Twice Interactive Case Study
+
+- Added `/case-studies/one-tuesday/`, an interactive case study of a fictional 18-person service company built from real engagement patterns: a playable operations day, a scroll-driven system build, a same-seed duel replay, and a full prose version in the page for crawlers, reduced-motion visitors, and small screens.
+- Wired the piece into site discovery: project metadata with a `customPage` flag (no MDX entry — the page is the artifact), a closing-feature card on the case-study index, related-links from the Genrupt and Desarmadero operations case studies, and a third featured row on the homepage case-study section.
+- Watch indexing and engagement on the route after merge; the captured hero/feature screenshots are real states of the experience and should be recaptured if the piece changes materially.
+
 ## 2026-07-16
 
 ### Blog Positioning Cleanup

@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TuesdayExperience from '../../components/tuesday/TuesdayExperience';
+import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import '../../styles/tuesday.css';
+
+const title = 'One Tuesday, Twice — An Interactive Case Study';
+const description =
+  'A simulated Tuesday at a fictional 18-person service company, run twice: once with a scattered workflow, once with the system that replaced it. Every number is computed by a model you can inspect.';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: title,
+  description,
+  url: 'https://www.hanifcarroll.com/case-studies/one-tuesday/',
+  creator: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' }
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd} showFooterCta={false} bodyClass='page-one-tuesday'>
+  <TuesdayExperience client:only='react' />
+
+  <article id='tuesday-reader'>
+    <h1>One Tuesday, twice.</h1>
+    <p class='t-reader-deck'>
+      Meridian Facility Services is a fictional company built from real patterns: 18 people, about 45 jobs a week,
+      run on a shared inbox, a spreadsheet, a whiteboard, and one tired operations manager’s memory.
+    </p>
+    <p class='t-reader-deck'>
+      This is one of its Tuesdays, told twice — once with that workflow, and once with the system that replaced it,
+      six decisions later.
+    </p>
+
+    <div class='t-reader-launch'>
+      <p>You can also run this instead of reading it: watch the day play out, build the system, and stress-test the result.</p>
+      <button type='button' class='hc-button' onclick="window.dispatchEvent(new CustomEvent('tuesday:launch'))">Launch the interactive experience</button>
+    </div>
+
+    <h2>The old Tuesday</h2>
+    <p>
+      Requests arrive the way they always have: two email threads, a phone call, three texts, a walk-in, a sticky note
+      left on a keyboard. Nobody owns intake, so everyone does it a little.
+    </p>
+    <p>
+      A request gets answered twice — or not at all. Finding the status of a job means finding the person who last
+      touched it.
+    </p>
+    <p>
+      About 56 requests come in across a nine-and-a-half-hour day. Here’s that day, simulated from those constraints,
+      with an operator who never slows down:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Measure</th><th>Old Tuesday</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Requests arrived</td><td>56</td></tr>
+        <tr><td>Handled</td><td>30</td></tr>
+        <tr><td>Forgotten entirely</td><td>3</td></tr>
+        <tr><td>Carried into tomorrow</td><td>23</td></tr>
+        <tr><td>Duplicate requests</td><td>11</td></tr>
+        <tr><td>Angry customer calls</td><td>10</td></tr>
+        <tr><td>Average wait for an answer</td><td>2 hours 28 minutes</td></tr>
+        <tr><td>Operator time on coordination</td><td>9.3 hours</td></tr>
+      </tbody>
+    </table>
+    <p>
+      The operator in that run never takes lunch. It doesn’t matter: most of the day goes to finding, re-keying,
+      forwarding, and apologizing — not to the jobs themselves.
+    </p>
+    <p>That was Tuesday. Every Tuesday.</p>
+
+    <h2>Six changes, one per week</h2>
+    <p>No platform rewrite and no big-bang migration. One decision per week, each one aimed at a number in the table.</p>
+
+    <h3>Week 1 — One front door</h3>
+    <p>Every request goes into one intake form, no matter what channel it started in.</p>
+    <p>
+      Five buckets become one queue, and every request gets a confirmation right away. Duplicates fall from 11 a day
+      to 1, because the confirmation kills the “did they get it?” re-send.
+    </p>
+
+    <h3>Week 3 — One record per job</h3>
+    <p>
+      The spreadsheet, the whiteboard, and the sticky notes become a single job record that everyone reads from and
+      nobody re-types. Nobody asks “who touched this last?” anymore.
+    </p>
+    <p>Misroutes — wrong row, stale copy, lost detail — fall by more than half, and nothing is forgotten outright anymore.</p>
+
+    <h3>Week 5 — Assignment rules</h3>
+    <p>New work routes itself to the right crew by zone and skill. The dispatcher stops assigning work by memory and handles only the exceptions.</p>
+    <p>
+      Handled requests go from 30 to 50 a day, and the average wait for an answer falls from two and a half hours to
+      25 minutes — with zero minutes of human coordination.
+    </p>
+
+    <h3>Week 7 — The customer hears first</h3>
+    <p>Confirmations, arrival windows, and running-late notices go out automatically.</p>
+    <p>Most of the angry calls were never about the job. They were about not knowing.</p>
+
+    <h3>Week 9 — AI reads the inbox</h3>
+    <p>Incoming requests are classified, key fields extracted, replies drafted. A person confirms; the software does the typing.</p>
+    <p>
+      It makes mistakes — roughly one in twenty-five gets misrouted — so every automated decision stays one click away
+      from a person, and every correction teaches the routing rules.
+    </p>
+    <p>Manual work per request drops from 18 minutes to 4. Most requests need none.</p>
+
+    <h3>Week 11 — The weekly number</h3>
+    <p>One screen shows the week: volume, response time, dropped balls.</p>
+    <p>That number used to be invisible. Now it’s zero.</p>
+
+    <h2>The new Tuesday</h2>
+    <p>Same 56 requests, same crew, different system underneath:</p>
+    <table>
+      <thead>
+        <tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Handled</td><td>30</td><td>53</td></tr>
+        <tr><td>Forgotten entirely</td><td>3</td><td>0</td></tr>
+        <tr><td>Carried into tomorrow</td><td>23</td><td>3</td></tr>
+        <tr><td>Duplicate requests</td><td>11</td><td>1</td></tr>
+        <tr><td>Angry customer calls</td><td>10</td><td>2</td></tr>
+        <tr><td>Average wait for an answer</td><td>2h 28m</td><td>14 minutes</td></tr>
+        <tr><td>Operator time on coordination</td><td>9.3 hours</td><td>~0 hours</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Nine hours a day of coordination work doesn’t vanish — it turns into an hour of exceptions, review, and the
+      corrections that make the routing smarter. The rest becomes capacity the company already had.
+    </p>
+
+    <div class='t-reader-desktop-only'>
+      <h2>The stress test</h2>
+      <p>
+        Does it hold up on a bad week? Double the volume, take the dispatcher out sick, and kill the scheduling tool’s
+        API, all at once:
+      </p>
+      <table>
+        <thead>
+          <tr><th>Under stress</th><th>Old Tuesday</th><th>New Tuesday</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Requests arrived</td><td>94</td><td>94</td></tr>
+          <tr><td>Forgotten entirely</td><td>46</td><td>0</td></tr>
+          <tr><td>Carried into tomorrow</td><td>32</td><td>70</td></tr>
+          <tr><td>Angry customer calls</td><td>26</td><td>9</td></tr>
+        </tbody>
+      </table>
+      <p>
+        The old workflow forgets jobs because it runs on memory and goodwill. The system carries the overload where
+        everyone can see it — every stalled job has an owner and a timer — and forgets nothing.
+      </p>
+      <p>The record and the rules don’t call in sick. Carried work is visible work; forgotten work is a refund and a bad review.</p>
+
+      <h2>The model</h2>
+      <p>The assumptions, in plain language:</p>
+      <ul>
+        <li><strong>Demand:</strong> about 5 requests an hour, roughly 56 a day, with rush hours at 9 AM and 1 PM running 1.6× heavier.</li>
+        <li><strong>Manual handling:</strong> 18 minutes per request — read, find the spreadsheet, re-key, forward, confirm.</li>
+        <li><strong>Misroutes:</strong> 18% before, 4% after — wrong person, stale row, lost detail.</li>
+        <li><strong>Duplicates:</strong> 12% before, 2% after — a confirmation message kills the re-send.</li>
+        <li><strong>Forgotten:</strong> anything untouched for four hours in the old system is effectively lost.</li>
+        <li><strong>Automation:</strong> routing rules assign in about 25 minutes, 14 with AI triage cleaning the data first.</li>
+      </ul>
+    </div>
+
+    <h2>The mirror</h2>
+    <p>Five questions. Count your yeses:</p>
+    <ul class='t-reader-mirror'>
+      <li>Requests reach you through more than two channels.</li>
+      <li>Finding the status of a job means asking a person.</li>
+      <li>The same information gets typed more than once.</li>
+      <li>A customer has been forgotten in the last month.</li>
+      <li>When one person is out, the work stalls.</li>
+    </ul>
+    <div class='t-reader-readouts'>
+      <p><span class='t-reader-score'>0–1</span> You’re running tight.</p>
+      <p><span class='t-reader-score'>2–3</span> You’re where Meridian was in week 0 — the cheapest moment to fix it.</p>
+      <p><span class='t-reader-score'>4–5</span> You’re living the old Tuesday, and none of this needs new people.</p>
+    </div>
+    <p>It takes one decision per week for about a quarter.</p>
+    <div class='t4-cta'>
+      <p class='t4-cta__line'>If any of that sounds like your week, tell me what’s getting harder to run.</p>
+      <div class='t4-cta__actions'>
+        <a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer'>Book a working session</a>
+        <a class='t4-cta__secondary' href={EMAIL_URL}>Or email me your Tuesday</a>
+      </div>
+    </div>
+    <p>
+      <a href='/case-studies/'>See real client work</a>
+    </p>
+  </article>
+</BaseLayout>

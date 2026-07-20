@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { autoNewTabExternalLinks } from "./src/autoNewTabExternalLinks.ts";
@@ -17,9 +18,7 @@ const excludedSitemapPaths = [
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.hanifcarroll.com",
-  integrations: [
-    mdx(),
-    sitemap({
+  integrations: [react(), mdx(), sitemap({
       filter: (page) => !excludedSitemapPaths.some((path) => page.endsWith(path)),
     }),
     tailwind(),

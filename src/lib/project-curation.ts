@@ -7,6 +7,7 @@ export const PROJECT_INDEX_ORDER = [
   "desarmadero-latorre",
   "client-feedback",
   "linkedin-tools",
+  "one-tuesday",
   "mucho-hangouts",
   "vox-prismatic",
   "palabruno",
