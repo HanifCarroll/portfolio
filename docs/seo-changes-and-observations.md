@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-20
+
+### Route Migration Redirects
+
+- Added 25 direct permanent redirects for pages that moved during the July site restructuring: the `/projects/` index, 21 matching case studies, and three service pages with clear current equivalents.
+- Kept `/launch/`, `/mvp-launch/`, `/fractional-product-engineering/`, and `/automation-ai-agents/` as 404s because those offers and positioning were intentionally retired.
+- Verified the production build, the generated `dist/_redirects` file, all 25 redirect destinations in `dist`, and the absence of redirect chains.
+- After deployment, verify representative live responses return one-hop 301s to the final HTTPS URLs, then watch Search Console for old-URL consolidation into the new case-study and service URLs.
+
 ## 2026-07-16
 
 ### Blog Positioning Cleanup
