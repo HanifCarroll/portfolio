@@ -11,8 +11,8 @@
  *     React layer can play a day in real time and let the reader handle jobs
  *     by hand (Act 1) or watch the system handle them (Act 3).
  *
- * The company is fictional; the model is real. Every parameter below is
- * documented in `ASSUMPTIONS`, which the UI surfaces in the inspect drawer.
+ * The company is fictional; the model is real. The inputs in `ASSUMPTIONS`
+ * are surfaced on the case-study page.
  */
 import { createRng, pick } from "./rng";
 
@@ -417,60 +417,45 @@ export function compareDays(before: DayMetrics, after: DayMetrics) {
 export interface Assumption {
   parameter: string;
   value: string;
-  basis: string;
 }
 
-/** Plain-language model documentation, surfaced in the UI's inspect drawer. */
+/** Model inputs shown on the case-study page. */
 export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "Demand",
     value: "~5 requests/hour; this run generates 56 requests",
-    basis:
-      "Illustrative input for the fictional company. Validate it against actual intake data before applying the model to a real operation.",
   },
   {
     parameter: "Rush windows",
     value: "×1.6 at 9 AM and 1 PM",
-    basis:
-      "Illustrative demand pattern: requests cluster after opening and lunch, then taper late in the day.",
   },
   {
     parameter: "Manual handling",
     value: "18 min/request",
-    basis: "Illustrative estimate for reading, re-keying, forwarding, and confirming one request.",
   },
   {
     parameter: "Misroute rate",
     value: "18% before, 4% after",
-    basis: "The model uses this rate to show how one shared record affects routing errors.",
   },
   {
     parameter: "Duplicate requests",
     value: "12% before, 2% after",
-    basis:
-      "Modeled rate chosen to show how confirmation and one intake path affect repeated requests.",
   },
   {
     parameter: "Forgotten after",
     value: "4 hours untouched",
-    basis:
-      "Model rule for an untracked request; a real audit should define failure from actual service expectations.",
   },
   {
     parameter: "Auto-dispatch",
     value: "jobs route in ~25 min, 14 with triage",
-    basis: "The model uses this routing delay after applying assignment rules and triage.",
   },
   {
     parameter: "Crew capacity",
     value: "~65 requests/day",
-    basis:
-      "Illustrative capacity ceiling so excess demand remains visible instead of disappearing from the model.",
   },
   {
-    parameter: "The company",
-    value: "Meridian Facility Services, 18 people",
-    basis: "Meridian is fictional. Its names, demand, rates, and outcomes are illustrative.",
+    parameter: "Company",
+    value: "Meridian Facility Services (fictional), 18 people",
   },
 ];
 

@@ -32,7 +32,7 @@ export function Mirror() {
   return (
     <section className="t4" aria-label="How does your operation compare">
       <p className="t4-kicker">The mirror</p>
-      <h3 className="t4-title">How much of that Tuesday is yours?</h3>
+      <h3 className="t4-title">Which of these problems show up in your business?</h3>
       <div className="t4-statements">
         {MIRROR_STATEMENTS.map((statement, index) => {
           const value = answers.get(index);

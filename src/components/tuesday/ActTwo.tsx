@@ -347,7 +347,6 @@ function SystemMap() {
           <span className="sm-chip">booking</span>
           <span className="sm-chip">Tue AM</span>
         </span>
-        <span className="sm-ai__correction">corrected by you</span>
       </div>
 
       <div className="sm-dash">

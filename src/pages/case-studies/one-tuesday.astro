@@ -26,6 +26,9 @@ const jsonLd = {
   creator: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' },
 };
 const { before, after, stressedBefore, stressedAfter } = TUESDAY_RESULTS;
+const handledGain = after.completed - before.completed;
+const carriedReduction = before.carried - after.carried;
+const coordinationReduction = before.manualMinutes - after.manualMinutes;
 const formatDuration = (minutes: number) => {
   const rounded = Math.round(minutes);
   if (rounded < 60) return `${rounded} minutes`;
@@ -34,10 +37,6 @@ const formatDuration = (minutes: number) => {
   return remainder === 0 ? `${hours} hours` : `${hours}h ${remainder}m`;
 };
 const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
-const toReaderStatement = (statement: string) =>
-  statement === 'Requests reach us through more than two channels.'
-    ? 'Requests reach you through more than two channels.'
-    : statement;
 ---
 
 <BaseLayout
@@ -57,7 +56,7 @@ const toReaderStatement = (statement: string) =>
       {TUESDAY_COMPANY.name} is {TUESDAY_COMPANY.description}. {TUESDAY_COMPANY.dayContext}
     </p>
     <p class='t-reader-deck'>
-      This is one modeled Tuesday, shown before and after six workflow changes. The numbers come from the assumptions below. Use them to compare the workflows, not to predict what another business would achieve.
+      Follow the same {before.arrivals} requests through two versions of the workflow: first through the original setup, then after six changes.
     </p>
 
     <div class='t-reader-launch'>
@@ -73,7 +72,7 @@ const toReaderStatement = (statement: string) =>
       A request gets answered twice or not at all. Finding the status of a job means finding the person who last touched it.
     </p>
     <p>
-      Under the assumptions below, the model generates {before.arrivals} requests across a nine-and-a-half-hour day while the operator works continuously:
+      Across the nine-and-a-half-hour day, {before.arrivals} requests arrive while the operator works continuously:
     </p>
     <table>
       <thead><tr><th>Measure</th><th>Old Tuesday</th></tr></thead>
@@ -92,9 +91,9 @@ const toReaderStatement = (statement: string) =>
       Even with the operator working continuously, the old workflow spends most of the day finding, re-keying, forwarding, and confirming requests.
     </p>
 
-    <h2 id='tuesday-reader-build' tabindex='-1'>Six workflow changes in the modeled scenario</h2>
+    <h2 id='tuesday-reader-build' tabindex='-1'>Six changes to the workflow</h2>
     <p>
-      The scenario changes one part of the workflow at a time. A real operation may need a different order, more capacity, or no new software at all.
+      Each change removes one source of repeated work, delay, or uncertainty from the day.
     </p>
     {TUESDAY_CHAPTERS.map((chapter) => (
       <section class='t-reader-chapter'>
@@ -104,7 +103,7 @@ const toReaderStatement = (statement: string) =>
       </section>
     ))}
 
-    <h2 id='tuesday-reader-new' tabindex='-1'>The same modeled demand, twice</h2>
+    <h2 id='tuesday-reader-new' tabindex='-1'>The same {before.arrivals} requests, twice</h2>
     <p>Both runs receive the same {before.arrivals} requests, and both operators work continuously. Only the workflow changes:</p>
     <table>
       <thead><tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
@@ -119,12 +118,12 @@ const toReaderStatement = (statement: string) =>
       </tbody>
     </table>
     <p>
-      In the model, the redesigned workflow spends less time coordinating requests and handles more of them. A real result depends on the company's workflow, demand, and capacity.
+      The redesigned workflow handles {handledGain} more requests, carries {carriedReduction} fewer into tomorrow, and spends {formatHours(coordinationReduction)} less on coordination.
     </p>
 
     <div class='t-reader-model'>
       <h2>The stress test</h2>
-      <p>Double the modeled volume, take the dispatcher out, and disable the scheduling API:</p>
+      <p>Double the requests, take the dispatcher out, and disable the scheduling API:</p>
       <table>
         <thead><tr><th>Under stress</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
         <tbody>
@@ -135,30 +134,41 @@ const toReaderStatement = (statement: string) =>
         </tbody>
       </table>
 
-      <h2>The model</h2>
-      <p>These inputs make the comparison inspectable. They describe the fictional company and should be replaced with a real operation's data before drawing conclusions.</p>
+      <h2>What drives the simulation</h2>
       <dl class='t-reader-assumptions'>
         {ASSUMPTIONS.map((assumption) => (
           <div>
-            <dt>{assumption.parameter}: {assumption.value}</dt>
-            <dd>{assumption.basis}</dd>
+            <dt>{assumption.parameter}</dt>
+            <dd>{assumption.value}</dd>
           </div>
         ))}
       </dl>
     </div>
 
-    <h2 id='tuesday-reader-mirror' tabindex='-1'>How much of that Tuesday is yours?</h2>
-    <p>Count the statements that describe your current operation:</p>
-    <ul class='t-reader-mirror'>
-      {TUESDAY_MIRROR_STATEMENTS.map((statement) => <li>{toReaderStatement(statement)}</li>)}
-    </ul>
-    <div class='t-reader-readouts'>
+    <h2 id='tuesday-reader-mirror' tabindex='-1'>Which of these problems show up in your business?</h2>
+    <p>Select every statement that sounds familiar.</p>
+    <fieldset class='t-reader-mirror' data-tuesday-reader-mirror>
+      <legend class='sr-only'>Problems that show up in your business</legend>
+      {TUESDAY_MIRROR_STATEMENTS.map((statement, index) => (
+        <label class='t-reader-mirror__option'>
+          <input type='checkbox' name={`tuesday-problem-${index}`} />
+          <span>{statement}</span>
+        </label>
+      ))}
+    </fieldset>
+    <output class='t-reader-mirror__total' data-tuesday-reader-total aria-live='polite'>
+      0 of {TUESDAY_MIRROR_STATEMENTS.length} selected
+    </output>
+    <div class='t-reader-live-readouts' data-tuesday-reader-readouts hidden>
       {TUESDAY_MIRROR_READOUTS.map((readout) => (
-        <p><span class='t-reader-score'>{readout.min}–{readout.max}</span><span><strong>{readout.headline}</strong> {readout.body}</span></p>
+        <div class='t-reader-live-readout' data-min={readout.min} data-max={readout.max} hidden>
+          <h3>{readout.headline}</h3>
+          <p>{readout.body}</p>
+        </div>
       ))}
     </div>
     <div class='t4-cta'>
-      <p class='t4-cta__line'>If this resembles your week, start with the workflow that is getting harder to run.</p>
+      <p class='t4-cta__line'>If these problems show up in your business, start with the workflow causing the most delay or repeated work.</p>
       <div class='t4-cta__actions'>
         <a
           class='hc-button'
@@ -173,10 +183,9 @@ const toReaderStatement = (statement: string) =>
           href={EMAIL_URL}
           data-track-event='email_clicked'
           data-track-location='one_tuesday_reader'
-        >Or email me your Tuesday</a>
+        >Email me about your workflow</a>
       </div>
     </div>
-    <p><a href='/case-studies/'>See real client work</a></p>
   </article>
 </BaseLayout>
 
@@ -220,12 +229,38 @@ const toReaderStatement = (statement: string) =>
     });
   };
 
+  const initializeReaderMirror = () => {
+    const mirror = document.querySelector<HTMLFieldSetElement>('[data-tuesday-reader-mirror]');
+    const total = document.querySelector<HTMLOutputElement>('[data-tuesday-reader-total]');
+    const readouts = document.querySelector<HTMLElement>('[data-tuesday-reader-readouts]');
+    if (!mirror || !total || !readouts || mirror.dataset.ready === 'true') return;
+
+    mirror.dataset.ready = 'true';
+    const checkboxes = [...mirror.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')];
+    const resultCards = [...readouts.querySelectorAll<HTMLElement>('[data-min][data-max]')];
+
+    mirror.addEventListener('change', () => {
+      const selected = checkboxes.filter((checkbox) => checkbox.checked).length;
+      total.value = `${selected} of ${checkboxes.length} selected`;
+      readouts.hidden = false;
+      resultCards.forEach((card) => {
+        const min = Number(card.dataset.min);
+        const max = Number(card.dataset.max);
+        card.hidden = selected < min || selected > max;
+      });
+    });
+  };
+
   document.addEventListener('click', (event) => {
     if (!(event.target instanceof Element)) return;
     const launch = event.target.closest('[data-tuesday-launch]');
     if (!launch) return;
     void loadExperience();
   });
-  document.addEventListener('astro:page-load', enableLaunchButtons);
+  document.addEventListener('astro:page-load', () => {
+    enableLaunchButtons();
+    initializeReaderMirror();
+  });
   enableLaunchButtons();
+  initializeReaderMirror();
 </script>
