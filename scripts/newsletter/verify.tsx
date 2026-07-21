@@ -1,15 +1,17 @@
 import { render } from "@react-email/render";
+import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
 import { ConfirmSubscription } from "../../src/emails/ConfirmSubscription";
 import { NewsletterIssue } from "../../src/emails/NewsletterIssue";
 import type { NewsletterBlock } from "../../src/emails/NewsletterIssue";
 import { Welcome } from "../../src/emails/Welcome";
-import { readNewsletterIssue } from "./packet.mjs";
+import { emailBlocks, readRelease } from "./release.mjs";
 
 const issuePath = process.argv[2];
-if (!issuePath) throw new Error("Usage: bun run newsletter:verify <issue.md>");
+if (!issuePath) throw new Error("Usage: bun run newsletter:verify <newsletter-release.json>");
 
-const issue = await readNewsletterIssue(issuePath);
-const blocks = issue.blocks as NewsletterBlock[];
+const issue = await readRelease(issuePath);
+const blocks = emailBlocks(issue.body_markdown) as NewsletterBlock[];
 const outputs = await Promise.all([
   render(
     <ConfirmSubscription confirmationUrl="https://www.hanifcarroll.com/api/newsletter/confirm?token=test" />,
@@ -27,9 +29,10 @@ console.log(
   JSON.stringify(
     {
       templatesRendered: outputs.length,
-      issueDigest: issue.issueDigest,
-      approvedDigest: issue.approvedDigest,
-      bodyDigest: issue.bodyDigest,
+      packageDigest: issue.package_digest,
+      assetDigest: issue.asset_digest,
+      templateDigest: `sha256:${createHash("sha256").update(await readFile("src/emails/NewsletterIssue.tsx")).digest("hex")}`,
+      htmlDigests: outputs.map((html) => `sha256:${createHash("sha256").update(html).digest("hex")}`),
       issueBlocks: blocks.length,
       issueHeadings: blocks.filter((block) => block.type === "heading").length,
       issueImages: blocks.filter((block) => block.type === "image").length,

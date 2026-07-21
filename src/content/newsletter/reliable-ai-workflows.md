@@ -3,14 +3,15 @@ title: "Reliable AI Workflows Are Learned Through Failure"
 description: "A reliable AI workflow becomes clearer when a failed run reveals which decision, approval, or stop condition came too late."
 subject: "You can't write the perfect AI workflow upfront"
 preview: "I let an AI workflow keep producing videos before I had decided whether the first one was worth repeating."
-pubDate: 2026-07-16
+pubDate: 2026-07-16T00:00:00.000000-03:00
 issueNumber: 1
 coverImage: "/images/newsletter/reliable-ai-workflows/production-before-approval.webp"
 coverAlt: "One source recording expands into five finished video clips and many downstream packages before approval."
 tags:
-  - AI workflows
-  - Judgment
-  - Evaluation
+  - "AI workflows"
+  - "Judgment"
+  - "Evaluation"
+sourcePackageDigest: "sha256:664e27570d82f3ed6656dde5ca4792b62841552dd9ce58342d26c1680bd40b87"
 ---
 
 I let an AI video workflow keep producing work before I had decided whether the first result was worth repeating.

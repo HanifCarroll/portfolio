@@ -1,6 +1,13 @@
-# A Working Theory email delivery
+# A Working Theory rendering and email delivery
 
-The portfolio owns the public signup page and the React Email source. Resend owns the contact list, topic preferences, welcome automation, broadcast drafts, delivery, and unsubscribe handling. The vault remains the editorial source of truth.
+Content Operations owns the canonical issue, approval, and every Resend action.
+Portfolio owns the public signup and confirmation flow plus deterministic web
+and React Email rendering. Resend owns contact and delivery state.
+
+`bun run newsletter:import <newsletter-release.json>` verifies the exact
+`newsletter-release-v1` package and asset digests before writing the public
+content source. `bun run newsletter:verify <newsletter-release.json>` returns
+the package, asset, template, and rendered HTML digests without calling Resend.
 
 ## Public issue archive
 
@@ -12,7 +19,9 @@ The public newsletter has three distinct web surfaces:
 
 `/newsletter/archive-preview/` is a `noindex, nofollow, noarchive` filled-state design preview. It may contain clearly labeled sample entries, but those entries are not publication records, do not get issue pages, and must never appear in the real archive, sitemap as canonical content, Resend, or the vault publishing ledger.
 
-The vault issue remains canonical editorial state. The project-local Astro content entry is the public snapshot used by the deployed issue page; its reader-visible prose must match the approved vault body, while public-site image paths may be relative equivalents of the same manifest-backed HTTPS assets.
+The project-local Astro content entry is a rendered snapshot. Its
+`sourcePackageDigest` binds it to Content Operations; it is never an independent
+editorial source.
 
 ## Local template previews
 

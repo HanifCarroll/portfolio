@@ -37,6 +37,7 @@ const newsletter = defineCollection({
     tags: z.array(z.string()).default([]),
     coverImage: z.string().optional(),
     coverAlt: z.string().optional(),
+    sourcePackageDigest: z.string().regex(/^sha256:[0-9a-f]{64}$/),
   }),
 });
 
