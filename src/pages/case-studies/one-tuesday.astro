@@ -146,20 +146,23 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
     </div>
 
     <h2 id='tuesday-reader-mirror' tabindex='-1'>Which of these problems show up in your business?</h2>
-    <p>Select every statement that sounds familiar.</p>
+    <p>Answer Yes or No for each statement.</p>
     <fieldset class='t-reader-mirror' data-tuesday-reader-mirror>
       <legend class='sr-only'>Problems that show up in your business</legend>
-      {TUESDAY_MIRROR_STATEMENTS.map((statement, index) => (
-        <label class='t-reader-mirror__option'>
-          <input type='checkbox' name={`tuesday-problem-${index}`} />
-          <span>{statement}</span>
-        </label>
+      {TUESDAY_MIRROR_STATEMENTS.map((statement) => (
+        <div class='t-reader-mirror__statement' data-tuesday-reader-statement>
+          <p>{statement}</p>
+          <div class='t-reader-mirror__choices' role='group' aria-label={statement}>
+            <button type='button' class='t4-choice' data-tuesday-reader-answer='yes' aria-pressed='false'>Yes</button>
+            <button type='button' class='t4-choice' data-tuesday-reader-answer='no' aria-pressed='false'>No</button>
+          </div>
+        </div>
       ))}
     </fieldset>
     <output class='t-reader-mirror__total' data-tuesday-reader-total aria-live='polite'>
-      0 of {TUESDAY_MIRROR_STATEMENTS.length} selected
+      0 of {TUESDAY_MIRROR_STATEMENTS.length} answered
     </output>
-    <div class='t-reader-live-readouts' data-tuesday-reader-readouts hidden>
+    <div class='t-reader-live-readouts' data-tuesday-reader-readouts role='status' aria-live='polite' hidden>
       {TUESDAY_MIRROR_READOUTS.map((readout) => (
         <div class='t-reader-live-readout' data-min={readout.min} data-max={readout.max} hidden>
           <h3>{readout.headline}</h3>
@@ -236,17 +239,41 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
     if (!mirror || !total || !readouts || mirror.dataset.ready === 'true') return;
 
     mirror.dataset.ready = 'true';
-    const checkboxes = [...mirror.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')];
+    const statements = [...mirror.querySelectorAll<HTMLElement>('[data-tuesday-reader-statement]')];
     const resultCards = [...readouts.querySelectorAll<HTMLElement>('[data-min][data-max]')];
 
-    mirror.addEventListener('change', () => {
-      const selected = checkboxes.filter((checkbox) => checkbox.checked).length;
-      total.value = `${selected} of ${checkboxes.length} selected`;
+    mirror.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const answer = event.target.closest<HTMLButtonElement>('[data-tuesday-reader-answer]');
+      const statement = answer?.closest<HTMLElement>('[data-tuesday-reader-statement]');
+      if (!answer || !statement || !mirror.contains(answer)) return;
+
+      statement.dataset.answer = answer.dataset.tuesdayReaderAnswer;
+      statement.querySelectorAll<HTMLButtonElement>('[data-tuesday-reader-answer]').forEach((button) => {
+        button.classList.toggle('is-on', button === answer);
+        button.setAttribute('aria-pressed', String(button === answer));
+      });
+
+      const answered = statements.filter((item) => item.dataset.answer).length;
+      const score = statements.filter((item) => item.dataset.answer === 'yes').length;
+      total.value = `${answered} of ${statements.length} answered`;
+
+      resultCards.forEach((card) => {
+        card.hidden = true;
+        card.classList.remove('is-visible');
+      });
+      if (answered < statements.length) {
+        readouts.hidden = true;
+        return;
+      }
+
       readouts.hidden = false;
       resultCards.forEach((card) => {
         const min = Number(card.dataset.min);
         const max = Number(card.dataset.max);
-        card.hidden = selected < min || selected > max;
+        const matches = score >= min && score <= max;
+        card.hidden = !matches;
+        card.classList.toggle('is-visible', matches);
       });
     });
   };
