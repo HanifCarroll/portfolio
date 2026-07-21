@@ -54,14 +54,14 @@ const toReaderStatement = (statement: string) =>
     <p class='t-reader-kicker'>Interactive workflow diagnostic</p>
     <h1>One Tuesday, twice.</h1>
     <p class='t-reader-deck'>
-      {TUESDAY_COMPANY.name} is a fictional composite: {TUESDAY_COMPANY.size}, {TUESDAY_COMPANY.weeklyWork}, {TUESDAY_COMPANY.requestContext}.
+      {TUESDAY_COMPANY.name} is {TUESDAY_COMPANY.description}. {TUESDAY_COMPANY.dayContext}
     </p>
     <p class='t-reader-deck'>
-      This is one modeled Tuesday, shown before and after six system changes. The numbers are outputs from the stated assumptions, not client results or a promise about another business.
+      This is one modeled Tuesday, shown before and after six workflow changes. The numbers come from the assumptions below. Use them to compare the workflows, not to predict what another business would achieve.
     </p>
 
     <div class='t-reader-launch'>
-      <p>Run the three-part experience to feel the queue, build the system, and compare two tireless runs with the same demand.</p>
+      <p>Run the three-part experience to feel the queue, add each change, and compare both workflows under the same demand.</p>
       <button type='button' class='hc-button' data-tuesday-launch disabled>Run the interactive diagnostic</button>
     </div>
 
@@ -73,7 +73,7 @@ const toReaderStatement = (statement: string) =>
       A request gets answered twice or not at all. Finding the status of a job means finding the person who last touched it.
     </p>
     <p>
-      With a tireless operator and the assumptions below, seed 42 produces {before.arrivals} requests across a nine-and-a-half-hour day:
+      Under the assumptions below, the model generates {before.arrivals} requests across a nine-and-a-half-hour day while the operator works continuously:
     </p>
     <table>
       <thead><tr><th>Measure</th><th>Old Tuesday</th></tr></thead>
@@ -89,12 +89,12 @@ const toReaderStatement = (statement: string) =>
       </tbody>
     </table>
     <p>
-      The operator in that run never takes lunch. The modeled day still spends most of its available time finding, re-keying, forwarding, and confirming requests.
+      Even with the operator working continuously, the old workflow spends most of the day finding, re-keying, forwarding, and confirming requests.
     </p>
 
-    <h2 id='tuesday-reader-build' tabindex='-1'>Six modeled changes over 11 weeks</h2>
+    <h2 id='tuesday-reader-build' tabindex='-1'>Six workflow changes in the modeled scenario</h2>
     <p>
-      Meridian's illustrative sequence changes one part of the workflow at a time. A real operation may need a different order, more capacity, or no new software at all.
+      The scenario changes one part of the workflow at a time. A real operation may need a different order, more capacity, or no new software at all.
     </p>
     {TUESDAY_CHAPTERS.map((chapter) => (
       <section class='t-reader-chapter'>
@@ -105,7 +105,7 @@ const toReaderStatement = (statement: string) =>
     ))}
 
     <h2 id='tuesday-reader-new' tabindex='-1'>The same modeled demand, twice</h2>
-    <p>Two tireless runs receive the same {before.arrivals} requests. The workflow is the only difference:</p>
+    <p>Both runs receive the same {before.arrivals} requests, and both operators work continuously. Only the workflow changes:</p>
     <table>
       <thead><tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
       <tbody>
@@ -119,7 +119,7 @@ const toReaderStatement = (statement: string) =>
       </tbody>
     </table>
     <p>
-      The model turns coordination time into visible capacity, but it does not prove that another company can recover the same hours. That requires its own workflow and demand data.
+      In the model, the redesigned workflow spends less time coordinating requests and handles more of them. A real result depends on the company's workflow, demand, and capacity.
     </p>
 
     <div class='t-reader-model'>
@@ -136,7 +136,7 @@ const toReaderStatement = (statement: string) =>
       </table>
 
       <h2>The model</h2>
-      <p>These inputs are illustrative. They make the simulation inspectable; they do not turn it into client evidence.</p>
+      <p>These inputs make the comparison inspectable. They describe the fictional company and should be replaced with a real operation's data before drawing conclusions.</p>
       <dl class='t-reader-assumptions'>
         {ASSUMPTIONS.map((assumption) => (
           <div>

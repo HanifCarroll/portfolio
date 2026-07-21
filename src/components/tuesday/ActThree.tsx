@@ -70,7 +70,8 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
           <p className="t3-kicker">Same Tuesday, twice</p>
           <h3 className="t3-title">What the same day looks like with the system in place</h3>
           <p className="t3-deck">
-            The same 56 requests — through the old workflow, and through the system you just built.
+            Both runs receive the same {before.arrivals} requests, and both operators work
+            continuously. Only the workflow changes.
           </p>
         </header>
 
@@ -98,7 +99,7 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
 
         <div className="t3-verdict" role="status">
           <p>
-            The system returns {diff.hoursReclaimed.toFixed(1)} hours a day that used to go to
+            The redesigned workflow uses {diff.hoursReclaimed.toFixed(1)} fewer modeled hours on
             coordination.
           </p>
         </div>
@@ -112,18 +113,19 @@ export function ActThree({ compact = false }: { compact?: boolean }) {
         <p className="t3-kicker">Same Tuesday, twice</p>
         <h3 className="t3-title">What the same day looks like with the system in place</h3>
         <p className="t3-deck">
-          Two tireless runs, the same modeled demand. The workflow is the only difference.
+          Both runs receive the same modeled demand, and both operators work continuously. Only the
+          workflow changes.
         </p>
       </header>
 
       <div className="t3-duel">
         <div className="t3-duel__side">
           <DuelPanel tone="old" label="Old Tuesday" frame={oldRun.frame} />
-          <p className="t3-panel-caption">The old workflow with a tireless operator.</p>
+          <p className="t3-panel-caption">The old workflow under the same demand.</p>
         </div>
         <div className="t3-duel__side">
           <DuelPanel tone="new" label="New Tuesday" frame={newRun.frame} />
-          <p className="t3-panel-caption">The system you just built.</p>
+          <p className="t3-panel-caption">The redesigned workflow under the same demand.</p>
         </div>
       </div>
 
@@ -214,8 +216,8 @@ function Verdict({ before, after }: { before: DayMetrics; after: DayMetrics }) {
       <p>
         <strong>Same day, both ways:</strong> the old workflow handles {before.completed} of{" "}
         {before.arrivals}, forgets {before.dropped}, and carries {before.carried} into tomorrow. The
-        system handles {after.completed} of {after.arrivals}, forgets {after.dropped}, and returns{" "}
-        {diff.hoursReclaimed.toFixed(1)} hours a day that used to go to coordination.
+        redesigned workflow handles {after.completed} of {after.arrivals}, forgets {after.dropped},
+        and uses {diff.hoursReclaimed.toFixed(1)} fewer modeled hours on coordination.
       </p>
     </div>
   );

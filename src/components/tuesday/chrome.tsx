@@ -26,12 +26,11 @@ export function Intro({ onStart, onRead }: { onStart: () => void; onRead: () => 
       <p className="t-intro__kicker">Interactive workflow diagnostic</p>
       <h1 className="t-intro__title">One Tuesday, twice.</h1>
       <p className="t-intro__deck">
-        {COMPANY.name} is a fictional composite: {COMPANY.size}, {COMPANY.weeklyWork},{" "}
-        {COMPANY.requestContext}.
+        {COMPANY.name} is {COMPANY.description}. {COMPANY.dayContext}
       </p>
       <p className="t-intro__deck">
         You’ll run one of its Tuesdays twice — first with requests scattered across five inboxes and
-        one person’s memory, then with a system you’ll build yourself, one change at a time.
+        one person’s memory, then after adding six workflow changes one at a time.
       </p>
       <div className="t-intro__actions">
         <button type="button" className="hc-button" onClick={onStart}>
@@ -76,8 +75,8 @@ export function Interstitial({
       </p>
       <p className="t-interstitial__punch">That was your run through the old workflow.</p>
       <p className="t-interstitial__line">
-        Next, build the modeled system. The final comparison gives both versions the same demand and
-        a tireless operator so the workflow is the only difference.
+        Next, add six workflow changes. In the final comparison, both versions receive the same
+        demand and the operator works continuously. Only the workflow changes.
       </p>
       <button type="button" className="hc-button" onClick={onContinue}>
         See what changed

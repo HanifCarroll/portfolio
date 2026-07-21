@@ -424,7 +424,7 @@ export interface Assumption {
 export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "Demand",
-    value: "~5 requests/hour; seed 42 produces 56 requests",
+    value: "~5 requests/hour; this run generates 56 requests",
     basis:
       "Illustrative input for the fictional company. Validate it against actual intake data before applying the model to a real operation.",
   },
@@ -442,8 +442,7 @@ export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "Misroute rate",
     value: "18% before, 4% after",
-    basis:
-      "Modeled rate chosen to show the effect of one shared record; it is not a measured client result.",
+    basis: "The model uses this rate to show how one shared record affects routing errors.",
   },
   {
     parameter: "Duplicate requests",
@@ -460,8 +459,7 @@ export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "Auto-dispatch",
     value: "jobs route in ~25 min, 14 with triage",
-    basis:
-      "Illustrative routing delay under the modeled rules, not a promised implementation result.",
+    basis: "The model uses this routing delay after applying assignment rules and triage.",
   },
   {
     parameter: "Crew capacity",
@@ -472,8 +470,7 @@ export const ASSUMPTIONS: readonly Assumption[] = [
   {
     parameter: "The company",
     value: "Meridian Facility Services, 18 people",
-    basis:
-      "Meridian is a fictional composite. Its names, demand, rates, and outcomes are illustrative.",
+    basis: "Meridian is fictional. Its names, demand, rates, and outcomes are illustrative.",
   },
 ];
 

@@ -10,9 +10,8 @@ export const TUESDAY_SEED = 42;
 
 export const TUESDAY_COMPANY = {
   name: "Meridian Facility Services",
-  size: "18 people",
-  weeklyWork: "about 45 field jobs a week",
-  requestContext: "with bookings, changes, quote requests, and issues arriving throughout each day",
+  description: "a fictional 18-person service company handling about 45 field jobs a week",
+  dayContext: "Bookings, changes, quote requests, and issues arrive throughout each day.",
 } as const;
 
 export interface TuesdayChapter {
@@ -119,7 +118,7 @@ export const TUESDAY_MIRROR_READOUTS = [
   {
     min: 4,
     max: 5,
-    headline: "The workflow is carrying real operational risk.",
+    headline: "Your answers point to operational risk.",
     body: "These patterns can lead to missed requests and fragile handoffs. The right response may be a process change, software, more capacity, or a combination; the next step is to inspect the real workflow.",
   },
 ] as const;

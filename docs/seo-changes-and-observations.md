@@ -13,7 +13,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ### One Tuesday, Twice Interactive Workflow Diagnostic
 
-- Added `/case-studies/one-tuesday/`, a reader-first diagnostic for a fictional 18-person service company. The optional experience includes a playable operations day, a scroll-driven system build, and a same-seed comparison; its outputs are labeled as modeled assumptions rather than client results.
+- Added `/case-studies/one-tuesday/`, a written diagnostic for a fictional 18-person service company. The optional experience includes a playable operations day, a scroll-driven system build, and a comparison that gives both workflows the same demand. The page explains that its numbers come from the simulation and its stated assumptions.
 - Kept the prose, model inputs, and stress test available on the initial page, then moved the React experience behind an explicit launch so search engines, assistive technology, small screens, and visitors who do not start the simulation do not depend on the interactive bundle.
 - Wired the diagnostic into site discovery without placing it alongside client proof: a separately labeled homepage feature, a closing card on the case-study index, and related links from the Genrupt and Desarmadero operations case studies. The route uses its hero as the social preview image and tracks the launch, major completion points, reader handoff, diagnostic answers, and calls to action.
 - Extended project validation so `customPage` metadata must point to a real static route instead of only bypassing the MDX check.
