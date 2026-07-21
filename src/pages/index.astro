@@ -209,7 +209,7 @@ const founderTestimonial = testimonials.markisZarate;
 					<p class='hc-section-intro'>The Business Systems Audit is the recommended starting point when you can see the problem but aren't sure what will fix it. Build and ongoing support follow when the workflow and priorities are clear.</p>
 				</div>
 				<div class='hc-service-paths'>
-					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]} data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><p class='hc-service-path__note'>{offer.commercialNote}</p><a class='hc-service-path__cta' href={offer.path}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></article>)}
+					{homepageServices.map((offer, index) => <article class:list={['hc-service-path', { 'hc-service-path--starting-point': offer.key === 'audit' }]} data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{offer.label}</p></div><h3>{offer.chooserHeading}</h3><p>{offer.homepageSummary}</p><p class='hc-service-path__note'>{offer.commercialNote}</p><a class='hc-service-path__cta' href={offer.path} data-track-event='service_page_clicked' data-track-location={`home_service_path_${offer.key}`}>{offer.key === 'audit' ? 'See what the audit includes' : offer.chooserCta}<span aria-hidden='true'>→</span></a></article>)}
 				</div>
 				<div class='hc-home-decision-cta' data-motion-item>
 					<div>

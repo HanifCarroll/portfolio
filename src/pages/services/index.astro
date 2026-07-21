@@ -136,7 +136,13 @@ const faqs = [
 				<div class='hc-service-list'>
 					{
 						serviceOfferList.map((offer, index) => (
-							<a class='hc-service-item' href={offer.path} data-motion-item>
+							<a
+								class='hc-service-item'
+								href={offer.path}
+								data-track-event='service_page_clicked'
+								data-track-location={`services_offer_${offer.key}`}
+								data-motion-item
+							>
 								<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
 								<div class='hc-service-item__body'>
 									<h3>{offer.label}</h3>
