@@ -284,10 +284,16 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
     if (!launch) return;
     void loadExperience();
   });
-  document.addEventListener('astro:page-load', () => {
+
+  const initializePage = () => {
     enableLaunchButtons();
     initializeReaderMirror();
-  });
-  enableLaunchButtons();
-  initializeReaderMirror();
+
+    if (window.matchMedia('(min-width: 901px)').matches) {
+      void loadExperience();
+    }
+  };
+
+  document.addEventListener('astro:page-load', initializePage);
+  initializePage();
 </script>

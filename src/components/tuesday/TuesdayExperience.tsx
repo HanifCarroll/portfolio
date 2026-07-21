@@ -36,8 +36,9 @@ export default function TuesdayExperience() {
   const [interstitial, setInterstitial] = useState(false);
   const buildTrackedRef = useRef(false);
 
-  // The experience is loaded only after an explicit launch. Small screens and
-  // reduced-motion visitors get the condensed, lower-motion version.
+  // The experience loads by default on desktop and after an explicit launch
+  // from the prose page on smaller screens. Reduced-motion visitors get the
+  // condensed, lower-motion version in either path.
   useEffect(() => {
     const small = window.matchMedia("(max-width: 900px)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
