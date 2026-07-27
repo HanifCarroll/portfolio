@@ -80,6 +80,7 @@ export interface Project {
   proofIntro?: string;
   proofScreens?: ProjectProofScreen[];
   repository?: string;
+  repositoryCtaLabel?: string;
   architectureImage?: string;
   proofQuote?: ProjectProofQuote;
   relatedLinks?: ProjectRelatedLink[];

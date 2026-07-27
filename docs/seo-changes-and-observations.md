@@ -4,6 +4,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-07-27
 
+### Codex Telegram Bridge Search-Snippet Test
+
+- Changed `/case-studies/codex-telegram-bridge/` from a case-study-led search title to `Codex Telegram Bridge | Open-Source Remote Control Tool` and made the hero description identify it as an open-source Rust tool.
+- Replaced the generic repository action with `View source on GitHub`; the existing repository action is already rendered in the initial hero, so the source path remains above the fold without adding a duplicate link.
+- Baseline for the complete 2026-06-27 through 2026-07-24 Search Console window: 53 impressions, 0 clicks, 0% CTR, and average position 7.40 for the page; the exposed Codex Telegram query cluster had 16 impressions, 0 clicks, and positions 5.67–8.00.
+- After deployment, verify the live title, description, canonical, initial-HTML GitHub link, and hero placement. Compare the next complete 28-day page and query window after four weeks; keep the experiment only if CTR or qualified clicks improve without a material ranking loss.
+
 ### Content-Automation Post Withdrawal
 
 - Withdrew `i-hate-creating-content-so-i-built-a-robot-to-do-it-for-me` from its public route, the blog index, RSS, and the sitemap while retaining the source content.

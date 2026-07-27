@@ -86,7 +86,7 @@ const heroActions = [
 		external: true
 	},
 	project.repository && {
-		label: 'View repository',
+		label: project.repositoryCtaLabel ?? 'View repository',
 		href: project.repository,
 		trackEvent: 'project_repository_clicked',
 		trackLocation: 'project_detail_hero',
@@ -219,7 +219,7 @@ const heroActions = [
 										data-track-event='project_repository_clicked'
 										data-track-location='project_detail'
 									>
-										View Repository
+										{project.repositoryCtaLabel ?? 'View Repository'}
 										<span>&rarr;</span>
 									</a>
 								)}
