@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-27
+
+### Content-Automation Post Withdrawal
+
+- Withdrew `i-hate-creating-content-so-i-built-a-robot-to-do-it-for-me` from its public route, the blog index, RSS, and the sitemap while retaining the source content.
+- Removed the Vox Prismatic case study link to the withdrawn post so the case study does not send visitors to a retired URL.
+- Verified the production build, the withdrawn route is not generated, and the post is absent from the blog index, RSS, and sitemap.
+- After deployment, confirm the withdrawn URL returns 404 and inspect Search Console for its retirement.
+
 ## 2026-07-20
 
 ### Route Migration Redirects
