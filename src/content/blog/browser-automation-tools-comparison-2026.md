@@ -1,7 +1,7 @@
 ---
 title: "Browser Automation for AI Agents: Chrome vs Playwriter vs Agent-Browser"
 seoTitle: "Chrome vs Playwriter vs Agent-Browser: 2026 Test"
-description: "A dated comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, automated scripts, and AI-assisted tasks."
+description: "A practical comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, automated scripts, and AI-assisted tasks."
 pubDate: 2026-01-16
 updatedDate: 2026-07-27
 tags: ["ai", "browser-automation", "tools", "comparison", "playwright"]
@@ -18,14 +18,14 @@ The direct recommendation:
 
 ## Decision table
 
-| Decision                          | ChatGPT Chrome Extension                                             | Playwriter                                                                                              | agent-browser                                                                                            |
-| --------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Time for the full task**        | 1.95s                                                                | 9.96s; 7.61s was waiting for Wikipedia to load                                                          | 3.49s; 2.37s was starting its browser and opening Wikipedia                                              |
-| **Did it finish?**                | Yes, without a problem                                               | Yes, after reconnecting to Chrome; the narrower layout needed one extra click to open search            | Yes, without a problem; the missing button produced a clear message                                      |
-| **Signed-in sites**               | Uses your existing Chrome tabs and sign-ins                          | Uses your Chrome by default; it can also run in a separate or cloud browser                             | Uses a separate browser by default; reusing a Chrome profile or saved sign-in is optional                |
-| **Scripts that run on their own** | Poor fit: built for conversation, not scripts that run by themselves | Good when a script needs detailed control over Chrome; requires an extension and a connection to Chrome | Best fit: designed for scripts, separate browsers, and running several steps together                    |
-| **Agent and voice workflows**     | Easiest to use inside ChatGPT or Codex. I did not test voice control | An agent has to write and run code that controls the browser                                            | An agent or script has to issue commands. It can support a voice system but does not handle voice itself |
-| **What the agent sees**           | Compact text outline and screenshot without added tool controls      | Text outline and screenshot; the screenshot also showed the Playwriter toolbar                          | Text outline and screenshot without added tool controls; it can also add numbered labels                 |
+| Decision                          | ChatGPT Chrome Extension                                             | Playwriter                                                                                              | agent-browser                                                                             |
+| --------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Time for the full task**        | 1.95s                                                                | 9.96s; 7.61s was waiting for Wikipedia to load                                                          | 3.49s; 2.37s was starting its browser and opening Wikipedia                               |
+| **Did it finish?**                | Yes                                                                  | Yes                                                                                                     | Yes                                                                                       |
+| **Signed-in sites**               | Uses your existing Chrome tabs and sign-ins                          | Uses your Chrome by default; it can also run in a separate or cloud browser                             | Uses a separate browser by default; reusing a Chrome profile or saved sign-in is optional |
+| **Scripts that run on their own** | Poor fit: built for conversation, not scripts that run by themselves | Good when a script needs detailed control over Chrome; requires an extension and a connection to Chrome | Best fit: designed for scripts, separate browsers, and running several steps together     |
+| **How the agent uses it**         | Directly inside ChatGPT or Codex                                     | By writing and running code that controls Chrome                                                        | By sending browser commands from a script or terminal                                     |
+| **What it reads and captures**    | Page text and controls, plus a screenshot                            | Page text and controls, plus a screenshot that includes the Playwriter toolbar                          | Page text and controls, plus a screenshot; it can also add numbered labels                |
 
 The tools measured time differently. Chrome and Playwriter timed their own actions, while I timed agent-browser from the command line. Playwriter spent most of its run waiting for Wikipedia to load. agent-browser spent most of its run starting its browser and opening the page.
 
@@ -134,7 +134,7 @@ agent-browser opens a separate browser and does not share your sign-ins by defau
 
 ## What this test cannot prove
 
-This was one run per tool on one public website. It did not test signed-in sites, long jobs, scripts running on a Linux server, several runs at once, or voice control.
+This was one run per tool on one public website. It did not test signed-in sites, long jobs, scripts running on a Linux server, or several runs at once.
 
 For a signed-in task inside a conversation, start with the ChatGPT Chrome Extension. For a script that must run on its own, start with agent-browser. When an agent needs deeper control over the Chrome session you are already using, choose Playwriter.
 
