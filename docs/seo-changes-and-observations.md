@@ -11,6 +11,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Baseline for the complete 2026-06-27 through 2026-07-24 Search Console window: 53 impressions, 0 clicks, 0% CTR, and average position 7.40 for the page; the exposed Codex Telegram query cluster had 16 impressions, 0 clicks, and positions 5.67–8.00.
 - After deployment, verify the live title, description, canonical, initial-HTML GitHub link, and hero placement. Compare the next complete 28-day page and query window after four weeks; keep the experiment only if CTR or qualified clicks improve without a material ranking loss.
 
+### Browser Automation Comparison Refresh
+
+- Replaced the unavailable Claude-in-Chrome lane in `/blog/browser-automation-tools-comparison-2026/` with a dated localhost experiment covering the bundled ChatGPT Chrome controller, Playwriter `0.4.0`, and agent-browser `0.33.0`.
+- Updated the title, description, recommendation, decision table, timings, session/auth distinctions, primary documentation links, and `updatedDate`; applied the public-writing clarity rules while preserving the canonical route and systems-build CTA.
+- Verified the production build, initial HTML recommendation/table, tool-specific metadata, and BlogPosting modification date.
+- After deployment, verify the live title, description, article structured data, table rendering, internal case-study CTA, and Search Console impressions/clicks for the route after four to six weeks.
+
 ### Content-Automation Post Withdrawal
 
 - Withdrew `i-hate-creating-content-so-i-built-a-robot-to-do-it-for-me` from its public route, the blog index, RSS, and the sitemap while retaining the source content.
