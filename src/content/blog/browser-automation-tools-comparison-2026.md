@@ -44,7 +44,7 @@ Playwriter used a narrower page layout where Search appeared first as a link, so
 
 For the missing button, Chrome and Playwriter reported that it was not there without clicking anything. agent-browser waited one second, then returned its usual `element not found` message.
 
-## Versions and commands
+## Versions tested
 
 The test ran on an Apple Silicon Mac with macOS 27.0.
 
@@ -55,22 +55,6 @@ Playwriter and agent-browser ran from the command line. The Chrome Extension ran
 | ChatGPT Chrome Extension | bundled plugin build `26.721.41059` | Chrome `150.0.0.0`                 | `@Chrome`, then `chrome.tabs.new()`, `tab.goto()`, `tab.playwright.domSnapshot()`, locators, and `tab.screenshot()`                            |
 | Playwriter               | `0.4.0`                             | Chrome `150.0.0.0`                 | `$HOME/.bun/bin/playwriter`, session `8`, `snapshot()`, Playwright controls, and screenshot tools                                              |
 | agent-browser            | `0.33.0`                            | Chrome for Testing `148.0.7778.97` | `$HOME/.bun/bin/agent-browser`, session `portfolio-comparison-20260727-wikipedia`, limited to Wikipedia, with browser controls and screenshots |
-
-Before the experiment, agent-browser was already installed at `0.27.0`. I updated it to `0.33.0` and kept it installed. Playwriter was already at the current `0.4.0` version.
-
-The relevant setup and health commands were:
-
-```bash
-$HOME/.bun/bin/playwriter skill
-$HOME/.bun/bin/playwriter session new
-
-$HOME/.bun/bin/agent-browser skills get core --full
-$HOME/.bun/bin/agent-browser doctor --offline --quick
-$HOME/.bun/bin/agent-browser \
-  --session portfolio-comparison-20260727-wikipedia \
-  --allowed-domains en.wikipedia.org \
-  open https://en.wikipedia.org/wiki/Main_Page
-```
 
 The Chrome test used the bundled extension rather than a terminal command. OpenAI's [Chrome Extension documentation](https://learn.chatgpt.com/docs/chrome-extension) explains site permissions, access to existing Chrome tabs, and how to call `@Chrome`. Playwriter's [official product documentation](https://playwriter.dev/) covers its extension, command line, detailed Chrome controls, and option to use a separate browser. The [agent-browser repository and documentation](https://github.com/vercel-labs/agent-browser#readme) document its command line, running several steps together, numbered screenshots, separate sessions, and ways to reuse sign-ins.
 
