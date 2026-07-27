@@ -1,7 +1,7 @@
 ---
 title: "Browser Automation for AI Agents: Chrome vs Playwriter vs Agent-Browser"
 seoTitle: "Chrome vs Playwriter vs Agent-Browser: 2026 Test"
-description: "A dated, reproducible comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for agent workflows, authenticated sessions, scripts, and CI."
+description: "A dated comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, automated scripts, and AI-assisted tasks."
 pubDate: 2026-01-16
 updatedDate: 2026-07-27
 tags: ["ai", "browser-automation", "tools", "comparison", "playwright"]
@@ -12,85 +12,85 @@ I reran this comparison on July 27, 2026. The original article included Claude i
 
 The direct recommendation:
 
-- Use **the ChatGPT Chrome Extension** for a conversational agent task that needs the Chrome tabs and signed-in session you already use.
-- Use **agent-browser** for repeatable scripts and continuous integration (CI) jobs where an isolated browser, shell commands, and batch execution are the point.
-- Use **Playwriter** when you need programmable Playwright and Chrome DevTools access against your real Chrome session.
+- Use **the ChatGPT Chrome Extension** for tasks inside a conversation that need the tabs and sign-ins already in Chrome.
+- Use **agent-browser** for repeatable scripts that must run on their own in a separate browser.
+- Use **Playwriter** when an agent needs deeper control over the Chrome session you are already using.
 
 ## Decision table
 
-| Decision                         | ChatGPT Chrome Extension                                                                                    | Playwriter                                                                                                                 | agent-browser                                                                                                             |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Speed in this run**            | 1.95s for the successful path                                                                               | 9.96s after session creation; 7.61s was loading Wikipedia                                                                  | 3.49s command-line wall time from a fresh named session; 2.37s was browser launch and navigation                          |
-| **Reliability in this run**      | Completed once with no recovery                                                                             | Completed once after Playwriter restarted its browser connection; the narrower page layout required one extra search click | Completed once from a clean isolated session; the missing target returned a clear element-not-found error                 |
-| **Session access**               | Works in the existing Chrome profile and signed-in tabs                                                     | Attaches to the user's Chrome by default; separate background and cloud modes also exist                                   | Starts isolated; reusing a Chrome profile, saved session, or Chrome DevTools connection is opt-in                         |
-| **Scripting and CI**             | Poor fit: it is a conversational ChatGPT/Codex surface, not a standalone test runner                        | Good when Playwright or Chrome DevTools depth matters, but the real-Chrome path adds an extension and browser connection   | Best fit: native command line, named isolated sessions, background operation, JSON output, allowlists, and batch commands |
-| **Agent and voice workflow fit** | Best conversational fit inside ChatGPT or Codex; closest fit for voice control, which this run did not test | Needs an agent to generate and run Playwright code through its command line or agent integration                           | Needs an agent or script to issue command-line requests; it can support a voice system but is not a voice interface       |
-| **Inspection and screenshots**   | Compact page-structure snapshot plus a clean plain screenshot                                               | Accessibility snapshot and a plain screenshot; the attached tab also showed the Playwriter toolbar                         | Accessibility snapshot plus a clean plain screenshot; its CLI also supports numbered annotated screenshots                |
+| Decision                          | ChatGPT Chrome Extension                                             | Playwriter                                                                                              | agent-browser                                                                                            |
+| --------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Time for the full task**        | 1.95s                                                                | 9.96s; 7.61s was waiting for Wikipedia to load                                                          | 3.49s; 2.37s was starting its browser and opening Wikipedia                                              |
+| **Did it finish?**                | Yes, without a problem                                               | Yes, after reconnecting to Chrome; the narrower layout needed one extra click to open search            | Yes, without a problem; the missing button produced a clear message                                      |
+| **Signed-in sites**               | Uses your existing Chrome tabs and sign-ins                          | Uses your Chrome by default; it can also run in a separate or cloud browser                             | Uses a separate browser by default; reusing a Chrome profile or saved sign-in is optional                |
+| **Scripts that run on their own** | Poor fit: built for conversation, not scripts that run by themselves | Good when a script needs detailed control over Chrome; requires an extension and a connection to Chrome | Best fit: designed for scripts, separate browsers, and running several steps together                    |
+| **Agent and voice workflows**     | Easiest to use inside ChatGPT or Codex. I did not test voice control | An agent has to write and run code that controls the browser                                            | An agent or script has to issue commands. It can support a voice system but does not handle voice itself |
+| **What the agent sees**           | Compact text outline and screenshot without added tool controls      | Text outline and screenshot; the screenshot also showed the Playwriter toolbar                          | Text outline and screenshot without added tool controls; it can also add numbered labels                 |
 
-Chrome and Playwriter report controller elapsed time, while agent-browser was measured at the shell around each command. In this run, Playwriter spent most of its time loading Wikipedia, and agent-browser spent most of its time starting the browser and opening the page.
+The tools measured time differently. Chrome and Playwriter timed their own actions, while I timed agent-browser from the command line. Playwriter spent most of its run waiting for Wikipedia to load. agent-browser spent most of its run starting its browser and opening the page.
 
 ## What I tested
 
-Each tool performed the same read-only task on the [English Wikipedia Main Page](https://en.wikipedia.org/wiki/Main_Page):
+Each tool performed the same task on the [English Wikipedia Main Page](https://en.wikipedia.org/wiki/Main_Page) without changing the site:
 
 1. Open Wikipedia and confirm its URL and title.
-2. Inspect the available search interface.
+2. Find the search box.
 3. Search for `Browser automation`.
-4. Verify that Wikipedia resolves the query to its `Headless browser` article and confirm the page heading.
-5. Capture a viewport screenshot.
-6. Check for an intentionally missing control without causing a page side effect.
+4. Confirm that Wikipedia opens its `Headless browser` article.
+5. Take a screenshot of the visible page.
+6. Ask the tool to find a button that does not exist, without clicking anything else.
 
-Playwriter's attached tab used a narrower page layout, where Search appeared first as a link, so it needed one extra click to reveal the form. The tools reached the same article, but their page layouts and interfaces were not identical.
+Playwriter used a narrower page layout where Search appeared first as a link, so it needed one extra click to reveal the form. All three tools still reached the same article.
 
-Chrome and Playwriter checked the missing control with a locator-count preflight and returned zero without clicking. agent-browser used a one-second default timeout and returned its normal element-not-found error for `#missing-action`.
+For the missing button, Chrome and Playwriter reported that it was not there without clicking anything. agent-browser waited one second, then returned its usual `element not found` message.
 
 ## Versions and commands
 
 The test ran on an Apple Silicon Mac with macOS 27.0.
 
-Playwriter and agent-browser run through command-line interfaces (CLIs); the Chrome Extension runs inside ChatGPT or Codex. Both CLI executables were installed in Bun's user-level bin directory.
+Playwriter and agent-browser ran from the command line. The Chrome Extension ran inside ChatGPT or Codex.
 
-| Tool                     | Tested version                      | Browser in the run                 | Tested interface                                                                                                                                               |
-| ------------------------ | ----------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ChatGPT Chrome Extension | bundled plugin build `26.721.41059` | Chrome `150.0.0.0`                 | `@Chrome`, then `chrome.tabs.new()`, `tab.goto()`, `tab.playwright.domSnapshot()`, locators, and `tab.screenshot()`                                            |
-| Playwriter               | CLI `0.4.0`                         | Chrome `150.0.0.0`                 | `/Users/hanifcarroll/.bun/bin/playwriter`, isolated session `8`, `snapshot()`, Playwright locators, and screenshot helpers                                     |
-| agent-browser            | CLI `0.33.0`                        | Chrome for Testing `148.0.7778.97` | `/Users/hanifcarroll/.bun/bin/agent-browser`, named session `portfolio-comparison-20260727-wikipedia`, a Wikipedia domain allowlist, locators, and screenshots |
+| Tool                     | Tested version                      | Browser in the run                 | How I ran it                                                                                                                                   |
+| ------------------------ | ----------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ChatGPT Chrome Extension | bundled plugin build `26.721.41059` | Chrome `150.0.0.0`                 | `@Chrome`, then `chrome.tabs.new()`, `tab.goto()`, `tab.playwright.domSnapshot()`, locators, and `tab.screenshot()`                            |
+| Playwriter               | `0.4.0`                             | Chrome `150.0.0.0`                 | `$HOME/.bun/bin/playwriter`, session `8`, `snapshot()`, Playwright controls, and screenshot tools                                              |
+| agent-browser            | `0.33.0`                            | Chrome for Testing `148.0.7778.97` | `$HOME/.bun/bin/agent-browser`, session `portfolio-comparison-20260727-wikipedia`, limited to Wikipedia, with browser controls and screenshots |
 
-Before the experiment, agent-browser was already installed at `0.27.0`. I updated that existing installation to `0.33.0` and left it installed. Playwriter's refresh resolved to the same `0.4.0` version.
+Before the experiment, agent-browser was already installed at `0.27.0`. I updated it to `0.33.0` and kept it installed. Playwriter was already at the current `0.4.0` version.
 
 The relevant setup and health commands were:
 
 ```bash
-/Users/hanifcarroll/.bun/bin/playwriter skill
-/Users/hanifcarroll/.bun/bin/playwriter session new
+$HOME/.bun/bin/playwriter skill
+$HOME/.bun/bin/playwriter session new
 
-/Users/hanifcarroll/.bun/bin/agent-browser skills get core --full
-/Users/hanifcarroll/.bun/bin/agent-browser doctor --offline --quick
-/Users/hanifcarroll/.bun/bin/agent-browser \
+$HOME/.bun/bin/agent-browser skills get core --full
+$HOME/.bun/bin/agent-browser doctor --offline --quick
+$HOME/.bun/bin/agent-browser \
   --session portfolio-comparison-20260727-wikipedia \
   --allowed-domains en.wikipedia.org \
   open https://en.wikipedia.org/wiki/Main_Page
 ```
 
-The Chrome lane used the bundled controller rather than a shell command. OpenAI's [Chrome Extension documentation](https://learn.chatgpt.com/docs/chrome-extension) describes its website approvals, existing-session access, and direct `@Chrome` invocation. Playwriter's [official product documentation](https://playwriter.dev/) covers its extension, command line, Playwright and Chrome DevTools interfaces, and background mode. The [agent-browser repository and documentation](https://github.com/vercel-labs/agent-browser#readme) document its command line, batch execution, annotated screenshots, isolated sessions, and optional authentication paths.
+The Chrome test used the bundled extension rather than a terminal command. OpenAI's [Chrome Extension documentation](https://learn.chatgpt.com/docs/chrome-extension) explains site permissions, access to existing Chrome tabs, and how to call `@Chrome`. Playwriter's [official product documentation](https://playwriter.dev/) covers its extension, command line, detailed Chrome controls, and option to use a separate browser. The [agent-browser repository and documentation](https://github.com/vercel-labs/agent-browser#readme) document its command line, running several steps together, numbered screenshots, separate sessions, and ways to reuse sign-ins.
 
 ## Results
 
-| Phase                   |   ChatGPT Chrome Extension |                Playwriter |                           agent-browser |
-| ----------------------- | -------------------------: | ------------------------: | --------------------------------------: |
-| Navigate / start        |                      706ms |                     7.61s |                                   2.37s |
-| Inspect / expose search |                      113ms |                     323ms |                                   130ms |
-| Fill                    |                       61ms |                      25ms |                                   200ms |
-| Submit and verify       |                      1.01s |                     1.88s |                                   300ms |
-| Plain screenshot        |                       67ms |                     121ms |                                   490ms |
-| **Successful path**     |                  **1.95s** |                 **9.96s** |                               **3.49s** |
-| Missing target          | 57ms, zero-count preflight | 6ms, zero-count preflight | 1.47s, expected element-not-found error |
+| Step                 | ChatGPT Chrome Extension |        Playwriter |                    agent-browser |
+| -------------------- | -----------------------: | ----------------: | -------------------------------: |
+| Open Wikipedia       |                    706ms |             7.61s |                            2.37s |
+| Find or open search  |                    113ms |             323ms |                            130ms |
+| Enter the search     |                     61ms |              25ms |                            200ms |
+| Search and confirm   |                    1.01s |             1.88s |                            300ms |
+| Take the screenshot  |                     67ms |             121ms |                            490ms |
+| **Full task**        |                **1.95s** |         **9.96s** |                        **3.49s** |
+| Missing button check |       57ms, zero matches | 6ms, zero matches | 1.47s, `element not found` error |
 
-All three opened Wikipedia, found and used its search interface, followed the redirect to the `Headless browser` article, verified the heading, and produced a readable screenshot.
+All three opened Wikipedia, used its search box, opened the `Headless browser` article, confirmed the heading, and produced a readable screenshot.
 
 ### ChatGPT Chrome Extension
 
-Across the initial and final inspections, the bundled extension exposed the search controls and destination heading in a concise page-structure snapshot:
+The extension showed the search box and final heading in a compact text outline of the page:
 
 ```text
 - search:
@@ -100,42 +100,42 @@ Across the initial and final inspections, the bundled extension exposed the sear
   - heading "Headless browser" [level=1]
 ```
 
-Its screenshot showed the desktop Wikipedia page without element labels or controller UI. This is the least setup when the work begins inside ChatGPT or Codex and the required state already lives in Chrome.
+Its screenshot showed the desktop Wikipedia page without extra labels or tool controls. This takes the least setup when the task begins inside ChatGPT or Codex and needs tabs or sign-ins already in Chrome.
 
-It is a conversational browser-control surface, so it is a poor replacement for a committed test suite or a shell script that must run unattended in CI.
+It is designed for browser tasks inside a conversation, so it is a poor fit for automated tests or scripts that must run without a person.
 
 ### Playwriter
 
-Playwriter completed the path in 9.96s after creating its isolated session. Wikipedia loaded in 7.61s, and the narrower layout required one click to expose the search form before Playwriter could fill it.
+Playwriter completed the task in 9.96s after opening a separate browser session. Wikipedia took 7.61s to load, and the narrower layout required one click to reveal the search form.
 
-The plain screenshot included Playwriter's toolbar. Its separate accessibility-label screenshot helper also succeeded, and its snapshot included the toolbar controls. Those labels can help with spatial reasoning, while the plain screenshot makes the injected UI visible.
+The screenshot included Playwriter's toolbar. Its labeled-screenshot option also worked, and the text outline included the toolbar controls. The labels can help an agent understand where controls are, but the tool's own interface becomes part of the page it sees.
 
-The first command could not restart Playwriter's browser connection because port `19988` was occupied. After Playwriter restarted that connection, it created session `8` and completed the page workflow without another recovery.
+Playwriter first found its local browser connection already in use. It restarted that connection and then completed the task without another problem.
 
 ### agent-browser
 
-agent-browser started a clean browser without loading saved session state. Launching the browser and opening Wikipedia took 2.37s; the full successful path took 3.49s.
+agent-browser opened a separate browser with no saved sign-in. Starting that browser and opening Wikipedia took 2.37s; the full task took 3.49s.
 
-Its accessibility snapshot exposed the search controls, and its screenshot showed a clean desktop Wikipedia page. The current CLI also supports `screenshot --annotate`, which adds numbered overlays mapped to snapshot references.
+Its text outline showed the search controls, and its screenshot showed Wikipedia without added tool controls. It can also add numbered labels that match items in the text outline.
 
-The intentional missing selector returned:
+When I asked it to find the missing button, it returned:
 
 ```text
 Element not found: #missing-action. Verify the selector, role, or name is correct and the element exists in the DOM.
 ```
 
-Updating with Bun left the new native binary without execute permission because the package's installation script was blocked. Granting execute permission to that binary restored the CLI, and `doctor --offline --quick` then reported zero failures.
+The update needed one manual fix on this Mac. The Bun package installer skipped part of the setup, so agent-browser would not open. I made the installed file runnable, and its health check then found no problems.
 
-## Session and authentication differences
+## Using your existing sign-ins
 
-The ChatGPT Chrome Extension and Playwriter operate against the user's Chrome, so they are the natural choices when the task depends on an already signed-in tab. That convenience also means the agent is working in a personal browser context, which makes website permissions and narrow task scope important.
+The ChatGPT Chrome Extension and Playwriter use your existing Chrome, so they are the natural choices when a task depends on an already signed-in tab. That is convenient, but it also gives the agent access to the tabs you use. Site permissions and a narrowly defined task matter.
 
-agent-browser starts with a separate browser instance and separate cookies and storage. Its documentation supports several opt-in ways to reuse authentication, including Chrome profiles, saved sessions, state files, authentication vaults, and Chrome DevTools connections. I would keep the isolated default for CI and enable session reuse only for a named workflow that needs it.
+agent-browser opens a separate browser and does not share your sign-ins by default. You can choose to reuse a Chrome profile or saved sign-in when a task needs one. For scripts that run on their own, I would keep the separate browser.
 
-## Reliability limits
+## What this test cannot prove
 
-This was one run per tool on one public website; it did not test authenticated sessions, long-running automation, Linux CI, parallel sessions, or voice.
+This was one run per tool on one public website. It did not test signed-in sites, long jobs, scripts running on a Linux server, several runs at once, or voice control.
 
-For a signed-in conversational task, start with the ChatGPT Chrome Extension. For a durable script or CI job, start with agent-browser. For deep programmatic control of the real Chrome session, use Playwriter.
+For a signed-in task inside a conversation, start with the ChatGPT Chrome Extension. For a script that must run on its own, start with agent-browser. When an agent needs deeper control over the Chrome session you are already using, choose Playwriter.
 
 [See guarded browser automation in a working system.](/case-studies/linkedin-tools/)

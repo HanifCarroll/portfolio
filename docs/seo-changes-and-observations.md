@@ -14,7 +14,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 ### Browser Automation Comparison Refresh
 
 - Replaced the unavailable Claude-in-Chrome lane in `/blog/browser-automation-tools-comparison-2026/` with a dated Wikipedia search experiment covering the bundled ChatGPT Chrome Extension, Playwriter `0.4.0`, and agent-browser `0.33.0`.
-- Updated the title, description, recommendation, decision table, timings, session/auth distinctions, primary documentation links, and `updatedDate`; applied the public-writing clarity rules while preserving the canonical route and systems-build CTA.
+- Updated the title, description, recommendation, decision table, timings, session/auth distinctions, primary documentation links, and `updatedDate`; replaced test-log jargon with plain descriptions while preserving the canonical route and systems-build CTA.
 - Verified the production build, initial HTML recommendation/table, tool-specific metadata, and BlogPosting modification date.
 - After deployment, verify the live title, description, article structured data, table rendering, internal case-study CTA, and Search Console impressions/clicks for the route after four to six weeks.
 
