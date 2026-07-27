@@ -104,9 +104,7 @@ Its text outline showed the search controls, and its screenshot showed Wikipedia
 
 When I asked it to find the missing button, it returned:
 
-```text
-Element not found: #missing-action. Verify the selector, role, or name is correct and the element exists in the DOM.
-```
+> `Element not found: #missing-action. Verify the selector, role, or name is correct and the element exists in the DOM.`
 
 The update needed one manual fix on this Mac. The Bun package installer skipped part of the setup, so agent-browser would not open. I made the installed file runnable, and its health check then found no problems.
 
@@ -116,10 +114,8 @@ The ChatGPT Chrome Extension and Playwriter use your existing Chrome, so they ar
 
 agent-browser opens a separate browser and does not share your sign-ins by default. You can choose to reuse a Chrome profile or saved sign-in when a task needs one. For scripts that run on their own, I would keep the separate browser.
 
-## What this test cannot prove
-
-This was one run per tool on one public website. It did not test signed-in sites, long jobs, scripts running on a Linux server, or several runs at once.
-
-For a signed-in task inside a conversation, start with the ChatGPT Chrome Extension. For a script that must run on its own, start with agent-browser. When an agent needs deeper control over the Chrome session you are already using, choose Playwriter.
-
 [See guarded browser automation in a working system.](/case-studies/linkedin-tools/)
+
+## What I use now
+
+I used to use Playwriter for every browser task. Now I almost always use the ChatGPT Chrome Extension instead. I call `@Chrome` from the conversation, which lets the agent work in the Chrome tabs and signed-in session I already have open.
