@@ -11,6 +11,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Verified the production build, the withdrawn route is not generated, and the post is absent from the blog index, RSS, and sitemap.
 - After deployment, confirm the withdrawn URL returns 404 and inspect Search Console for its retirement.
 
+## 2026-07-26
+
+### Hanif Carroll Identity Consolidation
+
+- Updated public schema, service-provider markup, footer, About and Now copy, and favicon references so public surfaces identify Hanif Carroll rather than HC Studio.
+- Kept the historical HC Studio assets in the repository without serving them through the site shell.
+- Verify the production homepage, About page, service pages, Now page, JSON-LD, and favicon after deployment.
+
 ## 2026-07-20
 
 ### Route Migration Redirects
