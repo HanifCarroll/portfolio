@@ -4,6 +4,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-07-27
 
+### Business Process Mapping Example Post
+
+- Added a review-ready `/blog/business-process-mapping-examples/` post targeting informational searches for business process mapping examples with one complete modeled service workflow, a current-state map, a focused current-to-improved comparison, and contextual links to One Tuesday, Desarmadero Operations, and the Business Systems Audit.
+- Added a free, printable `/resources/process-mapping-worksheet/` linked from the article so readers can map one workflow, record its handoffs and delays, and choose a first change to test.
+- Kept all evidence boundaries explicit: Meridian Facility Services and its workflow are fictional; the future state is a recommendation without measured results; One Tuesday remains a simulation; and Desarmadero supports the discovery-to-prototype method without implying deployment or operational impact.
+- Added a concrete explanatory illustration of the current workflow, responsive labeled diagrams, and desktop/mobile previews of the completed worksheet. The final improved-workflow section uses one focused comparison instead of repeating the same flow in consecutive images.
+- Before any future deployment, verify both live canonical URLs, article metadata and structured data, worksheet print behavior, responsive diagrams, internal links, blog index, RSS and sitemap inclusion, then establish a Search Console baseline before considering an indexing request.
+
 ### Codex Telegram Bridge Search-Snippet Test
 
 - Changed `/case-studies/codex-telegram-bridge/` from a case-study-led search title to `Codex Telegram Bridge | Open-Source Remote Control Tool` and made the hero description identify it as an open-source Rust tool.

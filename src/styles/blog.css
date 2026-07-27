@@ -265,6 +265,40 @@
   line-height: 1.55;
 }
 
+.blog-post-prose :where(.workflow-map) {
+  width: 100%;
+  margin-block: 2.75rem;
+}
+
+.blog-post-prose :where(.workflow-map picture) {
+  display: block;
+}
+
+.blog-post-prose :where(.workflow-map img) {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--hc-radius-artifact);
+  background: var(--hc-surface);
+}
+
+.blog-post-prose :where(.workflow-map figcaption) {
+  margin-top: 0.85rem;
+  color: var(--hc-text-muted);
+  font-family: var(--hc-font-technical);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+:is(.dark) .blog-post-prose :where(.workflow-map img) {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+:is(.dark) .blog-post-prose :where(.workflow-map figcaption) {
+  color: var(--hc-proof-text-muted);
+}
+
 .blog-post-hero__title.heading-display,
 .blog-post-hero__title {
   font-family: var(--hc-font-reading);
@@ -534,6 +568,14 @@
 .blog-post-prose {
   width: 100%;
   max-width: none;
+}
+
+.blog-post-prose :where(p, li) {
+  color: var(--hc-text);
+}
+
+:is(.dark) .blog-post-prose :where(p, li) {
+  color: var(--hc-proof-text);
 }
 
 .blog-post-author-inline,
