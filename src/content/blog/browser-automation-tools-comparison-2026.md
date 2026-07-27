@@ -104,7 +104,9 @@ Its text outline showed the search controls, and its screenshot showed Wikipedia
 
 When I asked it to find the missing button, it returned:
 
-> `Element not found: #missing-action. Verify the selector, role, or name is correct and the element exists in the DOM.`
+<blockquote class="error-output">
+  <p>Element not found: #missing-action. Verify the selector, role, or name is correct and the element exists in the DOM.</p>
+</blockquote>
 
 The update needed one manual fix on this Mac. The Bun package installer skipped part of the setup, so agent-browser would not open. I made the installed file runnable, and its health check then found no problems.
 

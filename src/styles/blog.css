@@ -405,6 +405,11 @@
   border-left-color: rgba(0, 0, 0, 0.18);
 }
 
+.blog-post-prose :where(blockquote.error-output p:first-of-type)::before,
+.blog-post-prose :where(blockquote.error-output p:last-of-type)::after {
+  content: none;
+}
+
 :is(.dark) .blog-post-prose :where(blockquote) {
   color: var(--hc-proof-text-muted);
   border-left-color: rgba(255, 255, 255, 0.22);
