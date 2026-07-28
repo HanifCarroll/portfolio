@@ -1,14 +1,15 @@
 {
   "slug": "codex-telegram-bridge",
   "title": "Codex Telegram Bridge",
-  "description": "Open-source Rust tool for routing Codex updates, replies, and approvals through Telegram or Discord while local state stays in control.",
+  "description": "Routes Codex updates, replies, and approvals through Telegram or Discord while the local computer stays in control.",
   "seoTitle": "Codex Telegram Bridge | Open-Source Remote Control Tool",
-  "seoDescription": "Open-source Rust bridge for Codex notifications, remote replies, approvals, and Telegram or Discord control with local state kept authoritative.",
+  "seoDescription": "Open-source tool for Codex notifications, remote replies, and approvals through Telegram or Discord with local state kept in control.",
   "proofType": "experiment",
+  "cardLabel": "Open-source R&D",
   "client": "Open Source Tooling",
   "service": "Workflow Automation System",
   "detailVariant": "workflow",
-  "role": "Solo Product & Systems Engineer",
+  "role": "System design and open-source delivery",
   "category": "product",
   "track": "workflow_automation",
   "year": "2026",
@@ -31,24 +32,24 @@
   "repositoryCtaLabel": "View source on GitHub",
   "constraints": [
     "Remote notifications had to be gated by presence so active desktop work did not create noisy Telegram or Discord updates.",
-    "Inbound replies and approvals needed to route back to exact Codex threads without exposing tokens, local runtime state, or raw thread ids in chat."
+    "Inbound replies and approvals needed to route back to exact Codex threads without exposing tokens, local state, or internal thread identifiers in chat."
   ],
   "problem": [
     "Codex could keep working after I left the computer, but the control surface stayed pinned to the local app: a waiting prompt, approval, or completed answer was easy to miss until I returned.",
     "The risk was ownership. Notifications, replies, live backend management, and optional agent access needed clear boundaries so a remote chat tool did not become an open-ended automation channel."
   ],
   "solution": [
-    "Built a Rust CLI and daemon around explicit away and remote modes: /away starts or reuses the shared Codex live backend and enables outbound notifications; /back clears pending notifications when I return.",
-    "Stored routing and delivery state in local SQLite tables for thread snapshots, outbound events, Telegram and Discord message routes, approval callback routes, inbound update dedupe, transport delivery logs, and recorded actions.",
-    "Added Telegram and Discord transports for reply-routable updates, approval actions, recent thread fetches, project selection, and remote-created threads; kept Hermes/MCP optional and limited to doctor, threads, inbox, waiting, show, reply, and approve."
+    "Built a Rust command-line tool and background service around explicit away and remote modes: /away enables notifications and starts the required local connection; /back clears pending notifications when I return.",
+    "Stored thread snapshots, outgoing messages, reply and approval routes, incoming-message checks, delivery logs, and recorded actions in a local database.",
+    "Added Telegram and Discord support for replies, approvals, recent threads, project selection, and remotely created threads; kept optional Hermes agent access limited to health checks, thread inspection, replies, and approvals."
   ],
   "deliveryHighlights": [
-    "Shipped a Rust CLI, daemon, Telegram and Discord transports, project registry, native macOS menu bar app, and bounded MCP adapter."
+    "Shipped a Rust command-line tool, background service, Telegram and Discord connections, project list, native macOS menu bar app, and a small optional agent interface."
   ],
   "result": [
     "Shipped a public bridge with install docs, Telegram and Discord setup guides, release workflow docs, CI, security notes, and a native macOS menu bar companion.",
-    "Turned remote Codex work into a local workflow: presence gates decide when outbound messages are allowed, SQLite routes replies to exact threads, and the daemon owns retryable delivery.",
-    "Kept the agent adapter small: MCP can inspect and act on Codex threads, while setup, daemon control, transports, watch/follow streams, project creation, and archive operations stay outside the MCP tool surface."
+    "Turned remote Codex work into a local workflow: away mode decides when outbound messages are allowed, the local database routes replies to exact threads, and one background service owns retryable delivery.",
+    "Kept agent access small: it can inspect and act on Codex threads, while setup, background-service control, chat connections, live activity streams, project creation, and archive operations stay outside it."
   ],
   "videos": {
     "overview": {

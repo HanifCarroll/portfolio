@@ -99,7 +99,7 @@ export const TUESDAY_MIRROR_STATEMENTS = [
   "Finding the status of a job means asking a person.",
   "The same information gets typed more than once.",
   "A customer has been forgotten in the last month.",
-  "When one person is out, the work stalls.",
+  "When one person is out, requests stop moving.",
 ] as const;
 
 export const TUESDAY_MIRROR_READOUTS = [

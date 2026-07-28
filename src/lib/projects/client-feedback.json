@@ -1,18 +1,19 @@
 {
   "slug": "client-feedback",
-  "title": "Client Feedback Evidence CLI",
+  "title": "Client Feedback Evidence Collector",
   "description": "Collects chats, voice notes, emails, and attachments into one local workflow for clear, traceable client feedback.",
-  "seoTitle": "Client Feedback Evidence CLI Case Study | Rust Workflow Automation",
-  "seoDescription": "How a Rust CLI turns WhatsApp and Gmail feedback into local evidence packets with attachments, transcripts, Markdown, and JSON.",
+  "seoTitle": "Client Feedback Evidence Collector Case Study",
+  "seoDescription": "How a local command-line tool turns WhatsApp and Gmail feedback into traceable evidence packets with attachments and transcripts.",
   "proofType": "experiment",
+  "cardLabel": "Independent workflow R&D",
   "client": "Personal Workflow System",
   "service": "Workflow Automation System",
   "detailVariant": "workflow",
-  "role": "Solo Product & Systems Engineer",
+  "role": "Workflow design and command-line tool implementation",
   "category": "product",
   "track": "workflow_automation",
   "year": "2026",
-  "timeline": "Focused CLI build, 2026",
+  "timeline": "Command-line tool build, 2026",
   "teamSize": "Solo build",
   "technologies": [
     "Rust",
@@ -30,20 +31,20 @@
   "constraints": [
     "Client feedback can include private message text, audio, and attachments, so the tool had to keep run outputs local by default.",
     "WhatsApp evidence had to come from a linked browser session because the project does not use an official WhatsApp API.",
-    "Gmail evidence had to preserve reusable artifacts without exposing OAuth tokens, browser storage, or mailbox runtime state."
+    "Gmail collection had to preserve reusable files and records without exposing access tokens, browser storage, or live mailbox data."
   ],
   "problem": [
     "Useful client feedback was spread across WhatsApp chats, voice notes, and domain Gmail threads, which made it hard to assemble a reusable evidence packet without manual copying and fragile exports.",
-    "The workflow needed repeatable collection, local transcription, attachment capture, and manifests without sending sensitive evidence to another ingestion service."
+    "The workflow needed repeatable collection, local transcription, attachment capture, and organized run records without sending sensitive evidence to another service."
   ],
   "solution": [
-    "Built a Rust CLI with `doctor`, WhatsApp `probe/search/pull`, and Gmail `search/pull` commands, all available with stable JSON output for automation.",
-    "Used a dedicated Agent Browser profile for WhatsApp Web, extracted visible chat messages, downloaded visible voice notes through the message context menu, normalized Agent Browser download artifacts, converted Ogg/Opus audio to WAV, and optionally transcribed locally with `whisper-cpp`.",
-    "Added a Gmail rail through `gws` that resolves search results, messages, or threads, decodes attachment payloads locally, writes evidence Markdown, and records hashes for materialized files."
+    "Built a Rust command-line tool that checks local dependencies, searches and collects WhatsApp messages, and searches and collects Gmail threads with stable output for automation.",
+    "Used a dedicated browser profile for WhatsApp Web, extracted visible chat messages, downloaded visible voice notes, converted them to a standard audio format, and optionally transcribed them locally.",
+    "Added a separate Gmail collection path that resolves the selected messages or thread, downloads attachments locally, writes a readable evidence document, and records a unique fingerprint for each file."
   ],
   "result": [
     "Turned scattered client feedback sources into a repeatable local workflow that writes `run.json`, `messages.json`, `evidence.md`, attachments, audio files, WAV files, and transcript artifacts.",
-    "Kept the public code focused on workflow contracts and local artifacts while leaving private evidence directories, auth state, cookies, and browser storage out of the repo.",
+    "Kept the public code limited to collection rules and local file handling while leaving private evidence directories, authentication state, cookies, and browser storage out of the repo.",
     "Backed the brittle parts with unit tests for WhatsApp metadata parsing, Agent Browser snapshot parsing, download normalization, Gmail attachment decoding, filename sanitization, and command-output JSON parsing."
   ],
   "videos": {

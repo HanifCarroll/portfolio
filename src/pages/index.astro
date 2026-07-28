@@ -259,7 +259,7 @@ const founderTestimonial = testimonials.markisZarate;
 		<section class='hc-section hc-method-section' id='method' data-header-surface='dark' data-motion-group>
 			<div class='hc-container'>
 				<div class='hc-section-header' data-motion='reveal'><h2 class='hc-section-title'>What working together looks like.</h2><p class='hc-section-intro'>A simple path from understanding the workflow to a system your team can own.</p></div>
-				<div class='hc-method-grid'>{method.map((item, index) => <div class='hc-method-item' data-motion-item><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div>)}</div>
+				<div class='hc-method-grid' data-motion-item>{method.map((item, index) => <div class='hc-method-item'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.body}</p></div>)}</div>
 				<div class='hc-home-faq' data-motion-item>
 					<div class='hc-home-faq__heading'><h3>Questions before the first call.</h3><p>You can start with the workflow problem. You don't need to decide on software, scope, or a preferred tool first.</p></div>
 					<div class='hc-home-faq__items'>{faqs.map((item) => <div class='hc-home-faq__item'><h4>{item.question}</h4><p>{item.answer}</p></div>)}</div>

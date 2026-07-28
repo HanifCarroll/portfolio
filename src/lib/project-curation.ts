@@ -1,19 +1,24 @@
-// Every case study keeps its direct route. These tiers control discovery on
-// the case-study index so the primary collection stays aligned with the
-// consulting practice while strong technical work remains available as R&D.
-export const PROJECT_INDEX_ORDER = [
+// Every case study keeps its direct route. These collections control discovery
+// on the index so client proof, consulting methods, and independent R&D do not
+// compete for the same meaning.
+export const PROJECT_CLIENT_ORDER = [
   "desarmadero-operations-prototype",
+  "palabruno",
   "genrupt",
   "desarmadero-latorre",
-  "client-feedback",
-  "linkedin-tools",
-  "one-tuesday",
   "mucho-hangouts",
-  "vox-prismatic",
-  "palabruno",
 ] as const;
 
-export const PROJECT_R_AND_D_ORDER = ["acquire", "agent-recall", "codex-telegram-bridge"] as const;
+export const PROJECT_METHOD_ORDER = ["one-tuesday"] as const;
+
+export const PROJECT_R_AND_D_ORDER = [
+  "client-feedback",
+  "linkedin-tools",
+  "vox-prismatic",
+  "acquire",
+  "agent-recall",
+  "codex-telegram-bridge",
+] as const;
 
 export const DELISTED_CASE_STUDY_SLUGS = [
   "job-application-assistant",

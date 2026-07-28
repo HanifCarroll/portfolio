@@ -9,112 +9,110 @@ import clientFeedbackImage from "../../assets/img/projects/client-feedback-evide
 
 export const shippedRows = [
   {
-    label: "WhatsApp rail",
-    title: "A linked browser session became a repeatable evidence source.",
-    body: "The CLI can probe WhatsApp Web, search chat candidates, pull visible messages, and require explicit `--select-first` approval when a search is ambiguous.",
+    label: "WhatsApp collection",
+    title: "Visible chat evidence can be collected without copying it by hand.",
+    body: "The command-line tool searches linked WhatsApp Web chats, collects visible messages, and stops for an explicit choice when a search finds more than one possible conversation.",
   },
   {
     label: "Voice notes",
     title: "Audio evidence stays local and traceable.",
-    body: "Visible voice notes can be downloaded through the WhatsApp context menu, normalized from Agent Browser download wrappers, hashed, converted to WAV, and transcribed locally with whisper-cpp.",
+    body: "Visible voice notes can be downloaded, given a unique file fingerprint, converted to a standard audio format, and transcribed on the same computer.",
   },
   {
-    label: "Gmail rail",
-    title: "Domain email threads produce reusable packets.",
-    body: "The Gmail workflow searches through gws, resolves message or thread selections, decodes attachment payloads locally, and writes messages, attachments, hashes, and evidence Markdown.",
+    label: "Email collection",
+    title: "Email threads produce reusable evidence packets.",
+    body: "The email workflow collects the selected messages and attachments locally, records where each file came from, and writes a readable evidence document.",
   },
   {
-    label: "Stable outputs",
-    title: "Automation gets manifests instead of ad hoc files.",
-    body: "Pull runs write `run.json`, `messages.json`, `evidence.md`, and source-specific artifacts so later review can find the exact messages, files, transcripts, and hashes from the run.",
+    label: "Stable records",
+    title: "Each collection run leaves an organized record.",
+    body: "A run records the selected messages, files, transcripts, and file fingerprints, so a later review can trace every item back to the collection that produced it.",
   },
   {
     label: "Tests",
-    title: "The brittle parsing points are covered.",
-    body: "Unit tests cover WhatsApp metadata parsing, download references, search candidates, date and time markers, download normalization, command-output JSON parsing, Gmail attachment decoding, and safe filenames.",
+    title: "Tests cover the collection steps most likely to break.",
+    body: "Automated tests cover ambiguous searches, message details, downloads, email attachments, safe filenames, and the structured output used by other tools.",
   },
 ];
 
-<CaseSection title="Summary">
-  Client Feedback Evidence CLI is a local collector for client feedback and supporting evidence.
-
-    It pulls from the places where useful feedback actually shows up: WhatsApp chats, WhatsApp voice notes, domain Gmail threads, Gmail attachments, and local transcripts.
-
-</CaseSection>
-
-<CaseSection title="The situation">
+<CaseSection title="Client feedback was scattered across private channels">
   Client feedback only helps later if the source is still attached to it.
 
     Before this tool, useful evidence lived in scattered chats, audio notes, emails, attachments, and screenshots. I needed a reliable way to assemble a packet without copying private text around by hand or losing the source path behind a claim.
 
 </CaseSection>
 
-<CaseSection title="System shape" media>
-  The product is a CLI, so the durable interface is the workflow contract: commands in, local artifacts out.
+<CaseSection title="I built a local collector for messages, files, and transcripts">
+  Client Feedback Evidence Collector is a command-line tool that collects supporting evidence from WhatsApp chats, voice notes, domain email threads, attachments, and local transcripts.
 
-    <ImagePlate image={clientFeedbackImage} alt="Client Feedback Evidence CLI artifact flow showing WhatsApp, Gmail, audio, transcripts, manifests, and evidence Markdown." />
+    Each collection follows a defined path and writes an evidence packet on the same computer, so private source material does not need to pass through another service.
 
 </CaseSection>
 
-<CaseSection title="How it works">
+<CaseSection title="One collection run produces a traceable evidence packet" media>
+  The diagram shows the relationship to notice: several private sources enter through separate collection paths, then leave as one local packet with messages, files, transcripts, and a record of where each item came from.
+
+    <ImagePlate image={clientFeedbackImage} alt="Diagram showing WhatsApp messages, email, audio, and transcripts becoming one local evidence packet." />
+
+</CaseSection>
+
+<CaseSection title="I kept collection private, explicit, and source-specific">
   <DecisionBlock title="Keep sensitive evidence local by default.">
     Run outputs live under the local client-feedback evidence directory unless the user chooses another output path. The public repo contains source code and docs, not captured messages, audio, browser storage, or OAuth tokens.
   </DecisionBlock>
 
-    <DecisionBlock title="Use source-specific rails.">
-    WhatsApp work goes through a dedicated Agent Browser profile and visible WhatsApp Web state. Gmail work goes through `gws`, message or thread IDs, Gmail payloads, and attachment bodies.
+    <DecisionBlock title="Keep each source's collection path separate.">
+    WhatsApp collection uses a dedicated browser profile and visible WhatsApp Web session. Email collection uses the selected message or thread and downloads its attachments through the Google Workspace command-line client.
     </DecisionBlock>
 
     <DecisionBlock title="Make ambiguous selections explicit.">
-    WhatsApp and Gmail searches can return multiple candidates. The CLI fails loudly unless there is a single safe selection or the user has reviewed candidates and passed `--select-first`.
+    WhatsApp and email searches can return several possible conversations. The tool stops unless there is one safe match or the user has reviewed the options and chosen one explicitly.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="What I built">
-  <DecisionBlock title="A CLI that mirrors the collection steps.">
-    The commands follow the workflow: `doctor` checks local dependencies, `whatsapp probe` confirms linked browser state, `whatsapp search` finds chat candidates, `whatsapp pull` writes message and audio artifacts, `gmail search` previews messages, and `gmail pull` writes thread evidence.
+<CaseSection title="The tool follows the same steps as a careful review">
+  <DecisionBlock title="Commands follow the collection sequence.">
+    One command checks that the required local tools are available, WhatsApp commands confirm the linked browser session before searching or collecting, and email commands preview the selected messages before writing an evidence packet.
   </DecisionBlock>
 
-    <DecisionBlock title="WhatsApp voice notes as auditable files.">
-    The tool opens the visible message context menu, downloads voice notes, normalizes Agent Browser directory-shaped downloads into `.ogg` files, records file sizes and SHA-256 hashes, converts audio to 16kHz mono WAV, and writes transcript text and JSON when local transcription is enabled.
+    <DecisionBlock title="Voice notes remain inspectable files.">
+    The tool downloads visible voice notes, records each file's size and unique SHA-256 fingerprint, converts the audio into a standard format, and writes both the transcript and structured transcript data when local transcription is enabled.
     </DecisionBlock>
 
-    <DecisionBlock title="Gmail attachments in the evidence packet.">
-    The Gmail path resolves a query, message ID, or thread ID, reads message metadata and bodies, recursively finds attachment parts, decodes base64 payloads locally, sanitizes filenames, materializes files, and records hashes in the structured message output.
+    <DecisionBlock title="Email attachments stay connected to the thread.">
+    The email path resolves the selected query, message, or thread, reads its details, downloads nested attachments, gives them safe filenames, and records their fingerprints alongside the message.
     </DecisionBlock>
 
-    <DecisionBlock title="Stable machine output.">
-    With `--json`, successful commands emit structured JSON to stdout and errors emit `{ ok: false, error: "..." }`. Dependency diagnostics stay on stderr, which keeps the CLI usable from scripts without hiding failures.
+    <DecisionBlock title="Other tools receive predictable output.">
+    Commands can return structured JSON for automation while sending dependency diagnostics to a separate error channel, so scripts can read the result without hiding failures.
     </DecisionBlock>
 
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What shipped</h2>
+  <h2>The collector keeps source, context, and files together</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        This is a small workflow system: source-specific collection, explicit approvals, local
-        evidence handling, structured manifests, and tests around the parts most likely to break.
+        The finished tool combines separate collection paths, explicit choices, local evidence
+        handling, organized run records, and tests around the steps most likely to break.
       </p>
     </ProofRows>
   </div>
 </section>
 
-<CaseSection title="Why it matters">
-  The important part is not that the tool can scrape a page.
-
-    The important part is that it turns private, scattered feedback into a repeatable evidence workflow. The source boundaries are visible, the artifacts stay local, and the evidence can be reused later without guessing where it came from.
+<CaseSection title="Collected feedback keeps its source and context">
+  The tool turns private, scattered feedback into a repeatable evidence workflow. Each source remains visible, the files stay local, and the evidence can be reused later without guessing where it came from.
 
 </CaseSection>
 
 <section class="case-study-detail__editorial-section">
-  <h2>Public repo</h2>
+  <h2>The implementation is public</h2>
   <div class="case-study-detail__editorial-copy">
     <p>
-      The project is open source, including the Rust CLI, command contracts, local evidence manifest
-      types, browser workflow wrappers, Gmail attachment handling, and unit tests.
+      The open-source repository includes the Rust command-line tool, collection rules, local
+      evidence records, browser and email handling, and automated tests.
     </p>
     <a
       class="btn-secondary w-fit"

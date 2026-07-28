@@ -9,108 +9,108 @@ import acquirePursuits from "../../assets/img/projects/acquire-pursuits.png";
 
 export const shippedRows = [
   {
-    label: "Local-first engine",
-    title: "The acquisition pipeline moved into SQLite and Rust.",
-    body: "Acquire stores opportunities, source runs, application packets, outreach drafts, answer-bank entries, evidence events, worker jobs, schedules, and reports in a local database with stable JSON command output.",
+    label: "One local record",
+    title: "Opportunities, applications, and follow-ups share one history.",
+    body: "Acquire keeps opportunities, research runs, application materials, outreach drafts, reusable answers, evidence, scheduled jobs, and reports in one local database.",
   },
   {
-    label: "Review console",
-    title: "Daily work has one command center.",
-    body: "The SwiftUI app exposes Today, Reviews, Pursuits, Sources, Settings, prompt templates, and typed detail views without making the app the owner of workflow state.",
+    label: "Daily workspace",
+    title: "The next action is visible in one desktop app.",
+    body: "The macOS app brings today's tasks, reviews, active pursuits, sources, and settings together while the underlying database remains the source of truth.",
   },
   {
     label: "Approval gates",
     title: "Automation runs through explicit review points.",
-    body: "Opportunity review, draft review, material approval, answer approval, and final submission snapshots keep agent and browser work from silently mutating the pipeline.",
+    body: "Opportunity, draft, material, answer, and final-submission reviews prevent agent and browser actions from changing the pipeline without approval.",
   },
   {
-    label: "Durable execution",
-    title: "Background work is recoverable.",
-    body: "The daemon and worker runtime own source scheduling, generation jobs, application material work, outreach execution, and submission jobs so interrupted work can be resumed or inspected.",
+    label: "Recoverable jobs",
+    title: "Interrupted background tasks can resume or be inspected.",
+    body: "One background service runs source checks, draft generation, application preparation, outreach, and submissions so interrupted tasks leave a visible state.",
   },
   {
     label: "Evidence trail",
     title: "Every important decision remains inspectable.",
-    body: "Research packets, score packets, material packets, answer suggestions, submission packets, run evidence, source reports, and blockers stay attached to the workflow instead of disappearing into chat history.",
+    body: "Research, scores, application materials, suggested answers, submission records, source reports, and blockers stay attached to the pursuit instead of disappearing into chat history.",
   },
 ];
 
-<CaseSection title="Summary">
-  Acquire is a local acquisition operating system.
-
-    It started as a CRM for project opportunities and became a full workflow product: source monitoring, opportunity review, application preparation, answer reuse, outreach drafting, browser-backed submission, evidence timelines, and daily command-center views.
-
-</CaseSection>
-
-<CaseSection title="The Situation">
+<CaseSection title="Opportunities were slipping between disconnected tools">
   The acquisition workflow was not failing because there were too few tools.
 
     It was failing because each tool owned only a fragment of the operating model. Job boards had listings. LinkedIn had applications. Notes had context. Browser tabs had forms. Chat sessions had drafts. None of them could answer the operational question: what should happen next, and is it safe to automate?
 
 </CaseSection>
 
-<CaseSection title="Operating Model">
+<CaseSection title="I built one local workflow from discovery to submission">
+  Acquire started as a place to track project opportunities and grew into a complete acquisition workflow: source monitoring, opportunity review, application preparation, answer reuse, outreach drafting, browser-assisted submission, evidence timelines, and a daily desktop view.
+
+    The system keeps sensitive data on the machine and makes approval part of the workflow before an agent or browser can take an external action.
+
+</CaseSection>
+
+<CaseSection title="The database owns state while people own judgment">
   <DecisionBlock title="Keep the source of truth local.">
-    Acquire stores the pipeline in SQLite and exposes stable Rust CLI commands for opportunities, events, source runs, application packets, answer banks, outreach, reports, schedules, and app projections. Sensitive opportunity, application, and outreach data stays on the machine.
+    Acquire stores the pipeline in a local SQLite database and exposes a stable Rust command-line tool for opportunities, events, research runs, application materials, reusable answers, outreach, reports, schedules, and the desktop app. Sensitive opportunity, application, and outreach data stays on the machine.
   </DecisionBlock>
 
     <DecisionBlock title="Separate judgment from workflow ownership.">
-      Codex and Playwriter handle research, scoring, drafting, and visible browser work where judgment is useful. Rust owns the durable state, validation, queue transitions, approval snapshots, and reporting contracts.
+      Codex and Playwriter handle research, scoring, drafting, and visible browser tasks where judgment is useful. The Rust application owns saved state, validation, queue changes, approval records, and reports.
     </DecisionBlock>
 
-    <DecisionBlock title="Make automation accountable.">
-      The system treats final application submission and message execution as governed exceptions, not ambient automation. Each action has prerequisites, approved inputs, run evidence, and a recoverable blocked state.
+    <DecisionBlock title="Require evidence before external actions continue.">
+      A final application submission or outbound message needs its prerequisites, approved inputs, and run evidence. If any of those are missing, the action stops in a visible blocked state that can be resumed safely.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Product Surface" media>
-  The active workspace is the native macOS command center. Pursuits is the post-acceptance home for applications, outreach, marketplace proposals, answer review, material status, submission evidence, and completed history.
+<CaseSection title="The desktop app shows the next action and its evidence" media>
+  The macOS app is the daily workspace. Its Pursuits view keeps applications, outreach, marketplace proposals, answer review, material status, submission evidence, and completed history together.
 
     <ImagePlate image={acquirePursuits} alt="Acquire Pursuits workspace showing submitted application pursuits, workflow status, answer bank, evidence timeline, and run evidence sections." />
 
 </CaseSection>
 
-<CaseSection title="The Work">
-  <DecisionBlock title="Built the CRM and source-run backbone.">
-    The core Rust system manages opportunities, interaction events, source runs, imports, dedupe, reports, schedules, notifications, and read-only source monitoring across job boards, agencies, recruiters, Upwork, Wellfound, Glassdoor, LinkedIn, YC, We Work Remotely, and Hacker News.
+<CaseSection title="I made each stage inspectable and recoverable">
+  <DecisionBlock title="Bring opportunity sources into one record.">
+    The Rust application manages opportunities, interaction history, research runs, imports, duplicate checks, reports, schedules, notifications, and read-only monitoring across job boards, agencies, recruiters, Upwork, Wellfound, Glassdoor, LinkedIn, YC, We Work Remotely, and Hacker News.
   </DecisionBlock>
 
-    <DecisionBlock title="Turned applications into a state machine.">
-      Application submission is modeled as a sequence: accepted opportunity review, material generation, static resume attachment, portal-question discovery, answer-bank mapping, required-answer approval, final snapshot approval, submission run, and confirmed result.
+    <DecisionBlock title="Make every application stage explicit.">
+      An application moves through a defined sequence: opportunity acceptance, material generation, resume attachment, portal-question discovery, reusable-answer matching, required-answer approval, final approval, submission, and confirmation.
     </DecisionBlock>
 
-    <DecisionBlock title="Added reusable answer infrastructure.">
+    <DecisionBlock title="Reuse approved answers without hiding changes.">
       The answer bank stores reusable facts and maps employer-specific portal wording to approved answers. New or changed required fields invalidate submission approval and return the pursuit to review instead of letting stale answers continue.
     </DecisionBlock>
 
-    <DecisionBlock title="Moved daily operations into SwiftUI.">
-      The macOS app renders typed projections from the Rust layer: shell counts, opportunity reviews, pursuit lists, pursuit details, source health, schedule status, prompt settings, material cards, questions, answers, run evidence, and blockers.
+    <DecisionBlock title="Move daily decisions into the desktop app.">
+      The macOS app shows opportunity reviews, active pursuits, source health, schedules, prompt settings, application materials, questions, answers, run evidence, and blockers from the same saved state.
     </DecisionBlock>
 
-    <DecisionBlock title="Consolidated execution behind the daemon.">
-      Source scheduling, worker queues, material generation, draft generation, application submission, outreach execution, and notifications moved toward one daemon-owned runtime instead of scattered launchd jobs and ad hoc scripts.
+    <DecisionBlock title="Run background tasks through one service.">
+      Source schedules, queues, material and draft generation, application submission, outreach, and notifications moved into one background service instead of scattered macOS jobs and ad hoc scripts.
     </DecisionBlock>
 
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What Shipped</h2>
+  <h2>One system now carries each pursuit from source to record</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        Acquire is the clearest example of the work I want to do more often: understand a messy
-        operating workflow, define the right control points, then build the internal software system
-        that lets the workflow scale.
+        Acquire is the clearest example of the projects I want to do more often: understand a
+        fragmented operating workflow, define the right control points, then build the internal
+        software system that lets the workflow scale.
       </p>
     </ProofRows>
   </div>
 </section>
 
-<CaseSection title="Why It Matters">
-  This is not a generic productivity app. It is a working operating system for a specific business function: acquiring work.
+<CaseSection title="The same pattern applies to other fragmented operations">
+  Acquire supports one business function: finding and pursuing work. The same approach applies when a growing company has outgrown spreadsheets, inboxes, and founder memory.
 
-    The same pattern applies to growing companies that have outgrown spreadsheets, inboxes, and founder memory. First map the real workflow. Then make the source of truth explicit. Then add automation only where the system can prove what happened, recover from blockers, and keep humans in the approval points that matter.
+    I start by mapping the real workflow and naming where its record lives. Automation comes later, at the points where the system can prove what happened, recover from blockers, and keep people responsible for the approvals that matter.
 
     <a href="/resources/process-mapping-worksheet/" data-track-event="resource_clicked" data-track-location="acquire_case_study">Map one of your own workflows with the free worksheet.</a>
 

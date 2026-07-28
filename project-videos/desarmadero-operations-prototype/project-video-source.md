@@ -36,7 +36,7 @@ Desarmadero Operations Prototype turns one discovery call about a yard operation
 
 ## Viewer Takeaway
 
-This is forward-deployed product engineering: understand the real workflow, build a working model, and make the next scope decision clearer.
+Start with the real workflow, build a working model, and make the next scope decision clearer.
 
 ## Language Rules
 

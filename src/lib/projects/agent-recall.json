@@ -3,12 +3,13 @@
   "title": "Agent Recall",
   "description": "Makes past agent sessions searchable and points each result back to the original work, so useful context is easier to trust and reuse.",
   "seoTitle": "Agent Recall Case Study | Local AI Agent Memory Infrastructure",
-  "seoDescription": "How an open-source Rust CLI indexes local agent transcripts for fast search, memory extraction, and receipt-backed context retrieval.",
+  "seoDescription": "How an open-source local tool makes agent transcripts searchable and points every result back to its source.",
   "proofType": "experiment",
+  "cardLabel": "Open-source R&D",
   "client": "Open Source Tooling",
   "service": "AI Workflow Infrastructure",
   "detailVariant": "workflow",
-  "role": "Solo Product & Systems Engineer",
+  "role": "System design and open-source delivery",
   "category": "product",
   "track": "ai_systems",
   "year": "2026",
@@ -42,17 +43,17 @@
   ],
   "problem": [
     "Useful decisions, blockers, commands, and implementation details were scattered across local agent session archives.",
-    "Plain text search over raw JSONL was too noisy. Treating transcripts as the database would also make recall brittle and hard to audit."
+    "Plain text search over the transcript files was too noisy. Treating those files as the database would also make recall brittle and hard to inspect."
   ],
   "solution": [
-    "Built a Rust CLI that streams supported transcript archives, redacts common secret patterns, parses high-signal events, and indexes them into a disposable SQLite FTS5 database.",
-    "Added search, recent, day, show, bundle, pins, memories, related context, delta cursors, MCP-style resources, doctor, stats, and JSON output for agent-facing workflows.",
-    "Added a watcher with macOS LaunchAgent support, freshness state, repo/date filters, lock handling, and an optional forensic importer for archived Codex SQLite logs."
+    "Built a Rust command-line tool that reads supported transcript archives, removes common secret patterns, keeps useful events, and adds them to a disposable local search index.",
+    "Added search, recent views, pinned references, structured memories, related context, change tracking, health checks, statistics, and structured output for other agent workflows.",
+    "Added a background watcher for macOS with freshness reporting, project and date filters, temporary-lock handling, and an optional importer for archived Codex logs."
   ],
   "result": [
     "Shipped a public, installable tool for local recall across Codex, OMP, Pi, Claude, and optional archived Codex log sources.",
     "Made retrieval auditable: search results group by session and include source labels, event kinds, file paths, and exact line receipts.",
-    "Covered the risky paths with CLI, ranking, redaction, parser, memory extraction, watcher, and LaunchAgent tests so the tool can change without quietly breaking recall quality."
+    "Covered the risky paths with command-line, ranking, secret-removal, importing, memory extraction, watcher, and background-service tests so the tool can change without quietly breaking recall quality."
   ],
   "videos": {
     "overview": {

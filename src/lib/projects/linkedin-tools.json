@@ -1,14 +1,15 @@
 {
   "slug": "linkedin-tools",
   "title": "LinkedIn Tools",
-  "description": "Puts LinkedIn automation behind review queues, approval gates, and reconciliation, so risky browser work stays controlled.",
+  "description": "Puts LinkedIn automation behind review queues, approval gates, and follow-up checks, so risky browser work stays controlled.",
   "seoTitle": "LinkedIn Tools Case Study | Guarded LinkedIn Automation Controller",
   "seoDescription": "How a guarded Python and Playwright system runs LinkedIn networking, outreach, opportunity intelligence, and review workflows.",
   "proofType": "experiment",
+  "cardLabel": "Independent automation R&D",
   "client": "Personal Automation System",
   "service": "Guarded Workflow Automation",
   "detailVariant": "workflow",
-  "role": "Solo Product & Automation Engineer",
+  "role": "Automation architecture and implementation",
   "category": "product",
   "track": "workflow_automation",
   "year": "2026",
@@ -28,26 +29,26 @@
   ],
   "constraints": [
     "The system had to separate read-only recommendation workflows from browser actions that can send messages, connections, or withdrawals.",
-    "The public portfolio artifact could not expose local LinkedIn runtime state, private browser artifacts, credentials, or live account data."
+    "The public portfolio example could not expose local LinkedIn state, private browser evidence, credentials, or live account data."
   ],
   "problem": [
     "LinkedIn networking, recruiter outreach, opportunity discovery, comment extraction, and acceptance follow-up work were too risky to run as scattered browser scripts.",
-    "The hard part was ownership: which system could send, which system could only recommend, what evidence was captured, and what needed reconciliation after uncertain browser behavior."
+    "The hard part was ownership: which system could send, which system could only recommend, what evidence was captured, and what needed checking after uncertain browser behavior."
   ],
   "solution": [
-    "Built a Python monorepo with one top-level CLI and namespaces for network automation, recruiter/agency outreach, opportunity research, comment extraction, local review UI, and cutover audits.",
-    "Put risky actions behind controller-owned states, browser artifacts, audit reports, and explicit flags such as allow-send and allow-withdraw.",
-    "Added a local FastAPI/Jinja review UI that reads SQLite and JSON state for opportunities, network runs, recruiter/agency queues, browser artifacts, and guarded actions."
+    "Built one Python project with a command-line tool for networking, recruiter and agency outreach, opportunity research, comment collection, local review, and system checks.",
+    "Put risky actions behind workflow-owned states, browser evidence, audit reports, and explicit approval flags for sending or withdrawing.",
+    "Added a local review screen that reads the same saved state as the command-line workflows and shows opportunities, network runs, recruiter and agency queues, browser evidence, and guarded actions."
   ],
   "result": [
-    "Moved LinkedIn automation behind controllers with source contracts, reconciliation reports, candidate reservoirs, acceptance ledgers, review queues, and token-gated action pages.",
+    "Moved LinkedIn automation behind defined workflows with approved source lists, follow-up reports, saved candidates, accepted-connection records, review queues, and protected action pages.",
     "Separated the boundaries: network owns connection requests and accepted follow-ups, recruiter/agency outreach sends drafted messages only, and opportunity intelligence remains recommend-only.",
     "Created a public example of browser automation where state, evidence, and approval gates are part of the product, not cleanup work after the fact."
   ],
   "deliveryHighlights": [
-    "One CLI exposes the active network, recruiter-agency, opportunity, comments, and review UI namespaces.",
+    "One command-line tool exposes the active networking, recruiter and agency, opportunity, comment, and review workflows.",
     "Real sends and withdrawals require explicit flags close to the browser action.",
-    "Tests cover source registry contracts, post queues, browser-layer behavior, network reconciliation, recruiter/agency state, storage migrations, and review UI surfaces."
+    "Tests cover approved sources, post queues, browser behavior, network follow-up checks, recruiter and agency state, stored-data changes, and review screens."
   ],
   "repository": "https://github.com/HanifCarroll/linkedin-network-run",
   "relatedLinks": [

@@ -6,6 +6,7 @@ import ServiceCallout from '../../components/ServiceCallout.astro';
 import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
+import Author from '../../components/Author.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
 import { render } from 'astro:content';
 import '../../styles/blog.css';
@@ -58,8 +59,15 @@ const blogJsonLd = {
 			<div class='blog-post-hero__copy'>
 				<div class='blog-post-hero__meta'>
 					<a href='/blog/'>Blog</a>
-					<span aria-hidden='true'>/</span>
-					<div class='text-sm text-zinc-700'>
+				</div>
+				<h1 class='blog-post-hero__title' data-motion='headline'>{title}</h1>
+				{subtitle && <p class='blog-post-hero__subtitle' data-motion-deck>{subtitle}</p>}
+				{!subtitle && (
+					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600' data-motion-deck>{description}</p>
+				)}
+				<div class='blog-post-hero__byline' data-motion-intro-item>
+					<Author picSize='sm' />
+					<div class='blog-post-hero__publication-meta'>
 						{
 							updatedDate ? (
 								<>
@@ -71,15 +79,10 @@ const blogJsonLd = {
 								</>
 							)
 						}
-						<span class='mx-1 text-zinc-400'>·</span>
+						<span aria-hidden='true'>·</span>
 						{readingMinutes} min read
 					</div>
 				</div>
-				<h1 class='blog-post-hero__title' data-motion='headline'>{title}</h1>
-				{subtitle && <p class='blog-post-hero__subtitle' data-motion-deck>{subtitle}</p>}
-				{!subtitle && (
-					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600' data-motion-deck>{description}</p>
-				)}
 			</div>
 			{
 				coverImage && (
@@ -92,6 +95,14 @@ const blogJsonLd = {
 
 		<div class='blog-post-layout'>
 			<div class='blog-post-main'>
+				{
+					headings.length > 0 && (
+						<details class='blog-post-toc-mobile'>
+							<summary>On this page</summary>
+							<TableOfContent headings={headings} maxLevel={2} />
+						</details>
+					)
+				}
 				<article class='blog-post-article'>
 					<Prose class='blog-post-prose'>
 						<Content />
@@ -107,7 +118,7 @@ const blogJsonLd = {
 				{
 					headings.length > 0 && (
 						<div class='blog-post-rail__block'>
-							<TableOfContent headings={headings} />
+							<TableOfContent headings={headings} maxLevel={2} />
 						</div>
 					)
 				}
@@ -119,23 +130,25 @@ const blogJsonLd = {
 </BaseLayout>
 
 <script async is:inline>
-	const anchors = document.querySelectorAll('.prose h2[id], .prose h3[id]');
-	const links = document.querySelectorAll('nav.toc ul li a');
+	const anchors = document.querySelectorAll('.prose h2[id]');
+	const links = document.querySelectorAll('nav.toc a[href^="#"]');
 
 	function observeToc() {
 		if (typeof anchors != 'undefined' && anchors != null && typeof links != 'undefined' && links != null) {
-			let scrollTop = window.scrollY;
+			const scrollTop = window.scrollY;
 
-			// highlight the last scrolled-to: set everything inactive first
 			for (const link of links) {
-				link.classList.add('border-transparent', 'text-inherit');
-				link.classList.remove('bg-[var(--background-surface-color)]', 'border-[var(--soft-border-color)]', 'text-[var(--link-color)]');
+				link.classList.remove('is-active');
+				link.removeAttribute('aria-current');
 			}
-			// then iterate backwards, on the first match highlight it and break
-			for (var i = anchors.length - 1; i >= 0; i--) {
+
+			for (let i = anchors.length - 1; i >= 0; i--) {
 				if (scrollTop > anchors[i].offsetTop - 80) {
-					links[i].classList.remove('border-transparent', 'text-inherit');
-					links[i].classList.add('bg-[var(--background-surface-color)]', 'border-[var(--soft-border-color)]', 'text-[var(--link-color)]');
+					const activeLinks = document.querySelectorAll(`nav.toc a[href="#${anchors[i].id}"]`);
+					for (const activeLink of activeLinks) {
+						activeLink.classList.add('is-active');
+						activeLink.setAttribute('aria-current', 'location');
+					}
 					break;
 				}
 			}
@@ -148,4 +161,5 @@ const blogJsonLd = {
 	window.addEventListener('hashchange', (event) => {
 		observeToc(event);
 	});
+	observeToc();
 </script>

@@ -8,7 +8,11 @@ import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
-import { DELISTED_CASE_STUDY_SLUGS } from '@src/lib/project-curation';
+import {
+	DELISTED_CASE_STUDY_SLUGS,
+	PROJECT_METHOD_ORDER,
+	PROJECT_R_AND_D_ORDER
+} from '@src/lib/project-curation';
 import '../../styles/case-study.css';
 
 interface PageProps {
@@ -59,12 +63,20 @@ const caseStudyJsonLd = {
 	datePublished: project.year?.split('-')[0]
 };
 
+const isMethod = (PROJECT_METHOD_ORDER as readonly string[]).includes(project.slug);
+const isResearch = (PROJECT_R_AND_D_ORDER as readonly string[]).includes(project.slug);
+const projectType = project.proofType === 'client'
+	? 'Client engagement'
+	: isMethod
+		? 'Method and diagnostic'
+		: isResearch
+			? 'Independent R&D'
+			: 'Independent work';
 const caseStudyFacts = [
-	{ label: 'Project', value: project.proofType === 'client' ? 'Client work' : 'Independent work' },
-	{ label: 'Role', value: project.role },
+	{ label: 'Project', value: projectType },
+	{ label: 'Engagement', value: project.service },
+	{ label: project.proofType === 'client' ? 'Contribution' : 'Built by', value: project.role },
 	{ label: 'Timeline', value: project.timeline ?? project.year },
-	{ label: 'Team', value: project.teamSize },
-	{ label: 'Service', value: project.service }
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
 const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
@@ -109,13 +121,18 @@ const heroActions = [
 >
 	<article
 		class:list={[
-			'container max-w-6xl space-y-14 py-8 md:space-y-16 md:py-10',
+			'container max-w-6xl py-8 md:py-10',
 			`case-study-detail case-study-detail--${project.detailVariant}`
 		]}
 	>
 		<header class='case-study-detail__hero case-study-detail__hero--product' data-motion-intro>
 			<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
 				<div class='case-study-detail__hero-copy space-y-5'>
+					<div class='case-study-detail__eyebrow'>
+						<a href='/case-studies/'>Case study</a>
+						<span aria-hidden='true'>/</span>
+						<span>{project.year}</span>
+					</div>
 					<h1
 						class='heading-display heading-display--hero'
 						data-motion='headline'
@@ -147,7 +164,11 @@ const heroActions = [
 					</div>
 				</div>
 
-				<aside class='case-study-detail__hero-facts' data-motion-intro-item>
+				<aside
+					class='case-study-detail__hero-facts'
+					style={`--case-fact-count: ${Math.min(caseStudyFacts.length, 4)}`}
+					data-motion-intro-item
+				>
 					{
 						caseStudyFacts.map((detail) => (
 							<div class='case-study-detail__hero-fact'>
@@ -187,45 +208,47 @@ const heroActions = [
 
 		{
 			project.technologies.length > 0 && (
-				<section class='case-study-detail__editorial-section'>
-					<h2>Tech Stack</h2>
-					<div class='case-study-detail__editorial-copy'>
-						<div class='flex flex-wrap gap-2'>
-							{project.technologies.map((tech) => (
-								<span class='tech-tag'>{tech}</span>
-							))}
-						</div>
-						{(project.liveUrl || project.repository) && (
-							<div class='case-study-detail__actions'>
-								{project.liveUrl && (
-									<a
-										class='btn-secondary'
-										href={project.liveUrl}
-										target='_blank'
-										rel='noopener noreferrer'
-										data-track-event='project_live_site_clicked'
-										data-track-location='project_detail'
-									>
-										Visit Live Site
-										<span>&rarr;</span>
-									</a>
-								)}
-								{project.repository && (
-									<a
-										class='btn-secondary'
-										href={project.repository}
-										target='_blank'
-										rel='noopener noreferrer'
-										data-track-event='project_repository_clicked'
-										data-track-location='project_detail'
-									>
-										{project.repositoryCtaLabel ?? 'View Repository'}
-										<span>&rarr;</span>
-									</a>
-								)}
+				<section class='case-study-detail__technical-appendix'>
+					<details>
+						<summary>Implementation details</summary>
+						<div class='case-study-detail__technical-appendix-body'>
+							<div class='flex flex-wrap gap-2'>
+								{project.technologies.map((tech) => (
+									<span class='tech-tag'>{tech}</span>
+								))}
 							</div>
-						)}
-					</div>
+							{(project.liveUrl || project.repository) && (
+								<div class='case-study-detail__actions'>
+									{project.liveUrl && (
+										<a
+											class='btn-secondary'
+											href={project.liveUrl}
+											target='_blank'
+											rel='noopener noreferrer'
+											data-track-event='project_live_site_clicked'
+											data-track-location='project_detail'
+										>
+											Visit Live Site
+											<span>&rarr;</span>
+										</a>
+									)}
+									{project.repository && (
+										<a
+											class='btn-secondary'
+											href={project.repository}
+											target='_blank'
+											rel='noopener noreferrer'
+											data-track-event='project_repository_clicked'
+											data-track-location='project_detail'
+										>
+											{project.repositoryCtaLabel ?? 'View Repository'}
+											<span>&rarr;</span>
+										</a>
+									)}
+								</div>
+							)}
+						</div>
+					</details>
 				</section>
 			)
 		}

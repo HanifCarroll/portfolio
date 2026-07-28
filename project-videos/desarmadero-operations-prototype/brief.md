@@ -12,7 +12,7 @@ Story mode: Plain overview
 
 One-sentence job: Desarmadero Operations Prototype turns one discovery call about a yard operation into a clickable product model the client can validate before the full build.
 
-Viewer takeaway: This is forward-deployed product engineering: understand the real workflow, build a working model, and make the next scope decision clearer.
+Viewer takeaway: Start with the real workflow, build a working model, and make the next scope decision clearer.
 
 Plain story:
 
