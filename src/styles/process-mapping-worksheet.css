@@ -128,73 +128,12 @@
   padding-block: clamp(3rem, 7vw, 6rem);
 }
 
-.worksheet-toolbar {
-  position: sticky;
-  top: 6.25rem;
-  z-index: 20;
-  display: grid;
-  gap: 0.75rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid var(--worksheet-border);
-  border-radius: 1rem;
-  background: rgb(255 253 248 / 0.96);
-  box-shadow: 0 12px 30px rgb(21 36 54 / 0.1);
-  backdrop-filter: blur(12px);
-}
-
-.worksheet-progress {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.worksheet-progress > span {
-  flex: 0 0 auto;
-  color: var(--worksheet-ink);
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-.worksheet-progress ol {
-  display: flex;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  gap: 0.35rem;
-  overflow-x: auto;
-  list-style: none;
-  scrollbar-width: thin;
-}
-
-.worksheet-progress a {
-  display: inline-flex;
-  min-height: 2.25rem;
-  align-items: center;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  color: var(--worksheet-muted);
-  font-family: var(--hc-font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.worksheet-progress a:hover,
-.worksheet-progress a:focus-visible {
-  border-color: var(--worksheet-border);
-  background: #f3eee4;
-  color: var(--worksheet-ink);
-}
-
 .worksheet-draft-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border-top: 1px solid #e3ddd2;
-  padding-top: 0.65rem;
+  padding-bottom: 0.25rem;
 }
 
 .worksheet-draft-controls p {
@@ -360,32 +299,44 @@
 
 .worksheet-next {
   padding-block: clamp(3rem, 7vw, 5rem);
-  background: #fff;
+  background: #f7f3ea;
 }
 
 .worksheet-next__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, auto);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: 1.5rem;
+  background: var(--hc-proof-surface);
+  box-shadow: 0 22px 55px rgb(21 36 54 / 0.16);
 }
 
 .worksheet-next h2 {
-  max-width: 18ch;
-  margin: 0.6rem 0 0.8rem;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  max-width: 16ch;
+  margin: 0 0 0.8rem;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.03;
 }
 
 .worksheet-next p:last-child {
-  max-width: 47rem;
+  max-width: 43rem;
   margin: 0;
-  color: var(--worksheet-muted);
+  color: #cbd6e3;
+  line-height: 1.65;
 }
 
 .worksheet-next__actions {
   display: grid;
-  justify-items: start;
+  justify-items: stretch;
   gap: 1rem;
+}
+
+.worksheet-next .hc-text-link {
+  justify-content: center;
+  color: #fff;
 }
 
 .worksheet-next .worksheet-print-button {
@@ -499,29 +450,12 @@
     max-width: 34rem;
   }
 
-  .worksheet-toolbar {
-    top: 5.75rem;
-    margin-inline: calc(-1 * var(--hc-gutter-mobile));
-    border-radius: 0;
-  }
-
-  .worksheet-progress {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .worksheet-progress ol {
-    width: 100%;
-    padding-bottom: 0.15rem;
-  }
-
   .worksheet-draft-controls {
     align-items: flex-start;
   }
 
   .worksheet-card {
-    scroll-margin-top: 16rem;
+    scroll-margin-top: 7rem;
   }
 
   .worksheet-grid,
@@ -555,7 +489,7 @@
   .hc-footer,
   .skip-link,
   .worksheet-actions,
-  .worksheet-toolbar,
+  .worksheet-draft-controls,
   .worksheet-add-step,
   .worksheet-next {
     display: none !important;

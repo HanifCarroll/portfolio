@@ -31,6 +31,39 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 	<head>
 		<BaseHead title={title} description={description} socialDescription={socialDescription} image={image} jsonLd={jsonLd} ogType={ogType} robots={robots} />
 		<ClientRouter />
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+
+			window.hcTrackEvent = (eventName, properties = {}) => {
+				if (!eventName) return;
+				const gaProperties = {
+					...properties,
+					page_title: document.title,
+					page_path: window.location.pathname
+				};
+				const payload = { event: eventName, ...gaProperties };
+				window.dataLayer.push(payload);
+				window.gtag('event', eventName, { ...gaProperties, transport_type: 'beacon' });
+			};
+
+			if (!window.hcAnalyticsClickTrackingReady) {
+				window.hcAnalyticsClickTrackingReady = true;
+				document.addEventListener('click', (event) => {
+					if (!(event.target instanceof Element) || !(event instanceof MouseEvent)) return;
+					const link = event.target.closest('a[data-track-event]');
+					if (!(link instanceof HTMLAnchorElement)) return;
+					const eventName = link.dataset.trackEvent;
+					if (!eventName) return;
+
+					window.hcTrackEvent(eventName, {
+						event_location: link.dataset.trackLocation || 'unknown',
+						link_text: (link.textContent || '').replace(/\s+/g, ' ').trim(),
+						link_url: link.href
+					});
+				});
+			}
+		</script>
 	</head>
 	<body class={bodyClass}>
 		{
@@ -74,29 +107,6 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 			</div>
 		</footer>
 
-		<script is:inline>
-			window.dataLayer = window.dataLayer || [];
-			window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-
-			document.addEventListener('click', (event) => {
-				if (!(event.target instanceof Element) || !(event instanceof MouseEvent)) return;
-				const link = event.target.closest('a[data-track-event]');
-				if (!(link instanceof HTMLAnchorElement)) return;
-				const eventName = link.dataset.trackEvent;
-				if (!eventName) return;
-
-				const payload = {
-					event: eventName,
-					event_location: link.dataset.trackLocation || 'unknown',
-					link_text: (link.textContent || '').replace(/\s+/g, ' ').trim(),
-					link_url: link.href,
-					page_title: document.title,
-					page_path: window.location.pathname
-				};
-				window.dataLayer.push(payload);
-				window.gtag('event', eventName, { ...payload, event: undefined, transport_type: 'beacon' });
-			});
-		</script>
 		<script>
 			import '../scripts/motion';
 		</script>

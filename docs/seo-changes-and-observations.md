@@ -4,6 +4,15 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-07-27
 
+### Process-Mapping Worksheet Organic-Discovery Test
+
+- Started a controlled internal-distribution test for `/resources/process-mapping-worksheet/` using contextual links from the business process mapping example, the Business Systems Audit page, the services workflow principle, and the Desarmadero Operations and Acquire case studies.
+- Added source-location analytics to each internal link and privacy-safe worksheet events for first input, distinct Section 4 and Section 7 milestones, print/save, completed-example clicks, Audit clicks, and valid draft restoration. Worksheet content and locally saved values are explicitly excluded from analytics.
+- Created the live open GA4 exploration `Process-Mapping Worksheet Funnel` with the ordered path from worksheet view through first input, Section 7, print/save, Audit click, and fit-call click. It is expected to remain empty until the instrumented page is deployed and receives production traffic.
+- The baseline begins after deployment and closes after the first of four complete weeks or 100 qualified worksheet page views. Compare worksheet starts, Section 7 reaches, print/save actions, Audit clicks, and downstream fit-call clicks by source.
+- Keep the worksheet and completed example cross-linked. Do not add a broader process-mapping content cluster until Search Console shows relevant impressions or queries that justify it.
+- After deployment, verify the live internal links and analytics events, then record the complete baseline and the keep/change/stop decision in this section.
+
 ### Business Process Mapping Example Post
 
 - Added a review-ready `/blog/business-process-mapping-examples/` post targeting informational searches for business process mapping examples with one complete modeled service workflow, a current-state map, a focused current-to-improved comparison, and contextual links to One Tuesday, Desarmadero Operations, and the Business Systems Audit.

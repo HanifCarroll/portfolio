@@ -51,7 +51,10 @@ const principles = [
 		title: 'Understand the workflow first',
 		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
 		image: ServiceAuditMap,
-		alt: 'Paper model of scattered requests and status cards becoming a clear workflow map.'
+		alt: 'Paper model of scattered requests and status cards becoming a clear workflow map.',
+		resourceHref: '/resources/process-mapping-worksheet/',
+		resourceLabel: 'Map one workflow with the free worksheet',
+		resourceLocation: 'services_workflow_principle'
 	},
 	{
 		title: 'Use the simplest fix that will work',
@@ -187,7 +190,30 @@ const faqs = [
 			<div class='hc-container'>
 				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>How I turn a difficult workflow into a working system.</h2></div>
 				<div class='hc-principles-grid'>
-					{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-principle__copy'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div></div>)}
+					{
+						principles.map((item, index) => (
+							<div class='hc-principle' data-motion-item>
+								<figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure>
+								<div class='hc-principle__copy'>
+									<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
+									<div>
+										<h3>{item.title}</h3>
+										<p>{item.body}</p>
+										{item.resourceHref && (
+											<a
+												class='hc-text-link hc-principle__resource-link'
+												href={item.resourceHref}
+												data-track-event='resource_clicked'
+												data-track-location={item.resourceLocation}
+											>
+												{item.resourceLabel}
+											</a>
+										)}
+									</div>
+								</div>
+							</div>
+						))
+					}
 				</div>
 			</div>
 		</section>

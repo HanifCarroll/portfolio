@@ -24,10 +24,17 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 					<p class='worksheet-hero__intro'>Use this worksheet with the people who do the work. Walk through one recent example, mark where information changes hands or waits, then choose one change to test.</p>
 					<div class='worksheet-actions'>
 						<a class='hc-button' href='#worksheet'>Start the worksheet</a>
-						<button class='hc-button worksheet-print-button' type='button' data-print-worksheet>Print or save</button>
-						<a class='hc-text-link worksheet-example-link' href='/blog/business-process-mapping-examples/'>See a completed example</a>
+						<button class='hc-button worksheet-print-button' type='button' data-print-worksheet data-track-location='hero'>Print or save</button>
+						<a
+							class='hc-text-link worksheet-example-link'
+							href='/blog/business-process-mapping-examples/#completed-worksheet-example'
+							data-track-event='worksheet_example_clicked'
+							data-track-location='hero'
+						>
+							See a completed example
+						</a>
 					</div>
-					<p class='worksheet-hero__meta'>Seven guided sections · Saves privately in this browser · No email required</p>
+					<p class='worksheet-hero__meta'>Seven guided sections · Leave with one change to test · No email required</p>
 				</div>
 				<figure class='worksheet-hero__visual'>
 					<img
@@ -43,23 +50,9 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 		</header>
 
 		<form id='worksheet' class='hc-container worksheet' aria-label='Business process mapping worksheet' data-worksheet-form novalidate>
-			<div class='worksheet-toolbar'>
-				<nav class='worksheet-progress' aria-label='Worksheet sections'>
-					<span>Worksheet sections</span>
-					<ol>
-						<li><a href='#worksheet-section-1' aria-label='Section 1: Workflow boundary'>01 Boundary</a></li>
-						<li><a href='#worksheet-section-2' aria-label='Section 2: People'>02 People</a></li>
-						<li><a href='#worksheet-section-3' aria-label='Section 3: Tools and records'>03 Tools</a></li>
-						<li><a href='#worksheet-section-4' aria-label='Section 4: Recent example'>04 Steps</a></li>
-						<li><a href='#worksheet-section-5' aria-label='Section 5: Decisions and exceptions'>05 Decisions</a></li>
-						<li><a href='#worksheet-section-6' aria-label='Section 6: Handoffs and waits'>06 Handoffs</a></li>
-						<li><a href='#worksheet-section-7' aria-label='Section 7: First useful change'>07 Change</a></li>
-					</ol>
-				</nav>
-				<div class='worksheet-draft-controls'>
-					<p data-draft-status role='status' aria-live='polite'>Your draft saves privately in this browser.</p>
-					<button type='button' data-clear-worksheet>Clear worksheet</button>
-				</div>
+			<div class='worksheet-draft-controls'>
+				<p data-draft-status role='status' aria-live='polite'>Your draft saves privately in this browser.</p>
+				<button type='button' data-clear-worksheet>Clear worksheet</button>
 			</div>
 
 			<section id='worksheet-section-1' class='worksheet-card worksheet-card--wide'>
@@ -169,13 +162,19 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 		<section class='worksheet-next'>
 			<div class='hc-container worksheet-next__inner'>
 				<div>
-					<p class='worksheet-eyebrow'>When you've finished</p>
-					<h2>Save the map and agree on one change to test.</h2>
-					<p>Keep a copy with the people who did the mapping. If the first change is still unclear, the Business Systems Audit can turn the real steps, handoffs, and delays into a focused recommendation.</p>
+					<h2>Save the map. Test one change.</h2>
+					<p>Keep the worksheet with the team and review what changes after the trial. If the right fix is still unclear, the Business Systems Audit can turn the map into a focused recommendation.</p>
 				</div>
 				<div class='worksheet-next__actions'>
-					<button class='hc-button worksheet-print-button' type='button' data-print-worksheet>Print or save your completed worksheet</button>
-					<a class='hc-text-link' href='/services/business-systems-audit/'>See the Business Systems Audit</a>
+					<button class='hc-button worksheet-print-button' type='button' data-print-worksheet data-track-location='completion'>Print or save the worksheet</button>
+					<a
+						class='hc-text-link'
+						href='/services/business-systems-audit/'
+						data-track-event='worksheet_audit_clicked'
+						data-track-location='completion'
+					>
+						See the Business Systems Audit
+					</a>
 				</div>
 			</div>
 		</section>
@@ -189,7 +188,40 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 			document.querySelectorAll('[data-print-worksheet]').forEach((button) => {
 				if (!(button instanceof HTMLButtonElement) || button.dataset.ready === 'true') return;
 				button.dataset.ready = 'true';
-				button.addEventListener('click', () => window.print());
+				button.addEventListener('click', () => {
+					window.hcTrackEvent?.('worksheet_print_clicked', {
+						event_location: button.dataset.trackLocation || 'unknown'
+					});
+					window.print();
+				});
+			});
+		};
+
+		const setupSectionTracking = () => {
+			const sections = [
+				{ element: document.querySelector('#worksheet-section-4'), number: 4 },
+				{ element: document.querySelector('#worksheet-section-7'), number: 7 }
+			].filter(({ element }) => element instanceof HTMLElement);
+			if (sections.length === 0 || !('IntersectionObserver' in window)) return;
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting || !(entry.target instanceof HTMLElement) || entry.target.dataset.analyticsReached === 'true') return;
+						entry.target.dataset.analyticsReached = 'true';
+						const section = sections.find(({ element }) => element === entry.target);
+						if (!section) return;
+						window.hcTrackEvent?.(`worksheet_section_${section.number}_reached`);
+						observer.unobserve(entry.target);
+					});
+				},
+				{ threshold: 0.35 }
+			);
+
+			sections.forEach(({ element }) => {
+				if (!(element instanceof HTMLElement) || element.dataset.analyticsObserved === 'true') return;
+				element.dataset.analyticsObserved = 'true';
+				observer.observe(element);
 			});
 		};
 
@@ -206,6 +238,7 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 
 			form.dataset.ready = 'true';
 			let saveTimer;
+			let hasTrackedStart = false;
 
 			const setStatus = (message) => {
 				if (status instanceof HTMLElement) status.textContent = message;
@@ -294,10 +327,17 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 					if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = value;
 				});
 				setStatus('Draft restored from this browser.');
+				window.hcTrackEvent?.('worksheet_restored');
 			};
 
 			form.addEventListener('submit', (event) => event.preventDefault());
-			form.addEventListener('input', scheduleSave);
+			form.addEventListener('input', () => {
+				if (!hasTrackedStart) {
+					hasTrackedStart = true;
+					window.hcTrackEvent?.('worksheet_started');
+				}
+				scheduleSave();
+			});
 			form.addEventListener('change', saveDraft);
 
 			if (addStepButton instanceof HTMLButtonElement) {
@@ -329,6 +369,7 @@ const stepRows = Array.from({ length: 6 }, (_, index) => index + 1);
 
 		const setupProcessWorksheet = () => {
 			setupPrintButtons();
+			setupSectionTracking();
 			setupWorksheet();
 		};
 

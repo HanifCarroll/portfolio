@@ -102,7 +102,7 @@ For this modeled workflow, the central problem is not intake volume. It is the a
 
 The main change is one record per job. Every person reads and updates that record rather than maintaining a separate version of the truth.
 
-<figure class="workflow-map">
+<figure id="completed-worksheet-example" class="workflow-map">
   <picture>
     <source media="(max-width: 640px)" srcset="/blog/business-process-mapping-examples/workflow-changes-mobile.svg" />
     <img src="/blog/business-process-mapping-examples/workflow-changes.svg" width="1200" height="900" loading="lazy" decoding="async" alt="Four current-to-improved workflow changes. Different request channels adopt one intake format. Status split across a spreadsheet, chat, and memory moves into one shared job record. Approval waiting in chat gains a named owner and timer. A manually rebuilt weekly report becomes a view of the job record's status." />
@@ -145,7 +145,7 @@ This order matters because automation makes a rule run faster, but it can't fix 
 
 ## A process-mapping template you can use
 
-Use the free [process-mapping worksheet](/resources/process-mapping-worksheet/) on screen or print a blank copy. You can also map a workflow on paper, a whiteboard, or a shared document. Start with these questions before drawing boxes:
+Use the free <a href="/resources/process-mapping-worksheet/" data-track-event="resource_clicked" data-track-location="process_mapping_article">process-mapping worksheet</a> on screen or print a blank copy. You can also map a workflow on paper, a whiteboard, or a shared document. Start with these questions before drawing boxes:
 
 <figure class="workflow-map">
   <picture>
