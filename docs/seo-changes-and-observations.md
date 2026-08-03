@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-07-29
+
+### Newsletter Retirement And Blog Migration
+
+- Retired the `A Working Theory` newsletter home, archive, signup flow, email delivery code, and newsletter-specific site navigation.
+- Preserved the existing article at `/blog/reliable-ai-workflows/` and added one-hop permanent redirects from its former issue URL, the newsletter home, and the real archive.
+- Removed the sample-only archive preview without a redirect because it was already `noindex, nofollow, noarchive` and was never a canonical public-content route.
+- Verify the redirects, blog article, sitemap, RSS, and retired API endpoints after deployment. Watch Search Console for consolidation of the former issue URL into the blog route.
+
 ## 2026-07-27
 
 ### Process-Mapping Worksheet Organic-Discovery Test

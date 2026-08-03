@@ -25,20 +25,4 @@ const caseStudies = defineCollection({
   schema: z.object({}),
 });
 
-const newsletter = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/newsletter" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    subject: z.string(),
-    preview: z.string(),
-    pubDate: z.coerce.date(),
-    issueNumber: z.number().int().positive(),
-    tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
-    coverAlt: z.string().optional(),
-    sourcePackageDigest: z.string().regex(/^sha256:[0-9a-f]{64}$/),
-  }),
-});
-
-export const collections = { blog, caseStudies, newsletter };
+export const collections = { blog, caseStudies };

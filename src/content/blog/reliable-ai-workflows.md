@@ -1,17 +1,14 @@
 ---
 title: "Reliable AI Workflows Are Learned Through Failure"
+seoTitle: "Reliable AI Workflows Are Learned Through Failure"
 description: "A reliable AI workflow becomes clearer when a failed run reveals which decision, approval, or stop condition came too late."
-subject: "You can't write the perfect AI workflow upfront"
-preview: "I let an AI workflow keep producing videos before I had decided whether the first one was worth repeating."
-pubDate: 2026-07-16T00:00:00.000000-03:00
-issueNumber: 1
-coverImage: "/images/newsletter/reliable-ai-workflows/production-before-approval.webp"
-coverAlt: "One source recording expands into five finished video clips and many downstream packages before approval."
+pubDate: "2026-07-16"
 tags:
-  - "AI workflows"
-  - "Judgment"
-  - "Evaluation"
-sourcePackageDigest: "sha256:664e27570d82f3ed6656dde5ca4792b62841552dd9ce58342d26c1680bd40b87"
+  - AI workflows
+  - workflow design
+  - human judgment
+  - evaluation
+ctaVariant: audit
 ---
 
 I let an AI video workflow keep producing work before I had decided whether the first result was worth repeating.
@@ -24,8 +21,8 @@ Nothing had been published. The files were preserved and held. But the workflow 
 
 The tools had done what the procedure allowed them to do. The failure was in the order of decisions.
 
-<figure class="awt-issue-figure">
-  <img src="/images/newsletter/reliable-ai-workflows/production-before-approval.webp" alt="One source recording expands into five finished video clips and many downstream packages before any representative output is approved." />
+<figure>
+  <img src="/blog/reliable-ai-workflows/production-before-approval.webp" alt="One source recording expands into five finished video clips and many downstream packages before any representative output is approved." />
   <figcaption>The workflow multiplied finished-looking outputs before one example had been approved.</figcaption>
 </figure>
 
@@ -61,8 +58,8 @@ I'm experimenting with a simple way to review these runs. Before testing, define
 
 In this case, the first material failure happened when the process moved beyond one representative video without an approval. The later files weren't separate mysteries to diagnose. They were consequences of the same missing gate.
 
-<figure class="awt-issue-figure">
-  <img src="/images/newsletter/reliable-ai-workflows/pilot-approval-gate.webp" alt="One selected pilot reaches an approval checkpoint while four future clips remain empty and held behind it." />
+<figure>
+  <img src="/blog/reliable-ai-workflows/pilot-approval-gate.webp" alt="One selected pilot reaches an approval checkpoint while four future clips remain empty and held behind it." />
   <figcaption>One approved pilot becomes the gate for repeated production.</figcaption>
 </figure>
 

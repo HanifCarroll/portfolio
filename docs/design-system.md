@@ -52,7 +52,6 @@ Use the existing line-height tokens and keep prose between roughly 45ch and 76ch
 | `case-study.css`     | Individual case study pages                                |
 | `blog-index.css`     | Blog index and article list                                |
 | `blog.css`           | Individual blog articles                                   |
-| `newsletter.css`     | Newsletter route                                           |
 | `now.css`            | Now page                                                   |
 | `tools.css`          | Tools page                                                 |
 
