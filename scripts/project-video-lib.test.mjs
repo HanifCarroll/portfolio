@@ -18,13 +18,19 @@ import {
   validateManifest,
 } from "./project-video-lib.mjs";
 
-test("every portfolio project has a valid video manifest", async () => {
+test("every video-enabled portfolio project has a valid video manifest", async () => {
   const slugs = await listManifestSlugs();
-  const projectSlugs = (await readdir(join(repoRoot, "src/lib/projects")))
-    .filter((file) => file.endsWith(".json"))
-    .map((file) => file.replace(/\.json$/, ""))
+  const projectDirectory = join(repoRoot, "src/lib/projects");
+  const projects = await Promise.all(
+    (await readdir(projectDirectory))
+      .filter((file) => file.endsWith(".json"))
+      .map(async (file) => JSON.parse(await readFile(join(projectDirectory, file), "utf8"))),
+  );
+  const videoProjectSlugs = projects
+    .filter((project) => project.videos != null)
+    .map((project) => project.slug)
     .sort();
-  assert.deepEqual(slugs, projectSlugs);
+  assert.deepEqual(slugs, videoProjectSlugs);
   for (const slug of slugs) {
     const manifest = await loadManifest(slug);
     const result = validateManifest(manifest, { expectedSlug: slug });
