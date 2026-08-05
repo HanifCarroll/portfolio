@@ -4,7 +4,7 @@ export interface ProjectTrackMeta {
   label: string;
   shortLabel: string;
   group: ProjectTrackGroup;
-  ctaVariant: "audit" | "systemsBuild" | "ongoing";
+  ctaVariant: "general" | "systemsBuild" | "ongoing";
   rank: number;
 }
 
@@ -13,7 +13,7 @@ export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
     label: "Operational Product System",
     shortLabel: "Systems work",
     group: "supporting_product_proof",
-    ctaVariant: "audit",
+    ctaVariant: "general",
     rank: 3,
   },
   ai_systems: {

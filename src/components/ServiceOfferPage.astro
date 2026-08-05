@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
 import type { ServiceOffer } from '../lib/service-offers';
-import ServiceAuditMap from '../assets/img/illustrations/service-audit-map-dark.png';
 import ServiceFocusedBuild from '../assets/img/illustrations/service-focused-build-dark.png';
 import ServiceOngoingPartnership from '../assets/img/illustrations/service-ongoing-partnership-dark.png';
 import ServiceCommercialSection from './service-detail/ServiceCommercialSection.astro';
@@ -21,7 +20,6 @@ interface Props {
 
 const { offer } = Astro.props as Props;
 const heroIllustrations = {
-	audit: ServiceAuditMap,
 	systemsBuild: ServiceFocusedBuild,
 	ongoing: ServiceOngoingPartnership
 };
@@ -64,7 +62,6 @@ const serviceJsonLd = {
 							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${offer.key}_hero`}>{offer.primaryCta}</a>
 							<a class='hc-text-link' href={offer.secondaryHref}>{offer.secondaryCta}</a>
 						</div>
-						{offer.key === 'audit' && <p class='hc-detail-hero__cta-note'>The first call is to see whether an audit is the right place to begin.</p>}
 					</div>
 				</div>
 				<figure class='hc-detail-hero__figure' data-motion-intro-item><Image src={heroIllustration} alt='' aria-hidden='true' loading='eager' /></figure>

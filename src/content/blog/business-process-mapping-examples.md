@@ -8,7 +8,7 @@ tags:
   - workflow mapping
   - business systems
   - service operations
-ctaVariant: audit
+ctaVariant: general
 ---
 
 A useful business process map shows how one piece of work moves from a clear trigger to a clear outcome. It names the people, tools, steps, decisions, handoffs, waits, and records involved. You map the current workflow as it actually runs, then design a better version around the smallest change that removes the most important source of friction.
@@ -176,4 +176,3 @@ The prototype gave the client something concrete to review before deciding the s
 
 If you want to feel the difference between the two workflows, [run the One Tuesday diagnostic](/case-studies/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
 
-If your own operation has a recurring workflow spread across spreadsheets, inboxes, chat, and memory, the [Business Systems Audit](/services/business-systems-audit/) is designed to map that workflow, find the bottleneck, and recommend the first useful change. The recommendation may be a process change, better use of existing software, an automation, an integration, or a focused build.

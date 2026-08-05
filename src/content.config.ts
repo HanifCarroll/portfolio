@@ -16,7 +16,7 @@ const blog = defineCollection({
       tags: z.array(z.string()).optional(),
       coverImage: image().optional(),
       hidden: z.boolean().default(false),
-      ctaVariant: z.enum(["general", "audit", "systemsBuild", "ongoing"]).default("general"),
+      ctaVariant: z.enum(["general", "systemsBuild", "ongoing"]).default("general"),
     }),
 });
 

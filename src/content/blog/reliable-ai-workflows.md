@@ -8,7 +8,7 @@ tags:
   - workflow design
   - human judgment
   - evaluation
-ctaVariant: audit
+ctaVariant: general
 ---
 
 I let an AI video workflow keep producing work before I had decided whether the first result was worth repeating.

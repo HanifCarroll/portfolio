@@ -8,7 +8,7 @@ tags:
   - internal tools
   - business systems
   - operations
-ctaVariant: audit
+ctaVariant: general
 ---
 
 Keep the spreadsheet when one person or a small team can maintain it, the work fits one main list, and mistakes are easy to catch. Add controls when the main problems are inconsistent entries, unclear ownership, or accidental edits. Move the work into existing software, such as a CRM, inventory system, work-management platform, or field-service app, when several people need linked records, permissions, history, and different views of the same information. Build custom software only when the workflow is stable, specific, and costly enough that existing products keep forcing people into workarounds.
@@ -168,4 +168,3 @@ Start with the behavior that is failing. If the team cannot trust the status, de
 
 Build only after the team can explain what the custom software must make easier, safer, or cheaper to run. That keeps the decision about the operation rather than the appeal of new software.
 
-If the workflow crosses spreadsheets, inboxes, chat, and memory and the first useful change is still unclear, the [Business Systems Audit](/services/business-systems-audit/) maps the current process, tests the real constraints, and recommends whether to keep the spreadsheet, add controls, use existing software, connect systems, automate steps, or build custom software.

@@ -85,7 +85,7 @@ export function Mirror() {
             data-track-event="book_call_clicked"
             data-track-location="one_tuesday_mirror"
           >
-            Book a 30-minute audit fit call
+            Book a 30-minute fit call
           </a>
           <a
             className="t4-cta__secondary"

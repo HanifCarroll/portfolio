@@ -3,7 +3,7 @@ import { getProjectImage } from "./project-images";
 import { getProject } from "./projects";
 import { testimonials, type Testimonial } from "./testimonials";
 
-export type ServiceOfferKey = "audit" | "systemsBuild" | "ongoing";
+export type ServiceOfferKey = "systemsBuild" | "ongoing";
 export type ServiceOfferSection =
   | "fit"
   | "deliverables"
@@ -74,17 +74,6 @@ const proofImage = (slug: string, imageKey: "hero" | "feature" = "feature") => {
   return getProjectImage(project, imageKey);
 };
 
-const desarmaderoProof: ServiceOfferProof = {
-  label: "Client work",
-  title: "Desarmadero Operations",
-  heading: "One discovery call became a workflow map, specification, and working prototype.",
-  body: "An auto-dismantling yard was running sales and fulfillment through paper sheets, WhatsApp, Excel, and memory. I mapped the operation, wrote the product and functional requirements, and built a role-based prototype the client could review before committing to a full build.",
-  href: "/case-studies/desarmadero-operations-prototype/",
-  image: proofImage("desarmadero-operations-prototype", "hero"),
-  imageAlt:
-    "Desarmadero operations prototype showing the counter-sales workflow and live order summary.",
-  imageClass: "object-left-top",
-};
 
 const genruptBuildProof: ServiceOfferProof = {
   label: "Client work",
@@ -119,127 +108,6 @@ const muchoProof: ServiceOfferProof = {
 };
 
 export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
-  audit: {
-    key: "audit",
-    slug: "business-systems-audit",
-    path: "/services/business-systems-audit/",
-    label: "Business Systems Audit",
-    metaTitle: "Business Systems Audit | Hanif Carroll",
-    description:
-      "Map a difficult workflow, find where it breaks down, and leave with priorities, risks, and a first build plan. Audits start at $750.",
-    heroTitle: "Find what's slowing your operations down.",
-    heroBody:
-      "I map the workflow, find where the process gets stuck, and recommend what to change first. You leave with a clear view of the problem and a first build plan you can use with your own team, another partner, or me.",
-    commercialNote: "Starts at $750",
-    chooserHeading: "Find what's slowing your operations down.",
-    chooserSummary:
-      "We look at the workflow, who's involved, which tools they use, where information gets handed off, and where things go wrong. You get a clear recommendation and first build plan, even if someone else does the build.",
-    chooserCta: "Explore the Business Systems Audit",
-    primaryCta: "Book an audit fit call",
-    secondaryCta: "Compare all services",
-    secondaryHref: "/services/",
-    summary: [
-      {
-        label: "Best for",
-        body: "One recurring workflow is getting harder to run, but the right fix isn't clear.",
-      },
-      {
-        label: "You leave with",
-        body: "A workflow map, priorities, recommendation, and first build plan.",
-      },
-      {
-        label: "Pricing",
-        body: "Starts at $750. Implementation is scoped separately.",
-      },
-    ],
-    sectionOrder: ["fit", "deliverables", "proof", "working", "commercial", "faq"],
-    fitHeading: "You can see the problem, but you're unsure what will fix it.",
-    fitBody:
-      "The audit is for a recurring workflow that's getting harder to run. Your team may already have ideas for fixing it, but nobody has traced the entire process closely enough to know which change will help most.",
-    fitSignals: [
-      "The workflow is spread across spreadsheets, inboxes, forms, chats, and disconnected tools.",
-      "Handoffs, approvals, or reporting depend on reminders and manual checking.",
-      "Important status lives in people's heads, so the team has to ask around.",
-      "You suspect software, automation, or AI could help but don't know what should be built first.",
-    ],
-    deliverablesHeading: "What you'll receive from the audit.",
-    deliverables: [
-      {
-        title: "Current workflow map",
-        body: "The people, steps, tools, information, decisions, and handoffs from the first request to the final outcome.",
-      },
-      {
-        title: "Findings and priorities",
-        body: "Where delays, repeated effort, missed handoffs, reliability problems, and gaps in visibility come from, ordered by what matters most to the business.",
-      },
-      {
-        title: "Recommended first step",
-        body: "The smallest useful change. That may be a process change, better use of existing software, automation, an integration, AI, or custom software.",
-      },
-      {
-        title: "First build plan",
-        body: "A practical scope covering the first system's users, purpose, requirements, constraints, risks, and boundaries.",
-      },
-    ],
-    scopeHeading: "The audit stays focused on one core workflow.",
-    includedHeading: "Included",
-    included: [
-      "Review of the workflow and its connected handoffs",
-      "Conversations with the people who know or use the process",
-      "Review of the tools, documents, forms, data, and screens involved",
-      "Identification of delays, repeated effort, failures, and gaps in visibility",
-      "Assessment of where software, automation, integrations, or AI may help",
-      "Final workflow map, findings, priorities, recommendation, and first build plan",
-    ],
-    boundary:
-      "Implementation is scoped separately. If the review uncovers another substantial workflow, we decide whether it belongs in the current audit or needs its own review.",
-    processHeading: "How the audit works.",
-    process: [
-      {
-        title: "Walk through the workflow",
-        body: "We trace the workflow from request to outcome: who is involved, which tools they use, where information changes hands, and where the process fails.",
-      },
-      {
-        title: "Review the evidence",
-        body: "I inspect the relevant documents, forms, spreadsheets, messages, screens, data, and system behavior, then map the most important problems.",
-      },
-      {
-        title: "Review the recommendation",
-        body: "I compare the possible changes and walk you through the map, priorities, recommended first step, build plan, risks, and dependencies.",
-      },
-    ],
-    responsibilities: [
-      "Access to the people who know or use the workflow",
-      "Examples of the tools, documents, data, and handoffs involved",
-      "Honest context about known failures and timely feedback on the findings",
-      "A decision-maker who can confirm priorities and next steps",
-    ],
-    pricingHeading: "Audits start at $750.",
-    pricingBody:
-      "The final price and schedule depend on the workflow, the number of people involved, and the material that needs to be reviewed. I confirm both before the audit begins.",
-    proof: [desarmaderoProof],
-    testimonial: testimonials.sarahHibner,
-    ownershipHeading: "The findings are yours to use.",
-    ownershipBody:
-      "You keep the map, findings, priorities, recommendation, and build plan. I walk you through the reasoning, and you can use the material with your team, another partner, or me.",
-    faqs: [
-      {
-        title: "Do I need to know what should be built?",
-        body: "No. The audit is useful when the workflow problem is visible but the best fix isn't clear yet.",
-      },
-      {
-        title: "Does every audit lead to custom software?",
-        body: "No. The recommendation may be an automation, an integration, better use of an existing tool, a process change, or a custom system. The audit gives you enough evidence to choose.",
-      },
-      {
-        title: "What happens after the audit?",
-        body: "You can make the recommended changes internally, take the plan to another partner, ask me to scope a Business Systems Build, or stop after the audit.",
-      },
-    ],
-    finalHeading: "Find out what should change first.",
-    finalBody:
-      "Start with the workflow that's causing delays, repeated effort, missed handoffs, or unreliable reporting. We'll use the first call to see whether an audit is the right place to begin.",
-  },
   systemsBuild: {
     key: "systemsBuild",
     slug: "business-systems-build",
@@ -257,8 +125,8 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
       "I design and build the internal tool, automation, dashboard, integration, or AI-assisted workflow around the people who need to use it.",
     chooserCta: "Explore the Business Systems Build",
     primaryCta: "Start a scoping conversation",
-    secondaryCta: "See the Business Systems Audit",
-    secondaryHref: "/services/business-systems-audit/",
+    secondaryCta: "Compare all services",
+    secondaryHref: "/services/",
     summary: [
       {
         label: "Best for",
@@ -318,7 +186,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     process: [
       {
         title: "Confirm the first release",
-        body: "After the scoping conversation, if the workflow is clear enough to build, I turn the audit findings or existing requirements into a written first-release scope. We agree on the users, workflow, required features, integrations, risks, review points, ownership, and what can wait before implementation begins.",
+        body: "After the scoping conversation, if the workflow is clear enough to build, I turn the confirmed workflow and existing requirements into a written first-release scope. We agree on the users, workflow, required features, integrations, risks, review points, ownership, and what can wait before implementation begins.",
       },
       {
         title: "Design the system",
@@ -342,7 +210,7 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     ],
     pricingHeading: "I confirm the price and schedule before the build begins.",
     pricingBody:
-      "I confirm the price, schedule, milestones, and responsibilities after the workflow and first release are clear. If they aren't clear yet, the Business Systems Audit is the better place to begin.",
+      "I confirm the price, schedule, milestones, and responsibilities after the workflow and first release are clear. If they aren't clear yet, we'll use a scoping conversation to decide the right next step.",
     proof: [genruptBuildProof, palabrunoBuildExample],
     testimonial: testimonials.monicaLondono,
     ownershipHeading: "Your business keeps the system and the decisions behind it.",
@@ -351,11 +219,11 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
     faqs: [
       {
         title: "What happens after the scoping conversation?",
-        body: "If the workflow and first release are clear enough to build, I write the scope, price, schedule, milestones, and responsibilities for review before implementation begins. If important questions are still open, I recommend starting with the Business Systems Audit.",
+        body: "If the workflow and first release are clear enough to build, I write the scope, price, schedule, milestones, and responsibilities for review before implementation begins. If important questions are still open, we'll settle them in a scoping conversation first.",
       },
       {
-        title: "Can a build start without an audit?",
-        body: "Yes, when the workflow, users, desired result, and first release are already clear enough to scope. If important questions are still open, the audit can settle them before implementation begins.",
+        title: "Can a build start before the workflow is fully mapped?",
+        body: "Yes, when the workflow, users, desired result, and first release are already clear enough to scope. If important questions are still open, a focused review can settle them before implementation begins.",
       },
       {
         title: "Do you have to replace the tools we already use?",
@@ -495,8 +363,8 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
         body: "Your team keeps every tool, automation, integration, update, and the documentation and decisions behind it. I prepare a clear handoff for any active priority or unfinished change, so the business doesn't depend on information that only I have.",
       },
       {
-        title: "Can the partnership begin without an audit or build?",
-        body: "Yes, when the systems, business area, and first priorities are already clear enough to define. If they aren't, a Business Systems Audit can create that starting point.",
+        title: "Can the partnership begin before the workflow is fully mapped?",
+        body: "Yes, when the systems, business area, and first priorities are already clear enough to define. If they aren't, a focused workflow review can create that starting point.",
       },
       {
         title: "Is this advisory or implementation?",
@@ -514,7 +382,6 @@ export const serviceOffers: Record<ServiceOfferKey, ServiceOffer> = {
 };
 
 export const serviceOfferList: ServiceOffer[] = [
-  serviceOffers.audit,
   serviceOffers.systemsBuild,
   serviceOffers.ongoing,
 ];
