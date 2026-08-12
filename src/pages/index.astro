@@ -11,8 +11,8 @@ import { serviceOfferList } from '../lib/service-offers';
 import { testimonials } from '../lib/testimonials';
 import '../styles/home.css';
 
-const title = 'Hanif Carroll | Technical Consultant for Founder-Led Businesses';
-const description = 'I help founder-led businesses find and fix difficult workflows through practical process changes, automation, and custom software.';
+const title = 'Hanif Carroll | Contract Product Engineer for B2B SaaS';
+const description = 'I join B2B SaaS teams as a contract product engineer, building customer-facing products, internal tools, and HubSpot integrations.';
 
 const homepageJsonLd = [
 	{
@@ -20,10 +20,10 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'Technical Consultant',
+		jobTitle: 'Contract Product Engineer',
 		description,
 		sameAs: ['https://github.com/hanifcarroll', 'https://linkedin.com/in/hanifcarroll', 'https://x.com/hanifcarroll'],
-		knowsAbout: ['Business systems engineering', 'Workflow automation', 'Internal tools', 'AI-assisted operations', 'Product engineering']
+		knowsAbout: ['Product engineering', 'Internal tools', 'HubSpot integrations', 'Workflow automation', 'AI-assisted operations']
 	},
 	{
 		'@context': 'https://schema.org',
@@ -68,7 +68,7 @@ const homepageServices = serviceOfferList.map((offer) => ({
 	...offer,
 	homepageSummary: {
 		systemsBuild: 'Design and build an internal tool, automation, dashboard, integration, or AI-assisted workflow around your team.',
-		ongoing: 'Improve and support the systems your team relies on through an agreed set of technical priorities.'
+		ongoing: 'Ongoing senior engineering for your product and the systems around it, on a monthly contract.'
 	}[offer.key]
 }));
 
@@ -96,8 +96,8 @@ const founderTestimonial = testimonials.markisZarate;
 	description={description}
 	jsonLd={homepageJsonLd}
 	bodyClass='hc-home'
-	footerCtaTitle="Tell me what's getting harder to run."
-	footerCtaBody="You don't need a specification or a preferred tool. Start with the workflow that's causing delays, repeated effort, or confusion. We'll decide whether it needs a focused build, a smaller first step, or ongoing support."
+	footerCtaTitle="Tell me what your team needs to ship."
+	footerCtaBody="You don't need a specification or a preferred tool. Start with the feature, integration, or system that's stuck. We'll decide whether it needs a focused build, a smaller first step, or ongoing support."
 	footerCtaPrimaryLabel='Book a 30-minute fit call'
 	footerCtaLocation='home_footer_cta'
 	footerCtaSurface='canvas'
@@ -106,14 +106,15 @@ const founderTestimonial = testimonials.markisZarate;
 		<header class='hc-home-hero' data-motion-intro>
 			<div class='hc-home-hero__inner'>
 				<div class='hc-home-hero__copy'>
-					<h1 class='hc-home-hero__title' aria-label='Find and fix the workflows slowing down your business' data-motion='headline'>
-						<span>Find and fix</span> <span class='hc-home-hero__title-accent'>the workflows</span> <span>slowing down</span> <span>your business</span>
+					<h1 class='hc-home-hero__title' aria-label='Contract product engineer for B2B SaaS' data-motion='headline'>
+						<span>Contract product</span> <span class='hc-home-hero__title-accent'>engineer</span> <span>for B2B</span> <span>SaaS</span>
 					</h1>
-					<p class='hc-home-hero__lead' data-motion-deck>I help founder-led businesses find and fix repeated manual work, unreliable handoffs, and scattered information, then choose the smallest useful change.</p>
+					<p class='hc-home-hero__lead' data-motion-deck>I join B2B SaaS teams to build customer-facing products, internal tools, and HubSpot integrations — senior engineering on contract, without the full-time hire.</p>
 					<div class='hc-home-hero__actions'>
 						<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero' data-motion-intro-item>Book a 30-minute fit call</a>
 						<a class='hc-home-hero__secondary' href='/case-studies/' data-motion-intro-item>See case studies</a>
 					</div>
+					<p class='hc-home-hero__credentials' data-motion-intro-item>HubSpot certified: Inbound, Email Marketing, Revenue Operations, Reporting.</p>
 					<aside class='hc-home-hero__proof' aria-label='Selected client result' data-motion-intro-item>
 						<p class='hc-home-hero__proof-label'>Selected client result</p>
 						<p>Helped build Genrupt's billing, credit accounting, background jobs, and agent workflows as it grew to its first 200 paying customers.</p>
