@@ -13,12 +13,7 @@ const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 const { pathname } = Astro.url;
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
 const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
-const normalizedPathname = normalizePath(pathname);
-const headerCtaLabel = normalizedPathname === '/services/business-systems-build/'
-	? 'Start a scoping conversation'
-	: normalizedPathname === '/services/ongoing-technical-partnership/'
-		? 'Book a fit call'
-		: 'Book a fit call';
+const headerCtaLabel = 'Book a fit call';
 ---
 
 <header class='site-header' id='siteHeader' data-over-surface='light' transition:name='site-header'>

@@ -3,9 +3,8 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceTestimonial from '../../components/ServiceTestimonial.astro';
 import { BOOK_CALL_URL } from '../../consts';
-import { serviceOfferList } from '../../lib/service-offers';
 import { testimonials } from '../../lib/testimonials';
-import DesarmaderoPaperSystem from '../../assets/img/projects/desarmadero-operations-paper-system.png';
+import PalabrunoPaperSystem from '../../assets/img/projects/palabruno-paper-system.png';
 import GenruptPaperSystem from '../../assets/img/projects/genrupt-paper-system.png';
 import MuchoHangoutsFeature from '../../assets/img/projects/mucho-hangouts-feature.png';
 import ServiceOverview from '../../assets/img/illustrations/service-overview.svg';
@@ -15,19 +14,36 @@ import ServiceFocusedBuild from '../../assets/img/illustrations/service-focused-
 import ServiceHandoffSystem from '../../assets/img/illustrations/service-handoff-system.svg';
 import '../../styles/services.css';
 
-const title = 'Technical Consulting Services | Hanif Carroll';
+const title = 'Contract Product Engineering | Hanif Carroll';
 const description =
-	'Technical consulting for founder-led businesses: diagnose workflow problems, build focused software, and support the systems teams rely on.';
+	'Contract product engineering for B2B SaaS teams: customer-facing features, internal tools, and HubSpot integrations from a senior engineer.';
+
+const engagementModels = [
+	{
+		key: 'project',
+		label: 'Project contract',
+		heading: 'A defined build, from scope to handoff.',
+		body: 'One customer-facing feature, internal tool, integration, or AI-assisted workflow — scoped, priced, and built around the people who will use it.',
+		note: 'Scoped and priced before work begins'
+	},
+	{
+		key: 'monthly',
+		label: 'Monthly contract',
+		heading: 'Ongoing senior engineering for your product.',
+		body: 'Continuing priorities across your product and the systems around it, handled by someone who keeps the context between them.',
+		note: 'Monthly, scoped around priorities and available time'
+	}
+];
+
+const fitSignals = [
+	'A customer-facing feature or internal tool is stuck behind a packed roadmap.',
+	'You need an engineer who can own a problem from discovery to production.',
+	'Integrations between your product and the revenue stack keep getting deferred.',
+	'You want senior output on a contract basis, not another full-time hire.',
+	'HubSpot is part of your go-to-market stack, and the product work touches it.'
+];
 
 const proof = [
-	{
-		slug: 'desarmadero-operations-prototype',
-		label: 'Client work',
-		title: 'Desarmadero Operations',
-		body: 'After one discovery call, I created a workflow map, PRD, functional specification, and role-based prototype the client could review before a full build.',
-		image: DesarmaderoPaperSystem,
-		alt: 'Paper model of the Desarmadero operations workflow.'
-	},
 	{
 		slug: 'genrupt',
 		label: 'Client work',
@@ -35,6 +51,14 @@ const proof = [
 		body: 'I helped make Genrupt ready for paying teams by building billing, credit accounting, reliable background jobs, and agent access. The platform went on to support its first 200 paying customers.',
 		image: GenruptPaperSystem,
 		alt: 'Paper model of the Genrupt commercial system.'
+	},
+	{
+		slug: 'palabruno',
+		label: 'Client work',
+		title: 'Palabruno',
+		body: 'I took a founder\u2019s idea to live on the App Store, Google Play, and the web, owning product, UX, and full-stack engineering for AI reading features, teacher workflows, and subscription billing.',
+		image: PalabrunoPaperSystem,
+		alt: 'Paper model of the Palabruno reading product.'
 	},
 	{
 		slug: 'mucho-hangouts',
@@ -48,17 +72,14 @@ const proof = [
 
 const principles = [
 	{
-		title: 'Understand the workflow first',
-		body: 'I begin with the people, steps, tools, and handoffs involved. That gives us a clear view of where the workflow is breaking down.',
+		title: 'Start from how the work actually runs',
+		body: 'I read the code, the data, and the people using the system before proposing changes. No guessing from a ticket title.',
 		image: ServiceAuditMap,
-		alt: 'Paper model of scattered requests and status cards becoming a clear workflow map.',
-		resourceHref: '/resources/process-mapping-worksheet/',
-		resourceLabel: 'Map one workflow with the free worksheet',
-		resourceLocation: 'services_workflow_principle'
+		alt: 'Paper model of scattered requests and status cards becoming a clear workflow map.'
 	},
 	{
-		title: 'Use the simplest fix that will work',
-		body: 'The answer may be custom software, an automation, an integration, better use of an existing tool, or a change to the process.',
+		title: 'Ship the smallest useful version first',
+		body: 'You see working software early, and we expand from what is proven instead of betting on a big reveal.',
 		image: ServiceSolutionOptions,
 		alt: 'Paper model comparing several possible technical approaches before one is selected.'
 	},
@@ -70,7 +91,7 @@ const principles = [
 	},
 	{
 		title: 'You keep everything we produce',
-		body: 'You keep the useful artifacts, software, documentation, and context needed to run or extend the system.',
+		body: 'You keep the code, documentation, and the reasoning behind important decisions. Handoff is part of the engagement.',
 		image: ServiceHandoffSystem,
 		alt: 'Paper model of a working system, documentation, and access packaged for a team to own.'
 	}
@@ -78,28 +99,28 @@ const principles = [
 
 const faqs = [
 	{
-		title: 'Where should I start?',
-		body: "Start with the workflow that's causing the trouble. If the workflow and result are already clear, we may be able to scope a build directly."
+		title: 'How do engagements usually start?',
+		body: 'With a fit call. If the problem is clear, you get a written scope with price, schedule, and responsibilities before any work begins.'
 	},
 	{
-		title: 'Do I need custom software?',
-		body: 'Not necessarily. The recommendation may be custom software, an automation, an integration, better use of an existing tool, or a process change.'
+		title: 'Project or monthly — which fits?',
+		body: 'A project contract suits one defined build. A monthly contract suits continuing priorities across your product and the systems around it.'
 	},
 	{
-		title: 'Can you work with the tools we already use?',
-		body: 'Yes. I look at the tools and data you already have. If they can do the job, we use them.'
+		title: 'Can you work inside our existing stack and team?',
+		body: 'Yes. I work in your repo, your tools, and your rituals — reviews, standups, and the way your team already ships.'
 	},
 	{
-		title: 'Is this AI consulting?',
-		body: 'No. I help improve the way your business runs. AI is one tool I may use when it fits the job and can be made reliable enough for daily use.'
+		title: 'Do you only build new things?',
+		body: 'No. Fixing, finishing, and integrating existing systems is most of the work.'
+	},
+	{
+		title: 'What about HubSpot work?',
+		body: 'I\u2019m HubSpot-certified (Inbound, Email Marketing, Revenue Operations, Reporting). Integrations between your product and HubSpot are a core part of the offer.'
 	},
 	{
 		title: 'What happens when the engagement ends?',
-		body: 'You keep the maps, software, documentation, and notes behind important decisions. I plan the handoff as part of the engagement.'
-	},
-	{
-		title: 'How much does it cost?',
-		body: 'I price builds after we define the scope. Ongoing partnerships are monthly and scoped around agreed priorities and available time.'
+		body: 'You keep the code, documentation, and the reasoning behind important decisions. I plan the handoff as part of the engagement.'
 	}
 ];
 ---
@@ -108,8 +129,8 @@ const faqs = [
 	title={title}
 	description={description}
 	bodyClass='page-services'
-	footerCtaTitle='Which workflow is giving your team trouble?'
-	footerCtaBody="Start with the repeated manual work, unreliable handoff, reporting problem, approval bottleneck, or system that no longer fits. We'll work out the best place to begin."
+	footerCtaTitle="Tell me what your team needs to ship."
+	footerCtaBody="Start with the feature, integration, or system that's stuck. We'll work out whether a project or a monthly contract fits."
 	footerCtaLocation='services_footer_cta'
 >
 	<article class='hc-services-page'>
@@ -117,11 +138,11 @@ const faqs = [
 			<div class='hc-container'>
 				<div class='hc-hero-surface'>
 					<div class='hc-hero-copy'>
-						<h1 class='hc-display' data-motion='headline'>Technical help when work gets harder to run.</h1>
-						<p class='hc-lead' data-motion-deck>I help you understand the workflow, build what your team needs first, and handle the technical priorities that come up as the business changes.</p>
+						<h1 class='hc-display' data-motion='headline'>Senior product engineering for B2B SaaS, on contract.</h1>
+						<p class='hc-lead' data-motion-deck>I join your team to build customer-facing features, internal tools, and HubSpot integrations — as a defined project or ongoing monthly engineering.</p>
 						<div class='hc-actions'>
 							<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='services_hero'>Book a fit call</a>
-							<a class='hc-text-link' href='#services'>Compare the services</a>
+							<a class='hc-text-link' href='#services'>Compare the engagement models</a>
 						</div>
 					</div>
 					<figure class='hc-artifact-stack hc-artifact-stack--single' data-motion-intro-item>
@@ -134,23 +155,25 @@ const faqs = [
 		<section class='hc-section hc-services-offers' id='services' data-motion-group>
 			<div class='hc-container'>
 				<div class='hc-section-header'>
-					<h2 class='hc-section-title' data-motion='reveal'>Choose the problem you need to solve first.</h2>
+					<h2 class='hc-section-title' data-motion='reveal'>Two ways to work together.</h2>
 				</div>
 				<div class='hc-service-list'>
 					{
-						serviceOfferList.map((offer, index) => (
+						engagementModels.map((model, index) => (
 							<a
 								class='hc-service-item'
-								href={offer.path}
-								data-track-event='service_page_clicked'
-								data-track-location={`services_offer_${offer.key}`}
+								href={BOOK_CALL_URL}
+								target='_blank'
+								rel='noopener noreferrer'
+								data-track-event='book_call_clicked'
+								data-track-location={`services_model_${model.key}`}
 								data-motion-item
 							>
 								<span class='hc-index'>{String(index + 1).padStart(2, '0')}</span>
 								<div class='hc-service-item__body'>
-									<h3>{offer.label}</h3>
-									<p>{offer.chooserSummary}</p>
-									<span class='hc-service-item__meta'><span>{offer.commercialNote}</span><span class='hc-text-link'>{offer.chooserCta}</span></span>
+									<h3>{model.label}</h3>
+									<p>{model.heading} {model.body}</p>
+									<span class='hc-service-item__meta'><span>{model.note}</span><span class='hc-text-link'>Book a fit call</span></span>
 								</div>
 							</a>
 						))
@@ -162,14 +185,10 @@ const faqs = [
 		<section class='hc-section--compact hc-services-fit' data-motion-group data-header-surface='dark'>
 			<div class='hc-container'>
 				<div class='hc-fit-panel' data-motion-item>
-					<h2>For businesses that already have customers and recurring work.</h2>
+					<h2>For B2B SaaS teams that need senior engineering without a full-time hire.</h2>
 					<div class='hc-fit-panel__body'>
 						<ul class='hc-signal-list'>
-							<li>Recurring work is spread across spreadsheets, inboxes, forms, chats, and disconnected tools.</li>
-							<li>Handoffs, approvals, reporting, or customer workflows depend on manual checking.</li>
-							<li>Important status lives in people's heads, so the team has to ask around.</li>
-							<li>The team knows software or AI may help but doesn't know what should be built first.</li>
-							<li>A known workflow needs ongoing help from someone who can make decisions and build.</li>
+							{fitSignals.map((signal) => <li>{signal}</li>)}
 						</ul>
 					</div>
 				</div>
@@ -188,7 +207,7 @@ const faqs = [
 
 		<section class='hc-section hc-services-principles' data-motion-group>
 			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>How I turn a difficult workflow into a working system.</h2></div>
+				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>How I work inside your team.</h2></div>
 				<div class='hc-principles-grid'>
 					{
 						principles.map((item, index) => (
@@ -199,16 +218,6 @@ const faqs = [
 									<div>
 										<h3>{item.title}</h3>
 										<p>{item.body}</p>
-										{item.resourceHref && (
-											<a
-												class='hc-text-link hc-principle__resource-link'
-												href={item.resourceHref}
-												data-track-event='resource_clicked'
-												data-track-location={item.resourceLocation}
-											>
-												{item.resourceLabel}
-											</a>
-										)}
 									</div>
 								</div>
 							</div>
