@@ -5,16 +5,16 @@ export const PROJECT_CLIENT_ORDER = [
   "genrupt",
   "palabruno",
   "mucho-hangouts",
-  "desarmadero-latorre",
+  "desarmadero-la-torre",
 ] as const;
 
 export const PROJECT_MORE_WORK_ORDER = [
+  "casamo",
   "vox-prismatic",
   "agent-recall",
   "codex-telegram-bridge",
   "acquire",
   "linkedin-tools",
-  "client-feedback",
 ] as const;
 
 export const DELISTED_CASE_STUDY_SLUGS = [
@@ -27,7 +27,7 @@ export const DELISTED_CASE_STUDY_SLUGS = [
   "apartment-finder",
   "ba-eventos",
   "language-exchange",
-  "casamo",
+  "client-feedback",
   "health-ai-search-audit",
   "online-store-conversion-review",
 ] as const;

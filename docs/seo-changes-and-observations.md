@@ -30,6 +30,12 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Dropped the "Method and case study" tier, removed the All/Client/Independent filters, and retitled the archive to "More product work".
 - After deployment, verify the curated index order, that One Tuesday and the Desarmadero operations prototype no longer appear on the index, and the Desarmadero operations prototype robots tag.
 
+### Casamo Reactivation And Desarmadero Consolidation
+
+- Reactivated Casamo into the "More product work" archive, replacing Client Feedback Evidence Collector (now delisted).
+- Renamed "Desarmadero Latorre" to "Desarmadero La Torre" (correct name) and consolidated the operations-prototype story into it as a second phase; added `/projects/desarmadero-latorre/` and `/case-studies/desarmadero-latorre/` 301 redirects to `/case-studies/desarmadero-la-torre/`.
+- After deployment, verify the Casamo card, the La Torre title, and the two Desarmadero redirects.
+
 ## 2026-07-29
 
 ### Newsletter Retirement And Blog Migration
