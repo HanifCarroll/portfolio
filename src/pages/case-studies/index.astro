@@ -69,7 +69,7 @@ const trioProjects = clientProjects.slice(2);
 			</div>
 		</section>
 
-		<section class='projects-index__trio hc-container-wide' data-project-group data-motion-group>
+		<section class:list={['projects-index__trio', 'hc-container-wide', { 'projects-index__trio--two-up': trioProjects.length === 2 }]} data-project-group data-motion-group>
 			{trioProjects.map((project, index) => (
 				<ProjectVideoCard project={project} variant='compact' index={index + 3} />
 			))}
