@@ -242,125 +242,32 @@ body.hc-home .hc-home-hero__title {
   text-wrap: pretty;
 }
 
-.hc-workflow-diagram {
+.hc-recognition__list {
   display: grid;
-  grid-template-columns:
-    minmax(7rem, 0.8fr) 2.5rem minmax(7.5rem, 0.75fr) 2.5rem minmax(15rem, 1.7fr)
-    2.5rem minmax(7.5rem, 0.75fr);
-  align-items: center;
-  gap: clamp(0.5rem, 1vw, 1rem);
-  width: 100%;
-  color: var(--hc-text);
+  gap: var(--hc-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.hc-workflow-sources,
-.hc-workflow-bottleneck {
-  display: grid;
-  gap: 0.9rem;
+.hc-recognition__list li {
+  position: relative;
+  padding-left: 1.9rem;
+  color: var(--hc-text-muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
-.hc-workflow-source {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: var(--hc-type-meta);
-  font-weight: 600;
-}
-
-.hc-workflow-source svg,
-.hc-workflow-node svg,
-.hc-workflow-input svg {
-  width: 1.8rem;
-  height: 1.8rem;
-  flex: none;
-  fill: none;
-  stroke: var(--hc-secondary-accent);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.6;
-}
-
-.hc-workflow-node,
-.hc-workflow-input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  border: 1px solid color-mix(in srgb, var(--hc-secondary-accent) 18%, transparent);
-  border-radius: 0.55rem;
-  background: color-mix(in srgb, var(--hc-secondary-accent) 3.5%, var(--hc-surface));
-}
-
-.hc-workflow-node {
-  min-height: 7.25rem;
-  flex-direction: column;
-  padding: 1rem;
-  font-size: var(--hc-type-meta);
-  text-align: center;
-}
-
-.hc-workflow-node svg {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
-.hc-workflow-node--person {
-  min-height: 8rem;
-  border-color: color-mix(in srgb, var(--hc-accent) 80%, #dba400);
-  background: color-mix(in srgb, var(--hc-accent) 8%, var(--hc-surface));
-}
-
-.hc-workflow-node--person svg {
-  stroke: #d99d00;
-}
-
-.hc-workflow-input {
-  min-height: 3.4rem;
-  padding: 0.7rem 0.9rem;
-  font-size: var(--hc-type-meta);
-  font-weight: 600;
-}
-
-.hc-workflow-input:first-child svg {
-  stroke: #20a05a;
-}
-
-.hc-workflow-input:nth-last-child(2) svg {
-  stroke: #7659d8;
-}
-
-.hc-workflow-arrow {
-  color: var(--hc-text);
-  font-size: 1.65rem;
-  font-weight: 400;
-  line-height: 1;
-  text-align: center;
-}
-
-.hc-workflow-arrow--down,
-.hc-workflow-arrow--up {
-  font-size: 1.35rem;
-}
-
-.hc-workflow-warning {
-  margin: -0.1rem 0 0;
-  color: #a66f00;
-  font-size: var(--hc-type-caption);
-  line-height: 1.35;
-  text-align: center;
-}
-
-.hc-workflow-warning span {
-  display: inline-grid;
-  width: 1.2rem;
-  height: 1.2rem;
-  place-items: center;
-  margin-right: 0.25rem;
-  border-radius: 50%;
-  color: var(--hc-on-accent);
+.hc-recognition__list li::before {
+  content: '';
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.22rem;
   background: var(--hc-accent);
-  font-size: var(--hc-type-caption);
-  font-weight: 800;
 }
 
 :where(.hc-hero-surface, .hc-cta-panel, .hc-proof-band, .hc-testimonial:first-child)
@@ -893,38 +800,8 @@ body.hc-home .hc-home-hero__title {
     border-left: 0;
   }
 
-  .hc-recognition > *,
-  .hc-workflow-diagram {
+  .hc-recognition > * {
     min-width: 0;
-  }
-
-  .hc-workflow-diagram {
-    grid-template-columns: 1fr;
-    justify-items: stretch;
-    width: 100%;
-    max-width: 24rem;
-    margin-inline: auto;
-  }
-
-  .hc-workflow-sources {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--hc-space-3);
-  }
-
-  .hc-workflow-source {
-    justify-content: center;
-    min-height: 3.4rem;
-    border: 1px solid color-mix(in srgb, var(--hc-secondary-accent) 18%, transparent);
-    border-radius: 0.55rem;
-    background: color-mix(in srgb, var(--hc-secondary-accent) 3.5%, var(--hc-surface));
-  }
-
-  .hc-workflow-diagram > .hc-workflow-arrow {
-    transform: rotate(90deg);
-  }
-
-  .hc-workflow-node {
-    min-height: 6rem;
   }
 
   .hc-proof-row__inner {
