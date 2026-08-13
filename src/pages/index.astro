@@ -53,23 +53,6 @@ const featuredProjects = [
 	}
 ];
 
-const engagementModels = [
-	{
-		key: 'project',
-		label: 'Project contract',
-		heading: 'A defined build, from scope to handoff.',
-		summary: 'One customer-facing feature, internal tool, or integration — scoped, priced, and built around the people who will use it.',
-		note: 'Scoped and priced before work begins'
-	},
-	{
-		key: 'monthly',
-		label: 'Monthly contract',
-		heading: 'Ongoing senior engineering for your product.',
-		summary: 'Continuing priorities across your product and the systems around it, handled by someone who keeps the context.',
-		note: 'Monthly, scoped around priorities'
-	}
-];
-
 const method = [
 	{
 		title: 'Understand the product and the people using it',
@@ -148,16 +131,13 @@ const founderTestimonial = testimonials.markisZarate;
 		<section class='hc-section' id='services' data-motion-group>
 			<div class='hc-container'>
 				<div class='hc-section-header hc-services-header' data-motion='reveal'>
-					<h2 class='hc-section-title'>Two ways to work together.</h2>
-					<p class='hc-section-intro'>A defined project when the next build is clear, or ongoing monthly engineering across your product and the systems around it.</p>
-				</div>
-				<div class='hc-service-paths'>
-					{engagementModels.map((model, index) => <article class='hc-service-path' data-motion-item><div class='hc-service-path__heading'><span aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span><p>{model.label}</p></div><h3>{model.heading}</h3><p>{model.summary}</p><p class='hc-service-path__note'>{model.note}</p><a class='hc-service-path__cta' href='/services/' data-track-event='service_page_clicked' data-track-location={`home_service_path_${model.key}`}>Explore contract engineering<span aria-hidden='true'>→</span></a></article>)}
+					<h2 class='hc-section-title'>One offer: contract product engineering.</h2>
+					<p class='hc-section-intro'>Senior engineering for your product — usually a monthly engagement with retained context, or a defined project when the next build is already clear. The fit call picks the shape.</p>
 				</div>
 				<div class='hc-home-decision-cta' data-motion-item>
 					<div>
-						<h3>Not sure which model fits?</h3>
-						<p>Start with a 30-minute fit call. We'll talk through what's stuck and decide whether a project or a monthly contract makes sense.</p>
+						<h3>Start with a 30-minute fit call.</h3>
+						<p>Tell me what's stuck — a feature, an integration, or an internal tool — and we'll pick the shape that fits.</p>
 					</div>
 					<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_services'>Book a 30-minute fit call</a>
 				</div>

@@ -15,6 +15,14 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Rewrote `PRODUCT.md` and updated `DESIGN.md` to the contract-product-engineering register.
 - After deployment, verify the live footer and closing CTAs, the homepage recognition and featured-project sections, the One Tuesday title/description in Search Console, and confirm `/resources/process-mapping-worksheet/` returns 404.
 
+### Services Page Retirement And Single-Offer Homepage
+
+- Collapsed the homepage "Two ways to work together" two-card section into a single offer ("One offer: contract product engineering") with a monthly-engagement default and a defined-project option, resolved on the fit call.
+- Removed the `/services/` route and its stylesheet; added `/services/` and `/services/*` 301 redirects to `/`, and repointed the stale `/business-systems-audit/`, `/business-systems-build/`, and `/work-with-me/` redirects to `/` to avoid redirect chains.
+- Rebuilt navigation: primary nav Home / Case Studies / Blog / About / Book a fit call; footer Now / Tools / Email. Removed the Services link from the header and footer.
+- Repointed the blog/case-study closing-callout secondary link from `/services/` to `/case-studies/`.
+- After deployment, verify `/services/` returns a one-hop 301 to `/`, the header and footer navigation, and Search Console for `/services/` URL consolidation into the homepage.
+
 ## 2026-07-29
 
 ### Newsletter Retirement And Blog Migration
