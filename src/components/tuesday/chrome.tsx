@@ -23,7 +23,7 @@ export function Hud({ act, onRead }: { act: string; onRead: () => void }) {
 export function Intro({ onStart, onRead }: { onStart: () => void; onRead: () => void }) {
   return (
     <section className="t-intro">
-      <p className="t-intro__kicker">Interactive workflow diagnostic</p>
+      <p className="t-intro__kicker">Interactive case study</p>
       <h1 className="t-intro__title">One Tuesday, twice.</h1>
       <p className="t-intro__deck">
         {COMPANY.name} is {COMPANY.description}. {COMPANY.dayContext}

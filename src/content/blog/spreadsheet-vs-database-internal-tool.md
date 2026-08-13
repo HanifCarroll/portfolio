@@ -138,7 +138,7 @@ That is the practical value of a prototype: it turns assumptions into something 
 
 ## Spreadsheet, existing software, or custom software? Use this decision aid
 
-Start by [mapping one recurring workflow](/blog/business-process-mapping-examples/) from a clear trigger to a clear outcome. The free [process-mapping worksheet](/resources/process-mapping-worksheet/) helps you record the people, tools, handoffs, waits, decisions, and first change without choosing software in advance.
+Start by [mapping one recurring workflow](/blog/business-process-mapping-examples/) from a clear trigger to a clear outcome, then record the people, tools, handoffs, waits, decisions, and first change without choosing software in advance.
 
 Then answer these questions with one recent piece of work in front of you:
 

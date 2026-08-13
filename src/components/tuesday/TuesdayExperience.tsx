@@ -17,7 +17,7 @@ const READER_ANCHORS: Record<string, string> = {
 };
 
 /**
- * One Tuesday, twice — the interactive workflow diagnostic. The component owns the
+ * One Tuesday, twice — the interactive case study. The component owns the
  * mode (immersive vs. reader), the act machine, and the hand-offs between
  * acts. The full prose version lives in the page itself for readers,
  * crawlers, reduced-motion users, and small screens.

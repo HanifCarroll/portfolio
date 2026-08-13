@@ -10,8 +10,8 @@ export interface ProjectTrackMeta {
 
 export const projectTrackMeta: Record<ProjectTrack, ProjectTrackMeta> = {
   workflow_automation: {
-    label: "Operational Product System",
-    shortLabel: "Systems work",
+    label: "Internal tools & automation",
+    shortLabel: "Internal tools",
     group: "supporting_product_proof",
     ctaVariant: "general",
     rank: 3,

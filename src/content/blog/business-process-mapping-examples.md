@@ -15,7 +15,7 @@ A useful business process map shows how one piece of work moves from a clear tri
 
 This article works through one example from the first customer request to the weekly operations report. It is more detailed than a generic flowchart because the difficult parts of a growing service business usually sit between the boxes: a request copied from email into a spreadsheet, an approval waiting in chat, or a field update that never reaches the report.
 
-To make the example concrete, I use a fictional service company called Meridian Facility Services—the same scenario used in the [One Tuesday workflow diagnostic](/case-studies/one-tuesday/).
+To make the example concrete, I use a fictional service company called Meridian Facility Services—the same scenario used in the [One Tuesday case study](/case-studies/one-tuesday/).
 
 <figure class="workflow-map workflow-editorial">
   <picture>
@@ -145,7 +145,7 @@ This order matters because automation makes a rule run faster, but it can't fix 
 
 ## A process-mapping template you can use
 
-Use the free <a href="/resources/process-mapping-worksheet/" data-track-event="resource_clicked" data-track-location="process_mapping_article">process-mapping worksheet</a> on screen or print a blank copy. You can also map a workflow on paper, a whiteboard, or a shared document. Start with these questions before drawing boxes:
+Work through the map on screen or on paper — a whiteboard or shared document works too. Start with these questions before drawing boxes:
 
 <figure class="workflow-map">
   <picture>
@@ -174,5 +174,5 @@ In the [Desarmadero Operations Prototype](/case-studies/desarmadero-operations-p
 
 The prototype gave the client something concrete to review before deciding the scope of a full build.
 
-If you want to feel the difference between the two workflows, [run the One Tuesday diagnostic](/case-studies/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
+If you want to feel the difference between the two workflows, [run the One Tuesday case study](/case-studies/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
 

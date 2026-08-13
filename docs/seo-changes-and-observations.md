@@ -2,6 +2,19 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-13
+
+### Contract Product Engineering Repositioning And Worksheet Retirement
+
+- Repositioned the shared site shell from "technical consulting for businesses outgrowing their workflows" to "contract product engineer for B2B SaaS teams": footer tagline, mobile-nav note, and the closing-CTA default used across blog, case-study, tools, and 404 pages.
+- Rewrote the homepage recognition section around a product-engineering pain (a feature or integration stuck behind a packed roadmap), removed the One Tuesday workflow diagnostic from the homepage, and reordered featured client proof to Genrupt then Palabruno.
+- Simplified the HubSpot credential line to "HubSpot integrations are a core part of the offer" and removed the retired Inbound / Email Marketing / Revenue Operations / Reporting cert enumeration from the homepage and services FAQ.
+- Retired the free `/resources/process-mapping-worksheet/` lead magnet and removed its page, stylesheet, assets, and every cross-link from the business-process-mapping and spreadsheet-vs-database blog posts and the Acquire and Desarmadero case studies. The retired URL now returns 404.
+- Retagged case-study metadata (`service`, `client`, `cardLabel`, `role`) and track labels away from workflow/operations/consulting language, and reordered client-work curation to lead with Genrupt, Palabruno, and Mucho Hangouts.
+- Rebranded One Tuesday from "Interactive workflow diagnostic" to "Interactive case study" across its page, components, SEO title/description, and related links.
+- Rewrote `PRODUCT.md` and updated `DESIGN.md` to the contract-product-engineering register.
+- After deployment, verify the live footer and closing CTAs, the homepage recognition and featured-project sections, the One Tuesday title/description in Search Console, and confirm `/resources/process-mapping-worksheet/` returns 404.
+
 ## 2026-07-29
 
 ### Newsletter Retirement And Blog Migration

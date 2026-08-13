@@ -2,11 +2,11 @@
 // on the index so client proof, consulting methods, and independent R&D do not
 // compete for the same meaning.
 export const PROJECT_CLIENT_ORDER = [
-  "desarmadero-operations-prototype",
-  "palabruno",
   "genrupt",
-  "desarmadero-latorre",
+  "palabruno",
   "mucho-hangouts",
+  "desarmadero-latorre",
+  "desarmadero-operations-prototype",
 ] as const;
 
 export const PROJECT_METHOD_ORDER = ["one-tuesday"] as const;

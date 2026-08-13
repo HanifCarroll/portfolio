@@ -1,6 +1,6 @@
 ---
 name: Hanif Carroll Portfolio
-description: An inspectable, proof-led consulting site for businesses outgrowing their workflows.
+description: An inspectable, proof-led portfolio for Hanif Carroll, contract product engineer for B2B SaaS teams.
 colors:
   accent-yellow: "#f8d651"
   accent-yellow-hover: "#f2b63d"
@@ -95,7 +95,7 @@ The visual system pairs a near-white canvas with dark navy proof surfaces and a 
 
 **Key Characteristics:**
 
-- Proof-led and operational rather than promotional.
+- Proof-led and product-engineering focused, leading with the client's engineering problem and inspectable proof rather than promotion.
 - Spacious, direct, and easy to scan without feeling sparse.
 - Flat by default, with elevation reserved for controls, navigation, and real artifacts.
 - One obvious primary action per decision surface.

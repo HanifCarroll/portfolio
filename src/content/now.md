@@ -6,7 +6,7 @@ description: >
 lastUpdated: "August 12th, 2026"
 ---
 
-## Building an independent consulting practice
+## Contract product engineering
 
 I'm focused on contract product engineering for B2B SaaS teams — customer-facing features, internal tools, and HubSpot integrations. If your team needs senior engineering on contract, [email me](mailto:hanif@hanifcarroll.com).
 
