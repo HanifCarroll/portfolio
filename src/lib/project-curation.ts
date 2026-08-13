@@ -1,26 +1,25 @@
 // Every case study keeps its direct route. These collections control discovery
-// on the index so client proof, consulting methods, and independent R&D do not
+// on the index so featured client proof and supporting product work do not
 // compete for the same meaning.
 export const PROJECT_CLIENT_ORDER = [
   "genrupt",
   "palabruno",
   "mucho-hangouts",
   "desarmadero-latorre",
-  "desarmadero-operations-prototype",
 ] as const;
 
-export const PROJECT_METHOD_ORDER = ["one-tuesday"] as const;
-
-export const PROJECT_R_AND_D_ORDER = [
-  "client-feedback",
-  "linkedin-tools",
+export const PROJECT_MORE_WORK_ORDER = [
   "vox-prismatic",
-  "acquire",
   "agent-recall",
   "codex-telegram-bridge",
+  "acquire",
+  "linkedin-tools",
+  "client-feedback",
 ] as const;
 
 export const DELISTED_CASE_STUDY_SLUGS = [
+  "one-tuesday",
+  "desarmadero-operations-prototype",
   "job-application-assistant",
   "maximo-interiorismo",
   "redwriter-comics",

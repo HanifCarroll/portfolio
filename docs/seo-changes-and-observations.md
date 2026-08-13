@@ -23,6 +23,13 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Repointed the blog/case-study closing-callout secondary link from `/services/` to `/case-studies/`.
 - After deployment, verify `/services/` returns a one-hop 301 to `/`, the header and footer navigation, and Search Console for `/services/` URL consolidation into the homepage.
 
+### Case Studies Curation Salvage
+
+- Recurated the case-studies index to lead with SaaS product proof (Genrupt, Palabruno, Mucho Hangouts, then the Desarmadero parts catalog) and reordered the "More product work" archive to lead with product-engineering craft (Vox Prismatic, Agent Recall, Codex Telegram Bridge).
+- Delisted One Tuesday and the Desarmadero operations prototype from the index; the Desarmadero operations prototype route is now `noindex` via delisted-slug handling, while One Tuesday keeps its route but loses its first-class section.
+- Dropped the "Method and case study" tier, removed the All/Client/Independent filters, and retitled the archive to "More product work".
+- After deployment, verify the curated index order, that One Tuesday and the Desarmadero operations prototype no longer appear on the index, and the Desarmadero operations prototype robots tag.
+
 ## 2026-07-29
 
 ### Newsletter Retirement And Blog Migration

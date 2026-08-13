@@ -10,8 +10,6 @@ import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
 import {
 	DELISTED_CASE_STUDY_SLUGS,
-	PROJECT_METHOD_ORDER,
-	PROJECT_R_AND_D_ORDER
 } from '@src/lib/project-curation';
 import '../../styles/case-study.css';
 
@@ -63,15 +61,7 @@ const caseStudyJsonLd = {
 	datePublished: project.year?.split('-')[0]
 };
 
-const isMethod = (PROJECT_METHOD_ORDER as readonly string[]).includes(project.slug);
-const isResearch = (PROJECT_R_AND_D_ORDER as readonly string[]).includes(project.slug);
-const projectType = project.proofType === 'client'
-	? 'Client engagement'
-	: isMethod
-		? 'Method and case study'
-		: isResearch
-			? 'Independent R&D'
-			: 'Independent work';
+const projectType = project.proofType === 'client' ? 'Client engagement' : 'Independent work';
 const caseStudyFacts = [
 	{ label: 'Project', value: projectType },
 	{ label: 'Engagement', value: project.service },

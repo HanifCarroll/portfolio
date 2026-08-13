@@ -5,8 +5,7 @@ import { projects } from '../../lib/project-cards';
 import {
 	DELISTED_CASE_STUDY_SLUGS,
 	PROJECT_CLIENT_ORDER,
-	PROJECT_METHOD_ORDER,
-	PROJECT_R_AND_D_ORDER,
+	PROJECT_MORE_WORK_ORDER,
 } from '../../lib/project-curation';
 import '../../styles/projects.css';
 
@@ -25,8 +24,7 @@ const selectProjects = (preferredOrder: readonly string[]) => {
 
 const categorizedSlugs = [
 	...PROJECT_CLIENT_ORDER,
-	...PROJECT_METHOD_ORDER,
-	...PROJECT_R_AND_D_ORDER,
+	...PROJECT_MORE_WORK_ORDER,
 	...DELISTED_CASE_STUDY_SLUGS,
 ];
 const duplicateSlugs = categorizedSlugs.filter((slug, index) => categorizedSlugs.indexOf(slug) !== index);
@@ -41,12 +39,10 @@ if (uncategorizedProjects.length > 0) {
 }
 
 const clientProjects = selectProjects(PROJECT_CLIENT_ORDER);
-const methodProjects = selectProjects(PROJECT_METHOD_ORDER);
-const researchProjects = selectProjects(PROJECT_R_AND_D_ORDER);
+const moreWorkProjects = selectProjects(PROJECT_MORE_WORK_ORDER);
 const spotlightProject = clientProjects[0];
 const panoramaProject = clientProjects[1];
 const trioProjects = clientProjects.slice(2);
-const methodProject = methodProjects[0];
 ---
 
 <BaseLayout title={`${title} | Hanif Carroll`} description={description} bodyClass='page-projects-index'>
@@ -55,22 +51,13 @@ const methodProject = methodProjects[0];
 			<h1 data-motion='headline'>Case Studies</h1>
 			<div class='projects-index__intro-copy'>
 				<p data-motion-deck>Client work and independent projects — the problem, what I built, and the outcome.</p>
-				<div class='projects-index__filters' aria-label='Filter case studies'>
-					<button class='is-active' type='button' data-project-filter='all' aria-pressed='true'>All projects</button>
-					<button type='button' data-project-filter='client' aria-pressed='false'>Client</button>
-					<button type='button' data-project-filter='independent' aria-pressed='false'>Independent</button>
-				</div>
 			</div>
 		</header>
 
 		<div class='projects-index__collection-heading hc-container-wide' data-project-group>
 			<p>Client engagements</p>
-			<h2>See how I mapped real workflows and built systems people could use.</h2>
+			<h2>Client product work — features, billing, reliability, and handoff.</h2>
 		</div>
-
-		<section class='projects-index__filtered hc-container-wide' data-project-filtered-results aria-live='polite' hidden>
-			<div class='projects-index__filtered-grid' data-project-filtered-grid></div>
-		</section>
 
 		<section class='projects-index__spotlight hc-container-wide' data-project-group data-motion-group>
 			<ProjectVideoCard project={spotlightProject} variant='lead' index={1} />
@@ -88,96 +75,16 @@ const methodProject = methodProjects[0];
 			))}
 		</section>
 
-		<section class='projects-index__closing-feature' data-project-group data-motion-group>
-			<div class='hc-container-wide'>
-				<div class='projects-index__collection-heading projects-index__collection-heading--inverse'>
-					<p>Method and case study</p>
-					<h2>A modeled workflow for recognizing where work breaks down.</h2>
-				</div>
-				<ProjectVideoCard project={methodProject} variant='lead' index={6} />
-			</div>
-		</section>
-
 		<section class='projects-index__archive hc-container-wide' data-project-group data-motion-group>
 			<div class='projects-index__archive-heading'>
-				<h2>Independent systems and R&amp;D</h2>
-				<p>Self-directed work exploring controlled automation, AI workflows, and durable operating systems.</p>
+				<h2>More product work</h2>
+				<p>Independent products and tooling — AI systems, developer tools, and internal tools.</p>
 			</div>
 			<div class='projects-index__archive-grid'>
-				{researchProjects.map((project, index) => (
-					<ProjectVideoCard project={project} variant='compact' index={index + clientProjects.length + methodProjects.length + 1} />
+				{moreWorkProjects.map((project, index) => (
+					<ProjectVideoCard project={project} variant='compact' index={index + clientProjects.length + 1} />
 				))}
 			</div>
 		</section>
 	</article>
 </BaseLayout>
-
-<script>
-	const installProjectFilters = () => {
-		const root = document.querySelector<HTMLElement>('.projects-index');
-		if (!root || root.dataset.filtersReady === 'true') return;
-
-		const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-project-filter]'));
-		const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-project-proof]'));
-		const groups = Array.from(root.querySelectorAll<HTMLElement>('[data-project-group]'));
-		const filteredResults = root.querySelector<HTMLElement>('[data-project-filtered-results]');
-		const filteredGrid = root.querySelector<HTMLElement>('[data-project-filtered-grid]');
-		if (!filteredResults || !filteredGrid) return;
-
-		root.dataset.filtersReady = 'true';
-		const cardRecords = cards.map((card) => {
-			const origin = document.createComment('project-card-origin');
-			const index = card.querySelector<HTMLElement>('.project-video-card__index');
-			card.before(origin);
-			return { card, origin, originalIndex: index?.textContent ?? '' };
-		});
-
-		const restoreOriginalLayout = () => {
-			cardRecords.forEach(({ card, origin, originalIndex }) => {
-				origin.parentNode?.insertBefore(card, origin.nextSibling);
-				card.hidden = false;
-				const index = card.querySelector<HTMLElement>('.project-video-card__index');
-				if (index) index.textContent = originalIndex;
-			});
-		};
-
-		const applyFilter = (filter: string, activeButton: HTMLButtonElement) => {
-			restoreOriginalLayout();
-			buttons.forEach((item) => {
-				const active = item === activeButton;
-				item.classList.toggle('is-active', active);
-				item.setAttribute('aria-pressed', String(active));
-			});
-
-			if (filter === 'all') {
-				filteredResults.hidden = true;
-				groups.forEach((group) => { group.hidden = false; });
-				return;
-			}
-
-			groups.forEach((group) => { group.hidden = true; });
-			filteredGrid.replaceChildren();
-			const matches = cardRecords.filter(({ card }) => {
-				const isClient = card.dataset.projectProof === 'client';
-				return filter === 'client' ? isClient : !isClient;
-			});
-
-			matches.forEach(({ card }, index) => {
-				const cardIndex = card.querySelector<HTMLElement>('.project-video-card__index');
-				if (cardIndex) cardIndex.textContent = String(index + 1).padStart(2, '0');
-				filteredGrid.append(card);
-			});
-			filteredResults.hidden = false;
-		};
-
-		buttons.forEach((button) => {
-			button.addEventListener('click', () => {
-				const filter = button.dataset.projectFilter ?? 'all';
-				applyFilter(filter, button);
-			});
-		});
-	};
-
-	installProjectFilters();
-	document.addEventListener('astro:page-load', installProjectFilters);
-</script>
