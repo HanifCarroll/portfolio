@@ -10,6 +10,7 @@ export const PROJECT_CLIENT_ORDER = [
 
 export const PROJECT_MORE_WORK_ORDER = [
   "casamo",
+  "ba-eventos",
   "vox-prismatic",
   "agent-recall",
   "codex-telegram-bridge",
@@ -25,7 +26,6 @@ export const DELISTED_CASE_STUDY_SLUGS = [
   "redwriter-comics",
   "casa-elaria",
   "apartment-finder",
-  "ba-eventos",
   "language-exchange",
   "client-feedback",
   "health-ai-search-audit",

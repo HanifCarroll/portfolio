@@ -36,6 +36,11 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Renamed "Desarmadero Latorre" to "Desarmadero La Torre" (correct name) and consolidated the operations-prototype story into it as a second phase; added `/projects/desarmadero-latorre/` and `/case-studies/desarmadero-latorre/` 301 redirects to `/case-studies/desarmadero-la-torre/`.
 - After deployment, verify the Casamo card, the La Torre title, and the two Desarmadero redirects.
 
+### BA Eventos Reactivation
+
+- Reactivated BA Eventos (AI event discovery) into the "More product work" archive, placed after Casamo; it was delisted in the salvage as "first reserve" and is now indexed and back in the sitemap.
+- After deployment, verify the BA Eventos card and that `/case-studies/ba-eventos/` no longer carries `noindex`.
+
 ## 2026-07-29
 
 ### Newsletter Retirement And Blog Migration
