@@ -1,0 +1,68 @@
+{
+  "slug": "product-usage-scoring-routing",
+  "title": "Product Usage Scoring & Routing",
+  "description": "An explainable weekly Sales and Customer Success routing system that separates fit, product usage, and buying intent, then syncs one approved action to HubSpot.",
+  "seoTitle": "Product Usage Scoring & Routing | GTM Systems Case Study",
+  "seoDescription": "An explainable weekly Sales and Customer Success routing system that separates fit, product usage, and buying intent and syncs one approved action to HubSpot.",
+  "proofType": "experiment",
+  "cardLabel": "GTM systems demonstration",
+  "client": "Independent Project",
+  "service": "GTM systems consulting",
+  "detailVariant": "product",
+  "role": "System design, full-stack build, and Cloudflare delivery",
+  "category": "product",
+  "track": "mvp_build",
+  "year": "2026",
+  "timeline": "Independent build and launch, 2026",
+  "teamSize": "Solo build",
+  "technologies": [
+    "TypeScript",
+    "TanStack Start",
+    "Cloudflare Workers",
+    "Cloudflare D1",
+    "Cloudflare Workflows",
+    "HubSpot API",
+    "HubSpot App Card",
+    "Cloudflare Turnstile",
+    "React",
+    "Tailwind CSS",
+    "Vitest"
+  ],
+  "liveUrl": "https://pusr-web-preview.pusr-web.workers.dev",
+  "repository": "https://github.com/HanifCarroll/product-usage-scoring-routing",
+  "repositoryCtaLabel": "View source on GitHub",
+  "constraints": [
+    "The demonstration must not present synthetic scores or outcomes as real business efficacy, so every metric and disclosure stays explicit.",
+    "HubSpot writes must be fictional, idempotent, and bounded: one designated account, follow-up tasks only, no email, and no portal or owner secrets exposed.",
+    "The weekly queue must stay explainable: separate fit, product usage, and buying intent instead of collapsing them into one opaque score."
+  ],
+  "problem": [
+    "Product behavior often exists, but the weekly Sales and Customer Success queue arrives late, noisy, over capacity, or unexplained. One combined score collapses fit, product value, and buying intent into a single opaque number, so the team cannot tell why an account was routed or who should act.",
+    "Without a bounded, explainable routing policy, an account can qualify for human action yet be deferred silently, and Sales or Customer Success can act without an SLA or a record of what changed.",
+    "Any real sync to HubSpot carries risk: duplicate tasks, outreach by mistake, or exposing portal and owner details, so the demonstration had to keep writes idempotent, fictional, and clearly bounded."
+  ],
+  "solution": [
+    "Designed and built an explainable weekly routing application that scores each account on three separate dimensions — fit, product usage, and buying intent — and applies visible gates before any human action.",
+    "Compared the same 120 synthetic accounts under a naive combined score and an explainable gated policy at the same weekly capacity, so the difference is legible.",
+    "Shipped an account decision packet that shows identity, product-event timeline, scores, gates, rejected alternatives, owner, SLA, and CRM state.",
+    "Let visitors adjust two allowlisted levers — the acquisition intent minimum and weekly human-action capacity — and recompute the queue live.",
+    "Built a bounded HubSpot sync that creates one fictional follow-up task (never outreach) idempotently through a durable Cloudflare workflow, with a fake local adapter for the demo and a hardened production path.",
+    "Ran the whole system on Cloudflare Workers, D1, and Workflows with TanStack Start, validated all boundary data at runtime, and covered the scoring and routing logic with a table-tested decision engine."
+  ],
+  "result": [
+    "The demonstration makes the weekly Sales and CS routing decision visible: the same 120 accounts produce different, explainable outcomes under the gated policy and the naive comparator.",
+    "Visitors can inspect a single account's decision packet to see exactly which signals, gates, and thresholds routed it, and can change intent or capacity to watch who enters or leaves the queue.",
+    "One approved action can synchronize into a real HubSpot developer test account as a fictional task — idempotently, with no outreach and no private portal or owner details exposed.",
+    "All scores and outcomes are expert-defined demonstration hypotheses, not validated predictors; the app states this and never claims real business efficacy."
+  ],
+  "deliveryHighlights": [
+    "An explainable weekly Sales and CS routing queue comparing a gated policy and a naive combined score on 120 synthetic accounts",
+    "Per-account decision packets showing scores, gates, rejected alternatives, owner, SLA, and CRM state",
+    "Adjustable acquisition intent and weekly capacity levers with live queue recompute",
+    "A bounded, idempotent HubSpot task sync (never outreach) through a durable Cloudflare workflow"
+  ],
+  "images": {
+    "hero": "@src/assets/img/projects/product-usage-scoring-routing/queue.png",
+    "feature": "@src/assets/img/projects/product-usage-scoring-routing/queue.png"
+  }
+}

@@ -2,6 +2,19 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-14
+
+### Product Usage Scoring & Routing Case Study
+
+- Added `/case-studies/product-usage-scoring-routing/` as a polished, evidence-led case study for the independent GTM systems demonstration Product Usage Scoring & Routing, aimed primarily at prospective consulting clients.
+- The page explains the business problem before the stack: the late, noisy, over-capacity, or unexplained weekly Sales/CS queue, the naive vs gated policy comparison on the same 120 synthetic accounts, transparent per-account decision packets, adjustable acquisition-intent and weekly-capacity controls, the bounded idempotent HubSpot approval/sync (fictional task, never outreach), the Cloudflare Workers + D1 + Workflows architecture, and the explicit synthetic-data limitations. It never claims real business efficacy.
+- Primary CTAs: live demo (`https://pusr-web-preview.pusr-web.workers.dev`), source on GitHub, and a written GTM systems assessment via email.
+- Screenshots captured from the live production app (queue, decision packet, policy views) with no private HubSpot data, portal selectors, ids, tokens, or emails.
+- Added the project to the "More product work" archive as its first card (leading the archive) without displacing client engagements; the homepage featured section (Genrupt, Palabruno) is unchanged.
+- Set SEO title/description and CreativeWork JSON-LD (inherited from the shared case-study template) on the new route; the route is indexed and included in the sitemap.
+- Verified with `bun run check:projects`, `bun run format:check`, `bun run lint`, `bun run build`, built HTML/sitemap inspection, desktop/mobile browser QA, and a clean console.
+- After deployment, verify the live route, canonical, title/description, social preview image, archive card position, sitemap entry, the live demo and repository links, and the written-assessment mailto; then request indexing and review Search Console for the route after four to six weeks.
+
 ## 2026-08-13
 
 ### Contract Product Engineering Repositioning And Worksheet Retirement

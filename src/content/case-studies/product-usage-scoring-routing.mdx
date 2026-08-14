@@ -1,0 +1,155 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import queue from "../../assets/img/projects/product-usage-scoring-routing/queue.png";
+import decisionPacket from "../../assets/img/projects/product-usage-scoring-routing/decision-packet.png";
+import policy from "../../assets/img/projects/product-usage-scoring-routing/policy.png";
+
+export const demoUrl = "https://pusr-web-preview.pusr-web.workers.dev";
+export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-routing";
+
+export const shippedRows = [
+  {
+    label: "Weekly queue made visible",
+    title: "The same accounts route differently and legibly.",
+    body: "120 synthetic accounts produce distinct, explainable outcomes under a gated policy and a naive combined score at the same weekly capacity.",
+  },
+  {
+    label: "Decision packet per account",
+    title: "Every route explains itself.",
+    body: "Each account shows identity, product-event timeline, fit/usage/intent scores, gates, rejected alternatives, owner, SLA, and CRM state.",
+  },
+  {
+    label: "Adjustable levers",
+    title: "Intent and capacity recompute the queue live.",
+    body: "Visitors change the acquisition intent minimum or weekly human-action capacity and watch who enters or leaves the queue.",
+  },
+  {
+    label: "Bounded HubSpot sync",
+    title: "One approved action stays idempotent and fictional.",
+    body: "An approved action creates a single follow-up task in a dedicated HubSpot test account — never outreach, no email, no secrets exposed.",
+  },
+];
+
+<CaseSection title="The weekly Sales and CS queue often explains nothing">
+  The starting point is a common revenue problem, not a technology one. Product behavior exists — logins, incidents, pricing pages, security docs — but the weekly Sales and Customer Success queue can still be late, noisy, over capacity, or unexplained.
+
+    A team looking at a routed account usually cannot answer the basic questions: why did this account enter the queue, who should act on it, how fast, and what changed versus last week? When the answer is a single opaque score, the routing becomes a black box that the team has to trust without being able to inspect.
+
+    This case study is a live demonstration of an alternative: an explainable weekly routing intervention. It is built with fictional data on purpose, so a prospective client can inspect the method without it being mistaken for a real company's results.
+
+</CaseSection>
+
+<CaseSection title="One combined score is often the wrong abstraction">
+  <DecisionBlock title="Separate the signals before scoring.">
+    Fit, product usage, and buying intent are different questions. Collapsing them into one number hides which signal actually moved an account, and it hides the tradeoffs the business is making.
+  </DecisionBlock>
+
+    <DecisionBlock title="Use gates, not just scores, before any human action.">
+    A score ranks; gates decide. Hand raiser, acquisition sales-assist, monitor, self-serve, manual review, and expansion are visible routes decided by explicit rules, with an owner and a real SLA attached.
+
+  </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="The same accounts under two policies" media>
+  The demonstration runs the identical 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The difference is legible in the queue, and the synthetic metrics never claim to be real business efficacy.
+
+    <ImagePlate image={queue} alt="Weekly Sales and CS queue comparing a gated policy and a naive combined score on 120 synthetic accounts, with acquisition intent and weekly capacity controls." />
+
+</CaseSection>
+
+<CaseSection title="The naive comparator is transparent">
+  The naive policy, `combined_score_naive_v1`, is a deliberately simple baseline: it collapses fit, product usage, and buying intent into one number — roughly a weighted average — and routes any account above a single threshold into one generic Sales queue. It has no hard blocks, no prospect-versus-customer distinction, and no separate plays.
+
+    It is not a claim about any real company's former policy. It exists so the comparison is honest and easy to read: one number can be the wrong abstraction, and this page shows why.
+
+</CaseSection>
+
+<CaseSection title="Every route carries a decision packet" media>
+  The gated policy scores each account on three separate 0–100 dimensions and evaluates visible gates before routing. An account's decision packet shows the full record: identity, a product-event timeline, the itemized points behind each score, which gates passed or failed, the strongest rejected alternative, the owner, the SLA, and the current CRM state.
+
+    <ImagePlate image={decisionPacket} alt="A single account decision packet showing the product-event timeline, fit, product usage, and buying intent scores, evaluated gates, owner, SLA, and rejected alternative." />
+
+</CaseSection>
+
+<CaseSection title="Two levers, live recompute" media>
+  Visitors can change exactly two allowlisted controls: the acquisition intent minimum and the weekly human-action capacity. Changing capacity reprioritizes the queue — it never changes whether an account qualifies; qualified overflow stays visibly deferred. The policy view makes the tradeoff between intent and team capacity concrete.
+
+    <ImagePlate image={policy} alt="The policy view showing the three scored dimensions, the naive comparator formula, and the live comparison table on the same 120 synthetic accounts." />
+
+</CaseSection>
+
+<CaseSection title="The bounded HubSpot approval and sync">
+  The demonstration includes one bounded external write. A designated account's decision packet offers an "Approve and sync" action that creates a single fictional follow-up task in a dedicated HubSpot developer test account — never outreach, never an email, never a change to real customer data.
+
+    The sync is idempotent and traceable to a run id: identity is resolved, scores are recorded, a play is selected, and the durable workflow upserts a fictional company, contact, and association and creates one task. A fake local adapter keeps the full demo usable without any credentials, while a hardened production path runs the same workflow on Cloudflare with the real HubSpot adapter.
+
+</CaseSection>
+
+<CaseSection title="Cloudflare is the decision and execution layer">
+  <DecisionBlock title="Pure decision engine, validated at runtime.">
+    Scoring and routing are pure, table-tested functions that import no Cloudflare or HubSpot code. All boundary data is validated at runtime, and timestamps are stored in UTC ISO 8601 and rendered in the viewer's locale.
+  </DecisionBlock>
+
+    <DecisionBlock title="Durable execution, not just a request.">
+    The approve-and-sync path runs as a Cloudflare Workflow over D1 state: run and signal records persist, the workflow is idempotent and retryable, and a completed run survives a refresh via its opaque run id.
+
+  </DecisionBlock>
+
+    <DecisionBlock title="HubSpot stays the operational destination.">
+    Cloudflare owns the decision and execution; HubSpot is the CRM destination. The app card reads latest scores, signals, and gates back from an authenticated Cloudflare endpoint, so the CRM record and the decision stay connected.
+
+  </DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Synthetic data, stated clearly">
+  Every person, company, domain, event, and outcome in the demonstration is fictional. Northfield Software and its Northfield Incident Management product exist only to supply believable product signals. Synthetic CRM contacts omit email entirely and are identified by name plus a unique person id, so no email of any kind is written to HubSpot.
+
+    The scores, gates, and outcomes are expert-defined demonstration hypotheses, not validated predictors. The app states this on the queue, the policy view, and the About page. Precision, recall, and yield demonstrate the method only and are never presented as real business efficacy.
+
+</CaseSection>
+
+<CaseSection title="What I owned">
+  I designed and built the full system as an independent project: the product concept, the scoring and routing policy, the weekly queue and decision-packet experience, the adjustable controls, the Cloudflare Workers + D1 + Workflows execution layer, and the bounded HubSpot integration with its app card and fake local adapter.
+
+    The outcome is a live, login-free demonstration a prospective client can inspect end to end — from a raw product signal to an explainable route with an owner and SLA, and one bounded, idempotent write into HubSpot.
+
+</CaseSection>
+
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What the demonstration delivers</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      The demonstration connects product behavior to explainable revenue action and HubSpot
+      operations without an opaque universal score, and it makes every limitation explicit.
+    </ProofRows>
+  </div>
+</section>
+
+<CaseSection title="Inspect it, then ask about your own workflow">
+  The live demo runs the same 120 synthetic accounts through both policies, shows the decision packets, and lets you change intent and capacity. The source is public and includes the spec, the durable workflow, the HubSpot adapter, and the full test suite.
+
+    <a class='hc-button' href={demoUrl} target='_blank' rel='noopener noreferrer'>
+    Open the live demo
+    </a>
+
+    <a class='btn-secondary' href={repoUrl} target='_blank' rel='noopener noreferrer'>
+    View source on GitHub
+    <span>&rarr;</span>
+    </a>
+
+    <p>
+    If product or customer signals are reaching HubSpot too late — or without enough context — I can review one workflow and return a written map of the leaks, risks, and the smallest useful fix.
+    </p>
+
+    <a class='hc-button' href='mailto:hanif@hanifcarroll.com?subject=GTM%20systems%20assessment' rel='noopener noreferrer'>
+    Request a written GTM systems assessment
+    </a>
+
+</CaseSection>

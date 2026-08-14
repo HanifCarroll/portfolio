@@ -9,6 +9,7 @@ export const PROJECT_CLIENT_ORDER = [
 ] as const;
 
 export const PROJECT_MORE_WORK_ORDER = [
+  "product-usage-scoring-routing",
   "casamo",
   "ba-eventos",
   "vox-prismatic",
