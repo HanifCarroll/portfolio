@@ -3,10 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import HeroBackdrop from '../assets/img/hero-editorial-backdrop-navy-yellow.png';
 import HeroPortrait from '../assets/img/hanif-consulting-hero-cutout-facing-left.png';
-import AboutListenContext from '../assets/img/illustrations/about-listen-context.svg';
-import AboutTradeoffs from '../assets/img/illustrations/about-tradeoffs.svg';
-import AboutReviewLoop from '../assets/img/illustrations/about-review-loop.svg';
-import AboutClearHandoff from '../assets/img/illustrations/about-clear-handoff.svg';
 import AboutContinuity from '../assets/img/illustrations/about-continuity.svg';
 import AboutContinuityMobile from '../assets/img/illustrations/about-continuity-mobile.svg';
 import '../styles/about.css';
@@ -14,33 +10,6 @@ import '../styles/about.css';
 const title = 'About Hanif Carroll | Contract Product Engineer';
 const description =
 	'Contract product engineer for B2B SaaS teams — customer-facing products, internal tools, and HubSpot integrations.';
-
-const principles = [
-	{
-		title: 'I listen for the context behind the request',
-		body: 'The first conversation is about how the business runs, who depends on the system, and what would make a meaningful difference.',
-		image: AboutListenContext,
-		alt: 'Paper model of a direct conversation becoming organized notes about people, tools, and constraints.'
-	},
-	{
-		title: 'I make the tradeoffs visible',
-		body: 'I explain the options, costs, and risks in plain language so you can make a decision without guessing what the technical details mean.',
-		image: AboutTradeoffs,
-		alt: 'Paper model comparing effort, value, and two possible technical paths.'
-	},
-	{
-		title: 'I keep decisions close to the build',
-		body: 'The person who learns the business problem stays involved through product decisions, implementation, review, and revision.',
-		image: AboutReviewLoop,
-		alt: 'Paper model of a short loop connecting a decision, working version, feedback, and revision.'
-	},
-	{
-		title: 'I leave a clear path forward',
-		body: 'You leave with the system, documentation, decisions, and next steps needed to operate it or keep improving it.',
-		image: AboutClearHandoff,
-		alt: 'Paper model of a completed system packaged with documentation, decisions, and next steps.'
-	}
-];
 
 const background = [
 	{
@@ -95,13 +64,6 @@ const background = [
 					<Image class='hc-about-continuity__desktop' src={AboutContinuity} alt='A founder conversation, decision record, focused build plan, and handoff document connected by one continuous path.' loading='lazy' />
 					<Image class='hc-about-continuity__mobile' src={AboutContinuityMobile} alt='' loading='lazy' />
 				</figure>
-			</div>
-		</section>
-
-		<section class='hc-section--compact hc-about-principles' data-motion-group>
-			<div class='hc-container'>
-				<div class='hc-section-header'><h2 class='hc-section-title' data-motion='reveal'>What you can expect from me.</h2></div>
-				<div class='hc-principles-grid'>{principles.map((item, index) => <div class='hc-principle' data-motion-item><figure><Image src={item.image} alt={item.alt} loading='lazy' /></figure><div class='hc-principle__copy'><span class='hc-index'>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.body}</p></div></div></div>)}</div>
 			</div>
 		</section>
 
