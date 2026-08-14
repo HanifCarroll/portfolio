@@ -1,0 +1,226 @@
+<!--
+  Product Usage Scoring & Routing — caption skin (project-local source).
+
+  product-launch-video's Step 4 supplies this as the caption look; captions.mjs fills
+  the three reserved holes, wraps the fragment in a <template>, and writes
+  compositions/captions.html:
+    · the empty GROUPS array            → the engine's scene-aware word groups
+    · the 0 duration + 0 width/height   → real total + canvas size
+    · the empty data-brand-tokens style → :root tokens derived from the project's frame.md
+
+  Token contract — reference ONLY this fixed vocab (captions.mjs injects it from
+  frame.md, so the brand-token overlay flows through; each var has a frame.md-cobalt
+  literal fallback for standalone preview), plus the raw frame.md color keys
+  (e.g. --card-bg / --border) that frameTokensCss also emits:
+    --cap-ink · --cap-canvas · --cap-accent · --cap-accent-2 · --font-display ·
+    --font-body · --cap-band-top · --cap-band-height
+  Hooks (do not rename): .caption-group / .caption-word + states .is-active / .is-spoken,
+  root data-composition-id="captions", timeline at window.__timelines["captions"].
+  State changes use gsap.set({className}) (applied on the engine's frame-by-frame seek);
+  never tl.call() callbacks (seek does not fire them → wrong state on render).
+
+  Visual: the consulting-grade light-mode register from frame.md — a white flat card
+  (`--card-bg` #FFFFFF, `--border` #E3E6EB 1.5px, 6px radius, NO shadow) carrying the
+  caption line, seated in the bottom keep-out band (band top ≈ 900px of 1080). Words are
+  local Inter (display + body ramp), ink near-black (#1E2430); upcoming words sit muted
+  (#576071); the current word is the single cobalt commit (#2F5BD9) — a solid cobalt flat
+  block, no shadow, no blur, no layout shift — with spoken words settling back to ink.
+  Strictly two-color throughout: ink + cobalt; the white card and light-gray canvas are
+  the surfaces. Square two-line captions: a centered line-wrap pill sized so two lines
+  read cleanly inside the 1080x1080 band.
+-->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+<!-- captions.mjs injects the project's :root tokens here -->
+<style data-brand-tokens></style>
+
+<style>
+  #captions-root {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .caption-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  /* the keep-out band, from captionBand(H) — frame content stays above it */
+  .caption-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--cap-band-top, 900px);
+    height: var(--cap-band-height, 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .caption-group {
+    /* every group is absolutely stacked over the SAME band — exactly one shown at a
+       time via opacity. Must be absolute: in-flow groups would lay out side-by-side. */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  /* THE white flat card — frame.md surface: #FFFFFF fill, 1.5px #E3E6EB border,
+     6px radius, NO shadow (flat is the premium signal). Square two-line pill. */
+  .caption-pill {
+    position: relative;
+    max-width: 92%;
+    padding: 18px 40px 20px;
+    background: var(--card-bg, #FFFFFF);
+    border: 1.5px solid var(--border, #E3E6EB);
+    border-radius: 6px;
+  }
+  .caption-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.12em 0.34em;
+    font-family: var(--font-display, "Inter"), system-ui, sans-serif;
+    font-weight: 500;
+    font-size: clamp(34px, 4.2cqw, 46px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: var(--cap-ink, #1E2430);
+  }
+
+  /* upcoming — muted secondary (#576071), no block */
+  .caption-word {
+    display: inline-block;
+    padding: 0 0.04em;
+    color: var(--cap-accent-2, #576071);
+    transition: none;
+  }
+  /* current word — THE cobalt commit (#2F5BD9): a flat solid block via box-shadow
+     spread (no blur, no layout shift), ink-white reads on top; the one accent */
+  .caption-word.is-active {
+    color: var(--cap-canvas, #F6F7F9);
+    background: var(--cap-accent, #2F5BD9);
+    box-shadow: 0 0 0 0.05em var(--cap-accent, #2F5BD9);
+  }
+  /* already spoken — solid ink (#1E2430), block cleared */
+  .caption-word.is-spoken {
+    color: var(--cap-ink, #1E2430);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* optional per-word accents (dormant until a word-classer tags them) */
+  /* numerals / data — the body Inter voice, slightly recessed */
+  .caption-word.cap-num {
+    font-family: var(--font-body, "Inter"), system-ui, sans-serif;
+    font-weight: 600;
+    color: var(--cap-accent, #2F5BD9);
+  }
+  /* emphasis — a cobalt underline (no second hue; emphasis is the accent) */
+  .caption-word.cap-cta {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--cap-accent, #2F5BD9);
+    text-underline-offset: 0.1em;
+  }
+
+  @media (max-aspect-ratio: 9/16) {
+    .caption-pill {
+      max-width: 96%;
+      padding: 16px 28px 18px;
+    }
+    .caption-line {
+      font-size: clamp(30px, 5.2cqw, 42px);
+    }
+  }
+</style>
+
+<div
+  id="captions-root"
+  data-composition-id="captions"
+  data-timeline-locked
+  data-start="0"
+  data-duration="0"
+  data-fps="30"
+  data-width="0"
+  data-height="0"
+>
+  <div class="caption-layer" aria-hidden="true">
+    <div id="caption-stage" class="caption-stage"></div>
+  </div>
+</div>
+
+<script>
+  // captions.mjs injects the engine's scene-aware groups + real duration here.
+  var GROUPS = [];
+  var DURATION = 0;
+
+  (function () {
+    var stage = document.getElementById("caption-stage");
+
+    // build DOM: one .caption-group per group, .caption-word per word
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.createElement("div");
+      groupEl.className = "caption-group";
+      groupEl.id = "caption-group-" + g;
+      var pill = document.createElement("div");
+      pill.className = "caption-pill";
+      var line = document.createElement("div");
+      line.className = "caption-line";
+      (group.words || []).forEach(function (w, i) {
+        var span = document.createElement("span");
+        span.className = "caption-word";
+        span.id = "caption-word-" + g + "-" + i;
+        span.textContent = String(w.text);
+        line.appendChild(span);
+      });
+      pill.appendChild(line);
+      groupEl.appendChild(pill);
+      stage.appendChild(groupEl);
+    });
+
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    GROUPS.forEach(function (group, g) {
+      var groupEl = document.getElementById("caption-group-" + g);
+      var words = group.words || [];
+      var next = GROUPS[g + 1];
+      var isLast = g === GROUPS.length - 1;
+      var start = Math.max(0, Number(group.start));
+      var end = isLast ? DURATION : Math.min(Number(next.start), Number(group.end) + 0.3);
+      if (end <= start) end = start + 0.01;
+
+      // group on/off — exactly one group visible at a time
+      tl.set(groupEl, { opacity: 1 }, start);
+      tl.set(groupEl, { opacity: 0 }, end);
+
+      // 3-state karaoke via className SETS — seek-safe (gsap.set applies on the
+      // engine's frame-by-frame seek; .call callbacks would NOT fire).
+      words.forEach(function (w, i) {
+        var el = document.getElementById("caption-word-" + g + "-" + i);
+        var at = Math.max(start, Number(w.start));
+        tl.set(el, { className: "caption-word" }, start); // upcoming (also resets on reverse-seek)
+        tl.set(el, { className: "caption-word is-active" }, at); // current
+        tl.fromTo(el, { scale: 0.985 }, { scale: 1, duration: 0.1, ease: "power3.out" }, at);
+        if (i + 1 < words.length) {
+          var nextAt = Math.max(start, Number(words[i + 1].start));
+          tl.set(el, { className: "caption-word is-spoken" }, nextAt); // demote when next activates
+        }
+      });
+      if (words.length) {
+        var lastEl = document.getElementById("caption-word-" + g + "-" + (words.length - 1));
+        var lastSpoken = Math.min(end, Number(words[words.length - 1].end) + 0.1);
+        tl.set(lastEl, { className: "caption-word is-spoken" }, lastSpoken);
+      }
+    });
+
+    // full-span anchor so the sub-comp timeline spans the whole video
+    tl.to({}, { duration: DURATION }, 0);
+    window.__timelines["captions"] = tl;
+  })();
+</script>

@@ -1,0 +1,460 @@
+<template>
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+  #root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+  }
+
+  /* Full-bleed ground — light-gray canvas, single cobalt soft bloom behind the packet */
+  .dsp-bg {
+    position: absolute;
+    inset: 0;
+    background: #F6F7F9;
+  }
+  .dsp-bloom {
+    position: absolute;
+    left: 30cqw;
+    top: 22cqh;
+    width: 52cqw;
+    height: 52cqw;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(47,91,217,0.06) 0%, rgba(47,91,217,0) 68%);
+  }
+
+  /* Scene clip layer — fills the canvas; children anchor to #root */
+  .dsp-scene {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Header row above the packet card — eyebrow + tag pill (chrome, colophon) */
+  .dsp-header {
+    position: absolute;
+    left: 20cqw;
+    top: 8.5cqh;
+    display: flex;
+    align-items: center;
+    gap: 1.6cqw;
+  }
+  .dsp-eyebrow {
+    font-size: 0.8cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+  }
+  .dsp-pill {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2F5BD9;
+    background: rgba(47,91,217,0.08);
+    border-radius: 6px;
+    padding: 5px 12px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Hero — the real decision-packet screenshot, flat white 6px card (no shadow) */
+  .dsp-card {
+    position: absolute;
+    left: 20cqw;
+    top: 16cqh;
+    width: 66cqw;
+    background: #FFFFFF;
+    border: 1.5px solid #E3E6EB;
+    border-radius: 6px;
+    overflow: hidden;
+    transform-origin: top left;
+    will-change: transform, opacity;
+  }
+  .dsp-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Handoff-in seam — the selected account row from Frame 3 (cobalt-soft fill) */
+  .dsp-row {
+    position: absolute;
+    left: 33cqw;
+    top: 40cqh;
+    width: 26cqw;
+    height: 9cqh;
+    box-sizing: border-box;
+    background: #EAF0FD;
+    border: 1.5px solid #B9CBF5;
+    border-radius: 6px;
+    padding: 1.4cqw 1.6cqw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1cqh;
+    transform-origin: center;
+    will-change: transform, opacity;
+  }
+  .dsp-row-name {
+    font-size: 1.25cqw;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #1E2430;
+  }
+  .dsp-row-route {
+    font-size: 0.78cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+  }
+
+  /* Custom cursor — cobalt arrow, above all content */
+  .dsp-cursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.4cqw;
+    height: 2.4cqw;
+    z-index: 30;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .dsp-cursor svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Ripple rings — live in DOM from t=0 at the row center */
+  .dsp-ripple {
+    position: absolute;
+    left: 46cqw;
+    top: 44.5cqh;
+    width: 7cqw;
+    height: 7cqw;
+    margin-left: -3.5cqw;
+    margin-top: -3.5cqh;
+    border-radius: 50%;
+    border: 2px solid #2F5BD9;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  /* Right "inspector" column — the packet's evidence readout */
+  .dsp-col {
+    position: absolute;
+    left: 69cqw;
+    top: 16cqh;
+    width: 25cqw;
+    display: flex;
+    flex-direction: column;
+    gap: 2cqh;
+  }
+
+  /* Gate readout card */
+  .dsp-gates {
+    background: #FFFFFF;
+    border: 1.5px solid #E3E6EB;
+    border-radius: 6px;
+    padding: 2.4cqw 2.2cqw 1.4cqw;
+  }
+  .dsp-gates-title {
+    font-size: 0.78cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #576071;
+    margin-bottom: 1.2cqh;
+  }
+  .dsp-gate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.7cqh 0;
+    border-top: 1px solid #E3E6EB;
+    transform-origin: left center;
+    will-change: transform;
+  }
+  .dsp-gate-label {
+    font-size: 0.85cqw;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+  .dsp-gate-value {
+    display: inline-block;
+    font-size: 1.5cqw;
+    font-weight: 700;
+    line-height: 1;
+    color: #2F5BD9;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .dsp-gate-value--dim {
+    color: #8A93A3;
+  }
+
+  /* Routing decision split-highlight — 4px cobalt left rule */
+  .dsp-route {
+    background: rgba(47,91,217,0.08);
+    border-left: 4px solid #2F5BD9;
+    border-radius: 6px;
+    padding: 2.2cqw 2cqw 2.2cqw 2.6cqw;
+  }
+  .dsp-route-title {
+    font-size: 0.8cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+    margin-bottom: 1.2cqh;
+  }
+  .dsp-route-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.9cqh 0;
+  }
+  .dsp-route-field {
+    font-size: 0.82cqw;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+  .dsp-route-val {
+    font-size: 1.35cqw;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #1E2430;
+  }
+  .dsp-route-reason {
+    margin-top: 1cqh;
+    padding-top: 1.2cqh;
+    border-top: 1px solid rgba(47,91,217,0.16);
+    font-size: 0.92cqw;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1E2430;
+  }
+
+  /* Rejected naive alternative — muted split-highlight */
+  .dsp-reject {
+    background: #FFFFFF;
+    border-left: 4px solid #C6CBD4;
+    border-radius: 6px;
+    padding: 1.8cqw 2cqw;
+  }
+  .dsp-reject-label {
+    font-size: 0.75cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A93A3;
+    margin-bottom: 0.8cqh;
+  }
+  .dsp-reject-line {
+    font-size: 1.05cqw;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #576071;
+  }
+  .dsp-reject-num {
+    font-size: 1.5cqw;
+    font-weight: 700;
+    color: #576071;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+</style>
+
+<div id="root" data-composition-id="04-decision-packet" data-duration="6.629" data-width="1080" data-height="1080">
+  <div class="clip dsp-bg" data-start="0" data-duration="6.629" data-track-index="0">
+    <div class="dsp-bloom"></div>
+  </div>
+
+  <div class="clip dsp-scene" data-start="0" data-duration="6.629" data-track-index="1">
+    <!-- Header above the packet -->
+    <div class="dsp-header">
+      <span class="dsp-eyebrow">Routing decision</span>
+      <span class="dsp-pill">northfield_v1</span>
+    </div>
+
+    <!-- Hero: real decision-packet screenshot -->
+    <div class="dsp-card">
+      <img src="assets/decision-packet.png" alt="" draggable="false">
+    </div>
+
+    <!-- Handoff-in: selected account row (VexNal Cloud · Hand raiser) -->
+    <div class="dsp-row">
+      <span class="dsp-row-name">VexNal Cloud</span>
+      <span class="dsp-row-route">Route · Hand raiser</span>
+    </div>
+
+    <!-- Ripple rings (DOM from t=0 at row center) -->
+    <div class="dsp-ripple dsp-ripple-1"></div>
+    <div class="dsp-ripple dsp-ripple-2"></div>
+    <div class="dsp-ripple dsp-ripple-3"></div>
+
+    <!-- Custom cursor -->
+    <div class="dsp-cursor">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 2.5 L21 13 L13.4 15.3 L10.5 21.5 L5.6 17.7 L2.8 20 Z" fill="#2F5BD9"/>
+        <path d="M5 2.5 L21 13 L13.4 15.3 L10.5 21.5 L5.6 17.7 L2.8 20 Z" fill="#2447AD"/>
+      </svg>
+    </div>
+
+    <!-- Right inspector column -->
+    <div class="dsp-col">
+      <div class="dsp-gates dsp-gates-card">
+        <div class="dsp-gates-title">Gates · read</div>
+        <div class="dsp-gate dsp-gate-fit">
+          <span class="dsp-gate-label">Fit · ICP</span>
+          <span class="dsp-gate-value dsp-gate-value--dim">Medium</span>
+        </div>
+        <div class="dsp-gate dsp-gate-usage">
+          <span class="dsp-gate-label">Product usage</span>
+          <span class="dsp-gate-value dsp-gate-value--dim">Low</span>
+        </div>
+        <div class="dsp-gate dsp-gate-intent">
+          <span class="dsp-gate-label">Buying intent</span>
+          <span class="dsp-gate-value dsp-gate-value-emph">High</span>
+        </div>
+      </div>
+
+      <div class="dsp-route dsp-route-card">
+        <div class="dsp-route-title">Routing decision</div>
+        <div class="dsp-route-row">
+          <span class="dsp-route-field">Route</span>
+          <span class="dsp-route-val">Hand raiser</span>
+        </div>
+        <div class="dsp-route-row">
+          <span class="dsp-route-field">SLA</span>
+          <span class="dsp-route-val">1 business hour</span>
+        </div>
+        <div class="dsp-route-reason">In-window explicit sales request prompts human review</div>
+      </div>
+
+      <div class="dsp-reject dsp-reject-card">
+        <div class="dsp-reject-label">Rejected · naive</div>
+        <div class="dsp-reject-line">naive combined score <span class="dsp-reject-num">47 &lt; 60</span> — did not qualify</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var gsap = window.gsap;
+    var root = document.getElementById("04-decision-packet");
+    if (!gsap || !root) return;
+
+    var $ = function (sel) { return root.querySelector(sel); };
+
+    var cursor = $(".dsp-cursor");
+    var row = $(".dsp-row");
+    var card = $(".dsp-card");
+    var ripples = [].slice.call(root.querySelectorAll(".dsp-ripple"));
+    var gateFit = $(".dsp-gate-fit");
+    var gateUsage = $(".dsp-gate-usage");
+    var gateIntent = $(".dsp-gate-intent");
+    var intentEmph = $(".dsp-gate-value-emph");
+    var routeCard = $(".dsp-route-card");
+    var routeRows = [].slice.call(root.querySelectorAll(".dsp-route-card .dsp-route-row, .dsp-route-reason"));
+    var rejectCard = $(".dsp-reject-card");
+
+    // Account-row centroid in px on 1080 canvas (1cqw = 1cqh = 10.8px)
+    var ROW_X = 497, ROW_Y = 481;
+    var tl = gsap.timeline({ paused: true });
+
+    // ===== Scene 1 (0.0–1.4s) — queue-to-packet seam: row arrives, cursor clicks, packet opens.
+    // Row is present from Frame 3's handoff (x 46, y 46, scale 1, opacity 1, cobalt-soft fill).
+    tl.set(card, { opacity: 0, scale: 0.96 }, 0);
+    tl.set(gateFit, { opacity: 0, y: 12 }, 0);
+    tl.set(gateUsage, { opacity: 0, y: 12 }, 0);
+    tl.set(gateIntent, { opacity: 0, y: 12 }, 0);
+    tl.set(routeCard, { opacity: 0, y: 14 }, 0);
+    tl.set(routeRows, { opacity: 0, y: 10 }, 0);
+    tl.set(rejectCard, { opacity: 0, y: 14 }, 0);
+
+    // Cursor entry + dart to the row (~"Why this route?")
+    tl.set(cursor, { x: 886, y: 216 }, 0);
+    tl.to(cursor, { x: ROW_X, y: ROW_Y, duration: 0.55, ease: "power3.out" }, 0.16);
+
+    // Click — cursor + row depress together, then return (cursor-click-ripple press,
+    // deterministic chained press/release — no yoyo loop)
+    tl.to(cursor, { scale: 0.85, duration: 0.09, ease: "power2.in" }, 0.72);
+    tl.to(row,    { scale: 0.92, duration: 0.09, ease: "power2.in" }, 0.72);
+    tl.to(cursor, { scale: 1, duration: 0.09, ease: "power2.out" }, 0.81);
+    tl.to(row,    { scale: 1, duration: 0.09, ease: "power2.out" }, 0.81);
+
+    // Ripple burst — 3 rings staggered from the row center
+    tl.set(ripples, { scale: 0 }, 0.0);
+    tl.set(ripples, { opacity: 1 }, 0.78);
+    tl.to(ripples, {
+      scale: 4.5, opacity: 0, duration: 0.7, ease: "power2.out",
+      stagger: 0.08, immediateRender: false
+    }, 0.78);
+
+    // Row depresses into the opening packet — the cut-stitch seam.
+    // Card establishes by ~0.5s (hero-visible) and opens to its handoff scale 0.70.
+    tl.to(card,  { opacity: 1, scale: 0.70, duration: 0.6, ease: "power3.out" }, 0.35);
+    tl.to(row,   { scale: 0.72, opacity: 0, duration: 0.4, ease: "power2.in" }, 0.86);
+
+    // Cursor retreats to the inspector to "read" the gates
+    tl.to(cursor, { x: 886, y: 216, duration: 0.5, ease: "power2.inOut" }, 1.6);
+
+    // ===== Scene 2 (1.4–3.5s) — three gates reveal on the VO; Buying intent pops as decisive evidence.
+    tl.to(gateFit,   { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 1.65); // …explicit…
+    tl.to(gateUsage, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.25); // …a hand…
+    tl.to(gateIntent,{ opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.9);  // …raiser.
+
+    // asr-keyword-glow — linear driver scales + glows the decisive Buying-intent High cell
+    // exactly as "intent explicit — a hand raiser" is spoken (~1.55–3.2s).
+    var driver = { t: 0 };
+    var WINDOW = 1.65, ATTACK = 0.18, RELEASE = 0.35, REST = 0.15, BLUR = 26, BOOST = 0.16;
+    tl.to(driver, {
+      t: WINDOW,
+      duration: WINDOW,
+      ease: "none",
+      onUpdate: function () {
+        var time = driver.t, env;
+        if (time <= 0) env = 0;
+        else if (time < WINDOW) env = Math.min(time / ATTACK, 1);            // linear attack
+        else if (time < WINDOW + RELEASE) env = 1 - ((time - WINDOW) / RELEASE) * (1 - REST); // decay
+        else env = REST;                                                     // breadcrumb rest
+        env = Math.max(0, Math.min(1, env));
+        intentEmph.style.textShadow = "0 0 " + (BLUR * env) + "px rgba(47,91,217," + (0.85 * env) + ")";
+        intentEmph.style.transform = "scale(" + (1 + BOOST * env) + ")";
+      }
+    }, 1.55);
+
+    // Cursor hovers the decisive cell
+    tl.to(cursor, { x: 886, y: 432, duration: 0.5, ease: "power2.inOut" }, 3.0);
+
+    // ===== Scene 3 (3.5–6.0s) — routing decision lands, then the rejected naive alternative.
+    tl.to(routeCard, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.7);
+    tl.to(routeRows, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", stagger: 0.22 }, 3.85);
+
+    // Rejected naive line — muted split-highlight, lands on "The naive score: 47"
+    tl.to(rejectCard, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.6);
+    tl.to(cursor, { x: 886, y: 713, duration: 0.5, ease: "power2.inOut" }, 5.4);
+
+    // ===== Scene 4 (6.0–6.229s) — held read: packet + decisive evidence + muted rejected line hold still.
+    // No motion — stillness carries trust.
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["04-decision-packet"] = tl;
+  })();
+</script>
+</template>

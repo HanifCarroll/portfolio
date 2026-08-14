@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      /* ===== Tokens — Product Usage Scoring & Routing / consulting-grade carousel ===== */
+      :root {
+        --bg: #f6f7f9;
+        --surface: #ffffff;
+        --ink: #1e2430;
+        --muted: #576071;
+        --cobalt: #2f5bd9;
+        --cobalt-strong: #2447ad;
+        --cobalt-soft: #eaf0fd;
+        --border: #e3e6eb;
+        --positive: #1f7a43;
+        --negative: #b42318;
+        --r: 6px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 400;
+        src: url("../../assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 500;
+        src: url("../../assets/fonts/inter-latin-500-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 600;
+        src: url("../../assets/fonts/inter-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-weight: 700;
+        src: url("../../assets/fonts/inter-latin-700-normal.woff2") format("woff2");
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .slide {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        background: var(--bg);
+        overflow: hidden;
+      }
+      .inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 64px 76px 100px;
+      }
+      .progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: var(--cobalt);
+      }
+      .foot {
+        position: absolute;
+        left: 76px;
+        right: 76px;
+        bottom: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 19px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      .foot .num {
+        color: var(--cobalt);
+        font-weight: 600;
+      }
+      .foot .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .foot .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--cobalt);
+        opacity: 0.9;
+      }
+
+      .eyebrow {
+        font-size: 21px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cobalt);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .tag {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--cobalt);
+        background: rgba(47, 91, 217, 0.08);
+        border: 1px solid rgba(47, 91, 217, 0.18);
+        border-radius: var(--r);
+        padding: 8px 15px;
+        text-transform: none;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      h1 {
+        font-size: 72px;
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-top: 26px;
+      }
+      h2 {
+        font-size: 50px;
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-top: 18px;
+      }
+      .lead {
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: 20px;
+        max-width: 880px;
+      }
+      .accent-line {
+        width: 60px;
+        height: 4px;
+        background: var(--cobalt);
+        border-radius: 2px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+      }
+      .shot {
+        border-radius: var(--r);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+      .shot img {
+        display: block;
+      }
+      .cap {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 10px;
+      }
+
+      /* ===== S1 · Cover ===== */
+      .s1 .bk {
+        position: absolute;
+        top: -40px;
+        right: -140px;
+        width: 640px;
+        height: 640px;
+        object-fit: cover;
+        opacity: 0.1;
+        filter: saturate(0.9);
+      }
+      .s1 .veil {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 520px;
+        height: 1080px;
+        background: linear-gradient(200deg, var(--bg) 30%, rgba(246, 247, 249, 0.7));
+      }
+      .s1 .diag {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 440px;
+        height: 1080px;
+        clip-path: polygon(40% 0, 100% 0, 100% 100%, 6% 100%);
+        background: linear-gradient(160deg, rgba(47, 91, 217, 0.16), rgba(47, 91, 217, 0.03));
+      }
+      .s1 .dots {
+        position: absolute;
+        right: 64px;
+        top: 130px;
+        display: grid;
+        grid-template-columns: repeat(3, 14px);
+        gap: 26px;
+      }
+      .s1 .dots i {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--cobalt);
+        opacity: 0.22;
+      }
+      .s1 .meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 23px;
+        font-weight: 500;
+        color: var(--ink);
+        margin-top: 26px;
+      }
+      .s1 .meta .sp {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--cobalt);
+      }
+      .s1 .pillrow {
+        display: flex;
+        gap: 14px;
+        margin-top: 44px;
+        flex-wrap: wrap;
+      }
+      .s1 .pill {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--cobalt);
+        background: rgba(47, 91, 217, 0.08);
+        border: 1px solid rgba(47, 91, 217, 0.18);
+        border-radius: var(--r);
+        padding: 12px 18px;
+      }
+      .s1 .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 50px;
+        background: var(--cobalt);
+        color: #fff;
+        font-size: 25px;
+        font-weight: 600;
+        padding: 18px 32px;
+        border-radius: var(--r);
+      }
+
+      /* ===== S2 · three dimensions ===== */
+      .dims {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        margin-top: 48px;
+      }
+      .dim {
+        padding: 32px 30px;
+        display: flex;
+        flex-direction: column;
+      }
+      .dim .k {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--cobalt);
+        color: #fff;
+        font-size: 26px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      .dim h3 {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .dim .q {
+        font-size: 23px;
+        font-weight: 500;
+        color: var(--cobalt);
+        margin-top: 10px;
+        line-height: 1.4;
+      }
+      .dim p {
+        font-size: 22px;
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: 14px;
+      }
+      .dim .sig {
+        margin-top: auto;
+        padding-top: 18px;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--ink);
+        border-top: 1px solid var(--border);
+      }
+      .takeaway {
+        margin-top: auto;
+        background: var(--cobalt-soft);
+        border-left: 4px solid var(--cobalt);
+        border-radius: var(--r);
+        padding: 24px 30px;
+        font-size: 25px;
+        font-weight: 500;
+        color: var(--ink);
+        line-height: 1.45;
+      }
+      .s2 .inner {
+        justify-content: space-between;
+      }
+
+      /* ===== S3 · score ranks / gates decide ===== */
+      .s3 .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        margin-top: 44px;
+      }
+      .s3 .left p {
+        font-size: 25px;
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: 22px;
+      }
+      .s3 .score-num {
+        font-size: 88px;
+        font-weight: 700;
+        color: var(--cobalt);
+        line-height: 1;
+      }
+      .gates {
+        padding: 30px 32px;
+      }
+      .gates .gh {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 18px;
+      }
+      .gates .gh .t {
+        font-size: 23px;
+        font-weight: 600;
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .gates .gh .c {
+        font-size: 18px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .gate {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 13px 0;
+        border-top: 1px solid var(--border);
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .gate:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+      .gate .rid {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--cobalt);
+        flex: none;
+      }
+      .callout {
+        margin-top: auto;
+        background: var(--cobalt-soft);
+        border-left: 4px solid var(--cobalt);
+        border-radius: var(--r);
+        padding: 24px 30px;
+        font-size: 26px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.45;
+      }
+      .s3 .inner {
+        justify-content: space-between;
+      }
+
+      /* ===== S4 · comparison ===== */
+      .s4 .mets {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 36px;
+      }
+      .pol {
+        padding: 24px 28px;
+      }
+      .pol .ph {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .pol .ph .t {
+        font-size: 23px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .pol .ph .badge {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .mrow {
+        display: flex;
+        gap: 26px;
+        align-items: baseline;
+        padding: 14px 0;
+        border-top: 1px solid var(--border);
+      }
+      .mrow .mv {
+        font-size: 44px;
+        font-weight: 700;
+        color: var(--cobalt);
+        line-height: 1;
+      }
+      .mrow .ml {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .mfoot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 14px;
+        font-size: 19px;
+        color: var(--muted);
+      }
+      .mfoot b {
+        font-size: 23px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .s4 .strip {
+        margin-top: 26px;
+      }
+      .s4 .strip .shot {
+        height: 330px;
+      }
+      .s4 .strip img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .s4 .synth {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .s4 .synth .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--positive);
+      }
+
+      /* ===== S5 · decision packet ===== */
+      .s5 .pack {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 34px;
+        margin-top: 34px;
+        align-items: stretch;
+      }
+      .pack .shot {
+        min-height: 0;
+      }
+      .pack .shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left top;
+      }
+      .pack .side {
+        display: flex;
+        flex-direction: column;
+      }
+      .pack .side .lead {
+        margin-top: 0;
+      }
+      .items {
+        list-style: none;
+        margin-top: 24px;
+      }
+      .items li {
+        display: flex;
+        gap: 14px;
+        padding: 14px 0;
+        border-top: 1px solid var(--border);
+        font-size: 23px;
+        color: var(--ink);
+        line-height: 1.4;
+      }
+      .items li:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+      .items .ck {
+        color: var(--cobalt);
+        font-weight: 700;
+        flex: none;
+      }
+      .own-sla {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: auto;
+        padding-top: 24px;
+      }
+      .os {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 16px 20px;
+      }
+      .os .lab {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .os .val {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-top: 6px;
+      }
+
+      /* ===== S6 · capacity vs qualification ===== */
+      .s6 .lev {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 36px;
+      }
+      .levcard {
+        padding: 26px 28px;
+      }
+      .levcard .t {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .levcard .rg {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .levcard .v {
+        font-size: 56px;
+        font-weight: 700;
+        color: var(--cobalt);
+        margin-top: 10px;
+        line-height: 1;
+      }
+      .cap-body {
+        margin-top: 28px;
+        font-size: 26px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 920px;
+      }
+      .s6 .flow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-top: 28px;
+      }
+      .flow .box {
+        padding: 24px 28px;
+      }
+      .flow .box .t {
+        font-size: 23px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .flow .box .sub {
+        font-size: 20px;
+        color: var(--muted);
+        margin-top: 8px;
+        line-height: 1.5;
+      }
+      .flow .qual .t {
+        color: var(--positive);
+      }
+      .flow .def .t {
+        color: var(--negative);
+      }
+      .s6 .controls {
+        margin-top: auto;
+      }
+
+      /* ===== S7 · CTA ===== */
+      .s7 .rings {
+        position: absolute;
+        right: -120px;
+        bottom: -140px;
+        width: 640px;
+        height: 640px;
+        border-radius: 50%;
+        border: 1px solid rgba(47, 91, 217, 0.16);
+      }
+      .s7 .rings.r2 {
+        width: 460px;
+        height: 460px;
+        right: -70px;
+        bottom: -90px;
+      }
+      .s7 .rings.r3 {
+        width: 300px;
+        height: 300px;
+        right: -30px;
+        bottom: -50px;
+      }
+      .s7 .wr {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 90px 76px;
+      }
+      .s7 .meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 23px;
+        font-weight: 500;
+        color: var(--ink);
+        margin-top: 26px;
+      }
+      .s7 .meta .sp {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--cobalt);
+      }
+      .s7 h1 {
+        margin-top: 24px;
+        max-width: 860px;
+      }
+      .s7 .links {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        margin-top: 48px;
+      }
+      .s7 .link {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .s7 .link .k {
+        font-size: 26px;
+        font-weight: 600;
+        color: var(--cobalt);
+      }
+      .s7 .link .url {
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--ink);
+        word-break: break-word;
+      }
+      .s7 .cta {
+        margin-top: 40px;
+        display: inline-block;
+        background: var(--cobalt);
+        color: #fff;
+        font-size: 26px;
+        font-weight: 600;
+        padding: 20px 34px;
+        border-radius: var(--r);
+      }
+      .s7 .disclaim {
+        margin-top: 44px;
+        font-size: 19px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 780px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ SLIDE 1 · COVER ============ -->
+    <section class="slide s1">
+      <img class="bk" src="../../assets/live-full-page.png" alt="" />
+      <div class="veil"></div>
+      <div class="diag"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="inner">
+        <div class="accent-line"></div>
+        <div class="meta">
+          Product Usage Scoring &amp; Routing <span class="sp"></span> Northfield Software
+        </div>
+        <h1>Not every high score deserves outreach.</h1>
+        <p class="lead">
+          An explainable weekly Sales &amp; CS routing system. Fit, usage, and buying intent scored
+          separately — visible gates decide each route, and every decision explains itself.
+        </p>
+        <div class="pillrow">
+          <span class="pill">Scores rank</span>
+          <span class="pill">Gates decide</span>
+          <span class="pill">Every route explained</span>
+        </div>
+        <div class="cta">Explore a fictional demonstration</div>
+      </div>
+      <div class="foot">
+        <span class="num">01</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 14.2%"></div>
+    </section>
+
+    <!-- ============ SLIDE 2 · THREE DIMENSIONS ============ -->
+    <section class="slide s2">
+      <div class="inner">
+        <div class="eyebrow">The decision <span class="tag">Three separate dimensions</span></div>
+        <h2>Fit, usage, and intent answer different questions.</h2>
+        <div class="dims">
+          <div class="card dim">
+            <div class="k">1</div>
+            <h3>Fit</h3>
+            <div class="q">Who is this account?</div>
+            <p>ICP and firmographics — industry, size, role, geography, environment.</p>
+            <div class="sig">ICP &amp; firmographics</div>
+          </div>
+          <div class="card dim">
+            <div class="k">2</div>
+            <h3>Product usage</h3>
+            <div class="q">Are they using the product?</div>
+            <p>
+              Real Northfield Incident Management signals — services connected, incidents resolved,
+              active users.
+            </p>
+            <div class="sig">Incident Management signals</div>
+          </div>
+          <div class="card dim">
+            <div class="k">3</div>
+            <h3>Buying intent</h3>
+            <div class="q">Are they ready to buy?</div>
+            <p>Pricing, SSO, security, and admin activity across the account.</p>
+            <div class="sig">Pricing · SSO · security · admin</div>
+          </div>
+        </div>
+        <div class="takeaway">
+          Three scored 0–100 dimensions kept separate — no opaque universal score collapses them.
+        </div>
+      </div>
+      <div class="foot">
+        <span class="num">02</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 28.5%"></div>
+    </section>
+
+    <!-- ============ SLIDE 3 · SCORE RANKS / GATES DECIDE ============ -->
+    <section class="slide s3">
+      <div class="inner">
+        <div class="eyebrow">The method <span class="tag">Score vs gates</span></div>
+        <h2>A score ranks; visible gates decide.</h2>
+        <div class="split">
+          <div class="left">
+            <div class="score-num">0–100</div>
+            <p>
+              A score tells you where an account ranks on each dimension. It orders the list — it
+              does not say what to do next.
+            </p>
+            <p>
+              Before any human action, explicit rules pick the route and assign an owner with a real
+              SLA.
+            </p>
+          </div>
+          <div class="card gates">
+            <div class="gh">
+              <span class="t">Six visible routes</span><span class="c">explicit rules</span>
+            </div>
+            <div class="gate"><span class="rid"></span>Hand raiser</div>
+            <div class="gate"><span class="rid"></span>Acquisition sales-assist</div>
+            <div class="gate"><span class="rid"></span>Monitor</div>
+            <div class="gate"><span class="rid"></span>Self-serve</div>
+            <div class="gate"><span class="rid"></span>Manual review</div>
+            <div class="gate"><span class="rid"></span>Expansion</div>
+          </div>
+        </div>
+        <div class="callout">
+          Every route carries an owner and a real SLA — decided by gates, not by position on a
+          ranking.
+        </div>
+      </div>
+      <div class="foot">
+        <span class="num">03</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 42.8%"></div>
+    </section>
+
+    <!-- ============ SLIDE 4 · COMPARISON ============ -->
+    <section class="slide s4">
+      <div class="inner">
+        <div class="eyebrow">The comparison <span class="tag">120 synthetic accounts</span></div>
+        <h2>Same accounts, same capacity.</h2>
+        <div class="mets">
+          <div class="card pol">
+            <div class="ph">
+              <span class="t">Gated policy</span><span class="badge">northfield_v1</span>
+            </div>
+            <div class="mrow"><span class="mv">25</span><span class="ml">Qualified</span></div>
+            <div class="mrow"><span class="mv">12</span><span class="ml">Routed</span></div>
+            <div class="mrow"><span class="mv">13</span><span class="ml">Deferred</span></div>
+            <div class="mfoot"><span>Routed yield</span><b>66.7%</b></div>
+          </div>
+          <div class="card pol">
+            <div class="ph">
+              <span class="t">Naive combined score</span
+              ><span class="badge">combined_score_naive_v1</span>
+            </div>
+            <div class="mrow"><span class="mv">22</span><span class="ml">Qualified</span></div>
+            <div class="mrow"><span class="mv">12</span><span class="ml">Routed</span></div>
+            <div class="mrow"><span class="mv">10</span><span class="ml">Deferred</span></div>
+            <div class="mfoot"><span>Routed yield</span><b>100%</b></div>
+          </div>
+        </div>
+        <div class="strip">
+          <div class="shot">
+            <img src="../../assets/queue.png" alt="Weekly Sales and CS routing queue" />
+          </div>
+          <div class="synth">
+            <span class="dot"></span>Synthetic demo data — expert-defined hypotheses, not real
+            business efficacy.
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="num">04</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 57.1%"></div>
+    </section>
+
+    <!-- ============ SLIDE 5 · DECISION PACKET ============ -->
+    <section class="slide s5">
+      <div class="inner">
+        <div class="eyebrow">The record <span class="tag">One account, fully explained</span></div>
+        <h2>A decision packet shows the evidence.</h2>
+        <div class="pack">
+          <div class="shot">
+            <img
+              src="../../assets/decision-packet.png"
+              alt="Decision packet with scores, gates, owner, SLA"
+            />
+          </div>
+          <div class="side">
+            <p class="lead">No black box. Each account records exactly why it was routed.</p>
+            <ul class="items">
+              <li><span class="ck">✓</span>Itemized points behind each score</li>
+              <li><span class="ck">✓</span>Gates passed and failed</li>
+              <li><span class="ck">✓</span>Strongest rejected alternative</li>
+              <li><span class="ck">✓</span>Owner and SLA on the record</li>
+              <li><span class="ck">✓</span>CRM state synced</li>
+            </ul>
+            <div class="own-sla">
+              <div class="os">
+                <div class="lab">Route</div>
+                <div class="val">Sales assist</div>
+              </div>
+              <div class="os">
+                <div class="lab">SLA</div>
+                <div class="val">4 business hrs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="num">05</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 71.4%"></div>
+    </section>
+
+    <!-- ============ SLIDE 6 · CAPACITY VS QUALIFICATION ============ -->
+    <section class="slide s6">
+      <div class="inner">
+        <div class="eyebrow">The levers <span class="tag">Two allowlisted controls</span></div>
+        <h2>Capacity changes prioritization, not qualification.</h2>
+        <div class="lev">
+          <div class="card levcard">
+            <div class="t">Acquisition intent minimum</div>
+            <div class="rg">20–70 · step 5</div>
+            <div class="v">40</div>
+          </div>
+          <div class="card levcard">
+            <div class="t">Weekly human-action capacity</div>
+            <div class="rg">5–30</div>
+            <div class="v">12</div>
+          </div>
+        </div>
+        <p class="cap-body">
+          Changing capacity reprioritizes the queue. It never changes whether an account qualifies —
+          qualified overflow stays visibly deferred.
+        </p>
+        <div class="flow">
+          <div class="card box qual">
+            <div class="t">Qualified &amp; routed</div>
+            <div class="sub">Within the weekly human-action budget.</div>
+          </div>
+          <div class="card box def">
+            <div class="t">Qualified, deferred</div>
+            <div class="sub">
+              Fits and scores qualify, but the team is at capacity — still visible, never silent.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="num">06</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 85.7%"></div>
+    </section>
+
+    <!-- ============ SLIDE 7 · CTA ============ -->
+    <section class="slide s7">
+      <div class="rings"></div>
+      <div class="rings r2"></div>
+      <div class="rings r3"></div>
+      <div class="wr">
+        <div class="accent-line"></div>
+        <div class="meta">
+          Product Usage Scoring &amp; Routing <span class="sp"></span> Northfield Software
+        </div>
+        <h1>An explainable alternative to the opaque queue.</h1>
+        <div class="links">
+          <div class="link">
+            <span class="k">Case study</span
+            ><span class="url">→ hanifcarroll.com/case-studies/product-usage-scoring-routing</span>
+          </div>
+          <div class="link">
+            <span class="k">Live demo</span
+            ><span class="url">→ pusr-web-preview.pusr-web.workers.dev</span>
+          </div>
+        </div>
+        <div class="cta">Open the case study</div>
+        <p class="disclaim">
+          All people, companies, usage, and outcomes are fictional or synthetic. Scores are
+          expert-defined demonstration hypotheses, not validated predictors — and never real
+          business efficacy.
+        </p>
+      </div>
+      <div class="foot">
+        <span class="num">07</span
+        ><span class="brand"><span class="dot"></span>Northfield Software · demonstration</span>
+      </div>
+      <div class="progress" style="width: 100%"></div>
+    </section>
+  </body>
+</html>

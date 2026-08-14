@@ -1,0 +1,153 @@
+<template>
+  <style>
+    @font-face { font-family: "Inter"; font-weight: 400; font-style: normal; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 500; font-style: normal; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 600; font-style: normal; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 700; font-style: normal; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+    #root {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+    }
+
+    #01-noise-to-queue-hero {
+      font-size: 68px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1E2430;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    #01-noise-to-queue-token {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1E2430;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-noise-to-queue" data-start="0" data-duration="7.497"
+       data-width="1080" data-height="1080" style="position:relative;width:100%;height:100%;">
+
+  <!-- Scene 1 ground: light-gray canvas + cover atmosphere -->
+  <div id="01-noise-to-queue-ground" class="clip"
+       data-start="0" data-duration="7.497" data-track-index="0"
+       style="position:absolute;inset:0;background:#F6F7F9;"></div>
+
+  <div id="01-noise-to-queue-diagonal" class="clip"
+       data-start="0" data-duration="7.497" data-track-index="1"
+       style="position:absolute;top:0;right:0;width:36%;height:100%;
+              background:rgba(47,91,217,0.06);
+              clip-path:polygon(36% 0, 100% 0, 100% 100%, 2% 100%);"></div>
+
+  <div id="01-noise-to-queue-dots" class="clip"
+       data-start="0" data-duration="7.497" data-track-index="2"
+       style="position:absolute;top:104px;right:104px;display:grid;
+              grid-template-columns:repeat(3,9px);grid-template-rows:repeat(3,9px);
+              gap:44px;opacity:0.5;">
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+    <span style="width:9px;height:9px;border-radius:50%;background:rgba(47,91,217,0.65);display:block;"></span>
+  </div>
+
+  <!-- Scene 1 hero: kinetic-type word swaps, center-left upper-third -->
+  <div id="01-noise-to-queue-hero" class="clip"
+       data-start="0" data-duration="7.497" data-track-index="3"
+       style="position:absolute;left:150px;top:260px;opacity:0;"></div>
+
+  <!-- Scene 2+ live-full-page dim backdrop -->
+  <div id="01-noise-to-queue-backdrop" class="clip"
+       data-start="4.0" data-duration="3.497" data-track-index="4"
+       style="position:absolute;inset:0;
+              background:#F6F7F9 url('assets/live-full-page.png') center/cover no-repeat;
+              opacity:0;"></div>
+
+  <!-- Scene 2 split-highlight: in-place token cycle, lower-left -->
+  <div id="01-noise-to-queue-highlight" class="clip"
+       data-start="4.0" data-duration="3.497" data-track-index="5"
+       style="position:absolute;left:150px;top:700px;padding:28px 34px;
+              background:#EAF0FD;border-left:4px solid #2F5BD9;border-radius:6px;
+              opacity:0;">
+    <div id="01-noise-to-queue-token"></div>
+  </div>
+
+  <!-- Scene 3 cobalt progress bar (single accent, advances through the close) -->
+  <div class="clip"
+       data-start="5.9" data-duration="1.597" data-track-index="6"
+       style="position:absolute;left:150px;right:150px;top:878px;height:3px;
+              background:#EAF0FD;border-radius:6px;">
+    <div id="01-noise-to-queue-progressfill" style="height:100%;width:0%;background:#2F5BD9;border-radius:6px;"></div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // discrete-text-sequence state schedules (reverse-search threshold swaps)
+    const HERO = [
+      { t: 1.4, text: "product usage" },
+      { t: 2.4, text: "intent" },
+      { t: 3.0, text: "noise" },
+    ];
+    const TOKENS = [
+      { t: 4.6, text: "late" },
+      { t: 5.0, text: "noisy" },
+      { t: 5.5, text: "unexplained" },
+    ];
+    function textAt(list, time) {
+      for (let i = list.length - 1; i >= 0; i--) {
+        if (time >= list[i].t) return list[i].text;
+      }
+      return "";
+    }
+
+    const heroEl = document.getElementById("01-noise-to-queue-hero");
+    const tokenEl = document.getElementById("01-noise-to-queue-token");
+    const backdropEl = document.getElementById("01-noise-to-queue-backdrop");
+    const highlightEl = document.getElementById("01-noise-to-queue-highlight");
+    const progressFill = document.getElementById("01-noise-to-queue-progressfill");
+
+    // Driver: swap hero + token states at frame thresholds (deterministic reverse search)
+    const driver = { t: 0 };
+    tl.to(
+      driver,
+      {
+        t: 6.997,
+        duration: 6.997,
+        ease: "none",
+        onUpdate: () => {
+          heroEl.textContent = textAt(HERO, driver.t);
+          tokenEl.textContent = textAt(TOKENS, driver.t);
+        },
+      },
+      0,
+    );
+
+    // Scene 1 — per-word staggered reveal, smooth power3 settle, sparse upper-third
+    tl.fromTo(heroEl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.4);
+    tl.fromTo(heroEl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.4);
+    tl.fromTo(heroEl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.0);
+
+    // Scene 2 — backdrop dims to ~30%; split-highlight slides in lower-left
+    tl.fromTo(backdropEl, { opacity: 0 }, { opacity: 0.3, duration: 0.6, ease: "power1.out" }, 4.0);
+    tl.fromTo(highlightEl, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, 4.0);
+
+    // Scene 3 — highlight holds still; single cobalt progress bar advances through the close
+    tl.to(progressFill, { width: "100%", duration: 1.097, ease: "power1.out" }, 5.9);
+
+    window.__timelines["01-noise-to-queue"] = tl;
+  </script>
+  </div>
+</template>

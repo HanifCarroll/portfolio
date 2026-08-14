@@ -1,0 +1,313 @@
+<template>
+<style>
+  @font-face { font-family: 'Inter'; font-weight: 400; src: url('assets/fonts/inter-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Inter'; font-weight: 500; src: url('assets/fonts/inter-latin-500-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Inter'; font-weight: 600; src: url('assets/fonts/inter-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Inter'; font-weight: 700; src: url('assets/fonts/inter-latin-700-normal.woff2') format('woff2'); }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    container-type: size;
+    background: #F6F7F9;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Full-bleed ground — dedicated clip layer, never a root background */
+  .twq-bg {
+    position: absolute;
+    inset: 0;
+    background: #F6F7F9;
+  }
+
+  .twq-content {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Slide-header rhythm */
+  #twq-eyebrow {
+    position: absolute;
+    left: 5.4cqw;
+    top: 5.6cqh;
+    font-size: 1.8cqw;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+  }
+  #twq-tag {
+    position: absolute;
+    right: 5cqw;
+    top: 5.9cqh;
+    padding: 6px 13px;
+    border-radius: 6px;
+    background: rgba(47, 91, 217, 0.08);
+    color: #2F5BD9;
+    font-size: 1.3cqw;
+    font-weight: 500;
+  }
+
+  /* Work Queue surface — flat white card, left-anchored, rest scale 0.72 (handoff) */
+  #twq-card {
+    position: absolute;
+    left: 4cqw;   /* 43.2px — handoff left edge */
+    top: 14cqh;   /* 151.2px — handoff top */
+    width: 77cqw; /* 831.6px layout; x0.72 = ~55% of canvas */
+    background: #FFFFFF;
+    border: 1px solid #E3E6EB;
+    border-radius: 6px;
+    overflow: hidden;
+    transform-origin: 0% 0%;
+  }
+  #twq-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Selected routed row (VexNal Cloud) — cobalt-soft fill, lands at row y ≈ 46cqh */
+  #twq-rowhl {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 468px;      /* image-y ≈ 0.90 of card height */
+    height: 27px;
+    background: #EAF0FD;
+    border-radius: 3px;
+    opacity: 0;
+  }
+
+  /* Cobalt metric counter chip — over the card's table header */
+  #twq-countchip {
+    position: absolute;
+    right: 16px;
+    top: 422px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
+    background: #EAF0FD;
+    border-radius: 6px;
+    opacity: 0;
+  }
+  #twq-count {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    color: #2F5BD9;
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    min-width: 3ch;
+    transform-origin: 0% 100%;
+  }
+  #twq-countlab {
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+
+  /* Visible evidence caption — root scale, below the card's left edge */
+  #twq-caption {
+    position: absolute;
+    left: 4.2cqw;
+    top: 50.5cqh;
+    font-size: 1.7cqw;
+    font-weight: 500;
+    color: #1E2430;
+    opacity: 0;
+  }
+
+  /* Custom cursor — brand-cobalt, protagonist */
+  #twq-cursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Click ripple rings — centered at the click point via left/top (no CSS transform) */
+  .twq-rip {
+    position: absolute;
+    left: 120px;   /* 175 - 55 */
+    top: 440px;    /* 495 - 55 */
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px solid rgba(47, 91, 217, 0.55);
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* split-highlight callout — beside the card, 4px cobalt left rule */
+  #twq-callout {
+    position: absolute;
+    left: 61cqw;
+    top: 37.2cqh;
+    width: 30.5cqw;
+    padding: 18px 20px 18px 18px;
+    background: #EAF0FD;
+    border-radius: 6px;
+    border-left: 4px solid #2F5BD9;
+  }
+  .twq-cl-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: 1.35cqw;
+    opacity: 0;
+  }
+  .twq-cl-row + .twq-cl-row { margin-top: 12px; }
+  .twq-cl-token {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+    white-space: nowrap;
+  }
+  .twq-cl-val {
+    font-weight: 500;
+    color: #1E2430;
+    text-align: right;
+  }
+
+  /* Persistent cobalt progress strip */
+  .twq-prog {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: #EAF0FD;
+  }
+  #twq-progfill {
+    width: 100%;
+    height: 100%;
+    background: #2F5BD9;
+    transform-origin: 0% 50%;
+  }
+</style>
+
+<div id="root" data-composition-id="02-work-queue" data-duration="7.028" data-width="1080" data-height="1080">
+  <div class="clip twq-bg" data-start="0" data-duration="7.028" data-track-index="0"></div>
+
+  <div class="clip twq-content" data-start="0" data-duration="7.028" data-track-index="1">
+    <div id="twq-eyebrow">WEEKLY WORK QUEUE</div>
+    <div id="twq-tag">northfield_v1</div>
+
+    <div id="twq-card">
+      <img src="assets/queue.png" alt="Weekly Sales &amp; CS action queue" />
+      <div id="twq-rowhl"></div>
+      <div id="twq-countchip">
+        <span id="twq-count">0</span>
+        <span id="twq-countlab">accounts</span>
+      </div>
+    </div>
+
+    <div id="twq-caption">1–10 of 120 accounts</div>
+
+    <svg id="twq-cursor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M2 2 L20 10 L12 12 L10 20 Z" fill="#2F5BD9"/>
+    </svg>
+    <div class="twq-rip" id="twq-rip1"></div>
+    <div class="twq-rip" id="twq-rip2"></div>
+    <div class="twq-rip" id="twq-rip3"></div>
+
+    <div id="twq-callout">
+      <div class="twq-cl-row"><span class="twq-cl-token">Routed</span><span class="twq-cl-val">Hand raiser</span></div>
+      <div class="twq-cl-row"><span class="twq-cl-token">SLA</span><span class="twq-cl-val">1 business hour</span></div>
+      <div class="twq-cl-row"><span class="twq-cl-token">Owner</span><span class="twq-cl-val">Commercial AE</span></div>
+    </div>
+  </div>
+
+  <div class="clip twq-prog" data-start="0" data-duration="7.028" data-track-index="2">
+    <div id="twq-progfill"></div>
+  </div>
+</div>
+
+<script>
+  window.__timelines = window.__timelines || {};
+  (function () {
+    var tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } });
+
+    // Scene 1 (0.0–1.8s) — slide-header rhythm + surface entrance.
+    tl.fromTo('#twq-eyebrow', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.05);
+    tl.fromTo('#twq-tag', { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 0.2);
+    // Surface: fade in while easing to final scale (power3), anchored left-top at handoff.
+    tl.fromTo(
+      '#twq-card',
+      { opacity: 0, scale: 1.15 },
+      { opacity: 1, scale: 0.72, duration: 1.7, ease: 'power3.out' },
+      0.25
+    );
+
+    // Scene 2 (1.8–5.1s) — counter 0→120 (counting-dynamic-scale) + caption + cursor click.
+    var chipIn = 1.95;
+    tl.fromTo('#twq-countchip', { opacity: 0 }, { opacity: 1, duration: 0.4 }, chipIn);
+    var state = { value: 0 };
+    tl.to(
+      state,
+      {
+        value: 120,
+        duration: 1.6,
+        ease: 'power3.out',
+        onUpdate: function () {
+          document.getElementById('twq-count').textContent = Math.round(state.value).toLocaleString();
+        },
+      },
+      chipIn + 0.05
+    );
+    tl.fromTo('#twq-count', { scale: 0.82 }, { scale: 1, duration: 1.6, ease: 'power3.out' }, chipIn + 0.05);
+    tl.fromTo('#twq-countlab', { y: 8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, chipIn - 0.25);
+
+    var captionAt = 2.5;
+    tl.fromTo('#twq-caption', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, captionAt);
+
+    // Cursor sweep from the left to the routed row, then click + ripple (cursor-click-ripple).
+    var moveAt = 3.05;
+    tl.fromTo(
+      '#twq-cursor',
+      { x: -60, y: 420, opacity: 0 },
+      { x: 180, y: 492, opacity: 1, duration: 0.7, ease: 'power3.out' },
+      moveAt
+    );
+    var pressAt = 3.86;
+    tl.fromTo(
+      '#twq-cursor',
+      { scale: 1 },
+      { scale: 0.8, duration: 0.09, ease: 'power2.in', yoyo: true, repeat: 1 },
+      pressAt
+    );
+    tl.set(['#twq-rip1', '#twq-rip2', '#twq-rip3'], { opacity: 1 }, pressAt + 0.04);
+    tl.to(
+      ['#twq-rip1', '#twq-rip2', '#twq-rip3'],
+      { scale: 3, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.07, immediateRender: false },
+      pressAt + 0.04
+    );
+    // Selection lands as part of the click — cobalt-soft row highlight (mid-shot cue).
+    tl.fromTo('#twq-rowhl', { opacity: 0 }, { opacity: 1, duration: 0.55 }, pressAt + 0.04);
+
+    // Scene 3 (5.1–6.2s) — split-highlight callout restates routed · SLA · owner.
+    tl.fromTo(
+      '.twq-cl-row',
+      { y: 14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.12 },
+      5.1
+    );
+
+    // Scene 4 (6.2–6.528s) — held read; the persistent progress bar advances throughout.
+    tl.fromTo('#twq-progfill', { scaleX: 0 }, { scaleX: 1, duration: 6.528, ease: 'power1.inOut' }, 0);
+
+    window.__timelines['02-work-queue'] = tl;
+  })();
+</script>
+</template>

@@ -1,0 +1,320 @@
+<template>
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+  #root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+    font-family: "Inter", sans-serif;
+    background: transparent;
+  }
+
+  /* Full-bleed light-gray ground */
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: #F6F7F9;
+  }
+
+  /* Faint concentric closing-rings (closing atmosphere, centered) */
+  .cta-atmos {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .cta-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1.5px solid rgba(47, 91, 217, 0.10);
+    border-radius: 50%;
+    will-change: transform;
+  }
+  .cta-ring-a { width: 270px; height: 270px; margin: -135px 0 0 -135px; }
+  .cta-ring-b { width: 430px; height: 430px; margin: -215px 0 0 -215px; border-color: rgba(47,91,217,0.08); }
+  .cta-ring-c { width: 600px; height: 600px; margin: -300px 0 0 -300px; border-color: rgba(47,91,217,0.06); }
+
+  /* Centered closing stack: heading → action cards → CTA */
+  .cta-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 14cqh;
+    bottom: 18cqh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Scene 1 — heading group */
+  .cta-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-accentline {
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background: #2F5BD9;
+    margin-bottom: 20px;
+  }
+  .cta-title {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 6cqw;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #1E2430;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Scene 2 — two flat white action cards */
+  .cta-card {
+    box-sizing: border-box;
+    width: 60cqw;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: #FFFFFF;
+    border: 1.5px solid #E3E6EB;
+    border-radius: 6px;
+    padding: 16px 20px;
+    will-change: transform;
+  }
+  .cta-card-1 { margin-top: 34px; }
+  .cta-card-2 { margin-top: 20px; }
+  .cta-thumb {
+    position: relative;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid #E3E6EB;
+    background: #F6F7F9;
+  }
+  .cta-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cta-thumb-policy { width: 128px; height: 82px; }
+  .cta-thumb-live { width: 90px; height: 98px; }
+  .cta-card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+  .cta-eyebrow {
+    align-self: flex-start;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+    background: rgba(47, 91, 217, 0.08);
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin-bottom: 7px;
+  }
+  .cta-card-title {
+    font-family: "Inter", sans-serif;
+    font-size: 2.1cqw;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #1E2430;
+  }
+  .cta-evidence {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+  }
+  .cta-evidence img {
+    width: 40px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #E3E6EB;
+  }
+  .cta-evidence label {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+
+  /* Scene 3 — one solid cobalt CTA */
+  .cta-button {
+    display: flex;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5cqw;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #F6F7F9;
+    background: #2F5BD9;
+    border-radius: 6px;
+    padding: 15px 26px;
+    margin-top: 30px;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  /* Persistent cobalt progress strip (reaches full on this final frame) */
+  .cta-prog {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 878px;
+    height: 3px;
+    background: #EAF0FD;
+    border-radius: 6px;
+  }
+  #cta-progfill {
+    width: 100%;
+    height: 100%;
+    background: #2F5BD9;
+    border-radius: 6px;
+    transform-origin: 0% 50%;
+  }
+</style>
+
+<div id="root" data-composition-id="06-cta" data-duration="6.357" data-width="1080" data-height="1080">
+  <div class="clip cta-bg" data-start="0" data-duration="6.357" data-track-index="0"></div>
+
+  <div class="clip cta-atmos" data-start="0" data-duration="6.357" data-track-index="1">
+    <div class="cta-ring cta-ring-a" id="cta-ring-a"></div>
+    <div class="cta-ring cta-ring-b" id="cta-ring-b"></div>
+    <div class="cta-ring cta-ring-c" id="cta-ring-c"></div>
+  </div>
+
+  <div class="clip cta-stage" data-start="0" data-duration="6.357" data-track-index="2">
+    <div class="cta-head">
+      <div class="cta-accentline" id="cta-accentline"></div>
+      <h2 class="cta-title" id="cta-title">Routing you can open.</h2>
+    </div>
+
+    <div class="cta-card cta-card-1" id="cta-card-1">
+      <div class="cta-thumb cta-thumb-policy">
+        <img src="assets/policy.png" alt="Case study policy routes" />
+      </div>
+      <div class="cta-card-body">
+        <span class="cta-eyebrow">Case study</span>
+        <span class="cta-card-title">Open the case study</span>
+        <div class="cta-evidence">
+          <img src="assets/decision-packet.png" alt="Decision packet" />
+          <label>Decision packet</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-card cta-card-2" id="cta-card-2">
+      <div class="cta-thumb cta-thumb-live">
+        <img src="assets/live-full-page.png" alt="Live demo interface" />
+      </div>
+      <div class="cta-card-body">
+        <span class="cta-eyebrow">Live demo</span>
+        <span class="cta-card-title">Explore the live demo</span>
+      </div>
+    </div>
+
+    <div class="cta-button" id="cta-button">Open the case study &middot; live demo</div>
+  </div>
+
+  <div class="clip cta-prog" data-start="0" data-duration="6.357" data-track-index="3">
+    <div id="cta-progfill"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var gsap = window.gsap;
+    var root = document.getElementById("06-cta");
+    if (!gsap || !root) return;
+
+    var $ = function (s) { return root.querySelector(s); };
+
+    var accentLine = $("#cta-accentline");
+    var title = $("#cta-title");
+    var card1 = $("#cta-card-1");
+    var card2 = $("#cta-card-2");
+    var button = $("#cta-button");
+    var ringA = $("#cta-ring-a");
+    var ringB = $("#cta-ring-b");
+    var ringC = $("#cta-ring-c");
+    var progFill = $("#cta-progfill");
+
+    var tl = gsap.timeline({ paused: true });
+
+    // ---- Initial (hidden) states set at t=0 so seek is correct from frame one.
+    tl.set(accentLine, { opacity: 0, scaleX: 0, y: 10 }, 0);
+    tl.set(title, { opacity: 0, y: 26 }, 0);
+    tl.set(card1, { opacity: 0, scale: 0.86, y: 18 }, 0);
+    tl.set(card2, { opacity: 0, scale: 0.86, y: 18 }, 0);
+    tl.set(button, { opacity: 0, y: 20 }, 0);
+
+    // ---- Scene 1 (0.0–1.6s): light-gray ground + faint rings; accent-line + h2
+    // enter via waterfall (power3). Only the headline group at t=0.
+    tl.to(accentLine, { opacity: 1, scaleX: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+    tl.to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.1); // hero up by ~0.5s
+
+    // ---- Scene 2 (1.6–3.8s): spring-pop entrances on the VO cues.
+    // card 1 — "case study" ≈2.0s
+    tl.to(card1, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "power3.out" }, 2.0);
+    // card 2 — "live demo" ≈2.9s
+    tl.to(card2, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "power3.out" }, 2.9);
+
+    // ---- Scene 3 (3.8–6.357s): cards resolve + hold; one cobalt CTA on the last
+    // cue ("decision by decision" ≈4.9–6.2s); rings kept ambient via subtle jitter.
+    tl.to(button, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.9);
+
+    // ---- Ambient: subtle jitter on the closing rings (sine-wave-loop, onUpdate form).
+    // Long idle (>6s composition → idle > 30%) — low amplitude, slow period, settle-and-fade tail.
+    var IDLE_START = 0.4;
+    var IDLE_END = 6.357;
+    var IDLE_DUR = IDLE_END - IDLE_START;
+    var CYCLES = 2.5;                    // period ≈ IDLE_DUR / CYCLES ≈ 2.4s (1.5–3s range)
+    var SCALE_AMP = 0.01;                // low end of the default 0.008–0.015
+    var FADE_FRAC = 0.2;                 // settle before the crossfade out
+    var phase = { p: 0 };
+    tl.to(
+      phase,
+      {
+        p: Math.PI * 2 * CYCLES,
+        duration: IDLE_DUR,
+        ease: "none",
+        onUpdate: function () {
+          var t = phase.p / (Math.PI * 2 * CYCLES); // 0 → 1 across the idle
+          var env = t < 1 - FADE_FRAC ? 1 : (1 - t) / FADE_FRAC;
+          var s = Math.sin(phase.p) * SCALE_AMP * env;
+          ringA.style.transform = "scale(" + (1 + s * 1.0) + ")";
+          ringB.style.transform = "scale(" + (1 + s * 0.82 + Math.sin(phase.p * 2) * 0.002) + ")";
+          ringC.style.transform = "scale(" + (1 + s * 0.7) + ")";
+        },
+      },
+      IDLE_START
+    );
+
+    // ---- Progress bar reaches full (final frame): fill across the whole shot.
+    tl.fromTo(progFill, { scaleX: 0 }, { scaleX: 1, duration: 6.357, ease: "power1.inOut" }, 0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["06-cta"] = tl;
+  })();
+</script>
+</template>

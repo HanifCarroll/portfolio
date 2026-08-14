@@ -1,0 +1,288 @@
+<template>
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+  #root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+    perspective: 1400px;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+  }
+
+  /* Full-bleed ground + two faint ambient side-glow blooms (comparison symmetry axis) */
+  .pfv-bg {
+    position: absolute;
+    inset: 0;
+    background: #F6F7F9;
+  }
+  .pfv-glow {
+    position: absolute;
+    width: 46cqw;
+    height: 46cqw;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .pfv-glow-a { left: 8cqw; top: 26cqh; background: radial-gradient(circle at center, rgba(47,91,217,0.07) 0%, rgba(47,91,217,0) 68%); }
+  .pfv-glow-b { right: 8cqw; top: 26cqh; background: radial-gradient(circle at center, rgba(47,91,217,0.07) 0%, rgba(47,91,217,0) 68%); }
+
+  /* Handoff surface — same queue from Frame 2, enters stationary then splits away */
+  .pfv-queue {
+    position: absolute;
+    left: 4cqw;
+    top: 14cqh;
+    width: 78cqw;
+    opacity: 1;
+  }
+  .pfv-queue img {
+    display: block;
+    width: 100%;
+    transform: scale(0.72);
+    transform-origin: top left;
+  }
+
+  /* Split stage — mirrored book-open tilt pair */
+  .pfv-stage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10cqh;
+    bottom: 17cqh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4cqw;
+    transform-style: preserve-3d;
+  }
+  .pfv-card {
+    width: 42cqw;
+    height: auto;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1.5px solid #E3E6EB;
+    border-radius: 6px;
+    padding: 3.6cqw 3.4cqw 3.2cqw;
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .pfv-pill {
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 500;
+    color: #2F5BD9;
+    background: rgba(47,91,217,0.08);
+    border-radius: 6px;
+    padding: 6px 13px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .pfv-card-title {
+    margin: 1.6cqh 0 0;
+    font-size: 2cqw;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: #1E2430;
+    text-transform: uppercase;
+  }
+  .pfv-divider {
+    height: 1px;
+    background: #E3E6EB;
+    margin: 1.8cqh 0 1.1cqh;
+  }
+  .pfv-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2cqh 0;
+    margin: 0.3cqh 0;
+  }
+  .pfv-stat-label {
+    font-size: 1cqw;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+  .pfv-stat-num {
+    font-size: 3.6cqw;
+    font-weight: 700;
+    line-height: 1;
+    color: #2F5BD9;
+    font-variant-numeric: tabular-nums;
+  }
+  .pfv-deferred {
+    background: #EAF0FD;
+    border-left: 4px solid #2F5BD9;
+    border-radius: 6px;
+    padding-left: 1.4cqw;
+    padding-right: 1.4cqw;
+  }
+
+  .pfv-bar-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8cqh;
+    margin-top: 1.4cqh;
+  }
+  .pfv-bar-caption {
+    font-size: 0.9cqw;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #576071;
+  }
+  .pfv-bar-track {
+    width: 100%;
+    height: 14px;
+    background: rgba(47,91,217,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .pfv-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: #2F5BD9;
+    border-radius: 6px;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .pfv-nogates {
+    margin-top: 1.8cqh;
+  }
+</style>
+
+<div id="root" data-composition-id="03-policy-vs-naive" data-duration="7.668" data-width="1080" data-height="1080">
+  <div class="clip pfv-bg" data-start="0" data-duration="7.668" data-track-index="0">
+    <div class="pfv-glow pfv-glow-a"></div>
+    <div class="pfv-glow pfv-glow-b"></div>
+    <div class="clip pfv-queue" data-start="0" data-duration="7.668" data-track-index="1">
+      <img src="assets/queue.png" alt="" draggable="false">
+    </div>
+  </div>
+
+  <div class="clip pfv-stage" data-start="0" data-duration="7.668" data-track-index="2">
+    <div class="pfv-card" id="pfv-card-left">
+      <div class="pfv-pill" id="pfv-head-left">northfield_v1 · gated</div>
+      <div class="pfv-card-title" id="pfv-title-left">GATED POLICY</div>
+      <div class="pfv-divider"></div>
+      <div class="pfv-stat-row" data-stat>
+        <span class="pfv-stat-label">Qualified</span>
+        <span class="pfv-stat-num">25</span>
+      </div>
+      <div class="pfv-stat-row" data-stat>
+        <span class="pfv-stat-label">Routed</span>
+        <span class="pfv-stat-num">12</span>
+      </div>
+      <div class="pfv-stat-row pfv-deferred" data-stat>
+        <span class="pfv-stat-label">Deferred</span>
+        <span class="pfv-stat-num">13</span>
+      </div>
+      <div class="pfv-bar-block">
+        <div class="pfv-bar-caption">Weekly capacity &middot; 12</div>
+        <div class="pfv-bar-track"><div class="pfv-bar-fill" id="pfv-fill-left"></div></div>
+      </div>
+    </div>
+
+    <div class="pfv-card" id="pfv-card-right">
+      <div class="pfv-pill" id="pfv-head-right">combined_score_naive_v1</div>
+      <div class="pfv-card-title" id="pfv-title-right">NAIVE SCORE</div>
+      <div class="pfv-divider"></div>
+      <div class="pfv-stat-row" data-stat>
+        <span class="pfv-stat-label">Qualified</span>
+        <span class="pfv-stat-num">22</span>
+      </div>
+      <div class="pfv-stat-row" data-stat>
+        <span class="pfv-stat-label">Routed</span>
+        <span class="pfv-stat-num">12</span>
+      </div>
+      <div class="pfv-stat-row" data-stat>
+        <span class="pfv-stat-label">Routed yield</span>
+        <span class="pfv-stat-num">100%</span>
+      </div>
+      <div class="pfv-bar-block">
+        <div class="pfv-bar-caption">Weekly capacity &middot; 12</div>
+        <div class="pfv-bar-track"><div class="pfv-bar-fill" id="pfv-fill-right"></div></div>
+      </div>
+      <div class="pfv-pill pfv-nogates" id="pfv-nogates">No gates</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var gsap = window.gsap;
+    var root = document.getElementById("03-policy-vs-naive");
+    if (!gsap || !root) return;
+
+    var $ = function (sel) { return root.querySelector(sel); };
+    var $$ = function (sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+    var queue = $(".pfv-queue");
+    var cardL = $("#pfv-card-left");
+    var cardR = $("#pfv-card-right");
+    var headL = $("#pfv-head-left");
+    var headR = $("#pfv-head-right");
+    var statsL = $$("#pfv-card-left .pfv-stat-row");
+    var statsR = $$("#pfv-card-right .pfv-stat-row");
+    var fillL = $("#pfv-fill-left");
+    var fillR = $("#pfv-fill-right");
+    var noGates = $("#pfv-nogates");
+
+    var tl = gsap.timeline({ paused: true });
+
+    // ---- Scene 1 (0.0–2.0s): queue surface holds, then splits into the two
+    // comparison cards entering from opposite wings with mirrored book-open tilts.
+    tl.set(queue, { opacity: 1 }, 0);
+    tl.set(headL, { y: 16, opacity: 0 }, 0);
+    tl.set(headR, { y: 16, opacity: 0 }, 0);
+    tl.set(cardL, { x: -190, rotateY: 20, scale: 0.86, opacity: 0 }, 0);
+    tl.set(cardR, { x: 190, rotateY: -20, scale: 0.86, opacity: 0 }, 0);
+
+    // queue surface resolves away as the cards land (within-scene swap, not an exit)
+    tl.to(queue, { opacity: 0, duration: 0.7, ease: "power2.out" }, 0.95);
+
+    // mirrored split-tilt entry — left faces right, right faces left, book-open
+    tl.to(cardL, { x: 0, rotateY: 12, scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 0.7);
+    tl.to(cardR, { x: 0, rotateY: -12, scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 0.9);
+    tl.to(headL, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.95);
+    tl.to(headR, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 1.15);
+
+    // ---- Scene 2 (2.0–4.9s): left card builds 25 → 12 on its spoken cues.
+    tl.set(statsL, { opacity: 0, y: 14 }, 0);
+    tl.set(fillL, { scaleX: 0 }, 0);
+    tl.set(statsR, { opacity: 0, y: 14 }, 0);
+    tl.set(fillR, { scaleX: 0 }, 0);
+    tl.set(noGates, { opacity: 0, scale: 0.8 }, 0);
+
+    // same-capacity bar fill — pinned track width on both sides (the "same capacity" cue)
+    tl.to(fillL, { scaleX: 0.48, duration: 0.9, ease: "power2.out" }, 2.4);
+    tl.to(statsL[0], { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.0); // qualifies 25 ≈3.4
+    tl.to(statsL[1], { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.1); // routes 12 ≈4.5
+
+    // ---- Scene 3 (4.9–7.0s): deferred 13 emphasized; naive side contrasts 100% yield + no gates.
+    tl.to(statsL[2], { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, 4.9); // defers 13 ≈5.0
+    tl.to(statsR, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 5.35);
+    tl.to(fillR, { scaleX: 1, duration: 0.9, ease: "power2.out" }, 5.7); // 100% routed-yield fill
+    tl.to(noGates, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.2)" }, 6.5); // no gates ≈6.5
+
+    // ---- Scene 4 (7.0–7.168s): held read — quiet counter-phase settle, cards hold still.
+    tl.to(cardL, { y: -2.5, duration: 0.15, ease: "sine.inOut" }, 6.93);
+    tl.to(cardL, { y: 0, duration: 0.15, ease: "sine.inOut" }, 7.0);
+    tl.to(cardR, { y: 2.5, duration: 0.15, ease: "sine.inOut" }, 6.93);
+    tl.to(cardR, { y: 0, duration: 0.15, ease: "sine.inOut" }, 7.0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["03-policy-vs-naive"] = tl;
+  })();
+</script>
+</template>

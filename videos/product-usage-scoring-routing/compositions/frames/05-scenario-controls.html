@@ -1,0 +1,395 @@
+<template>
+<style>
+  @font-face { font-family: "Inter"; font-weight: 400; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 700; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+  #root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    container-type: size;
+    perspective: 1400px;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+  }
+
+  /* ---- Full-bleed light-gray ground (clip layer, not #root) ---- */
+  .scn-bg {
+    position: absolute;
+    inset: 0;
+    background: #F6F7F9;
+  }
+
+  /* ---- Slide header: eyebrow + tag-pill (top-left, page level) ---- */
+  .scn-header {
+    position: absolute;
+    left: 5cqw;
+    top: 4.5cqh;
+    display: flex;
+    align-items: center;
+    gap: 1.4cqw;
+  }
+  .scn-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2F5BD9;
+    white-space: nowrap;
+  }
+  .scn-tagpill {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2F5BD9;
+    background: rgba(47, 91, 217, 0.08);
+    border-radius: 6px;
+    padding: 5px 13px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* ---- Target surface (handoff from Frame 4): policy.png
+         visible box lands at x 20cqw..80cqw, y ~16cqh, scale 0.70.
+         The wrapper is scaled as ONE unit so overlays scale with the page. ---- */
+  .scn-surface {
+    position: absolute;
+    left: 7cqw;
+    top: 16cqh;
+    width: 86cqw;
+    /* 86cqw x 0.70 (center) -> visible 60cqw spanning x 20..80cqw */
+    transform-origin: center center;
+    opacity: 1;
+  }
+  .scn-surface img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  /* Live queue readout tokens over the surface's metrics box (left column):
+     replace the PNG's ROUTED / DEFERRED digits with the coupled, live values. */
+  .scn-token {
+    position: absolute;
+    left: 29.5%;
+    width: 5.2cqw;
+    height: 2.2cqw;
+    background: #FFFFFF;
+    border: 1px solid #E3E6EB;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6cqw;
+    font-weight: 700;
+    line-height: 1;
+    color: #2F5BD9;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .scn-token-round { top: 75.8%; }
+  .scn-token-def  { top: 79.4%; }
+
+  /* Deferred chip — tag-pill on accent-light, stays visible (does not vanish). */
+  .scn-chip {
+    position: absolute;
+    left: 24%;
+    top: 82.4%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7cqw;
+    background: rgba(47, 91, 217, 0.08);
+    border-radius: 6px;
+    padding: 0.7cqw 1.4cqw;
+    font-size: 1.3cqw;
+    font-weight: 600;
+    color: #2F5BD9;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .scn-chip .scn-dot {
+    width: 0.8cqw;
+    height: 0.8cqw;
+    border-radius: 50%;
+    background: #2F5BD9;
+    flex: 0 0 auto;
+  }
+
+  /* ---- Inspector panel (page level): the bound scenario controls.
+         White card over the surface's left white region; cursor is panel-local. ---- */
+  .scn-panel {
+    position: absolute;
+    left: 27cqw;
+    top: 29cqh;
+    width: 344px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1.5px solid #E3E6EB;
+    border-radius: 6px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transform-origin: center center;
+  }
+  .scn-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .scn-row-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 9px;
+  }
+  .scn-row-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #576071;
+    line-height: 1.25;
+  }
+  .scn-row-value {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #2F5BD9;
+    font-variant-numeric: tabular-nums;
+    min-width: 34px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Bent slider — a shallow bowed track; fill rides the arc via stroke-dasharray. */
+  .scn-slider {
+    display: block;
+    width: 260px;
+    height: 44px;
+    overflow: visible;
+  }
+  .scn-track {
+    fill: none;
+    stroke: rgba(47, 91, 217, 0.12);
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+  .scn-fill {
+    fill: none;
+    stroke: #2F5BD9;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+  .scn-thumb {
+    fill: #2F5BD9;
+    stroke: #FFFFFF;
+    stroke-width: 3;
+    pointer-events: none;
+  }
+
+  /* The cursor is panel-local so its drag tracks the thumb exactly. */
+  .scn-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 5;
+  }
+  .scn-cursor svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ---- Split-highlight payoff card (beside the surface, page level) ---- */
+  .scn-payoff {
+    position: absolute;
+    left: 81cqw;
+    top: 32cqh;
+    width: 16.5cqw;
+    box-sizing: border-box;
+    background: rgba(47, 91, 217, 0.08);
+    border-left: 4px solid #2F5BD9;
+    border-radius: 6px;
+    padding: 1.6cqw 1.4cqw;
+    opacity: 0;
+  }
+  .scn-payoff-text {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: #1E2430;
+  }
+  .scn-payoff-sub {
+    margin-top: 0.9cqh;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #2F5BD9;
+  }
+</style>
+
+<div id="root" data-composition-id="05-scenario-controls" data-duration="7.86" data-width="1080" data-height="1080">
+  <div class="clip scn-bg" data-start="0" data-duration="7.86" data-track-index="0"></div>
+
+  <!-- target surface: policy.png + its live readout overlays (scale together) -->
+  <div class="clip scn-surface" id="scn-surface" data-start="0" data-duration="7.86" data-track-index="1">
+    <img src="assets/policy.png" alt="" draggable="false">
+    <div class="scn-token scn-token-round" id="scn-routed">12</div>
+    <div class="scn-token scn-token-def" id="scn-deferred">13</div>
+    <div class="scn-chip" id="scn-chip"><span class="scn-dot"></span>DEFERRED &middot; <span id="scn-chip-num">13</span>&nbsp;stays queued</div>
+  </div>
+
+  <!-- slide header -->
+  <div class="clip scn-header" data-start="0" data-duration="7.86" data-track-index="2">
+    <span class="scn-eyebrow" id="scn-eyebrow">Scenario controls</span>
+    <span class="scn-tagpill" id="scn-tagpill">autonomous</span>
+  </div>
+
+  <!-- bound inspector panel: the two bent-slider controls -->
+  <div class="clip scn-panel" id="scn-panel" data-start="0" data-duration="7.86" data-track-index="3">
+    <div class="scn-row" id="scn-row-intent">
+      <div class="scn-row-head">
+        <span class="scn-row-label">Acquisition intent minimum</span>
+        <span class="scn-row-value" id="scn-val-intent">40</span>
+      </div>
+      <svg class="scn-slider" viewBox="0 0 260 44" aria-hidden="true">
+        <path class="scn-track"   d="M 14 30 Q 130 46 246 30" />
+        <path class="scn-fill"    id="scn-fill-intent" d="M 14 30 Q 130 46 246 30" stroke-dasharray="93 232" />
+        <circle class="scn-thumb" id="scn-thumb-intent" cx="107" cy="38" r="9" />
+      </svg>
+    </div>
+    <div class="scn-row" id="scn-row-cap">
+      <div class="scn-row-head">
+        <span class="scn-row-label">Weekly human-action capacity</span>
+        <span class="scn-row-value" id="scn-val-cap">12</span>
+      </div>
+      <svg class="scn-slider" viewBox="0 0 260 44" aria-hidden="true">
+        <path class="scn-track" d="M 14 30 Q 130 46 246 30" />
+        <path class="scn-fill"  id="scn-fill-cap" d="M 14 30 Q 130 46 246 30" stroke-dasharray="65 232" />
+        <circle class="scn-thumb" id="scn-thumb-cap" cx="79" cy="38" r="9" />
+      </svg>
+    </div>
+    <!-- cursor (panel-local) + payoff card -->
+    <div class="scn-cursor" id="scn-cursor">
+      <svg viewBox="0 0 30 30" aria-hidden="true">
+        <path d="M 3 1 L 4 24 L 8 19 L 11 27 L 14.5 25.3 L 11.7 17.8 L 19 19.5 Z"
+              fill="#1E2430" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- split-highlight payoff, beside the surface -->
+  <div class="clip scn-payoff" id="scn-payoff" data-start="0" data-duration="7.86" data-track-index="4">
+    <div class="scn-payoff-text">Capacity changes prioritization only</div>
+    <div class="scn-payoff-sub">Bounded controls</div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var gsap = window.gsap;
+    var root = document.getElementById("05-scenario-controls");
+    if (!gsap || !root) return;
+
+    var $ = function (sel) { return root.querySelector(sel); };
+
+    var eyebrow    = $("#scn-eyebrow");
+    var tagpill    = $("#scn-tagpill");
+    var panel      = $("#scn-panel");
+    var rowIntent  = $("#scn-row-intent");
+    var rowCap     = $("#scn-row-cap");
+    var valIntent  = $("#scn-val-intent");
+    var valCap     = $("#scn-val-cap");
+    var fillIntent = $("#scn-fill-intent");
+    var fillCap    = $("#scn-fill-cap");
+    var thumbIntent= $("#scn-thumb-intent");
+    var thumbCap   = $("#scn-thumb-cap");
+    var routed     = $("#scn-routed");
+    var deferred   = $("#scn-deferred");
+    var chipNum    = $("#scn-chip-num");
+    var cursor     = $("#scn-cursor");
+    var payoff     = $("#scn-payoff");
+
+    var tl = gsap.timeline({ paused: true });
+
+    // ---- Scene 1 (0.0–2.0s): surface holds at handoff; header seats;
+    // the two bent-slider controls seat left, named by the VO.
+    // Surface is present from Frame 4's seam (arrives at x20cqw/y16cqh/scale .70,
+    // opacity 1, speed 0) — no position change.
+    tl.set($("#scn-surface"), { opacity: 1, scale: 0.70, x: 0, y: 0 }, 0);
+
+    tl.fromTo(eyebrow, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.0);
+    tl.fromTo(tagpill,  { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, 0.12);
+
+    // control panel + intent-min slider (VO names the intent minimum ~0.2–1.5s)
+    tl.fromTo(panel,     { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.35);
+    tl.fromTo(rowIntent, { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 0.5);
+    tl.fromTo(rowCap,    { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }, 1.75);
+
+    // ---- Scene 2 (2.0–4.9s): "bounded scenario controls".
+    // (a) intent-min token cycle 40 -> 45 (in-place, coupled mini-step).
+    tl.set(valIntent, { textContent: "45" }, 2.85);
+    tl.to(fillIntent, { strokeDasharray: "116 232", duration: 0.4, ease: "power2.out" }, 2.85);
+    tl.to(thumbIntent, { x: 23, duration: 0.4, ease: "power2.out" }, 2.85);
+    tl.fromTo(valIntent, { scale: 1.2 }, { scale: 1, duration: 0.3, ease: "back.out(2.6)" }, 2.85);
+
+    // (b) cursor-drag scrubs the capacity slider; the queue readout on the
+    // surface updates LIVE in the same beat (control-target-sync couple).
+    // Capacity 12 -> 14 reprioritizes: routed 12->14, deferred 13->11 (stays).
+    tl.fromTo(cursor, { opacity: 0, x: 300, y: 250 },
+              { opacity: 1, x: 97, y: 168, duration: 0.65, ease: "power2.inOut" }, 3.3);
+
+    // press dip on the thumb (cursor compresses more than the payload)
+    tl.fromTo(cursor, { scale: 1, y: 168 }, { scale: 0.88, y: 171, duration: 0.1, ease: "power2.in" }, 4.05);
+
+    // THE COUPLE — one label, one gesture, two surfaces in the same beat.
+    tl.addLabel("drag1", 4.2);
+    var cap = { v: 12 };
+    var CAP_LEN = 232;
+    tl.to(cap, {
+      v: 14,
+      duration: 1.05,
+      ease: "power2.inOut",
+      onUpdate: function () {
+        var v = Math.round(cap.v);
+        var p = (cap.v - 5) / 25;               // capacity range 5–30
+        valCap.textContent = v;
+        routed.textContent = v;                 // routed tracks capacity
+        deferred.textContent = 25 - v;          // qualified 25 stays fixed
+        chipNum.textContent = 25 - v;
+        fillCap.setAttribute("stroke-dasharray", (p * CAP_LEN).toFixed(1) + " 232");
+      }
+    }, "drag1");
+    // matched thumb tween — same label, duration, ease (lockstep with the readout)
+    tl.to(thumbCap, { x: 18.5, duration: 1.05, ease: "power2.inOut" }, "drag1");
+    // cursor rides the thumb in lockstep, then lifts off
+    tl.to(cursor, { x: 115.5, duration: 1.05, ease: "power2.inOut" }, "drag1");
+    tl.to(cursor, { scale: 1, y: 166, duration: 0.14, ease: "power2.out" }, "drag1");
+    tl.to(cursor, { opacity: 0, x: 320, duration: 0.5, ease: "power2.in" }, 5.35);
+
+    // ---- Scene 3 (4.9–6.3s): payoff — split-highlight + deferred chip.
+    tl.fromTo(payoff, { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 4.95);
+    tl.fromTo($("#scn-chip"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 5.65);
+
+    // ---- Scene 4 (6.3–7.36s): held read — quiet micro jitter on the couple only.
+    tl.to(rowIntent, { y: -1.5, duration: 0.16, ease: "sine.inOut" }, 6.95);
+    tl.to(rowIntent, { y: 0,    duration: 0.16, ease: "sine.inOut" }, 7.03);
+    tl.to(rowCap,    { y: 1.5,  duration: 0.16, ease: "sine.inOut" }, 6.95);
+    tl.to(rowCap,    { y: 0,    duration: 0.16, ease: "sine.inOut" }, 7.03);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["05-scenario-controls"] = tl;
+  })();
+</script>
+</template>
