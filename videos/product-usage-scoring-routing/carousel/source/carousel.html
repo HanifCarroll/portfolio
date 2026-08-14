@@ -49,6 +49,11 @@
         color: var(--ink);
         -webkit-font-smoothing: antialiased;
       }
+      @media print {
+        .slide {
+          break-after: page;
+        }
+      }
 
       .slide {
         position: relative;
@@ -260,6 +265,13 @@
         padding: 18px 32px;
         border-radius: var(--r);
       }
+      .s1 .attr {
+        margin-top: 18px;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+      }
 
       /* ===== S2 · three dimensions ===== */
       .dims {
@@ -466,7 +478,7 @@
         margin-top: 26px;
       }
       .s4 .strip .shot {
-        height: 330px;
+        height: 280px;
       }
       .s4 .strip img {
         width: 100%;
@@ -488,6 +500,17 @@
         height: 10px;
         border-radius: 50%;
         background: var(--positive);
+      }
+      .s4 .note {
+        margin-top: 24px;
+        background: var(--cobalt-soft);
+        border-left: 4px solid var(--cobalt);
+        border-radius: var(--r);
+        padding: 18px 24px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--ink);
       }
 
       /* ===== S5 · decision packet ===== */
@@ -741,6 +764,7 @@
           <span class="pill">Every route explained</span>
         </div>
         <div class="cta">Explore a fictional demonstration</div>
+        <div class="attr">hanifcarroll.com · @hanifcarroll</div>
       </div>
       <div class="foot">
         <span class="num">01</span
@@ -858,6 +882,11 @@
             <div class="mfoot"><span>Routed yield</span><b>100%</b></div>
           </div>
         </div>
+        <p class="note">
+          The naive 100% routed yield at capacity 12 is a small-sample artifact — all twelve routed
+          accounts happen to carry a synthetic positive outcome. Illustrative, not a claim of
+          predictive superiority.
+        </p>
         <div class="strip">
           <div class="shot">
             <img src="../../assets/queue.png" alt="Weekly Sales and CS routing queue" />

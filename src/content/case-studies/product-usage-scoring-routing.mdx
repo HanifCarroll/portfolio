@@ -59,6 +59,8 @@ export const shippedRows = [
 <CaseSection title="The same accounts under two policies" media>
   The demonstration runs the identical 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The difference is legible in the queue, and the synthetic metrics never claim to be real business efficacy.
 
+    The comparison is illustrative, not a claim that one policy predicts better than the other. The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers say more about the sample than about the policy. The gated policy is designed to provide context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability — not to win a metric contest. The numbers are exactly as computed at the default controls; nothing is tuned or hidden to make either side look better.
+
     <ImagePlate image={queue} alt="Weekly Sales and CS queue comparing a gated policy and a naive combined score on 120 synthetic accounts, with acquisition intent and weekly capacity controls." />
 
 </CaseSection>
@@ -88,6 +90,8 @@ export const shippedRows = [
   The demonstration includes one bounded external write. A designated account's decision packet offers an "Approve and sync" action that creates a single fictional follow-up task in a dedicated HubSpot developer test account — never outreach, never an email, never a change to real customer data.
 
     The sync is idempotent and traceable to a run id: identity is resolved, scores are recorded, a play is selected, and the durable workflow upserts a fictional company, contact, and association and creates one task. A fake local adapter keeps the full demo usable without any credentials, while a hardened production path runs the same workflow on Cloudflare with the real HubSpot adapter.
+
+    The real adapter was verified end to end against the dedicated HubSpot developer test account on 2026-08-14, with fictional data only: the designated account synced as a company record carrying the `usage_routing` properties, the associated contact, and one follow-up task, and reruns returned the same external identifiers without duplicating records or tasks. A read-only company-record app card is installed on that test account and reads the latest scores, signals, and gates back from an authenticated Cloudflare endpoint that fails closed without a valid signature.
 
 </CaseSection>
 

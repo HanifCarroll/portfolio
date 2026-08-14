@@ -159,6 +159,15 @@
   .pfv-nogates {
     margin-top: 1.8cqh;
   }
+
+  .pfv-note {
+    margin-top: 1.4cqh;
+    font-size: 1cqw;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: #576071;
+  }
 </style>
 
 <div id="root" data-composition-id="03-policy-vs-naive" data-duration="7.668" data-width="1080" data-height="1080">
@@ -213,6 +222,7 @@
         <div class="pfv-bar-caption">Weekly capacity &middot; 12</div>
         <div class="pfv-bar-track"><div class="pfv-bar-fill" id="pfv-fill-right"></div></div>
       </div>
+      <div class="pfv-note" id="pfv-note">100% yield: all 12 routed carry synthetic positives — small-sample artifact</div>
       <div class="pfv-pill pfv-nogates" id="pfv-nogates">No gates</div>
     </div>
   </div>
@@ -237,6 +247,7 @@
     var fillL = $("#pfv-fill-left");
     var fillR = $("#pfv-fill-right");
     var noGates = $("#pfv-nogates");
+    var note = $("#pfv-note");
 
     var tl = gsap.timeline({ paused: true });
 
@@ -263,6 +274,7 @@
     tl.set(statsR, { opacity: 0, y: 14 }, 0);
     tl.set(fillR, { scaleX: 0 }, 0);
     tl.set(noGates, { opacity: 0, scale: 0.8 }, 0);
+    tl.set(note, { opacity: 0, y: 8 }, 0);
 
     // same-capacity bar fill — pinned track width on both sides (the "same capacity" cue)
     tl.to(fillL, { scaleX: 0.48, duration: 0.9, ease: "power2.out" }, 2.4);
@@ -273,6 +285,7 @@
     tl.to(statsL[2], { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" }, 4.9); // defers 13 ≈5.0
     tl.to(statsR, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 5.35);
     tl.to(fillR, { scaleX: 1, duration: 0.9, ease: "power2.out" }, 5.7); // 100% routed-yield fill
+    tl.to(note, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 6.35); // small-sample caveat
     tl.to(noGates, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.2)" }, 6.5); // no gates ≈6.5
 
     // ---- Scene 4 (7.0–7.168s): held read — quiet counter-phase settle, cards hold still.
