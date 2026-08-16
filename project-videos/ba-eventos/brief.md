@@ -10,24 +10,23 @@ Primary viewer: Nontechnical portfolio viewer
 
 Story mode: Short demo
 
-One-sentence job: BA Eventos turns scattered Buenos Aires event information into one grounded search experience with real event results.
+One-sentence job: BA Eventos helps people find real events in Buenos Aires by asking a simple question.
 
-Viewer takeaway: A visitor can ask one plain question and get useful plans tied to a real catalog.
+Viewer takeaway: A visitor can say what they want to do and see matching events with the details they need.
 
 Plain story:
 
 - Problem: local event information was scattered across social posts, ticketing pages, venue sites, and chats.
-- Solution: BA Eventos gives visitors one plain-language search surface backed by a cleaned event and venue catalog.
-- Result: the answer returns usable event options with category, venue, time, price, and links.
+- Solution: BA Eventos lets visitors type what they want to do and searches collected event listings.
+- Result: the answer shows matching events with the date, place, price, and ticket link.
 
 Scene arc:
 
-1. Problem: Buenos Aires event information is scattered.
-2. Search: a visitor asks one natural question.
-3. Grounding: the answer stays tied to real event and venue records.
-4. Result: the response becomes a usable plan.
-5. Catalog: hundreds of events and venues stay organized enough to search.
-6. Ending beat: BA Eventos, one grounded search.
+1. Problem: finding something to do means searching many sites and posts.
+2. Search: a visitor types what they want to do.
+3. Results: BA Eventos shows real events that match.
+4. Details: each result includes the date, place, price, and ticket link.
+5. Ending beat: find something to do in Buenos Aires.
 
 Assets needed:
 
