@@ -3,10 +3,11 @@
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
-import ImagePlate from "../../components/case-study/ImagePlate.astro";
-import MacWindowFrame from "../../components/case-study/MacWindowFrame.astro";
+import DeviceGrid from "../../components/case-study/DeviceGrid.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import casamoFeature from "../../assets/img/projects/casamo-homepage-viewport.jpg";
+import casamoEvidenceDetail from "../../assets/img/projects/casamo-evidence-detail.png";
+import casamoRankedReport from "../../assets/img/projects/casamo-ranked-report.png";
+import casamoStayScan from "../../assets/img/projects/casamo-stay-scan.png";
 
 export const shippedRows = [
   {
@@ -28,6 +29,33 @@ export const shippedRows = [
     label: "Booking confidence",
     title: "Users get a clearer next step.",
     body: "The report turns a messy search into one strongest stay, two backups, visible tradeoffs, and the host questions needed before booking.",
+  },
+];
+
+export const casamoScreens = [
+  {
+    image: casamoStayScan,
+    alt: "Casamo stay scan intake form for destination, dates, guests, budget, and listing search mode.",
+    label: "Stay scan intake",
+    title: "The scan starts with the traveler's real constraints.",
+    caption:
+      "Travelers can search across Airbnb and Booking.com or submit exact listings, then set the requirements Casamo must verify.",
+  },
+  {
+    image: casamoRankedReport,
+    alt: "Casamo ranked stay report for Lisbon showing qualified choices and audit coverage metrics.",
+    label: "Ranked report",
+    title: "Qualified stays are compared in one decision set.",
+    caption:
+      "The report shows which properties passed the required priorities, how much was checked, and which stay ranks highest.",
+  },
+  {
+    image: casamoEvidenceDetail,
+    alt: "Casamo stay detail view showing confirmed priorities, listing facts, and property photos.",
+    label: "Evidence detail",
+    title: "The recommendation stays inspectable.",
+    caption:
+      "A stay detail view connects confirmed priorities with listing facts and source photos before the traveler contacts the host.",
   },
 ];
 
@@ -100,10 +128,8 @@ export const shippedRows = [
 </section>
 
 <CaseSection title="Visuals" media>
-  The current product surface shows the stay-audit promise, intake flow, and decision criteria that anchor the MVP.
+  The product surface moves from intake to ranked choices to evidence-backed detail.
 
-    <MacWindowFrame ariaLabel='Casamo stay audit product visual'>
-      <ImagePlate image={casamoFeature} alt="Casamo homepage showing the stay search form, audit priorities, and first product promise." />
-    </MacWindowFrame>
+    <DeviceGrid screens={casamoScreens} />
 
 </CaseSection>
