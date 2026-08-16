@@ -2,25 +2,24 @@
 
 ## Style Prompt
 
-Use the BA Eventos product surface as the proof anchor: dark, warm, focused, and search-driven. The video should feel like a short product demo for a visitor, not a technical architecture tour. Show the messy source problem, the natural-language question, the grounded answer, and the useful event result. Keep text simple and readable.
+Use the current BA Eventos product surface as the proof anchor: light, spacious, focused, and search-driven. The video should feel like a short product demo for a visitor, not a technical architecture tour. Show the messy source problem, the natural-language question, the grounded answer, and the useful event result. Keep text simple and readable.
 
 ## Colors
 
-- Canvas: `#0b0705`
-- Panel: `#17100c`
-- Raised panel: `#211610`
-- Ink: `#f7ead9`
-- Muted text: `#b9aa99`
-- Border: `#3b2a1f`
-- Amber: `#f3ab35`
-- Amber soft: `#3a2511`
-- Grounded teal: `#69c9bf`
-- Catalog green: `#95c47f`
+- Canvas: `#f8f8f6`
+- Panel: `#ffffff`
+- Raised panel: `#f1f1f4`
+- Ink: `#18181b`
+- Muted text: `#5f6068`
+- Border: `#dddde4`
+- Product purple: `#5b5fc7`
+- Purple soft: `#edeefa`
+- Search coral: `#ef6b5a`
 
 ## Typography
 
-- Display: `Georgia`, serif
-- Interface/body: `Avenir Next`, `Helvetica Neue`, sans-serif
+- Display: `Inter`, sans-serif
+- Interface/body: `Inter`, sans-serif
 - Data labels: `SF Mono`, `Menlo`, monospace
 
 ## Motion
