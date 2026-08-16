@@ -110,7 +110,7 @@ One signal can justify a change when the consequence is high. Several mild signa
 
 ## A worked decision from the Desarmadero Operations Prototype
 
-The [Desarmadero Operations Prototype](/case-studies/desarmadero-operations-prototype/) began with a real discovery call about an auto-dismantling yard. Its operating model was spread across paper budget sheets, WhatsApp, Excel, and memory. I turned that discovery into a product requirements document, functional specification, and role-based clickable prototype. The prototype is a work sample for validating the proposed workflow; it was not a deployed operating system and does not prove measured business results.
+The [Desarmadero Operations Prototype](/projects/desarmadero-operations-prototype/) began with a real discovery call about an auto-dismantling yard. Its operating model was spread across paper budget sheets, WhatsApp, Excel, and memory. I turned that discovery into a product requirements document, functional specification, and role-based clickable prototype. The prototype is a work sample for validating the proposed workflow; it was not a deployed operating system and does not prove measured business results.
 
 The important facts were about the work:
 

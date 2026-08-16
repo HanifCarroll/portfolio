@@ -1,0 +1,115 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import ProofRows from "../../components/case-study/ProofRows.astro";
+import heroScreen from "../../assets/img/projects/riowell-hero.png";
+import movementScreen from "../../assets/img/projects/riowell-movement.png";
+import recoveryScreen from "../../assets/img/projects/riowell-recovery.png";
+import mobileScreen from "../../assets/img/projects/riowell-mobile.png";
+
+export const shippedRows = [
+  {
+    label: "Source research",
+    title: "Fifty public assets became one usable content system.",
+    body: "Posts, highlights, captions, comments, and a founder walk-through were captured, reviewed, and mapped to the page before design began.",
+  },
+  {
+    label: "Bilingual build",
+    title: "One shared site supports Spanish and English.",
+    body: "The Spanish-first route and English route use the same Astro component and a typed copy layer instead of duplicating the page.",
+  },
+  {
+    label: "Conversion path",
+    title: "WhatsApp stayed the single primary action.",
+    body: "The site answers the questions supported by public information, then routes availability and pricing conversations to the club's existing channel.",
+  },
+  {
+    label: "Responsive UX",
+    title: "The experience was designed for a phone-first audience.",
+    body: "A full-screen menu, icon-only mobile action, deliberate image crops, and responsive spacing keep the long-form story usable on smaller screens.",
+  },
+];
+
+<CaseSection title="Summary">
+  RIOwell was preparing to open a neighborhood recovery and wellness club in Núñez. The business had a new Instagram account full of useful material, but no website that brought its offer together.
+
+  I treated the website itself as the pitch. I researched the public source material, shaped the product story, designed the experience, and shipped a responsive Spanish-first preview before contacting the business.
+</CaseSection>
+
+<CaseSection title="The opportunity">
+  The club combined small-group movement classes, sauna, cryotherapy, massage, recovery equipment, memberships, and a social patio. On Instagram, those ideas were spread across posts, highlight slides, and a narrated facility tour.
+
+  A prospective member still needed a simple answer to three questions: what is this place, which experience fits me, and how do I start?
+</CaseSection>
+
+<CaseSection title="Research before design">
+  <DecisionBlock title="Build from the real business, not a generic wellness template.">
+    I captured and reviewed 50 public media files, preserved the club's Spanish copy, and organized the service catalog, membership structure, location details, brand language, and gaps in the available information.
+  </DecisionBlock>
+
+  <DecisionBlock title="Treat missing information as a product constraint.">
+    Prices and class schedules were not public. Instead of filling the page with estimates, the final concept explains the offer and routes those questions to WhatsApp.
+  </DecisionBlock>
+
+  <DecisionBlock title="Use stronger imagery without inventing business claims.">
+    The existing social photography was not strong enough to carry a premium web experience. I developed a calm editorial image direction while keeping every statement about services, memberships, and the space tied to the public source material.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="The visual direction" media>
+  The final direction is warm, restrained, and softly premium. Large editorial typography and generous space create calm, while the hero gives visitors one clear promise and one action.
+
+  <ImagePlate image={heroScreen} alt="RIOwell website hero with a warm wellness photograph, Spanish headline, navigation, and WhatsApp action." />
+</CaseSection>
+
+<CaseSection title="Product decisions">
+  <DecisionBlock title="Organize the story around move, recover, and belong.">
+    The page introduces three paths before expanding into movement classes, recovery services, the club experience, memberships, and the visit section. That structure follows the way the founder described the space.
+  </DecisionBlock>
+
+  <DecisionBlock title="Keep one primary conversion path.">
+    Early versions repeated WhatsApp controls too often. The final pass reduced them to deliberate points in the header, hero, memberships, and closing section.
+  </DecisionBlock>
+
+  <DecisionBlock title="Make the neighborhood location tangible.">
+    The visit section includes the real address, opening hours, transport context, and a lazy-loaded Google Maps embed so the site answers practical questions before the conversation starts.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Movement" media>
+  Movement needed to feel approachable rather than performance-heavy. The section uses the club's five activity types, small-group positioning, and close-guidance promise within a quiet editorial layout.
+
+  <ImagePlate image={movementScreen} alt="RIOwell movement section with an editorial heading and Pilates photography." />
+</CaseSection>
+
+<CaseSection title="Recovery" media>
+  Recovery shifts into a cooler sage field and warmer, lower-light imagery. The change in atmosphere separates restoration from training while keeping both parts of one coherent brand system.
+
+  <ImagePlate image={recoveryScreen} alt="RIOwell recovery section with a sauna scene in a muted sage layout." />
+</CaseSection>
+
+<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
+  <h2>What shipped</h2>
+  <div class="case-study-detail__editorial-copy">
+    <ProofRows rows={shippedRows}>
+      The result is a working website concept, not a static mockup: two language routes, responsive navigation, measured motion, WhatsApp handoff, and location details deployed on Cloudflare Pages.
+    </ProofRows>
+  </div>
+</section>
+
+<CaseSection title="Mobile experience" media>
+  The phone layout uses a compact wordmark, a three-line menu, an icon-only WhatsApp action, and crop-specific imagery. The long page remains calm and readable without reproducing the desktop navigation at a smaller size.
+
+  <div class="case-study-detail__mobile-capture">
+    <ImagePlate image={mobileScreen} alt="Mobile RIOwell hero with compact navigation, editorial photography, and an icon-only WhatsApp action." />
+  </div>
+</CaseSection>
+
+<CaseSection title="Outcome">
+  The project turned an Instagram presence into a complete, public website preview and gave the pitch a tangible artifact instead of a promise about what I could build.
+
+  It was an independent cold-pitch project and was not adopted by the business, so I do not claim customer, conversion, or revenue results. The evidence is the research discipline, the product decisions, and the working responsive site.
+</CaseSection>

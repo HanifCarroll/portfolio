@@ -18,7 +18,7 @@ In less than a day, I created an AI-powered command-line interface (CLI) tool th
 
 This post is the story of how I built that system. It’s not just about the code; it’s about a philosophy of using technology to solve real-world business problems, showcasing how I approach challenges for my clients and myself.
 
-The workflow later became a more focused product. [See the transcript-to-draft system.](/case-studies/vox-prismatic/)
+The workflow later became a more focused product. [See the transcript-to-draft system.](/projects/vox-prismatic/)
 
 ## The Philosophy: Content Intelligence, Not AI Content Farming
 

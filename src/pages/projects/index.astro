@@ -1,0 +1,240 @@
+---
+import { Image } from 'astro:assets';
+import Portrait from '../../assets/img/hanif-author-portrait.jpg';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArchiveProjectRow from '../../components/ArchiveProjectRow.astro';
+import { projects } from '../../lib/project-cards';
+import {
+	DELISTED_PROJECT_SLUGS,
+	PROJECT_ARCHIVE_GROUPS,
+} from '../../lib/project-curation';
+import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import '../../styles/projects.css';
+
+const title = 'Projects';
+const description =
+	'Selected client product work and independent products and experiments, showing product engineering, AI systems, and supported results.';
+
+const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
+
+const selectProjects = (slugs: readonly string[]) =>
+	slugs.map((slug) => {
+		const project = projectBySlug.get(slug);
+		if (!project) throw new Error(`Missing project metadata for "${slug}".`);
+		return project;
+	});
+
+const allCategorizedSlugs = PROJECT_ARCHIVE_GROUPS.flatMap((group) => group.slugs);
+const duplicateSlugs = allCategorizedSlugs.filter(
+	(slug, index) => allCategorizedSlugs.indexOf(slug) !== index,
+);
+if (duplicateSlugs.length > 0) {
+	throw new Error(
+		`Projects archive contains duplicate slugs: ${[...new Set(duplicateSlugs)].join(', ')}`,
+	);
+}
+
+const delistedSet = new Set<string>(DELISTED_PROJECT_SLUGS);
+const categorizedSlugSet = new Set<string>(allCategorizedSlugs);
+const uncategorizedProjects = projects.filter(
+	(project) => !categorizedSlugSet.has(project.slug) && !delistedSet.has(project.slug),
+);
+if (uncategorizedProjects.length > 0) {
+	throw new Error(
+		`Projects need an archive group or delist tier: ${uncategorizedProjects.map((project) => project.slug).join(', ')}`,
+	);
+}
+
+const groups = PROJECT_ARCHIVE_GROUPS.map((group) => ({
+	...group,
+	projects: selectProjects(group.slugs),
+}));
+
+const archiveJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	description,
+	url: new URL('/projects/', Astro.site).toString(),
+};
+---
+
+<BaseLayout
+	title={`${title} | Hanif Carroll`}
+	description={description}
+	jsonLd={archiveJsonLd}
+	showHeader={false}
+	showFooterCta={false}
+	showFooter={false}
+	bodyClass='hc-projects-archive'
+>
+	<div class='hc-archive-shell'>
+		<header class='hc-archive-header'>
+			<div class='hc-archive-header__top'>
+				<figure class='hc-archive-header__portrait'>
+					<Image
+						src={Portrait}
+						alt='Hanif Carroll'
+						loading='eager'
+						widths={[176, 352]}
+						sizes='88px'
+					/>
+				</figure>
+				<h1 class='hc-archive-header__name'><a href='/'>Hanif Carroll</a></h1>
+				<p class='hc-archive-header__role'>AI Product Engineer</p>
+				<p class='hc-archive-header__intro'>
+					Client engagements and independent products — the problem, what I built, and the
+					outcome.
+				</p>
+
+				<nav class='hc-archive-nav' aria-label='Project sections'>
+					<ul>
+						{groups.map((group) => (
+							<li>
+								<a href={`#${group.id}`}>
+									<span class='hc-archive-nav__indicator' aria-hidden='true'></span>
+									<span class='hc-archive-nav__text'>{group.label}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
+
+			<div class='hc-archive-header__footer'>
+				<div class='hc-archive-header__actions'>
+					<a
+						class='hc-archive-resume'
+						href='/Hanif-Carroll-Resume.pdf'
+						download
+						data-track-event='resume_downloaded'
+						data-track-location='projects_rail'
+					>
+						Download résumé
+					</a>
+					<a
+						class='hc-archive-inquiry'
+						href={BOOK_CALL_URL}
+						target='_blank'
+						rel='noopener noreferrer'
+						data-track-event='book_call_clicked'
+						data-track-location='projects_rail'
+					>
+						Book a call <span aria-hidden='true'>&nearr;</span>
+					</a>
+				</div>
+
+				<ul class='hc-archive-social' aria-label='Social media'>
+					<li>
+						<a
+							href='https://github.com/hanifcarroll'
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label='GitHub (opens in a new tab)'
+							title='GitHub'
+						>
+							<svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'></path></svg>
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://linkedin.com/in/hanifcarroll'
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label='LinkedIn (opens in a new tab)'
+							title='LinkedIn'
+						>
+							<svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'></path><rect x='2' y='9' width='4' height='12'></rect><circle cx='4' cy='4' r='2'></circle></svg>
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://x.com/hanifcarroll'
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label='X, formerly Twitter (opens in a new tab)'
+							title='X'
+						>
+							<svg viewBox='0 0 24 24' width='18' height='18' fill='currentColor' aria-hidden='true'><path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'></path></svg>
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://www.threads.com/@hanifcarroll'
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label='Threads (opens in a new tab)'
+							title='Threads'
+						>
+							<svg viewBox='0 0 24 24' width='18' height='18' fill='currentColor' aria-hidden='true'><path d='M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z'></path></svg>
+						</a>
+					</li>
+					<li>
+						<a href={EMAIL_URL} aria-label='Email' title='Email'>
+							<svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'></path><polyline points='22,6 12,13 2,6'></polyline></svg>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+
+		<main class='hc-archive-main'>
+			<nav class='hc-archive-back' aria-label='Back to home'>
+				<a href='/'>
+					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+					Hanif Carroll
+				</a>
+			</nav>
+
+			{groups.map((group) => (
+				<section id={group.id} class='hc-archive-group' aria-label={group.label}>
+					<div class='hc-archive-section-label'>
+						<h2 class='hc-archive-section-title'>{group.label}</h2>
+					</div>
+					<div class='hc-archive-section-body'>
+						<p class='hc-archive-group__description'>{group.description}</p>
+						<ol class='hc-archive-rows'>
+							{group.projects.map((project) => (
+								<ArchiveProjectRow project={project} />
+							))}
+						</ol>
+					</div>
+				</section>
+			))}
+		</main>
+	</div>
+</BaseLayout>
+
+<script>
+	const update = () => {
+		const sections = document.querySelectorAll<HTMLElement>('.hc-archive-main section[id]');
+		const links = document.querySelectorAll<HTMLAnchorElement>('.hc-archive-nav a');
+		if (!sections.length || !links.length) return;
+
+		const probe = window.scrollY + window.innerHeight * 0.35;
+		let current = sections[0]?.id;
+		sections.forEach((section) => {
+			if (section.offsetTop <= probe) current = section.id;
+		});
+
+		links.forEach((link) => {
+			const active = link.getAttribute('href') === `#${current}`;
+			link.classList.toggle('is-active', active);
+			if (active) link.setAttribute('aria-current', 'location');
+			else link.removeAttribute('aria-current');
+		});
+	};
+
+	let ticking = false;
+	const onScroll = () => {
+		if (ticking) return;
+		ticking = true;
+		requestAnimationFrame(() => {
+			update();
+			ticking = false;
+		});
+	};
+
+	window.addEventListener('scroll', onScroll, { passive: true });
+	document.addEventListener('astro:page-load', () => requestAnimationFrame(update));
+</script>

@@ -247,10 +247,10 @@ test("font stacks reject host-dependent named fallbacks", async () => {
 });
 
 test("poster timestamps must use settled scene frames", async () => {
-  const manifest = structuredClone(await loadManifest("client-feedback"));
+  const manifest = structuredClone(await loadManifest("acquire"));
   manifest.posterAt =
     manifest.scenes.slice(0, 3).reduce((total, scene) => total + scene.duration, 0) + 0.25;
-  const result = validateManifest(manifest, { expectedSlug: "client-feedback" });
+  const result = validateManifest(manifest, { expectedSlug: "acquire" });
   assert.ok(result.errors.some((message) => message.includes("posterAt must use a settled frame")));
 });
 

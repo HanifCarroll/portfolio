@@ -15,7 +15,7 @@ A useful business process map shows how one piece of work moves from a clear tri
 
 This article works through one example from the first customer request to the weekly operations report. It is more detailed than a generic flowchart because the difficult parts of a growing service business usually sit between the boxes: a request copied from email into a spreadsheet, an approval waiting in chat, or a field update that never reaches the report.
 
-To make the example concrete, I use a fictional service company called Meridian Facility Services—the same scenario used in the [One Tuesday case study](/case-studies/one-tuesday/).
+To make the example concrete, I use a fictional service company called Meridian Facility Services—the same scenario used in the [One Tuesday project](/projects/one-tuesday/).
 
 <figure class="workflow-map workflow-editorial">
   <picture>
@@ -170,9 +170,9 @@ Keep the current-state and future-state maps separate. If you mix them, the team
 
 ## How this connects to real consulting work
 
-In the [Desarmadero Operations Prototype](/case-studies/desarmadero-operations-prototype/), one discovery call described an auto-dismantling yard operating across paper budget sheets, WhatsApp, Excel, and memory. I turned that material into a product requirements document, functional specification, and role-based clickable prototype covering sales, payment release, dismantle assignment, and yard search.
+In the [Desarmadero Operations Prototype](/projects/desarmadero-operations-prototype/), one discovery call described an auto-dismantling yard operating across paper budget sheets, WhatsApp, Excel, and memory. I turned that material into a product requirements document, functional specification, and role-based clickable prototype covering sales, payment release, dismantle assignment, and yard search.
 
 The prototype gave the client something concrete to review before deciding the scope of a full build.
 
-If you want to feel the difference between the two workflows, [run the One Tuesday case study](/case-studies/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
+If you want to feel the difference between the two workflows, [run the One Tuesday project](/projects/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
 

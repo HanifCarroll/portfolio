@@ -116,7 +116,7 @@ The ChatGPT Chrome Extension and Playwriter use your existing Chrome, so they ar
 
 agent-browser opens a separate browser and does not share your sign-ins by default. You can choose to reuse a Chrome profile or saved sign-in when a task needs one. For scripts that run on their own, I would keep the separate browser.
 
-[See guarded browser automation in a working system.](/case-studies/linkedin-tools/)
+[See guarded browser automation in a working system.](/projects/linkedin-tools/)
 
 ## What I use now
 

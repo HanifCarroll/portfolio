@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const projectsDir = join(root, "src/lib/projects");
 const caseStudiesDir = join(root, "src/content/case-studies");
-const caseStudyPagesDir = join(root, "src/pages/case-studies");
+const caseStudyPagesDir = join(root, "src/pages/projects");
 const srcDir = join(root, "src");
 
 const localProjectFiles = readdirSync(projectsDir)
@@ -44,7 +44,7 @@ for (const file of localProjectFiles) {
     : join(caseStudiesDir, `${slug}.mdx`);
   if (!existsSync(caseStudyPath)) {
     const expectedPath = project.customPage
-      ? `src/pages/case-studies/${slug}.astro`
+      ? `src/pages/projects/${slug}.astro`
       : `src/content/case-studies/${slug}.mdx`;
     errors.push(`${file}: missing case study at ${expectedPath}.`);
   }

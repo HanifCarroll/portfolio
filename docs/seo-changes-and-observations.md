@@ -2,6 +2,25 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-15
+
+### Project Archive Taxonomy And Client Feedback Retirement
+
+- Standardized every project archive row under four visitor-facing labels: `Client project`, `Product`, `Tool`, and `Demonstration`. The labels describe the kind of work at a glance and no longer inherit inconsistent project-specific metadata such as "Independent R&D" or "Interactive project".
+- Retired the Client Feedback Evidence Collector portfolio project. Removed its route source, metadata, image, rendered videos, video-production source, archive entry, and the related link from Agent Recall. The underlying GitHub repository remains untouched.
+- Intentionally added no redirect for `/projects/client-feedback/`; the retired URL should return a normal 404 and disappear from the generated sitemap.
+- Verified locally with `git diff --check`, `bun run check:projects`, `bun run lint`, and `bun run build` (34 pages, 0 Astro errors or warnings). The built archive contains 22 valid project links and only the four approved labels; the retired URL returns 404 and is absent from the archive and sitemap.
+- After deployment, confirm the four archive labels render across all remaining projects, `/projects/client-feedback/` returns 404, and the retired URL is absent from the sitemap and internal links.
+
+### Case Studies -> Projects Migration
+
+- Migrated the canonical public route from `/case-studies/*` to `/projects/*`: renamed `src/pages/case-studies/` to `src/pages/projects/`, and updated every internal href, canonical URL, `liveUrl`, and sitemap destination to use `/projects/`. Content source under `src/content/case-studies/` and the shared case-study component/class names remain unchanged as internal implementation details.
+- Added one-hop 301s in `public/_redirects`: `/case-studies/` -> `/projects/`, `/case-studies/desarmadero-latorre/` -> `/projects/desarmadero-la-torre/`, and `/case-studies/*` -> `/projects/*`, so old URLs resolve directly to the new paths without intermediate hops.
+- Changed all user-visible language from Case Studies/Case Study to Projects/Project: navigation labels, page titles, SEO titles, breadcrumbs, back links, CTA labels, card labels, and the interactive One Tuesday labels. Updated every project JSON `seoTitle` that still said "Case Study", the `[slug]` title fallback from "· Case Study" to "· Project", and the `seoDescription`/`cardLabel`/`service` fields that used "case study" as a category label. Left explanatory prose where "case study" is a meaningful format description.
+- Redesigned the Projects archive as the single `/projects/` index and restored all 23 projects to archive discovery and the sitemap; the delisted-project set is now empty, so none of the project routes carries the former archive-driven `noindex`. Renamed `DELISTED_CASE_STUDY_SLUGS` to `DELISTED_PROJECT_SLUGS` across `astro.config.mjs`, `src/lib/project-curation.ts`, and the projects index/detail pages.
+- Verified with `rg` audits for remaining public "case study"/"Case Studies" strings and `/case-studies/` links, `git diff --check`, `bun run check:projects`, `bun run lint`, and `bun run build`.
+- After deployment, verify the live 301s return one-hop redirects to the final HTTPS `/projects/` URLs, confirm the new titles/canonicals/sitemap entries are indexed, and watch Search Console for old `/case-studies/` URL consolidation into the `/projects/` destinations.
+
 ## 2026-08-14
 
 ### Product Usage Scoring & Routing Case Study

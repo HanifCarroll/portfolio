@@ -12,6 +12,7 @@ export interface ProjectCard {
   tags: string[];
   year: string;
   client: string;
+  role: string;
   proofType: Project["proofType"];
   cardLabel?: string;
   service: string;
@@ -35,6 +36,7 @@ const toCard = (project: Project): ProjectCard => {
     tags: project.technologies ?? [],
     year: project.year ?? "",
     client: project.client,
+    role: project.role ?? "",
     proofType: project.proofType,
     cardLabel: project.cardLabel,
     service: project.service,

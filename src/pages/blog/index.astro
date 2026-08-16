@@ -10,18 +10,63 @@ const title = 'Blog on products, workflows, and AI';
 const description =
 	'Practical notes for founders and operators on software, workflow automation, AI, and the technical decisions behind reliable systems.';
 
-const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort(
+	(a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const archiveJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	description,
+	url: new URL('/blog/', Astro.site).toString(),
+};
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly bodyClass='page-blog-index'>
-	<article class='content-page hc-blog-index'>
-		<div class='hc-blog-index__layout'>
-			<header class='content-page__hero' data-motion-intro data-header-surface='dark'>
-				<h1 class='content-page__title' data-motion='headline'>Blog</h1>
-				<p class='content-page__intro' data-motion-deck>Notes on dependable software, business workflows, and deciding where AI is useful.</p>
+<BaseLayout
+	title={title}
+	description={description}
+	jsonLd={archiveJsonLd}
+	showHeader={false}
+	showFooterCta={false}
+	showFooter={false}
+	bodyClass='hc-blog-index'
+>
+	<article class='hc-blog-shell'>
+		<div class='hc-blog-content'>
+			<nav class='hc-blog-back' aria-label='Back to home'>
+				<a href='/'>
+					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+					Hanif Carroll
+				</a>
+			</nav>
+
+			<header class='hc-blog-header'>
+				<h1 class='hc-blog-title'>Blog</h1>
+				<p class='hc-blog-intro'>
+					Notes on dependable software, business workflows, and deciding where AI is useful.
+				</p>
 			</header>
-			<section class='hc-blog-index__posts' aria-label='Blog posts' data-motion-group>
-				{posts.map((post, index) => <a class='hc-blog-index__entry' href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`} data-motion-item><span class='hc-blog-index__number'>{String(index + 1).padStart(2, '0')}</span><FormattedDate date={post.data.pubDate} /><h2>{post.data.title}</h2><span class='hc-blog-index__arrow' aria-hidden='true'>→</span></a>)}
+
+			<section class='hc-blog-posts' aria-label='Blog posts'>
+				<div class='hc-blog-section-label'>
+					<h2 class='hc-blog-section-title'>All posts</h2>
+				</div>
+				<ol class='hc-blog-rows'>
+					{posts.map((post) => (
+						<li class='hc-blog-row'>
+							<a class='hc-blog-row__link' href={`/blog/${post.id}/`}>
+								<div class='hc-blog-row__meta'>
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<div class='hc-blog-row__content'>
+									<h3 class='hc-blog-row__title'>{post.data.title}</h3>
+									<p class='hc-blog-row__description'>{post.data.description}</p>
+								</div>
+							</a>
+						</li>
+					))}
+				</ol>
 			</section>
 		</div>
 	</article>

@@ -7,10 +7,10 @@ colors:
   accent-ink: "#10253f"
   proof-navy: "#10253f"
   proof-white: "#f5f8fc"
-  canvas: "#fdfdfb"
+  canvas: "#ffffff"
   surface: "#ffffff"
-  ink: "#152235"
-  muted-ink: "#485463"
+  ink: "#282828"
+  muted-ink: "#504945"
   border: "#e0e2dc"
   supporting-blue: "#2e5fd1"
 typography:
@@ -91,7 +91,7 @@ components:
 
 The site should feel like a well-run operating system made visible: calm at first glance, specific on inspection, and structured around the decisions a client needs to make. The hierarchy comes from typography, proportion, spacing, and real evidence rather than a stack of decorative cards.
 
-The visual system pairs a near-white canvas with dark navy proof surfaces and a deliberately scarce yellow accent. It rejects generic developer portfolios, resume framing, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
+The visual system pairs a white canvas with dark navy proof surfaces and a deliberately scarce yellow accent. It rejects generic developer portfolios, resume framing, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
 
 **Key Characteristics:**
 
@@ -103,7 +103,7 @@ The visual system pairs a near-white canvas with dark navy proof surfaces and a 
 
 ## Colors
 
-The palette is restrained: a true off-white canvas, dark blue-black ink, navy proof surfaces, and a yellow accent reserved for actions and meaningful emphasis.
+The palette is restrained: a white canvas, warm charcoal ink, navy proof surfaces, and a yellow accent reserved for actions and meaningful emphasis.
 
 ### Primary
 
@@ -118,10 +118,10 @@ The palette is restrained: a true off-white canvas, dark blue-black ink, navy pr
 
 - **Proof Navy** (`#10253f`): Navigation, footer, proof bands, and high-contrast editorial callouts.
 - **Proof White** (`#f5f8fc`): Primary text on Proof Navy.
-- **Canvas** (`#fdfdfb`): Default page background; it should read as neutral off-white rather than cream.
+- **Canvas** (`#ffffff`): Default page background.
 - **Surface White** (`#ffffff`): Controls and bounded surfaces when separation is necessary.
-- **Ink** (`#152235`): Headings and primary text on light surfaces.
-- **Muted Ink** (`#485463`): Supporting copy and metadata on light surfaces.
+- **Ink** (`#282828`): Headings and primary text on light surfaces.
+- **Muted Ink** (`#504945`): Supporting copy and metadata on light surfaces.
 - **Border** (`#e0e2dc`): Quiet structural borders used only where spacing cannot communicate the grouping.
 
 ### Named Rules

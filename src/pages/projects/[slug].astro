@@ -9,7 +9,7 @@ import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
 import { getProjectTrackMeta } from '@src/lib/project-tracks';
 import {
-	DELISTED_CASE_STUDY_SLUGS,
+	DELISTED_PROJECT_SLUGS,
 } from '@src/lib/project-curation';
 import '../../styles/case-study.css';
 
@@ -41,10 +41,10 @@ const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);
 const heroImage = getProjectImage(project, 'hero');
-const seoTitle = project.seoTitle ?? `${project.title} · Case Study`;
+const seoTitle = project.seoTitle ?? `${project.title} · Project`;
 const seoDescription = project.seoDescription ?? project.description;
-const isDelisted = (DELISTED_CASE_STUDY_SLUGS as readonly string[]).includes(project.slug);
-const canonicalUrl = new URL(`/case-studies/${project.slug}/`, Astro.site).toString();
+const isDelisted = (DELISTED_PROJECT_SLUGS as readonly string[]).includes(project.slug);
+const canonicalUrl = new URL(`/projects/${project.slug}/`, Astro.site).toString();
 const caseStudyJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'CreativeWork',
@@ -68,6 +68,7 @@ const caseStudyFacts = [
 	{ label: project.proofType === 'client' ? 'Contribution' : 'Built by', value: project.role },
 	{ label: 'Timeline', value: project.timeline ?? project.year },
 ].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
+const coreTechnologies = project.technologies.slice(0, 5);
 
 const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
 const firstProblem = Array.isArray(project.problem) ? project.problem[0] : project.problem;
@@ -105,70 +106,68 @@ const heroActions = [
 	robots={isDelisted ? 'noindex, follow' : undefined}
 	image={heroImage?.src}
 	jsonLd={caseStudyJsonLd}
+	showHeader={false}
 	showFooterCta={false}
-	footerLinksOnly
+	showFooter={false}
 	bodyClass='page-case-study-detail'
 >
-	<article
-		class:list={[
-			'container max-w-6xl py-8 md:py-10',
-			`case-study-detail case-study-detail--${project.detailVariant}`
-		]}
-	>
-		<header class='case-study-detail__hero case-study-detail__hero--product' data-motion-intro>
-			<div class='case-study-detail__hero-body case-study-detail__hero-body--product'>
-				<div class='case-study-detail__hero-copy space-y-5'>
-					<div class='case-study-detail__eyebrow'>
-						<a href='/case-studies/'>Case study</a>
-						<span aria-hidden='true'>/</span>
-						<span>{project.year}</span>
-					</div>
-					<h1
-						class='heading-display heading-display--hero'
-						data-motion='headline'
-						data-fit-heading
-						data-fit-min-rem='1.75'
-						data-fit-max-rem='7.2'
-						data-fit-lines-desktop='3'
-						data-fit-lines-mobile='3'
-						data-fit-lines-narrow-mobile='3'
-					>
-						{project.title}
-					</h1>
-					<p class='max-w-3xl text-lg leading-8 text-zinc-600' data-motion-deck>{project.description}</p>
-					<div class='case-study-detail__hero-actions' data-motion-intro-item>
-						{
-							heroActions.map((action, index) => (
-								<a
-                        class={index === 0 ? 'hc-button' : 'fit-secondary-link'}
-									href={action.href}
-									target={action.external ? '_blank' : undefined}
-									rel={action.external ? 'noopener noreferrer' : undefined}
-									data-track-event={action.trackEvent}
-									data-track-location={action.trackLocation}
-								>
-									{action.label}
-								</a>
-							))
-						}
-					</div>
-				</div>
+	<article class='cs-shell'>
+		<nav class='cs-breadcrumb' aria-label='Breadcrumb'>
+			<a href='/' class='cs-breadcrumb__link'>
+				<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+				Hanif Carroll
+			</a>
+			<span class='cs-breadcrumb__sep' aria-hidden='true'>/</span>
+			<a href='/projects/' class='cs-breadcrumb__link'>Projects</a>
+		</nav>
 
-				<aside
-					class='case-study-detail__hero-facts'
-					style={`--case-fact-count: ${Math.min(caseStudyFacts.length, 4)}`}
-					data-motion-intro-item
-				>
-					{
-						caseStudyFacts.map((detail) => (
-							<div class='case-study-detail__hero-fact'>
-								<p>{detail.label}</p>
-								<strong>{detail.value}</strong>
-							</div>
-						))
-					}
-				</aside>
+		<header class='cs-hero' data-motion-intro>
+			<div class='cs-hero__body'>
+				<p class='cs-hero__eyebrow'>{projectType}</p>
+				<h1 class='cs-hero__title' data-motion='headline'>{project.title}</h1>
+				<p class='cs-hero__description' data-motion-deck>{project.description}</p>
+				{
+					heroActions.length > 0 && (
+						<div class='cs-hero__actions' data-motion-intro-item>
+							{
+								heroActions.map((action, index) => (
+									<a
+										class={index === 0 ? 'hc-button' : 'cs-hero__secondary'}
+										href={action.href}
+										target={action.external ? '_blank' : undefined}
+										rel={action.external ? 'noopener noreferrer' : undefined}
+										data-track-event={action.trackEvent}
+										data-track-location={action.trackLocation}
+									>
+										{action.label}
+									</a>
+								))
+							}
+						</div>
+					)
+				}
 			</div>
+
+			<aside class='cs-hero__facts' aria-label='Project facts' data-motion-intro-item>
+				{
+					caseStudyFacts.map((detail) => (
+						<div class='cs-hero__fact'>
+							<p>{detail.label}</p>
+							<strong>{detail.value}</strong>
+						</div>
+					))
+				}
+				{
+					coreTechnologies.length > 0 && (
+						<div class='cs-hero__stack'>
+							<p>Built with</p>
+							<ul aria-label='Core technologies'>
+								{coreTechnologies.map((technology) => <li>{technology}</li>)}
+							</ul>
+						</div>
+					)
+				}
+			</aside>
 		</header>
 
 		{
@@ -181,11 +180,11 @@ const heroActions = [
 			)
 		}
 
-		<section class='case-study-detail__proof-snapshot' aria-label='Case study highlights'>
-			<div class:list={['case-study-detail__proof-snapshot-grid', `case-study-detail__proof-snapshot-grid--${proofSnapshot.length}`]}>
+		<section class='cs-proof' aria-label='Project highlights'>
+			<div class='cs-proof__grid'>
 				{
 					proofSnapshot.map((detail) => (
-						<div class='case-study-detail__proof-snapshot-item'>
+						<div class='cs-proof__item'>
 							<p>{detail.label}</p>
 							<strong>{detail.value}</strong>
 						</div>
@@ -194,54 +193,9 @@ const heroActions = [
 			</div>
 		</section>
 
-		<Content />
-
-		{
-			project.technologies.length > 0 && (
-				<section class='case-study-detail__technical-appendix'>
-					<details>
-						<summary>Implementation details</summary>
-						<div class='case-study-detail__technical-appendix-body'>
-							<div class='flex flex-wrap gap-2'>
-								{project.technologies.map((tech) => (
-									<span class='tech-tag'>{tech}</span>
-								))}
-							</div>
-							{(project.liveUrl || project.repository) && (
-								<div class='case-study-detail__actions'>
-									{project.liveUrl && (
-										<a
-											class='btn-secondary'
-											href={project.liveUrl}
-											target='_blank'
-											rel='noopener noreferrer'
-											data-track-event='project_live_site_clicked'
-											data-track-location='project_detail'
-										>
-											Visit Live Site
-											<span>&rarr;</span>
-										</a>
-									)}
-									{project.repository && (
-										<a
-											class='btn-secondary'
-											href={project.repository}
-											target='_blank'
-											rel='noopener noreferrer'
-											data-track-event='project_repository_clicked'
-											data-track-location='project_detail'
-										>
-											{project.repositoryCtaLabel ?? 'View Repository'}
-											<span>&rarr;</span>
-										</a>
-									)}
-								</div>
-							)}
-						</div>
-					</details>
-				</section>
-			)
-		}
+		<div class='cs-content'>
+			<Content />
+		</div>
 
 		{
 			project.proofQuote && (
@@ -258,14 +212,14 @@ const heroActions = [
 
 		{
 			project.relatedLinks && project.relatedLinks.length > 0 && (
-				<nav class='case-study-detail__related' aria-labelledby={`related-${project.slug}`}>
-					<p id={`related-${project.slug}`} class='case-study-detail__related-heading'>
+				<nav class='cs-related' aria-labelledby={`related-${project.slug}`}>
+					<p id={`related-${project.slug}`} class='cs-related__heading'>
 						See another example
 					</p>
-					<div class='case-study-detail__related-links'>
+					<div class='cs-related__links'>
 						{project.relatedLinks.map((link) => (
 							<a
-								class='arrow-link'
+								class='cs-related__link'
 								href={link.href}
 								data-track-event='related_case_study_clicked'
 								data-track-location={`case_study_${project.slug}`}
@@ -278,8 +232,8 @@ const heroActions = [
 			)
 		}
 
-		<div class='pt-8'>
-			<a href='/case-studies/' class='arrow-link'>Back to All Case Studies</a>
+		<div class='cs-return'>
+			<a href='/projects/' class='cs-return__link'>Back to All Projects</a>
 		</div>
 	</article>
 </BaseLayout>

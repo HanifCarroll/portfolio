@@ -66,7 +66,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 
 ## Current Project Map
 
-`bun run videos:list` is the live machine-readable inventory. The current 21 mappings are:
+`bun run videos:list` is the live machine-readable inventory. The current 20 mappings are:
 
 | Project                                                | Slug                               | Family            | Timing     | Duration |
 | ------------------------------------------------------ | ---------------------------------- | ----------------- | ---------- | -------: |
@@ -76,7 +76,6 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 | BA Eventos                                             | `ba-eventos`                       | `product-journey` | `short`    |      34s |
 | Casa Elaria                                            | `casa-elaria`                      | `product-journey` | `loop`     |      23s |
 | Casamo                                                 | `casamo`                           | `product-journey` | `standard` |      44s |
-| Client Feedback Evidence CLI                           | `client-feedback`                  | `system-proof`    | `short`    |    33.5s |
 | Codex Telegram Bridge                                  | `codex-telegram-bridge`            | `system-proof`    | `standard` |      46s |
 | Desarmadero Latorre                                    | `desarmadero-latorre`              | `product-journey` | `loop`     |      23s |
 | Desarmadero Operations Prototype                       | `desarmadero-operations-prototype` | `system-proof`    | `standard` |      47s |

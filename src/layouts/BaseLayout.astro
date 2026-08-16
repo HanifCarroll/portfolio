@@ -13,7 +13,9 @@ const {
 	jsonLd,
 	ogType,
 	robots,
+	showHeader = true,
 	showFooterCta = true,
+	showFooter = true,
 	footerCtaTitle,
 	footerCtaBody,
 	footerCtaPrimaryLabel,
@@ -74,14 +76,14 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 			)
 		}
 		<a class='skip-link' href='#main'>Skip to content</a>
-		<Header />
+		{showHeader && <Header />}
 		<main id='main' class='hc-main' data-motion-page transition:name='page-content' transition:animate={fade({ duration: '0.24s' })}>
 			<slot />
 		</main>
 
 		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} surface={footerCtaSurface} />}
 
-		<footer class='hc-footer' data-header-surface='dark' transition:name='site-footer'>
+		{showFooter && <footer class='hc-footer' data-header-surface='dark' transition:name='site-footer'>
 			<div class='hc-container-page'>
 				<div class='hc-footer-inner'>
 					<div class='hc-footer-brand'>
@@ -100,7 +102,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 					<span>Product · systems · integrations</span>
 				</div>
 			</div>
-		</footer>
+		</footer>}
 
 		<script>
 			import '../scripts/motion';

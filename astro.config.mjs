@@ -5,13 +5,13 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { autoNewTabExternalLinks } from "./src/autoNewTabExternalLinks.ts";
-import { DELISTED_CASE_STUDY_SLUGS } from "./src/lib/project-curation.ts";
+import { DELISTED_PROJECT_SLUGS } from "./src/lib/project-curation.ts";
 
 const isDev = process.env.NODE_ENV === "development";
 const siteDomain = isDev ? "localhost" : "hanifcarroll.com";
 const excludedSitemapPaths = [
   "/now/",
-  ...DELISTED_CASE_STUDY_SLUGS.map((slug) => `/case-studies/${slug}/`),
+  ...DELISTED_PROJECT_SLUGS.map((slug) => `/projects/${slug}/`),
 ];
 
 // https://astro.build/config
