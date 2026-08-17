@@ -13,8 +13,6 @@ export function trackTuesdayEvent(eventName: string, payload: TuesdayAnalyticsPa
     ...payload,
   };
 
-  analyticsWindow.dataLayer = analyticsWindow.dataLayer ?? [];
-  analyticsWindow.dataLayer.push(eventPayload);
   analyticsWindow.gtag?.("event", eventName, {
     ...eventPayload,
     event: undefined,

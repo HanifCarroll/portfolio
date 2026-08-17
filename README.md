@@ -30,12 +30,13 @@ Use `bun run dev:direct` for the raw Astro server on [http://localhost:4321](htt
 
 ### Analytics & Verification Env Vars
 
-Set these in your hosting environment (and optionally local `.env`):
+Set these in your hosting environment (and optionally local `.env`). The site uses one direct GA4 installation plus Microsoft Clarity; Google Tag Manager is not required.
 
-- `PUBLIC_GTM_CONTAINER_ID` – Google Tag Manager container ID (example: `GTM-ABC1234`)
 - `PUBLIC_GA_MEASUREMENT_ID` – GA4 web stream measurement ID (example: `G-ABC123XYZ9`)
 - `PUBLIC_CLARITY_PROJECT_ID` – Microsoft Clarity project ID used in the Clarity snippet
 - `PUBLIC_GSC_VERIFICATION` – Google Search Console verification token for `<meta name="google-site-verification" />`
+
+The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` events include the `event_location` parameter. In GA4, register `event_location` as an event-scoped custom dimension, then mark `book_call_clicked` and `resume_downloaded` as key events. Page views remain GA4's automatic measurement; do not add a second manual page-view event unless DebugView shows that Astro navigation is being missed.
 
 ### Content & Data
 

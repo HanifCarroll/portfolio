@@ -25,7 +25,6 @@ const {
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
-const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 ---
 
 <!doctype html>
@@ -44,8 +43,6 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 					page_title: document.title,
 					page_path: window.location.pathname
 				};
-				const payload = { event: eventName, ...gaProperties };
-				window.dataLayer.push(payload);
 				window.gtag('event', eventName, { ...gaProperties, transport_type: 'beacon' });
 			};
 
@@ -68,13 +65,6 @@ const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 		</script>
 	</head>
 	<body class={bodyClass}>
-		{
-			gtmId && (
-				<noscript>
-					<iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height='0' width='0' style='display:none;visibility:hidden' />
-				</noscript>
-			)
-		}
 		<a class='skip-link' href='#main'>Skip to content</a>
 		{showHeader && <Header />}
 		<main id='main' class='hc-main' data-motion-page transition:name='page-content' transition:animate={fade({ duration: '0.24s' })}>

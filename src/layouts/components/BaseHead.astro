@@ -24,26 +24,10 @@ const fallbackImage = image ?? defaultSocialImage;
 const fallbackImageURL = new URL(fallbackImage, Astro.url);
 const isDefaultSocialImage = fallbackImage === defaultSocialImage;
 const structuredData = jsonLd ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : '';
-const gtmId = import.meta.env.PUBLIC_GTM_CONTAINER_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
 const analyticsAllowedHosts = JSON.stringify(['hanifcarroll.com', 'www.hanifcarroll.com']);
-const gtmLoaderScript = gtmId
-	? `(() => {
-        const allowedHosts = new Set(${analyticsAllowedHosts});
-        if (!allowedHosts.has(window.location.hostname)) return;
-
-        (function(w,d,s,l,i){
-            w[l]=w[l]||[];
-            w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-            var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
-            j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-            f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${gtmId}');
-    })();`
-	: '';
 const gaLoaderScript = gaMeasurementId
 	? `(() => {
         const allowedHosts = new Set(${analyticsAllowedHosts});
@@ -92,7 +76,6 @@ const clarityLoaderScript = clarityProjectId
 <meta name='generator' content={Astro.generator} />
 {gscVerification && <meta name='google-site-verification' content={gscVerification} />}
 
-{gtmLoaderScript && <script is:inline set:html={gtmLoaderScript} />}
 {gaLoaderScript && <script is:inline set:html={gaLoaderScript} />}
 {clarityLoaderScript && <script is:inline set:html={clarityLoaderScript} />}
 <!-- Canonical URL -->
