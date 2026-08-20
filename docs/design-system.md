@@ -45,7 +45,6 @@ Use the existing line-height tokens and keep prose between roughly 45ch and 76ch
 | File                 | Owner                                                      |
 | -------------------- | ---------------------------------------------------------- |
 | `home.css`           | Homepage sections and homepage-only comparison table       |
-| `about.css`          | About page narrative, process, and experience sections     |
 | `services.css`       | Services index sections                                    |
 | `service-detail.css` | Individual service offer pages                             |
 | `projects.css`       | Case studies index, filters, and reflowing project layouts |
