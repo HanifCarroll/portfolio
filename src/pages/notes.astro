@@ -8,7 +8,7 @@ import '../styles/notes.css';
 
 const title = 'Notes';
 const description =
-	'A browsable library of ideas I have developed through building products, working independently, learning, training, and trying to live an intentional life.';
+	'Notes on what I’ve learned from building products, working independently, learning, training, and trying to live an intentional life.';
 
 const entryId = (section: string, title: string) =>
 	`${section}-${title
@@ -21,41 +21,41 @@ const sections = [
 	{
 		slug: 'building-products',
 		title: 'Building Products',
-		purpose: 'Product decisions I have learned through building, testing, and observing users.',
+		purpose: 'What I’ve learned about product decisions by building, testing, and watching people use what I make.',
 		entries: [
 			{
 				title: 'Let the outcome define the product',
 				body: [
-					`I started thinking about this while building a tool for making videos. I had seen another product that could generate many kinds of videos through an agent, but I wasn’t sure what that generality would do for me. What I wanted was much more specific: a tool for making explanatory, talking-head videos, sometimes with a recording of my screen.`,
-					`Once I named the outcome, the product became easier to think about. I could remove tools that didn’t help me make that kind of video. The same question has helped me on other projects: what does someone want to accomplish, and what is the smallest product that gets them there?`
+					`I started thinking about this while building a tool for making videos. I had seen another product that could generate many kinds of videos through an agent, but I wasn’t sure what I would do with all of that flexibility. What I wanted was much more specific: a tool for making explanatory, talking-head videos, sometimes with a recording of my screen.`,
+					`Once I named the outcome, the product became much easier to think about. I could remove anything that didn’t help me make that kind of video. I now ask the same question on other projects: what does someone want to accomplish, and what is the smallest product that gets them there?`
 				]
 			},
 			{
 				title: 'High-stakes decisions need visible choices',
 				body: [
 					`My first design for Casamo returned one accommodation recommendation and two backups. I wanted to spare people from comparing another long list after the product had already checked the listings against their requirements.`,
-					`That design made sense for a low-stakes choice. A booking can cost thousands of dollars and determine where someone lives for weeks. In that situation, people wanted to compare a reasonable set of good options before trusting the recommendation. The interface had to show enough of the decision for them to make it themselves, so I changed the report to return roughly six to ten matches.`
+					`The problem was that this wasn’t a low-stakes choice. A booking can cost thousands of dollars and determine where someone lives for weeks. People wanted to compare a reasonable set of good options before trusting the recommendation. The interface had to show enough of the decision for them to make it themselves, so I changed the report to return roughly six to ten matches.`
 				]
 			},
 			{
 				title: 'Constrain the parts handled by AI',
 				body: [
 					`The first version of the generation flow for a Spanish-learning product asked one language model to write a story, use the requested vocabulary and grammar, and produce the definitions and explanations. It was too much to do reliably in one step.`,
-					`I split the job into smaller parts. Code handled the parts whose result could be fixed in advance. The language model was used later, when the product needed judgment to write a good definition or explanation. I have found the same pattern in agent workflows: make the state and available actions explicit, then ask the model to decide only where judgment is useful.`
+					`I split the job into smaller parts. Code handled anything with a result I could define in advance. The language model came in later, when the product needed judgment to write a good definition or explanation. I use the same pattern in agent workflows: make the state and available actions clear, then ask the model to decide where judgment is useful.`
 				]
 			},
 			{
 				title: 'Let actual use overturn the original design',
 				body: [
 					`I liked the simplicity of Casamo’s original report. That didn’t make it the right design. Four people independently told me they wanted more options, and their reason exposed something I had missed about the decision they were making.`,
-					`The important part of user feedback isn’t collecting a list of requested features. It is noticing when several people reveal the same mistaken assumption in the product. At that point, preserving the original idea matters less than changing it to fit how people use it.`
+					`What mattered wasn’t the request for more options by itself. Four people had exposed the same mistaken assumption in the product. Once I saw that, keeping the original idea simple mattered less than making it fit the decision people were trying to make.`
 				]
 			},
 			{
 				title: 'Keep the product narrow while making its components reusable',
 				body: [
-					`A product can be specific without every part inside it being useful only once. The video tool can be designed around my way of making explanatory videos while still using general components for transcription, captions, screen recordings, and rendering.`,
-					`I use the same approach with AI workflows. A scraper, a structured file, or a small browser tool can be reused in many systems. The product around those tools should still have a clear job. Reusable parts make the next product cheaper to build; a narrow product makes the current one easier to understand.`
+					`A product can be specific without every part inside it being useful only once. I can design the video tool around my way of making explanatory videos while still using general components for transcription, captions, screen recordings, and rendering.`,
+					`I use the same approach with AI workflows. A scraper, a structured file, or a small browser tool can show up in many systems. The product around those tools should still have one clear job. This lets me reuse what works without turning the product itself into a general-purpose tool.`
 				]
 			}
 		]
@@ -63,55 +63,55 @@ const sections = [
 	{
 		slug: 'working-with-ai',
 		title: 'Working with AI',
-		purpose: 'How I design and operate reliable agent-assisted systems.',
+		purpose: 'How I design and work with agent-assisted systems.',
 		entries: [
 			{
 				title: 'Keep judgment in the loop',
 				body: [
 					`I learned this while building a LinkedIn workflow. Code could capture the 25 people on a search page, record their names, roles, companies, and whether the interface allowed a connection request. It couldn’t reliably decide which person I should contact based on my goals.`,
-					`That last step needed judgment. The system became more reliable when code prepared the facts and an agent made the decision from them. I don’t try to remove intelligence from a task before I understand what the judgment involves.`
+					`That last step needed judgment. The workflow worked better when code prepared the facts and an agent compared them with what I was trying to do. I don’t try to automate the judgment out of a task before I understand what the judgment involves.`
 				]
 			},
 			{
 				title: 'Give agents small tools with clear jobs',
 				body: [
 					`An agent can research events by opening Meetup, clicking every result, reading each page, and deciding which events fit me. It works, but it is slow and gives the agent many chances to get lost.`,
-					`I built a small tool that collects the event information into a text file instead. The agent can read the file and spend its effort comparing the events. A good agent tool doesn’t need to do the whole job. It removes a mechanical part that makes the agent’s real job harder.`
+					`I built a small tool that collects the event information into a text file instead. The agent reads the file and spends its time comparing the events. The tool doesn’t need to do the whole job. It only needs to remove the clicking and copying that makes the agent’s part harder.`
 				]
 			},
 			{
 				title: 'Understand the workflow before automating it',
 				body: [
-					`My first instinct with a new task is often to ask the agent to do everything. After I watch the task happen several times, its internal steps become easier to see. Some steps can then become code, while others still need judgment.`,
-					`This is why I treat early automation as observation as much as implementation. The first version teaches me what the task contains. Later versions can make the repeated parts faster without pretending I understood the workflow from the beginning.`
+					`My first instinct with a new task is often to ask the agent to do everything. After I watch it perform the task a few times, I can see the steps more clearly. Some can become code. Others still need judgment.`,
+					`The first version is partly an experiment. It teaches me what the task contains and where the agent gets stuck. Once I know that, I can make the repeated parts faster without pretending I understood the workflow from the beginning.`
 				]
 			},
 			{
 				title: 'The human remains the executive',
 				body: [
 					`My voice-note workflow made this division clear to me. I speak through ideas, Codex turns them into tasks, an agent completes one of those tasks, and the result comes back to me. I review it, make a decision, and set the next direction.`,
-					`The agent can plan and execute a great deal inside that loop. It still doesn’t decide what kind of life or business I am trying to build. My responsibility is to set goals, make decisions, and judge the information that comes back.`
+					`The agent can plan and do a great deal inside that loop. It still doesn’t decide what kind of life or business I am trying to build. I set the goals, make the decisions, and judge what comes back.`
 				]
 			},
 			{
 				title: 'Agents need context and procedure',
 				body: [
-					`The quality of an agent’s work depends heavily on what it knows about the situation and what process it has been given. A general instruction leaves it to invent both. That can be useful while I am still discovering how a task should work, but it is a poor default for something repeated.`,
-					`Once I understand the task, I preserve the relevant context in files and give the agent a procedure to follow. The context explains the situation. The procedure explains how to work within it.`
+					`An agent’s work depends heavily on what it knows about the situation and what process it has been given. A general instruction leaves it to invent both. That can be useful while I am still figuring out how a task should work, but I don’t want that happening every time I repeat it.`,
+					`Once I understand the task, I keep the relevant context in files and give the agent a procedure to follow. One explains the situation. The other explains how to work through it.`
 				]
 			},
 			{
 				title: 'Keep workflow boundaries narrow',
 				body: [
 					`Large instructions hide several different kinds of work inside one request. That was the problem when I asked a language model to create a Spanish story, use the right vocabulary and grammar, and write every definition and explanation at once.`,
-					`I now separate a workflow into parts with clear inputs and outputs. The boundaries make failures easier to see and keep one bad result from contaminating the rest of the process. The agent gets freedom inside the part that needs judgment, not across the entire system.`
+					`I now split a workflow into parts with clear inputs and outputs. When something goes wrong, I can see where it happened instead of letting one bad result affect everything that follows. The agent gets freedom inside the part that needs judgment, not across the whole system.`
 				]
 			},
 			{
 				title: 'Carry decisions into later tasks',
 				body: [
-					`A decision isn’t useful if the rest of the system continues from the old assumption. When I settled on a customer group for my consulting work, the tasks that depended on that choice needed to receive the new context.`,
-					`I try to record decisions outside the conversation where they were made and update the work that follows from them. Otherwise every new agent starts by reopening settled questions or quietly makes its own version of the decision.`
+					`A decision isn’t very useful if the rest of the system continues from the old assumption. When I settled on a customer group for my consulting work, every task that depended on that choice needed the new context.`,
+					`I record decisions outside the conversation where I made them and update the work that follows. Otherwise every new agent starts by reopening settled questions or quietly makes its own version of the decision.`
 				]
 			}
 		]
@@ -119,41 +119,41 @@ const sections = [
 	{
 		slug: 'business-and-independent-work',
 		title: 'Business and Independent Work',
-		purpose: 'Lessons from trying to build an independent practice while allowing the offer and customer focus to change.',
+		purpose: 'What I’m learning while trying to build an independent practice without treating a temporary offer or customer group as permanent.',
 		entries: [
 			{
 				title: 'Work on what changes the outcome',
 				body: [
 					`I can spend hours improving a product or an internal tool because that kind of work is comfortable for me. During a period when I needed a job or a consulting project, those improvements could feel productive while I avoided applications and conversations with potential clients.`,
-					`I started stopping periodically to ask whether the last block of work changed my situation. The answer isn’t always to stop building. It is to be honest about whether the bottleneck is the product, finding clients, or delivering for the people already paying me.`
+					`I started stopping every so often to ask whether the last block of work had changed my situation. The answer isn’t always to stop building. I just need to be honest about whether the problem is the product, finding clients, or delivering for the people already paying me.`
 				]
 			},
 			{
 				title: 'Treat sales as the beginning of a relationship',
 				body: [
 					`I used to think too much about the perfect first message after someone accepted a LinkedIn connection. The mistake was assuming that the message needed to create a sale.`,
-					`For consulting, the first interaction usually has a smaller job: begin a useful professional relationship. I can learn what someone is working on, pay attention to what they share, and help when I have something relevant to offer. A sales conversation can happen later if there is trust and a problem I can solve.`
+					`For consulting, the first interaction usually has a smaller job: start a useful professional relationship. I can learn what someone is working on, pay attention to what they share, and help when I have something relevant to offer. A sales conversation can happen later if there is trust and a problem I can solve.`
 				]
 			},
 			{
 				title: 'Diagnose before proposing a solution',
 				body: [
-					`When I meet someone, I am more interested in what they are working on and which parts of their business are difficult than in finding a quick opening for my service. Those questions tell me whether I understand the problem and whether I can help at all.`,
-					`This changes the conversation from a disguised pitch into research and service. Sometimes the right response is advice, an introduction, or nothing. If there is a project, the proposal begins from the person’s situation rather than from a solution I arrived wanting to sell.`
+					`When I meet someone, I am more interested in what they are working on and which parts of their business are difficult than in finding a quick opening for my service. The answers tell me whether I understand the problem and whether I can help at all.`,
+					`That makes the conversation less like a disguised pitch. Sometimes the right response is advice, an introduction, or nothing. If there is a project, the proposal can start from the person’s situation instead of the solution I arrived wanting to sell.`
 				]
 			},
 			{
 				title: 'A narrow customer group creates knowledge that compounds',
 				body: [
 					`Relationship-based sales takes time. Trying to understand several unrelated kinds of businesses means starting from zero in each conversation.`,
-					`A narrower customer group lets me keep learning the same processes, language, and recurring problems. Each conversation improves the next one, and I become more capable of offering something useful before asking for anything. The current customer group may change; the value of accumulated understanding does not.`
+					`A narrower customer group lets me keep learning the same processes, language, and recurring problems. Each conversation makes the next one easier, and I become more capable of offering something useful before asking for anything. I may change the customer group, but I still want that kind of accumulated understanding.`
 				]
 			},
 			{
 				title: 'Remove rules that do not change what you do next',
 				body: [
 					`I spent time trying to define exactly when I should use LinkedIn and when I should use email. The distinction produced more planning without changing the basic work: choose a channel, find people I can help, and start conversations.`,
-					`A framework is useful when it makes the next action clearer. If it creates categories I have to maintain but leads to the same action, I can remove it. This has made independent work feel less like designing a perfect business in advance and more like doing the few things the business needs.`
+					`A framework is useful when it makes the next action clearer. If it gives me more categories to maintain but leads to the same action, I can remove it. I would rather do the few things the business needs than keep designing the perfect business in advance.`
 				]
 			}
 		]
@@ -161,27 +161,27 @@ const sections = [
 	{
 		slug: 'learning-and-research',
 		title: 'Learning and Research',
-		purpose: 'How I try to turn information into usable judgment.',
+		purpose: 'How I turn information into something I can understand and use.',
 		entries: [
 			{
 				title: 'Start with the capability, not the reading list',
 				body: [
-					`I once tried to design a curriculum for becoming a better technical consultant. Before I had started the reading, it had expanded into a boot camp for one potential customer group. The plan had become more specific than the work I had evidence I needed to do.`,
-					`That made me question the starting point. It is easier to choose what to study after naming what I want to be able to do: understand a business process, run a better client conversation, design an AI workflow, or deliver a particular kind of project. The reading list should serve the capability.`
+					`I once tried to design a curriculum for becoming a better technical consultant. Before I had read anything, it had expanded into a boot camp for one possible customer group. I had made the plan more specific than the work itself.`,
+					`That made me question the starting point. It is easier to choose what to study after I name what I want to be able to do: understand a business process, run a better client conversation, design an AI workflow, or deliver a particular kind of project. Then I can make a reading list that helps me do that.`
 				]
 			},
 			{
 				title: 'Explain ideas aloud to test your understanding',
 				body: [
 					`When I finish a chapter, podcast, or experiment, I can explain it during a walk. Speaking forces me to reconstruct the idea without leaning on the source’s wording. The unclear parts become obvious because I can’t explain why one point leads to the next.`,
-					`The recording also gives me something usable afterward. It can become a note, a question to research, or the beginning of a piece of writing. The explanation is both a check on my understanding and a way to preserve what I learned.`
+					`The recording also gives me something I can use afterward. It can become a note, a question to research, or the beginning of a piece of writing. I find out what I understand and keep a record of it at the same time.`
 				]
 			},
 			{
 				title: 'Learn technical work through projects',
 				body: [
-					`When I find an open-source tool that might help with a video workflow, I want to inspect the code, understand how it works, and then use the mechanism in a project of my own. The project gives the learning a concrete test: either I can make the workflow work or I still have something to understand.`,
-					`This is how much of my technical learning happens. A problem gives me a reason to study a tool or concept, and building with it reveals the parts a general explanation would let me skim past.`
+					`When I find an open-source tool that might help with a video workflow, I want to inspect the code, understand how it works, and then use the same mechanism in a project of my own. The project gives me a simple test: either I can make the workflow work or there is still something I don’t understand.`,
+					`This is how a lot of my technical learning happens. A problem gives me a reason to study a tool or concept. Building with it makes me deal with the parts I could have skimmed past in a general explanation.`
 				]
 			}
 		]
@@ -189,41 +189,41 @@ const sections = [
 	{
 		slug: 'writing-and-communication',
 		title: 'Writing and Communication',
-		purpose: 'How I find, develop, and communicate ideas.',
+		purpose: 'How I find ideas, develop them, and learn to explain them.',
 		entries: [
 			{
 				title: 'Speak before judging the thought',
 				body: [
 					`During my first walk-and-talk recordings, I noticed myself going silent because I had decided the thought in my head wasn’t worth capturing. There was nothing at stake, but I was still filtering the idea before I had heard it.`,
-					`I began treating continued speech as part of the exercise. Most thoughts won’t become something public, and they don’t need to. Speaking first gives the worthwhile ones enough time to take shape before I decide what they are.`
+					`I began treating continued speech as part of the exercise. Most thoughts won’t become something public, and they don’t need to. I just want to give them enough time to take shape before I decide whether they are worth keeping.`
 				]
 			},
 			{
 				title: 'Walking and talking is rehearsal',
 				body: [
 					`Talking during walks has made it easier for me to explain an idea for longer without stopping. It has also made me more comfortable continuing when someone walks past and can hear me speaking English to myself in an Argentine park.`,
-					`That practice feels connected to other forms of communication. Sitting in front of a camera is still different, but it no longer begins from silence. I have already spent time finding the thought, saying it badly, and learning how I would say it again.`
+					`That practice carries over into other kinds of communication. Sitting in front of a camera is still different, but I am no longer starting from silence. I have already spent time finding the thought, saying it badly, and learning how I would say it again.`
 				]
 			},
 			{
 				title: 'Separate creating, editing, and implementing',
 				body: [
 					`The walk gives me a place to create without trying to finish anything. Later, I can review the transcript, decide which ideas are worth keeping, and turn those decisions into writing or tasks.`,
-					`I think of these as separate modes: create, edit, and implement. Mixing them makes me judge an idea while it is forming or start building every idea before I have compared it with the others. Separation lets each mode do one job.`
+					`I think of these as separate modes: create, edit, and implement. When I mix them, I judge an idea while it is forming or start building it before I have compared it with the others. Keeping them separate gives me room to have the idea before deciding what to do with it.`
 				]
 			},
 			{
 				title: 'Test an idea before expanding it',
 				body: [
 					`After a few productive walks, it was tempting to design an entire system around them. I still wasn’t sure whether the useful part was walking, speaking aloud, or both.`,
-					`The next step was a smaller experiment: try speaking while sitting down and see whether the ideas developed in the same way. A question like that is better answered by another recording than by adding more machinery to the system.`
+					`The next step was a smaller experiment: speak while sitting down and see whether the ideas develop in the same way. Another recording can answer that question better than a more elaborate system can.`
 				]
 			},
 			{
 				title: 'Use interviews when the source material is too thin',
 				body: [
-					`A voice note or atomic note can identify a subject without containing enough detail for public writing. It may state the conclusion but leave out what happened, why I cared, or what changed my mind.`,
-					`My proposed answer is a short interview after choosing the topic. The questions should collect the missing experience and reasoning before any draft is written. That keeps the finished piece connected to what I think instead of asking an AI to fill the gaps with a plausible version of me.`
+					`A voice note or atomic note can identify a subject without containing enough detail for public writing. It might have the conclusion but leave out what happened, why I cared, or what changed my mind.`,
+					`My answer is a short interview after choosing the topic. The questions collect the missing experience and reasoning before I write a draft. I would rather answer a few more questions than ask an AI to fill the gaps with a plausible version of me.`
 				]
 			}
 		]
@@ -236,29 +236,29 @@ const sections = [
 			{
 				title: 'Keep decisions settled until something changes',
 				body: [
-					`Having many interests can make every choice feel like the permanent rejection of all the others. I have become better at choosing one direction by treating the decision as current rather than eternal.`,
-					`Once I decide, I try not to reopen the question unless the situation changes or new evidence gives me a reason. This protects the time after a decision from becoming another round of comparison while leaving room to change my mind when the original assumptions stop being true.`
+					`Having many interests can make every choice feel like I am permanently rejecting all the others. I have become better at choosing one direction by treating the decision as current rather than eternal.`,
+					`Once I decide, I try not to reopen the question unless the situation changes or I learn something that gives me a reason. Otherwise the time after a decision becomes another round of comparison. I can still change my mind when the assumptions behind the choice stop being true.`
 				]
 			},
 			{
 				title: 'Prefer simple frameworks that affect the next action',
 				body: [
-					`I have a tendency to overthink systems, and an AI can multiply that tendency by producing an elaborate answer to every distinction I invent. I saw this when I tried to create rules for choosing between LinkedIn and email even though both led to the same immediate work.`,
-					`The frameworks that help me most reduce the number of choices. Dividing consulting into getting work and delivering work was useful because it showed where my attention was needed. A framework earns its place when it changes what I do next.`
+					`I have a tendency to overthink systems, and AI can make that much worse by producing an elaborate answer to every distinction I invent. I saw this when I tried to create rules for choosing between LinkedIn and email even though both led to the same immediate work.`,
+					`The frameworks that help me most reduce the number of choices. Dividing consulting into getting work and delivering work helped because it showed me where my attention was needed. If a framework doesn’t change what I do next, I probably don’t need it.`
 				]
 			},
 			{
 				title: 'Choose a work rhythm that fits the person and season',
 				body: [
 					`Some people work steadily and others move through intense periods. I don’t think one rhythm is correct for everyone. I tend to follow subjects that absorb me, and the amount of attention I give them changes over time.`,
-					`The practical question is whether the rhythm still serves the life I am trying to build. That answer can change with my responsibilities, energy, and goals. I have to learn it through experience rather than forcing myself into a schedule because it works for someone else.`
+					`What matters is whether the rhythm still serves the life I am trying to build. The answer can change with my responsibilities, energy, and goals. I have to learn that through experience instead of forcing myself into a schedule because it works for someone else.`
 				]
 			},
 			{
 				title: 'Preserve decisions and context for future work',
 				body: [
-					`In an agent-assisted system, a useful decision can disappear inside the conversation where it was made. The next task then begins without knowing what was settled and may repeat the research or move in another direction.`,
-					`I use Markdown files to keep the goals, decisions, and information that later work depends on. The files don’t make the decisions for me. They let me and the agents continue from the same situation instead of rebuilding it from memory each time.`
+					`In an agent-assisted system, a useful decision can disappear inside the conversation where I made it. The next task starts without knowing what was settled, repeats the research, or moves in another direction.`,
+					`I use Markdown files to keep the goals, decisions, and information that later work depends on. The files don’t make decisions for me. They let me and the agents continue from the same place instead of rebuilding everything from memory each time.`
 				]
 			}
 		]
@@ -266,27 +266,27 @@ const sections = [
 	{
 		slug: 'relationships-and-community',
 		title: 'Relationships and Community',
-		purpose: 'The place of other people in my professional and personal values.',
+		purpose: 'How other people fit into the way I think about work and life.',
 		entries: [
 			{
 				title: 'Community is a value, not a networking strategy',
 				body: [
-					`Community affects the kind of person I want to be. I want to be useful to individual people and to the groups I am part of, whether that means giving advice to someone younger, organizing an event, supporting my family, or helping a business operate better.`,
-					`Some of those relationships may lead to work, but that isn’t what makes them valuable. If I treated community only as a source of introductions and clients, I would be reducing the people around me to a business channel.`
+					`Community is part of the kind of person I want to be. I want to be useful to individual people and to the groups I am part of, whether that means giving advice to someone younger, organizing an event, supporting my family, or helping a business operate better.`,
+					`Some of those relationships may lead to work, but that isn’t why they matter. I don’t want to look at the people around me as a source of introductions and clients.`
 				]
 			},
 			{
 				title: 'Money can be a tool; people cannot',
 				body: [
-					`I grew up around the idea that money itself was bad and that rich people were bad people. My view changed as I got older. Money is a tool, and the problem begins when it becomes the highest value rather than something used in service of other values.`,
-					`People belong in a different category. They aren’t instruments for reaching my goals. A decision about work, moving, or money also has to account for the people who rely on me and the effect the decision will have on their lives.`
+					`I grew up around the idea that money itself was bad and that rich people were bad people. My view changed as I got older. Money is a tool. The problem begins when it becomes the highest value instead of something I use in service of other values.`,
+					`People are different. They aren’t instruments for reaching my goals. A decision about work, moving, or money also has to account for the people who rely on me and what the decision will do to their lives.`
 				]
 			},
 			{
 				title: 'Begin professional relationships with curiosity and usefulness',
 				body: [
-					`When I first thought about LinkedIn outreach, I was looking for a first message that could lead quickly to a sale. I later realized that the better starting point was to understand the person: what they are building, which problems they see, and whether I have anything useful to contribute.`,
-					`That might mean sharing an idea, making an introduction, or simply paying attention until I understand their work better. It also lets me choose professional relationships around values such as thoughtfulness, ambition, craft, honesty, and service rather than treating every possible buyer as interchangeable.`
+					`When I first thought about LinkedIn outreach, I was looking for a first message that could lead quickly to a sale. I later realized that I should start by understanding the person: what they are building, which problems they see, and whether I have anything useful to contribute.`,
+					`That might mean sharing an idea, making an introduction, or simply paying attention until I understand their work better. It also lets me choose professional relationships around thoughtfulness, ambition, craft, honesty, and service instead of treating every possible buyer as interchangeable.`
 				]
 			}
 		]
@@ -294,34 +294,34 @@ const sections = [
 	{
 		slug: 'health-and-training',
 		title: 'Health and Training',
-		purpose: 'What long-term strength training has taught me about goals, adaptation, and changing intensity.',
+		purpose: 'What long-term strength training has taught me about goals and changing intensity over time.',
 		entries: [
 			{
 				title: 'Strength training as a long-term identity',
 				body: [
-					`I became obsessed with strength training when I was about fifteen. For roughly ten years, I trained hard and built toward numbers that still define my personal records: a 500-pound squat, 405-pound bench press, 620-pound deadlift, and 225-pound press.`,
-					`The intensity changed after that period, but training never disappeared. I kept doing it because it was important to me and because I liked how it made me feel. That continuity matters more to me than pretending I have approached it with the same ambition every year.`
+					`I became obsessed with strength training when I was about fifteen. For roughly ten years, I trained hard and worked toward the numbers that are still my personal records: a 500-pound squat, 405-pound bench press, 620-pound deadlift, and 225-pound press.`,
+					`The intensity changed after that period, but training never disappeared. I kept doing it because it was important to me and because I liked how it made me feel. I haven’t approached it with the same ambition every year, and I don’t need to pretend that I have.`
 				]
 			},
 			{
 				title: 'Simplify training around the goal',
 				body: [
 					`My current goal is clear: break my old personal records. That made it easier to remove exercises that didn’t have much to do with the goal and organize the week around the four lifts I want to improve.`,
-					`I use 5/3/1 loading for the main lifts, follow most of them with First Set Last work, and keep the rest small: rows or chin-ups for my back, split squats, and direct core work. The program is easier to follow because every exercise has an obvious reason to be there.`
+					`I use 5/3/1 loading for the main lifts, follow most of them with First Set Last work, and keep the rest small: rows or chin-ups for my back, split squats, and direct core work. The program is easier to follow because I know why every exercise is there.`
 				]
 			},
 			{
 				title: 'More work is not always more progress',
 				body: [
-					`I used to include more assistance work because there was always another exercise that seemed useful. But adding useful exercises one by one can leave you with a program that no longer fits its main purpose.`,
-					`Removing exercises wasn’t a decision to care less about training. It let me put more of my time and recovery into the lifts I am trying to improve. If the goal changes, the program can change with it. For this period, more work would mostly make the target less clear.`
+					`I used to include more assistance work because there was always another exercise that seemed useful. Adding those exercises one by one left me with a program that didn’t fit its main purpose as well.`,
+					`Removing exercises wasn’t a decision to care less about training. It gave me more time and recovery for the lifts I am trying to improve. If the goal changes, the program can change with it. Right now, more work would mostly distract me from the target.`
 				]
 			},
 			{
 				title: 'Training intensity moves through seasons',
 				body: [
-					`After I reached my old records, continuing at the same rate would have required more time and effort than I wanted to give it. I still trained and stayed strong, but I stopped organizing as much of my life around pushing the numbers higher.`,
-					`Years later, I want to push again. I don’t see the quieter period as quitting or the renewed goal as starting over. Training stayed part of my life at a lower intensity until I had the desire and space to make it a larger goal again.`
+					`After I reached my old records, continuing at the same rate would have required more time and effort than I wanted to give. I still trained and stayed strong, but I stopped organizing as much of my life around pushing the numbers higher.`,
+					`Years later, I want to push again. I don’t see the quieter period as quitting or this goal as starting over. Training stayed part of my life at a lower intensity until I had the desire and space to make it a larger goal again.`
 				]
 			}
 		]
@@ -329,34 +329,34 @@ const sections = [
 	{
 		slug: 'life-philosophy',
 		title: 'Life Philosophy',
-		purpose: 'The values and open questions connecting the rest of this library.',
+		purpose: 'The values and open questions connecting the rest of these notes.',
 		entries: [
 			{
 				title: 'The values currently guiding my life',
 				body: [
-					`When I recently tried to name the values guiding me, I arrived at truth, ambition, simplicity, and community. I call them current values deliberately. Writing them down helps me compare a decision with the kind of person I am trying to become, but I don’t assume I have finished understanding myself.`,
-					`The values also correct one another. Ambition without community can become selfish. Community without truth can become dishonest agreement. Simplicity helps me act, but it can’t be an excuse to ignore a difficult fact.`
+					`When I recently tried to name the values guiding me, I arrived at truth, ambition, simplicity, and community. I call them my current values deliberately. Writing them down helps me compare a decision with the person I am trying to become, but I don’t assume I have finished understanding myself.`,
+					`The values also keep one another in check. Ambition without community can become selfish. Community without truth can become dishonest agreement. Simplicity helps me act, but it can’t become an excuse to ignore a difficult fact.`
 				]
 			},
 			{
 				title: 'Money is a tool for expressing values',
 				body: [
 					`Money matters to me because of what it allows me to do. It can create security, give me more control over my time, support my girlfriend and my mother, and help me build things that are useful to other people.`,
-					`That makes money important without putting it at the top of my hierarchy. If I make it the final goal, it stops answering the more important question of what the money is for and what kind of life earning it is meant to support.`
+					`That makes money important without putting it above everything else. If money becomes the final goal, I still have to answer what it is for and what kind of life earning it is supposed to support.`
 				]
 			},
 			{
 				title: 'Make decisions without pretending they are permanent',
 				body: [
 					`I have struggled with choosing among several interests because committing to one means setting the others aside. The only way forward is still to choose.`,
-					`I try to make a decision and stop reconsidering it until the situation changes. That doesn’t require me to pretend the choice will define the rest of my life. It gives the choice enough time to teach me something while preserving my ability to respond to new evidence.`
+					`I try to make a decision and stop reconsidering it until the situation changes. I don’t have to pretend the choice will define the rest of my life. I only have to give it enough time to teach me something.`
 				]
 			},
 			{
 				title: 'A person’s way of working and living can change over time',
 				body: [
-					`I don’t think there is one final answer to how a person should organize work, ambition, relationships, and rest. The answer depends on the person’s disposition and can change as responsibilities and interests change.`,
-					`The self is something I uncover through experience. A future vision can give me direction, but I can’t cling to the exact picture as though I will remain the same person on the way there. Trying to live an intentional life means continuing to ask what serves me now, my future self, and the people around me.`
+					`I don’t think there is one final answer to how a person should organize work, ambition, relationships, and rest. The answer depends on the person and can change as responsibilities and interests change.`,
+					`I learn who I am through experience. A future vision can give me direction, but I can’t cling to the exact picture as though I will remain the same person on the way there. Trying to live an intentional life means continuing to ask what serves me now, my future self, and the people around me.`
 				]
 			}
 		]
