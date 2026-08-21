@@ -370,16 +370,23 @@ const sections = [
 				<nav class='hc-archive-nav' aria-label='Table of contents'>
 					<ul>
 						{sections.map((section, sectionIndex) => (
-							<li class='hc-notes-nav-section' data-notes-section>
+							<li class={`hc-notes-nav-section${sectionIndex === 0 ? ' is-active' : ''}`} data-notes-section>
 								<a href={`#${section.slug}`} data-notes-section-link>
 									<span class='hc-notes-nav-number' aria-hidden='true'>{String(sectionIndex + 1).padStart(2, '0')}</span>
 									<span class='hc-archive-nav__text'>{section.title}</span>
 								</a>
-								<ol>
-									{section.entries.map((entry) => (
-										<li><a class='hc-notes-nav-entry' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
-									))}
-								</ol>
+								<div
+									class='hc-notes-nav-entries'
+									data-notes-nav-entries
+									inert={sectionIndex !== 0}
+									aria-hidden={sectionIndex === 0 ? 'false' : 'true'}
+								>
+									<ol>
+										{section.entries.map((entry) => (
+											<li><a class='hc-notes-nav-entry' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
+										))}
+									</ol>
+								</div>
 							</li>
 						))}
 					</ul>
@@ -490,8 +497,12 @@ const sections = [
 
 		links.forEach((link) => {
 			const active = link.getAttribute('href') === `#${current}`;
+			const section = link.closest('[data-notes-section]');
+			const entries = section?.querySelector<HTMLElement>('[data-notes-nav-entries]');
 			link.classList.toggle('is-active', active);
-			link.closest('[data-notes-section]')?.classList.toggle('is-active', active);
+			section?.classList.toggle('is-active', active);
+			entries?.toggleAttribute('inert', !active);
+			entries?.setAttribute('aria-hidden', String(!active));
 			if (active) link.setAttribute('aria-current', 'location');
 			else link.removeAttribute('aria-current');
 		});
