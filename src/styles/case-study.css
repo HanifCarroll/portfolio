@@ -101,16 +101,6 @@ body.page-case-study-detail .hc-main {
   max-width: 54rem;
 }
 
-.cs-hero__eyebrow {
-  margin: 0;
-  color: var(--hc-accent-text);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
 .cs-hero__title {
   margin: 0;
   color: var(--hc-text);
@@ -180,7 +170,7 @@ body.page-case-study-detail .hc-main {
 
 @media (min-width: 48rem) {
   .cs-hero__facts {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--cs-fact-count), minmax(0, 1fr));
   }
 }
 

@@ -64,14 +64,18 @@ const caseStudyJsonLd = {
 	datePublished: project.year?.split('-')[0]
 };
 
-const projectType = project.proofType === 'client' ? 'Client engagement' : 'Independent work';
-const caseStudyFacts = [
-	{ label: 'Project', value: projectType },
-	{ label: 'Engagement', value: project.service },
-	{ label: project.proofType === 'client' ? 'Contribution' : 'Built by', value: project.role },
-	{ label: 'Timeline', value: project.timeline ?? project.year },
-].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
-const coreTechnologies = project.technologies.slice(0, 5);
+const caseStudyFacts = project.proofType === 'client'
+	? [
+			{ label: 'Engagement', value: project.service },
+			{ label: 'Contribution', value: project.role },
+			{ label: 'Year', value: project.year },
+		]
+	: [
+			{ label: 'Role', value: project.role },
+			{ label: 'Year', value: project.year },
+			project.liveUrl && { label: 'Status', value: 'Live product' },
+		].filter((detail): detail is { label: string; value: string } => Boolean(detail));
+const coreTechnologies = project.technologies.slice(0, 6);
 
 const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
 const firstProblem = Array.isArray(project.problem) ? project.problem[0] : project.problem;
@@ -125,7 +129,6 @@ const heroActions = [
 
 		<header class='cs-hero' data-motion-intro>
 			<div class='cs-hero__body'>
-				<p class='cs-hero__eyebrow'>{projectType}</p>
 				<h1 class='cs-hero__title' data-motion='headline'>{project.title}</h1>
 				<p class='cs-hero__description' data-motion-deck>{project.description}</p>
 				{
@@ -150,7 +153,12 @@ const heroActions = [
 				}
 			</div>
 
-			<aside class='cs-hero__facts' aria-label='Project facts' data-motion-intro-item>
+			<aside
+				class='cs-hero__facts'
+				aria-label='Project facts'
+				style={`--cs-fact-count: ${caseStudyFacts.length}`}
+				data-motion-intro-item
+			>
 				{
 					caseStudyFacts.map((detail) => (
 						<div class='cs-hero__fact'>
