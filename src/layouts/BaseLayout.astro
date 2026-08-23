@@ -21,7 +21,6 @@ const {
 	footerCtaBody,
 	footerCtaPrimaryLabel,
 	footerCtaLocation = 'footer_cta',
-	footerCtaSurface = 'canvas',
 	bodyClass = ''
 } = Astro.props;
 
@@ -72,9 +71,9 @@ const currentYear = new Date().getFullYear();
 			<slot />
 		</main>
 
-		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} surface={footerCtaSurface} />}
+		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} />}
 
-		{showFooter && <footer class='hc-footer' data-header-surface='dark' transition:name='site-footer'>
+		{showFooter && <footer class='hc-footer' transition:name='site-footer'>
 			<div class='hc-container-page'>
 				<div class='hc-footer-inner'>
 					<div class='hc-footer-brand'>

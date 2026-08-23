@@ -1,19 +1,5 @@
 /* Route-owned styles: now. */
 
-.ledger-section {
-  @apply rounded-[1.5rem] border px-5 py-6 text-black backdrop-blur-sm md:px-8 md:py-8;
-  border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(249, 246, 239, 0.92);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
-}
-
-:is(.dark) .ledger-section {
-  @apply text-white;
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
 .hc-now-page {
   width: min(100%, 64rem);
   max-width: none;
@@ -24,9 +10,9 @@
   padding: clamp(2rem, 6vw, 5rem);
   border: 0;
   border-radius: var(--hc-radius-surface);
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
-  box-shadow: 0 1.5rem 4rem rgba(16, 37, 63, 0.12);
+  color: var(--hc-text);
+  background: var(--hc-surface);
+  box-shadow: 0 1.5rem 4rem rgba(40, 40, 40, 0.12);
 }
 
 .hc-now-page > header :where(h1, p) {
@@ -34,14 +20,14 @@
 }
 
 .hc-now-page > header p:first-of-type {
-  color: var(--hc-proof-text-muted) !important;
+  color: var(--hc-text-muted) !important;
 }
 
 .hc-now-page .ledger-section {
   border: 0;
   border-radius: var(--hc-radius-surface);
   background: var(--hc-surface);
-  box-shadow: 0 12px 36px rgba(16, 37, 63, 0.055);
+  box-shadow: 0 12px 36px rgba(40, 40, 40, 0.055);
 }
 
 .hc-now-page {
@@ -56,18 +42,18 @@
   padding: clamp(3rem, 7vw, 7rem);
   border: 0;
   border-radius: 0;
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
+  color: var(--hc-text);
+  background: var(--hc-surface);
   box-shadow: none;
 }
 
 .hc-now-page > header p {
   max-width: 48rem;
-  color: var(--hc-proof-text) !important;
+  color: var(--hc-text) !important;
 }
 
 .hc-now-page > header h1 {
-  color: var(--hc-proof-text) !important;
+  color: var(--hc-text) !important;
   font-family: var(--hc-font-editorial);
   font-size: clamp(3.5rem, 7vw, 6rem);
   font-weight: 400;
@@ -76,7 +62,7 @@
 }
 
 .hc-now-page > header > p:last-child {
-  color: var(--hc-accent) !important;
+  color: var(--hc-accent-text) !important;
 }
 
 .hc-now-page > section {

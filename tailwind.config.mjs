@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "selector",
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     fontSize: {
@@ -39,15 +38,11 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#274C77",
-          light: "#8DBBE8",
-          dark: "#152235",
+          DEFAULT: "#725a00",
+          accent: "#f8d651",
           foreground: "#ffffff",
         },
-        surface: {
-          DEFAULT: "#FFFFFF",
-          dark: "#132A47",
-        },
+        surface: "#ffffff",
       },
       typography: {
         DEFAULT: {

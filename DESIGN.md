@@ -2,17 +2,14 @@
 name: Hanif Carroll Portfolio
 description: An inspectable, proof-led portfolio for Hanif Carroll, contract product engineer for B2B SaaS teams.
 colors:
-  accent-yellow: "#f8d651"
-  accent-yellow-hover: "#f2b63d"
-  accent-ink: "#10253f"
-  proof-navy: "#10253f"
-  proof-white: "#f5f8fc"
+  accent-gold: "#f8d651"
+  accent-gold-hover: "color-mix(in srgb, #f8d651 88%, #725a00)"
+  accent-text: "#282828"
   canvas: "#ffffff"
   surface: "#ffffff"
   ink: "#282828"
   muted-ink: "#504945"
   border: "#e0e2dc"
-  supporting-blue: "#2e5fd1"
 typography:
   display:
     fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif"
@@ -59,15 +56,15 @@ spacing:
   9: "128px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent-yellow}"
-    textColor: "{colors.accent-ink}"
+    backgroundColor: "{colors.accent-gold}"
+    textColor: "{colors.accent-text}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "8px 24px"
     height: "52px"
   button-primary-hover:
-    backgroundColor: "{colors.accent-yellow-hover}"
-    textColor: "{colors.accent-ink}"
+    backgroundColor: "{colors.accent-gold-hover}"
+    textColor: "{colors.accent-text}"
     rounded: "{rounded.pill}"
   button-secondary:
     backgroundColor: "{colors.surface}"
@@ -76,11 +73,6 @@ components:
     rounded: "{rounded.pill}"
     padding: "8px 24px"
     height: "52px"
-  proof-surface:
-    backgroundColor: "{colors.proof-navy}"
-    textColor: "{colors.proof-white}"
-    rounded: "{rounded.surface}"
-    padding: "48px"
 ---
 
 # Design System: Hanif Carroll Portfolio
@@ -91,7 +83,7 @@ components:
 
 The site should feel like a well-run operating system made visible: calm at first glance, specific on inspection, and structured around the decisions a client needs to make. The hierarchy comes from typography, proportion, spacing, and real evidence rather than a stack of decorative cards.
 
-The visual system pairs a white canvas with dark navy proof surfaces and a deliberately scarce yellow accent. It rejects generic developer portfolios, resume framing, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
+The visual system pairs a white canvas with light editorial surfaces and a deliberately scarce gold accent. It rejects generic developer portfolios, resume framing, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
 
 **Key Characteristics:**
 
@@ -103,21 +95,16 @@ The visual system pairs a white canvas with dark navy proof surfaces and a delib
 
 ## Colors
 
-The palette is restrained: a white canvas, warm charcoal ink, navy proof surfaces, and a yellow accent reserved for actions and meaningful emphasis.
+The palette is restrained: a white canvas, warm charcoal ink, and a restrained gold accent reserved for actions and meaningful emphasis.
 
 ### Primary
 
-- **CTA Yellow** (`#f8d651`): The single primary accent. Use it for primary CTA backgrounds, focus indicators, selection, and small directional details.
-- **CTA Yellow Hover** (`#f2b63d`): The warmer interaction state for CTA Yellow; do not introduce a second competing CTA color.
-
-### Secondary
-
-- **Supporting Blue** (`#2e5fd1`): A supporting informational or link color. It must not replace CTA Yellow as the action accent.
+- **CTA Gold** (`#f8d651`): The single primary accent. Use it for primary CTA backgrounds, focus indicators, selection, and small directional details.
+- **CTA Gold Hover** (`color-mix(in srgb, #f8d651 88%, #725a00)`): The warmer interaction state for CTA Gold; do not introduce a second competing accent.
 
 ### Neutral
 
-- **Proof Navy** (`#10253f`): Navigation, footer, proof bands, and high-contrast editorial callouts.
-- **Proof White** (`#f5f8fc`): Primary text on Proof Navy.
+- **Editorial Charcoal** (`#282828`): Site text and the limited contrast color for embedded demos or status panels.
 - **Canvas** (`#ffffff`): Default page background.
 - **Surface White** (`#ffffff`): Controls and bounded surfaces when separation is necessary.
 - **Ink** (`#282828`): Headings and primary text on light surfaces.
@@ -126,9 +113,9 @@ The palette is restrained: a white canvas, warm charcoal ink, navy proof surface
 
 ### Named Rules
 
-**The Yellow Means Action Rule.** CTA Yellow is the accent and should remain scarce enough that the primary action is immediately obvious.
+**The Gold Means Action Rule.** CTA Gold is the accent and should remain scarce enough that the primary action is immediately obvious.
 
-**The Proof Surface Rule.** Navy carries evidence, navigation, and closing arguments; it is not a default background for the whole site.
+**The Editorial Surface Rule.** Editorial charcoal is reserved for embedded demos or status panels; site chrome and page surfaces stay light.
 
 ## Typography
 
@@ -146,7 +133,7 @@ The palette is restrained: a white canvas, warm charcoal ink, navy proof surface
 - **Article Title** (700, `clamp(2rem, 4vw, 3rem)`, 1.02): Blog H1s filling the shared 75ch editorial column, with no title-specific character limit.
 - **Title** (700, `2rem–2.5rem`, 1.2): Section and component headings.
 - **Body** (400, `1.125rem`, 1.65): Long-form and explanatory text, normally capped at 65–76ch.
-- **Label** (600, `0.875rem`, normal tracking): Metadata, navigation, and compact interface labels; uppercase is reserved for genuinely categorical proof labels.
+- **Label** (600, `0.875rem`, normal tracking): Metadata, navigation, and compact interface labels; uppercase is reserved for genuinely categorical evidence labels.
 
 ### Named Rules
 
@@ -160,10 +147,10 @@ The system is flat by default. Depth comes first from color and spacing, then fr
 
 ### Shadow Vocabulary
 
-- **Control Rest** (`0 1px 3px rgba(21, 34, 53, 0.06)`): Subtle affordance for compact controls.
-- **Control Hover** (`0 3px 8px rgba(21, 34, 53, 0.12)`): Short interaction response, paired with a small upward translation.
-- **Navigation** (`0 8px 12px rgba(16, 37, 63, 0.1)`): Separates persistent navigation from the page.
-- **Artifact** (`0 16px 36px rgba(21, 34, 53, 0.13)`): Reserved for screenshots and real work products that should read as physical evidence.
+- **Control Rest** (`0 1px 3px rgba(40, 40, 40, 0.06)`): Subtle affordance for compact controls.
+- **Control Hover** (`0 3px 8px rgba(40, 40, 40, 0.12)`): Short interaction response, paired with a small upward translation.
+- **Navigation** (`0 8px 12px rgba(40, 40, 40, 0.1)`): Separates persistent navigation from the page.
+- **Artifact** (`0 16px 36px rgba(40, 40, 40, 0.13)`): Reserved for screenshots and real work products that should read as physical evidence.
 
 ### Named Rules
 
@@ -194,22 +181,22 @@ Components should feel direct and confident, with restrained shape and unmistaka
 ### Buttons
 
 - **Shape:** Full pill for CTA controls (`36px` radius) with a minimum height of `52px`.
-- **Primary:** CTA Yellow background, Accent Ink text, `8px 24px` padding, bold label, and a directional arrow when the action advances the user.
-- **Hover / Focus:** Shift to CTA Yellow Hover and translate upward by `2px`; use a `3px` CTA Yellow focus outline with a `3px` offset.
+- **Primary:** CTA Gold background, Accent Ink text, `8px 24px` padding, bold label, and a directional arrow when the action advances the user.
+- **Hover / Focus:** Shift to CTA Gold Hover and translate upward by `2px`; use a `3px` CTA Gold focus outline with a `3px` offset.
 - **Secondary:** Surface White with Ink text and a quiet border; on hover, invert to Ink with Surface White text.
-- **Text Link:** Bold Ink text with an arrow. On navy surfaces, use Proof White text and a CTA Yellow arrow.
+- **Text Link:** Bold charcoal text with an arrow and a CTA Gold directional detail.
 
 ### Cards / Containers
 
 - **Corner Style:** `12px` only when a bounded card is a real grouping; editorial bands and blog CTAs may remain square.
-- **Background:** Canvas for the page, Surface White for necessary bounded groups, and Proof Navy for evidence or closing arguments.
+- **Background:** Canvas and Surface White for the site; Editorial Charcoal is reserved for embedded demos or status panels.
 - **Shadow Strategy:** Flat by default; use Artifact shadow for screenshots and Control shadow for compact affordances.
 - **Border:** `1px` Border only when adjacency makes the grouping ambiguous.
 - **Internal Padding:** Use the `24px`, `32px`, `48px`, and `96px` scale steps according to content density and viewport.
 
 ### Navigation
 
-- **Desktop:** Proof Navy container, Proof White links, compact semibold labels, pill geometry, and one CTA Yellow action.
+- **Desktop:** Light canvas container, charcoal links, compact semibold labels, pill geometry, and one CTA Gold action.
 - **States:** Preserve visible hover and current-page contrast without decorative underlines or extra badges.
 - **Mobile:** Use a clear circular menu control and a single-column panel with comfortable touch targets.
 
@@ -221,9 +208,9 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ### Blog Closing CTA
 
-- Use a full-width Proof Navy band within the blog layout, with no white card, border, corner radius, or shadow.
+- Use a full-width light editorial band within the blog layout, with no dark site chrome, card, border, corner radius, or shadow.
 - Use a two-column editorial layout on desktop and one column below `900px`.
-- Present one CTA Yellow primary action and one contextual text link; do not add a third competing action.
+- Present one CTA Gold primary action and one contextual text link; do not add a third competing action.
 
 ### Proof Artifacts
 
@@ -234,7 +221,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ### Do:
 
-- **Do** reserve `#f8d651` CTA Yellow for the primary action and meaningful focus or selection states.
+- **Do** reserve `#f8d651` CTA Gold for the primary action and meaningful focus or selection states.
 - **Do** use spacing and typographic hierarchy before reaching for borders, rules, or cards.
 - **Do** show real artifacts, outcomes, constraints, and working details as evidence.
 - **Do** use one shared 75ch editorial column for blog metadata, title, deck, article, and author content.
@@ -249,4 +236,3 @@ Components should feel direct and confident, with restrained shape and unmistaka
 - **Don't** use full-site dark premium-tech styling that obscures reading and proof.
 - **Don't** use excess cards, dividers, horizontal rules, or decorative containers to manufacture hierarchy.
 - **Don't** constrain blog titles with a character-based `max-width` or scale them beyond the Article Title token.
-- **Don't** use Supporting Blue as a competing CTA accent; CTA Yellow owns primary actions.

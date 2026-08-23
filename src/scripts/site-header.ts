@@ -26,7 +26,6 @@ function mountHeader() {
   const { signal } = controller;
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let reduceMotion = reduceMotionQuery.matches;
-  let scheduledFrame = 0;
   let isMounted = true;
   let isOpen = false;
   let isHeaderVisible = true;
@@ -105,6 +104,15 @@ function mountHeader() {
       ease: visible ? "power3.out" : "power2.in",
       overwrite: true,
     });
+  };
+
+  const updateHeaderVisibility = () => {
+    if (isOpen || siteHeader.contains(document.activeElement)) return;
+    const currentScrollY = Math.max(0, window.scrollY);
+    const scrollDelta = currentScrollY - lastScrollY;
+    if (currentScrollY <= 32 || scrollDelta < -4) setHeaderVisible(true);
+    else if (currentScrollY > 140 && scrollDelta > 4) setHeaderVisible(false);
+    lastScrollY = currentScrollY;
   };
 
   gsap.set(panel, { autoAlpha: 0, clipPath: "inset(0 0 100% 0)" });
@@ -363,35 +371,9 @@ function mountHeader() {
     { signal },
   );
 
-  const updateHeaderSurface = () => {
-    scheduledFrame = 0;
-    const currentScrollY = Math.max(0, window.scrollY);
-    const scrollDelta = currentScrollY - lastScrollY;
-
-    if (!isOpen && !siteHeader.contains(document.activeElement)) {
-      if (currentScrollY <= 32 || scrollDelta < -4) setHeaderVisible(true);
-      else if (currentScrollY > 140 && scrollDelta > 4) setHeaderVisible(false);
-    }
-    lastScrollY = currentScrollY;
-
-    if (isOpen) return;
-    const headerBottom = siteHeader.getBoundingClientRect().bottom;
-    const probeY = Math.min(window.innerHeight - 1, Math.ceil(headerBottom) + 1);
-    const probeX = Math.max(0, Math.min(window.innerWidth - 1, Math.round(window.innerWidth / 2)));
-    const surface = document.elementFromPoint(probeX, probeY)?.closest("[data-header-surface]");
-    const surfaceType =
-      window.innerWidth <= 640
-        ? (surface?.getAttribute("data-header-surface-mobile") ??
-          surface?.getAttribute("data-header-surface"))
-        : surface?.getAttribute("data-header-surface");
-    siteHeader.dataset.overSurface = surfaceType === "dark" ? "dark" : "light";
-  };
-  const scheduleHeaderUpdate = () => {
-    if (scheduledFrame) return;
-    scheduledFrame = window.requestAnimationFrame(updateHeaderSurface);
-  };
-  window.addEventListener("scroll", scheduleHeaderUpdate, { passive: true, signal });
+  window.addEventListener("scroll", updateHeaderVisibility, { passive: true, signal });
   siteHeader.addEventListener("focusin", () => setHeaderVisible(true), { signal });
+  updateHeaderVisibility();
   window.addEventListener(
     "resize",
     () => {
@@ -400,16 +382,13 @@ function mountHeader() {
         closeNotesMenu(false, undefined, true);
         resetChapters();
       }
-      scheduleHeaderUpdate();
     },
     { passive: true, signal },
   );
-  updateHeaderSurface();
 
   cleanupHeader = () => {
     isMounted = false;
     controller.abort();
-    if (scheduledFrame) cancelAnimationFrame(scheduledFrame);
     timeline.kill();
     notesTimeline?.kill();
     chapterTweens.forEach((tween) => tween.kill());

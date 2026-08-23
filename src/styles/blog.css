@@ -1,14 +1,4 @@
-/* Route-owned styles: blogDetail. */
-
-:is(.dark) .blog-post-hero__media {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-:is(.dark) .blog-post-author-inline,
-:is(.dark) .blog-post-rail__block {
-  border-top-color: rgba(255, 255, 255, 0.12);
-}
+/* Route-owned styles: blog detail. */
 
 @media (min-width: 768px) {
   .blog-post-hero {
@@ -37,13 +27,13 @@
 .blog-post-hero {
   padding: clamp(2rem, 6vw, 5rem);
   border-radius: var(--hc-radius-surface);
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
+  color: var(--hc-text);
+  background: var(--hc-surface);
 }
 
 .blog-post-hero__title.heading-display,
 .blog-post-hero__title {
-  color: var(--hc-proof-text);
+  color: var(--hc-text);
   font-family: var(--hc-font-sans);
   font-size: clamp(2.5rem, 6vw, 5.6rem);
   font-weight: 700;
@@ -54,7 +44,7 @@
 .blog-post-hero__subtitle,
 .blog-post-hero__dek,
 .blog-post-hero__meta :where(div, span) {
-  color: var(--hc-proof-text-muted) !important;
+  color: var(--hc-text-muted) !important;
 }
 
 .blog-post-hero__media {
@@ -126,13 +116,13 @@
   padding: clamp(var(--hc-space-5), 6vw, var(--hc-space-7));
   border: 0;
   border-radius: var(--hc-radius-surface);
-  background: var(--hc-proof-surface);
+  background: var(--hc-surface);
   box-shadow: none;
-  color: var(--hc-proof-text);
+  color: var(--hc-text);
 }
 
 .hc-cta-panel--blog h2 {
-  color: var(--hc-proof-text);
+  color: var(--hc-text);
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.05;
   text-wrap: balance;
@@ -144,7 +134,7 @@
 
 .hc-cta-panel--blog .hc-cta-panel__body > p {
   max-width: 42rem;
-  color: var(--hc-proof-text-muted);
+  color: var(--hc-text-muted);
 }
 
 .hc-cta-panel--blog .hc-actions {
@@ -152,11 +142,11 @@
 }
 
 .hc-cta-panel--blog .hc-text-link {
-  color: var(--hc-proof-text);
+  color: var(--hc-text);
 }
 
 .hc-cta-panel--blog .hc-text-link::after {
-  color: var(--hc-accent);
+  color: var(--hc-accent-text);
 }
 
 @media (max-width: 900px) {
@@ -218,10 +208,6 @@
   max-width: 65ch;
   font-family: var(--hc-font-reading);
   color: var(--hc-text);
-}
-
-:is(.dark) .blog-post-prose {
-  color: var(--hc-proof-text);
 }
 
 .blog-post-prose :where(h2, h3, h4) {
@@ -291,14 +277,6 @@
   line-height: 1.55;
 }
 
-:is(.dark) .blog-post-prose :where(.workflow-map img) {
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-:is(.dark) .blog-post-prose :where(.workflow-map figcaption) {
-  color: var(--hc-proof-text-muted);
-}
-
 .blog-post-hero__title.heading-display,
 .blog-post-hero__title {
   font-family: var(--hc-font-reading);
@@ -309,11 +287,6 @@
   text-transform: none;
   text-wrap: balance;
   color: var(--hc-text);
-}
-
-:is(.dark) .blog-post-hero__title.heading-display,
-:is(.dark) .blog-post-hero__title {
-  color: var(--hc-proof-text);
 }
 
 .blog-post-hero__subtitle {
@@ -328,10 +301,6 @@
   margin-top: -0.25rem;
 }
 
-:is(.dark) .blog-post-hero__subtitle {
-  color: var(--hc-proof-text-muted);
-}
-
 .blog-post-hero__dek {
   font-family: var(--hc-font-reading);
   font-style: italic;
@@ -339,10 +308,6 @@
   line-height: 1.5;
   color: var(--hc-text-muted);
   max-width: 50ch;
-}
-
-:is(.dark) .blog-post-hero__dek {
-  color: var(--hc-proof-text-muted);
 }
 
 .blog-post-rail .section-label {
@@ -355,10 +320,6 @@
   color: var(--hc-text-muted);
 }
 
-:is(.dark) .blog-post-rail .section-label {
-  color: var(--hc-proof-text-muted);
-}
-
 .blog-post-rail__block {
   border-top-color: rgba(0, 0, 0, 0.06);
 }
@@ -368,10 +329,6 @@
   padding-bottom: 1.5rem;
   padding-inline: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-:is(.dark) .blog-post-main .service-callout {
-  border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 .blog-post-main .service-callout__inner {
@@ -413,10 +370,6 @@
   color: var(--hc-text-muted);
 }
 
-:is(.dark) .blog-post-main .service-callout p {
-  color: var(--hc-proof-text-muted);
-}
-
 .blog-post-main .service-callout__actions {
   align-items: center;
 }
@@ -444,21 +397,16 @@
   content: none;
 }
 
-:is(.dark) .blog-post-prose :where(blockquote) {
-  color: var(--hc-proof-text-muted);
-  border-left-color: rgba(255, 255, 255, 0.22);
-}
-
 .blog-post-hero {
   padding: clamp(2rem, 6vw, 5rem);
   border-radius: var(--hc-radius-surface);
-  color: var(--hc-proof-text);
-  background: var(--hc-proof-surface);
+  color: var(--hc-text);
+  background: var(--hc-surface);
 }
 
 .blog-post-hero__title.heading-display,
 .blog-post-hero__title {
-  color: var(--hc-proof-text);
+  color: var(--hc-text);
   font-family: var(--hc-font-sans);
   font-size: clamp(2.5rem, 6vw, 5.6rem);
   font-weight: 700;
@@ -469,7 +417,7 @@
 .blog-post-hero__subtitle,
 .blog-post-hero__dek,
 .blog-post-hero__meta :where(div, span) {
-  color: var(--hc-proof-text-muted) !important;
+  color: var(--hc-text-muted) !important;
 }
 
 .blog-post-hero__media {
@@ -501,7 +449,7 @@
 
 /* GitHub Dark's comment gray is below AA on its code-block background. */
 .blog-post-prose .astro-code span[style*="#6A737D"] {
-  color: var(--hc-proof-text-muted) !important;
+  color: var(--hc-text-muted) !important;
 }
 
 .blog-post-hero {
@@ -572,10 +520,6 @@
 
 .blog-post-prose :where(p, li) {
   color: var(--hc-text);
-}
-
-:is(.dark) .blog-post-prose :where(p, li) {
-  color: var(--hc-proof-text);
 }
 
 .blog-post-author-inline,

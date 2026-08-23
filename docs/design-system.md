@@ -5,7 +5,7 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 ## Sources of truth
 
 - `src/styles/design-tokens.css` owns semantic color, type, spacing, radius, shadow, width, and measure tokens.
-- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, proof blocks, FAQs, and transition behavior.
+- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, evidence blocks, FAQs, and transition behavior.
 - Route stylesheets such as `home.css`, `services.css`, `projects.css`, and `blog-index.css` own only the layouts and visual treatments used by that route.
 - Shared Astro components own reusable structure. The header, footer, service callout, and closing CTA must not be reimplemented inside individual pages.
 
@@ -14,7 +14,7 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 1. Use `--hc-*` semantic tokens instead of introducing route-local hex values for the core palette, text contrast, spacing, radii, or shadows.
 2. Put shared component selectors in `global.css`; put route selectors in the route stylesheet. Do not import one route stylesheet from another.
 3. Extend an existing shared primitive before creating a visually equivalent one with a new class name.
-4. Keep light and dark text pairs explicit: `--hc-text` and `--hc-text-muted` on light surfaces, `--hc-proof-text` and `--hc-proof-text-muted` on dark surfaces.
+4. Keep the text hierarchy explicit with `--hc-text` and `--hc-text-muted` on the shared light surfaces.
 5. Respect reduced-motion preferences. Navigation and page transitions may enhance orientation, but content and controls must remain usable with motion disabled.
 6. Validate every durable layout change at desktop, tablet, and mobile widths, including horizontal overflow, focus visibility, menu behavior, and readable line lengths.
 
@@ -24,7 +24,7 @@ Typography is role-based, with Helvetica Neue as the single site typeface. Use t
 
 | Role          | Token                  | Size             | Use                                                 |
 | ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
-| Caption       | `--hc-type-caption`    | 12px             | Nonessential metadata, indices, and proof labels    |
+| Caption       | `--hc-type-caption`    | 12px             | Nonessential metadata, indices, and evidence labels |
 | Meta          | `--hc-type-meta`       | 14px             | Labels, dates, legal text, and secondary navigation |
 | UI            | `--hc-type-ui`         | 16px             | Navigation, buttons, links, and controls            |
 | Body          | `--hc-type-body`       | 18px             | Default prose and descriptions                      |
