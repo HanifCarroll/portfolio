@@ -5,7 +5,7 @@ import Portrait from '../assets/img/hanif-author-portrait.jpg';
 import FormattedDate from '../components/FormattedDate.astro';
 import GenruptThumb from '../assets/img/projects/genrupt-creative-ops-photo.png';
 import PalabrunoThumb from '../assets/img/projects/palabruno-reading-materials-photo.png';
-import BaEventosThumb from '../assets/img/projects/ba-eventos-feature.png';
+import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
 import CasamoThumb from '../assets/img/projects/casamo-homepage-viewport.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
@@ -265,6 +265,7 @@ const experience = [
 											loading='lazy'
 											widths={[400, 800]}
 											sizes='(min-width: 1024px) 200px, 33vw'
+											class:list={{ 'hc-home-project__image--portrait': project.image.height > project.image.width }}
 										/>
 									</div>
 									<div class='hc-home-project__content'>
