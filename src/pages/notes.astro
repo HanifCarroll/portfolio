@@ -43,7 +43,6 @@ const entryId = (section: string, title: string) =>
 						{publicSections.map((section, sectionIndex) => (
 							<li class={`hc-notes-nav-section${sectionIndex === 0 ? ' is-active' : ''}`} data-notes-section>
 								<a href={`#${section.slug}`} data-notes-section-link>
-									<span class='hc-notes-nav-number' aria-hidden='true'>{String(sectionIndex + 1).padStart(2, '0')}</span>
 									<span class='hc-archive-nav__text'>{section.title}</span>
 								</a>
 								<div
@@ -136,9 +135,8 @@ const entryId = (section: string, title: string) =>
 					</div>
 					<div class='hc-archive-section-body'>
 						<ol class='hc-notes-entries'>
-							{section.entries.map((entry, entryIndex) => (
+							{section.entries.map((entry) => (
 								<li id={entryId(section.slug, entry.title)} class='hc-notes-entry'>
-									<span class='hc-notes-entry__index' aria-hidden='true'>{String(entryIndex + 1).padStart(2, '0')}</span>
 									<div>
 										<h3>{entry.title}</h3>
 										{entry.body.map((paragraph) => <p>{paragraph}</p>)}

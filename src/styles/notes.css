@@ -68,16 +68,8 @@
 }
 
 .hc-notes .hc-notes-nav-section > a {
-  display: grid;
-  grid-template-columns: 1.7rem minmax(0, 1fr);
-  gap: 0.5rem;
+  display: block;
   padding-block: 0.5rem;
-}
-
-.hc-notes-nav-number {
-  color: var(--hc-text-muted);
-  font-size: 0.68rem;
-  font-variant-numeric: tabular-nums;
 }
 
 .hc-notes .hc-archive-nav__text {
@@ -103,7 +95,7 @@
   display: grid;
   min-height: 0;
   gap: 0.15rem;
-  margin: 0 0 0 2.2rem;
+  margin: 0;
   padding: 0 0 0 0.75rem;
   overflow: hidden;
   border-left: 1px solid var(--hc-border);
@@ -199,19 +191,7 @@
 }
 
 .hc-notes-entry {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 1rem;
   padding-block: 2rem;
-}
-
-.hc-notes-entry__index {
-  padding-top: 0.2rem;
-  color: var(--hc-accent-text);
-  font-size: 0.72rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.4;
 }
 
 .hc-notes-entry h3 {
@@ -232,8 +212,6 @@
 
 @media (min-width: 48rem) {
   .hc-notes-entry {
-    grid-template-columns: 2.5rem minmax(0, 1fr);
-    gap: 1.5rem;
     padding-block: 2.5rem;
   }
 }
