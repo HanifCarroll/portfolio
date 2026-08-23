@@ -229,8 +229,6 @@ const heroActions = [
 			)
 		}
 
-		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
-
 		{
 			project.relatedLinks && project.relatedLinks.length > 0 && (
 				<nav class='cs-related' aria-labelledby={`related-${project.slug}`}>
@@ -253,8 +251,6 @@ const heroActions = [
 			)
 		}
 
-		<div class='cs-return'>
-			<a href='/projects/' class='cs-return__link'>Back to All Projects</a>
-		</div>
+		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 	</article>
 </BaseLayout>

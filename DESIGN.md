@@ -7,6 +7,7 @@ colors:
   accent-text: "#282828"
   canvas: "#ffffff"
   surface: "#ffffff"
+  surface-warm: "color-mix(in srgb, #f8d651 5%, #ffffff)"
   ink: "#282828"
   muted-ink: "#504945"
   border: "#e0e2dc"
@@ -56,23 +57,26 @@ spacing:
   9: "128px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent-gold}"
-    textColor: "{colors.accent-text}"
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.border}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "8px 24px"
-    height: "52px"
+    rounded: "{rounded.control}"
+    padding: "8px 16px"
+    height: "44px"
   button-primary-hover:
-    backgroundColor: "{colors.accent-gold-hover}"
-    textColor: "{colors.accent-text}"
-    rounded: "{rounded.pill}"
+    backgroundColor: "{colors.surface-warm}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.accent-text}"
+    rounded: "{rounded.control}"
   button-secondary:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
+    borderColor: "{colors.border}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "8px 24px"
-    height: "52px"
+    rounded: "{rounded.control}"
+    padding: "8px 16px"
+    height: "44px"
 ---
 
 # Design System: Hanif Carroll Portfolio
@@ -95,12 +99,12 @@ The visual system pairs a white canvas with light editorial surfaces and a delib
 
 ## Colors
 
-The palette is restrained: a white canvas, warm charcoal ink, and a restrained gold accent reserved for actions and meaningful emphasis.
+The palette is restrained: a white canvas, warm charcoal ink, and a restrained gold accent reserved for directional cues, focus, and meaningful emphasis. Gold is not a button fill.
 
 ### Primary
 
-- **CTA Gold** (`#f8d651`): The single primary accent. Use it for primary CTA backgrounds, focus indicators, selection, and small directional details.
-- **CTA Gold Hover** (`color-mix(in srgb, #f8d651 88%, #725a00)`): The warmer interaction state for CTA Gold; do not introduce a second competing accent.
+- **CTA Gold** (`#f8d651`): The single primary accent. Use it for focus indicators, selection, and small directional details—not large control fills.
+- **CTA Gold Hover** (`color-mix(in srgb, #f8d651 88%, #725a00)`): Available for compact gold details; do not introduce a second competing accent.
 
 ### Neutral
 
@@ -113,7 +117,7 @@ The palette is restrained: a white canvas, warm charcoal ink, and a restrained g
 
 ### Named Rules
 
-**The Gold Means Action Rule.** CTA Gold is the accent and should remain scarce enough that the primary action is immediately obvious.
+**The Gold Means Action Rule.** CTA Gold marks direction, focus, and meaningful selection; primary controls stay light so gold remains scarce.
 
 **The Editorial Surface Rule.** Editorial charcoal is reserved for embedded demos or status panels; site chrome and page surfaces stay light.
 
@@ -180,11 +184,11 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ### Buttons
 
-- **Shape:** Full pill for CTA controls (`36px` radius) with a minimum height of `52px`.
-- **Primary:** CTA Gold background, Accent Ink text, `8px 24px` padding, bold label, and a directional arrow when the action advances the user.
-- **Hover / Focus:** Shift to CTA Gold Hover and translate upward by `2px`; use a `3px` CTA Gold focus outline with a `3px` offset.
-- **Secondary:** Surface White with Ink text and a quiet border; on hover, invert to Ink with Surface White text.
-- **Text Link:** Bold charcoal text with an arrow and a CTA Gold directional detail.
+- **Shape:** Compact editorial control with an approximately `8px` radius and a minimum height of `44px`; never a pill.
+- **Primary:** Surface White fill, charcoal text, quiet border, compact padding, and a restrained gold directional arrow when the action advances the user.
+- **Hover / Focus:** Warm the light surface and darken the border without lift or shadow theatrics; use a visible gold focus outline.
+- **Secondary:** Surface White with Ink text and a quiet border; keep the same compact geometry and light hover treatment.
+- **Text Link:** Bold charcoal text with an arrow and a restrained gold directional detail.
 
 ### Cards / Containers
 
@@ -196,7 +200,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ### Navigation
 
-- **Desktop:** Light canvas container, charcoal links, compact semibold labels, pill geometry, and one CTA Gold action.
+- **Desktop:** Light canvas container, charcoal links, compact semibold labels, and a restrained gold directional cue on the call action.
 - **States:** Preserve visible hover and current-page contrast without decorative underlines or extra badges.
 - **Mobile:** Use a clear circular menu control and a single-column panel with comfortable touch targets.
 
@@ -210,7 +214,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 - Use a full-width light editorial band within the blog layout, with no dark site chrome, card, border, corner radius, or shadow.
 - Use a two-column editorial layout on desktop and one column below `900px`.
-- Present one CTA Gold primary action and one contextual text link; do not add a third competing action.
+- Present one compact light primary action and one contextual text link; reserve gold for its directional cue and focus state.
 
 ### Proof Artifacts
 
@@ -221,7 +225,8 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ### Do:
 
-- **Do** reserve `#f8d651` CTA Gold for the primary action and meaningful focus or selection states.
+- **Do** reserve `#f8d651` CTA Gold for directional cues, focus, and meaningful selection states; keep controls light.
+- **Do** keep CTA controls compact, square-ish, and editorial: no oversized yellow fills, full pills, dark fills, or theatrical lift/shadows.
 - **Do** use spacing and typographic hierarchy before reaching for borders, rules, or cards.
 - **Do** show real artifacts, outcomes, constraints, and working details as evidence.
 - **Do** use one shared 75ch editorial column for blog metadata, title, deck, article, and author content.
