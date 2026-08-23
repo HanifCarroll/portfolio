@@ -49,9 +49,9 @@ const homepageJsonLd = [
 ];
 
 const navLinks = [
-	{ href: '#about', label: 'About' },
 	{ href: '#projects', label: 'Projects' },
 	{ href: '#experience', label: 'Experience' },
+	{ href: '#about', label: 'About' },
 	{ href: '#blog', label: 'Blog' }
 ];
 
@@ -249,44 +249,6 @@ const experience = [
 		</header>
 
 		<main class='hc-home-main'>
-			<section id='about' class='hc-home-section' aria-label='About me'>
-				<div class='hc-home-section-label'>
-					<h2 class='hc-home-section-title'>About</h2>
-				</div>
-				<div class='hc-home-section-body'>
-					<p>
-						Hey, I’m Hanif. I’m an AI product engineer with eight years of experience building web,
-						mobile, and AI products. I care obsessively about the details that turn working software into
-						a quality product that people love to use.
-					</p>
-					<p>
-						I got into programming after deciding physical therapy wasn’t the path for me. While figuring
-						out what I wanted to do next, I started watching <em>Mr. Robot</em>. The show hooked me and
-						inspired me to learn how to code.
-					</p>
-					<p>
-						I went on to work at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, building products in environments that ranged from large consulting teams to
-						fast-moving technology companies. Along the way, I learned how to turn ambiguous ideas into
-						thoughtful, useful products without losing sight of the people using them.
-					</p>
-					<p>
-						Today I run HC Studio, a solo product studio building AI-powered products for early-stage
-						founders. I recently shipped an <a href='/projects/genrupt/'>AI-powered Amazon seller platform</a>{' '}
-						to its first 200 paying customers and built a <a href='/projects/palabruno/'>Spanish reading app</a>
-						{' '}from concept to production across iOS, Android, and the web, with subscriptions and LLM
-						features. I also enjoy thinking about UX, UI, marketing, and client acquisition.
-					</p>
-					<p>
-						Outside of work, I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' target='_blank' rel='noopener noreferrer'>lift weights</a>, experiment with AI, and have merienda in cozy coffee shops. My ideal order is a
-						ham-and-cheese croissant and a slice of red velvet cake with a café con leche.
-					</p>
-					<a class='hc-home-archive-link hc-home-about-notes' href='/notes/'>
-						Read my notes
-						<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
-					</a>
-				</div>
-			</section>
-
 			<section id='projects' class='hc-home-section' aria-label='Selected projects'>
 				<div class='hc-home-section-label'>
 					<h2 class='hc-home-section-title'>Projects</h2>
@@ -368,6 +330,44 @@ const experience = [
 				</div>
 			</section>
 
+			<section id='about' class='hc-home-section' aria-label='About me'>
+				<div class='hc-home-section-label'>
+					<h2 class='hc-home-section-title'>About</h2>
+				</div>
+				<div class='hc-home-section-body'>
+					<p>
+						Hey, I’m Hanif. I’m an AI product engineer with eight years of experience building web,
+						mobile, and AI products. I care obsessively about the details that turn working software into
+						a quality product that people love to use.
+					</p>
+					<p>
+						I got into programming after deciding physical therapy wasn’t the path for me. While figuring
+						out what I wanted to do next, I started watching <em>Mr. Robot</em>. The show hooked me and
+						inspired me to learn how to code.
+					</p>
+					<p>
+						I went on to work at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, building products in environments that ranged from large consulting teams to
+						fast-moving technology companies. Along the way, I learned how to turn ambiguous ideas into
+						thoughtful, useful products without losing sight of the people using them.
+					</p>
+					<p>
+						Today I run HC Studio, a solo product studio building AI-powered products for early-stage
+						founders. I recently shipped an <a href='/projects/genrupt/'>AI-powered Amazon seller platform</a>{' '}
+						to its first 200 paying customers and built a <a href='/projects/palabruno/'>Spanish reading app</a>
+						{' '}from concept to production across iOS, Android, and the web, with subscriptions and LLM
+						features. I also enjoy thinking about UX, UI, marketing, and client acquisition.
+					</p>
+					<p>
+						Outside of work, I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' target='_blank' rel='noopener noreferrer'>lift weights</a>, experiment with AI, and have merienda in cozy coffee shops. My ideal order is a
+						ham-and-cheese croissant and a slice of red velvet cake with a café con leche.
+					</p>
+					<a class='hc-home-archive-link hc-home-about-notes' href='/notes/'>
+						Read my notes
+						<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
+					</a>
+				</div>
+			</section>
+
 			<section id='blog' class='hc-home-section' aria-label='Latest writing'>
 				<div class='hc-home-section-label'>
 					<h2 class='hc-home-section-title'>Blog</h2>
@@ -404,7 +404,7 @@ const experience = [
 		if (!sections.length || !links.length) return;
 
 		const probe = window.scrollY + window.innerHeight * 0.35;
-		let current = sections[0]?.id ?? 'about';
+		let current = sections[0]?.id ?? 'projects';
 		sections.forEach((section) => {
 			if (section.offsetTop <= probe) current = section.id;
 		});
