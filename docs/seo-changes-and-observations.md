@@ -2,6 +2,13 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-23
+
+### Product Usage Scoring Homepage Removal
+
+- Removed Product Usage Scoring & Routing from the homepage project list. Its indexed project page and Projects archive entry remain available.
+- After deployment, verify the homepage shows the four remaining projects and no longer links to Product Usage Scoring & Routing.
+
 ## 2026-08-15
 
 ### Project Archive Taxonomy And Client Feedback Retirement
