@@ -213,7 +213,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 ### Editorial Closing CTA
 
 - Use a full-width light editorial band with no dark site chrome, card, border, corner radius, or shadow.
-- Case-study endings use Warm Stone (`#EEEAE2`) to separate the closing invitation from the white article canvas without introducing another accent.
+- Case-study endings use the white page surface; spacing and typography provide separation from the article.
 - Use a two-column editorial layout on desktop and one column below `900px`.
 - Connect the proof just shown to a concrete buyer priority, state the next step clearly, and offer email as the lower-commitment alternative when project links already appear above.
 - Present one compact light primary action and one contextual text link without decorative arrows; reserve gold for focus and meaningful emphasis.
