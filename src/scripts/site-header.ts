@@ -27,7 +27,6 @@ function mountHeader() {
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   let reduceMotion = reduceMotionQuery.matches;
   let scheduledFrame = 0;
-  let notesScrollFrame = 0;
   let isMounted = true;
   let isOpen = false;
   let isHeaderVisible = true;
@@ -205,27 +204,6 @@ function mountHeader() {
     activeChapter = Array.from(notesChapters ?? []).find((chapter) => chapter.open);
   };
 
-  const scrollChapterIntoView = (chapter: HTMLDetailsElement) => {
-    if (!notesPanel || !chapter.open) return;
-    const panelRect = notesPanel.getBoundingClientRect();
-    const panelPaddingTop = Number.parseFloat(getComputedStyle(notesPanel).paddingTop) || 0;
-    const chapterTop =
-      chapter.getBoundingClientRect().top - panelRect.top + notesPanel.scrollTop - panelPaddingTop;
-    const maxScrollTop = notesPanel.scrollHeight - notesPanel.clientHeight;
-    notesPanel.scrollTo({
-      top: Math.max(0, Math.min(chapterTop, maxScrollTop)),
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-  };
-
-  const scheduleChapterScroll = (chapter: HTMLDetailsElement) => {
-    if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
-    notesScrollFrame = window.requestAnimationFrame(() => {
-      notesScrollFrame = 0;
-      if (isMounted) scrollChapterIntoView(chapter);
-    });
-  };
-
   const closeChapter = (chapter: HTMLDetailsElement, afterClose?: () => void) => {
     const content = chapter.querySelector<HTMLElement>(":scope > ol");
     if (!content || !chapter.open) {
@@ -270,7 +248,6 @@ function mountHeader() {
     requestedChapter = undefined;
     if (reduceMotion) {
       clearChapterAnimation(chapter);
-      scheduleChapterScroll(chapter);
       return;
     }
     gsap.set(content, { height: 0, autoAlpha: 0, y: -8 });
@@ -281,13 +258,9 @@ function mountHeader() {
       duration: 0.3,
       ease: "power3.out",
       overwrite: true,
-      onComplete: () => {
-        clearChapterAnimation(chapter);
-        scheduleChapterScroll(chapter);
-      },
+      onComplete: () => clearChapterAnimation(chapter),
     });
     chapterTweens.set(chapter, tween);
-    scheduleChapterScroll(chapter);
   };
 
   const selectChapter = (chapter: HTMLDetailsElement) => {
@@ -437,7 +410,6 @@ function mountHeader() {
     isMounted = false;
     controller.abort();
     if (scheduledFrame) cancelAnimationFrame(scheduledFrame);
-    if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
     timeline.kill();
     notesTimeline?.kill();
     chapterTweens.forEach((tween) => tween.kill());
