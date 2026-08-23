@@ -11,6 +11,8 @@ function mountHeader() {
   const links = panel?.querySelectorAll<HTMLElement>(
     ".hc-mobile-nav__link, .hc-mobile-nav__call-link",
   );
+  const notesMenu = siteHeader?.querySelector<HTMLDetailsElement>("[data-notes-mobile-menu]");
+  const notesSummary = notesMenu?.querySelector<HTMLElement>(":scope > summary");
   if (!siteHeader || !toggle || !panel || !links) return;
 
   const controller = new AbortController();
@@ -19,6 +21,13 @@ function mountHeader() {
   let scheduledFrame = 0;
   let isOpen = false;
   let isHeaderVisible = true;
+
+  const closeNotesMenu = (restoreFocus = false) => {
+    if (!notesMenu?.open) return;
+    notesMenu.open = false;
+    document.documentElement.classList.remove("hc-notes-menu-open");
+    if (restoreFocus) notesSummary?.focus({ preventScroll: true });
+  };
   let lastScrollY = Math.max(0, window.scrollY);
 
   const setHeaderVisible = (visible: boolean) => {
@@ -53,7 +62,10 @@ function mountHeader() {
 
   const setOpenState = (open: boolean, restoreFocus = true) => {
     isOpen = open;
-    if (open) setHeaderVisible(true);
+    if (open) {
+      closeNotesMenu();
+      setHeaderVisible(true);
+    }
     if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
@@ -85,6 +97,16 @@ function mountHeader() {
 
   panel.setAttribute("inert", "");
   toggle.addEventListener("click", () => setOpenState(!isOpen), { signal });
+  notesMenu?.addEventListener("toggle", () => {
+    document.documentElement.classList.toggle("hc-notes-menu-open", notesMenu.open);
+    notesSummary?.setAttribute("aria-label", notesMenu.open ? "Close table of contents" : "Open table of contents");
+  }, { signal });
+  notesSummary?.addEventListener("click", () => {
+    if (isOpen) setOpenState(false, false);
+  }, { signal });
+  notesMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeNotesMenu(), { signal });
+  });
   panel.addEventListener(
     "click",
     (event) => {
@@ -95,6 +117,11 @@ function mountHeader() {
   document.addEventListener(
     "keydown",
     (event) => {
+      if (event.key === "Escape" && notesMenu?.open) {
+        event.preventDefault();
+        closeNotesMenu(true);
+        return;
+      }
       if (!isOpen) return;
       if (event.key === "Escape") {
         event.preventDefault();
@@ -150,7 +177,10 @@ function mountHeader() {
   window.addEventListener(
     "resize",
     () => {
-      if (window.innerWidth > 900 && isOpen) setOpenState(false, false);
+      if (window.innerWidth >= 1024) {
+        if (isOpen) setOpenState(false, false);
+        closeNotesMenu();
+      }
       scheduleHeaderUpdate();
     },
     { passive: true, signal },
@@ -162,6 +192,7 @@ function mountHeader() {
     if (scheduledFrame) cancelAnimationFrame(scheduledFrame);
     timeline.kill();
     document.body.classList.remove("hc-nav-open");
+    document.documentElement.classList.remove("hc-notes-menu-open");
   };
 }
 

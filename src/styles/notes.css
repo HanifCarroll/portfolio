@@ -251,39 +251,42 @@
     display: none;
   }
 
+  .hc-notes .site-header {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .hc-notes .hc-mobile-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
   .hc-notes-mobile-menu {
-    position: sticky;
-    z-index: 50;
-    top: calc(4rem + env(safe-area-inset-top));
+    position: relative;
     display: block;
-    margin-inline: -1.5rem;
-    background: var(--hc-archive-canvas);
+    background: transparent;
   }
 
   .hc-notes-mobile-menu > summary {
     display: flex;
-    min-height: 4rem;
+    min-height: 2.75rem;
     align-items: center;
-    justify-content: space-between;
-    padding-inline: 1.5rem;
-    color: var(--hc-text);
-    font-size: 0.95rem;
+    gap: 0.35rem;
+    padding-inline: 0.5rem;
+    color: var(--hc-text-muted);
+    font-size: 0.72rem;
     font-weight: 700;
+    letter-spacing: 0.04em;
     cursor: pointer;
     list-style: none;
+    text-transform: uppercase;
   }
 
   .hc-notes-mobile-menu summary::-webkit-details-marker {
     display: none;
-  }
-
-  .hc-notes-mobile-menu__action {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--hc-text-muted);
-    font-size: 0.8rem;
-    font-weight: 600;
   }
 
   .hc-notes-mobile-menu__close {
@@ -304,7 +307,10 @@
 
   .hc-notes-mobile-menu__panel {
     position: fixed;
-    inset: calc(4rem + 4rem + env(safe-area-inset-top)) 0 0;
+    z-index: 61;
+    inset: calc(4rem + env(safe-area-inset-top)) 0 auto;
+    width: 100vw;
+    height: calc(100dvh - 4rem - env(safe-area-inset-top));
     padding: 1.5rem;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -416,11 +422,6 @@
 }
 
 @media (min-width: 48rem) and (max-width: 63.999rem) {
-  .hc-notes-mobile-menu {
-    margin-inline: -3rem;
-  }
-
-  .hc-notes-mobile-menu summary,
   .hc-notes-mobile-menu__panel {
     padding-inline: 3rem;
   }
