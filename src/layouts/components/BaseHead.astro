@@ -9,6 +9,7 @@ import '@fontsource/eb-garamond/latin-700.css';
 interface Props {
 	title: string;
 	description: string;
+	socialTitle?: string;
 	socialDescription?: string;
 	image?: string;
 	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -18,8 +19,8 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, socialDescription = description, image, jsonLd, ogType = 'website', robots } = Astro.props;
-const defaultSocialImage = '/img/social-card.jpg';
+const { title, socialTitle = title, description, socialDescription = description, image, jsonLd, ogType = 'website', robots } = Astro.props;
+const defaultSocialImage = '/img/social-card-2026.jpg';
 const fallbackImage = image ?? defaultSocialImage;
 const fallbackImageURL = new URL(fallbackImage, Astro.url);
 const isDefaultSocialImage = fallbackImage === defaultSocialImage;
@@ -90,18 +91,21 @@ const clarityLoaderScript = clarityProjectId
 
 <!-- Open Graph / Facebook -->
 <meta property='og:type' content={ogType} />
+<meta property='og:site_name' content='Hanif Carroll' />
 <meta property='og:url' content={Astro.url} />
-<meta property='og:title' content={title} />
+<meta property='og:title' content={socialTitle} />
 <meta property='og:description' content={socialDescription} />
 <meta property='og:image' content={fallbackImageURL} />
-<meta property='og:image:alt' content={`${title} preview image`} />
+<meta property='og:image:alt' content={isDefaultSocialImage ? 'Portrait of Hanif Carroll beside the words AI Product Engineer.' : `${title} preview image`} />
+{isDefaultSocialImage && <meta property='og:image:type' content='image/jpeg' />}
 {isDefaultSocialImage && <meta property='og:image:width' content='1200' />}
 {isDefaultSocialImage && <meta property='og:image:height' content='630' />}
 
 <!-- Twitter -->
 <meta property='twitter:card' content='summary_large_image' />
 <meta property='twitter:url' content={Astro.url} />
-<meta property='twitter:title' content={title} />
+<meta property='twitter:title' content={socialTitle} />
 <meta property='twitter:description' content={socialDescription} />
 <meta property='twitter:image' content={fallbackImageURL} />
+<meta property='twitter:image:alt' content={isDefaultSocialImage ? 'Portrait of Hanif Carroll beside the words AI Product Engineer.' : `${title} preview image`} />
 {structuredData && <script is:inline type='application/ld+json' set:html={structuredData} />}
