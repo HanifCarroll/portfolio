@@ -13,6 +13,10 @@ function mountHeader() {
   );
   const notesMenu = siteHeader?.querySelector<HTMLDetailsElement>("[data-notes-mobile-menu]");
   const notesSummary = notesMenu?.querySelector<HTMLElement>(":scope > summary");
+  const notesPanel = notesMenu?.querySelector<HTMLElement>(":scope > .hc-notes-mobile-menu__panel");
+  const notesContent = notesPanel?.querySelectorAll<HTMLElement>(
+    ".hc-notes-toc-label, .hc-notes-mobile-toc > li",
+  );
   if (!siteHeader || !toggle || !panel || !links) return;
 
   const controller = new AbortController();
@@ -21,12 +25,66 @@ function mountHeader() {
   let scheduledFrame = 0;
   let isOpen = false;
   let isHeaderVisible = true;
+  let notesClosePending = false;
 
-  const closeNotesMenu = (restoreFocus = false) => {
-    if (!notesMenu?.open) return;
-    notesMenu.open = false;
-    document.documentElement.classList.remove("hc-notes-menu-open");
-    if (restoreFocus) notesSummary?.focus({ preventScroll: true });
+  const notesTimeline = notesPanel && notesContent
+    ? gsap.timeline({ paused: true, defaults: { ease: "power3.out" } })
+        .to(notesPanel, {
+          autoAlpha: 1,
+          y: 0,
+          duration: reduceMotion ? 0 : 0.42,
+        })
+        .to(
+          notesContent,
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: reduceMotion ? 0 : 0.3,
+            stagger: reduceMotion ? 0 : 0.035,
+          },
+          reduceMotion ? 0 : "-=0.16",
+        )
+    : undefined;
+
+  const resetNotesPanel = () => {
+    if (!notesPanel || !notesContent) return;
+    notesTimeline?.pause(0);
+    gsap.set(notesPanel, { autoAlpha: 0, y: reduceMotion ? 0 : -12 });
+    gsap.set(notesContent, { y: reduceMotion ? 0 : 10, autoAlpha: 0 });
+  };
+  resetNotesPanel();
+
+  const closeNotesMenu = (restoreFocus = false, afterClose?: () => void, immediate = false) => {
+    if (!notesMenu?.open) {
+      document.documentElement.classList.remove("hc-notes-menu-open");
+      notesSummary?.setAttribute("aria-label", "Open table of contents");
+      resetNotesPanel();
+      afterClose?.();
+      return;
+    }
+    notesClosePending = true;
+    const finishClose = () => {
+      notesClosePending = false;
+      notesMenu.open = false;
+      document.documentElement.classList.remove("hc-notes-menu-open");
+      notesSummary?.setAttribute("aria-label", "Open table of contents");
+      resetNotesPanel();
+      if (restoreFocus) notesSummary?.focus({ preventScroll: true });
+      afterClose?.();
+    };
+    if (immediate || reduceMotion || !notesTimeline || notesTimeline.progress() === 0) {
+      finishClose();
+      return;
+    }
+    notesTimeline.eventCallback("onReverseComplete", finishClose);
+    notesTimeline.reverse();
+  };
+
+  const openNotesMenu = () => {
+    if (!notesMenu?.open || !notesPanel || !notesTimeline) return;
+    document.documentElement.classList.add("hc-notes-menu-open");
+    notesTimeline.eventCallback("onReverseComplete", null);
+    notesTimeline.play(0);
   };
   let lastScrollY = Math.max(0, window.scrollY);
 
@@ -60,12 +118,13 @@ function mountHeader() {
       reduceMotion ? 0 : "-=0.2",
     );
 
-  const setOpenState = (open: boolean, restoreFocus = true) => {
-    isOpen = open;
-    if (open) {
-      closeNotesMenu();
-      setHeaderVisible(true);
+  const setOpenState = (open: boolean, restoreFocus = true, afterClose?: () => void) => {
+    if (open && notesMenu?.open) {
+      closeNotesMenu(false, () => setOpenState(open, restoreFocus, afterClose));
+      return;
     }
+    isOpen = open;
+    if (open) setHeaderVisible(true);
     if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
@@ -83,6 +142,7 @@ function mountHeader() {
       const finishClose = () => {
         panel.setAttribute("inert", "");
         if (restoreFocus) toggle.focus();
+        afterClose?.();
       };
       if (reduceMotion) {
         timeline.pause(0);
@@ -98,11 +158,26 @@ function mountHeader() {
   panel.setAttribute("inert", "");
   toggle.addEventListener("click", () => setOpenState(!isOpen), { signal });
   notesMenu?.addEventListener("toggle", () => {
-    document.documentElement.classList.toggle("hc-notes-menu-open", notesMenu.open);
+    if (!notesMenu.open && notesClosePending) return;
     notesSummary?.setAttribute("aria-label", notesMenu.open ? "Close table of contents" : "Open table of contents");
+    if (notesMenu.open) {
+      if (isOpen) setOpenState(false, false, openNotesMenu);
+      else openNotesMenu();
+    } else {
+      closeNotesMenu();
+    }
   }, { signal });
-  notesSummary?.addEventListener("click", () => {
-    if (isOpen) setOpenState(false, false);
+  notesSummary?.addEventListener("click", (event) => {
+    if (isOpen) {
+      event.preventDefault();
+      setOpenState(false, false, () => {
+        if (!notesMenu) return;
+        notesMenu.open = true;
+      });
+    } else if (notesMenu?.open) {
+      event.preventDefault();
+      closeNotesMenu(true);
+    }
   }, { signal });
   notesMenu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => closeNotesMenu(), { signal });
@@ -179,7 +254,7 @@ function mountHeader() {
     () => {
       if (window.innerWidth >= 1024) {
         if (isOpen) setOpenState(false, false);
-        closeNotesMenu();
+        closeNotesMenu(false, undefined, true);
       }
       scheduleHeaderUpdate();
     },
@@ -191,6 +266,7 @@ function mountHeader() {
     controller.abort();
     if (scheduledFrame) cancelAnimationFrame(scheduledFrame);
     timeline.kill();
+    notesTimeline?.kill();
     document.body.classList.remove("hc-nav-open");
     document.documentElement.classList.remove("hc-notes-menu-open");
   };
