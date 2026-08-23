@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
@@ -41,6 +42,8 @@ const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);
 const heroImage = getProjectImage(project, 'hero');
+const heroWidths = [640, 960, 1280, 1600, 2000].filter((width) => width < heroImage.width);
+heroWidths.push(heroImage.width);
 const seoTitle = project.seoTitle ?? `${project.title} · Project`;
 const seoDescription = project.seoDescription ?? project.description;
 const isDelisted = (DELISTED_PROJECT_SLUGS as readonly string[]).includes(project.slug);
@@ -168,6 +171,17 @@ const heroActions = [
 				}
 			</aside>
 		</header>
+
+		<figure class='cs-project-hero'>
+			<Image
+				src={heroImage}
+				alt={`${project.title} project visual`}
+				widths={heroWidths}
+				sizes='(min-width: 75rem) 1200px, 100vw'
+				loading='eager'
+				class='cs-project-hero__image'
+			/>
+		</figure>
 
 		{
 			overviewVideo && (
