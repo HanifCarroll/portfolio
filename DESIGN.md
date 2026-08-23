@@ -210,10 +210,12 @@ Components should feel direct and confident, with restrained shape and unmistaka
 - Use spacing, not a horizontal rule, to transition into the article body.
 - Let the title, deck, article, and author section fill the same 75ch editorial column.
 
-### Blog Closing CTA
+### Editorial Closing CTA
 
-- Use a full-width light editorial band within the blog layout, with no dark site chrome, card, border, corner radius, or shadow.
+- Use a full-width light editorial band with no dark site chrome, card, border, corner radius, or shadow.
+- Case-study endings use Warm Stone (`#EEEAE2`) to separate the closing invitation from the white article canvas without introducing another accent.
 - Use a two-column editorial layout on desktop and one column below `900px`.
+- Connect the proof just shown to a concrete buyer priority, state the next step clearly, and offer email as the lower-commitment alternative when project links already appear above.
 - Present one compact light primary action and one contextual text link without decorative arrows; reserve gold for focus and meaningful emphasis.
 
 ### Proof Artifacts

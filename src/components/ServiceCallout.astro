@@ -1,5 +1,5 @@
 ---
-import { BOOK_CALL_URL } from '../consts';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
 type Variant = 'general' | 'systemsBuild' | 'ongoing';
 type Context = 'blog' | 'case-study';
@@ -19,25 +19,28 @@ const offers = {
 		body: "Start with the feature, integration, or system that's stuck. We'll work out whether a project or a monthly contract fits.",
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a fit call'
+		primaryLabel: 'Book a 30-minute fit call'
 	},
 	systemsBuild: {
-		title: "Have something that needs building?",
-		body: 'I build customer-facing features, internal tools, and integrations for B2B SaaS teams on contract.',
+		title: 'Have a product priority that needs an owner?',
+		body: 'I join B2B SaaS teams on contract to ship the features, internal tools, and integrations already on your roadmap.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a fit call'
+		primaryLabel: 'Book a 30-minute fit call'
 	},
 	ongoing: {
 		title: 'Need ongoing senior engineering?',
 		body: 'A monthly contract covers continuing priorities across your product and the systems around it.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a fit call'
+		primaryLabel: 'Book a 30-minute fit call'
 	}
 } as const;
 
 const offer = offers[variant];
+const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
+const secondaryLabel = context === 'case-study' ? 'Email Hanif' : offer.secondaryLabel;
+const secondaryEvent = context === 'case-study' ? 'email_clicked' : 'service_page_clicked';
 ---
 
 <section
@@ -50,8 +53,8 @@ const offer = offers[variant];
 			<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${location}_primary`}>
 				{offer.primaryLabel}
 			</a>
-			<a class='hc-text-link' href={offer.secondaryHref} data-track-event='service_page_clicked' data-track-location={`${location}_secondary`}>
-				{offer.secondaryLabel}
+			<a class='hc-text-link' href={secondaryHref} data-track-event={secondaryEvent} data-track-location={`${location}_secondary`}>
+				{secondaryLabel}
 			</a>
 		</div>
 	</div>
