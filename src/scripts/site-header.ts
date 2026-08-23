@@ -24,7 +24,8 @@ function mountHeader() {
 
   const controller = new AbortController();
   const { signal } = controller;
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let reduceMotion = reduceMotionQuery.matches;
   let scheduledFrame = 0;
   let notesScrollFrame = 0;
   let isMounted = true;
@@ -32,24 +33,26 @@ function mountHeader() {
   let isHeaderVisible = true;
   let notesClosePending = false;
 
-  const notesTimeline = notesPanel && notesContent
-    ? gsap.timeline({ paused: true, defaults: { ease: "power3.out" } })
-        .to(notesPanel, {
-          autoAlpha: 1,
-          y: 0,
-          duration: reduceMotion ? 0 : 0.42,
-        })
-        .to(
-          notesContent,
-          {
-            y: 0,
+  const notesTimeline =
+    notesPanel && notesContent
+      ? gsap
+          .timeline({ paused: true, defaults: { ease: "power3.out" } })
+          .to(notesPanel, {
             autoAlpha: 1,
-            duration: reduceMotion ? 0 : 0.3,
-            stagger: reduceMotion ? 0 : 0.035,
-          },
-          reduceMotion ? 0 : "-=0.16",
-        )
-    : undefined;
+            y: 0,
+            duration: reduceMotion ? 0 : 0.42,
+          })
+          .to(
+            notesContent,
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: reduceMotion ? 0 : 0.3,
+              stagger: reduceMotion ? 0 : 0.035,
+            },
+            reduceMotion ? 0 : "-=0.16",
+          )
+      : undefined;
 
   const resetNotesPanel = () => {
     if (!notesPanel || !notesContent) return;
@@ -162,21 +165,52 @@ function mountHeader() {
 
   panel.setAttribute("inert", "");
   toggle.addEventListener("click", () => setOpenState(!isOpen), { signal });
-  notesMenu?.addEventListener("toggle", () => {
-    if (!notesMenu.open && notesClosePending) return;
-    notesSummary?.setAttribute("aria-label", notesMenu.open ? "Close table of contents" : "Open table of contents");
-    if (notesMenu.open) {
-      if (isOpen) setOpenState(false, false, openNotesMenu);
-      else openNotesMenu();
-    } else {
-      closeNotesMenu();
-    }
-  }, { signal });
+  notesMenu?.addEventListener(
+    "toggle",
+    () => {
+      if (!notesMenu.open && notesClosePending) return;
+      notesSummary?.setAttribute(
+        "aria-label",
+        notesMenu.open ? "Close table of contents" : "Open table of contents",
+      );
+      if (notesMenu.open) {
+        if (isOpen) setOpenState(false, false, openNotesMenu);
+        else openNotesMenu();
+      } else {
+        closeNotesMenu();
+      }
+    },
+    { signal },
+  );
+  const chapterTweens = new Map<HTMLDetailsElement, gsap.core.Tween>();
+  let activeChapter: HTMLDetailsElement | null | undefined = Array.from(notesChapters ?? []).find(
+    (chapter) => chapter.open,
+  );
+  let requestedChapter: HTMLDetailsElement | null | undefined;
+
+  const clearChapterAnimation = (chapter: HTMLDetailsElement) => {
+    const content = chapter.querySelector<HTMLElement>(":scope > ol");
+    chapterTweens.get(chapter)?.kill();
+    chapterTweens.delete(chapter);
+    if (content) gsap.set(content, { clearProps: "height,opacity,transform,visibility" });
+    chapter.classList.remove("is-closing");
+  };
+
+  const resetChapters = () => {
+    requestedChapter = undefined;
+    notesChapters?.forEach((chapter, index) => {
+      clearChapterAnimation(chapter);
+      chapter.open = index === 0;
+    });
+    activeChapter = Array.from(notesChapters ?? []).find((chapter) => chapter.open);
+  };
+
   const scrollChapterIntoView = (chapter: HTMLDetailsElement) => {
     if (!notesPanel || !chapter.open) return;
     const panelRect = notesPanel.getBoundingClientRect();
     const panelPaddingTop = Number.parseFloat(getComputedStyle(notesPanel).paddingTop) || 0;
-    const chapterTop = chapter.getBoundingClientRect().top - panelRect.top + notesPanel.scrollTop - panelPaddingTop;
+    const chapterTop =
+      chapter.getBoundingClientRect().top - panelRect.top + notesPanel.scrollTop - panelPaddingTop;
     const maxScrollTop = notesPanel.scrollHeight - notesPanel.clientHeight;
     notesPanel.scrollTo({
       top: Math.max(0, Math.min(chapterTop, maxScrollTop)),
@@ -184,31 +218,137 @@ function mountHeader() {
     });
   };
 
-  notesChapters?.forEach((chapter) => {
-    chapter.addEventListener("toggle", () => {
-      if (!chapter.open || !notesPanel) return;
-      notesChapters.forEach((otherChapter) => {
-        if (otherChapter !== chapter) otherChapter.open = false;
-      });
-      if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
-      notesScrollFrame = window.requestAnimationFrame(() => {
-        notesScrollFrame = 0;
-        if (isMounted) scrollChapterIntoView(chapter);
-      });
-    }, { signal });
-  });
-  notesSummary?.addEventListener("click", (event) => {
-    if (isOpen) {
-      event.preventDefault();
-      setOpenState(false, false, () => {
-        if (!notesMenu) return;
-        notesMenu.open = true;
-      });
-    } else if (notesMenu?.open) {
-      event.preventDefault();
-      closeNotesMenu(true);
+  const scheduleChapterScroll = (chapter: HTMLDetailsElement) => {
+    if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
+    notesScrollFrame = window.requestAnimationFrame(() => {
+      notesScrollFrame = 0;
+      if (isMounted) scrollChapterIntoView(chapter);
+    });
+  };
+
+  const closeChapter = (chapter: HTMLDetailsElement, afterClose?: () => void) => {
+    const content = chapter.querySelector<HTMLElement>(":scope > ol");
+    if (!content || !chapter.open) {
+      clearChapterAnimation(chapter);
+      chapter.open = false;
+      if (activeChapter === chapter) activeChapter = undefined;
+      afterClose?.();
+      return;
     }
-  }, { signal });
+    chapterTweens.get(chapter)?.kill();
+    chapter.classList.add("is-closing");
+    if (reduceMotion) {
+      clearChapterAnimation(chapter);
+      chapter.open = false;
+      if (activeChapter === chapter) activeChapter = undefined;
+      afterClose?.();
+      return;
+    }
+    const tween = gsap.to(content, {
+      height: 0,
+      autoAlpha: 0,
+      y: -8,
+      duration: 0.24,
+      ease: "power2.in",
+      overwrite: true,
+      onComplete: () => {
+        clearChapterAnimation(chapter);
+        chapter.open = false;
+        if (activeChapter === chapter) activeChapter = undefined;
+        afterClose?.();
+      },
+    });
+    chapterTweens.set(chapter, tween);
+  };
+
+  const openChapter = (chapter: HTMLDetailsElement) => {
+    const content = chapter.querySelector<HTMLElement>(":scope > ol");
+    if (!content) return;
+    chapter.open = true;
+    chapter.classList.remove("is-closing");
+    activeChapter = chapter;
+    requestedChapter = undefined;
+    if (reduceMotion) {
+      clearChapterAnimation(chapter);
+      scheduleChapterScroll(chapter);
+      return;
+    }
+    gsap.set(content, { height: 0, autoAlpha: 0, y: -8 });
+    const tween = gsap.to(content, {
+      height: "auto",
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.3,
+      ease: "power3.out",
+      overwrite: true,
+      onComplete: () => {
+        clearChapterAnimation(chapter);
+        scheduleChapterScroll(chapter);
+      },
+    });
+    chapterTweens.set(chapter, tween);
+    scheduleChapterScroll(chapter);
+  };
+
+  const selectChapter = (chapter: HTMLDetailsElement) => {
+    requestedChapter = chapter.open && activeChapter === chapter ? null : chapter;
+    if (activeChapter && activeChapter !== requestedChapter) {
+      closeChapter(activeChapter, () => {
+        const next = requestedChapter;
+        requestedChapter = undefined;
+        if (next && isMounted) openChapter(next);
+      });
+      return;
+    }
+    if (requestedChapter) openChapter(requestedChapter);
+    else if (activeChapter) closeChapter(activeChapter);
+  };
+
+  notesChapters?.forEach((chapter) => {
+    chapter.querySelector(":scope > summary")?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        selectChapter(chapter);
+      },
+      { signal },
+    );
+  });
+
+  reduceMotionQuery.addEventListener(
+    "change",
+    (event) => {
+      reduceMotion = event.matches;
+      if (reduceMotion) {
+        const chapterToKeep = requestedChapter === undefined ? activeChapter : requestedChapter;
+        notesChapters?.forEach(clearChapterAnimation);
+        notesChapters?.forEach((chapter) => {
+          chapter.open = chapter === chapterToKeep;
+        });
+        activeChapter = chapterToKeep;
+        requestedChapter = undefined;
+      } else {
+        notesChapters?.forEach(clearChapterAnimation);
+      }
+    },
+    { signal },
+  );
+  notesSummary?.addEventListener(
+    "click",
+    (event) => {
+      if (isOpen) {
+        event.preventDefault();
+        setOpenState(false, false, () => {
+          if (!notesMenu) return;
+          notesMenu.open = true;
+        });
+      } else if (notesMenu?.open) {
+        event.preventDefault();
+        closeNotesMenu(true);
+      }
+    },
+    { signal },
+  );
   notesMenu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => closeNotesMenu(), { signal });
   });
@@ -285,6 +425,7 @@ function mountHeader() {
       if (window.innerWidth >= 1024) {
         if (isOpen) setOpenState(false, false);
         closeNotesMenu(false, undefined, true);
+        resetChapters();
       }
       scheduleHeaderUpdate();
     },
@@ -299,6 +440,8 @@ function mountHeader() {
     if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
     timeline.kill();
     notesTimeline?.kill();
+    chapterTweens.forEach((tween) => tween.kill());
+    notesChapters?.forEach((chapter) => clearChapterAnimation(chapter));
     document.body.classList.remove("hc-nav-open");
     document.documentElement.classList.remove("hc-notes-menu-open");
   };

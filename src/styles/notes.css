@@ -368,7 +368,13 @@
     display: grid;
     gap: 0.25rem;
     margin: 0.75rem 0 0;
+    overflow: hidden;
     border-left: 0;
+    will-change: height, opacity, transform;
+  }
+
+  .hc-notes-mobile-section.is-closing > summary svg {
+    transform: rotate(0);
   }
 
   .hc-notes-mobile-toc ol a {
@@ -438,7 +444,8 @@
     transform: none;
   }
 
-  .hc-notes-mobile-menu__panel {
+  .hc-notes-mobile-menu__panel,
+  .hc-notes-mobile-section > ol {
     will-change: auto;
   }
 }
