@@ -153,6 +153,17 @@ const heroActions = [
 				}
 			</div>
 
+			<figure class='cs-project-hero'>
+				<Image
+					src={heroImage}
+					alt={`${project.title} project visual`}
+					widths={heroWidths}
+					sizes='(min-width: 75rem) 1200px, 100vw'
+					loading='eager'
+					class='cs-project-hero__image'
+				/>
+			</figure>
+
 			<aside
 				class='cs-hero__facts'
 				aria-label='Project facts'
@@ -179,17 +190,6 @@ const heroActions = [
 				}
 			</aside>
 		</header>
-
-		<figure class='cs-project-hero'>
-			<Image
-				src={heroImage}
-				alt={`${project.title} project visual`}
-				widths={heroWidths}
-				sizes='(min-width: 75rem) 1200px, 100vw'
-				loading='eager'
-				class='cs-project-hero__image'
-			/>
-		</figure>
 
 		{
 			overviewVideo && (
