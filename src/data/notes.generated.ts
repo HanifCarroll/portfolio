@@ -35,6 +35,18 @@ export default [
 				"body": [
 					"A wait feels longer when someone doesn't know whether anything is happening or what comes next. Make the same delay easier to tolerate by showing that the work has started, explaining its current state, and telling the user what will happen next."
 				]
+			},
+			{
+				"title": "Product ownership teaches through continuity",
+				"body": [
+					"Long-term product ownership shows you how decisions age, how relationships develop, and whether an improvement survives everyday use. Consulting gives you breadth; working with the same product and people gives you lessons that only appear over time."
+				]
+			},
+			{
+				"title": "Visible effort raises expectations for the result",
+				"body": [
+					"Showing the work behind a result can make a wait feel more valuable, but it also makes a poor result more disappointing. Operational transparency helps only when the outcome justifies the attention it draws."
+				]
 			}
 		]
 	},
@@ -64,7 +76,7 @@ export default [
 			{
 				"title": "The human remains the executive",
 				"body": [
-					"Agents can carry out tasks and return information, but you still set the goals, choose the direction, and make the decisions. The agent doesn't have to be AI; it can be software, another person, or you working in a different role. What matters is the distinction between setting direction and carrying out the work."
+					"Agents can carry out tasks and return information, but you still set the goals, choose the direction, and make the decisions. The agent can be software, another person, or you working in a different role. What matters is the distinction between setting direction and carrying out the work."
 				]
 			},
 			{
@@ -187,7 +199,7 @@ export default [
 			{
 				"title": "Speak before judging the thought",
 				"body": [
-					"Get the thought out before you decide whether it is worth saving. Editing too early can stop an idea before it has a chance to become something useful. The problem may not be that you have no thoughts. You may be rejecting them before they have time to develop."
+					"Get the thought out before you decide whether it is worth saving. Editing too early can stop an idea before it has a chance to become something useful. You may be rejecting thoughts before they have time to develop."
 				]
 			},
 			{
@@ -213,6 +225,12 @@ export default [
 				"body": [
 					"An atomic note can hold the main idea without enough detail for a post or essay. Read the note, its sources, and related notes first. If the examples, boundaries, or meaning are still missing, use a short interview to collect them instead of asking AI to fill the gaps."
 				]
+			},
+			{
+				"title": "Express yourself through both an outlet and a skill",
+				"body": [
+					"You need a way to express what is happening inside you, but an outlet alone is not enough. Develop the skill to put thoughts and feelings into a form that accurately portrays what you feel, or important parts of you may remain trapped or misunderstood."
+				]
 			}
 		]
 	},
@@ -231,6 +249,12 @@ export default [
 				"title": "Choose a work rhythm that fits the person and season",
 				"body": [
 					"A sustainable way of working has to fit you. You may do well with intense bursts or prefer steady effort. The pattern can also change as you change. A rhythm that works now may become too costly when your interests, responsibilities, or goals are different."
+				]
+			},
+			{
+				"title": "Design the environment to support the habit",
+				"body": [
+					"A habit becomes easier when the environment makes the desired action obvious and the unwanted action inconvenient. Make the surroundings do more of the work so the habit depends less on memory or willpower."
 				]
 			}
 		]
@@ -281,6 +305,54 @@ export default [
 				"title": "Money is a tool for expressing values",
 				"body": [
 					"Money can support the life you choose, but it can't decide what that life should serve. Treating money as the highest value distorts that relationship. You still have to decide what the money is for."
+				]
+			},
+			{
+				"title": "A larger life requires a wider range of experience",
+				"body": [
+					"Your life expands when the range of your experiences expands. Try new things, pay attention to what you think and feel, and develop your own opinions instead of living inside the same narrow set of interests, people, and assumptions."
+				]
+			},
+			{
+				"title": "Good help leads people toward their own conclusions",
+				"body": [
+					"Helping someone does not mean deciding for them or solving the problem on their behalf. Ask questions and listen carefully so they can understand what they think and reach a conclusion they can own."
+				]
+			},
+			{
+				"title": "Learning to deal with people is a high-leverage life skill",
+				"body": [
+					"Your ability to deal with people affects friendships, relationships, work, and the opportunities you notice or create. Better social skills are among the most valuable abilities you can develop."
+				]
+			},
+			{
+				"title": "Recognition can precede articulation",
+				"body": [
+					"You may know that you want something or want to become a certain kind of person before you can explain it. Someone who gives the idea clear language can feel like recognition rather than discovery."
+				]
+			},
+			{
+				"title": "A relationship ending does not make it a failure",
+				"body": [
+					"A relationship does not lose its value when it ends. Good and difficult experiences still shape both people, and ending may be the right response when the relationship stops working."
+				]
+			},
+			{
+				"title": "Responsibility includes present, future, and shared consequences",
+				"body": [
+					"A responsible choice accounts for more than what benefits you now. Consider how it will affect your future and the people who may carry part of its cost. Ignoring any of those perspectives makes the decision easier, but less complete."
+				]
+			},
+			{
+				"title": "People committed to growth recognize each other",
+				"body": [
+					"A desire to learn and change can make another person stand out quickly. When growth matters to you, meeting someone who approaches life the same way creates recognition because that orientation is both important and uncommon."
+				]
+			},
+			{
+				"title": "Supporting someone does not require preferring their decision",
+				"body": [
+					"You can prefer one option while recognizing that the choice belongs to the other person. Support means respecting their authority over their own life and remaining caring regardless of which option they choose."
 				]
 			}
 		]
