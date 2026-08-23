@@ -6,7 +6,8 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ### Homepage Social Preview Refresh
 
-- Replaced the damaged cutout social preview with the Pencil-authored Option 1 card at `/img/social-card-pencil-2026.jpg`: a 1200 × 630 JPEG using the supplied intact portrait as a rectangular left photo panel, white canvas, charcoal typography, and a restrained gold accent.
+- Re-exported the updated Pencil frame `Dluc7` and published the cache-busting JPEG at `/img/social-card-pencil-2026-v2.jpg`; retained the prior image at `/img/social-card-pencil-2026.jpg`.
+- Replaced the damaged cutout social preview with the Pencil-authored Option 1 card at `/img/social-card-pencil-2026-v2.jpg`: a 1200 × 630 JPEG using the supplied intact portrait as a rectangular left photo panel, white canvas, charcoal typography, and a restrained gold accent.
 - Kept the homepage document title `Hanif Carroll | AI Product Engineer for B2B SaaS` while setting social title/description to `Hanif Carroll, AI Product Engineer` and `I build and ship B2B SaaS products, internal tools, and AI workflows.`
 - Added default OG/Twitter image alt text, JPEG type, site name, and preserved the existing default image dimensions and page-specific image overrides.
 - Removed the remaining legacy navy from the card name in both the Pencil source and exported JPEG, preserving its dimensions, portrait, and metadata.

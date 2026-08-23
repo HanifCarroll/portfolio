@@ -20,7 +20,7 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, socialTitle = title, description, socialDescription = description, image, jsonLd, ogType = 'website', robots } = Astro.props;
-const defaultSocialImage = '/img/social-card-pencil-2026.jpg';
+const defaultSocialImage = '/img/social-card-pencil-2026-v2.jpg';
 const fallbackImage = image ?? defaultSocialImage;
 const fallbackImageURL = new URL(fallbackImage, Astro.url);
 const isDefaultSocialImage = fallbackImage === defaultSocialImage;
