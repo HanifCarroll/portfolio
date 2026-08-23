@@ -17,12 +17,17 @@ function mountHeader() {
   const notesContent = notesPanel?.querySelectorAll<HTMLElement>(
     ".hc-notes-toc-label, .hc-notes-mobile-toc > li",
   );
+  const notesChapters = notesPanel?.querySelectorAll<HTMLDetailsElement>(
+    ".hc-notes-mobile-section",
+  );
   if (!siteHeader || !toggle || !panel || !links) return;
 
   const controller = new AbortController();
   const { signal } = controller;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let scheduledFrame = 0;
+  let notesScrollFrame = 0;
+  let isMounted = true;
   let isOpen = false;
   let isHeaderVisible = true;
   let notesClosePending = false;
@@ -167,6 +172,31 @@ function mountHeader() {
       closeNotesMenu();
     }
   }, { signal });
+  const scrollChapterIntoView = (chapter: HTMLDetailsElement) => {
+    if (!notesPanel || !chapter.open) return;
+    const panelRect = notesPanel.getBoundingClientRect();
+    const panelPaddingTop = Number.parseFloat(getComputedStyle(notesPanel).paddingTop) || 0;
+    const chapterTop = chapter.getBoundingClientRect().top - panelRect.top + notesPanel.scrollTop - panelPaddingTop;
+    const maxScrollTop = notesPanel.scrollHeight - notesPanel.clientHeight;
+    notesPanel.scrollTo({
+      top: Math.max(0, Math.min(chapterTop, maxScrollTop)),
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  };
+
+  notesChapters?.forEach((chapter) => {
+    chapter.addEventListener("toggle", () => {
+      if (!chapter.open || !notesPanel) return;
+      notesChapters.forEach((otherChapter) => {
+        if (otherChapter !== chapter) otherChapter.open = false;
+      });
+      if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
+      notesScrollFrame = window.requestAnimationFrame(() => {
+        notesScrollFrame = 0;
+        if (isMounted) scrollChapterIntoView(chapter);
+      });
+    }, { signal });
+  });
   notesSummary?.addEventListener("click", (event) => {
     if (isOpen) {
       event.preventDefault();
@@ -263,8 +293,10 @@ function mountHeader() {
   updateHeaderSurface();
 
   cleanupHeader = () => {
+    isMounted = false;
     controller.abort();
     if (scheduledFrame) cancelAnimationFrame(scheduledFrame);
+    if (notesScrollFrame) cancelAnimationFrame(notesScrollFrame);
     timeline.kill();
     notesTimeline?.kill();
     document.body.classList.remove("hc-nav-open");
