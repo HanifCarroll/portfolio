@@ -9,6 +9,19 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Removed Product Usage Scoring & Routing from the homepage project list. Its indexed project page and Projects archive entry remain available.
 - After deployment, verify the homepage shows the four remaining projects and no longer links to Product Usage Scoring & Routing.
 
+## 2026-08-20
+
+### Retired Standalone About And Tools Pages
+
+- Removed the redundant `/about/` page and the unlinked `/tools/` page, along with their shared-header navigation links.
+- The homepage remains the canonical About surface. After deployment, verify both retired URLs return 404 and disappear from the generated sitemap.
+
+### Notes
+
+- Added `/notes/` as an indexed page with nine sections and 40 short entries drawn from Hanif's source-backed vault drafts.
+- Linked Notes below the homepage About section and from the shared navigation. The page follows the newer homepage and Projects archive design, including the identity rail, section navigation, and back-to-home control.
+- After deployment, verify the canonical URL, sitemap entry, desktop and mobile section navigation, and initial Search Console discovery.
+
 ## 2026-08-15
 
 ### Project Archive Taxonomy And Client Feedback Retirement
