@@ -6,11 +6,11 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ### Homepage Social Preview Refresh
 
-- Replaced the default social preview with the approved editorial portrait card at `/img/social-card-2026.jpg`: a 1200 × 630 JPEG using Hanif's existing portrait, white canvas, navy/charcoal typography, and a restrained yellow accent.
+- Replaced the damaged cutout social preview with the Pencil-authored Option 1 card at `/img/social-card-pencil-2026.jpg`: a 1200 × 630 JPEG using the supplied intact portrait as a rectangular left photo panel, white canvas, navy/charcoal typography, and a restrained yellow accent.
 - Kept the homepage document title `Hanif Carroll | AI Product Engineer for B2B SaaS` while setting social title/description to `Hanif Carroll, AI Product Engineer` and `I build and ship B2B SaaS products, internal tools, and AI workflows.`
 - Added default OG/Twitter image alt text, JPEG type, site name, and preserved the existing default image dimensions and page-specific image overrides.
-- Verified the JPEG dimensions and size, visually inspected the card at preview scale, and confirmed the production build plus generated homepage metadata.
-- After deployment, refresh/check the WhatsApp preview and use Meta Sharing Debugger to fetch the homepage again; confirm both caches show the new versioned card and metadata.
+- Verified the Pencil `.pen` source, JPEG dimensions and size, and visually inspected the exported card: the supplied portrait is intact, rectangular, background-retained, and shows the complete head and hairline without masking artifacts or halo; confirmed the production build plus generated homepage metadata.
+- After deployment, refresh/check the WhatsApp preview and use Meta Sharing Debugger to fetch the homepage again; confirm both caches show the new versioned Pencil card and approved metadata.
 
 ### Product Usage Scoring Homepage Removal
 
