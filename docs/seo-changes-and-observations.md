@@ -10,7 +10,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Kept the homepage document title `Hanif Carroll | AI Product Engineer for B2B SaaS` while setting social title/description to `Hanif Carroll, AI Product Engineer` and `I build and ship B2B SaaS products, internal tools, and AI workflows.`
 - Added default OG/Twitter image alt text, JPEG type, site name, and preserved the existing default image dimensions and page-specific image overrides.
 - Removed the remaining legacy navy from the card name in both the Pencil source and exported JPEG, preserving its dimensions, portrait, and metadata.
-- Verified the Pencil `.pen` source, JPEG dimensions and size, and visually inspected the exported card: the supplied portrait is intact, rectangular, background-retained, and shows the complete head and hairline without masking artifacts or halo; refined the typography to Helvetica Neue with a larger name, grouped identity spacing, and a 68 px title; confirmed the production build plus generated homepage metadata.
+- Verified the current Pencil `.pen` source, JPEG dimensions and size, and visually inspected the exported card: the supplied portrait is intact, rectangular, background-retained, and shows the complete head and hairline without masking artifacts or halo; preserved the zoomed portrait crop, 38 px alpha-charcoal name, grouped identity spacing, and 72 px title; confirmed the production build plus generated homepage metadata.
 - After deployment, refresh/check the WhatsApp preview and use Meta Sharing Debugger to fetch the homepage again; confirm both caches show the new versioned Pencil card and approved metadata.
 
 ### Product Usage Scoring Homepage Removal
