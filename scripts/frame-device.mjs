@@ -25,23 +25,21 @@ const frames = {
       </svg>`,
   },
   imac: {
-    screen: { left: 280, top: 90, width: 1040, height: 585, radius: 18 },
+    screen: { left: 225, top: 90, width: 1150, height: 647, radius: 10 },
     aspect: [1.45, 2.05],
+    fit: "contain",
     svg: () => `
       <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
         <defs>
-          <filter id="shadow" x="-20%" y="-20%" width="140%" height="170%"><feGaussianBlur stdDeviation="18"/><feComponentTransfer><feFuncA type="linear" slope=".25"/></feComponentTransfer><feOffset dy="20"/></filter>
-          <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9dadd"/><stop offset="1" stop-color="#989ba0"/></linearGradient>
-          <mask id="cutout"><rect width="1600" height="900" fill="black"/><rect x="250" y="60" width="1100" height="660" rx="30" fill="white"/><rect x="280" y="90" width="1040" height="585" rx="18" fill="black"/></mask>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="170%"><feGaussianBlur stdDeviation="16"/><feComponentTransfer><feFuncA type="linear" slope=".22"/></feComponentTransfer><feOffset dy="18"/></filter>
+          <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0f1f2"/><stop offset="1" stop-color="#a7a9ad"/></linearGradient>
+          <mask id="screen-cutout"><rect width="1600" height="900" fill="black"/><rect x="205" y="70" width="1190" height="687" rx="24" fill="white"/><rect x="225" y="90" width="1150" height="647" rx="10" fill="black"/></mask>
         </defs>
-        <rect x="255" y="70" width="1090" height="650" rx="30" fill="#000" opacity=".35" filter="url(#shadow)"/>
-        <rect x="250" y="60" width="1100" height="660" rx="30" fill="#080808" stroke="#29292b" stroke-width="4" mask="url(#cutout)"/>
-        <rect x="280" y="90" width="1040" height="585" rx="18" fill="none" stroke="#1f1f21" stroke-width="3"/>
-        <path d="M280 675h1040v20c0 14-12 25-26 25H306c-14 0-26-11-26-25z" fill="url(#silver)"/>
-        <circle cx="800" cy="704" r="5" fill="#77797d"/>
-        <path d="M752 720h96l22 103H730z" fill="url(#silver)" stroke="#838589" stroke-width="2"/>
-        <path d="M680 823h240l48 18H632z" fill="#aeb0b4" stroke="#797b80" stroke-width="2"/>
-        <path d="M690 825h220" stroke="#ececee" stroke-opacity=".55" stroke-width="3"/>
+        <rect x="212" y="78" width="1176" height="679" rx="24" fill="#000" opacity=".3" filter="url(#shadow)"/>
+        <path d="M748 757h104l24 78H724z" fill="url(#silver)" stroke="#909297" stroke-width="2"/>
+        <path d="M675 835h250l43 16H632z" fill="#b8babd" stroke="#85878b" stroke-width="2"/>
+        <rect x="205" y="70" width="1190" height="687" rx="24" fill="url(#silver)" stroke="#8d8f93" stroke-width="3" mask="url(#screen-cutout)"/>
+        <rect x="225" y="90" width="1150" height="647" rx="10" fill="none" stroke="#25262a" stroke-width="4"/>
       </svg>`,
   },
 };
@@ -91,7 +89,11 @@ export async function frameDevice({ device, input, output }) {
     );
   }
   const screen = await sharp(source)
-    .resize(frame.screen.width, frame.screen.height, { fit: "cover", position: "centre" })
+    .resize(frame.screen.width, frame.screen.height, {
+      fit: frame.fit ?? "cover",
+      position: "centre",
+      background: "#fff",
+    })
     .composite([{ input: roundedMask(frame.screen), blend: "dest-in" }])
     .png()
     .toBuffer();
