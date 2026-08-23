@@ -185,7 +185,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 ### Buttons
 
 - **Shape:** Compact editorial control with an approximately `8px` radius and a minimum height of `44px`; never a pill.
-- **Primary:** Surface White fill, charcoal text, quiet border, compact padding, and a restrained gold directional arrow when the action advances the user.
+- **Primary:** Surface White fill, charcoal text, quiet border, compact padding, and no decorative arrow.
 - **Hover / Focus:** Warm the light surface and darken the border without lift or shadow theatrics; use a visible gold focus outline.
 - **Secondary:** Surface White with Ink text and a quiet border; keep the same compact geometry and light hover treatment.
 - **Text Link:** Bold charcoal text with an arrow and a restrained gold directional detail.
@@ -214,7 +214,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 - Use a full-width light editorial band within the blog layout, with no dark site chrome, card, border, corner radius, or shadow.
 - Use a two-column editorial layout on desktop and one column below `900px`.
-- Present one compact light primary action and one contextual text link; reserve gold for its directional cue and focus state.
+- Present one compact light primary action and one contextual text link without decorative arrows; reserve gold for focus and meaningful emphasis.
 
 ### Proof Artifacts
 
@@ -226,7 +226,7 @@ Components should feel direct and confident, with restrained shape and unmistaka
 ### Do:
 
 - **Do** reserve `#f8d651` CTA Gold for directional cues, focus, and meaningful selection states; keep controls light.
-- **Do** keep CTA controls compact, square-ish, and editorial: no oversized yellow fills, full pills, dark fills, or theatrical lift/shadows.
+- **Do** keep CTA controls compact, square-ish, and editorial: no decorative arrows, oversized yellow fills, full pills, dark fills, or theatrical lift/shadows.
 - **Do** use spacing and typographic hierarchy before reaching for borders, rules, or cards.
 - **Do** show real artifacts, outcomes, constraints, and working details as evidence.
 - **Do** use one shared 75ch editorial column for blog metadata, title, deck, article, and author content.
