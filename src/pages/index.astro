@@ -265,7 +265,10 @@ const experience = [
 											loading='lazy'
 											widths={[400, 800]}
 											sizes='(min-width: 1024px) 320px, 38vw'
-											class:list={{ 'hc-home-project__image--portrait': project.image.height > project.image.width }}
+											class:list={{
+												'hc-home-project__image--portrait': project.image.height > project.image.width,
+												'hc-home-project__image--contain': project.slug === 'palabruno',
+											}}
 										/>
 									</div>
 									<div class='hc-home-project__content'>
