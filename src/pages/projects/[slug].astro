@@ -160,7 +160,10 @@ const heroActions = [
 					widths={heroWidths}
 					sizes='(min-width: 75rem) 1200px, 100vw'
 					loading='eager'
-					class='cs-project-hero__image'
+					class:list={[
+						'cs-project-hero__image',
+						heroImage.height > heroImage.width && 'cs-project-hero__image--portrait',
+					]}
 				/>
 			</figure>
 
