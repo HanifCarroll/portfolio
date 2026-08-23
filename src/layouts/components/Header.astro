@@ -12,7 +12,7 @@ const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 const { pathname } = Astro.url;
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
 const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
-const headerCtaLabel = 'Book a fit call';
+const headerCtaLabel = 'Book a call';
 ---
 
 <header class='site-header' id='siteHeader' data-over-surface='light' transition:name='site-header'>
@@ -24,7 +24,7 @@ const headerCtaLabel = 'Book a fit call';
 		<nav class='hc-nav' aria-label='Primary navigation'>
 			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
 			<a
-				class='hc-button'
+				class='hc-header__call-link'
 				href={BOOK_CALL_URL}
 				target='_blank'
 				rel='noopener noreferrer'
@@ -32,6 +32,9 @@ const headerCtaLabel = 'Book a fit call';
 				data-track-location='header_primary'
 			>
 				{headerCtaLabel}
+				<svg aria-hidden='true' viewBox='0 0 16 16' focusable='false'>
+					<path d='M3 13 13 3M6 3h7v7' />
+				</svg>
 			</a>
 		</nav>
 
@@ -49,7 +52,7 @@ const headerCtaLabel = 'Book a fit call';
 					))
 				}
 				<a
-					class='hc-button'
+					class='hc-mobile-nav__call-link'
 					href={BOOK_CALL_URL}
 					target='_blank'
 					rel='noopener noreferrer'
@@ -57,6 +60,9 @@ const headerCtaLabel = 'Book a fit call';
 					data-track-location='header_mobile'
 				>
 					{headerCtaLabel}
+					<svg aria-hidden='true' viewBox='0 0 16 16' focusable='false'>
+						<path d='M3 13 13 3M6 3h7v7' />
+					</svg>
 				</a>
 				</nav>
 				<p class='hc-mobile-nav__note'>Contract product engineer for B2B SaaS teams.</p>

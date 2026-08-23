@@ -8,7 +8,9 @@ function mountHeader() {
   const siteHeader = document.querySelector<HTMLElement>("#siteHeader");
   const toggle = siteHeader?.querySelector<HTMLButtonElement>(".hc-mobile-nav__toggle");
   const panel = siteHeader?.querySelector<HTMLElement>(".hc-mobile-nav__panel");
-  const links = panel?.querySelectorAll<HTMLElement>(".hc-mobile-nav__link, .hc-button");
+  const links = panel?.querySelectorAll<HTMLElement>(
+    ".hc-mobile-nav__link, .hc-mobile-nav__call-link",
+  );
   if (!siteHeader || !toggle || !panel || !links) return;
 
   const controller = new AbortController();
