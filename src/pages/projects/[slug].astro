@@ -77,15 +77,7 @@ const caseStudyFacts = project.proofType === 'client'
 		].filter((detail): detail is { label: string; value: string } => Boolean(detail));
 const coreTechnologies = project.technologies.slice(0, 6);
 
-const firstResult = Array.isArray(project.result) ? project.result[0] : project.result;
-const firstProblem = Array.isArray(project.problem) ? project.problem[0] : project.problem;
-const firstSolution = Array.isArray(project.solution) ? project.solution[0] : project.solution;
 const overviewVideo = project.videos?.overview;
-const proofSnapshot = [
-	{ label: 'Starting Point', value: firstProblem },
-	{ label: 'What Shipped', value: project.deliveryHighlights?.[0] ?? firstSolution },
-	{ label: 'Why It Mattered', value: firstResult }
-].filter((detail): detail is { label: string; value: string } => Boolean(detail.value));
 
 const heroActions = [
 	project.liveUrl && {
@@ -200,18 +192,6 @@ const heroActions = [
 			)
 		}
 
-		<section class='cs-proof' aria-label='Project highlights'>
-			<div class='cs-proof__grid'>
-				{
-					proofSnapshot.map((detail) => (
-						<div class='cs-proof__item'>
-							<p>{detail.label}</p>
-							<strong>{detail.value}</strong>
-						</div>
-					))
-				}
-			</div>
-		</section>
 
 		<div class='cs-content'>
 			<Content />
