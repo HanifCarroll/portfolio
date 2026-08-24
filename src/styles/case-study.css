@@ -85,6 +85,12 @@ body.page-case-study-detail .hc-main {
   opacity: 0.55;
 }
 
+@media (max-width: 63.999rem) {
+  .cs-breadcrumb {
+    display: none;
+  }
+}
+
 /* ==========================================================================
    Hero
    ========================================================================== */
@@ -168,7 +174,6 @@ body.page-case-study-detail .hc-main {
 .testimonial-billboard__label,
 .testimonial-billboard__name,
 .testimonial-billboard__meta,
-.cs-related,
 .btn-secondary {
   font-family: var(--hc-font-sans);
 }
@@ -277,13 +282,18 @@ body.page-case-study-detail .hc-main {
   gap: 0;
 }
 
+.cs-content > .project-video {
+  grid-row: 2;
+}
+
 .case-study-detail__editorial-section {
   display: grid;
   gap: 1.25rem;
   padding-block: 3.5rem 1.5rem;
 }
 
-.case-study-detail__editorial-section:first-child {
+.case-study-detail__editorial-section:first-child,
+.cs-content > .project-video + .case-study-detail__editorial-section {
   padding-top: 1.5rem;
 }
 
@@ -737,59 +747,6 @@ body.page-case-study-detail .hc-main {
 }
 
 /* ==========================================================================
-   Related project navigation
-   ========================================================================== */
-
-.cs-related {
-  display: grid;
-  gap: 0.8rem;
-  width: 100%;
-  max-width: 72rem;
-  margin: var(--hc-space-7) 0 0;
-}
-
-.cs-related__heading {
-  margin: 0;
-  color: var(--hc-text-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.cs-related__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
-}
-
-.cs-related__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--hc-text);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.cs-related__link::after {
-  content: "→";
-  color: var(--hc-accent-text);
-  transition: transform var(--hc-dur-base) var(--hc-ease-out);
-}
-
-.cs-related__link:hover,
-.cs-related__link:focus-visible {
-  color: var(--hc-accent-text);
-}
-
-.cs-related__link:hover::after,
-.cs-related__link:focus-visible::after {
-  transform: translateX(4px);
-}
-
-/* ==========================================================================
    Project video
    ========================================================================== */
 
@@ -831,8 +788,7 @@ body.page-case-study-detail .hc-main {
 
 @media (prefers-reduced-motion: reduce) {
   .cs-breadcrumb__link svg,
-  .cs-hero__secondary::after,
-  .cs-related__link::after {
+  .cs-hero__secondary::after {
     transition: none;
   }
 }

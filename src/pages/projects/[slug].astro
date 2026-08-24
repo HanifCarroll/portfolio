@@ -186,14 +186,12 @@ const heroActions = [
 			</aside>
 		</header>
 
-		{
-			overviewVideo && (
-				<ProjectVideo video={overviewVideo} title={`Project overview · ${overviewVideo.duration}`} />
-			)
-		}
-
-
 		<div class='cs-content'>
+			{
+				overviewVideo && (
+					<ProjectVideo video={overviewVideo} title={`Project overview · ${overviewVideo.duration}`} />
+				)
+			}
 			<Content />
 		</div>
 
@@ -205,28 +203,6 @@ const heroActions = [
 					role={project.proofQuote.role ?? 'Client'}
 					label='Client feedback'
 				/>
-			)
-		}
-
-		{
-			project.relatedLinks && project.relatedLinks.length > 0 && (
-				<nav class='cs-related' aria-labelledby={`related-${project.slug}`}>
-					<p id={`related-${project.slug}`} class='cs-related__heading'>
-						See another example
-					</p>
-					<div class='cs-related__links'>
-						{project.relatedLinks.map((link) => (
-							<a
-								class='cs-related__link'
-								href={link.href}
-								data-track-event='related_case_study_clicked'
-								data-track-location={`case_study_${project.slug}`}
-							>
-								{link.label}
-							</a>
-						))}
-					</div>
-				</nav>
 			)
 		}
 

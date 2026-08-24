@@ -32,21 +32,21 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="Summary">
+<CaseSection title="From open-ended browsing to intentional exchanges">
   HablaBA is an invite-only language-exchange product for people in Buenos Aires who want smaller, more intentional ways to practice in person.
 
 I took the idea through research, an interactive prototype, usability testing, and a working web beta. The final product covers invitation, profile setup, exchange discovery, session creation and joining, private chat, and notifications.
 
 </CaseSection>
 
-<CaseSection title="The Problem">
+<CaseSection title="The meetup needed a smaller unit of trust">
   Buenos Aires already had language-exchange apps and large events. The gap was not access to more profiles or another crowded meetup. It was a practical way to find a small group, agree on the language and place, and make the session happen.
 
 The first research round was a three-person, 90-minute group interview. I followed it with an 11-response survey and six usability sessions. Across those stages, the useful product shape became clearer: organize around a specific exchange, keep groups small, make neighborhood and timing visible, and give participants one focused place to coordinate.
 
 </CaseSection>
 
-<CaseSection title="Research Into Product Decisions">
+<CaseSection title="Research made the exchange the product">
   <DecisionBlock title="Make the exchange the main object, not the member profile.">
     The prototype started from a simple question: what if people browsed concrete practice opportunities instead of browsing people?
 
@@ -62,19 +62,19 @@ The first research round was a three-person, 90-minute group interview. I follow
   </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="From Wireflow to Product" media wideMedia>
+<CaseSection title="The wireflow made the exchange loop visible" media wideMedia>
   Before the full build, I mapped the host journey from exchange type and language through time, place, review, and confirmation. That made the session itself the product's organizing unit before the implementation changed underneath it.
 
   <ImagePlate image={hablabaHostExchangeFlow} alt="Early HablaBA wireflow for creating and publishing a language exchange." />
 </CaseSection>
 
-<CaseSection title="Exchange Discovery" media>
+<CaseSection title="People browse exchanges, not profiles" media>
   The Explore view keeps the decision tied to the session. People can compare the format, languages, neighborhood, timing, host, and available places without entering a profile feed.
 
   <ImagePlate image={hablabaHero} alt="HablaBA exchange discovery screen with one-to-one and small-group sessions." />
 </CaseSection>
 
-<CaseSection title="The Product Loop">
+<CaseSection title="Coordination stays attached to the exchange">
   <DecisionBlock title="Keep coordination inside the exchange.">
     Joining creates access to that exchange's private chat. Participants can discuss topics, timing, and the meetup without starting a separate social thread or losing the original session details.
 
@@ -90,13 +90,13 @@ The first research round was a three-person, 90-minute group interview. I follow
   </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="Private Coordination" media>
+<CaseSection title="Private chat turns interest into a plan" media>
   Each exchange has one chat for turning interest into a concrete plan. The screenshot uses seeded demo accounts and synthetic conversations from the repository's development data.
 
   <ImagePlate image={hablabaFeature} alt="HablaBA private group chat for coordinating a language exchange." />
 </CaseSection>
 
-<CaseSection title="Engineering Direction">
+<CaseSection title="The architecture followed the product loop">
   <DecisionBlock title="Consolidate the maintained product into one web stack.">
     The implementation began as a Rails 8 API with a separate React Native/Expo client. I later built a Flutter client and migrated mobile notifications from Expo Push to Firebase Cloud Messaging. A separate React web client followed. Both mobile clients lived outside this repository and are not part of the maintained codebase.
 
@@ -115,7 +115,7 @@ The first research round was a three-person, 90-minute group interview. I follow
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What Shipped</h2>
+  <h2>A working beta for intentional practice</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       HablaBA reached a working web beta with the central invitation, discovery, session, and chat
@@ -126,7 +126,7 @@ The first research round was a three-person, 90-minute group interview. I follow
   </div>
 </section>
 
-<CaseSection title="What I Learned">
+<CaseSection title="What the beta made testable">
   The most important decisions came from testing the product model, not adding features. Research moved the experience away from profile browsing. Usability sessions changed the identity approach. Building the beta showed that chat, notifications, invitations, and session states were all part of the same coordination problem.
 
 The architecture also changed as the product became clearer. That history is useful evidence in its own right: I could preserve the product loop while replacing the implementation underneath it, then leave a public repository that shows both the final system and the decisions that shaped it.

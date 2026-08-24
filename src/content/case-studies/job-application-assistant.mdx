@@ -36,21 +36,21 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="Summary">
+<CaseSection title="From scattered application pieces to one local workflow">
   Job Application Assistant is a local tool for drafting and tracking job applications.
 
     It combines a Chrome extension, a FastAPI backend, SQLite, local portfolio context, Codex draft generation, and cover-letter PDF export. The important part is that the draft, the source job, the chosen project evidence, and the application ledger stay connected.
 
 </CaseSection>
 
-<CaseSection title="The situation">
+<CaseSection title="The missing link between a role and a submission">
   The application workflow had too many loose pieces.
 
     The job board had the posting. Local files had positioning and project examples. Drafts lived in a chat or text box. Cover letters had to become PDFs somewhere else. Application history was another habit to maintain. It was too easy to lose the link between the role, the claim used, the final PDF, and whether the application was already logged.
 
 </CaseSection>
 
-<CaseSection title="How it works">
+<CaseSection title="State stays local; judgment stays reviewable">
   <DecisionBlock title="Keep sensitive state local.">
     The extension keeps browser state in Chrome. The backend stores draft jobs and application records in SQLite. Generated PDFs live under the configured runtime directory, and generated context stays in a local cache. The README is explicit that drafting uses the locally configured Codex/OpenAI account. The app does not add analytics or job-board API calls.
   </DecisionBlock>
@@ -65,7 +65,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="Product surface" media>
+<CaseSection title="The side panel keeps the application in view" media>
   The main product surface is the extension side panel. The local dashboard sits behind it for the application ledger.
 
     <MacWindowFrame ariaLabel="Job Application Assistant product surface screenshot">
@@ -74,7 +74,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="What I built">
+<CaseSection title="The contracts behind a trustworthy draft">
   <DecisionBlock title="Extension adapters for real job pages.">
     The extension supports Upwork, Dice, Indeed, ZipRecruiter, Robert Half, and LinkedIn page shapes. It uses platform adapters, structured selectors, Dice JobPosting JSON-LD when available, and reviewable side-panel fields before a draft starts.
   </DecisionBlock>
@@ -107,7 +107,7 @@ export const shippedRows = [
   </div>
 </section>
 
-<CaseSection title="Why it matters">
+<CaseSection title="A draft that remains tied to its evidence">
   The useful part is not that the system can write a cover letter.
 
     The useful part is that every draft stays tied to the job snapshot and the allowed portfolio evidence. Every application can be checked against the ledger, and every generated PDF remains part of the same local workflow.
