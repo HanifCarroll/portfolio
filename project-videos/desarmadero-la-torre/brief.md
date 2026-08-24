@@ -1,6 +1,6 @@
 # Project Video Brief
 
-Project: Desarmadero Latorre
+Project: Desarmadero La Torre
 
 Video type: Catalog/workflow walkthrough loop
 
@@ -10,7 +10,7 @@ Primary viewer: Hiring manager or general portfolio viewer
 
 Story mode: Short product walkthrough
 
-One-sentence job: Desarmadero Latorre turns phone-heavy stock checks into a searchable digital catalog with a clearer inquiry path.
+One-sentence job: Desarmadero La Torre turns phone-heavy stock checks into a searchable digital catalog with a clearer inquiry path.
 
 Viewer takeaway: This is a practical workflow improvement: customers search first, inspect part context, and contact the shop with a better question.
 
@@ -26,7 +26,7 @@ Scene arc:
 2. Searchable surface: the catalog made inventory searchable.
 3. Part information: listings show photos, year, and vehicle context.
 4. Clearer workflow: search, inspect, then contact.
-5. Ending beat: Desarmadero Latorre as a searchable digital stockroom.
+5. Ending beat: Desarmadero La Torre as a searchable digital stockroom.
 
 Reading-speed constraint:
 

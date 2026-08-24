@@ -2,7 +2,7 @@
 
 ## Style Prompt
 
-Use an industrial catalog style that fits an auto-parts stockroom and the public Desarmadero Latorre website: warm workshop texture, clean catalog cards, dark steel framing, and the site's bright blue search accent. The video should feel practical and operational, not like a generic product promo. The proof anchor is the public catalog screenshot; motion should clarify the workflow from phone-first questions to search, listing context, and contact.
+Use an industrial catalog style that fits an auto-parts stockroom and the public Desarmadero La Torre website: warm workshop texture, clean catalog cards, dark steel framing, and the site's bright blue search accent. The video should feel practical and operational, not like a generic product promo. The proof anchor is the public catalog screenshot; motion should clarify the workflow from phone-first questions to search, listing context, and contact.
 
 ## Concept Angle
 

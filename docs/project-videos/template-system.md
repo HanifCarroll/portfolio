@@ -66,7 +66,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 
 ## Current Project Map
 
-`bun run videos:list` is the live machine-readable inventory. The current 20 mappings are:
+`bun run videos:list` is the live machine-readable inventory. The current 21 mappings are:
 
 | Project                                                | Slug                               | Family            | Timing     | Duration |
 | ------------------------------------------------------ | ---------------------------------- | ----------------- | ---------- | -------: |
@@ -77,7 +77,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 | Casa Elaria                                            | `casa-elaria`                      | `product-journey` | `loop`     |      23s |
 | Casamo                                                 | `casamo`                           | `product-journey` | `standard` |      44s |
 | Codex Telegram Bridge                                  | `codex-telegram-bridge`            | `system-proof`    | `standard` |      46s |
-| Desarmadero Latorre                                    | `desarmadero-latorre`              | `product-journey` | `loop`     |      23s |
+| Desarmadero La Torre                                   | `desarmadero-la-torre`             | `product-journey` | `loop`     |      23s |
 | Desarmadero Operations Prototype                       | `desarmadero-operations-prototype` | `system-proof`    | `standard` |      47s |
 | Genrupt                                                | `genrupt`                          | `system-proof`    | `standard` |      47s |
 | Helping a Health Services Startup Show Up in AI Search | `health-ai-search-audit`           | `system-proof`    | `standard` |      44s |
@@ -88,6 +88,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 | Maximo Interiorismo                                    | `maximo-interiorismo`              | `visual-showcase` | `loop`     |      20s |
 | Mucho Hangouts                                         | `mucho-hangouts`                   | `system-proof`    | `short`    |      32s |
 | Palabruno                                              | `palabruno`                        | `product-journey` | `standard` |      42s |
+| Product Usage Scoring & Routing                        | `product-usage-scoring-routing`    | `system-proof`    | `standard` | 40.639s |
 | Redwriter Comics                                       | `redwriter-comics`                 | `visual-showcase` | `loop`     |    18.5s |
 | Vox Prismatic                                          | `vox-prismatic`                    | `product-journey` | `short`    |      35s |
 

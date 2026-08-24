@@ -1,18 +1,18 @@
 # Project Video Source
 
-This is the source of truth for the Desarmadero Latorre walkthrough loop. The video should show a simple catalog workflow: stock questions move from phone-first checks to search, part context, and clearer contact.
+This is the source of truth for the Desarmadero La Torre walkthrough loop. The video should show a simple catalog workflow: stock questions move from phone-first checks to search, part context, and clearer contact.
 
 ## Project
 
-Project name: Desarmadero Latorre
+Project name: Desarmadero La Torre
 
 Repository: not public in the portfolio source
 
 Local repo: portfolio case study only
 
-Portfolio page source: `src/content/case-studies/desarmadero-latorre.mdx`
+Portfolio page source: `src/content/case-studies/desarmadero-la-torre.mdx`
 
-Project metadata: `src/lib/projects/desarmadero-latorre.json`
+Project metadata: `src/lib/projects/desarmadero-la-torre.json`
 
 Primary viewer: hiring manager or general portfolio viewer
 
@@ -32,7 +32,7 @@ Result: customers could search first, inspect useful listing context, and contac
 
 ## One-Line Job
 
-Desarmadero Latorre helps auto-parts customers check stock before calling by turning inventory into a searchable digital catalog.
+Desarmadero La Torre helps auto-parts customers check stock before calling by turning inventory into a searchable digital catalog.
 
 ## Viewer Takeaway
 
@@ -70,10 +70,10 @@ Do not show:
 
 | Source                                                          | What it supports in plain language                                                                 |
 | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `src/lib/projects/desarmadero-latorre.json:4-21`                | The project turned phone-heavy sales into a searchable 24/7 digital catalog.                       |
-| `src/content/case-studies/desarmadero-latorre.mdx:34-45`        | The business had changing auto-parts inventory and customers depended on calls or visits.          |
-| `src/content/case-studies/desarmadero-latorre.mdx:54-80`        | The product centered on search by make, model, and year plus a direct inquiry path.                |
-| `src/content/case-studies/desarmadero-latorre.mdx:84-99`        | The shipped result made the workflow less dependent on repetitive phone checks.                    |
+| `src/lib/projects/desarmadero-la-torre.json:4-21`                | The project turned phone-heavy sales into a searchable 24/7 digital catalog.                       |
+| `src/content/case-studies/desarmadero-la-torre.mdx:34-45`        | The business had changing auto-parts inventory and customers depended on calls or visits.          |
+| `src/content/case-studies/desarmadero-la-torre.mdx:54-80`        | The product centered on search by make, model, and year plus a direct inquiry path.                |
+| `src/content/case-studies/desarmadero-la-torre.mdx:84-99`        | The shipped result made the workflow less dependent on repetitive phone checks.                    |
 | `src/assets/img/projects/desarmadero-feature.png`               | Public catalog screenshot showing search filters, result cards, photos, year, and details buttons. |
 | `src/assets/img/projects/desarmadero-parts-stockroom-photo.png` | Public stockroom photo showing the parts inventory context.                                        |
 
@@ -81,14 +81,14 @@ Do not show:
 
 | Proof type           | Exact proof                                                                                                          | Source path, URL, or command                             | Safe to show?          | On-screen? |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------- | ---------- |
-| Problem              | Customers had to call or visit to check stock.                                                                       | `src/lib/projects/desarmadero-latorre.json:19`           | Yes, as plain text     | Yes        |
+| Problem              | Customers had to call or visit to check stock.                                                                       | `src/lib/projects/desarmadero-la-torre.json:19`           | Yes, as plain text     | Yes        |
 | Input                | Make, model, and year search filters.                                                                                | `src/assets/img/projects/desarmadero-feature.png`        | Yes, public screenshot | Yes        |
-| Product action       | Customer searches the catalog before contacting the shop.                                                            | `src/content/case-studies/desarmadero-latorre.mdx:56-57` | Yes                    | Yes        |
+| Product action       | Customer searches the catalog before contacting the shop.                                                            | `src/content/case-studies/desarmadero-la-torre.mdx:56-57` | Yes                    | Yes        |
 | Listing context      | Vehicle photos, year, and details buttons.                                                                           | `src/assets/img/projects/desarmadero-feature.png`        | Yes, public screenshot | Yes        |
-| Durable output       | The business gained an always-on digital stockroom.                                                                  | `src/lib/projects/desarmadero-latorre.json:21`           | Yes                    | Yes        |
-| Guardrail or warning | Staff workflow stayed lightweight for changing inventory.                                                            | `src/lib/projects/desarmadero-latorre.json:16-20`        | Yes, as backing note   | No         |
+| Durable output       | The business gained an always-on digital stockroom.                                                                  | `src/lib/projects/desarmadero-la-torre.json:21`           | Yes                    | Yes        |
+| Guardrail or warning | Staff workflow stayed lightweight for changing inventory.                                                            | `src/lib/projects/desarmadero-la-torre.json:16-20`        | Yes, as backing note   | No         |
 | Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, project check, build, and feedback. | `docs/project-videos/capture-and-production-workflow.md` | Yes                    | No         |
-| Reviewer path        | Portfolio case study explains the business workflow and shipped surface.                                             | `src/content/case-studies/desarmadero-latorre.mdx`       | Yes                    | No         |
+| Reviewer path        | Portfolio case study explains the business workflow and shipped surface.                                             | `src/content/case-studies/desarmadero-la-torre.mdx`       | Yes                    | No         |
 
 ## Selected Story
 
@@ -215,7 +215,7 @@ Purpose: give the loop a clean settled end.
 On-screen text:
 
 ```text
-Desarmadero Latorre
+Desarmadero La Torre
 A searchable digital stockroom.
 ```
 
@@ -235,7 +235,7 @@ Final text that may appear in the video. Keep this wording unchanged unless this
 | 2     | The catalog made stock searchable. Make and model come first.      |         10 |     4.4s | 136 |
 | 3     | Listings carry context. Photos, year, and vehicle details.         |          7 |     4.4s |  95 |
 | 4     | The workflow got clearer. Search, inspect, then contact.           |          7 |     4.8s |  88 |
-| End   | Desarmadero Latorre. A searchable digital stockroom.               |          6 |       3s | 120 |
+| End   | Desarmadero La Torre. A searchable digital stockroom.               |          6 |       3s | 120 |
 
 Allowed short labels:
 

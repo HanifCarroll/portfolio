@@ -2,8 +2,8 @@
 
 ## Source Material
 
-- Portfolio case study: `src/content/case-studies/desarmadero-latorre.mdx`
-- Project metadata: `src/lib/projects/desarmadero-latorre.json`
+- Portfolio case study: `src/content/case-studies/desarmadero-la-torre.mdx`
+- Project metadata: `src/lib/projects/desarmadero-la-torre.json`
 - Public catalog screenshot: `src/assets/img/projects/desarmadero-feature.png`
 - Public stockroom photo: `src/assets/img/projects/desarmadero-parts-stockroom-photo.png`
 
