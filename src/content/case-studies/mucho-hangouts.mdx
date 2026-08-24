@@ -15,13 +15,13 @@ export const shippedRows = [
   },
   {
     label: "Team velocity",
-    title: "The team had clearer patterns for new work.",
+    title: "New work had clearer patterns.",
     body: "Typed backend and frontend patterns reduced guesswork for junior developers.",
   },
   {
     label: "Delivery continuity",
-    title: "The product kept shipping during cleanup.",
-    body: "Stabilization work happened alongside active product delivery instead of requiring a long pause.",
+    title: "Stabilization happened alongside delivery.",
+    body: "The product kept shipping instead of requiring a long pause for cleanup.",
   },
   {
     label: "Technical direction",
@@ -30,49 +30,48 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="Reliability problems were slowing a live product">
-  Mucho Hangouts was already a live social-events product, but reliability problems and an uneven delivery process were becoming business risks.
+<CaseSection title="Stabilize without stopping">
+  Mucho Hangouts was a live social-events product with recurring reliability problems in messaging, notifications, and release flow. The work made those core workflows more dependable while the team continued shipping.
 
-    The engagement stabilized the product while the team kept shipping, then turned the fixes into clearer patterns the team could continue using.
-
-</CaseSection>
-
-<CaseSection title="The team had to fix reliability without pausing delivery">
-  Real users depended on messaging, notifications, and everyday coordination, so cleanup could not happen in isolation.
-
-    Messaging, notifications, and release flow were fragile enough to slow product work and create recurring user frustration.
-
-    I needed to reduce those failures without stopping the roadmap, while leaving the team with safer defaults for future features.
+The engagement also left behind clearer patterns for a five-person product team, including two junior developers.
 
 </CaseSection>
 
-<CaseSection title="I stabilized the product and turned fixes into team patterns">
-  <DecisionBlock title="Stabilize the live product while delivery continues.">
-    I concentrated on the failure points affecting users and delivery: API boundaries, app state, authentication interactions, and real-time behavior.
+<CaseSection title="The constraint: no rewrite">
+  Users depended on messaging, notifications, and everyday coordination, so the codebase could not be cleaned up in isolation. The team needed stronger foundations without stopping feature delivery.
+
+The boundary was practical: fix the failure points affecting users and delivery, then make the fixes repeatable for the team.
+
+</CaseSection>
+
+<CaseSection title="Change how the team shipped">
+  <DecisionBlock title="Stabilize the boundaries first">
+    I focused on API boundaries, app state, authentication interactions, and real-time behavior—the places where failures were disrupting users and slowing delivery.
   </DecisionBlock>
 
-    <DecisionBlock title="Turn senior judgment into team patterns.">
-      Code review, pairing, and day-to-day direction turned one-off fixes into clearer ways of building, reviewing, and extending the product.
-    </DecisionBlock>
+<DecisionBlock title="Make core interactions hold together">
+  I reworked messaging and notification flows so authentication changes and app state stopped
+  breaking those interactions as easily.
+</DecisionBlock>
 
+  <DecisionBlock title="Turn fixes into team defaults">
+    Code review, pairing, and day-to-day technical direction turned one-off fixes into clearer ways to build, review, and extend the product.
+  </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="Messaging improved while the team kept shipping" media>
-  I reworked messaging and notification flows so authentication changes and app state stopped breaking core interactions as easily.
+<CaseSection title="Messaging, fixed in place" media>
+  Messaging and notification fixes shipped inside the existing product while the rest of the roadmap continued.
 
-    The team also gained clearer delivery patterns and review practices, reducing its dependence on ad hoc senior intervention.
-
-    <ImagePlate image={muchoHangoutsFeature} alt="Mucho Hangouts social events product interface." />
-
+  <ImagePlate image={muchoHangoutsFeature} alt="Mucho Hangouts social events product interface." />
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>The product became more dependable without a stalled rewrite</h2>
+  <h2>The operational result</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        The product became more dependable and the team could keep shipping without turning
-        stabilization into a separate, stalled rewrite.
+        Core social workflows became more dependable, new work followed clearer patterns, and the
+        product kept shipping throughout stabilization.
       </p>
     </ProofRows>
   </div>
