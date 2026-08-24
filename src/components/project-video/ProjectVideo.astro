@@ -5,22 +5,15 @@ import { getVideoPosterSources } from '@src/lib/video-posters';
 interface Props {
 	video: ProjectVideoAsset;
 	title: string;
-	description?: string;
 }
 
-const { video, title, description } = Astro.props;
-const label = video.label ?? `${title} video`;
+const { video, title } = Astro.props;
+const label = video.label ?? title;
 const posterSources = getVideoPosterSources(video.poster);
 ---
 
 <section class='project-video' aria-labelledby='project-video-title'>
-	<div class='project-video__copy'>
-		<p class='section-label'>{label}</p>
-		<h2 id='project-video-title' class='heading-display heading-display--section'>{title}</h2>
-		{
-			description && <p>{description}</p>
-		}
-	</div>
+	<h2 id='project-video-title' class='heading-display heading-display--section'>{title}</h2>
 	<figure class='project-video__frame'>
 		<video
 			class='project-video__media'
@@ -28,7 +21,7 @@ const posterSources = getVideoPosterSources(video.poster);
 			playsinline
 			preload='none'
 			poster={posterSources.large}
-			aria-label={`${title} project overview video`}
+			aria-label={`${label} video`}
 		>
 			<source src={video.src} type='video/mp4' />
 			<a href={video.src}>Watch the project overview video</a>
