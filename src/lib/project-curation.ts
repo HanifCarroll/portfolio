@@ -43,42 +43,4 @@ export const PROJECT_ARCHIVE_GROUPS = [
   },
 ] as const;
 
-export type ProjectArchiveLabel =
-  | "Client project"
-  | "Product"
-  | "Tool"
-  | "Demonstration";
-
-const PROJECT_ARCHIVE_LABELS: Record<string, ProjectArchiveLabel> = {
-  genrupt: "Client project",
-  palabruno: "Client project",
-  "mucho-hangouts": "Client project",
-  "desarmadero-la-torre": "Client project",
-  "desarmadero-operations-prototype": "Client project",
-  "online-store-conversion-review": "Client project",
-  "health-ai-search-audit": "Client project",
-  "casa-elaria": "Client project",
-  "maximo-interiorismo": "Client project",
-  "redwriter-comics": "Client project",
-  "ba-eventos": "Product",
-  casamo: "Product",
-  "language-exchange": "Product",
-  "apartment-finder": "Product",
-  "vox-prismatic": "Product",
-  "agent-recall": "Tool",
-  "codex-telegram-bridge": "Tool",
-  acquire: "Tool",
-  "linkedin-tools": "Tool",
-  "job-application-assistant": "Tool",
-  "product-usage-scoring-routing": "Demonstration",
-  "one-tuesday": "Demonstration",
-  riowell: "Demonstration",
-};
-
-export const getProjectArchiveLabel = (slug: string): ProjectArchiveLabel => {
-  const label = PROJECT_ARCHIVE_LABELS[slug];
-  if (!label) throw new Error(`Missing archive label for project "${slug}".`);
-  return label;
-};
-
 export const DELISTED_PROJECT_SLUGS = [] as const;

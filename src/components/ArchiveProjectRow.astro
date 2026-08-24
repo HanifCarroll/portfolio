@@ -1,18 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
-import { getProjectArchiveLabel } from '@src/lib/project-curation';
-
 interface Props {
 	project: ProjectCard;
 }
 
 const { project } = Astro.props;
-const archiveLabel = getProjectArchiveLabel(project.slug);
-
-const MAX_TAGS = 6;
-const visibleTags = project.tags.slice(0, MAX_TAGS);
-const remainingTagCount = project.tags.length - visibleTags.length;
+const visibleTags = project.tags.slice(0, 3);
 ---
 
 <li class='hc-archive-row'>
@@ -22,20 +16,16 @@ const remainingTagCount = project.tags.length - visibleTags.length;
 				src={project.image}
 				alt=''
 				loading='lazy'
-				widths={[400, 800]}
-				sizes='(min-width: 1024px) 160px, 33vw'
+				widths={[400, 800, 1200]}
+				sizes='(min-width: 1024px) 160px, (min-width: 640px) 25vw, calc(100vw - 3rem)'
 				aria-hidden='true'
 			/>
 		</figure>
 		<div class='hc-archive-row__content'>
-			<p class='hc-archive-row__meta'>{archiveLabel}</p>
 			<h3 class='hc-archive-row__title'>{project.name}</h3>
 			<p class='hc-archive-row__description'>{project.description}</p>
 			<ul class='hc-archive-row__tags' aria-label='Technologies used'>
-				{visibleTags.map((tag) => (
-					<li>{tag}</li>
-				))}
-				{remainingTagCount > 0 && <li class='hc-archive-row__tag-more'>+{remainingTagCount}</li>}
+				{visibleTags.map((tag) => <li>{tag}</li>)}
 			</ul>
 		</div>
 	</a>
