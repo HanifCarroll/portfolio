@@ -8,11 +8,11 @@ export const PROJECT_ARCHIVE_GROUPS = [
     description:
       "Client engagements where I owned product decisions, implementation, and handoff — from a founder's idea to billing, reliability, and launch.",
     slugs: [
-      "genrupt",
       "palabruno",
+      "genrupt",
+      "desarmadero-operations-prototype",
       "mucho-hangouts",
       "desarmadero-la-torre",
-      "desarmadero-operations-prototype",
       "online-store-conversion-review",
       "health-ai-search-audit",
       "casa-elaria",
@@ -26,8 +26,8 @@ export const PROJECT_ARCHIVE_GROUPS = [
     description:
       "Independent products and experiments that show AI systems, evidence-driven building, and workflow tooling outside client work.",
     slugs: [
-      "ba-eventos",
       "casamo",
+      "ba-eventos",
       "riowell",
       "product-usage-scoring-routing",
       "vox-prismatic",
