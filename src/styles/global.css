@@ -1,6 +1,61 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --breakpoint-2xl: 1400px;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", serif;
+  --text-xs: 0.7rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.8rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.1rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.4;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.3;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 1.2;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --color-primary: #725a00;
+  --color-primary-accent: #f8d651;
+  --color-primary-foreground: #ffffff;
+  --color-surface: #ffffff;
+  --animate-fade-in: fadeIn 0.3s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 0.4s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
 
 /* ==========================================================================
    Foundations
@@ -101,6 +156,10 @@ h4 {
   text-wrap: balance;
 }
 
+.page-blog-detail .prose figure {
+  margin-block: 2em;
+}
+
 p,
 li {
   text-wrap: pretty;
@@ -150,6 +209,16 @@ li {
 .hc-container-page {
   width: min(calc(100% - (2 * var(--hc-gutter-desktop))), var(--hc-content-max));
   margin-inline: auto;
+}
+
+.container {
+  padding-inline: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: 1.5rem;
+  }
 }
 
 .hc-container-wide {
@@ -321,7 +390,6 @@ li {
   background: var(--hc-surface-warm);
   color: var(--hc-text);
 }
-
 
 .hc-text-link {
   display: inline-flex;
@@ -523,7 +591,7 @@ li {
   width: 1.5rem;
   height: 1px;
   background: var(--hc-accent);
-  content: '';
+  content: "";
   opacity: 0;
 }
 
@@ -597,7 +665,6 @@ li {
   padding-block: var(--hc-space-8);
   background: var(--hc-canvas);
 }
-
 
 .hc-page-cta__card {
   display: grid;
@@ -869,7 +936,6 @@ li {
     gap: var(--hc-space-4);
   }
 
-
   .hc-footer-inner {
     grid-template-columns: 1fr;
     align-items: start;
@@ -891,7 +957,8 @@ li {
     align-items: center;
     justify-content: space-between;
     gap: var(--hc-space-4);
-    padding: var(--hc-space-4) var(--hc-gutter-narrow) calc(var(--hc-space-4) + env(safe-area-inset-bottom));
+    padding: var(--hc-space-4) var(--hc-gutter-narrow)
+      calc(var(--hc-space-4) + env(safe-area-inset-bottom));
     background: var(--hc-surface);
     color: var(--hc-text);
     border-top: 1px solid var(--hc-rule);

@@ -66,7 +66,7 @@ const blogJsonLd = {
 					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600' data-motion-deck>{description}</p>
 				)}
 				<div class='blog-post-hero__byline' data-motion-intro-item>
-					<Author picSize='sm' />
+					<Author />
 					<div class='blog-post-hero__publication-meta'>
 						{
 							updatedDate ? (
@@ -99,7 +99,7 @@ const blogJsonLd = {
 					headings.length > 0 && (
 						<details class='blog-post-toc-mobile'>
 							<summary>On this page</summary>
-							<TableOfContent headings={headings} maxLevel={2} />
+							<TableOfContent headings={headings} />
 						</details>
 					)
 				}
@@ -110,7 +110,7 @@ const blogJsonLd = {
 				</article>
 
 				<section class='blog-post-author-inline' aria-label='About the author'>
-					<AboutTheAuthor compact={true} />
+					<AboutTheAuthor />
 				</section>
 			</div>
 
@@ -118,7 +118,7 @@ const blogJsonLd = {
 				{
 					headings.length > 0 && (
 						<div class='blog-post-rail__block'>
-							<TableOfContent headings={headings} maxLevel={2} />
+							<TableOfContent headings={headings} />
 						</div>
 					)
 				}

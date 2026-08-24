@@ -3,7 +3,7 @@ import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import { autoNewTabExternalLinks } from "./src/autoNewTabExternalLinks.ts";
 import { DELISTED_PROJECT_SLUGS } from "./src/lib/project-curation.ts";
 
@@ -23,8 +23,10 @@ export default defineConfig({
     sitemap({
       filter: (page) => !excludedSitemapPaths.some((path) => page.endsWith(path)),
     }),
-    tailwind(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   markdown: {
     processor: unified({
       rehypePlugins: [

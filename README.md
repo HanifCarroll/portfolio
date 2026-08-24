@@ -5,8 +5,8 @@ It replaces the previous Next.js build while keeping the existing project JSON d
 
 ### Tech Stack
 
-- [Astro 5](https://astro.build) with static output
-- [Tailwind CSS](https://tailwindcss.com) via `@astrojs/tailwind`
+- [Astro 7](https://astro.build) with static output
+- [Tailwind CSS 4](https://tailwindcss.com) via the official `@tailwindcss/vite` plugin
 - Markdown content collections for the blog
 - Project data sourced from JSON files in `src/lib/projects/`
 

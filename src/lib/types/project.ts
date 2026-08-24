@@ -24,12 +24,6 @@ export interface ProjectProofScreen {
   frame?: "desktop" | "mobile";
 }
 
-export interface ProjectProofQuote {
-  quote: string;
-  author: string;
-  role?: string;
-}
-
 export interface ProjectRelatedLink {
   href: string;
   label: string;
@@ -82,6 +76,5 @@ export interface Project {
   repository?: string;
   repositoryCtaLabel?: string;
   architectureImage?: string;
-  proofQuote?: ProjectProofQuote;
   relatedLinks?: ProjectRelatedLink[];
 }

@@ -1,24 +1,14 @@
 ---
 import Author from '../Author.astro';
 
-interface Props {
-	compact?: boolean;
-}
-
-const { compact = false } = Astro.props as Props;
 ---
 
-<div class:list={['about-the-author', compact && 'about-the-author--compact']}>
-	{compact && <p class='about-the-author__label'>About the author</p>}
-	<Author picSize={compact ? 'sm' : 'md'} />
-	<div class:list={['author-desc mt-4 space-y-3 text-[0.95rem] leading-7 text-zinc-600', compact && 'mt-3 space-y-0']}>
+<div class='about-the-author about-the-author--compact'>
+	<p class='about-the-author__label'>About the author</p>
+	<Author />
+	<div class='author-desc mt-3 text-[0.95rem] leading-7 text-zinc-600'>
 		<p>
 			Hanif is a contract product engineer for B2B SaaS teams, with more than eight years of experience building web, mobile, automation, and AI systems. He builds customer-facing products, internal tools, and HubSpot integrations.
 		</p>
-		{
-			!compact && (
-				<p>His main stack is TypeScript, React, Next.js, Node.js, and React Native, with heavy AI/LLM work: RAG, agents, evals, and voice.</p>
-			)
-		}
 	</div>
 </div>

@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
-import TestimonialBillboard from '../../components/TestimonialBillboard.astro';
 import ProjectVideo from '../../components/project-video/ProjectVideo.astro';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
@@ -194,17 +193,6 @@ const heroActions = [
 			}
 			<Content />
 		</div>
-
-		{
-			project.proofQuote && (
-				<TestimonialBillboard
-					quote={project.proofQuote.quote}
-					name={project.proofQuote.author}
-					role={project.proofQuote.role ?? 'Client'}
-					label='Client feedback'
-				/>
-			)
-		}
 
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 	</article>
