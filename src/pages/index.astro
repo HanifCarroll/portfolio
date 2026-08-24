@@ -141,8 +141,12 @@ const experience = [
 	socialDescription={socialDescription}
 	jsonLd={homepageJsonLd}
 	bodyClass='hc-home'
-	showFooterCta={false}
+	showFooterCta={true}
 	showFooter={false}
+	footerCtaTitle='Have something to ship?'
+	footerCtaBody="Tell me what you're building, and we'll work out the next step."
+	footerCtaPrimaryLabel='Book a 30-minute call'
+	footerCtaLocation='home_blog_footer'
 >
 	<div class='hc-home-shell'>
 		<header class='hc-home-header'>
@@ -265,10 +269,6 @@ const experience = [
 											loading='lazy'
 											widths={[400, 800, 1200]}
 											sizes='(min-width: 1024px) 320px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
-											class:list={{
-												'hc-home-project__image--portrait': project.image.height > project.image.width,
-												'hc-home-project__image--contain': project.slug === 'palabruno',
-											}}
 										/>
 									</div>
 									<div class='hc-home-project__content'>

@@ -372,11 +372,6 @@ body.hc-home .hc-main {
 .hc-home-project__media img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-.hc-home-project__media .hc-home-project__image--portrait,
-.hc-home-project__media .hc-home-project__image--contain {
   object-fit: contain;
 }
 
@@ -437,6 +432,35 @@ body.hc-home .hc-main {
 .hc-home-archive-link:hover svg,
 .hc-home-archive-link:focus-visible svg {
   transform: translateX(3px);
+}
+
+@media (max-width: 63.999rem) {
+  .hc-home-nav ul {
+    gap: 0 0.75rem;
+  }
+
+  .hc-home-nav a,
+  .hc-home-resume,
+  .hc-home-inquiry,
+  .hc-home-social a {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+
+  .hc-home-resume,
+  .hc-home-inquiry,
+  .hc-home-social a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .hc-home-social {
+    gap: 0.25rem;
+  }
+
+  .hc-home-social a {
+    justify-content: center;
+  }
 }
 
 @media (min-width: 40rem) {

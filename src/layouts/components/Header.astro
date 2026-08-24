@@ -11,7 +11,7 @@ const navLinks = [
 const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 
 const { pathname } = Astro.url;
-const { isNotes = false } = Astro.props;
+const { isNotes = false, isHome = false } = Astro.props;
 const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
 const entryId = (section: string, title: string) =>
 	`${section}-${title.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
@@ -23,7 +23,8 @@ const headerCtaLabel = 'Book a call';
 <header class='site-header' id='siteHeader' transition:name='site-header'>
 	<div class='hc-header'>
 		<a href='/' class='hc-brand hc-brand--personal' aria-label='Hanif Carroll home'>
-			<span>Hanif Carroll</span>
+			<span class='hc-brand__full'>Hanif Carroll</span>
+			{isHome && <span class='hc-brand__compact' aria-hidden='true'>HC</span>}
 		</a>
 
 		<nav class='hc-nav' aria-label='Primary navigation'>
