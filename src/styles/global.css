@@ -657,109 +657,38 @@ li {
    ========================================================================== */
 
 .hc-footer {
-  position: relative;
-  overflow: hidden;
-  padding-block: var(--hc-space-6) var(--hc-space-5);
+  padding-block: var(--hc-space-4);
   border-top: 1px solid var(--hc-rule);
   background: var(--hc-surface);
-  color: var(--hc-text);
-}
-
-.hc-footer-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(16rem, 0.45fr);
-  align-items: end;
-  gap: var(--hc-space-6);
-  padding-bottom: var(--hc-space-6);
-}
-
-.hc-footer-brand {
-  display: grid;
-  gap: var(--hc-space-2);
-}
-
-.hc-footer-eyebrow {
-  color: var(--hc-accent-text);
-  font-size: var(--hc-type-meta);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: var(--hc-line-height-snug);
-  text-transform: uppercase;
-}
-
-.hc-footer-name {
-  width: fit-content;
-  color: #000;
-  font-size: clamp(3.75rem, 8.5vw, 8.5rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 0.88;
-  text-decoration: none;
-}
-
-.hc-footer-positioning {
-  max-width: 22rem;
-  margin-bottom: 0;
   color: var(--hc-text-muted);
-  font-size: var(--hc-type-body);
-  line-height: var(--hc-line-height-relaxed);
+  font-size: var(--hc-type-meta);
 }
 
+.hc-footer-inner,
 .hc-footer-nav {
   display: flex;
   align-items: center;
+}
+
+.hc-footer-inner {
   justify-content: space-between;
   gap: var(--hc-space-4);
-  padding-top: var(--hc-space-4);
-  border-top: 1px solid color-mix(in srgb, var(--hc-text) 12%, transparent);
+}
+
+.hc-footer-nav {
+  gap: var(--hc-space-4);
 }
 
 .hc-footer-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--hc-space-2);
-  min-height: 2.75rem;
-  color: var(--hc-text);
-  font-size: var(--hc-type-ui);
-  font-weight: 400;
+  color: inherit;
   text-decoration: none;
   transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-footer-link-index {
-  color: var(--hc-text-muted);
-  font-family: var(--hc-font-mono);
-  font-size: var(--hc-font-size-xs);
-  font-weight: 500;
 }
 
 .hc-footer-nav a:hover,
 .hc-footer-nav a:focus-visible,
 .hc-footer-nav a:active {
-  color: var(--hc-accent-text);
-}
-
-.hc-footer-link-arrow {
-  color: var(--hc-accent-text);
-  font-size: var(--hc-font-size-lg);
-  font-weight: 400;
-  transition: transform var(--hc-dur-base) var(--hc-ease-out);
-}
-
-.hc-footer-nav a:hover .hc-footer-link-arrow,
-.hc-footer-nav a:focus-visible .hc-footer-link-arrow,
-.hc-footer-nav a:active .hc-footer-link-arrow {
-  transform: translateX(0.25rem);
-}
-
-.hc-footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--hc-space-4);
-  margin-top: var(--hc-space-4);
-  color: var(--hc-text-muted);
-  font-size: var(--hc-type-meta);
+  color: var(--hc-text);
 }
 
 .hc-footer--mobile-only {
@@ -848,12 +777,6 @@ li {
     grid-template-columns: 1fr;
     gap: var(--hc-space-4);
   }
-
-  .hc-footer-inner {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: var(--hc-space-4);
-  }
 }
 
 @media (max-width: 63.999rem) {
@@ -870,56 +793,15 @@ li {
   .hc-footer--mobile-only {
     display: block;
   }
-  .hc-footer > .hc-container-page {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--hc-space-4);
+
+  .hc-footer-inner {
     width: 100%;
     max-width: none;
     margin: 0;
   }
-  .hc-footer-inner {
-    display: contents;
-  }
-  .hc-footer-brand {
-    display: block;
-  }
-  .hc-footer-eyebrow,
-  .hc-footer-positioning,
-  .hc-footer-bottom {
-    display: none;
-  }
-  .hc-footer-name {
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    color: #000;
-    font-family: var(--hc-font-display);
-    font-size: var(--hc-font-size-lg);
-    font-weight: 600;
-    line-height: var(--hc-line-height-relaxed);
-    letter-spacing: -0.02em;
-  }
+
   .hc-footer-nav {
-    padding: 0;
-    border-top: 0;
-    justify-content: flex-end;
     gap: var(--hc-space-3);
-    font-size: var(--hc-type-meta);
-  }
-  .hc-footer-nav a {
-    min-height: 2.75rem;
-    font-size: var(--hc-type-meta);
-  }
-  .hc-footer-link-index,
-  .hc-footer-link-arrow {
-    display: none;
-  }
-  .hc-footer-nav a:hover,
-  .hc-footer-nav a:focus-visible,
-  .hc-footer-nav a:active {
-    color: var(--hc-accent-text);
   }
 
   .hc-header {

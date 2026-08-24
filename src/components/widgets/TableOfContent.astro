@@ -3,8 +3,7 @@ const { headings } = Astro.props;
 const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 ---
 
-<nav class='toc grid gap-4'>
-	<h3 class='section-label'>On this page</h3>
+<nav class='toc' aria-label='Contents'>
 	<ul class='toc-list max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] text-[var(--color-content-secondary)]'>
 		{
 			toc.map((heading: any) => (
