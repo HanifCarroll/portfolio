@@ -31,33 +31,33 @@ const archiveJsonLd = {
 	showFooter={false}
 	bodyClass='hc-blog-index'
 >
-	<article class='hc-blog-shell'>
-		<div class='hc-blog-content'>
-			<nav class='hc-blog-back' aria-label='Back to home'>
-				<a href='/'>
-					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+	<article class='mx-auto min-h-screen w-full max-w-[1280px] p-[3rem_1.5rem_7rem] md:p-[4rem_3rem_8rem] lg:p-[6rem_3rem_10rem] max-lg:pt-[calc(6rem+env(safe-area-inset-top))]'>
+		<div class='mx-auto w-full max-w-[46rem]'>
+			<nav class='mb-16 max-lg:hidden' aria-label='Back to home'>
+				<a class='group inline-flex items-center gap-2 text-[var(--hc-text)] text-[0.9rem] font-semibold no-underline transition-colors duration-[var(--hc-dur-fast)] ease-[var(--hc-ease-out)] hover:text-[var(--hc-accent-text)] focus-visible:text-[var(--hc-accent-text)]' href='/'>
+					<svg class='shrink-0 text-[var(--hc-accent-text)] transition-transform duration-[var(--hc-dur-base)] ease-[var(--hc-ease-out)] group-hover:-translate-x-[3px] group-focus-visible:-translate-x-[3px] motion-reduce:transition-none' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
 					Hanif Carroll
 				</a>
 			</nav>
 
-			<header class='hc-blog-header'>
-				<h1 class='hc-blog-title'>Blog</h1>
+			<header class='mb-16'>
+				<h1 class='hc-blog-title m-0 text-[var(--hc-text)] font-[family:var(--hc-font-editorial)] text-[clamp(2.6rem,4vw,3.4rem)] font-semibold leading-[0.98] tracking-[-0.02em]'>Blog</h1>
 			</header>
 
-			<section class='hc-blog-posts' aria-label='Blog posts'>
-				<div class='hc-blog-section-label'>
-					<h2 class='hc-blog-section-title'>All posts</h2>
+			<section aria-label='Blog posts'>
+				<div class='mb-6'>
+					<h2 class='hc-blog-section-title m-0 text-[var(--hc-text)] text-[0.75rem] font-bold uppercase leading-[1.4] tracking-[0.07em]'>All posts</h2>
 				</div>
-				<ol class='hc-blog-rows'>
+				<ol class='m-0 list-none p-0'>
 					{posts.map((post) => (
-						<li class='hc-blog-row'>
-							<a class='hc-blog-row__link' href={`/blog/${post.id}/`}>
-								<div class='hc-blog-row__meta'>
+						<li class='mb-10 last:mb-0'>
+							<a class='group relative grid grid-cols-1 gap-3 mx-[-0.75rem] rounded-[0.75rem] p-3 text-inherit no-underline transition-[background-color] duration-[var(--hc-dur-fast)] ease-[var(--hc-ease-out)] hover:bg-[color-mix(in_srgb,var(--hc-text)_4%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--hc-text)_4%,transparent)] sm:grid-cols-8 sm:gap-4' href={`/blog/${post.id}/`}>
+								<div class='text-[var(--hc-text-muted)] text-[0.75rem] font-semibold uppercase leading-[1.4] tracking-[0.06em] sm:col-span-2 sm:mt-[0.2rem]'>
 									<FormattedDate date={post.data.pubDate} />
 								</div>
-								<div class='hc-blog-row__content'>
-									<h3 class='hc-blog-row__title'>{post.data.title}</h3>
-									<p class='hc-blog-row__description'>{post.data.description}</p>
+								<div class='sm:col-span-6'>
+									<h3 class='hc-blog-row__title m-0 text-[var(--hc-text)] font-[family:var(--hc-font-editorial)] text-[clamp(1.35rem,2.5vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.01em] transition-colors duration-[var(--hc-dur-fast)] ease-[var(--hc-ease-out)] group-hover:text-[var(--hc-accent-text)] group-focus-visible:text-[var(--hc-accent-text)]'>{post.data.title}</h3>
+									<p class='hc-blog-row__description mt-2 mb-0 text-[var(--hc-text-muted)] text-[0.9375rem] leading-[1.6]'>{post.data.description}</p>
 								</div>
 							</a>
 						</li>

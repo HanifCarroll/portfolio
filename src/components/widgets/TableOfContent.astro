@@ -3,7 +3,7 @@ const { headings } = Astro.props;
 const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 ---
 
-<nav class='toc'>
+<nav class='toc grid gap-4'>
 	<h3 class='section-label'>On this page</h3>
 	<ul class='toc-list max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] text-[var(--color-content-secondary)]'>
 		{
@@ -33,10 +33,6 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 	</ul>
 </nav>
 <style>
-	.toc {
-		display: grid;
-		gap: 1rem;
-	}
 
 	.toc-list::-webkit-scrollbar {
 		width: 5px;

@@ -205,7 +205,6 @@ li {
 
 .container,
 .hc-container,
-.hc-container-wide,
 .hc-container-page {
   width: min(calc(100% - (2 * var(--hc-gutter-desktop))), var(--hc-content-max));
   margin-inline: auto;
@@ -219,10 +218,6 @@ li {
   .container {
     padding-inline: 1.5rem;
   }
-}
-
-.hc-container-wide {
-  max-width: var(--hc-wide-max);
 }
 
 .hc-container-page {
@@ -263,24 +258,11 @@ li {
   text-wrap: pretty;
 }
 
-.hc-index {
-  color: var(--hc-accent-text);
-  font-size: clamp(var(--hc-font-size-xl), 3vw, var(--hc-font-size-3xl));
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
 /* ==========================================================================
    Type primitives
    ========================================================================== */
 
-.heading-display,
-.heading-display--xl,
-.heading-display--lg,
-.heading-display--md,
-.heading-display--sm,
-.hc-display {
+.heading-display {
   margin-bottom: 0;
   color: var(--hc-text);
   font-family: var(--hc-font-sans);
@@ -290,25 +272,7 @@ li {
   text-wrap: balance;
 }
 
-.heading-display--xl,
-.hc-display {
-  font-size: var(--hc-type-display-xl);
-}
-
-.heading-display--lg {
-  font-size: var(--hc-type-display-lg);
-}
-
-.heading-display--md {
-  font-size: var(--hc-type-display-md);
-}
-
-.heading-display--sm {
-  font-size: var(--hc-type-display-sm);
-}
-
-.section-label,
-.service-section-label {
+.section-label {
   display: inline-flex;
   align-items: center;
   gap: var(--hc-space-2);
@@ -319,15 +283,6 @@ li {
   letter-spacing: 0.16em;
   line-height: var(--hc-line-height-snug);
   text-transform: uppercase;
-}
-
-.hc-lead {
-  max-width: var(--hc-measure-default);
-  margin-bottom: 0;
-  color: var(--hc-text-muted);
-  font-size: clamp(var(--hc-font-size-lg), 1.75vw, var(--hc-font-size-2xl));
-  line-height: var(--hc-line-height-relaxed);
-  text-wrap: pretty;
 }
 
 /* ==========================================================================
@@ -714,35 +669,6 @@ li {
 }
 
 /* ==========================================================================
-   Shared FAQ primitives
-   ========================================================================== */
-
-.hc-faq-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--hc-space-4);
-}
-
-.hc-faq-item {
-  padding: var(--hc-space-5);
-  border-radius: var(--hc-radius-surface);
-  background: var(--hc-surface);
-  box-shadow: var(--hc-shadow-control);
-}
-
-.hc-faq-item h3 {
-  margin-bottom: var(--hc-space-2);
-  font-size: var(--hc-font-size-xl);
-  letter-spacing: -0.025em;
-}
-
-.hc-faq-item p {
-  margin-bottom: 0;
-  color: var(--hc-text-muted);
-  line-height: var(--hc-line-height-relaxed);
-}
-
-/* ==========================================================================
    Footer
    ========================================================================== */
 
@@ -902,7 +828,6 @@ li {
 @media (max-width: 63.999rem) {
   .container,
   .hc-container,
-  .hc-container-wide,
   .hc-container-page,
   .hc-header {
     width: min(calc(100% - (2 * var(--hc-gutter-narrow))), var(--hc-content-max));
@@ -1042,19 +967,6 @@ li {
   .hc-section,
   .hc-section--compact {
     padding-block: var(--hc-space-7);
-  }
-
-  .heading-display--xl,
-  .hc-display {
-    font-size: clamp(3rem, 17vw, 5.25rem);
-  }
-
-  .heading-display--lg {
-    font-size: clamp(2.75rem, 14vw, 4.5rem);
-  }
-
-  .heading-display--md {
-    font-size: clamp(2.25rem, 11vw, 3.5rem);
   }
 
   .hc-actions {
@@ -1197,10 +1109,6 @@ li {
 
   body .hc-cta-panel--mobile-band .hc-text-link::after {
     color: var(--hc-accent-text);
-  }
-
-  .hc-faq-list {
-    grid-template-columns: 1fr;
   }
 
   .hc-footer {
