@@ -5,9 +5,9 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 ## Sources of truth
 
 - `src/styles/design-tokens.css` owns semantic color, type, spacing, radius, shadow, width, and measure tokens.
-- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, evidence blocks, FAQs, and transition behavior.
-- Route stylesheets such as `home.css`, `services.css`, `projects.css`, and `blog-index.css` own only the layouts and visual treatments used by that route.
-- Shared Astro components own reusable structure. The header, footer, service callout, and closing CTA must not be reimplemented inside individual pages.
+- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, and transition behavior.
+- `src/styles/archive-shared.css` owns the shared home/projects/notes shell and identity rail; route stylesheets own only route content and visual treatments.
+- Shared Astro components own reusable structure. The header, service callout, and closing CTA must not be reimplemented inside individual pages; `BaseLayout.astro` owns the responsive footer.
 
 ## Styling rules
 
@@ -20,7 +20,7 @@ The portfolio uses a small layered design system. Shared decisions live in one p
 
 ## Typography
 
-Typography is role-based, with Helvetica Neue as the single site typeface. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
+Typography is role-based, using Helvetica Neue for interface surfaces and EB Garamond for editorial reading. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
 
 | Role          | Token                  | Size             | Use                                                 |
 | ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
@@ -34,24 +34,24 @@ Typography is role-based, with Helvetica Neue as the single site typeface. Use t
 | Display       | `--hc-type-display-*`  | Responsive clamp | Page titles and major editorial statements          |
 | Section title | `--hc-type-section`    | Responsive clamp | Primary section headings                            |
 
-The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-regular`, `--hc-weight-semibold`, and `--hc-weight-bold` for the shared 400, 600, and 700 weights.
+The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-semibold` and `--hc-weight-bold` for the shared 600 and 700 weights.
 
-All proportional family roles resolve to the shared `--hc-font-sans` stack: Helvetica Neue, Helvetica, Arial, then sans-serif. The display, editorial, reading, technical, and case-study tokens remain semantic aliases so layouts can express their role without introducing another typeface. Only `--hc-font-mono` and `--hc-font-technical-mono` remain distinct for code and explicitly technical metadata.
+Interface and product surfaces use the shared `--hc-font-sans` stack: Helvetica Neue, Helvetica, Arial, then sans-serif. Editorial articles and case-study narratives use `--hc-font-editorial`, backed by EB Garamond and Georgia. `--hc-font-mono` and `--hc-font-technical-mono` remain distinct for code and explicitly technical metadata.
 
 Use the existing line-height tokens and keep prose between roughly 45ch and 76ch. A route can choose a declared family role or responsive display size, but it should not create another unnamed type system.
 
 ## Route stylesheet ownership
 
-| File                 | Owner                                                      |
-| -------------------- | ---------------------------------------------------------- |
-| `home.css`           | Homepage sections and homepage-only comparison table       |
-| `services.css`       | Services index sections                                    |
-| `service-detail.css` | Individual service offer pages                             |
-| `projects.css`       | Case studies index, filters, and reflowing project layouts |
-| `case-study.css`     | Individual case study pages                                |
-| `blog-index.css`     | Blog index and article list                                |
-| `blog.css`           | Individual blog articles                                   |
-| `now.css`            | Now page                                                   |
-| `tools.css`          | Tools page                                                 |
+| File                 | Owner                                                                   |
+| -------------------- | ----------------------------------------------------------------------- |
+| `archive-shared.css` | Shared home/projects/notes shell, rail, navigation, and list primitives |
+| `home.css`           | Homepage sections and homepage content rows                             |
+| `projects.css`       | Project archive introduction and project rows                           |
+| `notes.css`          | Notes navigation, entries, and mobile table of contents                 |
+| `case-study.css`     | Individual case study pages                                             |
+| `blog-index.css`     | Blog archive and article list                                           |
+| `blog.css`           | Individual blog articles                                                |
+| `now.css`            | Now page                                                                |
+| `tuesday.css`        | One Tuesday interactive case study                                      |
 
 When a selector is needed on more than one route, move the structure into a shared component first, then move its styling into `global.css`. This keeps reuse intentional and prevents page-specific rules from silently overriding one another.

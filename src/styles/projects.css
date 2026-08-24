@@ -3,88 +3,29 @@
    Only imported by src/pages/projects/index.astro.
    ========================================================================== */
 
-body.hc-projects-archive {
-  --hc-archive-canvas: #ffffff;
-  background: var(--hc-archive-canvas);
-}
-
-html:has(body.hc-projects-archive) {
-  background: #ffffff;
-}
-
-body.hc-projects-archive .hc-main {
-  padding-top: 0;
-}
-
-/* ==========================================================================
-   Shell
-   ========================================================================== */
-
-.hc-archive-shell {
-  width: min(100%, 1280px);
-  min-height: 100vh;
-  margin-inline: auto;
-  padding: 3rem 1.5rem;
-}
-
-@media (min-width: 48rem) {
-  .hc-archive-shell {
-    padding: 4rem 3rem;
-  }
-}
-
-@media (max-width: 63.999rem) {
-  .hc-archive-shell {
-    padding-top: calc(4rem + env(safe-area-inset-top) + 1rem);
-  }
-}
-
-@media (min-width: 64rem) {
-  .hc-archive-shell {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0 3rem;
-  }
-}
-
-/* ==========================================================================
-   Identity rail (left column)
-   ========================================================================== */
-
-.hc-archive-header {
-  display: block;
-}
-
 .hc-projects-mobile-intro {
   display: none;
 }
-
 @media (max-width: 63.999rem) {
   body.hc-projects-archive:not(.hc-notes) .hc-archive-header {
     display: none;
   }
-
   body.hc-projects-archive:not(.hc-notes) .hc-projects-mobile-intro {
     display: block;
     margin-bottom: 2.5rem;
   }
-
   body.hc-projects-archive:not(.hc-notes) .hc-archive-main {
     padding-top: 1rem;
   }
-
   body.hc-projects-archive:not(.hc-notes) .hc-archive-back {
     display: none;
   }
-
   .hc-projects-mobile-intro h1 {
     margin: 0 0 0.75rem;
     font-size: clamp(2.25rem, 12vw, 3.5rem);
     letter-spacing: -0.045em;
     line-height: 1;
   }
-
   .hc-projects-mobile-intro p {
     max-width: 36rem;
     margin: 0;
@@ -94,276 +35,8 @@ body.hc-projects-archive .hc-main {
   }
 }
 
-@media (min-width: 64rem) {
-  .hc-archive-header {
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-    width: 42%;
-    max-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3rem;
-    padding-block: 6rem 3rem;
-  }
-}
-
-.hc-archive-header__portrait {
-  width: 88px;
-  height: 88px;
-  margin: 0 0 1.5rem;
-  overflow: hidden;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--hc-accent) 18%, var(--hc-archive-canvas));
-}
-
-.hc-archive-header__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hc-archive-header__name {
-  margin: 0;
-  color: var(--hc-text);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
-
-.hc-archive-header__name a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.hc-archive-header__name a:hover,
-.hc-archive-header__name a:focus-visible {
-  color: var(--hc-accent-text);
-}
-
-.hc-archive-header__role {
-  margin: 0.75rem 0 0;
-  color: var(--hc-text);
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.hc-archive-header__intro {
-  max-width: 20rem;
-  margin: 1rem 0 0;
-  color: var(--hc-text-muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* In-page jump links. */
-.hc-archive-nav {
-  margin-top: 2.5rem;
-}
-
-.hc-archive-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hc-archive-nav a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--hc-text-muted);
-  text-decoration: none;
-}
-
-.hc-archive-nav__text {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.hc-archive-nav__indicator {
-  display: none;
-}
-
-@media (min-width: 64rem) {
-  .hc-archive-nav {
-    margin-top: 4rem;
-  }
-
-  .hc-archive-nav ul {
-    display: grid;
-    gap: 0;
-    width: max-content;
-  }
-
-  .hc-archive-nav a {
-    padding-block: 0.75rem;
-  }
-
-  .hc-archive-nav__indicator {
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: color-mix(in srgb, var(--hc-text-muted) 55%, transparent);
-    transition:
-      width var(--hc-dur-base) var(--hc-ease-out),
-      background-color var(--hc-dur-base) var(--hc-ease-out);
-  }
-
-  .hc-archive-nav a:hover .hc-archive-nav__text,
-  .hc-archive-nav a:focus-visible .hc-archive-nav__text,
-  .hc-archive-nav a.is-active .hc-archive-nav__text {
-    color: var(--hc-text);
-  }
-
-  .hc-archive-nav a:hover .hc-archive-nav__indicator,
-  .hc-archive-nav a:focus-visible .hc-archive-nav__indicator,
-  .hc-archive-nav a.is-active .hc-archive-nav__indicator {
-    width: 4rem;
-    background: var(--hc-accent);
-  }
-}
-
-/* Rail footer: résumé, inquiry, and social links. */
-.hc-archive-header__footer {
-  margin-top: 2.5rem;
-}
-
-.hc-archive-header__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-}
-
-.hc-archive-resume,
-.hc-archive-inquiry {
-  color: var(--hc-text);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--hc-accent) 70%, transparent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-archive-resume:hover,
-.hc-archive-resume:focus-visible,
-.hc-archive-inquiry:hover,
-.hc-archive-inquiry:focus-visible {
-  color: var(--hc-accent-text);
-  text-decoration-color: var(--hc-accent);
-}
-
-.hc-archive-inquiry {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.hc-archive-inquiry svg {
-  flex: 0 0 auto;
-}
-
-.hc-archive-social {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin: 1.5rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hc-archive-social a {
-  display: block;
-  color: var(--hc-text-muted);
-  transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-archive-social a:hover,
-.hc-archive-social a:focus-visible {
-  color: var(--hc-accent-text);
-}
-
-/* ==========================================================================
-   Content (right column)
+/* Project rows
    ========================================================================== */
-
-.hc-archive-main {
-  min-width: 0;
-  padding-top: 5rem;
-}
-
-@media (min-width: 64rem) {
-  .hc-archive-main {
-    width: 58%;
-    padding-block: 6rem;
-  }
-}
-
-.hc-archive-group {
-  scroll-margin-top: 2rem;
-  margin-bottom: 4rem;
-}
-
-@media (min-width: 48rem) {
-  .hc-archive-group {
-    margin-bottom: 6rem;
-  }
-}
-
-@media (min-width: 64rem) {
-  .hc-archive-group {
-    margin-bottom: 9rem;
-  }
-}
-
-.hc-archive-section-label {
-  margin: 0 0 1rem;
-}
-
-.hc-archive-section-title {
-  margin: 0;
-  color: var(--hc-text);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.hc-archive-group__description {
-  max-width: 42rem;
-  margin: 0 0 2rem;
-  color: var(--hc-text-muted);
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-@media (min-width: 48rem) {
-  .hc-archive-group__description {
-    margin-bottom: 3rem;
-  }
-}
-
-/* ==========================================================================
-   Project rows
-   ========================================================================== */
-
-.hc-archive-rows {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 
 .hc-archive-row {
   margin-bottom: 2.5rem;
@@ -413,13 +86,6 @@ body.hc-projects-archive .hc-main {
   color: var(--hc-accent-text);
 }
 
-.hc-archive-row__description {
-  margin: 0.5rem 0 0;
-  color: var(--hc-text-muted);
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
 @media (min-width: 40rem) {
   .hc-archive-row__link {
     grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -435,66 +101,6 @@ body.hc-projects-archive .hc-main {
     order: 2;
     grid-column: span 6;
   }
-}
-
-/* ==========================================================================
-   Tags
-   ========================================================================== */
-
-.hc-archive-row__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-  margin: 0.75rem 0 0;
-  padding: 0;
-  color: var(--hc-text-muted);
-  list-style: none;
-}
-
-.hc-archive-row__tags li {
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
-.hc-archive-row__tags li:not(:last-child)::after {
-  content: "·";
-  margin-left: 0.75rem;
-  color: var(--hc-border);
-}
-
-/* ==========================================================================
-   Back link (above the first right-column section)
-   ========================================================================== */
-
-.hc-archive-back {
-  margin-bottom: 3rem;
-}
-
-.hc-archive-back a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--hc-text);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-archive-back a svg {
-  flex: 0 0 auto;
-  color: var(--hc-accent-text);
-  transition: transform var(--hc-dur-base) var(--hc-ease-out);
-}
-
-.hc-archive-back a:hover,
-.hc-archive-back a:focus-visible {
-  color: var(--hc-accent-text);
-}
-
-.hc-archive-back a:hover svg,
-.hc-archive-back a:focus-visible svg {
-  transform: translateX(-3px);
 }
 
 /* ==========================================================================

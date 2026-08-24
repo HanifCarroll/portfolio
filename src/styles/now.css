@@ -47,6 +47,31 @@
   box-shadow: none;
 }
 
+.hc-now-prose {
+  max-width: 75ch;
+  color: var(--hc-text);
+  font-family: var(--hc-font-sans);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+.hc-now-prose :where(p) {
+  margin-bottom: 1.5rem;
+}
+.hc-now-prose :where(li) {
+  margin-block: 0.25rem;
+}
+.hc-now-prose :where(a) {
+  color: var(--hc-accent-text);
+  text-decoration: none;
+}
+.hc-now-prose :where(a:hover, a:focus-visible) {
+  text-decoration: underline;
+}
+.hc-now-prose :where(strong) {
+  color: var(--hc-text);
+  font-weight: 700;
+}
+
 .hc-now-page .prose :where(h2) {
   margin: clamp(3rem, 7vw, 7rem) 0 1.5rem;
   padding: 0;
@@ -69,6 +94,13 @@
   color: var(--hc-text-muted) !important;
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.72;
+}
+
+@media (min-width: 48rem) {
+  .hc-now-prose {
+    font-size: 1.375rem;
+    line-height: 1.55;
+  }
 }
 
 @media (max-width: 640px) {
