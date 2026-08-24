@@ -53,7 +53,7 @@ const secondaryEvent = context === 'case-study' ? 'email_clicked' : 'service_pag
 			<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${location}_primary`}>
 				{offer.primaryLabel}
 			</a>
-			<a class='hc-text-link' href={secondaryHref} data-track-event={secondaryEvent} data-track-location={`${location}_secondary`}>
+			<a class:list={context === 'case-study' ? ['hc-button', 'hc-button--secondary'] : ['hc-text-link']} href={secondaryHref} data-track-event={secondaryEvent} data-track-location={`${location}_secondary`}>
 				{secondaryLabel}
 			</a>
 		</div>

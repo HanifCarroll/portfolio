@@ -726,6 +726,10 @@ body.page-case-study-detail .hc-main {
   content: none;
 }
 
+.hc-cta-panel--case-study .hc-button:not(.hc-button--secondary) {
+  border-color: var(--hc-text-muted);
+}
+
 .hc-cta-panel--case-study h2 {
   font-family: var(--hc-font-editorial);
   font-size: clamp(2rem, 4vw, 3.25rem);
@@ -741,7 +745,13 @@ body.page-case-study-detail .hc-main {
 }
 
 @media (max-width: 40rem) {
+  .cs-shell {
+    padding-bottom: 0;
+  }
+
   body.page-case-study-detail .hc-cta-panel.hc-cta-panel--case-study {
+    margin-top: 0;
+    padding-block: 5rem;
     background: var(--hc-surface);
   }
 }
