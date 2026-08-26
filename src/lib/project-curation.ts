@@ -26,6 +26,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
     description:
       "Independent products and experiments that show AI systems, evidence-driven building, and workflow tooling outside client work.",
     slugs: [
+      "tranquility-spa-concierge",
       "casamo",
       "ba-eventos",
       "riowell",

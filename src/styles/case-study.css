@@ -438,6 +438,25 @@ body.page-case-study-detail .hc-main {
   line-height: 1.6;
 }
 
+.case-study-detail__resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.case-study-detail__resource-links a {
+  color: var(--hc-text);
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.case-study-detail__resource-links a:hover,
+.case-study-detail__resource-links a:focus-visible {
+  color: var(--hc-accent-text);
+}
+
 /* ==========================================================================
    Media artifacts
    ========================================================================== */
@@ -487,6 +506,10 @@ body.page-case-study-detail .hc-main {
   .case-study-detail__device-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
+  }
+
+  .case-study-detail__device-grid--stacked {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

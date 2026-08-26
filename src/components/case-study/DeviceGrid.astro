@@ -13,12 +13,13 @@ interface DeviceGridScreen {
 
 interface Props {
 	screens: DeviceGridScreen[];
+	stacked?: boolean;
 }
 
-const { screens } = Astro.props;
+const { screens, stacked = false } = Astro.props;
 ---
 
-<div class='case-study-detail__device-grid'>
+<div class:list={['case-study-detail__device-grid', { 'case-study-detail__device-grid--stacked': stacked }]}>
 	{
 		screens.map((screen) => (
 			<figure class={`case-study-detail__device-card case-study-detail__device-card--${screen.frame ?? 'desktop'}`}>
