@@ -4,11 +4,8 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import DeviceGrid from "../../components/case-study/DeviceGrid.astro";
-import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import guestHomeDesktop from "../../assets/img/projects/tranquility-spa-concierge/guest-home-desktop.webp";
 import guestHomeMobile from "../../assets/img/projects/tranquility-spa-concierge/guest-home-mobile.webp";
-import systemTour from "../../assets/img/projects/tranquility-spa-concierge/system-tour.webp";
 import decisionPolicy from "../../assets/img/projects/tranquility-spa-concierge/decision-policy.webp";
 import systemOwnership from "../../assets/img/projects/tranquility-spa-concierge/system-ownership.webp";
 import calBooking from "../../assets/img/projects/tranquility-spa-concierge/cal-booking.webp";
@@ -17,21 +14,12 @@ import staffOperations from "../../assets/img/projects/tranquility-spa-concierge
 import serviceCatalog from "../../assets/img/projects/tranquility-spa-concierge/service-catalog.webp";
 import makeScenarios from "../../assets/img/projects/tranquility-spa-concierge/make-scenarios.webp";
 import makeServiceEligibility from "../../assets/img/projects/tranquility-spa-concierge/make-service-eligibility.webp";
-import conciergeRecommendation from "../../assets/img/projects/tranquility-spa-concierge/concierge-recommendation.webp";
+import conciergeRealChat from "../../assets/img/projects/tranquility-spa-concierge/concierge-real-chat.webp";
 import bookingConfirmationEmail from "../../assets/img/projects/tranquility-spa-concierge/booking-confirmation-email.webp";
 import staffVisitRecord from "../../assets/img/projects/tranquility-spa-concierge/staff-visit-record.webp";
 import followUpFeedback from "../../assets/img/projects/tranquility-spa-concierge/follow-up-feedback.webp";
 
 export const guestScreens = [
-  {
-    image: guestHomeDesktop,
-    alt: "Tranquility Spa desktop homepage with a treatment room, service-navigation links, and a Help me choose action.",
-    label: "Desktop website",
-    title: "The concierge begins inside a believable spa experience.",
-    caption:
-      "The service menu and persistent Help me choose action keep guidance on the website rather than in a separate demo.",
-    frame: "desktop",
-  },
   {
     image: guestHomeMobile,
     alt: "Tranquility Spa mobile homepage with the treatment-room image, large service-guidance heading, and floating concierge prompt.",
@@ -45,12 +33,12 @@ export const guestScreens = [
 
 export const conciergeScreens = [
   {
-    image: conciergeRecommendation,
-    alt: "Concierge conversation turning a guest's shoulder-tension request into one approved 60-minute massage recommendation and a booking action.",
-    label: "Concierge recommendation",
-    title: "The guest sees one answer and a clear next step.",
+    image: conciergeRealChat,
+    alt: "Published Tranquility Spa concierge showing a 60-minute massage recommendation with calendar, inline booking, change-answer, and staff-help actions.",
+    label: "Live concierge",
+    title: "The real conversation ends with one recommendation and four clear paths.",
     caption:
-      "The conversation carries the request, goal, duration, and preference into one approved recommendation before asking for contact details.",
+      "The published flow carries the guest's time and experience preference into a recommendation, then offers the full calendar, inline times, revised answers, or staff help.",
     frame: "desktop",
   },
 ];
@@ -199,8 +187,6 @@ export const shippedRows = [
   I built Tranquility as an independent prototype for a fictional spa after an operations consultant described a familiar customer problem: a visitor reaches a long service menu, can't tell which treatment fits, and leaves the decision for later.
 
 The idea went beyond adding a chatbot. The guest should receive useful guidance, book the right appointment, complete intake before arriving, and get relevant follow-up afterward. Staff should receive the same context without piecing it together across messages and forms.
-
-  <ImagePlate image={systemTour} alt="Tranquility Spa system-tour introduction explaining the connected guest and staff journey." />
 </CaseSection>
 
 <CaseSection title="I turned operating knowledge into product rules" media>
@@ -226,7 +212,7 @@ The idea went beyond adding a chatbot. The guest should receive useful guidance,
 
 The conversation combines a free-text request with goal, duration, and experience preferences. It returns one concise recommendation and offers booking, changing the answers, or asking the spa for help. Contact details are requested only after the guest chooses booking or staff help, keeping lead capture tied to intent.
 
-  <DeviceGrid screens={guestScreens} />
+  <DeviceGrid screens={guestScreens} stacked />
   <DeviceGrid screens={conciergeScreens} stacked />
 </CaseSection>
 
