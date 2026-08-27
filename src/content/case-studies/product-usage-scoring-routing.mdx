@@ -5,7 +5,6 @@ import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import queue from "../../assets/img/projects/product-usage-scoring-routing/queue.png";
 import decisionPacket from "../../assets/img/projects/product-usage-scoring-routing/decision-packet.png";
 import policy from "../../assets/img/projects/product-usage-scoring-routing/policy.png";
 
@@ -56,12 +55,10 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The same accounts under two policies" media>
+<CaseSection title="The same accounts under two policies">
   The demonstration runs the same 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The queue makes the difference visible.
 
     The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers therefore say more about the sample than the policy. The gated policy provides context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability.
-
-    <ImagePlate image={queue} alt="Weekly Sales and CS queue comparing a gated policy and a naive combined score on 120 synthetic accounts, with acquisition intent and weekly capacity controls." />
 
 </CaseSection>
 

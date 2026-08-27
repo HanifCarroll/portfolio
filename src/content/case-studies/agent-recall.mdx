@@ -3,10 +3,7 @@
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
-import ImagePlate from "../../components/case-study/ImagePlate.astro";
-import MacWindowFrame from "../../components/case-study/MacWindowFrame.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import agentRecallCli from "../../assets/img/projects/agent-recall-cli.png";
 
 export const shippedRows = [
   {
@@ -63,20 +60,10 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media'>
-  <h2>Search results show where each memory came from</h2>
-  <div class='case-study-detail__editorial-copy'>
-    <p>
-      The command-line view groups results by session and shows their source details. Other tools can
-      request the same information as structured data.
-    </p>
-
-    <MacWindowFrame title='agent-recall' ariaLabel='Agent Recall command-line evidence view'>
-      <ImagePlate image={agentRecallCli} alt='Agent Recall command-line view grouping search results by session with source files and transcript line references.' />
-    </MacWindowFrame>
-    </div>
-
-</section>
+<CaseSection title="Search results show where each memory came from">
+  The command-line view groups results by session and shows their source details. Other tools can
+  request the same information as structured data.
+</CaseSection>
 
 <CaseSection title="The implementation keeps recall local and inspectable">
   <DecisionBlock title="Import the events that help future work.">

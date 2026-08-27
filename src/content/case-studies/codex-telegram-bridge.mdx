@@ -3,9 +3,7 @@
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
-import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import bridgeTerminal from "../../assets/img/projects/codex-telegram-bridge-terminal.png";
 
 export const shippedRows = [
   {
@@ -47,13 +45,6 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="I made remote replies part of the same local workflow">
-  Codex Telegram Bridge lets me continue a Codex task through Telegram or Discord while I am away from the computer.
-
-    The chat apps carry notifications and replies, but the local Rust service remains responsible for thread state, routing, retries, away status, and delivery.
-
-</CaseSection>
-
 <CaseSection title="Away mode controls when messages can leave the computer">
   <DecisionBlock title="Make presence the top-level gate.">
     The main rule is simple: remote notifications stay off while I am at the computer. `/away` turns delivery on, while `/back` turns it off and clears pending messages.
@@ -69,26 +60,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The public commands follow the away-and-return routine" media>
-  The common path is visible in the command list: install the Rust tool, run setup, use `/away` before leaving, reply when Codex needs input, and use `/back` when returning.
-
-    <ImagePlate image={bridgeTerminal} alt="Codex Telegram Bridge command list showing setup, away mode, projects, replies, and approvals." />
-
-</CaseSection>
-
-<CaseSection title="The implementation keeps remote control narrow and recoverable">
-  <DecisionBlock title="Shape the commands around the common path.">
-    The visible commands emphasize setup, remote mode, background-service management, chat setup, project selection, waiting threads, replies, and approvals. Advanced maintenance commands remain available but stay out of default help.
-  </DecisionBlock>
-
-    <DecisionBlock title="Let one local service own delivery.">
-    The background service reads Codex state through the configured live connection, starts or repairs that connection when remote mode needs it, queues new events after the away session begins, delivers due messages, and checks Telegram or Discord for replies.
-    </DecisionBlock>
-
-    <DecisionBlock title="Map replies and approvals to exact threads.">
-    Telegram notifications store a local reply route. Approval prompts use temporary route identifiers behind Approve and Deny buttons. Discord uses the same prepared-message model and maps replies through the local route table.
-    </DecisionBlock>
-
+<CaseSection title="The implementation keeps remote control narrow">
     <DecisionBlock title="Select projects without guessing from chat.">
     The project list stores approved folders with identifiers, labels, and aliases. `/project` chooses the current workspace, and `/new` starts a Codex task in that registered folder.
     </DecisionBlock>
@@ -112,11 +84,6 @@ export const shippedRows = [
     </ProofRows>
   </div>
 </section>
-
-<CaseSection title="Remote control remains useful because its boundaries are visible">
-  Presence state, connection health, message delivery, reply routing, approvals, project context, and local retention remain visible in the workflow. I can continue a task remotely without giving a chat tool open-ended control over Codex.
-
-</CaseSection>
 
 <CaseSection title="The implementation is public">
   The repository includes the Rust bridge, Telegram and Discord setup guides, Hermes agent-interface docs, macOS menu bar companion, example configuration, automated checks, release workflow, and tests.

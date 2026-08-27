@@ -3,10 +3,7 @@
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
-import ImagePlate from "../../components/case-study/ImagePlate.astro";
-import MacWindowFrame from "../../components/case-study/MacWindowFrame.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import apartmentFinderUi from "../../assets/img/projects/apartment-finder-ui.png";
 
 export const shippedRows = [
   {
@@ -67,17 +64,9 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class='case-study-detail__editorial-section case-study-detail__editorial-section--media apartment-finder-product-surface'>
-  <h2>A compact workspace for the full scan loop</h2>
-  <div class='case-study-detail__editorial-copy'>
-    <p>The app wraps the search, extraction, classification, and review loop in one compact workspace.</p>
-
-      <MacWindowFrame class='apartment-finder-product-window' ariaLabel='Apartment Finder product screenshot'>
-        <ImagePlate image={apartmentFinderUi} alt="Apartment Finder search and listing-discovery interface." />
-      </MacWindowFrame>
-    </div>
-
-</section>
+<CaseSection title="A compact workspace for the full scan loop">
+  The app wraps the search, extraction, classification, and review loop in one compact workspace.
+</CaseSection>
 
 <CaseSection title="Extraction, classification, and measured escalation">
   <DecisionBlock title="Extracted listing evidence across providers.">
