@@ -24,7 +24,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
     id: "products-experiments",
     label: "Products & experiments",
     description:
-      "Independent products and prototypes for customer guidance, internal operations, research, and creative work. AI appears where it has a clear job.",
+      "Independent products and prototypes built to solve real workflow problems.",
     slugs: [
       "tranquility-spa-concierge",
       "casamo",
