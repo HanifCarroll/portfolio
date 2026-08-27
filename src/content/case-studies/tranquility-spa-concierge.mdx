@@ -37,7 +37,7 @@ export const guestScreens = [
     label: "Mobile website",
     title: "Guests can open the concierge from any mobile page.",
     caption:
-      "A small floating prompt stays within reach without covering the service page.",
+      "The floating prompt stays visible as guests browse services without covering the page.",
     frame: "mobile",
   },
 ];
@@ -70,9 +70,8 @@ export const ruleScreens = [
     mobileImage: systemOwnershipMobile,
     alt: "System ownership diagram showing how Typebot passes the guest's answers to Make and the spa's business tools.",
     label: "System ownership",
-    title: "Each tool handles one part of the journey.",
-    caption:
-      "Typebot handles the conversation. Make decides what qualifies using records the business maintains in its existing tools.",
+    title: "Typebot collects the answers; Make handles the service rules.",
+    caption: "Make checks the Airtable catalog, then returns the approved result to Typebot.",
     frame: "desktop",
   },
 ];
@@ -105,8 +104,7 @@ export const confirmationScreens = [
     alt: "Booking confirmation email showing the appointment and its pre-visit intake link.",
     label: "Preparation email",
     title: "The confirmation email asks the guest to complete intake.",
-    caption:
-      "The appointment details are already in the email, followed by the intake link.",
+    caption: "The appointment details are already in the email, followed by the intake link.",
     frame: "desktop",
     mobileScrollable: true,
   },
@@ -119,8 +117,7 @@ export const staffScreens = [
     alt: "Published Airtable dashboard showing the upcoming visit queue and appointments with missing intake.",
     label: "Daily operations",
     title: "Staff see what is ready and what needs attention.",
-    caption:
-      "The default view organizes the day around exceptions and next actions instead of making staff inspect every record.",
+    caption: "The dashboard shows today's visits first and separates appointments missing intake.",
     frame: "desktop",
     mobileScrollable: true,
   },
@@ -140,9 +137,9 @@ export const staffScreens = [
     mobileImage: staffVisitRecordMobile,
     alt: "Staff visit record showing the guest's intake and the fields completed after the appointment.",
     label: "Visit record",
-    title: "One visit record follows the appointment through completion.",
+    title: "Staff use the same visit record before and after the appointment.",
     caption:
-      "The selected queue item opens the details staff need before the visit and the fields they complete afterward.",
+      "The record shows the guest's intake before the visit and gives staff fields for notes and aftercare afterward.",
     frame: "desktop",
     mobileScrollable: true,
   },
@@ -153,9 +150,9 @@ export const automationScreens = [
     image: makeScenarios,
     alt: "Make scenario list with a separate workflow for each spa business event.",
     label: "Make scenarios",
-    title: "Business events are named in the operator's language.",
+    title: "Each Make scenario is named for what starts it.",
     caption:
-      "Each scenario is named for the event that starts it, so staff can identify the flow without opening its modules.",
+      "Names such as Booking Created and Visit Completed let staff find the right automation without opening it.",
     frame: "desktop",
   },
   {
@@ -177,7 +174,7 @@ export const followUpScreens = [
     label: "Aftercare email",
     title: "The guest receives the guidance recorded by staff.",
     caption:
-      "Completing the visit sends what staff recorded and gives the guest a feedback link.",
+      "Marking the visit complete sends the staff-written aftercare and a link to the feedback form.",
     frame: "desktop",
     mobileScrollable: true,
   },
@@ -186,9 +183,8 @@ export const followUpScreens = [
     mobileImage: feedbackFormMobile,
     alt: "Published Tally feedback form asking about the visit and whether staff should respond.",
     label: "Feedback form",
-    title: "The response stays short and gives the guest a private path back to staff.",
-    caption:
-      "Tally records the rating and whether the guest wants staff to contact them.",
+    title: "The form is brief and lets guests ask for a reply.",
+    caption: "Tally records the rating and whether the guest wants staff to contact them.",
     frame: "desktop",
     mobileScrollable: true,
   },
@@ -208,12 +204,12 @@ export const followUpScreens = [
 export const shippedRows = [
   {
     label: "Guest choice",
-    title: "One recommendation replaces a wall of service names.",
-    body: "The concierge compares the guest's request with the active catalog and returns a service that fits the time available.",
+    title: "The guest receives one service that fits the time available.",
+    body: "The concierge checks the guest's request and available time against the active catalog before returning a service.",
   },
   {
-    label: "Operating continuity",
-    title: "Booking context reaches the staff workflow.",
+    label: "Appointment handoff",
+    title: "The recommendation stays attached to the appointment.",
     body: "The selected service stays attached to the appointment, so staff see it when they prepare for the visit and send follow-up.",
   },
   {
@@ -222,65 +218,66 @@ export const shippedRows = [
     body: "Staff change a service in Airtable. Make uses the updated record the next time someone asks for guidance.",
   },
   {
-    label: "Next decision",
-    title: "Typebot's free tier became the remaining constraint.",
-    body: "The working flow reached Typebot's limit of 200 chats per month. A launch would require an upgrade or another conversation tool.",
+    label: "Launch constraint",
+    title: "Typebot's free plan allows 200 chats per month.",
+    body: "Higher-volume use would require a paid Typebot plan or a replacement that calls the same Make automation.",
   },
 ];
 
 <CaseSection title="A long service menu left guests unsure what to book">
-  I built Tranquility as an independent prototype for a fictional spa after an operations consultant described a familiar customer problem. A visitor reaches a long service menu and can't tell which treatment fits. They leave the decision for later.
+  I built Tranquility after an operations consultant described what happens when a spa offers dozens of treatments: visitors often cannot tell which one fits, so they postpone booking. The prototype uses a fictional spa and a 20-service catalog to test a guided booking path.
 
-The prototype had to do more than answer a question. It needed to carry the chosen treatment into the appointment. Staff would then see the guest's intake in the same Airtable record and use it to close the visit.
+The selected treatment had to stay with the appointment after the conversation ended. Staff needed one Airtable record that explained the recommendation and showed whether intake and follow-up were complete.
+
 </CaseSection>
 
-<CaseSection title="I turned operating knowledge into product rules" media>
-  A model that could invent a treatment or ignore the spa's operating rules would make the recommendation unusable. Every answer had to come from an active service and follow the spa's rules for the guest's goal and available time.
+<CaseSection title="The spa's service rules decide which treatments qualify" media>
+  DeepSeek could choose only from services approved in Airtable. The chosen service also had to match the guest's goal and exact time available.
 
-<DecisionBlock title="Apply hard eligibility rules before AI ranking.">
-  Each Airtable record defines whether a service can be recommended and where the guest can book it.
-  Make removes anything that doesn't fit the selected duration. DeepSeek ranks only the records that remain.
+<DecisionBlock title="Filter the catalog before sending choices to AI.">
+  Airtable marks each service active or retired and stores its booking group. Make removes services
+  that do not match the selected duration, then DeepSeek ranks the remaining choices.
 </DecisionBlock>
 
-<DecisionBlock title="Separate the customer conversation from the operating logic.">
-  Typebot runs the questions and displays the result. Make reads the catalog from Airtable and returns
-  an eligible treatment. Cal.com supplies the available times. Changing the conversation doesn't require
-  editing the booking logic.
+<DecisionBlock title="Keep the service and booking rules outside the chat builder.">
+  Typebot asks the questions and shows the answer. Make reads the current Airtable catalog and
+  returns a matching treatment. Cal.com provides the appointment times. The spa can change the
+  conversation without touching those rules.
 </DecisionBlock>
 
   <DeviceGrid screens={ruleScreens} stacked />
 </CaseSection>
 
 <CaseSection title="Guests can ask for help without leaving the spa website" media wideMedia>
-  I placed the concierge inside a complete spa website so the prototype could be judged as a customer journey rather than a collection of automation tools. The site presents all 20 services, but the persistent concierge gives an uncertain visitor a simpler starting point.
+  The concierge sits inside a complete spa website alongside the full 20-service menu. A floating button gives visitors who do not know what to choose a direct way to ask for help.
 
-Visitors describe what they want and how long they have. Typebot may ask what kind of experience they prefer before returning a service. Contact details appear only when someone books or asks staff for help.
+Visitors describe what they want and how long they have. If needed, Typebot asks one follow-up question about the experience they prefer. It shows a recommended service before requesting contact details. Those details appear only after the visitor chooses booking or staff help.
 
   <DeviceGrid screens={guestScreens} stacked />
   <DeviceGrid screens={conciergeScreens} stacked />
 </CaseSection>
 
-<CaseSection title="One recommendation becomes a bookable appointment" media>
-  Twenty services map into six shared booking groups instead of requiring a separate Cal.com event for every treatment. The concierge opens the matching booking group and passes the service name and duration in the URL. Cal.com supplies the live times and stores the appointment.
+<CaseSection title="The recommended service opens the right booking calendar" media>
+  Twenty services share six Cal.com booking groups, avoiding 20 separate event types. The concierge opens the group for the recommended service and includes its name and duration in the booking link. Cal.com shows the current openings and saves the appointment.
 
-After booking, Tally receives the appointment context through hidden fields. The guest sees the details already on file and answers only the preparation questions that staff need.
+After booking, Tally receives the appointment details without showing them as questions. The guest answers only what staff need to prepare.
 
   <DeviceGrid screens={bookingScreens} />
   <DeviceGrid screens={confirmationScreens} stacked />
 </CaseSection>
 
 <CaseSection title="Staff run the day from one Airtable queue" media>
-  The Airtable interface opens on the day's visit queue. Separate views surface missing intake and other appointments that need attention. Staff work from the appointment record before and after the visit, while the service catalog remains available in the same interface.
+  The Airtable interface opens on today's visit queue. Another view shows appointments with missing intake or incomplete follow-up. Staff open the appointment record before the visit, add notes afterward, and update services from the catalog when needed.
 
-When staff mark the visit complete, Make sends the recorded aftercare and opens the feedback step. Airtable shows whether either action still needs attention.
+When staff mark a visit complete, Make emails the recorded aftercare and the feedback form. Airtable records whether each message has been sent.
 
   <DeviceGrid screens={staffScreens} stacked />
 </CaseSection>
 
-<CaseSection title="Each business event has its own Make scenario" media>
-  Each scenario begins with a specific event. A new booking creates the Airtable appointment and sends the preparation email. Intake updates that record. When staff close the visit, Make sends the recorded aftercare and requests feedback. If the guest asks to be contacted, the owner receives an alert.
+<CaseSection title="Make runs a separate automation for each event" media>
+  A booking creates the Airtable appointment and sends the preparation email. Submitted intake updates the same record. Completing the visit sends aftercare and the feedback form. A request for contact alerts the owner.
 
-The concierge uses the same boundary. Typebot sends the answers to Make and receives a structured recommendation built from the eligible Airtable records.
+The recommendation follows a separate Make automation. Typebot sends the guest's answers; Make filters the Airtable catalog and sends back the recommended service.
 
   <DeviceGrid screens={automationScreens} />
   <DeviceGrid screens={followUpScreens} stacked />
@@ -291,12 +288,12 @@ The concierge uses the same boundary. Typebot sends the answers to Make and rece
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        The prototype proved that a recommended service could stay attached to the appointment through follow-up. It also separated the durable staff workflow from the conversation tool.
+        By the end of the prototype, the recommended service stayed attached to the appointment from booking through post-visit follow-up. Staff could manage the visit without returning to the chat transcript.
       </p>
     </ProofRows>
 
     <p>
-      The next production decision is the conversation layer. Typebot's free plan allows 200 chats per month, so a real launch would need an upgrade or replacement. The rest of the workflow would not need to be rebuilt.
+      Typebot remains the only unresolved launch choice. Its free plan allows 200 chats per month. Replacing it would leave the Airtable catalog and Make automations intact.
     </p>
 
     <nav class="case-study-detail__resource-links" aria-label="Project resources">

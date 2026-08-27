@@ -685,3 +685,15 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - `bun run check:projects`, `bun run lint`, `bun run build`, and `git diff --check` passed.
 - Desktop and 390px mobile browser reviews confirmed the revised hero, Audit-first service hierarchy, mid-page booking CTA, real project artifacts, founder testimonial, process, and FAQ with no horizontal overflow.
 - Verified the new mid-page CTA resolves to the live 30-minute Business Systems Audit Fit Call on Cal.com.
+
+## 2026-08-26
+
+### Tranquility Spa Concierge Case Study
+
+- Added the indexable `/projects/tranquility-spa-concierge/` case study with guest, Cal.com, Tally, and Make screenshots plus purpose-built diagrams for recommendation policy, system ownership, staff operations, and service-catalog maintenance.
+- Added the project to the Products & Experiments archive and linked the public prototype, system tour, and source repository.
+
+### Verification
+
+- `bun run check:projects`, `bun run lint`, `bun run build`, and `git diff --check` passed.
+- Desktop and 390px mobile browser reviews confirmed all seven case-study sections, the project archive entry, complete artifact images, and working prototype, system-tour, and repository links.
