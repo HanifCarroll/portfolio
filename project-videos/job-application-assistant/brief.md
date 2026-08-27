@@ -12,7 +12,7 @@ Story mode: Plain overview
 
 One-sentence job: Job Application Assistant turns a job posting into a reviewed draft, saved PDF, and application record.
 
-Viewer takeaway: This is a small product that makes a real job-search workflow more organized.
+Viewer takeaway: Job Application Assistant keeps each application, draft, PDF, and status in one local workflow.
 
 Plain story:
 

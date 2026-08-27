@@ -44,7 +44,7 @@ HablaBA helps language learners in Buenos Aires find and coordinate small local 
 
 ## Viewer Takeaway
 
-This is a research-shaped beta that turns a local coordination problem into one inspectable product loop.
+HablaBA turns local research into one beta for finding and coordinating language exchanges.
 
 ## Language Rules
 
@@ -139,7 +139,7 @@ Asset path: built natively by the shared template.
 
 Motion notes: disconnected choices assemble, then clear space for the research artifact.
 
-Reading-speed check: `11` words over `5.5s` = `120 WPM`.
+Reading-speed check: `6` words over `5.5s` = `65 WPM`.
 
 ### Scene 2: Research
 
@@ -233,8 +233,7 @@ Visual source: native loop rail with seeded Explore and chat surfaces.
 On-screen text:
 
 ```text
-One connected beta loop.
-Invitation, discovery, exchange details, and chat stay connected.
+Discovery, sessions, and chat stay connected.
 ```
 
 Narration: none.
@@ -278,14 +277,14 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 ## On-Screen Text Lock
 
-| Scene | Text                                                                                       | Word count | Duration | WPM |
-| ----- | ------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
-| 1     | Practice was hard to arrange. Big events made focused practice harder.                     |         11 |     5.5s | 120 |
-| 2     | Research shaped the beta. One interview, 11 responses, and six usability sessions.         |         12 |       6s | 120 |
-| 3     | Choose the exchange. Compare language, neighborhood, time, and seats.                      |          9 |       5s | 108 |
-| 4     | Each exchange has a private chat. Coordinate the plan live.                                |         10 |       5s | 120 |
-| 5     | One connected beta loop. Invitation, discovery, exchange details, and chat stay connected. |         11 |     5.5s | 120 |
-| End   | HablaBA. Local practice, shaped by research.                                               |          6 |       3s | 120 |
+| Scene | Text                                                                               | Word count | Duration | WPM |
+| ----- | ---------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Practice was hard to arrange. Big events made focused practice harder.             |         11 |     5.5s | 120 |
+| 2     | Research shaped the beta. One interview, 11 responses, and six usability sessions. |         12 |       6s | 120 |
+| 3     | Choose the exchange. Compare language, neighborhood, time, and seats.              |          9 |       5s | 108 |
+| 4     | Each exchange has a private chat. Coordinate the plan live.                        |         10 |       5s | 120 |
+| 5     | Discovery, sessions, and chat stay connected.                                      |          6 |     5.5s |  65 |
+| End   | HablaBA. Local practice, shaped by research.                                       |          6 |       3s | 120 |
 
 Allowed short labels:
 

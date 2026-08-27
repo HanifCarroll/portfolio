@@ -36,7 +36,7 @@ Agent Recall helps agents and humans reuse prior agent work by turning local tra
 
 ## Viewer Takeaway
 
-Agents need memory they can inspect and reuse, not unverifiable summaries.
+Agent Recall turns local session archives into searchable memory with links back to source files and lines.
 
 ## Language Rules
 

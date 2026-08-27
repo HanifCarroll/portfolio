@@ -36,7 +36,7 @@ Vox Prismatic turns long transcripts into reviewable post drafts and a human-led
 
 ## Viewer Takeaway
 
-This is a content operations workflow that turns long inputs into posts someone can review, shape, and schedule.
+Vox Prismatic turns long inputs into posts people can review, shape, and schedule.
 
 ## Language Rules
 

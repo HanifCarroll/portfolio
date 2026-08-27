@@ -36,7 +36,7 @@ Redwriter Comics helps a professional comic artist turn scattered artwork into o
 
 ## Viewer Takeaway
 
-This is a visual launch-site build that turns scattered comic work into a professional review surface.
+Redwriter Comics gives the artist one professional portfolio for editorial review and commission inquiries.
 
 ## Language Rules
 

@@ -36,7 +36,7 @@ Maximo Interiorismo helps an interior designer present premium work online by tu
 
 ## Viewer Takeaway
 
-This is a launch-site build that turns strong interior work into a credible public portfolio.
+Maximo Interiorismo turns strong interior work into a credible public portfolio.
 
 ## Language Rules
 
@@ -103,7 +103,7 @@ Visual source: Maximo hero screenshot.
 On-screen text:
 
 ```text
-A stronger public home.
+The designer needed a stronger public portfolio.
 ```
 
 Narration: none.
@@ -116,7 +116,7 @@ Asset path: `assets/selected/maximo-hero.png`
 
 Motion notes: full-bleed hero image enters with a slow push; text lands quietly over the image.
 
-Reading-speed check: `4` words over `4.4s` = `55 WPM`.
+Reading-speed check: `7` words over `4.4s` = `95 WPM`.
 
 ### Scene 2: Cleaner Presentation
 
@@ -189,12 +189,12 @@ Reading-speed check: `5` words over `5s` = `60 WPM`.
 
 ## On-Screen Text Lock
 
-| Scene | Text                                            | Word count | Duration | WPM |
-| ----- | ----------------------------------------------- | ---------: | -------: | --: |
-| 1     | A stronger public home.                         |          4 |     4.4s |  55 |
-| 2     | The work stays first.                           |          4 |     4.3s |  56 |
-| 3     | Review leads to inquiry.                        |          4 |     4.3s |  56 |
-| End   | Maximo Interiorismo. Portfolio to consultation. |          5 |       5s |  60 |
+| Scene | Text                                             | Word count | Duration | WPM |
+| ----- | ------------------------------------------------ | ---------: | -------: | --: |
+| 1     | The designer needed a stronger public portfolio. |          7 |     4.4s |  95 |
+| 2     | The work stays first.                            |          4 |     4.3s |  56 |
+| 3     | Review leads to inquiry.                         |          4 |     4.3s |  56 |
+| End   | Maximo Interiorismo. Portfolio to consultation.  |          5 |       5s |  60 |
 
 Allowed short labels:
 

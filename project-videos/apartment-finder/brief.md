@@ -12,7 +12,7 @@ Story mode: Short demo
 
 One-sentence job: Apartment Finder turns noisy rental listing data into an evidence-backed washer decision the user can review.
 
-Viewer takeaway: This is an AI product workflow that makes a messy apartment-search decision easier to trust.
+Viewer takeaway: Apartment Finder shows which listings likely have an in-unit washer and keeps the evidence visible.
 
 Plain story:
 

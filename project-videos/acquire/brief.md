@@ -12,7 +12,7 @@ Story mode: Plain overview
 
 One-sentence job: Acquire turns scattered opportunity tracking into one governed local workflow for sourcing, review, applications, outreach, evidence, and next actions.
 
-Viewer takeaway: This is a working operating system for a messy business workflow, not a generic productivity dashboard.
+Viewer takeaway: Acquire keeps opportunities, next actions, reviews, and evidence in one local workflow.
 
 Plain story:
 

@@ -12,7 +12,7 @@ Story mode: Plain overview
 
 One-sentence job: Palabruno turns a founder's Spanish-reading idea into a launched mobile and web product for learners and teachers.
 
-Viewer takeaway: This is a product build that turned a real founder idea into a launch-ready business surface with a clearer first buyer.
+Viewer takeaway: Palabruno turned a founder's idea into a live product for learners and teachers, with teachers as the clearer first market.
 
 Plain story:
 

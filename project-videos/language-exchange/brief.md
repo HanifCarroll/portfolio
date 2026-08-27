@@ -14,7 +14,7 @@ Primary viewer: Hiring manager or general portfolio viewer
 
 One-sentence job: HablaBA turns a researched need for smaller language exchanges into an invite-only product for finding and coordinating local practice sessions.
 
-Viewer takeaway: This is a research-shaped beta with a connected core workflow, not a generic social-app concept or a claimed growth result.
+Viewer takeaway: HablaBA turns local research into one beta for finding and coordinating language exchanges.
 
 Plain story:
 

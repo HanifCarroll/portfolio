@@ -36,7 +36,7 @@ Palabruno helps Spanish learners and teachers turn reading practice into a launc
 
 ## Viewer Takeaway
 
-This is a product build that turns a founder idea into a live learner-and-teacher product with a clearer first market.
+Palabruno turned a founder's idea into a live product for learners and teachers, with teachers as the clearer first market.
 
 ## Language Rules
 

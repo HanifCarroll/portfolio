@@ -20,9 +20,8 @@ The complete 21-project family, timing, and duration map is maintained in [templ
 bun run videos:list
 ```
 
-The inventory includes the two audit case studies:
+The inventory includes the online store audit case study:
 
-- `health-ai-search-audit`: `system-proof`, `standard`, 42 seconds.
 - `online-store-conversion-review`: `system-proof`, `standard`, 42 seconds.
 
 ## Source Rule

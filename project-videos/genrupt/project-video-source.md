@@ -36,7 +36,7 @@ Genrupt turns AI media generation into a commercial Amazon seller workflow platf
 
 ## Viewer Takeaway
 
-This is production AI systems work that made a fast-moving product ready for seller teams.
+Genrupt connects AI media tools, billing, credits, and long-running work in one platform for paying seller teams.
 
 ## Language Rules
 

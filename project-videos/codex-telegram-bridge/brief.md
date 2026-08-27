@@ -12,7 +12,7 @@ Story mode: plain product demo
 
 One-sentence job: Codex Telegram Bridge lets a remote Telegram or Discord message continue the right Codex thread while local state owns presence, routing, approvals, and delivery.
 
-Viewer takeaway: This is a controlled remote continuation product, not an open-ended chat automation channel.
+Viewer takeaway: Codex Telegram Bridge routes remote replies to the right local thread while local controls retain approvals and ownership.
 
 Plain story:
 

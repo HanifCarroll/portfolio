@@ -12,7 +12,7 @@ Story mode: Evidence tour
 
 One-sentence job: Agent Recall turns local agent transcript archives into searchable memory records with source receipts, freshness checks, and reusable context.
 
-Viewer takeaway: Agents need memory they can inspect and reuse, not unverifiable summaries.
+Viewer takeaway: Agent Recall turns local session archives into searchable memory with links back to source files and lines.
 
 Plain story:
 

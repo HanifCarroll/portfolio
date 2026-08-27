@@ -12,7 +12,7 @@ Story mode: Workflow proof
 
 One-sentence job: LinkedIn Tools puts risky LinkedIn workflows behind controller-owned state, review gates, and evidence trails.
 
-Viewer takeaway: This is a guarded automation system where workflow ownership and proof are part of the product.
+Viewer takeaway: LinkedIn Tools keeps risky browser automation behind review gates and leaves a record of every run.
 
 Plain story:
 

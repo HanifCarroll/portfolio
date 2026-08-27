@@ -57,9 +57,9 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="The same accounts under two policies" media>
-  The demonstration runs the same 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The queue makes the difference visible, and the synthetic metrics never claim to show real business efficacy.
+  The demonstration runs the same 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The queue makes the difference visible.
 
-    The comparison is illustrative, not a claim that one policy predicts better than the other. The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers therefore say more about the sample than the policy. The gated policy provides context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability. It is not designed to win a metric contest. The numbers are exactly as computed at the default controls; nothing is tuned or hidden to make either side look better.
+    The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers therefore say more about the sample than the policy. The gated policy provides context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability.
 
     <ImagePlate image={queue} alt="Weekly Sales and CS queue comparing a gated policy and a naive combined score on 120 synthetic accounts, with acquisition intent and weekly capacity controls." />
 
@@ -67,8 +67,6 @@ export const shippedRows = [
 
 <CaseSection title="The naive comparator is transparent">
   The naive policy, `combined_score_naive_v1`, is a simple baseline. It collapses fit, product usage, and buying intent into one number, roughly a weighted average, then routes any account above a single threshold into one generic Sales queue. It has no hard blocks, no prospect-versus-customer distinction, and no separate plays.
-
-    It is not a claim about any real company's former policy. It keeps the comparison honest and easy to read: one number can be the wrong abstraction, and this page shows why.
 
 </CaseSection>
 
@@ -115,7 +113,7 @@ export const shippedRows = [
 <CaseSection title="Synthetic data, stated clearly">
   Every person, company, domain, event, and outcome in the demonstration is fictional. Northfield Software and its Northfield Incident Management product exist only to supply believable product signals. Synthetic CRM contacts omit email entirely and are identified by name plus a unique person id, so no email of any kind is written to HubSpot.
 
-    The scores, gates, and outcomes are expert-defined demonstration hypotheses, not validated predictors. The app states this on the queue, the policy view, and the About page. Precision, recall, and yield demonstrate the method only and are never presented as real business efficacy.
+    The scores, gates, and outcomes are expert-defined demonstration hypotheses.
 
 </CaseSection>
 

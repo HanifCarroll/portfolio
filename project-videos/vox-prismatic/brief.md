@@ -12,7 +12,7 @@ Story mode: Short demo with plain overview language
 
 One-sentence job: Vox Prismatic turns long transcripts into reviewable post drafts and a human-led scheduling workflow.
 
-Viewer takeaway: This is a content operations workflow that turns long inputs into posts someone can review, shape, and schedule.
+Viewer takeaway: Vox Prismatic turns long inputs into posts people can review, shape, and schedule.
 
 Plain story:
 

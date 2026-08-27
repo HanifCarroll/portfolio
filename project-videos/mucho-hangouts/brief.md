@@ -12,7 +12,7 @@ Story mode: Short engineering contribution clip
 
 One-sentence job: Mucho Hangouts needed its live social product to become more reliable while the team kept shipping.
 
-Viewer takeaway: This contribution stabilized core social workflows and left the team with clearer delivery patterns.
+Viewer takeaway: I stabilized core social workflows and left the team with clearer delivery patterns.
 
 Plain story:
 

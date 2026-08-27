@@ -36,7 +36,7 @@ LinkedIn Tools puts risky LinkedIn workflows behind controller-owned state, revi
 
 ## Viewer Takeaway
 
-This is a guarded automation system where workflow ownership and records are part of the product.
+LinkedIn Tools keeps risky browser automation behind review gates and leaves a record of every run.
 
 ## Language Rules
 

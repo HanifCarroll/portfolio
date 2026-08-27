@@ -14,7 +14,6 @@ export const PROJECT_ARCHIVE_GROUPS = [
       "mucho-hangouts",
       "desarmadero-la-torre",
       "online-store-conversion-review",
-      "health-ai-search-audit",
       "casa-elaria",
       "maximo-interiorismo",
       "redwriter-comics",

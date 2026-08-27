@@ -4,6 +4,10 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-08-27
 
+### Health Services AI Search Case Study Removal
+
+- Removed the current health-services AI-search project route, metadata, curation entry, source materials, draft, dedicated image, and dedicated project-video assets. Historical SEO entries and the shared social-video montage remain unchanged.
+
 ### AI Product and GTM positioning
 
 - Changed the current public role from AI Product Engineer and Contract Product Engineer to `AI Product & GTM Engineer` across homepage metadata, structured data, shared author copy, navigation, Projects, Now, the social preview, and the downloadable résumé.

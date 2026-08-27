@@ -36,7 +36,7 @@ Mucho Hangouts needed its live social product to become more reliable while the 
 
 ## Viewer Takeaway
 
-This contribution stabilized core social workflows and left the team with clearer delivery patterns.
+I stabilized core social workflows and left the team with clearer delivery patterns.
 
 ## Language Rules
 

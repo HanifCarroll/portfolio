@@ -66,33 +66,32 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 
 ## Current Project Map
 
-`bun run videos:list` is the live machine-readable inventory. The current 21 mappings are:
+`bun run videos:list` is the live machine-readable inventory. The current 20 mappings are:
 
-| Project                                                | Slug                               | Family            | Timing     | Duration |
-| ------------------------------------------------------ | ---------------------------------- | ----------------- | ---------- | -------: |
-| Acquire                                                | `acquire`                          | `system-proof`    | `standard` |      44s |
-| Agent Recall                                           | `agent-recall`                     | `system-proof`    | `standard` |      44s |
-| Apartment Finder                                       | `apartment-finder`                 | `product-journey` | `standard` |      38s |
-| BA Eventos                                             | `ba-eventos`                       | `product-journey` | `short`    |      34s |
-| Casa Elaria                                            | `casa-elaria`                      | `product-journey` | `loop`     |      23s |
-| Casamo                                                 | `casamo`                           | `product-journey` | `standard` |      44s |
-| Codex Telegram Bridge                                  | `codex-telegram-bridge`            | `system-proof`    | `standard` |      46s |
-| Desarmadero La Torre                                   | `desarmadero-la-torre`             | `product-journey` | `loop`     |      23s |
-| Desarmadero Operations Prototype                       | `desarmadero-operations-prototype` | `system-proof`    | `standard` |      47s |
-| Genrupt                                                | `genrupt`                          | `system-proof`    | `standard` |      47s |
-| Helping a Health Services Startup Show Up in AI Search | `health-ai-search-audit`           | `system-proof`    | `standard` |      44s |
-| Job Application Assistant                              | `job-application-assistant`        | `product-journey` | `standard` |      43s |
-| HablaBA                                                | `language-exchange`                | `product-journey` | `short`    |      32s |
-| LinkedIn Tools                                         | `linkedin-tools`                   | `system-proof`    | `standard` |      47s |
-| Making a Skincare Store Easier to Shop                 | `online-store-conversion-review`   | `system-proof`    | `standard` |      44s |
-| Maximo Interiorismo                                    | `maximo-interiorismo`              | `visual-showcase` | `loop`     |      20s |
-| Mucho Hangouts                                         | `mucho-hangouts`                   | `system-proof`    | `short`    |      32s |
-| Palabruno                                              | `palabruno`                        | `product-journey` | `standard` |      42s |
-| Product Usage Scoring & Routing                        | `product-usage-scoring-routing`    | `system-proof`    | `standard` |  40.639s |
-| Redwriter Comics                                       | `redwriter-comics`                 | `visual-showcase` | `loop`     |    18.5s |
-| Vox Prismatic                                          | `vox-prismatic`                    | `product-journey` | `short`    |      35s |
+| Project                                | Slug                               | Family            | Timing     | Duration |
+| -------------------------------------- | ---------------------------------- | ----------------- | ---------- | -------: |
+| Acquire                                | `acquire`                          | `system-proof`    | `standard` |      44s |
+| Agent Recall                           | `agent-recall`                     | `system-proof`    | `standard` |      44s |
+| Apartment Finder                       | `apartment-finder`                 | `product-journey` | `standard` |      38s |
+| BA Eventos                             | `ba-eventos`                       | `product-journey` | `short`    |      34s |
+| Casa Elaria                            | `casa-elaria`                      | `product-journey` | `loop`     |      23s |
+| Casamo                                 | `casamo`                           | `product-journey` | `standard` |      44s |
+| Codex Telegram Bridge                  | `codex-telegram-bridge`            | `system-proof`    | `standard` |      46s |
+| Desarmadero La Torre                   | `desarmadero-la-torre`             | `product-journey` | `loop`     |      23s |
+| Desarmadero Operations Prototype       | `desarmadero-operations-prototype` | `system-proof`    | `standard` |      47s |
+| Genrupt                                | `genrupt`                          | `system-proof`    | `standard` |      47s |
+| Job Application Assistant              | `job-application-assistant`        | `product-journey` | `standard` |      43s |
+| HablaBA                                | `language-exchange`                | `product-journey` | `short`    |      32s |
+| LinkedIn Tools                         | `linkedin-tools`                   | `system-proof`    | `standard` |      47s |
+| Making a Skincare Store Easier to Shop | `online-store-conversion-review`   | `system-proof`    | `standard` |      44s |
+| Maximo Interiorismo                    | `maximo-interiorismo`              | `visual-showcase` | `loop`     |      20s |
+| Mucho Hangouts                         | `mucho-hangouts`                   | `system-proof`    | `short`    |      32s |
+| Palabruno                              | `palabruno`                        | `product-journey` | `standard` |      42s |
+| Product Usage Scoring & Routing        | `product-usage-scoring-routing`    | `system-proof`    | `standard` |  40.639s |
+| Redwriter Comics                       | `redwriter-comics`                 | `visual-showcase` | `loop`     |    18.5s |
+| Vox Prismatic                          | `vox-prismatic`                    | `product-journey` | `short`    |      35s |
 
-The two audit projects are full members of the system, not special-case pages. Their public evidence and privacy boundaries are declared in their manifests like every other project.
+The remaining audit project is a full member of the system. Its public evidence and privacy boundaries are declared in its manifest like every other project.
 
 ## Manifest Contract
 

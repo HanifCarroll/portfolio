@@ -291,24 +291,6 @@ test("generated HTML renders only explicit manifest copy", async (context) => {
   assert.equal((source.match(/>Acquire<\/span>/g) ?? []).length, 1);
 });
 
-test("source-backed stats keep their canonical status role through HTML and reporting", async (context) => {
-  const outputDir = join(generatedVideosDir, ".test-status-role");
-  context.after(() => rm(outputDir, { recursive: true, force: true }));
-  await generateProject("health-ai-search-audit", { outputDir });
-  const source = await readFile(join(outputDir, "compositions/03-search-coverage.html"), "utf8");
-  const plan = JSON.parse(await readFile(join(outputDir, "generation-plan.json"), "utf8"));
-  assert.match(source, /<strong data-text-role="status">74<\/strong>/);
-  assert.match(source, /<span data-text-role="status">search situations<\/span>/);
-  assert.deepEqual(
-    plan.scenes[2].editorial.textElements.map(({ path, role }) => ({ path, role })),
-    [
-      { path: "headline", role: "primary" },
-      { path: "stat.value", role: "status" },
-      { path: "stat.label", role: "status" },
-    ],
-  );
-});
-
 test("labels require a semantic role", async () => {
   const manifest = structuredClone(await loadManifest("acquire"));
   manifest.scenes[0].labels = [{ title: "Source", body: "Public record" }];

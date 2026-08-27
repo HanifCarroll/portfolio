@@ -36,7 +36,7 @@ Codex Telegram Bridge helps a remote Codex user continue the right thread from T
 
 ## Viewer Takeaway
 
-This is a controlled remote continuation product that turns a waiting desktop prompt into a safe routed reply.
+Codex Telegram Bridge routes remote replies to the right local thread while local controls retain approvals and ownership.
 
 ## Language Rules
 

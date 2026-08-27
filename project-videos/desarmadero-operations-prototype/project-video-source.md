@@ -146,8 +146,7 @@ Visual source: native handoff rail.
 On-screen text:
 
 ```text
-Every handoff had to stay aligned.
-Sale, payment, assignment, and yard location.
+Sales, payment, assignment, and yard location had to stay aligned.
 ```
 
 Narration: none.
@@ -160,7 +159,7 @@ Asset path: built natively in HyperFrames.
 
 Motion notes: connected role cards assemble along a rail; one warning marker resolves into alignment.
 
-Reading-speed check: `12` words over `6.5s` = `111 WPM`.
+Reading-speed check: `10` words over `6.5s` = `92 WPM`.
 
 ### Scene 3: Solution
 
@@ -200,7 +199,7 @@ Visual source: native role-surface rail plus cropped counter-sales screenshot.
 On-screen text:
 
 ```text
-The workflow follows the yard.
+Each yard role sees the same job move forward.
 Seller, cash desk, manager, and dismantler each see their part.
 ```
 
@@ -214,7 +213,7 @@ Asset path: `assets/redacted/desarmadero-operations-ventas.png`
 
 Motion notes: four role cards enter in order; payment gate locks before work assignment appears.
 
-Reading-speed check: `15` words over `6.5s` = `138 WPM`.
+Reading-speed check: `18` words over `6.5s` = `166 WPM`.
 
 ### Scene 5: Result
 
@@ -294,7 +293,7 @@ Final text that may appear in the video. Keep this section short and plain. The 
 | Scene | Text                                                                                            | Word count | Duration | WPM |
 | ----- | ----------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
 | 1     | The yard ran on paper and memory. Sales, payments, sheets, messages, and locations lived apart. |         15 |     6.5s | 138 |
-| 2     | Every handoff had to stay aligned. Sale, payment, assignment, and yard location.                |         12 |     6.5s | 111 |
+| 2     | Sales, payment, assignment, and yard location had to stay aligned.                              |         10 |     6.5s |  92 |
 | 3     | One discovery call became a prototype. The client could click through the real operation.       |         14 |     6.5s | 129 |
 | 4     | The workflow follows the yard. Seller, cash desk, manager, and dismantler each see their part.  |         15 |     6.5s | 138 |
 | 5     | The map replaced memory. 301 yard positions became searchable by plate.                         |         11 |     6.5s | 102 |

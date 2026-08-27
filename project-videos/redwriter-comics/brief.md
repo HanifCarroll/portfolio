@@ -12,7 +12,7 @@ Story mode: Short demo
 
 One-sentence job: Redwriter Comics turns scattered public artwork into one professional portfolio surface for editorial review and commission inquiries.
 
-Viewer takeaway: This is a visual launch-site build that makes a comic artist easier to review and commission.
+Viewer takeaway: Redwriter Comics gives the artist one professional portfolio for editorial review and commission inquiries.
 
 Plain story:
 

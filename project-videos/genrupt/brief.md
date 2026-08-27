@@ -12,7 +12,7 @@ Story mode: Plain overview with visible product proof
 
 One-sentence job: Genrupt turns AI media generation into a commercial Amazon seller workflow platform with paid-team foundations, recoverable jobs, and safe agent access.
 
-Viewer takeaway: This is production AI systems work that made a fast-moving product commercially operable for seller teams.
+Viewer takeaway: Genrupt connects AI media tools, billing, credits, and long-running work in one platform for paying seller teams.
 
 Plain story:
 

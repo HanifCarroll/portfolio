@@ -36,7 +36,7 @@ Acquire turns scattered opportunity tracking into one governed local workflow fo
 
 ## Viewer Takeaway
 
-This is a working operating system for a messy business workflow, not a generic productivity dashboard.
+Acquire keeps opportunities, next actions, reviews, and evidence in one local workflow.
 
 ## Language Rules
 

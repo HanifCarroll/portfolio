@@ -34,7 +34,7 @@ Job Application Assistant turns a job posting into a reviewed draft, saved PDF, 
 
 ## Viewer Takeaway
 
-This is a small product that makes a real job-search workflow more organized.
+Job Application Assistant keeps each application, draft, PDF, and status in one local workflow.
 
 ## Language Rules
 
@@ -138,13 +138,13 @@ Visual source: full product surface.
 On-screen text:
 
 ```text
-I built one local workflow.
+One local workflow connects each application.
 Review the job. Draft the letter. Save the record.
 ```
 
 Duration: `6.5s`
 
-Reading-speed check: `13` words over `6.5s` = `120 WPM`.
+Reading-speed check: `15` words over `6.5s` = `138 WPM`.
 
 ### Scene 4: How It Works
 
@@ -157,13 +157,13 @@ Visual source: four connected product action cards.
 On-screen text:
 
 ```text
-The app keeps each step connected.
+Drafts, PDFs, and status stay with the application.
 Review. Draft. Export. Track.
 ```
 
 Duration: `6s`
 
-Reading-speed check: `10` words over `6s` = `100 WPM`.
+Reading-speed check: `12` words over `6s` = `120 WPM`.
 
 ### Scene 5: The Result
 
@@ -224,15 +224,15 @@ Reading-speed check: `8` words over `3s` = `160 WPM`; acceptable because the pro
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                     | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart. |         13 |       6s | 130 |
-| 2     | It was easy to lose the thread. What did I send? Did I already apply?                    |         13 |     6.5s | 120 |
-| 3     | I built one local workflow. Review the job. Draft the letter. Save the record.           |         13 |     6.5s | 120 |
-| 4     | The app keeps each step connected. Review. Draft. Export. Track.                         |         10 |       6s | 100 |
-| 5     | Every application gets a clear record. Draft, PDF, status, and history stay together.    |         13 |     6.5s | 120 |
-| 6     | This is more than a cover-letter writer. It turns a messy workflow into a product.       |         15 |     6.5s | 138 |
-| End   | Job Application Assistant. Clear application records.                                    |          6 |       3s | 120 |
+| Scene | Text                                                                                             | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------------------ | ---------: | -------: | --: |
+| 1     | Applications were scattered. Job posts, notes, drafts, PDFs, and follow-ups lived apart.         |         13 |       6s | 130 |
+| 2     | It was easy to lose the thread. What did I send? Did I already apply?                            |         13 |     6.5s | 120 |
+| 3     | One local workflow connects each application. Review the job. Draft the letter. Save the record. |         15 |     6.5s | 138 |
+| 4     | Drafts, PDFs, and status stay with the application. Review. Draft. Export. Track.                |         12 |       6s | 120 |
+| 5     | Every application gets a clear record. Draft, PDF, status, and history stay together.            |         13 |     6.5s | 120 |
+| 6     | This is more than a cover-letter writer. It turns a messy workflow into a product.               |         15 |     6.5s | 138 |
+| End   | Job Application Assistant. Clear application records.                                            |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -316,7 +316,7 @@ Required transitions:
 
 Thumbnail frame:
 
-- Scene 3 after product surface appears, with the headline `I built one local workflow.`
+- Scene 3 after product surface appears, with the headline `One local workflow connects each application.`
 
 ## Acceptance Checklist
 

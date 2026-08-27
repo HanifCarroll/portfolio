@@ -36,7 +36,7 @@ Apartment Finder turns noisy rental listing data into an evidence-backed washer 
 
 ## Viewer Takeaway
 
-This is an AI product workflow that turns messy listing information into a clearer apartment decision.
+Apartment Finder shows which listings likely have an in-unit washer and keeps the evidence visible.
 
 ## Language Rules
 

@@ -12,7 +12,7 @@ Story mode: Short demo
 
 One-sentence job: Casa Elaria tested whether visitors would act like buyers before the founders spent on inventory.
 
-Viewer takeaway: This is a focused validation build that turned a product idea into a demand signal.
+Viewer takeaway: Casa Elaria used a storefront test to measure visitor interest before buying inventory.
 
 Plain story:
 

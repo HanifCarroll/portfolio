@@ -36,7 +36,7 @@ Casa Elaria tested whether visitors would act like buyers before the founders sp
 
 ## Viewer Takeaway
 
-This is a focused validation build that turned a product idea into a demand signal.
+Casa Elaria used a storefront test to measure visitor interest before buying inventory.
 
 ## Language Rules
 
