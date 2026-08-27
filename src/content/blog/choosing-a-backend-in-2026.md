@@ -7,17 +7,17 @@ tags: ["backend", "supabase", "convex", "insforge", "comparison"]
 ctaVariant: general
 ---
 
-You need a backend. Supabase is the obvious choice. Everyone uses it, and for good reason.
+You need a backend. Supabase was the default I already knew.
 
-I just built an AI-powered events app with Supabase. I enjoyed using it. But I kept hearing developers rave about Convex and InsForge. It was the kind of love you don't usually see for backend tools.
+I had just built an AI-powered events app with Supabase and enjoyed using it. But I kept hearing developers rave about Convex and InsForge.
 
 So I got curious. What's the hype about? When would you actually choose one of these over Supabase?
 
-This post breaks down all three so you can pick the right one for your project.
+I compared all three around the constraints that usually decide a backend: data model, real-time behavior, maturity, and development workflow.
 
 ---
 
-## TL;DR
+## The short version
 
 - **Supabase** is the safe, mature choice: PostgreSQL foundation, largest community, battle-tested at scale
 - **Convex** is best when real-time is your core feature, not an add-on. Queries auto-update without setup
@@ -25,9 +25,9 @@ This post breaks down all three so you can pick the right one for your project.
 - All three are open source and self-hostable
 - **My recommendation:** Start with your most important constraint (SQL? Real-time? AI workflow?) and let that guide your choice
 
-## Who This Article Is For
+## Who this is for
 
-Before we dive in, let me be clear about who this is for:
+This comparison is for:
 
 - **Indie devs and solo founders** choosing a stack for their next side project
 - **Startup CTOs** evaluating backends for a new product
@@ -36,9 +36,9 @@ Before we dive in, let me be clear about who this is for:
 
 If you're on an enterprise team with dedicated DevOps, or you need on-prem compliance (HIPAA, government), this comparison probably isn't for you.
 
-## The Three Contenders
+## The three contenders
 
-Here's the quick overview before we go deep:
+The quick overview:
 
 |                 | **Supabase**            | **Convex**                   | **InsForge**                                  |
 | --------------- | ----------------------- | ---------------------------- | --------------------------------------------- |
@@ -48,13 +48,11 @@ Here's the quick overview before we go deep:
 | **Open source** | Yes                     | Yes                          | Yes                                           |
 | **Best for**    | CRUD apps, SQL fans     | Collaborative/real-time apps | AI-driven development with Cursor/Claude Code |
 
-Now let's break down each one.
-
-## Supabase: The Mature Choice
+## Supabase: the mature choice
 
 Supabase has become the default backend for a reason. It gives you PostgreSQL with a nice UI, auth, storage, and real-time capabilities—all in one dashboard.
 
-### What It Does Well
+### What it does well
 
 **PostgreSQL foundation.** You get SQL, ACID transactions, joins, and the entire Postgres extension ecosystem. If you know SQL, you're productive immediately.
 
@@ -66,7 +64,7 @@ Supabase has become the default backend for a reason. It gives you PostgreSQL wi
 
 **Self-hostable.** No vendor lock-in. If you outgrow the hosted version or need more control, you can run it yourself.
 
-### Where It Falls Short
+### Where it falls short
 
 **Shared responsibility model.** With Supabase, you're responsible for securing data access with Row Level Security policies, handling query performance with proper indexes, and managing schema migrations. It's powerful, but it's also more surface area for bugs.
 
@@ -80,7 +78,7 @@ Supabase has become the default backend for a reason. It gives you PostgreSQL wi
 
 **Assembly required.** Supabase gives you all the pieces, but it can feel like you're integrating separate tools rather than using one unified platform. Auth, database, storage, and real-time all work together, but they don't feel like one product the way some alternatives do.
 
-### My Experience Building BA Events
+### My experience building BA Events
 
 I used Supabase to build BA Events, an AI-powered app that helps people find events in Buenos Aires. Here's what I found:
 
@@ -90,13 +88,13 @@ I used Supabase to build BA Events, an AI-powered app that helps people find eve
 
 **Overall, it was smooth.** I went from zero to deployed MVP quickly. The SQL foundation made complex queries easy, and I never felt limited by the platform.
 
-## Convex: The Real-Time Native
+## Convex: real-time by default
 
 Convex takes a different approach. Instead of bolting real-time onto a traditional database, they built the entire system around reactivity from day one.
 
-### What It Does Well
+### What it does well
 
-**Real-time by default.** You don't enable real-time or set up websockets. Every query is a subscription that automatically updates when data changes. This isn't a feature—it's how the whole system works.
+**Real-time by default.** You don't enable real-time or set up websockets. Every query is already a live subscription that updates when data changes.
 
 ```typescript
 // This automatically updates when data changes
@@ -155,7 +153,7 @@ export const sendEmail = action({
 
 **Built-in AI/RAG support.** Convex has native vector search and RAG components. You can store embeddings, run semantic searches, and build AI features without integrating a separate vector database. According to Convex, 80% of apps built on their platform are AI applications, and the tooling reflects that focus.
 
-### Where It Falls Short
+### Where it falls short
 
 **Document store, not relational.** There's no SQL. If you're coming from Postgres and think in joins and foreign keys, Convex requires a mental shift. You model relationships differently.
 
@@ -167,7 +165,7 @@ export const sendEmail = action({
 
 **Smaller ecosystem.** Fewer tutorials, fewer Stack Overflow answers, fewer people who've hit your specific problem. The community is growing, but it's not Supabase-sized yet.
 
-### When Convex Shines
+### When Convex shines
 
 Convex is built for apps where real-time isn't a feature—it's the product:
 
@@ -179,15 +177,15 @@ Convex is built for apps where real-time isn't a feature—it's the product:
 
 If you're building a traditional CRUD app where real-time is nice-to-have, Convex might be overkill. But if your app's core value depends on live updates, Convex removes a lot of complexity.
 
-## InsForge: The Agent-Native Backend
+## InsForge: the agent-native backend
 
 InsForge is the newest player, launched in November 2025. But "AI-native" doesn't mean what you might think. It's not about AI features in your app. It's about letting AI agents control your backend infrastructure.
 
 ![InsForge homepage showing AI-native backend features](/blog/backend-comparison/insforge-homepage.png)
 
-### The Problem InsForge Solves
+### The problem InsForge solves
 
-Here's the insight behind InsForge: **coding is now the easy part.** With Cursor, Claude Code, or similar tools, you can build a working prototype in hours. But making it production-ready still requires manual work:
+InsForge starts from this claim: **coding is now the easy part.** With Cursor, Claude Code, or similar tools, you can build a working prototype in hours. But making it production-ready still requires manual work:
 
 - Switching tabs to open Supabase/Firebase dashboards
 - Copying API keys and pasting them into `.env` files
@@ -197,7 +195,7 @@ Here's the insight behind InsForge: **coding is now the easy part.** With Cursor
 
 AI agents can literally walk you through every step ("go to this URL, click that button, paste this key"), but they can't actually do it themselves. Existing platforms were built for humans clicking dashboards, not for agents making API calls.
 
-### What It Does Well
+### What it does well
 
 **MCP-first architecture.** InsForge exposes its entire backend through the Model Context Protocol (MCP). Your AI agent connects directly and can create tables, configure auth, manage storage, and deploy functions, all programmatically without you touching a dashboard.
 
@@ -219,9 +217,9 @@ No manual dashboard navigation. No copy-pasting API keys. The agent handles infr
 
 **Consistent, predictable APIs.** Every endpoint follows the same patterns with deterministic responses. This reduces AI hallucination. Agents learn the system once and generate correct code without extensive context.
 
-**RLS handled differently.** Supabase's Row Level Security is enabled by default, which causes queries to fail without policies. AI agents often struggle to debug RLS errors. InsForge takes a different approach to security that's more agent-friendly.
+**RLS handled differently.** Supabase's Row Level Security is enabled by default, which causes queries to fail without policies. I have not established how InsForge enforces per-row access, so I cannot compare its security model to Supabase RLS yet.
 
-### Where It Falls Short
+### Where it falls short
 
 **Very new.** Founded in July 2025 by ex-Amazon, Databricks, Meta, and TikTok engineers, with $1.5M in funding raised in 2025. The team is strong, but less battle-testing means more uncertainty.
 
@@ -231,7 +229,7 @@ No manual dashboard navigation. No copy-pasting API keys. The agent handles infr
 
 **Early documentation.** When you hit edge cases, you might be exploring uncharted territory. The community is small but growing.
 
-### When InsForge Shines
+### When InsForge shines
 
 InsForge makes sense when:
 
@@ -243,11 +241,11 @@ InsForge makes sense when:
 
 If you're not using AI coding tools, InsForge's main advantage disappears. You'd be better off with Supabase's mature dashboard. But if you live in Cursor or Claude Code, InsForge removes friction that other backends can't.
 
-## Code Comparison: See the Difference
+## Code comparison
 
-Let's look at the same tasks across all three platforms.
+Here are the same tasks across all three platforms.
 
-### Real-Time Data Subscription
+### Real-time data subscription
 
 **Supabase:**
 
@@ -284,7 +282,7 @@ const { data } = useInsForge("events", { realtime: true });
 
 ![Real-time data flow diagram comparing Supabase, Convex, and InsForge](/blog/backend-comparison/realtime-dataflow-diagram.jpg)
 
-### Creating a Record
+### Creating a record
 
 **Supabase:**
 
@@ -318,9 +316,9 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 // and it created the table, types, and API via MCP. No dashboard needed
 ```
 
-## Head-to-Head Comparison
+## Head-to-head comparison
 
-### Real-Time Capabilities
+### Real-time capabilities
 
 |                        | Supabase                | Convex                   | InsForge                  |
 | ---------------------- | ----------------------- | ------------------------ | ------------------------- |
@@ -329,7 +327,7 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 | **Latency under load** | 100-200ms p99           | Sub-50ms                 | Varies                    |
 | **Mental model**       | Events you subscribe to | Queries that auto-update | Standard real-time        |
 
-### Developer Experience
+### Developer experience
 
 |                    | Supabase               | Convex                    | InsForge              |
 | ------------------ | ---------------------- | ------------------------- | --------------------- |
@@ -339,7 +337,7 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 | **Documentation**  | Excellent              | Good                      | Growing               |
 | **Community size** | Large                  | Medium                    | Small                 |
 
-### Maturity and Risk
+### Maturity and risk
 
 |                      | Supabase          | Convex  | InsForge       |
 | -------------------- | ----------------- | ------- | -------------- |
@@ -350,9 +348,9 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 
 ![Comparison chart infographic - Supabase vs Convex vs InsForge](/blog/backend-comparison/comparison-chart.jpg)
 
-## Decision Framework: Choose X If...
+## Decision framework
 
-### Choose Supabase If:
+### Choose Supabase if:
 
 - You need SQL and relational data modeling
 - The Postgres ecosystem matters (extensions, tooling, familiarity)
@@ -361,7 +359,7 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 - You might need to self-host later
 - You're building a traditional CRUD application
 
-### Choose Convex If:
+### Choose Convex if:
 
 - Real-time is your app's core feature
 - You're building collaborative or multiplayer experiences
@@ -370,7 +368,7 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 - You're okay with a document store (no SQL)
 - You want your UI to "just update" when data changes
 
-### Choose InsForge If:
+### Choose InsForge if:
 
 - You live in **Cursor, Claude Code, or Windsurf** and hate switching to dashboards
 - You want your **AI agent to handle infrastructure**, not just generate code
@@ -379,9 +377,9 @@ await insforge.events.create({ name: "Concert", date: "2025-01-15" });
 - You're prototyping and can migrate to Supabase later if needed
 - You want to see what "agent-native" development actually feels like
 
-## What I'd Pick for My Next Project
+## What I'd pick for my next project
 
-I built BA Events with Supabase. Here's my honest take after shipping it:
+I built BA Events with Supabase. After shipping it:
 
 **What worked:** Auth was solid once configured. The SQL foundation made complex queries easy. I could write joins and aggregations without thinking twice. The community saved me hours when I hit edge cases.
 
@@ -391,7 +389,7 @@ If it's **real-time heavy** (chat, collaboration, live updates as a core feature
 
 If it's a **traditional CRUD app** with complex data relationships, I'd stick with **Supabase**. SQL is battle-tested, the ecosystem is huge, and the platform does what I need.
 
-If I'm **speed-running a prototype** with Claude Code and want my agent to handle everything (including infrastructure setup), I'd try **InsForge**. The MCP integration means I never leave my editor. It's early, but the "agent does everything" workflow is compelling enough to experiment with.
+If I'm **speed-running a prototype** with Claude Code and want my agent to handle everything (including infrastructure setup), I'd try **InsForge**. The MCP integration means I never leave my editor. It's early, but the "agent does everything" workflow is worth testing.
 
 There's no universal "best." The right choice depends on what you're building and how you work.
 
@@ -413,19 +411,9 @@ Only Supabase requires SQL knowledge. Convex uses TypeScript functions for all d
 
 All three are open source and self-hostable, which reduces lock-in risk. Supabase has the most mature self-hosting story. Convex open-sourced in early 2025. InsForge is also open source. Your biggest lock-in risk is the API/SDK patterns, not the infrastructure.
 
-## Conclusion
+## Try the constraint that matters
 
-The fact that we're comparing three strong backend options in 2026 is a win for developers. Five years ago, your choices were Firebase or build it yourself.
-
-Here's the summary:
-
-- **Supabase** is the safe, mature choice. PostgreSQL foundation, largest community, proven at scale.
-- **Convex** is the DX-focused choice for real-time apps. If live updates are central to your product, it removes significant complexity.
-- **InsForge** is the bet on agent-native development. If you want your AI coding assistant to control infrastructure (not just generate code), this is currently the only option built for that workflow.
-
-My suggestion: **try the free tier of each before committing.** Build a simple todo app or chat interface in all three. You'll know within a few hours which one fits your brain.
-
-Start with your most important constraint (real-time? SQL? AI workflow?) and let that guide your choice.
+Before committing, build the same small feature in the two options that best fit your main constraint. Test a relational query if SQL matters, a live view if real-time matters, or an infrastructure change if agent control matters. The difference will be clearer in a working feature than in another comparison table.
 
 ---
 

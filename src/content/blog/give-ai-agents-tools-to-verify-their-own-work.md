@@ -5,15 +5,11 @@ description: "The shift from reviewing AI-generated code to giving AI agents the
 ctaVariant: systemsBuild
 ---
 
-There's a debate happening right now about whether humans should review AI-generated code.
-
-One side says we need careful human oversight. The other side—which I think is winning—argues that if you're carefully reviewing every line of generated code, you're doing it wrong.
-
-Here's the reframe that changed how I work with Claude Code:
+The reframe that changed how I work with Claude Code:
 
 **Your job isn't to review AI's code. Your job is to give AI the tools to verify its own work.**
 
-## The Mental Model Shift
+## Change the feedback loop
 
 Think about how you'd onboard a new developer. You wouldn't stand over their shoulder reviewing every keystroke. You'd make sure they have access to:
 
@@ -27,7 +23,7 @@ Then you'd review their design decisions and test coverage—not their semicolon
 
 AI agents need the same thing. The faster they can verify their own work, the faster they can iterate to a working solution.
 
-## A Real Example: Debugging a Broken Scraper
+## Debugging a broken scraper
 
 Yesterday I was working with Claude Code on a web scraper that imports events from Meetup. The import was "working"—no errors—but producing garbage data. Every event had `venue: null`.
 
@@ -55,25 +51,25 @@ With logs accessible, Claude diagnosed the issue in one shot: the scraper was tr
 
 The fix? Add a venue enrichment step that fetches individual event pages. Claude found the issue, understood the root cause, and implemented the fix—all because it could see what was actually happening.
 
-## The Verification Loop Toolkit
+## Verification tools
 
-Logs are just one feedback loop. Here's the full toolkit I'm building out:
+Logs are one feedback loop. These are the others I'm building out:
 
 [Compare three browser automation options](/blog/browser-automation-tools-comparison-2026/) if you need to choose how an agent will inspect and use a browser.
 
-| Tool                                | What it answers             |
-| ----------------------------------- | --------------------------- |
-| **Logs**                            | "What happened?"            |
-| **Browser automation** (Playwriter) | "What does the user see?"   |
-| **Type checking**                   | "Is it structurally valid?" |
-| **Tests**                           | "Does it still work?"       |
-| **DevTools/Profiling**              | "Is it fast enough?"        |
+| Tool                   | What it answers             |
+| ---------------------- | --------------------------- |
+| **Logs**               | "What happened?"            |
+| **Browser automation** | "What does the user see?"   |
+| **Type checking**      | "Is it structurally valid?" |
+| **Tests**              | "Does it still work?"       |
+| **DevTools/Profiling** | "Is it fast enough?"        |
 
 Each of these is a feedback loop that lets AI verify its own work without waiting for you to manually check.
 
-The more loops you give it, the more autonomous it becomes.
+Each loop is one less time I have to paste output back into the chat.
 
-## What This Means in Practice
+## What this means in practice
 
 When I start a session with Claude Code now, I think about:
 
@@ -85,7 +81,7 @@ For the Meetup scraper, "working" meant events with venue data. The verification
 
 Claude could run the scraper, see the logs, understand the problem, and fix it—without me being the messenger.
 
-## The Bigger Picture
+## Review decisions, not keystrokes
 
 This is where I think AI-assisted development is heading. We're moving from:
 
@@ -95,16 +91,12 @@ To:
 
 > "Here are the tools to verify your work. Here's what success looks like. Go."
 
-You set the course. You define what success means. You give AI the instruments to measure progress. Then you get out of the way.
+I still review architecture decisions, test coverage, and security. I do not review every semicolon or log-line name.
 
-The code review happens at the design level—architecture decisions, test coverage, security considerations. Not at the implementation level.
-
-## What's Next
+## What I still need to learn
 
 I'm still figuring out the right patterns here. Some open questions:
 
 - What other feedback loops should AI agents have access to?
 - How do you balance autonomy with guardrails?
 - When does this approach break down?
-
-If you're experimenting with giving AI agents more verification tools, I'd love to hear what's working.

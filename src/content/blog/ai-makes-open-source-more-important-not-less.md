@@ -11,7 +11,7 @@ tags:
   - software architecture
 ---
 
-AI has made it easier than ever to produce code.
+AI has made it cheaper and faster to produce code.
 
 In theory, we should all be writing our own perfectly crafted libraries, custom-made for every use case. But that isn't what happens. We still use the same libraries as before, along with newer ones that have proven useful.
 
@@ -31,8 +31,8 @@ As software gets faster to make, we become more ambitious about what we want to 
 
 LiveKit is a good example. It gives developers open-source components for apps that need multi-user conferencing. Some components are primitive, while others are more opinionated. If your use case is standard, the opinionated components save time. If your use case is more specific, the primitives give you room to build your own thing.
 
-That balance feels like the future to me.
+That's the split I want: use the opinionated parts when the job is standard, then drop to primitives when it isn't.
 
 Some people will stop paying for SaaS products because they can make their own version. Similarly, some builders will make their own libraries for fun, or because existing tools genuinely do not work for them.
 
-But for the majority of software projects, the right move will still be to rely on well-made open-source software. AI does not remove the need for shared foundations. It makes those foundations more valuable.
+For most projects, I still start from maintained open-source software and spend the saved time on the part that is actually unique.

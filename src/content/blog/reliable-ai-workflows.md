@@ -30,7 +30,7 @@ The tools had done what the procedure allowed them to do. The failure was in the
 
 The workflow should have stopped after one complete video. I needed to decide whether the story worked, whether the pacing felt right, whether the captions were readable, and whether the overall treatment was worth repeating. Only then did it make sense to produce the remaining clips or prepare anything for multiple platforms.
 
-The replacement procedure is much simpler.
+The replacement procedure is simpler.
 
 AI reviews the complete recording and recommends a small set of self-contained stories. I choose the stories and name one pilot. The system produces that pilot and stops. I review the exact finished video. If I approve it, its general editing and caption style becomes the starting point for the remaining clips. If I don't, we revise one video instead of revising a batch.
 

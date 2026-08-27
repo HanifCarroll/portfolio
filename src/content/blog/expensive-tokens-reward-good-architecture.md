@@ -17,17 +17,15 @@ Recently, I started A/B testing models across the agents in my workflow: differe
 
 It started as a cost exercise. Pretty quickly, it turned into something else: a stress test of how well my system was designed in the first place.
 
-Anthropic's pricing has tightened. The Codex 2x promos are ending. The math on what a serious day of agentic coding costs at list price is enough to make your jaw drop. Even Uber's COO has said it is getting harder to justify the money spent on AI "tokenmaxxing."
+The experiments made one thing clear: a workflow that depends on the most expensive model for every step is fragile whenever pricing, limits, or promotions change.
 
-The subsidies that made the last year feel free are running out.
-
-Everyone is starting to ask, "Can I still afford this?" I think that's the wrong question.
+"Can I still afford this?" is the wrong question.
 
 The question I'd ask is whether your workflow treats models as components or as the whole system.
 
 If one frontier model is doing the heavy lifting end to end, you're exposed. You're at the mercy of price increases, deprecations, rate limits, or whatever comes next. If models are interchangeable parts inside a system you actually control, the cost of any individual one matters a lot less because you can route around it.
 
-## Architecture Is Cost Control
+## Architecture is cost control
 
 A tangled codebase forces you to use the smartest possible model on every task, because every task touches everything.
 
@@ -39,7 +37,7 @@ That fast signal takes pressure off the model to get it right the first time.
 
 Which is to say SOLID, good types, and clean interfaces matter again in a way they didn't when you were the only one writing the code. The principles that let you onboard a junior engineer onto a codebase are the same ones that let a smaller open model handle a ticket.
 
-## Planning Only Works When Boundaries Exist
+## Planning only works when boundaries exist
 
 I don't write big specs upfront. I'm a prototyper. But I do invest in good architecture.
 
@@ -51,7 +49,7 @@ If your codebase is one big implicit dependency graph, model routing does not bu
 
 If the system has seams, the planner can route work to them. Mechanical edits can go to smaller models. Ambiguous design calls can go to heavier reasoning. Review can be separate from implementation. The system starts to look less like a single expensive conversation and more like an engineering pipeline.
 
-## Measure Instead of Guessing
+## Measure instead of guessing
 
 Some of what I've found from the A/B tests has been genuinely surprising.
 
@@ -61,7 +59,7 @@ The only way to know is to measure, and the only way to measure is to have a sys
 
 That means treating model choice as a runtime decision, not a belief system. Planner, implementer, reviewer, scout, and mechanical editor do not all need the same model. They need the model that is good enough for that role, with enough feedback around it to catch mistakes quickly.
 
-## Premium Tokens Still Matter
+## Premium tokens still matter
 
 None of this is a finished playbook. Frontier models still matter for the hard reasoning, and I'm not pretending swapping in an open model is free.
 

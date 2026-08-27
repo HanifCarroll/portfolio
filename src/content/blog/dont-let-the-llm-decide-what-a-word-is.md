@@ -11,7 +11,7 @@ I'm building a reading app for Spanish learners. You open a story, tap any word,
 
 "Se lo dije" is three written words and one thought. "Había viajado" is two written words, but only the first one is what a learner usually wants explained. "Cambio climático" is two words that mean one thing. Get those boundaries wrong and the app feels broken even when every card, read alone, is correct.
 
-I built the first version of this tap-grouping logic the way most people would in 2026: hand the Spanish text to an LLM and let it figure everything out. That was the mistake.
+I built the first version of this tap-grouping logic by handing the Spanish text to an LLM and letting it figure everything out. That was the mistake.
 
 ## The bug that gave it away
 

@@ -1,6 +1,6 @@
 ---
-title: "Browser Automation for AI Agents: Chrome vs Playwriter vs Agent-Browser"
-seoTitle: "Chrome vs Playwriter vs Agent-Browser: 2026 Test"
+title: "Browser Automation for AI Agents: ChatGPT Chrome vs Playwriter vs Agent-Browser"
+seoTitle: "ChatGPT Chrome vs Playwriter vs Agent-Browser: 2026 Test"
 description: "A practical comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, automated scripts, and AI-assisted tasks."
 pubDate: 2026-01-16
 updatedDate: 2026-07-27
@@ -120,4 +120,4 @@ agent-browser opens a separate browser and does not share your sign-ins by defau
 
 ## What I use now
 
-I used to use Playwriter for every browser task. Now I almost always use the ChatGPT Chrome Extension instead. I call `@Chrome` from the conversation, which lets the agent work in the Chrome tabs and signed-in session I already have open.
+I used to use Playwriter for every browser task. Now I almost always use the ChatGPT Chrome Extension. I call `@Chrome` from the conversation, which lets the agent work in the Chrome tabs and signed-in session I already have open.

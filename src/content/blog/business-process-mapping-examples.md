@@ -56,7 +56,7 @@ Map a workflow when the same operational problem keeps returning but the cause i
 
 Instead of starting with the whole company, pick one recurring workflow with a visible trigger and outcome: request to scheduled job, lead to signed proposal, purchase request to approved order, or completed work to invoice.
 
-[Atlassian's current process-mapping guidance](https://www.atlassian.com/work-management/project-management/process-mapping) recommends interviewing the people who actually perform the work so the map reflects the real process rather than the official version. That distinction is important. A map of the written procedure will not expose the private spreadsheet, chat message, or memory-based exception that keeps the operation moving.
+[Atlassian's current process-mapping guidance](https://www.atlassian.com/work-management/project-management/process-mapping) recommends interviewing the people who actually perform the work so the map reflects the real process rather than the official version. A map of the written procedure will not expose the private spreadsheet, chat message, or memory-based exception that keeps the operation moving.
 
 ## Business process mapping example: the current service workflow
 
@@ -175,4 +175,3 @@ In the [Desarmadero Operations Prototype](/projects/desarmadero-operations-proto
 The prototype gave the client something concrete to review before deciding the scope of a full build.
 
 If you want to feel the difference between the two workflows, [run the One Tuesday project](/projects/one-tuesday/). It puts the fictional company through the same demand under its old and redesigned workflows.
-
