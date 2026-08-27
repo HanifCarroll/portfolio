@@ -11,7 +11,7 @@ Current contract versions:
 - Editorial tokenizer: `whitespace-v1`
 - HyperFrames: `0.7.46`
 - Generation model: `gpt-5.6-sol`
-- Generation skill: `general-video` at revision `49f5216832cb8e91`
+- Generation skill: `general-video` at revision `16898c02677d09bc`
 - Output: `1920x1080`, `30fps`, silent MP4
 
 ## Architecture
@@ -88,7 +88,7 @@ Use when real visual work is the primary proof. The normal arc is need or opport
 | Maximo Interiorismo                                    | `maximo-interiorismo`              | `visual-showcase` | `loop`     |      20s |
 | Mucho Hangouts                                         | `mucho-hangouts`                   | `system-proof`    | `short`    |      32s |
 | Palabruno                                              | `palabruno`                        | `product-journey` | `standard` |      42s |
-| Product Usage Scoring & Routing                        | `product-usage-scoring-routing`    | `system-proof`    | `standard` | 40.639s |
+| Product Usage Scoring & Routing                        | `product-usage-scoring-routing`    | `system-proof`    | `standard` |  40.639s |
 | Redwriter Comics                                       | `redwriter-comics`                 | `visual-showcase` | `loop`     |    18.5s |
 | Vox Prismatic                                          | `vox-prismatic`                    | `product-journey` | `short`    |      35s |
 
@@ -382,9 +382,9 @@ Do not hand-edit `overview.mp4`, derived previews, posters, or `generation.json`
 
 Keep `hyperframes` and `@hyperframes/producer` pinned to the same version.
 
-Generation also enforces `general-video` revision `49f5216832cb8e91` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
+Generation also enforces `general-video` revision `16898c02677d09bc` before producing compositions. A skill update must be reviewed and accepted deliberately; do not bypass the mismatch.
 
-The `49f5216832cb8e91` revision preserves the specific-edit workflow and the final `hyperframes check` plus preview-approval gates while clarifying current source adapters and production discipline. It does not alter this repository's manifest generator or renderer, so adopting it does not require a template-version change.
+The `16898c02677d09bc` revision preserves the specific-edit workflow and the final `hyperframes check` plus preview-approval gates, keeps small multi-scene builds inline, and clarifies current source adapters and production discipline. It does not alter this repository's manifest generator or renderer, so adopting it does not require a template-version change.
 
 `hyperframes skills check --json` exits `1` when any installed skill has an update available. The project wrapper accepts that status only long enough to parse the report, then still requires the installed `general-video` hash to match the repository pin above. Unrelated update notices must not block reproducible generation, and a mismatched generation skill must still fail.
 

@@ -14,58 +14,48 @@ import genruptCreativeVariations from "../../assets/img/projects/genrupt/genrupt
 
 export const shippedRows = [
   {
-    label: "Paid operations",
-    title: "Seller teams could become paying accounts.",
-    body: "Subscriptions, organization billing, credit accounting, and automatic payment updates gave the product a cleaner path to paid usage.",
+    label: "Paid accounts",
+    title: "Seller teams could subscribe and buy credits.",
+    body: "Organization billing, credit accounting, and automatic payment updates removed the need to reconcile every change by hand.",
   },
   {
-    label: "Controlled access",
-    title: "Agents could run approved workflows safely.",
-    body: "A permissioned tool catalog let agents use product capabilities without exposing the product's internal routes or job mechanics.",
+    label: "Agent permissions",
+    title: "External AI agents could only run approved actions.",
+    body: "A permissioned tool catalog exposed selected seller workflows without exposing internal routes or job mechanics.",
   },
   {
-    label: "Reliable workflows",
-    title: "Long-running AI work became easier to trust.",
-    body: "Clear status, recoverable operations, and safer retries reduced the need to manually babysit generation and seller workflows.",
-  },
-  {
-    label: "Ongoing delivery",
-    title: "New seller workflows became easier to add.",
-    body: "Clearer ownership across the product reduced the fragility that had built up around earlier demo-stage features.",
+    label: "Long-running jobs",
+    title: "Jobs could retry without drifting credits or billing state.",
+    body: "Image, video, storyboard, and seller jobs showed progress and could recover after failures.",
   },
 ];
 
-<CaseSection title="A working AI demo needed dependable paid operations">
-  Genrupt had a working AI creative product for Amazon sellers, but a working demo was not yet a dependable paid operation.
+<CaseSection title="Genrupt could generate media, but seller teams could not yet subscribe">
+  Genrupt already generated AI images and video for Amazon sellers. To support paying teams, it also needed organization accounts, subscriptions, credit accounting, jobs that could retry without drifting credits or billing state, and a way for external AI agents to run only approved actions.
 
-    I worked on the commercial and operational systems required to support the first 200 paying customers: team accounts, billing, cost controls, reliable long-running workflows, and controlled agent access.
-
-</CaseSection>
-
-<CaseSection title="Paid seller teams needed more than generation">
-  Genrupt was expanding from AI image and video generation into Amazon seller workflows: market analysis, review scraping, variations, listing builder, A+ content, and experimentation.
-
-    That expansion made the product more valuable, but it also exposed the limits of the MVP. Paid seller teams needed subscriptions, organization billing, credit accounting, reliable background work, and clearer recovery paths when long-running AI jobs failed.
-
-    As the product grew, app screens became only one way to use it. External agents and internal chat also needed a safe way to run approved operations.
+    I worked alongside the founder on those systems and the seller workflows they carried, including market analysis, review scraping, listing generation, and A+ content.
 
 </CaseSection>
 
-<CaseSection title="I built the commercial foundation before expanding workflows">
-  <DecisionBlock title="Move from demo-stage generation to seller-team operations.">
-    I helped add the foundations that make a product billable: organizations, subscriptions, credits, safer job handling, and clear ownership for each workflow.
+<CaseSection title="I built account and job controls before adding more workflows">
+  <DecisionBlock title="Charge teams and keep credits in sync.">
+    Alongside the founder, I shipped organization accounts, subscriptions, credit accounting, and automatic payment updates. Seller teams could pay without staff reconciling every change by hand.
   </DecisionBlock>
 
-    <DecisionBlock title="Give agents a controlled operating surface.">
-      Instead of exposing the whole product, the agent surface offered a small set of allowed capabilities with clear status and recovery paths.
+    <DecisionBlock title="Let failed jobs retry without changing what a customer owed.">
+      Image, video, storyboard, and seller jobs can run for minutes. I added status, retry, and recovery paths that kept each job connected to its credits and billing state.
+    </DecisionBlock>
+
+    <DecisionBlock title="Expose approved actions to external AI agents.">
+      Paid users could connect an external AI agent through Model Context Protocol (MCP) to a short list of seller actions without exposing app routes, IDs, or background job mechanics.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="The product could support paid seller teams" media>
-  The product moved beyond a demo-stage generator into a more operable seller workflow platform with project, account, billing, and workflow surfaces for paid seller teams.
+<CaseSection title="Seller workflows ran on the same account and job systems" media>
+  The gallery shows creative variations, batch editing, and A+ content. These were not isolated demos; they ran on the same account, billing, credit, and background-job systems as the rest of the product.
 
-    I helped ship subscriptions, organization billing, credits, and automatic payment updates, then connected that foundation to long-running AI and Amazon seller workflows.
+    I worked on both the seller workflows and the systems that charged customers and recovered failed jobs.
 
     <div class="genrupt-screen-gallery genrupt-screen-gallery--feature">
         <ImagePlate image={genruptCreativeVariations} alt="Genrupt creative production workflow for generating, reviewing, rerunning, and editing product variations." />
@@ -75,34 +65,17 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="I made paid workflows easier to operate">
-  <DecisionBlock title="Turned billing and credits into a commercial foundation.">
-    I helped add subscriptions, organization billing, credit accounting, automatic payment updates, and safer cost controls so paid seller teams could use the product without the business relying on manual cleanup.
-  </DecisionBlock>
-
-    <DecisionBlock title="Made long-running AI workflows easier to trust.">
-      Image, video, storyboard, and seller-workflow jobs needed to survive retries and show clear progress. Recoverable operations and safer retries made those flows more dependable.
-    </DecisionBlock>
-
-    <DecisionBlock title="Opened approved workflows to external agents.">
-      Paid users could connect agents and run selected seller workflows through a small list of approved actions instead of exposing the entire product.
-    </DecisionBlock>
-
-</CaseSection>
-
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>The commercial systems supported the next stage</h2>
+  <h2>What changed for paid seller teams</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
-      Genrupt became ready for paid seller teams because billing, reliable AI workflows, and agent
-      access shared one product foundation. That foundation helped support the first 200 paying
-      customers.
+      Together, this work helped Genrupt support its first 200 paying customers.
     </ProofRows>
   </div>
 </section>
 
-<CaseSection title="Seller workflows connect billing, agents, and production" media>
-  The clearest result is the shift from isolated generation into seller-facing workflows with the surrounding systems needed for paid usage.
+<CaseSection title="External AI agents used the same approved seller workflows" media>
+  Paid users could run market analysis and A+ content workflows from the app or through an external AI agent. The agent could only call the actions exposed through the permissioned tool catalog.
 
     <div class="genrupt-screen-gallery">
         <ImagePlate image={genruptAgentAccess} alt="Genrupt Agent Access diagram connecting model providers and execution systems." />

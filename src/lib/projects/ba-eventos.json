@@ -1,12 +1,12 @@
 {
   "slug": "ba-eventos",
-  "title": "AI-Powered Event Discovery for Buenos Aires",
-  "description": "Uses an AI agent to collect Buenos Aires event listings into one search experience for finding plans by intent, location, and timing.",
+  "title": "Buenos Aires Event Search Built on Real Local Data",
+  "description": "Turns scattered Buenos Aires event listings into one search experience for finding plans by mood, neighborhood, and time.",
   "proofType": "experiment",
   "client": "Personal Project",
   "service": "Product Engineering Prototype",
   "detailVariant": "workflow",
-  "role": "Solo Product & AI Systems Builder",
+  "role": "Solo Product Engineer",
   "category": "product",
   "track": "ai_systems",
   "year": "2025-2026",
@@ -15,30 +15,31 @@
   "technologies": [
     "SvelteKit",
     "TypeScript",
-    "Claude AI (Anthropic)",
-    "OpenAI Embeddings",
-    "PostgreSQL + pgvector",
+    "Vercel AI SDK",
+    "DeepSeek",
+    "Supabase PostgreSQL",
+    "Cloudflare Workers",
     "Trigger.dev"
   ],
   "liveUrl": "https://baeventos.com",
   "constraints": [
     "Event data was fragmented across multiple sources with inconsistent formats.",
-    "The assistant needed to answer vibe-based queries without drifting away from real event data."
+    "Search needed to understand questions about mood, neighborhood, and timing without recommending events outside the catalog."
   ],
   "problem": [
-    "Buenos Aires has a thriving nightlife and cultural scene, but event information is scattered across incompatible platforms: Instagram stories, Facebook events, Eventbrite, Passline, venue websites, and WhatsApp groups. There's no single source of truth, making it nearly impossible to discover what's happening tonight.",
-    "Traditional search doesn't work for events. Users want to ask questions like 'romantic jazz spots in Palermo' or 'underground techno this weekend' - queries that require understanding intent, vibes, and context rather than just keyword matching."
+    "Buenos Aires event information is scattered across social posts, ticketing sites, venue pages, and group chats. Details change often, and each source describes events differently.",
+    "People search by mood, neighborhood, and time rather than exact event names. Keyword matching alone misses questions such as 'romantic jazz in Palermo' or 'underground techno this weekend.'"
   ],
   "solution": [
-    "Created a conversational discovery experience so users could ask for events in plain language instead of hunting across Instagram, ticketing sites, and venue feeds.",
-    "Turned scattered event sources into a cleaner operating dataset by ingesting events, matching venues, enriching descriptions, and keeping the catalog usable.",
-    "Combined semantic search with structured filters so the product could handle intent-heavy queries like mood, neighborhood, or time window instead of just keywords.",
-    "Added the admin and data-quality tooling needed to keep answers grounded in real event data rather than turning into an unreliable AI demo."
+    "Built one search experience where people can ask for events in plain language or begin with shortcuts for Tonight, This Weekend, and Surprise me.",
+    "Turned inconsistent source data into a cleaner catalog by importing events, matching venues, improving descriptions, and removing bad records.",
+    "Combined meaning-based search with date, neighborhood, and category filters so every recommendation stays tied to a real event.",
+    "Added automated imports and data-quality tools to keep the catalog useful as listings change."
   ],
   "result": [
-    "Launched a working event-discovery product surfacing 1,250+ upcoming events from a database of 9,200+ event records and 1,500+ venues.",
-    "Proved a repeatable pattern for AI-assisted discovery over messy local data: ingest it, clean it, enrich it, embed it, and answer with grounded results.",
-    "The product is now a live example of how I use AI inside product engineering work: trustworthy retrieval, admin tooling, and a usable product around the model, not just a chat box."
+    "Launched a working event-discovery product with more than 1,250 upcoming events, 9,200+ event records, and 1,500+ venues.",
+    "Made questions about mood, neighborhood, and timing searchable without letting the assistant invent events.",
+    "Built the imports, cleanup tools, search, and event pages needed to turn a model response into a useful product."
   ],
   "videos": {
     "overview": {

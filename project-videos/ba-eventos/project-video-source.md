@@ -82,7 +82,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | `src/content/case-studies/ba-eventos.mdx`        | The product is a working discovery experience over messy local data, not just a chat interface.                     |
 | `src/content/case-studies/ba-eventos.mdx`        | Users ask natural questions around mood, neighborhood, timing, and social context.                                  |
 | `src/content/case-studies/ba-eventos.mdx`        | The product uses semantic search and structured filters to keep answers tied to real records.                       |
-| `src/content/case-studies/ba-eventos.mdx`        | The shipped catalog includes 1,600+ scheduled events and 1,500+ venues.                                             |
+| `src/content/case-studies/ba-eventos.mdx`        | The catalog includes 9,200+ event records, more than 1,250 upcoming events, and 1,500+ venues.                      |
 | `src/lib/projects/ba-eventos.json`               | Metadata confirms the problem, solution, live URL, result, and product screenshots.                                 |
 | `src/assets/img/projects/ba-eventos-hero.png`    | Public product surface with suggested event-search questions.                                                       |
 | `src/assets/img/projects/ba-eventos-feature.png` | Public product surface with a search question, answer, and event result cards.                                      |
@@ -95,7 +95,7 @@ Technical proof can stay in this document as backing evidence, but it should not
 | Input                | A visitor asks for live music in Palermo this weekend.                                                                            | `src/assets/img/projects/ba-eventos-feature.png`                              | Yes, public logged-out product screenshot                          | Yes        |
 | Product action       | BA Eventos searches real event and venue records.                                                                                 | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as plain labels and screenshot context                        | Yes        |
 | Durable output       | The answer shows categories, event names, venues, times, prices, and links.                                                       | `src/assets/img/projects/ba-eventos-feature.png`                              | Yes, public case-study screenshot after sidebar identity redaction | Yes        |
-| Saved record         | The catalog includes 1,600+ scheduled events and 1,500+ venues.                                                                   | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes                                                                | Yes        |
+| Saved record         | The catalog includes 9,200+ event records, more than 1,250 upcoming events, and 1,500+ venues.                                    | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes                                                                | Yes        |
 | Guardrail or warning | Answers stay tied to real records instead of unsupported recommendations.                                                         | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes, as "grounded answer" copy                                     | Yes        |
 | Verification         | HyperFrames lint, validate, inspect, snapshot, render, ffprobe, poster, preview, feedback, project check, and build are required. | `docs/project-videos/capture-and-production-workflow.md`                      | Yes                                                                | No         |
 | Reviewer path        | Portfolio case study and project metadata explain the product direction and shipped proof.                                        | `src/content/case-studies/ba-eventos.mdx`; `src/lib/projects/ba-eventos.json` | Yes                                                                | No         |
@@ -230,8 +230,8 @@ Visual source: native stat cards over the product surface.
 On-screen text:
 
 ```text
-The event list can keep improving.
-1,600+ events and 1,500+ venues stay organized.
+The catalog keeps improving.
+9,200+ records. More than 1,250 upcoming events. 1,500+ venues.
 ```
 
 Narration: none.
@@ -267,14 +267,14 @@ Reading-speed check: `5` words over `3s` = `100 WPM`.
 
 Final text that may appear in the video. Keep this wording unchanged unless this source document is edited first.
 
-| Scene | Text                                                                                        | Word count | Duration | WPM |
-| ----- | ------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Buenos Aires plans were scattered. Posts and event sites lived apart.                       |         10 |     5.6s | 107 |
-| 2     | A visitor asks one plain question. What's happening tonight?                                |          8 |     5.6s |  86 |
-| 3     | BA Eventos searches real event records. Events and venues stay attached to the answer.      |         13 |       6s | 130 |
-| 4     | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible. |         14 |     6.1s | 138 |
-| 5     | The event list can keep improving. 800+ events and 190+ venues stay organized.              |         13 |     5.7s | 137 |
-| End   | BA Eventos. One grounded search.                                                            |          5 |       3s | 100 |
+| Scene | Text                                                                                         | Word count | Duration | WPM |
+| ----- | -------------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Buenos Aires plans were scattered. Posts and event sites lived apart.                        |         10 |     5.6s | 107 |
+| 2     | A visitor asks one plain question. What's happening tonight?                                 |          8 |     5.6s |  86 |
+| 3     | BA Eventos searches real event records. Events and venues stay attached to the answer.       |         13 |       6s | 130 |
+| 4     | The answer becomes a usable plan. Categories, times, venues, prices, and links are visible.  |         14 |     6.1s | 138 |
+| 5     | The catalog keeps improving. 9,200+ records. More than 1,250 upcoming events. 1,500+ venues. |         12 |     5.7s | 126 |
+| End   | BA Eventos. One grounded search.                                                             |          5 |       3s | 100 |
 
 Allowed short labels:
 
@@ -294,8 +294,9 @@ Allowed short labels:
 - Link
 - Category
 - Real records
-- 800+ events
-- 190+ venues
+- 9,200+ event records
+- 1,250+ upcoming events
+- 1,500+ venues
 - One grounded search
 
 ## Asset Manifest

@@ -34,7 +34,7 @@ Assets needed:
 - Screenshot: public BA Eventos feature screenshot from the portfolio case study.
 - UI clip: not needed; motion is built in HyperFrames around still product proof.
 - Artifact: native source cards, record chips, stat cards, and result highlights.
-- Diagram/data point: simple catalog stats for 1,600+ scheduled events and 1,500+ venues.
+- Diagram/data point: 9,200+ event records, more than 1,250 upcoming events, and 1,500+ venues.
 
 Privacy notes:
 

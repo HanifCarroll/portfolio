@@ -11,100 +11,69 @@ import baEventosEventDetail from "../../assets/img/projects/ba-eventos-event-det
 export const shippedRows = [
   {
     label: "Data coverage",
-    title: "Over 9,200 event records moved into one searchable product.",
-    body: "The product currently surfaces 1,250+ upcoming events from a database of 9,200+ event records and 1,500+ venues.",
+    title: "9,200+ event records moved into one searchable catalog.",
+    body: "The product surfaces more than 1,250 upcoming events and organizes records for 1,500+ venues.",
   },
   {
-    label: "Grounded answers",
-    title: "AI search stayed tied to real event data.",
-    body: "Semantic search and structured filters helped answer intent-heavy questions without drifting into unsupported recommendations.",
+    label: "Reliable answers",
+    title: "Every recommendation stays tied to a real event.",
+    body: "Search matches the meaning of a question, while date, neighborhood, and category filters keep the answer on records in the catalog.",
   },
   {
-    label: "Admin tooling",
-    title: "The catalog could be kept usable.",
-    body: "Admin and data-quality tooling supported venue matching, enrichment, and cleanup behind the public experience.",
-  },
-  {
-    label: "Reusable pattern",
-    title: "The build proved an AI discovery pattern.",
-    body: "Ingest, clean, enrich, embed, then answer with grounded results instead of shipping another empty chat box.",
+    label: "Catalog upkeep",
+    title: "The data can improve without rebuilding the product.",
+    body: "Automated imports and data-quality tools support venue matching, description enrichment, and record cleanup behind the public search.",
   },
   {
     label: "Fast discovery",
-    title: "Getting to a plan is one tap or one sentence.",
-    body: "Voice dictation and the Tonight, This Weekend, and Surprise me shortcuts let people reach a grounded recommendation without typing a full query.",
+    title: "A plan starts with one tap or one sentence.",
+    body: "Voice dictation and shortcuts for Tonight, This Weekend, and Surprise me reduce the work needed to begin a search.",
   },
 ];
 
-<CaseSection title="From scattered listings to grounded plans">
-  Buenos Aires event information is scattered across Instagram stories, Facebook events, Eventbrite, Passline, venue sites, and WhatsApp groups.
+<CaseSection title="Finding a plan should not require six different sources">
+  Buenos Aires event listings are scattered across social posts, ticketing sites, venue pages, and group chats. The details change often, and each source describes events differently.
 
-    I built BA Eventos as a live discovery product that turns fragmented local data into a searchable experience with grounded AI answers.
-
-</CaseSection>
-
-<CaseSection title="The city calendar was fragmented">
-  The city has a dense cultural calendar, but the information lives across incompatible sources and changes constantly.
-
-    People do not search for events like database records. They ask for moods, neighborhoods, time windows, and social context.
+I built BA Eventos so someone can ask for a plan by mood, neighborhood, or time and get current options from one cleaned catalog.
 
 </CaseSection>
 
-<CaseSection title="The product had to answer a real planning question">
-  The product needed to help people find real plans without forcing them to jump between social platforms, ticketing sites, and venue pages.
-
-    That required a data pipeline, an admin surface, and a retrieval layer that could answer natural questions without hallucinating dead-end recommendations.
-
-</CaseSection>
-
-<CaseSection title="Data quality came before discovery">
-  <DecisionBlock title="Treat event discovery as a data-quality problem first.">
-    The product could only feel useful if the underlying event and venue data was current, matched, and clean enough to search.
+<CaseSection title="Clean the catalog before adding AI">
+  <DecisionBlock title="Treat event discovery as a data problem first.">
+    Imports had to be normalized, venues matched, and descriptions improved before search could return useful results.
   </DecisionBlock>
 
-    <DecisionBlock title="Use AI where intent matters.">
-    Semantic search handled queries around vibe, neighborhood, and timing, while structured filters kept the answers grounded in real records.
-    </DecisionBlock>
-
-</CaseSection>
-
-<CaseSection title="A faster path from intent to plan" media>
-  The product is a working example of AI-assisted discovery over messy local data, not just a chat interface.
-    Alongside plain-language search, the surface offers one-tap discovery — "Tonight", "This Weekend", and "Surprise me" — plus voice dictation, so finding a plan works the way people actually think about it.
-
-    <ImagePlate image={baEventosHero} alt="BA Eventos event discovery product interface." />
-
-</CaseSection>
-
-<CaseSection title="The system behind the recommendation">
-  <DecisionBlock title="Turned scattered sources into a usable event catalog.">
-    The system ingests events, matches venues, enriches descriptions, and keeps the catalog organized enough to support real search.
+  <DecisionBlock title="Use AI to understand the question, not invent the answer.">
+    Search matches meaning, not just keywords, so a question such as “romantic jazz in Palermo” can find the right records. Date, neighborhood, and category filters keep every answer tied to an event in the catalog.
   </DecisionBlock>
+</CaseSection>
 
-    <DecisionBlock title="Built discovery around plain-language intent.">
-    Users can ask questions like romantic jazz in Palermo or underground techno this weekend while the product stays tied to real event records.
-    </DecisionBlock>
-    <DecisionBlock title="Added faster paths to a plan.">
-      One-tap "Tonight" and "This Weekend" shortcuts and voice dictation let people skip the typing and land on a plan faster without leaving the grounded event catalog.
-    </DecisionBlock>
+<CaseSection title="From a vague idea to a useful shortlist" media>
+  People can type or dictate a question, or begin with Tonight, This Weekend, or Surprise me. The same search works whether the request starts with a genre, a neighborhood, a date, or a mood.
+
+<ImagePlate image={baEventosHero} alt="BA Eventos search page with suggested event questions." />
 
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>A live discovery system grounded in local data</h2>
+  <h2>A live product built on real local records</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        BA Eventos shipped as a live example of an AI product where the hard part is the operating
-        system around the model: data ingestion, cleanup, retrieval, and a usable product surface.
+        The visible search is only one part of BA Eventos. Imports, venue matching, cleanup, and
+        search make it possible to answer a natural question without recommending an event that is
+        not in the catalog.
       </p>
     </ProofRows>
   </div>
 </section>
 
-<CaseSection title="An event result becomes a plan" media>
-  The event-detail screen turns a search result into a usable plan: artwork, date, venue, price, ticket action, and description are presented together.
+<CaseSection title="A search result becomes a plan" media>
+  Each event page brings the practical details together: artwork, date, venue, price, description, and a ticket link.
 
-    <ImagePlate image={baEventosEventDetail} alt="BA Eventos event-detail screen showing artwork, date, venue, price, ticket action, and event description." />
+<ImagePlate
+  image={baEventosEventDetail}
+  alt="BA Eventos event page showing artwork, date, venue, price, description, and ticket link."
+/>
 
 </CaseSection>

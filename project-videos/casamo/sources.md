@@ -4,15 +4,15 @@
 
 - Portfolio case study: `src/content/case-studies/casamo.mdx`
 - Project metadata: `src/lib/projects/casamo.json`
-- Portfolio public asset: `src/assets/img/projects/casamo-homepage-viewport.jpg`
-- Live public product page: `https://casamo.app/`
-- Live public sample report: `https://casamo.app/sample-report`
-- Public report preview image: `https://casamo.app/images/og/casamo-stay-audit.png`
-- Public sample report image: `https://casamo.app/images/home/sample-report/recommended-courtyard-studio.webp`
+- Current stay-scan proof: `src/assets/img/projects/casamo-stay-scan.png`
+- Current qualified-shortlist proof: `src/assets/img/projects/casamo-ranked-report.png`
+- Current evidence-detail proof: `src/assets/img/projects/casamo-evidence-detail.png`
 
 ## Portfolio Assets Reviewed
 
-- `src/assets/img/projects/casamo-homepage-viewport.jpg`
+- `src/assets/img/projects/casamo-stay-scan.png`
+- `src/assets/img/projects/casamo-ranked-report.png`
+- `src/assets/img/projects/casamo-evidence-detail.png`
 - `src/content/case-studies/casamo.mdx`
 - `src/lib/projects/casamo.json`
 
@@ -31,10 +31,10 @@
 
 ## Selected Assets
 
-- `assets/selected/casamo-homepage-viewport.jpg`
-- `assets/selected/casamo-stay-audit-og.png`
-- `assets/selected/casamo-report-studio.webp`
+- `assets/selected/casamo-stay-scan.png`
+- `assets/selected/casamo-ranked-report.png`
+- `assets/selected/casamo-evidence-detail.png`
 
 ## Redaction Notes
 
-The selected assets are already public portfolio or public Casamo sample-report assets. No private accounts, customer data, payment details, analytics views, background-job details, tokens, local paths, or non-public listing data were captured. The composition uses native HyperFrames cards for audit states and product-loop labels instead of private runtime data.
+The selected assets are published portfolio proofs with demonstration data. No private accounts, customer data, payment details, analytics views, background-job details, tokens, local paths, or non-public listing data were captured.

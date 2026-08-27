@@ -1,12 +1,12 @@
 {
   "slug": "casamo",
-  "title": "Casamo: Stay Audits for Remote Workers",
-  "description": "Helps remote workers compare long-stay options with clearer tradeoffs, saved reports, and booking-ready recommendations.",
-  "seoTitle": "Casamo Project | AI Stay Audit Product",
-  "seoDescription": "How Casamo audits long-stay listings for remote workers using automated scans, evidence-backed reports, payments, and analytics.",
+  "title": "Casamo: Long-Stay Shortlists for Remote Workers",
+  "description": "Checks Airbnb and Booking.com listings against a traveler's must-haves, then returns qualified choices with visible support and questions for the host.",
+  "seoTitle": "Casamo Project | Long-Stay Listing Checks",
+  "seoDescription": "How Casamo checks furnished-stay listings against photos, amenities, details, and reviews before returning a qualified shortlist.",
   "proofType": "founder",
   "client": "Independent product",
-  "service": "Product Strategy + MVP Build",
+  "service": "Product Strategy + Full-Stack Build",
   "detailVariant": "product",
   "role": "Founder / Solo Product Engineer",
   "category": "product",
@@ -15,36 +15,34 @@
   "timeline": "2026",
   "teamSize": "Solo build",
   "technologies": [
-    "Ruby on Rails",
     "SvelteKit",
-    "PostgreSQL",
-    "Solid Queue",
+    "Cloudflare Workers",
+    "Cloudflare D1 + R2",
+    "Cloudflare Workflows",
     "DeepSeek",
     "Stripe"
   ],
   "liveUrl": "https://casamo.app",
   "constraints": [
-    "The product needed a sharper promise than broad AI travel planning.",
-    "The core workflow had to feel worth paying for before adding broad travel-planning features.",
-    "Marketplace filters could not be trusted on their own, so the product had to show evidence, uncertainty, and questions to ask the host."
+    "The product needed a narrower promise than broad AI travel planning.",
+    "Marketplace filters could not prove that a furnished stay would support several weeks of living and working.",
+    "The report needed to show uncertainty without filling the shortlist with weak matches."
   ],
   "problem": [
-    "Remote workers booking 2-8 week furnished stays face a high-cost decision with low-trust marketplace data. A listing can claim Wi-Fi, workspace, kitchen, or laundry without proving that the stay will actually work for weeks of living and working.",
-    "The original apartment-search prototype proved that listing evidence could be checked, but Casamo needed to become a real product: a clear promise, a useful trip-planning flow, saved reports, and a way to charge for the result.",
-    "The business risk was building a generic Airbnb search clone. The useful wedge was smaller and clearer: scan a shortlist across marketplaces and show which stays have enough evidence to trust."
+    "Remote workers booking 2–8 week furnished stays make an expensive decision from marketplace data that may be incomplete. A listing can claim Wi-Fi, workspace, kitchen, or laundry without showing whether those details will support daily life.",
+    "Casamo needed to check those claims without becoming another general travel search page or pretending that every unknown could be resolved online."
   ],
   "solution": [
-    "Positioned Casamo as a stay-decision guide for remote workers, focused on evidence-backed audits instead of broad travel planning.",
-    "Built the web intake for destination, dates, guests, budget, listing cap, and must-haves such as Wi-Fi, workspace, kitchen, washer, AC, quiet, and elevator.",
-    "Created a report flow that checks Airbnb and Booking.com options, compares the strongest candidates, saves the result, and gives the traveler a practical next step.",
-    "Added a $29 Trip Scan Pass, user accounts, saved reports, usage limits, and product analytics so the MVP could start learning from real customers.",
-    "Launched the product at casamo.app with the background processing needed for longer listing scans."
+    "Focused the product on furnished stays for remote workers rather than broad travel planning.",
+    "Built an intake for destination, dates, guests, budget, and must-haves, with a second path for comparing 2–10 exact listing links.",
+    "Built checks across photos, amenities, listing details, and reviews, with each priority labeled as supported, needing confirmation, contradicted, or not evaluated.",
+    "Designed the report to return 6–10 qualified choices when enough listings pass every must-have, without hiding uncertainty or inventing a universal winner.",
+    "Added accounts, saved reports, one-time and monthly scan plans, and background processing for longer searches."
   ],
   "result": [
-    "Casamo gives remote workers a clearer path from a noisy search to a long-stay accommodation they can book with more confidence.",
-    "The product can run a destination/date scan, audit Airbnb and Booking.com candidates, and return one recommended pick, two backups, evidence, concerns, and host questions.",
-    "The product now has the core commercial loop around automated scanning, saved reports, payments, usage limits, and analytics.",
-    "The case study shows the full founder-style path: choose a niche, shape the product, build the MVP, price it, launch it, and keep the recommendation auditable."
+    "Launched a working product that searches Airbnb and Booking.com or checks listing links supplied by the traveler.",
+    "Returns a qualified shortlist with the source behind each requirement status and the questions still worth asking the host.",
+    "Supports the full path from one free eligible scan to saved reports, paid scan allowances, and restored credit when a run fails or is unusable."
   ],
   "videos": {
     "overview": {
@@ -61,9 +59,9 @@
     }
   },
   "deliveryHighlights": [
-    "$29 Trip Scan Pass with account access and usage limits",
-    "Airbnb and Booking.com scan flow with saved reports",
-    "Evidence-backed report with recommended pick, backups, host questions, and evidence panels",
+    "One free eligible scan followed by one-time and monthly scan plans",
+    "Airbnb and Booking.com search plus exact-link comparison",
+    "Qualified shortlist with visible requirement statuses and host questions",
     "Live product launch at casamo.app"
   ],
   "images": {
