@@ -230,14 +230,14 @@ export const shippedRows = [
 ];
 
 <CaseSection title="A long service menu left guests unsure what to book">
-  I built Tranquility after an operations consultant described what happens when a spa offers dozens of treatments: visitors often cannot tell which one fits, so they postpone booking. The prototype uses a fictional spa and a 20-service catalog to test a guided booking path.
+  I built Tranquility after an operations consultant described what happens when a spa offers dozens of treatments: visitors often cannot tell which one fits and postpone booking. The prototype uses a fictional spa and a 20-service catalog to test a guided booking path.
 
 The selected treatment had to stay with the appointment after the conversation ended. Staff needed one Airtable record that explained the recommendation and showed whether intake and follow-up were complete.
 
 </CaseSection>
 
 <CaseSection title="How the components work together" media>
-  The spa website is the starting point. Guests use Typebot to describe what they need. Make reads the catalog in Airtable and asks DeepSeek, an AI model, to rank only the services that qualify. Cal.com handles booking, and Tally collects the forms that Make attaches to the appointment staff manage in Airtable.
+  The spa website is the starting point. Guests use Typebot to describe what they need. Make reads the catalog in Airtable and asks DeepSeek, an AI model, to rank only qualifying services. Cal.com handles booking, and Tally collects the forms that Make attaches to the appointment staff manage in Airtable.
 
   <DeviceGrid screens={systemScreens} stacked />
 </CaseSection>
@@ -269,7 +269,7 @@ Visitors describe what they want and how long they have. If needed, Typebot asks
 </CaseSection>
 
 <CaseSection title="The recommended service opens the right booking calendar" media>
-  Twenty services share six Cal.com booking groups, avoiding 20 separate event types. The concierge opens the group for the recommended service and includes its name and duration in the booking link. Cal.com shows the current openings and saves the appointment.
+  Twenty services share six Cal.com booking groups, avoiding 20 separate event types. The concierge opens the group for the recommended service and includes its name and duration in the booking link. Cal.com shows current openings and saves the appointment.
 
 After booking, Tally receives the appointment details without showing them as questions. The guest answers only what staff need to prepare.
 

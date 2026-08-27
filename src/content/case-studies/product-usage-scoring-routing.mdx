@@ -36,11 +36,11 @@ export const shippedRows = [
 ];
 
 <CaseSection title="The weekly Sales and CS queue often explains nothing">
-  The starting point is a common revenue problem, not a technology one. Product behavior exists — logins, incidents, pricing pages, security docs — but the weekly Sales and Customer Success queue can still be late, noisy, over capacity, or unexplained.
+  The starting point is a revenue problem, not a technology one. Product behavior exists — logins, incidents, pricing pages, security docs — but the weekly Sales and Customer Success queue can still be late, noisy, over capacity, or unexplained.
 
-    A team looking at a routed account usually cannot answer the basic questions: why did this account enter the queue, who should act on it, how fast, and what changed versus last week? When the answer is a single opaque score, the routing becomes a black box that the team has to trust without being able to inspect.
+    A team looking at a routed account usually cannot answer four basic questions: why did this account enter the queue, who should act on it, how fast, and what changed versus last week? A single opaque score turns routing into a black box the team must trust without being able to inspect.
 
-    This case study is a live demonstration of an alternative: an explainable weekly routing intervention. It is built with fictional data on purpose, so a prospective client can inspect the method without it being mistaken for a real company's results.
+    This case study demonstrates an alternative: an explainable weekly routing intervention. It uses fictional data so a prospective client can inspect the method without mistaking it for a real company's results.
 
 </CaseSection>
 
@@ -57,18 +57,18 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="The same accounts under two policies" media>
-  The demonstration runs the identical 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The difference is legible in the queue, and the synthetic metrics never claim to be real business efficacy.
+  The demonstration runs the same 120 synthetic accounts through a naive combined score and an explainable gated policy at the same weekly human-action capacity. The queue makes the difference visible, and the synthetic metrics never claim to show real business efficacy.
 
-    The comparison is illustrative, not a claim that one policy predicts better than the other. The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers say more about the sample than about the policy. The gated policy is designed to provide context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability — not to win a metric contest. The numbers are exactly as computed at the default controls; nothing is tuned or hidden to make either side look better.
+    The comparison is illustrative, not a claim that one policy predicts better than the other. The naive queue's 100% routed yield at the default capacity of 12 is a small-sample artifact: all twelve routed accounts happen to carry a synthetic positive outcome, so the naive precision and yield numbers therefore say more about the sample than the policy. The gated policy provides context-specific plays, hard blocks, ownership, SLAs, rejected alternatives, and explainability. It is not designed to win a metric contest. The numbers are exactly as computed at the default controls; nothing is tuned or hidden to make either side look better.
 
     <ImagePlate image={queue} alt="Weekly Sales and CS queue comparing a gated policy and a naive combined score on 120 synthetic accounts, with acquisition intent and weekly capacity controls." />
 
 </CaseSection>
 
 <CaseSection title="The naive comparator is transparent">
-  The naive policy, `combined_score_naive_v1`, is a deliberately simple baseline: it collapses fit, product usage, and buying intent into one number — roughly a weighted average — and routes any account above a single threshold into one generic Sales queue. It has no hard blocks, no prospect-versus-customer distinction, and no separate plays.
+  The naive policy, `combined_score_naive_v1`, is a simple baseline. It collapses fit, product usage, and buying intent into one number, roughly a weighted average, then routes any account above a single threshold into one generic Sales queue. It has no hard blocks, no prospect-versus-customer distinction, and no separate plays.
 
-    It is not a claim about any real company's former policy. It exists so the comparison is honest and easy to read: one number can be the wrong abstraction, and this page shows why.
+    It is not a claim about any real company's former policy. It keeps the comparison honest and easy to read: one number can be the wrong abstraction, and this page shows why.
 
 </CaseSection>
 
@@ -80,14 +80,14 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="Two levers, live recompute" media>
-  Visitors can change exactly two allowlisted controls: the acquisition intent minimum and the weekly human-action capacity. Changing capacity reprioritizes the queue — it never changes whether an account qualifies; qualified overflow stays visibly deferred. The policy view makes the tradeoff between intent and team capacity concrete.
+  Visitors can change exactly two allowlisted controls: the acquisition intent minimum and the weekly human-action capacity. Changing capacity reprioritizes the queue but never changes whether an account qualifies. Qualified overflow stays visibly deferred. The policy view makes the tradeoff between intent and team capacity concrete.
 
     <ImagePlate image={policy} alt="The policy view showing the three scored dimensions, the naive comparator formula, and the live comparison table on the same 120 synthetic accounts." />
 
 </CaseSection>
 
 <CaseSection title="The bounded HubSpot approval and sync">
-  The demonstration includes one bounded external write. A designated account's decision packet offers an "Approve and sync" action that creates a single fictional follow-up task in a dedicated HubSpot developer test account — never outreach, never an email, never a change to real customer data.
+  The demonstration includes one bounded external write. A designated account's decision packet offers an "Approve and sync" action that creates a single fictional follow-up task in a dedicated HubSpot developer test account. It never sends outreach or email and never changes real customer data.
 
     The sync is idempotent and traceable to a run id: identity is resolved, scores are recorded, a play is selected, and the durable workflow upserts a fictional company, contact, and association and creates one task. A fake local adapter keeps the full demo usable without any credentials, while a hardened production path runs the same workflow on Cloudflare with the real HubSpot adapter.
 
@@ -120,7 +120,7 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="I owned the decision system end to end">
-  I designed and built the full system as an independent project: the product concept, the scoring and routing policy, the weekly queue and decision-packet experience, the adjustable controls, the Cloudflare Workers + D1 + Workflows execution layer, and the bounded HubSpot integration with its app card and fake local adapter.
+  I designed and built the full system as an independent project: the product concept, scoring and routing policy, weekly queue and decision-packet experience, adjustable controls, Cloudflare Workers + D1 + Workflows execution layer, and bounded HubSpot integration with its app card and fake local adapter.
 
     The outcome is a live, login-free demonstration a prospective client can inspect end to end — from a raw product signal to an explainable route with an owner and SLA, and one bounded, idempotent write into HubSpot.
 

@@ -1,7 +1,7 @@
 {
   "slug": "apartment-finder",
   "title": "Apartment Finder",
-  "description": "Scans rental listings for in-unit washer evidence, so renters can separate private laundry from shared-building amenities.",
+  "description": "Scans rental listings for evidence of an in-unit washer, so renters can separate private laundry from shared-building amenities.",
   "proofType": "experiment",
   "client": "Personal Project",
   "service": "Product Engineering Prototype",
@@ -27,7 +27,7 @@
   ],
   "problem": [
     "Apartment search filters were producing too many false matches because rental platforms collapse private in-unit washers and shared building laundry into the same amenity signal.",
-    "The real decision required inspecting listing photos, provider metadata, price and room details, descriptions, and ambiguous evidence across many listings without opening every gallery by hand."
+    "The decision required inspecting listing photos, provider metadata, price and room details, descriptions, and ambiguous evidence across many listings without opening every gallery by hand."
   ],
   "solution": [
     "Built a search app that accepts provider filters or raw result URLs, discovers listings, extracts gallery photos and listing details, and scans each listing for washer evidence.",
@@ -37,8 +37,8 @@
   "result": [
     "Validated the core listing-summary workflow at 53/55 on labeled listings, with zero false in-unit and zero false shared-building decisions in the latest run.",
     "Reduced second-pass model usage by switching to targeted top-k escalation: the selected 6-photo cap cut escalated image checks from roughly 969 to 247 while preserving the best measured 53/55 result.",
-    "Turned a frustrating personal search problem into a reusable product pattern: extract messy source data, classify the hard evidence, show the user why the system made the call, and keep the workflow auditable.",
-    "Shipped the project publicly as an open-source example of building an AI product around evidence and workflow design, not just a model call."
+    "Turned a frustrating personal search problem into a reusable product pattern: extract messy source data, classify the hard evidence, show why the system made the call, and keep the workflow auditable.",
+    "Shipped the project publicly as an open-source example of building an AI product around evidence and workflow design."
   ],
   "videos": {
     "overview": {
