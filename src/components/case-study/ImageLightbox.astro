@@ -12,7 +12,17 @@
 <script>
 	const dialog = document.querySelector<HTMLDialogElement>('[data-image-lightbox]');
 	const expandedImage = dialog?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	let trigger: HTMLImageElement | null = null;
+	let closeTimer: number | undefined;
+
+	const close = () => {
+		if (!dialog?.open || dialog.hasAttribute('data-closing')) return;
+		if (reducedMotion.matches) return dialog.close();
+
+		dialog.setAttribute('data-closing', '');
+		closeTimer = window.setTimeout(() => dialog.close(), 160);
+	};
 
 	document.querySelectorAll<HTMLImageElement>('.cs-project-hero img, .cs-content img').forEach((image) => {
 		if (!dialog || !expandedImage || !image.alt || image.closest('a')) return;
@@ -26,6 +36,7 @@
 			trigger = image;
 			expandedImage.src = image.currentSrc || image.src;
 			expandedImage.alt = image.alt;
+			dialog.removeAttribute('data-closing');
 			dialog.showModal();
 		};
 
@@ -37,12 +48,18 @@
 		});
 	});
 
-	dialog?.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+	dialog?.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.addEventListener('click', close);
 	dialog?.addEventListener('click', (event) => {
-		if (event.target === dialog) dialog.close();
+		if (event.target === dialog) close();
 	});
-	dialog?.addEventListener('close', () => trigger?.focus());
+	dialog?.addEventListener('close', () => {
+		window.clearTimeout(closeTimer);
+		dialog.removeAttribute('data-closing');
+		trigger?.focus();
+	});
 	document.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape' && dialog?.open) dialog.close();
+		if (event.key !== 'Escape' || !dialog?.open) return;
+		event.preventDefault();
+		close();
 	});
 </script>
