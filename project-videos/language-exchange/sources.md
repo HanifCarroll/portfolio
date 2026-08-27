@@ -68,7 +68,7 @@ The wireflow shows the early exchange-first host journey: define an exchange, ch
 
 ## Claim Boundary
 
-The audit found a buildable frontend and substantial product scope, but the repository's current CI, type check, formatting, lint, one backend test, and live deployment are not clean. The current source also contains untested exchange-lifecycle defects. The public story therefore says `working beta` and does not claim production readiness, reliability, current availability, adoption, retention, completed meetups, revenue, or growth.
+The audit found a buildable frontend and substantial product scope, but the repository's current CI, type check, formatting, lint, one backend test, and live deployment are not clean. The current source also contains untested exchange-lifecycle defects. The public story presents HablaBA as a researched-and-built product without claiming production readiness, reliability, current availability, adoption, retention, completed meetups, revenue, or growth.
 
 Independent audit results used only to constrain claims:
 

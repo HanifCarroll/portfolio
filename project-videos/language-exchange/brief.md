@@ -2,7 +2,7 @@
 
 Project: HablaBA
 
-Video type: Research-to-beta product walkthrough
+Video type: Research-to-product walkthrough
 
 Story family: `product-journey`
 
@@ -14,14 +14,14 @@ Primary viewer: Hiring manager or general portfolio viewer
 
 One-sentence job: HablaBA turns a researched need for smaller language exchanges into an invite-only product for finding and coordinating local practice sessions.
 
-Viewer takeaway: HablaBA turns local research into one beta for finding and coordinating language exchanges.
+Viewer takeaway: HablaBA turns local research into a product for finding and coordinating language exchanges.
 
 Plain story:
 
 - Problem: profile-first apps and large events made focused local practice hard to arrange.
 - Research: a group interview, an 11-response survey, and six usability sessions pointed toward small, exchange-first sessions.
 - Solution: HablaBA lets invited members find a specific exchange by language, neighborhood, time, and open seats, then coordinate in its private chat.
-- Result: the beta connects invitation, profiles, discovery, sessions, chat, and notifications without claiming adoption that was never measured.
+- Result: the product connects invitation, profiles, discovery, sessions, chat, and notifications.
 
 Scene arc:
 
@@ -29,7 +29,7 @@ Scene arc:
 2. Research: three evidence stages narrowed the product to small exchanges.
 3. Core action: choose a concrete exchange instead of browsing profiles.
 4. Coordination: each exchange gets a private live chat.
-5. Result: the beta connects invitation, discovery, exchange details, and chat.
+5. Result: the product connects invitation, discovery, exchange details, and chat.
 6. Ending beat: HablaBA, local practice shaped by research.
 
 Reading-speed constraint:

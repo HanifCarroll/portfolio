@@ -22,7 +22,7 @@ Primary viewer: Hiring manager or general portfolio viewer
 
 Target duration: `30s`
 
-Video type: Research-to-beta product walkthrough
+Video type: Research-to-product walkthrough
 
 Story family: `product-journey`
 
@@ -36,7 +36,7 @@ Research: a three-person group interview, an 11-response survey, and six usabili
 
 Solution: HablaBA lets invited members compare a concrete session by language, neighborhood, time, format, and open seats, then coordinate in its private chat.
 
-Result: the web beta connects invitation, profiles, discovery, sessions, chat, and notifications. It does not prove adoption or completed meetups.
+Result: the web product connects invitation, profiles, discovery, sessions, chat, and notifications.
 
 ## One-Line Job
 
@@ -44,7 +44,7 @@ HablaBA helps language learners in Buenos Aires find and coordinate small local 
 
 ## Viewer Takeaway
 
-HablaBA turns local research into one beta for finding and coordinating language exchanges.
+HablaBA turns local research into a product for finding and coordinating language exchanges.
 
 ## Language Rules
 
@@ -62,7 +62,7 @@ Say:
 - Private chat
 - Invitation
 - Discovery
-- Beta
+- Product
 
 Do not show:
 
@@ -91,17 +91,17 @@ Technical and historical proof stays in this document and `sources.md`.
 
 ## Proof Inventory
 
-| Proof type     | Exact proof                                                                                 | Source path, URL, or command                                              | Safe to show?         | On-screen?                                                         |
-| -------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------ |
-| Problem        | Research identified friction with large events and profile-first language apps.             | Archived portfolio case study at `6235148`                                | Yes, as plain summary | Yes                                                                |
-| Research       | One group interview, 11 survey responses, and six usability sessions shaped the beta.       | Archived portfolio case study at `6235148:34-43,273-277`                  | Yes                   | Summarized; 11 responses and six sessions remain numeric on screen |
-| Product model  | The experience is organized around a specific one-to-one or small-group exchange.           | `StoreExchangeRequest.php:18-55`; `Explore.vue:36-158`                    | Yes                   | Yes                                                                |
-| Early artifact | A four-state wireflow covers defining, scheduling, reviewing, and publishing an exchange.   | `assets/selected/hablaba-host-exchange-flow.png`; source commit `4d6dc45` | Yes                   | Yes                                                                |
-| Product action | Members compare language, neighborhood, time, format, and open seats.                       | `assets/redacted/hablaba-hero.png`; `Explore.vue`                         | Yes; seeded data      | Yes                                                                |
-| Product action | Participants coordinate inside the exchange's private live chat.                            | `assets/redacted/hablaba-feature.png`; `Chat.vue`                         | Yes; seeded data      | Yes                                                                |
-| Durable result | Invitation, profiles, discovery, sessions, chat, and notifications form one beta loop.      | `README.md:3-24`; current routes and controllers                          | Yes, as plain labels  | Yes                                                                |
-| Boundary       | The source supports a working beta, not adoption, reliability, or a currently live service. | Repository audit at `caf27a2`; recorded in `sources.md`                   | Yes                   | The video calls it a beta only                                     |
-| Verification   | The portfolio manifest and HyperFrames QA must pass before render.                          | `docs/project-videos/template-system.md`                                  | Yes                   | No                                                                 |
+| Proof type     | Exact proof                                                                                    | Source path, URL, or command                                              | Safe to show?         | On-screen?                                                         |
+| -------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------ |
+| Problem        | Research identified friction with large events and profile-first language apps.                | Archived portfolio case study at `6235148`                                | Yes, as plain summary | Yes                                                                |
+| Research       | One group interview, 11 survey responses, and six usability sessions shaped the product.       | Archived portfolio case study at `6235148:34-43,273-277`                  | Yes                   | Summarized; 11 responses and six sessions remain numeric on screen |
+| Product model  | The experience is organized around a specific one-to-one or small-group exchange.              | `StoreExchangeRequest.php:18-55`; `Explore.vue:36-158`                    | Yes                   | Yes                                                                |
+| Early artifact | A four-state wireflow covers defining, scheduling, reviewing, and publishing an exchange.      | `assets/selected/hablaba-host-exchange-flow.png`; source commit `4d6dc45` | Yes                   | Yes                                                                |
+| Product action | Members compare language, neighborhood, time, format, and open seats.                          | `assets/redacted/hablaba-hero.png`; `Explore.vue`                         | Yes; seeded data      | Yes                                                                |
+| Product action | Participants coordinate inside the exchange's private live chat.                               | `assets/redacted/hablaba-feature.png`; `Chat.vue`                         | Yes; seeded data      | Yes                                                                |
+| Durable result | Invitation, profiles, discovery, sessions, chat, and notifications form one product loop.      | `README.md:3-24`; current routes and controllers                          | Yes, as plain labels  | Yes                                                                |
+| Boundary       | The source supports a working product, not adoption, reliability, or a currently live service. | Repository audit at `caf27a2`; recorded in `sources.md`                   | Yes                   | The video calls it a product                                       |
+| Verification   | The portfolio manifest and HyperFrames QA must pass before render.                             | `docs/project-videos/template-system.md`                                  | Yes                   | No                                                                 |
 
 ## Selected Story
 
@@ -109,7 +109,7 @@ Technical and historical proof stays in this document and `sources.md`.
 2. Research narrowed the idea toward small, concrete exchanges.
 3. A member chooses an exchange by the details that make a meetup practical.
 4. Participants coordinate inside one private chat tied to the session.
-5. The beta connects invitation, discovery, exchange details, and chat.
+5. The product connects invitation, discovery, exchange details, and chat.
 6. The held ending identifies HablaBA as local practice shaped by research.
 
 ## Scene Cards
@@ -152,7 +152,7 @@ Visual source: early host-exchange wireflow.
 On-screen text:
 
 ```text
-Research shaped the beta.
+Research shaped the product.
 One interview, 11 responses, and six usability sessions.
 ```
 
@@ -224,7 +224,7 @@ Reading-speed check: `10` words over `5s` = `120 WPM`.
 
 ### Scene 5: Result
 
-Purpose: summarize the honest beta outcome.
+Purpose: summarize the product outcome.
 
 Viewer should understand: the core exchange workflow is connected without implying adoption.
 
@@ -277,14 +277,14 @@ Reading-speed check: `6` words over `3s` = `120 WPM`.
 
 ## On-Screen Text Lock
 
-| Scene | Text                                                                               | Word count | Duration | WPM |
-| ----- | ---------------------------------------------------------------------------------- | ---------: | -------: | --: |
-| 1     | Practice was hard to arrange. Big events made focused practice harder.             |         11 |     5.5s | 120 |
-| 2     | Research shaped the beta. One interview, 11 responses, and six usability sessions. |         12 |       6s | 120 |
-| 3     | Choose the exchange. Compare language, neighborhood, time, and seats.              |          9 |       5s | 108 |
-| 4     | Each exchange has a private chat. Coordinate the plan live.                        |         10 |       5s | 120 |
-| 5     | Discovery, sessions, and chat stay connected.                                      |          6 |     5.5s |  65 |
-| End   | HablaBA. Local practice, shaped by research.                                       |          6 |       3s | 120 |
+| Scene | Text                                                                                  | Word count | Duration | WPM |
+| ----- | ------------------------------------------------------------------------------------- | ---------: | -------: | --: |
+| 1     | Practice was hard to arrange. Big events made focused practice harder.                |         11 |     5.5s | 120 |
+| 2     | Research shaped the product. One interview, 11 responses, and six usability sessions. |         12 |       6s | 120 |
+| 3     | Choose the exchange. Compare language, neighborhood, time, and seats.                 |          9 |       5s | 108 |
+| 4     | Each exchange has a private chat. Coordinate the plan live.                           |         10 |       5s | 120 |
+| 5     | Discovery, sessions, and chat stay connected.                                         |          6 |     5.5s |  65 |
+| End   | HablaBA. Local practice, shaped by research.                                          |          6 |       3s | 120 |
 
 Allowed short labels:
 
@@ -344,7 +344,7 @@ Timing profile: `short`
 
 Theme: crisp editorial product surfaces, navy text, blue action accents, green coordination markers, and a path motif.
 
-Scenes: problem, research, exchange discovery, private coordination, beta result, held ending.
+Scenes: problem, research, exchange discovery, private coordination, product result, held ending.
 
 Approved manifest assets:
 

@@ -34,13 +34,11 @@ export const PROJECT_ARCHIVE_GROUPS = [
       "agent-recall",
       "codex-telegram-bridge",
       "acquire",
-      "linkedin-tools",
       "apartment-finder",
-      "job-application-assistant",
       "one-tuesday",
       "language-exchange",
     ],
   },
 ] as const;
 
-export const DELISTED_PROJECT_SLUGS = [] as const;
+export const DELISTED_PROJECT_SLUGS = ["linkedin-tools", "job-application-assistant"] as const;
