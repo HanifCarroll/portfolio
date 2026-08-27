@@ -2,7 +2,6 @@
 import BaseHead from './components/BaseHead.astro';
 import Header from './components/Header.astro';
 import PageClosingCta from '../components/PageClosingCta.astro';
-import { ClientRouter, fade } from 'astro:transitions';
 import { EMAIL_URL } from '../consts';
 
 const {
@@ -31,7 +30,6 @@ const currentYear = new Date().getFullYear();
 <html lang='en'>
 	<head>
 		<BaseHead title={title} description={description} socialTitle={socialTitle} socialDescription={socialDescription} image={image} jsonLd={jsonLd} ogType={ogType} robots={robots} />
-		<ClientRouter />
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
@@ -67,13 +65,13 @@ const currentYear = new Date().getFullYear();
 	<body class={bodyClass}>
 		<a class='skip-link' href='#main'>Skip to content</a>
 		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} isHome={bodyClass.split(/\s+/).includes('hc-home')} />}
-		<main id='main' class='hc-main' data-motion-page transition:name='page-content' transition:animate={fade({ duration: '0.4s' })}>
+	<main id='main' class='hc-main' data-motion-page>
 			<slot />
 		</main>
 
 		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} />}
 
-		<footer class:list={['hc-footer', !showFooter && 'hc-footer--mobile-only']} aria-label='Footer' transition:name='site-footer'>
+	<footer class:list={['hc-footer', !showFooter && 'hc-footer--mobile-only']} aria-label='Footer'>
 			<div class='hc-container-page hc-footer-inner'>
 				<span>&copy; {currentYear} Hanif Carroll</span>
 				<nav class='hc-footer-nav' aria-label='Footer navigation'>
@@ -87,23 +85,5 @@ const currentYear = new Date().getFullYear();
 		<script>
 			import '../scripts/motion';
 		</script>
-		<script is:inline>
-			history.scrollRestoration = 'manual';
-			const scrollToLocationHash = () => {
-				history.scrollRestoration = 'manual';
-				const hash = window.location.hash;
-				if (!hash) {
-					window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 150);
-					return;
-				}
-
-				const targetId = decodeURIComponent(hash.slice(1));
-				const scrollToTarget = () => document.getElementById(targetId)?.scrollIntoView({ block: 'start', behavior: 'auto' });
-				window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToTarget));
-				window.setTimeout(scrollToTarget, 150);
-			};
-			document.addEventListener('astro:page-load', scrollToLocationHash);
-			window.addEventListener('hashchange', scrollToLocationHash);
-		</script>
-	</body>
+</body>
 </html>

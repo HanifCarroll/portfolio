@@ -65,13 +65,16 @@ export const ruleScreens = [
       "Only active services with the right duration and goal fit become candidates for the final recommendation.",
     frame: "desktop",
   },
+];
+
+export const systemScreens = [
   {
     image: systemOwnership,
     mobileImage: systemOwnershipMobile,
     alt: "System ownership diagram showing how Typebot passes the guest's answers to Make and the spa's business tools.",
     label: "System ownership",
-    title: "Typebot collects the answers; Make handles the service rules.",
-    caption: "Make checks the Airtable catalog, then returns the approved result to Typebot.",
+    title: "Make carries each guest action into the staff record.",
+    caption: "The conversation, booking, and forms all update the Airtable appointment staff use.",
     frame: "desktop",
   },
 ];
@@ -229,6 +232,12 @@ export const shippedRows = [
 
 The selected treatment had to stay with the appointment after the conversation ended. Staff needed one Airtable record that explained the recommendation and showed whether intake and follow-up were complete.
 
+</CaseSection>
+
+<CaseSection title="How the components work together" media>
+  The spa website is the starting point. Guests use Typebot to describe what they need. Make reads the catalog in Airtable and asks DeepSeek to rank only the services that qualify. Cal.com handles booking, and Tally collects the forms that Make attaches to the appointment staff manage in Airtable.
+
+  <DeviceGrid screens={systemScreens} stacked />
 </CaseSection>
 
 <CaseSection title="The spa's service rules decide which treatments qualify" media>
