@@ -11,6 +11,7 @@ interface DeviceGridScreen {
 	caption: string;
 	frame?: 'desktop' | 'mobile';
 	mobileScrollable?: boolean;
+	contained?: boolean;
 }
 
 interface Props {
@@ -24,7 +25,13 @@ const { screens, stacked = false } = Astro.props;
 <div class:list={['case-study-detail__device-grid', { 'case-study-detail__device-grid--stacked': stacked }]}>
 	{
 		screens.map((screen) => (
-			<figure class={`case-study-detail__device-card case-study-detail__device-card--${screen.frame ?? 'desktop'}`}>
+			<figure
+				class:list={[
+					'case-study-detail__device-card',
+					`case-study-detail__device-card--${screen.frame ?? 'desktop'}`,
+					screen.contained && 'case-study-detail__device-card--contained'
+				]}
+			>
 				<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
 					{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true' />}
 					<div class:list={['device-frame__screen', { 'device-frame__screen--scrollable': screen.mobileScrollable }]}>
