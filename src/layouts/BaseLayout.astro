@@ -65,13 +65,13 @@ const currentYear = new Date().getFullYear();
 	<body class={bodyClass}>
 		<a class='skip-link' href='#main'>Skip to content</a>
 		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} isHome={bodyClass.split(/\s+/).includes('hc-home')} />}
-	<main id='main' class='hc-main' data-motion-page>
+		<main id='main' class='hc-main' data-motion-page>
 			<slot />
 		</main>
 
 		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} />}
 
-	<footer class:list={['hc-footer', !showFooter && 'hc-footer--mobile-only']} aria-label='Footer'>
+		<footer class:list={['hc-footer', !showFooter && 'hc-footer--mobile-only']} aria-label='Footer'>
 			<div class='hc-container-page hc-footer-inner'>
 				<span>&copy; {currentYear} Hanif Carroll</span>
 				<nav class='hc-footer-nav' aria-label='Footer navigation'>
@@ -85,5 +85,5 @@ const currentYear = new Date().getFullYear();
 		<script>
 			import '../scripts/motion';
 		</script>
-</body>
+	</body>
 </html>
