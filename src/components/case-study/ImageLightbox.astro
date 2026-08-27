@@ -1,0 +1,48 @@
+<dialog class="cs-lightbox" aria-label="Expanded project image" data-image-lightbox>
+	<div class="cs-lightbox__surface">
+		<button class="cs-lightbox__close" type="button" aria-label="Close image" data-lightbox-close>
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<path d="m6 6 12 12M18 6 6 18" />
+			</svg>
+		</button>
+		<img class="cs-lightbox__image" alt="" data-lightbox-image />
+	</div>
+</dialog>
+
+<script>
+	const dialog = document.querySelector<HTMLDialogElement>('[data-image-lightbox]');
+	const expandedImage = dialog?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+	let trigger: HTMLImageElement | null = null;
+
+	document.querySelectorAll<HTMLImageElement>('.cs-project-hero img, .cs-content img').forEach((image) => {
+		if (!dialog || !expandedImage || !image.alt || image.closest('a')) return;
+
+		image.tabIndex = 0;
+		image.role = 'button';
+		image.setAttribute('aria-label', `View larger: ${image.alt}`);
+		image.dataset.lightboxTrigger = '';
+
+		const open = () => {
+			trigger = image;
+			expandedImage.src = image.currentSrc || image.src;
+			expandedImage.alt = image.alt;
+			dialog.showModal();
+		};
+
+		image.addEventListener('click', open);
+		image.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter' && event.key !== ' ') return;
+			event.preventDefault();
+			open();
+		});
+	});
+
+	dialog?.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+	dialog?.addEventListener('click', (event) => {
+		if (event.target === dialog) dialog.close();
+	});
+	dialog?.addEventListener('close', () => trigger?.focus());
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && dialog?.open) dialog.close();
+	});
+</script>

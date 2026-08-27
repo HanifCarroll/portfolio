@@ -4,6 +4,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import ProjectVideo from '../../components/project-video/ProjectVideo.astro';
+import ImageLightbox from '../../components/case-study/ImageLightbox.astro';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
@@ -196,4 +197,5 @@ const heroActions = [
 
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
 	</article>
+	<ImageLightbox />
 </BaseLayout>
