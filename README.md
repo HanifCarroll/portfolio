@@ -1,6 +1,6 @@
 ## Hanif Carroll – Astro Portfolio
 
-This repo hosts the Astro-based portfolio and blog for Hanif Carroll's product engineering work with founder-led SaaS teams.
+This repo hosts the Astro-based portfolio and blog for Hanif Carroll's work as an AI Product & GTM Engineer.
 It replaces the previous Next.js build while keeping the existing project JSON data and public assets.
 
 ### Tech Stack

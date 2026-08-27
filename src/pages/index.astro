@@ -7,16 +7,17 @@ import GenruptThumb from '../assets/img/projects/genrupt-mobile-feature.png';
 import PalabrunoThumb from '../assets/img/projects/palabruno-founder-idea-launch.png';
 import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
 import CasamoThumb from '../assets/img/projects/casamo-imac.png';
+import TranquilitySpaThumb from '../assets/img/projects/tranquility-spa-concierge/project-card-phones.webp';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/archive-shared.css';
 import '../styles/home.css';
 
-const title = 'Hanif Carroll | AI Product Engineer for B2B SaaS';
+const title = 'Hanif Carroll | AI Product & GTM Engineer';
 const description =
-	'I build customer-facing products, internal tools, and workflow automations for B2B SaaS teams. Open to contract work.';
-const socialTitle = 'Hanif Carroll, AI Product Engineer';
-const socialDescription = 'I build and ship B2B SaaS products, internal tools, and AI workflows.';
+	'I build and launch AI products, internal tools, and GTM systems for B2B SaaS teams. Open to contract work.';
+const socialTitle = 'Hanif Carroll, AI Product & GTM Engineer';
+const socialDescription = 'I build and launch AI products, internal tools, and GTM systems.';
 
 const homepageJsonLd = [
 	{
@@ -24,7 +25,7 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'AI Product Engineer',
+		jobTitle: 'AI Product & GTM Engineer',
 		description,
 		sameAs: [
 			'https://github.com/hanifcarroll',
@@ -37,6 +38,7 @@ const homepageJsonLd = [
 			'Internal tools',
 			'HubSpot integrations',
 			'AI product features',
+			'GTM systems',
 			'Contract engineering'
 		]
 	},
@@ -96,13 +98,22 @@ const projects = [
 		image: BaEventosThumb,
 		alt: 'BA Eventos AI event discovery experience for Buenos Aires.',
 		tags: ['SvelteKit', 'Svelte 5', 'TypeScript', 'PostgreSQL', 'Supabase', 'Semantic Search']
+	},
+	{
+		slug: 'tranquility-spa-concierge',
+		title: 'Tranquility Spa Concierge',
+		description:
+			'Built a guided booking and staff-operations prototype that carries each spa recommendation through scheduling, intake, the visit record, aftercare, and feedback.',
+		image: TranquilitySpaThumb,
+		alt: 'Tranquility Spa Concierge guest and staff workflow shown on mobile screens.',
+		tags: ['SvelteKit', 'Typebot', 'DeepSeek', 'Make', 'Airtable', 'Cal.com']
 	}
 ];
 
 const experience = [
 	{
 		period: 'Mar 2024 — Present',
-		role: 'Founder & Lead Product Engineer',
+		role: 'Founder · AI Product & GTM Engineer',
 		company: 'HC Studio LLC',
 		companyHref: null,
 		body: 'Solo product studio building AI-powered web and mobile products for early-stage founders — owning discovery, MVP scoping, UX, full-stack build, billing, and launch. Scaled Genrupt to its first 200+ paying customers and took Palabruno from idea to live on the App Store, Google Play, and web.',
@@ -162,10 +173,10 @@ const experience = [
 					/>
 				</figure>
 				<h1 class='hc-home-header__name'><a href='/' transition:name='brand'>Hanif Carroll</a></h1>
-				<p class='hc-home-header__role'>AI Product Engineer</p>
+				<p class='hc-home-header__role'>AI Product &amp; GTM Engineer</p>
 				<p class='hc-home-header__intro'>
-					I build customer-facing products, internal tools, and workflow automations for B2B SaaS
-					teams. Open to contract work.
+					I build and launch AI products, internal tools, and GTM systems for B2B SaaS teams. Open
+					to contract work.
 				</p>
 
 				<nav class='hc-home-nav' aria-label='In-page jump links'>
@@ -339,7 +350,7 @@ const experience = [
 				</div>
 				<div class='hc-home-section-body'>
 					<p>
-						Hey, I’m Hanif. I’m an AI product engineer with eight years of experience building web,
+						Hey, I’m Hanif. I’m an AI Product &amp; GTM Engineer with eight years of experience building web,
 						mobile, and AI products. After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I turn ambiguous ideas into useful, production-ready
 						software. Recent work includes helping <a href='/projects/genrupt/'>Genrupt</a> reach its first
 						200 paying customers and taking <a href='/projects/palabruno/'>Palabruno</a> from concept to

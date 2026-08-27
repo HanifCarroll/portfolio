@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-27
+
+### AI Product and GTM positioning
+
+- Changed the current public role from AI Product Engineer and Contract Product Engineer to `AI Product & GTM Engineer` across homepage metadata, structured data, shared author copy, navigation, Projects, Now, the social preview, and the downloadable résumé.
+- Added Tranquility Spa Concierge as the fifth homepage case study while keeping its independent-prototype framing.
+- Verified the build, homepage metadata, project order, responsive layout, social image, and résumé text. Recheck the live deployment and cached social preview after Cloudflare publishes the commit.
+
 ## 2026-08-23
 
 ### Homepage Social Preview Refresh

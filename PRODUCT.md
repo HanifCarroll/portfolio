@@ -16,7 +16,7 @@ Secondary users are technical stakeholders and referral partners evaluating Hani
 
 ## Product Purpose
 
-The site explains what Hanif builds for B2B SaaS teams — customer-facing products, internal tools, and HubSpot integrations — in clear language, demonstrates his engineering work through inspectable proof, and converts qualified visitors into a fit call for either a project contract or a monthly contract. It positions the practice around contract product engineering, with a clear progression from fit call to project contract or monthly contract.
+The site explains what Hanif builds for B2B SaaS teams — customer-facing products, internal tools, and GTM systems — in clear language, demonstrates his engineering work through inspectable proof, and converts qualified visitors into a fit call for either a project contract or a monthly contract. It positions the practice around AI product and GTM engineering, with a clear progression from fit call to project contract or monthly contract.
 
 Success means a visitor can quickly recognize whether Hanif fits their engineering problem, understand how he works, inspect credible evidence, and choose one appropriate next action without needing to decode a generic developer portfolio.
 
