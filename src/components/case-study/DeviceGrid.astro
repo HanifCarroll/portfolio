@@ -4,11 +4,13 @@ import type { ImageMetadata } from 'astro';
 
 interface DeviceGridScreen {
 	image: ImageMetadata;
+	mobileImage?: ImageMetadata;
 	alt: string;
 	label: string;
 	title: string;
 	caption: string;
 	frame?: 'desktop' | 'mobile';
+	mobileScrollable?: boolean;
 }
 
 interface Props {
@@ -25,11 +27,15 @@ const { screens, stacked = false } = Astro.props;
 			<figure class={`case-study-detail__device-card case-study-detail__device-card--${screen.frame ?? 'desktop'}`}>
 				<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
 					{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true' />}
-					<div class='device-frame__screen'>
-						<Image src={screen.image} alt={screen.alt} loading='eager' class='device-frame__image' />
+					<div class:list={['device-frame__screen', { 'device-frame__screen--scrollable': screen.mobileScrollable }]}>
+						<picture class='device-frame__picture'>
+							{screen.mobileImage && <source media='(max-width: 47.999rem)' srcset={screen.mobileImage.src} />}
+							<Image src={screen.image} alt={screen.alt} loading='eager' class='device-frame__image' />
+						</picture>
 					</div>
 					{screen.frame !== 'mobile' && <div class='device-frame__base' aria-hidden='true' />}
 				</div>
+				{screen.mobileScrollable && <span class='device-frame__scroll-hint'>Swipe to read the full capture</span>}
 				<figcaption class='case-study-detail__device-caption'>
 					<span>{screen.label}</span>
 					<strong>{screen.title}</strong>

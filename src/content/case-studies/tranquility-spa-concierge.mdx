@@ -7,7 +7,9 @@ import DeviceGrid from "../../components/case-study/DeviceGrid.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import guestHomeMobile from "../../assets/img/projects/tranquility-spa-concierge/guest-home-mobile.webp";
 import decisionPolicy from "../../assets/img/projects/tranquility-spa-concierge/decision-policy.webp";
+import decisionPolicyMobile from "../../assets/img/projects/tranquility-spa-concierge/decision-policy-mobile.webp";
 import systemOwnership from "../../assets/img/projects/tranquility-spa-concierge/system-ownership.webp";
+import systemOwnershipMobile from "../../assets/img/projects/tranquility-spa-concierge/system-ownership-mobile.webp";
 import calBooking from "../../assets/img/projects/tranquility-spa-concierge/cal-booking.webp";
 import tallyIntake from "../../assets/img/projects/tranquility-spa-concierge/tally-intake.webp";
 import staffOperations from "../../assets/img/projects/tranquility-spa-concierge/staff-operations.webp";
@@ -16,17 +18,26 @@ import makeScenarios from "../../assets/img/projects/tranquility-spa-concierge/m
 import makeServiceEligibility from "../../assets/img/projects/tranquility-spa-concierge/make-service-eligibility.webp";
 import conciergeRealChat from "../../assets/img/projects/tranquility-spa-concierge/concierge-real-chat.webp";
 import bookingConfirmationEmail from "../../assets/img/projects/tranquility-spa-concierge/booking-confirmation-email.webp";
+import bookingConfirmationEmailMobile from "../../assets/img/projects/tranquility-spa-concierge/booking-confirmation-email-mobile.webp";
 import staffVisitRecord from "../../assets/img/projects/tranquility-spa-concierge/staff-visit-record.webp";
-import followUpFeedback from "../../assets/img/projects/tranquility-spa-concierge/follow-up-feedback.webp";
+import staffOperationsMobile from "../../assets/img/projects/tranquility-spa-concierge/staff-operations-mobile.webp";
+import serviceCatalogMobile from "../../assets/img/projects/tranquility-spa-concierge/service-catalog-mobile.webp";
+import staffVisitRecordMobile from "../../assets/img/projects/tranquility-spa-concierge/staff-visit-record-mobile.webp";
+import aftercareEmail from "../../assets/img/projects/tranquility-spa-concierge/aftercare-email.webp";
+import aftercareEmailMobile from "../../assets/img/projects/tranquility-spa-concierge/aftercare-email-mobile.webp";
+import feedbackForm from "../../assets/img/projects/tranquility-spa-concierge/feedback-form.webp";
+import feedbackFormMobile from "../../assets/img/projects/tranquility-spa-concierge/feedback-form-mobile.webp";
+import ownerAlert from "../../assets/img/projects/tranquility-spa-concierge/owner-alert.webp";
+import ownerAlertMobile from "../../assets/img/projects/tranquility-spa-concierge/owner-alert-mobile.webp";
 
 export const guestScreens = [
   {
     image: guestHomeMobile,
     alt: "Tranquility Spa mobile homepage with the treatment-room image, large service-guidance heading, and floating concierge prompt.",
     label: "Mobile website",
-    title: "The same decision point stays visible on a phone.",
+    title: "Guests can open the concierge from any mobile page.",
     caption:
-      "The floating prompt appears without blocking the page and gives an uncertain visitor a clear place to begin.",
+      "A small floating prompt stays within reach without covering the service page.",
     frame: "mobile",
   },
 ];
@@ -46,6 +57,7 @@ export const conciergeScreens = [
 export const ruleScreens = [
   {
     image: decisionPolicy,
+    mobileImage: decisionPolicyMobile,
     alt: "Recommendation policy narrowing 20 active spa services through hard eligibility rules and bounded AI ranking to one approved choice.",
     label: "Recommendation policy",
     title: "Business rules narrow the choice before AI ranks it.",
@@ -55,11 +67,12 @@ export const ruleScreens = [
   },
   {
     image: systemOwnership,
+    mobileImage: systemOwnershipMobile,
     alt: "System ownership diagram separating the Typebot guest experience, Make operating logic, and business records in Airtable, Cal.com, Tally, and email.",
     label: "System ownership",
-    title: "The conversation is the front door, not the system.",
+    title: "Each tool handles one part of the journey.",
     caption:
-      "Typebot presents the journey while Make and familiar business tools retain the rules, records, and follow-up.",
+      "Typebot asks the questions, Make applies the rules, and Airtable, Cal.com, Tally, and email keep the records and messages.",
     frame: "desktop",
   },
 ];
@@ -69,9 +82,9 @@ export const bookingScreens = [
     image: calBooking,
     alt: "Cal.com Salt Cave booking page showing a 45-minute service, calendar dates, and available appointment times.",
     label: "Cal.com booking",
-    title: "Availability comes from the booking authority.",
+    title: "Cal.com shows the times guests can actually book.",
     caption:
-      "The recommendation opens the right shared booking group with the service and duration already carried forward.",
+      "The concierge opens the shared booking group that matches the recommended service and duration.",
     frame: "desktop",
   },
   {
@@ -88,42 +101,50 @@ export const bookingScreens = [
 export const confirmationScreens = [
   {
     image: bookingConfirmationEmail,
+    mobileImage: bookingConfirmationEmailMobile,
     alt: "Booking confirmation email with a readable appointment date, service, duration, booking reference, and pre-visit intake action.",
     label: "Preparation email",
     title: "The confirmation turns a booking into a prepared visit.",
     caption:
       "The guest receives the date, time, service, reference, and one clear link to complete intake.",
     frame: "desktop",
+    mobileScrollable: true,
   },
 ];
 
 export const staffScreens = [
   {
     image: staffOperations,
-    alt: "Staff operations graphic showing appointment, intake, attention, and follow-up totals above an action-oriented visit queue.",
+    mobileImage: staffOperationsMobile,
+    alt: "Published Airtable operations dashboard showing appointment totals, pending intake, staff review, and the upcoming visit queue.",
     label: "Daily operations",
     title: "Staff see what is ready and what needs attention.",
     caption:
       "The default view organizes the day around exceptions and next actions instead of making staff inspect every record.",
     frame: "desktop",
+    mobileScrollable: true,
   },
   {
     image: serviceCatalog,
-    alt: "Service catalog graphic showing active and retired treatments alongside staff actions for adding services, assigning booking groups, and retiring or restoring entries.",
+    mobileImage: serviceCatalogMobile,
+    alt: "Published Airtable service catalog showing treatments and editable fields for booking category, duration, goals, description, exclusions, safety notes, and add-ons.",
     label: "Service catalog",
     title: "The business can change services without rebuilding the bot.",
     caption:
       "Staff update the source of truth in Airtable, and the next recommendation request uses the current catalog.",
     frame: "desktop",
+    mobileScrollable: true,
   },
   {
     image: staffVisitRecord,
+    mobileImage: staffVisitRecordMobile,
     alt: "Staff visit record with appointment details, intake summary, visit notes, aftercare guidance, and a Complete visit action.",
     label: "Visit record",
     title: "Staff prepare, document, and complete the visit in one place.",
     caption:
       "The selected queue item opens the details staff need before the visit and the fields they complete afterward.",
     frame: "desktop",
+    mobileScrollable: true,
   },
 ];
 
@@ -150,13 +171,37 @@ export const automationScreens = [
 
 export const followUpScreens = [
   {
-    image: followUpFeedback,
-    alt: "Post-visit aftercare email beside a short feedback form that marks a response requesting help for staff follow-up.",
-    label: "Aftercare and feedback",
-    title: "The guest receives useful follow-up, and staff receive the response.",
+    image: aftercareEmail,
+    mobileImage: aftercareEmailMobile,
+    alt: "Sent post-visit email with recorded aftercare guidance, practitioner notes, and a feedback link.",
+    label: "Aftercare email",
+    title: "The guest receives the guidance recorded by staff.",
     caption:
-      "Completing the visit sends the recorded aftercare and feedback link; responses requesting help return to the staff workflow.",
+      "Completing the visit sends the approved aftercare, practitioner note, and one clear feedback action.",
     frame: "desktop",
+    mobileScrollable: true,
+  },
+  {
+    image: feedbackForm,
+    mobileImage: feedbackFormMobile,
+    alt: "Published Tally feedback form asking for the service, visit date, rating, comments, and whether staff should follow up.",
+    label: "Feedback form",
+    title: "The response stays short and gives the guest a private path back to staff.",
+    caption:
+      "Tally captures the rating, comments, and an explicit request for personal follow-up.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+  {
+    image: ownerAlert,
+    mobileImage: ownerAlertMobile,
+    alt: "Sent owner alert email summarizing a two-out-of-five spa visit, guest details, service, and written feedback.",
+    label: "Owner alert",
+    title: "Feedback that needs attention reaches the owner directly.",
+    caption:
+      "The alert includes the visit, rating, and comments so the team can respond without hunting through form submissions.",
+    frame: "desktop",
+    mobileScrollable: true,
   },
 ];
 
@@ -186,11 +231,11 @@ export const shippedRows = [
 <CaseSection title="The hard part wasn't booking. It was choosing.">
   I built Tranquility as an independent prototype for a fictional spa after an operations consultant described a familiar customer problem: a visitor reaches a long service menu, can't tell which treatment fits, and leaves the decision for later.
 
-The idea went beyond adding a chatbot. The guest should receive useful guidance, book the right appointment, complete intake before arriving, and get relevant follow-up afterward. Staff should receive the same context without piecing it together across messages and forms.
+The idea went beyond adding a chatbot. The guest should receive useful guidance, book the right appointment, complete intake before arriving, and get relevant follow-up afterward. The chosen service, appointment time, intake answers, visit notes, and follow-up status should appear together in one staff record.
 </CaseSection>
 
 <CaseSection title="I turned operating knowledge into product rules" media>
-  A generic AI answer would weaken the idea. The recommendation had to come from the spa's approved services and the judgment behind them.
+  A model that could invent a treatment or ignore the spa's operating rules would make the recommendation unusable. Every answer had to come from an active service and follow the spa's rules for the guest's goal and available time.
 
 <DecisionBlock title="Apply hard eligibility rules before AI ranking.">
   Airtable stores the service name, duration, goals, description, status, and booking group. Make
@@ -199,16 +244,16 @@ The idea went beyond adding a chatbot. The guest should receive useful guidance,
 </DecisionBlock>
 
 <DecisionBlock title="Separate the customer conversation from the operating logic.">
-  Typebot asks the questions and shows the result. Make owns the transformations, Airtable owns the
-  editable catalog, and Cal.com owns real availability. This makes the system easier to inspect and
-  change than a large conversation canvas filled with service-specific branches.
+  Typebot asks the questions and shows the result. Make applies the transformations, Airtable stores
+  the editable catalog, and Cal.com remains the source of truth for available appointment times.
+  This is easier to inspect and change than a large conversation canvas filled with service-specific branches.
 </DecisionBlock>
 
   <DeviceGrid screens={ruleScreens} stacked />
 </CaseSection>
 
-<CaseSection title="The concierge starts inside a believable guest experience" media wideMedia>
-  I built a polished spa website around the concierge so the prototype could be judged as a customer journey rather than a collection of automation tools. The site presents all 20 services, but the persistent concierge gives an uncertain visitor a simpler starting point.
+<CaseSection title="Guests can ask for help without leaving the spa website" media wideMedia>
+  I placed the concierge inside a complete spa website so the prototype could be judged as a customer journey rather than a collection of automation tools. The site presents all 20 services, but the persistent concierge gives an uncertain visitor a simpler starting point.
 
 The conversation combines a free-text request with goal, duration, and experience preferences. It returns one concise recommendation and offers booking, changing the answers, or asking the spa for help. Contact details are requested only after the guest chooses booking or staff help, keeping lead capture tied to intent.
 
@@ -216,8 +261,8 @@ The conversation combines a free-text request with goal, duration, and experienc
   <DeviceGrid screens={conciergeScreens} stacked />
 </CaseSection>
 
-<CaseSection title="The recommendation carries into booking and intake" media>
-  Twenty services map into six shared booking groups instead of requiring a separate Cal.com event for every treatment. The booking link still carries the recommended service and duration, while Cal.com remains responsible for available times and the appointment itself.
+<CaseSection title="One recommendation becomes a bookable appointment" media>
+  Twenty services map into six shared booking groups instead of requiring a separate Cal.com event for every treatment. The concierge opens the matching booking group and passes the service name and duration in the URL. Cal.com remains the source of truth for available times and the appointment itself.
 
 After booking, Tally receives the appointment context through hidden fields. The guest sees the details already on file and answers only the preparation questions that staff need.
 
@@ -243,13 +288,17 @@ The same pattern supports the concierge. Typebot sends the guest's answers to Ma
 </CaseSection>
 
 <section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>The workflow worked. Typebot’s free tier was too small.</h2>
+  <h2>What the prototype proved</h2>
   <div class="case-study-detail__editorial-copy">
     <ProofRows rows={shippedRows}>
       <p>
-        The working prototype connected the guest and staff journey end to end and made the ownership boundaries visible. It also isolated the next production decision: upgrade or replace the conversation layer.
+        The prototype connected service guidance, booking, intake, staff preparation, aftercare, and feedback in one continuous journey. It also showed which parts were ready to keep and which production decision remained.
       </p>
     </ProofRows>
+
+    <p>
+      The service catalog, booking handoff, staff workspace, and follow-up flows can remain as designed. Before a real launch, the conversation layer needs a pricing model that supports more than Typebot's 200 free chats per month. Because that layer is separate, it can be upgraded or replaced without rebuilding the rest of the workflow.
+    </p>
 
     <nav class="case-study-detail__resource-links" aria-label="Project resources">
       <a href="https://spa-concierge-prototype.pages.dev/" target="_blank" rel="noopener noreferrer">Live prototype</a>

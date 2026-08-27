@@ -577,6 +577,34 @@ body.page-case-study-detail .hc-main {
   height: auto;
 }
 
+.device-frame__picture {
+  display: block;
+}
+
+.device-frame__scroll-hint {
+  display: none;
+}
+
+@media (max-width: 47.999rem) {
+  .device-frame__screen--scrollable {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .device-frame__screen--scrollable .device-frame__picture {
+    width: 44rem;
+    max-width: none;
+  }
+
+  .device-frame__scroll-hint {
+    display: block;
+    margin-top: -0.5rem;
+    color: var(--hc-text-muted);
+    font-size: 0.75rem;
+  }
+}
+
 .device-frame__base,
 .device-frame__island {
   display: none;
