@@ -46,4 +46,10 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 
 ### Deployment
 
-The project outputs static HTML, so it can be deployed to any static host (e.g. Vercel, Netlify, Cloudflare Pages). Run `bun run build` and upload the `dist/` directory.
+The site is deployed as a static Astro site on Cloudflare Pages. In the Cloudflare Pages project, use:
+
+- Production branch: `main`
+- Build command: `bun install --frozen-lockfile && bun run build`
+- Build output directory: `dist`
+
+The Pages project is connected to this GitHub repository. Pushes to `main` trigger a production deployment automatically; pushes to other branches and pull requests create preview deployments. No manual upload or separate CI workflow is required.
