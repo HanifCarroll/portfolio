@@ -9,7 +9,8 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 - Traced Ahrefs' 30 affected pages to Cloudflare Email Address Obfuscation rewriting every email link into two crawler-visible `/cdn-cgi/l/email-protection` URLs that returned 404. Disabled the setting; live HTML now contains normal `mailto:hanif@hanifcarroll.com` links and no email-decoder references.
 - Added an active Cloudflare Single Redirect from `https://hanifcarroll.com/*` to `https://www.hanifcarroll.com/${1}` using HTTP 301 and preserving query strings. A live path-and-query check returned the expected one-hop redirect.
 - Shortened the two overlong meta descriptions on the browser-automation comparison and HablaBA project pages to 134 and 146 characters.
-- Verified the repository changes with `git diff --check`, `bun run check:projects`, `bun run lint`, and `bun run build` (34 pages, no errors, warnings, or hints). After deployment, rerun Ahrefs Site Audit and confirm the broken-page issue clears while the bare-host duplicate warnings consolidate under `www`.
+- Changed the Projects archive identity label from a second `h1` to a styled paragraph, leaving `Projects` as the page's sole primary heading.
+- Verified the repository changes with `git diff --check`, `bun run check:projects`, `bun run lint`, and `bun run build` (34 pages, no errors, warnings, or hints). The first post-deployment Ahrefs crawl reached Health Score 100 with 0 errors and 0 links to 4xx pages; rerun after the heading change to confirm the remaining multiple-H1 warning clears.
 
 ## 2026-08-27
 
