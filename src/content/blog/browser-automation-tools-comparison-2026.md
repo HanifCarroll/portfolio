@@ -1,7 +1,7 @@
 ---
 title: "Browser Automation for AI Agents: ChatGPT Chrome vs Playwriter vs Agent-Browser"
 seoTitle: "ChatGPT Chrome vs Playwriter vs Agent-Browser: 2026 Test"
-description: "A practical comparison of the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, automated scripts, and AI-assisted tasks."
+description: "Compare the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, scripts, and AI-assisted tasks."
 pubDate: 2026-01-16
 updatedDate: 2026-07-27
 tags: ["ai", "browser-automation", "tools", "comparison", "playwright"]
