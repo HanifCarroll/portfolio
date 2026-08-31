@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-08-31
+
+### Clean resume URL
+
+- Added a Cloudflare Pages rewrite so `/resume` serves the existing résumé PDF without changing the visible URL.
+- Updated all internal résumé links to use `/resume` while preserving the downloaded filename `Hanif-Carroll-Resume.pdf`.
+- After deployment, verify that `/resume` returns the PDF with a `200` response and `application/pdf` content type.
+
 ## 2026-08-29
 
 ### Ahrefs broken-link and duplicate-host cleanup
