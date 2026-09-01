@@ -2,6 +2,15 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-09-01
+
+### AI Product Engineer positioning restored
+
+- Restored `AI Product Engineer` across the homepage, shared identity copy, structured data, résumé, and social preview metadata and image.
+- Restored the homepage social description to `I build and ship B2B SaaS products, internal tools, and AI workflows.`
+- Preserved GTM-specific project and case-study language where it describes the work rather than Hanif's title.
+- After deployment, verify the live homepage metadata and image, then refresh cached previews where needed.
+
 ## 2026-08-31
 
 ### Clean resume URL

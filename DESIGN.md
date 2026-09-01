@@ -1,6 +1,6 @@
 ---
 name: Hanif Carroll Portfolio
-description: An inspectable, proof-led portfolio for Hanif Carroll, AI Product & GTM Engineer for B2B SaaS teams.
+description: An inspectable, proof-led portfolio for Hanif Carroll, AI Product Engineer for B2B SaaS teams.
 colors:
   accent-gold: "#f8d651"
   accent-gold-hover: "color-mix(in srgb, #f8d651 88%, #725a00)"

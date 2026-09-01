@@ -6,9 +6,9 @@ description: >
 lastUpdated: "August 12th, 2026"
 ---
 
-## AI product and GTM engineering
+## AI product engineering
 
-I'm focused on AI Product & GTM Engineering for B2B SaaS teams — customer-facing products, internal tools, and GTM systems. If your team needs senior engineering on contract, [email me](mailto:hanif@hanifcarroll.com).
+I'm focused on AI product engineering for B2B SaaS teams — customer-facing products, internal tools, and AI workflows. If your team needs senior engineering on contract, [email me](mailto:hanif@hanifcarroll.com).
 
 ## Fitness
 
