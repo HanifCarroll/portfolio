@@ -113,7 +113,7 @@ const experience = [
 	{
 		period: 'Mar 2024 — Present',
 		role: 'Founder & AI Product Engineer',
-		company: 'HC Studio LLC',
+		company: 'HC Studio',
 		companyHref: null,
 		body: 'Solo product studio building AI-powered web and mobile products for early-stage founders — owning discovery, MVP scoping, UX, full-stack build, billing, and launch. Scaled Genrupt to its first 200+ paying customers and took Palabruno from idea to live on the App Store, Google Play, and web.',
 		tags: ['TypeScript', 'React', 'Next.js', 'React Native', 'OpenAI', 'Stripe']
@@ -357,7 +357,7 @@ const experience = [
 					</p>
 					<p>
 						I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. Outside of work,
-						I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' target='_blank' rel='noopener noreferrer'><strong>lift weights</strong></a>, experiment with AI, and have merienda in cozy coffee shops.
+						I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger><strong>lift weights</strong></a>, experiment with AI, and have merienda in cozy coffee shops.
 					</p>
 					<a class='hc-home-archive-link hc-home-about-notes' href='/notes/'>
 						Read my notes
@@ -393,9 +393,41 @@ const experience = [
 			</section>
 		</main>
 	</div>
+
+	<dialog class='hc-home-video-modal' aria-label='Lifting weights video' data-lifting-video-modal>
+		<div class='hc-home-video-modal__surface'>
+			<form method='dialog'>
+				<button class='hc-home-video-modal__close' type='submit' aria-label='Close video'>
+					<svg viewBox='0 0 24 24' aria-hidden='true'><path d='m6 6 12 12M18 6 6 18'></path></svg>
+				</button>
+			</form>
+			<iframe
+				class='hc-home-video-modal__frame'
+				title='Hanif Carroll lifting weights'
+				allow='autoplay; encrypted-media; picture-in-picture'
+				allowfullscreen
+				data-lifting-video-frame
+			></iframe>
+		</div>
+	</dialog>
 </BaseLayout>
 
 <script>
+	const videoTrigger = document.querySelector<HTMLAnchorElement>('[data-lifting-video-trigger]')!;
+	const videoModal = document.querySelector<HTMLDialogElement>('[data-lifting-video-modal]')!;
+	const videoFrame = document.querySelector<HTMLIFrameElement>('[data-lifting-video-frame]')!;
+
+	videoTrigger.addEventListener('click', (event) => {
+		event.preventDefault();
+		videoFrame.src = 'https://www.youtube-nocookie.com/embed/sQZoQeXo53o?autoplay=1';
+		videoModal.showModal();
+	});
+
+	videoModal.addEventListener('close', () => {
+		videoFrame.removeAttribute('src');
+		videoTrigger.focus();
+	});
+
 	const update = () => {
 		const sections = document.querySelectorAll<HTMLElement>('.hc-home-main section[id]');
 		const links = document.querySelectorAll<HTMLAnchorElement>('.hc-home-nav a');
