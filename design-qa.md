@@ -22,7 +22,7 @@
 
 - Removed the Blog eyebrow and its unused styles.
 - Reduced article H1 and H2 weights from 600 to 500 and kept the author name semibold.
-- Removed decorative outlines and table-of-contents divider/marker lines while preserving the existing author/CTA separation for a separate design decision.
+- Removed decorative outlines, table-of-contents divider/marker lines, and the divider above the author block. The divider before the commercial CTA remains.
 
 final result: passed
 
