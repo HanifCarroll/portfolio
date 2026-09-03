@@ -107,7 +107,9 @@ Doctrine captures what we can articulate about good work; taste helps us recogni
 
 ## What Comes With a Skill
 
-A code-review skill may contain a theory of what good code is and what software is for. The same is true elsewhere: skills carry ideas about how their domains work and what good work within them looks like.
+A code-review skill may contain a theory of what good code is and what software is for.
+
+The same is true elsewhere: skills carry ideas about how their domains work and what good work within them looks like.
 
 Those theories are already in the files we call skills.
 
