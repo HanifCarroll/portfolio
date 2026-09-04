@@ -2,6 +2,14 @@
 
 This file tracks Search Console observations, SEO decisions, and follow-up checks for hanifcarroll.com.
 
+## 2026-09-04
+
+### Professional identity essay
+
+- Added the public essay `/blog/choosing-a-professional-identity/` with its canonical URL, article metadata, JSON-LD, and sitemap entry generated from the new blog source.
+- Verified locally with `bun run lint` and `bun run build` (36 pages, no Astro diagnostics), including the rendered title, description, canonical URL, headings, and approved body text.
+- After deployment, verify the public page and sitemap include the article and that the rendered body remains identical to the approved draft apart from apostrophe typography.
+
 ## 2026-09-01
 
 ### AI Product Engineer positioning restored
