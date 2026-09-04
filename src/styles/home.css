@@ -199,14 +199,35 @@ body:has(.hc-home-video-modal[open]) {
 }
 
 .hc-home-feedback__viewport {
+  position: relative;
   display: grid;
   grid-template-areas: "testimonial";
 }
 
+.hc-home-feedback__viewport::before {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 3px;
+  height: var(--hc-feedback-rule-height, 100%);
+  background: var(--hc-accent);
+  content: "";
+  opacity: 0;
+  transition:
+    height var(--hc-dur-base) var(--hc-ease-out),
+    opacity var(--hc-dur-fast) var(--hc-ease-out);
+}
+
+.hc-home-feedback.is-enhanced .hc-home-feedback__viewport::before {
+  opacity: 1;
+}
+
 .hc-home-feedback__quote {
+  align-self: start;
   margin: 0;
   padding-inline-start: 1.25rem;
-  border-inline-start: 3px solid var(--hc-accent);
+  border-inline-start: 3px solid transparent;
   grid-area: testimonial;
   opacity: 0;
   pointer-events: none;
@@ -216,6 +237,10 @@ body:has(.hc-home-video-modal[open]) {
     opacity var(--hc-dur-base) var(--hc-ease-out),
     transform var(--hc-dur-base) var(--hc-ease-out),
     visibility 0s linear var(--hc-dur-base);
+}
+
+.hc-home-feedback:not(.is-enhanced) .hc-home-feedback__quote.is-active {
+  border-inline-start-color: var(--hc-accent);
 }
 
 .hc-home-feedback__quote.is-active {
@@ -501,7 +526,8 @@ body:has(.hc-home-video-modal[open]) {
   .hc-home-archive-link svg,
   .hc-home-job h3 a svg,
   .hc-home-feedback__controls button,
-  .hc-home-feedback__quote {
+  .hc-home-feedback__quote,
+  .hc-home-feedback__viewport::before {
     transition: none;
   }
 }

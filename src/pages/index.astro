@@ -336,7 +336,12 @@ const testimonials = [
 					<h2 id='feedback-title' class='hc-home-section-title'>Feedback</h2>
 				</div>
 				<div class='hc-home-section-body'>
-					<div class='hc-home-feedback__viewport' aria-live='polite' aria-atomic='true'>
+					<div
+						class='hc-home-feedback__viewport'
+						aria-live='polite'
+						aria-atomic='true'
+						data-testimonial-viewport
+					>
 						{testimonials.map((testimonial, index) => (
 							<blockquote
 								class:list={['hc-home-feedback__quote', index === 0 && 'is-active']}
@@ -497,11 +502,27 @@ const testimonials = [
 			testimonialSlider.querySelectorAll<HTMLElement>('[data-testimonial-slide]')
 		);
 		const testimonialPosition = testimonialSlider.querySelector<HTMLElement>('[data-testimonial-position]');
+		const testimonialViewport = testimonialSlider.querySelector<HTMLElement>('[data-testimonial-viewport]');
 		const previousTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-prev]');
 		const nextTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-next]');
 
-		if (testimonialSlides.length && testimonialPosition && previousTestimonial && nextTestimonial) {
+		if (
+			testimonialSlides.length &&
+			testimonialPosition &&
+			testimonialViewport &&
+			previousTestimonial &&
+			nextTestimonial
+		) {
 			let currentTestimonial = 0;
+			const updateRuleHeight = () => {
+				const activeSlide = testimonialSlides[currentTestimonial];
+				if (activeSlide) {
+					testimonialViewport.style.setProperty(
+						'--hc-feedback-rule-height',
+						`${activeSlide.offsetHeight}px`
+					);
+				}
+			};
 
 			const showTestimonial = (index: number) => {
 				currentTestimonial = (index + testimonialSlides.length) % testimonialSlides.length;
@@ -513,6 +534,7 @@ const testimonials = [
 				});
 
 				testimonialPosition.textContent = `${currentTestimonial + 1} / ${testimonialSlides.length}`;
+				updateRuleHeight();
 			};
 
 			previousTestimonial.addEventListener('click', () => showTestimonial(currentTestimonial - 1));
@@ -559,6 +581,8 @@ const testimonials = [
 			);
 
 			showTestimonial(0);
+			testimonialSlider.classList.add('is-enhanced');
+			new ResizeObserver(updateRuleHeight).observe(testimonialViewport);
 		}
 	}
 
