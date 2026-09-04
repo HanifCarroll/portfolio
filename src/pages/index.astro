@@ -143,6 +143,33 @@ const experience = [
 		tags: ['JavaScript', 'GitLab', 'CI/CD']
 	}
 ];
+
+const testimonials = [
+	{
+		name: 'Markis Zarate',
+		role: 'Founder, Zarate Studios',
+		quote:
+			"He’s reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way."
+	},
+	{
+		name: 'Sarah Hibner',
+		role: 'Senior Product Designer, LeagueApps',
+		quote:
+			'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.'
+	},
+	{
+		name: 'Joshua Hamer',
+		role: 'JIEC Labs',
+		quote:
+			'Working with Hanif on my Shopify store was easy, he was always quick to respond, and he gave me great pro tips all along the way. I really liked how the process was organized and feel like I got great value from the project. I would definitely work with him again and would recommend him to anyone looking to improve their e-commerce site!'
+	},
+	{
+		name: 'Monica Londoño',
+		role: 'Co-founder, Punto de Partida',
+		quote:
+			'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. His professionalism and data-driven approach made the entire process seamless. The result exceeded our expectations.'
+	}
+];
 ---
 
 <BaseLayout
@@ -300,6 +327,43 @@ const experience = [
 				</div>
 			</section>
 
+			<section
+				class='hc-home-section hc-home-feedback'
+				aria-labelledby='feedback-title'
+				data-testimonial-slider
+			>
+				<div class='hc-home-section-label'>
+					<h2 id='feedback-title' class='hc-home-section-title'>Feedback</h2>
+				</div>
+				<div class='hc-home-section-body'>
+					<div class='hc-home-feedback__viewport' aria-live='polite' aria-atomic='true'>
+						{testimonials.map((testimonial, index) => (
+							<blockquote
+								class='hc-home-feedback__quote'
+								data-testimonial-slide={index}
+								hidden={index !== 0}
+								aria-hidden={index !== 0}
+							>
+								<p>{testimonial.quote}</p>
+								<footer>
+									<cite>
+										<span class='hc-home-feedback__name'>{testimonial.name}</span>
+										<span class='hc-home-feedback__role'>{testimonial.role}</span>
+									</cite>
+								</footer>
+							</blockquote>
+						))}
+					</div>
+					<div class='hc-home-feedback__controls' role='group' aria-label='Testimonial controls'>
+						<button type='button' data-testimonial-prev aria-label='Previous testimonial'>
+							Previous
+						</button>
+						<span class='hc-home-feedback__position' data-testimonial-position>1 / 4</span>
+						<button type='button' data-testimonial-next aria-label='Next testimonial'>Next</button>
+					</div>
+				</div>
+			</section>
+
 			<section id='experience' class='hc-home-section' aria-label='Work experience'>
 				<div class='hc-home-section-label'>
 					<h2 class='hc-home-section-title'>Experience</h2>
@@ -427,6 +491,77 @@ const experience = [
 		videoFrame.removeAttribute('src');
 		videoTrigger.focus();
 	});
+
+	const testimonialSlider = document.querySelector<HTMLElement>('[data-testimonial-slider]');
+	if (testimonialSlider) {
+		const testimonialSlides = Array.from(
+			testimonialSlider.querySelectorAll<HTMLElement>('[data-testimonial-slide]')
+		);
+		const testimonialPosition = testimonialSlider.querySelector<HTMLElement>('[data-testimonial-position]');
+		const previousTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-prev]');
+		const nextTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-next]');
+
+		if (testimonialSlides.length && testimonialPosition && previousTestimonial && nextTestimonial) {
+			let currentTestimonial = 0;
+
+			const showTestimonial = (index: number) => {
+				currentTestimonial = (index + testimonialSlides.length) % testimonialSlides.length;
+
+				testimonialSlides.forEach((slide, slideIndex) => {
+					const active = slideIndex === currentTestimonial;
+					slide.hidden = !active;
+					slide.setAttribute('aria-hidden', String(!active));
+				});
+
+				testimonialPosition.textContent = `${currentTestimonial + 1} / ${testimonialSlides.length}`;
+			};
+
+			previousTestimonial.addEventListener('click', () => showTestimonial(currentTestimonial - 1));
+			nextTestimonial.addEventListener('click', () => showTestimonial(currentTestimonial + 1));
+
+			testimonialSlider.addEventListener('keydown', (event) => {
+				if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					showTestimonial(currentTestimonial - 1);
+				} else if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					showTestimonial(currentTestimonial + 1);
+				}
+			});
+
+			let touchStartX: number | null = null;
+			let touchStartY: number | null = null;
+			testimonialSlider.addEventListener(
+				'touchstart',
+				(event) => {
+					const touch = event.changedTouches[0];
+					if (!touch) return;
+					touchStartX = touch.clientX;
+					touchStartY = touch.clientY;
+				},
+				{ passive: true }
+			);
+			testimonialSlider.addEventListener(
+				'touchend',
+				(event) => {
+					if (touchStartX === null || touchStartY === null) return;
+					const touch = event.changedTouches[0];
+					if (!touch) return;
+
+					const deltaX = touch.clientX - touchStartX;
+					const deltaY = touch.clientY - touchStartY;
+					touchStartX = null;
+					touchStartY = null;
+
+					if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+					showTestimonial(currentTestimonial + (deltaX < 0 ? 1 : -1));
+				},
+				{ passive: true }
+			);
+
+			showTestimonial(0);
+		}
+	}
 
 	const update = () => {
 		const sections = document.querySelectorAll<HTMLElement>('.hc-home-main section[id]');

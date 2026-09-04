@@ -192,6 +192,87 @@ body:has(.hc-home-video-modal[open]) {
   transform: translateX(3px);
 }
 
+/* Feedback — one testimonial at a time with a quiet accent rule. */
+
+.hc-home-feedback {
+  touch-action: pan-y;
+}
+
+.hc-home-feedback__quote {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+  border-inline-start: 3px solid var(--hc-accent);
+}
+
+.hc-home-feedback__quote p {
+  margin: 0;
+  color: var(--hc-text);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.hc-home-feedback__quote footer {
+  margin-top: 1.5rem;
+}
+
+.hc-home-feedback__quote cite {
+  display: grid;
+  gap: 0.25rem;
+  font-style: normal;
+}
+
+.hc-home-feedback__name {
+  color: var(--hc-text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.hc-home-feedback__role {
+  color: var(--hc-text-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.hc-home-feedback__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hc-home-feedback__controls button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--hc-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--hc-accent) 70%, transparent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color var(--hc-dur-fast) var(--hc-ease-out);
+}
+
+.hc-home-feedback__controls button:hover,
+.hc-home-feedback__controls button:focus-visible {
+  color: var(--hc-accent-text);
+  text-decoration-color: var(--hc-accent);
+}
+
+.hc-home-feedback__position {
+  color: var(--hc-text-muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
 @media (max-width: 63.999rem) {
   .hc-home-nav ul {
     gap: 0 0.75rem;
@@ -396,7 +477,8 @@ body:has(.hc-home-video-modal[open]) {
 @media (prefers-reduced-motion: reduce) {
   .hc-home-nav__indicator,
   .hc-home-archive-link svg,
-  .hc-home-job h3 a svg {
+  .hc-home-job h3 a svg,
+  .hc-home-feedback__controls button {
     transition: none;
   }
 }
