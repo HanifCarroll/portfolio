@@ -339,9 +339,8 @@ const testimonials = [
 					<div class='hc-home-feedback__viewport' aria-live='polite' aria-atomic='true'>
 						{testimonials.map((testimonial, index) => (
 							<blockquote
-								class='hc-home-feedback__quote'
+								class:list={['hc-home-feedback__quote', index === 0 && 'is-active']}
 								data-testimonial-slide={index}
-								hidden={index !== 0}
 								aria-hidden={index !== 0}
 							>
 								<p>{testimonial.quote}</p>
@@ -509,7 +508,7 @@ const testimonials = [
 
 				testimonialSlides.forEach((slide, slideIndex) => {
 					const active = slideIndex === currentTestimonial;
-					slide.hidden = !active;
+					slide.classList.toggle('is-active', active);
 					slide.setAttribute('aria-hidden', String(!active));
 				});
 
