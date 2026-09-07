@@ -185,5 +185,6 @@ const entryId = (section: string, title: string) =>
 			ticking = false;
 		});
 	}, { passive: true });
-	document.addEventListener('astro:page-load', () => requestAnimationFrame(update));
+	requestAnimationFrame(update);
+	window.addEventListener('pageshow', () => requestAnimationFrame(update));
 </script>

@@ -616,5 +616,6 @@ const testimonials = [
 	};
 
 	window.addEventListener('scroll', onScroll, { passive: true });
-	document.addEventListener('astro:page-load', () => requestAnimationFrame(update));
+	requestAnimationFrame(update);
+	window.addEventListener('pageshow', () => requestAnimationFrame(update));
 </script>
