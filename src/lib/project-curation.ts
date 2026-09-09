@@ -25,7 +25,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
     description:
       "Independent products and prototypes built to test an idea through working software.",
     slugs: [
-      "tranquility-spa-concierge",
+      "tidal-spa-concierge",
       "casamo",
       "ba-eventos",
       "riowell",

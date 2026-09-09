@@ -46,7 +46,7 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 ### AI Product and GTM positioning
 
 - Changed the current public role from AI Product Engineer and Contract Product Engineer to `AI Product & GTM Engineer` across homepage metadata, structured data, shared author copy, navigation, Projects, Now, the social preview, and the downloadable résumé.
-- Added Tranquility Spa Concierge as the fifth homepage case study while keeping its independent-prototype framing.
+- Added Tidal Spa Concierge as the fifth homepage case study while keeping its independent-prototype framing.
 - Verified the build, homepage metadata, project order, responsive layout, social image, and résumé text. Recheck the live deployment and cached social preview after Cloudflare publishes the commit.
 
 ## 2026-08-23
@@ -735,9 +735,9 @@ This file tracks Search Console observations, SEO decisions, and follow-up check
 
 ## 2026-08-26
 
-### Tranquility Spa Concierge Case Study
+### Tidal Spa Concierge Case Study
 
-- Added the indexable `/projects/tranquility-spa-concierge/` case study with guest, Cal.com, Tally, and Make screenshots plus purpose-built diagrams for recommendation policy, system ownership, staff operations, and service-catalog maintenance.
+- Added the indexable `/projects/tidal-spa-concierge/` case study with guest, Cal.com, Tally, and Make screenshots plus purpose-built diagrams for recommendation policy, system ownership, staff operations, and service-catalog maintenance.
 - Added the project to the Products & Experiments archive and linked the public prototype, system tour, and source repository.
 
 ### Verification
