@@ -1,12 +1,12 @@
 {
   "slug": "casamo",
-  "title": "Casamo: Long-Stay Shortlists for Remote Workers",
-  "description": "Checks Airbnb and Booking.com listings against a traveler's must-haves, then returns qualified choices with visible support and questions for the host.",
-  "seoTitle": "Casamo Project | Long-Stay Listing Checks",
-  "seoDescription": "How Casamo checks furnished-stay listings against photos, amenities, details, and reviews before returning a qualified shortlist.",
+  "title": "Casamo: From my own apartment search to a product for other travelers",
+  "description": "I designed, built, and operate Casamo, a live product that checks Airbnb and Booking.com listings against a traveler's requirements and shows the evidence behind each finding.",
+  "seoTitle": "Casamo Case Study | Building a Production AI Product",
+  "seoDescription": "How I built and operate Casamo: evidence-based stay research, durable searches, credit recovery, and authenticated AI client access.",
   "proofType": "founder",
   "client": "Independent product",
-  "service": "Product Strategy + Full-Stack Build",
+  "service": "Product Design + Full-Stack Engineering",
   "detailVariant": "product",
   "role": "Founder / Solo Product Engineer",
   "category": "product",
@@ -15,10 +15,10 @@
   "timeline": "2026",
   "teamSize": "Solo build",
   "technologies": [
-    "SvelteKit",
-    "Cloudflare Workers",
-    "Cloudflare D1 + R2",
-    "Cloudflare Workflows",
+    "TypeScript + SvelteKit",
+    "Cloudflare Workers + Workflows",
+    "D1 + R2 + Queues",
+    "Effect",
     "DeepSeek",
     "Stripe"
   ],
@@ -33,39 +33,25 @@
     "Casamo needed to check those claims."
   ],
   "solution": [
-    "Focused the product on furnished stays for remote workers rather than broad travel planning.",
-    "Built an intake for destination, dates, guests, budget, and must-haves, with a second path for comparing 2–10 exact listing links.",
-    "Built checks across photos, amenities, listing details, and reviews, with each priority labeled as supported, needing confirmation, contradicted, or not evaluated.",
-    "Designed the report to return 6–10 qualified choices when enough listings pass every must-have, without hiding uncertainty or inventing a universal winner.",
-    "Added accounts, saved reports, one-time and monthly scan plans, and background processing for longer searches."
+    "Designed destination search and comparison of 2–10 listing links, with separate required and preferred criteria.",
+    "Built AI audits of listing facts, reviews, and photos, with shared eligibility rules and source evidence in the report.",
+    "Added list, map, and comparison views, saved-evidence reranking, host questions, and trip-grounded Q&A.",
+    "Moved scans into durable Cloudflare Workflows with persisted stage artifacts, repeat-safe starts, and credit restoration.",
+    "Built accounts, Stripe plans, and hosted MCP access with user consent and server-side revocation."
   ],
   "result": [
-    "Launched a working product that searches Airbnb and Booking.com or checks listing links supplied by the traveler.",
-    "Returns a qualified shortlist with the source behind each requirement status and the questions still worth asking the host.",
-    "Supports the full path from one free eligible scan to saved reports, paid scan allowances, and restored credit when a run fails or is unusable."
+    "Live product with public signup, saved trips, one free eligible search, a One-Day Pass, and monthly plans.",
+    "One September 5 production acceptance run discovered 262 listings and displayed ten qualified stays in nine minutes, with one debit and a sent completion email.",
+    "September 8 production checks verified Claude Code and Codex authorization, private trip reads, reversible annotations, and revocation."
   ],
-  "videos": {
-    "overview": {
-      "src": "/videos/projects/casamo/overview.mp4",
-      "poster": "/videos/projects/casamo/poster.png",
-      "duration": "42 seconds",
-      "label": "Project overview"
-    },
-    "preview": {
-      "src": "/videos/projects/casamo/preview.mp4",
-      "poster": "/videos/projects/casamo/poster.png",
-      "duration": "12 seconds",
-      "label": "Preview"
-    }
-  },
   "deliveryHighlights": [
-    "One free eligible scan followed by one-time and monthly scan plans",
-    "Airbnb and Booking.com search plus exact-link comparison",
-    "Qualified shortlist with visible requirement statuses and host questions",
-    "Live product launch at casamo.app"
+    "Live product: design, application, AI pipeline, billing, and operations",
+    "Current list, map, and comparison views with source evidence",
+    "Durable scans, saved-evidence reranking, and credit restoration",
+    "Production-verified Claude Code and Codex access"
   ],
   "images": {
-    "hero": "@src/assets/img/projects/casamo-imac.png",
-    "feature": "@src/assets/img/projects/casamo-imac.png"
+    "hero": "@src/assets/img/projects/casamo/shortlist-desktop.png",
+    "feature": "@src/assets/img/projects/casamo/shortlist-desktop.png"
   }
 }
