@@ -15,7 +15,7 @@ I designed the interface, built the TypeScript plugin and Swift helper, and hand
 </CaseSection>
 
 <CaseSection title="Word lookup and phrase explanations" media>
-  A word click opens a small card on the video. The learner chooses Google Cloud Translation or Microsoft Translator and supplies their own key. Google's lookup returns one translation; Microsoft's English dictionary can provide alternatives, with a translation fallback when no entry is available.
+  Clicking a word opens a small card over the video. You can choose Google Cloud Translation or Microsoft Translator and supply your own key. Google returns one translation. Microsoft’s English dictionary can offer alternatives, falling back to translation when it doesn’t have an entry.
 
 Selecting a phrase opens the AI sidebar. The prompt asks for its natural meaning, a breakdown of the selected words, and grammar where useful. The full subtitle line and neighboring cues provide context.
 
@@ -26,7 +26,7 @@ In the scene shown here, word lookup returns “broken” for “bozuk.” In th
 
 <CaseSection title="Streaming answers during playback">
   <DecisionBlock title="A Swift helper for streaming">
-    The IINA HTTP API I inspected did not deliver response text incrementally. A Swift helper handles HTTPS and Server-Sent Events, while the TypeScript plugin delivers the incoming text to the sidebar. Controlled endpoints test fragmented responses, interruptions, and timeouts.
+    The IINA HTTP API I inspected didn’t let me display an answer as it arrived. I built a Swift helper to receive the response in chunks, then pass the text to the TypeScript sidebar. I tested how it handles responses split across chunks, interrupted connections, and timeouts.
   </DecisionBlock>
 
 <DecisionBlock title="Discarding late responses">
@@ -56,7 +56,9 @@ Screenshots show the installed plugin during a Leyla ile Mecnun episode, with Tu
 <CaseSection title="Provider requests and saved keys">
   Requests go directly to the learner's configured providers. Word lookup sends the clicked word; phrase explanations send the selection, its cue, nearby subtitle context, and conversation turns. The video and complete subtitle file are not uploaded.
 
-Provider keys are stored through IINA's macOS Keychain integration. Saved keys are never returned to the sidebar. The streaming helper receives credentials through private pipes rather than command arguments. Model output is rendered with restricted Markdown, and subtitle files and bridge messages are validated as untrusted input.
+Neden stores provider keys through IINA’s macOS Keychain integration. Once saved, the keys aren’t sent back to the sidebar. The Swift helper receives them through private pipes, which avoids putting credentials in command arguments.
+
+I also restricted how model responses are rendered and added validation for subtitle files and messages from the interface.
 
 </CaseSection>
 
