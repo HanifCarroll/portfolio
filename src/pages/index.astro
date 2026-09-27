@@ -14,10 +14,10 @@ import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/archive-shared.css';
 import '../styles/home.css';
 
-const title = 'Hanif Carroll | AI Product Engineer for B2B SaaS';
+const title = 'Hanif Carroll | AI Engineer for B2B SaaS';
 const description =
 	'I build customer-facing products, internal tools, and AI workflows for B2B SaaS teams. Open to remote employment and contract work.';
-const socialTitle = 'Hanif Carroll, AI Product Engineer';
+const socialTitle = 'Hanif Carroll, AI Engineer';
 const socialDescription = 'I build and ship B2B SaaS products, internal tools, and AI workflows.';
 
 const homepageJsonLd = [
@@ -26,7 +26,7 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'AI Product Engineer',
+		jobTitle: 'AI Engineer',
 		description,
 		sameAs: [
 			'https://github.com/hanifcarroll',
@@ -67,7 +67,7 @@ const projects = [
 		slug: 'palabruno',
 		title: 'Palabruno',
 		description:
-			"Took a founder's Spanish-reading idea to launch across web, iOS, and Android in six weeks — owning product, UX, and full-stack engineering for AI reading, teacher workflows, and subscription billing.",
+			'Took a Spanish-reading product from an early prototype to launch across web, iOS, and Android, building its NLP and LLM reader pipeline, teacher workflows, and subscription billing.',
 		image: PalabrunoThumb,
 		alt: 'Palabruno reading product for Spanish learners and teachers.',
 		tags: ['TypeScript', 'React Native', 'Expo', 'TanStack Start', 'Supabase', 'Stripe', 'OpenAI']
@@ -76,7 +76,7 @@ const projects = [
 		slug: 'genrupt',
 		title: 'Genrupt',
 		description:
-			'Built the billing, credit accounting, background jobs, and agent workflows that moved Genrupt from an AI demo to dependable paid operations for its first 200 seller customers.',
+			'Built AI image editing, transactional credit accounting, recoverable jobs, and permissioned MCP workflows. Helped Genrupt support its first 200 paying customers.',
 		image: GenruptThumb,
 		alt: 'Genrupt creative operations workspace for Amazon seller teams.',
 		tags: ['TypeScript', 'Next.js', 'PostgreSQL', 'Stripe', 'OpenAI', 'MCP']
@@ -125,8 +125,22 @@ const experience = [
 		role: 'Founder & AI Product Engineer',
 		company: 'HC Studio',
 		companyHref: null,
-		body: 'Solo product studio building AI-powered web and mobile products for early-stage founders — owning discovery, MVP scoping, UX, full-stack build, billing, and launch. Scaled Genrupt to its first 200+ paying customers and took Palabruno from idea to live on the App Store, Google Play, and web.',
-		tags: ['TypeScript', 'React', 'Next.js', 'React Native', 'OpenAI', 'Stripe']
+		body: 'Deliver paid client AI products from business requirements through backend engineering, integrations, UX, and launch.',
+		clients: [
+			{
+				name: 'Genrupt',
+				href: '/projects/genrupt/',
+				engagement: 'Contract product engineering · 2025–2026',
+				body: 'Built an OCR and inpainting editor that turns image text into editable layers, atomic PostgreSQL credit accounting, recoverable generation jobs, and permissioned MCP workflows. Helped Genrupt support its first 200 paying customers.'
+			},
+			{
+				name: 'Palabruno',
+				href: '/projects/palabruno/',
+				engagement: 'Contract full-stack engineering · Mar–May 2026',
+				body: 'Took an early prototype to launch across iOS, Android, and web. Built an NLP and LLM reader pipeline that produces tappable words, phrases, and contextual learning cards, with targeted repair, regression evaluations, and durable processing that recovers from failures.'
+			}
+		],
+		tags: ['TypeScript', 'PostgreSQL', 'NLP', 'OCR / Inpainting', 'MCP', 'React Native', 'Stripe']
 	},
 	{
 		period: 'Nov 2021 — Feb 2024',
@@ -141,8 +155,8 @@ const experience = [
 		role: 'Software Engineer',
 		company: 'Capgemini',
 		companyHref: 'https://www.capgemini.com/',
-		body: "Led delivery of a reporting module for Disney Cruise Line's ship and crew management system, built executive KPI dashboards for Cisco, and cut automated test-suite runtime 60%.",
-		tags: ['TypeScript', 'Java', 'Spring Boot', 'Angular', 'React']
+		body: "Maintained five Java Spring Boot microservices for GE Aviation. Delivered a reporting module for Disney Cruise Line's ship and crew management system and executive KPI dashboards for Cisco; cut automated test-suite runtime 60%.",
+		tags: ['Java', 'Spring Boot', 'TypeScript', 'Angular', 'React']
 	},
 	{
 		period: 'Nov 2017 — Nov 2018',
@@ -221,10 +235,9 @@ const testimonials = [
 					/>
 				</figure>
 				<h1 class='hc-home-header__name'><a href='/' transition:name='brand'>Hanif Carroll</a></h1>
-				<p class='hc-home-header__role'>AI Product Engineer</p>
+				<p class='hc-home-header__role'>AI Engineer</p>
 				<p class='hc-home-header__intro'>
-					I build customer-facing products, internal tools, and AI workflows for B2B SaaS teams. Open
-					to remote employment and contract work.
+					I take AI products and backend systems from business needs to production. Open to remote employment and contract work.
 				</p>
 
 				<nav class='hc-home-nav' aria-label='In-page jump links'>
@@ -342,6 +355,9 @@ const testimonials = [
 							</li>
 						))}
 					</ul>
+					<p>
+						<a href='https://switchboard.paseaban-decorosa0m.workers.dev/'><strong>Switchboard — independent AI change-management demo</strong></a> uses Python, FastAPI, and LangGraph to investigate synthetic change requests with access-controlled tools and source-backed reports. Human approval is separate from execution, with workspace isolation and safe retries.
+					</p>
 					<a class='hc-home-archive-link' href='/projects/'>
 						View more projects
 						<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
@@ -412,6 +428,13 @@ const testimonials = [
 										)}
 									</h3>
 									<p>{job.body}</p>
+									{job.clients?.map((client) => (
+										<div class='hc-home-job__client'>
+											<h4><a href={client.href}>{client.name}</a></h4>
+											<p class='hc-home-job__period'>{client.engagement}</p>
+											<p>{client.body}</p>
+										</div>
+									))}
 									<ul class='hc-home-tags' aria-label='Technologies used'>
 										{job.tags.map((tag) => (
 											<li>{tag}</li>
@@ -439,17 +462,14 @@ const testimonials = [
 				</div>
 				<div class='hc-home-section-body'>
 					<p>
-						Hey, I’m Hanif. I’m an AI product engineer with eight years of experience building web,
-						mobile, and AI products.
+						Hey, I’m Hanif. I’m an AI engineer with eight years of software engineering experience, building AI products and backend systems from business requirements through launch.
 					</p>
 					<p>
 						After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I turn ambiguous ideas into useful, production-ready
 						software.
 					</p>
 					<p>
-						Recent work includes helping <a href='/projects/genrupt/'>Genrupt</a> reach its first
-						200 paying customers and taking <a href='/projects/palabruno/'>Palabruno</a> from concept to
-						production across iOS, Android, and web.
+						Recent client work includes AI image editing, language-learning pipelines, billing, and recoverable background processing. I helped <a href='/projects/genrupt/'>Genrupt</a> support its first 200 paying customers and took <a href='/projects/palabruno/'>Palabruno</a> from an early prototype to launch across iOS, Android, and web.
 					</p>
 					<p>
 						I got into programming after <em>Mr. Robot</em> inspired me to learn how to code.
