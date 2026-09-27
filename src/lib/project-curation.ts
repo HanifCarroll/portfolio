@@ -37,6 +37,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
       "apartment-finder",
       "one-tuesday",
       "language-exchange",
+      "neden",
     ],
   },
 ] as const;
