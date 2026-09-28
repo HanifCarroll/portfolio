@@ -73,7 +73,7 @@ const caseStudyFacts = project.proofType === 'client'
 	: [
 			{ label: 'Role', value: project.role },
 			{ label: 'Year', value: project.year },
-			project.liveUrl && { label: 'Status', value: 'Live product' },
+			project.liveUrl && { label: 'Status', value: project.proofType === 'experiment' ? 'Live demo' : 'Live product' },
 		].filter((detail): detail is { label: string; value: string } => Boolean(detail));
 const coreTechnologies = project.technologies.slice(0, 6);
 
@@ -81,7 +81,7 @@ const overviewVideo = project.videos?.overview;
 
 const heroActions = [
 	project.liveUrl && {
-		label: 'Visit live product',
+		label: project.proofType === 'experiment' ? 'Try live demo' : 'Visit live product',
 		href: project.liveUrl,
 		trackEvent: 'project_live_site_clicked',
 		trackLocation: 'project_detail_hero',

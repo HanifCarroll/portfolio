@@ -9,7 +9,6 @@ import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
 import CasamoThumb from '../assets/img/projects/casamo/shortlist-desktop.png';
 import NedenThumb from '../assets/img/projects/neden/phrase-explanation.png';
 import SwitchboardInbox from '../assets/img/projects/switchboard/request-inbox.png';
-import SwitchboardInvestigation from '../assets/img/projects/switchboard/investigation-review.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/archive-shared.css';
@@ -84,14 +83,11 @@ const projects = [
 	},
 	{
 		slug: 'switchboard',
-		href: 'https://switchboard.paseaban-decorosa0m.workers.dev/',
 		title: 'Switchboard',
 		description:
 			'Independent AI change-management demo using Python, FastAPI, and LangGraph to investigate synthetic change requests with access-controlled tools and source-backed reports. Human approval is separate from execution, with workspace isolation and safe retries.',
 		image: SwitchboardInbox,
 		alt: 'Switchboard request inbox showing assigned changes and their investigation and approval stages.',
-		secondImage: SwitchboardInvestigation,
-		secondAlt: 'Saved Switchboard demo investigation showing an agent conclusion, decision criteria, policy sources, and independent approval requirements.',
 		tags: ['Python', 'FastAPI', 'LangGraph']
 	},
 	{
@@ -339,7 +335,7 @@ const testimonials = [
 					<ul class='hc-home-projects'>
 						{projects.map((project) => (
 							<li class='hc-home-project'>
-								<a href={project.href ?? `/projects/${project.slug}/`}>
+								<a href={`/projects/${project.slug}/`}>
 									<div class='hc-home-project__media'>
 										<Image
 											src={project.image}
@@ -348,13 +344,7 @@ const testimonials = [
 											widths={[400, 800, 1200]}
 											sizes='(min-width: 1024px) 320px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
 										/>
-										{project.secondImage && <Image
-											src={project.secondImage}
-											alt={project.secondAlt}
-											loading='lazy'
-											widths={[400, 800, 1200]}
-											sizes='(min-width: 1024px) 320px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
-										/>}
+
 									</div>
 									<div class='hc-home-project__content'>
 										<h3>{project.title}</h3>

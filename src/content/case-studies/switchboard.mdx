@@ -1,0 +1,62 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import requestInbox from "../../assets/img/projects/switchboard/request-inbox.png";
+import investigationReview from "../../assets/img/projects/switchboard/investigation-review.png";
+
+<CaseSection title="From a customer request to an authorized change">
+
+Switchboard explores how an AI agent can help investigate operational requests without taking over the authority to approve or execute them. The example workflow changes where a fictional SaaS customer's integration sends events.
+
+I designed and built the interface, Python/FastAPI backend, LangGraph investigation workflow, and Cloudflare deployment. It is an independent demo with synthetic customers, policies, and integrations.
+
+</CaseSection>
+
+<CaseSection title="An inbox organized around the next action" media>
+
+Employees see assigned requests and their current stages. A request can be ready for investigation, awaiting an independent reviewer, or approved for execution. Visitors can switch between fictional employee personas to follow those responsibilities through the workflow.
+
+Each visitor gets an isolated workspace. The server checks employee assignments and permissions when records are read and when a proposal is reviewed, approved, executed, or verified.
+
+<ImagePlate image={requestInbox} alt="Switchboard's request inbox showing four assigned requests at different investigation and approval stages." />
+
+</CaseSection>
+
+<CaseSection title="Investigating with evidence" media>
+
+The LangGraph agent uses read-only tools to inspect tickets, customer records, integrations, and policies. It returns a structured report that Pydantic validates. Application code checks the current business records before saving a proposal. Reports can be repaired or rejected when they do not meet the required checks.
+
+The review screen brings the conclusion, decision criteria, policy sources, and approval requirements together. The screenshot below shows a saved fixture investigation, explicitly labeled in the interface. It demonstrates the review flow; live model behavior is evaluated separately.
+
+<ImagePlate image={investigationReview} alt="Switchboard's saved fixture investigation showing the agent conclusion, verified requester and destination, policy sources, and independent approval requirement." />
+
+</CaseSection>
+
+<CaseSection title="Keeping approval and execution separate">
+
+<DecisionBlock title="The model cannot authorize a change">
+The investigation ends after a proposal is saved. An assigned technical lead who is different from the proposer must approve a production change. Approval records a decision; execution remains a separate application operation.
+</DecisionBlock>
+
+<DecisionBlock title="Rechecking before execution">
+Execution checks the actor, approval, change window, and current configuration against the saved proposal. A configuration that has changed since investigation cannot silently inherit an earlier approval.
+</DecisionBlock>
+
+<DecisionBlock title="Safe retries and explicit recovery">
+The configuration update and its execution receipt are saved in one atomic D1 batch. Stored receipts make retries return the existing result instead of repeating the change. Delivery verification is recorded separately with a synthetic test event. Failed or uncertain delivery requires manual intervention.
+</DecisionBlock>
+
+</CaseSection>
+
+<CaseSection title="Deployment and evaluation">
+
+Next.js and FastAPI run in a Cloudflare Container, with D1 holding durable workspace data. The container accesses storage through named domain operations rather than arbitrary SQL. Records survive container sleep and restart.
+
+Deterministic tests exercise authorization, workspace isolation, atomic updates, and retry behavior. Separate live-model evaluations are recorded in LangSmith, with expected outcomes withheld from the agent. This keeps application correctness and model behavior independently inspectable.
+
+The [live demo](https://switchboard.paseaban-decorosa0m.workers.dev/) lets visitors explore the workflow with fictional data. It demonstrates the engineering boundaries without claiming results from a customer deployment.
+
+</CaseSection>
