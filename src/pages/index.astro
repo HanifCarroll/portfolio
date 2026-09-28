@@ -9,6 +9,8 @@ import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
 import CasamoThumb from '../assets/img/projects/casamo/shortlist-desktop.png';
 import TidalSpaThumb from '../assets/img/projects/tidal-spa-concierge/project-card-phones.webp';
 import NedenThumb from '../assets/img/projects/neden/phrase-explanation.png';
+import SwitchboardInbox from '../assets/img/projects/switchboard/request-inbox.png';
+import SwitchboardInvestigation from '../assets/img/projects/switchboard/investigation-review.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/archive-shared.css';
@@ -80,6 +82,18 @@ const projects = [
 		image: GenruptThumb,
 		alt: 'Genrupt creative operations workspace for Amazon seller teams.',
 		tags: ['TypeScript', 'Next.js', 'PostgreSQL', 'Stripe', 'OpenAI', 'MCP']
+	},
+	{
+		slug: 'switchboard',
+		href: 'https://switchboard.paseaban-decorosa0m.workers.dev/',
+		title: 'Switchboard',
+		description:
+			'Independent AI change-management demo using Python, FastAPI, and LangGraph to investigate synthetic change requests with access-controlled tools and source-backed reports. Human approval is separate from execution, with workspace isolation and safe retries.',
+		image: SwitchboardInbox,
+		alt: 'Switchboard request inbox showing assigned changes and their investigation and approval stages.',
+		secondImage: SwitchboardInvestigation,
+		secondAlt: 'Saved Switchboard demo investigation showing an agent conclusion, decision criteria, policy sources, and independent approval requirements.',
+		tags: ['Python', 'FastAPI', 'LangGraph']
 	},
 	{
 		slug: 'casamo',
@@ -335,7 +349,7 @@ const testimonials = [
 					<ul class='hc-home-projects'>
 						{projects.map((project) => (
 							<li class='hc-home-project'>
-								<a href={`/projects/${project.slug}/`}>
+								<a href={project.href ?? `/projects/${project.slug}/`}>
 									<div class='hc-home-project__media'>
 										<Image
 											src={project.image}
@@ -344,6 +358,13 @@ const testimonials = [
 											widths={[400, 800, 1200]}
 											sizes='(min-width: 1024px) 320px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
 										/>
+										{project.secondImage && <Image
+											src={project.secondImage}
+											alt={project.secondAlt}
+											loading='lazy'
+											widths={[400, 800, 1200]}
+											sizes='(min-width: 1024px) 320px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
+										/>}
 									</div>
 									<div class='hc-home-project__content'>
 										<h3>{project.title}</h3>
@@ -356,9 +377,6 @@ const testimonials = [
 							</li>
 						))}
 					</ul>
-					<p>
-						<a href='https://switchboard.paseaban-decorosa0m.workers.dev/'><strong>Switchboard — independent AI change-management demo</strong></a> uses Python, FastAPI, and LangGraph to investigate synthetic change requests with access-controlled tools and source-backed reports. Human approval is separate from execution, with workspace isolation and safe retries.
-					</p>
 					<a class='hc-home-archive-link' href='/projects/'>
 						View more projects
 						<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
