@@ -422,9 +422,40 @@ body:has(.hc-home-video-modal[open]) {
 }
 
 .hc-home-job__client h4 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: var(--hc-text-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.hc-home-job__client h4 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--hc-text-muted) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.hc-home-job__client h4 a:hover,
+.hc-home-job__client h4 a:focus-visible {
+  color: var(--hc-accent-text);
+  text-decoration-color: currentColor;
+}
+
+.hc-home-job__client .hc-home-job__period {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.hc-home-job__client > p:not(.hc-home-job__period) {
+  margin-top: 0.35rem;
+}
+
+.hc-home-job__client .hc-home-tags {
+  margin-top: 0.5rem;
 }
 
 .hc-home-job h3 a {
