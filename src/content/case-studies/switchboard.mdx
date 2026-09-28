@@ -2,61 +2,72 @@
 ---
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
-import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import requestInbox from "../../assets/img/projects/switchboard/request-inbox.png";
 import investigationReview from "../../assets/img/projects/switchboard/investigation-review.png";
 
-<CaseSection title="From a customer request to an authorized change">
+<CaseSection title="Investigating a customer change">
 
-Switchboard explores how an AI agent can help investigate operational requests without taking over the authority to approve or execute them. The example workflow changes where a fictional SaaS customer's integration sends events.
+Changing a production webhook endpoint means deciding where customer events will be sent. An incorrect change could interrupt delivery or send those events to an unauthorized destination. Before an engineer updates the configuration, they need to establish what the customer requested, whether it’s permitted, and who must approve it.
 
-I designed and built the interface, Python/FastAPI backend, LangGraph investigation workflow, and Cloudflare deployment. It is an independent demo with synthetic customers, policies, and integrations.
+Switchboard handles that process for a fictional integration SaaS company. An AI agent investigates the request and prepares findings for review; the application controls proposal creation, independent approval, execution, and verification. I built it to extend my experience with customer-facing AI products into internal tools, where someone needs to review an agent’s findings before changing a customer’s configuration.
 
-</CaseSection>
+In the main scenario, Acme asks to replace its production webhook endpoint. The investigator reads the ticket, checks the requester against authorized customer contacts, and compares the proposed destination with registered endpoints. It also encounters two policy versions: an older rule permits self-approval, while its replacement requires approval from a technical lead assigned to the customer who did not propose the change.
 
-<CaseSection title="An inbox organized around the next action" media>
-
-Employees see assigned requests and their current stages. A request can be ready for investigation, awaiting an independent reviewer, or approved for execution. Visitors can switch between fictional employee personas to follow those responsibilities through the workflow.
-
-Each visitor gets an isolated workspace. The server checks employee assignments and permissions when records are read and when a proposal is reviewed, approved, executed, or verified.
-
-<ImagePlate image={requestInbox} alt="Switchboard's request inbox showing four assigned requests at different investigation and approval stages." />
+The application supplies the employee’s identity, and the agent’s tools check customer access before returning records. An employee assigned to Acme cannot retrieve Globex’s configuration through the investigator. When the model recommends preparing a proposal, a separate LangGraph stage checks the proposed change against current business records before saving it for approval.
 
 </CaseSection>
 
-<CaseSection title="Investigating with evidence" media>
+<CaseSection title="Checking the agent’s conclusions" media>
 
-The LangGraph agent uses read-only tools to inspect tickets, customer records, integrations, and policies. It returns a structured report that Pydantic validates. Application code checks the current business records before saving a proposal. Reports can be repaired or rejected when they do not meet the required checks.
+I tested the investigator against six scenarios, including an unauthorized requester, an unregistered destination, and instructions embedded in a ticket that tried to override policy. After prompt revisions, all six produced the expected candidate-or-blocked outcome, though one attempt exhausted its token budget and needed a retry. The cross-customer case also passed three repeated checks.
 
-The review screen brings the conclusion, decision criteria, policy sources, and approval requirements together. The screenshot below shows a saved fixture investigation, explicitly labeled in the interface. It demonstrates the review flow; live model behavior is evaluated separately.
+But a correct outcome didn’t mean the explanation was accurate. In the valid-request scenario, the agent correctly recommended preparing a proposal while misstating the recovery policy. The policy allowed restoration of the old endpoint when the approved plan permitted it and no intervening change made restoration unsafe. The summary turned that conditional permission into a blanket prohibition.
 
-<ImagePlate image={investigationReview} alt="Switchboard's saved fixture investigation showing the agent conclusion, verified requester and destination, policy sources, and independent approval requirement." />
+I added a policy-faithfulness evaluator and tested it against four examples covering conditional permission, an unconditional allowance, a blanket ban, and the investigator’s limited authority. The evaluator initially objected to equivalent wording about escalation. In a later run, it flagged a summary for mentioning independent approval without also mentioning that the approver had to be assigned to the customer. The summary hadn’t claimed that independent approval was the only requirement.
 
-</CaseSection>
+After I refined the instructions to account for those distinctions, the follow-up evaluation matched all four expected results. That corrected the observed mistakes, but four examples aren’t enough to estimate accuracy across unfamiliar requests.
 
-<CaseSection title="Keeping approval and execution separate">
+Policy review now runs automatically before a report is published. The evaluator compares the findings with the workspace’s policy documents and cites excerpts for questionable claims. The application checks that those excerpts occur in the cited sources, allows one revision of the findings, and evaluates them again. If validation fails, it saves neither a completed investigation nor a proposal. The employee sees “The investigation report could not be validated. Try again.” and can start another investigation.
 
-<DecisionBlock title="The model cannot authorize a change">
-The investigation ends after a proposal is saved. An assigned technical lead who is different from the proposer must approve a production change. Approval records a decision; execution remains a separate application operation.
-</DecisionBlock>
+The evaluator can quote a policy accurately and misinterpret it, so application code independently enforces authorization. In the report, missing evidence, confirmed violations, and requirements that apply later receive different statuses. A reviewer can open source records alongside the findings and inspect the evidence captured during the investigation, even if the underlying configuration has since changed.
 
-<DecisionBlock title="Rechecking before execution">
-Execution checks the actor, approval, change window, and current configuration against the saved proposal. A configuration that has changed since investigation cannot silently inherit an earlier approval.
-</DecisionBlock>
+<ImagePlate image={investigationReview} alt="Switchboard investigation report showing requester and destination checks, with independent approval required before execution." />
 
-<DecisionBlock title="Safe retries and explicit recovery">
-The configuration update and its execution receipt are saved in one atomic D1 batch. Stored receipts make retries return the existing result instead of repeating the change. Delivery verification is recorded separately with a synthetic test event. Failed or uncertain delivery requires manual intervention.
-</DecisionBlock>
+*This screenshot uses a prepared development fixture. The public demo calls the model when a visitor starts an investigation.*
 
 </CaseSection>
 
-<CaseSection title="Deployment and evaluation">
+<CaseSection title="Executing an approved change">
 
-Next.js and FastAPI run in a Cloudflare Container, with D1 holding durable workspace data. The container accesses storage through named domain operations rather than arbitrary SQL. Records survive container sleep and restart.
+By the time a proposal reaches execution, the customer may have revised its instructions, an employee may have lost access, or another engineer may have updated the endpoint. Switchboard checks current authority, approval, the permitted change window, and configuration again before applying the change.
 
-Deterministic tests exercise authorization, workspace isolation, atomic updates, and retry behavior. Separate live-model evaluations are recorded in LangSmith, with expected outcomes withheld from the agent. This keeps application correctness and model behavior independently inspectable.
+As I added approval and execution, I questioned the separate databases originally used for investigation scenarios. These operations needed a consistent view of the same business records. Bringing that state together also allowed the configuration update and its execution receipt to commit together.
 
-The [live demo](https://switchboard.paseaban-decorosa0m.workers.dev/) lets visitors explore the workflow with fictional data. It demonstrates the engineering boundaries without claiming results from a customer deployment.
+Suppose a proposal expects configuration version 7, but another change has advanced it to version 8. Execution must reject the stale proposal. Now suppose Switchboard performs the approved update, advances the version, and loses the response before the browser receives it. A retry should return the result of that successful execution.
+
+The saved receipt distinguishes those cases. After checking the caller’s access, an execution retry returns the existing receipt without repeating the update. A separate verification step checks the active endpoint and records the outcome of a synthetic delivery event. Confirmed delivery closes the ticket; failure or uncertainty requires manual intervention. The application doesn’t perform automatic rollback.
+
+I tested persistence separately through local integration tests against the Worker-to-D1 storage service. A mismatched configuration version left the endpoint unchanged and created no execution receipt. After a Worker restart, retrying a completed execution returned its original receipt without advancing the configuration version again.
+
+</CaseSection>
+
+<CaseSection title="Trying the workflow" media>
+
+For visitors, I replaced a separate demo-case selector with an inbox containing requests at different stages. Someone can investigate a new request, review a pending proposal, or execute an approved change through the same interface.
+
+<ImagePlate image={requestInbox} alt="Switchboard request inbox showing work ready for investigation, awaiting approval, and approved for execution." />
+
+*The inbox shows requests assigned to the selected fictional employee and the stage each has reached.*
+
+I also reconsidered requiring Microsoft sign-in for a portfolio demonstration. Visitors receive isolated workspaces and can switch between fictional employees to experience their different responsibilities. Each persona’s permissions apply within that workspace; Microsoft Entra authentication is supported separately.
+
+The company, customer records, and delivery events are synthetic. [Try Switchboard](https://switchboard.paseaban-decorosa0m.workers.dev/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
+
+</CaseSection>
+
+<CaseSection title="Development">
+
+Built with AI coding tools, reviewing behavior, module interfaces, and test scenarios before implementation.
 
 </CaseSection>
