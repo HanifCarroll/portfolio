@@ -32,9 +32,12 @@ Policy review now runs automatically before a report is published. The evaluator
 
 The evaluator can quote a policy accurately and misinterpret it, so application code independently enforces authorization. In the report, missing evidence, confirmed violations, and requirements that apply later receive different statuses. A reviewer can open source records alongside the findings and inspect the evidence captured during the investigation, even if the underlying configuration has since changed.
 
-<ImagePlate image={investigationReview} alt="Switchboard investigation report showing requester and destination checks, with independent approval required before execution." />
+<ImagePlate
+  image={investigationReview}
+  alt="Switchboard investigation report showing requester and destination checks, with independent approval required before execution."
+/>
 
-*This screenshot uses a prepared development fixture. The public demo calls the model when a visitor starts an investigation.*
+_This screenshot uses a prepared development fixture. The public demo calls the model when a visitor starts an investigation._
 
 </CaseSection>
 
@@ -42,13 +45,15 @@ The evaluator can quote a policy accurately and misinterpret it, so application 
 
 By the time a proposal reaches execution, the customer may have revised its instructions, an employee may have lost access, or another engineer may have updated the endpoint. Switchboard checks current authority, approval, the permitted change window, and configuration again before applying the change.
 
-As I added approval and execution, I questioned the separate databases originally used for investigation scenarios. These operations needed a consistent view of the same business records. Bringing that state together also allowed the configuration update and its execution receipt to commit together.
+DynamoDB keeps investigation, approval, and execution tied to the same workspace records. Conditional transactions commit the configuration update and its execution receipt together, while rejecting stale proposals.
 
 Suppose a proposal expects configuration version 7, but another change has advanced it to version 8. Execution must reject the stale proposal. Now suppose Switchboard performs the approved update, advances the version, and loses the response before the browser receives it. A retry should return the result of that successful execution.
 
 The saved receipt distinguishes those cases. After checking the caller’s access, an execution retry returns the existing receipt without repeating the update. A separate verification step checks the active endpoint and records the outcome of a synthetic delivery event. Confirmed delivery closes the ticket; failure or uncertainty requires manual intervention. The application doesn’t perform automatic rollback.
 
-I tested persistence separately through local integration tests against the Worker-to-D1 storage service. A mismatched configuration version left the endpoint unchanged and created no execution receipt. After a Worker restart, retrying a completed execution returned its original receipt without advancing the configuration version again.
+I tested these transactions against DynamoDB and repeated the full workflow on the deployed application with real model investigations. A mismatched configuration version left the endpoint unchanged and created no execution receipt. Retrying a completed execution returned its original receipt without advancing the configuration version again.
+
+The Next.js website, FastAPI API, and investigation worker run in separate AWS Lambda functions behind CloudFront. SQS delivers investigations to the worker, which records progress and saves validated model output before publishing the result. This lets visitors reopen a job after navigating away and lets a retry reuse saved output after a publication failure. Scheduled maintenance recovers pending submissions and records dead-letter failures.
 
 </CaseSection>
 
@@ -56,13 +61,16 @@ I tested persistence separately through local integration tests against the Work
 
 For visitors, I replaced a separate demo-case selector with an inbox containing requests at different stages. Someone can investigate a new request, review a pending proposal, or execute an approved change through the same interface.
 
-<ImagePlate image={requestInbox} alt="Switchboard request inbox showing work ready for investigation, awaiting approval, and approved for execution." />
+<ImagePlate
+  image={requestInbox}
+  alt="Switchboard request inbox showing work ready for investigation, awaiting approval, and approved for execution."
+/>
 
-*The inbox shows requests assigned to the selected fictional employee and the stage each has reached.*
+_The inbox shows requests assigned to the selected fictional employee and the stage each has reached._
 
 I also reconsidered requiring Microsoft sign-in for a portfolio demonstration. Visitors receive isolated workspaces and can switch between fictional employees to experience their different responsibilities. Each persona’s permissions apply within that workspace; Microsoft Entra authentication is supported separately.
 
-The company, customer records, and delivery events are synthetic. [Try Switchboard](https://switchboard.paseaban-decorosa0m.workers.dev/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
+The company, customer records, and delivery events are synthetic. [Try Switchboard](https://d3ar9mvnjcwzyk.cloudfront.net/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
 
 </CaseSection>
 
