@@ -10,27 +10,69 @@ import investigationReview from "../../assets/img/projects/switchboard/investiga
 
 Changing a production webhook endpoint means deciding where customer events will be sent. An incorrect change could interrupt delivery or send those events to an unauthorized destination. Before an engineer updates the configuration, they need to establish what the customer requested, whether it’s permitted, and who must approve it.
 
-Switchboard handles that process for a fictional integration SaaS company. An AI agent investigates the request and prepares findings for review; the application controls proposal creation, independent approval, execution, and verification. I built it to extend my experience with customer-facing AI products into internal tools, where someone needs to review an agent’s findings before changing a customer’s configuration.
+Switchboard is an independent AI change-management system deployed on AWS. Python, FastAPI, and LangGraph investigate requests and prepare source-backed findings. The application controls independent approval, execution, and delivery verification. The company and customer records are synthetic; the deployed workflow makes real model calls and sends signed HTTP requests to a separate receiver.
 
-In the main scenario, Acme asks to replace its production webhook endpoint. The investigator reads the ticket, checks the requester against authorized customer contacts, and compares the proposed destination with registered endpoints. It also encounters two policy versions: an older rule permits self-approval, while its replacement requires approval from a technical lead assigned to the customer who did not propose the change.
+<nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
+  <a href="https://d3ar9mvnjcwzyk.cloudfront.net/">Live demo</a>
+  <a href="https://github.com/HanifCarroll/b2b-saas-internal-agent">Source code</a>
+  <a href="https://github.com/HanifCarroll/b2b-saas-internal-agent/blob/main/docs/architecture.md">
+    Architecture
+  </a>
+</nav>
 
-The application supplies the employee’s identity, and the agent’s tools check customer access before returning records. An employee assigned to Acme cannot retrieve Globex’s configuration through the investigator. When the model recommends preparing a proposal, a separate LangGraph stage checks the proposed change against current business records before saving it for approval.
+In the main scenario, Acme asks to replace its production webhook endpoint. The investigator reads the ticket, checks the requester against authorized customer contacts, and compares the proposed destination with registered endpoints. It must use the current policy, which requires approval from a technical lead assigned to the customer who did not propose the change.
+
+The application supplies the employee’s identity, and the agent’s tools check customer access before returning records. An employee assigned to Acme cannot retrieve Globex’s configuration through the investigator. Before saving a proposal, application code checks the proposed change against current business records.
+
+</CaseSection>
+
+<CaseSection title="Running the workflow on AWS">
+
+CloudFront serves the Next.js website and routes API requests to separate AWS Lambda functions. The website uses the Lambda Web Adapter; the FastAPI API uses Mangum. A native Python worker handles investigations delivered through SQS.
+
+<figure
+  className="switchboard-architecture"
+  aria-label="Switchboard request and workflow architecture"
+>
+  <ol>
+    <li>
+      <strong>CloudFront → Lambda</strong>
+      <span>Next.js website and FastAPI API</span>
+    </li>
+    <li>
+      <strong>Step Functions → SQS → Python Lambda</strong>
+      <span>Durable jobs and LangGraph investigation</span>
+    </li>
+    <li>
+      <strong>Independent approval → explicit execution</strong>
+      <span>Current authority, policy, and configuration checks</span>
+    </li>
+    <li>
+      <strong>Signed HTTP delivery → verified receipt</strong>
+      <span>A separate receiver confirms the event and payload</span>
+    </li>
+  </ol>
+  <figcaption>
+    DynamoDB stores job progress, proposals, approvals, and execution and delivery receipts across
+    the workflow.
+  </figcaption>
+</figure>
+
+LangGraph coordinates the AI investigation: retrieving evidence, preparing a structured report, reviewing policy claims, and revising findings when needed. Step Functions coordinates the longer business workflow. It starts the queued investigation, receives the worker’s completion callback, and waits for independent approval, explicit execution, and verification.
+
+Progress lives in DynamoDB, so visitors can reopen a job after navigating away. The worker saves validated output before publishing completion, allowing retries to reuse it. SQS handles transient retries and sends exhausted messages to a dead-letter queue. EventBridge Scheduler runs recovery checks for pending submissions and failed deliveries.
 
 </CaseSection>
 
 <CaseSection title="Checking the agent’s conclusions" media>
 
-I tested the investigator against six scenarios, including an unauthorized requester, an unregistered destination, and instructions embedded in a ticket that tried to override policy. After prompt revisions, all six produced the expected candidate-or-blocked outcome, though one attempt exhausted its token budget and needed a retry. The cross-customer case also passed three repeated checks.
+A correct recommendation can still contain an inaccurate explanation. The policy reviewer compares the report’s claims with the current workspace policies and cites excerpts for questionable claims. Application code checks that each excerpt occurs in its cited source, allows one report revision, and evaluates it again. Reports that still fail validation are rejected before a proposal is created.
 
-But a correct outcome didn’t mean the explanation was accurate. In the valid-request scenario, the agent correctly recommended preparing a proposal while misstating the recovery policy. The policy allowed restoration of the old endpoint when the approved plan permitted it and no intervening change made restoration unsafe. The summary turned that conditional permission into a blanket prohibition.
+Missing evidence, confirmed violations, and requirements that apply at approval or execution receive different statuses. The reviewer must distinguish a rule from a customer record and preserve conditional permissions. For example, a policy that permits restoration only when the approved recovery plan allows it must not become a blanket ban or unconditional permission.
 
-I added a policy-faithfulness evaluator and tested it against four examples covering conditional permission, an unconditional allowance, a blanket ban, and the investigator’s limited authority. The evaluator initially objected to equivalent wording about escalation. In a later run, it flagged a summary for mentioning independent approval without also mentioning that the approver had to be assigned to the customer. The summary hadn’t claimed that independent approval was the only requirement.
+Live-model evaluations cover valid requests, unauthorized requesters, unregistered destinations, conflicting policy versions, cross-customer access, and instructions embedded in tickets that attempt to override policy. Separate policy cases exercise source grounding and faithful interpretation. Deployed workflow checks also verify approval, stale configuration rejection, duplicate execution, delivery receipts, and workspace isolation. These are bounded test cases, rather than an estimate of accuracy on unfamiliar requests.
 
-After I refined the instructions to account for those distinctions, the follow-up evaluation matched all four expected results. That corrected the observed mistakes, but four examples aren’t enough to estimate accuracy across unfamiliar requests.
-
-Policy review now runs automatically before a report is published. The evaluator compares the findings with the workspace’s policy documents and cites excerpts for questionable claims. The application checks that those excerpts occur in the cited sources, allows one revision of the findings, and evaluates them again. If validation fails, it saves neither a completed investigation nor a proposal. The employee sees “The investigation report could not be validated. Try again.” and can start another investigation.
-
-The evaluator can quote a policy accurately and misinterpret it, so application code independently enforces authorization. In the report, missing evidence, confirmed violations, and requirements that apply later receive different statuses. A reviewer can open source records alongside the findings and inspect the evidence captured during the investigation, even if the underlying configuration has since changed.
+The evaluator can quote a policy accurately and misinterpret it, so application code independently enforces authorization. A human reviewer can open source records alongside the findings and inspect the evidence captured during the investigation, even if the underlying configuration has since changed.
 
 <ImagePlate
   image={investigationReview}
@@ -41,25 +83,31 @@ _This screenshot uses a prepared development fixture. The public demo calls the 
 
 </CaseSection>
 
-<CaseSection title="Executing an approved change">
+<CaseSection title="Executing and verifying an approved change">
 
 By the time a proposal reaches execution, the customer may have revised its instructions, an employee may have lost access, or another engineer may have updated the endpoint. Switchboard checks current authority, approval, the permitted change window, and configuration again before applying the change.
 
-DynamoDB keeps investigation, approval, and execution tied to the same workspace records. Conditional transactions commit the configuration update and its execution receipt together, while rejecting stale proposals.
+DynamoDB conditional transactions commit the configuration update and its execution receipt together. A proposal expecting version 7 is rejected if another change has advanced the configuration to version 8. If an approved update succeeds but the browser loses the response, a retry returns the saved receipt without applying the change again.
 
-Suppose a proposal expects configuration version 7, but another change has advanced it to version 8. Execution must reject the stale proposal. Now suppose Switchboard performs the approved update, advances the version, and loses the response before the browser receives it. A retry should return the result of that successful execution.
+Verification checks the active endpoint and sends a signed synthetic event over HTTP to a separate Lambda receiver. The receiver persists its own receipt. Switchboard checks the destination, event ID, and payload hash against that receipt before confirming delivery and closing the ticket. A timeout is inconclusive; failure or uncertainty requires manual intervention. The application does not perform automatic business rollback.
 
-The saved receipt distinguishes those cases. After checking the caller’s access, an execution retry returns the existing receipt without repeating the update. A separate verification step checks the active endpoint and records the outcome of a synthetic delivery event. Confirmed delivery closes the ticket; failure or uncertainty requires manual intervention. The application doesn’t perform automatic rollback.
+I verified the deployed workflow with real model investigations and real signed delivery. Stale proposals left the endpoint unchanged, completed execution retries returned the original receipt, and delivery verification matched the receiver’s independently saved result.
 
-I tested these transactions against DynamoDB and repeated the full workflow on the deployed application with real model investigations. A mismatched configuration version left the endpoint unchanged and created no execution receipt. Retrying a completed execution returned its original receipt without advancing the configuration version again.
+</CaseSection>
 
-The Next.js website, FastAPI API, and investigation worker run in separate AWS Lambda functions behind CloudFront. SQS delivers investigations to the worker, which records progress and saves validated model output before publishing the result. This lets visitors reopen a job after navigating away and lets a retry reuse saved output after a publication failure. Scheduled maintenance recovers pending submissions and records dead-letter failures.
+<CaseSection title="Deploying and operating the system">
+
+CloudFormation defines the application infrastructure, Lambda configuration, and live release aliases. GitHub Actions builds and deploys releases using OIDC to assume an AWS role, without storing long-lived AWS access keys in GitHub. IAM roles limit each function to the records, queues, and operations it needs; the model credential is held in an encrypted Parameter Store value available to the worker.
+
+CloudWatch provides structured logs, a dashboard, and alarms for failed workflows, queue backlogs, dead-letter messages, and delivery failures. OpenTelemetry and X-Ray tracing connect sampled requests across components. Operational emails summarize what failed and link to investigation and recovery views. Logs retain validation reasons so rejected reports can be diagnosed.
+
+The live model connection uses DeepSeek directly. A Bedrock adapter is also implemented and tested, but Bedrock is not the model provider used by the public deployment.
 
 </CaseSection>
 
 <CaseSection title="Trying the workflow" media>
 
-For visitors, I replaced a separate demo-case selector with an inbox containing requests at different stages. Someone can investigate a new request, review a pending proposal, or execute an approved change through the same interface.
+The inbox contains requests at different stages. A visitor can investigate a new request, review a pending proposal, or execute an approved change through the same interface. Isolated visitor workspaces and fictional employee personas let someone experience each role’s permissions and the requirement for a separate approver.
 
 <ImagePlate
   image={requestInbox}
@@ -68,9 +116,7 @@ For visitors, I replaced a separate demo-case selector with an inbox containing 
 
 _The inbox shows requests assigned to the selected fictional employee and the stage each has reached._
 
-I also reconsidered requiring Microsoft sign-in for a portfolio demonstration. Visitors receive isolated workspaces and can switch between fictional employees to experience their different responsibilities. Each persona’s permissions apply within that workspace; Microsoft Entra authentication is supported separately.
-
-The company, customer records, and delivery events are synthetic. [Try Switchboard](https://d3ar9mvnjcwzyk.cloudfront.net/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
+[Try Switchboard](https://d3ar9mvnjcwzyk.cloudfront.net/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
 
 </CaseSection>
 

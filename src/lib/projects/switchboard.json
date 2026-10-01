@@ -1,13 +1,13 @@
 {
   "slug": "switchboard",
-  "title": "Switchboard: taking a customer change from request to verified execution",
-  "description": "An AI agent investigates customer change requests and prepares findings for review. The application controls independent approval, execution, and delivery verification.",
-  "seoTitle": "Switchboard | AI Investigation and Approval Workflows | Hanif Carroll",
-  "seoDescription": "A Python, FastAPI, and LangGraph change-management demo with access-controlled tools, evidence-backed reports, independent approval, and retry-safe execution.",
+  "title": "Switchboard: AI change workflows on AWS",
+  "description": "A Python and LangGraph AI system on AWS that investigates customer changes, requires independent human approval, and verifies delivery after execution.",
+  "seoTitle": "Switchboard | AI Change Workflows on AWS | Hanif Carroll",
+  "seoDescription": "A Python and LangGraph AI change-management system using AWS Lambda, Step Functions, SQS, DynamoDB, and CloudFormation, with independent approval and verified delivery.",
   "proofType": "experiment",
-  "cardLabel": "Independent AI demo",
+  "cardLabel": "Independent AI system on AWS",
   "client": "Independent project",
-  "service": "AI workflow engineering",
+  "service": "AI workflows and AWS architecture",
   "detailVariant": "product",
   "role": "Workflow design, backend and agent engineering, frontend, and deployment",
   "category": "product",
@@ -16,26 +16,32 @@
   "teamSize": "Solo build",
   "technologies": [
     "Python",
-    "FastAPI",
     "LangGraph",
-    "Next.js",
-    "DynamoDB",
-    "LangSmith",
-    "Pydantic",
     "AWS Lambda",
+    "DynamoDB",
+    "Step Functions",
+    "CloudFormation",
+    "FastAPI",
+    "Next.js",
     "SQS",
-    "CloudFront"
+    "CloudFront",
+    "IAM",
+    "CloudWatch",
+    "X-Ray",
+    "LangSmith",
+    "Pydantic"
   ],
   "liveUrl": "https://d3ar9mvnjcwzyk.cloudfront.net/",
   "problem": [
     "Investigating a change request requires checking business records and policies, but a plausible AI answer is not enough authority to change a production configuration."
   ],
   "solution": [
-    "Built read-only, access-controlled investigation tools and validated structured reports before saving proposals.",
-    "Separated investigation, independent approval, execution, and delivery verification, with workspace isolation and atomic updates and receipts."
+    "Built read-only, access-controlled investigation tools and validated source-backed reports before saving proposals.",
+    "Orchestrated investigation, independent approval, execution, and delivery verification with Step Functions, SQS, and DynamoDB transactions.",
+    "Defined infrastructure with CloudFormation and automated deployments through GitHub Actions using OIDC, with CloudWatch monitoring and distributed tracing."
   ],
   "result": [
-    "A working public demo using fictional customers and integrations, with isolated visitor workspaces and separate live-model evaluations."
+    "A public AWS deployment using synthetic customer data, verified with live-model investigations, independent approval, signed HTTP delivery, and retry and isolation checks."
   ],
   "images": {
     "hero": "@src/assets/img/projects/switchboard/request-inbox.png",
