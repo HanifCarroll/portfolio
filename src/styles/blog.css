@@ -183,12 +183,21 @@
   border-radius: var(--hc-radius-artifact);
   background: var(--hc-surface);
 }
-.blog-post-prose :where(.workflow-map figcaption) {
-  margin-top: 0.85rem;
+.blog-post-prose :where(figcaption) {
+  margin-top: 0.75rem;
   color: var(--hc-text-muted);
   font-family: var(--hc-font-sans);
   font-size: var(--hc-type-meta);
+  font-style: normal;
   line-height: 1.55;
+}
+
+.blog-post-prose :where(figcaption p, figcaption a, figcaption strong, figcaption em) {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal;
+  line-height: inherit;
 }
 .blog-post-prose .astro-code span[style*="#6A737D"] {
   color: var(--hc-text-muted) !important;
