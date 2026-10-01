@@ -6,11 +6,13 @@ import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import requestInbox from "../../assets/img/projects/switchboard/request-inbox.png";
 import investigationReview from "../../assets/img/projects/switchboard/investigation-review.png";
 
-<CaseSection title="Investigating a customer change">
+<CaseSection title="Checking customer change requests">
 
-Changing a production webhook endpoint means deciding where customer events will be sent. An incorrect change could interrupt delivery or send those events to an unauthorized destination. Before an engineer updates the configuration, they need to establish what the customer requested, whether it’s permitted, and who must approve it.
+Switchboard helps a team investigate and carry out customer changes. In the demo, a customer asks to change where their system receives event notifications. Sending those notifications to the wrong place could expose data or interrupt a service.
 
-Switchboard is an independent AI change-management system deployed on AWS. Python, FastAPI, and LangGraph investigate requests and prepare source-backed findings. The application controls independent approval, execution, and delivery verification. The company and customer records are synthetic; the deployed workflow makes real model calls and sends signed HTTP requests to a separate receiver.
+I built a Python and LangGraph agent that reads the request, checks customer records and company policies, and prepares a report with links to its evidence. An authorized employee must approve the proposal before anyone can apply the change.
+
+The demo runs on AWS with fictional company and customer records. Investigations use a real AI model.
 
 <nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
   <a href="https://d3ar9mvnjcwzyk.cloudfront.net/">Live demo</a>
@@ -20,108 +22,65 @@ Switchboard is an independent AI change-management system deployed on AWS. Pytho
   </a>
 </nav>
 
-In the main scenario, Acme asks to replace its production webhook endpoint. The investigator reads the ticket, checks the requester against authorized customer contacts, and compares the proposed destination with registered endpoints. It must use the current policy, which requires approval from a technical lead assigned to the customer who did not propose the change.
-
-The application supplies the employee’s identity, and the agent’s tools check customer access before returning records. An employee assigned to Acme cannot retrieve Globex’s configuration through the investigator. Before saving a proposal, application code checks the proposed change against current business records.
-
 </CaseSection>
 
-<CaseSection title="Running the workflow on AWS">
+<CaseSection title="From request to confirmed delivery" media>
 
-CloudFront serves the Next.js website and routes API requests to separate AWS Lambda functions. The website uses the Lambda Web Adapter; the FastAPI API uses Mangum. A native Python worker handles investigations delivered through SQS.
+The AI can investigate and recommend a change. Approval must come from an authorized employee who did not submit the proposal.
 
-<figure
-  className="switchboard-architecture"
-  aria-label="Switchboard request and workflow architecture"
->
+<figure className="switchboard-architecture" aria-label="Switchboard change workflow">
   <ol>
     <li>
-      <strong>CloudFront → Lambda</strong>
-      <span>Next.js website and FastAPI API</span>
+      <strong>Investigate the request</strong>
+      <span>Check who requested the change, where events will go, and which policies apply.</span>
     </li>
     <li>
-      <strong>Step Functions → SQS → Python Lambda</strong>
-      <span>Durable jobs and LangGraph investigation</span>
+      <strong>Review and approve</strong>
+      <span>Another authorized employee reviews the evidence and decides whether to approve.</span>
     </li>
     <li>
-      <strong>Independent approval → explicit execution</strong>
-      <span>Current authority, policy, and configuration checks</span>
+      <strong>Apply the change</strong>
+      <span>Recheck permissions and the current configuration before making the update.</span>
     </li>
     <li>
-      <strong>Signed HTTP delivery → verified receipt</strong>
-      <span>A separate receiver confirms the event and payload</span>
+      <strong>Confirm delivery</strong>
+      <span>Send a test event and check that it arrived at the new destination.</span>
     </li>
   </ol>
-  <figcaption>
-    DynamoDB stores job progress, proposals, approvals, and execution and delivery receipts across
-    the workflow.
-  </figcaption>
 </figure>
 
-LangGraph coordinates the AI investigation: retrieving evidence, preparing a structured report, reviewing policy claims, and revising findings when needed. Step Functions coordinates the longer business workflow. It starts the queued investigation, receives the worker’s completion callback, and waits for independent approval, explicit execution, and verification.
+Reports cite the records and policies behind their findings. A second AI review checks the policy interpretation, and application code checks the quoted evidence. Reports that fail these checks are rejected before a proposal is saved. Access rules also keep each employee's investigation limited to their assigned customers.
 
-Progress lives in DynamoDB, so visitors can reopen a job after navigating away. The worker saves validated output before publishing completion, allowing retries to reuse it. SQS handles transient retries and sends exhausted messages to a dead-letter queue. EventBridge Scheduler runs recovery checks for pending submissions and failed deliveries.
-
-</CaseSection>
-
-<CaseSection title="Checking the agent’s conclusions" media>
-
-A correct recommendation can still contain an inaccurate explanation. The policy reviewer compares the report’s claims with the current workspace policies and cites excerpts for questionable claims. Application code checks that each excerpt occurs in its cited source, allows one report revision, and evaluates it again. Reports that still fail validation are rejected before a proposal is created.
-
-Missing evidence, confirmed violations, and requirements that apply at approval or execution receive different statuses. The reviewer must distinguish a rule from a customer record and preserve conditional permissions. For example, a policy that permits restoration only when the approved recovery plan allows it must not become a blanket ban or unconditional permission.
-
-Live-model evaluations cover valid requests, unauthorized requesters, unregistered destinations, conflicting policy versions, cross-customer access, and instructions embedded in tickets that attempt to override policy. Separate policy cases exercise source grounding and faithful interpretation. Deployed workflow checks also verify approval, stale configuration rejection, duplicate execution, delivery receipts, and workspace isolation. These are bounded test cases, rather than an estimate of accuracy on unfamiliar requests.
-
-The evaluator can quote a policy accurately and misinterpret it, so application code independently enforces authorization. A human reviewer can open source records alongside the findings and inspect the evidence captured during the investigation, even if the underlying configuration has since changed.
+Before applying an approved change, Switchboard checks that the configuration has not changed since the proposal was prepared. Repeating a completed request returns its saved result without applying the change twice.
 
 <ImagePlate
   image={investigationReview}
-  alt="Switchboard investigation report showing requester and destination checks, with independent approval required before execution."
+  alt="Switchboard investigation report showing customer checks, supporting evidence, and required approval."
 />
 
-_This screenshot uses a prepared development fixture. The public demo calls the model when a visitor starts an investigation._
+_Example report from a prepared test case._
 
 </CaseSection>
 
-<CaseSection title="Executing and verifying an approved change">
+<CaseSection title="Built on AWS">
 
-By the time a proposal reaches execution, the customer may have revised its instructions, an employee may have lost access, or another engineer may have updated the endpoint. Switchboard checks current authority, approval, the permitted change window, and configuration again before applying the change.
+The Next.js website and FastAPI backend run on Lambda, with CloudFront serving the site. Step Functions tracks the workflow as it moves through investigation, approval, execution, and delivery checks. SQS queues investigation jobs and retries temporary failures. DynamoDB saves progress and results so visitors can return to a request later.
 
-DynamoDB conditional transactions commit the configuration update and its execution receipt together. A proposal expecting version 7 is rejected if another change has advanced the configuration to version 8. If an approved update succeeds but the browser loses the response, a retry returns the saved receipt without applying the change again.
+CloudFormation defines the infrastructure. GitHub Actions deploys updates using short-lived AWS credentials. CloudWatch logs and alerts help diagnose failures, while X-Ray traces requests across services.
 
-Verification checks the active endpoint and sends a signed synthetic event over HTTP to a separate Lambda receiver. The receiver persists its own receipt. Switchboard checks the destination, event ID, and payload hash against that receipt before confirming delivery and closing the ticket. A timeout is inconclusive; failure or uncertainty requires manual intervention. The application does not perform automatic business rollback.
-
-I verified the deployed workflow with real model investigations and real signed delivery. Stale proposals left the endpoint unchanged, completed execution retries returned the original receipt, and delivery verification matched the receiver’s independently saved result.
+The source repository covers the architecture, access controls, and tests in more detail.
 
 </CaseSection>
 
-<CaseSection title="Deploying and operating the system">
+<CaseSection title="Try the demo" media>
 
-CloudFormation defines the application infrastructure, Lambda configuration, and live release aliases. GitHub Actions builds and deploys releases using OIDC to assume an AWS role, without storing long-lived AWS access keys in GitHub. IAM roles limit each function to the records, queues, and operations it needs; the model credential is held in an encrypted Parameter Store value available to the worker.
-
-CloudWatch provides structured logs, a dashboard, and alarms for failed workflows, queue backlogs, dead-letter messages, and delivery failures. OpenTelemetry and X-Ray tracing connect sampled requests across components. Operational emails summarize what failed and link to investigation and recovery views. Logs retain validation reasons so rejected reports can be diagnosed.
-
-The live model connection uses DeepSeek directly. A Bedrock adapter is also implemented and tested, but Bedrock is not the model provider used by the public deployment.
-
-</CaseSection>
-
-<CaseSection title="Trying the workflow" media>
-
-The inbox contains requests at different stages. A visitor can investigate a new request, review a pending proposal, or execute an approved change through the same interface. Isolated visitor workspaces and fictional employee personas let someone experience each role’s permissions and the requirement for a separate approver.
+The inbox contains requests at different stages. Choose a fictional employee to investigate a request, review a proposal, or apply an approved change. Each visitor gets a separate workspace, so trying the demo does not affect another visitor's work.
 
 <ImagePlate
   image={requestInbox}
-  alt="Switchboard request inbox showing work ready for investigation, awaiting approval, and approved for execution."
+  alt="Switchboard inbox showing requests ready for investigation, awaiting approval, and approved for execution."
 />
 
-_The inbox shows requests assigned to the selected fictional employee and the stage each has reached._
-
-[Try Switchboard](https://d3ar9mvnjcwzyk.cloudfront.net/) to follow a valid change through approval, or investigate an unsafe destination and inspect why it cannot proceed.
-
-</CaseSection>
-
-<CaseSection title="Development">
-
-Built with AI coding tools, reviewing behavior, module interfaces, and test scenarios before implementation.
+[Try Switchboard](https://d3ar9mvnjcwzyk.cloudfront.net/) to follow a valid change through approval, or investigate an unsafe destination and see why it cannot proceed.
 
 </CaseSection>
