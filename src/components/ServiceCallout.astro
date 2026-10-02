@@ -37,7 +37,14 @@ const offers = {
 	}
 } as const;
 
-const offer = offers[variant];
+const offer = context === 'case-study'
+	? {
+			...offers[variant],
+			title: 'Looking for an engineer to bring AI into real workflows?',
+			body: 'I help your team turn complex client workflows into reliable AI applications. From understanding the problem to building and deploying the solution, I take ownership of the engineering so you can deliver useful software your clients can depend on.',
+			primaryLabel: 'Let’s talk'
+		}
+	: offers[variant];
 const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
 const secondaryLabel = context === 'case-study' ? 'Email Hanif' : offer.secondaryLabel;
 const secondaryEvent = context === 'case-study' ? 'email_clicked' : 'service_page_clicked';
