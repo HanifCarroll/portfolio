@@ -12,7 +12,7 @@ Switchboard helps a team investigate and carry out customer changes. In the demo
 
 I built a Python and LangGraph agent that reads the request, checks customer records and company policies, and prepares a report with links to its evidence. An authorized employee must approve the proposal before anyone can apply the change.
 
-The demo runs on AWS with fictional company and customer records. Investigations use a real AI model.
+The demo uses fictional company and customer records. Investigations call a real AI model through Amazon Bedrock, and delivery checks send signed test events between controlled AWS endpoints.
 
 <nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
   <a href="https://d3ar9mvnjcwzyk.cloudfront.net/">Live demo</a>
@@ -65,7 +65,7 @@ Before applying an approved change, Switchboard checks that the configuration ha
 
 The Next.js website and FastAPI backend run on Lambda, with CloudFront serving the site. Step Functions tracks the workflow as it moves through investigation, approval, execution, and delivery checks. SQS queues investigation jobs and retries temporary failures. DynamoDB saves progress and results so visitors can return to a request later.
 
-CloudFormation defines the infrastructure. GitHub Actions deploys updates using short-lived AWS credentials. CloudWatch logs and alerts help diagnose failures, while X-Ray traces requests across services.
+AWS SAM and CloudFormation define and deploy the application. GitHub Actions publishes updates, while CloudWatch logs and alerts and X-Ray traces help diagnose failures.
 
 The source repository covers the architecture, access controls, and tests in more detail.
 
