@@ -15,72 +15,71 @@ import genruptCreativeVariations from "../../assets/img/projects/genrupt/genrupt
 export const shippedRows = [
   {
     label: "Paid accounts",
-    title: "Seller teams could subscribe and buy credits.",
-    body: "Organization billing, credit accounting, and automatic payment updates removed the need to reconcile every change by hand.",
+    title: "Teams could subscribe, share an account, and buy credits.",
+    body: "Organization billing, credit accounting, and payment updates supported paid seller workflows.",
   },
   {
-    label: "Agent permissions",
-    title: "External AI agents could only run approved actions.",
-    body: "A permissioned tool catalog exposed selected seller workflows without exposing internal routes or job mechanics.",
+    label: "Recovery",
+    title: "Generation jobs had a path through retries and failures.",
+    body: "Credit reservations, background jobs, and idempotent cost settlement kept generation work connected to account balances.",
   },
   {
-    label: "Long-running jobs",
-    title: "Jobs could retry without drifting credits or billing state.",
-    body: "Image, video, storyboard, and seller jobs showed progress and could recover after failures.",
+    label: "Agent access",
+    title: "External agents could run approved seller actions.",
+    body: "OAuth and organization-aware MCP access exposed selected workflows with asynchronous results.",
   },
 ];
 
-<CaseSection title="Genrupt needed a commercial foundation for seller workflows">
-  Genrupt already generated AI images and video for Amazon sellers. Seller teams needed organization accounts, subscriptions, credit accounting, jobs that could retry without drifting credits or billing state, and a way for external AI agents to run only approved actions.
+<CaseSection title="Paid seller workflows needed account and job controls">
+Genrupt already generated AI images and video for Amazon sellers. To serve paying teams, it needed shared organization accounts, subscriptions, and credit accounting that stayed correct when generation ran concurrently or a provider request had to retry.
 
-    I worked alongside the founder on those systems and the seller workflows they carried, including market analysis, review scraping, listing generation, and A+ content.
+I joined as a product engineering contractor and worked directly with the founder. My scope covered the image editor, billing and credits, background processing, seller workflows, and external agent access. I helped turn the founder’s product direction into shipped workflows for market analysis, review scraping, listing generation, and A+ content.
 
+The product kept expanding while serving paying customers. Each new workflow had to fit the same account, permission, and job controls.
 </CaseSection>
 
-<CaseSection title="I built account and job controls before adding more workflows">
-  <DecisionBlock title="Charge teams and keep credits in sync.">
-    Alongside the founder, I shipped organization accounts, subscriptions, credit accounting, and automatic payment updates. Seller teams could pay without staff reconciling every change by hand.
+<CaseSection title="Making generated image text editable">
+I built an image editor that uses optical character recognition (OCR) to detect text, turns it into editable layers, and uses inpainting to remove the original text from the image. Detection and removal had to work together: a correct text layer was of little use if the background repair left visible damage.
+
+I evaluated self-hosted models on RunPod and selected providers for latency and removal quality. That meant judging the result a seller would edit, alongside the time it took to get there.
+</CaseSection>
+
+<CaseSection title="Protecting credits through concurrency and retries">
+  <DecisionBlock title="Reserve credits atomically.">
+    Concurrent requests can both see enough credit before either spends it. I used atomic PostgreSQL reservations and row locking to prevent generation from overdrawing an account, with cleanup when work failed.
   </DecisionBlock>
 
-    <DecisionBlock title="Let failed jobs retry without changing what a customer owed.">
-      Image, video, storyboard, and seller jobs can run for minutes. I added status, retry, and recovery paths that kept each job connected to its credits and billing state.
-    </DecisionBlock>
+  <DecisionBlock title="Keep a retry attached to the original provider job.">
+    I moved image generation into pg-boss background jobs. For video, retries reused the provider job and settled costs idempotently, so repeating a request did not create another charge for the same work.
+  </DecisionBlock>
 
-    <DecisionBlock title="Expose approved actions to external AI agents.">
-      Paid users could connect an external AI agent through Model Context Protocol (MCP) to a short list of seller actions without exposing app routes, IDs, or background job mechanics.
-    </DecisionBlock>
-
+Status and recovery paths connected long-running image, video, storyboard, and seller jobs to the credits and billing state they affected.
 </CaseSection>
 
-<CaseSection title="Seller workflows ran on the same account and job systems" media>
-  The gallery shows creative variations, batch editing, and A+ content. These were not isolated demos; they ran on the same account, billing, credit, and background-job systems as the rest of the product.
+<CaseSection title="The creative workflows used the same commercial systems" media>
+Creative variations, batch editing, and A+ content ran on the product’s shared account, billing, credit, and background-job systems. My contribution included both the seller workflows and the controls that charged for and recovered their work.
 
-    I worked on both the seller workflows and the systems that charged customers and recovered failed jobs.
-
-    <div class="genrupt-screen-gallery genrupt-screen-gallery--feature">
-        <ImagePlate image={genruptCreativeVariations} alt="Genrupt creative production workflow for generating, reviewing, rerunning, and editing product variations." />
-        <ImagePlate image={genruptBatchEdit} alt="Genrupt multi-edit workflow applying one instruction across a set of generated product images." />
-        <ImagePlate image={genruptAplusWorkflow} alt="Genrupt guided A+ content workflow turning product information into structured creative outputs." />
-    </div>
-
-</CaseSection>
-
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What changed for paid seller teams</h2>
-  <div class="case-study-detail__editorial-copy">
-    <ProofRows rows={shippedRows}>
-      Together, this work helped Genrupt support its first 200 paying customers.
-    </ProofRows>
+  <div className="genrupt-screen-gallery genrupt-screen-gallery--feature">
+    <ImagePlate image={genruptCreativeVariations} alt="Genrupt creative workflow for generating, reviewing, rerunning, and editing product variations." />
+    <ImagePlate image={genruptBatchEdit} alt="Genrupt multi-edit workflow applying one instruction across generated product images." />
+    <ImagePlate image={genruptAplusWorkflow} alt="Genrupt A+ content workflow turning product information into structured creative outputs." />
   </div>
-</section>
+</CaseSection>
 
-<CaseSection title="External AI agents used the same approved seller workflows" media>
-  Paid users could run market analysis and A+ content workflows from the app or through an external AI agent. The agent could only call the actions exposed through the permissioned tool catalog.
+<CaseSection title="Connecting seller workflows to external agents" media>
+I exposed market-analysis and Amazon listing workflows through Model Context Protocol (MCP). OAuth and organization-aware access kept those calls tied to the customer’s account. A selected tool catalog and asynchronous results let agents start approved work and retrieve its result without handling the application’s internal job mechanics.
 
-    <div class="genrupt-screen-gallery">
-        <ImagePlate image={genruptAgentAccess} alt="Genrupt Agent Access diagram connecting model providers and execution systems." />
-        <ImagePlate image={genruptAplusSetup} alt="Genrupt A+ content project setup screen." />
-        <ImagePlate image={genruptMarketAnalysis} alt="Genrupt market analysis screen for seller research workflows." />
-    </div>
+  <div className="genrupt-screen-gallery">
+    <ImagePlate image={genruptAgentAccess} alt="Genrupt Agent Access diagram connecting external agents to approved workflows." />
+    <ImagePlate image={genruptAplusSetup} alt="Genrupt A+ content project setup screen." />
+    <ImagePlate image={genruptMarketAnalysis} alt="Genrupt market analysis screen for seller research." />
+  </div>
+</CaseSection>
 
+<CaseSection title="What shipped, and what the evidence covers">
+  <ProofRows rows={shippedRows}>
+    This work helped Genrupt support its first 200 paying customers. That is a shared product outcome from my work alongside the founder; my contribution was the engineering described here.
+  </ProofRows>
+
+The screens show shipped workflows, and my [resume](/Hanif-Carroll-Resume.pdf) records the OCR and inpainting work, credit controls, provider-job reuse, and MCP integration. Model selection is described here through its criteria; a numerical comparison is not included. You can [visit Genrupt](https://genrupt.com/) to see the product.
 </CaseSection>

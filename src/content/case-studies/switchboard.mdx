@@ -2,84 +2,67 @@
 ---
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import requestInbox from "../../assets/img/projects/switchboard/request-inbox.png";
 import investigationReview from "../../assets/img/projects/switchboard/investigation-review.png";
 
-<CaseSection title="Checking customer change requests">
+<CaseSection title="Checking a customer change before applying it">
+Switchboard is a synthetic customer-change demo I designed, built, and deployed on AWS. A fictional customer asks to change where their system receives event notifications. Sending those events to the wrong destination could expose data or interrupt a service.
 
-Switchboard helps a team investigate and carry out customer changes. In the demo, a customer asks to change where their system receives event notifications. Sending those notifications to the wrong place could expose data or interrupt a service.
+I built a Python and LangGraph investigator that checks customer records and policies and prepares a report with supporting evidence. Application code controls approval, execution, and delivery verification.
 
-I built a Python and LangGraph agent that reads the request, checks customer records and company policies, and prepares a report with links to its evidence. An authorized employee must approve the proposal before anyone can apply the change.
+The company records and customer systems are fictional. Investigations call a real model through Amazon Bedrock, and delivery checks send signed synthetic events between controlled AWS endpoints.
 
-The demo uses fictional company and customer records. Investigations call a real AI model through Amazon Bedrock, and delivery checks send signed test events between controlled AWS endpoints.
-
-<nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
-  <a href="https://switchboard.hanifcarroll.com/">Live demo</a>
-  <a href="https://github.com/HanifCarroll/Switchboard">Source code</a>
-  <a href="https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md">
-    Architecture
-  </a>
-</nav>
-
+  <nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
+    <a href="https://switchboard.hanifcarroll.com/">Live demo</a>
+    <a href="https://github.com/HanifCarroll/Switchboard">Source code</a>
+    <a href="https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md">Architecture</a>
+  </nav>
 </CaseSection>
 
-<CaseSection title="From request to confirmed delivery" media>
+<CaseSection title="Giving the investigator evidence and limited authority" media>
+The agent retrieves tickets, customer records, integrations, and policies through tools that check the employee’s role and customer assignments. Employee identity comes from trusted application context, outside the model’s tool arguments.
 
-The AI can investigate and recommend a change. Approval must come from an authorized employee who did not submit the proposal.
+The model returns a structured report. A separate model call reviews its policy interpretation, and application code checks its evidence references and proposed change against the records. One revision is allowed; a report that still fails validation is not published.
 
-<figure className="switchboard-architecture" aria-label="Switchboard change workflow">
-  <ol>
-    <li>
-      <strong>Investigate the request</strong>
-      <span>Check who requested the change, where events will go, and which policies apply.</span>
-    </li>
-    <li>
-      <strong>Review and approve</strong>
-      <span>Another authorized employee reviews the evidence and decides whether to approve.</span>
-    </li>
-    <li>
-      <strong>Apply the change</strong>
-      <span>Recheck permissions and the current configuration before making the update.</span>
-    </li>
-    <li>
-      <strong>Confirm delivery</strong>
-      <span>Send a test event and check that it arrived at the new destination.</span>
-    </li>
-  </ol>
-</figure>
+This gives the model room to investigate while keeping authorization and changes in application code. A policy blocker is a valid investigation result; a failed provider call is an operational failure.
 
-Reports cite the records and policies behind their findings. A second AI review checks the policy interpretation, and application code checks the quoted evidence. Reports that fail these checks are rejected before a proposal is saved. Access rules also keep each employee's investigation limited to their assigned customers.
-
-Before applying an approved change, Switchboard checks that the configuration has not changed since the proposal was prepared. Repeating a completed request returns its saved result without applying the change twice.
-
-<ImagePlate
-  image={investigationReview}
-  alt="Switchboard investigation report showing customer checks, supporting evidence, and required approval."
-  caption="Example report from a prepared test case."
-/>
-
+  <ImagePlate image={investigationReview} alt="Switchboard investigation report with customer checks, supporting evidence, and required approval." caption="Example report from a prepared synthetic test case." />
 </CaseSection>
 
-<CaseSection title="Built on AWS">
+<CaseSection title="Approval applies to a specific change">
+  <DecisionBlock title="Require another authorized employee to approve.">
+    A proposal for the fictional production environment requires approval from a different technical lead assigned to that customer. Execution rechecks permissions, approval, the change window, and the configuration version. A change made since investigation can invalidate the proposal.
+  </DecisionBlock>
 
-The Next.js website and FastAPI backend run on Lambda, with CloudFront serving the site. Step Functions tracks the workflow as it moves through investigation, approval, execution, and delivery checks. SQS queues investigation jobs and retries temporary failures. DynamoDB saves progress and results so visitors can return to a request later.
+  <DecisionBlock title="Save the change and its receipt together.">
+    The integration update and execution receipt commit in one DynamoDB transaction. A repeat returns the saved receipt. Delivery verification checks the active destination and version, then validates the receiver’s event ID and payload hash.
+  </DecisionBlock>
 
-AWS SAM and CloudFormation define and deploy the application. GitHub Actions publishes updates, while CloudWatch logs and alerts and X-Ray traces help diagnose failures.
-
-The source repository covers the architecture, access controls, and tests in more detail.
-
+A delivery timeout stays inconclusive because the event may have arrived. Failed or uncertain delivery requires manual intervention; the proposal does not authorize automatic rollback.
 </CaseSection>
 
-<CaseSection title="Try the demo" media>
+<CaseSection title="Recovering work after partial failure">
+Step Functions coordinates the workflow, SQS delivers investigation jobs, and DynamoDB saves progress and results. The application stores the job before dispatch, so a failed workflow start leaves work that retry or maintenance can recover.
 
-The inbox contains requests at different stages. Choose a fictional employee to investigate a request, review a proposal, or apply an approved change. Each visitor gets a separate workspace, so trying the demo does not affect another visitor's work.
+Workers use leases to prevent active duplicates from starting another investigation. Saved validated output can be reused after proposal publication fails. A crash before that checkpoint can still repeat a model call. Queue delivery is at least once, so the application makes business effects idempotent.
 
-<ImagePlate
-  image={requestInbox}
-  alt="Switchboard inbox showing requests ready for investigation, awaiting approval, and approved for execution."
-/>
+Callbacks use saved action receipts, and maintenance recovers missed callbacks. The browser can reload a saved run URL and restore its state. These recovery paths address different failure points rather than treating every error as a reason to restart the whole workflow.
+</CaseSection>
 
-[Try Switchboard](https://switchboard.hanifcarroll.com/) to follow a valid change through approval, or investigate an unsafe destination and see why it cannot proceed.
+<CaseSection title="Deployment and diagnosis were part of the build">
+The Next.js site and FastAPI API run on Lambda behind CloudFront. AWS SAM and CloudFormation define deployment; releases check live website and API behavior and restore the previous deployment if health checks fail.
 
+CloudWatch alarms cover function errors, queue age, dead-letter messages, and failed or timed-out workflows. X-Ray traces and structured logs support diagnosis without adding model prompts or customer records to trace attributes. The [public architecture document](https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md) links these decisions to their implementations.
+</CaseSection>
+
+<CaseSection title="What the demo demonstrates, and its limits" media>
+The result is a public, inspectable workflow from investigation through approval, execution, and delivery verification. Each visitor gets an isolated workspace and can choose a fictional employee to exercise the access rules.
+
+The repository includes deterministic tests and evaluation scenarios. Their presence does not establish a measured model pass rate. This demo demonstrates controlled AWS integration over synthetic data; it provides no evidence of client production use or operator outcomes.
+
+  <ImagePlate image={requestInbox} alt="Switchboard inbox with requests ready for investigation, awaiting approval, and approved for execution." />
+
+[Try Switchboard](https://switchboard.hanifcarroll.com/) to follow a valid change through approval or investigate an unsafe destination. The [source repository](https://github.com/HanifCarroll/Switchboard) makes the authorization, receipts, retry paths, and tests available for review.
 </CaseSection>

@@ -4,11 +4,9 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import DeviceGrid from "../../components/case-study/DeviceGrid.astro";
-import DevicePlate from "../../components/case-study/DevicePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import teacherCreateReading from "../../assets/img/projects/palabruno-teacher-create-reading.png";
 import teacherGroups from "../../assets/img/projects/palabruno-teacher-groups.png";
-import teacherLibrary from "../../assets/img/projects/palabruno-teacher-library.png";
 import teacherRecentShares from "../../assets/img/projects/palabruno-teacher-recent-shares.png";
 import teacherStudents from "../../assets/img/projects/palabruno-teacher-students.png";
 import learnerReader from "../../assets/img/projects/palabruno-reader-current.png";
@@ -91,55 +89,51 @@ export const learnerScreens = [
   },
 ];
 
-<CaseSection title="An early prototype needed a first buyer">
-  Palabruno began with an early prototype for a Spanish reader. Learners could tap a word for translation, grammar, and pronunciation help without leaving the text. I helped take it through launch on iOS, Android, and web.
+<CaseSection title="An early prototype needed a first paid version">
+Palabruno began as a prototype for a Spanish reader. Learners could tap a word for translation, grammar, and pronunciation help without leaving the text. The founder needed help deciding what belonged in a paid product and taking it through launch.
 
-    I worked directly with the founder to decide who would pay first, scope the learner and teacher workflows, add payments, complete the store launches, and prepare the handoff.
-
+As a full-stack engineering contractor, I worked directly with the founder on scope, learner and teacher workflows, AI reader development, payments, and release handoff. The engagement took the product to iOS, Android, and web.
 </CaseSection>
 
-<CaseSection title="I treated tutors as the first buyer to test">
-  <DecisionBlock title="Sell to tutors first.">
-    Solo learners could use the reader, but tutors already needed to create readings and send them to students. That made tutors the first buyer worth testing.
-    </DecisionBlock>
+<CaseSection title="Choosing a buyer shaped the workflows">
+Tutors already create lesson material and send it to students. I treated them as the first buyer to test and scoped a web workspace around readings, students, groups, and sharing. This was a product hypothesis the founder could test after launch.
 
-    <DecisionBlock title="Keep learner and teacher work separate.">
-      I narrowed the product into a mobile reader for students and a web workspace for teachers. That let each audience get the workflow it needed without forcing every feature into the same interface.
+Students needed a mobile reader centered on reading, saved texts, and help in context. Teachers needed to prepare and distribute lessons. I kept those interfaces separate while connecting them through the shared backend.
 
-      The mobile product centered on reading, saved texts, translation support, and Premium upgrades. The teacher workspace handled class management, custom readings, sharing, and paid teacher accounts.
-    </DecisionBlock>
-
+The MVP also needed real payments and store readiness. Late feedback affected UX, pricing, legal copy, performance, and screenshots, so launch work was part of the engagement.
 </CaseSection>
 
-<CaseSection title="Students read on mobile while teachers prepare lessons on the web">
-  The shipped product connected three surfaces: the mobile reader, the teacher web workspace, and the public launch site.
+<CaseSection title="Building the Spanish reader compiler">
+The reader had to connect each tap to the word or phrase being explained. A fluent learning card could still be wrong for the selected text.
 
-    On mobile, learners can read Spanish content, tap words for support, save useful readings, and upgrade to Premium through the app stores.
+I built a reader compiler combining natural language processing (NLP), linguistic rules, and constrained LLM generation to produce tappable words, phrases, and contextual learning cards. Language analysis and structural rules worked alongside model-generated explanations.
 
-    On web, teachers can create custom readings from lesson notes, manage students and groups, share material, track recent shares, and buy the Teacher plan through Stripe.
-
+Targeted repair handled invalid output, and regression evaluations checked later changes.
 </CaseSection>
 
-<CaseSection title="Payments, store launches, and handoff were part of the MVP">
-  <DecisionBlock title="Use mobile billing for Premium and web billing for Teacher.">
-    RevenueCat handles Premium subscriptions through Apple and Google. Stripe handles Teacher payments on the web, where tutors use the workspace.
-    </DecisionBlock>
+<CaseSection title="Making text processing recoverable">
+I implemented durable text-processing workflows with persisted progress and failure recovery. A long-running reading job needed a recoverable state beyond the browser request that started it.
 
-    <DecisionBlock title="Leave the founder with a product he could run.">
-      I prepared the legal pages, store listings, screenshots, release docs, public copy, and handoff notes. The founder could operate the product and keep testing the tutor-first offer after the engagement.
-    </DecisionBlock>
-
+Per-stage latency and model-cost tracking made it possible to inspect where processing time and spend accumulated. That supported diagnosis at the stage that needed attention, alongside the reader’s regression checks.
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>The MVP launched across mobile and web</h2>
-  <div class="case-study-detail__editorial-copy">
-    <ProofRows rows={shippedRows}>
-      Palabruno launched on iOS, Android, and web. The founder can now test whether tutors will pay
-      for the teacher workspace while learners use the reader.
-    </ProofRows>
-  </div>
-</section>
+<CaseSection title="Integrating payments, launching, and handing off">
+  <DecisionBlock title="Put each payment path where its customer used the product.">
+    RevenueCat handles learner Premium subscriptions through Apple and Google. Stripe handles Teacher payments on the web, where tutors prepare lessons. Supabase supports the shared backend.
+  </DecisionBlock>
+
+  <DecisionBlock title="Leave the founder with release steps and product documentation.">
+    I prepared the public site, pricing and legal pages, store listings, screenshots, release documentation, and handoff notes. The founder could operate the product and continue testing the tutor offer after the engagement.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="What launched, and what still needed testing">
+  <ProofRows rows={shippedRows}>
+    The MVP launched across iOS, Android, and web, with paid learner and teacher paths.
+  </ProofRows>
+
+The founder could now test whether tutors would pay for the workspace. Launch and implementation are documented here; tutor conversion, retention, and learning outcomes have not been measured in this case study. The screens below show the shipped workflows, and my [resume](/Hanif-Carroll-Resume.pdf) records the reader compiler and durable processing work.
+</CaseSection>
 
 <CaseSection title="The teacher workspace supports the full lesson loop" media wideMedia>
   Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
@@ -149,7 +143,7 @@ export const learnerScreens = [
 </CaseSection>
 
 <CaseSection title="The learner surface keeps support inside the story" media wideMedia>
-  The learner experience is the other half of the product: readers can work through Spanish content, get help in context, and return to a library of useful texts.
+  Readers can work through Spanish content, get help in context, and return to a library of saved texts.
 
     <DeviceGrid screens={learnerScreens} />
 
