@@ -1,6 +1,7 @@
 ---
 title: "Choosing a Professional Identity"
 pubDate: "2026-09-04"
+hidden: true
 description: "After changing direction several times, I settled on AI product engineer and a clearer plan for the work I want to do."
 ctaVariant: general
 ---
