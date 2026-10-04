@@ -36,11 +36,14 @@ This gives the model room to investigate while keeping authorization and changes
     A proposal for the fictional production environment requires approval from a different technical lead assigned to that customer. Execution rechecks permissions, approval, the change window, and the configuration version. A change made since investigation can invalidate the proposal.
   </DecisionBlock>
 
-  <DecisionBlock title="Save the change and its receipt together.">
-    The integration update and execution receipt commit in one DynamoDB transaction. A repeat returns the saved receipt. Delivery verification checks the active destination and version, then validates the receiver’s event ID and payload hash.
-  </DecisionBlock>
+<DecisionBlock title="Save the change and its receipt together.">
+  The integration update and execution receipt commit in one DynamoDB transaction. A repeat returns
+  the saved receipt. Delivery verification checks the active destination and version, then validates
+  the receiver’s event ID and payload hash.
+</DecisionBlock>
 
 A delivery timeout stays inconclusive because the event may have arrived. Failed or uncertain delivery requires manual intervention; the proposal does not authorize automatic rollback.
+
 </CaseSection>
 
 <CaseSection title="Recovering work after partial failure">
@@ -49,20 +52,26 @@ Step Functions coordinates the workflow, SQS delivers investigation jobs, and Dy
 Workers use leases to prevent active duplicates from starting another investigation. Saved validated output can be reused after proposal publication fails. A crash before that checkpoint can still repeat a model call. Queue delivery is at least once, so the application makes business effects idempotent.
 
 Callbacks use saved action receipts, and maintenance recovers missed callbacks. The browser can reload a saved run URL and restore its state. These recovery paths address different failure points rather than treating every error as a reason to restart the whole workflow.
+
 </CaseSection>
 
 <CaseSection title="Deployment and diagnosis were part of the build">
 The Next.js site and FastAPI API run on Lambda behind CloudFront. AWS SAM and CloudFormation define deployment; releases check live website and API behavior and restore the previous deployment if health checks fail.
 
 CloudWatch alarms cover function errors, queue age, dead-letter messages, and failed or timed-out workflows. X-Ray traces and structured logs support diagnosis without adding model prompts or customer records to trace attributes. The [public architecture document](https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md) links these decisions to their implementations.
+
 </CaseSection>
 
 <CaseSection title="What the demo demonstrates, and its limits" media>
-The result is a public, inspectable workflow from investigation through approval, execution, and delivery verification. Each visitor gets an isolated workspace and can choose a fictional employee to exercise the access rules.
+The result is a public, inspectable workflow from investigation through approval, execution, and delivery verification. Each visitor gets an isolated workspace and chooses from three built-in fictional employee profiles. Alex, an implementation engineer, handles Acme requests; Priya, a technical lead, reviews eligible Acme proposals; Ben, a support specialist, investigates Globex requests with limited access. The demo uses these prepared profiles without work-account sign-in. Switching profiles keeps the same visitor workspace, and the server checks the selected role and customer assignments before each action.
 
 The repository includes deterministic tests and evaluation scenarios. Their presence does not establish a measured model pass rate. This demo demonstrates controlled AWS integration over synthetic data; it provides no evidence of client production use or operator outcomes.
 
-  <ImagePlate image={requestInbox} alt="Switchboard inbox with requests ready for investigation, awaiting approval, and approved for execution." />
+<ImagePlate
+  image={requestInbox}
+  alt="Switchboard inbox with requests ready for investigation, awaiting approval, and approved for execution."
+/>
 
 [Try Switchboard](https://switchboard.hanifcarroll.com/) to follow a valid change through approval or investigate an unsafe destination. The [source repository](https://github.com/HanifCarroll/Switchboard) makes the authorization, receipts, retry paths, and tests available for review.
+
 </CaseSection>
