@@ -4,7 +4,7 @@
 export const PROJECT_ARCHIVE_GROUPS = [
   {
     id: "client-product-work",
-    label: "Client product work",
+    label: "Client work",
     description:
       "Client engagements where I owned product decisions, implementation, and handoff — from a founder's idea to billing, reliability, and launch.",
     slugs: [
