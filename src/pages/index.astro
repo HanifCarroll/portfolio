@@ -124,24 +124,37 @@ const experience = [
 				name: 'Genrupt',
 				href: '/projects/genrupt/',
 				engagement: 'Contract product engineering',
-				body: 'Built an OCR and inpainting editor that turns image text into editable layers, atomic PostgreSQL credit accounting, recoverable generation jobs, and permissioned MCP workflows. Helped Genrupt support its first 200 paying customers.',
+				highlights: [
+					'Built an AI image editor that turns detected text into editable layers using OCR and inpainting; evaluated self-hosted models on RunPod and selected providers for latency and removal quality.',
+					'Prevented concurrent AI generation from overdrawing account balances through atomic PostgreSQL credit reservations, row locking, and failure cleanup.',
+					'Moved image generation to pg-boss jobs; made video retries reuse provider jobs and settle costs idempotently.',
+					'Exposed market-analysis and Amazon listing workflows through MCP, with OAuth, organization-aware access, and asynchronous results.'
+				],
 				tags: ['TypeScript', 'PostgreSQL', 'OCR / Inpainting', 'MCP']
 			},
 			{
 				name: 'Palabruno',
 				href: '/projects/palabruno/',
 				engagement: 'Contract full-stack engineering',
-				body: 'Took an early prototype to launch across iOS, Android, and web. Built an NLP and LLM reader pipeline that produces tappable words, phrases, and contextual learning cards, with targeted repair, regression evaluations, and durable processing that recovers from failures.',
+				highlights: [
+					'Shipped iOS, Android, and web apps with Supabase, RevenueCat subscriptions, and Stripe billing.',
+					'Engineered a Spanish reader compiler combining NLP, linguistic rules, and constrained LLM generation to produce tappable words, phrases, and contextual learning cards, with targeted repair and regression evaluations.',
+					'Implemented durable text-processing workflows with persisted progress, failure recovery, and per-stage latency and model-cost tracking.'
+				],
 				tags: ['TypeScript', 'NLP', 'React Native', 'Stripe']
 			}
 		]
 	},
 	{
 		period: 'Nov 2021 — Feb 2024',
-		role: 'Senior Front End Engineer',
-		company: 'LeagueApps',
+		role: 'Senior Frontend Engineer',
+		company: 'LeagueApps, later via Nearsure',
 		companyHref: 'https://www.leagueapps.com/',
-		body: 'Cut organizer scheduling time 45% with drag-and-drop calendar workflows and conflict detection, and optimized large reporting grids with virtualization to cut load and interaction lag by 70%.',
+		highlights: [
+			'Modernized tournament scheduling with React on the company’s first migration team, helping establish shared frontend patterns and components.',
+			'Built drag-and-drop scheduling, conflict detection, and double-booking prevention, reducing organizer scheduling time by 45%.',
+			'Built self-service reporting with AG Grid; used virtualization and memoization for tens of thousands of rows, reducing load and interaction lag by 70%.'
+		],
 		tags: ['TypeScript', 'React', 'AG Grid']
 	},
 	{
@@ -149,15 +162,21 @@ const experience = [
 		role: 'Software Engineer',
 		company: 'Capgemini',
 		companyHref: 'https://www.capgemini.com/',
-		body: "Maintained five Java Spring Boot microservices for GE Aviation. Delivered a reporting module for Disney Cruise Line's ship and crew management system and executive KPI dashboards for Cisco; cut automated test-suite runtime 60%.",
+		highlights: [
+			'Maintained five Java Spring Boot microservices for GE Aviation, collaborating across offshore teams.',
+			'Delivered a reporting module for Disney Cruise Line’s ship and crew management system and executive KPI dashboards for Cisco.',
+			'Reduced automated test-suite runtime by 60%.'
+		],
 		tags: ['Java', 'Spring Boot', 'TypeScript', 'Angular', 'React']
 	},
 	{
 		period: 'Nov 2017 — Nov 2018',
-		role: 'Front End Engineer',
+		role: 'Frontend Engineer',
 		company: '8base',
 		companyHref: 'https://www.8base.com/',
-		body: 'Built CI/CD scripting across Jira and GitLab to cut ticket close time 15%, and refactored 20+ shared UI components into a reusable library, reducing duplicate code by 30%.',
+		highlights: [
+			'Built Jira / GitLab CI/CD automation and refactored 20+ shared UI components into a reusable library, reducing duplicate code by 30%.'
+		],
 		tags: ['JavaScript', 'GitLab', 'CI/CD']
 	}
 ];
@@ -416,12 +435,17 @@ const testimonials = [
 											<span class='hc-home-job__company'>{job.company}</span>
 										)}
 									</h3>
-									<p>{job.body}</p>
+									{job.body && <p>{job.body}</p>}
+									{job.highlights && <ul class='hc-home-job__highlights'>
+										{job.highlights.map((highlight) => <li>{highlight}</li>)}
+									</ul>}
 									{job.clients?.map((client) => (
 										<div class='hc-home-job__client'>
 											<h4><a href={client.href}>{client.name}</a></h4>
 											<p class='hc-home-job__period'>{client.engagement}</p>
-											<p>{client.body}</p>
+											<ul class='hc-home-job__highlights'>
+												{client.highlights.map((highlight) => <li>{highlight}</li>)}
+											</ul>
 											<ul class='hc-home-tags' aria-label={`${client.name} technologies`}>
 												{client.tags.map((tag) => <li>{tag}</li>)}
 											</ul>
