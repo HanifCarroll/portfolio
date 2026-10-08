@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+import ArticleDefinitions from '../../components/ArticleDefinitions.astro';
 import Prose from '../../components/Prose.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
@@ -26,8 +27,15 @@ const {
 const { Content, headings } = await render(post);
 
 const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
-const wordCount = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const wordCount = post.body?.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length ?? 0;
 const readingMinutes = Math.max(1, Math.round(wordCount / 225));
+const tocHeadings = headings.filter((heading) => heading.depth === 2).map((heading) => ({
+  ...heading,
+  text: post.id === 'bpm-lifecycle-saas-onboarding'
+    ? heading.text.replace(/^(\d+\.) Process ([^:]+):.*$/, '$1 $2').replace(/^Quick-Reference:.*$/, 'Quick reference')
+    : heading.text
+}));
+const showContents = wordCount >= 1000 && tocHeadings.length >= 3;
 const blogJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'BlogPosting',
@@ -52,7 +60,7 @@ const blogJsonLd = {
 	ogType='article'
 	showFooterCta={false}
 	footerLinksOnly
-	bodyClass='page-blog-detail'
+	bodyClass={`page-blog-detail${post.id === 'bpm-lifecycle-saas-onboarding' ? ' page-bpm' : ''}`}
 >
 	<div class='container max-w-6xl space-y-10 py-8 md:space-y-12'>
 		<header class='blog-post-hero' data-motion-intro>
@@ -93,10 +101,10 @@ const blogJsonLd = {
 		<div class='blog-post-layout'>
 			<div class='blog-post-main'>
 				{
-					headings.length > 0 && (
-						<details class='blog-post-toc-mobile'>
+					showContents && (
+						<details class='blog-post-toc'>
 							<summary>Contents</summary>
-							<TableOfContent headings={headings} />
+							<TableOfContent headings={tocHeadings} />
 						</details>
 					)
 				}
@@ -111,52 +119,38 @@ const blogJsonLd = {
 				</section>
 			</div>
 
-			<aside class='blog-post-rail'>
-				{
-					headings.length > 0 && (
-						<div class='blog-post-rail__block'>
-							<TableOfContent headings={headings} />
-						</div>
-					)
-				}
-			</aside>
 
 			<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
 		</div>
 	</div>
+{post.id === 'bpm-lifecycle-saas-onboarding' && <ArticleDefinitions />}
 </BaseLayout>
 
-<script async is:inline>
-	const anchors = document.querySelectorAll('.prose h2[id]');
-	const links = document.querySelectorAll('nav.toc a[href^="#"]');
-
-	function observeToc() {
-		if (typeof anchors != 'undefined' && anchors != null && typeof links != 'undefined' && links != null) {
-			const scrollTop = window.scrollY;
-
-			for (const link of links) {
-				link.classList.remove('is-active');
-				link.removeAttribute('aria-current');
-			}
-
-			for (let i = anchors.length - 1; i >= 0; i--) {
-				if (scrollTop > anchors[i].offsetTop - 80) {
-					const activeLinks = document.querySelectorAll(`nav.toc a[href="#${anchors[i].id}"]`);
-					for (const activeLink of activeLinks) {
-						activeLink.classList.add('is-active');
-						activeLink.setAttribute('aria-current', 'location');
-					}
-					break;
-				}
-			}
-		}
-	}
-
-	window.addEventListener('scroll', (event) => {
-		observeToc(event);
-	});
-	window.addEventListener('hashchange', (event) => {
-		observeToc(event);
-	});
-	observeToc();
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.blog-post-toc').forEach(details => {
+    const summary = details.querySelector('summary')!;
+    let animation: Animation | undefined;
+    let expanded = details.open;
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+      const startHeight = details.getBoundingClientRect().height;
+      animation?.cancel();
+      expanded = !expanded;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        details.open = expanded;
+        return;
+      }
+      details.open = expanded;
+      const endHeight = details.getBoundingClientRect().height;
+      details.open = true;
+      animation = details.animate(
+        { height: [`${startHeight}px`, `${endHeight}px`] },
+        { duration: 240, easing: 'cubic-bezier(0.2, 0, 0, 1)' }
+      );
+      animation.onfinish = () => {
+        details.open = expanded;
+        animation = undefined;
+      };
+    });
+  });
 </script>
