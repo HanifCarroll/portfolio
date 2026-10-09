@@ -103,6 +103,12 @@ Students needed a mobile reader centered on reading, saved texts, and help in co
 The MVP also needed real payments and store readiness. Late feedback affected UX, pricing, legal copy, performance, and screenshots, so launch work was part of the engagement.
 </CaseSection>
 
+<CaseSection title="Frontend architecture for learners and teachers">
+The product separates a React web workspace from React Native / Expo learner apps. The teacher workspace covers reading creation, student and group management, and sharing; the learner interfaces keep vocabulary and phrase explanations inside the reading flow.
+
+The current web architecture uses TanStack Router and a shared TanStack Query client. Signed-in viewer and access state live at the app route boundary, while TanStack Table handles pagination and selection for substantial dashboard and admin tables. Data fetching and cache updates stay separate from each table’s presentation state.
+</CaseSection>
+
 <CaseSection title="Building the Spanish reader compiler">
 The reader had to connect each tap to the word or phrase being explained. A fluent learning card could still be wrong for the selected text.
 
@@ -132,7 +138,7 @@ Per-stage latency and model-cost tracking made it possible to inspect where proc
     The MVP launched across iOS, Android, and web, with paid learner and teacher paths.
   </ProofRows>
 
-The founder could now test whether tutors would pay for the workspace. Launch and implementation are documented here; tutor conversion, retention, and learning outcomes have not been measured in this case study. The screens below show the shipped workflows, and my [resume](/Hanif-Carroll-Resume.pdf) records the reader compiler and durable processing work.
+The founder could now test whether tutors would pay for the workspace. Launch and implementation are documented here; tutor conversion, retention, and learning outcomes have not been measured in this case study. The screens below show the shipped workflows, and my [Applied AI résumé](/Hanif-Carroll-Resume.pdf) records the reader compiler and durable processing work.
 </CaseSection>
 
 <CaseSection title="The teacher workspace supports the full lesson loop" media wideMedia>

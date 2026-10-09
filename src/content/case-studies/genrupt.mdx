@@ -44,6 +44,12 @@ I built an image editor that uses optical character recognition (OCR) to detect 
 I evaluated self-hosted models on RunPod and selected providers for latency and removal quality. That meant judging the result a seller would edit, alongside the time it took to get there.
 </CaseSection>
 
+<CaseSection title="Frontend workflows from generation to editing">
+The Next.js interface connects creative generation, review, reruns, batch editing, and A+ content creation. Editable text layers give sellers a way to revise generated images instead of starting again for each text change.
+
+Generation status, retry, and recovery paths keep long-running work visible. These interfaces sit on the same organization, billing, and job controls described below, so the user’s editing workflow stays connected to the work being performed and charged.
+</CaseSection>
+
 <CaseSection title="Protecting credits through concurrency and retries">
   <DecisionBlock title="Reserve credits atomically.">
     Concurrent requests can both see enough credit before either spends it. I used atomic PostgreSQL reservations and row locking to prevent generation from overdrawing an account, with cleanup when work failed.
@@ -81,5 +87,5 @@ I exposed market-analysis and Amazon listing workflows through Model Context Pro
     This work helped Genrupt support its first 200 paying customers. That is a shared product outcome from my work alongside the founder; my contribution was the engineering described here.
   </ProofRows>
 
-The screens show shipped workflows, and my [resume](/Hanif-Carroll-Resume.pdf) records the OCR and inpainting work, credit controls, provider-job reuse, and MCP integration. Model selection is described here through its criteria; a numerical comparison is not included. You can [visit Genrupt](https://genrupt.com/) to see the product.
+The screens show shipped workflows, and my [Applied AI résumé](/Hanif-Carroll-Resume.pdf) records the OCR and inpainting work, credit controls, provider-job reuse, and MCP integration. Model selection is described here through its criteria; a numerical comparison is not included. You can [visit Genrupt](https://genrupt.com/) to see the product.
 </CaseSection>

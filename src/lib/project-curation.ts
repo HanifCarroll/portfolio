@@ -10,8 +10,8 @@ export const PROJECT_ARCHIVE_GROUPS = [
     slugs: [
       "palabruno",
       "genrupt",
-      "desarmadero-operations-prototype",
       "mucho-hangouts",
+      "desarmadero-operations-prototype",
       "desarmadero-la-torre",
       "online-store-conversion-review",
       "casa-elaria",
@@ -25,10 +25,10 @@ export const PROJECT_ARCHIVE_GROUPS = [
     description:
       "Independent products and prototypes built to test an idea through working software.",
     slugs: [
-      "switchboard",
-      "tidal-spa-concierge",
       "casamo",
       "ba-eventos",
+      "switchboard",
+      "tidal-spa-concierge",
       "riowell",
       "product-usage-scoring-routing",
       "vox-prismatic",
