@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import ArticleDefinitions from '../../components/ArticleDefinitions.astro';
+import ImageLightbox from '../../components/case-study/ImageLightbox.astro';
 import Prose from '../../components/Prose.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
@@ -124,6 +125,7 @@ const blogJsonLd = {
 		</div>
 	</div>
 {post.id === 'bpm-lifecycle-saas-onboarding' && <ArticleDefinitions />}
+{post.id === 'using-diagrams-to-review-an-ai-report-workflow' && <ImageLightbox imageSelector='.blog-post-prose img' zoomable />}
 </BaseLayout>
 
 <script>

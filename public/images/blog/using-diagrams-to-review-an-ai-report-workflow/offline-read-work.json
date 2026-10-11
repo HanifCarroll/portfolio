@@ -1,0 +1,38 @@
+{
+  "workload": "one Airbnb property, four retained image URLs, one completed base action, two ready photo batches, five unchanged passes",
+  "provenance": "Retained synthetic property evidence through real local Cloudflare D1/R2 adapters; no provider/model calls.",
+  "before": {
+    "benchmark": "unchanged_property_planning",
+    "fixture": "one Airbnb property, four retained image URLs, one completed base action, two ready photo batches, five unchanged passes",
+    "r2Gets": 115,
+    "r2Bytes": 56660,
+    "d1Statements": 310,
+    "elapsedMs": [41, 54, 41, 44, 43],
+    "paidCalls": 0
+  },
+  "after": {
+    "benchmark": "unchanged_property_planning",
+    "fixture": "one Airbnb property, four retained image URLs, one completed base action, two ready photo batches, five unchanged passes",
+    "r2Gets": 80,
+    "r2Bytes": 33505,
+    "d1Statements": 230,
+    "elapsedMs": [43, 45, 39, 37, 37],
+    "paidCalls": 0
+  },
+  "reductions_percent": {
+    "r2Gets": 30.43,
+    "r2Bytes": 40.87,
+    "d1Statements": 25.81
+  },
+  "median_ms": {
+    "before": 43,
+    "after": 39
+  },
+  "limitations": [
+    "Five stable passes after warm-up per run; local emulator wall times are not a production latency benchmark.",
+    "R2 bytes count compressed bodies consumed, including artifact verification; D1 counts prepared statements, not rows.",
+    "Both runs use the same fixture generator and code path; random UUIDs can slightly change compressed size.",
+    "The receipt assertion deliberately failed only to expose metrics; retained final benchmark checks and evidence/action equality assertions pass.",
+    "No production rate, resource contention, money savings, or deployment measured."
+  ]
+}

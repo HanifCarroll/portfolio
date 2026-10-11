@@ -1,20 +1,65 @@
-<dialog class="cs-lightbox" aria-label="Expanded project image" data-image-lightbox>
+---
+import '../../styles/image-lightbox.css';
+
+interface Props {
+	imageSelector?: string;
+	zoomable?: boolean;
+}
+const { imageSelector = '.cs-project-hero img, .cs-content img', zoomable = false } = Astro.props;
+---
+
+<dialog class="cs-lightbox" aria-label="Expanded image" data-image-lightbox data-image-selector={imageSelector} data-zoomable={zoomable || undefined}>
 	<div class="cs-lightbox__surface">
 		<button class="cs-lightbox__close" type="button" aria-label="Close image" data-lightbox-close>
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				<path d="m6 6 12 12M18 6 6 18" />
 			</svg>
 		</button>
-		<img class="cs-lightbox__image" alt="" data-lightbox-image />
+		{zoomable ? (
+			<>
+				<div class="cs-lightbox__controls" role="group" aria-label="Image view">
+					<button type="button" data-lightbox-fit>Fit</button>
+					<button type="button" data-lightbox-full>Full size</button>
+					<button type="button" aria-label="Zoom out" data-lightbox-out>−</button>
+					<button type="button" aria-label="Zoom in" data-lightbox-in>+</button>
+					<output aria-live="polite" aria-label="Image zoom" data-lightbox-scale></output>
+					<a target="_blank" rel="noopener" data-lightbox-original>Open original image</a>
+				</div>
+				<div class="cs-lightbox__viewport" tabindex="0" role="region" aria-label="Image; scroll to explore when zoomed" data-lightbox-viewport>
+					<div class="cs-lightbox__canvas">
+						<img class="cs-lightbox__image" alt="" data-lightbox-image />
+					</div>
+				</div>
+			</>
+		) : <img class="cs-lightbox__image" alt="" data-lightbox-image />}
 	</div>
 </dialog>
 
 <script>
 	const dialog = document.querySelector<HTMLDialogElement>('[data-image-lightbox]');
 	const expandedImage = dialog?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+	const viewport = dialog?.querySelector<HTMLElement>('[data-lightbox-viewport]');
+	const original = dialog?.querySelector<HTMLAnchorElement>('[data-lightbox-original]');
+	const scaleOutput = dialog?.querySelector<HTMLOutputElement>('[data-lightbox-scale]');
 	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-	let trigger: HTMLImageElement | null = null;
+	let trigger: HTMLElement | null = null;
 	let closeTimer: number | undefined;
+	let fitted = true;
+	let scale = 1;
+	const fitScale = () => Math.min(1, (viewport!.clientWidth - 32) / expandedImage!.naturalWidth, (viewport!.clientHeight - 32) / expandedImage!.naturalHeight);
+	const renderZoom = () => {
+		if (!viewport || !expandedImage?.naturalWidth || !dialog?.open) return;
+		if (fitted) scale = fitScale();
+		expandedImage.style.width = `${Math.round(expandedImage.naturalWidth * scale)}px`;
+		expandedImage.style.height = `${Math.round(expandedImage.naturalHeight * scale)}px`;
+		if (scaleOutput) scaleOutput.value = `${Math.round(scale * 100)}%`;
+	};
+	const setZoom = (next: number, fit = false) => {
+		fitted = fit;
+		scale = Math.min(4, Math.max(fitScale(), next));
+		renderZoom();
+		viewport?.scrollTo(0, 0);
+	};
 
 	const close = () => {
 		if (!dialog?.open || dialog.hasAttribute('data-closing')) return;
@@ -24,29 +69,49 @@
 		closeTimer = window.setTimeout(() => dialog.close(), 160);
 	};
 
-	document.querySelectorAll<HTMLImageElement>('.cs-project-hero img, .cs-content img').forEach((image) => {
-		if (!dialog || !expandedImage || !image.alt || image.closest('a')) return;
+	document.querySelectorAll<HTMLImageElement>(dialog?.dataset.imageSelector || '.cs-project-hero img, .cs-content img').forEach((image) => {
+		const link = image.closest<HTMLAnchorElement>('a');
+		if (!dialog || !expandedImage || !image.alt || (link && !link.hasAttribute('data-image-link'))) return;
+		const control: HTMLElement = link || image;
 
-		image.tabIndex = 0;
-		image.role = 'button';
-		image.setAttribute('aria-label', `View larger: ${image.alt}`);
+		if (!link) {
+			image.tabIndex = 0;
+			image.role = 'button';
+		}
+		control.setAttribute('aria-label', `View larger: ${image.alt}`);
+		control.setAttribute('aria-haspopup', 'dialog');
 		image.dataset.lightboxTrigger = '';
 
 		const open = () => {
-			trigger = image;
-			expandedImage.src = image.currentSrc || image.src;
+			trigger = control;
+			expandedImage.src = link?.href || image.currentSrc || image.src;
 			expandedImage.alt = image.alt;
+			if (original) original.href = expandedImage.src;
+			dialog.setAttribute('aria-label', `Expanded image: ${image.alt}`);
+			fitted = true;
 			dialog.removeAttribute('data-closing');
 			dialog.showModal();
+			renderZoom();
+			viewport?.scrollTo(0, 0);
 		};
 
-		image.addEventListener('click', open);
-		image.addEventListener('keydown', (event) => {
+		control.addEventListener('click', (event) => {
+			if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+			event.preventDefault();
+			open();
+		});
+		control.addEventListener('keydown', (event) => {
 			if (event.key !== 'Enter' && event.key !== ' ') return;
 			event.preventDefault();
 			open();
 		});
 	});
+	expandedImage?.addEventListener('load', renderZoom);
+	window.addEventListener('resize', renderZoom);
+	dialog?.querySelector('[data-lightbox-fit]')?.addEventListener('click', () => setZoom(1, true));
+	dialog?.querySelector('[data-lightbox-full]')?.addEventListener('click', () => setZoom(1));
+	dialog?.querySelector('[data-lightbox-in]')?.addEventListener('click', () => setZoom(scale * 1.5));
+	dialog?.querySelector('[data-lightbox-out]')?.addEventListener('click', () => setZoom(scale / 1.5));
 
 	dialog?.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.addEventListener('click', close);
 	dialog?.addEventListener('click', (event) => {
@@ -57,8 +122,7 @@
 		dialog.removeAttribute('data-closing');
 		trigger?.focus();
 	});
-	document.addEventListener('keydown', (event) => {
-		if (event.key !== 'Escape' || !dialog?.open) return;
+	dialog?.addEventListener('cancel', (event) => {
 		event.preventDefault();
 		close();
 	});
