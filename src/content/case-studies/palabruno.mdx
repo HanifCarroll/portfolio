@@ -92,7 +92,7 @@ export const learnerScreens = [
 <CaseSection title="An early prototype needed a first paid version">
 Palabruno began as a prototype for a Spanish reader. Learners could tap a word for translation, grammar, and pronunciation help without leaving the text. The founder needed help deciding what belonged in a paid product and taking it through launch.
 
-As a full-stack engineering contractor, I worked directly with the founder on scope, learner and teacher workflows, AI reader development, payments, and release handoff. The engagement took the product to iOS, Android, and web.
+As the client’s AI Product Engineer, I worked directly with the founder on scope, learner and teacher workflows, AI reader development, payments, and release handoff. The engagement took the product to iOS, Android, and web.
 </CaseSection>
 
 <CaseSection title="Choosing a buyer shaped the workflows">
@@ -114,7 +114,7 @@ The reader had to connect each tap to the word or phrase being explained. A flue
 
 I built a reader compiler combining natural language processing (NLP), linguistic rules, and constrained LLM generation to produce tappable words, phrases, and contextual learning cards. Language analysis and structural rules worked alongside model-generated explanations.
 
-Targeted repair handled invalid output, and regression evaluations checked later changes.
+Output validation checked the generated cards before publication. Invalid cards could be regenerated individually, preserving valid work instead of repeating the entire generation. Regression tests checked later changes to the learning content and its connection to the selected word or phrase.
 </CaseSection>
 
 <CaseSection title="Making text processing recoverable">
@@ -135,7 +135,7 @@ Per-stage latency and model-cost tracking made it possible to inspect where proc
 
 <CaseSection title="What launched, and what still needed testing">
   <ProofRows rows={shippedRows}>
-    The MVP launched across iOS, Android, and web, with paid learner and teacher paths.
+    The MVP launched across iOS, Android, and web, with paid learner and teacher paths. This is a historical delivery: the mobile apps were later withdrawn from the stores.
   </ProofRows>
 
 The founder could now test whether tutors would pay for the workspace. Launch and implementation are documented here; tutor conversion, retention, and learning outcomes have not been measured in this case study. The screens below show the shipped workflows, and my [Applied AI résumé](/Hanif-Carroll-Resume.pdf) records the reader compiler and durable processing work.

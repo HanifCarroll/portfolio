@@ -33,7 +33,7 @@ export const shippedRows = [
 <CaseSection title="Stabilize the product without stopping delivery">
   Mucho Hangouts was a live social-events product with recurring reliability problems in messaging, notifications, and release flow. The work made those core workflows more dependable while the team kept shipping.
 
-The engagement also left clearer patterns for the five-person product team, including two junior developers.
+I served as Fractional CTO on a five-person team, mentoring two junior developers through code reviews, pair programming, and reusable frontend patterns. My role combined technical direction with hands-on fixes to the existing product.
 
 </CaseSection>
 
@@ -50,13 +50,21 @@ The approach was practical: fix the failure points affecting users and delivery,
   </DecisionBlock>
 
 <DecisionBlock title="Make core interactions hold together">
-  I reworked messaging and notification flows so authentication changes and app state stopped
-  breaking those interactions as easily.
+  I centralized authentication and server-state access, kept one persistent QueryClient across
+  renders, and tied socket registration and cleanup to the authenticated user. Unauthorized API
+  responses cleared session and cache state centrally instead of relying on broad localStorage
+  clearing.
 </DecisionBlock>
 
   <DecisionBlock title="Turn fixes into team defaults">
     Code review, pairing, and day-to-day technical direction turned one-off fixes into clearer ways to build, review, and extend the product.
   </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Strengthening the TypeScript backend incrementally">
+The backend already used TypeScript, but widespread loose types left service boundaries difficult to reason about. I replaced loose service types with explicit types and introduced shared Zod contracts and runtime request validation for authentication and user APIs.
+
+The scope was incremental. Other contributors worked in the codebase, strict typing was not complete, and validation did not cover every API. The decision was to improve the boundaries the team extended most often while preserving existing workflows and feature delivery.
 </CaseSection>
 
 <CaseSection title="Messaging, fixed in place" media>

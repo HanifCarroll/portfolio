@@ -10,13 +10,13 @@ import baEventosEventDetail from "../../assets/img/projects/ba-eventos-event-det
 export const shippedRows = [
   {
     label: "Data coverage",
-    title: "9,200+ event records moved into one searchable catalog.",
-    body: "The product surfaces more than 1,250 upcoming events and organizes records for 1,500+ venues.",
+    title: "Six sources feed one searchable catalog.",
+    body: "An earlier catalog snapshot contained 9,200+ event records, 1,250+ upcoming events, and 1,500+ venues; these are historical inventory counts.",
   },
   {
     label: "Reliable answers",
-    title: "Every recommendation stays tied to a real event.",
-    body: "Search matches the meaning of a question, while date, neighborhood, and category filters keep the answer on records in the catalog.",
+    title: "Recommendations use catalog records.",
+    body: "Hybrid retrieval and structured filters supply candidate events. Regression evaluations check grounding and references in conversational follow-ups.",
   },
   {
     label: "Catalog upkeep",
@@ -33,7 +33,7 @@ export const shippedRows = [
 <CaseSection title="Finding a plan should not require six different sources">
   Buenos Aires event listings are scattered across social posts, ticketing sites, venue pages, and group chats. The details change often, and each source describes events differently.
 
-I built BA Eventos so someone can ask for a plan by mood, neighborhood, or time and get current options from one cleaned catalog.
+BA Eventos is an independent product I own and operate as its AI Product Engineer. I built the SvelteKit interface, event ingestion, search tools, and conversational workflows so someone can ask for a plan by mood, neighborhood, or time and get options from one cleaned catalog.
 
 </CaseSection>
 
@@ -43,8 +43,30 @@ I built BA Eventos so someone can ask for a plan by mood, neighborhood, or time 
   </DecisionBlock>
 
   <DecisionBlock title="Use AI to understand the question, not invent the answer.">
-    Search matches meaning, not just keywords, so a question such as “romantic jazz in Palermo” can find the right records. Date, neighborhood, and category filters keep every answer tied to an event in the catalog.
+    Semantic retrieval handles descriptive requests such as “romantic jazz in Palermo”; keyword retrieval preserves exact names. Both retrieval paths apply the same venue, date, neighborhood, and category constraints before their rankings are combined. Resolvable requirements belong in structured filters instead of being left to similarity alone.
   </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Keeping follow-up questions attached to the right events">
+A question such as “where is the second one?” depends on what the person actually saw. I retain event identifiers and display positions from prior responses, then reload the corresponding facts from the catalog. Missing or withdrawn records are excluded without silently renumbering the remaining references.
+
+Saved-event membership comes from the authenticated account rather than a client-supplied marker. For guests or an unavailable membership lookup, saved status stays unknown. These boundaries keep the model’s conversation context separate from authoritative event and account state.
+
+I built regression evaluations to check that recommendations stayed grounded in the event catalog and follow-up questions referred to the right events. Tests cover invalid references, changed catalog records, and descriptions that do not support a requested criterion. They check specific failure cases rather than establish an overall model-accuracy rate.
+</CaseSection>
+
+<CaseSection title="A streaming conversation that survives navigation">
+The SvelteKit chat streams responses, saves conversations, and handles retry and recovery states. Opening an event detail page preserves the conversation and scroll position, so someone can inspect a venue or ticket link and return to the same shortlist.
+
+The interface uses event cards and detail views for practical decisions, while the assistant handles the conversational request. Keeping these structured surfaces together means the user can inspect an actual event instead of relying only on generated prose.
+</CaseSection>
+
+<CaseSection title="Reducing browser acquisition work without dropping source data">
+Some event sources need a browser to pass challenges; others can use HTTP or Cloudflare Browser Rendering. I kept Browserbase for protected Passline reads, restricted proxying to the required domains, and blocked unnecessary images, fonts, media, and trackers. A thin detail read has one standard-profile retry when needed.
+
+Completed source observations are reused during retries of the same import run, and browser sessions close before database and AI processing. That avoids repeating a paid browser read just because a later processing stage failed. Fresh daily catalog reads remain separate from retry reuse.
+
+Together with acquisition changes in [Casamo](/projects/casamo/), this brought combined Browserbase usage within the plan allowance.
 </CaseSection>
 
 <CaseSection title="From a vague idea to a useful shortlist">
@@ -58,8 +80,8 @@ I built BA Eventos so someone can ask for a plan by mood, neighborhood, or time 
     <ProofRows rows={shippedRows}>
       <p>
         The visible search is only one part of BA Eventos. Imports, venue matching, cleanup, and
-        search make it possible to answer a natural question without recommending an event that is
-        not in the catalog.
+        search support a natural-language answer grounded in catalog records. Catalog coverage and
+        recommendation quality still depend on the source data and retrieval results.
       </p>
     </ProofRows>
   </div>

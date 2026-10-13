@@ -15,7 +15,7 @@ I built a small tool that searched Airbnb and used AI image analysis to check fo
 
 That became Casamo. Travelers enter a destination or listing links and specify their requirements. The product checks Airbnb and Booking.com listings and returns a saved shortlist with evidence from listing details, photos, and reviews. Travelers can browse the options, see them on a map, and compare them before returning to the marketplace to book.
 
-Casamo is an independent live product. I handle the product strategy, design, engineering, testing, and operations. Using it myself and asking other people to test it have changed some of my original ideas about how it should work.
+Casamo is an independent live product. As its AI Product Engineer, I handle product strategy, design, engineering, testing, and operations. Using it myself and asking other people to test it have changed some of my original ideas about how it should work.
 
 </CaseSection>
 
@@ -67,6 +67,14 @@ Later, when adding a queue for searches waiting for capacity, I had to correct w
 I gave queueing and execution separate deadlines and used Cloudflare’s existing scheduling. A queued search receives its full time allowance when it starts. If a search waits too long in the queue, the application cancels it and restores the credit. If the search starts just as its queue deadline expires, only one of those actions can take effect: start the search or cancel it and return the credit.
 
 I tested this in staging by allowing one search to run at a time and submitting two through the normal signed-in search flow. The second queued, then started automatically with its full time allowance. Both completed with saved reports and one credit used each. Automated tests checked that a search could not both start and expire, or restore the same credit twice.
+</CaseSection>
+
+<CaseSection title="Keeping local rental search useful when a provider fails">
+I also built a Buenos Aires rental finder for people who have not collected listing links yet. It searches Zonaprop and Argenprop, preserves the submitted filters in a saved, shareable search URL, and keeps results available after the original browser request ends.
+
+The provider adapters return structured listing facts and photo URLs. A failure at one provider leaves the other provider’s results available with a warning. That favors a useful partial result over hiding the entire search. The finder preserves each portal’s currencies and source wording; advertised inventory does not establish current availability.
+
+Blocking unnecessary image, font, media, and tracker downloads reduces browser acquisition work while retaining the structured gallery metadata needed by the interface. The combined Browserbase usage outcome is described in the [BA Eventos case study](/projects/ba-eventos/).
 </CaseSection>
 
 <CaseSection title="What is live, and what I have verified">

@@ -112,7 +112,7 @@ const projects = [
 		slug: 'ba-eventos',
 		title: 'BA Eventos',
 		description:
-			'Built a live AI event-discovery product that turns fragmented Buenos Aires listings into grounded search across 1,250+ upcoming events, backed by 9,200+ event records and 1,500+ venues.',
+			'Built a streaming SvelteKit event-discovery product with a six-source catalog, semantic and keyword retrieval, saved conversations, and regression checks for grounded follow-ups.',
 		image: BaEventosThumb,
 		alt: 'BA Eventos AI event discovery experience for Buenos Aires.',
 		tags: ['TypeScript', 'SvelteKit', 'Svelte 5', 'PostgreSQL', 'Supabase', 'Semantic Search']
@@ -125,42 +125,62 @@ const experience = [
 		role: 'Founder & AI Product Engineer',
 		company: 'HC Studio',
 		companyHref: null,
-		body: 'Build web and mobile products for founders and product teams, owning interfaces, AI features, integrations, and launch.',
+		body: 'Built and operated independent AI products and delivered client products with founders, covering product design, software engineering and operations.',
 		clients: [
 			{
-				name: 'Genrupt',
-				href: '/projects/genrupt/',
-				engagement: 'Product engineering',
+				group: 'Owned products',
+				name: 'Casamo',
+				href: '/projects/casamo/',
+				engagement: 'AI Product Engineer · 2026',
 				highlights: [
-					'Built a Next.js AI image editor that turns detected text into editable layers, connecting OCR and inpainting to an interactive editing workflow.',
-					'Shipped seller interfaces for creative variations, batch editing, and A+ content, with generation status, retry, and recovery paths.',
-					'Prevented concurrent AI generation from overdrawing account balances through atomic PostgreSQL credit reservations, row locking, and failure cleanup.',
-					'Moved image generation to pg-boss jobs; made video retries reuse provider jobs and settle costs idempotently.',
-					'Exposed market-analysis and Amazon listing workflows through MCP, with OAuth, organization-aware access, and asynchronous results.'
+					'Built a SvelteKit AI rental-research product that lets users compare listings on a map or side by side, with source-linked findings and saved selections.',
+					'Built recoverable listing research with Cloudflare Workflows, preserving completed work through checkpoints and preventing queue delays from triggering premature timeouts.'
 				],
-				tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MCP']
+				tags: ['TypeScript', 'SvelteKit', 'Cloudflare Workflows']
 			},
 			{
+				group: 'Owned products',
+				name: 'BA Eventos',
+				href: '/projects/ba-eventos/',
+				engagement: 'AI Product Engineer · 2025 — Present',
+				highlights: [
+					'Built a streaming SvelteKit event-discovery chat with saved conversations, retry handling, and navigation that preserves the conversation and scroll position when viewing event details.',
+					'Built conversational event search across a six-source catalog, combining semantic and keyword retrieval with venue and date filters.'
+				],
+				tags: ['TypeScript', 'SvelteKit', 'PostgreSQL']
+			},
+			{
+				group: 'Client work',
 				name: 'Palabruno',
 				href: '/projects/palabruno/',
-				engagement: 'Full-stack engineering',
+				engagement: 'AI Product Engineer · Mar — Apr 2026',
 				highlights: [
-					'Shipped a React web workspace and React Native / Expo apps across web, iOS, and Android, with Supabase, RevenueCat subscriptions, and Stripe billing.',
-					'Built separate learner and teacher interfaces for contextual reading, student and group management, and sharing.',
-					'Engineered a Spanish reader compiler combining NLP, linguistic rules, and constrained LLM generation to produce tappable words, phrases, and contextual learning cards, with targeted repair and regression evaluations.',
-					'Implemented durable text-processing workflows with persisted progress, failure recovery, and per-stage latency and model-cost tracking.'
+					'Built web and mobile reading interfaces with phrase selection, connected text highlights and vocabulary notes tailored to the passage.',
+					'Worked directly with the founder to take the early prototype to launch across web, iOS and Android.'
 				],
-				tags: ['React', 'TypeScript', 'React Native', 'Expo', 'Stripe']
+				tags: ['React', 'TypeScript', 'React Native / Expo']
 			},
 			{
+				group: 'Client work',
+				name: 'Genrupt',
+				href: '/projects/genrupt/',
+				engagement: 'AI Product Engineer · 2025 — 2026',
+				highlights: [
+					'Built a Next.js and TypeScript AI image editor with editable text layers, background inpainting, batch editing, undoable changes and image exports.',
+					'Built recoverable AI generation workflows with atomic PostgreSQL credit reservations and row locking, reusing existing provider jobs and preventing duplicate credit settlement.'
+				],
+				tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL']
+			},
+			{
+				group: 'Client work',
 				name: 'Mucho Hangouts',
 				href: '/projects/mucho-hangouts/',
 				engagement: 'Fractional CTO · 2025',
 				highlights: [
-					'Stabilized messaging, notifications, app state, and authentication in a live React product while the team kept shipping.',
-					'Supported a five-person team, including two junior developers, through code review, pairing, and clearer frontend and backend patterns.'
+					'Served as Fractional CTO on a five-person team, mentoring two junior developers through code reviews, pair programming and reusable frontend patterns.',
+					'Stabilized React messaging and notifications by centralizing authentication and query state and correcting socket connection lifecycles.'
 				],
-				tags: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Express']
+				tags: ['React', 'TypeScript', 'Node.js']
 			}
 		]
 	},
@@ -183,8 +203,7 @@ const experience = [
 		companyHref: 'https://www.capgemini.com/',
 		highlights: [
 			'Maintained five Java Spring Boot microservices for GE Aviation, collaborating across offshore teams.',
-			'Delivered a reporting module for Disney Cruise Line’s ship and crew management system and executive KPI dashboards for Cisco.',
-			'Reduced automated test-suite runtime by 60%.'
+			'Delivered a reporting module for Disney Cruise Line’s ship and crew management system and executive KPI dashboards for Cisco.'
 		],
 		tags: ['Java', 'Spring Boot', 'TypeScript', 'Angular', 'React']
 	},
@@ -462,8 +481,9 @@ const testimonials = [
 									{job.highlights && <ul class='hc-home-job__highlights'>
 										{job.highlights.map((highlight) => <li>{highlight}</li>)}
 									</ul>}
-									{job.clients?.map((client) => (
+									{job.clients?.map((client, index) => (
 										<div class='hc-home-job__client'>
+											{(index === 0 || job.clients[index - 1].group !== client.group) && <div class='hc-home-job__group'>{client.group}</div>}
 											<h4><a href={client.href}>{client.name}</a></h4>
 											<p class='hc-home-job__period'>{client.engagement}</p>
 											<ul class='hc-home-job__highlights'>
