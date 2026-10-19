@@ -12,6 +12,8 @@ It replaces the previous Next.js build while keeping the existing project JSON d
 
 ### Getting Started
 
+See the [development guide](docs/development.md) for repository layout, checks, generated content, and delivery details.
+
 ```bash
 bun install
 bun dev
