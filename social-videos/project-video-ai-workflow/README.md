@@ -2,6 +2,8 @@
 
 Square HyperFrames proof reel for the LinkedIn post about rebuilding the portfolio video process around one shared template system.
 
+Shared composition structure, timing, command, and validation details are in the [HyperFrames composition reference](../../docs/project-videos/hyperframes-compositions.md).
+
 ## Contract
 
 - `1080x1080`, 30fps, 45.5 seconds, silent MP4.

@@ -27,6 +27,8 @@ Tests use `*.test.ts` or `*.test.mjs` beside the related code; no coverage thres
 
 ## Generated content and secrets
 
+The retained standalone video projects have a [HyperFrames composition reference](project-videos/hyperframes-compositions.md) covering timing, structure, commands, and validation. [Capture provenance](project-videos/product-usage-scoring-routing-capture.md) preserves the routing video's original source URL, asset index, and captured brand summary. The shared video pipeline remains documented in [capture and production workflow](project-videos/capture-and-production-workflow.md).
+
 `src/data/notes.generated.ts` is generated, not hand-edited. `bun run notes:sync` regenerates it from the vault source; `bun run notes:check` checks that it matches. `PORTFOLIO_NOTES_SOURCE` selects another source directory. The generator's default source is `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hanif-md/projects/portfolio-knowledge-library`; [the generator](../scripts/sync-notes-content.mjs) defines the current source format and behavior.
 
 Secrets stay out of Git and browser-exposed `PUBLIC_*` variables. The [README](../README.md) documents public analytics and verification IDs separately from secrets.
