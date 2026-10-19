@@ -128,7 +128,11 @@ const experience = [
 		company: 'HC Studio',
 		companyHref: null,
 		body: 'Deliver software directly for clients and founders, with engagements spanning discovery, scoping, implementation, production support, and handoff.',
-		independentBody: 'I also build and operate independent products, including Casamo for accommodation research and BA Eventos for event discovery. Switchboard is a synthetic Python/LangGraph agent demo deployed on AWS, with policy checks and human approval before configuration changes.',
+		independentBody: 'I also build and operate BA Eventos, a conversational event-search product for Buenos Aires.',
+		independentHighlights: [
+			'Switchboard — Agentic system demo: Built a Python/FastAPI and LangGraph agent that investigates customer-change requests and proposes policy-checked changes for human approval; deployed on AWS using Step Functions, SQS, and DynamoDB.',
+			'Casamo — Independent product: Built an AI product that helps digital nomads find and compare furnished accommodation on Airbnb and Booking.com, evaluating listings against their requirements using photos, amenities, and guest reviews, and highlighting trade-offs and questions to confirm before booking.'
+		],
 		additionalConsulting: [
 			'Casa Elaria: Built a storefront that captured email interest at checkout without taking payment, enabling a purchase-intent test before inventory investment.',
 			'JIEC Labs: Reviewed the shopping journey and delivered seven prioritized recommendations covering product discovery, product-page clarity, and mobile performance.'
@@ -210,7 +214,8 @@ const experience = [
 		company: 'Capgemini',
 		companyHref: 'https://www.capgemini.com/',
 		highlights: [
-			'Built reporting and KPI dashboards for Disney Cruise Line and Cisco; maintained Java Spring Boot microservices for GE Aviation.'
+			'Owned the reporting module and developed additional features for Disney Cruise Line’s crew management system, which handled scheduling, cabin assignments, and crew contracts.',
+			'Built KPI dashboards for Cisco; maintained Java Spring Boot microservices for GE Aviation.'
 		],
 		tags: ['Java', 'Spring Boot', 'TypeScript', 'Angular', 'React']
 	},
@@ -476,6 +481,12 @@ const experience = [
 										<h4>Additional consulting</h4>
 										<ul class='hc-home-job__highlights'>
 											{job.additionalConsulting.map((highlight) => <li>{highlight}</li>)}
+										</ul>
+									</div>}
+									{job.independentHighlights && <div class='hc-home-job__client'>
+										<h4>Independent products &amp; demos</h4>
+										<ul class='hc-home-job__highlights'>
+											{job.independentHighlights.map((highlight) => <li>{highlight}</li>)}
 										</ul>
 									</div>}
 									{job.independentBody && <p class="hc-home-job__independent">{job.independentBody}</p>}
