@@ -119,14 +119,14 @@ const experience = [
 		company: 'HC Studio',
 		companyHref: null,
 		body: 'Deliver software directly for clients and founders, with engagements spanning discovery, scoping, implementation, production support, and handoff.',
-		independentBody: 'I also build and operate BA Eventos, a conversational event-search product for Buenos Aires.',
+		independentProject: {name: 'BA Eventos', href: '/projects/ba-eventos/', description: 'a conversational event-search product for Buenos Aires.'},
 		independentHighlights: [
-			'Switchboard — Agentic system demo: Built a Python/FastAPI and LangGraph agent that investigates customer-change requests and proposes policy-checked changes for human approval; deployed on AWS using Step Functions, SQS, and DynamoDB.',
-			'Casamo — Independent product: Built an AI product that helps digital nomads find and compare furnished accommodation on Airbnb and Booking.com, evaluating listings against their requirements using photos, amenities, and guest reviews, and highlighting trade-offs and questions to confirm before booking.'
+			{name: 'Switchboard', href: '/projects/switchboard/', description: ' — Agentic system demo: Built a Python/FastAPI and LangGraph agent that investigates customer-change requests and proposes policy-checked changes for human approval; deployed on AWS using Step Functions, SQS, and DynamoDB.'},
+			{name: 'Casamo', href: '/projects/casamo/', description: ' — Independent product: Built an AI product that helps digital nomads find and compare furnished accommodation on Airbnb and Booking.com, evaluating listings against their requirements using photos, amenities, and guest reviews, and highlighting trade-offs and questions to confirm before booking.'}
 		],
 		additionalConsulting: [
-			'Casa Elaria: Built a storefront that captured email interest at checkout without taking payment, enabling a purchase-intent test before inventory investment.',
-			'JIEC Labs: Reviewed the shopping journey and delivered seven prioritized recommendations covering product discovery, product-page clarity, and mobile performance.'
+			{name: 'Casa Elaria', href: '/projects/casa-elaria/', description: ': Built a storefront that captured email interest at checkout without taking payment, enabling a purchase-intent test before inventory investment.'},
+			{name: 'JIEC Labs', href: '/projects/online-store-conversion-review/', description: ': Reviewed the shopping journey and delivered seven prioritized recommendations covering product discovery, product-page clarity, and mobile performance.'}
 		],
 		clients: [
   {
@@ -461,16 +461,16 @@ const experience = [
 									{job.additionalConsulting && <div class='hc-home-job__client'>
 										<h4>Additional consulting</h4>
 										<ul class='hc-home-job__highlights'>
-											{job.additionalConsulting.map((highlight) => <li>{highlight}</li>)}
+											{job.additionalConsulting.map((highlight) => <li><a href={highlight.href}>{highlight.name}</a>{highlight.description}</li>)}
 										</ul>
 									</div>}
 									{job.independentHighlights && <div class='hc-home-job__client'>
 										<h4>Independent products &amp; demos</h4>
 										<ul class='hc-home-job__highlights'>
-											{job.independentHighlights.map((highlight) => <li>{highlight}</li>)}
+											{job.independentHighlights.map((highlight) => <li><a href={highlight.href}>{highlight.name}</a>{highlight.description}</li>)}
 										</ul>
 									</div>}
-									{job.independentBody && <p class="hc-home-job__independent">{job.independentBody}</p>}
+									{job.independentProject && <p class="hc-home-job__independent">I also build and operate <a href={job.independentProject.href}>{job.independentProject.name}</a>, {job.independentProject.description}</p>}
                   {job.tags && <ul class='hc-home-tags' aria-label='Technologies used'>
 										{job.tags.map((tag) => (
 											<li>{tag}</li>
