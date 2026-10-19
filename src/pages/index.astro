@@ -569,6 +569,17 @@ const experience = [
 </BaseLayout>
 
 <script>
+	const header = document.querySelector<HTMLElement>('.hc-home-header');
+	if (header) {
+		const updateHeaderPosition = () => {
+			header.toggleAttribute('data-fits-viewport', header.getBoundingClientRect().height <= window.innerHeight);
+		};
+		// Recheck after text reflows, fonts load, or the window is resized/zoomed.
+		new ResizeObserver(updateHeaderPosition).observe(header);
+		window.addEventListener('resize', updateHeaderPosition, { passive: true });
+		updateHeaderPosition();
+	}
+
 	const videoTrigger = document.querySelector<HTMLAnchorElement>('[data-lifting-video-trigger]')!;
 	const videoModal = document.querySelector<HTMLDialogElement>('[data-lifting-video-modal]')!;
 	const videoFrame = document.querySelector<HTMLIFrameElement>('[data-lifting-video-frame]')!;
