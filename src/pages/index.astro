@@ -128,15 +128,19 @@ const experience = [
 		company: 'HC Studio',
 		companyHref: null,
 		body: 'Deliver software directly for clients and founders, with engagements spanning discovery, scoping, implementation, production support, and handoff.',
-		independentBody: 'I also build and operate independent products: Casamo for accommodation research and BA Eventos for event discovery.',
+		independentBody: 'I also build and operate independent products, including Casamo for accommodation research and BA Eventos for event discovery. Switchboard is a synthetic Python/LangGraph agent demo deployed on AWS, with policy checks and human approval before configuration changes.',
+		additionalConsulting: [
+			'Casa Elaria: Built a storefront that captured email interest at checkout without taking payment, enabling a purchase-intent test before inventory investment.',
+			'JIEC Labs: Reviewed the shopping journey and delivered seven prioritized recommendations covering product discovery, product-page clarity, and mobile performance.'
+		],
 		clients: [
   {
     "name": "Desarmadero La Torre",
     "href": "/projects/desarmadero-la-torre/",
     "engagement": "Client software and operations prototype · 2025 — 2026",
     "highlights": [
-      "Built a searchable automotive-parts catalog; the client subsequently returned for a broader operations engagement.",
-      "Translated discovery into a specification and role-based prototype covering sales, payment release, dismantling assignments, and vehicle lookup."
+      "Translated client discovery into a functional specification and an interactive SvelteKit operations prototype covering sales, payment release, dismantling assignments, and vehicle lookup.",
+      "Built a parts catalog searchable by make, model, and year, with photos so customers could check stock before calling and staff could update listings, reducing phone inquiry volume."
     ],
     "tags": [
       "TypeScript",
@@ -149,8 +153,9 @@ const experience = [
     "href": "/projects/genrupt/",
     "engagement": "Contract AI Product Engineer · 2025 — 2026",
     "highlights": [
-      "Worked directly with the founder to deliver AI content generation, editing, and seller workflows.",
-      "Built account permissions, billing and credit controls, recoverable background processing, and authenticated MCP access."
+      "Built AI generation, listing preparation, and image editing workflows for Amazon sellers, including OCR and inpainting; worked alongside the founder to help support Genrupt’s first 200 paying customers.",
+      "Built organization billing, shared credits, and recoverable generation jobs; used atomic PostgreSQL reservations to prevent credit overspending and provider-job reuse with idempotent settlement to prevent duplicate charges on retries.",
+      "Connected external AI agents to market-analysis and Amazon-listing workflows through OAuth-authenticated MCP tools, with organization permissions and asynchronous results."
     ],
     "tags": [
       "TypeScript",
@@ -163,8 +168,8 @@ const experience = [
     "href": "/projects/palabruno/",
     "engagement": "Contract AI Product Engineer · Mar — Apr 2026",
     "highlights": [
-      "Collaborated on scope and learner/teacher workflows, then delivered web and mobile applications with subscriptions and payments.",
-      "Built validated AI reading workflows and prepared launch assets, release documentation, and handoff notes."
+      "Worked with the founder to take a Spanish-reading prototype through launch on iOS, Android, and web, including learner and teacher workflows, Stripe and RevenueCat subscriptions, release documentation, and handoff.",
+      "Built a reading pipeline combining linguistic rules with constrained LLM generation, with checks that learning cards matched the selected word or phrase, targeted regeneration of invalid cards, and regression tests."
     ],
     "tags": [
       "TypeScript",
@@ -177,7 +182,7 @@ const experience = [
     "href": "/projects/mucho-hangouts/",
     "engagement": "Fractional CTO · 2025",
     "highlights": [
-      "Addressed messaging, notification, authentication, and application-state failures while feature delivery continued.",
+      "Stabilized messaging, notifications, and sign-in in a live product by centralizing authentication and server state and fixing socket connection lifecycles, while feature delivery continued.",
       "Provided technical direction for a five-person team and mentored two junior developers through reviews, pairing, and reusable patterns."
     ],
     "tags": [
@@ -195,8 +200,7 @@ const experience = [
 		companyHref: 'https://www.leagueapps.com/',
 		highlights: [
 			'Modernized tournament scheduling with React on the company’s first migration team, helping establish shared frontend patterns and components.',
-			'Built drag-and-drop scheduling, conflict detection, and double-booking prevention for tournament organizers.',
-			'Built self-service reporting with AG Grid, using virtualization and memoization for tables with tens of thousands of rows.'
+			'Built drag-and-drop scheduling with conflict checks to prevent double bookings, plus self-service reporting for tournament operators.'
 		],
 		tags: ['TypeScript', 'React', 'AG Grid']
 	},
@@ -468,6 +472,12 @@ const experience = [
 											</ul>
 										</div>
 									))}
+									{job.additionalConsulting && <div class='hc-home-job__client'>
+										<h4>Additional consulting</h4>
+										<ul class='hc-home-job__highlights'>
+											{job.additionalConsulting.map((highlight) => <li>{highlight}</li>)}
+										</ul>
+									</div>}
 									{job.independentBody && <p class="hc-home-job__independent">{job.independentBody}</p>}
                   {job.tags && <ul class='hc-home-tags' aria-label='Technologies used'>
 										{job.tags.map((tag) => (
@@ -496,7 +506,7 @@ const experience = [
 				</div>
 				<div class='hc-home-section-body'>
 					<p>
-						Hey, I’m Hanif. I’m a forward deployed engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. Eight years later, I work directly with clients on software, integrations, and AI applications.
+						Hey, I’m Hanif. I’m a forward deployed engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. I now have 9+ years of experience and work directly with clients on software, integrations, and AI applications.
 					</p>
 					<p>
 						After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I work with founders and product teams to turn ambiguous ideas into useful, reliable software.
