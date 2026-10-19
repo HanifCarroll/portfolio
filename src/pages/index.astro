@@ -76,7 +76,6 @@ const projects = [
     slug: 'desarmadero-la-torre',
     title: 'Desarmadero La Torre — From parts catalog to operations prototype',
     description: 'Built a searchable parts catalog, then translated a returning client’s sales, payment, and dismantling workflows into a specification and role-based prototype.',
-    status: 'Catalog delivered · Operations prototype',
     image: DesarmaderoThumb,
     alt: 'Automotive salvage inventory and the operating environment behind the client engagement.',
     tags: ['TypeScript', 'SvelteKit', 'Cloudflare D1']
@@ -85,7 +84,6 @@ const projects = [
     slug: 'genrupt',
     title: 'Genrupt — Building dependable AI seller workflows',
     description: 'Worked directly with the founder on AI seller workflows and the account permissions, billing, credits, and recoverable processing behind them.',
-    status: 'Production client software',
     image: GenruptThumb,
     alt: 'Genrupt creative operations workspace for Amazon seller teams.',
     tags: ['TypeScript', 'Next.js', 'PostgreSQL']
@@ -94,7 +92,6 @@ const projects = [
     slug: 'palabruno',
     title: 'Palabruno — From product scope to launch and handoff',
     description: 'Collaborated on scope and learner/teacher workflows, then delivered web and mobile applications, subscriptions, payments, and release documentation.',
-    status: 'Historical launch and handoff',
     image: PalabrunoThumb,
     alt: 'Palabruno reading product for Spanish learners and teachers.',
     tags: ['TypeScript', 'React', 'React Native']
@@ -103,16 +100,10 @@ const projects = [
     slug: 'mucho-hangouts',
     title: 'Mucho Hangouts — Stabilizing a live product while delivery continued',
     description: 'Addressed messaging, authentication, and application-state failures in an existing product while providing technical direction and mentoring its developers.',
-    status: 'Monthly engineering engagement · 2025',
     image: MuchoHangoutsThumb,
     alt: 'Mucho Hangouts social events product interface.',
     tags: ['TypeScript', 'React', 'Node.js']
   }
-];
-
-const scopingProjects = [
-  {slug: 'casa-elaria', title: 'Casa Elaria — Purchase-intent test', description: 'A focused storefront built around the decision to invest in inventory.'},
-  {slug: 'online-store-conversion-review', title: 'Skincare store — Conversion review', description: 'A shopping-journey assessment translated into a prioritized improvement plan.'}
 ];
 
 const testimonials = [...allTestimonials].sort((a, b) => {
@@ -372,7 +363,6 @@ const experience = [
 
 									</div>
 									<div class='hc-home-project__content'>
-										<p class='hc-home-project__status'>{project.status}</p>
                   <h3>{project.title}</h3>
 										<p>{project.description}</p>
 										<ul class='hc-home-tags' aria-label='Technologies used'>
@@ -389,15 +379,6 @@ const experience = [
 					</a>
 				</div>
 			</section>
-
-      <section class='hc-home-section' aria-label='Scoping and diagnostic work'>
-        <div class='hc-home-section-label'><h2 class='hc-home-section-title'>Scoping &amp; diagnostic work</h2></div>
-        <div class='hc-home-section-body'>
-          <ul class='hc-home-scoping'>
-            {scopingProjects.map((project) => <li><a href={`/projects/${project.slug}/`}>{project.title}</a><p>{project.description}</p></li>)}
-          </ul>
-        </div>
-      </section>
 
 			<section
 				class='hc-home-section hc-home-feedback'
