@@ -6,6 +6,7 @@ import ArchiveProjectRow from '../../components/ArchiveProjectRow.astro';
 import { projects } from '../../lib/project-cards';
 import {
 	DELISTED_PROJECT_SLUGS,
+	NESTED_PROJECT_SLUGS,
 	PROJECT_ARCHIVE_GROUPS,
 } from '../../lib/project-curation';
 import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
@@ -14,7 +15,7 @@ import '../../styles/projects.css';
 
 const title = 'Projects';
 const description =
-	'Selected applied AI engineering, client work, and independent web and mobile products, with supported results.';
+	'Forward deployed engineering: client discovery, operational software, production AI, and independent products.';
 
 const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
 
@@ -35,7 +36,7 @@ if (duplicateSlugs.length > 0) {
 	);
 }
 
-const delistedSet = new Set<string>(DELISTED_PROJECT_SLUGS);
+const delistedSet = new Set<string>([...DELISTED_PROJECT_SLUGS, ...NESTED_PROJECT_SLUGS]);
 const categorizedSlugSet = new Set<string>(allCategorizedSlugs);
 const uncategorizedProjects = projects.filter(
 	(project) => !categorizedSlugSet.has(project.slug) && !delistedSet.has(project.slug),
@@ -81,10 +82,9 @@ const archiveJsonLd = {
 					/>
 				</figure>
 				<p class='hc-archive-header__name'><a href='/' transition:name='brand'>Hanif Carroll</a></p>
-				<p class='hc-archive-header__role'>Applied AI Engineer</p>
+				<p class='hc-archive-header__role'>Forward Deployed Engineer</p>
 				<p class='hc-archive-header__intro'>
-					Client engagements and independent products — the problem, what I built, and the
-					outcome.
+					Client engagements and independent products — the situation, my decisions, and what I delivered.
 				</p>
 
 				<nav class='hc-archive-nav' aria-label='Project sections'>
@@ -121,7 +121,7 @@ const archiveJsonLd = {
 						data-track-event='book_call_clicked'
 						data-track-location='projects_rail'
 					>
-						Book a call <svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17L17 7'></path><path d='M7 7h10v10'></path></svg>
+						Discuss a role or engagement <svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17L17 7'></path><path d='M7 7h10v10'></path></svg>
 					</a>
 				</div>
 
@@ -182,7 +182,7 @@ const archiveJsonLd = {
 		<main class='hc-archive-main'>
 			<header class='hc-projects-mobile-intro'>
 				<h1>Projects</h1>
-				<p>Client engagements and independent products — the problem, what I built, and the outcome.</p>
+				<p>Client engagements and independent products — the situation, my decisions, and what I delivered.</p>
 			</header>
 			<nav class='hc-archive-back' aria-label='Back to home'>
 				<a href='/'>

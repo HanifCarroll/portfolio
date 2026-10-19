@@ -5,19 +5,19 @@ import Portrait from '../assets/img/hanif-author-portrait.jpg';
 import FormattedDate from '../components/FormattedDate.astro';
 import GenruptThumb from '../assets/img/projects/genrupt-mobile-feature.png';
 import PalabrunoThumb from '../assets/img/projects/palabruno-founder-idea-launch.png';
-import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
-import CasamoThumb from '../assets/img/projects/casamo/shortlist-desktop.png';
+import DesarmaderoThumb from '../assets/img/projects/desarmadero-parts-stockroom-photo.png';
+import { testimonials as allTestimonials } from '../data/testimonials';
 import MuchoHangoutsThumb from '../assets/img/projects/mucho-hangouts-feature.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/archive-shared.css';
 import '../styles/home.css';
 
-const title = 'Hanif Carroll | Applied AI Engineer';
+const title = 'Hanif Carroll | Forward Deployed Engineer';
 const description =
-	'Applied AI Engineer building LLM systems, evaluations, and web and mobile products. Open to remote roles and contracts.';
-const socialTitle = 'Hanif Carroll, Applied AI Engineer';
-const socialDescription = 'LLM systems, evaluations, and product engineering for web and mobile applications. Open to remote roles and contracts.';
+	'Forward Deployed Engineer working directly with clients on discovery, workflow software, integrations, and production AI. Available for fully remote agency roles and contracts.';
+const socialTitle = 'Hanif Carroll, Forward Deployed Engineer';
+const socialDescription = 'Client discovery, workflow software, and production AI. Explore client engagements from scoping and prototypes to launch, support, and handoff.';
 
 const homepageJsonLd = [
 	{
@@ -25,7 +25,7 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'Applied AI Engineer',
+		jobTitle: 'Forward Deployed Engineer',
 		description,
 		sameAs: [
 			'https://github.com/hanifcarroll',
@@ -61,7 +61,7 @@ const homepageJsonLd = [
 ];
 
 const navLinks = [
-	{ href: '#projects', label: 'Projects' },
+	{ href: '#projects', label: 'Explore client work' },
 	{ href: '#experience', label: 'Experience' },
 	{ href: '#about', label: 'About' },
 	{ href: '#blog', label: 'Blog' }
@@ -72,111 +72,121 @@ const blogPosts = (await getCollection('blog', ({ data }) => !data.hidden))
 	.slice(0, 3);
 
 const projects = [
-	{
-		slug: 'palabruno',
-		title: 'Palabruno',
-		description:
-			'Built and launched a React web workspace and React Native apps for Spanish learners and teachers, including an interactive reader, student and group management, sharing, and subscriptions.',
-		image: PalabrunoThumb,
-		alt: 'Palabruno reading product for Spanish learners and teachers.',
-		tags: ['React', 'TypeScript', 'React Native', 'Expo', 'TanStack Start', 'Supabase', 'Stripe', 'OpenAI']
-	},
-	{
-		slug: 'genrupt',
-		title: 'Genrupt',
-		description:
-			'Built a Next.js AI image editor and seller workflows for generating, reviewing, and editing creative content. Helped Genrupt support its first 200 paying customers.',
-		image: GenruptThumb,
-		alt: 'Genrupt creative operations workspace for Amazon seller teams.',
-		tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Stripe', 'OpenAI', 'MCP']
-	},
-	{
-		slug: 'mucho-hangouts',
-		title: 'Mucho Hangouts',
-		description:
-			'Stabilized messaging, notifications, app state, and authentication in a live React product, while supporting a five-person team through code review, pairing, and clearer engineering patterns.',
-		image: MuchoHangoutsThumb,
-		alt: 'Mucho Hangouts social events product interface.',
-		tags: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Express']
-	},
-	{
-		slug: 'casamo',
-		title: 'Casamo',
-		description:
-			'Designed, built, and operate a live stay-research product, with Airbnb and Booking.com evidence, comparison views, durable searches, credit recovery, and authenticated AI client access.',
-		image: CasamoThumb,
-		alt: 'Casamo homepage showing its furnished-stay search and comparison flow.',
-		tags: ['TypeScript', 'SvelteKit', 'Cloudflare', 'D1', 'DeepSeek', 'Stripe']
-	},
-	{
-		slug: 'ba-eventos',
-		title: 'BA Eventos',
-		description:
-			'Built a streaming SvelteKit event-discovery product with a six-source catalog, semantic and keyword retrieval, saved conversations, and regression checks for grounded follow-ups.',
-		image: BaEventosThumb,
-		alt: 'BA Eventos AI event discovery experience for Buenos Aires.',
-		tags: ['TypeScript', 'SvelteKit', 'Svelte 5', 'PostgreSQL', 'Supabase', 'Semantic Search']
-	}
+  {
+    slug: 'desarmadero-la-torre',
+    title: 'Desarmadero La Torre — From parts catalog to operations prototype',
+    description: 'Built a searchable parts catalog, then translated a returning client’s sales, payment, and dismantling workflows into a specification and role-based prototype.',
+    status: 'Catalog delivered · Operations prototype',
+    image: DesarmaderoThumb,
+    alt: 'Automotive salvage inventory and the operating environment behind the client engagement.',
+    tags: ['TypeScript', 'SvelteKit', 'Cloudflare D1']
+  },
+  {
+    slug: 'genrupt',
+    title: 'Genrupt — Building dependable AI seller workflows',
+    description: 'Worked directly with the founder on AI seller workflows and the account permissions, billing, credits, and recoverable processing behind them.',
+    status: 'Production client software',
+    image: GenruptThumb,
+    alt: 'Genrupt creative operations workspace for Amazon seller teams.',
+    tags: ['TypeScript', 'Next.js', 'PostgreSQL']
+  },
+  {
+    slug: 'palabruno',
+    title: 'Palabruno — From product scope to launch and handoff',
+    description: 'Collaborated on scope and learner/teacher workflows, then delivered web and mobile applications, subscriptions, payments, and release documentation.',
+    status: 'Historical launch and handoff',
+    image: PalabrunoThumb,
+    alt: 'Palabruno reading product for Spanish learners and teachers.',
+    tags: ['TypeScript', 'React', 'React Native']
+  },
+  {
+    slug: 'mucho-hangouts',
+    title: 'Mucho Hangouts — Stabilizing a live product while delivery continued',
+    description: 'Addressed messaging, authentication, and application-state failures in an existing product while providing technical direction and mentoring its developers.',
+    status: 'Monthly engineering engagement · 2025',
+    image: MuchoHangoutsThumb,
+    alt: 'Mucho Hangouts social events product interface.',
+    tags: ['TypeScript', 'React', 'Node.js']
+  }
 ];
+
+const scopingProjects = [
+  {slug: 'casa-elaria', title: 'Casa Elaria — Purchase-intent test', description: 'A focused storefront built around the decision to invest in inventory.'},
+  {slug: 'online-store-conversion-review', title: 'Skincare store — Conversion review', description: 'A shopping-journey assessment translated into a prioritized improvement plan.'}
+];
+
+const testimonials = [...allTestimonials].sort((a, b) => {
+  const order = ['Michael Shackelford', 'Valentin Zach'];
+  const rank = (name: string) => order.includes(name) ? order.indexOf(name) : order.length;
+  return rank(a.name) - rank(b.name);
+});
 
 const experience = [
 	{
 		period: 'Mar 2024 — Present',
-		role: 'Founder & AI Product Engineer',
+		role: 'Founder & Software Engineer — Client Consulting',
 		company: 'HC Studio',
 		companyHref: null,
-		body: 'Built and operated independent AI products and delivered client products with founders, covering product design, software engineering and operations. Partnered directly with founders to launch Palabruno on web, iOS and Android in under four weeks and help Genrupt serve its first 200 paying customers.',
+		body: 'Deliver software directly for clients and founders, with engagements spanning discovery, scoping, implementation, production support, and handoff.',
+		independentBody: 'I also build and operate independent products: Casamo for accommodation research and BA Eventos for event discovery.',
 		clients: [
-			{
-				name: 'Genrupt',
-				href: '/projects/genrupt/',
-				engagement: 'Contract AI Product Engineer · 2025 — 2026',
-				highlights: [
-					'Enabled agents to use seller workflows through MCP, with OAuth authentication, organization-level access controls and asynchronous results.',
-					'Built recoverable AI generation workflows with atomic PostgreSQL credit reservations and row locking, reusing existing provider jobs and preventing duplicate credit settlement.'
-				],
-				tags: ['React', 'TypeScript', 'Next.js', 'PostgreSQL']
-			},
-			{
-				name: 'Palabruno',
-				href: '/projects/palabruno/',
-				engagement: 'Contract AI Product Engineer · Mar — Apr 2026',
-				highlights: [
-					'Built a Spanish text-processing pipeline combining linguistic rules and constrained LLM generation to create contextual learning cards, with a 211-case gold regression set, targeted regeneration, and per-stage latency and model-cost tracking.',
-					'Built a multi-stage story generator that structures teacher constraints, plans scenes, and validates and repairs vocabulary, grammar, length and narrative defects.'
-				],
-				tags: ['React', 'TypeScript', 'React Native / Expo']
-			},
-			{
-				name: 'Mucho Hangouts',
-				href: '/projects/mucho-hangouts/',
-				engagement: 'Fractional CTO · 2025',
-				highlights: [
-					'Served as Fractional CTO on a five-person team, mentoring two junior developers through code reviews, pair programming and reusable frontend patterns.'
-				],
-				tags: ['React', 'TypeScript', 'Node.js']
-			},
-			{
-				name: 'Casamo',
-				href: '/projects/casamo/',
-				engagement: 'Founder & AI Product Engineer · 2026',
-				highlights: [
-					'Built an AI accommodation-research product that turns listings, reviews and photos into cited shortlists, with evaluations scoring exact source quotations, visual false positives and private-versus-shared-space classification.',
-					'Built durable listing research on Cloudflare Workflows, with checkpoints that preserved completed work and kept queue delays from triggering premature timeouts.'
-				],
-				tags: ['TypeScript', 'SvelteKit', 'Cloudflare Workflows']
-			},
-			{
-				name: 'BA Eventos',
-				href: '/projects/ba-eventos/',
-				engagement: 'Founder & AI Product Engineer · 2025 — Present',
-				highlights: [
-					'Built conversational event search for web and Telegram over 15,000 events from six sources; cross-encoder reranking raised NDCG@5 from 0.73 to 0.83 on 88 labeled queries.',
-					'Built 39 live agent evaluations and a pre-registered relevance holdout, and used the results to remove a ranking layer that showed no measurable gain.'
-				],
-				tags: ['TypeScript', 'SvelteKit', 'PostgreSQL']
-			}
-		]
+  {
+    "name": "Desarmadero La Torre",
+    "href": "/projects/desarmadero-la-torre/",
+    "engagement": "Client software and operations prototype · 2025 — 2026",
+    "highlights": [
+      "Built a searchable automotive-parts catalog; the client subsequently returned for a broader operations engagement.",
+      "Translated discovery into a specification and role-based prototype covering sales, payment release, dismantling assignments, and vehicle lookup."
+    ],
+    "tags": [
+      "TypeScript",
+      "SvelteKit",
+      "Cloudflare D1"
+    ]
+  },
+  {
+    "name": "Genrupt",
+    "href": "/projects/genrupt/",
+    "engagement": "Contract AI Product Engineer · 2025 — 2026",
+    "highlights": [
+      "Worked directly with the founder to deliver AI content generation, editing, and seller workflows.",
+      "Built account permissions, billing and credit controls, recoverable background processing, and authenticated MCP access."
+    ],
+    "tags": [
+      "TypeScript",
+      "Next.js",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "name": "Palabruno",
+    "href": "/projects/palabruno/",
+    "engagement": "Contract AI Product Engineer · Mar — Apr 2026",
+    "highlights": [
+      "Collaborated on scope and learner/teacher workflows, then delivered web and mobile applications with subscriptions and payments.",
+      "Built validated AI reading workflows and prepared launch assets, release documentation, and handoff notes."
+    ],
+    "tags": [
+      "TypeScript",
+      "React",
+      "React Native / Expo"
+    ]
+  },
+  {
+    "name": "Mucho Hangouts",
+    "href": "/projects/mucho-hangouts/",
+    "engagement": "Fractional CTO · 2025",
+    "highlights": [
+      "Addressed messaging, notification, authentication, and application-state failures while feature delivery continued.",
+      "Provided technical direction for a five-person team and mentored two junior developers through reviews, pairing, and reusable patterns."
+    ],
+    "tags": [
+      "TypeScript",
+      "React",
+      "Node.js"
+    ]
+  }
+]
 	},
 	{
 		period: 'Nov 2021 — Feb 2024',
@@ -185,8 +195,8 @@ const experience = [
 		companyHref: 'https://www.leagueapps.com/',
 		highlights: [
 			'Modernized tournament scheduling with React on the company’s first migration team, helping establish shared frontend patterns and components.',
-			'Built drag-and-drop scheduling, conflict detection, and double-booking prevention, reducing organizer scheduling time by 45%.',
-			'Built self-service reporting with AG Grid; used virtualization and memoization for tens of thousands of rows, reducing load and interaction lag by 70%.'
+			'Built drag-and-drop scheduling, conflict detection, and double-booking prevention for tournament organizers.',
+			'Built self-service reporting with AG Grid, using virtualization and memoization for tables with tens of thousands of rows.'
 		],
 		tags: ['TypeScript', 'React', 'AG Grid']
 	},
@@ -206,50 +216,13 @@ const experience = [
 		company: '8base',
 		companyHref: 'https://www.8base.com/',
 		highlights: [
-			'Built Jira / GitLab CI/CD automation and refactored 20+ shared UI components into a reusable library, reducing duplicate code by 30%.'
+			'Built Jira / GitLab CI/CD automation and refactored 20+ shared UI components into a reusable library.'
 		],
 		tags: ['JavaScript', 'GitLab', 'CI/CD']
 	}
 ];
 
-const testimonials = [
-	{
-		name: 'Sarah Hibner',
-		role: 'Senior Product Designer, LeagueApps',
-		quote:
-			'He suggested design-to-engineering hand-off improvements to make our workflow more efficient, asked insightful follow-up questions during design reviews, and brought my Figma designs to life so we could deliver value to our users.'
-	},
-	{
-		name: 'Michael Shackelford',
-		role: 'Founder & CEO, Genrupt',
-		quote:
-			'Hanif helped me build and optimize features at Genrupt.com and was essential at getting the app ready for scaling. He is really organized and great at finding ways to make things more efficient. He is also a pleasure to work with!'
-	},
-	{
-		name: 'Valentin Zach',
-		role: 'Client, Palabruno',
-		quote:
-			'I hired Hanif for a project that included building a web as well as mobile app for spanish teachers and students. We made good progress on the project and published the app on App Store as well as Play Store. Its very enjoyable working with him and he was very responsive during the whole time. He also brought a lot of valuable input as well as ideas to the application. I recommend working with him.'
-	},
-	{
-		name: 'Markis Zarate',
-		role: 'Founder, Zarate Studios',
-		quote:
-			"He’s reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way."
-	},
-	{
-		name: 'Joshua Hamer',
-		role: 'JIEC Labs',
-		quote:
-			'Working with Hanif on my Shopify store was easy, he was always quick to respond, and he gave me great pro tips all along the way. I really liked how the process was organized and feel like I got great value from the project. I would definitely work with him again and would recommend him to anyone looking to improve their e-commerce site!'
-	},
-	{
-		name: 'Monica Londoño',
-		role: 'Co-founder, Punto de Partida',
-		quote:
-			'Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. His professionalism and data-driven approach made the entire process seamless. The result exceeded our expectations.'
-	}
-];
+
 ---
 
 <BaseLayout
@@ -276,9 +249,11 @@ const testimonials = [
 					/>
 				</figure>
 				<h1 class='hc-home-header__name'><a href='/' transition:name='brand'>Hanif Carroll</a></h1>
-				<p class='hc-home-header__role'>Applied AI Engineer</p>
+				<p class='hc-home-header__role'>Forward Deployed Engineer</p>
 				<p class='hc-home-header__intro'>
-					I build React and TypeScript products, from data-heavy dashboards to web and mobile applications. I also build AI features and integrations. Open to remote employment and contract work.
+					I work directly with clients to understand their workflows, define a practical scope, and build the software that supports their work.
+          <br /><br />My experience spans operations tools, integrations, production AI applications, and improving existing products.
+          <br /><br />Available for fully remote roles and contracts with AI implementation agencies.
 				</p>
 
 				<nav class='hc-home-nav' aria-label='In-page jump links'>
@@ -309,7 +284,7 @@ const testimonials = [
 						data-track-event='book_call_clicked'
 						data-track-location='home_rail'
 					>
-						Book a call <svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17L17 7'></path><path d='M7 7h10v10'></path></svg>
+						Discuss a role or engagement <svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17L17 7'></path><path d='M7 7h10v10'></path></svg>
 					</a>
 				</div>
 
@@ -370,7 +345,7 @@ const testimonials = [
 		<main class='hc-home-main'>
 			<section id='projects' class='hc-home-section' aria-label='Selected projects'>
 				<div class='hc-home-section-label'>
-					<h2 class='hc-home-section-title'>Projects</h2>
+					<h2 class='hc-home-section-title'>Client work</h2>
 				</div>
 				<div class='hc-home-section-body'>
 					<ul class='hc-home-projects'>
@@ -388,7 +363,8 @@ const testimonials = [
 
 									</div>
 									<div class='hc-home-project__content'>
-										<h3>{project.title}</h3>
+										<p class='hc-home-project__status'>{project.status}</p>
+                  <h3>{project.title}</h3>
 										<p>{project.description}</p>
 										<ul class='hc-home-tags' aria-label='Technologies used'>
 											{project.tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
@@ -404,6 +380,15 @@ const testimonials = [
 					</a>
 				</div>
 			</section>
+
+      <section class='hc-home-section' aria-label='Scoping and diagnostic work'>
+        <div class='hc-home-section-label'><h2 class='hc-home-section-title'>Scoping &amp; diagnostic work</h2></div>
+        <div class='hc-home-section-body'>
+          <ul class='hc-home-scoping'>
+            {scopingProjects.map((project) => <li><a href={`/projects/${project.slug}/`}>{project.title}</a><p>{project.description}</p></li>)}
+          </ul>
+        </div>
+      </section>
 
 			<section
 				class='hc-home-section hc-home-feedback'
@@ -483,7 +468,8 @@ const testimonials = [
 											</ul>
 										</div>
 									))}
-									{job.tags && <ul class='hc-home-tags' aria-label='Technologies used'>
+									{job.independentBody && <p class="hc-home-job__independent">{job.independentBody}</p>}
+                  {job.tags && <ul class='hc-home-tags' aria-label='Technologies used'>
 										{job.tags.map((tag) => (
 											<li>{tag}</li>
 										))}
@@ -510,13 +496,13 @@ const testimonials = [
 				</div>
 				<div class='hc-home-section-body'>
 					<p>
-						Hey, I’m Hanif. I’m an Applied AI Engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. Eight years later, I build web and mobile products, including AI tools for business workflows.
+						Hey, I’m Hanif. I’m a forward deployed engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. Eight years later, I work directly with clients on software, integrations, and AI applications.
 					</p>
 					<p>
 						After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I work with founders and product teams to turn ambiguous ideas into useful, reliable software.
 					</p>
 					<p>
-						Recently, I helped <a href='https://www.hanifcarroll.com/projects/genrupt/'>Genrupt</a> support its first 200 paying customers and took <a href='https://www.hanifcarroll.com/projects/palabruno/'>Palabruno</a> from an early prototype to launch across iOS, Android, and web.
+						My recent client work includes operational discovery and a prototype for <a href="/projects/desarmadero-la-torre/">Desarmadero La Torre</a>. I also helped <a href='https://www.hanifcarroll.com/projects/genrupt/'>Genrupt</a> support its first 200 paying customers and took <a href='https://www.hanifcarroll.com/projects/palabruno/'>Palabruno</a> from an early prototype to launch across iOS, Android, and web.
 					</p>
 					<p>
 						I’m especially interested in AI and the future of work. How should workflows, roles, and organizations change as AI becomes part of everyday work? I want to explore that through what I build, thinking about the technology and the people using it together.

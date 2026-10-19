@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import ProjectVideo from '../../components/project-video/ProjectVideo.astro';
 import ImageLightbox from '../../components/case-study/ImageLightbox.astro';
+import { clientDelivery, type ClientDeliverySlug } from '../../data/client-delivery';
+import { testimonials } from '../../data/testimonials';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
@@ -38,6 +40,12 @@ export async function getStaticPaths() {
 }
 
 const { project, caseStudy } = Astro.props as PageProps;
+const delivery = clientDelivery[project.slug as ClientDeliverySlug];
+const clientTestimonial = project.slug === 'genrupt'
+	? testimonials.find((item) => item.name === 'Michael Shackelford')
+	: project.slug === 'palabruno'
+		? testimonials.find((item) => item.name === 'Valentin Zach')
+		: undefined;
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);
@@ -67,9 +75,10 @@ const caseStudyJsonLd = {
 const caseStudyFacts = project.proofType === 'client'
 	? [
 			{ label: 'Engagement', value: project.service },
-			{ label: 'Contribution', value: project.role },
+			{ label: 'My responsibility', value: project.role },
+			delivery && { label: 'Status', value: delivery.status },
 			{ label: 'Year', value: project.year },
-		]
+		].filter((detail): detail is { label: string; value: string } => Boolean(detail?.value))
 	: [
 			{ label: 'Role', value: project.role },
 			{ label: 'Year', value: project.year },
@@ -81,7 +90,7 @@ const overviewVideo = project.videos?.overview;
 
 const heroActions = [
 	project.liveUrl && {
-		label: project.proofType === 'experiment' ? 'Try live demo' : 'Visit live product',
+		label: delivery?.liveLabel ?? (project.proofType === 'experiment' ? 'Try live demo' : 'Visit live product'),
 		href: project.liveUrl,
 		trackEvent: 'project_live_site_clicked',
 		trackLocation: 'project_detail_hero',
@@ -193,6 +202,15 @@ const heroActions = [
 				)
 			}
 			<Content />
+			{clientTestimonial && (
+				<section class='cs-client-feedback' aria-label='Client feedback'>
+					<h2>Working together</h2>
+					<blockquote>
+						<p>{clientTestimonial.quote}</p>
+						<footer><cite>{clientTestimonial.name} · {clientTestimonial.role}</cite></footer>
+					</blockquote>
+				</section>
+			)}
 		</div>
 
 		<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />

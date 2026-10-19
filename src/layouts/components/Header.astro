@@ -17,7 +17,7 @@ const entryId = (section: string, title: string) =>
 	`${section}-${title.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
 const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
-const headerCtaLabel = 'Book a call';
+const headerCtaLabel = 'Discuss a role or engagement';
 ---
 
 <header class='site-header' id='siteHeader' transition:name='site-header'>
@@ -92,7 +92,7 @@ const headerCtaLabel = 'Book a call';
 					</svg>
 				</a>
 				</nav>
-				<p class='hc-mobile-nav__note'>Applied AI Engineer.</p>
+				<p class='hc-mobile-nav__note'>Forward Deployed Engineer.</p>
 			</div>
 		</div>
 	</div>

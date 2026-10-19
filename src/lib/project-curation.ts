@@ -6,18 +6,20 @@ export const PROJECT_ARCHIVE_GROUPS = [
     id: "client-product-work",
     label: "Client work",
     description:
-      "Client engagements where I owned product decisions, implementation, and handoff — from a founder's idea to billing, reliability, and launch.",
-    slugs: [
-      "palabruno",
-      "genrupt",
-      "mucho-hangouts",
-      "desarmadero-operations-prototype",
-      "desarmadero-la-torre",
-      "online-store-conversion-review",
-      "casa-elaria",
-      "maximo-interiorismo",
-      "redwriter-comics",
-    ],
+      "Selected engagements spanning operational discovery, production AI, launch, and ongoing engineering.",
+    slugs: ["desarmadero-la-torre", "genrupt", "palabruno", "mucho-hangouts"],
+  },
+  {
+    id: "scoping-diagnostic-work",
+    label: "Scoping & diagnostic work",
+    description: "Focused builds and assessments that make the next business decision concrete.",
+    slugs: ["casa-elaria", "online-store-conversion-review"],
+  },
+  {
+    id: "additional-client-work",
+    label: "Additional client work",
+    description: "Websites designed and delivered directly for clients.",
+    slugs: ["maximo-interiorismo", "redwriter-comics"],
   },
   {
     id: "products-experiments",
@@ -44,3 +46,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
 ] as const;
 
 export const DELISTED_PROJECT_SLUGS = ["linkedin-tools", "job-application-assistant"] as const;
+
+// The detailed prototype is reached from the combined client story rather than
+// appearing as a second client on the archive.
+export const NESTED_PROJECT_SLUGS = ["desarmadero-operations-prototype"] as const;

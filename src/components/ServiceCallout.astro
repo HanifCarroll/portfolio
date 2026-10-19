@@ -15,34 +15,34 @@ const { variant = 'general', context = 'blog', location, class: className = '' }
 
 const offers = {
 	general: {
-		title: "Tell me what your team needs to ship.",
-		body: "Start with the feature, integration, or system that's stuck. We'll work out whether a project or a monthly contract fits.",
+		title: "Need an engineer for client delivery?",
+		body: "I work directly with clients to understand the workflow, define scope, and implement the solution. Available for fully remote agency roles and contracts.",
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a 30-minute fit call'
+		primaryLabel: 'Discuss a role or engagement'
 	},
 	systemsBuild: {
-		title: 'Have a product priority that needs an owner?',
-		body: 'I join B2B SaaS teams on contract to ship the features, internal tools, and integrations already on your roadmap.',
+		title: 'Have a client engagement that needs an engineer?',
+		body: 'I help AI implementation agencies deliver client software, from discovery and prototypes to integrations, launch, and handoff.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a 30-minute fit call'
+		primaryLabel: 'Discuss a role or engagement'
 	},
 	ongoing: {
 		title: 'Need ongoing senior engineering?',
 		body: 'A monthly contract covers continuing priorities across your product and the systems around it.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a 30-minute fit call'
+		primaryLabel: 'Discuss a role or engagement'
 	}
 } as const;
 
 const offer = context === 'case-study'
 	? {
 			...offers[variant],
-			title: 'Looking for an applied AI engineer?',
-			body: 'I help product teams build and improve React and TypeScript applications, from complex interfaces to reliable releases. I’m open to remote roles and contract work.',
-			primaryLabel: 'Let’s talk'
+			title: 'Need an engineer who can work directly with your clients?',
+			body: 'I work with clients on discovery, scope, implementation, and handoff. Available for fully remote roles and contracts with AI implementation agencies.',
+			primaryLabel: 'Discuss a role or engagement'
 		}
 	: offers[variant];
 const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
