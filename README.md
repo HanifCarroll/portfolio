@@ -43,10 +43,6 @@ Use `bun run dev:direct` for the raw Astro server on [http://localhost:4321](htt
 
 Tests use `*.test.ts` or `*.test.mjs` beside the related code; no coverage threshold is configured. Desktop/mobile layouts, keyboard access, and reduced motion are part of UI verification. The Husky pre-commit hook runs the build. TypeScript extends Astro's strict configuration.
 
-### Generated Notes
-
-`src/data/notes.generated.ts` is generated, not hand-edited. `bun run notes:sync` regenerates it from the vault source; `bun run notes:check` checks that it matches. `PORTFOLIO_NOTES_SOURCE` selects another source directory. The default source is `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hanif-md/projects/portfolio-knowledge-library`; [the generator](scripts/sync-notes-content.mjs) defines the source format.
-
 Secrets stay out of Git and browser-exposed `PUBLIC_*` variables.
 
 ### Analytics & Verification Env Vars
@@ -61,6 +57,7 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 
 ### Content & Data
 
+- Notes live in `src/data/notes.ts`; edit them directly.
 - Blog posts live in `src/content/blog/*.md` (frontmatter uses `title`, `description`, `pubDate`, optional `tags` and `coverImage`).
 - Project case studies are defined in JSON under `src/lib/projects/` and surfaced through `src/lib/project-cards.ts`.
 - Public images remain in `public/` and are referenced directly by the JSON files and templates.
