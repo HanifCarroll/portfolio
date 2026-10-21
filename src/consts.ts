@@ -7,4 +7,4 @@ export const SITE_DESCRIPTION =
   "Forward Deployed Engineer working directly with clients on discovery, workflow software, integrations, and production AI.";
 export const EMAIL = "hanif@hanifcarroll.com";
 export const EMAIL_URL = "mailto:hanif@hanifcarroll.com";
-export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/product-engineering-fit-call";
+export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/forward-deployed-engineering-intro";
