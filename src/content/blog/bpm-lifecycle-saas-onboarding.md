@@ -33,11 +33,11 @@ The company initially assumed onboarding ended the moment the technical speciali
 
 To manage the workflow, the team established three foundational rules:
 
-* Defined Scope: Onboarding starts when a client submits a setup request and spreadsheet, and ends only when the client confirms they can successfully update a task in a working project.
+- Defined Scope: Onboarding starts when a client submits a setup request and spreadsheet, and ends only when the client confirms they can successfully update a task in a working project.
 
-* Appointed a <button type="button" class="definition-term" data-definition="The person accountable for the performance and ongoing improvement of an entire process, including handoffs across departments.">Process Owner</button>: Because onboarding crosses two departments—Customer Success and Technical Implementation—the Customer Success Lead was named the process owner. Without a single accountable owner, individual departments optimize their own micro-tasks while nobody takes responsibility for total customer wait time.
+- Appointed a <button type="button" class="definition-term" data-definition="The person accountable for the performance and ongoing improvement of an entire process, including handoffs across departments.">Process Owner</button>: Because onboarding crosses two departments—Customer Success and Technical Implementation—the Customer Success Lead was named the process owner. Without a single accountable owner, individual departments optimize their own micro-tasks while nobody takes responsibility for total customer wait time.
 
-* Target Metrics: The team set a primary performance goal: reduce total <button type="button" class="definition-term" data-definition="The elapsed time from the start of a process instance to its completion, including time spent performing activities and waiting. This example counts agreed business hours.">cycle time</button> to an average target of 10 business hours or fewer, while keeping post-import setup errors low.
+- Target Metrics: The team set a primary performance goal: reduce total <button type="button" class="definition-term" data-definition="The elapsed time from the start of a process instance to its completion, including time spent performing activities and waiting. This example counts agreed business hours.">cycle time</button> to an average target of 10 business hours or fewer, while keeping post-import setup errors low.
 
 ## 2. Process Discovery: Mapping How Work Really Happens
 
@@ -108,11 +108,11 @@ Because each spreadsheet contains over 50 tasks with team-wide assignees, reps m
 
 Redesign options involve tradeoffs between speed, cost, quality, and effort.
 
-| Metric per Request | Current Process ("As-Is") | Proposed Process ("To-Be") | Net Impact |
-| --- | --- | --- | --- |
-| Active Work Time | 2 hours | 3 hours | Estimated net increase of +1 hour for upfront verification |
-| Total Waiting Time | 14 hours | 5 hours | -9 hours of relay & secondary queue wait eliminated |
-| Total Cycle Time | 16 business hours | 8 business hours | 50% estimated reduction in overall turnaround time |
+| Metric per Request | Current Process ("As-Is") | Proposed Process ("To-Be") | Net Impact                                                 |
+| ------------------ | ------------------------- | -------------------------- | ---------------------------------------------------------- |
+| Active Work Time   | 2 hours                   | 3 hours                    | Estimated net increase of +1 hour for upfront verification |
+| Total Waiting Time | 14 hours                  | 5 hours                    | -9 hours of relay & secondary queue wait eliminated        |
+| Total Cycle Time   | 16 business hours         | 8 business hours           | 50% estimated reduction in overall turnaround time         |
 
 While Customer Success spends extra time verifying accounts, avoiding the 9-hour relay and repeat queue wait aims to cut overall estimated cycle time in half.
 
@@ -125,27 +125,25 @@ A process model on paper doesn’t change business outcomes on its own. The <but
 2. <button type="button" class="definition-term" data-definition="Using software to perform or coordinate process activities, such as validating information, assigning tasks, or sending notifications.">Process Automation</button> & Infrastructure: Updating software tools to support the new workflow. The company added mandatory checklist fields directly into their shared workspace, preventing reps from handing off a setup task until all account matches were confirmed.
 
 > Note on Automation: Automating a flawed sequence simply speeds up inefficiency. The team corrected the handoff order first, then configured software to enforce the new rules.
-> 
-> 
 
 ## 6. Process Monitoring: Tracking Results and Testing Conformance
 
 Once the redesigned workflow goes live, <button type="button" class="definition-term" data-definition="Collecting and analyzing data from an operating process to assess performance and conformance and identify further improvement needs.">process monitoring</button> begins. The process owner collects operational data to evaluate two key areas:
 
-* <button type="button" class="definition-term" data-definition="The extent to which the process as carried out follows its intended design or agreed procedure.">Conformance</button>: Are team members actually following the agreed procedure?
+- <button type="button" class="definition-term" data-definition="The extent to which the process as carried out follows its intended design or agreed procedure.">Conformance</button>: Are team members actually following the agreed procedure?
 
-* Performance: Is the process meeting its targets for speed, effort, and quality?
+- Performance: Is the process meeting its targets for speed, effort, and quality?
 
 ### Pilot Results Across 20 Requests
 
 The company tested the redesigned process on a pilot batch of 20 comparable onboarding requests:
 
-| Performance Metric | Pre-Change Baseline | Pilot Results | Operational Finding |
-| --- | --- | --- | --- |
-| Average Cycle Time | 16 business hours | 9 business hours | Met the 10-hour average target; 18 of 20 requests finished under 10 hrs. |
-| Total Waiting Time | 14 business hours | 6 business hours | Secondary queue wait eliminated. |
-| Setups Needing Correction | 2 out of 20 | 1 out of 20 | Fewer setup corrections in this pilot batch. |
-| Staff Labor Effort | 90 minutes | 150 minutes | Net paid employee labor increased by 60 minutes. |
+| Performance Metric        | Pre-Change Baseline | Pilot Results    | Operational Finding                                                      |
+| ------------------------- | ------------------- | ---------------- | ------------------------------------------------------------------------ |
+| Average Cycle Time        | 16 business hours   | 9 business hours | Met the 10-hour average target; 18 of 20 requests finished under 10 hrs. |
+| Total Waiting Time        | 14 business hours   | 6 business hours | Secondary queue wait eliminated.                                         |
+| Setups Needing Correction | 2 out of 20         | 1 out of 20      | Fewer setup corrections in this pilot batch.                             |
+| Staff Labor Effort        | 90 minutes          | 150 minutes      | Net paid employee labor increased by 60 minutes.                         |
 
 Note on Labor Effort vs. Active Work Time: "Staff Labor Effort" (150 minutes) measures paid employee time. Total "Active Work Time" (3 hours) includes an additional 30 minutes of independent customer verification (e.g., verifying workspace login and testing task updates).
 
@@ -171,11 +169,11 @@ To apply the BPM lifecycle to a workflow in your own organization, start with th
 
 This walkthrough follows the six-phase lifecycle described in [Fundamentals of Business Process Management](https://doi.org/10.1007/978-3-662-56509-4_1).
 
-| Phase | Core Inputs | Primary Outputs | Key Focus |
-| --- | --- | --- | --- |
-| 1. Identification | Strategic goals & operational issues | Process architecture, boundaries, owner, & metrics | Scope, selection, & governance |
-| 2. Discovery | Stakeholder interviews, logs, & observation | As-Is Process Model | Mapping current operational reality |
-| 3. Analysis | As-Is model & performance data | Prioritized issue list & quantified delays | Identifying root causes of waste |
-| 4. Redesign | Issue list & performance targets | To-Be Process Model | Designing streamlined workflows |
-| 5. Implementation | To-Be model & operational rules | Executable process, trained staff, & configured tools | Change management & IT setup |
-| 6. Monitoring | Execution data & audit logs | Performance & conformance findings | Continuous evaluation & iteration |
+| Phase             | Core Inputs                                 | Primary Outputs                                       | Key Focus                           |
+| ----------------- | ------------------------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| 1. Identification | Strategic goals & operational issues        | Process architecture, boundaries, owner, & metrics    | Scope, selection, & governance      |
+| 2. Discovery      | Stakeholder interviews, logs, & observation | As-Is Process Model                                   | Mapping current operational reality |
+| 3. Analysis       | As-Is model & performance data              | Prioritized issue list & quantified delays            | Identifying root causes of waste    |
+| 4. Redesign       | Issue list & performance targets            | To-Be Process Model                                   | Designing streamlined workflows     |
+| 5. Implementation | To-Be model & operational rules             | Executable process, trained staff, & configured tools | Change management & IT setup        |
+| 6. Monitoring     | Execution data & audit logs                 | Performance & conformance findings                    | Continuous evaluation & iteration   |

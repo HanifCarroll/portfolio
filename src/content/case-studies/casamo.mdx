@@ -39,6 +39,7 @@ People testing Casamo wanted more options to compare before trusting that the se
 I expanded the shortlist, eventually settling on a target of five to ten options. I wanted enough choice for someone to make their own judgment without recreating the experience I was trying to avoid: opening dozens of tabs and spending hours comparing them.
 
 I also changed what happens when the search finds fewer options. At first, Casamo didn’t show a report when too few properties qualified. Now it shows the qualifying results, even if there’s only one. A search uses one credit, which is restored if fewer than five properties qualify. A smaller report may still help someone, even if the search hasn’t found as many options as I wanted it to.
+
 </CaseSection>
 
 <CaseSection title="Making comparison easier to reach">
@@ -67,6 +68,7 @@ Later, when adding a queue for searches waiting for capacity, I had to correct w
 I gave queueing and execution separate deadlines and used Cloudflare’s existing scheduling. A queued search receives its full time allowance when it starts. If a search waits too long in the queue, the application cancels it and restores the credit. If the search starts just as its queue deadline expires, only one of those actions can take effect: start the search or cancel it and return the credit.
 
 I tested this in staging by allowing one search to run at a time and submitting two through the normal signed-in search flow. The second queued, then started automatically with its full time allowance. Both completed with saved reports and one credit used each. Automated tests checked that a search could not both start and expire, or restore the same credit twice.
+
 </CaseSection>
 
 <CaseSection title="Keeping local rental search useful when a provider fails">
@@ -75,6 +77,7 @@ I also built a Buenos Aires rental finder for people who have not collected list
 The provider adapters return structured listing facts and photo URLs. A failure at one provider leaves the other provider’s results available with a warning. That favors a useful partial result over hiding the entire search. The finder preserves each portal’s currencies and source wording; advertised inventory does not establish current availability.
 
 Blocking unnecessary image, font, media, and tracker downloads reduces browser acquisition work while retaining the structured gallery metadata needed by the interface. The combined Browserbase usage outcome is described in the [BA Eventos case study](/projects/ba-eventos/).
+
 </CaseSection>
 
 <CaseSection title="What is live, and what I have verified">
@@ -85,4 +88,5 @@ The staging exercise above checked queueing, completion, and credit behavior for
 The earlier [Apartment Finder prototype](/projects/apartment-finder/) has its own washer-classification evaluation. Its fixture results belong to that narrower task and do not establish Casamo’s accuracy across traveler requirements.
 
 You can [explore a sample trip](https://casamo.app/sample-trip) or [try Casamo](https://casamo.app).
+
 </CaseSection>

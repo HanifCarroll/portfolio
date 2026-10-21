@@ -1,6 +1,6 @@
 ---
 name: Hanif Carroll Portfolio
-description: An inspectable, proof-led portfolio for Hanif Carroll, Applied AI Engineer for B2B SaaS teams.
+description: An inspectable, proof-led portfolio for Hanif Carroll, forward deployed engineer.
 colors:
   accent-gold: "#f8d651"
   accent-gold-hover: "color-mix(in srgb, #f8d651 88%, #725a00)"
@@ -85,13 +85,13 @@ components:
 
 **Creative North Star: "The Inspectable System"**
 
-The site should feel like a well-run operating system made visible: calm at first glance, specific on inspection, and structured around the decisions a client needs to make. The hierarchy comes from typography, proportion, spacing, and real evidence rather than a stack of decorative cards.
+The site should feel like a well-run operating system made visible: calm at first glance, specific on inspection, and structured around the decisions a hiring team or client needs to make. The hierarchy comes from typography, proportion, spacing, and real evidence rather than a stack of decorative cards.
 
-The visual system pairs a white canvas with light editorial surfaces and a deliberately scarce gold accent. It rejects generic developer portfolios, resume framing, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
+The visual system pairs a white canvas with light editorial surfaces and a deliberately scarce gold accent. It rejects generic developer portfolios, consulting-funnel sales pages, AI-agency futurism, glossy generated imagery, full-site dark premium-tech styling, and excess cards or dividers.
 
 **Key Characteristics:**
 
-- Proof-led and product-engineering focused, leading with the client's engineering problem and inspectable proof rather than promotion.
+- Proof-led, showing how Hanif learns a client's work and builds software around it, with inspectable evidence rather than promotion.
 - Spacious, direct, and easy to scan without feeling sparse.
 - Flat by default, with elevation reserved for controls, navigation, and real artifacts.
 - One obvious primary action per decision surface.
@@ -126,6 +126,7 @@ The palette is restrained: a white canvas, warm charcoal ink, and a restrained g
 **Display Font:** Helvetica Neue (with Helvetica, Arial, sans-serif fallbacks)
 
 **Body Font:** Helvetica Neue (with Helvetica, Arial, sans-serif fallbacks)
+**Editorial Font:** EB Garamond (with a Georgia fallback) for blog articles and case-study narratives
 **Label/Mono Font:** SFMono-Regular (with Consolas and Liberation Mono fallbacks) for technical artifacts only
 
 **Character:** A single sans-serif family keeps the site direct and operational. Hierarchy comes from size, weight, measure, and spacing, while technical monospace is reserved for literal system evidence.
@@ -237,9 +238,67 @@ Components should feel direct and confident, with restrained shape and unmistaka
 ### Don't:
 
 - **Don't** build a generic developer or creative portfolio organized around personal taste instead of client problems.
-- **Don't** use employment or resume framing that makes the site read like a job application.
+- **Don't** use consulting-funnel framing such as fit calls, packages, or monthly retainers.
 - **Don't** use AI agency hype, futuristic claims, or unsupported promises.
 - **Don't** use glossy generated imagery in place of real artifacts and evidence.
 - **Don't** use full-site dark premium-tech styling that obscures reading and proof.
 - **Don't** use excess cards, dividers, horizontal rules, or decorative containers to manufacture hierarchy.
 - **Don't** constrain blog titles with a character-based `max-width` or scale them beyond the Article Title token.
+
+## Implementation
+
+The portfolio uses a small layered design system. Shared decisions live in one place; page-specific composition stays with the route that owns it.
+
+### Sources of truth
+
+- `src/styles/design-tokens.css` owns semantic color, type, spacing, radius, shadow, width, and measure tokens.
+- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, and transition behavior.
+- `src/styles/archive-shared.css` owns the shared home/projects/notes shell and identity rail; route stylesheets own only route content and visual treatments.
+- Shared Astro components own reusable structure. The header, service callout, and closing CTA must not be reimplemented inside individual pages; `BaseLayout.astro` owns the responsive footer.
+
+### Styling rules
+
+1. Use `--hc-*` semantic tokens instead of introducing route-local hex values for the core palette, text contrast, spacing, radii, or shadows.
+2. Put shared component selectors in `global.css`; put route selectors in the route stylesheet. Do not import one route stylesheet from another.
+3. Extend an existing shared primitive before creating a visually equivalent one with a new class name.
+4. Keep the text hierarchy explicit with `--hc-text` and `--hc-text-muted` on the shared light surfaces.
+5. Respect reduced-motion preferences. Navigation and page transitions may enhance orientation, but content and controls must remain usable with motion disabled.
+6. Validate every durable layout change at desktop, tablet, and mobile widths, including horizontal overflow, focus visibility, menu behavior, and readable line lengths.
+
+### Typography
+
+Typography is role-based, using Helvetica Neue for interface surfaces and EB Garamond for editorial reading. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
+
+| Role          | Token                  | Size             | Use                                                 |
+| ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
+| Caption       | `--hc-type-caption`    | 12px             | Nonessential metadata, indices, and evidence labels |
+| Meta          | `--hc-type-meta`       | 14px             | Labels, dates, legal text, and secondary navigation |
+| UI            | `--hc-type-ui`         | 16px             | Navigation, buttons, links, and controls            |
+| Body          | `--hc-type-body`       | 18px             | Default prose and descriptions                      |
+| Body large    | `--hc-type-body-large` | 20px             | Prominent supporting copy                           |
+| Lead          | `--hc-type-lead`       | 24px             | Introductions and compact subheads                  |
+| Heading       | `--hc-type-heading-*`  | 32px and 40px    | Fixed-size content headings                         |
+| Display       | `--hc-type-display-*`  | Responsive clamp | Page titles and major editorial statements          |
+| Section title | `--hc-type-section`    | Responsive clamp | Primary section headings                            |
+
+The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-semibold` and `--hc-weight-bold` for the shared 600 and 700 weights.
+
+Interface and product surfaces use the shared `--hc-font-sans` stack: Helvetica Neue, Helvetica, Arial, then sans-serif. Editorial articles and case-study narratives use `--hc-font-editorial`, backed by EB Garamond and Georgia. `--hc-font-mono` and `--hc-font-technical-mono` remain distinct for code and explicitly technical metadata.
+
+Use the existing line-height tokens and keep prose between roughly 45ch and 76ch. A route can choose a declared family role or responsive display size, but it should not create another unnamed type system.
+
+### Route stylesheet ownership
+
+| File                 | Owner                                                                   |
+| -------------------- | ----------------------------------------------------------------------- |
+| `archive-shared.css` | Shared home/projects/notes shell, rail, navigation, and list primitives |
+| `home.css`           | Homepage sections and homepage content rows                             |
+| `projects.css`       | Project archive introduction and project rows                           |
+| `notes.css`          | Notes navigation, entries, and mobile table of contents                 |
+| `case-study.css`     | Individual case study pages                                             |
+| `blog-index.css`     | Blog archive and article list                                           |
+| `blog.css`           | Individual blog articles                                                |
+| `now.css`            | Now page                                                                |
+| `tuesday.css`        | One Tuesday interactive case study                                      |
+
+When a selector is needed on more than one route, move the structure into a shared component first, then move its styling into `global.css`. This keeps reuse intentional and prevents page-specific rules from silently overriding one another.

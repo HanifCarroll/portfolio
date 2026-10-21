@@ -167,4 +167,3 @@ The answer can also be a combination. A database can hold the records, an intern
 Start with the behavior that is failing. If the team cannot trust the status, define the owner, allowed states, next action, and due time before changing platforms. If related records keep drifting apart, test whether connected records solve the problem. If roles need different actions, prototype the interface. If a standard product covers the workflow after configuration, use it.
 
 Build only after the team can explain what the custom software must make easier, safer, or cheaper to run. That keeps the decision about the operation rather than the appeal of new software.
-

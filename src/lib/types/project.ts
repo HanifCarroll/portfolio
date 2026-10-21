@@ -4,18 +4,6 @@ export interface ProjectImages {
   [key: string]: string;
 }
 
-export interface ProjectVideoAsset {
-  src: string;
-  poster: string;
-  duration?: string;
-  label?: string;
-}
-
-export interface ProjectVideos {
-  overview?: ProjectVideoAsset;
-  preview?: ProjectVideoAsset;
-}
-
 export interface ProjectProofScreen {
   image: string;
   label: string;
@@ -63,7 +51,6 @@ export interface Project {
   solution: string | string[];
   result: string | string[];
   images: ProjectImages;
-  videos?: ProjectVideos;
   // Optional fields for richer case studies (when available)
   role?: string;
   teamSize?: string;

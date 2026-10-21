@@ -4,7 +4,7 @@ export interface ProjectTrackMeta {
   label: string;
   shortLabel: string;
   group: ProjectTrackGroup;
-  ctaVariant: "general" | "systemsBuild" | "ongoing";
+  ctaVariant: "general" | "systemsBuild";
   rank: number;
 }
 

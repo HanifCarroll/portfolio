@@ -53,12 +53,14 @@ A question such as “where is the second one?” depends on what the person act
 Saved-event membership comes from the authenticated account rather than a client-supplied marker. For guests or an unavailable membership lookup, saved status stays unknown. These boundaries keep the model’s conversation context separate from authoritative event and account state.
 
 I built regression evaluations to check that recommendations stayed grounded in the event catalog and follow-up questions referred to the right events. Tests cover invalid references, changed catalog records, and descriptions that do not support a requested criterion. They check specific failure cases rather than establish an overall model-accuracy rate.
+
 </CaseSection>
 
 <CaseSection title="A streaming conversation that survives navigation">
 The SvelteKit chat streams responses, saves conversations, and handles retry and recovery states. Opening an event detail page preserves the conversation and scroll position, so someone can inspect a venue or ticket link and return to the same shortlist.
 
 The interface uses event cards and detail views for practical decisions, while the assistant handles the conversational request. Keeping these structured surfaces together means the user can inspect an actual event instead of relying only on generated prose.
+
 </CaseSection>
 
 <CaseSection title="Reducing browser acquisition work without dropping source data">
@@ -67,6 +69,7 @@ Some event sources need a browser to pass challenges; others can use HTTP or Clo
 Completed source observations are reused during retries of the same import run, and browser sessions close before database and AI processing. That avoids repeating a paid browser read just because a later processing stage failed. Fresh daily catalog reads remain separate from retry reuse.
 
 Together with acquisition changes in [Casamo](/projects/casamo/), this brought combined Browserbase usage within the plan allowance.
+
 </CaseSection>
 
 <CaseSection title="From a vague idea to a useful shortlist">

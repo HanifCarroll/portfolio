@@ -1,7 +1,7 @@
 ---
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 
-type Variant = 'general' | 'systemsBuild' | 'ongoing';
+type Variant = 'general' | 'systemsBuild';
 type Context = 'blog' | 'case-study';
 
 interface Props {
@@ -15,22 +15,15 @@ const { variant = 'general', context = 'blog', location, class: className = '' }
 
 const offers = {
 	general: {
-		title: "Need an engineer for client delivery?",
-		body: "I work directly with clients to understand the workflow, define scope, and implement the solution. Available for fully remote agency roles and contracts.",
+		title: "Need an engineer who works directly with clients?",
+		body: "I learn how an organization works, figure out where software could help, and build it with the people who’ll use it. Available for fully remote roles and contracts.",
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
 		primaryLabel: 'Discuss a role or engagement'
 	},
 	systemsBuild: {
 		title: 'Have a client engagement that needs an engineer?',
-		body: 'I help AI implementation agencies deliver client software, from discovery and prototypes to integrations, launch, and handoff.',
-		secondaryHref: '/projects/',
-		secondaryLabel: 'See projects',
-		primaryLabel: 'Discuss a role or engagement'
-	},
-	ongoing: {
-		title: 'Need ongoing senior engineering?',
-		body: 'A monthly contract covers continuing priorities across your product and the systems around it.',
+		body: 'I work with clients from discovery and prototypes through integrations, launch, and handoff. Available for fully remote roles and contracts.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
 		primaryLabel: 'Discuss a role or engagement'
@@ -41,7 +34,7 @@ const offer = context === 'case-study'
 	? {
 			...offers[variant],
 			title: 'Need an engineer who can work directly with your clients?',
-			body: 'I work with clients on discovery, scope, implementation, and handoff. Available for fully remote roles and contracts with AI implementation agencies.',
+			body: 'I work with clients on discovery, scope, implementation, and handoff. Available for fully remote roles and contracts.',
 			primaryLabel: 'Discuss a role or engagement'
 		}
 	: offers[variant];

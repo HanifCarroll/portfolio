@@ -45,7 +45,7 @@ try {
       );
     }
 
-    await page.goto(new URL("/blog/choosing-a-professional-identity/", baseUrl).href);
+    await page.goto(new URL("/blog/reliable-ai-workflows/", baseUrl).href);
     // Start a first visit even after the preceding full-page navigations.
     await page.evaluate(() => sessionStorage.clear());
     await page.reload();
@@ -75,7 +75,11 @@ try {
     const next = page.getByRole("button", { name: "Next testimonial", exact: true });
     await next.focus();
     await page.keyboard.press("ArrowRight");
-    assert.equal(await page.locator("[data-testimonial-position]").textContent(), "2 / 4");
+    const testimonialCount = await page.locator("[data-testimonial-slide]").count();
+    assert.equal(
+      await page.locator("[data-testimonial-position]").textContent(),
+      `2 / ${testimonialCount}`,
+    );
 
     if (width === 390) {
       // The retained group animation must reveal the mobile footer when it enters view.

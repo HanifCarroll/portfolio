@@ -1,6 +1,6 @@
 ## Hanif Carroll – Astro Portfolio
 
-This repo hosts the Astro-based portfolio and blog for Hanif Carroll's work as an Applied AI Engineer.
+This repo hosts the Astro-based portfolio and blog for Hanif Carroll, forward deployed engineer.
 It replaces the previous Next.js build while keeping the existing project JSON data and public assets.
 
 ### Tech Stack
@@ -10,9 +10,17 @@ It replaces the previous Next.js build while keeping the existing project JSON d
 - Markdown content collections for the blog
 - Project data sourced from JSON files in `src/lib/projects/`
 
+### Project Structure
+
+- `src/pages/` defines routes; `src/layouts/` and `src/components/` contain shared presentation.
+- `src/styles/` contains shared tokens and page styles. [DESIGN.md](DESIGN.md) documents the design system.
+- `src/content/blog/` contains Markdown posts; `src/content/case-studies/` contains MDX case studies.
+- `src/lib/projects/` contains project JSON; `src/lib/` contains supporting logic and types.
+- `public/` contains static assets; `scripts/` contains validation utilities; `dist/` is generated build output.
+
 ### Getting Started
 
-See the [development guide](docs/development.md) for repository layout, checks, generated content, and delivery details.
+`packageManager` specifies `bun@1.3.8`.
 
 ```bash
 bun install
@@ -29,6 +37,17 @@ Use `bun run dev:direct` for the raw Astro server on [http://localhost:4321](htt
 - `bun run check:projects` – validate project JSON, case-study pairing, and referenced local assets
 - `bun run build` – type-check and build the static site to `dist/`
 - `bun run preview` – preview the production build locally
+- `bun run lint` / `bun run format:check` – Oxlint and Oxfmt
+- `bun run tuesday:test` – Bun simulation tests
+- `node --test scripts/*.test.mjs` – Node utility tests
+
+Tests use `*.test.ts` or `*.test.mjs` beside the related code; no coverage threshold is configured. Desktop/mobile layouts, keyboard access, and reduced motion are part of UI verification. The Husky pre-commit hook runs the build. TypeScript extends Astro's strict configuration.
+
+### Generated Notes
+
+`src/data/notes.generated.ts` is generated, not hand-edited. `bun run notes:sync` regenerates it from the vault source; `bun run notes:check` checks that it matches. `PORTFOLIO_NOTES_SOURCE` selects another source directory. The default source is `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hanif-md/projects/portfolio-knowledge-library`; [the generator](scripts/sync-notes-content.mjs) defines the source format.
+
+Secrets stay out of Git and browser-exposed `PUBLIC_*` variables.
 
 ### Analytics & Verification Env Vars
 

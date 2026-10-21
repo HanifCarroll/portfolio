@@ -36,18 +36,21 @@ Genrupt already generated AI images and video for Amazon sellers. To serve payin
 I joined as the client’s AI Product Engineer and worked directly with the founder. My scope covered the image editor, billing and credits, background processing, seller workflows, and external agent access. I helped turn the founder’s product direction into shipped workflows for market analysis, review scraping, listing generation, and A+ content.
 
 The product kept expanding while serving paying customers. Each new workflow had to fit the same account, permission, and job controls.
+
 </CaseSection>
 
 <CaseSection title="Making generated image text editable">
 I built an image editor that uses optical character recognition (OCR) to detect text, turns it into editable layers, and uses inpainting to remove the original text from the image. Detection and removal had to work together: a correct text layer was of little use if the background repair left visible damage.
 
 I evaluated self-hosted models on RunPod and selected providers for latency and removal quality. That meant judging the result a seller would edit, alongside the time it took to get there.
+
 </CaseSection>
 
 <CaseSection title="Frontend workflows from generation to editing">
 The Next.js interface connects creative generation, review, reruns, batch editing, and A+ content creation. Editable text layers give sellers a way to revise generated images instead of starting again for each text change. Batch editing, undoable changes, and image exports connect that editor to the seller’s production workflow.
 
 Generation status, retry, and recovery paths keep long-running work visible. These interfaces sit on the same organization, billing, and job controls described below, so the user’s editing workflow stays connected to the work being performed and charged.
+
 </CaseSection>
 
 <CaseSection title="Protecting credits through concurrency and retries">
@@ -55,11 +58,14 @@ Generation status, retry, and recovery paths keep long-running work visible. The
     Concurrent requests can both see enough credit before either spends it. I used atomic PostgreSQL reservations and row locking to prevent generation from overdrawing an account, with cleanup when work failed.
   </DecisionBlock>
 
-  <DecisionBlock title="Keep a retry attached to the original provider job.">
-    I moved image generation into pg-boss background jobs. For video, retries reused the provider job and settled costs idempotently, so repeating a request did not create another charge for the same work.
-  </DecisionBlock>
+<DecisionBlock title="Keep a retry attached to the original provider job.">
+  I moved image generation into pg-boss background jobs. For video, retries reused the provider job
+  and settled costs idempotently, so repeating a request did not create another charge for the same
+  work.
+</DecisionBlock>
 
 Status and recovery paths connected long-running image, video, storyboard, and seller jobs to the credits and billing state they affected.
+
 </CaseSection>
 
 <CaseSection title="The creative workflows used the same commercial systems" media>
@@ -88,4 +94,5 @@ I exposed market-analysis and Amazon listing workflows through Model Context Pro
   </ProofRows>
 
 The screens show shipped workflows, and my [Resume](/Hanif-Carroll-Resume.pdf) records the OCR and inpainting work, credit controls, provider-job reuse, and MCP integration. Model selection is described here through its criteria; a numerical comparison is not included. You can [visit Genrupt](https://genrupt.com/) to see the product.
+
 </CaseSection>

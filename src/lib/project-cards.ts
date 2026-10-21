@@ -21,7 +21,6 @@ export interface ProjectCard {
   trackShortLabel: string;
   trackGroup: ReturnType<typeof getProjectTrackMeta>["group"];
   category: "product" | "marketing-site";
-  videos: Project["videos"];
   image: ImageMetadata;
 }
 
@@ -45,7 +44,6 @@ const toCard = (project: Project): ProjectCard => {
     trackShortLabel: trackMeta.shortLabel,
     trackGroup: trackMeta.group,
     category: project.category ?? "product",
-    videos: project.videos,
     image: getProjectImage(project, "feature"),
   };
 };
