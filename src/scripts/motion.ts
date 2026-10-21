@@ -199,4 +199,5 @@ function mountMotion() {
   );
 }
 
-mountMotion();
+// SplitText measures line breaks, so wait for the final font metrics before mounting.
+void document.fonts.ready.then(mountMotion);
