@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import '../styles/how-i-work.css';
+const entry = Object.values(import.meta.glob('../content/how-i-work.md', { eager: true }))[0] as {
+	frontmatter?: {
+		title?: string;
+		description?: string;
+	};
+	default: any;
+};
+const frontmatter = entry.frontmatter ?? {};
+const Content = entry.default;
+const title = frontmatter.title ?? 'How I Work';
+const description = frontmatter.description ?? '';
+---
+
+<BaseLayout title={`How I Work · Hanif Carroll`} description={description} bodyClass='hc-how'>
+	<article class='container max-w-4xl space-y-16 py-10 hc-how-page'>
+		<header class='ledger-section space-y-4' data-motion-intro>
+			<h1
+				class='heading-display heading-display--hero'
+				data-fit-heading
+				data-fit-min-rem='2'
+				data-fit-max-rem='4.85'
+				data-motion='headline'
+			>
+				{title}
+			</h1>
+			<p class='text-lg text-zinc-600 leading-relaxed max-w-3xl' data-motion-deck>
+				{description}
+			</p>
+		</header>
+
+		<section class='space-y-8' data-motion-group>
+			<div class='ledger-section p-8 md:p-10'>
+				<Prose class='hc-how-prose'>
+					<Content />
+				</Prose>
+			</div>
+		</section>
+	</article>
+</BaseLayout>
