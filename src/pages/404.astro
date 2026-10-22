@@ -3,17 +3,18 @@ import { Image } from 'astro:assets';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NotFoundImage from '@src/assets/img/404-not-found.png';
+import { buttonClass, textLinkClass } from '../lib/ui';
 ---
 
 <BaseLayout title={'404 Page Not Found - ' + SITE_TITLE} description={SITE_DESCRIPTION + ' 404 Page Not Found'}>
-	<section class='hc-container-page hc-section hc-section--compact' aria-labelledby='not-found-title'>
-		<div class='hc-section-header'>
-			<p class='section-label'>404</p>
-			<h1 id='not-found-title' class='hc-section-title'>Page not found</h1>
-			<p class='hc-section-intro'>The page you're looking for is either moved or no longer exists.</p>
-			<div class='hc-actions'>
-				<a class='hc-button' href='/'>Return home</a>
-				<a class='hc-text-link' href='/projects/'>Browse projects</a>
+	<section class='mx-auto w-[min(calc(100%-7rem),75rem)] py-24 max-lg:w-[min(calc(100%-3rem),75rem)] max-sm:py-16' aria-labelledby='not-found-title'>
+		<div class='mb-16 grid max-w-measure gap-4 max-lg:mb-12'>
+			<p class='m-0 mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase leading-[1.45] tracking-[0.16em] text-accent-ink'>404</p>
+			<h1 id='not-found-title' class='m-0 text-[clamp(2.35rem,5.25vw,5.25rem)] font-bold leading-[1.08] tracking-[-0.055em] text-ink text-balance'>Page not found</h1>
+			<p class='m-0 max-w-reading text-[clamp(1.125rem,1.5vw,1.25rem)] leading-[1.65] text-ink-muted text-pretty'>The page you're looking for is either moved or no longer exists.</p>
+			<div class='flex flex-wrap items-center gap-4 max-sm:items-stretch'>
+				<a class:list={[buttonClass(), 'max-sm:w-full']} href='/'>Return home</a>
+				<a class={textLinkClass} href='/projects/'>Browse projects</a>
 			</div>
 		</div>
 		<Image width={300} class='mx-auto mt-8' src={NotFoundImage} alt='Lost page illustration' />

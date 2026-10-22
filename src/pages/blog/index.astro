@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import '../../styles/blog-index.css';
 
 type BlogPost = CollectionEntry<'blog'>;
 const title = 'Blog on products, workflows, and AI';
@@ -28,25 +27,24 @@ const archiveJsonLd = {
 	description={description}
 	jsonLd={archiveJsonLd}
 	showFooterCta={false}
-	bodyClass='hc-blog-index'
 >
 	<article class='mx-auto min-h-screen w-full max-w-[1280px] p-[3rem_1.5rem_7rem] md:p-[4rem_3rem_8rem] lg:p-[6rem_3rem_10rem]'>
 		<div class='mx-auto w-full max-w-[46rem]'>
 			<header class='mb-16'>
-				<h1 class='hc-blog-title m-0 text-[var(--hc-text)] font-[family:var(--hc-font-editorial)] text-[clamp(2.6rem,4vw,3.4rem)] font-semibold leading-[0.98] tracking-[-0.02em]'>Blog</h1>
+				<h1 class='m-0 font-editorial text-[clamp(2.6rem,4vw,3.4rem)] text-ink font-semibold leading-[0.98] tracking-[-0.02em]'>Blog</h1>
 			</header>
 
 			<section aria-label='Blog posts'>
 				<ol class='m-0 list-none p-0'>
 					{posts.map((post) => (
 						<li class='mb-10 last:mb-0'>
-							<a class='group relative grid grid-cols-1 gap-3 mx-[-0.75rem] rounded-[0.75rem] p-3 text-inherit no-underline transition-[background-color] duration-[var(--hc-dur-fast)] ease-[var(--hc-ease-out)] hover:bg-[color-mix(in_srgb,var(--hc-text)_4%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--hc-text)_4%,transparent)] sm:grid-cols-8 sm:gap-4' href={`/blog/${post.id}/`}>
-								<div class='text-[var(--hc-text-muted)] text-[0.75rem] font-semibold uppercase leading-[1.4] tracking-[0.06em] sm:col-span-2 sm:mt-[0.2rem]'>
+							<a class='group relative grid grid-cols-1 gap-3 mx-[-0.75rem] rounded-[0.75rem] p-3 text-inherit no-underline transition-[background-color] duration-150 ease-out-soft hover:bg-ink/4 focus-visible:bg-ink/4 sm:grid-cols-8 sm:gap-4' href={`/blog/${post.id}/`}>
+								<div class='text-xs font-semibold text-ink-muted uppercase leading-[1.4] tracking-[0.06em] sm:col-span-2 sm:mt-[0.2rem]'>
 									<FormattedDate date={post.data.pubDate} />
 								</div>
 								<div class='sm:col-span-6'>
-									<h3 class='hc-blog-row__title m-0 text-[var(--hc-text)] font-[family:var(--hc-font-editorial)] text-[clamp(1.35rem,2.5vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.01em] transition-colors duration-[var(--hc-dur-fast)] ease-[var(--hc-ease-out)] group-hover:text-[var(--hc-accent-text)] group-focus-visible:text-[var(--hc-accent-text)]'>{post.data.title}</h3>
-									<p class='hc-blog-row__description mt-2 mb-0 text-[var(--hc-text-muted)] text-[0.9375rem] leading-[1.6]'>{post.data.description}</p>
+									<h3 class='m-0 font-editorial text-[clamp(1.35rem,2.5vw,1.9rem)] text-ink font-semibold leading-[1.1] tracking-[-0.01em] transition-colors duration-150 ease-out-soft group-hover:text-accent-ink group-focus-visible:text-accent-ink'>{post.data.title}</h3>
+									<p class='mt-2 mb-0 text-[0.9375rem] text-ink-muted leading-[1.6]'>{post.data.description}</p>
 								</div>
 							</a>
 						</li>

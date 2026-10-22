@@ -64,18 +64,18 @@ With the as-is model mapped, the analyst evaluated historical performance data d
 
 An audit of 20 typical onboarding requests revealed a stark imbalance between active work time and idle waiting time:
 
-<figure class="onboarding-time" aria-label="Illustrative average cycle time: 16 business hours, comprising 2 hours of activity and 14 hours of waiting.">
-  <div class="onboarding-time__total">16 business hours per request</div>
-  <div class="onboarding-time__bar" aria-hidden="true"><span class="onboarding-time__active"></span><span class="onboarding-time__waiting"></span></div>
-  <div class="onboarding-time__legend"><span><i class="onboarding-time__key onboarding-time__active" aria-hidden="true"></i>2 hours of activity</span><span><i class="onboarding-time__key onboarding-time__waiting" aria-hidden="true"></i>14 hours of waiting</span></div>
-  <div class="onboarding-time__label">Where the 14 waiting hours go</div>
-  <dl class="onboarding-time__breakdown">
-    <div><dt>Waiting for initial specialist review</dt><dd>2 hours</dd></div>
-    <div><dt>Delay before Customer Success relays the question</dt><dd>3 hours</dd></div>
-    <div><dt>Waiting for the customer’s reply</dt><dd>3 hours</dd></div>
-    <div><dt>Second wait in the specialist queue</dt><dd>6 hours</dd></div>
+<figure class="not-prose my-[2em] rounded-[10px] bg-[#f4f7fa] p-[clamp(1rem,3vw,1.75rem)] font-sans" aria-label="Illustrative average cycle time: 16 business hours, comprising 2 hours of activity and 14 hours of waiting.">
+  <div class="mb-4 text-[1.2rem] text-[#152235]">16 business hours per request</div>
+  <div class="flex h-8 overflow-hidden rounded-[5px]" aria-hidden="true"><span class="w-[12.5%] bg-[#274c77]"></span><span class="w-[87.5%] bg-[#f8d978]"></span></div>
+  <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] text-[#152235]"><span class="inline-flex items-center gap-2"><i class="size-3 rounded-[2px] bg-[#274c77]" aria-hidden="true"></i>2 hours of activity</span><span class="inline-flex items-center gap-2"><i class="size-3 rounded-[2px] bg-[#f8d978]" aria-hidden="true"></i>14 hours of waiting</span></div>
+  <div class="mt-7 text-base text-[#274c77]">Where the 14 waiting hours go</div>
+  <dl class="mt-3 mb-0 text-[0.95rem] leading-[1.5]">
+    <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-[0.45rem]"><dt>Waiting for initial specialist review</dt><dd class="text-[#274c77] tabular-nums">2 hours</dd></div>
+    <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-[0.45rem]"><dt>Delay before Customer Success relays the question</dt><dd class="text-[#274c77] tabular-nums">3 hours</dd></div>
+    <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-[0.45rem]"><dt>Waiting for the customer’s reply</dt><dd class="text-[#274c77] tabular-nums">3 hours</dd></div>
+    <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-[0.45rem]"><dt>Second wait in the specialist queue</dt><dd class="text-[#274c77] tabular-nums">6 hours</dd></div>
   </dl>
-  <figcaption>Illustrative averages across 20 requests. Activity time includes staff and customer participation.</figcaption>
+  <figcaption class="mt-3 font-sans text-sm leading-[1.55] text-ink-muted">Illustrative averages across 20 requests. Activity time includes staff and customer participation.</figcaption>
 </figure>
 
 The data yielded two critical insights:

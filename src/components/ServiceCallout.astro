@@ -1,5 +1,6 @@
 ---
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { buttonClass, textLinkClass } from '../lib/ui';
 
 type Variant = 'general' | 'systemsBuild';
 type Context = 'blog' | 'case-study';
@@ -41,19 +42,47 @@ const offer = context === 'case-study'
 const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
 const secondaryLabel = context === 'case-study' ? 'Email Hanif' : offer.secondaryLabel;
 const secondaryEvent = context === 'case-study' ? 'email_clicked' : 'service_page_clicked';
+const isCaseStudy = context === 'case-study';
+const mobileAction = 'max-sm:w-full max-sm:justify-between';
 ---
 
 <section
-	class:list={['hc-cta-panel', 'hc-cta-panel--mobile-band', 'hc-cta-base', `hc-cta-panel--${context}`, className]}
+	class:list={[
+		'grid text-ink',
+		isCaseStudy
+			? 'mt-24 -mx-6 w-[calc(100%+3rem)] items-start gap-12 bg-canvas px-6 py-[clamp(2rem,5vw,4rem)] md:-mx-14 md:w-[calc(100%+7rem)] md:px-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] max-lg:gap-6 max-sm:mt-0 max-sm:py-20'
+			: 'mt-16 items-center gap-12 rounded-xl border border-line bg-canvas p-[clamp(2rem,6vw,6rem)] shadow-card lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] max-lg:gap-6 max-sm:rounded-none max-sm:border-0 max-sm:py-12 max-sm:shadow-none',
+		'max-sm:mx-[calc(50%-50vw)] max-sm:w-screen max-sm:px-6',
+		className,
+	]}
 >
-	<h2>{offer.title}</h2>
-	<div class='hc-cta-panel__body'>
-		<p>{offer.body}</p>
-		<div class='hc-actions hc-actions--paired'>
-			<a class='hc-button' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={`${location}_primary`}>
+	<h2
+		class:list={[
+			'm-0 font-editorial font-bold tracking-[-0.045em] text-ink text-balance max-sm:text-[clamp(2rem,9vw,2.25rem)] max-sm:leading-[1.06]',
+			isCaseStudy ? 'text-[clamp(2rem,4vw,3.25rem)] leading-[1.05]' : 'text-[clamp(2rem,4vw,2.5rem)] leading-[1.1]',
+		]}
+	>
+		{offer.title}
+	</h2>
+	<div class='grid gap-6 max-sm:gap-8'>
+		<p class='m-0 max-w-reading text-lg leading-[1.65] text-ink-muted max-sm:leading-[1.5] max-sm:text-ink'>{offer.body}</p>
+		<div class:list={['flex flex-wrap items-center gap-4 max-sm:w-full max-sm:flex-col max-sm:items-stretch', isCaseStudy && 'max-md:items-stretch']}>
+			<a
+				class:list={[buttonClass(isCaseStudy ? 'border-ink-muted' : 'border-line'), mobileAction]}
+				href={BOOK_CALL_URL}
+				target='_blank'
+				rel='noopener noreferrer'
+				data-track-event='book_call_clicked'
+				data-track-location={`${location}_primary`}
+			>
 				{offer.primaryLabel}
 			</a>
-			<a class:list={context === 'case-study' ? ['hc-button', 'hc-button--secondary'] : ['hc-text-link']} href={secondaryHref} data-track-event={secondaryEvent} data-track-location={`${location}_secondary`}>
+			<a
+				class:list={isCaseStudy ? [buttonClass(), mobileAction] : [textLinkClass, mobileAction, 'max-sm:min-h-11 max-sm:px-6']}
+				href={secondaryHref}
+				data-track-event={secondaryEvent}
+				data-track-location={`${location}_secondary`}
+			>
 				{secondaryLabel}
 			</a>
 		</div>

@@ -2,9 +2,15 @@
 import { Image } from 'astro:assets';
 import Ava from '@src/assets/img/hanif-author-portrait.jpg';
 
+interface Props {
+	nameClass?: string;
+	subtitleClass?: string;
+}
+
+const { nameClass = 'font-bold', subtitleClass = '' } = Astro.props;
 ---
 
-<div class='flex gap-4 items-center leading-tight not-prose'>
+<div class='not-prose flex items-center gap-4 leading-tight'>
 	<a
 		href='https://github.com/hanifcarroll'
 		target='_blank'
@@ -17,13 +23,13 @@ import Ava from '@src/assets/img/hanif-author-portrait.jpg';
 		<div>
 			<a
 				href='https://github.com/hanifcarroll'
-				class='block font-bold text-inherit hover:text-[var(--link-color)]'
+				class:list={['block text-inherit', nameClass]}
 				target='_blank'
 				rel='noopener noreferrer'
 			>
 				Hanif Carroll
 			</a>
 		</div>
-		<small class='avatar__subtitle'>Forward Deployed Engineer</small>
+		<small class={subtitleClass}>Forward Deployed Engineer</small>
 	</div>
 </div>

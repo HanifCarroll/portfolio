@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
+@source "../content";
 
 /* Design tokens. Tailwind utilities read these directly (text-ink, bg-canvas,
    font-editorial, max-w-page); design-tokens.css aliases them as --hc-* for
@@ -13,6 +14,10 @@
   --color-rule: color-mix(in srgb, #282828 12%, transparent);
   --color-accent: #f8d651;
   --color-accent-ink: #725a00;
+  --color-surface-warm: color-mix(in srgb, #f8d651 5%, #ffffff);
+  --shadow-card: 0 12px 36px rgba(40, 40, 40, 0.055);
+  --shadow-artifact: 0 16px 36px rgba(40, 40, 40, 0.13);
+  --radius-artifact: 10px;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-editorial: "EB Garamond", Georgia, serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -528,6 +533,16 @@
 :where(.page-blog-detail, .page-case-study-detail) {
   --hc-text: #363737;
   --hc-text-muted: #868787;
+}
+
+/* Utilities read the theme ink, so scope each page's reading ink to its content. */
+.page-blog-detail .hc-main {
+  --color-ink: #363737;
+  --color-ink-muted: #868787;
+}
+
+.page-case-study-detail .hc-main {
+  --color-ink-muted: #514f4b;
 }
 
 :where(.page-blog-detail, .page-case-study-detail) .hc-main {

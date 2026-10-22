@@ -11,7 +11,6 @@ import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
 import Author from '../../components/Author.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
 import { render } from 'astro:content';
-import '../../styles/blog.css';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => !data.hidden);
@@ -37,6 +36,32 @@ const tocHeadings = headings.filter((heading) => heading.depth === 2).map((headi
     : heading.text
 }));
 const showContents = wordCount >= 1000 && tocHeadings.length >= 3;
+const isBpm = post.id === 'bpm-lifecycle-saas-onboarding';
+// Markdown typography. The wrapper keeps `blog-post-prose` as a hook for the image lightbox.
+const proseClasses = [
+	'blog-post-prose w-full max-w-none font-editorial text-[1.125rem] leading-[1.7] text-ink md:text-[1.375rem] md:leading-[1.55]',
+	'prose-p:mb-6 prose-p:text-[1.2rem] prose-p:leading-[1.65] prose-p:text-ink max-sm:prose-p:text-[1.125rem] max-sm:prose-p:leading-[1.68]',
+	'prose-li:my-1 prose-li:text-[1.2rem] prose-li:leading-[1.65] prose-li:text-ink max-sm:prose-li:text-[1.125rem] max-sm:prose-li:leading-[1.68]',
+	'prose-headings:font-editorial prose-headings:tracking-[-0.005em] prose-strong:font-bold',
+	'prose-h2:mt-16 prose-h2:mb-4 prose-h2:text-[clamp(1.9rem,3vw,2.35rem)] prose-h2:font-medium prose-h2:leading-[1.12]',
+	'prose-h3:mt-12 prose-h3:mb-4 prose-h3:text-[clamp(1.45rem,2vw,1.75rem)] prose-h3:font-semibold prose-h3:leading-[1.2] [&_h3:target]:pt-20',
+	'prose-h4:text-[clamp(1.15rem,1.05rem+0.3vw,1.35rem)] prose-h4:font-semibold prose-h4:leading-[1.35]',
+	'prose-blockquote:my-8 prose-blockquote:border-0 prose-blockquote:bg-ink/5 prose-blockquote:p-6 prose-blockquote:italic prose-blockquote:leading-[1.55] prose-blockquote:text-ink [&_blockquote_p:last-child]:mb-0',
+	'[&_blockquote.error-output_p:first-of-type]:before:content-none [&_blockquote.error-output_p:last-of-type]:after:content-none',
+	'prose-code:font-mono [&_:not(pre)>code]:text-[0.88em] prose-pre:rounded-none prose-pre:border-2 prose-pre:border-black prose-pre:font-mono prose-pre:text-[0.8em] prose-pre:leading-[1.55]',
+	'prose-img:rounded-xl prose-table:block prose-table:max-w-full prose-table:overflow-x-auto prose-figure:my-[2em]',
+	'[&_.workflow-map]:w-full [&_.workflow-map_picture]:block [&_.workflow-map_img]:m-0 [&_.workflow-map_img]:h-auto [&_.workflow-map_img]:w-full [&_.workflow-map_img]:rounded-artifact [&_.workflow-map_img]:border [&_.workflow-map_img]:border-black/10 [&_.workflow-map_img]:bg-canvas',
+	'prose-figcaption:mt-3 prose-figcaption:font-sans prose-figcaption:text-sm prose-figcaption:not-italic prose-figcaption:leading-[1.55] prose-figcaption:text-ink-muted',
+	'[&_figcaption_:is(p,a,strong,em)]:text-inherit [&_figcaption_:is(p,a,strong,em)]:not-italic [&_figcaption_:is(p,a,strong,em)]:[font-family:inherit] [&_figcaption_:is(p,a,strong,em)]:[font-size:inherit] [&_figcaption_:is(p,a,strong,em)]:[line-height:inherit]',
+	isBpm && [
+		'[&_:is(em,i,blockquote)]:not-italic prose-blockquote:rounded-lg prose-blockquote:bg-[#fff7df] prose-blockquote:text-[#493b1d]',
+		'[&_blockquote_p]:text-base [&_blockquote_p]:leading-[1.65] [&_blockquote_p]:text-inherit [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none [&_.source-note]:text-base [&_.source-note]:leading-[1.65]',
+		'prose-h2:text-[#274c77] prose-h3:text-[#274c77] [&_.definition-term]:text-[#274c77] prose-li:marker:text-[#527394]',
+		'prose-thead:bg-[#e8edf5] prose-th:p-3 prose-th:text-[#152235] prose-td:p-3 [&_tbody_tr:nth-child(even)]:bg-[#f4f7fa]',
+		'[&_.definition-term]:inline [&_.definition-term]:cursor-help [&_.definition-term]:border-0 [&_.definition-term]:border-b [&_.definition-term]:border-dotted [&_.definition-term]:border-current [&_.definition-term]:bg-transparent [&_.definition-term]:p-0 [&_.definition-term]:text-inherit [&_.definition-term]:[font-family:inherit] [&_.definition-term]:[font-size:inherit] [&_.definition-term]:[line-height:inherit] [&_.definition-term]:not-italic [&_.definition-term]:font-bold [&_.definition-term]:focus-visible:rounded-[2px] [&_.definition-term]:focus-visible:outline-2 [&_.definition-term]:focus-visible:outline-offset-4 [&_.definition-term]:focus-visible:outline-current',
+		'[&_.bpm-diagram]:border-0 [&_.bpm-diagram]:bg-transparent [&_.bpm-diagram]:p-0 [&_.bpm-diagram]:whitespace-pre-wrap [&_.bpm-diagram_svg]:mx-auto [&_.bpm-diagram_svg]:block [&_.bpm-diagram_svg]:h-auto',
+	],
+];
 const blogJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'BlogPosting',
@@ -61,19 +86,19 @@ const blogJsonLd = {
 	ogType='article'
 	showFooterCta={false}
 	footerLinksOnly
-	bodyClass={`page-blog-detail${post.id === 'bpm-lifecycle-saas-onboarding' ? ' page-bpm' : ''}`}
+	bodyClass='page-blog-detail'
 >
-	<div class='container max-w-6xl space-y-10 py-8 md:space-y-12'>
-		<header class='blog-post-hero' data-motion-intro>
-			<div class='blog-post-hero__copy'>
-				<h1 class='blog-post-hero__title' data-motion='headline'>{title}</h1>
-				{subtitle && <p class='blog-post-hero__subtitle' data-motion-deck>{subtitle}</p>}
-				{!subtitle && (
-					<p class='blog-post-hero__dek text-lg leading-8 text-zinc-600' data-motion-deck>{description}</p>
-				)}
-				<div class='blog-post-hero__byline' data-motion-intro-item>
-					<Author />
-					<div class='blog-post-hero__publication-meta'>
+	<div class='mx-auto w-[min(calc(100%-7rem),75rem)] max-w-6xl space-y-10 px-4 py-8 md:space-y-12 md:px-6 max-lg:w-[min(calc(100%-3rem),75rem)] max-sm:w-[calc(100%-2rem)] max-sm:px-0'>
+		<header
+			class='mx-auto w-[min(100%,44rem)] pt-8 pb-8 text-ink max-sm:pb-6 lg:mr-0 lg:ml-[max(0px,calc((100%-44rem)/2))] lg:w-[min(100%,56rem)] lg:max-w-[calc(100%-max(0px,(100%-44rem)/2))]'
+			data-motion-intro
+		>
+			<div class='grid gap-4'>
+				<h1 class='m-0 font-editorial text-[clamp(2.6rem,4vw,3.15rem)] font-medium leading-[0.98] tracking-[-0.025em] text-ink text-balance max-sm:text-[clamp(2.35rem,10vw,2.75rem)]' data-motion='headline'>{title}</h1>
+				<p class='m-0 max-w-[38rem] lg:max-w-[44rem] font-editorial text-[clamp(1.25rem,1.5vw,1.45rem)] not-italic leading-[1.4] text-ink-muted text-balance max-sm:text-[1.2rem]' data-motion-deck>{subtitle || description}</p>
+				<div class='flex w-full flex-wrap items-center gap-4 pt-2 max-sm:items-start lg:max-w-[44rem]' data-motion-intro-item>
+					<Author nameClass='font-semibold' subtitleClass='text-ink-muted' />
+					<div class='ml-auto flex flex-wrap items-center gap-2 font-sans text-sm leading-[1.65] text-ink-muted max-sm:ml-0'>
 						{
 							updatedDate ? (
 								<>
@@ -92,34 +117,33 @@ const blogJsonLd = {
 			</div>
 			{
 				coverImage && (
-					<figure class='blog-post-hero__media'>
-						<Image class='blog-post-hero__image' src={coverImage} alt={title} loading='eager' />
+					<figure class='m-0 overflow-hidden rounded-artifact bg-white/22'>
+						<Image class='block h-auto w-full' src={coverImage} alt={title} loading='eager' />
 					</figure>
 				)
 			}
 		</header>
 
-		<div class='blog-post-layout'>
-			<div class='blog-post-main'>
+		<div class='relative mx-auto block w-[min(100%,44rem)] pt-6 pb-[clamp(4rem,8vw,7rem)]'>
+			<div class='grid w-full min-w-0 gap-12'>
 				{
 					showContents && (
-						<details class='blog-post-toc'>
-							<summary>Contents</summary>
+						<details class='blog-post-toc group overflow-hidden py-4'>
+							<summary class:list={['cursor-pointer font-sans text-sm font-medium leading-[1.65] group-open:mb-4', isBpm ? 'text-[#274c77]' : 'text-ink']}>Contents</summary>
 							<TableOfContent headings={tocHeadings} />
 						</details>
 					)
 				}
-				<article class='blog-post-article'>
-					<Prose class='blog-post-prose'>
+				<article>
+					<Prose class:list={proseClasses}>
 						<Content />
 					</Prose>
 				</article>
 
-				<section class='blog-post-author-inline' aria-label='About the author'>
+				<section class='grid gap-4 pt-8 max-sm:pt-6' aria-label='About the author'>
 					<AboutTheAuthor />
 				</section>
 			</div>
-
 
 			<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
 		</div>

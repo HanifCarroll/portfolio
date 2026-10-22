@@ -1,4 +1,8 @@
-<div id="article-definition" role="tooltip" class="article-definition"></div>
+<div
+  id="article-definition"
+  role="tooltip"
+  class="article-definition invisible fixed z-[1000] w-[min(360px,calc(100vw-24px))] translate-y-[5px] rounded-xl border border-[#b9c9db] bg-[#f4f7fa] px-5 py-[18px] font-sans text-[15px] leading-[1.6] text-ink opacity-0 shadow-[0_12px_36px_#0002] transition-[opacity,transform,visibility] duration-[180ms] motion-reduce:translate-y-0 motion-reduce:transition-none [&.is-visible]:visible [&.is-visible]:translate-y-0 [&.is-visible]:opacity-100"
+></div>
 <script>
   const tooltip = document.querySelector<HTMLElement>('#article-definition')!;
   let active: HTMLButtonElement | null = null;
@@ -46,22 +50,18 @@
   }
 </script>
 <style is:global>
-  .blog-post-prose .definition-term {
-    display: inline; padding: 0; border: 0; border-bottom: 1px dotted currentColor;
-    background: none; color: inherit; font: inherit; font-weight: 700; cursor: help;
-    text-align: inherit;
+  /* Mermaid generates this SVG markup, so it can't carry utility classes. */
+  .bpm-diagram .labelBkg {
+    min-width: 48px;
+    padding: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 0 6px #f8edce;
   }
-  .definition-term:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 2px; }
-  .article-definition {
-    position: fixed; z-index: 1000; width: min(360px, calc(100vw - 24px));
-    padding: 18px 20px; border: 1px solid var(--hc-rule); border-radius: 12px;
-    background: var(--hc-surface, #fff); color: var(--hc-text, #171717);
-    font-family: var(--hc-font-sans); font-size: 15px; line-height: 1.6;
-    box-shadow: 0 12px 36px #0002; opacity: 0; visibility: hidden; transform: translateY(5px);
-    transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  .bpm-diagram .labelBkg .edgeLabel,
+  .bpm-diagram .labelBkg p {
+    background: transparent;
   }
-  .article-definition.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
-  .blog-post-prose .bpm-diagram { background: transparent; border: 0; padding: 0; white-space: pre-wrap; }
-  .bpm-diagram svg { display: block; margin: auto; height: auto; }
-  @media (prefers-reduced-motion: reduce) { .article-definition { transition: none; transform: none; } }
+  .bpm-diagram .edgeLabel foreignObject {
+    overflow: visible;
+  }
 </style>

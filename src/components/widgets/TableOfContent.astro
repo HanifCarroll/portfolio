@@ -4,7 +4,7 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 ---
 
 <nav class='toc' aria-label='Contents'>
-	<ul class='toc-list max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] text-[var(--color-content-secondary)]'>
+	<ul class='max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-[5px] [&::-webkit-scrollbar-thumb]:bg-[#eee] [&::-webkit-scrollbar-track]:bg-transparent'>
 		{
 			toc.map((heading: any) => (
 				<li>
@@ -31,20 +31,3 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 		}
 	</ul>
 </nav>
-<style>
-
-	.toc-list::-webkit-scrollbar {
-		width: 5px;
-	}
-
-	/* Track */
-	.toc-list::-webkit-scrollbar-track {
-		background: transparent;
-	}
-
-	/* Handle */
-	.toc-list::-webkit-scrollbar-thumb {
-		background: #eeeeee;
-		border-radius: 5px;
-	}
-</style>
