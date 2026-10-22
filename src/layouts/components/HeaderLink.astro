@@ -9,6 +9,15 @@ const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value
 const isActive = normalizePath(Astro.url.pathname).startsWith(normalizePath(hrefPath));
 ---
 
-<a href={href} aria-current={isActive ? 'page' : undefined} class:list={['hc-nav-link', className]} {...props}>
+<a
+	href={href}
+	aria-current={isActive ? 'page' : undefined}
+	class:list={[
+		'relative py-2 text-[0.9rem] font-normal text-ink-muted no-underline transition-colors duration-150 hover:text-ink focus-visible:text-ink aria-[current=page]:text-ink',
+		'after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-accent after:opacity-0 after:transition-opacity aria-[current=page]:after:opacity-100',
+		className,
+	]}
+	{...props}
+>
 	<slot />
 </a>

@@ -15,7 +15,6 @@ const {
 	robots,
 	showHeader = true,
 	showFooterCta = true,
-	showFooter = true,
 	footerCtaTitle,
 	footerCtaBody,
 	footerCtaPrimaryLabel,
@@ -24,6 +23,14 @@ const {
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+const footerLinks = [
+	{ href: EMAIL_URL, label: 'Email', external: false },
+	{ href: 'https://linkedin.com/in/hanifcarroll', label: 'LinkedIn', external: true },
+	{ href: 'https://github.com/hanifcarroll', label: 'GitHub', external: true },
+	{ href: 'https://x.com/hanifcarroll', label: 'X', external: true },
+	{ href: 'https://www.threads.com/@hanifcarroll', label: 'Threads', external: true },
+	{ href: '/Hanif-Carroll-Resume.pdf', label: 'Resume', external: false },
+];
 ---
 
 <!doctype html>
@@ -64,20 +71,27 @@ const currentYear = new Date().getFullYear();
 	</head>
 	<body class={bodyClass}>
 		<a class='skip-link' href='#main'>Skip to content</a>
-		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} isHome={bodyClass.split(/\s+/).includes('hc-home')} />}
+		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} />}
 		<main id='main' class='hc-main' data-motion-page>
 			<slot />
 		</main>
 
 		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} />}
 
-		<footer class:list={['hc-footer', !showFooter && 'hc-footer--mobile-only']} aria-label='Footer'>
-			<div class='hc-container-page hc-footer-inner'>
+		<footer class='hc-footer border-t border-rule bg-canvas pb-[env(safe-area-inset-bottom)] text-sm text-ink-muted' aria-label='Footer'>
+			<div class='mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6 md:px-12'>
 				<span>&copy; {currentYear} Hanif Carroll</span>
-				<nav class='hc-footer-nav' aria-label='Footer navigation'>
-					<a href={EMAIL_URL}>Email</a>
-					<a href='https://linkedin.com/in/hanifcarroll' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
-					<a href='https://github.com/hanifcarroll' target='_blank' rel='noopener noreferrer'>GitHub</a>
+				<nav class='flex flex-wrap items-center gap-x-5 gap-y-2' aria-label='Footer navigation'>
+					{footerLinks.map((link) => (
+						<a
+							class='text-inherit no-underline transition-colors hover:text-ink focus-visible:text-ink'
+							href={link.href}
+							target={link.external ? '_blank' : undefined}
+							rel={link.external ? 'noopener noreferrer' : undefined}
+						>
+							{link.label}
+						</a>
+					))}
 				</nav>
 			</div>
 		</footer>

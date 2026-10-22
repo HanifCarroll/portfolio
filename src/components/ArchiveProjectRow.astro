@@ -9,10 +9,14 @@ const { project } = Astro.props;
 const visibleTags = project.tags.slice(0, 3);
 ---
 
-<li class='hc-archive-row'>
-	<a class='hc-archive-row__link' href={`/projects/${project.slug}/`}>
-		<figure class='hc-archive-row__media'>
+<li>
+	<a
+		class='group grid gap-3 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-8 sm:gap-4'
+		href={`/projects/${project.slug}/`}
+	>
+		<figure class='m-0 sm:col-span-2'>
 			<Image
+				class='aspect-video w-full object-contain'
 				src={project.image}
 				alt=''
 				loading='lazy'
@@ -21,11 +25,11 @@ const visibleTags = project.tags.slice(0, 3);
 				aria-hidden='true'
 			/>
 		</figure>
-		<div class='hc-archive-row__content'>
-			<h3 class='hc-archive-row__title'>{project.name}</h3>
-			<p class='hc-archive-row__description'>{project.description}</p>
-			<ul class='hc-archive-row__tags' aria-label='Technologies used'>
-				{visibleTags.map((tag) => <li>{tag}</li>)}
+		<div class='sm:col-span-6'>
+			<h3 class='m-0 text-base font-medium leading-snug text-ink transition-colors group-hover:text-accent-ink group-focus-visible:text-accent-ink'>{project.name}</h3>
+			<p class='mt-2 mb-0 text-sm leading-relaxed text-ink-muted'>{project.description}</p>
+			<ul class='mt-3 mb-0 flex list-none flex-wrap gap-x-3 gap-y-1 p-0 text-xs text-ink-muted' aria-label='Technologies used'>
+				{visibleTags.map((tag) => <li class='after:ml-3 after:text-line after:content-["·"] last:after:content-none'>{tag}</li>)}
 			</ul>
 		</div>
 	</a>

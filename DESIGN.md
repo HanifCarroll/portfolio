@@ -247,58 +247,43 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ## Implementation
 
-The portfolio uses a small layered design system. Shared decisions live in one place; page-specific composition stays with the route that owns it.
+The site is moving to Tailwind during the redesign. New and redesigned markup uses Tailwind utilities built on the theme tokens; route stylesheets keep only what utilities can't express cleanly, and shrink as each page is rebuilt.
 
 ### Sources of truth
 
-- `src/styles/design-tokens.css` owns semantic color, type, spacing, radius, shadow, width, and measure tokens.
-- `src/styles/global.css` owns the reset, accessibility defaults, shared layout and type primitives, buttons, navigation, footer, shared calls to action, and transition behavior.
-- `src/styles/archive-shared.css` owns the shared home/projects/notes shell and identity rail; route stylesheets own only route content and visual treatments.
-- Shared Astro components own reusable structure. The header, service callout, and closing CTA must not be reimplemented inside individual pages; `BaseLayout.astro` owns the responsive footer.
+- The `@theme` block at the top of `src/styles/global.css` owns the core tokens: colors (`canvas`, `ink`, `ink-muted`, `line`, `rule`, `accent`, `accent-ink`), fonts (`sans`, `editorial`, `mono`), the text scale, and container widths (`reading` 44rem, `measure` 52rem, `page` 75rem, `wide` 85rem). Utilities read them directly: `text-ink`, `bg-canvas`, `font-editorial`, `max-w-page`.
+- `src/styles/design-tokens.css` aliases those tokens as `--hc-*` variables for the stylesheets that haven't been converted yet, and owns the tokens that have no utility yet (spacing, radii, shadows, motion durations).
+- `src/styles/global.css` also owns element defaults (inside `@layer base`, so utilities can override them), the mobile navigation panel, shared calls to action, and view transitions.
+- Shared structure lives in components: `Header.astro` (the site header on every page), `BaseLayout.astro` (footer and closing CTA), `EssayPage.astro` (long-form single-column pages such as Now and How I work), and `ArchiveProjectRow.astro`.
+
+### Layout
+
+- Every page has the same sticky site header: name on the left, Projects, How I work, Blog and Notes, and the call to action. Below 64rem the links move into the menu.
+- Page content sits in `mx-auto w-full max-w-page px-6 md:px-12`, so it lines up with the header.
+- The homepage and Projects use a 12-column split grid: labels or intro in the left 5 columns, content in the right 7. Nothing in it is sticky.
+- Notes keeps a sticky table of contents beside the entries on desktop; on mobile the contents move into the header.
+- Reading pages keep text within `max-w-reading`.
 
 ### Styling rules
 
-1. Use `--hc-*` semantic tokens instead of introducing route-local hex values for the core palette, text contrast, spacing, radii, or shadows.
-2. Put shared component selectors in `global.css`; put route selectors in the route stylesheet. Do not import one route stylesheet from another.
-3. Extend an existing shared primitive before creating a visually equivalent one with a new class name.
-4. Keep the text hierarchy explicit with `--hc-text` and `--hc-text-muted` on the shared light surfaces.
+1. Use theme utilities (`text-ink`, `border-rule`, `font-editorial`) instead of raw hex values or arbitrary `var(--hc-*)` values in new markup.
+2. Keep route CSS for states and content utilities can't express cleanly: slider states, CMS or Markdown content, and pseudo-element patterns. Don't add layout or typography to route CSS for redesigned pages.
+3. Unlayered CSS beats Tailwind utilities. Put element defaults in `@layer base`, and remove legacy rules a converted page no longer needs instead of fighting them with `!important`.
+4. Extend an existing shared component before creating a visually equivalent one.
 5. Respect reduced-motion preferences. Navigation and page transitions may enhance orientation, but content and controls must remain usable with motion disabled.
-6. Validate every durable layout change at desktop, tablet, and mobile widths, including horizontal overflow, focus visibility, menu behavior, and readable line lengths.
+6. Validate every durable layout change at desktop, tablet, and mobile widths. `scripts/check-site-layout.mjs` checks the header, footer and horizontal overflow on the main routes.
 
 ### Typography
 
-Typography is role-based, using Helvetica Neue for interface surfaces and EB Garamond for editorial reading. Use the semantic tokens in `design-tokens.css`; do not add raw font stacks or one-off font sizes to route stylesheets.
-
-| Role          | Token                  | Size             | Use                                                 |
-| ------------- | ---------------------- | ---------------- | --------------------------------------------------- |
-| Caption       | `--hc-type-caption`    | 12px             | Nonessential metadata, indices, and evidence labels |
-| Meta          | `--hc-type-meta`       | 14px             | Labels, dates, legal text, and secondary navigation |
-| UI            | `--hc-type-ui`         | 16px             | Navigation, buttons, links, and controls            |
-| Body          | `--hc-type-body`       | 18px             | Default prose and descriptions                      |
-| Body large    | `--hc-type-body-large` | 20px             | Prominent supporting copy                           |
-| Lead          | `--hc-type-lead`       | 24px             | Introductions and compact subheads                  |
-| Heading       | `--hc-type-heading-*`  | 32px and 40px    | Fixed-size content headings                         |
-| Display       | `--hc-type-display-*`  | Responsive clamp | Page titles and major editorial statements          |
-| Section title | `--hc-type-section`    | Responsive clamp | Primary section headings                            |
-
-The 12px caption role is reserved for short, nonessential text. Content a reader needs to understand or act on must be at least 14px; body copy defaults to 18px. Use `--hc-weight-semibold` and `--hc-weight-bold` for the shared 600 and 700 weights.
-
-Interface and product surfaces use the shared `--hc-font-sans` stack: Helvetica Neue, Helvetica, Arial, then sans-serif. Editorial articles and case-study narratives use `--hc-font-editorial`, backed by EB Garamond and Georgia. `--hc-font-mono` and `--hc-font-technical-mono` remain distinct for code and explicitly technical metadata.
-
-Use the existing line-height tokens and keep prose between roughly 45ch and 76ch. A route can choose a declared family role or responsive display size, but it should not create another unnamed type system.
+Helvetica Neue for interface surfaces and EB Garamond (`font-editorial`) for editorial headings and reading. The theme text scale matches the original sizes: `text-xs` 12px for labels and nonessential metadata, `text-sm` 14px for descriptions and navigation, `text-base` 16px, `text-lg` 18px for prominent supporting copy. Content a reader needs to understand or act on must be at least 14px. Keep prose between roughly 45ch and 76ch.
 
 ### Route stylesheet ownership
 
-| File                 | Owner                                                                   |
-| -------------------- | ----------------------------------------------------------------------- |
-| `archive-shared.css` | Shared home/projects/notes shell, rail, navigation, and list primitives |
-| `home.css`           | Homepage sections and homepage content rows                             |
-| `projects.css`       | Project archive introduction and project rows                           |
-| `notes.css`          | Notes navigation, entries, and mobile table of contents                 |
-| `case-study.css`     | Individual case study pages                                             |
-| `blog-index.css`     | Blog archive and article list                                           |
-| `blog.css`           | Individual blog articles                                                |
-| `now.css`            | Now page                                                                |
-| `tuesday.css`        | One Tuesday interactive case study                                      |
-
-When a selector is needed on more than one route, move the structure into a shared component first, then move its styling into `global.css`. This keeps reuse intentional and prevents page-specific rules from silently overriding one another.
+| File             | Owner                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| `home.css`       | Homepage inline copy links, experience bullets, testimonial slider states, and the video modal |
+| `notes.css`      | Expanding table-of-contents entries and the mobile Contents menu                               |
+| `case-study.css` | Individual case study pages (not yet converted)                                                |
+| `blog-index.css` | Blog archive and article list (not yet converted)                                              |
+| `blog.css`       | Individual blog articles (not yet converted)                                                   |
+| `tuesday.css`    | One Tuesday interactive case study                                                             |

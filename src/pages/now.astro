@@ -1,13 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Prose from '../components/Prose.astro';
-import '../styles/now.css';
+import EssayPage from '../layouts/EssayPage.astro';
 const nowEntry = Object.values(import.meta.glob('../content/now.md', { eager: true }))[0] as {
-	frontmatter?: {
-		title?: string;
-		description?: string;
-		lastUpdated?: string;
-	};
+	frontmatter?: { title?: string; description?: string; lastUpdated?: string };
 	default: any;
 };
 const frontmatter = nowEntry.frontmatter ?? {};
@@ -17,32 +11,13 @@ const description = frontmatter.description ?? "What I'd tell a friend about wha
 const lastUpdated = frontmatter.lastUpdated ?? '';
 ---
 
-<BaseLayout title={`Now · Hanif Carroll`} description={description} robots='noindex, follow' bodyClass='hc-now'>
-	<article class='container max-w-4xl space-y-16 py-10 hc-now-page'>
-		<header class='ledger-section space-y-4' data-motion-intro>
-			<h1
-				class='heading-display heading-display--hero'
-				data-fit-heading
-				data-fit-min-rem='2'
-				data-fit-max-rem='4.85'
-				data-motion='headline'
-			>
-				{title}
-			</h1>
-			<p class='text-lg text-zinc-600 leading-relaxed max-w-3xl' data-motion-deck>
-				{description}
-			</p>
-			{lastUpdated && <p class='font-mono text-xs text-zinc-500 uppercase tracking-wide'>Last updated: {lastUpdated}</p>}
-		</header>
-
-		<section class='space-y-8' data-motion-group>
-			<div class='ledger-section p-8 md:p-10'>
-				<Prose
-					class='hc-now-prose'
-				>
-					<Content />
-				</Prose>
-			</div>
-		</section>
-	</article>
-</BaseLayout>
+<EssayPage
+	title={title}
+	pageTitle='Now · Hanif Carroll'
+	description={description}
+	meta={lastUpdated ? `Last updated: ${lastUpdated}` : undefined}
+	robots='noindex, follow'
+	bodyClass='hc-now'
+>
+	<Content />
+</EssayPage>

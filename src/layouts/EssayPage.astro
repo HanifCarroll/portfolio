@@ -1,0 +1,44 @@
+---
+// Long-form single-column page used by Now and How I work.
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	title: string;
+	pageTitle: string;
+	description: string;
+	deck?: string;
+	meta?: string;
+	robots?: string;
+	bodyClass?: string;
+}
+
+const { title, pageTitle, description, deck, meta, robots, bodyClass = '' } = Astro.props;
+---
+
+<BaseLayout title={pageTitle} description={description} robots={robots} bodyClass={bodyClass}>
+	<article class='mx-auto w-full max-w-page px-6 pb-24 md:px-12'>
+		<header class='max-w-measure pt-14 pb-14 lg:pt-24 lg:pb-20' data-motion-intro>
+			<h1 class='m-0 font-editorial text-[clamp(2.8rem,7vw,5.5rem)] font-normal leading-[0.96] text-ink' data-motion='headline'>
+				{title}
+			</h1>
+			{deck && (
+				<p class='mt-6 mb-0 max-w-reading text-[clamp(1.15rem,1.6vw,1.35rem)] leading-relaxed text-ink' data-motion-deck>
+					{deck}
+				</p>
+			)}
+			{meta && <p class='mt-6 mb-0 font-mono text-xs uppercase tracking-wide text-accent-ink'>{meta}</p>}
+		</header>
+
+		<div
+			class:list={[
+				'prose max-w-reading border-t border-rule pt-12 text-ink lg:pt-16',
+				'prose-headings:text-ink prose-h2:mt-16 prose-h2:mb-5 prose-h2:font-editorial prose-h2:text-[clamp(2rem,3.6vw,3rem)] prose-h2:font-normal prose-h2:leading-[1.05]',
+				'prose-p:text-[clamp(1.05rem,1.3vw,1.175rem)] prose-p:leading-[1.72] prose-p:text-ink-muted',
+				'prose-li:text-[clamp(1.05rem,1.3vw,1.175rem)] prose-li:leading-[1.72] prose-li:text-ink-muted prose-li:my-2.5',
+				'prose-strong:font-semibold prose-strong:text-ink prose-a:text-accent-ink prose-a:underline-offset-[0.2em]',
+			]}
+		>
+			<slot />
+		</div>
+	</article>
+</BaseLayout>

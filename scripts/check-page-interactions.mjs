@@ -16,11 +16,8 @@ try {
     const page = await context.newPage();
     page.on("pageerror", (error) => errors.push(error.message));
 
-    for (const [route, section] of [
-      ["/", "#projects"],
-      ["/projects/", "#client-product-work"],
-      ["/notes/", "#building-products"],
-    ]) {
+    // Only Notes keeps a section index; the rest of the site uses the shared header.
+    for (const [route, section] of [["/notes/", "#building-products"]]) {
       await page.goto(new URL(route, baseUrl).href);
       await page.waitForFunction(() => document.querySelector('a[aria-current="location"]'));
       assert.equal(
