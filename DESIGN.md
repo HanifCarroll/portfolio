@@ -247,13 +247,13 @@ Components should feel direct and confident, with restrained shape and unmistaka
 
 ## Implementation
 
-The site is moving to Tailwind during the redesign. New and redesigned markup uses Tailwind utilities built on the theme tokens; route stylesheets keep only what utilities can't express cleanly, and shrink as each page is rebuilt.
+The site is moving to Tailwind during the redesign. New and redesigned markup uses Tailwind utilities built on the theme tokens; route stylesheets keep only what utilities can't express cleanly.
 
 ### Sources of truth
 
 - The `@theme` block at the top of `src/styles/global.css` owns the core tokens: colors (`canvas`, `ink`, `ink-muted`, `line`, `rule`, `accent`, `accent-ink`), fonts (`sans`, `editorial`, `mono`), the text scale, and container widths (`reading` 44rem, `measure` 52rem, `page` 75rem, `wide` 85rem). Utilities read them directly: `text-ink`, `bg-canvas`, `font-editorial`, `max-w-page`.
 - `src/styles/design-tokens.css` aliases those tokens as `--hc-*` variables for the stylesheets that haven't been converted yet, and owns the tokens that have no utility yet (spacing, radii, shadows, motion durations).
-- `src/styles/global.css` also owns element defaults (inside `@layer base`, so utilities can override them), the mobile navigation panel, shared calls to action, and view transitions.
+- `src/styles/global.css` also owns element defaults (inside `@layer base`, so utilities can override them), the mobile navigation panel, the body scroll lock for open dialogs, and view transitions. Shared button and link styles live in `src/lib/ui.ts` as class strings.
 - Shared structure lives in components: `Header.astro` (the site header on every page), `BaseLayout.astro` (footer and closing CTA), `EssayPage.astro` (long-form single-column pages such as Now and How I work), and `ArchiveProjectRow.astro`.
 
 ### Layout
@@ -279,11 +279,8 @@ Helvetica Neue for interface surfaces and EB Garamond (`font-editorial`) for edi
 
 ### Route stylesheet ownership
 
-| File             | Owner                                                                                          |
-| ---------------- | ---------------------------------------------------------------------------------------------- |
-| `home.css`       | Homepage inline copy links, experience bullets, testimonial slider states, and the video modal |
-| `notes.css`      | Expanding table-of-contents entries and the mobile Contents menu                               |
-| `case-study.css` | Individual case study pages (not yet converted)                                                |
-| `blog-index.css` | Blog archive and article list (not yet converted)                                              |
-| `blog.css`       | Individual blog articles (not yet converted)                                                   |
-| `tuesday.css`    | One Tuesday interactive case study                                                             |
+| File          | Owner                                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------------ |
+| `home.css`    | Homepage inline copy links, experience bullets, and testimonial slider states                                |
+| `notes.css`   | Expanding table-of-contents entries and the mobile Contents menu                                             |
+| `tuesday.css` | The One Tuesday simulation: scroll-pinned acts, stage layout, and keyframes (its reader page uses utilities) |

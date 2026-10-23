@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { formatClock, type DayMetrics } from "../../lib/tuesday-sim/engine";
 import { COMPANY } from "./content";
+import { buttonClass } from "../../lib/ui";
 
 /** Fixed chrome for the experience: where you are, and the exit to prose. */
 export function Hud({ act, onRead }: { act: string; onRead: () => void }) {
@@ -33,7 +34,7 @@ export function Intro({ onStart, onRead }: { onStart: () => void; onRead: () => 
         one person’s memory, then after adding six workflow changes one at a time.
       </p>
       <div className="t-intro__actions">
-        <button type="button" className="hc-button" onClick={onStart}>
+        <button type="button" className={buttonClass()} onClick={onStart}>
           Clock in
         </button>
       </div>
@@ -78,7 +79,7 @@ export function Interstitial({
         Next, add six workflow changes. In the final comparison, both versions receive the same
         demand and the operator works continuously. Only the workflow changes.
       </p>
-      <button type="button" className="hc-button" onClick={onContinue}>
+      <button type="button" className={buttonClass()} onClick={onContinue}>
         See what changed
       </button>
     </div>

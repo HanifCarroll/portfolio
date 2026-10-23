@@ -11,6 +11,7 @@ import {
   TUESDAY_MIRROR_STATEMENTS,
   TUESDAY_RESULTS,
 } from '../../lib/tuesday-sim/story';
+import { buttonClass } from '../../lib/ui';
 import '../../styles/tuesday.css';
 
 const project = getProject('one-tuesday');
@@ -37,6 +38,19 @@ const formatDuration = (minutes: number) => {
   return remainder === 0 ? `${hours} hours` : `${hours}h ${remainder}m`;
 };
 const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
+
+// Reader mode: generic element rules use :where() so per-section overrides (specificity 0,1,1) win.
+const readerClass = [
+  'mx-auto max-w-reading px-6 pt-16 pb-32 text-[1.125rem] leading-[1.65] text-ink [body.tuesday-live_&]:hidden',
+  '[&_:where(h1)]:mb-6 [&_:where(h1)]:text-[clamp(2rem,3.5vw,3.25rem)] [&_:where(h1)]:leading-[1.08] [&_:where(h1)]:tracking-[-0.03em]',
+  '[&_:where(h2)]:mt-16 [&_:where(h2)]:mb-4 [&_:where(h2)]:text-[2rem] [&_:where(h2)]:tracking-[-0.02em]',
+  '[&_:where(h3)]:mt-8 [&_:where(h3)]:mb-2 [&_:where(h3)]:text-[1.25rem]',
+  '[&_:where(h1,h2,h3)[tabindex=\'-1\']]:scroll-mt-28',
+  '[&_:where(p)]:mb-6',
+  '[&_:where(table)]:my-6 [&_:where(table)]:w-full [&_:where(table)]:border-collapse [&_:where(table)]:text-base [&_:where(table)]:leading-[1.65] max-[900px]:[&_:where(table)]:block max-[900px]:[&_:where(table)]:max-w-full max-[900px]:[&_:where(table)]:overflow-x-auto',
+  '[&_:where(th,td)]:border-b [&_:where(th,td)]:border-line [&_:where(th,td)]:px-3 [&_:where(th,td)]:py-[10px] [&_:where(th,td)]:text-left',
+  '[&_:where(th)]:font-mono [&_:where(th)]:text-xs [&_:where(th)]:leading-[1.65] [&_:where(th)]:uppercase [&_:where(th)]:tracking-[0.05em] [&_:where(th)]:text-ink-muted',
+];
 ---
 
 <BaseLayout
@@ -49,19 +63,19 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
 >
   <div id='tuesday-experience-root'></div>
 
-  <article id='tuesday-reader' tabindex='-1'>
-    <p class='t-reader-kicker'>Interactive project</p>
+  <article id='tuesday-reader' tabindex='-1' class:list={readerClass}>
+    <p>Interactive project</p>
     <h1>One Tuesday, twice.</h1>
-    <p class='t-reader-deck'>
+    <p class='text-[1.25rem] text-ink-muted'>
       {TUESDAY_COMPANY.name} is {TUESDAY_COMPANY.description}. {TUESDAY_COMPANY.dayContext}
     </p>
-    <p class='t-reader-deck'>
+    <p class='text-[1.25rem] text-ink-muted'>
       Follow the same {before.arrivals} requests through two versions of the workflow: first through the original setup, then after six changes.
     </p>
 
-    <div class='t-reader-launch'>
+    <div class='my-12 rounded-xl bg-canvas p-8 [&_p]:mb-4'>
       <p>Run the three-part experience to feel the queue, add each change, and compare both workflows under the same demand.</p>
-      <button type='button' class='hc-button' data-tuesday-launch disabled>Run the interactive project</button>
+      <button type='button' class={buttonClass()} data-tuesday-launch disabled>Run the interactive project</button>
     </div>
 
     <h2 id='tuesday-reader-old' tabindex='-1'>The old Tuesday</h2>
@@ -96,10 +110,10 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
       Each change removes one source of repeated work, delay, or uncertainty from the day.
     </p>
     {TUESDAY_CHAPTERS.map((chapter) => (
-      <section class='t-reader-chapter'>
+      <section>
         <h3>{chapter.week} — {chapter.title}</h3>
         {chapter.body.map((paragraph) => <p>{paragraph}</p>)}
-        <p class='t-reader-note'>{chapter.stageNote}</p>
+        <p class='border-l-[3px] border-line pl-4 text-sm leading-[1.65] text-ink-muted'>{chapter.stageNote}</p>
       </section>
     ))}
 
@@ -121,7 +135,7 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
       The redesigned workflow handles {handledGain} more requests, carries {carriedReduction} fewer into tomorrow, and spends {formatHours(coordinationReduction)} less on coordination.
     </p>
 
-    <div class='t-reader-model'>
+    <div>
       <h2>The stress test</h2>
       <p>Double the requests, take the dispatcher out, and disable the scheduling API:</p>
       <table>
@@ -135,11 +149,11 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
       </table>
 
       <h2>What drives the simulation</h2>
-      <dl class='t-reader-assumptions'>
+      <dl class='grid gap-4'>
         {ASSUMPTIONS.map((assumption) => (
-          <div>
-            <dt>{assumption.parameter}</dt>
-            <dd>{assumption.value}</dd>
+          <div class='rounded-lg border border-line bg-canvas p-4'>
+            <dt class='m-0 font-semibold'>{assumption.parameter}</dt>
+            <dd class='mt-1 mb-0 ml-0 text-ink-muted'>{assumption.value}</dd>
           </div>
         ))}
       </dl>
@@ -147,34 +161,34 @@ const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
 
     <h2 id='tuesday-reader-mirror' tabindex='-1'>Which of these problems show up in your business?</h2>
     <p>Answer Yes or No for each statement.</p>
-    <fieldset class='t-reader-mirror' data-tuesday-reader-mirror>
+    <fieldset class='my-4 flex flex-col gap-2 border-0 p-0' data-tuesday-reader-mirror>
       <legend class='sr-only'>Problems that show up in your business</legend>
       {TUESDAY_MIRROR_STATEMENTS.map((statement) => (
-        <div class='t-reader-mirror__statement' data-tuesday-reader-statement>
+        <div class='flex items-center justify-between gap-6 rounded-lg border border-line bg-canvas px-4 py-3 max-[900px]:flex-col max-[900px]:items-start [&_p]:m-0' data-tuesday-reader-statement>
           <p>{statement}</p>
-          <div class='t-reader-mirror__choices' role='group' aria-label={statement}>
+          <div class='flex shrink-0 gap-2' role='group' aria-label={statement}>
             <button type='button' class='t4-choice' data-tuesday-reader-answer='yes' aria-pressed='false'>Yes</button>
             <button type='button' class='t4-choice' data-tuesday-reader-answer='no' aria-pressed='false'>No</button>
           </div>
         </div>
       ))}
     </fieldset>
-    <output class='t-reader-mirror__total' data-tuesday-reader-total aria-live='polite'>
+    <output class='mb-6 block font-mono text-sm leading-[1.65] font-semibold text-ink-muted' data-tuesday-reader-total aria-live='polite'>
       0 of {TUESDAY_MIRROR_STATEMENTS.length} answered
     </output>
-    <div class='t-reader-live-readouts' data-tuesday-reader-readouts role='status' aria-live='polite' hidden>
+    <div class='mb-6' data-tuesday-reader-readouts role='status' aria-live='polite' hidden>
       {TUESDAY_MIRROR_READOUTS.map((readout) => (
-        <div class='t-reader-live-readout' data-min={readout.min} data-max={readout.max} hidden>
+        <div class='rounded-r-lg border-l-4 border-accent bg-canvas px-8 py-6 motion-safe:[&.is-visible]:animate-[t4-result-in_420ms_var(--ease-out-soft)] [&_h3]:mt-0 [&_h3]:mb-2 [&_p]:m-0 [&_p]:text-ink-muted' data-min={readout.min} data-max={readout.max} hidden>
           <h3>{readout.headline}</h3>
           <p>{readout.body}</p>
         </div>
       ))}
     </div>
-    <div class='t4-cta'>
+    <div class='t4-cta [&_p]:mb-6! [&_p]:leading-[1.65]!'>
       <p class='t4-cta__line'>If these problems show up in your business, start with the workflow causing the most delay or repeated work.</p>
       <div class='t4-cta__actions'>
         <a
-          class='hc-button'
+          class={buttonClass()}
           href={BOOK_CALL_URL}
           target='_blank'
           rel='noopener noreferrer'

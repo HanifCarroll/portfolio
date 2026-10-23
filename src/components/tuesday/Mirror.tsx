@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { BOOK_CALL_URL, EMAIL_URL } from "../../consts";
 import { trackTuesdayEvent } from "./analytics";
 import { MIRROR_READOUTS, MIRROR_STATEMENTS } from "./content";
+import { buttonClass } from "../../lib/ui";
 
 /**
  * The Mirror — the case study turns around and faces the reader. Five honest
@@ -78,7 +79,7 @@ export function Mirror() {
         </p>
         <div className="t4-cta__actions">
           <a
-            className="hc-button"
+            className={buttonClass()}
             href={BOOK_CALL_URL}
             target="_blank"
             rel="noopener noreferrer"
