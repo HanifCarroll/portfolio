@@ -1,37 +1,53 @@
 ---
-import '../../styles/image-lightbox.css';
-
 interface Props {
 	imageSelector?: string;
 	zoomable?: boolean;
 }
 const { imageSelector = '.cs-project-hero img, .cs-content img', zoomable = false } = Astro.props;
+
+const controlClass = 'inline-flex min-h-11 cursor-pointer items-center justify-center rounded-[0.4rem] border border-white/40 bg-transparent px-3 py-2 font-[inherit] text-white no-underline hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-[0.2rem] focus-visible:outline-white';
+const imageBase = 'block rounded-[0.4rem] shadow-[0_1.5rem_5rem_rgb(0_0_0/45%)]';
 ---
 
-<dialog class="cs-lightbox" aria-label="Expanded image" data-image-lightbox data-image-selector={imageSelector} data-zoomable={zoomable || undefined}>
-	<div class="cs-lightbox__surface">
-		<button class="cs-lightbox__close" type="button" aria-label="Close image" data-lightbox-close>
-			<svg viewBox="0 0 24 24" aria-hidden="true">
+<dialog
+	class:list={[
+		'group m-0 box-border h-dvh max-h-none w-screen max-w-none border-0 bg-transparent p-[clamp(1rem,3vw,2.5rem)] text-white backdrop:bg-[rgb(16_13_15/92%)] backdrop:backdrop-blur-md',
+		'motion-safe:[&[open]:not([data-closing])]:backdrop:animate-backdrop-in motion-safe:[&[data-closing]]:backdrop:animate-backdrop-out',
+	]}
+	aria-label="Expanded image"
+	data-image-lightbox
+	data-image-selector={imageSelector}
+	data-zoomable={zoomable || undefined}
+>
+	<div
+		class:list={[
+			'relative grid size-full place-items-center',
+			'motion-safe:group-[[open]:not([data-closing])]:animate-lightbox-in motion-safe:group-data-[closing]:animate-lightbox-out',
+			zoomable && 'grid-rows-[auto_minmax(0,1fr)] gap-4',
+		]}
+	>
+		<button class="absolute top-0 right-0 z-1 grid size-11 cursor-pointer place-items-center rounded-full border border-white/28 bg-[rgb(16_13_15/72%)] p-0 text-white hover:bg-white hover:text-[#100d0f] focus-visible:bg-white focus-visible:text-[#100d0f] focus-visible:outline-2 focus-visible:outline-offset-[0.2rem] focus-visible:outline-white" type="button" aria-label="Close image" data-lightbox-close>
+			<svg class="size-5 fill-none stroke-current [stroke-linecap:round] [stroke-width:1.75]" viewBox="0 0 24 24" aria-hidden="true">
 				<path d="m6 6 12 12M18 6 6 18" />
 			</svg>
 		</button>
 		{zoomable ? (
 			<>
-				<div class="cs-lightbox__controls" role="group" aria-label="Image view">
-					<button type="button" data-lightbox-fit>Fit</button>
-					<button type="button" data-lightbox-full>Full size</button>
-					<button type="button" aria-label="Zoom out" data-lightbox-out>−</button>
-					<button type="button" aria-label="Zoom in" data-lightbox-in>+</button>
-					<output aria-live="polite" aria-label="Image zoom" data-lightbox-scale></output>
-					<a target="_blank" rel="noopener" data-lightbox-original>Open original image</a>
+				<div class="flex w-full flex-wrap items-center gap-2 pr-14 font-sans text-[0.875rem]" role="group" aria-label="Image view">
+					<button class={controlClass} type="button" data-lightbox-fit>Fit</button>
+					<button class={controlClass} type="button" data-lightbox-full>Full size</button>
+					<button class={controlClass} type="button" aria-label="Zoom out" data-lightbox-out>−</button>
+					<button class={controlClass} type="button" aria-label="Zoom in" data-lightbox-in>+</button>
+					<output class="min-w-[3ch] px-1 tabular-nums" aria-live="polite" aria-label="Image zoom" data-lightbox-scale></output>
+					<a class={controlClass} target="_blank" rel="noopener" data-lightbox-original>Open original image</a>
 				</div>
-				<div class="cs-lightbox__viewport" tabindex="0" role="region" aria-label="Image; scroll to explore when zoomed" data-lightbox-viewport>
-					<div class="cs-lightbox__canvas">
-						<img class="cs-lightbox__image" alt="" data-lightbox-image />
+				<div class="size-full overflow-auto overscroll-contain focus-visible:outline-2 focus-visible:outline-offset-[0.2rem] focus-visible:outline-white" tabindex="0" role="region" aria-label="Image; scroll to explore when zoomed" data-lightbox-viewport>
+					<div class="grid min-h-full w-max min-w-full place-items-center p-4">
+						<img class={`${imageBase} max-w-none max-h-none flex-none bg-white`} alt="" data-lightbox-image />
 					</div>
 				</div>
 			</>
-		) : <img class="cs-lightbox__image" alt="" data-lightbox-image />}
+		) : <img class={`${imageBase} max-w-full max-h-[calc(100dvh-clamp(2rem,6vw,5rem))] object-contain`} alt="" data-lightbox-image />}
 	</div>
 </dialog>
 
@@ -81,6 +97,8 @@ const { imageSelector = '.cs-project-hero img, .cs-content img', zoomable = fals
 		control.setAttribute('aria-label', `View larger: ${image.alt}`);
 		control.setAttribute('aria-haspopup', 'dialog');
 		image.dataset.lightboxTrigger = '';
+		image.classList.add('cursor-zoom-in');
+		control.classList.add('focus-visible:outline-2', 'focus-visible:outline-offset-[0.35rem]', 'focus-visible:outline-accent-ink');
 
 		const open = () => {
 			trigger = control;

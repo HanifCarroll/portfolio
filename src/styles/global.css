@@ -56,6 +56,30 @@
   --color-surface: #ffffff;
   --animate-fade-in: fadeIn 0.3s ease-out forwards;
   --animate-fade-in-up: fadeInUp 0.4s ease-out forwards;
+  --animate-lightbox-in: lightbox-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-lightbox-out: lightbox-out 150ms ease-in both;
+  --animate-backdrop-in: fadeIn 180ms ease-out both;
+  --animate-backdrop-out: backdrop-out 150ms ease-in both;
+
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.975) translateY(0.5rem);
+    }
+  }
+
+  @keyframes lightbox-out {
+    to {
+      opacity: 0;
+      transform: scale(0.985) translateY(0.35rem);
+    }
+  }
+
+  @keyframes backdrop-out {
+    to {
+      opacity: 0;
+    }
+  }
 
   @keyframes fadeIn {
     0% {
@@ -193,6 +217,10 @@
     outline: var(--hc-focus-ring-width) solid var(--hc-accent);
     outline-offset: var(--hc-focus-ring-offset);
   }
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
 }
 
 /* Markdown headings follow the site ink, not the Typography plugin's default gray. */
