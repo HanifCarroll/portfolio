@@ -6,6 +6,7 @@ import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import requestInbox from "../../assets/img/projects/switchboard/request-inbox.png";
 import investigationReview from "../../assets/img/projects/switchboard/investigation-review.png";
+import { resourceLinksClass } from "../../lib/ui";
 
 <CaseSection title="Checking a customer change before applying it">
 Switchboard is a synthetic customer-change demo I designed, built, and deployed on AWS. A fictional customer asks to change where their system receives event notifications. Sending those events to the wrong destination could expose data or interrupt a service.
@@ -14,7 +15,7 @@ I built a Python and LangGraph investigator that checks customer records and pol
 
 The company records and customer systems are fictional. Investigations call a real model through Amazon Bedrock, and delivery checks send signed synthetic events between controlled AWS endpoints.
 
-  <nav className="case-study-detail__resource-links" aria-label="Switchboard project resources">
+  <nav className={resourceLinksClass} aria-label="Switchboard project resources">
     <a href="https://switchboard.hanifcarroll.com/">Live demo</a>
     <a href="https://github.com/HanifCarroll/Switchboard">Source code</a>
     <a href="https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md">Architecture</a>

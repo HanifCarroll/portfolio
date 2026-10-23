@@ -4,6 +4,7 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
+import { pillLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
@@ -88,15 +89,12 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>Past agent work can be reused without losing its source</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="Past agent work can be reused without losing its source">
     <ProofRows rows={shippedRows}>
       Agent Recall handles a practical problem in AI-assisted engineering: useful memory needs local
       control, fast retrieval, and source receipts another agent can inspect.
     </ProofRows>
-  </div>
-</section>
+</CaseSection>
 
 <CaseSection title="Tests protect search quality and local handling">
   The repository tests indexing, search references, help output, background-service defaults, watcher behavior, recent views, pins, memories, change tracking, related resources, and missing-database behavior.
@@ -105,12 +103,10 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section">
-  <h2>The implementation is public</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="The implementation is public">
     <p>The project is public and installable as a Rust command-line tool.</p>
     <a
-      class="btn-secondary w-fit"
+      class={pillLinkClass}
       href="https://github.com/HanifCarroll/agent-recall"
       target="_blank"
       rel="noopener noreferrer"
@@ -118,5 +114,4 @@ export const shippedRows = [
       View GitHub repo
       <span>&rarr;</span>
     </a>
-  </div>
-</section>
+</CaseSection>

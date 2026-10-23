@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { imagePlateClass, imagePlateImageClass } from '../../lib/ui';
 
 interface Props {
 	image: ImageMetadata;
@@ -11,7 +12,7 @@ interface Props {
 const { image, alt, caption } = Astro.props;
 ---
 
-<figure class='case-study-detail__image-plate'>
-	<Image src={image} alt={alt} loading='lazy' class='case-study-detail__image-plate-img' />
-	{caption && <figcaption>{caption}</figcaption>}
+<figure class={imagePlateClass}>
+	<Image src={image} alt={alt} loading='lazy' class={imagePlateImageClass} />
+	{caption && <figcaption class='mt-3 font-sans text-[0.875rem] not-italic leading-[1.55] text-ink-muted'>{caption}</figcaption>}
 </figure>

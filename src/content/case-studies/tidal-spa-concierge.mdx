@@ -29,6 +29,7 @@ import feedbackForm from "../../assets/img/projects/tidal-spa-concierge/feedback
 import feedbackFormMobile from "../../assets/img/projects/tidal-spa-concierge/feedback-form-mobile.webp";
 import ownerAlert from "../../assets/img/projects/tidal-spa-concierge/owner-alert.webp";
 import ownerAlertMobile from "../../assets/img/projects/tidal-spa-concierge/owner-alert-mobile.webp";
+import { resourceLinksClass } from "../../lib/ui";
 
 export const guestScreens = [
   {
@@ -295,20 +296,16 @@ The recommendation follows a separate Make automation. Typebot sends the guest's
   <DeviceGrid screens={followUpScreens} stacked />
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What the prototype proved</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="What the prototype proved">
     <ProofRows rows={shippedRows}>
       <p>
         By the end of the prototype, the recommended service stayed attached to the appointment from booking through post-visit follow-up. Staff could manage the visit without returning to the chat transcript.
       </p>
     </ProofRows>
 
-    <nav class="case-study-detail__resource-links" aria-label="Project resources">
+    <nav class={resourceLinksClass} aria-label="Project resources">
       <a href="https://spa-concierge-prototype.pages.dev/" target="_blank" rel="noopener noreferrer">Live prototype</a>
       <a href="https://spa-concierge-prototype.pages.dev/system" target="_blank" rel="noopener noreferrer">System tour</a>
       <a href="https://github.com/HanifCarroll/spa-concierge-prototype" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
     </nav>
-
-  </div>
-</section>
+</CaseSection>

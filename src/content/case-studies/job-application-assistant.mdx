@@ -4,6 +4,7 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
+import { pillLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
@@ -90,15 +91,12 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What shipped</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="What shipped">
     <ProofRows rows={shippedRows}>
       Job Application Assistant connects extraction, context, drafting, artifact generation, and
       ledger state. It is not a black-box application agent.
     </ProofRows>
-  </div>
-</section>
+</CaseSection>
 
 <CaseSection title="A draft that remains tied to its evidence">
   The useful part is not that the system can write a cover letter.
@@ -107,15 +105,13 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section">
-  <h2>Public repo</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="Public repo">
     <p>
       The project is open source, including the Chrome extension, FastAPI backend, SQLite stores,
       response schema, and Python and extension tests.
     </p>
     <a
-      class="btn-secondary w-fit"
+      class={pillLinkClass}
       href="https://github.com/HanifCarroll/job-application-assistant"
       target="_blank"
       rel="noopener noreferrer"
@@ -123,5 +119,4 @@ export const shippedRows = [
       View GitHub repo
       <span>&rarr;</span>
     </a>
-  </div>
-</section>
+</CaseSection>

@@ -13,7 +13,7 @@ import { getProjectTrackMeta } from '@src/lib/project-tracks';
 import {
 	DELISTED_PROJECT_SLUGS,
 } from '@src/lib/project-curation';
-import '../../styles/case-study.css';
+import { buttonClass } from '@src/lib/ui';
 
 interface PageProps {
 	project: Project;
@@ -103,6 +103,11 @@ const heroActions = [
 ].filter((action): action is { label: string; href: string; trackEvent: string; trackLocation: string; external: boolean } =>
 	Boolean(action)
 );
+
+// The image lightbox finds its triggers through the cs-project-hero and cs-content hooks.
+const breadcrumbLinkClass = 'group inline-flex items-center gap-[0.4rem] font-semibold text-ink-muted no-underline transition-colors duration-[160ms] ease-out-soft hover:text-accent-ink focus-visible:text-accent-ink';
+const secondaryActionClass = "inline-flex min-h-[3.25rem] items-center gap-[0.4rem] text-base font-bold leading-[1.2] text-ink no-underline hover:text-accent-ink focus-visible:text-accent-ink after:text-accent-ink after:transition-transform after:duration-[240ms] after:ease-out-soft after:content-['→'] hover:after:translate-x-1 focus-visible:after:translate-x-1 motion-reduce:after:transition-none";
+const factLabelClass = 'm-0 text-[0.65rem] font-bold uppercase leading-[1.3] tracking-[0.08em] text-ink-muted';
 ---
 
 <BaseLayout
@@ -114,27 +119,27 @@ const heroActions = [
 	showFooterCta={false}
 	bodyClass='page-case-study-detail'
 >
-	<article class='cs-shell'>
-		<nav class='cs-breadcrumb' aria-label='Breadcrumb'>
-			<a href='/' class='cs-breadcrumb__link'>
-				<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+	<article class='mx-auto w-full max-w-[1200px] px-6 pt-9 pb-28 md:px-14 md:pt-14 md:pb-32 max-sm:pb-0'>
+		<nav class='mb-14 flex flex-wrap items-center gap-2 font-sans text-[0.875rem] max-lg:hidden' aria-label='Breadcrumb'>
+			<a href='/' class={breadcrumbLinkClass}>
+				<svg class='shrink-0 text-accent-ink transition-transform duration-[240ms] ease-out-soft group-hover:-translate-x-[3px] group-focus-visible:-translate-x-[3px] motion-reduce:transition-none' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
 				Hanif Carroll
 			</a>
-			<span class='cs-breadcrumb__sep' aria-hidden='true'>/</span>
-			<a href='/projects/' class='cs-breadcrumb__link'>Projects</a>
+			<span class='text-ink-muted opacity-55' aria-hidden='true'>/</span>
+			<a href='/projects/' class={breadcrumbLinkClass}>Projects</a>
 		</nav>
 
-		<header class='cs-hero' data-motion-intro>
-			<div class='cs-hero__body'>
-				<h1 class='cs-hero__title' data-motion='headline'>{project.title}</h1>
-				<p class='cs-hero__description' data-motion-deck>{project.description}</p>
+		<header class='mb-20 grid gap-10' data-motion-intro>
+			<div class='grid max-w-[54rem] content-start gap-[1.1rem]'>
+				<h1 class='m-0 font-editorial text-[clamp(2.75rem,5vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.02em] text-ink text-balance' data-motion='headline'>{project.title}</h1>
+				<p class='m-0 max-w-[42rem] font-editorial text-[clamp(1.25rem,1.1rem+0.45vw,1.5rem)] leading-[1.4] text-ink-muted text-pretty' data-motion-deck>{project.description}</p>
 				{
 					heroActions.length > 0 && (
-						<div class='cs-hero__actions' data-motion-intro-item>
+						<div class='flex flex-wrap items-center gap-x-5 gap-y-[0.9rem] pt-2' data-motion-intro-item>
 							{
 								heroActions.map((action, index) => (
 									<a
-										class={index === 0 ? 'hc-button' : 'cs-hero__secondary'}
+										class={index === 0 ? buttonClass() : secondaryActionClass}
 										href={action.href}
 										target={action.external ? '_blank' : undefined}
 										rel={action.external ? 'noopener noreferrer' : undefined}
@@ -150,7 +155,7 @@ const heroActions = [
 				}
 			</div>
 
-			<figure class='cs-project-hero'>
+			<figure class='cs-project-hero m-0 w-full overflow-hidden bg-canvas'>
 				<Image
 					src={heroImage}
 					alt={`${project.title} project visual`}
@@ -158,32 +163,32 @@ const heroActions = [
 					sizes='(min-width: 75rem) 1200px, 100vw'
 					loading='eager'
 					class:list={[
-						'cs-project-hero__image',
-						heroImage.height > heroImage.width && 'cs-project-hero__image--portrait',
+						'block h-auto',
+						heroImage.height > heroImage.width ? 'mx-auto max-h-[44rem] w-auto max-w-full' : 'w-full',
 					]}
 				/>
 			</figure>
 
 			<aside
-				class='cs-hero__facts'
+				class='grid grid-cols-1 gap-3 font-sans md:grid-cols-[repeat(var(--cs-fact-count),minmax(0,1fr))] md:gap-4'
 				aria-label='Project facts'
 				style={`--cs-fact-count: ${caseStudyFacts.length}`}
 				data-motion-intro-item
 			>
 				{
 					caseStudyFacts.map((detail) => (
-						<div class='cs-hero__fact'>
-							<p>{detail.label}</p>
-							<strong>{detail.value}</strong>
+						<div class='grid min-w-0 content-start gap-[0.2rem]'>
+							<p class={factLabelClass}>{detail.label}</p>
+							<strong class='text-[0.85rem] font-medium leading-[1.35] text-ink'>{detail.value}</strong>
 						</div>
 					))
 				}
 				{
 					coreTechnologies.length > 0 && (
-						<div class='cs-hero__stack'>
-							<p>Built with</p>
-							<ul aria-label='Core technologies'>
-								{coreTechnologies.map((technology) => <li>{technology}</li>)}
+						<div class='col-span-full grid gap-1'>
+							<p class={factLabelClass}>Built with</p>
+							<ul class='m-0 flex list-none flex-wrap p-0 text-[0.8rem] font-medium leading-[1.4] text-ink' aria-label='Core technologies'>
+								{coreTechnologies.map((technology) => <li class="not-last:after:mx-[0.55rem] not-last:after:text-accent-ink not-last:after:content-['·']">{technology}</li>)}
 							</ul>
 						</div>
 					)
@@ -191,14 +196,14 @@ const heroActions = [
 			</aside>
 		</header>
 
-		<div class='cs-content'>
+		<div class='cs-content grid'>
 			<Content />
 			{clientTestimonial && (
-				<section class='cs-client-feedback' aria-label='Client feedback'>
+				<section class='border-t border-line py-8' aria-label='Client feedback'>
 					<h2>Working together</h2>
-					<blockquote>
-						<p>{clientTestimonial.quote}</p>
-						<footer><cite>{clientTestimonial.name} · {clientTestimonial.role}</cite></footer>
+					<blockquote class='mx-0 mt-4 mb-0 border-l-2 border-accent pl-5'>
+						<p class='leading-[1.75]'>{clientTestimonial.quote}</p>
+						<footer><cite class='text-[0.9rem] not-italic text-ink-muted'>{clientTestimonial.name} · {clientTestimonial.role}</cite></footer>
 					</blockquote>
 				</section>
 			)}

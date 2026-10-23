@@ -20,33 +20,31 @@ interface Props {
 }
 
 const { screens, stacked = false } = Astro.props;
+const cardWidth = { contained: 'mx-auto w-[min(100%,52rem)]', compact: 'mx-auto w-[min(100%,38rem)]' };
 ---
 
-<div class:list={['case-study-detail__device-grid', { 'case-study-detail__device-grid--stacked': stacked }]}>
+<div class:list={['mt-3 grid gap-8 md:items-start', stacked ? 'md:grid-cols-1' : 'md:grid-cols-2']}>
 	{
 		screens.map((screen) => (
-			<figure
-				class:list={[
-					'case-study-detail__device-card',
-					`case-study-detail__device-card--${screen.frame ?? 'desktop'}`,
-					screen.width && `case-study-detail__device-card--${screen.width}`
-				]}
-			>
-				<div class={`device-frame device-frame--${screen.frame === 'mobile' ? 'ios' : 'macbook'}`}>
-					{screen.frame === 'mobile' && <div class='device-frame__island' aria-hidden='true' />}
-					<div class:list={['device-frame__screen', { 'device-frame__screen--scrollable': screen.mobileScrollable }]}>
-						<picture class='device-frame__picture'>
+			<figure class:list={['grid min-w-0 content-start gap-4', screen.width && cardWidth[screen.width]]}>
+				<div class:list={['relative w-full', screen.frame === 'mobile' ? 'mx-auto max-w-[16rem]' : 'max-w-[66rem]']}>
+					<div
+						class:list={[
+							'overflow-hidden rounded-xl border border-line bg-canvas',
+							screen.mobileScrollable && 'max-md:overflow-x-auto max-md:overscroll-x-contain max-md:[scrollbar-width:thin]',
+						]}
+					>
+						<picture class:list={['block', screen.mobileScrollable && 'max-md:w-[44rem] max-md:max-w-none']}>
 							{screen.mobileImage && <source media='(max-width: 47.999rem)' srcset={screen.mobileImage.src} />}
-							<Image src={screen.image} alt={screen.alt} loading='eager' class='device-frame__image' />
+							<Image src={screen.image} alt={screen.alt} loading='eager' class='block h-auto w-full' />
 						</picture>
 					</div>
-					{screen.frame !== 'mobile' && <div class='device-frame__base' aria-hidden='true' />}
 				</div>
-				{screen.mobileScrollable && <span class='device-frame__scroll-hint'>Swipe to read the full capture</span>}
-				<figcaption class='case-study-detail__device-caption'>
-					<span>{screen.label}</span>
-					<strong>{screen.title}</strong>
-					<p>{screen.caption}</p>
+				{screen.mobileScrollable && <span class='hidden text-[0.75rem] text-ink-muted max-md:-mt-2 max-md:block'>Swipe to read the full capture</span>}
+				<figcaption class='grid max-w-[38rem] gap-[0.35rem] font-sans'>
+					<span class='text-[0.7rem] font-bold uppercase leading-[1.4] tracking-[0.08em] text-accent-ink'>{screen.label}</span>
+					<strong class='text-[1.05rem] font-[650] leading-[1.3] text-ink'>{screen.title}</strong>
+					<p class='m-0 text-[0.875rem] leading-[1.6] text-ink-muted'>{screen.caption}</p>
 				</figcaption>
 			</figure>
 		))

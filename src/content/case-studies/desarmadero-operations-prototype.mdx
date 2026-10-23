@@ -6,6 +6,7 @@ import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import mapaScreen from "../../assets/img/projects/desarmadero-operations-mapa.png";
+import { imagePlateClass, imagePlateImageClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
@@ -42,14 +43,14 @@ export const shippedRows = [
 
     The second idea covered counter sales, cash desk payments, dismantle orders, assignments, and finding vehicles inside a 301-position yard. The existing workflow lived across paper budget sheets, WhatsApp, Excel, and people's memories of where cars were parked.
 
-<figure class="case-study-detail__image-plate">
+<figure class={imagePlateClass}>
   <a href="/images/projects/desarmadero-operations-current-state.svg" data-image-link>
     <img
       src="/images/projects/desarmadero-operations-current-state.svg"
       width="1440"
       height="1016"
       loading="lazy"
-      class="case-study-detail__image-plate-img"
+      class={imagePlateImageClass}
       alt="Current-state swimlane map reconstructed from discovery: counter staff print two copies, cash desk collects payment and files one copy, and the counter sends the other to a dismantler. Vehicle lookup and extraction are inferred continuations."
     />
   </a>
@@ -66,14 +67,14 @@ export const shippedRows = [
       Instead of jumping straight to a quote, I built a working prototype first. A clickable app gave the client a direct way to confirm whether I understood the business.
     </DecisionBlock>
 
-<figure class="case-study-detail__image-plate">
+<figure class={imagePlateClass}>
   <a href="/images/projects/desarmadero-operations-target-state.svg" data-image-link>
     <img
       src="/images/projects/desarmadero-operations-target-state.svg"
       width="1440"
       height="1016"
       loading="lazy"
-      class="case-study-detail__image-plate-img"
+      class={imagePlateImageClass}
       alt="Proposed Phase 1 swimlane map: a digital sale creates an order, cash desk confirms a deposit or full payment, the manager assigns work, and the dismantler uses the yard map to find the vehicle, extract the part and record the work."
     />
   </a>
@@ -103,17 +104,14 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>The prototype made the next scope concrete</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="The prototype made the next scope concrete">
     <ProofRows rows={shippedRows}>
       <p>
         The public sample shows the whole arc: a spoken description spread across several tools
         became a structured specification and a clickable operations system.
       </p>
     </ProofRows>
-  </div>
-</section>
+</CaseSection>
 
 <CaseSection title="The client can inspect every product decision">
   The prototype is public as an anonymized work sample.

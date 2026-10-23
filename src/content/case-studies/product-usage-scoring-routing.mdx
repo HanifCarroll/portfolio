@@ -7,6 +7,7 @@ import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import decisionPacket from "../../assets/img/projects/product-usage-scoring-routing/decision-packet.png";
 import policy from "../../assets/img/projects/product-usage-scoring-routing/policy.png";
+import { buttonClass, pillLinkClass } from "../../lib/ui";
 
 export const demoUrl = "https://pusr-web-preview.pusr-web.workers.dev";
 export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-routing";
@@ -121,24 +122,21 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>What the demonstration delivers</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="What the demonstration delivers">
     <ProofRows rows={shippedRows}>
       The demonstration connects product behavior to explainable revenue action and HubSpot
       operations without an opaque universal score, and it makes every limitation explicit.
     </ProofRows>
-  </div>
-</section>
+</CaseSection>
 
 <CaseSection title="Inspect it, then ask about your own workflow">
   The live demo runs the same 120 synthetic accounts through both policies, shows the decision packets, and lets you change intent and capacity. The source is public and includes the spec, the durable workflow, the HubSpot adapter, and the full test suite.
 
-    <a class='hc-button' href={demoUrl} target='_blank' rel='noopener noreferrer'>
+    <a class={buttonClass()} href={demoUrl} target='_blank' rel='noopener noreferrer'>
     Open the live demo
     </a>
 
-    <a class='btn-secondary' href={repoUrl} target='_blank' rel='noopener noreferrer'>
+    <a class={pillLinkClass} href={repoUrl} target='_blank' rel='noopener noreferrer'>
     View source on GitHub
     <span>&rarr;</span>
     </a>
@@ -147,7 +145,7 @@ export const shippedRows = [
     If product or customer signals are reaching HubSpot too late — or without enough context — I can review one workflow and return a written map of the leaks, risks, and the smallest useful fix.
     </p>
 
-    <a class='hc-button' href='mailto:hanif@hanifcarroll.com?subject=GTM%20systems%20assessment' rel='noopener noreferrer'>
+    <a class={buttonClass()} href='mailto:hanif@hanifcarroll.com?subject=GTM%20systems%20assessment' rel='noopener noreferrer'>
     Request a written GTM systems assessment
     </a>
 

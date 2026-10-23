@@ -4,6 +4,7 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
+import { pillLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
@@ -87,26 +88,21 @@ export const shippedRows = [
 
 </CaseSection>
 
-<section class="case-study-detail__editorial-section case-study-detail__launch-proof">
-  <h2>A public product with benchmark evidence</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="A public product with benchmark evidence">
     <ProofRows rows={shippedRows}>
       Apartment Finder is a public example of turning a narrow, real-life decision workflow into an
       AI product with extraction, classification, UI review, benchmark evidence, and measured
       model-cost tradeoffs.
     </ProofRows>
-  </div>
-</section>
+</CaseSection>
 
-<section class="case-study-detail__editorial-section">
-  <h2>The implementation is open to inspection</h2>
-  <div class="case-study-detail__editorial-copy">
+<CaseSection title="The implementation is open to inspection">
     <p>
       The project is open source, including the TanStack Start UI, Bun CLI, extraction scripts, and
       evaluation fixtures.
     </p>
     <a
-      class="btn-secondary w-fit"
+      class={pillLinkClass}
       href="https://github.com/HanifCarroll/apartment-finder"
       target="_blank"
       rel="noopener noreferrer"
@@ -114,5 +110,4 @@ export const shippedRows = [
       View GitHub repo
       <span>&rarr;</span>
     </a>
-  </div>
-</section>
+</CaseSection>

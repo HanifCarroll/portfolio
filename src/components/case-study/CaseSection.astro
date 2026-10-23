@@ -5,18 +5,21 @@ interface Props {
 	wideMedia?: boolean;
 }
 
-const { title, media = false, wideMedia = false } = Astro.props;
+const { title } = Astro.props;
+
+// MDX renders the section body as bare paragraphs and links, so the copy column styles its children.
+const copyClass = [
+	'grid min-w-0 gap-[1.4rem]',
+	'[&>p]:m-0 [&>p]:max-w-[65ch] [&>p]:font-editorial [&>p]:text-[clamp(1.2rem,1.08rem+0.25vw,1.35rem)] [&>p]:leading-[1.48] [&>p]:text-ink-muted [&>p]:text-pretty',
+	'[&_a]:font-medium [&_a]:text-ink [&_a]:underline [&_a]:decoration-[color-mix(in_srgb,var(--color-accent)_70%,transparent)] [&_a]:decoration-2 [&_a]:underline-offset-[3px] [&_a]:transition-colors [&_a]:duration-[160ms] [&_a]:ease-out-soft [&_a:is(:hover,:focus-visible)]:text-accent-ink [&_a:is(:hover,:focus-visible)]:decoration-accent',
+	'[&_code]:rounded-[0.35rem] [&_code]:bg-surface-warm [&_code]:px-[0.35em] [&_code]:py-[0.1em] [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:text-ink',
+	'[&_strong]:font-semibold [&_strong]:text-ink',
+];
 ---
 
-<section
-	class:list={[
-		'case-study-detail__editorial-section',
-		media && 'case-study-detail__editorial-section--media',
-		wideMedia && 'case-study-detail__editorial-section--wide-media'
-	]}
->
-	<h2>{title}</h2>
-	<div class='case-study-detail__editorial-copy'>
+<section class='grid gap-5 pt-14 pb-6 first:pt-6'>
+	<h2 class='m-0 max-w-[42rem] font-editorial text-[clamp(1.9rem,3vw,2.65rem)] font-semibold leading-[1.05] tracking-[-0.01em] text-ink text-balance'>{title}</h2>
+	<div class:list={copyClass}>
 		<slot />
 	</div>
 </section>
