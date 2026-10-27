@@ -47,6 +47,8 @@ export interface Project {
   year?: string;
   technologies: string[];
   liveUrl?: string;
+  liveCtaLabel?: string;
+  liveStatusLabel?: string;
   problem: string | string[];
   solution: string | string[];
   result: string | string[];

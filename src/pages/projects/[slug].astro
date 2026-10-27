@@ -81,13 +81,13 @@ const caseStudyFacts = project.proofType === 'client'
 	: [
 			{ label: 'Role', value: project.role },
 			{ label: 'Year', value: project.year },
-			project.liveUrl && { label: 'Status', value: project.proofType === 'experiment' ? 'Live demo' : 'Live product' },
+			project.liveUrl && { label: 'Status', value: project.liveStatusLabel ?? (project.proofType === 'experiment' ? 'Live demo' : 'Live product') },
 		].filter((detail): detail is { label: string; value: string } => Boolean(detail));
 const coreTechnologies = project.technologies.slice(0, 6);
 
 const heroActions = [
 	project.liveUrl && {
-		label: delivery?.liveLabel ?? (project.proofType === 'experiment' ? 'Try live demo' : 'Visit live product'),
+		label: project.liveCtaLabel ?? delivery?.liveLabel ?? (project.proofType === 'experiment' ? 'Try live demo' : 'Visit live product'),
 		href: project.liveUrl,
 		trackEvent: 'project_live_site_clicked',
 		trackLocation: 'project_detail_hero',
