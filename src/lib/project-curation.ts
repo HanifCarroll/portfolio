@@ -29,6 +29,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
     slugs: [
       "casamo",
       "ba-eventos",
+      "neden",
       "switchboard",
       "tidal-spa-concierge",
       "riowell",
@@ -40,7 +41,6 @@ export const PROJECT_ARCHIVE_GROUPS = [
       "apartment-finder",
       "one-tuesday",
       "language-exchange",
-      "neden",
     ],
   },
 ] as const;
