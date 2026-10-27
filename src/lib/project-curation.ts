@@ -31,6 +31,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
       "ba-eventos",
       "neden",
       "switchboard",
+      "process-scribe",
       "tidal-spa-concierge",
       "riowell",
       "product-usage-scoring-routing",

@@ -1,0 +1,93 @@
+---
+---
+
+import CaseSection from "../../components/case-study/CaseSection.astro";
+import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
+import ImagePlate from "../../components/case-study/ImagePlate.astro";
+import processOverview from "../../assets/img/projects/process-scribe/process-overview.png";
+import clarificationQuestions from "../../assets/img/projects/process-scribe/clarification-questions.png";
+import { resourceLinksClass } from "../../lib/ui";
+
+<CaseSection title="From a conversation to a process people can review">
+A process interview rarely arrives as a complete sequence. Someone might describe what happens, then mention an exception later, or leave the order of two steps unclear. A diagram can make those gaps easier to discuss when the reader can see what came from the conversation and what still needs an answer.
+
+I built Senda as an independent process discovery tool. It helps an agent and a person turn interview material into a reviewable BPMN model. BPMN is a standard format for describing processes in diagrams. The examples and interviews shown here are synthetic.
+
+A reusable skill guides an existing modeling agent through boundaries, activities and events, responsibilities and handoffs, control flow, and supporting detail. The method draws on Chapter 5 of _Fundamentals of Business Process Management_. The agent interprets the material and proposes changes; the product does not require its own model or provider key.
+
+The private account and agent connection features are prepared and tested locally, but are not publicly deployed. Screenshots show the running local application.
+
+  <nav className={resourceLinksClass} aria-label="Senda project resources">
+    <a href="https://github.com/HanifCarroll/process-scribe">Source code</a>
+    <a href="https://github.com/HanifCarroll/process-scribe/blob/main/docs/architecture.md">Architecture</a>
+  </nav>
+</CaseSection>
+
+<CaseSection title="Leave the gap visible and ask" media>
+In the small example, the interview says to “collect a deposit and schedule the project.” That sentence does not say which happens first. The draft keeps the order unresolved and presents a question.
+
+In the private project app, a person can save an answer as a new source. The question remains visible until the modeling agent interprets that answer and updates the model with supporting evidence. As the agent saves revisions, the browser detects updates; the reader can also inspect earlier versions.
+
+The review shows the diagram alongside exact source quotations. A reader can search for a step and open its evidence; evidence starts collapsed so the process remains readable.
+
+  <div class="max-w-xl">
+    <ImagePlate image={clarificationQuestions} alt="Senda review showing questions about gaps in a synthetic process interview." caption="The initial draft makes missing details available for clarification." />
+  </div>
+</CaseSection>
+
+<CaseSection title="Separate the current process from a plan">
+Each project distinguishes the As-is process from a To-be plan. A person starts the plan with a design brief and a selected saved As-is revision. Senda copies that diagram as an unconfirmed starting point, then keeps the plan's sources, questions, and revision history separate.
+
+Current claims and approvals do not become future facts. Later changes to the As-is model leave the plan's original baseline intact, so a reader can see what the proposed work started from and review it on its own terms.
+
+</CaseSection>
+
+<CaseSection title="Connect an agent to a private project">
+I extended the same project core used by the local command-line tool to support account-owned projects in the web app. A person chooses which project to grant an agent through an OAuth consent flow. The agent can then read sources and questions and propose revisions through an MCP connection, using the downloadable discovery skill for the method.
+
+<DecisionBlock title="Keep access tied to the owner's choice.">
+  The service checks project ownership and the agent's explicit grant before opening a project.
+  Disconnecting agents removes grants and revokes existing access and refresh tokens. Agent tools
+  cannot record a person's approval.
+</DecisionBlock>
+
+<DecisionBlock title="Save the model and its sources together.">
+  SQLite stores the BPMN and discovery records in an atomic revision. Claims link to source
+  quotations and diagram element IDs. Transcripts and clarification answers remain intact as new
+  revisions are added. Every proposed edit names its starting revision; a stale edit, invalid batch,
+  or invalid evidence reference is rejected without a partial update.
+</DecisionBlock>
+
+  <DecisionBlock title="Use a modeling library for the diagram.">
+    Miragon supplies BPMN operations, validation, layout, and rendering. Senda adds source evidence, clarification state, revisions, and review around those operations. The local CLI and offline review bundles remain available.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Make a larger process navigable" media>
+The larger synthetic example follows a client onboarding process across five internal roles and a client. It includes parallel work, payment reminders, withdrawal and refund conditions, corrections, and handover. The overview stays compact; readers can open details for individual parts of the work without losing the external exchanges that give them context.
+
+<ImagePlate
+  image={processOverview}
+  alt="Senda overview of a synthetic onboarding process across internal roles and a client."
+  caption="The synthetic onboarding example keeps external exchanges visible across the overview and detail views."
+/>
+
+The saved model can be exported as a complete BPMN file with improved diagram geometry. Separate scoped files preserve the external participants shown in each view and identify themselves as partial. The original saved XML is retained. I checked exports in one independent BPMN editor; appearance and external-pool support can vary between editors.
+
+</CaseSection>
+
+<CaseSection title="A layout decision beyond the crossing count">
+I compared the current layout with an experimental adapter using ELK, a graph layout engine, on the larger example. I found a routing issue in my own implementation: it treated intervening lane bodies as obstacles. Fixing that reduced overview crossings from two to one without enlarging the diagram; all five detail views remained free of crossings.
+
+An ELK-based alternative eliminated the remaining overview crossing, but made the drawing taller and produced longer routes and backward handoffs. Some detail views also gained crossings. I kept the corrected current renderer and left ELK experimental. This comparison covers one synthetic model and a bounded adapter, not every process or layout engine.
+
+</CaseSection>
+
+<CaseSection title="What I checked">
+The larger example moves from seven open questions to zero through three scripted clarification rounds. It includes twelve cases for human review; those cases remain unapproved. Integration checks cover account isolation and replay the draft and clarification rounds through the official MCP client SDK, comparing the resulting browser review and exported model. Commercial agent clients have not yet been tested. I also tested creating and revising a synthetic To-be plan in the browser, inspecting its history, and downloading its BPMN while checking that the As-is model stayed unchanged.
+
+These checks exercise the implementation, evidence, and persistence. They do not measure independent AI extraction or establish that a model accurately represents a real process. Structural checks also cannot determine whether a diagram is complete or clear to its intended reader. A real transcript and review with the people who do the work are needed to assess discovery quality in practice.
+
+The prepared hosted application still needs deployment and an account recovery and email delivery approach before public use.
+
+</CaseSection>
