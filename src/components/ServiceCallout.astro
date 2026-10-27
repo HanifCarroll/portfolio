@@ -50,18 +50,13 @@ const mobileAction = 'max-sm:w-full max-sm:justify-between';
 	class:list={[
 		'grid text-ink',
 		isCaseStudy
-			? 'mt-24 -mx-6 w-[calc(100%+3rem)] items-start gap-12 bg-canvas px-6 py-[clamp(2rem,5vw,4rem)] md:-mx-14 md:w-[calc(100%+7rem)] md:px-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] max-lg:gap-6 max-sm:mt-0 max-sm:py-20'
+			? 'mt-24 -mx-6 w-[calc(100%+3rem)] items-start gap-12 bg-canvas px-6 py-[clamp(2rem,5vw,4rem)] md:-mx-14 md:w-[calc(100%+7rem)] md:px-14 lg:grid-cols-2 max-lg:gap-6 max-sm:mt-0 max-sm:py-20'
 			: 'mt-16 items-center gap-12 rounded-xl border border-line bg-canvas p-[clamp(2rem,6vw,6rem)] shadow-card lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] max-lg:gap-6 max-sm:rounded-none max-sm:border-0 max-sm:py-12 max-sm:shadow-none',
 		'max-sm:mx-[calc(50%-50vw)] max-sm:w-screen max-sm:px-6',
 		className,
 	]}
 >
-	<h2
-		class:list={[
-			'm-0 font-editorial font-bold tracking-[-0.045em] text-ink text-balance max-sm:text-[clamp(2rem,9vw,2.25rem)] max-sm:leading-[1.06]',
-			isCaseStudy ? 'text-[clamp(2rem,4vw,3.25rem)] leading-[1.05]' : 'text-[clamp(2rem,4vw,2.5rem)] leading-[1.1]',
-		]}
-	>
+	<h2 class='m-0 font-editorial text-[clamp(2rem,4vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.045em] text-ink text-balance max-sm:text-[clamp(2rem,9vw,2.25rem)] max-sm:leading-[1.06]'>
 		{offer.title}
 	</h2>
 	<div class='grid gap-6 max-sm:gap-8'>
