@@ -15,9 +15,10 @@ I built Senda as an independent process discovery tool. It helps an agent and a 
 
 A reusable skill guides an existing modeling agent through boundaries, activities and events, responsibilities and handoffs, control flow, and supporting detail. The method draws on Chapter 5 of _Fundamentals of Business Process Management_. The agent interprets the material and proposes changes; the product does not require its own model or provider key.
 
-The private account and agent connection features are prepared and tested locally, but are not publicly deployed. Screenshots show the running local application.
+Senda runs on Cloudflare Workers with private projects and agent connections. The screenshots show the running local application.
 
   <nav className={resourceLinksClass} aria-label="Senda project resources">
+    <a href="https://senda.hanifcarroll.com/">Visit Senda</a>
     <a href="https://github.com/HanifCarroll/process-scribe">Source code</a>
     <a href="https://github.com/HanifCarroll/process-scribe/blob/main/docs/architecture.md">Architecture</a>
   </nav>
@@ -52,10 +53,11 @@ I extended the same project core used by the local command-line tool to support 
 </DecisionBlock>
 
 <DecisionBlock title="Save the model and its sources together.">
-  SQLite stores the BPMN and discovery records in an atomic revision. Claims link to source
-  quotations and diagram element IDs. Transcripts and clarification answers remain intact as new
-  revisions are added. Every proposed edit names its starting revision; a stale edit, invalid batch,
-  or invalid evidence reference is rejected without a partial update.
+  Claims link to source quotations and diagram element IDs. Transcripts and clarification answers
+  remain intact as new revisions are added. On Cloudflare, D1 stores revision records and private R2
+  stores immutable model snapshots. A conditional write publishes the model and its evidence together;
+  stale edits, invalid batches, and invalid evidence references cannot leave a partial update. The
+  local tool uses SQLite for its revisions.
 </DecisionBlock>
 
   <DecisionBlock title="Use a modeling library for the diagram.">
@@ -84,10 +86,10 @@ An ELK-based alternative eliminated the remaining overview crossing, but made th
 </CaseSection>
 
 <CaseSection title="What I checked">
-The larger example moves from seven open questions to zero through three scripted clarification rounds. It includes twelve cases for human review; those cases remain unapproved. Integration checks cover account isolation and replay the draft and clarification rounds through the official MCP client SDK, comparing the resulting browser review and exported model. Commercial agent clients have not yet been tested. I also tested creating and revising a synthetic To-be plan in the browser, inspecting its history, and downloading its BPMN while checking that the As-is model stayed unchanged.
+The larger synthetic example moves from seven open questions to zero through three scripted clarification rounds. Its twelve cases for human review remain unapproved. On the live deployment, I checked account verification and sign-in, then used the official MCP client SDK to revise the As-is model and a separate To-be plan. The checks included a saved clarification answer, matching BPMN exports, an unchanged As-is model during planning, and immediate agent revocation. Commercial agent clients have not yet been tested.
 
 These checks exercise the implementation, evidence, and persistence. They do not measure independent AI extraction or establish that a model accurately represents a real process. Structural checks also cannot determine whether a diagram is complete or clear to its intended reader. A real transcript and review with the people who do the work are needed to assess discovery quality in practice.
 
-The prepared hosted application still needs deployment and an account recovery and email delivery approach before public use.
+Cloudflare Email Service handles account messages. I verified sign-up and password reset through a real inbox, including sign-in with the new password and rejection of the old session and reused reset link.
 
 </CaseSection>
