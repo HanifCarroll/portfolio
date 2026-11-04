@@ -10,86 +10,65 @@ export const shippedRows = [
   {
     label: "Clear ownership",
     title: "One command-line tool owns the active workflows.",
-    body: "Networking, recruiter and agency outreach, opportunity research, comment collection, and review each have a defined place in the same tool.",
+    body: "Analytics export, job capture and enrichment, hiring-team research, Sales Navigator research, outreach drafts, and follow-up handoffs each have a defined place in the same Bun and TypeScript tool.",
   },
   {
     label: "Safety boundaries",
-    title: "Send-capable workflows have clear owners.",
-    body: "Networking owns connection requests and accepted follow-ups. Recruiter and agency outreach can send reviewed drafts only. Opportunity research can recommend actions but cannot take them.",
+    title: "A send needs a reviewed draft and a receipt.",
+    body: "Each approved draft reserves one send attempt before the browser helper acts. A retry stays blocked while a send is prepared or possibly sent, and the attempt is released only when the tool has confirmation that nothing went out.",
   },
   {
-    label: "Browser actions",
-    title: "Real actions require approval flags.",
-    body: "The tool defaults to previews. Sending a message, requesting a connection, or withdrawing an invitation requires explicit approval next to the command that takes the action.",
+    label: "Browser evidence",
+    title: "Capture starts before the page loads.",
+    body: "A Chrome helper arms DevTools Protocol capture before navigation, keeps only the target document and job-detail responses, parses them locally, and verifies the result with stable page reads.",
   },
   {
     label: "Audit state",
-    title: "Uncertain browser work leaves evidence behind.",
-    body: "Each run records its inputs, browser evidence, completed actions, follow-up checks, research queues, rankings, and blockers so uncertain results can be inspected later.",
+    title: "Every external step leaves a receipt.",
+    body: "Handoff packets for drafts, applications, HubSpot, Instantly, and follow-ups carry stored evidence and explicit stop conditions. Receipt commands store the external IDs, and the tool never calls those services itself.",
   },
   {
-    label: "Verification",
-    title: "Tests cover workflow contracts.",
-    body: "Tests cover follow-up checks, research sources, post queues, browser actions, recruiter and agency lead state, stored-data changes, and the review screen.",
+    label: "Migration",
+    title: "Legacy state moved forward on purpose.",
+    body: "A multi-workflow Python suite became one Bun and TypeScript tool on SQLite through 30 schema migrations, with a report that lists each proposed carry-over from the old state.",
   },
 ];
 
-<CaseSection title="I built a command-line automation system with per-action ownership and safety">
-  I built a command-line automation system where every action has an owner, a safety boundary, and captured evidence.
+<CaseSection title="I built a command-line toolkit where every external action leaves evidence">
+  I built a Bun and TypeScript toolkit for LinkedIn analytics, job capture, and read-only Sales Navigator research, with guarded outreach and a local review queue.
 
-    Browser automation is easy to demo and hard to trust. The real risk was ownership: I needed to know which workflow could take each action, whether it was allowed, what evidence it captured, and how to check the result when the browser or LinkedIn left the outcome uncertain.
+    The opening screenshot shows the original Python review interface.
 
-</CaseSection>
-
-<CaseSection title="I put risky LinkedIn actions behind review and approval">
-  LinkedIn Tools is a public Python project that brings networking, recruiter and agency outreach, opportunity research, comment collection, browser evidence, and local review into one system.
-
-    Every action has an owner, irreversible actions require explicit approval, and each run leaves enough evidence to inspect what happened.
+    Browser automation is easy to demo and hard to trust. I needed to know what each workflow was allowed to do, what evidence supported each step, and how to check the result when the browser left an outcome uncertain.
 
 </CaseSection>
 
-<CaseSection title="Each workflow owns a narrow set of actions">
-  <DecisionBlock title="Give each workflow an owner.">
-    Connection requests, acceptance tracking, accepted follow-ups, and pending-invitation cleanup live under the network controller. Recruiter and agency outreach owns account sourcing, lead capture, drafts, dashboards, dry runs, and guarded message sends. Opportunity intelligence ranks buyer-signal comments but does not send, connect, or withdraw.
+<CaseSection title="Outreach waits for review and a receipt">
+  LinkedIn Tools is a public project that brings job capture, hiring-team research, draft outreach, and follow-up handoffs into one system.
+
+    A SvelteKit review queue groups hiring-team leads by person, so each contact has one reviewable draft, and it records approval before the send path can run.
+
+</CaseSection>
+
+<CaseSection title="Each step has an owner and leaves a record">
+  <DecisionBlock title="Capture jobs in phases.">
+    Chrome capture stages pages in SQLite. Normalization then deduplicates by LinkedIn job ID, one page per transaction, and short resumable runs stay within a wall-clock budget so an interrupted run can pick up where it stopped.
   </DecisionBlock>
 
-    <DecisionBlock title="Require approval beside the real action.">
-    Commands that can change LinkedIn default to a preview. The user has to allow sending or withdrawing beside the browser command that performs it.
+    <DecisionBlock title="Triage with evidence, not rejection.">
+    Every kept job with hiring-team contacts gets a strong, possible, or weak bucket with the evidence behind it. Triage never rejects a job or changes its review status.
     </DecisionBlock>
 
-    <DecisionBlock title="Keep the evidence needed to inspect a run.">
-    The system stores research runs, captured pages, action checks, saved candidates, accepted connections, extracted comments, rankings, browser evidence, and blockers so a run can be reviewed later.
+    <DecisionBlock title="Hand work to other systems through packets.">
+    Deterministic packets describe the next draft, application, HubSpot, Instantly, or follow-up step. Follow-up tasks are scheduled 5, 8, and 12 days after the first message, stop when a reply arrives, and skip any follow-up that already has a receipt.
     </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="The review screen shows what is ready, blocked, or uncertain">
-  The local review screen brings opportunities, network state, recruiter and agency queues, browser evidence, and guarded actions into one place.
+<CaseSection title="Research stays read-only">
+  Sales Navigator account capture works through caller-owned Chrome tabs and stores bounded evidence through the command line. It reads accounts and saved searches and never sends, connects, or edits anything.
 
-    The screenshot shows the safety boundaries beside the actions they control. It uses isolated example data so the portfolio does not expose private LinkedIn account information.
-
-</CaseSection>
-
-<CaseSection title="Four workflows share the same safety rules">
-  <DecisionBlock title="Networking keeps requests and follow-ups together.">
-    The networking workflow handles Sales Navigator searches, saved candidates, connection requests, completed-action checks, accepted connections, follow-up drafts, browser sessions, and pending-invitation cleanup.
-  </DecisionBlock>
-
-    <DecisionBlock title="Recruiter and agency outreach stays separate.">
-    This workflow handles account research, lead capture, message drafting, review screens, previews, and guarded sends. It requires a verified Sales Navigator identity before an agency contact can become ready to message.
-    </DecisionBlock>
-
-    <DecisionBlock title="Opportunity research can recommend but cannot send.">
-    The research workflow manages approved sources, searches, imported results, post queues, browser captures, experiments, and review exports. Its first source set includes 38 enabled sources and ranks results by problem fit, buying signal, buyer fit, actionability, and immediacy.
-    </DecisionBlock>
-
-    <DecisionBlock title="Comment collection can resume after interruption.">
-    Comment collection works from saved pages or the browser, respects safety limits, records progress, stores results locally, and keeps checkpoints and retry information.
-    </DecisionBlock>
-
-    <DecisionBlock title="The review screen reads the same saved state.">
-    The screen shows research sources, post queues, collection runs, ranked comments, experiments, network runs, follow-up drafts, pending cleanup, recruiter leads, browser sessions, and guarded actions from the same local records used by the commands.
-    </DecisionBlock>
+    A weekly seven-day content analytics export and the job checks run through Playwriter, while job capture, enrichment, and Sales Navigator research use caller-owned Chrome tabs.
 
 </CaseSection>
 
@@ -111,8 +90,8 @@ export const shippedRows = [
 
 <CaseSection title="The implementation is public">
   <p>
-    The repository contains the Python command-line tools, approved source lists, review screen,
-    browser actions, test data, and automated tests.
+    The repository contains the Bun and TypeScript command-line tool, the SQLite schema migrations,
+    the review queue, the browser helpers, and the automated tests.
   </p>
   <a
     class={pillLinkClass}

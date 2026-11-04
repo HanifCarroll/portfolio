@@ -1,9 +1,9 @@
 {
   "slug": "linkedin-tools",
   "title": "LinkedIn Tools",
-  "description": "Puts LinkedIn automation behind review queues, approval gates, and follow-up checks, so risky browser actions stay controlled.",
-  "seoTitle": "LinkedIn Tools Project | Guarded LinkedIn Automation Controller",
-  "seoDescription": "How a guarded Python and Playwright system runs LinkedIn networking, outreach, opportunity research, and review workflows.",
+  "description": "Puts LinkedIn job capture, research, and outreach behind review queues, send receipts, and handoff packets, so risky browser actions stay controlled.",
+  "seoTitle": "LinkedIn Tools Project | Guarded LinkedIn Automation Toolkit",
+  "seoDescription": "How a guarded Bun and TypeScript toolkit runs LinkedIn analytics, job capture, Sales Navigator research, and reviewed outreach with send receipts and handoff packets.",
   "proofType": "experiment",
   "cardLabel": "Independent R&D",
   "client": "Personal product",
@@ -15,29 +15,37 @@
   "year": "2026",
   "timeline": "Ongoing system build, 2026",
   "teamSize": "Solo build",
-  "technologies": ["Python", "SQLite", "FastAPI", "Jinja", "Playwright", "Pydantic"],
+  "technologies": [
+    "Bun",
+    "TypeScript",
+    "SQLite",
+    "SvelteKit",
+    "Playwriter",
+    "HubSpot",
+    "Instantly"
+  ],
   "constraints": [
-    "The system had to separate read-only recommendation workflows from browser actions that can send messages, connections, or withdrawals.",
+    "The system had to separate read-only research from browser actions that can send messages, and make every send traceable to a reviewed draft.",
     "The public portfolio example could not expose local LinkedIn state, private browser evidence, credentials, or live account data."
   ],
   "problem": [
-    "LinkedIn networking, recruiter outreach, opportunity discovery, comment extraction, and acceptance follow-up work were too risky to run as scattered browser scripts.",
+    "LinkedIn job capture, hiring-team research, outreach, and follow-up work were too risky to run as scattered browser scripts.",
     "The hard part was ownership: which workflow could send, which could only recommend, what evidence was captured, and what needed checking after uncertain browser behavior."
   ],
   "solution": [
-    "Built one Python project with a command-line tool for networking, recruiter and agency outreach, opportunity research, comment collection, local review, and system checks.",
-    "Put risky actions behind workflow-owned states, browser evidence, audit reports, and explicit approval flags for sending or withdrawing.",
-    "Added a local review screen that reads the same saved state as the command-line workflows and shows opportunities, network runs, recruiter and agency queues, browser evidence, and guarded actions."
+    "Built one Bun and TypeScript command-line tool on SQLite for analytics export, job capture and enrichment, evidence-backed triage, read-only Sales Navigator research, and reviewed outreach drafts.",
+    "Put sends behind approved drafts and receipts that reserve one attempt per draft, block retries while a send may have gone out, and release only on confirmation that nothing was sent.",
+    "Added a SvelteKit review queue that groups hiring-team leads by person and records approval before the send path can run, and deterministic handoff packets for HubSpot, Instantly, and follow-up work."
   ],
   "result": [
-    "Moved LinkedIn automation behind defined workflows with approved source lists, follow-up reports, saved candidates, accepted-connection records, review queues, and protected action pages.",
-    "Separated the boundaries: network owns connection requests and accepted follow-ups, recruiter/agency outreach sends drafted messages only, and opportunity intelligence remains recommend-only.",
+    "Moved LinkedIn automation behind defined workflows with phased job intake, evidence-backed triage, review queues, send receipts, and scheduled follow-up packets.",
+    "Carried a multi-workflow Python suite into one tool through 30 schema migrations and a report that lists each proposed carry-over.",
     "Created a public example of browser automation where state, evidence, and approval gates are part of the product from the start."
   ],
   "deliveryHighlights": [
-    "One command-line tool exposes the active networking, recruiter and agency, opportunity, comment, and review workflows.",
-    "Real sends and withdrawals require explicit flags close to the browser action.",
-    "Tests cover approved sources, post queues, browser behavior, network follow-up checks, recruiter and agency state, stored-data changes, and review screens."
+    "One command-line tool exposes analytics, job capture, triage, Sales Navigator research, and outreach review.",
+    "Sends are tied to approved drafts and receipts, and retries stay blocked while an outcome is uncertain.",
+    "Handoff packets carry stored evidence and stop conditions, and receipt commands store external IDs without the tool calling those services."
   ],
   "repository": "https://github.com/HanifCarroll/linkedin-network-run",
   "relatedLinks": [
