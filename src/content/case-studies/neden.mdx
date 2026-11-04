@@ -7,15 +7,46 @@ import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import wordLookup from "../../assets/img/projects/neden/word-lookup.png";
 import subtitleControls from "../../assets/img/projects/neden/subtitle-controls.png";
 
-<CaseSection title="Learn a language while watching videos">
-  Neden helps you learn a language while watching videos on a Mac. Click a subtitle word for its meaning, or select a phrase to pause playback and open an explanation beside the video. You can ask follow-up questions in the same conversation.
+<CaseSection title="Learn a language from the shows you already watch">
+  Neden is a desktop video player for learning a language. Show the original dialogue next to a translation, click a subtitle word for its meaning, or select a phrase to pause playback and open an explanation beside the video. You can ask follow-up questions in the same conversation.
 
-It works with IINA, a video player for Mac. I designed the interface, built the TypeScript plugin and Swift helper, and handled packaging and testing in the installed player.
+I designed the product and built the Qt Quick player, the hosted API, the website, and the packaging. A separate plugin brings the same lookups to IINA, a video player for Mac, using a TypeScript plugin and a Swift helper.
 
 </CaseSection>
 
-<CaseSection title="Word lookup and phrase explanations" media>
-  Clicking a word opens a small card over the video. You can choose Google Cloud Translation or Microsoft Translator and supply your own key. Google returns one translation. Microsoft’s English dictionary can offer alternatives, falling back to translation when it doesn’t have an entry.
+<CaseSection title="A player built for study">
+  <DecisionBlock title="Subtitles you can study from">
+    The player shows two subtitle tracks at once, keeps a searchable transcript, replays the current line, and remembers where you stopped. Hovering a subtitle word opens its meaning, and phrase explanations return a translation followed by a breakdown that covers every spoken word.
+  </DecisionBlock>
+
+<DecisionBlock title="Flashcards inside the playback workflow">
+  Local flashcards let you save what you looked up and review it later. A remembered card comes back
+  after a longer gap each time, and a missed card returns in ten minutes. Cards export as TSV.
+</DecisionBlock>
+
+  <DecisionBlock title="More than one language">
+    A validated language catalog drives word lookup, which preserves Unicode and uses native segmentation for scripts written without spaces. Checks cover Arabic, Chinese, Japanese, Hindi, Persian, Cyrillic, and Latin text.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Subtitle tools">
+  <DecisionBlock title="Repair timing between two tracks">
+    The player searches up to two minutes of offset and common frame-rate drift, refines the match, and rejects alignments that are ambiguous. Manual time anchors are available, and a track never changes until you confirm.
+  </DecisionBlock>
+
+<DecisionBlock title="Translate with AI without leaving half a file">
+  AI translation keeps every cue's timing, sends eight cues at a time with neighboring dialogue, and
+  checks the returned sequence. A completed track loads only after every batch succeeds, so
+  cancelling or a malformed response never leaves a partial file.
+</DecisionBlock>
+
+  <DecisionBlock title="Find subtitles and read embedded ones">
+    The player searches and downloads from subtitle providers, with size limits and checks on every download. It also extracts embedded Matroska and MP4 subtitle tracks with bundled FFmpeg libraries, removes styling, and keeps the timing.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Word lookup and phrase explanations in IINA" media>
+  In the IINA plugin, clicking a word opens a small card over the video. You can choose Google Cloud Translation or Microsoft Translator and supply your own key. Google returns one translation. Microsoft’s English dictionary can offer alternatives, falling back to translation when it doesn’t have an entry.
 
 Selecting a phrase opens the AI sidebar. The prompt asks for its natural meaning, a breakdown of the selected words, and grammar where useful. The full subtitle line and neighboring cues provide context.
 
@@ -25,15 +56,21 @@ In the scene shown here, word lookup returns “broken” for “bozuk.” In th
 </CaseSection>
 
 <CaseSection title="Streaming answers during playback">
-  <DecisionBlock title="A Swift helper for streaming">
+  <DecisionBlock title="A Swift helper for streaming in IINA">
     The IINA HTTP API I inspected didn’t let me display an answer as it arrived. I built a Swift helper to receive the response in chunks, then pass the text to the TypeScript sidebar. I tested how it handles responses split across chunks, interrupted connections, and timeouts.
   </DecisionBlock>
 
 <DecisionBlock title="Discarding late responses">
-  A new selection, track change, or different movie can make an in-flight response irrelevant. The
-  plugin checks which player, conversation, and selection a response belongs to before displaying
-  it, so an old answer cannot overwrite a newer explanation. Stop leaves a partial answer visibly
-  incomplete.
+  Each explanation captures its selection, subtitle cue, and neighboring context as a snapshot and
+  tags the request with its owner. A new selection, track change, seek, or different movie can make
+  an in-flight response irrelevant, so a stream that arrives late cannot overwrite the current
+  answer. Stop leaves a partial answer visibly incomplete.
+</DecisionBlock>
+
+<DecisionBlock title="A second provider when the first is slow">
+  An optional fallback starts a second provider after five seconds without an answer. It never
+  switches once text has started, lets you reorder the two providers, and warns that both attempts
+  may be billed.
 </DecisionBlock>
 
   <DecisionBlock title="Pause, resume, and replay">
@@ -56,15 +93,24 @@ Screenshots show the installed plugin during a Leyla ile Mecnun episode, with Tu
 <CaseSection title="Provider requests and saved keys">
   Requests go directly to the learner's configured providers. Word lookup sends the clicked word; phrase explanations send the selection, its cue, nearby subtitle context, and conversation turns. The video and complete subtitle file are not uploaded.
 
-Neden stores provider keys through IINA’s macOS Keychain integration. Once saved, the keys aren’t sent back to the sidebar. The Swift helper receives them through private pipes, which avoids putting credentials in command arguments.
+Neden stores provider and subtitle-service keys in the operating system's credential store, with no plaintext fallback, and binds each key to its API origin. In the IINA plugin the Swift helper receives keys through private pipes, which avoids putting credentials in command arguments.
 
-I also restricted how model responses are rendered and added validation for subtitle files and messages from the interface.
+I also built an invitation-only hosted AI tier. It signs in through the browser, keeps refresh tokens in the keychain, runs Stripe checkout with verified webhooks, and reserves each account's usage allowance in a Durable Object before any provider call, so concurrent requests cannot overspend.
+
+I restricted how model responses are rendered and added validation for subtitle files and messages from the interface.
+
+</CaseSection>
+
+<CaseSection title="Packaging and tests">
+  I built installers for macOS, Windows, and Ubuntu. Each build records its source revision, checks pinned source archives and dependency notices, and a CI smoke test installs the package and checks decoded video pixels. A software OpenGL fallback fixed video failures on some Windows graphics drivers.
+
+Automated tests cover the IINA plugin, the hosted API, and the desktop player, including native interface checks and a scenario runner that drives the real QML interface against a mock AI service.
 
 </CaseSection>
 
 <CaseSection title="Website and source code">
 Visit the [Neden website](https://neden.hanifcarroll.com/) to see how it works and download the app.
 
-The [source is available on GitHub](https://github.com/HanifCarroll/iina-language-learning-plugin), including the TypeScript plugin and Swift streaming helper.
+The [source is available on GitHub](https://github.com/HanifCarroll/Neden), including the Qt Quick desktop player, the TypeScript IINA plugin, the Swift streaming helper, and the hosted API.
 
 </CaseSection>

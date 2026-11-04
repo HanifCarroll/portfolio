@@ -1,38 +1,48 @@
 {
   "slug": "neden",
   "title": "Neden — Learn languages with videos",
-  "description": "Built a tool that helps people learn a language while watching videos on a Mac. Click subtitle words for their meanings, ask AI to explain phrases, and replay dialogue without leaving the video.",
+  "description": "Built a desktop video player for language learning, with dual subtitles, word meanings, AI explanations, and subtitle tools, plus a plugin that brings the same lookups to IINA on a Mac.",
   "seoTitle": "Neden | Language learning with videos | Hanif Carroll",
-  "seoDescription": "Learn a language while watching videos on a Mac. Look up subtitle words, ask AI to explain phrases, and replay dialogue without leaving the video.",
+  "seoDescription": "A desktop video player for learning a language from the shows you already watch. Look up subtitle words, ask AI to explain phrases, repair and translate subtitles, and replay dialogue.",
   "proofType": "experiment",
   "cardLabel": "Independent tool",
   "client": "Neden",
   "service": "Desktop AI product",
   "detailVariant": "product",
-  "role": "Product design, development, and Mac integration",
+  "role": "Product design, development, and desktop integration",
   "category": "product",
   "track": "ai_systems",
   "year": "2026",
   "timeline": "September 2026 · Ongoing development",
   "teamSize": "Solo build",
-  "technologies": ["TypeScript", "Swift", "IINA", "Server-Sent Events", "macOS Keychain"],
+  "technologies": [
+    "Qt Quick",
+    "C++",
+    "libmpv",
+    "FFmpeg",
+    "TypeScript",
+    "Swift",
+    "IINA",
+    "Cloudflare Workers"
+  ],
   "liveUrl": "https://neden.hanifcarroll.com/",
   "liveCtaLabel": "Visit Neden website",
   "liveStatusLabel": "Preview downloads available",
-  "repository": "https://github.com/HanifCarroll/iina-language-learning-plugin",
+  "repository": "https://github.com/HanifCarroll/Neden",
   "repositoryCtaLabel": "Explore the source",
   "problem": [
     "Looking up unfamiliar dialogue in another app takes the learner away from the video and subtitles.",
     "A translation can give the overall meaning without explaining how the words and grammar produce it."
   ],
   "solution": [
-    "Added clickable subtitles, quick word lookup, and a panel for AI explanations and follow-up questions beside the video.",
-    "Built a Swift helper for incremental HTTPS responses and kept playback, conversation, and request ownership in the TypeScript plugin.",
-    "Stored provider keys in macOS Keychain. Phrase requests include the selected text, nearby subtitle cues, and conversation history."
+    "Built a desktop player with dual subtitles, clickable words, searchable transcripts, line replay, local flashcards, and a panel for AI explanations and follow-up questions beside the video.",
+    "Added subtitle tools: timing repair between two tracks, AI translation that loads only complete results, search and download from subtitle providers, and extraction of embedded tracks.",
+    "Kept the IINA plugin as a second way in, with a Swift helper for incremental responses, and stored provider keys in the operating system's credential store."
   ],
   "result": [
-    "Word lookup, AI explanations, and line replay work alongside the video and subtitles.",
-    "Public MIT-licensed source and a locally installable package, with broader native testing still to do."
+    "Word lookup, AI explanations, subtitle tools, and line replay work alongside the video and subtitles.",
+    "Packaged installers for macOS, Windows, and Ubuntu with automated tests across the plugin, the hosted API, and the desktop player.",
+    "Public MIT-licensed source, a product website, and downloadable preview builds."
   ],
   "images": {
     "hero": "@src/assets/img/projects/neden/phrase-explanation.png",
