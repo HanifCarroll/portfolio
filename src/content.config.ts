@@ -25,4 +25,13 @@ const caseStudies = defineCollection({
   schema: z.object({}),
 });
 
-export const collections = { blog, caseStudies };
+const atlas = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/atlas" }),
+  schema: z.object({
+    title: z.string(),
+    section: z.enum(["product", "application", "testing", "ai", "agents"]),
+    summary: z.string(),
+  }),
+});
+
+export const collections = { blog, caseStudies, atlas };

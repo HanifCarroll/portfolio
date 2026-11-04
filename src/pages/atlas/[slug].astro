@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+import { atlasSections } from '../../data/atlas';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('atlas');
+	return entries.map((entry) => ({ params: { slug: entry.id }, props: entry }));
+}
+
+type Props = CollectionEntry<'atlas'>;
+const entry = Astro.props;
+const { Content } = await render(entry);
+const section = atlasSections.find(({ id }) => id === entry.data.section)!;
+---
+
+<BaseLayout title={`${entry.data.title} | Build Atlas`} description={entry.data.summary} ogType='article' showFooterCta={false} footerLinksOnly>
+	<article class='mx-auto w-[min(calc(100%-3rem),44rem)] pt-12 pb-24 lg:pt-20'>
+		<nav class='mb-6 font-sans text-sm text-ink-muted' aria-label='Breadcrumb'>
+			<a class='text-ink-muted hover:text-accent-ink' href='/atlas/'>Build Atlas</a>
+			<span aria-hidden='true'> / </span>
+			<a class='text-ink-muted hover:text-accent-ink' href={`/atlas/#${section.id}`}>{section.title}</a>
+		</nav>
+		<header class='mb-10'>
+			<h1 class='m-0 font-editorial text-[clamp(2.4rem,4vw,3.15rem)] font-medium leading-[1.02] tracking-[-0.025em] text-ink text-balance'>{entry.data.title}</h1>
+			<p class='mt-4 mb-0 font-editorial text-[clamp(1.2rem,1.5vw,1.4rem)] leading-[1.4] text-ink-muted text-balance'>{entry.data.summary}</p>
+		</header>
+		<Prose
+			class:list={[
+				'max-w-none font-editorial text-[1.15rem] leading-[1.65] text-ink',
+				'prose-p:text-ink prose-li:text-ink prose-li:my-1 prose-strong:font-bold',
+				'prose-headings:font-editorial prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-[clamp(1.6rem,2.5vw,2rem)] prose-h2:font-medium',
+				'prose-blockquote:my-6 prose-blockquote:border-0 prose-blockquote:bg-ink/5 prose-blockquote:p-6 prose-blockquote:not-italic prose-blockquote:font-mono prose-blockquote:text-[0.85em] prose-blockquote:leading-[1.6] [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none [&_blockquote_p:last-child]:mb-0',
+				'prose-code:font-mono prose-code:before:content-none prose-code:after:content-none [&_:not(pre)>code]:text-[0.88em]',
+			]}
+		>
+			<Content />
+		</Prose>
+		<p class='mt-16 mb-0 border-t border-rule pt-6 font-sans text-sm'>
+			<a class='text-ink-muted hover:text-accent-ink' href='/atlas/'>← All Build Atlas entries</a>
+		</p>
+	</article>
+</BaseLayout>
