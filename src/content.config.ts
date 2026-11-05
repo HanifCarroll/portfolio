@@ -29,7 +29,7 @@ const atlas = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/atlas" }),
   schema: z.object({
     title: z.string(),
-    section: z.enum(["code", "ai", "repo", "production", "agent"]),
+    section: z.enum(["code", "ai", "tests", "guardrails", "production", "agent"]),
     summary: z.string(),
   }),
 });

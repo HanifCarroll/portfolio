@@ -1,6 +1,6 @@
 ---
 title: "Visual regression testing"
-section: repo
+section: tests
 summary: "Catches unintended visual changes by comparing screenshots against a saved baseline."
 ---
 

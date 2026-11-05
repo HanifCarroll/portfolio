@@ -1,8 +1,9 @@
-// Sections answer one question: where does this component live?
+// Sections mostly answer one question: where does this component live? Tests and guardrails split the repo for size.
 export const atlasSections = [
 	{ id: 'code', title: 'In your app’s code', description: 'Libraries and patterns inside the software you ship.' },
 	{ id: 'ai', title: 'In your AI features', description: 'Components for products that call language models.' },
-	{ id: 'repo', title: 'In your repo and pipeline', description: 'Tools and checks that run while you build, before code reaches users.' },
+	{ id: 'tests', title: 'Tests', description: 'Checks that show the software does what it should.' },
+	{ id: 'guardrails', title: 'Guardrails', description: 'Checks and tools in your repo that keep bad code from getting in.' },
 	{ id: 'production', title: 'In production', description: 'What runs and measures your app once people use it.' },
 	{ id: 'agent', title: 'Around the agent', description: 'The context, tools and limits you give a coding agent.' },
 ] as const;

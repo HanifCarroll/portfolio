@@ -1,6 +1,6 @@
 ---
 title: "AI code review"
-section: repo
+section: guardrails
 summary: "A separate agent that reviews changes against the spec and your standards before a human does."
 ---
 

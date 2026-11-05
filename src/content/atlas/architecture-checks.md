@@ -1,6 +1,6 @@
 ---
 title: "Custom lint rules and architecture checks"
-section: repo
+section: guardrails
 summary: "Turns your team's rules into checks that fail the build, with error messages that tell the agent how to fix it."
 ---
 

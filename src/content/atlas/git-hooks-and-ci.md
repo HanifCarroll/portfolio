@@ -1,6 +1,6 @@
 ---
 title: "Git hooks and CI gates"
-section: repo
+section: guardrails
 summary: "Runs your checks automatically before commits and merges, so broken work can't slip through."
 ---
 

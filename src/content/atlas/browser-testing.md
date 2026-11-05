@@ -1,6 +1,6 @@
 ---
 title: "Component and end-to-end tests"
-section: repo
+section: tests
 summary: "Tests the UI in a real browser, from single components up to full user journeys."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Property-based testing"
-section: repo
+section: tests
 summary: "Tests a rule against hundreds of generated inputs instead of a few you picked by hand."
 ---
 
