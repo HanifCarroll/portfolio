@@ -100,6 +100,7 @@ const testimonials = [...allTestimonials].sort((a, b) => {
   const rank = (name: string) => order.includes(name) ? order.indexOf(name) : order.length;
   return rank(a.name) - rank(b.name);
 });
+const [heroTestimonial, ...sliderTestimonials] = testimonials;
 
 const experience = [
 	{
@@ -247,24 +248,30 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 				<p class='mt-3 mb-0 text-lg font-medium text-ink'>Forward Deployed Engineer</p>
 				<div class='mt-6 grid max-w-md gap-4 text-base leading-relaxed text-ink-muted'>
 					<p class='m-0'>I learn how an organization works, figure out where software could help, and build it with the people who’ll use it.</p>
-					<p class='m-0'>Recently, that’s meant turning a salvage yard’s sales and dismantling workflow into an operations prototype, building billing and AI workflows alongside Genrupt’s founder, and shaping Palabruno around what teachers and learners each needed.</p>
-					<p class='m-0'>Available for fully remote roles and contracts working directly with clients.</p>
+					<p class='m-0'>Open to fully remote roles and direct contracts.</p>
 				</div>
 				<div class='mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm'>
-					<a class={linkClass} href='/Hanif-Carroll-Resume.pdf' download='Hanif-Carroll-Resume.pdf' data-track-event='resume_downloaded' data-track-location='home_hero'>
-						Resume
-					</a>
 					<a
-						class={`inline-flex items-center gap-1 ${linkClass}`}
+						class='inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-[0.9rem] font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
 						href={BOOK_CALL_URL}
 						target='_blank'
 						rel='noopener noreferrer'
 						data-track-event='book_call_clicked'
 						data-track-location='home_hero'
 					>
-						Book a call <svg viewBox='0 0 24 24' width='14' height='14' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M7 17L17 7'></path><path d='M7 7h10v10'></path></svg>
+						Book a call
+						<svg class='size-3.5 fill-none stroke-current stroke-[1.25]' aria-hidden='true' viewBox='0 0 16 16' focusable='false'><path d='M3 13 13 3M6 3h7v7' /></svg>
+					</a>
+					<a class={linkClass} href='/Hanif-Carroll-Resume.pdf' download='Hanif-Carroll-Resume.pdf' data-track-event='resume_downloaded' data-track-location='home_hero'>
+						Resume
 					</a>
 				</div>
+				<blockquote class='mt-10 mb-0 max-w-md border-l-2 border-accent pl-4'>
+					<p class='m-0 text-sm leading-relaxed text-ink'>“{heroTestimonial.quote}”</p>
+					<footer class='mt-3 text-xs text-ink-muted'>
+						<cite class='not-italic'><span class='font-semibold text-ink'>{heroTestimonial.name}</span> · {heroTestimonial.role}</cite>
+					</footer>
+				</blockquote>
 			</div>
 
 			<div id='projects' class='min-w-0 scroll-mt-24 lg:col-span-7'>
@@ -275,7 +282,7 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 							<a class='group grid gap-3 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-8 sm:gap-4' href={`/projects/${project.slug}/`}>
 								<div class='sm:col-span-3'>
 									<Image
-										class='aspect-video w-full object-contain'
+										class='aspect-video w-full rounded-md object-cover'
 										src={project.image}
 										alt={project.alt}
 										loading='lazy'
@@ -307,7 +314,7 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 			</div>
 			<div class={bodyClass}>
 				<div class='hc-home-feedback__viewport' aria-live='polite' aria-atomic='true' data-testimonial-viewport>
-					{testimonials.map((testimonial, index) => (
+					{sliderTestimonials.map((testimonial, index) => (
 						<blockquote
 							class:list={['hc-home-feedback__quote', index === 0 && 'is-active']}
 							data-testimonial-slide={index}
@@ -325,7 +332,7 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 				</div>
 				<div class='hc-home-feedback__controls mt-8 flex items-center justify-between gap-4' role='group' aria-label='Testimonial controls'>
 					<button type='button' data-testimonial-prev aria-label='Previous testimonial'>Previous</button>
-					<span class='text-xs tracking-[0.06em] text-ink-muted tabular-nums' data-testimonial-position>1 / {testimonials.length}</span>
+					<span class='text-xs tracking-[0.06em] text-ink-muted tabular-nums' data-testimonial-position>1 / {sliderTestimonials.length}</span>
 					<button type='button' data-testimonial-next aria-label='Next testimonial'>Next</button>
 				</div>
 			</div>
