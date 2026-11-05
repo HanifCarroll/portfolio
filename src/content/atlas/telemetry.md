@@ -1,6 +1,6 @@
 ---
 title: "Telemetry (traces, metrics, logs)"
-section: application
+section: production
 summary: "Records what your running system is doing, so people and agents can see why something went wrong."
 ---
 

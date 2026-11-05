@@ -1,7 +1,7 @@
 ---
 // Entry list with search. Used in the desktop sidebar and the mobile header Contents panel.
 import { getCollection } from 'astro:content';
-import { atlasSections, atlasTools } from '../../data/atlas';
+import { atlasProblems, atlasSections, atlasTools } from '../../data/atlas';
 
 const { id = 'atlas-search' } = Astro.props;
 const current = Astro.url.pathname.match(/^\/atlas\/([^/]+)/)?.[1];
@@ -26,7 +26,7 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 				<p class='m-0 mb-1.5 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
 				<ul class='m-0 list-none border-l border-rule p-0'>
 					{section.entries.map((entry) => (
-						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body)].join(' ').toLowerCase()}>
+						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body), ...atlasProblems.filter((problem) => problem.entries.includes(entry.id)).map((problem) => problem.title)].join(' ').toLowerCase()}>
 							<a
 								class:list={[
 									'-ml-px block border-l py-1.5 pl-3 font-sans text-[0.95rem] leading-snug no-underline transition-colors lg:py-1 lg:text-[0.85rem]',

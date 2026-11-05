@@ -1,6 +1,6 @@
 ---
 title: "Agent and MCP security scanner"
-section: ai
+section: agent
 summary: "Checks AI agents, MCP servers and skills for prompt injection, tool poisoning and leaked secrets."
 ---
 

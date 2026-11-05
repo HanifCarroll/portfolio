@@ -1,6 +1,6 @@
 ---
 title: "Accessibility checker"
-section: testing
+section: repo
 summary: "Automatically finds accessibility problems like missing labels, low contrast and broken keyboard access."
 ---
 

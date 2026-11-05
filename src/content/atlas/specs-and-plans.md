@@ -1,6 +1,6 @@
 ---
 title: "Specs and execution plans"
-section: agents
+section: agent
 summary: "Written requirements and a living plan, so agents build the right thing and long work survives across sessions."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Agent task tracker"
-section: agents
+section: agent
 summary: "A task list agents can read and update themselves, so long-running work doesn't get lost between sessions."
 ---
 

@@ -1,11 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import AtlasLayout from '../../layouts/AtlasLayout.astro';
-import { atlasSections, atlasTools } from '../../data/atlas';
+import { atlasProblems, atlasSections, atlasTools } from '../../data/atlas';
 
 const description =
 	'A vocabulary of the components a software project needs, from product to code to the agents that build it. Each entry says what a component is, when you need it, popular choices, and what to tell your agent.';
 const entries = (await getCollection('atlas')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const byId = new Map(entries.map((entry) => [entry.id, entry]));
+const problems = atlasProblems.map((problem) => ({
+	...problem,
+	entries: problem.entries.map((id) => byId.get(id) ?? (() => { throw new Error(`Unknown Build Atlas entry in atlasProblems: ${id}`); })()),
+}));
 const sections = atlasSections.map((section) => ({ ...section, entries: entries.filter((entry) => entry.data.section === section.id) }));
 ---
 
@@ -16,6 +21,22 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 			System design has shared words like database, queue and cache. Building with AI needs the same kind of words for everything else, so you can name what you need and tell an agent to build it. Each entry says what a component is, when you need it, the popular choices, and what to tell your agent.
 		</p>
 	</header>
+
+	<section class='mb-14' aria-labelledby='problems-title'>
+		<h2 id='problems-title' class='m-0 mb-4 border-b border-rule pb-2 text-xl font-bold tracking-[-0.015em] text-ink'>What are you trying to do?</h2>
+		<dl class='m-0 grid gap-x-10 gap-y-5 md:grid-cols-2'>
+			{problems.map((problem) => (
+				<div>
+					<dt class='font-semibold text-ink'>{problem.title}</dt>
+					<dd class='m-0 mt-1 text-[0.9rem] leading-[1.6] text-ink-muted'>
+						{problem.entries.map((entry, index) => (
+							<>{index > 0 && <span aria-hidden='true'> · </span>}<a class='text-ink-muted underline decoration-rule underline-offset-[0.2em] hover:text-accent-ink' href={`/atlas/${entry.id}/`}>{entry.data.title}</a></>
+						))}
+					</dd>
+				</div>
+			))}
+		</dl>
+	</section>
 
 	{sections.map((section) => (
 		<section id={section.id} class='mb-12 scroll-mt-24' aria-labelledby={`${section.id}-title`}>

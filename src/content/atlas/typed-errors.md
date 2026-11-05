@@ -1,6 +1,6 @@
 ---
 title: "Typed errors and effects"
-section: application
+section: code
 summary: "Makes the ways a function can fail part of its type, so callers have to handle them."
 ---
 

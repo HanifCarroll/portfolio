@@ -1,6 +1,6 @@
 ---
 title: "App framework"
-section: application
+section: code
 summary: "The foundation that handles routing, rendering and server code for a web or mobile app."
 ---
 

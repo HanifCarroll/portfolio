@@ -1,6 +1,6 @@
 ---
 title: "Runtime schema validation"
-section: application
+section: code
 summary: "Checks that data coming into your app has the shape you expect, at the moment it arrives."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Agent instructions file (AGENTS.md)"
-section: agents
+section: agent
 summary: "A file in your repo that tells coding agents how the project works and how to check their work."
 ---
 

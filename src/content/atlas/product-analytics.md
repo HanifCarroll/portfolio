@@ -1,6 +1,6 @@
 ---
 title: "Product analytics"
-section: product
+section: production
 summary: "Shows what people actually do in your product, so you can tell what's working."
 ---
 

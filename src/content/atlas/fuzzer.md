@@ -1,6 +1,6 @@
 ---
 title: "Fuzzer"
-section: testing
+section: repo
 summary: "Throws huge numbers of generated, often malformed inputs at your code to find crashes."
 ---
 

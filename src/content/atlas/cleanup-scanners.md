@@ -1,6 +1,6 @@
 ---
 title: "Duplication and dead-code scanners"
-section: agents
+section: repo
 summary: "Finds copy-pasted logic and unused code, giving cleanup work a concrete list."
 ---
 

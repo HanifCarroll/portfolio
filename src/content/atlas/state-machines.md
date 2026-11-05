@@ -1,6 +1,6 @@
 ---
 title: "State machine / statechart"
-section: application
+section: code
 summary: "Writes complex logic as explicit states and transitions instead of scattered flags."
 ---
 

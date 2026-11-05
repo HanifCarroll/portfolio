@@ -1,6 +1,6 @@
 ---
 title: "Feature flags"
-section: product
+section: production
 summary: "Turn features on and off without redeploying, and release to a few users first."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Infrastructure from code"
-section: application
+section: production
 summary: "Declares databases, queues and services in code, so the same setup runs locally and in the cloud."
 ---
 

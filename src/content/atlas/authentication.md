@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-section: application
+section: code
 summary: "Signs users in, keeps them signed in, and controls what they can access."
 ---
 

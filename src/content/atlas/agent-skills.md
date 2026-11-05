@@ -1,6 +1,6 @@
 ---
 title: "Agent skills"
-section: agents
+section: agent
 summary: "Packaged procedures and know-how that an agent loads only when a task needs them."
 ---
 

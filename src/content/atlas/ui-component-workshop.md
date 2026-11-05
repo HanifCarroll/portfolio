@@ -1,6 +1,6 @@
 ---
 title: "UI component workshop"
-section: application
+section: repo
 summary: "A place to build and check UI components in every state, outside the full app."
 ---
 

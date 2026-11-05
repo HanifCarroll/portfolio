@@ -1,6 +1,6 @@
 ---
 title: "Agent sandbox"
-section: agents
+section: agent
 summary: "Limits what an agent can touch on your machine and network, so it can work unattended safely."
 ---
 
