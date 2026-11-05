@@ -376,7 +376,21 @@ body:has(dialog[open]) {
 }
 
 .hc-mobile-nav__call-link {
-  color: var(--hc-accent-text);
+  width: fit-content;
+  min-height: 2.75rem;
+  margin-top: var(--hc-space-4);
+  padding: var(--hc-space-2) var(--hc-space-4);
+  border: 1px solid var(--hc-text);
+  border-radius: var(--hc-radius-control);
+  background: var(--hc-text);
+  color: var(--hc-canvas);
+  font-size: 0.9rem;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.hc-mobile-nav__call-link::before {
+  display: none;
 }
 
 .hc-mobile-nav__note {
