@@ -1,0 +1,93 @@
+---
+// Docs-style shell for Build Atlas: sticky sidebar with search, content in the main column.
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { atlasSections, atlasTools } from '../data/atlas';
+
+interface Props {
+	title: string;
+	description: string;
+	current?: string;
+}
+
+const { title, description, current } = Astro.props;
+const entries = (await getCollection('atlas')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const sections = atlasSections.map((section) => ({ ...section, entries: entries.filter((entry) => entry.data.section === section.id) }));
+---
+
+<BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly>
+	<div class='mx-auto grid w-full max-w-page gap-10 px-6 pb-24 md:px-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16'>
+		<aside class='pt-8 lg:pt-12'>
+			<details class='atlas-nav group lg:sticky lg:top-24' open data-atlas-nav>
+				<summary class='flex cursor-pointer list-none items-center justify-between rounded-lg border border-rule px-4 py-3 font-sans text-sm font-semibold text-ink lg:hidden'>
+					All entries
+					<span class='font-normal text-ink-muted group-open:hidden'>Show</span><span class='hidden font-normal text-ink-muted group-open:inline'>Hide</span>
+				</summary>
+				<div class='mt-3 lg:mt-0 lg:max-h-[calc(100svh-8rem)] lg:overflow-y-auto lg:overscroll-contain lg:pb-8 lg:[scrollbar-width:none]'>
+					<a class='mb-4 block font-sans text-sm font-bold text-ink no-underline hover:text-accent-ink' href='/atlas/' aria-current={current ? undefined : 'page'}>Build Atlas</a>
+					<label class='sr-only' for='atlas-search'>Search components and tools</label>
+					<input
+						id='atlas-search'
+						type='search'
+						placeholder='Search components or tools…'
+						autocomplete='off'
+						class='mb-5 w-full rounded-lg border border-rule bg-canvas px-3 py-2 font-sans text-sm text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none'
+						data-atlas-search
+					/>
+					<p class='m-0 mb-4 hidden font-sans text-sm text-ink-muted' data-atlas-empty>No matches.</p>
+					<nav aria-label='Build Atlas entries'>
+						{sections.map((section) => (
+							<div class='mb-5' data-atlas-group>
+								<p class='m-0 mb-1.5 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
+								<ul class='m-0 list-none border-l border-rule p-0'>
+									{section.entries.map((entry) => (
+										<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body)].join(' ').toLowerCase()}>
+											<a
+												class:list={[
+													'-ml-px block border-l py-1 pl-3 font-sans text-[0.85rem] leading-snug no-underline transition-colors',
+													entry.id === current ? 'border-ink font-semibold text-ink' : 'border-transparent text-ink-muted hover:border-ink-muted hover:text-ink',
+												]}
+												href={`/atlas/${entry.id}/`}
+												aria-current={entry.id === current ? 'page' : undefined}
+											>
+												{entry.data.title}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						))}
+					</nav>
+				</div>
+			</details>
+		</aside>
+
+		<main class='min-w-0 pt-4 lg:pt-12'>
+			<slot />
+		</main>
+	</div>
+</BaseLayout>
+
+<script>
+	const nav = document.querySelector<HTMLDetailsElement>('[data-atlas-nav]');
+	// Collapsed by default on small screens so content comes first.
+	if (nav && matchMedia('(max-width: 63.999rem)').matches) nav.open = false;
+
+	const input = document.querySelector<HTMLInputElement>('[data-atlas-search]');
+	const empty = document.querySelector<HTMLElement>('[data-atlas-empty]');
+	input?.addEventListener('input', () => {
+		const terms = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+		let shown = 0;
+		document.querySelectorAll<HTMLElement>('[data-atlas-group]').forEach((group) => {
+			let groupShown = 0;
+			group.querySelectorAll<HTMLElement>('[data-atlas-item]').forEach((item) => {
+				const match = terms.every((term) => item.dataset.search!.includes(term));
+				item.hidden = !match;
+				if (match) groupShown++;
+			});
+			group.hidden = groupShown === 0;
+			shown += groupShown;
+		});
+		empty?.classList.toggle('hidden', shown > 0);
+	});
+</script>

@@ -5,3 +5,7 @@ export const atlasSections = [
 	{ id: 'ai', title: 'AI in the system', description: 'Components for products that use LLMs and agents.' },
 	{ id: 'agents', title: 'Building with agents', description: 'The repo, workflow and guardrails that keep coding agents productive and honest.' },
 ] as const;
+
+/** Tool names are the bold labels in an entry's "Popular choices" list. */
+export const atlasTools = (body = '') =>
+	[...(body.split('## Popular choices')[1]?.split('\n## ')[0] ?? '').matchAll(/^- \*\*(.+?)\*\*/gm)].map((match) => match[1]);

@@ -1,44 +1,41 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { atlasSections } from '../../data/atlas';
+import AtlasLayout from '../../layouts/AtlasLayout.astro';
+import { atlasSections, atlasTools } from '../../data/atlas';
 
-const title = 'Build Atlas';
 const description =
 	'A vocabulary of the components a software project needs, from product to code to the agents that build it. Each entry says what a component is, when you need it, popular choices, and what to tell your agent.';
 const entries = (await getCollection('atlas')).sort((a, b) => a.data.title.localeCompare(b.data.title));
 const sections = atlasSections.map((section) => ({ ...section, entries: entries.filter((entry) => entry.data.section === section.id) }));
 ---
 
-<BaseLayout title={`${title} | Hanif Carroll`} description={description} showFooterCta={false}>
-	<div class='mx-auto w-full max-w-page px-6 pb-24 md:px-12'>
-		<header class='max-w-reading pt-12 pb-12 lg:pt-20 lg:pb-16'>
-			<h1 class='m-0 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-none tracking-[-0.035em] text-ink'>{title}</h1>
-			<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>
-				System design has shared words like database, queue and cache. Building with AI needs the same kind of words for everything else, so you can name what you need and tell an agent to build it.
-			</p>
-			<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>
-				Each entry explains what a component is, when you need it and the popular choices, and ends with an instruction you can hand to your agent.
-			</p>
-		</header>
+<AtlasLayout title='Build Atlas | Hanif Carroll' description={description}>
+	<header class='max-w-reading pb-10'>
+		<h1 class='m-0 text-[clamp(2.25rem,5vw,3.25rem)] font-bold leading-none tracking-[-0.035em] text-ink'>Build Atlas</h1>
+		<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>
+			System design has shared words like database, queue and cache. Building with AI needs the same kind of words for everything else, so you can name what you need and tell an agent to build it. Each entry says what a component is, when you need it, the popular choices, and what to tell your agent.
+		</p>
+	</header>
 
-		<div class='grid gap-16 border-t border-rule pt-12 lg:pt-16'>
-			{sections.map((section) => (
-				<section id={section.id} class='scroll-mt-24' aria-labelledby={`${section.id}-title`}>
-					<h2 id={`${section.id}-title`} class='m-0 text-[clamp(1.25rem,2vw,1.75rem)] font-bold leading-tight tracking-[-0.015em] text-ink'>{section.title}</h2>
-					<p class='mt-2 mb-6 max-w-reading text-[0.95rem] leading-[1.6] text-ink-muted'>{section.description}</p>
-					<ul class='m-0 grid list-none gap-x-8 p-0 md:grid-cols-2'>
-						{section.entries.map((entry) => (
-							<li class='border-b border-rule'>
-								<a class='group block py-4 no-underline' href={`/atlas/${entry.id}/`}>
-									<span class='block font-semibold leading-snug text-ink transition-colors group-hover:text-accent-ink group-focus-visible:text-accent-ink'>{entry.data.title}</span>
-									<span class='mt-1 block text-[0.9rem] leading-[1.55] text-ink-muted'>{entry.data.summary}</span>
-								</a>
-							</li>
-						))}
-					</ul>
-				</section>
-			))}
-		</div>
-	</div>
-</BaseLayout>
+	{sections.map((section) => (
+		<section id={section.id} class='mb-12 scroll-mt-24' aria-labelledby={`${section.id}-title`}>
+			<div class='mb-2 border-b border-rule pb-2'>
+				<h2 id={`${section.id}-title`} class='m-0 text-xl font-bold tracking-[-0.015em] text-ink'>{section.title}</h2>
+				<p class='mt-1 mb-0 text-sm text-ink-muted'>{section.description}</p>
+			</div>
+			<ul class='m-0 list-none p-0'>
+				{section.entries.map((entry) => (
+					<li>
+						<a class='group -mx-3 grid gap-1 rounded-lg px-3 py-3 no-underline transition-colors hover:bg-ink/4 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-6' href={`/atlas/${entry.id}/`}>
+							<span class='font-semibold leading-snug text-ink group-hover:text-accent-ink'>{entry.data.title}</span>
+							<span class='text-[0.9rem] leading-[1.55] text-ink-muted'>
+								{entry.data.summary}
+								<span class='mt-1 block text-[0.8rem] text-ink-muted/80'>{atlasTools(entry.body).join(' · ')}</span>
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+	))}
+</AtlasLayout>

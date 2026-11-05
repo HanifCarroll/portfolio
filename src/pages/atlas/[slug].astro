@@ -1,44 +1,64 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import AtlasLayout from '../../layouts/AtlasLayout.astro';
 import Prose from '../../components/Prose.astro';
 import { atlasSections } from '../../data/atlas';
 
 export async function getStaticPaths() {
-	const entries = await getCollection('atlas');
-	return entries.map((entry) => ({ params: { slug: entry.id }, props: entry }));
+	const order = atlasSections.map(({ id }) => id);
+	const entries = (await getCollection('atlas')).sort(
+		(a, b) => order.indexOf(a.data.section) - order.indexOf(b.data.section) || a.data.title.localeCompare(b.data.title),
+	);
+	return entries.map((entry, index) => ({
+		params: { slug: entry.id },
+		props: { entry, prev: entries[index - 1], next: entries[index + 1] },
+	}));
 }
 
-type Props = CollectionEntry<'atlas'>;
-const entry = Astro.props;
+type Entry = CollectionEntry<'atlas'>;
+type Props = { entry: Entry; prev?: Entry; next?: Entry };
+const { entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
 const section = atlasSections.find(({ id }) => id === entry.data.section)!;
 ---
 
-<BaseLayout title={`${entry.data.title} | Build Atlas`} description={entry.data.summary} ogType='article' showFooterCta={false} footerLinksOnly>
-	<article class='mx-auto w-[min(calc(100%-3rem),44rem)] pt-12 pb-24 lg:pt-20'>
-		<nav class='mb-6 font-sans text-sm text-ink-muted' aria-label='Breadcrumb'>
-			<a class='text-ink-muted hover:text-accent-ink' href='/atlas/'>Build Atlas</a>
-			<span aria-hidden='true'> / </span>
-			<a class='text-ink-muted hover:text-accent-ink' href={`/atlas/#${section.id}`}>{section.title}</a>
-		</nav>
-		<header class='mb-10'>
-			<h1 class='m-0 font-editorial text-[clamp(2.4rem,4vw,3.15rem)] font-medium leading-[1.02] tracking-[-0.025em] text-ink text-balance'>{entry.data.title}</h1>
-			<p class='mt-4 mb-0 font-editorial text-[clamp(1.2rem,1.5vw,1.4rem)] leading-[1.4] text-ink-muted text-balance'>{entry.data.summary}</p>
+<AtlasLayout title={`${entry.data.title} | Build Atlas`} description={entry.data.summary} current={entry.id}>
+	<article class='max-w-[44rem]'>
+		<p class='m-0 mb-3 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
+		<header class='mb-8'>
+			<h1 class='m-0 font-editorial text-[clamp(2.2rem,4vw,3rem)] font-medium leading-[1.02] tracking-[-0.025em] text-ink text-balance'>{entry.data.title}</h1>
+			<p class='mt-3 mb-0 font-editorial text-[clamp(1.15rem,1.5vw,1.35rem)] leading-[1.4] text-ink-muted text-balance'>{entry.data.summary}</p>
 		</header>
 		<Prose
 			class:list={[
-				'max-w-none font-editorial text-[1.15rem] leading-[1.65] text-ink',
+				'atlas-prose max-w-none font-editorial text-[1.125rem] leading-[1.65] text-ink',
 				'prose-p:text-ink prose-li:text-ink prose-li:my-1 prose-strong:font-bold',
-				'prose-headings:font-editorial prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-[clamp(1.6rem,2.5vw,2rem)] prose-h2:font-medium',
-				'prose-blockquote:my-6 prose-blockquote:border-0 prose-blockquote:bg-ink/5 prose-blockquote:p-6 prose-blockquote:not-italic prose-blockquote:font-mono prose-blockquote:text-[0.85em] prose-blockquote:leading-[1.6] [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none [&_blockquote_p:last-child]:mb-0',
+				'prose-headings:font-editorial prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-[clamp(1.5rem,2.2vw,1.85rem)] prose-h2:font-medium',
+				'prose-blockquote:relative prose-blockquote:my-6 prose-blockquote:rounded-artifact prose-blockquote:border prose-blockquote:border-rule prose-blockquote:bg-ink/4 prose-blockquote:p-5 prose-blockquote:pt-11 prose-blockquote:not-italic prose-blockquote:font-mono prose-blockquote:text-[0.82em] prose-blockquote:leading-[1.65] [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none [&_blockquote_p:last-child]:mb-0',
 				'prose-code:font-mono prose-code:before:content-none prose-code:after:content-none [&_:not(pre)>code]:text-[0.88em]',
 			]}
 		>
 			<Content />
 		</Prose>
-		<p class='mt-16 mb-0 border-t border-rule pt-6 font-sans text-sm'>
-			<a class='text-ink-muted hover:text-accent-ink' href='/atlas/'>← All Build Atlas entries</a>
-		</p>
+		<nav class='mt-14 grid gap-4 border-t border-rule pt-6 font-sans text-sm sm:grid-cols-2' aria-label='Previous and next entries'>
+			{prev ? <a class='group no-underline' href={`/atlas/${prev.id}/`}><span class='block text-ink-muted'>← Previous</span><span class='font-semibold text-ink group-hover:text-accent-ink'>{prev.data.title}</span></a> : <span />}
+			{next && <a class='group no-underline sm:text-right' href={`/atlas/${next.id}/`}><span class='block text-ink-muted'>Next →</span><span class='font-semibold text-ink group-hover:text-accent-ink'>{next.data.title}</span></a>}
+		</nav>
 	</article>
-</BaseLayout>
+</AtlasLayout>
+
+<script>
+	// The agent instruction is the entry's blockquote; give it a copy button.
+	document.querySelectorAll<HTMLElement>('.atlas-prose blockquote').forEach((quote) => {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.textContent = 'Copy';
+		button.className = 'absolute top-3 right-3 rounded-lg border border-rule bg-canvas px-2.5 py-1 font-sans text-xs font-semibold not-italic text-ink hover:border-ink';
+		button.addEventListener('click', async () => {
+			await navigator.clipboard.writeText(quote.innerText.replace(/\s*Copy$/, '').trim());
+			button.textContent = 'Copied';
+			setTimeout(() => (button.textContent = 'Copy'), 1500);
+		});
+		quote.append(button);
+	});
+</script>
