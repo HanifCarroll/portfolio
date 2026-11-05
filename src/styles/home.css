@@ -1,5 +1,5 @@
 /* Homepage styles that utilities can't express cleanly: inline links inside
-   copy, the testimonial slider states, and the lifting video modal.
+   copy, and the lifting video modal.
    Layout and typography live in src/pages/index.astro. */
 
 :is(.hc-home-about, .hc-home-job__highlights) a {
@@ -92,94 +92,4 @@
   stroke: currentColor;
   stroke-linecap: round;
   stroke-width: 1.75;
-}
-
-/* Feedback — one testimonial at a time with a quiet accent rule. */
-
-.hc-home-feedback {
-  touch-action: pan-y;
-}
-
-.hc-home-feedback__viewport {
-  position: relative;
-  display: grid;
-  grid-template-areas: "testimonial";
-}
-
-.hc-home-feedback__viewport::before {
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  width: 3px;
-  height: var(--hc-feedback-rule-height, 100%);
-  background: var(--hc-accent);
-  content: "";
-  opacity: 0;
-  transition:
-    height var(--hc-dur-base) var(--hc-ease-out),
-    opacity var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-home-feedback.is-enhanced .hc-home-feedback__viewport::before {
-  opacity: 1;
-}
-
-.hc-home-feedback__quote {
-  align-self: start;
-  margin: 0;
-  padding-inline-start: 1.25rem;
-  border-inline-start: 3px solid transparent;
-  grid-area: testimonial;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(0.35rem);
-  visibility: hidden;
-  transition:
-    opacity var(--hc-dur-base) var(--hc-ease-out),
-    transform var(--hc-dur-base) var(--hc-ease-out),
-    visibility 0s linear var(--hc-dur-base);
-}
-
-.hc-home-feedback:not(.is-enhanced) .hc-home-feedback__quote.is-active {
-  border-inline-start-color: var(--hc-accent);
-}
-
-.hc-home-feedback__quote.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-  visibility: visible;
-  transition-delay: 0s;
-}
-
-.hc-home-feedback__controls button {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  padding: 0.5rem 0;
-  border: 0;
-  background: transparent;
-  color: var(--hc-text);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--hc-accent) 70%, transparent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-  cursor: pointer;
-  transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.hc-home-feedback__controls button:hover,
-.hc-home-feedback__controls button:focus-visible {
-  color: var(--hc-accent-text);
-  text-decoration-color: var(--hc-accent);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hc-home-feedback__controls button,
-  .hc-home-feedback__quote,
-  .hc-home-feedback__viewport::before {
-    transition: none;
-  }
 }

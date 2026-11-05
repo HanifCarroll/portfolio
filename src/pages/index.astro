@@ -56,9 +56,10 @@ const homepageJsonLd = [
 	}
 ];
 
-const blogPosts = (await getCollection('blog', ({ data }) => !data.hidden))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+// Hand-picked for the homepage: posts closest to how I work with clients.
+const featuredPostIds = ['using-diagrams-to-review-an-ai-report-workflow', 'business-process-mapping-examples', 'spreadsheet-vs-database-internal-tool'];
+const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
+const blogPosts = featuredPostIds.map((id) => allPosts.find((post) => post.id === id)).filter((post) => post !== undefined);
 
 const projects = [
   {
@@ -95,12 +96,9 @@ const projects = [
   }
 ];
 
-const testimonials = [...allTestimonials].sort((a, b) => {
-  const order = ['Michael Shackelford', 'Valentin Zach'];
-  const rank = (name: string) => order.includes(name) ? order.indexOf(name) : order.length;
-  return rank(a.name) - rank(b.name);
-});
-const [heroTestimonial, ...sliderTestimonials] = testimonials;
+const byName = (name: string) => allTestimonials.find((testimonial) => testimonial.name === name)!;
+const heroTestimonial = byName('Michael Shackelford');
+const feedback = ['Valentin Zach', 'Markis Zarate', 'Sarah Hibner'].map(byName);
 
 const experience = [
 	{
@@ -119,64 +117,11 @@ const experience = [
 			{name: 'JIEC Labs', href: '/projects/online-store-conversion-review/', description: ': Reviewed the shopping journey and delivered seven prioritized recommendations covering product discovery, product-page clarity, and mobile performance.'}
 		],
 		clients: [
-  {
-    "name": "Desarmadero La Torre",
-    "href": "/projects/desarmadero-la-torre/",
-    "engagement": "Client software and operations prototype · 2025 — 2026",
-    "highlights": [
-      "Translated client discovery into a functional specification and an interactive SvelteKit operations prototype covering sales, payment release, dismantling assignments, and vehicle lookup.",
-      "Built a parts catalog searchable by make, model, and year, with photos so customers could check stock before calling and staff could update listings, reducing phone inquiry volume."
-    ],
-    "tags": [
-      "TypeScript",
-      "SvelteKit",
-      "Cloudflare D1"
-    ]
-  },
-  {
-    "name": "Genrupt",
-    "href": "/projects/genrupt/",
-    "engagement": "Contract AI Product Engineer · 2025 — 2026",
-    "highlights": [
-      "Built AI generation, listing preparation, and image editing workflows for Amazon sellers, including OCR and inpainting; worked alongside the founder to help support Genrupt’s first 200 paying customers.",
-      "Built organization billing, shared credits, and recoverable generation jobs; used atomic PostgreSQL reservations to prevent credit overspending and provider-job reuse with idempotent settlement to prevent duplicate charges on retries.",
-      "Connected external AI agents to market-analysis and Amazon-listing workflows through OAuth-authenticated MCP tools, with organization permissions and asynchronous results."
-    ],
-    "tags": [
-      "TypeScript",
-      "Next.js",
-      "PostgreSQL"
-    ]
-  },
-  {
-    "name": "Palabruno",
-    "href": "/projects/palabruno/",
-    "engagement": "Contract AI Product Engineer · Mar — Apr 2026",
-    "highlights": [
-      "Worked with the founder to take a Spanish-reading prototype through launch on iOS, Android, and web, including learner and teacher workflows, Stripe and RevenueCat subscriptions, release documentation, and handoff.",
-      "Built a reading pipeline combining linguistic rules with constrained LLM generation, with checks that learning cards matched the selected word or phrase, targeted regeneration of invalid cards, and regression tests."
-    ],
-    "tags": [
-      "TypeScript",
-      "React",
-      "React Native / Expo"
-    ]
-  },
-  {
-    "name": "Mucho Hangouts",
-    "href": "/projects/mucho-hangouts/",
-    "engagement": "Fractional CTO · 2025",
-    "highlights": [
-      "Stabilized messaging, notifications, and sign-in in a live product by centralizing authentication and server state and fixing socket connection lifecycles, while feature delivery continued.",
-      "Provided technical direction for a five-person team and mentored two junior developers through reviews, pairing, and reusable patterns."
-    ],
-    "tags": [
-      "TypeScript",
-      "React",
-      "Node.js"
-    ]
-  }
-]
+			{name: 'Desarmadero La Torre', href: '/projects/desarmadero-la-torre/', engagement: 'Contract engineer · 2025 — 2026', summary: 'Built a parts catalog customers search before calling, then turned the sales, payment, and dismantling workflow into an operations prototype.'},
+			{name: 'Genrupt', href: '/projects/genrupt/', engagement: 'Contract engineer · 2025 — 2026', summary: 'Built AI seller workflows, billing, and shared credits, and helped support its first 200 paying customers.'},
+			{name: 'Palabruno', href: '/projects/palabruno/', engagement: 'Contract engineer · Mar — Apr 2026', summary: 'Took a Spanish-reading prototype to launch on iOS, Android, and web, then handed it off.'},
+			{name: 'Mucho Hangouts', href: '/projects/mucho-hangouts/', engagement: 'Contract technical lead · 2025', summary: 'Stabilized messaging and sign-in in a live product while guiding a five-person team.'}
+		]
 	},
 	{
 		period: 'Nov 2021 — Feb 2024',
@@ -308,33 +253,22 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 			</div>
 		</section>
 
-		<section class={`${sectionClass} hc-home-feedback`} aria-labelledby='feedback-title' data-testimonial-slider>
+		<section class={sectionClass} aria-labelledby='feedback-title'>
 			<div class='lg:col-span-5'>
 				<h2 id='feedback-title' class={labelClass}>Feedback</h2>
 			</div>
-			<div class={bodyClass}>
-				<div class='hc-home-feedback__viewport' aria-live='polite' aria-atomic='true' data-testimonial-viewport>
-					{sliderTestimonials.map((testimonial, index) => (
-						<blockquote
-							class:list={['hc-home-feedback__quote', index === 0 && 'is-active']}
-							data-testimonial-slide={index}
-							aria-hidden={index !== 0}
-						>
-							<p class='m-0 text-[clamp(1rem,1.8vw,1.2rem)] leading-[1.7] text-ink'>{testimonial.quote}</p>
-							<footer class='mt-6'>
-								<cite class='grid gap-1 not-italic'>
-									<span class='text-sm font-bold text-ink'>{testimonial.name}</span>
-									<span class='text-xs text-ink-muted'>{testimonial.role}</span>
-								</cite>
-							</footer>
-						</blockquote>
-					))}
-				</div>
-				<div class='hc-home-feedback__controls mt-8 flex items-center justify-between gap-4' role='group' aria-label='Testimonial controls'>
-					<button type='button' data-testimonial-prev aria-label='Previous testimonial'>Previous</button>
-					<span class='text-xs tracking-[0.06em] text-ink-muted tabular-nums' data-testimonial-position>1 / {sliderTestimonials.length}</span>
-					<button type='button' data-testimonial-next aria-label='Next testimonial'>Next</button>
-				</div>
+			<div class={`${bodyClass} grid gap-10`}>
+				{feedback.map((testimonial) => (
+					<blockquote class='m-0 border-l-2 border-accent pl-5'>
+						<p class='m-0 text-base leading-[1.7] text-ink'>“{testimonial.quote}”</p>
+						<footer class='mt-4'>
+							<cite class='grid gap-1 not-italic'>
+								<span class='text-sm font-bold text-ink'>{testimonial.name}</span>
+								<span class='text-xs text-ink-muted'>{testimonial.role}</span>
+							</cite>
+						</footer>
+					</blockquote>
+				))}
 			</div>
 		</section>
 
@@ -363,18 +297,12 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 								{job.highlights && <ul class='hc-home-job__highlights'>
 									{job.highlights.map((highlight) => <li>{highlight}</li>)}
 								</ul>}
-								{job.clients?.map((client) => (
-									<div class='mt-6'>
-										<h4 class='m-0 mb-0.5 text-[0.9375rem] font-medium text-ink-muted'><a class='text-inherit underline decoration-ink-muted/35 underline-offset-3 hover:text-accent-ink hover:decoration-current' href={client.href}>{client.name}</a></h4>
-										<p class='m-0 text-xs text-ink-muted'>{client.engagement}</p>
-										<ul class='hc-home-job__highlights'>
-											{client.highlights.map((highlight) => <li>{highlight}</li>)}
-										</ul>
-										<ul class='m-0 flex list-none flex-wrap gap-x-3 gap-y-1 p-0 text-xs text-ink-muted' aria-label={`${client.name} technologies`}>
-											{client.tags.map((tag) => <li class='after:ml-3 after:text-line after:content-["·"] last:after:content-none'>{tag}</li>)}
-										</ul>
-									</div>
-								))}
+								{job.clients && <div class='mt-6'>
+									<h4 class='m-0 text-[0.9375rem] font-medium text-ink-muted'>Client work</h4>
+									<ul class='hc-home-job__highlights'>
+										{job.clients.map((client) => <li><a href={client.href}>{client.name}</a> <span class='text-xs'>({client.engagement})</span>: {client.summary}</li>)}
+									</ul>
+								</div>}
 								{job.additionalConsulting && <div class='mt-6'>
 									<h4 class='m-0 text-[0.9375rem] font-medium text-ink-muted'>Additional consulting</h4>
 									<ul class='hc-home-job__highlights'>
@@ -419,13 +347,10 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 					After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I work with founders and product teams to turn ambiguous ideas into useful, reliable software.
 				</p>
 				<p class='m-0'>
-					My recent client work includes operational discovery and a prototype for <a href='/projects/desarmadero-la-torre/'>Desarmadero La Torre</a>. I also helped <a href='/projects/genrupt/'>Genrupt</a> support its first 200 paying customers and took <a href='/projects/palabruno/'>Palabruno</a> from an early prototype to launch across iOS, Android, and web.
-				</p>
-				<p class='m-0'>
 					For the past three years, I’ve used coding agents to build software and complete workflows across websites and apps. My experience includes Cursor, Claude Code, Codex, and Pi. I’ve written about <a href='/how-i-work/'>how I work</a> and <a href='/blog/using-diagrams-to-review-an-ai-report-workflow/'>using agent-generated diagrams to review Casamo’s workflow</a>.
 				</p>
 				<p class='m-0'>
-					I’m interested in sociotechnical systems: how organizations work, and how technology can be designed around human needs. I’m currently reading <em><a href='https://www.amazon.com/dp/3662565080' target='_blank' rel='noopener noreferrer'>Fundamentals of Business Process Management</a></em>, <em><a href='https://www.amazon.com/dp/1603580557' target='_blank' rel='noopener noreferrer'>Thinking in Systems</a></em>, and <em><a href='https://www.amazon.com/dp/0787994944' target='_blank' rel='noopener noreferrer'>Designing Your Organization</a></em> to deepen my understanding of processes, systems, and organizational design.
+					I’m interested in how organizations work and how technology can fit around people. Right now I’m reading <em><a href='https://www.amazon.com/dp/1603580557' target='_blank' rel='noopener noreferrer'>Thinking in Systems</a></em>.
 				</p>
 				<p class='m-0'>
 					Outside of work, I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger><strong>lift weights</strong></a>, experiment with AI, and have merienda in cozy coffee shops.
@@ -496,93 +421,5 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 		videoTrigger.focus();
 	});
 
-	const testimonialSlider = document.querySelector<HTMLElement>('[data-testimonial-slider]');
-	if (testimonialSlider) {
-		const testimonialSlides = Array.from(
-			testimonialSlider.querySelectorAll<HTMLElement>('[data-testimonial-slide]')
-		);
-		const testimonialPosition = testimonialSlider.querySelector<HTMLElement>('[data-testimonial-position]');
-		const testimonialViewport = testimonialSlider.querySelector<HTMLElement>('[data-testimonial-viewport]');
-		const previousTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-prev]');
-		const nextTestimonial = testimonialSlider.querySelector<HTMLButtonElement>('[data-testimonial-next]');
 
-		if (
-			testimonialSlides.length &&
-			testimonialPosition &&
-			testimonialViewport &&
-			previousTestimonial &&
-			nextTestimonial
-		) {
-			let currentTestimonial = 0;
-			const updateRuleHeight = () => {
-				const activeSlide = testimonialSlides[currentTestimonial];
-				if (activeSlide) {
-					testimonialViewport.style.setProperty(
-						'--hc-feedback-rule-height',
-						`${activeSlide.offsetHeight}px`
-					);
-				}
-			};
-
-			const showTestimonial = (index: number) => {
-				currentTestimonial = (index + testimonialSlides.length) % testimonialSlides.length;
-
-				testimonialSlides.forEach((slide, slideIndex) => {
-					const active = slideIndex === currentTestimonial;
-					slide.classList.toggle('is-active', active);
-					slide.setAttribute('aria-hidden', String(!active));
-				});
-
-				testimonialPosition.textContent = `${currentTestimonial + 1} / ${testimonialSlides.length}`;
-				updateRuleHeight();
-			};
-
-			previousTestimonial.addEventListener('click', () => showTestimonial(currentTestimonial - 1));
-			nextTestimonial.addEventListener('click', () => showTestimonial(currentTestimonial + 1));
-
-			testimonialSlider.addEventListener('keydown', (event) => {
-				if (event.key === 'ArrowLeft') {
-					event.preventDefault();
-					showTestimonial(currentTestimonial - 1);
-				} else if (event.key === 'ArrowRight') {
-					event.preventDefault();
-					showTestimonial(currentTestimonial + 1);
-				}
-			});
-
-			let touchStartX: number | null = null;
-			let touchStartY: number | null = null;
-			testimonialSlider.addEventListener(
-				'touchstart',
-				(event) => {
-					const touch = event.changedTouches[0];
-					if (!touch) return;
-					touchStartX = touch.clientX;
-					touchStartY = touch.clientY;
-				},
-				{ passive: true }
-			);
-			testimonialSlider.addEventListener(
-				'touchend',
-				(event) => {
-					if (touchStartX === null || touchStartY === null) return;
-					const touch = event.changedTouches[0];
-					if (!touch) return;
-
-					const deltaX = touch.clientX - touchStartX;
-					const deltaY = touch.clientY - touchStartY;
-					touchStartX = null;
-					touchStartY = null;
-
-					if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-					showTestimonial(currentTestimonial + (deltaX < 0 ? 1 : -1));
-				},
-				{ passive: true }
-			);
-
-			showTestimonial(0);
-			testimonialSlider.classList.add('is-enhanced');
-			new ResizeObserver(updateRuleHeight).observe(testimonialViewport);
-		}
-	}
 </script>

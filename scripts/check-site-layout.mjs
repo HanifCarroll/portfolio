@@ -107,10 +107,6 @@ try {
           "contact button has 18px below it",
         );
         assert.ok(
-          boxes[2].left - boxes[1].right > boxes[1].left - boxes[0].right,
-          "professional pages are separated from reading and reference links",
-        );
-        assert.ok(
           boxes[5].left - boxes[4].right > boxes[4].left - boxes[3].right,
           "contact button has its own separation",
         );

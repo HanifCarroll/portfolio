@@ -69,14 +69,6 @@ try {
 
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(new URL("/", baseUrl).href);
-    const next = page.getByRole("button", { name: "Next testimonial", exact: true });
-    await next.focus();
-    await page.keyboard.press("ArrowRight");
-    const testimonialCount = await page.locator("[data-testimonial-slide]").count();
-    assert.equal(
-      await page.locator("[data-testimonial-position]").textContent(),
-      `2 / ${testimonialCount}`,
-    );
 
     if (width === 390) {
       // The retained group animation must reveal the mobile footer when it enters view.

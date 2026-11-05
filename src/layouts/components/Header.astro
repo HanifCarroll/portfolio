@@ -38,7 +38,7 @@ const headerCtaLabel = 'Book a call';
 		</a>
 
 		<nav class='hidden items-center gap-6 lg:flex' aria-label='Primary navigation'>
-			{navLinks.map((link) => <HeaderLink href={link.href} class={link.href === '/blog/' ? 'ml-6' : undefined}>{link.label}</HeaderLink>)}
+			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
 			<a
 				class='ml-6 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-[0.9rem] font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
 				href={BOOK_CALL_URL}
