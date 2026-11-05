@@ -137,7 +137,8 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  body.hc-nav-open {
+  /* Lock on html, not body: html's overflow-x stops body overflow propagating, which would break the sticky header. */
+  html.hc-nav-open {
     overflow: hidden;
   }
 

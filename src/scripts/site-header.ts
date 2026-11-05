@@ -146,12 +146,12 @@ function mountHeader() {
     panel.setAttribute("aria-hidden", String(!open));
     toggle.classList.toggle("is-open", open);
     siteHeader.classList.toggle("is-menu-open", open);
-    document.body.classList.toggle("hc-nav-open", open);
+    document.documentElement.classList.toggle("hc-nav-open", open);
 
     if (open) {
       panel.removeAttribute("inert");
       timeline.play(0);
-      timeline.eventCallback("onComplete", () => links[0]?.focus());
+      timeline.eventCallback("onComplete", () => links[0]?.focus({ preventScroll: true }));
     } else {
       timeline.eventCallback("onComplete", null);
       const finishClose = () => {
@@ -393,7 +393,7 @@ function mountHeader() {
     notesTimeline?.kill();
     chapterTweens.forEach((tween) => tween.kill());
     notesChapters?.forEach((chapter) => clearChapterAnimation(chapter));
-    document.body.classList.remove("hc-nav-open");
+    document.documentElement.classList.remove("hc-nav-open");
     document.documentElement.classList.remove("hc-notes-menu-open");
   };
 }
