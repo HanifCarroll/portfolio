@@ -2,6 +2,7 @@
 import HeaderLink from './HeaderLink.astro';
 import { BOOK_CALL_URL } from '../../consts';
 import sections from '../../data/notes';
+import AtlasNav from '../../components/atlas/AtlasNav.astro';
 
 const navLinks = [
 	{ href: '/projects/', label: 'Projects' },
@@ -13,7 +14,7 @@ const navLinks = [
 const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 
 const { pathname } = Astro.url;
-const { isNotes = false } = Astro.props;
+const { isNotes = false, isAtlas = false } = Astro.props;
 const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
 const entryId = (section: string, title: string) =>
 	`${section}-${title.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
@@ -73,6 +74,16 @@ const headerCtaLabel = 'Discuss a role or engagement';
 							))}
 						</ol>
 					</nav>
+				</div>
+			</details>}
+			{isAtlas && <details class='hc-notes-mobile-menu' data-notes-mobile-menu>
+				<summary aria-label='Open table of contents'>
+					<span class='hc-notes-mobile-menu__open'>Contents</span><span class='hc-notes-mobile-menu__close'>Close</span>
+					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg>
+				</summary>
+				<div class='hc-notes-mobile-menu__panel'>
+					<p class='hc-notes-toc-label'><a class='text-inherit no-underline' href='/atlas/'>Build Atlas</a></p>
+					<AtlasNav id='atlas-search-mobile' />
 				</div>
 			</details>}
 			<button class='hc-mobile-nav__toggle' type='button' aria-expanded='false' aria-controls='mobileNavigation' aria-label='Open navigation'>

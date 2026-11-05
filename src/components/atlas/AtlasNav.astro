@@ -1,0 +1,68 @@
+---
+// Entry list with search. Used in the desktop sidebar and the mobile header Contents panel.
+import { getCollection } from 'astro:content';
+import { atlasSections, atlasTools } from '../../data/atlas';
+
+const { id = 'atlas-search' } = Astro.props;
+const current = Astro.url.pathname.match(/^\/atlas\/([^/]+)/)?.[1];
+const entries = (await getCollection('atlas')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const sections = atlasSections.map((section) => ({ ...section, entries: entries.filter((entry) => entry.data.section === section.id) }));
+---
+
+<div data-atlas-nav-root>
+	<label class='sr-only' for={id}>Search components and tools</label>
+	<input
+		id={id}
+		type='search'
+		placeholder='Search components or tools…'
+		autocomplete='off'
+		class='mb-5 w-full rounded-lg border border-rule bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none lg:text-sm'
+		data-atlas-search
+	/>
+	<p class='m-0 mb-4 hidden font-sans text-sm text-ink-muted' data-atlas-empty>No matches.</p>
+	<nav aria-label='Build Atlas entries'>
+		{sections.map((section) => (
+			<div class='mb-5' data-atlas-group>
+				<p class='m-0 mb-1.5 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
+				<ul class='m-0 list-none border-l border-rule p-0'>
+					{section.entries.map((entry) => (
+						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body)].join(' ').toLowerCase()}>
+							<a
+								class:list={[
+									'-ml-px block border-l py-1.5 pl-3 font-sans text-[0.95rem] leading-snug no-underline transition-colors lg:py-1 lg:text-[0.85rem]',
+									entry.id === current ? 'border-ink font-semibold text-ink' : 'border-transparent text-ink-muted hover:border-ink-muted hover:text-ink',
+								]}
+								href={`/atlas/${entry.id}/`}
+								aria-current={entry.id === current ? 'page' : undefined}
+							>
+								{entry.data.title}
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</nav>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-atlas-nav-root]').forEach((root) => {
+		const input = root.querySelector<HTMLInputElement>('[data-atlas-search]')!;
+		const empty = root.querySelector<HTMLElement>('[data-atlas-empty]')!;
+		input.addEventListener('input', () => {
+			const terms = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+			let shown = 0;
+			root.querySelectorAll<HTMLElement>('[data-atlas-group]').forEach((group) => {
+				let groupShown = 0;
+				group.querySelectorAll<HTMLElement>('[data-atlas-item]').forEach((item) => {
+					const match = terms.every((term) => item.dataset.search!.includes(term));
+					item.hidden = !match;
+					if (match) groupShown++;
+				});
+				group.hidden = groupShown === 0;
+				shown += groupShown;
+			});
+			empty.classList.toggle('hidden', shown > 0);
+		});
+	});
+</script>

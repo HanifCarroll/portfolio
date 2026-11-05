@@ -71,7 +71,7 @@ const footerLinks = [
 	</head>
 	<body class={bodyClass}>
 		<a class='skip-link' href='#main'>Skip to content</a>
-		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} />}
+		{showHeader && <Header isNotes={bodyClass.split(/\s+/).includes('hc-notes')} isAtlas={bodyClass.split(/\s+/).includes('hc-atlas')} />}
 		<main id='main' class='hc-main' data-motion-page>
 			<slot />
 		</main>

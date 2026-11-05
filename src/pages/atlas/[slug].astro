@@ -22,7 +22,7 @@ const { Content } = await render(entry);
 const section = atlasSections.find(({ id }) => id === entry.data.section)!;
 ---
 
-<AtlasLayout title={`${entry.data.title} | Build Atlas`} description={entry.data.summary} current={entry.id}>
+<AtlasLayout title={`${entry.data.title} | Build Atlas`} description={entry.data.summary}>
 	<article class='max-w-[44rem]'>
 		<p class='m-0 mb-3 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
 		<header class='mb-8'>
