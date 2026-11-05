@@ -22,7 +22,7 @@ const headerLinks = [
   { href: "/blog/", label: "Blog" },
   { href: "/notes/", label: "Notes" },
   { href: "/atlas/", label: "Build Atlas" },
-  { href: "https://cal.com/hanifcarroll/forward-deployed-engineering-intro", label: "Book a call" },
+  { href: "https://cal.com/hanifcarroll/intro", label: "Book a call" },
 ];
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const errors = [];

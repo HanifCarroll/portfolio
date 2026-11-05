@@ -20,14 +20,14 @@ const offers = {
 		body: "I learn how an organization works, figure out where software could help, and build it with the people who’ll use it. Available for fully remote roles and contracts.",
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Discuss a role or engagement'
+		primaryLabel: 'Book a call'
 	},
 	systemsBuild: {
 		title: 'Have a client engagement that needs an engineer?',
 		body: 'I work with clients from discovery and prototypes through integrations, launch, and handoff. Available for fully remote roles and contracts.',
 		secondaryHref: '/projects/',
 		secondaryLabel: 'See projects',
-		primaryLabel: 'Discuss a role or engagement'
+		primaryLabel: 'Book a call'
 	}
 } as const;
 
@@ -36,7 +36,7 @@ const offer = context === 'case-study'
 			...offers[variant],
 			title: 'Need an engineer who can work directly with your clients?',
 			body: 'I work with clients on discovery, scope, implementation, and handoff. Available for fully remote roles and contracts.',
-			primaryLabel: 'Discuss a role or engagement'
+			primaryLabel: 'Book a call'
 		}
 	: offers[variant];
 const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
