@@ -27,6 +27,7 @@ Code-level fuzzers (fuzz a function directly):
 - **Atheris**: Google's coverage-guided fuzzer for Python.
 - **Go native fuzzing**: Built into `go test -fuzz`. Nothing to install.
 - **cargo-fuzz**: The standard fuzzing tool for Rust.
+- **libFuzzer**: LLVM's in-process, coverage-guided fuzzer for C and C++. Built into Clang, so a fuzz target is one function and a compiler flag.
 - **AFL++**: The heavyweight for C, C++ and compiled binaries. It does well in fuzzing benchmarks.
 
 API fuzzers (fuzz a running service over HTTP):
@@ -41,4 +42,4 @@ Continuous fuzzing:
 
 ## What to tell your agent
 
-> Add fuzz testing to this project. Find the functions that parse or validate untrusted input and write a fuzz target for each one using [Jazzer.js / Atheris / Go native fuzzing]. If the project has an OpenAPI spec, also add a Schemathesis run against the local server. Add a short fuzz job to CI with a time limit, and save any crashing inputs as regression tests.
+> Add fuzz testing to this project. Find the functions that parse or validate untrusted input and write a fuzz target for each one using [Jazzer.js / Atheris / Go native fuzzing]. If the project has an OpenAPI spec, also add a Schemathesis run against the local server. Add a short fuzz job to CI with a time limit, plus a longer run on a nightly schedule, and save any crashing inputs as regression tests.

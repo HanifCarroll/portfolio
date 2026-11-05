@@ -25,6 +25,8 @@ A sensible split: unit tests for business logic, component tests for meaningful 
 - **Playwright**: The standard for E2E tests. Runs Chromium, Firefox and WebKit, records traces, and has built-in screenshot comparison.
 - **Storybook test runner**: Turns each [Storybook](/atlas/ui-component-workshop/) story into a component test.
 - **MSW (Mock Service Worker)**: Mocks network responses at the request level, so the same mocks work in unit, component and E2E tests.
+- **Cloudflare Vitest integration**: Runs tests inside the real Workers runtime, with local versions of D1, KV, Durable Objects and queues.
+- **PGlite**: Postgres running in-process, for fast tests against a real database without Docker.
 - **Testcontainers**: Starts real Postgres, Redis, Kafka and other services in throwaway Docker containers for tests.
 
 ## What to tell your agent

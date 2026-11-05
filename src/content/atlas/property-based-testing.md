@@ -20,6 +20,7 @@ This matters more with agents. An agent writes tests for the cases it imagined. 
 
 - **fast-check**: Property-based testing for TypeScript. It generates random inputs and shrinks failures to minimal cases. Works with Vitest and Jest.
 - **Hypothesis**: The standard for Python.
+- **Separate CI workflow**: Run property, fuzz and API-generation tests in their own CI job, apart from the fast checks, so they can run longer and publish their failing cases.
 - **Schemathesis**: Property-based testing for whole APIs, generated from an OpenAPI or GraphQL schema. See [Fuzzer](/atlas/fuzzer/).
 
 ## What to tell your agent

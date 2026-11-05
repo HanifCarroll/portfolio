@@ -18,7 +18,7 @@ Write the description like routing logic: when to use it, when not to, and what 
 
 ## Popular choices
 
-- **Write your own**: List the tasks you actually do and write a skill for each. This usually beats a catalog.
+- **Write your own**: List the tasks you actually do and write a skill for each, such as diagnosing a failed job in your system or running your mobile QA checklist. This usually beats a catalog.
 - **Matt Pocock's skills**: Popular open-source engineering skills, including spec interviews and architecture review.
 - **Compound Engineering plugin (Every)**: A full plan, work, review and capture-lessons workflow packaged as skills and commands.
 - **Anthropic and OpenAI skill catalogs**: Official example skills for documents, spreadsheets, design and more.

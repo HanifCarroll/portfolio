@@ -11,12 +11,14 @@ export const atlasSections = [
 // A second way in, by the problem the reader has. Slugs are checked against the collection at build time.
 export const atlasProblems = [
 	{ title: 'Know it works', entries: ['property-based-testing', 'browser-testing', 'fuzzer', 'visual-regression'] },
-	{ title: 'Keep bad code out', entries: ['architecture-checks', 'git-hooks-and-ci', 'ai-code-review', 'cleanup-scanners'] },
-	{ title: 'Keep data correct', entries: ['schema-validation', 'typed-errors', 'state-machines'] },
-	{ title: 'Ship safely', entries: ['feature-flags', 'git-hooks-and-ci', 'infrastructure-from-code', 'accessibility-checker'] },
-	{ title: 'See what’s happening', entries: ['telemetry', 'llm-tracing', 'product-analytics'] },
+	{ title: 'Keep bad code out', entries: ['architecture-checks', 'git-hooks-and-ci', 'ai-code-review', 'secret-scanning', 'cleanup-scanners'] },
+	{ title: 'Keep data correct', entries: ['schema-validation', 'database-migrations', 'typed-errors', 'state-machines'] },
+	{ title: 'Ship safely', entries: ['feature-flags', 'canaries', 'git-hooks-and-ci', 'infrastructure-from-code'] },
+	{ title: 'See what’s happening', entries: ['telemetry', 'canaries', 'llm-tracing', 'product-analytics'] },
 	{ title: 'Make AI features reliable', entries: ['llm-evals', 'llm-tracing', 'document-parsing', 'agent-security-scanner'] },
 	{ title: 'Give agents context and limits', entries: ['agent-instructions-file', 'agent-skills', 'specs-and-plans', 'agent-sandbox'] },
+	{ title: 'Let AI assistants use your product', entries: ['mcp-server', 'authentication', 'agent-security-scanner'] },
+	{ title: 'Charge for it', entries: ['payments', 'background-jobs', 'transactional-email'] },
 ];
 
 /** Tool names are the bold labels in an entry's "Popular choices" list. */

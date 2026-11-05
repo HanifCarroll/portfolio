@@ -19,7 +19,7 @@ A spec describes what you're building and what "done" means: the behavior, the e
 ## Popular choices
 
 - **GitHub Spec Kit**: Splits the work into project principles, feature spec, technical plan and tasks, with steps to clarify and check them before coding.
-- **OpenSpec**: A lighter spec workflow that keeps proposed changes and current specs in the repo.
+- **OpenSpec**: A lighter spec workflow that keeps proposed changes and current specs in the repo. It ships agent skills and commands to propose, apply and archive each change.
 - **PLANS.md**: OpenAI's pattern for a self-contained execution plan with purpose, milestones, checks, progress and decisions.
 - **Interview first**: Have the agent ask you questions until the idea is clear before it writes the spec. Matt Pocock's "grill me" skill does this.
 

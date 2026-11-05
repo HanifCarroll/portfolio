@@ -19,6 +19,7 @@ Agents work best when the compiler tells them what they forgot. If an error type
 ## Popular choices
 
 - **Effect**: TypeScript library for typed errors, dependency injection, concurrency, retries, and schema validation. Powerful, with a real learning curve.
+- **Effect language service**: A TypeScript plugin that adds Effect-specific diagnostics to your editor and type check, catching mistakes like unhandled errors or missing services.
 - **neverthrow**: A small `Result` type for typed errors and nothing else. Easy to adopt in part of a codebase.
 
 ## What to tell your agent

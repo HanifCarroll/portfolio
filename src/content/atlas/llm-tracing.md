@@ -19,6 +19,7 @@ Regular [telemetry](/atlas/telemetry/) tells you a request was slow. LLM tracing
 ## Popular choices
 
 - **Langfuse**: Open-source LLM engineering platform for tracing, prompt management, evals, and datasets. It's built on OpenTelemetry and can be self-hosted or used as a cloud service.
+- **AI SDK telemetry**: The Vercel AI SDK emits OpenTelemetry spans for each call, which Langfuse, Phoenix and others can collect with a few lines of setup.
 - **Arize Phoenix**: Open-source tracing and evaluation, also built on OpenTelemetry. Runs locally with one command.
 - **LangSmith**: LangChain's hosted platform. Works without LangChain, but fits best with it.
 - **Braintrust**: Hosted platform focused on evals and prompt experiments, with tracing.
