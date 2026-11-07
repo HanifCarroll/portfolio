@@ -14,7 +14,7 @@ It works at two levels. A high-level spec models the flow, such as a signup, a c
 
 - Your app has an implicit state machine spread across handlers, jobs and webhooks, and nobody can say every path it can take. See [State machine](/atlas/state-machines/).
 - Bugs come from ordering: retries, two users at once, a webhook arriving before the redirect.
-- A rule matters enough that "the tests pass" isn't enough, as with money, permissions or data that can't be lost.
+- Breaking a rule would be costly, like charging a customer twice, showing someone data they shouldn't see or losing records. Passing tests only cover the cases someone thought of, and you want every path checked.
 
 Agents pair well with specs. The spec is short enough for a human to review, and the checker gives the agent a precise failing trace to iterate against. It tends to catch different bugs than agent-written unit tests do. It also works on existing projects: you can model one flow at a time.
 
