@@ -10,7 +10,7 @@ export const atlasSections = [
 
 // A second way in, by the problem the reader has. Slugs are checked against the collection at build time.
 export const atlasProblems = [
-	{ title: 'Know it works', entries: ['property-based-testing', 'browser-testing', 'fuzzer', 'visual-regression'] },
+	{ title: 'Know it works', entries: ['property-based-testing', 'browser-testing', 'fuzzer', 'visual-regression', 'formal-specs'] },
 	{ title: 'Keep bad code out', entries: ['architecture-checks', 'git-hooks-and-ci', 'ai-code-review', 'secret-scanning', 'cleanup-scanners'] },
 	{ title: 'Keep data correct', entries: ['schema-validation', 'database-migrations', 'typed-errors', 'state-machines'] },
 	{ title: 'Ship safely', entries: ['feature-flags', 'canaries', 'git-hooks-and-ci', 'infrastructure-from-code'] },
