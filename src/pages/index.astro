@@ -9,14 +9,14 @@ import DesarmaderoThumb from '../assets/img/projects/desarmadero-parts-stockroom
 import { testimonials as allTestimonials } from '../data/testimonials';
 import MuchoHangoutsThumb from '../assets/img/projects/mucho-hangouts-feature.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL } from '../consts';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import '../styles/home.css';
 
-const title = 'Hanif Carroll | Forward Deployed Engineer';
+const title = 'Hanif Carroll | Freelance Software Engineer';
 const description =
-	'Forward Deployed Engineer working directly with clients on discovery, workflow software, integrations, and production AI. Available for fully remote roles and contracts.';
-const socialTitle = 'Hanif Carroll, Forward Deployed Engineer';
-const socialDescription = 'Client discovery, workflow software, and production AI. Explore client engagements from scoping and prototypes to launch, support, and handoff.';
+	'Freelance software engineer building websites, web apps, and custom tools for businesses, founders, and agencies. Based in Buenos Aires, working U.S. Eastern hours.';
+const socialTitle = 'Hanif Carroll, Freelance Software Engineer';
+const socialDescription = 'Websites, web apps, and custom tools for businesses, founders, and agencies. See client projects from the first call through launch and handoff.';
 
 const homepageJsonLd = [
 	{
@@ -24,7 +24,7 @@ const homepageJsonLd = [
 		'@type': 'Person',
 		name: 'Hanif Carroll',
 		url: 'https://www.hanifcarroll.com/',
-		jobTitle: 'Forward Deployed Engineer',
+		jobTitle: 'Freelance Software Engineer',
 		description,
 		sameAs: [
 			'https://github.com/hanifcarroll',
@@ -37,8 +37,10 @@ const homepageJsonLd = [
 			'Workflow analysis',
 			'Business process mapping',
 			'Prototyping',
-			'Production AI applications',
-			'LLM integrations',
+			'Website development',
+			'Web app development',
+			'Custom software',
+			'AI features',
 			'Internal tools',
 			'Integrations',
 			'TypeScript',
@@ -103,10 +105,10 @@ const feedback = ['Valentin Zach', 'Markis Zarate', 'Sarah Hibner'].map(byName);
 const experience = [
 	{
 		period: 'Mar 2024 — Present',
-		role: 'Independent Software Engineer',
+		role: 'Freelance Software Engineer',
 		company: 'HC Studio',
 		companyHref: null,
-		body: 'Deliver software directly for clients and founders, with engagements spanning discovery, scoping, implementation, production support, and handoff.',
+		body: 'Build websites, web apps, and custom tools for businesses, founders, and agencies, from discovery and scoping through launch, support, and handoff.',
 		independentProject: {name: 'BA Eventos', href: '/projects/ba-eventos/', description: 'a conversational event-search product for Buenos Aires.'},
 		independentHighlights: [
 			{name: 'Switchboard', href: '/projects/switchboard/', description: ' — Agentic system demo: Built a Python/FastAPI and LangGraph agent that investigates customer-change requests and proposes policy-checked changes for human approval; deployed on AWS using Step Functions, SQS, and DynamoDB.'},
@@ -190,10 +192,10 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 					/>
 				</figure>
 				<h1 class='m-0 text-[clamp(2.25rem,4.5vw,3.25rem)] font-bold leading-[1.05] tracking-[-0.03em] text-ink'>Hanif Carroll</h1>
-				<p class='mt-3 mb-0 text-lg font-medium text-ink'>Forward Deployed Engineer</p>
+				<p class='mt-3 mb-0 text-lg font-medium text-ink'>Freelance Software Engineer</p>
 				<div class='mt-6 grid max-w-md gap-4 text-base leading-relaxed text-ink-muted'>
-					<p class='m-0'>I learn how an organization works, figure out where software could help, and build it with the people who’ll use it.</p>
-					<p class='m-0'>Open to fully remote roles and direct contracts.</p>
+					<p class='m-0'>I build websites, web apps, and custom tools for businesses, founders, and agencies. I learn how a business works, figure out where software could help, and build it with the people who’ll use it.</p>
+					<p class='m-0'>Agencies can hand me builds to deliver under their name. I’m based in Buenos Aires and work U.S. Eastern hours.</p>
 				</div>
 				<div class='mt-8 flex flex-wrap items-center gap-x-3 gap-y-3 text-sm'>
 					<a
@@ -209,13 +211,11 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 					</a>
 					<a
 						class='inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink/25 px-4 py-2 text-[0.9rem] font-medium text-ink no-underline transition-colors hover:border-ink hover:bg-ink/5 focus-visible:border-ink'
-						href='/Hanif-Carroll-Resume.pdf'
-						download='Hanif-Carroll-Resume.pdf'
-						data-track-event='resume_downloaded'
+						href={EMAIL_URL}
+						data-track-event='email_clicked'
 						data-track-location='home_hero'
 					>
-						Resume
-						<svg class='size-3.5 fill-none stroke-current stroke-[1.25]' aria-hidden='true' viewBox='0 0 16 16' focusable='false'><path d='M8 2v9M4 7l4 4 4-4M3 14h10' /></svg>
+						Email me
 					</a>
 				</div>
 				<blockquote class='mt-10 mb-0 max-w-md border-l-2 border-accent pl-4'>
@@ -330,15 +330,6 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 						</li>
 					))}
 				</ol>
-				<a
-					class={`mt-10 inline-block text-[0.95rem] ${linkClass}`}
-					href='/Hanif-Carroll-Resume.pdf'
-					download='Hanif-Carroll-Resume.pdf'
-					data-track-event='resume_downloaded'
-					data-track-location='experience_footer'
-				>
-					Resume
-				</a>
 			</div>
 		</section>
 
@@ -348,10 +339,10 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 			</div>
 			<div class={`${bodyClass} hc-home-about grid gap-5 text-base leading-[1.7] text-ink-muted`}>
 				<p class='m-0'>
-					Hey, I’m Hanif. I’m a forward deployed engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. I now have 9+ years of experience. The part of the work I enjoy most is the conversations: learning how people actually work and figuring out together what’s worth building.
+					Hey, I’m Hanif. I’m a freelance software engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. I now have 9+ years of experience. The part of the work I enjoy most is the conversations: learning how people actually work and figuring out together what’s worth building.
 				</p>
 				<p class='m-0'>
-					After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I work with founders and product teams to turn ambiguous ideas into useful, reliable software.
+					After working at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, I now run HC Studio, where I work with businesses, founders, and agencies to turn rough ideas into useful, reliable software.
 				</p>
 				<p class='m-0'>
 					For the past three years, I’ve used coding agents to build software and complete workflows across websites and apps. My experience includes Cursor, Claude Code, Codex, and Pi. I’ve written about <a href='/how-i-work/'>how I work</a> and <a href='/blog/using-diagrams-to-review-an-ai-report-workflow/'>using agent-generated diagrams to review Casamo’s workflow</a>.

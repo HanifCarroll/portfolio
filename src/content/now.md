@@ -3,12 +3,12 @@ title: "What I'm Up to Now"
 description: >
   This is a "now page" inspired by Derek Sivers. It's what I'd tell a friend if
   they asked what I'm focused on right now.
-lastUpdated: "September 11th, 2026"
+lastUpdated: "November 9th, 2026"
 ---
 
 ## Work
 
-My immediate priority is finding a good contract working on an established product. I want the income to give me more financial breathing room while I build toward a freelance business developing products for founders.
+I’m focused on freelancing: building websites, web apps, and custom tools for businesses, founders, and agencies. I’m also reaching out to design agencies that sell websites and apps but don’t have developers of their own.
 
 ## Casamo
 
