@@ -23,7 +23,8 @@ test("renders the frame family on one transparent canvas without cropping wide s
   await sharp(
     Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844">
     <rect width="390" height="844" fill="#e63946"/>
-    <rect width="390" height="12" fill="#2ca26a"/>
+    <rect y="44" width="390" height="12" fill="#2ca26a"/>
+    <rect width="390" height="44" fill="#7a4db2"/>
   </svg>`),
   )
     .png()
@@ -35,6 +36,7 @@ test("renders the frame family on one transparent canvas without cropping wide s
       device,
       input: device === "phone" ? mobile : desktop,
       phone: device === "laptop+phone" ? mobile : undefined,
+      phoneTopCrop: device === "laptop" ? undefined : 44,
       output,
     };
     await frameDevice(options);
@@ -61,13 +63,34 @@ test("renders the frame family on one transparent canvas without cropping wide s
       assert.deepEqual(await readFile(output), first, "identical inputs render deterministically");
     } else if (device === "phone") {
       assert.equal(pixel(800, 500), "e63946ff");
-      assert.equal(pixel(800, 96), "101114ff", "the notch is visible at the top of the screen");
-      assert.equal(pixel(800, 104), "2ca26aff", "the full screenshot starts below the notch");
+      assert.equal(pixel(800, 91), "0a0a0bff", "the Dynamic Island is visible");
+      assert.equal(pixel(635, 114), "fafafaff", "the drawn status bar replaces the source bar");
+      assert.equal(
+        pixel(800, 118),
+        "2ca26aff",
+        "the uncropped app content starts below the status bar",
+      );
     } else {
       assert.equal(pixel(700, 300), "457b9dff");
       assert.equal(pixel(1280, 600), "e63946ff", "the phone overlaps the laptop screen");
     }
   }
+
+  const safariOutput = join(directory, "safari.png");
+  await frameDevice({
+    device: "phone",
+    input: mobile,
+    phoneTopCrop: 44,
+    safariDomain: "example.com",
+    output: safariOutput,
+  });
+  const { data, info } = await sharp(safariOutput).raw().toBuffer({ resolveWithObject: true });
+  const color = (x, y) =>
+    data.subarray(4 * (y * info.width + x), 4 * (y * info.width + x) + 4).toString("hex");
+  assert.equal(color(640, 132), "e7e8eaff", "Safari draws its address field above the site");
+  assert.equal(color(800, 163), "2ca26aff", "Safari leaves the top of the site visible");
+  assert.equal(color(800, 859), "e63946ff", "Safari leaves the bottom of the site visible");
+  assert.equal(color(645, 865), "fafafaff", "Safari draws its toolbar below the site");
 
   await assert.rejects(
     frameDevice({ device: "laptop+phone", input: desktop }),

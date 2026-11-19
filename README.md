@@ -66,6 +66,8 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 
 Add a slug to `scripts/frame-device.json`. Set `device` to `phone`, `laptop`, or `laptop+phone`, and set `input` to a raw screenshot relative to `src/assets/img/projects/`. For `laptop+phone`, `input` is the desktop screenshot and `phone` is the mobile screenshot. Use real UI and leave inline case-study images alone.
 
+The renderer draws the status bar on every phone. For a public website, set `safariDomain` to show the address and bottom toolbar, and capture the site at 390×700 CSS pixels to fit between them. For a native screenshot with its own status bar, set `phoneTopCrop` to the number of source pixels to remove from the top.
+
 Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/framed/<slug>.png`. Point the project's `images.hero` at that PNG and update `images.feature` if it shared the previous hero. Every frame uses the same transparent 1600×1000 canvas and fits the entire screenshot without stretching it.
 
 ### Deployment
