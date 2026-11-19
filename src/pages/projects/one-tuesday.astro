@@ -1,5 +1,6 @@
 ---
-import OneTuesdayHero from '../../assets/img/projects/one-tuesday-hero.png';
+import { Image } from 'astro:assets';
+import OneTuesdayHero from '../../assets/img/projects/framed/one-tuesday.png';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
 import { getProject } from '../../lib/projects';
@@ -72,6 +73,17 @@ const readerClass = [
     <p class='text-[1.25rem] text-ink-muted'>
       Follow the same {before.arrivals} requests through two versions of the workflow: first through the original setup, then after six changes.
     </p>
+
+    <figure class='cs-project-hero mx-0 my-8'>
+      <Image
+        src={OneTuesdayHero}
+        alt='Laptop showing the original One Tuesday simulation'
+        widths={[640, 960, 1200]}
+        sizes='(min-width: 44rem) 41rem, calc(100vw - 3rem)'
+        loading='eager'
+        class='block h-auto w-full'
+      />
+    </figure>
 
     <div class='my-12 rounded-xl bg-canvas p-8 [&_p]:mb-4'>
       <p>Run the three-part experience to feel the queue, add each change, and compare both workflows under the same demand.</p>
