@@ -1,8 +1,428 @@
-/* Homepage styles that utilities can't express cleanly: inline links inside
-   copy, and the lifting video modal.
-   Layout and typography live in src/pages/index.astro. */
+.home {
+  color: var(--color-ink);
+  font-size: 1rem;
+  line-height: 1.55;
+}
 
-.hc-home-about a {
+.home-shell {
+  width: min(calc(100% - 3rem), 70rem);
+  margin-inline: auto;
+}
+
+.home h1,
+.home h2 {
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  letter-spacing: -0.042em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.home h1 {
+  max-width: 58rem;
+  font-size: clamp(3rem, 6.2vw, 5.25rem);
+}
+
+.home h2 {
+  font-size: clamp(2.5rem, 4.3vw, 3.5rem);
+}
+
+.home h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.home-hero,
+.home-section {
+  display: grid;
+  align-items: center;
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.home-hero {
+  background: var(--color-surface-warm);
+}
+
+.home-identity,
+.home-actions {
+  display: flex;
+  align-items: center;
+}
+
+.home-identity {
+  gap: 0.875rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-ink-muted);
+}
+
+.home-identity strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.home-portrait {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.home-deck,
+.home-heading > p {
+  color: var(--color-ink-muted);
+  font-size: 1.25rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.home-deck {
+  max-width: 48rem;
+  margin-top: 1.5rem;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.home-actions {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.home-hero .home-actions {
+  margin-top: 2rem;
+}
+
+.home-primary {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  background: var(--color-ink);
+  padding: 0.5rem 1rem;
+  color: var(--color-canvas);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.home-primary:hover,
+.home-primary:focus-visible {
+  background: var(--color-ink-muted);
+}
+
+.home-section,
+.home-quote-band {
+  scroll-margin-top: 5rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.home-heading {
+  display: grid;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: clamp(2rem, 4vw, 3.75rem);
+}
+
+.home-heading > p {
+  max-width: 30rem;
+}
+
+.home-hero {
+  text-align: center;
+}
+
+.home-hero :is(h1, .home-deck) {
+  margin-inline: auto;
+}
+
+.home-hero :is(.home-identity, .home-actions) {
+  justify-content: center;
+}
+
+.home-points,
+.home-gallery,
+.home-feedback {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.home-points > li {
+  border-top: 2px solid var(--color-accent);
+  padding: 1.5rem 0 0.75rem;
+}
+
+.home-points svg {
+  margin-bottom: 1rem;
+  color: var(--color-accent-ink);
+}
+
+.home-points p,
+.home-card-copy p {
+  margin-top: 0.5rem;
+  color: var(--color-ink-muted);
+}
+
+.home-card {
+  display: grid;
+  height: 100%;
+  align-content: start;
+  overflow: clip;
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+  background: var(--color-canvas);
+  text-decoration: none;
+}
+
+.home-card:hover h3,
+.home-card:focus-visible h3,
+.home-writing a:hover h3,
+.home-writing a:focus-visible h3 {
+  color: var(--color-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.home a:focus-visible {
+  outline: 2px solid var(--color-accent-ink);
+  outline-offset: 3px;
+}
+
+.home-picture {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-surface-warm);
+}
+
+.home-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* shortcut: these crops match the source assets; revisit them if those screenshots change. */
+.home-picture:is([data-project='online-store-conversion-review'], [data-project='ba-eventos'], [data-project='casamo']) img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--crop-width);
+  max-width: none;
+  height: auto;
+  transform: translate(var(--crop-x), var(--crop-y));
+}
+
+.home-picture[data-project='online-store-conversion-review'] {
+  --crop-width: 145%;
+  --crop-x: -21%;
+  --crop-y: -10%;
+}
+
+.home-picture[data-project='ba-eventos'] {
+  --crop-width: 197%;
+  --crop-x: -35%;
+  --crop-y: -7.2%;
+}
+
+.home-picture[data-project='casamo'] {
+  --crop-width: 150%;
+  --crop-x: -19.5%;
+  --crop-y: -12%;
+}
+
+.home-card-copy {
+  padding: 1.25rem;
+}
+
+.home-card-copy .home-label {
+  margin: 0 0 0.375rem;
+}
+
+.home-featured h3 {
+  font-family: var(--font-editorial);
+  font-size: clamp(2rem, 3.3vw, 2.75rem);
+}
+
+.home-featured .home-picture img {
+  object-position: center 46%;
+}
+
+.home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.875rem;
+}
+
+.home-tags li {
+  border-radius: 0.375rem;
+  background: var(--color-surface-warm);
+  padding: 0.15rem 0.5rem;
+  color: var(--color-ink-muted);
+  font-size: 0.875rem;
+}
+
+.home-gallery-link {
+  margin-top: 1.5rem;
+}
+
+.home-quote-band {
+  background: var(--color-surface-warm);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.home-quote-band .home-shell {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.home-quote-band blockquote {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  line-height: 1.1;
+  text-wrap: pretty;
+}
+
+.home figcaption {
+  margin-top: 1rem;
+  color: var(--color-ink-muted);
+}
+
+.home-feedback figure {
+  border-inline-start: 2px solid var(--color-accent);
+  padding-inline: 1.25rem 0;
+}
+
+.home-feedback blockquote {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  text-wrap: pretty;
+}
+
+.home-about,
+.home-writing {
+  max-width: 46rem;
+}
+
+.home-about p {
+  font-size: 1.25rem;
+}
+
+.home-about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.home-writing a {
+  display: grid;
+  align-items: baseline;
+  gap: 0.375rem 1.5rem;
+  border-top: 1px solid var(--color-line);
+  padding-block: 1.125rem;
+  text-decoration: none;
+}
+
+.home-writing li:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.home-writing time {
+  color: var(--color-ink-muted);
+}
+
+@media (min-width: 40rem) {
+  .home-writing a {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (min-width: 48rem) {
+  .home-points,
+  .home-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-points > li {
+    padding-right: 1.25rem;
+  }
+
+  .home-apps,
+  .home-feedback {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-featured {
+    grid-column: 1 / -1;
+  }
+
+  .home-featured .home-card {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 3fr);
+    align-items: center;
+  }
+
+  .home-featured .home-card-copy {
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+  }
+
+  .home-featured .home-picture {
+    aspect-ratio: 2 / 1;
+    border-right: 1px solid var(--color-line);
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 64rem) {
+  .home-hero {
+    min-height: clamp(36rem, 75svh, 49rem);
+  }
+
+  .home-deck {
+    text-wrap: balance;
+  }
+
+  .home-section {
+    min-height: clamp(32rem, 70svh, 46rem);
+  }
+
+  .home-section[data-section='work'] {
+    padding-block: 5.5rem;
+  }
+
+  .home-heading.has-intro {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    column-gap: 2rem;
+  }
+
+  .home-heading h2 {
+    text-wrap: wrap;
+  }
+
+  .home-apps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .home-quote-band .home-shell {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 22rem) {
+  .home h1 {
+    font-size: 2.75rem;
+  }
+
+  .home-actions > a {
+    flex-basis: 100%;
+  }
+}
+
+.home-about p a {
   color: var(--hc-text);
   font-weight: 500;
   text-decoration: underline;
@@ -12,8 +432,8 @@
   transition: color var(--hc-dur-fast) var(--hc-ease-out);
 }
 
-.hc-home-about a:hover,
-.hc-home-about a:focus-visible {
+.home-about p a:hover,
+.home-about p a:focus-visible {
   color: var(--hc-accent-text);
   text-decoration-color: var(--hc-accent);
 }

@@ -1,0 +1,15 @@
+---
+import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
+import { buttonClass } from '../../lib/ui';
+
+interface Props {
+	location: 'home_hero' | 'home_quote_band';
+}
+
+const { location } = Astro.props;
+---
+
+<div class='home-actions' data-cta>
+	<a class='home-primary' href={EMAIL_URL} data-track-event='email_clicked' data-track-location={location}>Email me about one task</a>
+	<a class={buttonClass()} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>Book a call</a>
+</div>

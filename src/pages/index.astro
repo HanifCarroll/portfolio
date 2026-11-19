@@ -1,19 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-author-portrait.jpg';
-import BaEventosThumb from '../assets/img/projects/ba-eventos-hero.png';
-import CasaElariaThumb from '../assets/img/projects/casa-elaria-feature.png';
-import CasamoThumb from '../assets/img/projects/casamo/shortlist-desktop.png';
-import DesarmaderoThumb from '../assets/img/projects/desarmadero-parts-stockroom-photo.png';
-import GenruptThumb from '../assets/img/projects/genrupt-mobile-feature.png';
-import JiecLabsThumb from '../assets/img/projects/online-store-conversion-review.png';
-import MaximoThumb from '../assets/img/projects/maximo-feature.png';
-import PalabrunoThumb from '../assets/img/projects/palabruno-founder-idea-launch.png';
-import FormattedDate from '../components/FormattedDate.astro';
-import { testimonials as allTestimonials } from '../data/testimonials';
+import BaEventos from '../assets/img/projects/ba-eventos-event-detail.png';
+import CasaElaria from '../assets/img/projects/casa-elaria-feature.png';
+import Casamo from '../assets/img/projects/casamo/shortlist-desktop.png';
+import Desarmadero from '../assets/img/projects/desarmadero-parts-stockroom-photo.png';
+import Genrupt from '../assets/img/projects/genrupt-mobile-feature.png';
+import JiecLabs from '../assets/img/projects/online-store-conversion-review.png';
+import Maximo from '../assets/img/projects/maximo-feature.png';
+import Palabruno from '../assets/img/projects/palabruno-reader-current.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { textLinkClass } from '../lib/ui';
+import FormattedDate from '../components/FormattedDate.astro';
+import HomeActions from '../components/home/HomeActions.astro';
+import HomeSection from '../components/home/HomeSection.astro';
 import '../styles/home.css';
 
 const title = 'Websites, tools, and automations for small businesses | Hanif Carroll';
@@ -21,7 +22,6 @@ const description =
 	'I help small businesses work better with technology, with websites, tools, and automations built around how they work. Based in Buenos Aires, working U.S. Eastern hours.';
 const socialTitle = 'Hanif Carroll | Websites, tools, and automations for small businesses';
 const socialDescription = 'I help small businesses work better with technology, from websites that bring in customers to automating the work a team does by hand.';
-
 const homepageJsonLd = [
 	{
 		'@context': 'https://schema.org',
@@ -64,98 +64,97 @@ const homepageJsonLd = [
 	}
 ];
 
-// Hand-picked for the homepage: posts closest to how I work with clients.
 const featuredPostIds = ['using-diagrams-to-review-an-ai-report-workflow', 'business-process-mapping-examples', 'spreadsheet-vs-database-internal-tool'];
 const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
 const blogPosts = featuredPostIds.map((id) => allPosts.find((post) => post.id === id)).filter((post) => post !== undefined);
 
-const projectGroups = [
+const compactImageSizes = '(min-width: 1200px) 260px, (min-width: 1024px) 23vw, (min-width: 768px) 47vw, 92vw';
+const zoomedImageSizes = '(min-width: 1200px) 520px, (min-width: 1024px) 46vw, (min-width: 768px) 94vw, 184vw';
+
+const help = [
 	{
-		label: 'Small-business work',
-		projects: [
-			{
-				slug: 'desarmadero-la-torre',
-				title: 'Desarmadero La Torre — A parts catalog customers search before they call',
-				description: 'Customers of this auto-parts yard had to call or visit to check stock. I built a searchable catalog, and the owner came back to map sales, payments, and dismantling into a working prototype.',
-				image: DesarmaderoThumb,
-				alt: 'Automotive salvage inventory and the operating environment behind the client engagement.',
-				clientType: 'Auto-parts yard'
-			},
-			{
-				slug: 'online-store-conversion-review',
-				title: 'JIEC Labs — Making a skincare store easier to shop',
-				description: 'I reviewed the store from homepage to product page, found five places where shoppers could lose confidence, and gave the owner seven fixes in order.',
-				image: JiecLabsThumb,
-				alt: 'JIEC Labs skincare storefront.',
-				clientType: 'Online store'
-			},
-			{
-				slug: 'casa-elaria',
-				title: 'Casa Elaria — Testing demand before buying inventory',
-				description: 'A beauty brand wanted to know whether people would buy before ordering stock. I built a storefront that collected emails at checkout instead of payment, so the owner could see real buying intent first.',
-				image: CasaElariaThumb,
-				alt: 'Casa Elaria beauty storefront.',
-				clientType: 'Beauty brand'
-			},
-			{
-				slug: 'maximo-interiorismo',
-				title: 'Maximo Interiorismo — A portfolio site for an interior designer',
-				description: 'One polished place for the designer to show projects and share them with clients.',
-				image: MaximoThumb,
-				alt: 'Maximo Interiorismo’s design portfolio website.',
-				clientType: 'Interior designer'
-			}
-		]
+		title: 'A website that brings in customers',
+		body: 'A new site, or changes so more visitors call, book, or buy.',
+		icon: 'M3 5h18v14H3zM3 9h18m-14 5h4m-4 2h2'
 	},
 	{
-		label: 'Apps and products',
-		projects: [
-			{
-				slug: 'palabruno',
-				title: 'Palabruno — From prototype to launch on iOS, Android, and web',
-				description: 'Took a founder’s Spanish-reading prototype to launch on iOS, Android, and web in under two months, then handed it off.',
-				image: PalabrunoThumb,
-				alt: 'Palabruno reading product for Spanish learners and teachers.',
-				tags: ['TypeScript', 'React', 'React Native']
-			},
-			{
-				slug: 'genrupt',
-				title: 'Genrupt — AI tools and billing for an Amazon-seller startup',
-				description: 'Built AI seller workflows, billing, and shared credits, and helped support the product’s first 200 paying customers.',
-				image: GenruptThumb,
-				alt: 'Genrupt creative operations workspace for Amazon seller teams.',
-				tags: ['TypeScript', 'Next.js', 'PostgreSQL']
-			},
-			{
-				slug: 'ba-eventos',
-				title: 'BA Eventos — One search for Buenos Aires events',
-				description: 'My own product. It turns scattered event listings into one search by mood, neighborhood, and time.',
-				image: BaEventosThumb,
-				alt: 'BA Eventos event search on a phone.',
-				tags: ['TypeScript', 'SvelteKit', 'Vercel AI SDK']
-			},
-			{
-				slug: 'casamo',
-				title: 'Casamo — Checking rentals against a traveler’s needs',
-				description: 'My own product. It checks Airbnb and Booking.com listings against what a traveler needs, using photos, amenities, and guest reviews.',
-				image: CasamoThumb,
-				alt: 'Casamo rental shortlist on desktop.',
-				tags: ['SvelteKit', 'Cloudflare Workers', 'DeepSeek']
-			}
-		]
+		title: 'Work your team does by hand',
+		body: 'Copying between apps or updating spreadsheets, automated or handled by tools you already pay for.',
+		icon: 'M3 7h14m-4-4 4 4-4 4M21 17H7m4-4-4 4 4 4'
+	},
+	{
+		title: 'Orders and bookings in WhatsApp',
+		body: 'A simple system your team and customers can use instead of paper and chat threads.',
+		icon: 'M3 5h18v12H9l-6 4zM7 9h10M7 13h6'
 	}
 ];
 
-const byName = (name: string) => allTestimonials.find((testimonial) => testimonial.name === name)!;
-const heroTestimonial = byName('Joshua Hamer');
-const feedback = ['Monica Londoño', 'Valentin Zach', 'Michael Shackelford'].map(byName);
+const work = [
+	{
+		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre', label: 'Auto-parts yard', image: Desarmadero,
+		alt: 'Rows of vehicle parts in the Desarmadero La Torre stockroom.',
+		body: 'A parts catalog customers search before they call. The owner came back to map sales and payments into a working prototype.'
+	},
+	{
+		slug: 'online-store-conversion-review', name: 'JIEC Labs', label: 'Online store', image: JiecLabs,
+		alt: 'The online-store review prepared for JIEC Labs.',
+		body: 'Seven fixes, in order, to make a skincare store easier to shop.'
+	},
+	{
+		slug: 'casa-elaria', name: 'Casa Elaria', label: 'Beauty brand', image: CasaElaria,
+		alt: 'The Casa Elaria beauty storefront.',
+		body: 'A storefront that tested demand before the brand bought inventory.'
+	},
+	{
+		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo', label: 'Interior designer', image: Maximo,
+		alt: 'Interiors featured on Maximo Interiorismo’s portfolio site.',
+		body: 'A portfolio site for an interior designer.'
+	}
+];
 
-const sectionClass = 'grid scroll-mt-24 gap-6 border-t border-rule py-16 lg:grid-cols-12 lg:gap-12 lg:py-24';
-const labelClass = 'm-0 text-xs font-bold uppercase tracking-[0.07em] text-ink';
-const bodyClass = 'min-w-0 lg:col-span-7';
-const linkClass =
-	'font-semibold text-ink underline decoration-accent/70 decoration-2 underline-offset-4 transition-colors hover:text-accent-ink hover:decoration-accent focus-visible:text-accent-ink';
-const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${linkClass}`;
+const process = [
+	{ title: '1. Tell me about it', body: 'By email or on a call.' },
+	{ title: '2. Agree on a fix', body: 'I look at how the work happens now and suggest a fix with a clear scope and price.' },
+	{ title: '3. I build it', body: 'Then I set it up with your team and show you how it works.' }
+];
+
+const apps = [
+	{
+		slug: 'palabruno', name: 'Palabruno', image: Palabruno,
+		alt: 'A Spanish text in the Palabruno reader.',
+		body: 'A Spanish-reading app launched on iOS, Android, and web in under two months.',
+		tags: ['TypeScript', 'React Native']
+	},
+	{
+		slug: 'genrupt', name: 'Genrupt', image: Genrupt,
+		alt: 'Genrupt’s tools for Amazon sellers.',
+		body: 'AI tools and billing for a startup’s first 200 paying customers.',
+		tags: ['Next.js', 'PostgreSQL']
+	},
+	{
+		slug: 'ba-eventos', name: 'BA Eventos', image: BaEventos,
+		alt: 'An event and its details in BA Eventos.',
+		body: 'One search for Buenos Aires events, by mood, neighborhood, and time.',
+		tags: ['SvelteKit', 'TypeScript']
+	},
+	{
+		slug: 'casamo', name: 'Casamo', image: Casamo,
+		alt: 'Casamo’s homepage with a watercolor cityscape.',
+		body: 'Checks Airbnb and Booking.com listings against what a traveler needs.',
+		tags: ['SvelteKit', 'Cloudflare Workers']
+	}
+];
+
+const feedback = [
+	{
+		quote: '“Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. The result exceeded our expectations.”',
+		credit: 'Monica Londoño · Co-founder, Punto de Partida'
+	},
+	{
+		quote: '“He is really organized and great at finding ways to make things more efficient. He is also a pleasure to work with!”',
+		credit: 'Michael Shackelford · Founder & CEO, Genrupt'
+	}
+];
 ---
 
 <BaseLayout
@@ -164,204 +163,110 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 	socialTitle={socialTitle}
 	socialDescription={socialDescription}
 	jsonLd={homepageJsonLd}
-	bodyClass='hc-home'
-	showFooterCta={true}
 	footerCtaLocation='home_blog_footer'
 >
-	<div class='mx-auto w-full max-w-page px-6 md:px-12'>
-		<section class='grid gap-14 pt-12 pb-16 lg:grid-cols-12 lg:gap-12 lg:pt-20 lg:pb-24' aria-label='Introduction'>
-			<div class='lg:col-span-5'>
-				<figure class='m-0 mb-6 size-22 overflow-hidden rounded-full bg-accent/20' transition:name='portrait'>
-					<Image
-						class='size-full object-cover'
-						src={Portrait}
-						alt='Hanif Carroll'
-						loading='eager'
-						widths={[176, 352]}
-						sizes='88px'
-					/>
-				</figure>
-				<h1 class='m-0 text-[clamp(2.25rem,4.5vw,3.25rem)] font-bold leading-[1.05] tracking-[-0.03em] text-ink'>Hanif Carroll</h1>
-				<p class='mt-3 mb-0 text-lg font-medium text-ink'>I help small businesses work better with technology.</p>
-				<div class='mt-6 grid max-w-md gap-4 text-base leading-relaxed text-ink-muted'>
-					<p class='m-0'>That might be a website that brings in customers, a tool built around how you work, or automating the tasks your team does by hand, like copying information between apps, updating spreadsheets, or tracking orders on paper or in WhatsApp.</p>
-					<p class='m-0'>I start by learning how your business works, then fix the problem with tools you already have or something I build for you. I’m based in Buenos Aires and work U.S. Eastern hours.</p>
+	<div class='home'>
+		<section class='home-hero' data-section='hero' aria-labelledby='hero-title'>
+			<div class='home-shell'>
+				<div class='home-identity'>
+					<Image class='home-portrait' data-visual src={Portrait} alt='' width={96} height={96} loading='eager' />
+					<p><strong>Hanif Carroll</strong> · Freelance Software Engineer</p>
 				</div>
-				<div class='mt-8 flex flex-wrap items-center gap-x-3 gap-y-3 text-sm'>
-					<a
-						class='inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-[0.9rem] font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
-						href={EMAIL_URL}
-						data-track-event='email_clicked'
-						data-track-location='home_hero'
-					>
-						Email me about one task
-					</a>
-					<a
-						class='inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink/25 px-4 py-2 text-[0.9rem] font-medium text-ink no-underline transition-colors hover:border-ink hover:bg-ink/5 focus-visible:border-ink'
-						href={BOOK_CALL_URL}
-						target='_blank'
-						rel='noopener noreferrer'
-						data-track-event='book_call_clicked'
-						data-track-location='home_hero'
-					>
-						Book a call
-						<svg class='size-3.5 fill-none stroke-current stroke-[1.25]' aria-hidden='true' viewBox='0 0 16 16' focusable='false'><path d='M3 13 13 3M6 3h7v7' /></svg>
-					</a>
-				</div>
-				<blockquote class='mt-10 mb-0 max-w-md border-l-2 border-accent pl-4'>
-					<p class='m-0 text-sm leading-relaxed text-ink'>“{heroTestimonial.quote}”</p>
-					<footer class='mt-3 text-xs text-ink-muted'>
-						<cite class='not-italic'><span class='font-semibold text-ink'>{heroTestimonial.name}</span> · {heroTestimonial.role}</cite>
-					</footer>
-				</blockquote>
-			</div>
-
-			<div id='projects' class='min-w-0 scroll-mt-24 lg:col-span-7'>
-				{projectGroups.map((group) => (
-					<div class='not-first:mt-12 not-first:border-t not-first:border-rule not-first:pt-10'>
-						<h2 class={`${labelClass} mb-6`}>{group.label}</h2>
-						<ul class='m-0 grid list-none gap-10 p-0'>
-							{group.projects.map((project) => (
-								<li>
-									<a class='group grid gap-3 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-8 sm:gap-4' href={`/projects/${project.slug}/`}>
-										<div class='sm:col-span-3'>
-											<Image
-												class='aspect-video w-full rounded-md object-cover'
-												src={project.image}
-												alt={project.alt}
-												loading='lazy'
-												widths={[400, 800, 1200]}
-												sizes='(min-width: 1024px) 260px, (min-width: 640px) 38vw, calc(100vw - 3rem)'
-											/>
-										</div>
-										<div class='sm:col-span-5'>
-											<h3 class='m-0 text-base font-medium leading-snug text-ink transition-colors group-hover:text-accent-ink group-focus-visible:text-accent-ink'>{project.title}</h3>
-											<p class='mt-2 mb-0 text-sm leading-relaxed text-ink-muted'>{project.description}</p>
-											{'tags' in project ? (
-												<ul class='mt-3 mb-0 flex list-none flex-wrap gap-x-3 gap-y-1 p-0 text-xs text-ink-muted' aria-label='Technologies used'>
-													{project.tags.map((tag) => <li class='after:ml-3 after:text-line after:content-["·"] last:after:content-none'>{tag}</li>)}
-												</ul>
-											) : (
-												<p class='mt-3 mb-0 text-xs font-medium text-ink-muted'>{project.clientType}</p>
-											)}
-										</div>
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				))}
-				<a class={`${arrowLinkClass} mt-10`} href='/projects/'>
-					View more projects
-					<svg class='text-accent-ink transition-transform group-hover:translate-x-[3px] motion-reduce:transition-none' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
-				</a>
+				<h1 id='hero-title'>I help small businesses work better with technology.</h1>
+				<p class='home-deck' data-deck>I build websites that bring in customers, tools that fit how you work, and automations for the tasks your team still does by hand.</p>
+				<HomeActions location='home_hero' />
 			</div>
 		</section>
 
-		<section class={sectionClass} aria-labelledby='services-title'>
-			<div class='lg:col-span-5'>
-				<h2 id='services-title' class={labelClass}>What I can help with</h2>
-			</div>
-			<ul class={`${bodyClass} m-0 grid list-none gap-6 p-0 text-base leading-[1.7] text-ink-muted`}>
-				<li>
-					<h3 class='m-0 text-base font-bold text-ink'>A website that brings in customers</h3>
-					<p class='m-0'>A new site, or changes to the one you have so more visitors call, book, or buy.</p>
-				</li>
-				<li>
-					<h3 class='m-0 text-base font-bold text-ink'>Work your team does by hand</h3>
-					<p class='m-0'>Copying information between apps, updating spreadsheets, or retyping the same details. I automate it or set up tools that do it for you.</p>
-				</li>
-				<li>
-					<h3 class='m-0 text-base font-bold text-ink'>Orders, bookings, or inventory on paper or in WhatsApp</h3>
-					<p class='m-0'>A simple system your team and customers can use, like the parts catalog I built for <a class={linkClass} href='/projects/desarmadero-la-torre/'>Desarmadero La Torre</a>.</p>
-				</li>
-				<li>
-					<h3 class='m-0 text-base font-bold text-ink'>Tools you pay for but don’t use well</h3>
-					<p class='m-0'>I set up and connect the software you already have so it fits how you work.</p>
-				</li>
+		<HomeSection name='help' title='Where I can help.' intro='Most small businesses lose time in the same few places.' points={help} />
+
+		<HomeSection name='work' id='projects' title='Work for small businesses.' intro='Each project started with how the business runs today.'>
+			<ul class='home-gallery' slot='visual' role='list'>
+				{work.map((project, index) => (
+					<li class:list={{ 'home-featured': index === 0 }}>
+						<a class='home-card' href={`/projects/${project.slug}/`}>
+							<div class='home-picture' data-visual data-project={project.slug}>
+								<Image src={project.image} alt={project.alt} widths={index === 0 ? [400, 720, 1440] : [400, 720]} sizes={index === 0 ? '(min-width: 1200px) 700px, (min-width: 768px) 58vw, 92vw' : project.image === JiecLabs ? '(min-width: 1200px) 520px, (min-width: 768px) 45vw, 134vw' : '(min-width: 1200px) 360px, (min-width: 768px) 30vw, 92vw'} />
+							</div>
+							<div class='home-card-copy'>
+								<p class='home-label'>{project.label}</p>
+								<h3>{project.name}</h3>
+								<p>{project.body}</p>
+							</div>
+						</a>
+					</li>
+				))}
 			</ul>
+		</HomeSection>
+
+		<section class='home-quote-band' data-section='quote' aria-label='Testimonial from JIEC Labs'>
+			<div class='home-shell'>
+				<figure>
+					<blockquote><p>“I really liked how the process was organized and feel like I got great value from the project.”</p></blockquote>
+					<figcaption>Joshua Hamer · JIEC Labs</figcaption>
+				</figure>
+				<HomeActions location='home_quote_band' />
+			</div>
 		</section>
 
-		<section class={sectionClass} aria-labelledby='process-title'>
-			<div class='lg:col-span-5'>
-				<h2 id='process-title' class={labelClass}>How working together goes</h2>
-			</div>
-			<ol class={`${bodyClass} m-0 grid list-decimal gap-3 pl-5 text-base leading-[1.7] text-ink-muted marker:font-semibold marker:text-ink`}>
-				<li>Tell me about the problem by email or on a call.</li>
-				<li>I look at how the work happens now and suggest a fix, with a clear scope and price.</li>
-				<li>I build it, set it up with your team, and show you how it works.</li>
-			</ol>
-		</section>
+		<HomeSection name='process' title='How we’d work together.' intro='You don’t need a project brief. One task is enough to start.' points={process} ordered />
 
-		<section class={sectionClass} aria-labelledby='feedback-title'>
-			<div class='lg:col-span-5'>
-				<h2 id='feedback-title' class={labelClass}>Feedback</h2>
-			</div>
-			<div class={`${bodyClass} grid gap-10`}>
-				{feedback.map((testimonial) => (
-					<blockquote class='m-0 border-l-2 border-accent pl-5'>
-						<p class='m-0 text-base leading-[1.7] text-ink'>“{testimonial.quote}”</p>
-						<footer class='mt-4'>
-							<cite class='grid gap-1 not-italic'>
-								<span class='text-sm font-bold text-ink'>{testimonial.name}</span>
-								<span class='text-xs text-ink-muted'>{testimonial.role}</span>
-							</cite>
-						</footer>
-					</blockquote>
+		<HomeSection name='apps' title='I also build apps and products.' intro='I’ve built apps with founders, and I run two products of my own.'>
+			<ul class='home-gallery home-apps' slot='visual' role='list'>
+				{apps.map((app) => (
+					<li>
+						<a class='home-card' href={`/projects/${app.slug}/`}>
+							<div class='home-picture' data-visual data-project={app.slug}>
+								<Image src={app.image} alt={app.alt} widths={[320, 480, 720]} sizes={app.image === BaEventos || app.image === Casamo ? zoomedImageSizes : compactImageSizes} />
+							</div>
+							<div class='home-card-copy'>
+								<h3>{app.name}</h3>
+								<p>{app.body}</p>
+								<ul class='home-tags' aria-label='Technologies used' role='list'>
+									{app.tags.map((tag) => <li data-tech-tag>{tag}</li>)}
+								</ul>
+							</div>
+						</a>
+					</li>
+				))}
+			</ul>
+			<p class='home-gallery-link'><a class={textLinkClass} href='/projects/'>See all projects</a></p>
+		</HomeSection>
+
+		<HomeSection name='feedback' title='What clients say.'>
+			<div class='home-feedback'>
+				{feedback.map(({ quote, credit }) => (
+					<figure>
+						<blockquote><p>{quote}</p></blockquote>
+						<figcaption>{credit}</figcaption>
+					</figure>
 				))}
 			</div>
-		</section>
+		</HomeSection>
 
-		<section id='about' class={sectionClass} aria-labelledby='about-title'>
-			<div class='lg:col-span-5'>
-				<h2 id='about-title' class={labelClass}>About</h2>
+		<HomeSection name='about' title='About me.'>
+			<div class='home-about'>
+				<p>I’m Hanif, a freelance software engineer in Buenos Aires with 9+ years of experience. I worked at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a> before starting HC Studio. The part I enjoy most is learning how people actually work and figuring out together what’s worth building. Outside of work, I <a href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger><strong>lift weights</strong></a> and look for cozy coffee shops for merienda.</p>
+				<div class='home-about-links'>
+					<a class={textLinkClass} href='/how-i-work/'>How I work</a>
+					<a class={textLinkClass} href='/notes/'>Read my notes</a>
+				</div>
 			</div>
-			<div class={`${bodyClass} hc-home-about grid gap-5 text-base leading-[1.7] text-ink-muted`}>
-				<p class='m-0'>
-					Hey, I’m Hanif. I’m a freelance software engineer based in Buenos Aires. I got into programming after <em>Mr. Robot</em> inspired me to learn how to code. I now have 9+ years of experience. The part of the work I enjoy most is the conversations: learning how people actually work and figuring out together what’s worth building.
-				</p>
-				<p class='m-0'>
-					Before going freelance, I worked at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>, on projects like the crew management system for Disney Cruise Line and tournament scheduling used by sports organizations. I now run HC Studio, where I help small businesses work better with technology.
-				</p>
-				<p class='m-0'>
-					I’ve used AI coding agents for three years, which lets me spend more time on what to build and checking that it works. I’ve written about <a href='/how-i-work/'>how I work</a>.
-				</p>
-				<p class='m-0'>
-					I’m interested in how organizations work and how technology can fit around people. Right now I’m reading <em><a href='https://www.amazon.com/dp/1603580557' target='_blank' rel='noopener noreferrer'>Thinking in Systems</a></em>.
-				</p>
-				<p class='m-0'>
-					Outside of work, I like to <a href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger><strong>lift weights</strong></a>, experiment with AI, and have merienda in cozy coffee shops.
-				</p>
-				<a class={`${arrowLinkClass} mt-2 justify-self-start`} href='/notes/'>
-					Read my notes
-					<svg class='text-accent-ink transition-transform group-hover:translate-x-[3px] motion-reduce:transition-none' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M5 12h14'></path><path d='M12 5l7 7-7 7'></path></svg>
-				</a>
-			</div>
-		</section>
+		</HomeSection>
 
-		<section id='blog' class={sectionClass} aria-labelledby='blog-title'>
-			<div class='lg:col-span-5'>
-				<h2 id='blog-title' class={labelClass}>Blog</h2>
-			</div>
-			<div class={bodyClass}>
-				<ol class='m-0 grid list-none gap-9 p-0'>
-					{blogPosts.map((post) => (
-						<li>
-							<a class='group grid gap-2 text-inherit no-underline sm:grid-cols-8 sm:gap-4' href={`/blog/${post.id}/`}>
-								<div class='text-xs font-semibold uppercase tracking-[0.06em] text-ink-muted sm:col-span-2 sm:mt-0.5'>
-									<FormattedDate date={post.data.pubDate} />
-								</div>
-								<div class='sm:col-span-6'>
-									<h3 class='m-0 text-base font-medium leading-snug text-ink transition-colors group-hover:text-accent-ink'>{post.data.title}</h3>
-									<p class='mt-2 mb-0 text-sm leading-relaxed text-ink-muted'>{post.data.description}</p>
-								</div>
-							</a>
-						</li>
-					))}
-				</ol>
-				<a class={`mt-10 inline-block text-[0.95rem] ${linkClass}`} href='/blog/'>View more blog posts</a>
-			</div>
-		</section>
+		<HomeSection name='writing' id='blog' title='Writing.'>
+			<ol class='home-writing' role='list'>
+				{blogPosts.map((post) => (
+					<li>
+						<a href={`/blog/${post.id}/`}>
+							<h3>{post.data.title}</h3>
+							<FormattedDate date={post.data.pubDate} />
+						</a>
+					</li>
+				))}
+			</ol>
+			<p class='home-gallery-link'><a class={textLinkClass} href='/blog/'>More posts</a></p>
+		</HomeSection>
 	</div>
 
 	<dialog class='hc-home-video-modal' aria-label='Lifting weights video' data-lifting-video-modal>
@@ -371,13 +276,7 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 					<svg viewBox='0 0 24 24' aria-hidden='true'><path d='m6 6 12 12M18 6 6 18'></path></svg>
 				</button>
 			</form>
-			<iframe
-				class='hc-home-video-modal__frame'
-				title='Hanif Carroll lifting weights'
-				allow='autoplay; encrypted-media; picture-in-picture'
-				allowfullscreen
-				data-lifting-video-frame
-			></iframe>
+			<iframe class='hc-home-video-modal__frame' title='Hanif Carroll lifting weights' allow='autoplay; encrypted-media; picture-in-picture' allowfullscreen data-lifting-video-frame></iframe>
 		</div>
 	</dialog>
 </BaseLayout>
@@ -397,6 +296,4 @@ const arrowLinkClass = `group inline-flex items-center gap-2 text-[0.95rem] ${li
 		videoFrame.removeAttribute('src');
 		videoTrigger.focus();
 	});
-
-
 </script>

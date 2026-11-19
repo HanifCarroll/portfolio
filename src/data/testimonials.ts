@@ -23,16 +23,4 @@ export const testimonials = [
     quote:
       "He’s reliable, communicates great, and has a sharp technical mind. Whether handling complex builds, troubleshooting under pressure, or adapting to shifting priorities, he was dependable every step of the way.",
   },
-  {
-    name: "Joshua Hamer",
-    role: "JIEC Labs · Shopify engagement",
-    quote:
-      "Working with Hanif on my Shopify store was easy, he was always quick to respond, and he gave me great pro tips all along the way. I really liked how the process was organized and feel like I got great value from the project. I would definitely work with him again and would recommend him to anyone looking to improve their e-commerce site!",
-  },
-  {
-    name: "Monica Londoño",
-    role: "Co-founder, Punto de Partida",
-    quote:
-      "Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. His professionalism and data-driven approach made the entire process seamless. The result exceeded our expectations.",
-  },
 ];
