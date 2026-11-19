@@ -68,7 +68,7 @@ Add a slug to `scripts/frame-device.json`. Set `device` to `phone`, `laptop`, or
 
 The renderer draws the status bar on every phone. For a public website, set `safariDomain` to show the address and bottom toolbar, and capture the site at 390×700 CSS pixels to fit between them. For a native screenshot with its own status bar, set `phoneTopCrop` to the number of source pixels to remove from the top.
 
-Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/framed/<slug>.png`. Point the project's `images.hero` at that PNG and update `images.feature` if it shared the previous hero. Every frame uses the same transparent 1600×1000 canvas and fits the entire screenshot without stretching it.
+Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/framed/<slug>.png`. Point both `images.hero` and `images.feature` at that PNG, and give any other case-study images their own keys. Every frame uses the same transparent 1440×900 canvas and fits the entire screenshot without stretching it.
 
 ### Deployment
 

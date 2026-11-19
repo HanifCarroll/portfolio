@@ -191,32 +191,14 @@
 }
 
 .home-picture {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
   border-bottom: 1px solid var(--color-line);
   background: var(--color-surface-warm);
 }
 
 .home-picture img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.home-apps .home-picture img {
-  object-fit: contain;
-}
-
-/* shortcut: this crop matches the JIEC report asset; revisit it if the screenshot changes. */
-.home-picture[data-project='online-store-conversion-review'] img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 145%;
-  max-width: none;
   height: auto;
-  transform: translate(-21%, -10%);
 }
 
 .home-card-copy {
@@ -230,10 +212,6 @@
 .home-featured h3 {
   font-family: var(--font-editorial);
   font-size: clamp(2rem, 3.3vw, 2.75rem);
-}
-
-.home-featured .home-picture img {
-  object-position: center 46%;
 }
 
 .home-tags {
@@ -356,7 +334,6 @@
   }
 
   .home-featured .home-picture {
-    aspect-ratio: 2 / 1;
     border-right: 1px solid var(--color-line);
     border-bottom: 0;
   }
@@ -375,7 +352,7 @@
     min-height: clamp(32rem, 70svh, 46rem);
   }
 
-  .home-section[data-section='work'] {
+  .home-section[data-section="work"] {
     padding-block: 5.5rem;
   }
 
@@ -386,10 +363,6 @@
 
   .home-heading h2 {
     text-wrap: wrap;
-  }
-
-  .home-apps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .home-quote-band .home-shell {

@@ -260,7 +260,8 @@ The site is moving to Tailwind during the redesign. New and redesigned markup us
 
 - Every page has the same sticky site header: name on the left, Projects, How I work, Blog and Notes, and the call to action. Below 64rem the links move into the menu.
 - Page content sits in `mx-auto w-full max-w-page px-6 md:px-12`, so it lines up with the header.
-- The homepage and Projects use a 12-column split grid: labels or intro in the left 5 columns, content in the right 7. Nothing in it is sticky.
+- The Projects archive uses a 12-column split grid: group labels in the left 5 columns, rows in the right 7. Nothing in it is sticky. Archive thumbnails use about 250px on desktop and stack above the copy on mobile.
+- Project cards and case-study heroes share transparent 8:5 device frames. Cards show the whole frame and its shadow without cropping. The homepage app gallery uses at most two columns so phone screens stay legible.
 - Notes keeps a sticky table of contents beside the entries on desktop; on mobile the contents move into the header.
 - Reading pages keep text within `max-w-reading`.
 

@@ -41,38 +41,44 @@ test("renders the frame family on one transparent canvas without cropping wide s
     };
     await frameDevice(options);
     const { data, info } = await sharp(output).raw().toBuffer({ resolveWithObject: true });
-    assert.deepEqual([info.width, info.height, info.channels], [1600, 1000, 4]);
+    assert.deepEqual([info.width, info.height, info.channels], [1440, 900, 4]);
     const pixel = (x, y) =>
       data.subarray(4 * (y * info.width + x), 4 * (y * info.width + x) + 4).toString("hex");
-    assert.equal(pixel(0, 0), "00000000");
-    assert.ok(parseInt(pixel(800, device === "laptop" ? 896 : 950).slice(-2), 16) < 255);
+    const alphaAt = (x, y) => data[4 * (y * info.width + x) + 3];
+    for (let x = 0; x < info.width; x++) {
+      assert.ok(alphaAt(x, 0) < 4 && alphaAt(x, info.height - 1) < 4, "shadow fits vertically");
+    }
+    for (let y = 0; y < info.height; y++) {
+      assert.ok(alphaAt(0, y) < 4 && alphaAt(info.width - 1, y) < 4, "shadow fits horizontally");
+    }
 
     if (device === "laptop") {
-      assert.equal(pixel(800, 134), "457b9dff", "screenshot is top aligned");
-      assert.equal(pixel(1370, 450), "ffcc00ff", "right edge is not cropped");
-      assert.equal(pixel(800, 704), "ffff00ff", "bottom edge is not cropped");
+      assert.equal(pixel(720, 79), "457b9dff", "screenshot is top aligned");
+      assert.equal(pixel(1290, 395), "ffcc00ff", "right edge is not cropped");
+      assert.equal(pixel(720, 649), "ffff00ff", "bottom edge is not cropped");
       assert.equal(
-        pixel(800, 715),
+        pixel(720, 660),
         "457b9dff",
         "the 2:1 screen content ends at its natural aspect ratio",
       );
-      const alpha = parseInt(pixel(800, 896).slice(-2), 16);
-      assert.ok(alpha > 0, "the frame has a soft shadow below it");
+      assert.equal(alphaAt(65, 803), 255, "the laptop base nearly fills the canvas width");
+      assert.ok(alphaAt(720, 840) > 0 && alphaAt(720, 840) < 255, "soft shadow below the base");
       const first = await readFile(output);
       await frameDevice(options);
       assert.deepEqual(await readFile(output), first, "identical inputs render deterministically");
     } else if (device === "phone") {
-      assert.equal(pixel(800, 500), "e63946ff");
-      assert.equal(pixel(800, 91), "0a0a0bff", "the Dynamic Island is visible");
-      assert.equal(pixel(635, 114), "fafafaff", "the drawn status bar replaces the source bar");
+      assert.equal(pixel(720, 440), "e63946ff");
+      assert.equal(pixel(720, 52), "0a0a0bff", "the Dynamic Island is visible");
+      assert.equal(pixel(564, 74), "fafafaff", "the drawn status bar replaces the source bar");
       assert.equal(
-        pixel(800, 118),
+        pixel(720, 78),
         "2ca26aff",
         "the uncropped app content starts below the status bar",
       );
+      assert.equal(alphaAt(720, 847), 255, "the phone uses nearly the full canvas height");
     } else {
       assert.equal(pixel(700, 300), "457b9dff");
-      assert.equal(pixel(1280, 600), "e63946ff", "the phone overlaps the laptop screen");
+      assert.equal(pixel(1180, 540), "e63946ff", "the phone overlaps the laptop screen");
     }
   }
 
@@ -87,10 +93,10 @@ test("renders the frame family on one transparent canvas without cropping wide s
   const { data, info } = await sharp(safariOutput).raw().toBuffer({ resolveWithObject: true });
   const color = (x, y) =>
     data.subarray(4 * (y * info.width + x), 4 * (y * info.width + x) + 4).toString("hex");
-  assert.equal(color(640, 132), "e7e8eaff", "Safari draws its address field above the site");
-  assert.equal(color(800, 163), "2ca26aff", "Safari leaves the top of the site visible");
-  assert.equal(color(800, 859), "e63946ff", "Safari leaves the bottom of the site visible");
-  assert.equal(color(645, 865), "fafafaff", "Safari draws its toolbar below the site");
+  assert.equal(color(568, 91), "e7e8eaff", "Safari draws its address field above the site");
+  assert.equal(color(720, 120), "2ca26aff", "Safari leaves the top of the site visible");
+  assert.equal(color(720, 781), "e63946ff", "Safari leaves the bottom of the site visible");
+  assert.equal(color(573, 788), "fafafaff", "Safari draws its toolbar below the site");
 
   await assert.rejects(
     frameDevice({ device: "laptop+phone", input: desktop }),

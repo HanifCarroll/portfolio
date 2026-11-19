@@ -2,10 +2,6 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-author-portrait.jpg';
-import CasaElaria from '../assets/img/projects/casa-elaria-feature.png';
-import Desarmadero from '../assets/img/projects/desarmadero-parts-stockroom-photo.png';
-import JiecLabs from '../assets/img/projects/online-store-conversion-review.png';
-import Maximo from '../assets/img/projects/maximo-feature.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getProjectImage } from '../lib/project-images';
 import { projects } from '../lib/projects';
@@ -86,22 +82,22 @@ const help = [
 
 const work = [
 	{
-		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre', label: 'Auto-parts yard', image: Desarmadero,
-		alt: 'Rows of vehicle parts in the Desarmadero La Torre stockroom.',
+		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre', label: 'Auto-parts yard',
+		alt: 'Desarmadero La Torre’s online parts catalog.',
 		body: 'A parts catalog customers search before they call. The owner came back to map sales and payments into a working prototype.'
 	},
 	{
-		slug: 'online-store-conversion-review', name: 'JIEC Labs', label: 'Online store', image: JiecLabs,
+		slug: 'online-store-conversion-review', name: 'JIEC Labs', label: 'Online store',
 		alt: 'The online-store review prepared for JIEC Labs.',
 		body: 'Seven fixes, in order, to make a skincare store easier to shop.'
 	},
 	{
-		slug: 'casa-elaria', name: 'Casa Elaria', label: 'Beauty brand', image: CasaElaria,
+		slug: 'casa-elaria', name: 'Casa Elaria', label: 'Beauty brand',
 		alt: 'The Casa Elaria beauty storefront.',
 		body: 'A storefront that tested demand before the brand bought inventory.'
 	},
 	{
-		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo', label: 'Interior designer', image: Maximo,
+		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo', label: 'Interior designer',
 		alt: 'Interiors featured on Maximo Interiorismo’s portfolio site.',
 		body: 'A portfolio site for an interior designer.'
 	}
@@ -180,8 +176,8 @@ const feedback = [
 				{work.map((project, index) => (
 					<li class:list={{ 'home-featured': index === 0 }}>
 						<a class='home-card' href={`/projects/${project.slug}/`}>
-							<div class='home-picture' data-visual data-project={project.slug}>
-								<Image src={project.image} alt={project.alt} widths={index === 0 ? [400, 720, 1440] : [400, 720]} sizes={index === 0 ? '(min-width: 1200px) 700px, (min-width: 768px) 58vw, 92vw' : project.image === JiecLabs ? '(min-width: 1200px) 520px, (min-width: 768px) 45vw, 134vw' : '(min-width: 1200px) 360px, (min-width: 768px) 30vw, 92vw'} />
+							<div class='home-picture' data-visual>
+								<Image src={getProjectImage(projects[project.slug], 'feature')} alt={project.alt} widths={index === 0 ? [400, 720, 1440] : [400, 720]} sizes={index === 0 ? '(min-width: 1200px) 700px, (min-width: 768px) 58vw, calc(100vw - 3rem)' : '(min-width: 1200px) 360px, (min-width: 768px) 30vw, calc(100vw - 3rem)'} />
 							</div>
 							<div class='home-card-copy'>
 								<p class='home-label'>{project.label}</p>
@@ -212,7 +208,7 @@ const feedback = [
 					<li>
 						<a class='home-card' href={`/projects/${app.slug}/`}>
 							<div class='home-picture' data-visual>
-								<Image src={getProjectImage(projects[app.slug], 'feature')} alt={app.alt} widths={[320, 480, 720]} sizes='(min-width: 1200px) 260px, (min-width: 1024px) 23vw, (min-width: 768px) 47vw, 92vw' />
+								<Image src={getProjectImage(projects[app.slug], 'feature')} alt={app.alt} widths={[400, 560, 1120]} sizes='(min-width: 1200px) 550px, (min-width: 768px) 46vw, calc(100vw - 3rem)' />
 							</div>
 							<div class='home-card-copy'>
 								<h3>{app.name}</h3>

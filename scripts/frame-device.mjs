@@ -4,8 +4,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
-const width = 1600;
-const height = 1000;
+const width = 1440;
+const height = 900;
 const projectAssets = fileURLToPath(new URL("../src/assets/img/projects/", import.meta.url));
 const usage = "Usage: node scripts/frame-device.mjs <slug> [<slug> ...]";
 const laptopScreen = { x: 22, y: 30, width: 1152, height: 696, radius: 9 };
@@ -115,8 +115,9 @@ export async function frameDevice({
     throw new Error("safariDomain must be a bare hostname.");
   }
 
-  const laptopTransform = paired ? "translate(126 81)" : "translate(202 103)";
-  const phoneTransform = paired ? "translate(1226 368) scale(.64)" : "translate(587 52)";
+  // Keep room for the shadow without shrinking the devices to a common width.
+  const laptopTransform = paired ? "translate(114 40) scale(.94)" : "translate(122 48)";
+  const phoneTransform = paired ? "translate(1127 292) scale(.64)" : "translate(518 15) scale(.95)";
   const laptop =
     device === "phone"
       ? ""
@@ -150,10 +151,10 @@ export async function frameDevice({
       <linearGradient id="base" x2="0" y2="1"><stop stop-color="#aeafb3"/><stop offset=".34" stop-color="#898b90"/><stop offset="1" stop-color="#45474d"/></linearGradient>
       <linearGradient id="rim" x2="1" y2="1"><stop stop-color="#85858c"/><stop offset=".38" stop-color="#5a5a60"/><stop offset="1" stop-color="#2a2a2e"/></linearGradient>
       <filter id="shadow" filterUnits="userSpaceOnUse" x="0" y="0" width="${width}" height="${height}">
-        <feGaussianBlur stdDeviation="14"/>
+        <feGaussianBlur stdDeviation="12"/>
       </filter>
     </defs>
-    <g transform="translate(0 16)" opacity=".23" filter="url(#shadow)">
+    <g transform="translate(0 12)" opacity=".23" filter="url(#shadow)">
       ${laptop && `<g transform="${laptopTransform}">${laptopLid}/><path d="${laptopBase}"/></g>`}
       ${handset && `<g transform="${phoneTransform}">${phoneBody}/></g>`}
     </g>

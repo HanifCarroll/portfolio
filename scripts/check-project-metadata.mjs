@@ -49,6 +49,11 @@ for (const file of localProjectFiles) {
     errors.push(`${file}: missing case study at ${expectedPath}.`);
   }
 
+  const framedImage = `@src/assets/img/projects/framed/${slug}.png`;
+  if (project.images?.hero !== framedImage || project.images?.feature !== framedImage) {
+    errors.push(`${file}: images.hero and images.feature must use "${framedImage}".`);
+  }
+
   for (const [key, value] of Object.entries(project.images ?? {})) {
     const assetPath = toAssetPath(value);
     if (!assetPath) continue;
