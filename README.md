@@ -62,6 +62,12 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 - Project case studies are defined in JSON under `src/lib/projects/` and surfaced through `src/lib/project-cards.ts`.
 - Public images remain in `public/` and are referenced directly by the JSON files and templates.
 
+### Project hero frames
+
+Add a slug to `scripts/frame-device.json`. Set `device` to `phone`, `laptop`, or `laptop+phone`, and set `input` to a raw screenshot relative to `src/assets/img/projects/`. For `laptop+phone`, `input` is the desktop screenshot and `phone` is the mobile screenshot. Use real UI and leave inline case-study images alone.
+
+Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/framed/<slug>.png`. Point the project's `images.hero` at that PNG and update `images.feature` if it shared the previous hero. Every frame uses the same transparent 1600×1000 canvas and fits the entire screenshot without stretching it.
+
 ### Deployment
 
 The site is deployed as a static Astro site on Cloudflare Pages. In the Cloudflare Pages project, use:
