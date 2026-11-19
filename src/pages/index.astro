@@ -2,15 +2,13 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-author-portrait.jpg';
-import BaEventos from '../assets/img/projects/ba-eventos-event-detail.png';
 import CasaElaria from '../assets/img/projects/casa-elaria-feature.png';
-import Casamo from '../assets/img/projects/casamo/shortlist-desktop.png';
 import Desarmadero from '../assets/img/projects/desarmadero-parts-stockroom-photo.png';
-import Genrupt from '../assets/img/projects/genrupt-mobile-feature.png';
 import JiecLabs from '../assets/img/projects/online-store-conversion-review.png';
 import Maximo from '../assets/img/projects/maximo-feature.png';
-import Palabruno from '../assets/img/projects/palabruno-reader-current.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getProjectImage } from '../lib/project-images';
+import { projects } from '../lib/projects';
 import { textLinkClass } from '../lib/ui';
 import FormattedDate from '../components/FormattedDate.astro';
 import HomeActions from '../components/home/HomeActions.astro';
@@ -68,9 +66,6 @@ const featuredPostIds = ['using-diagrams-to-review-an-ai-report-workflow', 'busi
 const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
 const blogPosts = featuredPostIds.map((id) => allPosts.find((post) => post.id === id)).filter((post) => post !== undefined);
 
-const compactImageSizes = '(min-width: 1200px) 260px, (min-width: 1024px) 23vw, (min-width: 768px) 47vw, 92vw';
-const zoomedImageSizes = '(min-width: 1200px) 520px, (min-width: 1024px) 46vw, (min-width: 768px) 94vw, 184vw';
-
 const help = [
 	{
 		title: 'A website that brings in customers',
@@ -120,26 +115,26 @@ const process = [
 
 const apps = [
 	{
-		slug: 'palabruno', name: 'Palabruno', image: Palabruno,
-		alt: 'A Spanish text in the Palabruno reader.',
+		slug: 'palabruno', name: 'Palabruno',
+		alt: 'Palabruno’s Spanish reader on desktop and mobile.',
 		body: 'A Spanish-reading app launched on iOS, Android, and web in under two months.',
 		tags: ['TypeScript', 'React Native']
 	},
 	{
-		slug: 'genrupt', name: 'Genrupt', image: Genrupt,
-		alt: 'Genrupt’s tools for Amazon sellers.',
+		slug: 'genrupt', name: 'Genrupt',
+		alt: 'Genrupt’s project grid for Amazon sellers.',
 		body: 'AI tools and billing for a startup’s first 200 paying customers.',
 		tags: ['Next.js', 'PostgreSQL']
 	},
 	{
-		slug: 'ba-eventos', name: 'BA Eventos', image: BaEventos,
-		alt: 'An event and its details in BA Eventos.',
+		slug: 'ba-eventos', name: 'BA Eventos',
+		alt: 'BA Eventos on a phone.',
 		body: 'One search for Buenos Aires events, by mood, neighborhood, and time.',
 		tags: ['SvelteKit', 'TypeScript']
 	},
 	{
-		slug: 'casamo', name: 'Casamo', image: Casamo,
-		alt: 'Casamo’s homepage with a watercolor cityscape.',
+		slug: 'casamo', name: 'Casamo',
+		alt: 'Casamo’s homepage on a desktop display.',
 		body: 'Checks Airbnb and Booking.com listings against what a traveler needs.',
 		tags: ['SvelteKit', 'Cloudflare Workers']
 	}
@@ -216,8 +211,8 @@ const feedback = [
 				{apps.map((app) => (
 					<li>
 						<a class='home-card' href={`/projects/${app.slug}/`}>
-							<div class='home-picture' data-visual data-project={app.slug}>
-								<Image src={app.image} alt={app.alt} widths={[320, 480, 720]} sizes={app.image === BaEventos || app.image === Casamo ? zoomedImageSizes : compactImageSizes} />
+							<div class='home-picture' data-visual>
+								<Image src={getProjectImage(projects[app.slug], 'feature')} alt={app.alt} widths={[320, 480, 720]} sizes='(min-width: 1200px) 260px, (min-width: 1024px) 23vw, (min-width: 768px) 47vw, 92vw' />
 							</div>
 							<div class='home-card-copy'>
 								<h3>{app.name}</h3>

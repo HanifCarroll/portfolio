@@ -204,33 +204,19 @@
   object-fit: cover;
 }
 
-/* shortcut: these crops match the source assets; revisit them if those screenshots change. */
-.home-picture:is([data-project='online-store-conversion-review'], [data-project='ba-eventos'], [data-project='casamo']) img {
+.home-apps .home-picture img {
+  object-fit: contain;
+}
+
+/* shortcut: this crop matches the JIEC report asset; revisit it if the screenshot changes. */
+.home-picture[data-project='online-store-conversion-review'] img {
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--crop-width);
+  width: 145%;
   max-width: none;
   height: auto;
-  transform: translate(var(--crop-x), var(--crop-y));
-}
-
-.home-picture[data-project='online-store-conversion-review'] {
-  --crop-width: 145%;
-  --crop-x: -21%;
-  --crop-y: -10%;
-}
-
-.home-picture[data-project='ba-eventos'] {
-  --crop-width: 197%;
-  --crop-x: -35%;
-  --crop-y: -7.2%;
-}
-
-.home-picture[data-project='casamo'] {
-  --crop-width: 150%;
-  --crop-x: -19.5%;
-  --crop-y: -12%;
+  transform: translate(-21%, -10%);
 }
 
 .home-card-copy {
