@@ -16,33 +16,19 @@ const { variant = 'general', context = 'blog', location, class: className = '' }
 
 const offers = {
 	general: {
-		title: "Need a website, app, or custom tool built?",
-		body: "I learn how a business works, figure out where software could help, and build it with the people who’ll use it. I’m taking on new projects now.",
-		secondaryHref: '/projects/',
-		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a call'
+		title: 'Need a website, tool, or automation for your business?',
+		body: 'I learn how a business works, figure out where technology could help, and build or set up what fits. I’m taking on new projects now.'
 	},
 	systemsBuild: {
 		title: 'Have a project that needs an engineer?',
-		body: 'I work with clients from discovery and prototypes through integrations, launch, and handoff. I’m taking on new projects now.',
-		secondaryHref: '/projects/',
-		secondaryLabel: 'See projects',
-		primaryLabel: 'Book a call'
+		body: 'I work with small businesses from the first conversation through launch and handoff. I’m taking on new projects now.'
 	}
 } as const;
 
-const offer = context === 'case-study'
-	? {
-			...offers[variant],
-			title: 'Need something like this built?',
-			body: 'I work with businesses, founders, and agencies from the first call through launch and handoff. I’m taking on new projects now.',
-			primaryLabel: 'Book a call'
-		}
-	: offers[variant];
-const secondaryHref = context === 'case-study' ? EMAIL_URL : offer.secondaryHref;
-const secondaryLabel = context === 'case-study' ? 'Email Hanif' : offer.secondaryLabel;
-const secondaryEvent = context === 'case-study' ? 'email_clicked' : 'service_page_clicked';
 const isCaseStudy = context === 'case-study';
+const offer = isCaseStudy
+	? { title: 'Need something like this for your business?', body: offers.systemsBuild.body }
+	: offers[variant];
 const mobileAction = 'max-sm:w-full max-sm:justify-between';
 ---
 
@@ -64,21 +50,23 @@ const mobileAction = 'max-sm:w-full max-sm:justify-between';
 		<div class:list={['flex flex-wrap items-center gap-4 max-sm:w-full max-sm:flex-col max-sm:items-stretch', isCaseStudy && 'max-md:items-stretch']}>
 			<a
 				class:list={[buttonClass(isCaseStudy ? 'border-ink-muted' : 'border-line'), mobileAction]}
-				href={BOOK_CALL_URL}
-				target='_blank'
-				rel='noopener noreferrer'
-				data-track-event='book_call_clicked'
+				href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
+				target={isCaseStudy ? undefined : '_blank'}
+				rel={isCaseStudy ? undefined : 'noopener noreferrer'}
+				data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
 				data-track-location={`${location}_primary`}
 			>
-				{offer.primaryLabel}
+				{isCaseStudy ? 'Email me about one task' : 'Book a call'}
 			</a>
 			<a
 				class:list={isCaseStudy ? [buttonClass(), mobileAction] : [textLinkClass, mobileAction, 'max-sm:min-h-11 max-sm:px-6']}
-				href={secondaryHref}
-				data-track-event={secondaryEvent}
+				href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
+				target={isCaseStudy ? '_blank' : undefined}
+				rel={isCaseStudy ? 'noopener noreferrer' : undefined}
+				data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
 				data-track-location={`${location}_secondary`}
 			>
-				{secondaryLabel}
+				{isCaseStudy ? 'Book a call' : 'See projects'}
 			</a>
 		</div>
 	</div>

@@ -2,7 +2,7 @@
    copy, and the lifting video modal.
    Layout and typography live in src/pages/index.astro. */
 
-:is(.hc-home-about, .hc-home-job__highlights) a {
+.hc-home-about a {
   color: var(--hc-text);
   font-weight: 500;
   text-decoration: underline;
@@ -12,21 +12,10 @@
   transition: color var(--hc-dur-fast) var(--hc-ease-out);
 }
 
-:is(.hc-home-about, .hc-home-job__highlights) a:hover,
-:is(.hc-home-about, .hc-home-job__highlights) a:focus-visible {
+.hc-home-about a:hover,
+.hc-home-about a:focus-visible {
   color: var(--hc-accent-text);
   text-decoration-color: var(--hc-accent);
-}
-
-.hc-home-job__highlights {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0.75rem 0 1rem;
-  padding-left: 1.15rem;
-  color: var(--hc-text-muted);
-  font-size: 0.875rem;
-  line-height: 1.6;
-  list-style: disc;
 }
 
 .hc-home-video-modal {

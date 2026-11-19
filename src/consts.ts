@@ -4,7 +4,7 @@
 export const SITE_TITLE = "Hanif Carroll";
 export const SITE_TAGLINE = "Freelance Software Engineer";
 export const SITE_DESCRIPTION =
-  "Freelance software engineer building websites, web apps, and custom tools for businesses, founders, and agencies.";
+  "Freelance software engineer building websites, tools, and automations for small businesses.";
 export const EMAIL = "hanif@hanifcarroll.com";
 export const EMAIL_URL = "mailto:hanif@hanifcarroll.com";
 export const BOOK_CALL_URL = "https://cal.com/hanifcarroll/intro";

@@ -7,7 +7,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 type BlogPost = CollectionEntry<'blog'>;
 const title = 'Blog on products, workflows, and AI';
 const description =
-	'Practical notes for founders and operators on software, workflow automation, AI, and the technical decisions behind reliable systems.';
+	'Practical notes for small-business owners on software, workflow automation, AI, and the technical decisions behind reliable systems.';
 
 const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort(
 	(a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),

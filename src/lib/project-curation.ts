@@ -1,25 +1,22 @@
-// Every project keeps its direct route at /projects/[slug]/. These collections
-// control discovery on the projects archive so client product work and
-// independent product engineering do not compete for the same meaning.
+// These groups control archive discovery without changing any direct routes.
 export const PROJECT_ARCHIVE_GROUPS = [
   {
+    id: "small-business-work",
+    label: "Small-business work",
+    description: "Websites, stores, and operations tools for small businesses.",
+    slugs: [
+      "desarmadero-la-torre",
+      "online-store-conversion-review",
+      "casa-elaria",
+      "maximo-interiorismo",
+      "redwriter-comics",
+    ],
+  },
+  {
     id: "client-product-work",
-    label: "Client work",
-    description:
-      "Selected engagements spanning operational discovery, production AI, launch, and ongoing engineering.",
-    slugs: ["desarmadero-la-torre", "genrupt", "palabruno", "mucho-hangouts"],
-  },
-  {
-    id: "scoping-diagnostic-work",
-    label: "Scoping & diagnostic work",
-    description: "Focused builds and assessments that make the next business decision concrete.",
-    slugs: ["casa-elaria", "online-store-conversion-review"],
-  },
-  {
-    id: "additional-client-work",
-    label: "Additional client work",
-    description: "Websites designed and delivered directly for clients.",
-    slugs: ["maximo-interiorismo", "redwriter-comics"],
+    label: "Startup and product work",
+    description: "Apps built with founders, from launch to ongoing engineering.",
+    slugs: ["genrupt", "palabruno", "mucho-hangouts"],
   },
   {
     id: "products-experiments",
