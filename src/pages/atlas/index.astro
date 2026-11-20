@@ -30,7 +30,7 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 					<dt class='font-semibold text-ink'>{problem.title}</dt>
 					<dd class='m-0 mt-1 text-[0.9rem] leading-[1.6] text-ink-muted'>
 						{problem.entries.map((entry, index) => (
-							<>{index > 0 && <span aria-hidden='true'> · </span>}<a class='text-ink-muted underline decoration-rule underline-offset-[0.2em] hover:text-accent-ink' href={`/atlas/${entry.id}/`}>{entry.data.title}</a></>
+							<>{index > 0 && <span aria-hidden='true'> · </span>}<a class='text-ink-muted underline decoration-accent-ink underline-offset-[0.2em] hover:text-accent-ink hover:decoration-accent focus-visible:text-accent-ink focus-visible:decoration-accent' href={`/atlas/${entry.id}/`}>{entry.data.title}</a></>
 						))}
 					</dd>
 				</div>

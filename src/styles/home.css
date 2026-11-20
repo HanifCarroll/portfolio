@@ -120,16 +120,18 @@
   background: var(--color-ink-muted);
 }
 
+/* Dark gold reads as a link on white; the bright yellow is the hover state. */
 .home-link,
 .home :is(.home-projects, .home-writing) a:is(:hover, :focus-visible) h3 {
   text-decoration: underline;
-  text-decoration-color: var(--color-accent);
+  text-decoration-color: var(--color-accent-ink);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
 }
 
-.home-link:is(:hover, :focus-visible) {
-  text-decoration-color: currentColor;
+.home-link:is(:hover, :focus-visible),
+.home :is(.home-projects, .home-writing) a:is(:hover, :focus-visible) h3 {
+  text-decoration-color: var(--color-accent);
 }
 
 /* The site's yellow focus ring is too faint on the white canvas. */

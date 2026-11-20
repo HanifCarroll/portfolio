@@ -105,6 +105,7 @@ The palette is restrained: a white canvas, warm charcoal ink, and a restrained g
 
 - **CTA Gold** (`#f8d651`): The single primary accent. Use it for focus indicators, selection, and small directional details—not large control fills.
 - **CTA Gold Hover** (`color-mix(in srgb, #f8d651 88%, #725a00)`): Available for compact gold details; do not introduce a second competing accent.
+- **Link underlines:** On light backgrounds an underlined text link uses the dark gold (`#725a00`, `accent-ink`) at rest and CTA Gold on hover and focus, because CTA Gold is about 1.4:1 on white. On the ink closing block the underline stays CTA Gold.
 
 ### Neutral
 

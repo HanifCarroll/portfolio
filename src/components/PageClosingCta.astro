@@ -10,6 +10,7 @@ const {
 	inverse = false
 } = Astro.props;
 const mobileAction = 'max-sm:w-full max-sm:justify-between';
+// Bright yellow reads on ink; light backgrounds use the dark gold instead.
 const inverseLink = 'underline decoration-accent decoration-2 underline-offset-[0.18em] hover:decoration-current focus-visible:decoration-current';
 ---
 
@@ -39,7 +40,7 @@ const inverseLink = 'underline decoration-accent decoration-2 underline-offset-[
 						<a class:list={[buttonClass(), mobileAction]} href={EMAIL_URL} data-track-event='email_clicked' data-track-location={location}>{primaryLabel}</a>
 						<a class:list={[textLinkClass, mobileAction, 'max-sm:min-h-11 max-sm:px-6']} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>Book a call</a>
 					</div>
-					<p class='m-0 text-sm leading-relaxed text-ink-muted'>Work at an agency? <a class='font-medium text-ink underline decoration-accent/70 underline-offset-4 hover:text-accent-ink focus-visible:text-accent-ink' href='/agencies/'>I also build under your name.</a></p>
+					<p class='m-0 text-sm leading-relaxed text-ink-muted'>Work at an agency? <a class='font-medium text-ink underline decoration-accent-ink underline-offset-4 hover:text-accent-ink hover:decoration-accent focus-visible:text-accent-ink focus-visible:decoration-accent' href='/agencies/'>I also build under your name.</a></p>
 				</div>
 			</div>
 		</div>

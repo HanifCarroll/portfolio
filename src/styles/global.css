@@ -229,6 +229,15 @@ body:has(dialog[open]) {
   --tw-prose-headings: var(--hc-text);
 }
 
+/* Underlined text links: dark gold at rest so they read on white, bright yellow on hover. */
+.prose a {
+  text-decoration-color: var(--hc-accent-text);
+}
+
+.prose a:is(:hover, :focus-visible) {
+  text-decoration-color: var(--hc-accent);
+}
+
 .page-blog-detail .prose figure {
   margin-block: 2em;
 }
