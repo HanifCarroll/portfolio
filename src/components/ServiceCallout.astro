@@ -1,6 +1,6 @@
 ---
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
-import { buttonClass, textLinkClass } from '../lib/ui';
+import { buttonClass, deckClass, sectionHeadingClass, textLinkClass } from '../lib/ui';
 
 type Variant = 'general' | 'systemsBuild';
 type Context = 'blog' | 'case-study';
@@ -29,45 +29,31 @@ const isCaseStudy = context === 'case-study';
 const offer = isCaseStudy
 	? { title: 'Need something like this for your business?', body: offers.systemsBuild.body }
 	: offers[variant];
-const mobileAction = 'max-sm:w-full max-sm:justify-between';
 ---
 
-<section
-	class:list={[
-		'grid text-ink',
-		isCaseStudy
-			? 'mt-24 -mx-6 w-[calc(100%+3rem)] items-start gap-12 bg-canvas px-6 py-[clamp(2rem,5vw,4rem)] md:-mx-14 md:w-[calc(100%+7rem)] md:px-14 lg:grid-cols-2 max-lg:gap-6 max-sm:mt-0 max-sm:py-20'
-			: 'mt-16 items-center gap-12 rounded-xl border border-line bg-canvas p-[clamp(2rem,6vw,6rem)] shadow-card lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] max-lg:gap-6 max-sm:rounded-none max-sm:border-0 max-sm:py-12 max-sm:shadow-none',
-		'max-sm:mx-[calc(50%-50vw)] max-sm:w-screen max-sm:px-6',
-		className,
-	]}
->
-	<h2 class='m-0 font-editorial text-[clamp(2rem,4vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.045em] text-ink text-balance max-sm:text-[clamp(2rem,9vw,2.25rem)] max-sm:leading-[1.06]'>
-		{offer.title}
-	</h2>
-	<div class='grid gap-6 max-sm:gap-8'>
-		<p class='m-0 max-w-reading text-lg leading-[1.65] text-ink-muted max-sm:leading-[1.5] max-sm:text-ink'>{offer.body}</p>
-		<div class:list={['flex flex-wrap items-center gap-4 max-sm:w-full max-sm:flex-col max-sm:items-stretch', isCaseStudy && 'max-md:items-stretch']}>
-			<a
-				class:list={[buttonClass(isCaseStudy ? 'border-ink-muted' : 'border-line'), mobileAction]}
-				href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
-				target={isCaseStudy ? undefined : '_blank'}
-				rel={isCaseStudy ? undefined : 'noopener noreferrer'}
-				data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
-				data-track-location={`${location}_primary`}
-			>
-				{isCaseStudy ? 'Email me about one task' : 'Book a call'}
-			</a>
-			<a
-				class:list={isCaseStudy ? [buttonClass(), mobileAction] : [textLinkClass, mobileAction, 'max-sm:min-h-11 max-sm:px-6']}
-				href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
-				target={isCaseStudy ? '_blank' : undefined}
-				rel={isCaseStudy ? 'noopener noreferrer' : undefined}
-				data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
-				data-track-location={`${location}_secondary`}
-			>
-				{isCaseStudy ? 'Book a call' : 'See projects'}
-			</a>
-		</div>
+<section class:list={['mt-[clamp(5rem,10vw,8rem)] text-ink', className]}>
+	<h2 class:list={[sectionHeadingClass, 'max-w-[46rem]']}>{offer.title}</h2>
+	<p class:list={[deckClass, 'mt-6']}>{offer.body}</p>
+	<div class='mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 max-sm:flex-col max-sm:items-stretch'>
+		<a
+			class={buttonClass()}
+			href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
+			target={isCaseStudy ? undefined : '_blank'}
+			rel={isCaseStudy ? undefined : 'noopener noreferrer'}
+			data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
+			data-track-location={`${location}_primary`}
+		>
+			{isCaseStudy ? 'Email me about one task' : 'Book a call'}
+		</a>
+		<a
+			class:list={[textLinkClass, 'max-sm:self-center']}
+			href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
+			target={isCaseStudy ? '_blank' : undefined}
+			rel={isCaseStudy ? 'noopener noreferrer' : undefined}
+			data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
+			data-track-location={`${location}_secondary`}
+		>
+			{isCaseStudy ? 'Book a call' : 'See projects'}
+		</a>
 	</div>
 </section>

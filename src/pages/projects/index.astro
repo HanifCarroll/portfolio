@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArchiveProjectRow from '../../components/ArchiveProjectRow.astro';
 import { projects } from '../../lib/project-cards';
+import { deckClass, pageTitleClass, sectionHeadingClass, shellClass } from '../../lib/ui';
 import {
 	DELISTED_PROJECT_SLUGS,
 	NESTED_PROJECT_SLUGS,
@@ -62,19 +63,19 @@ const archiveJsonLd = {
 	jsonLd={archiveJsonLd}
 	showFooterCta={false}
 >
-	<div class='mx-auto w-full max-w-page px-6 pb-24 md:px-12'>
-		<header class='max-w-reading pt-12 pb-14 lg:pt-20 lg:pb-20'>
-			<h1 class='m-0 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-none tracking-[-0.035em] text-ink'>Projects</h1>
-			<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>Client engagements and independent products — the situation, my decisions, and what I delivered.</p>
+	<div class:list={[shellClass, 'pb-8']}>
+		<header class='pt-12 pb-[clamp(4rem,8vw,6rem)] lg:pt-20'>
+			<h1 class={pageTitleClass}>Projects</h1>
+			<p class:list={[deckClass, 'mt-6']}>Client engagements and independent products — the situation, my decisions, and what I delivered.</p>
 		</header>
 
 		{groups.map((group) => (
-			<section id={group.id} class='grid scroll-mt-24 gap-6 border-t border-rule py-14 lg:grid-cols-12 lg:gap-12 lg:py-20' aria-labelledby={`${group.id}-title`}>
-				<div class='lg:col-span-5'>
-					<h2 id={`${group.id}-title`} class='m-0 text-xs font-bold uppercase tracking-[0.07em] text-ink'>{group.label}</h2>
-					<p class='mt-4 mb-0 max-w-sm text-base leading-relaxed text-ink-muted'>{group.description}</p>
+			<section id={group.id} class='scroll-mt-24 pb-[clamp(6rem,12vw,10rem)]' aria-labelledby={`${group.id}-title`}>
+				<div class='mb-[clamp(2rem,5vw,3.5rem)]'>
+					<h2 id={`${group.id}-title`} class={sectionHeadingClass}>{group.label}</h2>
+					<p class:list={[deckClass, 'mt-4']}>{group.description}</p>
 				</div>
-				<ol class='m-0 grid list-none gap-10 p-0 lg:col-span-7'>
+				<ol class='m-0 grid list-none gap-x-8 gap-y-16 p-0 md:grid-cols-2 md:gap-y-[5.5rem]'>
 					{group.projects.map((project) => (
 						<ArchiveProjectRow project={project} />
 					))}

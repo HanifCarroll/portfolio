@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import AtlasLayout from '../../layouts/AtlasLayout.astro';
 import { atlasProblems, atlasSections, atlasTools } from '../../data/atlas';
+import { deckClass, focusClass, pageTitleClass, sectionHeadingClass, titleHoverClass, underlineClass } from '../../lib/ui';
+
+const atlasHeadingClass = `${sectionHeadingClass} text-[clamp(2rem,3.6vw,3rem)]`;
 
 const description =
 	'A vocabulary of the components a software project needs, from product to code to the agents that build it. Each entry says what a component is, when you need it, popular choices, and what to tell your agent.';
@@ -15,22 +18,22 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 ---
 
 <AtlasLayout title='Build Atlas | Hanif Carroll' description={description}>
-	<header class='max-w-reading pb-10'>
-		<h1 class='m-0 text-[clamp(2.25rem,5vw,3.25rem)] font-bold leading-none tracking-[-0.035em] text-ink'>Build Atlas</h1>
-		<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>
+	<header class='pb-[clamp(4rem,8vw,6rem)]'>
+		<h1 class={pageTitleClass}>Build Atlas</h1>
+		<p class:list={[deckClass, 'mt-6 max-w-[40rem]']}>
 			System design has shared words like database, queue and cache. Building with AI needs the same kind of words for everything else, so you can name what you need and tell an agent to build it. Each entry says what a component is, when you need it, the popular choices, and what to tell your agent.
 		</p>
 	</header>
 
-	<section class='mb-14' aria-labelledby='problems-title'>
-		<h2 id='problems-title' class='m-0 mb-4 border-b border-rule pb-2 text-xl font-bold tracking-[-0.015em] text-ink'>What are you trying to do?</h2>
-		<dl class='m-0 grid gap-x-10 gap-y-5 md:grid-cols-2'>
+	<section class='mb-[clamp(5rem,10vw,8rem)]' aria-labelledby='problems-title'>
+		<h2 id='problems-title' class:list={[atlasHeadingClass, 'mb-8']}>What are you trying to do?</h2>
+		<dl class='m-0 grid gap-x-10 gap-y-8 md:grid-cols-2'>
 			{problems.map((problem) => (
 				<div>
-					<dt class='font-semibold text-ink'>{problem.title}</dt>
-					<dd class='m-0 mt-1 text-[0.9rem] leading-[1.6] text-ink-muted'>
+					<dt class='font-editorial text-2xl leading-[1.18] text-ink'>{problem.title}</dt>
+					<dd class='m-0 mt-2 text-base leading-[1.7] text-ink-muted'>
 						{problem.entries.map((entry, index) => (
-							<>{index > 0 && <span aria-hidden='true'> · </span>}<a class='text-ink-muted underline decoration-accent-ink underline-offset-[0.2em] hover:text-accent-ink hover:decoration-accent focus-visible:text-accent-ink focus-visible:decoration-accent' href={`/atlas/${entry.id}/`}>{entry.data.title}</a></>
+							<>{index > 0 && <span aria-hidden='true'> · </span>}<a class:list={['text-ink', underlineClass]} href={`/atlas/${entry.id}/`}>{entry.data.title}</a></>
 						))}
 					</dd>
 				</div>
@@ -39,19 +42,19 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 	</section>
 
 	{sections.map((section) => (
-		<section id={section.id} class='mb-12 scroll-mt-24' aria-labelledby={`${section.id}-title`}>
-			<div class='mb-2 border-b border-rule pb-2'>
-				<h2 id={`${section.id}-title`} class='m-0 text-xl font-bold tracking-[-0.015em] text-ink'>{section.title}</h2>
-				<p class='mt-1 mb-0 text-sm text-ink-muted'>{section.description}</p>
+		<section id={section.id} class='mb-[clamp(5rem,10vw,8rem)] scroll-mt-24 last:mb-0' aria-labelledby={`${section.id}-title`}>
+			<div class='mb-8'>
+				<h2 id={`${section.id}-title`} class={atlasHeadingClass}>{section.title}</h2>
+				<p class='mt-3 mb-0 max-w-[38rem] text-lg leading-[1.55] text-ink-muted'>{section.description}</p>
 			</div>
-			<ul class='m-0 list-none p-0'>
+			<ul class='m-0 grid list-none gap-7 p-0'>
 				{section.entries.map((entry) => (
 					<li>
-						<a class='group -mx-3 grid gap-1 rounded-lg px-3 py-3 no-underline transition-colors hover:bg-ink/4 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-6' href={`/atlas/${entry.id}/`}>
-							<span class='font-semibold leading-snug text-ink group-hover:text-accent-ink'>{entry.data.title}</span>
-							<span class='text-[0.9rem] leading-[1.55] text-ink-muted'>
+						<a class:list={['group grid items-baseline gap-1 no-underline md:grid-cols-[15rem_minmax(0,1fr)] md:gap-8', focusClass]} href={`/atlas/${entry.id}/`}>
+							<span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{entry.data.title}</span>
+							<span class='text-base leading-[1.6] text-ink-muted'>
 								{entry.data.summary}
-								<span class='mt-1 block text-[0.8rem] text-ink-muted/80'>{atlasTools(entry.body).join(' · ')}</span>
+								<span class='mt-1 block'>{atlasTools(entry.body).join(' · ')}</span>
 							</span>
 						</a>
 					</li>

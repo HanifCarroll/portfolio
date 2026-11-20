@@ -25,7 +25,7 @@ export function Intro({ onStart, onRead }: { onStart: () => void; onRead: () => 
   return (
     <section className="t-intro">
       <p className="t-intro__kicker">Interactive project</p>
-      <h1 className="t-intro__title">One Tuesday, twice.</h1>
+      <h1 className="t-intro__title">One Tuesday, twice</h1>
       <p className="t-intro__deck">
         {COMPANY.name} is {COMPANY.description}. {COMPANY.dayContext}
       </p>

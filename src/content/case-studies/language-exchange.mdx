@@ -11,22 +11,22 @@ import hablabaHostExchangeFlow from "../../assets/img/projects/hablaba-host-exch
 export const shippedRows = [
   {
     label: "Research",
-    title: "The product direction came from three rounds of evidence.",
+    title: "The product direction came from three rounds of evidence",
     body: "A three-person, 90-minute group interview, an 11-response survey, and six usability sessions shaped the product before the full build.",
   },
   {
     label: "Core loop",
-    title: "Exchange sessions replaced open-ended profile browsing.",
+    title: "Exchange sessions replaced open-ended profile browsing",
     body: "People could create or join one-to-one and small-group sessions, then filter them by language, neighborhood, date, type, and open seats.",
   },
   {
     label: "Trust",
-    title: "Access and identity became part of the product.",
+    title: "Access and identity became part of the product",
     body: "Invite codes, verified email, guided profiles, real photos, two-factor authentication, and admin invite controls supported a more intentional product.",
   },
   {
     label: "Coordination",
-    title: "Each exchange carried its own plan from discovery to meetup.",
+    title: "Each exchange carried its own plan from discovery to meetup",
     body: "Private real-time chat, in-app notifications, and browser push kept the work of coordinating attached to the exchange.",
   },
 ];
@@ -46,14 +46,14 @@ The first research round was a three-person, 90-minute group interview. I follow
 </CaseSection>
 
 <CaseSection title="Research made the exchange the product">
-  <DecisionBlock title="Make the exchange the main object, not the member profile.">
+  <DecisionBlock title="Make the exchange the main object, not the member profile">
     The prototype started from a simple question: what if people browsed concrete practice opportunities instead of browsing people?
 
     Each exchange sets the languages, neighborhood, start and end time, one-to-one or group format, participant limit, and description. That gives learners enough context to decide whether a session fits before they join.
 
   </DecisionBlock>
 
-  <DecisionBlock title="Use real identity where people are planning an in-person meeting.">
+  <DecisionBlock title="Use real identity where people are planning an in-person meeting">
     An early concept used generated avatars to reduce the dating-app feel. Usability feedback exposed the cost: people wanted to see who they might meet in a one-to-one or small-group setting.
 
     The product moved to real profile photos and paired that choice with invite-only registration, verified email, profile completion, and optional two-factor authentication.
@@ -73,14 +73,14 @@ The first research round was a three-person, 90-minute group interview. I follow
 </CaseSection>
 
 <CaseSection title="Coordination stays attached to the exchange">
-  <DecisionBlock title="Keep coordination inside the exchange.">
+  <DecisionBlock title="Keep coordination inside the exchange">
     Joining creates access to that exchange's private chat. Participants can discuss topics, timing, and the meetup without starting a separate social thread or losing the original session details.
 
     Live messages use private WebSocket channels. In-app and browser notifications cover new participants, chat activity, and canceled sessions, while an activity heartbeat avoids notifying someone who already has the chat open.
 
   </DecisionBlock>
 
-  <DecisionBlock title="Model the session as a lifecycle, not a static event card.">
+  <DecisionBlock title="Model the session as a lifecycle, not a static event card">
     The exchange data model represents active, canceled, and completed states alongside join and leave records.
 
     Those states matter because the product is trying to help a group complete a real-world plan, not collect passive interest around an event listing.
@@ -95,7 +95,7 @@ The first research round was a three-person, 90-minute group interview. I follow
 </CaseSection>
 
 <CaseSection title="The architecture followed the product loop">
-  <DecisionBlock title="Consolidate the maintained product into one web stack.">
+  <DecisionBlock title="Consolidate the maintained product into one web stack">
     The implementation began as a Rails 8 API with a separate React Native/Expo client. I later built a Flutter client and migrated mobile notifications from Expo Push to Firebase Cloud Messaging. A separate React web client followed. Both mobile clients lived outside this repository and are not part of the maintained codebase.
 
     I eventually consolidated the maintained product into one Laravel 12, Inertia 2, and Vue 3 web application. That kept the product rules, typed routes, Vue pages, real-time events, queues, and deployment configuration together.
@@ -104,7 +104,7 @@ The first research round was a three-person, 90-minute group interview. I follow
 
   </DecisionBlock>
 
-  <DecisionBlock title="Build the trust and operating surfaces with the core experience.">
+  <DecisionBlock title="Build the trust and operating surfaces with the core experience">
     The product includes admin-issued invitation links, invitation revocation, a throttled interest form, email verification, password recovery, two-factor authentication, profile deletion, notifications, and light and dark themes.
 
     Together, they moved the product beyond a clickable prototype and into the work required to test a real community product.

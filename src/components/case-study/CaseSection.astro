@@ -12,14 +12,14 @@ const copyClass = [
 	'grid min-w-0 gap-[1.4rem]',
 	'[&>:is(p,ul)]:m-0 [&>:is(p,ul)]:max-w-[65ch] [&>:is(p,ul)]:font-editorial [&>:is(p,ul)]:text-[clamp(1.2rem,1.08rem+0.25vw,1.35rem)] [&>:is(p,ul)]:leading-[1.48] [&>:is(p,ul)]:text-ink-muted [&>:is(p,ul)]:text-pretty',
 	'[&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-6',
-	'[&_a]:font-medium [&_a]:text-ink [&_a]:underline [&_a]:decoration-accent-ink [&_a]:decoration-2 [&_a]:underline-offset-[3px] [&_a]:transition-colors [&_a]:duration-[160ms] [&_a]:ease-out-soft [&_a:is(:hover,:focus-visible)]:text-accent-ink [&_a:is(:hover,:focus-visible)]:decoration-accent',
+	'[&_a]:text-ink [&_a]:underline [&_a]:decoration-accent-ink [&_a]:decoration-2 [&_a]:underline-offset-[0.18em] [&_a:is(:hover,:focus-visible)]:decoration-accent',
 	'[&_code]:rounded-[0.35rem] [&_code]:bg-surface-warm [&_code]:px-[0.35em] [&_code]:py-[0.1em] [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:text-ink',
 	'[&_strong]:font-semibold [&_strong]:text-ink',
 ];
 ---
 
-<section class='grid gap-5 pt-14 pb-6 first:pt-6'>
-	<h2 class='m-0 max-w-[42rem] font-editorial text-[clamp(1.9rem,3vw,2.65rem)] font-semibold leading-[1.05] tracking-[-0.01em] text-ink text-balance'>{title}</h2>
+<section class='grid gap-6 pt-[clamp(3.5rem,7vw,5.5rem)] pb-6 first:pt-6'>
+	<h2 class='m-0 max-w-[46rem] font-editorial text-[clamp(2rem,3.6vw,3rem)] font-normal leading-[1.02] tracking-[-0.035em] text-ink text-balance'>{title}</h2>
 	<div class:list={copyClass}>
 		<slot />
 	</div>

@@ -67,7 +67,7 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
       <section className="t2 t2--static">
         <div className="t2-card t2-card--intro">
           <p className="t2-card__week">Weeks 1–11</p>
-          <h3 className="t2-card__title">Six changes, one at a time.</h3>
+          <h3 className="t2-card__title">Six changes, one at a time</h3>
           <p className="t2-card__body">
             No platform rewrite. One decision per week, each one visible in the numbers below.
           </p>
@@ -142,7 +142,7 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
             ) : (
               <div className="t2-card t2-card--intro">
                 <p className="t2-card__week">Weeks 1–11</p>
-                <h3 className="t2-card__title">Six changes, one at a time.</h3>
+                <h3 className="t2-card__title">Six changes, one at a time</h3>
                 <p className="t2-card__body">
                   {compact
                     ? "No platform rewrite. One decision per week, each one visible in the numbers below. Keep scrolling."

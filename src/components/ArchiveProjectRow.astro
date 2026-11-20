@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
+import { focusClass, itemTitleClass, metaClass, titleHoverClass } from '@src/lib/ui';
 interface Props {
 	project: ProjectCard;
 }
@@ -10,27 +11,18 @@ const visibleTags = project.tags.slice(0, 3);
 ---
 
 <li>
-	<a
-		class='group grid gap-3 text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:grid-cols-[clamp(15rem,40%,17rem)_minmax(0,1fr)] sm:gap-4'
-		href={`/projects/${project.slug}/`}
-	>
-		<figure class='m-0'>
-			<Image
-				class='block h-auto w-full'
-				src={project.image}
-				alt=''
-				loading='lazy'
-				widths={[400, 800, 1200]}
-				sizes='(min-width: 1024px) 250px, (min-width: 640px) 272px, calc(100vw - 3rem)'
-				aria-hidden='true'
-			/>
-		</figure>
-		<div>
-			<h3 class='m-0 text-base font-medium leading-snug text-ink transition-colors group-hover:text-accent-ink group-focus-visible:text-accent-ink'>{project.name}</h3>
-			<p class='mt-2 mb-0 text-sm leading-relaxed text-ink-muted'>{project.description}</p>
-			<ul class='mt-3 mb-0 flex list-none flex-wrap gap-x-3 gap-y-1 p-0 text-xs text-ink-muted' aria-label='Technologies used'>
-				{visibleTags.map((tag) => <li class='after:ml-3 after:text-line after:content-["·"] last:after:content-none'>{tag}</li>)}
-			</ul>
-		</div>
+	<a class:list={['group grid gap-2 text-inherit no-underline', focusClass]} href={`/projects/${project.slug}/`}>
+		<Image
+			class='mb-2 block h-auto w-full'
+			src={project.image}
+			alt=''
+			loading='lazy'
+			widths={[400, 720, 1120]}
+			sizes='(min-width: 1200px) 536px, (min-width: 768px) calc(50vw - 4rem), calc(100vw - 3rem)'
+			aria-hidden='true'
+		/>
+		<h3 class:list={[itemTitleClass, titleHoverClass, 'md:text-[2.25rem]']}>{project.name}</h3>
+		<p class='m-0 max-w-[36rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink-muted'>{project.description}</p>
+		<p class:list={[metaClass, 'mt-1']}><span class='sr-only'>Technologies used: </span>{visibleTags.join(' · ')}</p>
 	</a>
 </li>

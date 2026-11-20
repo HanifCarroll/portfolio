@@ -19,8 +19,6 @@ const {
 	footerCtaBody,
 	footerCtaPrimaryLabel,
 	footerCtaLocation = 'footer_cta',
-	// White-on-ink closing and footer that read as one block. Only the homepage sets it.
-	inverseClosing = false,
 	bodyClass = ''
 } = Astro.props;
 
@@ -78,15 +76,16 @@ const footerLinks = [
 			<slot />
 		</main>
 
-		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} inverse={inverseClosing} />}
+		{showFooterCta && <PageClosingCta title={footerCtaTitle} body={footerCtaBody} primaryLabel={footerCtaPrimaryLabel} location={footerCtaLocation} />}
 
-		<footer class:list={['hc-footer pb-[env(safe-area-inset-bottom)]', inverseClosing ? 'bg-ink text-base text-white/80' : 'border-t border-rule bg-canvas text-sm text-ink-muted']} aria-label='Footer'>
-			<div class:list={['mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6 md:px-12', { 'max-sm:flex-col-reverse max-sm:gap-y-4 max-sm:py-8': inverseClosing }]}>
+		{/* The ink footer reads as one block with the closing. Alone, it gets more room so it doesn't look clipped. */}
+		<footer class='hc-footer bg-ink pb-[env(safe-area-inset-bottom)] text-base text-white/80' aria-label='Footer'>
+			<div class:list={['mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 md:px-12 max-sm:flex-col-reverse max-sm:gap-y-4', showFooterCta ? 'py-6 max-sm:py-8' : 'py-10 md:py-12']}>
 				<span>&copy; {currentYear} Hanif Carroll</span>
-				<nav class:list={['flex flex-wrap items-center gap-x-5 gap-y-2', { 'max-sm:justify-center': inverseClosing }]} aria-label='Footer navigation'>
+				<nav class='flex flex-wrap items-center gap-x-5 gap-y-2 max-sm:justify-center' aria-label='Footer navigation'>
 					{footerLinks.map((link) => (
 						<a
-							class:list={['text-inherit no-underline transition-colors', inverseClosing ? 'hover:text-white focus-visible:text-white' : 'hover:text-ink focus-visible:text-ink']}
+							class='text-inherit no-underline transition-colors hover:text-white focus-visible:text-white'
 							href={link.href}
 							target={link.external ? '_blank' : undefined}
 							rel={link.external ? 'noopener noreferrer' : undefined}

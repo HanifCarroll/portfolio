@@ -106,19 +106,19 @@ export const TUESDAY_MIRROR_READOUTS = [
   {
     min: 0,
     max: 1,
-    headline: "Your workflow has fewer warning signs.",
+    headline: "Your workflow has fewer warning signs",
     body: "The answers suggest that coordination is not the first problem to investigate. Keep the pattern in view as the business changes.",
   },
   {
     min: 2,
     max: 3,
-    headline: "A workflow review may be useful.",
+    headline: "A workflow review may be useful",
     body: "Several handoffs depend on memory or repeated work. A short audit can show whether process, tooling, or capacity is the real constraint.",
   },
   {
     min: 4,
     max: 5,
-    headline: "Your answers point to operational risk.",
+    headline: "Your answers point to operational risk",
     body: "These patterns can lead to missed requests and fragile handoffs. The right response may be a process change, software, more capacity, or a combination; the next step is to inspect the real workflow.",
   },
 ] as const;

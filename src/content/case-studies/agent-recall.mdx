@@ -4,32 +4,32 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import { pillLinkClass } from "../../lib/ui";
+import { textLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
     label: "Searchable history",
-    title: "Past agent sessions became searchable without replacing the source files.",
+    title: "Past agent sessions became searchable without replacing the source files",
     body: "Agent Recall builds a disposable search index from local transcript files while keeping the original archives as the source of truth.",
   },
   {
     label: "Several agents",
-    title: "One search works across several agent tools.",
+    title: "One search works across several agent tools",
     body: "The importer supports Codex, OMP, Pi, and Claude archives and labels every result with the agent that produced it.",
   },
   {
     label: "Receipts",
-    title: "Search results point back to evidence.",
+    title: "Search results point back to evidence",
     body: "Results group by session and include the source, event type, file, line number, project, and excerpt needed to inspect the original transcript.",
   },
   {
     label: "Structured memories",
-    title: "Decisions and blockers remain connected to evidence.",
+    title: "Decisions and blockers remain connected to evidence",
     body: "Indexing extracts decisions, tasks, facts, open questions, and blockers into stable records that link back to their supporting transcript lines.",
   },
   {
     label: "Health checks",
-    title: "The tool reports freshness and index health.",
+    title: "The tool reports freshness and index health",
     body: "Health commands show pending files, stale indexes, background-service status, database checks, search integrity, and duplicate sources.",
   },
 ];
@@ -47,15 +47,15 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="The source files remain in control">
-  <DecisionBlock title="Keep local archives as the source of truth.">
+  <DecisionBlock title="Keep local archives as the source of truth">
     The search index is disposable. Agent Recall can delete and rebuild it from the original transcript archives, while pinned references live separately so important anchors survive a rebuild.
   </DecisionBlock>
 
-    <DecisionBlock title="Return the evidence behind each result.">
+    <DecisionBlock title="Return the evidence behind each result">
     Search and recall commands include the source agent, session, event type, file, line number, and excerpt, so another person or agent can inspect the original record.
     </DecisionBlock>
 
-    <DecisionBlock title="Make freshness visible.">
+    <DecisionBlock title="Make freshness visible">
     The background watcher waits until active files are quiet, reports pending files, handles temporary database locks, and shows whether the index is missing, stale, blocked, or healthy.
     </DecisionBlock>
 
@@ -67,23 +67,23 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="The implementation keeps recall local and inspectable">
-  <DecisionBlock title="Import the events that help future work.">
+  <DecisionBlock title="Import the events that help future work">
     The importer reads each transcript line, supports Codex, OMP, Pi, and Claude records, keeps useful user, assistant, command, and tool events, removes duplicates, and skips malformed lines without abandoning the full import.
   </DecisionBlock>
 
-    <DecisionBlock title="Use a rebuildable local search index.">
+    <DecisionBlock title="Use a rebuildable local search index">
     SQLite stores sessions, events, source-file state, search rows, memory records, and their evidence. The importer skips unchanged files and groups writes so large archives remain practical to update.
     </DecisionBlock>
 
-    <DecisionBlock title="Give agents precise ways to retrieve context.">
+    <DecisionBlock title="Give agents precise ways to retrieve context">
     Searches can narrow results by project, folder, event type, date, phrase, or related terms. Other commands retrieve a memory, show what changed since a prior check, or load related context with its source references.
     </DecisionBlock>
 
-    <DecisionBlock title="Keep the index current in the background.">
+    <DecisionBlock title="Keep the index current in the background">
     The watcher can refresh once or run continuously as a macOS background service. It can limit work by project and date, wait for active files, retry temporary locks, and report a stale state when refresh cannot finish.
     </DecisionBlock>
 
-    <DecisionBlock title="Local handling for sensitive data.">
+    <DecisionBlock title="Local handling for sensitive data">
     The tool reads and writes local files and removes common token, key, cookie, authorization, connection-string, and private-key patterns before indexing.
     </DecisionBlock>
 
@@ -106,7 +106,7 @@ export const shippedRows = [
 <CaseSection title="The implementation is public">
   <p>The project is public and installable as a Rust command-line tool.</p>
   <a
-    class={pillLinkClass}
+    class={textLinkClass}
     href="https://github.com/HanifCarroll/agent-recall"
     target="_blank"
     rel="noopener noreferrer"

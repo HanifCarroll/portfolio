@@ -13,16 +13,16 @@ const { title, description } = Astro.props;
 const isIndex = Astro.url.pathname.replace(/\/$/, '') === '/atlas';
 ---
 
-<BaseLayout title={title} description={description} showFooterCta={false} footerLinksOnly bodyClass='hc-atlas'>
-	<div class='mx-auto grid w-full max-w-page gap-10 px-6 pb-24 md:px-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16'>
-		<aside class='hidden pt-12 lg:block'>
+<BaseLayout title={title} description={description} showFooterCta={false} bodyClass='hc-atlas'>
+	<div class='mx-auto grid w-full max-w-page gap-10 px-6 pb-[clamp(6rem,12vw,10rem)] md:px-12 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16'>
+		<aside class='hidden pt-12 lg:block lg:pt-20'>
 			<div class='sticky top-24 max-h-[calc(100svh-8rem)] overflow-y-auto overscroll-contain pb-8 [scrollbar-width:none]'>
-				<a class='mb-4 block font-sans text-sm font-bold text-ink no-underline hover:text-accent-ink' href='/atlas/' aria-current={isIndex ? 'page' : undefined}>Build Atlas</a>
+				<a class='mb-4 block font-editorial text-2xl leading-tight text-ink no-underline decoration-accent decoration-2 underline-offset-[0.18em] hover:underline focus-visible:underline' href='/atlas/' aria-current={isIndex ? 'page' : undefined}>Build Atlas</a>
 				<AtlasNav />
 			</div>
 		</aside>
 
-		<div class='min-w-0 pt-10 lg:pt-12'>
+		<div class='min-w-0 pt-12 lg:pt-20'>
 			<slot />
 		</div>
 	</div>

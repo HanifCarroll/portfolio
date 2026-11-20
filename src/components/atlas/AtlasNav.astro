@@ -16,21 +16,21 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 		type='search'
 		placeholder='Search components or tools…'
 		autocomplete='off'
-		class='mb-5 w-full rounded-lg border border-rule bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none lg:text-sm'
+		class='mb-6 w-full rounded-lg border border-ink-muted bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none'
 		data-atlas-search
 	/>
-	<p class='m-0 mb-4 hidden font-sans text-sm text-ink-muted' data-atlas-empty>No matches.</p>
+	<p class='m-0 mb-4 hidden font-sans text-base text-ink-muted' data-atlas-empty>No matches.</p>
 	<nav aria-label='Build Atlas entries'>
 		{sections.map((section) => (
-			<div class='mb-5' data-atlas-group>
-				<p class='m-0 mb-1.5 font-sans text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted'>{section.title}</p>
-				<ul class='m-0 list-none border-l border-rule p-0'>
+			<div class='mb-6' data-atlas-group>
+				<p class='m-0 mb-1.5 font-sans text-base leading-snug text-ink'>{section.title}</p>
+				<ul class='m-0 list-none p-0'>
 					{section.entries.map((entry) => (
 						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body), ...atlasProblems.filter((problem) => problem.entries.includes(entry.id)).map((problem) => problem.title)].join(' ').toLowerCase()}>
 							<a
 								class:list={[
-									'-ml-px block border-l py-1.5 pl-3 font-sans text-[0.95rem] leading-snug no-underline transition-colors lg:py-1 lg:text-[0.85rem]',
-									entry.id === current ? 'border-ink font-semibold text-ink' : 'border-transparent text-ink-muted hover:border-ink-muted hover:text-ink',
+									'block py-1.5 pl-4 font-sans text-base leading-snug no-underline transition-colors',
+									entry.id === current ? 'text-ink underline decoration-accent-ink decoration-2 underline-offset-[0.18em]' : 'text-ink-muted hover:text-ink focus-visible:text-ink',
 								]}
 								href={`/atlas/${entry.id}/`}
 								aria-current={entry.id === current ? 'page' : undefined}

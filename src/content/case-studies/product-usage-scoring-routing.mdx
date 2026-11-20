@@ -7,7 +7,7 @@ import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
 import decisionPacket from "../../assets/img/projects/product-usage-scoring-routing/decision-packet.png";
 import policy from "../../assets/img/projects/product-usage-scoring-routing/policy.png";
-import { buttonClass, pillLinkClass } from "../../lib/ui";
+import { buttonClass, textLinkClass } from "../../lib/ui";
 
 export const demoUrl = "https://pusr-web-preview.pusr-web.workers.dev";
 export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-routing";
@@ -15,22 +15,22 @@ export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-ro
 export const shippedRows = [
   {
     label: "Weekly queue made visible",
-    title: "The same accounts route differently and legibly.",
+    title: "The same accounts route differently and legibly",
     body: "120 synthetic accounts produce distinct, explainable outcomes under a gated policy and a naive combined score at the same weekly capacity.",
   },
   {
     label: "Decision packet per account",
-    title: "Every route explains itself.",
+    title: "Every route explains itself",
     body: "Each account shows identity, product-event timeline, fit/usage/intent scores, gates, rejected alternatives, owner, SLA, and CRM state.",
   },
   {
     label: "Adjustable levers",
-    title: "Intent and capacity recompute the queue live.",
+    title: "Intent and capacity recompute the queue live",
     body: "Visitors change the acquisition intent minimum or weekly human-action capacity and watch who enters or leaves the queue.",
   },
   {
     label: "Bounded HubSpot sync",
-    title: "One approved action stays idempotent and fictional.",
+    title: "One approved action stays idempotent and fictional",
     body: "An approved action creates a single follow-up task in a dedicated HubSpot test account — never outreach, no email, no secrets exposed.",
   },
 ];
@@ -45,11 +45,11 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="One combined score is often the wrong abstraction">
-  <DecisionBlock title="Separate the signals before scoring.">
+  <DecisionBlock title="Separate the signals before scoring">
     Fit, product usage, and buying intent are different questions. Collapsing them into one number hides which signal actually moved an account, and it hides the tradeoffs the business is making.
   </DecisionBlock>
 
-    <DecisionBlock title="Use gates, not just scores, before any human action.">
+    <DecisionBlock title="Use gates, not just scores, before any human action">
     A score ranks; gates decide. Hand raiser, acquisition sales-assist, monitor, self-serve, manual review, and expansion are visible routes decided by explicit rules, with an owner and a real SLA attached.
 
   </DecisionBlock>
@@ -92,16 +92,16 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="Cloudflare is the decision and execution layer">
-  <DecisionBlock title="Pure decision engine, validated at runtime.">
+  <DecisionBlock title="Pure decision engine, validated at runtime">
     Scoring and routing are pure, table-tested functions that import no Cloudflare or HubSpot code. All boundary data is validated at runtime, and timestamps are stored in UTC ISO 8601 and rendered in the viewer's locale.
   </DecisionBlock>
 
-    <DecisionBlock title="Durable execution, not just a request.">
+    <DecisionBlock title="Durable execution, not just a request">
     The approve-and-sync path runs as a Cloudflare Workflow over D1 state: run and signal records persist, the workflow is idempotent and retryable, and a completed run survives a refresh via its opaque run id.
 
   </DecisionBlock>
 
-    <DecisionBlock title="HubSpot stays the operational destination.">
+    <DecisionBlock title="HubSpot stays the operational destination">
     Cloudflare owns the decision and execution; HubSpot is the CRM destination. The app card reads latest scores, signals, and gates back from an authenticated Cloudflare endpoint, so the CRM record and the decision stay connected.
 
   </DecisionBlock>
@@ -136,7 +136,7 @@ export const shippedRows = [
     Open the live demo
     </a>
 
-    <a class={pillLinkClass} href={repoUrl} target='_blank' rel='noopener noreferrer'>
+    <a class={textLinkClass} href={repoUrl} target='_blank' rel='noopener noreferrer'>
     View source on GitHub
     <span>&rarr;</span>
     </a>

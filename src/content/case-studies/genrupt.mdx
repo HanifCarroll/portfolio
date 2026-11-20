@@ -15,17 +15,17 @@ import genruptCreativeVariations from "../../assets/img/projects/genrupt/genrupt
 export const shippedRows = [
   {
     label: "Paid accounts",
-    title: "Teams could subscribe, share an account, and buy credits.",
+    title: "Teams could subscribe, share an account, and buy credits",
     body: "Organization billing, credit accounting, and payment updates supported paid seller workflows.",
   },
   {
     label: "Recovery",
-    title: "Generation jobs had a path through retries and failures.",
+    title: "Generation jobs had a path through retries and failures",
     body: "Credit reservations, background jobs, and idempotent cost settlement kept generation work connected to account balances.",
   },
   {
     label: "Agent access",
-    title: "External agents could run approved seller actions.",
+    title: "External agents could run approved seller actions",
     body: "OAuth and organization-aware MCP access exposed selected workflows with asynchronous results.",
   },
 ];
@@ -54,11 +54,11 @@ Generation status, retry, and recovery paths keep long-running work visible. The
 </CaseSection>
 
 <CaseSection title="Protecting credits through concurrency and retries">
-  <DecisionBlock title="Reserve credits atomically.">
+  <DecisionBlock title="Reserve credits atomically">
     Concurrent requests can both see enough credit before either spends it. I used atomic PostgreSQL reservations and row locking to prevent generation from overdrawing an account, with cleanup when work failed.
   </DecisionBlock>
 
-<DecisionBlock title="Keep a retry attached to the original provider job.">
+<DecisionBlock title="Keep a retry attached to the original provider job">
   I moved image generation into pg-boss background jobs. For video, retries reused the provider job
   and settled costs idempotently, so repeating a request did not create another charge for the same
   work.

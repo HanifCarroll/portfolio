@@ -24,7 +24,7 @@ const headerCtaLabel = 'Book a call';
 ---
 
 <header
-	class='site-header sticky top-0 z-60 border-b border-rule bg-canvas/95 pt-[env(safe-area-inset-top)] backdrop-blur-md'
+	class='site-header sticky top-0 z-60 bg-canvas/95 pt-[env(safe-area-inset-top)] backdrop-blur-md'
 	id='siteHeader'
 	transition:name='site-header'
 >
@@ -40,7 +40,7 @@ const headerCtaLabel = 'Book a call';
 		<nav class='hidden items-center gap-6 lg:flex' aria-label='Primary navigation'>
 			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
 			<a
-				class='ml-6 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-[0.9rem] font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
+				class='ml-6 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-base font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
 				href={BOOK_CALL_URL}
 				target='_blank'
 				rel='noopener noreferrer'
@@ -82,7 +82,7 @@ const headerCtaLabel = 'Book a call';
 					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg>
 				</summary>
 				<div class='hc-notes-mobile-menu__panel'>
-					<p class='m-0 mb-4 text-[0.9rem] font-medium text-ink-muted'><a class='text-inherit no-underline' href='/atlas/'>Build Atlas</a></p>
+					<p class='m-0 mb-4 text-base font-medium text-ink-muted'><a class='text-inherit no-underline' href='/atlas/'>Build Atlas</a></p>
 					<AtlasNav id='atlas-search-mobile' />
 				</div>
 			</details>}

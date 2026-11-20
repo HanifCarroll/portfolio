@@ -23,14 +23,14 @@ const { screens, stacked = false } = Astro.props;
 const cardWidth = { contained: 'mx-auto w-[min(100%,52rem)]', compact: 'mx-auto w-[min(100%,38rem)]' };
 ---
 
-<div class:list={['mt-3 grid gap-8 md:items-start', stacked ? 'md:grid-cols-1' : 'md:grid-cols-2']}>
+<div class:list={['mt-3 grid gap-x-8 gap-y-12 md:items-start', stacked ? 'md:grid-cols-1' : 'md:grid-cols-2']}>
 	{
 		screens.map((screen) => (
 			<figure class:list={['grid min-w-0 content-start gap-4', screen.width && cardWidth[screen.width]]}>
 				<div class:list={['relative w-full', screen.frame === 'mobile' ? 'mx-auto max-w-[16rem]' : 'max-w-[66rem]']}>
 					<div
 						class:list={[
-							'overflow-hidden rounded-xl border border-line bg-canvas',
+							'overflow-hidden',
 							screen.mobileScrollable && 'max-md:overflow-x-auto max-md:overscroll-x-contain max-md:[scrollbar-width:thin]',
 						]}
 					>
@@ -40,11 +40,11 @@ const cardWidth = { contained: 'mx-auto w-[min(100%,52rem)]', compact: 'mx-auto 
 						</picture>
 					</div>
 				</div>
-				{screen.mobileScrollable && <span class='hidden text-[0.75rem] text-ink-muted max-md:-mt-2 max-md:block'>Swipe to read the full capture</span>}
-				<figcaption class='grid max-w-[38rem] gap-[0.35rem] font-sans'>
-					<span class='text-[0.7rem] font-bold uppercase leading-[1.4] tracking-[0.08em] text-accent-ink'>{screen.label}</span>
-					<strong class='text-[1.05rem] font-[650] leading-[1.3] text-ink'>{screen.title}</strong>
-					<p class='m-0 text-[0.875rem] leading-[1.6] text-ink-muted'>{screen.caption}</p>
+				{screen.mobileScrollable && <span class='hidden text-base text-ink-muted max-md:-mt-2 max-md:block'>Swipe to read the full capture</span>}
+				<figcaption class='grid max-w-[38rem] gap-2 font-sans'>
+					<span class='text-base uppercase leading-[1.3] tracking-[0.12em] text-ink-muted'>{screen.label}</span>
+					<strong class='font-editorial text-[1.625rem] font-normal leading-[1.18] text-ink'>{screen.title}</strong>
+					<p class='m-0 text-lg leading-[1.6] text-ink-muted'>{screen.caption}</p>
 				</figcaption>
 			</figure>
 		))

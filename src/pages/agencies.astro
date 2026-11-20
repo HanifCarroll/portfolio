@@ -2,7 +2,7 @@
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import { testimonials } from '../data/testimonials';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { buttonClass, textLinkClass } from '../lib/ui';
+import { buttonClass, metaClass, pageTitleClass, sectionHeadingClass, shellClass, textLinkClass } from '../lib/ui';
 
 const testimonial = testimonials.find(({ name }) => name === 'Markis Zarate')!;
 ---
@@ -12,32 +12,29 @@ const testimonial = testimonials.find(({ name }) => name === 'Markis Zarate')!;
 	description='I build websites and web apps for agencies, delivered under the agency’s name.'
 	showFooterCta={false}
 >
-	<div class='mx-auto w-full max-w-page px-6 pt-12 pb-16 md:px-12 lg:pt-20 lg:pb-24'>
-		<article class='max-w-reading text-lg leading-relaxed text-ink-muted'>
-			<h1 class='m-0 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-none tracking-[-0.035em] text-ink'>Builds for agencies</h1>
+	<div class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']}>
+		<article class='text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink-muted [&>:is(p,ul)]:max-w-[38rem]'>
+			<h1 class={pageTitleClass}>Builds for agencies</h1>
 			<p class='mt-6 mb-0'>I build websites and web apps for agencies that sell them but don’t have developers of their own. I work under your name, so your client deals with your team, and I handle the build from your designs through launch.</p>
 
-			<h2 class='mt-8 mb-0 text-lg font-bold text-ink'>What I take on</h2>
-			<ul class='mt-2 mb-0 list-disc space-y-1 pl-5'>
+			<h2 class:list={[sectionHeadingClass, 'mt-[clamp(4rem,8vw,6rem)]']}>What I take on</h2>
+			<ul class='mt-6 mb-0 list-disc space-y-2 pl-5'>
 				<li>Building sites and apps from your designs</li>
 				<li>Fixing or extending a site that’s already live</li>
 				<li>Adding a feature or integration to a client’s project</li>
 			</ul>
 			<p class='mt-8 mb-0'>I’m based in Buenos Aires and work U.S. Eastern hours, so I’m online when you and your clients are.</p>
 
-			<blockquote class='mx-0 mt-10 mb-0 border-l-2 border-accent pl-5'>
-				<p class='m-0 text-base leading-[1.7] text-ink'>“{testimonial.quote}”</p>
+			<blockquote class='mx-0 mt-[clamp(4rem,8vw,6rem)] mb-0 max-w-[48rem]'>
+				<p class='m-0 font-editorial text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.25] text-ink'>“{testimonial.quote}”</p>
 				<footer class='mt-4'>
-					<cite class='grid gap-1 not-italic'>
-						<span class='text-sm font-bold text-ink'>{testimonial.name}</span>
-						<span class='text-xs text-ink-muted'>{testimonial.role}</span>
-					</cite>
+					<cite class:list={[metaClass, 'block not-italic']}>{testimonial.name} · {testimonial.role}</cite>
 				</footer>
 			</blockquote>
 
-			<div class='mt-8 flex flex-wrap items-center gap-4'>
-				<a class={buttonClass('border-ink-muted')} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='agencies'>Email me</a>
-				<a class={`${textLinkClass} min-h-11`} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='agencies'>Book a call</a>
+			<div class='mt-12 flex flex-wrap items-center gap-x-6 gap-y-3'>
+				<a class={buttonClass()} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='agencies'>Email me</a>
+				<a class={textLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='agencies'>Book a call</a>
 			</div>
 		</article>
 	</div>

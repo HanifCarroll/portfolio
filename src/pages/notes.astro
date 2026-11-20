@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import sections from '../data/notes';
+import { deckClass, itemTitleClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
 import '../styles/notes.css';
 
 const title = 'Notes';
@@ -24,20 +25,20 @@ const entryId = (section: string, title: string) =>
 	bodyClass='hc-notes'
 	showFooterCta={false}
 >
-	<div class='mx-auto w-full max-w-page px-6 pb-24 md:px-12'>
-		<header class='max-w-reading pt-12 pb-12 lg:pt-20 lg:pb-16'>
-			<h1 class='m-0 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-none tracking-[-0.035em] text-ink'>Notes</h1>
-			<p class='mt-4 mb-0 text-lg leading-relaxed text-ink-muted'>{description}</p>
+	<div class:list={[shellClass, 'pb-[clamp(6rem,12vw,10rem)]']}>
+		<header class='pt-12 pb-[clamp(3rem,6vw,5rem)] lg:pt-20'>
+			<h1 class={pageTitleClass}>Notes</h1>
+			<p class:list={[deckClass, 'mt-6']}>{description}</p>
 		</header>
 
-		<div class='grid gap-12 border-t border-rule pt-12 lg:grid-cols-12 lg:pt-16'>
+		<div class='grid gap-12 lg:grid-cols-12'>
 			<aside class='hidden lg:col-span-4 lg:block xl:col-span-3'>
 				<nav class='hc-notes-toc sticky top-24 max-h-[calc(100svh-8rem)] overflow-y-auto overscroll-contain pb-8 [scrollbar-width:none]' aria-label='Table of contents'>
 					<ul class='m-0 grid list-none p-0'>
 						{publicSections.map((section, sectionIndex) => (
 							<li class={`hc-notes-nav-section${sectionIndex === 0 ? ' is-active' : ''}`} data-notes-section>
 								<a
-									class='block py-2 text-[0.68rem] font-bold uppercase tracking-[0.07em] text-ink-muted no-underline transition-colors hover:text-ink aria-[current=location]:text-ink'
+									class='block py-2 text-base leading-snug text-ink-muted no-underline transition-colors hover:text-ink aria-[current=location]:text-ink'
 									href={`#${section.slug}`}
 									data-notes-section-link
 								>
@@ -51,7 +52,7 @@ const entryId = (section: string, title: string) =>
 								>
 									<ol>
 										{section.entries.map((entry) => (
-											<li><a class='block py-1 text-[0.8rem] leading-snug text-ink-muted no-underline hover:text-accent-ink focus-visible:text-accent-ink' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
+											<li><a class='block py-1.5 text-base leading-snug text-ink-muted no-underline hover:text-ink focus-visible:text-ink' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
 										))}
 									</ol>
 								</div>
@@ -63,13 +64,13 @@ const entryId = (section: string, title: string) =>
 
 			<div class='min-w-0 lg:col-span-8 xl:col-span-9' data-notes-main>
 				{publicSections.map((section) => (
-					<section id={section.slug} class='mb-16 scroll-mt-24 last:mb-0' aria-labelledby={`${section.slug}-title`}>
-						<h2 id={`${section.slug}-title`} class='m-0 text-[clamp(1.25rem,2vw,1.75rem)] font-bold leading-tight tracking-[-0.015em] text-ink'>{section.title}</h2>
-						<ol class='m-0 list-none p-0'>
+					<section id={section.slug} class='mb-[clamp(5rem,10vw,8rem)] scroll-mt-24 last:mb-0' aria-labelledby={`${section.slug}-title`}>
+						<h2 id={`${section.slug}-title`} class={sectionHeadingClass}>{section.title}</h2>
+						<ol class='m-0 mt-10 grid list-none gap-14 p-0'>
 							{section.entries.map((entry) => (
-								<li id={entryId(section.slug, entry.title)} class='scroll-mt-24 border-b border-rule py-8 last:border-b-0 md:py-10'>
-									<h3 class='m-0 text-lg font-semibold leading-snug text-ink'>{entry.title}</h3>
-									{entry.body.map((paragraph) => <p class='mt-3 mb-0 max-w-reading text-[0.95rem] leading-[1.7] text-ink-muted'>{paragraph}</p>)}
+								<li id={entryId(section.slug, entry.title)} class='scroll-mt-24'>
+									<h3 class={itemTitleClass}>{entry.title}</h3>
+									{entry.body.map((paragraph) => <p class='mt-3 mb-0 max-w-[40rem] text-lg leading-[1.6] text-ink-muted'>{paragraph}</p>)}
 								</li>
 							))}
 						</ol>

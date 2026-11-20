@@ -15,9 +15,6 @@
   --color-accent: #f8d651;
   --color-accent-ink: #725a00;
   --color-surface-warm: color-mix(in srgb, #f8d651 5%, #ffffff);
-  --shadow-card: 0 12px 36px rgba(40, 40, 40, 0.055);
-  --shadow-artifact: 0 16px 36px rgba(40, 40, 40, 0.13);
-  --radius-artifact: 10px;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-editorial: "EB Garamond", Georgia, serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -50,10 +47,6 @@
   --text-6xl--line-height: 1;
   --text-7xl: 4.5rem;
   --text-7xl--line-height: 1;
-  --color-primary: #725a00;
-  --color-primary-accent: #f8d651;
-  --color-primary-foreground: #ffffff;
-  --color-surface: #ffffff;
   --animate-fade-in: fadeIn 0.3s ease-out forwards;
   --animate-fade-in-up: fadeInUp 0.4s ease-out forwards;
   --animate-lightbox-in: lightbox-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -231,15 +224,25 @@ body:has(dialog[open]) {
 
 /* Underlined text links: dark gold at rest so they read on white, bright yellow on hover. */
 .prose a {
+  color: var(--hc-text);
+  font-weight: inherit;
   text-decoration-color: var(--hc-accent-text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+/* Whitespace separates sections; Markdown rules keep their space and lose the line. */
+.prose hr {
+  border: 0;
+}
+
+/* Tables keep one quiet rule per row, because a table is unreadable without them. */
+.prose :is(thead, tbody tr) {
+  border-bottom-color: var(--hc-rule);
 }
 
 .prose a:is(:hover, :focus-visible) {
   text-decoration-color: var(--hc-accent);
-}
-
-.page-blog-detail .prose figure {
-  margin-block: 2em;
 }
 
 .skip-link {
@@ -274,7 +277,7 @@ body:has(dialog[open]) {
   align-items: center;
   gap: var(--hc-space-2);
   color: var(--hc-accent-text);
-  font-size: var(--hc-type-meta);
+  font-size: var(--hc-type-ui);
   font-weight: var(--hc-weight-semibold);
   text-decoration: none;
   text-transform: uppercase;
@@ -372,7 +375,7 @@ body:has(dialog[open]) {
 .hc-mobile-nav__link::before {
   width: 1.5rem;
   height: 1px;
-  background: var(--hc-accent);
+  background: var(--hc-accent-text);
   content: "";
   opacity: 0;
 }
@@ -394,7 +397,7 @@ body:has(dialog[open]) {
   border-radius: var(--hc-radius-control);
   background: var(--hc-text);
   color: var(--hc-canvas);
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: normal;
   text-transform: none;
 }
@@ -408,27 +411,7 @@ body:has(dialog[open]) {
   margin: auto 0 0;
   padding-top: var(--hc-space-6);
   color: var(--hc-text-muted);
-  font-size: var(--hc-type-meta);
-}
-
-/* Match the neutral editorial ink used by the reading reference. */
-.page-blog-detail {
-  --hc-text: #363737;
-  --hc-text-muted: #868787;
-}
-
-/* Utilities read the theme ink, so scope each page's reading ink to its content. */
-.page-blog-detail .hc-main {
-  --color-ink: #363737;
-  --color-ink-muted: #868787;
-}
-
-.page-case-study-detail .hc-main {
-  --color-ink-muted: #514f4b;
-}
-
-.page-blog-detail .hc-main {
-  padding-top: 4rem;
+  font-size: var(--hc-type-ui);
 }
 
 /* ==========================================================================

@@ -33,11 +33,11 @@ This gives the model room to investigate while keeping authorization and changes
 </CaseSection>
 
 <CaseSection title="Approval applies to a specific change">
-  <DecisionBlock title="Require another authorized employee to approve.">
+  <DecisionBlock title="Require another authorized employee to approve">
     A proposal for the fictional production environment requires approval from a different technical lead assigned to that customer. Execution rechecks permissions, approval, the change window, and the configuration version. A change made since investigation can invalidate the proposal.
   </DecisionBlock>
 
-<DecisionBlock title="Save the change and its receipt together.">
+<DecisionBlock title="Save the change and its receipt together">
   The integration update and execution receipt commit in one DynamoDB transaction. A repeat returns
   the saved receipt. Delivery verification checks the active destination and version, then validates
   the receiver’s event ID and payload hash.

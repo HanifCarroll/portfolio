@@ -4,32 +4,32 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import { pillLinkClass } from "../../lib/ui";
+import { textLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
     label: "Clear ownership",
-    title: "One command-line tool owns the active workflows.",
+    title: "One command-line tool owns the active workflows",
     body: "Analytics export, job capture and enrichment, hiring-team research, Sales Navigator research, outreach drafts, and follow-up handoffs each have a defined place in the same Bun and TypeScript tool.",
   },
   {
     label: "Safety boundaries",
-    title: "A send needs a reviewed draft and a receipt.",
+    title: "A send needs a reviewed draft and a receipt",
     body: "Each approved draft reserves one send attempt before the browser helper acts. A retry stays blocked while a send is prepared or possibly sent, and the attempt is released only when the tool has confirmation that nothing went out.",
   },
   {
     label: "Browser evidence",
-    title: "Capture starts before the page loads.",
+    title: "Capture starts before the page loads",
     body: "A Chrome helper arms DevTools Protocol capture before navigation, keeps only the target document and job-detail responses, parses them locally, and verifies the result with stable page reads.",
   },
   {
     label: "Audit state",
-    title: "Every external step leaves a receipt.",
+    title: "Every external step leaves a receipt",
     body: "Handoff packets for drafts, applications, HubSpot, Instantly, and follow-ups carry stored evidence and explicit stop conditions. Receipt commands store the external IDs, and the tool never calls those services itself.",
   },
   {
     label: "Migration",
-    title: "Legacy state moved forward on purpose.",
+    title: "Legacy state moved forward on purpose",
     body: "A multi-workflow Python suite became one Bun and TypeScript tool on SQLite through 30 schema migrations, with a report that lists each proposed carry-over from the old state.",
   },
 ];
@@ -51,15 +51,15 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="Each step has an owner and leaves a record">
-  <DecisionBlock title="Capture jobs in phases.">
+  <DecisionBlock title="Capture jobs in phases">
     Chrome capture stages pages in SQLite. Normalization then deduplicates by LinkedIn job ID, one page per transaction, and short resumable runs stay within a wall-clock budget so an interrupted run can pick up where it stopped.
   </DecisionBlock>
 
-    <DecisionBlock title="Triage with evidence, not rejection.">
+    <DecisionBlock title="Triage with evidence, not rejection">
     Every kept job with hiring-team contacts gets a strong, possible, or weak bucket with the evidence behind it. Triage never rejects a job or changes its review status.
     </DecisionBlock>
 
-    <DecisionBlock title="Hand work to other systems through packets.">
+    <DecisionBlock title="Hand work to other systems through packets">
     Deterministic packets describe the next draft, application, HubSpot, Instantly, or follow-up step. Follow-up tasks are scheduled 5, 8, and 12 days after the first message, stop when a reply arrives, and skip any follow-up that already has a receipt.
     </DecisionBlock>
 
@@ -94,7 +94,7 @@ export const shippedRows = [
     the review queue, the browser helpers, and the automated tests.
   </p>
   <a
-    class={pillLinkClass}
+    class={textLinkClass}
     href="https://github.com/HanifCarroll/linkedin-network-run"
     target="_blank"
     rel="noopener noreferrer"

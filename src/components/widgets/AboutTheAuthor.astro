@@ -1,13 +1,12 @@
 ---
 import Author from '../Author.astro';
+import { metaClass } from '../../lib/ui';
 ---
 
-<div class='grid w-full items-start gap-x-8 gap-y-4 sm:grid-cols-[minmax(13rem,14rem)_minmax(0,1fr)]'>
-	<p class='col-span-full m-0 text-sm font-bold uppercase leading-[1.2] tracking-[0.08em] text-ink-muted max-sm:col-auto'>About the author</p>
+<div class='grid w-full gap-5'>
+	<p class={metaClass}>About the author</p>
 	<Author />
-	<div class='mt-0 text-[0.98rem] leading-[1.8] text-zinc-600'>
-		<p>
-			Hanif is a freelance software engineer with 9+ years of experience. He builds websites, tools, and automations for small businesses.
-		</p>
-	</div>
+	<p class='m-0 max-w-[36rem] text-lg leading-[1.55] text-ink-muted'>
+		Hanif is a freelance software engineer with 9+ years of experience. He builds websites, tools, and automations for small businesses.
+	</p>
 </div>

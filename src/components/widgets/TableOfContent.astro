@@ -4,12 +4,12 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 ---
 
 <nav class='toc' aria-label='Contents'>
-	<ul class='max-h-[calc(100vh-8rem)] overflow-auto text-[0.9rem] [&::-webkit-scrollbar]:w-[5px] [&::-webkit-scrollbar-thumb]:rounded-[5px] [&::-webkit-scrollbar-thumb]:bg-[#eee] [&::-webkit-scrollbar-track]:bg-transparent'>
+	<ul class='m-0 list-none p-0 font-sans text-base'>
 		{
 			toc.map((heading: any) => (
 				<li>
 					<a
-						class='block py-2 text-inherit leading-tight text-zinc-700 transition-colors hover:text-primary'
+						class='block py-2 leading-tight text-ink-muted no-underline transition-colors hover:text-ink focus-visible:text-ink'
 						href={'#' + heading.slug}>
 						{heading.text}
 					</a>
@@ -18,7 +18,7 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 							{heading.subheadings.map((subheading: any) => (
 								<li>
 									<a
-										class='block py-1.5 text-inherit leading-tight text-zinc-600 transition-colors hover:text-primary'
+										class='block py-1.5 leading-tight text-ink-muted no-underline transition-colors hover:text-ink focus-visible:text-ink'
 										href={'#' + subheading.slug}>
 										{subheading.text}
 									</a>

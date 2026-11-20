@@ -8,27 +8,27 @@ import ProofRows from "../../components/case-study/ProofRows.astro";
 export const shippedRows = [
   {
     label: "One local record",
-    title: "Opportunities, applications, and follow-ups share one history.",
+    title: "Opportunities, applications, and follow-ups share one history",
     body: "Acquire keeps opportunities, research runs, application materials, outreach drafts, reusable answers, evidence, scheduled jobs, and reports in one local database.",
   },
   {
     label: "Daily workspace",
-    title: "The next action is visible in one desktop app.",
+    title: "The next action is visible in one desktop app",
     body: "The macOS app brings today's tasks, reviews, active pursuits, sources, and settings together while the underlying database remains the source of truth.",
   },
   {
     label: "Approval gates",
-    title: "Automation runs through explicit review points.",
+    title: "Automation runs through explicit review points",
     body: "Opportunity, draft, material, answer, and final-submission reviews prevent agent and browser actions from changing the pipeline without approval.",
   },
   {
     label: "Recoverable jobs",
-    title: "Interrupted background tasks can resume or be inspected.",
+    title: "Interrupted background tasks can resume or be inspected",
     body: "One background service runs source checks, draft generation, application preparation, outreach, and submissions so interrupted tasks leave a visible state.",
   },
   {
     label: "Evidence trail",
-    title: "Every important decision remains inspectable.",
+    title: "Every important decision remains inspectable",
     body: "Research, scores, application materials, suggested answers, submission records, source reports, and blockers stay attached to the pursuit instead of disappearing into chat history.",
   },
 ];
@@ -48,15 +48,15 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="The database owns state while people own judgment">
-  <DecisionBlock title="Keep the source of truth local.">
+  <DecisionBlock title="Keep the source of truth local">
     Acquire stores the pipeline in a local SQLite database and exposes a stable Rust command-line tool for opportunities, events, research runs, application materials, reusable answers, outreach, reports, schedules, and the desktop app. Sensitive opportunity, application, and outreach data stays on the machine.
   </DecisionBlock>
 
-    <DecisionBlock title="Separate judgment from workflow ownership.">
+    <DecisionBlock title="Separate judgment from workflow ownership">
       Codex and Playwriter handle research, scoring, drafting, and visible browser tasks where judgment is useful. The Rust application owns saved state, validation, queue changes, approval records, and reports.
     </DecisionBlock>
 
-    <DecisionBlock title="Require evidence before external actions continue.">
+    <DecisionBlock title="Require evidence before external actions continue">
       A final application submission or outbound message needs its prerequisites, approved inputs, and run evidence. If any of those are missing, the action stops in a visible blocked state that can be resumed safely.
     </DecisionBlock>
 
@@ -68,23 +68,23 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="I made each stage inspectable and recoverable">
-  <DecisionBlock title="Bring opportunity sources into one record.">
+  <DecisionBlock title="Bring opportunity sources into one record">
     The Rust application manages opportunities, interaction history, research runs, imports, duplicate checks, reports, schedules, notifications, and read-only monitoring across job boards, agencies, recruiters, Upwork, Wellfound, Glassdoor, LinkedIn, YC, We Work Remotely, and Hacker News.
   </DecisionBlock>
 
-    <DecisionBlock title="Make every application stage explicit.">
+    <DecisionBlock title="Make every application stage explicit">
       An application moves through a defined sequence: opportunity acceptance, material generation, resume attachment, portal-question discovery, reusable-answer matching, required-answer approval, final approval, submission, and confirmation.
     </DecisionBlock>
 
-    <DecisionBlock title="Reuse approved answers without hiding changes.">
+    <DecisionBlock title="Reuse approved answers without hiding changes">
       The answer bank stores reusable facts and maps employer-specific portal wording to approved answers. New or changed required fields invalidate submission approval and return the pursuit to review instead of letting stale answers continue.
     </DecisionBlock>
 
-    <DecisionBlock title="Move daily decisions into the desktop app.">
+    <DecisionBlock title="Move daily decisions into the desktop app">
       The macOS app shows opportunity reviews, active pursuits, source health, schedules, prompt settings, application materials, questions, answers, run evidence, and blockers from the same saved state.
     </DecisionBlock>
 
-    <DecisionBlock title="Run background tasks through one service.">
+    <DecisionBlock title="Run background tasks through one service">
       Source schedules, queues, material and draft generation, application submission, outreach, and notifications moved into one background service instead of scattered macOS jobs and ad hoc scripts.
     </DecisionBlock>
 

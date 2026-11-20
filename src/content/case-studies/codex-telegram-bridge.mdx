@@ -4,37 +4,37 @@
 import CaseSection from "../../components/case-study/CaseSection.astro";
 import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ProofRows from "../../components/case-study/ProofRows.astro";
-import { pillLinkClass } from "../../lib/ui";
+import { textLinkClass } from "../../lib/ui";
 
 export const shippedRows = [
   {
     label: "Public command-line tool",
-    title: "The common remote actions are easy to find.",
+    title: "The common remote actions are easy to find",
     body: "Default help shows setup, remote mode, Telegram and Discord, projects, waiting threads, replies, and approvals while lower-level maintenance commands stay hidden.",
   },
   {
     label: "Away mode",
-    title: "Remote notifications only run when remote mode is on.",
+    title: "Remote notifications only run when remote mode is on",
     body: "`/away` enables Telegram or Discord notifications and starts the required local connection. `/back` turns notifications off and clears messages that have not been sent.",
   },
   {
     label: "Reply routing",
-    title: "Chat replies map back to exact Codex threads.",
+    title: "Chat replies map back to exact Codex threads",
     body: "The local background service records where each Telegram or Discord message came from, then sends a remote reply or approval back to the exact Codex thread.",
   },
   {
     label: "Limited agent access",
-    title: "Hermes can inspect and respond without controlling delivery.",
+    title: "Hermes can inspect and respond without controlling delivery",
     body: "The optional agent interface can inspect threads, show waiting work, reply, and approve. Setup, background-service control, chat connections, new threads, and archive operations remain outside it.",
   },
   {
     label: "Desktop companion",
-    title: "Remote mode has a macOS menu bar control.",
+    title: "Remote mode has a macOS menu bar control",
     body: "The menu bar companion turns remote mode on or off, repairs the local connection, and watches the same state as the chat tools.",
   },
   {
     label: "Public hardening",
-    title: "The repo includes docs, CI, release workflow, and safety tests.",
+    title: "The repo includes docs, CI, release workflow, and safety tests",
     body: "Tests cover command parsing, hidden maintenance commands, token removal, Telegram reply routing, approval buttons, stored-data changes, agent discovery, and the deliberately small agent tool list.",
   },
 ];
@@ -47,30 +47,30 @@ export const shippedRows = [
 </CaseSection>
 
 <CaseSection title="Away mode controls when messages can leave the computer">
-  <DecisionBlock title="Make presence the top-level gate.">
+  <DecisionBlock title="Make presence the top-level gate">
     The main rule is simple: remote notifications stay off while I am at the computer. `/away` turns delivery on, while `/back` turns it off and clears pending messages.
   </DecisionBlock>
 
-    <DecisionBlock title="Route every reply through local records.">
+    <DecisionBlock title="Route every reply through local records">
     The bridge stores thread snapshots, outgoing messages, delivery history, reply routes, approval routes, selected projects, and action history in a local database. A remote message carries a temporary route that the local service maps back to Codex.
     </DecisionBlock>
 
-    <DecisionBlock title="Keep chat delivery separate from agent access.">
+    <DecisionBlock title="Keep chat delivery separate from agent access">
     Telegram and Discord handle delivery and replies. Hermes gets a small optional interface for trusted local agent tasks: it can inspect, reply, and approve, but it cannot install the background service, configure chat connections, process updates, or send proactive notifications.
     </DecisionBlock>
 
 </CaseSection>
 
 <CaseSection title="The implementation keeps remote control narrow">
-    <DecisionBlock title="Select projects without guessing from chat.">
+    <DecisionBlock title="Select projects without guessing from chat">
     The project list stores approved folders with identifiers, labels, and aliases. `/project` chooses the current workspace, and `/new` starts a Codex task in that registered folder.
     </DecisionBlock>
 
-    <DecisionBlock title="Keep secrets out of command output.">
+    <DecisionBlock title="Keep secrets out of command output">
     Setup writes the bridge config with user-only permissions, command output redacts bot tokens, allowed user ids can restrict inbound commands, and the public docs call out dedicated bot-token ownership and local retention.
     </DecisionBlock>
 
-    <DecisionBlock title="Put the common controls in the menu bar.">
+    <DecisionBlock title="Put the common controls in the menu bar">
     The macOS companion exposes the actions needed from the desktop: start, stop, repair, refresh status, open configuration, and inspect local state.
     </DecisionBlock>
 
@@ -86,7 +86,7 @@ export const shippedRows = [
 <CaseSection title="The implementation is public">
   The repository includes the Rust bridge, Telegram and Discord setup guides, Hermes agent-interface docs, macOS menu bar companion, example configuration, automated checks, release workflow, and tests.
 
-    <a class={pillLinkClass} href='https://github.com/HanifCarroll/codex-telegram-bridge' target='_blank' rel='noopener noreferrer'>
+    <a class={textLinkClass} href='https://github.com/HanifCarroll/codex-telegram-bridge' target='_blank' rel='noopener noreferrer'>
     View GitHub repo
     <span>&rarr;</span>
     </a>
