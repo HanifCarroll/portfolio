@@ -29,12 +29,12 @@ export const shippedRows = [
   },
   {
     label: "Migration",
-    title: "Legacy state moved forward on purpose",
+    title: "Moving the old data to the new tool",
     body: "A multi-workflow Python suite became one Bun and TypeScript tool on SQLite through 30 schema migrations, with a report that lists each proposed carry-over from the old state.",
   },
 ];
 
-<CaseSection title="I built a command-line toolkit where every external action leaves evidence">
+<CaseSection title="Why I built it">
   I built a Bun and TypeScript toolkit for LinkedIn analytics, job capture, and read-only Sales Navigator research, with guarded outreach and a local review queue.
 
     The opening screenshot shows the original Python review interface.
@@ -43,19 +43,19 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="Outreach waits for review and a receipt">
+<CaseSection title="What LinkedIn Tools does">
   LinkedIn Tools is a public project that brings job capture, hiring-team research, draft outreach, and follow-up handoffs into one system.
 
     A SvelteKit review queue groups hiring-team leads by person, so each contact has one reviewable draft, and it records approval before the send path can run.
 
 </CaseSection>
 
-<CaseSection title="Each step has an owner and leaves a record">
+<CaseSection title="The main design decisions">
   <DecisionBlock title="Capture jobs in phases">
     Chrome capture stages pages in SQLite. Normalization then deduplicates by LinkedIn job ID, one page per transaction, and short resumable runs stay within a wall-clock budget so an interrupted run can pick up where it stopped.
   </DecisionBlock>
 
-    <DecisionBlock title="Triage with evidence, not rejection">
+    <DecisionBlock title="Sort jobs without rejecting any">
     Every kept job with hiring-team contacts gets a strong, possible, or weak bucket with the evidence behind it. Triage never rejects a job or changes its review status.
     </DecisionBlock>
 
@@ -72,7 +72,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The controls are part of the product">
+<CaseSection title="What shipped">
   <ProofRows rows={shippedRows}>
     <p>
       LinkedIn Tools keeps saved state, action ownership, approval, and browser evidence in the same
@@ -81,14 +81,14 @@ export const shippedRows = [
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="The same pattern applies beyond LinkedIn">
+<CaseSection title="How this applies to other businesses">
   This is how I would shape the same workflow inside a company once spreadsheets, chat threads, and ad hoc scripts start to break down.
 
     I would give each action an owner, store the workflow state, require approval for irreversible actions, and capture enough evidence to make the next step visible. Automation can then continue only when the system can explain what happened.
 
 </CaseSection>
 
-<CaseSection title="The implementation is public">
+<CaseSection title="Source code">
   <p>
     The repository contains the Bun and TypeScript command-line tool, the SQLite schema migrations,
     the review queue, the browser helpers, and the automated tests.

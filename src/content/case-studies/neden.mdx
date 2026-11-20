@@ -19,7 +19,7 @@ I designed the product and built the Qt Quick player, the hosted API, the websit
     The player shows two subtitle tracks at once, keeps a searchable transcript, replays the current line, and remembers where you stopped. Hovering a subtitle word opens its meaning, and phrase explanations return a translation followed by a breakdown that covers every spoken word.
   </DecisionBlock>
 
-<DecisionBlock title="Flashcards inside the playback workflow">
+<DecisionBlock title="Flashcards built into the player">
   Local flashcards let you save what you looked up and review it later. A remembered card comes back
   after a longer gap each time, and a missed card returns in ten minutes. Cards export as TSV.
 </DecisionBlock>
@@ -90,7 +90,7 @@ Screenshots show the installed plugin during a Leyla ile Mecnun episode, with Tu
 
 </CaseSection>
 
-<CaseSection title="Provider requests and saved keys">
+<CaseSection title="Privacy and API keys">
   Requests go directly to the learner's configured providers. Word lookup sends the clicked word; phrase explanations send the selection, its cue, nearby subtitle context, and conversation turns. The video and complete subtitle file are not uploaded.
 
 Neden stores provider and subtitle-service keys in the operating system's credential store, with no plaintext fallback, and binds each key to its API origin. In the IINA plugin the Swift helper receives keys through private pipes, which avoids putting credentials in command arguments.

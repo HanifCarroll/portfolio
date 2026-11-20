@@ -1,5 +1,5 @@
 ---
-title: "How I Work"
+title: "How I work"
 description: "I've used coding agents for about three years, and over the last year they've written nearly all of my code. That changed what my job looks like. I spend less time typing code and more time deciding what should be built, checking whether it works, and noticing when the agent is solving the wrong problem."
 ---
 

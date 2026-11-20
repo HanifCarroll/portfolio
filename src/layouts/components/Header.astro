@@ -1,7 +1,7 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { BOOK_CALL_URL } from '../../consts';
-import sections from '../../data/notes';
+import sections, { noteEntryId } from '../../data/notes';
 import AtlasNav from '../../components/atlas/AtlasNav.astro';
 
 const navLinks = [
@@ -16,8 +16,6 @@ const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 const { pathname } = Astro.url;
 const { isNotes = false, isAtlas = false } = Astro.props;
 const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
-const entryId = (section: string, title: string) =>
-	`${section}-${title.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`;
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
 const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
 const headerCtaLabel = 'Book a call';
@@ -68,7 +66,7 @@ const headerCtaLabel = 'Book a call';
 								<li>
 									<details class='hc-notes-mobile-section' open={sectionIndex === 0}>
 										<summary><strong>{section.title}</strong><svg viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg></summary>
-										<ol>{section.entries.map((entry) => <li><a href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>)}</ol>
+										<ol>{section.entries.map((entry) => <li><a href={`#${noteEntryId(section.slug, entry)}`}>{entry.title}</a></li>)}</ol>
 									</details>
 								</li>
 							))}

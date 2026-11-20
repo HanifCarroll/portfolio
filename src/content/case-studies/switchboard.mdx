@@ -22,7 +22,7 @@ The company records and customer systems are fictional. Investigations call a re
   </nav>
 </CaseSection>
 
-<CaseSection title="Giving the investigator evidence and limited authority" media>
+<CaseSection title="What the AI investigator can and cannot do" media>
 The agent retrieves tickets, customer records, integrations, and policies through tools that check the employee’s role and customer assignments. Employee identity comes from trusted application context, outside the model’s tool arguments.
 
 The model returns a structured report. A separate model call reviews its policy interpretation, and application code checks its evidence references and proposed change against the records. One revision is allowed; a report that still fails validation is not published.
@@ -56,14 +56,14 @@ Callbacks use saved action receipts, and maintenance recovers missed callbacks. 
 
 </CaseSection>
 
-<CaseSection title="Deployment and diagnosis were part of the build">
+<CaseSection title="Deployment and monitoring">
 The Next.js site and FastAPI API run on Lambda behind CloudFront. AWS SAM and CloudFormation define deployment; releases check live website and API behavior and restore the previous deployment if health checks fail.
 
 CloudWatch alarms cover function errors, queue age, dead-letter messages, and failed or timed-out workflows. X-Ray traces and structured logs support diagnosis without adding model prompts or customer records to trace attributes. The [public architecture document](https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md) links these decisions to their implementations.
 
 </CaseSection>
 
-<CaseSection title="What the demo demonstrates, and its limits" media>
+<CaseSection title="What the demo shows and its limits" media>
 The result is a public, inspectable workflow from investigation through approval, execution, and delivery verification. Each visitor gets an isolated workspace and chooses from three built-in fictional employee profiles. Alex, an implementation engineer, handles Acme requests; Priya, a technical lead, reviews eligible Acme proposals; Ben, a support specialist, investigates Globex requests with limited access. The demo uses these prepared profiles without work-account sign-in. Switching profiles keeps the same visitor workspace, and the server checks the selected role and customer assignments before each action.
 
 The repository includes deterministic tests and evaluation scenarios. Their presence does not establish a measured model pass rate. This demo demonstrates controlled AWS integration over synthetic data; it provides no evidence of client production use or operator outcomes.

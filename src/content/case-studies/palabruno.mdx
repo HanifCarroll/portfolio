@@ -96,7 +96,7 @@ As the client’s AI Product Engineer, I worked directly with the founder on sco
 
 </CaseSection>
 
-<CaseSection title="Choosing a buyer shaped the workflows">
+<CaseSection title="Choosing tutors as the first buyer">
 Tutors already create lesson material and send it to students. I treated them as the first buyer to test and scoped a web workspace around readings, students, groups, and sharing. This was a product hypothesis the founder could test after launch.
 
 Students needed a mobile reader centered on reading, saved texts, and help in context. Teachers needed to prepare and distribute lessons. I kept those interfaces separate while connecting them through the shared backend.
@@ -105,14 +105,14 @@ The MVP also needed real payments and store readiness. Late feedback affected UX
 
 </CaseSection>
 
-<CaseSection title="Frontend architecture for learners and teachers">
+<CaseSection title="Separate apps for learners and teachers">
 The product separates a React web workspace from React Native / Expo learner apps. The teacher workspace covers reading creation, student and group management, and sharing; the learner interfaces keep vocabulary and phrase explanations inside the reading flow.
 
 The current web architecture uses TanStack Router and a shared TanStack Query client. Signed-in viewer and access state live at the app route boundary, while TanStack Table handles pagination and selection for substantial dashboard and admin tables. Data fetching and cache updates stay separate from each table’s presentation state.
 
 </CaseSection>
 
-<CaseSection title="Building the Spanish reader compiler">
+<CaseSection title="Making every tap explain the right word">
 The reader had to connect each tap to the word or phrase being explained. A fluent learning card could still be wrong for the selected text.
 
 I built a reader compiler combining natural language processing (NLP), linguistic rules, and constrained LLM generation to produce tappable words, phrases, and contextual learning cards. Language analysis and structural rules worked alongside model-generated explanations.
@@ -121,15 +121,15 @@ Output validation checked the generated cards before publication. Invalid cards 
 
 </CaseSection>
 
-<CaseSection title="Making text processing recoverable">
+<CaseSection title="Recovering long jobs after a failure">
 I implemented durable text-processing workflows with persisted progress and failure recovery. A long-running reading job needed a recoverable state beyond the browser request that started it.
 
 Per-stage latency and model-cost tracking made it possible to inspect where processing time and spend accumulated. That supported diagnosis at the stage that needed attention, alongside the reader’s regression checks.
 
 </CaseSection>
 
-<CaseSection title="Integrating payments, launching, and handing off">
-  <DecisionBlock title="Put each payment path where its customer used the product">
+<CaseSection title="Payments, launch, and handoff">
+  <DecisionBlock title="Match the payment method to the customer">
     RevenueCat handles learner Premium subscriptions through Apple and Google. Stripe handles Teacher payments on the web, where tutors prepare lessons. Supabase supports the shared backend.
   </DecisionBlock>
 
@@ -138,7 +138,7 @@ Per-stage latency and model-cost tracking made it possible to inspect where proc
   </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="What launched, and what still needed testing">
+<CaseSection title="What launched and what remained untested">
   <ProofRows rows={shippedRows}>
     The MVP launched across iOS, Android, and web, with paid learner and teacher paths. This is a historical delivery: the mobile apps were later withdrawn from the stores.
   </ProofRows>
@@ -147,14 +147,14 @@ The founder could now test whether tutors would pay for the workspace. Launch an
 
 </CaseSection>
 
-<CaseSection title="The teacher workspace supports the full lesson loop" media wideMedia>
+<CaseSection title="The teacher workspace" media wideMedia>
   Screens from the teacher workspace show the core product surfaces: create a reading, manage students, organize groups, and share material.
 
     <DeviceGrid screens={teacherScreens} />
 
 </CaseSection>
 
-<CaseSection title="The learner surface keeps support inside the story" media wideMedia>
+<CaseSection title="The learner's reader" media wideMedia>
   Readers can work through Spanish content, get help in context, and return to a library of saved texts.
 
     <DeviceGrid screens={learnerScreens} />

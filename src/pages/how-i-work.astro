@@ -6,10 +6,10 @@ const entry = Object.values(import.meta.glob('../content/how-i-work.md', { eager
 };
 const frontmatter = entry.frontmatter ?? {};
 const Content = entry.default;
-const title = frontmatter.title ?? 'How I Work';
+const title = frontmatter.title ?? 'How I work';
 const description = frontmatter.description ?? '';
 ---
 
-<EssayPage title={title} pageTitle='How I Work · Hanif Carroll' description={description} deck={description} bodyClass='hc-how'>
+<EssayPage title={title} pageTitle={`${title} · Hanif Carroll`} description={description} deck={description} bodyClass='hc-how'>
 	<Content />
 </EssayPage>

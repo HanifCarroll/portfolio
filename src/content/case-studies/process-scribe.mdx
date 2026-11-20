@@ -8,7 +8,7 @@ import processOverview from "../../assets/img/projects/process-scribe/process-ov
 import clarificationQuestions from "../../assets/img/projects/process-scribe/clarification-questions.png";
 import { resourceLinksClass } from "../../lib/ui";
 
-<CaseSection title="From a conversation to a process people can review">
+<CaseSection title="What Senda does">
 A process interview rarely arrives as a complete sequence. Someone might describe what happens, then mention an exception later, or leave the order of two steps unclear. A diagram can make those gaps easier to discuss when the reader can see what came from the conversation and what still needs an answer.
 
 I built Senda as an independent process discovery tool. It helps an agent and a person turn interview material into a reviewable BPMN model. BPMN is a standard format for describing processes in diagrams. The examples and interviews shown here are synthetic.
@@ -24,7 +24,7 @@ Senda runs on Cloudflare Workers with private projects and agent connections. Th
   </nav>
 </CaseSection>
 
-<CaseSection title="Leave the gap visible and ask" media>
+<CaseSection title="Ask about gaps instead of guessing" media>
 In the small example, the interview says to “collect a deposit and schedule the project.” That sentence does not say which happens first. The draft keeps the order unresolved and presents a question.
 
 In the private project app, a person can save an answer as a new source. The question remains visible until the modeling agent interprets that answer and updates the model with supporting evidence. As the agent saves revisions, the browser detects updates; the reader can also inspect earlier versions.
@@ -65,7 +65,7 @@ I extended the same project core used by the local command-line tool to support 
   </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="Make a larger process navigable" media>
+<CaseSection title="Make a large process easy to browse" media>
 The larger synthetic example follows a client onboarding process across five internal roles and a client. It includes parallel work, payment reminders, withdrawal and refund conditions, corrections, and handover. The overview stays compact; readers can open details for individual parts of the work without losing the external exchanges that give them context.
 
 <ImagePlate
@@ -78,7 +78,7 @@ The saved model can be exported as a complete BPMN file with improved diagram ge
 
 </CaseSection>
 
-<CaseSection title="A layout decision beyond the crossing count">
+<CaseSection title="Choosing the diagram layout">
 I compared the current layout with an experimental adapter using ELK, a graph layout engine, on the larger example. I found a routing issue in my own implementation: it treated intervening lane bodies as obstacles. Fixing that reduced overview crossings from two to one without enlarging the diagram; all five detail views remained free of crossings.
 
 An ELK-based alternative eliminated the remaining overview crossing, but made the drawing taller and produced longer routes and backward handoffs. Some detail views also gained crossings. I kept the corrected current renderer and left ELK experimental. This comparison covers one synthetic model and a bounded adapter, not every process or layout engine.

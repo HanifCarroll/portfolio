@@ -1,5 +1,5 @@
 ---
-title: "Spreadsheet vs. Database: When a Growing Business Needs an Internal Tool"
+title: "Spreadsheet vs. database: When a growing business needs an internal tool"
 seoTitle: "Spreadsheet vs. Database: When You Need an Internal Tool"
 description: "Choose whether to keep your spreadsheet, add controls, use a CRM, inventory system, or work-management platform, or build custom software."
 pubDate: "2026-07-28"
@@ -108,7 +108,7 @@ A spreadsheet has stopped being enough when people cannot trust the current stat
 
 One signal can justify a change when the consequence is high. Several mild signals can also add up. The question is whether the current tool makes the agreed workflow easier to follow and verify, or whether people have to compensate for it every day.
 
-## A worked decision from the Desarmadero Operations Prototype
+## An example from the Desarmadero Operations Prototype <!-- heading-id: a-worked-decision-from-the-desarmadero-operations-prototype -->
 
 The [Desarmadero Operations Prototype](/projects/desarmadero-operations-prototype/) began with a real discovery call about an auto-dismantling yard. Its operating model was spread across paper budget sheets, WhatsApp, Excel, and memory. I turned that discovery into a product requirements document, functional specification, and role-based clickable prototype. The prototype is a work sample for validating the proposed workflow; it was not a deployed operating system and does not prove measured business results.
 
@@ -136,7 +136,7 @@ A row count would not diagnose that situation. The challenge was keeping related
 
 That is the practical value of a prototype: it turns assumptions into something the team can inspect before the expensive commitment.
 
-## Spreadsheet, existing software, or custom software? Use this decision aid
+## Ten questions to help you choose <!-- heading-id: spreadsheet-existing-software-or-custom-software-use-this-decision-aid -->
 
 Start by [mapping one recurring workflow](/blog/business-process-mapping-examples/) from a clear trigger to a clear outcome, then record the people, tools, handoffs, waits, decisions, and first change without choosing software in advance.
 

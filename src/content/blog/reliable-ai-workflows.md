@@ -1,6 +1,6 @@
 ---
-title: "Reliable AI Workflows Are Learned Through Failure"
-seoTitle: "Reliable AI Workflows Are Learned Through Failure"
+title: "Reliable AI workflows are learned through failure"
+seoTitle: "Reliable AI workflows are learned through failure"
 description: "A reliable AI workflow becomes clearer when a failed run reveals which decision, approval, or stop condition came too late."
 pubDate: "2026-07-16"
 tags:

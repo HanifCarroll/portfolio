@@ -21,7 +21,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
   },
   {
     id: "products-experiments",
-    label: "Products & experiments",
+    label: "Products and experiments",
     description:
       "Independent products and prototypes built to test an idea through working software.",
     slugs: [

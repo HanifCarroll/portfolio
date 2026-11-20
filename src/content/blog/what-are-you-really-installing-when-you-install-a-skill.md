@@ -1,6 +1,6 @@
 ---
-title: "What Are You Really Installing When You Install a Skill?"
-seoTitle: "What Are You Really Installing When You Install a Skill?"
+title: "What are you really installing when you install a skill?"
+seoTitle: "What are you really installing when you install a skill?"
 pubDate: "2026-09-02"
 description: "Agent skills bundle practical capabilities with assumptions about good work. The doctrine behind a skill should be visible before installation."
 ctaVariant: systemsBuild
@@ -31,7 +31,7 @@ Neither approach is necessarily better. The circumstances are different, but so 
 
 And that creates a problem for the way we talk about agent skills.
 
-## The Hidden Layer
+## The beliefs inside a skill <!-- heading-id: the-hidden-layer -->
 
 So what are you actually getting?
 
@@ -65,7 +65,7 @@ Doctrine also cuts across skills. If you believe complexity has a carrying cost,
 
 A skill is therefore harder to understand in isolation than its name suggests.
 
-## Marketing Makes This Distinction Harder to Ignore
+## The same thing happens in marketing <!-- heading-id: marketing-makes-this-distinction-harder-to-ignore -->
 
 This gets clearer outside software.
 
@@ -89,7 +89,7 @@ I’m importing a school of thought.
 
 What looked like a package of marketing techniques also carried a theory of how marketing works.
 
-## Making the Hidden Layer Visible
+## Show the beliefs before installation <!-- heading-id: making-the-hidden-layer-visible -->
 
 We don’t need to settle where doctrine belongs before doing something useful with the distinction.
 
@@ -105,7 +105,7 @@ Doctrine also has a boundary worth noting.
 
 Doctrine captures what we can articulate about good work; taste helps us recognize quality that our principles don’t fully capture. Some of that may be transmitted better through examples and critique than through another set of instructions.
 
-## What Comes With a Skill
+## What comes with a skill
 
 A code-review skill may contain a theory of what good code is and what software is for.
 

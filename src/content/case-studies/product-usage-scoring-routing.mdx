@@ -15,7 +15,7 @@ export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-ro
 export const shippedRows = [
   {
     label: "Weekly queue made visible",
-    title: "The same accounts route differently and legibly",
+    title: "The two policies route the same accounts differently",
     body: "120 synthetic accounts produce distinct, explainable outcomes under a gated policy and a naive combined score at the same weekly capacity.",
   },
   {
@@ -30,12 +30,12 @@ export const shippedRows = [
   },
   {
     label: "Bounded HubSpot sync",
-    title: "One approved action stays idempotent and fictional",
+    title: "One approved action creates one test task",
     body: "An approved action creates a single follow-up task in a dedicated HubSpot test account — never outreach, no email, no secrets exposed.",
   },
 ];
 
-<CaseSection title="The weekly Sales and CS queue often explains nothing">
+<CaseSection title="The problem with the weekly sales queue">
   The starting point is a revenue problem, not a technology one. Product behavior exists — logins, incidents, pricing pages, security docs — but the weekly Sales and Customer Success queue can still be late, noisy, over capacity, or unexplained.
 
     A team looking at a routed account usually cannot answer four basic questions: why did this account enter the queue, who should act on it, how fast, and what changed versus last week? A single opaque score turns routing into a black box the team must trust without being able to inspect.
@@ -44,12 +44,12 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="One combined score is often the wrong abstraction">
+<CaseSection title="Why one combined score falls short">
   <DecisionBlock title="Separate the signals before scoring">
     Fit, product usage, and buying intent are different questions. Collapsing them into one number hides which signal actually moved an account, and it hides the tradeoffs the business is making.
   </DecisionBlock>
 
-    <DecisionBlock title="Use gates, not just scores, before any human action">
+    <DecisionBlock title="Use rules, not only scores, to route accounts">
     A score ranks; gates decide. Hand raiser, acquisition sales-assist, monitor, self-serve, manual review, and expansion are visible routes decided by explicit rules, with an owner and a real SLA attached.
 
   </DecisionBlock>
@@ -63,26 +63,26 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The naive comparator is transparent">
+<CaseSection title="The simple baseline policy">
   The naive policy, `combined_score_naive_v1`, is a simple baseline. It collapses fit, product usage, and buying intent into one number, roughly a weighted average, then routes any account above a single threshold into one generic Sales queue. It has no hard blocks, no prospect-versus-customer distinction, and no separate plays.
 
 </CaseSection>
 
-<CaseSection title="Every route carries a decision packet" media>
+<CaseSection title="Each account shows why it was routed" media>
   The gated policy scores each account on three separate 0–100 dimensions and evaluates visible gates before routing. An account's decision packet shows the full record: identity, a product-event timeline, the itemized points behind each score, which gates passed or failed, the strongest rejected alternative, the owner, the SLA, and the current CRM state.
 
     <ImagePlate image={decisionPacket} alt="A single account decision packet showing the product-event timeline, fit, product usage, and buying intent scores, evaluated gates, owner, SLA, and rejected alternative." />
 
 </CaseSection>
 
-<CaseSection title="Two levers, live recompute" media>
+<CaseSection title="Two settings visitors can change" media>
   Visitors can change exactly two allowlisted controls: the acquisition intent minimum and the weekly human-action capacity. Changing capacity reprioritizes the queue but never changes whether an account qualifies. Qualified overflow stays visibly deferred. The policy view makes the tradeoff between intent and team capacity concrete.
 
     <ImagePlate image={policy} alt="The policy view showing the three scored dimensions, the naive comparator formula, and the live comparison table on the same 120 synthetic accounts." />
 
 </CaseSection>
 
-<CaseSection title="The bounded HubSpot approval and sync">
+<CaseSection title="One limited write to HubSpot">
   The demonstration includes one bounded external write. A designated account's decision packet offers an "Approve and sync" action that creates a single fictional follow-up task in a dedicated HubSpot developer test account. It never sends outreach or email and never changes real customer data.
 
     The sync is idempotent and traceable to a run id: identity is resolved, scores are recorded, a play is selected, and the durable workflow upserts a fictional company, contact, and association and creates one task. A fake local adapter keeps the full demo usable without any credentials, while a hardened production path runs the same workflow on Cloudflare with the real HubSpot adapter.
@@ -91,45 +91,45 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="Cloudflare is the decision and execution layer">
-  <DecisionBlock title="Pure decision engine, validated at runtime">
+<CaseSection title="How I built it">
+  <DecisionBlock title="Keep scoring separate from Cloudflare and HubSpot">
     Scoring and routing are pure, table-tested functions that import no Cloudflare or HubSpot code. All boundary data is validated at runtime, and timestamps are stored in UTC ISO 8601 and rendered in the viewer's locale.
   </DecisionBlock>
 
-    <DecisionBlock title="Durable execution, not just a request">
+    <DecisionBlock title="Run the sync as a retryable workflow">
     The approve-and-sync path runs as a Cloudflare Workflow over D1 state: run and signal records persist, the workflow is idempotent and retryable, and a completed run survives a refresh via its opaque run id.
 
   </DecisionBlock>
 
-    <DecisionBlock title="HubSpot stays the operational destination">
+    <DecisionBlock title="HubSpot holds the CRM record">
     Cloudflare owns the decision and execution; HubSpot is the CRM destination. The app card reads latest scores, signals, and gates back from an authenticated Cloudflare endpoint, so the CRM record and the decision stay connected.
 
   </DecisionBlock>
 
 </CaseSection>
 
-<CaseSection title="Synthetic data, stated clearly">
+<CaseSection title="All the data is fictional">
   Every person, company, domain, event, and outcome in the demonstration is fictional. Northfield Software and its Northfield Incident Management product exist only to supply believable product signals. Synthetic CRM contacts omit email entirely and are identified by name plus a unique person id, so no email of any kind is written to HubSpot.
 
     The scores, gates, and outcomes are expert-defined demonstration hypotheses.
 
 </CaseSection>
 
-<CaseSection title="I owned the decision system end to end">
+<CaseSection title="My role">
   I designed and built the full system as an independent project: the product concept, scoring and routing policy, weekly queue and decision-packet experience, adjustable controls, Cloudflare Workers + D1 + Workflows execution layer, and bounded HubSpot integration with its app card and fake local adapter.
 
     The outcome is a live, login-free demonstration a prospective client can inspect end to end — from a raw product signal to an explainable route with an owner and SLA, and one bounded, idempotent write into HubSpot.
 
 </CaseSection>
 
-<CaseSection title="What the demonstration delivers">
+<CaseSection title="What the demo shows">
   <ProofRows rows={shippedRows}>
     The demonstration connects product behavior to explainable revenue action and HubSpot operations
     without an opaque universal score, and it makes every limitation explicit.
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="Inspect it, then ask about your own workflow">
+<CaseSection title="Try the live demo">
   The live demo runs the same 120 synthetic accounts through both policies, shows the decision packets, and lets you change intent and capacity. The source is public and includes the spec, the durable workflow, the HubSpot adapter, and the full test suite.
 
     <a class={buttonClass()} href={demoUrl} target='_blank' rel='noopener noreferrer'>

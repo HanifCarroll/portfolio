@@ -1,5 +1,5 @@
 ---
-title: "Stop Reviewing AI Code. Give It Tools to Verify Its Own Work."
+title: "Stop reviewing AI code. Give it tools to verify its own work"
 pubDate: "2026-01-22"
 description: "The shift from reviewing AI-generated code to giving AI agents the feedback loops they need to catch their own mistakes."
 ctaVariant: systemsBuild

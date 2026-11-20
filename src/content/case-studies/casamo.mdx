@@ -6,7 +6,7 @@ import ImagePlate from "../../components/case-study/ImagePlate.astro";
 import casamoComparison from "../../assets/img/projects/casamo/comparison-desktop.png";
 import casamoEvidence from "../../assets/img/projects/casamo/evidence-desktop.png";
 
-<CaseSection title="From my own apartment search">
+<CaseSection title="Why I built Casamo">
 I wanted a washing machine inside my apartment. As a digital nomad booking apartments for weeks at a time, I preferred doing laundry at home to leaving the apartment to use shared facilities.
 
 An Airbnb listing could advertise laundry without making clear whether the machine was inside the apartment or shared with the building. I had to open listings and flip through photos to find out for myself.
@@ -19,7 +19,7 @@ Casamo is an independent live product. As its AI Product Engineer, I handle prod
 
 </CaseSection>
 
-<CaseSection title="Showing what the sources support" media>
+<CaseSection title="Showing the evidence behind each finding" media>
 Listing details, photos, and reviews can provide different kinds of evidence. A listed amenity does not establish how well it works, and a missing detail can leave a requirement unverified. I built the report to show the sources behind a finding and leave those gaps visible.
 
 In the sample report, one property lists Wi-Fi, but we don’t know how fast it is. Casamo marks it as listed and suggests asking the host for a recent speed test. For air conditioning, the report shows an excerpt from a guest’s review, with links to the full review and original text.
@@ -54,7 +54,7 @@ I moved comparison into its own view alongside list and map, giving all three eq
 />
 </CaseSection>
 
-<CaseSection title="Letting the search continue without the traveler">
+<CaseSection title="Letting travelers leave while the search runs">
 A search collects listings and checks their details, reviews, and photos against the traveler’s requirements. I had shown live progress and results as they arrived, but people testing Casamo complained about how long searches took. I thought the progress screen encouraged them to sit and watch, so I changed the message to say I’d email when the report was ready. I wanted to make clear that they could leave and do something else.
 
 Casamo runs searches in background Cloudflare Workflows, independently of the browser request. D1 stores the scan and account state, and R2 stores evidence and report artifacts. Saved stages let retries reuse completed work. The finished report goes into the traveler’s account, and the completion email is queued separately.
@@ -71,7 +71,7 @@ I tested this in staging by allowing one search to run at a time and submitting 
 
 </CaseSection>
 
-<CaseSection title="Keeping local rental search useful when a provider fails">
+<CaseSection title="A rental finder for Buenos Aires">
 I also built a Buenos Aires rental finder for people who have not collected listing links yet. It searches Zonaprop and Argenprop, preserves the submitted filters in a saved, shareable search URL, and keeps results available after the original browser request ends.
 
 The provider adapters return structured listing facts and photo URLs. A failure at one provider leaves the other provider’s results available with a warning. That favors a useful partial result over hiding the entire search. The finder preserves each portal’s currencies and source wording; advertised inventory does not establish current availability.
@@ -80,7 +80,7 @@ Blocking unnecessary image, font, media, and tracker downloads reduces browser a
 
 </CaseSection>
 
-<CaseSection title="What is live, and what I have verified">
+<CaseSection title="What is live and what I tested">
 Casamo has public signup, saved reports, and paid access. The work covers the customer interface, listing and AI integrations, durable searches, credits, deployment, and ongoing operation. I continue inviting friends to test it and use their feedback alongside my own experience.
 
 The staging exercise above checked queueing, completion, and credit behavior for two searches. It does not measure listing accuracy, booking outcomes, or behavior under heavy load. The sample report lets a reader inspect how sources and uncertainty appear in the product; it cannot confirm a property’s current condition.

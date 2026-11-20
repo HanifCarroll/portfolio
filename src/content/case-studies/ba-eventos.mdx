@@ -30,7 +30,7 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="Finding a plan should not require six different sources">
+<CaseSection title="Event listings live in too many places">
   Buenos Aires event listings are scattered across social posts, ticketing sites, venue pages, and group chats. The details change often, and each source describes events differently.
 
 BA Eventos is an independent product I own and operate as its AI Product Engineer. I built the SvelteKit interface, event ingestion, search tools, and conversational workflows so someone can ask for a plan by mood, neighborhood, or time and get options from one cleaned catalog.
@@ -47,7 +47,7 @@ BA Eventos is an independent product I own and operate as its AI Product Enginee
   </DecisionBlock>
 </CaseSection>
 
-<CaseSection title="Keeping follow-up questions attached to the right events">
+<CaseSection title="Matching follow-up questions to the right events">
 A question such as “where is the second one?” depends on what the person actually saw. I retain event identifiers and display positions from prior responses, then reload the corresponding facts from the catalog. Missing or withdrawn records are excluded without silently renumbering the remaining references.
 
 Saved-event membership comes from the authenticated account rather than a client-supplied marker. For guests or an unavailable membership lookup, saved status stays unknown. These boundaries keep the model’s conversation context separate from authoritative event and account state.
@@ -56,14 +56,14 @@ I built regression evaluations to check that recommendations stayed grounded in 
 
 </CaseSection>
 
-<CaseSection title="A streaming conversation that survives navigation">
+<CaseSection title="A chat that keeps your place">
 The SvelteKit chat streams responses, saves conversations, and handles retry and recovery states. Opening an event detail page preserves the conversation and scroll position, so someone can inspect a venue or ticket link and return to the same shortlist.
 
 The interface uses event cards and detail views for practical decisions, while the assistant handles the conversational request. Keeping these structured surfaces together means the user can inspect an actual event instead of relying only on generated prose.
 
 </CaseSection>
 
-<CaseSection title="Reducing browser acquisition work without dropping source data">
+<CaseSection title="Cutting the cost of collecting event data">
 Some event sources need a browser to pass challenges; others can use HTTP or Cloudflare Browser Rendering. I kept Browserbase for protected Passline reads, restricted proxying to the required domains, and blocked unnecessary images, fonts, media, and trackers. A thin detail read has one standard-profile retry when needed.
 
 Completed source observations are reused during retries of the same import run, and browser sessions close before database and AI processing. That avoids repeating a paid browser read just because a later processing stage failed. Fresh daily catalog reads remain separate from retry reuse.
@@ -72,12 +72,12 @@ Together with acquisition changes in [Casamo](/projects/casamo/), this brought c
 
 </CaseSection>
 
-<CaseSection title="From a vague idea to a useful shortlist">
+<CaseSection title="Starting a search">
   People can type or dictate a question, or begin with Tonight, This Weekend, or Surprise me. The same search works whether the request starts with a genre, a neighborhood, a date, or a mood.
 
 </CaseSection>
 
-<CaseSection title="A live product built on real local records">
+<CaseSection title="What shipped">
   <ProofRows rows={shippedRows}>
     <p>
       The visible search is only one part of BA Eventos. Imports, venue matching, cleanup, and
@@ -87,7 +87,7 @@ Together with acquisition changes in [Casamo](/projects/casamo/), this brought c
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="A search result becomes a plan" media>
+<CaseSection title="The event page" media>
   Each event page brings the practical details together: artwork, date, venue, price, description, and a ticket link.
 
 <ImagePlate

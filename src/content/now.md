@@ -1,5 +1,5 @@
 ---
-title: "What I'm Up to Now"
+title: "What I'm up to now"
 description: >
   This is a "now page" inspired by Derek Sivers. It's what I'd tell a friend if
   they asked what I'm focused on right now.

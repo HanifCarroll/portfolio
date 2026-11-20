@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import sections from '../data/notes';
+import sections, { noteEntryId } from '../data/notes';
 import { deckClass, itemTitleClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
 import '../styles/notes.css';
 
@@ -9,13 +9,6 @@ const description =
 	'Notes on what I’ve learned from building products, working independently, learning, training, and trying to live an intentional life.';
 
 const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
-
-const entryId = (section: string, title: string) =>
-	`${section}-${title
-		.toLowerCase()
-		.replace(/[’']/g, '')
-		.replace(/[^a-z0-9]+/g, '-')
-		.replace(/(^-|-$)/g, '')}`;
 
 ---
 
@@ -52,7 +45,7 @@ const entryId = (section: string, title: string) =>
 								>
 									<ol>
 										{section.entries.map((entry) => (
-											<li><a class='block py-1.5 text-base leading-snug text-ink-muted no-underline -outline-offset-2 hover:text-ink focus-visible:text-ink' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
+											<li><a class='block py-1.5 text-base leading-snug text-ink-muted no-underline -outline-offset-2 hover:text-ink focus-visible:text-ink' href={`#${noteEntryId(section.slug, entry)}`}>{entry.title}</a></li>
 										))}
 									</ol>
 								</div>
@@ -68,7 +61,7 @@ const entryId = (section: string, title: string) =>
 						<h2 id={`${section.slug}-title`} class={sectionHeadingClass}>{section.title}</h2>
 						<ol class='m-0 mt-10 grid list-none gap-14 p-0'>
 							{section.entries.map((entry) => (
-								<li id={entryId(section.slug, entry.title)} class='scroll-mt-24'>
+								<li id={noteEntryId(section.slug, entry)} class='scroll-mt-24'>
 									<h3 class={itemTitleClass}>{entry.title}</h3>
 									{entry.body.map((paragraph) => <p class='mt-3 mb-0 max-w-[40rem] text-lg leading-[1.6] text-ink-muted'>{paragraph}</p>)}
 								</li>

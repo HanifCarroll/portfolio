@@ -26,7 +26,7 @@ const offers = {
 } as const;
 
 const isCaseStudy = context === 'case-study';
-const offer = isCaseStudy
+const offer = isCaseStudy && variant === 'general'
 	? { title: 'Need something like this for your business?', body: offers.systemsBuild.body }
 	: offers[variant];
 ---

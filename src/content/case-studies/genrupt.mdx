@@ -30,7 +30,7 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="Paid seller workflows needed account and job controls">
+<CaseSection title="What Genrupt needed to serve paying teams">
 Genrupt already generated AI images and video for Amazon sellers. To serve paying teams, it needed shared organization accounts, subscriptions, and credit accounting that stayed correct when generation ran concurrently or a provider request had to retry.
 
 I joined as the client’s AI Product Engineer and worked directly with the founder. My scope covered the image editor, billing and credits, background processing, seller workflows, and external agent access. I helped turn the founder’s product direction into shipped workflows for market analysis, review scraping, listing generation, and A+ content.
@@ -46,19 +46,19 @@ I evaluated self-hosted models on RunPod and selected providers for latency and 
 
 </CaseSection>
 
-<CaseSection title="Frontend workflows from generation to editing">
+<CaseSection title="The interface for generating and editing">
 The Next.js interface connects creative generation, review, reruns, batch editing, and A+ content creation. Editable text layers give sellers a way to revise generated images instead of starting again for each text change. Batch editing, undoable changes, and image exports connect that editor to the seller’s production workflow.
 
 Generation status, retry, and recovery paths keep long-running work visible. These interfaces sit on the same organization, billing, and job controls described below, so the user’s editing workflow stays connected to the work being performed and charged.
 
 </CaseSection>
 
-<CaseSection title="Protecting credits through concurrency and retries">
-  <DecisionBlock title="Reserve credits atomically">
+<CaseSection title="Keeping credit balances correct">
+  <DecisionBlock title="Reserve credits so two requests can't overspend">
     Concurrent requests can both see enough credit before either spends it. I used atomic PostgreSQL reservations and row locking to prevent generation from overdrawing an account, with cleanup when work failed.
   </DecisionBlock>
 
-<DecisionBlock title="Keep a retry attached to the original provider job">
+<DecisionBlock title="Never charge twice for a retry">
   I moved image generation into pg-boss background jobs. For video, retries reused the provider job
   and settled costs idempotently, so repeating a request did not create another charge for the same
   work.
@@ -68,7 +68,7 @@ Status and recovery paths connected long-running image, video, storyboard, and s
 
 </CaseSection>
 
-<CaseSection title="The creative workflows used the same commercial systems" media>
+<CaseSection title="One billing system behind every workflow" media>
 Creative variations, batch editing, and A+ content ran on the product’s shared account, billing, credit, and background-job systems. My contribution included both the seller workflows and the controls that charged for and recovered their work.
 
   <div className="mt-3 mb-0 grid gap-4 md:grid-cols-2">
@@ -78,7 +78,7 @@ Creative variations, batch editing, and A+ content ran on the product’s shared
   </div>
 </CaseSection>
 
-<CaseSection title="Connecting seller workflows to external agents" media>
+<CaseSection title="Letting AI agents run seller workflows" media>
 I exposed market-analysis and Amazon listing workflows through Model Context Protocol (MCP). OAuth and organization-aware access kept those calls tied to the customer’s account. A selected tool catalog and asynchronous results let agents start approved work and retrieve its result without handling the application’s internal job mechanics.
 
   <div className="mt-3 mb-0 grid gap-4 md:grid-cols-2">
@@ -88,7 +88,7 @@ I exposed market-analysis and Amazon listing workflows through Model Context Pro
   </div>
 </CaseSection>
 
-<CaseSection title="What shipped, and what the evidence covers">
+<CaseSection title="What shipped">
   <ProofRows rows={shippedRows}>
     This work helped Genrupt support its first 200 paying customers. That is a shared product outcome from my work alongside the founder; my contribution was the engineering described here.
   </ProofRows>

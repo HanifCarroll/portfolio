@@ -1,5 +1,5 @@
 ---
-title: "Browser Automation for AI Agents: ChatGPT Chrome vs Playwriter vs Agent-Browser"
+title: "Browser automation for AI agents: ChatGPT Chrome vs. Playwriter vs. agent-browser"
 seoTitle: "ChatGPT Chrome vs Playwriter vs Agent-Browser: 2026 Test"
 description: "Compare the ChatGPT Chrome Extension, Playwriter, and Vercel agent-browser for signed-in browser work, scripts, and AI-assisted tasks."
 pubDate: 2026-01-16
@@ -72,7 +72,7 @@ The Chrome test used the bundled extension rather than a terminal command. OpenA
 
 All three opened Wikipedia, used its search box, opened the `Headless browser` article, confirmed the heading, and produced a readable screenshot.
 
-### ChatGPT Chrome Extension
+### ChatGPT Chrome extension
 
 The extension showed the search box and final heading in a compact text outline of the page:
 

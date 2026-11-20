@@ -14,7 +14,7 @@ export const shippedRows = [
   },
   {
     label: "Local backend",
-    title: "FastAPI owns the durable parts of the workflow",
+    title: "The backend stores jobs, drafts, and applications",
     body: "The backend provides health checks, context reindexing, draft jobs, draft lookup, application lookup, dashboard, and PDF endpoints. SQLite stores jobs, drafts, timing metadata, and application records.",
   },
   {
@@ -34,30 +34,30 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="From scattered application pieces to one local workflow">
+<CaseSection title="What the assistant does">
   Job Application Assistant is a local tool for drafting and tracking job applications.
 
     It combines a Chrome extension, a FastAPI backend, SQLite, local portfolio context, Codex draft generation, and cover-letter PDF export. The draft, source job, chosen project evidence, and application ledger stay connected.
 
 </CaseSection>
 
-<CaseSection title="The missing link between a role and a submission">
+<CaseSection title="Why I built it">
   The application workflow had too many loose pieces.
 
     The job board had the posting. Local files had positioning and project examples. Drafts lived in a chat or text box. Cover letters had to become PDFs somewhere else. Application history was another habit to maintain. It was too easy to lose the link between the role, the claim used, the final PDF, and whether the application was already logged.
 
 </CaseSection>
 
-<CaseSection title="State stays local; judgment stays reviewable">
+<CaseSection title="The main design decisions">
   <DecisionBlock title="Keep sensitive state local">
     The extension keeps browser state in Chrome. The backend stores draft jobs and application records in SQLite. Generated PDFs live under the configured runtime directory, and generated context stays in a local cache. The README is explicit that drafting uses the locally configured Codex/OpenAI account. The app does not add analytics or job-board API calls.
   </DecisionBlock>
 
-    <DecisionBlock title="Treat extraction as a contract">
+    <DecisionBlock title="Read job pages into fixed fields">
     Supported job pages become an OpportunitySnapshot with fields like source URL, title, company, location, description, responsibilities, requirements, skills, questions, company context, recruiter context, and extraction warnings. Missing data stays missing.
     </DecisionBlock>
 
-    <DecisionBlock title="Make the draft inspectable">
+    <DecisionBlock title="Return the reasons with each draft">
     The backend builds one prompt from the job snapshot plus local profile, resume, offers, and project evidence. The model has to return strict JSON, including the draft and the audit fields needed to check why a claim was used.
     </DecisionBlock>
 
@@ -68,7 +68,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The contracts behind a trustworthy draft">
+<CaseSection title="How I built it">
   <DecisionBlock title="Extension adapters for real job pages">
     The extension supports Upwork, Dice, Indeed, ZipRecruiter, Robert Half, and LinkedIn page shapes. It uses platform adapters, structured selectors, Dice JobPosting JSON-LD when available, and reviewable side-panel fields before a draft starts.
   </DecisionBlock>
@@ -98,14 +98,14 @@ export const shippedRows = [
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="A draft that remains tied to its evidence">
+<CaseSection title="Every draft links to its evidence">
   The useful part is not that the system can write a cover letter.
 
     Every draft stays tied to the job snapshot and allowed portfolio evidence. Each application can be checked against the ledger, and each generated PDF remains part of the same local workflow.
 
 </CaseSection>
 
-<CaseSection title="Public repo">
+<CaseSection title="Source code">
   <p>
     The project is open source, including the Chrome extension, FastAPI backend, SQLite stores,
     response schema, and Python and extension tests.

@@ -1,5 +1,5 @@
 ---
-title: "Where Net Promoter Score Came From"
+title: "Where Net Promoter Score came from"
 pubDate: "2026-10-11"
 description: "Have you ever wondered about the origin of the term Net Promoter Score (NPS)? I did, so I decided to do some research."
 ---

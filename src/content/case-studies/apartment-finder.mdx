@@ -14,7 +14,7 @@ export const shippedRows = [
   },
   {
     label: "Model evidence",
-    title: "The workflow kept decisions auditable",
+    title: "Each result shows its evidence",
     body: "Each result can show the extracted listing details, strongest washer evidence, gallery photos, model confidence, and the original listing.",
   },
   {
@@ -34,14 +34,14 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="From apartment galleries to evidence-backed choices">
+<CaseSection title="Why I built Apartment Finder">
   Apartment listing sites often treat private in-unit washers and shared building laundry as the same amenity.
 
     I built Apartment Finder to scan real rental listings, extract the relevant evidence, and show which apartments are likely to have a washer inside the private unit.
 
 </CaseSection>
 
-<CaseSection title="The washer distinction worth automating">
+<CaseSection title="From photo classifier to product">
   The first version started as a command-line classifier for apartment photos.
 
     The useful version became a product: build or paste a provider search, discover listings, scan them, then compare results without manually opening every listing gallery.
@@ -54,8 +54,8 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="Keep the model's judgment inspectable">
-  <DecisionBlock title="Make the AI judgment inspectable">
+<CaseSection title="The main design decisions">
+  <DecisionBlock title="Show the evidence behind each AI answer">
     The app does not hide behind a single yes/no answer. It keeps extracted descriptions, listing facts, photo galleries, washer evidence, confidence, and source links visible so the result can be checked.
   </DecisionBlock>
 
@@ -65,11 +65,11 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="A compact workspace for the full scan loop">
+<CaseSection title="One workspace for the whole scan">
   The app wraps the search, extraction, classification, and review loop in one compact workspace.
 </CaseSection>
 
-<CaseSection title="Extraction, classification, and measured escalation">
+<CaseSection title="How I built it">
   <DecisionBlock title="Extracted listing evidence across providers">
     The system handles provider search discovery, gallery extraction, listing details, Airbnb washer amenity metadata, and cached extraction fallback for repeatable scans.
   </DecisionBlock>
@@ -88,7 +88,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="A public product with benchmark evidence">
+<CaseSection title="What shipped">
   <ProofRows rows={shippedRows}>
     Apartment Finder is a public example of turning a narrow, real-life decision workflow into an AI
     product with extraction, classification, UI review, benchmark evidence, and measured model-cost
@@ -96,7 +96,7 @@ export const shippedRows = [
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="The implementation is open to inspection">
+<CaseSection title="Source code">
   <p>
     The project is open source, including the TanStack Start UI, Bun CLI, extraction scripts, and
     evaluation fixtures.

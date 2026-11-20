@@ -1,5 +1,5 @@
 ---
-title: "What Is Business Process Management? A SaaS Onboarding Example"
+title: "What is business process management? A SaaS onboarding example"
 description: "Follow a SaaS onboarding example through the six BPM lifecycle phases, from identifying delays to testing a better process."
 pubDate: "2026-10-08"
 tags: ["business process management", "SaaS", "operations"]
@@ -19,7 +19,7 @@ To see how BPM works in practice, let’s walk through a hypothetical scenario o
     I --&gt; M[&quot;6. Process Monitoring&quot;]
     M --&gt; D</pre>
 
-## 1. Process Identification: Selecting the Workflow and Assigning Ownership
+## 1. Process identification: Pick the process and its owner <!-- heading-id: 1-process-identification-selecting-the-workflow-and-assigning-ownership -->
 
 Improving operational <button type="button" class="definition-term" data-definition="How well a process meets its objectives, measured through dimensions such as time, cost, quality, and flexibility.">performance</button> starts with process identification—selecting a target process from the company's broader <button type="button" class="definition-term" data-definition="A map of an organization’s business processes and the relationships between them, used to establish scope and prioritize improvement.">process architecture</button> and setting operational boundaries.
 
@@ -39,7 +39,7 @@ To manage the workflow, the team established three foundational rules:
 
 - Target Metrics: The team set a primary performance goal: reduce total <button type="button" class="definition-term" data-definition="The elapsed time from the start of a process instance to its completion, including time spent performing activities and waiting. This example counts agreed business hours.">cycle time</button> to an average target of 10 business hours or fewer, while keeping post-import setup errors low.
 
-## 2. Process Discovery: Mapping How Work Really Happens
+## 2. Process discovery: Map how the work really happens <!-- heading-id: 2-process-discovery-mapping-how-work-really-happens -->
 
 To uncover operational reality—the <button type="button" class="definition-term" data-definition="Gathering evidence about how a process currently operates and documenting it in an as-is process model.">process discovery</button> phase—the <button type="button" class="definition-term" data-definition="A person who investigates how a process operates, models it, analyzes problems, and helps design and evaluate improvements with the people involved.">process analyst</button> interviewed team members, checked audit logs, and shadowed handoffs between Customer Success and Implementation Specialists to build an accurate <button type="button" class="definition-term" data-definition="A representation of how a process currently operates in practice, including activities, decisions, handoffs, and exceptions.">as-is process model</button>.
 
@@ -58,7 +58,7 @@ Discovery revealed a recurring loop during the departmental handoff:
 
 BPM draws on <button type="button" class="definition-term" data-definition="Examining how the interactions between a system’s parts influence the behavior and outcomes of the system as a whole.">systems thinking</button>: examining how departments interact to understand the performance of the whole process. Customer Success forwarded spreadsheets without checking if task assignees (like "Alex") matched confirmed user accounts. The Implementation Specialist discovered these ambiguous details only after the request sat in their queue. Resolving missing details required sending a query back to the customer, and once answered, the request went straight to the back of the specialist’s queue for a second wait.
 
-## 3. Process Analysis: Quantifying the Waste
+## 3. Process analysis: Measure the waste <!-- heading-id: 3-process-analysis-quantifying-the-waste -->
 
 With the as-is model mapped, the analyst evaluated historical performance data during <button type="button" class="definition-term" data-definition="Examining a process to identify and prioritize problems, investigate their causes, and assess their effects using qualitative and quantitative evidence.">process analysis</button> to determine which delays justified changing the workflow.
 
@@ -86,7 +86,7 @@ The data yielded two critical insights:
 
 Trying to speed up data import execution itself would yield negligible results because the vast majority of the delay occurred before technical setup even began. The analysis pointed to a clear priority: avoid the secondary specialist queue.
 
-## 4. Process Redesign: Designing the "To-Be" Solution
+## 4. Process redesign: Design the new process <!-- heading-id: 4-process-redesign-designing-the-to-be-solution -->
 
 During <button type="button" class="definition-term" data-definition="Developing and evaluating changes to a process to address identified problems and meet improvement objectives.">process redesign</button>, the team formulated improvements and captured them in a <button type="button" class="definition-term" data-definition="A representation of how a process is intended to operate after proposed improvements, including changed activities, responsibilities, and handoffs.">to-be process model</button>.
 
@@ -104,7 +104,7 @@ Because each spreadsheet contains over 50 tasks with team-wide assignees, reps m
     F --&gt; G[&quot;Customer checks setup &amp; receives walkthrough&quot;]
     G --&gt; H[&quot;Task updated &amp; completion confirmed&quot;]</pre>
 
-### Evaluating the Tradeoffs: As-Is vs. To-Be
+### Current vs. proposed process <!-- heading-id: evaluating-the-tradeoffs-as-is-vs-to-be -->
 
 Redesign options involve tradeoffs between speed, cost, quality, and effort.
 
@@ -116,7 +116,7 @@ Redesign options involve tradeoffs between speed, cost, quality, and effort.
 
 While Customer Success spends extra time verifying accounts, avoiding the 9-hour relay and repeat queue wait aims to cut overall estimated cycle time in half.
 
-## 5. Process Implementation: Executing Organizational & Technical Change
+## 5. Process implementation: Change how people and tools work <!-- heading-id: 5-process-implementation-executing-organizational--technical-change -->
 
 A process model on paper doesn’t change business outcomes on its own. The <button type="button" class="definition-term" data-definition="Putting a redesigned process into use through changes to responsibilities, practices, and supporting technology.">process implementation</button> phase turns the "to-be" design into active daily practice through two pillars:
 
@@ -126,7 +126,7 @@ A process model on paper doesn’t change business outcomes on its own. The <but
 
 > Note on Automation: Automating a flawed sequence simply speeds up inefficiency. The team corrected the handoff order first, then configured software to enforce the new rules.
 
-## 6. Process Monitoring: Tracking Results and Testing Conformance
+## 6. Process monitoring: Check that the new process works <!-- heading-id: 6-process-monitoring-tracking-results-and-testing-conformance -->
 
 Once the redesigned workflow goes live, <button type="button" class="definition-term" data-definition="Collecting and analyzing data from an operating process to assess performance and conformance and identify further improvement needs.">process monitoring</button> begins. The process owner collects operational data to evaluate two key areas:
 
@@ -134,7 +134,7 @@ Once the redesigned workflow goes live, <button type="button" class="definition-
 
 - Performance: Is the process meeting its targets for speed, effort, and quality?
 
-### Pilot Results Across 20 Requests
+### Pilot results across 20 requests
 
 The company tested the redesigned process on a pilot batch of 20 comparable onboarding requests:
 
@@ -147,7 +147,7 @@ The company tested the redesigned process on a pilot batch of 20 comparable onbo
 
 Note on Labor Effort vs. Active Work Time: "Staff Labor Effort" (150 minutes) measures paid employee time. Total "Active Work Time" (3 hours) includes an additional 30 minutes of independent customer verification (e.g., verifying workspace login and testing task updates).
 
-### Evaluating the Business Tradeoff
+### Was the tradeoff worth it? <!-- heading-id: evaluating-the-business-tradeoff -->
 
 Audit logs confirmed reps completed the software checklist for 20 out of 20 pilot requests, and a spot-check of 5 setups verified that user accounts were correctly matched.
 
@@ -155,7 +155,7 @@ The pilot presented a clear operational tradeoff: average cycle time fell from 1
 
 Because Customer Success had sufficient existing capacity to absorb its 75 minutes of added verification work without hiring extra staff, the process owner determined that reducing average cycle time from sixteen to nine hours justified the additional labor. The owner kept the redesigned process live while initiating a follow-up iteration of the <button type="button" class="definition-term" data-definition="The repeating sequence of process identification, discovery, analysis, redesign, implementation, and monitoring used to manage and improve business processes.">BPM lifecycle</button> to streamline the checklist—proving that BPM is an ongoing cycle of continuous improvement.
 
-## Look at Your Own Processes
+## Look at your own processes
 
 To apply the BPM lifecycle to a workflow in your own organization, start with three simple questions:
 
@@ -165,7 +165,7 @@ To apply the BPM lifecycle to a workflow in your own organization, start with th
 
 3. Tradeoffs: What change could reduce delay in your workflow, and what additional effort or risk would it introduce?
 
-## BPM Lifecycle Reference
+## BPM lifecycle reference
 
 This walkthrough follows the six-phase lifecycle described in [Fundamentals of Business Process Management](https://doi.org/10.1007/978-3-662-56509-4_1).
 

@@ -9,7 +9,6 @@ import { jiecTestimonial, testimonials } from '../../data/testimonials';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
-import { getProjectTrackMeta } from '@src/lib/project-tracks';
 import {
 	DELISTED_PROJECT_SLUGS,
 } from '@src/lib/project-curation';
@@ -46,8 +45,15 @@ const testimonialsBySlug: Record<string, (typeof testimonials)[number] | undefin
 	'online-store-conversion-review': jiecTestimonial,
 };
 const clientTestimonial = testimonialsBySlug[project.slug];
-const trackMeta = getProjectTrackMeta(project.track);
-const caseStudyVariant = trackMeta.ctaVariant;
+const developerToolSlugs = [
+	'acquire',
+	'agent-recall',
+	'apartment-finder',
+	'codex-telegram-bridge',
+	'job-application-assistant',
+	'linkedin-tools',
+];
+const caseStudyVariant = developerToolSlugs.includes(project.slug) ? 'systemsBuild' : 'general';
 const { Content } = await render(caseStudy);
 const heroImage = getProjectImage(project, 'hero');
 const heroWidths = [640, 960, 1280, 1600, 2000].filter((width) => width < heroImage.width);

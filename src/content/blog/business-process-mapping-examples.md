@@ -1,5 +1,5 @@
 ---
-title: "Business Process Mapping Examples: One Service Workflow Before and After"
+title: "Business process mapping examples: One service workflow before and after"
 seoTitle: "Business Process Mapping Example: A Service Workflow Before and After"
 description: "See one complete business process mapping example for a service company, from scattered requests and spreadsheet handoffs to one shared job record."
 pubDate: "2026-07-27"
@@ -58,7 +58,7 @@ Instead of starting with the whole company, pick one recurring workflow with a v
 
 [Atlassian's current process-mapping guidance](https://www.atlassian.com/work-management/project-management/process-mapping) recommends interviewing the people who actually perform the work so the map reflects the real process rather than the official version. A map of the written procedure will not expose the private spreadsheet, chat message, or memory-based exception that keeps the operation moving.
 
-## Business process mapping example: the current service workflow
+## Business process mapping example: The current service workflow
 
 The modeled company handles about 45 field jobs in a typical week. Requests can begin by email, phone, WhatsApp, or a website form. A coordinator turns each request into a spreadsheet row. The owner approves larger quotes, a dispatcher assigns the work, and a field crew reports completion.
 
@@ -168,7 +168,7 @@ Work through the map on screen or on paper — a whiteboard or shared document w
 
 Keep the current-state and future-state maps separate. If you mix them, the team will quietly replace “what happens” with “what should happen,” and the reasons for changing the process disappear.
 
-## How this connects to real consulting work
+## How I used this on a client project <!-- heading-id: how-this-connects-to-real-consulting-work -->
 
 In the [Desarmadero Operations Prototype](/projects/desarmadero-operations-prototype/), one discovery call described an auto-dismantling yard operating across paper budget sheets, WhatsApp, Excel, and memory. I turned that material into a product requirements document, functional specification, and role-based clickable prototype covering sales, payment release, dismantle assignment, and yard search.
 

@@ -1,7 +1,17 @@
+export const noteEntryId = (section: string, { slug, title }: { slug?: string; title: string }) =>
+  `${section}-${
+    slug ??
+    title
+      .toLowerCase()
+      .replace(/[’']/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+  }`;
+
 export default [
   {
     slug: "building-products",
-    title: "Building Products",
+    title: "Building products",
     purpose:
       "What I've learned about product decisions by building, testing, and watching people use what I make.",
     entries: [
@@ -36,7 +46,8 @@ export default [
         ],
       },
       {
-        title: "Product ownership teaches through continuity",
+        title: "Owning a product over time teaches you",
+        slug: "product-ownership-teaches-through-continuity",
         body: [
           "Long-term product ownership shows you how decisions age, how relationships develop, and whether an improvement survives everyday use. Consulting gives you breadth; working with the same product and people gives you lessons that only appear over time.",
         ],
@@ -112,7 +123,7 @@ export default [
   },
   {
     slug: "business-and-independent-work",
-    title: "Business and Independent Work",
+    title: "Business and independent work",
     purpose:
       "What I'm learning while trying to build an independent practice without treating a temporary offer or customer group as permanent.",
     entries: [
@@ -168,7 +179,7 @@ export default [
   },
   {
     slug: "learning-and-research",
-    title: "Learning and Research",
+    title: "Learning and research",
     purpose: "How I turn information into something I can understand and use.",
     entries: [
       {
@@ -193,7 +204,7 @@ export default [
   },
   {
     slug: "writing-and-communication",
-    title: "Writing and Communication",
+    title: "Writing and communication",
     purpose: "How I find ideas, develop them, and learn to explain them.",
     entries: [
       {
@@ -293,7 +304,7 @@ export default [
   },
   {
     slug: "life-philosophy",
-    title: "Life Philosophy",
+    title: "Life philosophy",
     purpose: "The values and open questions connecting the rest of these notes.",
     entries: [
       {
@@ -321,13 +332,15 @@ export default [
         ],
       },
       {
-        title: "Learning to deal with people is a high-leverage life skill",
+        title: "Dealing with people is a skill worth learning",
+        slug: "learning-to-deal-with-people-is-a-high-leverage-life-skill",
         body: [
           "Your ability to deal with people affects friendships, relationships, work, and the opportunities you notice or create. Better social skills are among the most valuable abilities you can develop.",
         ],
       },
       {
-        title: "Recognition can precede articulation",
+        title: "You can recognize something before you can explain it",
+        slug: "recognition-can-precede-articulation",
         body: [
           "You may know that you want something or want to become a certain kind of person before you can explain it. Someone who gives the idea clear language can feel like recognition rather than discovery.",
         ],
@@ -339,7 +352,8 @@ export default [
         ],
       },
       {
-        title: "Responsibility includes present, future, and shared consequences",
+        title: "You answer for what happens now, later, and to others",
+        slug: "responsibility-includes-present-future-and-shared-consequences",
         body: [
           "A responsible choice accounts for more than what benefits you now. Consider how it will affect your future and the people who may carry part of its cost. Ignoring any of those perspectives makes the decision easier, but less complete.",
         ],

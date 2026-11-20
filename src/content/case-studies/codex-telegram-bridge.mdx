@@ -39,15 +39,15 @@ export const shippedRows = [
   },
 ];
 
-<CaseSection title="I built an open-source bridge so Codex work can continue over Telegram or Discord">
+<CaseSection title="Why I built the bridge">
   I built an open-source bridge so Codex work can continue over Telegram or Discord while I am away from the desk.
 
     Codex can keep working while I step away, but the default interaction model assumes I am still in front of the desktop app. A message alone would not solve it. The bridge needed to know when I was away, start or repair the shared live backend, notify only for relevant events, route replies to the right thread, handle approvals, and stop cleanly when I returned.
 
 </CaseSection>
 
-<CaseSection title="Away mode controls when messages can leave the computer">
-  <DecisionBlock title="Make presence the top-level gate">
+<CaseSection title="The main design decisions">
+  <DecisionBlock title="Send notifications only while I'm away">
     The main rule is simple: remote notifications stay off while I am at the computer. `/away` turns delivery on, while `/back` turns it off and clears pending messages.
   </DecisionBlock>
 
@@ -61,7 +61,7 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="The implementation keeps remote control narrow">
+<CaseSection title="How I built it">
     <DecisionBlock title="Select projects without guessing from chat">
     The project list stores approved folders with identifiers, labels, and aliases. `/project` chooses the current workspace, and `/new` starts a Codex task in that registered folder.
     </DecisionBlock>
@@ -76,14 +76,14 @@ export const shippedRows = [
 
 </CaseSection>
 
-<CaseSection title="Remote access stays behind local state and explicit presence">
+<CaseSection title="What shipped">
   <ProofRows rows={shippedRows}>
     Codex Telegram Bridge keeps presence, thread state, reply routes, delivery, and recovery on the
     local machine while Telegram or Discord carries the messages.
   </ProofRows>
 </CaseSection>
 
-<CaseSection title="The implementation is public">
+<CaseSection title="Source code">
   The repository includes the Rust bridge, Telegram and Discord setup guides, Hermes agent-interface docs, macOS menu bar companion, example configuration, automated checks, release workflow, and tests.
 
     <a class={textLinkClass} href='https://github.com/HanifCarroll/codex-telegram-bridge' target='_blank' rel='noopener noreferrer'>
