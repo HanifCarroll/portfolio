@@ -38,7 +38,7 @@ const entryId = (section: string, title: string) =>
 						{publicSections.map((section, sectionIndex) => (
 							<li class={`hc-notes-nav-section${sectionIndex === 0 ? ' is-active' : ''}`} data-notes-section>
 								<a
-									class='block py-2 text-base leading-snug text-ink-muted no-underline transition-colors hover:text-ink aria-[current=location]:text-ink'
+									class='block py-2 text-base leading-snug text-ink-muted no-underline -outline-offset-2 transition-colors hover:text-ink aria-[current=location]:text-ink'
 									href={`#${section.slug}`}
 									data-notes-section-link
 								>
@@ -52,7 +52,7 @@ const entryId = (section: string, title: string) =>
 								>
 									<ol>
 										{section.entries.map((entry) => (
-											<li><a class='block py-1.5 text-base leading-snug text-ink-muted no-underline hover:text-ink focus-visible:text-ink' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
+											<li><a class='block py-1.5 text-base leading-snug text-ink-muted no-underline -outline-offset-2 hover:text-ink focus-visible:text-ink' href={`#${entryId(section.slug, entry.title)}`}>{entry.title}</a></li>
 										))}
 									</ol>
 								</div>

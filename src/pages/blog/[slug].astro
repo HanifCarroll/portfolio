@@ -124,7 +124,7 @@ const blogJsonLd = {
 				{
 					showContents && (
 						<details class='blog-post-toc group overflow-hidden'>
-							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink group-open:mb-2'>Contents</summary>
+							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink -outline-offset-2 group-open:mb-2'>Contents</summary>
 							<TableOfContent headings={tocHeadings} />
 						</details>
 					)
@@ -139,10 +139,9 @@ const blogJsonLd = {
 					<AboutTheAuthor />
 				</section>
 			</div>
-
-			<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
 		</div>
 	</div>
+	<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
 {post.id === 'bpm-lifecycle-saas-onboarding' && <ArticleDefinitions />}
 {post.id === 'using-diagrams-to-review-an-ai-report-workflow' && <ImageLightbox imageSelector='.blog-post-prose img' zoomable />}
 </BaseLayout>

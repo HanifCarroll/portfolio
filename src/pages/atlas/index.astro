@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import AtlasLayout from '../../layouts/AtlasLayout.astro';
 import { atlasProblems, atlasSections, atlasTools } from '../../data/atlas';
-import { deckClass, focusClass, pageTitleClass, sectionHeadingClass, titleHoverClass, underlineClass } from '../../lib/ui';
+import { deckClass, pageTitleClass, sectionHeadingClass, titleHoverClass, underlineClass } from '../../lib/ui';
 
 const atlasHeadingClass = `${sectionHeadingClass} text-[clamp(2rem,3.6vw,3rem)]`;
 
@@ -50,7 +50,7 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 			<ul class='m-0 grid list-none gap-7 p-0'>
 				{section.entries.map((entry) => (
 					<li>
-						<a class:list={['group grid items-baseline gap-1 no-underline md:grid-cols-[15rem_minmax(0,1fr)] md:gap-8', focusClass]} href={`/atlas/${entry.id}/`}>
+						<a class:list={['group grid items-baseline gap-1 no-underline md:grid-cols-[15rem_minmax(0,1fr)] md:gap-8']} href={`/atlas/${entry.id}/`}>
 							<span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{entry.data.title}</span>
 							<span class='text-base leading-[1.6] text-ink-muted'>
 								{entry.data.summary}

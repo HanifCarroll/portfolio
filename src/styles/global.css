@@ -207,9 +207,14 @@
     color: var(--hc-text);
   }
 
+  /* Yellow is about 1.4:1 on white, so the ring is ink there and yellow on the ink block. */
   :focus-visible {
-    outline: var(--hc-focus-ring-width) solid var(--hc-accent);
+    outline: var(--hc-focus-ring-width) solid var(--hc-text);
     outline-offset: var(--hc-focus-ring-offset);
+  }
+
+  :where(.bg-ink) :focus-visible {
+    outline-color: var(--hc-accent);
   }
 }
 
@@ -223,7 +228,7 @@ body:has(dialog[open]) {
 }
 
 /* Underlined text links: dark gold at rest so they read on white, bright yellow on hover. */
-.prose a {
+.prose a:not([class]) {
   color: var(--hc-text);
   font-weight: inherit;
   text-decoration-color: var(--hc-accent-text);
@@ -241,7 +246,7 @@ body:has(dialog[open]) {
   border-bottom-color: var(--hc-rule);
 }
 
-.prose a:is(:hover, :focus-visible) {
+.prose a:not([class]):is(:hover, :focus-visible) {
   text-decoration-color: var(--hc-accent);
 }
 

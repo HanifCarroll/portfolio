@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
-import { focusClass, itemTitleClass, metaClass, titleHoverClass } from '@src/lib/ui';
+import { itemTitleClass, metaClass, titleHoverClass } from '@src/lib/ui';
 interface Props {
 	project: ProjectCard;
 }
@@ -11,7 +11,7 @@ const visibleTags = project.tags.slice(0, 3);
 ---
 
 <li>
-	<a class:list={['group grid gap-2 text-inherit no-underline', focusClass]} href={`/projects/${project.slug}/`}>
+	<a class:list={['group grid gap-2 text-inherit no-underline']} href={`/projects/${project.slug}/`}>
 		<Image
 			class='mb-2 block h-auto w-full'
 			src={project.image}

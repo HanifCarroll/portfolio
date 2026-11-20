@@ -127,7 +127,8 @@ Page content has no card borders, card backgrounds, shadows, tinted bands, round
 - **Header:** sticky on every page, with the name on the left, the links, and the solid ink `Book a call` button. It has no bottom border; the translucent white and blur keep it readable when content scrolls under it. The current page is marked with a thin dark-gold rule. Below 64rem the links move into the menu.
 - **Closing:** `PageClosingCta.astro` is one ink block: a centred serif question, a line of body, a white button, and a yellow-underlined link. Pages pass their own copy and tracking location.
 - **Footer:** ink on every page. After the closing it reads as part of the same block. On pages that turn the closing off it stands alone with more padding, so it doesn't look clipped.
-- **In-article closing:** `ServiceCallout.astro` ends blog posts and case studies with a section heading, a deck, the ink button, and a text link, with no box.
+- **A page's own closing:** when a page ends with its own call to action (`ServiceCallout.astro` on blog posts and case studies, the One Tuesday reader), it uses the same ink block and flows into the footer. The `closing*` classes in `src/lib/ui.ts` hold the treatment.
+- **Focus:** a 2px ink outline on white and a yellow one on the ink block. Inside a scrolling or clipping container the ring is inset (`-outline-offset-2`) so it isn't cut off.
 
 ## Motion
 

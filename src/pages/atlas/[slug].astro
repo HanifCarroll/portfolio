@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import AtlasLayout from '../../layouts/AtlasLayout.astro';
 import Prose from '../../components/Prose.astro';
 import { atlasSections } from '../../data/atlas';
-import { articleTitleClass, deckClass, focusClass, metaClass, titleHoverClass } from '../../lib/ui';
+import { articleTitleClass, deckClass, metaClass, titleHoverClass } from '../../lib/ui';
 
 export async function getStaticPaths() {
 	const order = atlasSections.map(({ id }) => id);
@@ -42,8 +42,8 @@ const section = atlasSections.find(({ id }) => id === entry.data.section)!;
 			<Content />
 		</Prose>
 		<nav class='mt-[clamp(4rem,8vw,6rem)] grid gap-8 font-sans text-base sm:grid-cols-2' aria-label='Previous and next entries'>
-			{prev ? <a class:list={['group no-underline', focusClass]} href={`/atlas/${prev.id}/`}><span class='block text-ink-muted'>← Previous</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{prev.data.title}</span></a> : <span />}
-			{next && <a class:list={['group no-underline sm:text-right', focusClass]} href={`/atlas/${next.id}/`}><span class='block text-ink-muted'>Next →</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{next.data.title}</span></a>}
+			{prev ? <a class:list={['group no-underline']} href={`/atlas/${prev.id}/`}><span class='block text-ink-muted'>← Previous</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{prev.data.title}</span></a> : <span />}
+			{next && <a class:list={['group no-underline sm:text-right']} href={`/atlas/${next.id}/`}><span class='block text-ink-muted'>Next →</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{next.data.title}</span></a>}
 		</nav>
 	</article>
 </AtlasLayout>

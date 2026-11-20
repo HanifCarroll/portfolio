@@ -9,7 +9,7 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 			toc.map((heading: any) => (
 				<li>
 					<a
-						class='block py-2 leading-tight text-ink-muted no-underline transition-colors hover:text-ink focus-visible:text-ink'
+						class='block py-2 leading-tight text-ink-muted no-underline -outline-offset-2 transition-colors hover:text-ink focus-visible:text-ink'
 						href={'#' + heading.slug}>
 						{heading.text}
 					</a>
@@ -18,7 +18,7 @@ const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 							{heading.subheadings.map((subheading: any) => (
 								<li>
 									<a
-										class='block py-1.5 leading-tight text-ink-muted no-underline transition-colors hover:text-ink focus-visible:text-ink'
+										class='block py-1.5 leading-tight text-ink-muted no-underline -outline-offset-2 transition-colors hover:text-ink focus-visible:text-ink'
 										href={'#' + subheading.slug}>
 										{subheading.text}
 									</a>

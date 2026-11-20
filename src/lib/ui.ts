@@ -50,9 +50,20 @@ export const resourceLinksClass =
 export const titleHoverClass =
   "decoration-accent decoration-2 underline-offset-[0.18em] group-hover:underline group-focus-visible:underline";
 
-/** Focus ring for links on white, where the site's yellow ring is too faint. */
-export const focusClass =
-  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink";
-
 /** A title shown as a heading drops its closing period; metadata keeps the original. */
 export const headingText = (title: string) => title.replace(/\.$/, "");
+
+// The ink closing block. PageClosingCta and the callouts that end a page share these.
+export const closingClass = "bg-ink pt-24 pb-24 text-center text-white lg:pt-40 lg:pb-40";
+export const closingTitleClass =
+  "m-0 font-editorial text-[clamp(2.5rem,6vw,5.25rem)] font-normal leading-none tracking-[-0.042em] text-white text-balance";
+export const closingBodyClass =
+  "mx-auto mt-6 mb-0 max-w-[36rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-balance";
+export const closingActionsClass =
+  "mt-8 flex items-center justify-center gap-x-6 gap-y-3 max-sm:flex-col max-sm:items-stretch";
+export const closingButtonClass =
+  "inline-flex min-h-[3.25rem] items-center justify-center rounded-lg bg-white px-[1.625rem] py-3 text-base font-medium text-ink no-underline transition-colors hover:bg-white/85 focus-visible:bg-white/85";
+/** Bright yellow reads on ink; links on white use the dark gold instead. */
+export const closingUnderlineClass =
+  "underline decoration-accent decoration-2 underline-offset-[0.18em] hover:decoration-current focus-visible:decoration-current";
+export const closingLinkClass = `inline-flex min-h-11 items-center self-center text-base text-white ${closingUnderlineClass}`;

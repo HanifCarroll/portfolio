@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { focusClass, headingText, itemTitleClass, pageTitleClass, shellClass, titleHoverClass } from '../../lib/ui';
+import { headingText, itemTitleClass, pageTitleClass, shellClass, titleHoverClass } from '../../lib/ui';
 
 type BlogPost = CollectionEntry<'blog'>;
 const title = 'Blog on products, workflows, and AI';
@@ -38,7 +38,7 @@ const archiveJsonLd = {
 			<ol class='m-0 grid list-none gap-12 p-0'>
 				{posts.map((post) => (
 					<li>
-						<a class:list={['group grid items-baseline gap-x-8 gap-y-2 text-inherit no-underline md:grid-cols-[minmax(0,1fr)_auto]', focusClass]} href={`/blog/${post.id}/`}>
+						<a class:list={['group grid items-baseline gap-x-8 gap-y-2 text-inherit no-underline md:grid-cols-[minmax(0,1fr)_auto]']} href={`/blog/${post.id}/`}>
 							<h3 class:list={[itemTitleClass, titleHoverClass]}>{headingText(post.data.title)}</h3>
 							<span class='text-base text-ink-muted tabular-nums'><FormattedDate date={post.data.pubDate} /></span>
 							<p class='m-0 max-w-[40rem] text-lg leading-[1.55] text-ink-muted'>{post.data.description}</p>

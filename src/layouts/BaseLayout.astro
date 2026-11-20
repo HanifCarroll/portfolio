@@ -80,7 +80,7 @@ const footerLinks = [
 
 		{/* The ink footer reads as one block with the closing. Alone, it gets more room so it doesn't look clipped. */}
 		<footer class='hc-footer bg-ink pb-[env(safe-area-inset-bottom)] text-base text-white/80' aria-label='Footer'>
-			<div class:list={['mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 md:px-12 max-sm:flex-col-reverse max-sm:gap-y-4', showFooterCta ? 'py-6 max-sm:py-8' : 'py-10 md:py-12']}>
+			<div class:list={['mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 md:px-12 max-sm:flex-col-reverse max-sm:gap-y-4', showFooterCta ? 'py-6 max-sm:py-8' : 'py-10 md:py-12 [main:has(>[data-section=closing-cta])+footer_&]:py-6 max-sm:[main:has(>[data-section=closing-cta])+footer_&]:py-8']}>
 				<span>&copy; {currentYear} Hanif Carroll</span>
 				<nav class='flex flex-wrap items-center gap-x-5 gap-y-2 max-sm:justify-center' aria-label='Footer navigation'>
 					{footerLinks.map((link) => (

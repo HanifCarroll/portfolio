@@ -9,10 +9,12 @@ const { title } = Astro.props;
 
 // Style the copy elements that MDX renders directly in the section.
 const copyClass = [
-	'grid min-w-0 gap-[1.4rem]',
+	// Buttons and links placed straight in the copy keep their own width instead of stretching across the grid.
+	'grid min-w-0 gap-[1.4rem] [&>a]:justify-self-start',
 	'[&>:is(p,ul)]:m-0 [&>:is(p,ul)]:max-w-[65ch] [&>:is(p,ul)]:font-editorial [&>:is(p,ul)]:text-[clamp(1.2rem,1.08rem+0.25vw,1.35rem)] [&>:is(p,ul)]:leading-[1.48] [&>:is(p,ul)]:text-ink-muted [&>:is(p,ul)]:text-pretty',
 	'[&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-6',
-	'[&_a]:text-ink [&_a]:underline [&_a]:decoration-accent-ink [&_a]:decoration-2 [&_a]:underline-offset-[0.18em] [&_a:is(:hover,:focus-visible)]:decoration-accent',
+	// Only plain text links: a link with its own class (a button, a text link) keeps its own colours.
+	'[&_a:not([class])]:text-ink [&_a:not([class])]:underline [&_a:not([class])]:decoration-accent-ink [&_a:not([class])]:decoration-2 [&_a:not([class])]:underline-offset-[0.18em] [&_a:not([class]):is(:hover,:focus-visible)]:decoration-accent',
 	'[&_code]:rounded-[0.35rem] [&_code]:bg-surface-warm [&_code]:px-[0.35em] [&_code]:py-[0.1em] [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:text-ink',
 	'[&_strong]:font-semibold [&_strong]:text-ink',
 ];

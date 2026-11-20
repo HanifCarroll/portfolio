@@ -1,6 +1,6 @@
 ---
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
-import { buttonClass, deckClass, sectionHeadingClass, textLinkClass } from '../lib/ui';
+import { closingActionsClass, closingBodyClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, shellClass } from '../lib/ui';
 
 type Variant = 'general' | 'systemsBuild';
 type Context = 'blog' | 'case-study';
@@ -31,29 +31,31 @@ const offer = isCaseStudy
 	: offers[variant];
 ---
 
-<section class:list={['mt-[clamp(5rem,10vw,8rem)] text-ink', className]}>
-	<h2 class:list={[sectionHeadingClass, 'max-w-[46rem]']}>{offer.title}</h2>
-	<p class:list={[deckClass, 'mt-6']}>{offer.body}</p>
-	<div class='mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 max-sm:flex-col max-sm:items-stretch'>
-		<a
-			class={buttonClass()}
-			href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
-			target={isCaseStudy ? undefined : '_blank'}
-			rel={isCaseStudy ? undefined : 'noopener noreferrer'}
-			data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
-			data-track-location={`${location}_primary`}
-		>
-			{isCaseStudy ? 'Email me about one task' : 'Book a call'}
-		</a>
-		<a
-			class:list={[textLinkClass, 'max-sm:self-center']}
-			href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
-			target={isCaseStudy ? '_blank' : undefined}
-			rel={isCaseStudy ? 'noopener noreferrer' : undefined}
-			data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
-			data-track-location={`${location}_secondary`}
-		>
-			{isCaseStudy ? 'Book a call' : 'See projects'}
-		</a>
+<section class:list={[closingClass, className]} data-section='closing-cta' aria-labelledby='service-callout-title' data-motion-group>
+	<div class={shellClass} data-motion-item>
+		<h2 id='service-callout-title' class={closingTitleClass}>{offer.title}</h2>
+		<p class={closingBodyClass}>{offer.body}</p>
+		<div class={closingActionsClass}>
+			<a
+				class={closingButtonClass}
+				href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
+				target={isCaseStudy ? undefined : '_blank'}
+				rel={isCaseStudy ? undefined : 'noopener noreferrer'}
+				data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
+				data-track-location={`${location}_primary`}
+			>
+				{isCaseStudy ? 'Email me about one task' : 'Book a call'}
+			</a>
+			<a
+				class={closingLinkClass}
+				href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
+				target={isCaseStudy ? '_blank' : undefined}
+				rel={isCaseStudy ? 'noopener noreferrer' : undefined}
+				data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
+				data-track-location={`${location}_secondary`}
+			>
+				{isCaseStudy ? 'Book a call' : 'See projects'}
+			</a>
+		</div>
 	</div>
 </section>

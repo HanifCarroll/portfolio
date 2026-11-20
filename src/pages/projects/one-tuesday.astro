@@ -12,7 +12,7 @@ import {
   TUESDAY_MIRROR_STATEMENTS,
   TUESDAY_RESULTS,
 } from '../../lib/tuesday-sim/story';
-import { buttonClass, shellClass } from '../../lib/ui';
+import { buttonClass, closingActionsClass, closingButtonClass, closingClass, closingLinkClass, shellClass } from '../../lib/ui';
 import '../../styles/tuesday.css';
 
 const project = getProject('one-tuesday');
@@ -198,11 +198,15 @@ const readerClass = [
         </div>
       ))}
     </div>
-    <div class='t4-cta p-0! [&_p]:mb-6! [&_p]:leading-[1.65]!'>
-      <p class='t4-cta__line'>If these problems show up in your business, start with the workflow causing the most delay or repeated work.</p>
-      <div class='t4-cta__actions'>
+  </article>
+
+  <!-- The reader's closing, in the same ink block as the shared closing. -->
+  <section class:list={[closingClass, '[body.tuesday-live_&]:hidden']} data-section='closing-cta'>
+    <div class={shellClass}>
+      <p class='mx-auto mb-0 max-w-[46rem] font-editorial text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.12] tracking-[-0.02em] text-white text-balance'>If these problems show up in your business, start with the workflow causing the most delay or repeated work.</p>
+      <div class={closingActionsClass}>
         <a
-          class={buttonClass()}
+          class={closingButtonClass}
           href={BOOK_CALL_URL}
           target='_blank'
           rel='noopener noreferrer'
@@ -210,14 +214,14 @@ const readerClass = [
           data-track-location='one_tuesday_reader'
         >Book a 30-minute fit call</a>
         <a
-          class='t4-cta__secondary'
+          class={closingLinkClass}
           href={EMAIL_URL}
           data-track-event='email_clicked'
           data-track-location='one_tuesday_reader'
         >Email me about your workflow</a>
       </div>
     </div>
-  </article>
+  </section>
 </BaseLayout>
 
 <script>

@@ -16,7 +16,7 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 		type='search'
 		placeholder='Search components or tools…'
 		autocomplete='off'
-		class='mb-6 w-full rounded-lg border border-ink-muted bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink focus:outline-none'
+		class='mb-6 w-full rounded-lg -outline-offset-2 border border-ink-muted bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink'
 		data-atlas-search
 	/>
 	<p class='m-0 mb-4 hidden font-sans text-base text-ink-muted' data-atlas-empty>No matches.</p>
@@ -29,7 +29,7 @@ const sections = atlasSections.map((section) => ({ ...section, entries: entries.
 						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body), ...atlasProblems.filter((problem) => problem.entries.includes(entry.id)).map((problem) => problem.title)].join(' ').toLowerCase()}>
 							<a
 								class:list={[
-									'block py-1.5 pl-4 font-sans text-base leading-snug no-underline transition-colors',
+									'block py-1.5 pl-4 font-sans text-base leading-snug no-underline -outline-offset-2 transition-colors',
 									entry.id === current ? 'text-ink underline decoration-accent-ink decoration-2 underline-offset-[0.18em]' : 'text-ink-muted hover:text-ink focus-visible:text-ink',
 								]}
 								href={`/atlas/${entry.id}/`}
