@@ -2,103 +2,48 @@
 ---
 
 import CaseSection from "../../components/case-study/CaseSection.astro";
-import DecisionBlock from "../../components/case-study/DecisionBlock.astro";
 import ImagePlate from "../../components/case-study/ImagePlate.astro";
-import ProofRows from "../../components/case-study/ProofRows.astro";
 import desarmaderoFeature from "../../assets/img/projects/desarmadero-feature.png";
 import ventasScreen from "../../assets/img/projects/desarmadero-operations-ventas.png";
 import mapaScreen from "../../assets/img/projects/desarmadero-operations-mapa.png";
 
-export const shippedRows = [
-  {
-    label: "Customer search",
-    title: "Customers could check inventory before calling.",
-    body: "The catalog gave buyers a way to search by make, model, and year instead of starting every inquiry with a vague availability question.",
-  },
-  {
-    label: "Staff workflow",
-    title: "Inventory updates stayed simple.",
-    body: "The staff workflow kept vehicle, photo, and listing updates simple instead of forcing the business into a heavy internal system.",
-  },
-  {
-    label: "Inquiry quality",
-    title: "Calls became more qualified.",
-    body: "Customers could arrive with a specific part or vehicle context, which reduced repetitive back-and-forth.",
-  },
-  {
-    label: "Always-on catalog",
-    title: "The business gained a 24/7 stockroom.",
-    body: "Inventory could be surfaced outside business hours without relying on phone time alone.",
-  },
-];
+<CaseSection title="Where things stood">
 
-<CaseSection title="A searchable customer-facing parts catalog">
-  I built a searchable customer-facing parts catalog so buyers could check stock before calling.
-
-    Desarmadero La Torre had a large, changing auto-parts inventory, but customers had to call or visit to find out what was available. I turned that phone-heavy process into a searchable digital stockroom that customers could browse before contacting the team.
+Desarmadero La Torre is an auto-dismantling yard with a large inventory of parts that changes all the time. Customers had to call or visit to find out what was in stock, so staff spent their day answering the same availability questions.
 
 </CaseSection>
 
-<CaseSection title="Staff answered the same stock questions all day">
-  Staff repeatedly answered the same availability questions.
+<CaseSection title="What I found">
 
-    That created friction on both sides: customers had no way to inspect stock, and staff had to spend phone time qualifying basic requests.
-
-    A useful change had to make inventory visible without forcing the staff into a heavy replacement system they would struggle to maintain.
+Customers already asked for parts by make, model, and year, so the catalog could be organized around that same question. The staff needed a simple way to keep listings current, not a heavy inventory system they wouldn't use.
 
 </CaseSection>
 
-<CaseSection title="I made stock searchable before changing the internal system">
-  <DecisionBlock title="Make stock searchable before the first call.">
-    The customer-facing product centered on search by make, model, and year so buyers could narrow the question before reaching out.
-  </DecisionBlock>
+<CaseSection title="What I built" media>
 
-    <DecisionBlock title="Keep the internal workflow lightweight.">
-      The staff workflow kept listing updates practical instead of introducing a full inventory platform the business would not use.
-    </DecisionBlock>
+I built a public catalog where customers searched by make, model, and year, saw photos, and sent an inquiry about a specific part. Staff updated it through a short listing form.
 
-</CaseSection>
+<ImagePlate image={desarmaderoFeature} alt="Desarmadero La Torre searchable inventory interface." />
 
-<CaseSection title="A searchable catalog replaced the first availability call" media>
-  The catalog organized vehicles and parts around the make, model, and year questions customers already asked on the phone.
+The owner then came back to run the yard itself: counter sales, cash-desk payments, dismantle orders, and finding vehicles across 301 parking spots. All of that lived on paper, in WhatsApp, in Excel, and in people's heads. I turned one discovery call into a written spec and a clickable prototype that follows each person's job, from the seller to the cash desk to the dismantler. The prototype is still online for anyone to [try](https://desarmadero.pages.dev/) with the password `asado`.
 
-    Listings included photos and a direct inquiry path, so customers could move from browsing to a more specific conversation. Staff could keep the catalog current through a deliberately simple listing workflow.
-
-    <ImagePlate image={desarmaderoFeature} alt="Desarmadero La Torre searchable inventory interface." />
-
-</CaseSection>
-
-<CaseSection title="Customers could start with a specific vehicle or part">
-  <ProofRows rows={shippedRows}>
-    <p>
-      Customers could search before calling, which turned vague availability checks into more
-      qualified inquiries and gave the business a 24/7 way to surface stock.
-    </p>
-  </ProofRows>
-</CaseSection>
-
-<CaseSection title="The client returned to run the whole yard">
-  After the catalog launched, the same client came back wanting to run the auto-dismantling yard itself — counter sales, cash-desk payments, dismantle orders, and finding vehicles across 301 parking positions.
-
-    The operating model lived across paper budget sheets, WhatsApp, Excel, and memory. I turned one discovery call into a PRD, a functional spec, and a role-based SvelteKit prototype the client could click through before committing to the full build.
-
-    Live demo: <a href="https://desarmadero.pages.dev/" target="_blank" rel="noopener noreferrer">desarmadero.pages.dev</a>. Repository: <a href="https://github.com/HanifCarroll/desarmadero" target="_blank" rel="noopener noreferrer">github.com/HanifCarroll/desarmadero</a>.
+<div class="mt-3 mb-0 grid gap-4 md:grid-cols-2">
+  <ImagePlate
+    image={ventasScreen}
+    alt="Desarmadero prototype counter-sales screen with customer, vehicle, parts, and live order summary."
+  />
+  <ImagePlate
+    image={mapaScreen}
+    alt="Desarmadero prototype yard map with 301 locations and plate search."
+  />
+</div>
 
 </CaseSection>
 
-<CaseSection title="The prototype follows each role through the yard" media>
-  The prototype follows the yard's daily operation: the seller records the sale, the cash desk confirms payment, the dismantle manager assigns the job, and the dismantler sees only the orders they need.
+<CaseSection title="What happened">
 
-    <div class="mt-3 mb-0 grid gap-4 md:grid-cols-2">
-      <ImagePlate image={ventasScreen} alt="Desarmadero prototype counter-sales screen with customer, vehicle, parts, and live order summary." />
-      <ImagePlate image={mapaScreen} alt="Desarmadero prototype yard map with 301 locations and plate search." />
-    </div>
+The owner came back for a second project after the catalog. He clicked through the prototype but didn't go ahead with the full build.
 
-</CaseSection>
-
-<CaseSection title="The operations prototype has its own detailed write-up">
-  The second phase is documented in full: discovery transcript, PRD, functional spec, five modeled roles, and the business rules behind the prototype.
-
-    <a href="/projects/desarmadero-operations-prototype/">Read the full operations-prototype project.</a>
+The prototype has its own [detailed write-up](/projects/desarmadero-operations-prototype/).
 
 </CaseSection>
