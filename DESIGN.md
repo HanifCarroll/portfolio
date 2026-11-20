@@ -283,6 +283,6 @@ Helvetica Neue for interface surfaces and EB Garamond (`font-editorial`) for edi
 
 | File          | Owner                                                                                                        |
 | ------------- | ------------------------------------------------------------------------------------------------------------ |
-| `home.css`    | The homepage: centered hero, full-width editorial sections, and the lifting video modal                       |
+| `home.css`    | The homepage: centered hero, full-width editorial sections, and the lifting video modal                      |
 | `notes.css`   | Expanding table-of-contents entries and the mobile Contents menu                                             |
 | `tuesday.css` | The One Tuesday simulation: scroll-pinned acts, stage layout, and keyframes (its reader page uses utilities) |
