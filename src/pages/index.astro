@@ -3,11 +3,9 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-author-portrait.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getProjectImage } from '../lib/project-images';
-import { projects } from '../lib/projects';
-import { textLinkClass } from '../lib/ui';
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import FormattedDate from '../components/FormattedDate.astro';
-import HomeActions from '../components/home/HomeActions.astro';
+import HomeProjects from '../components/home/HomeProjects.astro';
 import HomeSection from '../components/home/HomeSection.astro';
 import { jiecTestimonial } from '../data/testimonials';
 import '../styles/home.css';
@@ -66,48 +64,45 @@ const blogPosts = featuredPostIds.map((id) => allPosts.find((post) => post.id ==
 const help = [
 	{
 		title: 'A website that brings in customers',
-		body: 'A new site, or changes so more visitors call, book, or buy.',
-		icon: 'M3 5h18v14H3zM3 9h18m-14 5h4m-4 2h2'
+		body: 'A new site, or changes so more visitors call, book, or buy.'
 	},
 	{
 		title: 'Work your team does by hand',
-		body: 'Copying between apps or updating spreadsheets, automated or handled by tools you already pay for.',
-		icon: 'M3 7h14m-4-4 4 4-4 4M21 17H7m4-4-4 4 4 4'
+		body: 'Copying between apps or updating spreadsheets, automated or handled by tools you already pay for.'
 	},
 	{
 		title: 'Orders and bookings in WhatsApp',
-		body: 'A simple system your team and customers can use instead of paper and chat threads.',
-		icon: 'M3 5h18v12H9l-6 4zM7 9h10M7 13h6'
+		body: 'A simple system your team and customers can use instead of paper and chat threads.'
 	}
 ];
 
 const work = [
 	{
-		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre', label: 'Auto-parts yard',
+		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre',
 		alt: 'Desarmadero La Torre’s online parts catalog.',
 		body: 'A parts catalog customers could search before calling. The owner came back to map sales and payments into a working prototype.'
 	},
 	{
-		slug: 'online-store-conversion-review', name: 'JIEC Labs', label: 'Online store',
+		slug: 'online-store-conversion-review', name: 'JIEC Labs',
 		alt: 'The online-store review prepared for JIEC Labs.',
 		body: "A shopper's review of a skincare store, then the fixes the owner picked, built and launched."
 	},
 	{
-		slug: 'casa-elaria', name: 'Casa Elaria', label: 'Beauty brand',
+		slug: 'casa-elaria', name: 'Casa Elaria',
 		alt: 'The Casa Elaria beauty storefront.',
 		body: 'A storefront that tested demand before the brand bought inventory.'
 	},
 	{
-		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo', label: 'Interior designer',
+		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo',
 		alt: 'Interiors featured on Maximo Interiorismo’s portfolio site.',
 		body: 'A portfolio site for an interior designer.'
 	}
 ];
 
 const process = [
-	{ title: '1. Tell me about it', body: 'By email or on a call.' },
-	{ title: '2. Agree on a fix', body: 'I look at how the work happens now and suggest a fix with a clear scope and price.' },
-	{ title: '3. I build it', body: 'Then I set it up with your team and show you how it works.' }
+	{ title: 'Tell me about it', body: 'By email or on a call.' },
+	{ title: 'Agree on a fix', body: 'I look at how the work happens now and suggest a fix with a clear scope and price.' },
+	{ title: 'I build it', body: 'Then I set it up with your team and show you how it works.' }
 ];
 
 const apps = [
@@ -138,6 +133,7 @@ const apps = [
 ];
 
 const feedback = [
+	{ quote: `“${jiecTestimonial.quote}”`, credit: `${jiecTestimonial.name} · ${jiecTestimonial.role}` },
 	{
 		quote: '“Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. The result exceeded our expectations.”',
 		credit: 'Monica Londoño · Co-founder, Punto de Partida'
@@ -156,97 +152,75 @@ const feedback = [
 	socialDescription={socialDescription}
 	jsonLd={homepageJsonLd}
 	footerCtaLocation='home_blog_footer'
+	inverseClosing
 >
 	<div class='home'>
 		<section class='home-hero' data-section='hero' aria-labelledby='hero-title'>
 			<div class='home-shell'>
-				<div class='home-identity'>
-					<Image class='home-portrait' data-visual src={Portrait} alt='' width={96} height={96} loading='eager' />
-					<p><strong>Hanif Carroll</strong> · Freelance Software Engineer</p>
-				</div>
-				<h1 id='hero-title'>I help small businesses work better with technology.</h1>
+				<Image class='home-portrait' data-visual src={Portrait} alt='Hanif Carroll' width={264} height={330} fit='cover' loading='eager' />
+				<p class='home-label'>Hanif Carroll · Freelance Software Engineer</p>
+				<h1 id='hero-title'>I help small businesses work <em>better</em> with technology.</h1>
 				<p class='home-deck' data-deck>I build websites that bring in customers, tools that fit how you work, and automations for the tasks your team still does by hand.</p>
-				<HomeActions location='home_hero' />
+				<div class='home-actions' data-cta>
+					<a class='home-primary' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_hero'>Email me about one task</a>
+					<a class='home-link' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a call</a>
+				</div>
 			</div>
 		</section>
 
-		<HomeSection name='help' title='Where I can help.' intro='Most small businesses lose time in the same few places.' points={help} />
-
-		<HomeSection name='work' id='projects' title='Work for small businesses.' intro='Each project started with how the business runs today.'>
-			<ul class='home-gallery' slot='visual' role='list'>
-				{work.map((project, index) => (
-					<li class:list={{ 'home-featured': index === 0 }}>
-						<a class='home-card' href={`/projects/${project.slug}/`}>
-							<div class='home-picture' data-visual>
-								<Image src={getProjectImage(projects[project.slug], 'feature')} alt={project.alt} widths={index === 0 ? [400, 720, 1440] : [400, 720]} sizes={index === 0 ? '(min-width: 1200px) 700px, (min-width: 768px) 58vw, calc(100vw - 3rem)' : '(min-width: 1200px) 360px, (min-width: 768px) 30vw, calc(100vw - 3rem)'} />
-							</div>
-							<div class='home-card-copy'>
-								<p class='home-label'>{project.label}</p>
-								<h3>{project.name}</h3>
-								<p>{project.body}</p>
-							</div>
-						</a>
-					</li>
-				))}
-			</ul>
-		</HomeSection>
-
-		<section class='home-quote-band' data-section='quote' aria-label={`Testimonial from ${jiecTestimonial.role}`}>
-			<div class='home-shell'>
-				<figure>
-					<blockquote><p>“{jiecTestimonial.quote}”</p></blockquote>
-					<figcaption>{jiecTestimonial.name} · {jiecTestimonial.role}</figcaption>
-				</figure>
-				<HomeActions location='home_quote_band' />
-			</div>
-		</section>
-
-		<HomeSection name='process' title='How we’d work together.' intro='You don’t need a project brief. One task is enough to start.' points={process} ordered />
-
-		<HomeSection name='apps' title='I also build apps and products.' intro='I’ve built apps with founders, and I run two products of my own.'>
-			<ul class='home-gallery home-apps' slot='visual' role='list'>
-				{apps.map((app) => (
+		<HomeSection name='help' label='01 — Where I can help' title='Where I can help.' intro='Most small businesses lose time in the same few places.'>
+			<ul class='home-points' role='list'>
+				{help.map(({ title, body }, index) => (
 					<li>
-						<a class='home-card' href={`/projects/${app.slug}/`}>
-							<div class='home-picture' data-visual>
-								<Image src={getProjectImage(projects[app.slug], 'feature')} alt={app.alt} widths={[400, 560, 1120]} sizes='(min-width: 1200px) 550px, (min-width: 768px) 46vw, calc(100vw - 3rem)' />
-							</div>
-							<div class='home-card-copy'>
-								<h3>{app.name}</h3>
-								<p>{app.body}</p>
-								<ul class='home-tags' aria-label='Technologies used' role='list'>
-									{app.tags.map((tag) => <li data-tech-tag>{tag}</li>)}
-								</ul>
-							</div>
-						</a>
+						<span class='home-label' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+						<h3>{title}</h3>
+						<p>{body}</p>
 					</li>
 				))}
 			</ul>
-			<p class='home-gallery-link'><a class={textLinkClass} href='/projects/'>See all projects</a></p>
 		</HomeSection>
 
-		<HomeSection name='feedback' title='What clients say.'>
+		<HomeSection name='work' label='02 — Work' id='projects' title='Work for small businesses.' intro='Each project started with how the business runs today.'>
+			<HomeProjects items={work} />
+		</HomeSection>
+
+		<HomeSection name='process' label='03 — Process' title='How we’d work together.' intro='You don’t need a project brief. One task is enough to start.'>
+			<ol class='home-points' role='list'>
+				{process.map(({ title, body }, index) => (
+					<li>
+						<span class='home-step' aria-hidden='true'>{index + 1}</span>
+						<h3>{title}</h3>
+						<p>{body}</p>
+					</li>
+				))}
+			</ol>
+		</HomeSection>
+
+		<HomeSection name='apps' label='04 — Apps and products' title='I also build apps and products.' intro='I’ve built apps with founders, and I run two products of my own.'>
+			<HomeProjects items={apps} />
+			<p class='home-more'><a class='home-link' href='/projects/'>See all projects</a></p>
+		</HomeSection>
+
+		<HomeSection name='feedback' label='05 — Clients' title='What clients say.'>
 			<div class='home-feedback'>
 				{feedback.map(({ quote, credit }) => (
 					<figure>
 						<blockquote><p>{quote}</p></blockquote>
-						<figcaption>{credit}</figcaption>
+						<figcaption class='home-label'>{credit}</figcaption>
 					</figure>
 				))}
 			</div>
 		</HomeSection>
 
-		<HomeSection name='about' title='About me.'>
-			<div class='home-about'>
-				<p>I’m Hanif, a freelance software engineer in Buenos Aires with 9+ years of experience. I worked at <a href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a> before starting HC Studio. The part I enjoy most is learning how people actually work and figuring out together what’s worth building. Outside of work, I <a href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger><strong>lift weights</strong></a> and look for cozy coffee shops for merienda.</p>
-				<div class='home-about-links'>
-					<a class={textLinkClass} href='/how-i-work/'>How I work</a>
-					<a class={textLinkClass} href='/notes/'>Read my notes</a>
-				</div>
+		<HomeSection name='about' label='06 — About' title='About me.'>
+			<p>I’m Hanif, a freelance software engineer in Buenos Aires with 9+ years of experience. I worked at <a class='home-link' href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a class='home-link' href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a class='home-link' href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a> before starting HC Studio. The part I enjoy most is learning how people actually work and figuring out together what’s worth building. Outside of work, I <a class='home-link' href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger>lift weights</a> and look for cozy coffee shops for merienda.</p>
+			<div class='home-more'>
+				<a class='home-link' href='/how-i-work/'>How I work</a>
+				<a class='home-link' href='/notes/'>Read my notes</a>
 			</div>
 		</HomeSection>
 
-		<HomeSection name='writing' id='blog' title='Writing.'>
+		<HomeSection name='writing' label='07 — Writing' id='blog' title='Writing.'>
 			<ol class='home-writing' role='list'>
 				{blogPosts.map((post) => (
 					<li>
@@ -257,7 +231,7 @@ const feedback = [
 					</li>
 				))}
 			</ol>
-			<p class='home-gallery-link'><a class={textLinkClass} href='/blog/'>More posts</a></p>
+			<p class='home-more'><a class='home-link' href='/blog/'>More posts</a></p>
 		</HomeSection>
 	</div>
 

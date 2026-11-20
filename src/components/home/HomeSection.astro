@@ -2,38 +2,21 @@
 interface Props {
 	id?: string;
 	name: string;
+	label: string;
 	title: string;
 	intro?: string;
-	points?: { title: string; body: string; icon?: string }[];
-	ordered?: boolean;
 }
 
-const { name, id = name, title, intro, points, ordered } = Astro.props;
-const PointList = ordered ? 'ol' : 'ul';
+const { name, id = name, label, title, intro } = Astro.props;
 ---
 
 <section id={id} data-section={name} aria-labelledby={`${name}-title`} class='home-section'>
 	<div class='home-shell'>
-		<div class='home-heading' class:list={{ 'has-intro': intro }}>
+		<div class='home-heading'>
+			<span class='home-label' aria-hidden='true'>{label}</span>
 			<h2 id={`${name}-title`}>{title}</h2>
 			{intro && <p>{intro}</p>}
 		</div>
-		<slot name='visual' />
-		{points && (
-			<PointList class='home-points' role='list'>
-				{points.map(({ title, body, icon }) => (
-					<li>
-						{icon && (
-							<svg width='27' height='27' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>
-								<path d={icon} />
-							</svg>
-						)}
-						<h3>{title}</h3>
-						<p>{body}</p>
-					</li>
-				))}
-			</PointList>
-		)}
 		<slot />
 	</div>
 </section>
