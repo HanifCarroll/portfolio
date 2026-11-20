@@ -57,9 +57,12 @@ const homepageJsonLd = [
 	}
 ];
 
-const featuredPostIds = ['using-diagrams-to-review-an-ai-report-workflow', 'business-process-mapping-examples', 'spreadsheet-vs-database-internal-tool'];
+const featuredPostIds = ['where-net-promoter-score-came-from', 'spreadsheet-vs-database-internal-tool', 'business-process-mapping-examples'];
 const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
-const blogPosts = featuredPostIds.map((id) => allPosts.find((post) => post.id === id)).filter((post) => post !== undefined);
+const blogPosts = featuredPostIds
+	.map((id) => allPosts.find((post) => post.id === id))
+	.filter((post) => post !== undefined)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const help = [
 	{
@@ -174,9 +177,8 @@ const feedback = [
 
 		<HomeSection name='help' title='What I build'>
 			<ul class='home-points' role='list'>
-				{help.map(({ title, body }, index) => (
+				{help.map(({ title, body }) => (
 					<li>
-						<span class='home-label' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
 						<h3>{title}</h3>
 						<p>{body}</p>
 					</li>
@@ -218,7 +220,7 @@ const feedback = [
 		</HomeSection>
 
 		<HomeSection name='about' title='About me'>
-			<p>I’m Hanif, a freelance software engineer in Buenos Aires with 9+ years of experience. I worked at <a class='home-link' href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a class='home-link' href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a class='home-link' href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a> before starting HC Studio. The part I enjoy most is learning how people actually work and figuring out together what’s worth building. Outside of work, I <a class='home-link' href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger>lift weights</a> and look for cozy coffee shops for merienda.</p>
+			<p>I’m Hanif, a freelance software engineer in Buenos Aires, and I’ve been building software since 2017. I worked at <a class='home-link' href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a class='home-link' href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>, and <a class='home-link' href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a> before starting HC Studio. The part I enjoy most is learning how people actually work and figuring out together what’s worth building. Outside of work, I <a class='home-link' href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger>lift weights</a> and look for cozy coffee shops for merienda.</p>
 			<div class='home-more'>
 				<a class='home-link' href='/how-i-work/'>How I work</a>
 				<a class='home-link' href='/notes/'>Read my notes</a>
