@@ -30,7 +30,8 @@ const cardWidth = { contained: 'mx-auto w-[min(100%,52rem)]', compact: 'mx-auto 
 				<div class:list={['relative w-full', screen.frame === 'mobile' ? 'mx-auto max-w-[16rem]' : 'max-w-[66rem]']}>
 					<div
 						class:list={[
-							screen.mobileScrollable && 'max-md:overflow-x-auto max-md:overscroll-x-contain max-md:[scrollbar-width:thin]',
+							// The scroller clips the image's own focus ring, so it shows an inset one instead.
+							screen.mobileScrollable && 'max-md:overflow-x-auto max-md:overscroll-x-contain max-md:[scrollbar-width:thin] max-md:has-[:focus-visible]:outline-2 max-md:has-[:focus-visible]:-outline-offset-2 max-md:has-[:focus-visible]:outline-ink',
 						]}
 					>
 						<picture class:list={['block', screen.mobileScrollable && 'max-md:w-[44rem] max-md:max-w-none']}>

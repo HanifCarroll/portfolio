@@ -2,7 +2,7 @@
 import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
 import { testimonials } from '../data/testimonials';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { buttonClass, metaClass, pageTitleClass, sectionHeadingClass, shellClass, textLinkClass } from '../lib/ui';
+import { closingActionsClass, closingButtonClass, closingLinkClass, metaClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
 
 const testimonial = testimonials.find(({ name }) => name === 'Markis Zarate')!;
 ---
@@ -31,11 +31,16 @@ const testimonial = testimonials.find(({ name }) => name === 'Markis Zarate')!;
 					<cite class:list={[metaClass, 'block not-italic']}>{testimonial.name} · {testimonial.role}</cite>
 				</footer>
 			</blockquote>
-
-			<div class='mt-12 flex flex-wrap items-center gap-x-6 gap-y-3'>
-				<a class={buttonClass()} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='agencies'>Email me</a>
-				<a class={textLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='agencies'>Book a call</a>
-			</div>
 		</article>
 	</div>
+
+	{/* The page's two actions, in the shared ink closing. It has no heading, so it takes less room. */}
+	<section class='bg-ink py-20 text-center text-white lg:py-28' data-section='closing-cta' aria-label='Contact'>
+		<div class={shellClass}>
+			<div class:list={[closingActionsClass, 'mt-0!']}>
+				<a class={closingButtonClass} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='agencies'>Email me</a>
+				<a class={closingLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='agencies'>Book a call</a>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
