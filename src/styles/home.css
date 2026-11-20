@@ -28,6 +28,11 @@
   letter-spacing: -0.05em;
 }
 
+/* The fixed two-line break only fits from the desktop grid up. */
+.home h1 br {
+  display: none;
+}
+
 .home h2 {
   font-size: clamp(2.75rem, 5.55vw, 5.25rem);
   text-wrap: wrap;
@@ -83,7 +88,8 @@
   margin-bottom: 1rem;
 }
 
-.home-deck {
+.home .home-deck {
+  max-width: 38rem;
   margin-top: 1.75rem;
   text-wrap: balance;
 }
@@ -230,6 +236,10 @@
 }
 
 @media (max-width: 39.99rem) {
+  .home h1 {
+    text-wrap: wrap;
+  }
+
   .home-actions {
     width: 100%;
     flex-direction: column;
@@ -273,6 +283,10 @@
 
 /* Desktop: a 12-column grid with the section label in columns 1 to 3 and content from column 4. */
 @media (min-width: 64rem) {
+  .home h1 br {
+    display: inline;
+  }
+
   .home-section .home-shell {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
