@@ -2,18 +2,16 @@
 interface Props {
 	id?: string;
 	name: string;
-	label: string;
 	title: string;
 	intro?: string;
 }
 
-const { name, id = name, label, title, intro } = Astro.props;
+const { name, id = name, title, intro } = Astro.props;
 ---
 
 <section id={id} data-section={name} aria-labelledby={`${name}-title`} class='home-section'>
 	<div class='home-shell'>
 		<div class='home-heading'>
-			<span class='home-label' aria-hidden='true'>{label}</span>
 			<h2 id={`${name}-title`}>{title}</h2>
 			{intro && <p>{intro}</p>}
 		</div>

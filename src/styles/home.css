@@ -158,7 +158,7 @@
   margin-top: 1rem;
 }
 
-.home :is(.home-heading, .home-points > li) > .home-label {
+.home .home-points > li > .home-label {
   display: block;
   margin-bottom: 0.75rem;
 }
@@ -283,42 +283,10 @@
   }
 }
 
-/* Desktop: a 12-column grid with the section label in columns 1 to 3 and content from column 4. */
+/* Desktop: sections run the full width of the header's content box. */
 @media (min-width: 64rem) {
   .home h1 br {
     display: inline;
-  }
-
-  .home-section .home-shell {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 2rem;
-  }
-
-  .home-heading {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    align-items: baseline;
-  }
-
-  .home .home-heading > .home-label {
-    grid-column: 1 / 4;
-    grid-row: 1;
-    margin-bottom: 0;
-  }
-
-  .home-heading > :is(h2, p),
-  .home-section .home-shell > :not(.home-heading) {
-    grid-column: 4 / -1;
-  }
-
-  .home-heading h2 {
-    grid-row: 1;
-  }
-
-  .home-heading > p {
-    grid-row: 2;
   }
 
   /* Hang the opening quote mark in the margin. */
