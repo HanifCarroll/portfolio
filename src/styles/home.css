@@ -1,400 +1,330 @@
 .home {
+  --home-gap: clamp(6rem, 12vw, 10rem);
   color: var(--color-ink);
-  font-size: 1rem;
-  line-height: 1.55;
+  font: 400 clamp(1.125rem, 2vw, 1.25rem) / 1.55 var(--font-sans);
 }
 
+/* The same box as the header and footer rows, so the grid's edges line up with them. */
 .home-shell {
-  width: min(calc(100% - 3rem), 70rem);
+  width: 100%;
+  max-width: var(--container-page);
   margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
-.home h1,
-.home h2 {
+.home :is(h1, h2, h3, blockquote, .home-step) {
+  color: var(--color-ink);
   font-family: var(--font-editorial);
-  font-weight: 600;
+  font-weight: 400;
+}
+
+.home :is(h1, h2) {
   letter-spacing: -0.042em;
   line-height: 1;
-  text-wrap: balance;
 }
 
 .home h1 {
-  max-width: 58rem;
-  font-size: clamp(3rem, 6.2vw, 5.25rem);
+  font-size: clamp(3rem, 7.5vw, 6.75rem);
+  letter-spacing: -0.05em;
+}
+
+/* The fixed two-line break only fits from the desktop grid up. */
+.home h1 br {
+  display: none;
 }
 
 .home h2 {
-  font-size: clamp(2.5rem, 4.3vw, 3.5rem);
+  font-size: clamp(2.75rem, 5.55vw, 5.25rem);
+  text-wrap: wrap;
 }
 
-.home h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.home :is(h3, blockquote) {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.18;
+  text-wrap: wrap;
 }
 
-.home-hero,
-.home-section {
-  display: grid;
-  align-items: center;
-  padding-block: clamp(4rem, 8vw, 7rem);
+.home p {
+  max-width: 36rem;
+}
+
+.home :is(.home-label, time, .home-actions) {
+  font-size: 1rem;
+}
+
+.home :is(.home-label, time) {
+  color: var(--color-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.home .home-label {
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.home :is(.home-deck, .home-heading > p, li p) {
+  color: var(--color-ink-muted);
 }
 
 .home-hero {
-  background: var(--color-surface-warm);
+  padding-block: clamp(2rem, 3.2vw, 2.875rem) var(--home-gap);
+  text-align: center;
 }
 
-.home-identity,
-.home-actions {
-  display: flex;
-  align-items: center;
-}
-
-.home-identity {
-  gap: 0.875rem;
-  margin-bottom: 1.5rem;
-  color: var(--color-ink-muted);
-}
-
-.home-identity strong {
-  color: var(--color-ink);
-  font-weight: 600;
+.home-hero .home-shell {
+  display: grid;
+  justify-items: center;
 }
 
 .home-portrait {
-  flex: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+  width: clamp(6rem, 9.2vw, 8.25rem);
+  aspect-ratio: 4 / 5;
+  margin-bottom: 1.25rem;
   object-fit: cover;
 }
 
-.home-deck,
-.home-heading > p {
-  color: var(--color-ink-muted);
-  font-size: 1.25rem;
-  line-height: 1.45;
-  text-wrap: pretty;
+.home-hero .home-label {
+  margin-bottom: 1rem;
 }
 
-.home-deck {
-  max-width: 48rem;
-  margin-top: 1.5rem;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+.home .home-deck {
+  max-width: 38rem;
+  margin-top: 1.75rem;
+  text-wrap: balance;
 }
 
 .home-actions {
+  display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.home-hero .home-actions {
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
   margin-top: 2rem;
 }
 
 .home-primary {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: 3.25rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-ink);
-  border-radius: var(--radius-lg);
+  border-radius: 0.5rem;
   background: var(--color-ink);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.625rem;
   color: var(--color-canvas);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 500;
   text-decoration: none;
 }
 
-.home-primary:hover,
-.home-primary:focus-visible {
+.home-primary:is(:hover, :focus-visible) {
   background: var(--color-ink-muted);
 }
 
-.home-section,
-.home-quote-band {
+/* Dark gold reads as a link on white; the bright yellow is the hover state. */
+.home-link,
+.home :is(.home-projects, .home-writing) a:is(:hover, :focus-visible) h3 {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.home-link:is(:hover, :focus-visible),
+.home :is(.home-projects, .home-writing) a:is(:hover, :focus-visible) h3 {
+  text-decoration-color: var(--color-accent);
+}
+
+/* The site's yellow focus ring is too faint on the white canvas. */
+.home a:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
+}
+
+.home-section {
   scroll-margin-top: 5rem;
-  border-top: 1px solid var(--color-rule);
+}
+
+.home-section .home-shell {
+  padding-bottom: var(--home-gap);
 }
 
 .home-heading {
-  display: grid;
-  align-items: center;
-  gap: 0.875rem;
-  margin-bottom: clamp(2rem, 4vw, 3.75rem);
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--color-rule);
+  padding-top: clamp(2rem, 4vw, 4rem);
 }
 
 .home-heading > p {
-  max-width: 30rem;
+  margin-top: 1rem;
 }
 
-.home-hero {
-  text-align: center;
+.home :is(.home-heading, .home-points > li) > .home-label {
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
-.home-hero :is(h1, .home-deck) {
-  margin-inline: auto;
-}
-
-.home-hero :is(.home-identity, .home-actions) {
-  justify-content: center;
-}
-
-.home-points,
-.home-gallery,
-.home-feedback {
+.home :is(.home-points, .home-projects, .home-feedback) {
   display: grid;
-  gap: 1.25rem;
+  gap: 2rem;
 }
 
-.home-points > li {
-  border-top: 2px solid var(--color-accent);
-  padding: 1.5rem 0 0.75rem;
-}
-
-.home-points svg {
-  margin-bottom: 1rem;
-  color: var(--color-accent-ink);
-}
-
-.home-points p,
-.home-card-copy p {
+.home :is(.home-points p, .home-projects p.home-label, figcaption) {
   margin-top: 0.5rem;
-  color: var(--color-ink-muted);
 }
 
-.home-card {
+.home-step {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-ink-muted);
+  font-size: clamp(4.5rem, 8vw, 7rem);
+  line-height: 0.9;
+}
+
+.home .home-projects {
+  row-gap: 4rem;
+}
+
+.home :is(.home-projects, .home-writing) a {
   display: grid;
-  height: 100%;
-  align-content: start;
-  overflow: clip;
-  border: 1px solid var(--color-line);
-  border-radius: 0.75rem;
-  background: var(--color-canvas);
+  align-items: baseline;
+  gap: 0.5rem 2rem;
   text-decoration: none;
 }
 
-.home-card:hover h3,
-.home-card:focus-visible h3,
-.home-writing a:hover h3,
-.home-writing a:focus-visible h3 {
-  color: var(--color-accent-ink);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.home a:focus-visible {
-  outline: 2px solid var(--color-accent-ink);
-  outline-offset: 3px;
-}
-
-.home-picture {
-  border-bottom: 1px solid var(--color-line);
-  background: var(--color-surface-warm);
-}
-
-.home-picture img {
-  display: block;
+.home-projects img {
   width: 100%;
-  height: auto;
+  margin-bottom: 0.5rem;
 }
 
-.home-card-copy {
-  padding: 1.25rem;
+.home-projects h3 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
 }
 
-.home-card-copy .home-label {
-  margin: 0 0 0.375rem;
-}
-
-.home-featured h3 {
-  font-family: var(--font-editorial);
-  font-size: clamp(2rem, 3.3vw, 2.75rem);
-}
-
-.home-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  margin-top: 0.875rem;
-}
-
-.home-tags li {
-  border-radius: 0.375rem;
-  background: var(--color-surface-warm);
-  padding: 0.15rem 0.5rem;
-  color: var(--color-ink-muted);
-  font-size: 0.875rem;
-}
-
-.home-gallery-link {
-  margin-top: 1.5rem;
-}
-
-.home-quote-band {
-  background: var(--color-surface-warm);
-  padding-block: clamp(2.5rem, 5vw, 4rem);
-}
-
-.home-quote-band .home-shell {
-  display: grid;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.home-quote-band blockquote {
-  font-family: var(--font-editorial);
-  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-  line-height: 1.1;
-  text-wrap: pretty;
-}
-
-.home figcaption {
-  margin-top: 1rem;
-  color: var(--color-ink-muted);
-}
-
-.home-feedback figure {
-  border-inline-start: 2px solid var(--color-accent);
-  padding-inline: 1.25rem 0;
+.home .home-feedback {
+  gap: 3rem;
 }
 
 .home-feedback blockquote {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  text-wrap: pretty;
+  font-size: clamp(1.5rem, 1.8vw, 1.75rem);
 }
 
-.home-about,
-.home-writing {
-  max-width: 46rem;
+.home-feedback figure:first-child blockquote {
+  font-size: clamp(1.75rem, 3.6vw, 3.5rem);
+  line-height: 1.07;
 }
 
-.home-about p {
-  font-size: 1.25rem;
+.home-feedback figure:first-child p {
+  max-width: 44rem;
 }
 
-.home-about-links {
+.home-writing a {
+  border-top: 1px solid var(--color-rule);
+  padding-block: 1.25rem;
+}
+
+.home-writing li:last-child a {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.home-writing h3 {
+  font-size: 1.75rem;
+}
+
+.home-more {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.5rem;
   margin-top: 1.5rem;
 }
 
-.home-writing a {
-  display: grid;
-  align-items: baseline;
-  gap: 0.375rem 1.5rem;
-  border-top: 1px solid var(--color-line);
-  padding-block: 1.125rem;
-  text-decoration: none;
-}
+@media (max-width: 39.99rem) {
+  .home h1 {
+    text-wrap: wrap;
+  }
 
-.home-writing li:last-child {
-  border-bottom: 1px solid var(--color-line);
-}
+  .home-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.home-writing time {
-  color: var(--color-ink-muted);
-}
-
-@media (min-width: 40rem) {
-  .home-writing a {
-    grid-template-columns: minmax(0, 1fr) auto;
+  .home-actions .home-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    align-self: center;
   }
 }
 
 @media (min-width: 48rem) {
-  .home-points,
-  .home-gallery {
+  .home-shell {
+    padding-inline: 3rem;
+  }
+
+  .home .home-points {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .home-points > li {
-    padding-right: 1.25rem;
+  .home .home-projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 5.5rem;
   }
 
-  .home-apps,
-  .home-feedback {
+  .home .home-feedback {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .home-featured {
+  .home-feedback figure:first-child {
     grid-column: 1 / -1;
   }
 
-  .home-featured .home-card {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 3fr);
-    align-items: center;
-  }
-
-  .home-featured .home-card-copy {
-    padding: clamp(1.5rem, 3vw, 2.75rem);
-  }
-
-  .home-featured .home-picture {
-    border-right: 1px solid var(--color-line);
-    border-bottom: 0;
+  .home .home-writing a {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 }
 
+/* Desktop: a 12-column grid with the section label in columns 1 to 3 and content from column 4. */
 @media (min-width: 64rem) {
-  .home-hero {
-    min-height: clamp(36rem, 75svh, 49rem);
+  .home h1 br {
+    display: inline;
   }
 
-  .home-deck {
-    text-wrap: balance;
-  }
-
-  .home-section {
-    min-height: clamp(32rem, 70svh, 46rem);
-  }
-
-  .home-section[data-section="work"] {
-    padding-block: 5.5rem;
-  }
-
-  .home-heading.has-intro {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  .home-section .home-shell {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 2rem;
   }
 
+  .home-heading {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+  }
+
+  .home .home-heading > .home-label {
+    grid-column: 1 / 4;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  .home-heading > :is(h2, p),
+  .home-section .home-shell > :not(.home-heading) {
+    grid-column: 4 / -1;
+  }
+
   .home-heading h2 {
-    text-wrap: wrap;
+    grid-row: 1;
   }
 
-  .home-quote-band .home-shell {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 3rem;
-  }
-}
-
-@media (max-width: 22rem) {
-  .home h1 {
-    font-size: 2.75rem;
+  .home-heading > p {
+    grid-row: 2;
   }
 
-  .home-actions > a {
-    flex-basis: 100%;
+  /* Hang the opening quote mark in the margin. */
+  .home-feedback figure:first-child blockquote {
+    text-indent: -0.37em;
   }
-}
-
-.home-about p a {
-  color: var(--hc-text);
-  font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--hc-accent) 70%, transparent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  transition: color var(--hc-dur-fast) var(--hc-ease-out);
-}
-
-.home-about p a:hover,
-.home-about p a:focus-visible {
-  color: var(--hc-accent-text);
-  text-decoration-color: var(--hc-accent);
 }
 
 .hc-home-video-modal {

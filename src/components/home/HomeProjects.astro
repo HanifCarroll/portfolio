@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { getProjectImage } from '../../lib/project-images';
+import { projects } from '../../lib/projects';
+
+interface Props {
+	items: { slug: keyof typeof projects; name: string; alt: string; body: string; tags?: string[] }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class='home-projects' role='list'>
+	{items.map(({ slug, name, alt, body, tags }, index) => (
+		<li>
+			<a href={`/projects/${slug}/`}>
+				<Image
+					data-visual
+					src={getProjectImage(projects[slug], 'feature')}
+					alt={alt}
+					widths={[400, 720, 1120]}
+					sizes='(min-width: 1200px) 394px, (min-width: 1024px) 36vw, (min-width: 768px) calc(50vw - 4rem), calc(100vw - 3rem)'
+				/>
+				<span class='home-label' aria-hidden='true'>{String(index + 1).padStart(2, '0')}</span>
+				<h3>{name}</h3>
+				<div>
+					<p>{body}</p>
+					{tags && <p class='home-label'>{tags.join(' · ')}</p>}
+				</div>
+			</a>
+		</li>
+	))}
+</ul>
