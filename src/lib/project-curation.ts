@@ -7,6 +7,7 @@ export const PROJECT_ARCHIVE_GROUPS = [
     slugs: [
       "desarmadero-la-torre",
       "online-store-conversion-review",
+      "sales-funnel-solo-coach",
       "casa-elaria",
       "maximo-interiorismo",
       "redwriter-comics",

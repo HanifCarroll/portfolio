@@ -52,6 +52,7 @@ export interface Project {
   problem: string | string[];
   solution: string | string[];
   result: string | string[];
+  heroAlt?: string;
   images: ProjectImages;
   // Optional fields for richer case studies (when available)
   role?: string;
