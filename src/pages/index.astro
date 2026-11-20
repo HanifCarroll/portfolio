@@ -9,6 +9,7 @@ import { textLinkClass } from '../lib/ui';
 import FormattedDate from '../components/FormattedDate.astro';
 import HomeActions from '../components/home/HomeActions.astro';
 import HomeSection from '../components/home/HomeSection.astro';
+import { jiecTestimonial } from '../data/testimonials';
 import '../styles/home.css';
 
 const title = 'Websites, tools, and automations for small businesses | Hanif Carroll';
@@ -84,12 +85,12 @@ const work = [
 	{
 		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre', label: 'Auto-parts yard',
 		alt: 'Desarmadero La Torre’s online parts catalog.',
-		body: 'A parts catalog customers search before they call. The owner came back to map sales and payments into a working prototype.'
+		body: 'A parts catalog customers could search before calling. The owner came back to map sales and payments into a working prototype.'
 	},
 	{
 		slug: 'online-store-conversion-review', name: 'JIEC Labs', label: 'Online store',
 		alt: 'The online-store review prepared for JIEC Labs.',
-		body: 'Seven fixes, in order, to make a skincare store easier to shop.'
+		body: "A shopper's review of a skincare store, then the fixes the owner picked, built and launched."
 	},
 	{
 		slug: 'casa-elaria', name: 'Casa Elaria', label: 'Beauty brand',
@@ -190,11 +191,11 @@ const feedback = [
 			</ul>
 		</HomeSection>
 
-		<section class='home-quote-band' data-section='quote' aria-label='Testimonial from JIEC Labs'>
+		<section class='home-quote-band' data-section='quote' aria-label={`Testimonial from ${jiecTestimonial.role}`}>
 			<div class='home-shell'>
 				<figure>
-					<blockquote><p>“I really liked how the process was organized and feel like I got great value from the project.”</p></blockquote>
-					<figcaption>Joshua Hamer · JIEC Labs</figcaption>
+					<blockquote><p>“{jiecTestimonial.quote}”</p></blockquote>
+					<figcaption>{jiecTestimonial.name} · {jiecTestimonial.role}</figcaption>
 				</figure>
 				<HomeActions location='home_quote_band' />
 			</div>

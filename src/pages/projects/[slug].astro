@@ -5,7 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceCallout from '../../components/ServiceCallout.astro';
 import ImageLightbox from '../../components/case-study/ImageLightbox.astro';
 import { clientDelivery, type ClientDeliverySlug } from '../../data/client-delivery';
-import { testimonials } from '../../data/testimonials';
+import { jiecTestimonial, testimonials } from '../../data/testimonials';
 import type { Project } from '@src/lib/types/project';
 import { getProject } from '@src/lib/projects';
 import { getProjectImage } from '@src/lib/project-images';
@@ -40,11 +40,12 @@ export async function getStaticPaths() {
 
 const { project, caseStudy } = Astro.props as PageProps;
 const delivery = clientDelivery[project.slug as ClientDeliverySlug];
-const clientTestimonial = project.slug === 'genrupt'
-	? testimonials.find((item) => item.name === 'Michael Shackelford')
-	: project.slug === 'palabruno'
-		? testimonials.find((item) => item.name === 'Valentin Zach')
-		: undefined;
+const testimonialsBySlug: Record<string, (typeof testimonials)[number] | undefined> = {
+	genrupt: testimonials.find((item) => item.name === 'Michael Shackelford'),
+	palabruno: testimonials.find((item) => item.name === 'Valentin Zach'),
+	'online-store-conversion-review': jiecTestimonial,
+};
+const clientTestimonial = testimonialsBySlug[project.slug];
 const trackMeta = getProjectTrackMeta(project.track);
 const caseStudyVariant = trackMeta.ctaVariant;
 const { Content } = await render(caseStudy);

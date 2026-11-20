@@ -1,3 +1,10 @@
+export const jiecTestimonial = {
+  name: "Joshua Hamer",
+  role: "JIEC Labs",
+  quote:
+    "I really liked how the process was organized and feel like I got great value from the project.",
+};
+
 export const testimonials = [
   {
     name: "Sarah Hibner",
