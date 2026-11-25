@@ -3,12 +3,17 @@ import spanishCopy from "./projects.es.json";
 import type { Project, ProjectTranslation } from "./types/project";
 
 const translations: Record<string, ProjectTranslation> = spanishCopy;
+const spanishTechnologyLabels = new Map([["WordPress Custom Theme", "Tema a medida para WordPress"]]);
 
 export function localizeProject(project: Project, locale: Locale): Project {
   if (locale === "en") return project;
   const translation = translations[project.slug];
   if (!translation) throw new Error(`Missing Spanish project metadata for "${project.slug}".`);
-  return { ...project, ...translation };
+  return {
+    ...project,
+    ...translation,
+    technologies: project.technologies.map((label) => spanishTechnologyLabels.get(label) ?? label),
+  };
 }
 
 const projectModules = import.meta.glob("./projects/*.json", {
