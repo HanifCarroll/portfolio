@@ -69,7 +69,7 @@ Desde la misma pantalla podés iniciar una búsqueda y revisar los resultados. E
 
 <CaseSection title="Cómo lo armé">
   <DecisionBlock title="Extraje evidencia de avisos de varios portales">
-    El sistema obtiene resultados de búsquedas en los portales, extrae galerías y datos de avisos, lee los metadatos de Airbnb sobre lavarropas y puede reutilizar datos de extracción guardados en caché para repetir un análisis.
+    El sistema obtiene resultados de búsquedas en los portales, extrae galerías y datos de avisos, lee los metadatos de Airbnb sobre lavarropas y puede usar como alternativa los datos de extracción guardados en caché para repetir un análisis.
   </DecisionBlock>
 
   <DecisionBlock title="Armé una clasificación en dos pasadas">
@@ -77,7 +77,7 @@ Desde la misma pantalla podés iniciar una búsqueda y revisar los resultados. E
   </DecisionBlock>
 
   <DecisionBlock title="Reduje el costo sin perder precisión">
-    Definí una sola regla para elegir hasta las k fotos prioritarias para la segunda pasada y medí el efecto de distintos límites. La configuración actual vuelve a analizar hasta 6 fotos por aviso. Eso redujo las comprobaciones de imágenes de unas 969 a 247 y mantuvo el mejor resultado medido por aviso en 53 de 55. Con un límite de 8 se comprobaban 82 imágenes más en la segunda pasada sin ganar precisión. Con límites de 4 y 3 se empezaban a perder casos positivos.
+    Definí una sola regla para elegir hasta las k fotos prioritarias para la segunda pasada y medí el efecto de distintos límites. De forma predeterminada, el sistema vuelve a analizar hasta 6 fotos por aviso. Eso redujo las comprobaciones de imágenes de unas 969 a 247 y mantuvo el mejor resultado medido por aviso en 53 de 55. Al comparar los límites, comprobé por qué 6 era el valor predeterminado adecuado: con 8 se comprobaban 82 imágenes más en la segunda pasada sin ganar precisión, mientras que con 4 y 3 se empezaban a perder casos positivos.
   </DecisionBlock>
 
   <DecisionBlock title="Usé los mismos servicios para los comandos, la interfaz y las evaluaciones">
