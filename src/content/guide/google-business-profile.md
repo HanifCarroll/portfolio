@@ -19,9 +19,11 @@ A Google Business Profile is the box that appears in Google Search and Google Ma
 
 ## Popular choices
 
-- **Google Business Profile**: The listing in Google Search and Maps.
+- **Google Business Profile**: The listing in Google Search and Maps. Google says you can manage it at no charge with a Google account. Ads on Maps and Search are a separate, paid option.
 - **Apple Business Connect**: The same kind of listing for Apple Maps.
-- **Bing Places for Business**: The listing for Bing search and maps.
+- **Bing Places for Business**: The listing for Bing search and maps. Microsoft says listing your business is free.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -36,6 +38,6 @@ I can claim and fill in your listings, add your photos and hours, and link them 
 
 ## Sources
 
-- [Google Business Profile](https://www.google.com/business/)
-- [Apple Business Connect](https://www.apple.com/business/connect/)
-- [Bing Places for Business](https://www.bingplaces.com/)
+- [Google Business Profile help](https://support.google.com/business/answer/7039811?hl=en) (checked November 25, 2026)
+- [Apple Business](https://business.apple.com/) (checked November 25, 2026)
+- [Bing Places for Business](https://www.bing.com/forbusiness) (checked November 25, 2026)

@@ -20,10 +20,12 @@ If you post once or twice a week on one network, the network's own scheduling fe
 
 ## Popular choices
 
-- **Meta Business Suite**: Meta's own app for scheduling posts on Facebook and Instagram.
-- **Buffer**: A simple scheduler for several networks.
-- **Later**: A scheduler built around Instagram and visual posts.
-- **Hootsuite**: A scheduler with tools for larger teams.
+- **Meta Business Suite**: Meta's own app for scheduling posts on Facebook and Instagram. It is free to use.
+- **Buffer**: A simple scheduler for several networks. The free plan connects up to 3 accounts with 10 scheduled posts each. The Essentials plan costs $5 a month per account, billed yearly at $60.
+- **Later**: A scheduler built around Instagram and visual posts. There is no free plan, only a 14-day trial.
+- **Hootsuite**: A scheduler with tools for larger teams. There is no free plan, only a 14-day trial. The Standard plan costs $99 per user a month billed yearly, or $149 billed monthly.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -37,7 +39,7 @@ I can set up a scheduler for your accounts and connect it to the rest of your to
 
 ## Sources
 
-- [Meta Business Suite](https://www.facebook.com/business/tools/meta-business-suite)
-- [Buffer](https://buffer.com/)
-- [Later](https://later.com/)
-- [Hootsuite](https://www.hootsuite.com/)
+- [Meta Business Suite help](https://www.facebook.com/business/help/205614130852988) (checked November 25, 2026)
+- [Buffer pricing](https://buffer.com/pricing) (checked November 25, 2026)
+- [Later pricing](https://www.later.com/pricing) (checked November 25, 2026)
+- [Hootsuite plans](https://www.hootsuite.com/plans) (checked November 25, 2026)

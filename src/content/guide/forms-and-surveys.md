@@ -19,10 +19,12 @@ An online form is a page with questions that customers fill in on a phone or com
 ## Popular choices
 
 - **Google Forms**: Simple forms that save answers to Google Sheets.
-- **Microsoft Forms**: Simple forms that save answers to Excel.
-- **Tally**: Forms that look like a plain document page.
-- **Jotform**: Many templates, payment fields, and signatures.
-- **Typeform**: Forms that show one question at a time.
+- **Microsoft Forms**: Simple forms that save answers to Excel. It is free with a Microsoft account, and free accounts get up to 200 responses per form.
+- **Tally**: Forms that look like a plain document page. The free plan allows unlimited forms and responses within Tally's fair-use rules. The Pro plan costs $24 a month billed monthly.
+- **Jotform**: Many templates, payment fields, and signatures. The free plan allows 5 forms and 100 responses a month. The Bronze plan costs $34 a month billed yearly, or $39 billed monthly.
+- **Typeform**: Forms that show one question at a time. The free plan allows 10 responses a month across all forms. The Basic plan costs $28 a month billed yearly, or $39 billed monthly.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -36,8 +38,9 @@ I can build forms for intake or quote requests and send each answer to your cust
 
 ## Sources
 
-- [Google Forms](https://www.google.com/forms/about/)
-- [Microsoft Forms](https://www.microsoft.com/microsoft-365/online-surveys-polls-quizzes)
-- [Tally](https://tally.so/)
-- [Jotform](https://www.jotform.com/)
-- [Typeform](https://www.typeform.com/)
+- [Google Forms](https://workspace.google.com/products/forms/) (checked November 25, 2026)
+- [Microsoft Forms setup](https://learn.microsoft.com/en-us/microsoft-forms/set-up-microsoft-forms) (checked November 25, 2026)
+- [Microsoft Forms limits](https://support.microsoft.com/en-us/forms/form-question-response-and-character-limits-in-microsoft-forms) (checked November 25, 2026)
+- [Tally pricing](https://tally.so/pricing) (checked November 25, 2026)
+- [Jotform pricing](https://www.jotform.com/pricing/) (checked November 25, 2026)
+- [Typeform pricing](https://www.typeform.com/pricing/) (checked November 25, 2026)

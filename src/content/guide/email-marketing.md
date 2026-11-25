@@ -18,10 +18,12 @@ Email marketing software stores a list of people who agreed to hear from you and
 
 ## Popular choices
 
-- **Mailchimp**: Email marketing with templates and sign-up forms.
-- **Brevo**: Email marketing with text messages and WhatsApp messages in the same app.
-- **MailerLite**: A simple editor and sign-up forms for small lists.
-- **Kit**: Email for creators and anyone who sells courses or digital products.
+- **Mailchimp**: Email marketing with templates and sign-up forms. The free plan covers up to 250 contacts and 500 emails a month. Paid plans start with Essentials.
+- **Brevo**: Email marketing with text messages and WhatsApp messages in the same app. The free plan sends up to 300 emails a day. The Starter plan costs $9 a month or $97 a year.
+- **MailerLite**: A simple editor and sign-up forms for small lists. The free plan covers up to 250 subscribers and 2,500 emails a month. The Comfort plan starts at $12 a month.
+- **Kit**: Email for creators and anyone who sells courses or digital products. The free plan covers up to 10,000 subscribers. The Creator plan costs $39 a month for 1,000 subscribers.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -36,7 +38,8 @@ I can set up an email service, add a sign-up form to your website, and move your
 
 ## Sources
 
-- [Mailchimp](https://mailchimp.com/)
-- [Brevo](https://www.brevo.com/)
-- [MailerLite](https://www.mailerlite.com/)
-- [Kit](https://kit.com/)
+- [Mailchimp pricing plans](https://mailchimp.com/help/about-mailchimp-pricing-plans/) (checked November 25, 2026)
+- [Brevo pricing](https://www.brevo.com/pricing/) (checked November 25, 2026)
+- [Brevo free plan limits](https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan) (checked November 25, 2026)
+- [MailerLite pricing](https://www.mailerlite.com/pricing) (checked November 25, 2026)
+- [Kit pricing](https://kit.com/pricing) (checked November 25, 2026)

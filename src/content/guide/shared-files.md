@@ -19,9 +19,11 @@ Shared file storage keeps your files on a company's servers instead of only on o
 
 ## Popular choices
 
-- **Google Drive**: File storage with Docs and Sheets, part of Google Workspace.
-- **Microsoft OneDrive and SharePoint**: File storage with Word and Excel, part of Microsoft 365.
-- **Dropbox**: File storage that works with both Google and Microsoft apps.
+- **Google Drive**: File storage with Docs and Sheets, part of Google Workspace. Business Starter includes 30 GB of storage per user and costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
+- **Microsoft OneDrive and SharePoint**: File storage with Word and Excel, part of Microsoft 365. Business Basic includes 1 TB of storage per user and costs $7 per user a month paid yearly, or $8.40 with a monthly subscription.
+- **Dropbox**: File storage that works with both Google and Microsoft apps. The free Basic plan includes 2 GB. Business plans start with Standard, and Dropbox's pages show more than one price for it, so check the price for your team size and country.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -35,6 +37,10 @@ I can set up shared folders for your team, move your files into them, and set wh
 
 ## Sources
 
-- [Google Drive](https://workspace.google.com/products/drive/)
-- [Microsoft OneDrive](https://www.microsoft.com/microsoft-365/onedrive/online-cloud-storage)
-- [Dropbox](https://www.dropbox.com/)
+- [Google Workspace pricing](https://workspace.google.com/pricing) (checked November 25, 2026)
+- [Google Workspace business editions](https://knowledge.workspace.google.com/admin/getting-started/editions/business-editions) (checked November 25, 2026)
+- [Microsoft 365 Business Basic](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic) (checked November 25, 2026)
+- [OneDrive service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/onedrive-for-business-service-description) (checked November 25, 2026)
+- [Dropbox plans](https://www.dropbox.com/plans) (checked November 25, 2026)
+- [Dropbox plan comparison](https://www.dropbox.com/business/plans-comparison) (checked November 25, 2026)
+- [Dropbox Standard plan](https://help.dropbox.com/plans/standard-plan) (checked November 25, 2026)

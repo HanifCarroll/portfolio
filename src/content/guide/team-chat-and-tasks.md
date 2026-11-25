@@ -19,11 +19,13 @@ A team chat app is like WhatsApp for work, with separate channels for topics suc
 
 ## Popular choices
 
-- **Slack**: Team chat with channels and connections to many other apps.
-- **Microsoft Teams**: Team chat and video calls, part of Microsoft 365.
-- **Google Chat**: Team chat, part of Google Workspace.
-- **Trello**: Tasks shown as cards on a board, with one column for each stage.
-- **Asana**: Task lists and projects for teams.
+- **Slack**: Team chat with channels and connections to many other apps. On the free plan, you can see messages and files from the last 90 days. The Pro plan costs $7.25 per user a month when you pay yearly.
+- **Microsoft Teams**: Team chat and video calls, part of Microsoft 365. On the free version, group meetings can last up to 60 minutes with up to 100 people. Teams Essentials costs $4 per user a month paid yearly.
+- **Google Chat**: Team chat, included in Google Workspace at no extra cost. Business Starter costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
+- **Trello**: Tasks shown as cards on a board, with one column for each stage. The free plan allows up to 10 collaborators per workspace. The Standard plan costs $5 per user a month billed yearly, or $6 billed monthly.
+- **Asana**: Task lists and projects for teams. The free Personal plan allows up to 2 users. The Starter plan costs $10.99 per user a month billed yearly, or $13.49 billed monthly.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -37,8 +39,11 @@ I can set up a chat or task board for your team and send orders, bookings, or fo
 
 ## Sources
 
-- [Slack](https://slack.com/)
-- [Microsoft Teams](https://www.microsoft.com/microsoft-teams/)
-- [Google Chat](https://workspace.google.com/products/chat/)
-- [Trello](https://trello.com/)
-- [Asana](https://asana.com/)
+- [Slack pricing](https://slack.com/pricing) (checked November 25, 2026)
+- [Slack free workspace limits](https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces) (checked November 25, 2026)
+- [Microsoft Teams free](https://www.microsoft.com/en-us/microsoft-teams/free) (checked November 25, 2026)
+- [Microsoft Teams Essentials](https://www.microsoft.com/en-us/microsoft-teams/essentials) (checked November 25, 2026)
+- [Google Chat](https://workspace.google.com/products/chat/) (checked November 25, 2026)
+- [Google Workspace business editions](https://knowledge.workspace.google.com/admin/getting-started/editions/business-editions) (checked November 25, 2026)
+- [Trello pricing](https://trello.com/pricing) (checked November 25, 2026)
+- [Asana pricing](https://asana.com/pricing) (checked November 25, 2026)

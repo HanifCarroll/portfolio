@@ -18,11 +18,13 @@ A domain is your web address, such as yourbusiness.com. You rent it by the year 
 
 ## Popular choices
 
-- **Cloudflare Registrar**: A registrar for many common endings, such as .com.
-- **Namecheap**: A registrar with a long list of domain endings.
-- **NIC Argentina**: The official registry for domains that end in .ar, such as .com.ar.
-- **Google Workspace**: Business email in Gmail, plus Calendar and Drive, on your own domain.
-- **Microsoft 365**: Business email in Outlook, plus Word, Excel, and OneDrive, on your own domain.
+- **Cloudflare Registrar**: A registrar for many common endings, such as .com. Cloudflare charges what the registry charges, with no markup. A .com costs $11.17 a year to register or renew.
+- **Namecheap**: A registrar with a long list of domain endings. A .com renews at $19.98 a year.
+- **NIC Argentina**: The official registry for domains that end in .ar, such as .com.ar. You register a domain for one year and renew it each year, and NIC Argentina lists the price on its site.
+- **Google Workspace**: Business email in Gmail, plus Calendar and Drive, on your own domain. Business Starter costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
+- **Microsoft 365**: Business email in Outlook, plus Word, Excel, and OneDrive, on your own domain. Business Basic costs $7 per user a month paid yearly, or $8.40 with a monthly subscription.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -37,8 +39,9 @@ I can register or move your domain, set up business email on it, and connect it 
 
 ## Sources
 
-- [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)
-- [Namecheap](https://www.namecheap.com/)
-- [NIC Argentina](https://nic.ar/)
-- [Google Workspace](https://workspace.google.com/)
-- [Microsoft 365 for business](https://www.microsoft.com/microsoft-365/business)
+- [Cloudflare domains](https://www.cloudflare.com/domains/) (checked November 25, 2026)
+- [Cloudflare Registrar prices](https://pricing.registrar.cloudflare.com/) (checked November 25, 2026)
+- [Namecheap .com pricing](https://www.namecheap.com/domains/registration/gtld/com/) (checked November 25, 2026)
+- [NIC Argentina fees](https://nic.ar/es/dominios/aranceles) (checked November 25, 2026)
+- [Google Workspace business editions](https://knowledge.workspace.google.com/admin/getting-started/editions/business-editions) (checked November 25, 2026)
+- [Microsoft 365 Business Basic](https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic) (checked November 25, 2026)

@@ -19,10 +19,12 @@ A staff scheduling app is where you build the weekly staff schedule. Each person
 
 ## Popular choices
 
-- **Homebase**: Scheduling and time clocks for shops and restaurants.
-- **When I Work**: Scheduling, shift swaps, and time clocks.
-- **Deputy**: Scheduling and time tracking for teams in several locations.
-- **7shifts**: Scheduling made for restaurants.
+- **Homebase**: Scheduling and time clocks for shops and restaurants. The free Basic plan covers 1 location and up to 10 employees. The Essentials plan costs $30 a month per location billed monthly, with unlimited employees.
+- **When I Work**: Scheduling, shift swaps, and time clocks. The pricing page lists a free trial and no free plan. Plans start at $2.50 per user a month for one location, and $5 per user a month for several locations.
+- **Deputy**: Scheduling and time tracking for teams in several locations. The pricing page lists a free trial and no free plan. The Lite plan costs $5 per user a month, with a minimum of $30 a month on monthly plans.
+- **7shifts**: Scheduling made for restaurants. The free Comp plan covers 1 location and up to 15 employees. Paid plans are priced per location each month.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -36,7 +38,7 @@ I can set up a scheduling app for your team and connect hours to your payroll or
 
 ## Sources
 
-- [Homebase](https://joinhomebase.com/)
-- [When I Work](https://wheniwork.com/)
-- [Deputy](https://www.deputy.com/)
-- [7shifts](https://www.7shifts.com/)
+- [Homebase pricing](https://www.joinhomebase.com/pricing) (checked November 25, 2026)
+- [When I Work pricing](https://wheniwork.com/pricing) (checked November 25, 2026)
+- [Deputy pricing](https://www.deputy.com/pricing) (checked November 25, 2026)
+- [7shifts pricing](https://www.7shifts.com/pricing) (checked November 25, 2026)

@@ -20,10 +20,12 @@ If you sell a few items and most customers already message you, a catalog in Wha
 
 ## Popular choices
 
-- **Shopify**: A store builder for shops of any size.
-- **Tiendanube**: A store builder based in Latin America.
-- **WooCommerce**: A store you add to a WordPress website.
-- **Square Online**: An online store connected to Square's card readers and POS app.
+- **Shopify**: A store builder for shops of any size. The Basic plan costs $29 a month billed yearly, or $39 billed monthly.
+- **Tiendanube**: A store builder based in Latin America. The free Inicial plan has no limit on products or sales and no transaction fee when customers pay with Pago Nube. Pago Nube itself charges from 2.99% + IVA when it releases your money. Paid plans start with Esencial, with a 7-day free trial.
+- **WooCommerce**: A store you add to a WordPress website. The plugin is free, and you pay separately for hosting.
+- **Square Online**: An online store connected to Square's card readers and POS app. Square has renamed it to websites. In the U.S., the Square Free plan costs $0 a month per location, with a fee of 3.3% + 30¢ per online sale. Square Plus costs $49 a month per location, with a fee of 2.9% + 30¢.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -38,7 +40,8 @@ I can build an online store, add your products, and connect it to your payments,
 
 ## Sources
 
-- [Shopify](https://www.shopify.com/)
-- [Tiendanube](https://www.tiendanube.com/)
-- [WooCommerce](https://woocommerce.com/)
-- [Square Online](https://squareup.com/us/en/online-store)
+- [Shopify pricing](https://www.shopify.com/pricing) (checked November 25, 2026)
+- [Tiendanube plans and prices](https://www.tiendanube.com/planes-y-precios) (checked November 25, 2026)
+- [WooCommerce on WordPress.org](https://wordpress.org/plugins/woocommerce/) (checked November 25, 2026)
+- [WooCommerce hosting](https://woocommerce.com/posts/woocommerce-hosting/) (checked November 25, 2026)
+- [Square Online](https://squareup.com/us/en/online-store) (checked November 25, 2026)

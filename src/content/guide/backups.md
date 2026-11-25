@@ -20,8 +20,10 @@ A backup is a separate copy of your files and records that you can restore if th
 ## Popular choices
 
 - **Built-in backups**: Time Machine on a Mac and File History on Windows copy your files to an external drive.
-- **Online backup services**: Backblaze and similar services copy a computer's files to their servers.
+- **Online backup services**: Backblaze and similar services copy a computer's files to their servers. Backblaze Personal Backup has no free plan, only a 15-day trial. It costs $9 a month or $99 a year for unlimited computer backup.
 - **Exports from your apps**: Download your customer list, sales, and invoices from each app on a schedule and save them in a folder you control.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -38,4 +40,5 @@ I can set up backups for your computers and regular exports from your apps, and 
 - [CISA: Data backup options](https://www.cisa.gov/resources-tools/resources/data-backup-options)
 - [Apple: Back up your Mac with Time Machine](https://support.apple.com/en-us/104984)
 - [Microsoft: Backup and restore in Windows](https://support.microsoft.com/windows/backup-and-restore-in-windows-352091d2-bb9d-3ea3-ed18-52ef2b88cbef)
-- [Backblaze](https://www.backblaze.com/)
+- [Backblaze Personal Backup](https://www.backblaze.com/cloud-backup/personal) (checked November 25, 2026)
+- [Backblaze pricing](https://www.backblaze.com/cloud-backup/pricing) (checked November 25, 2026)
