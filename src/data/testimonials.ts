@@ -30,7 +30,7 @@ export const jiecTestimonial = {
   es: {
     role: "JIEC Labs",
     quote:
-      "Me gustó mucho cómo se organizó el trabajo y siento que obtuve mucho a cambio de lo que invertí en el proyecto.",
+      "Me gustó mucho cómo se organizó el trabajo y siento que el proyecto valió mucho la pena.",
   },
 };
 
