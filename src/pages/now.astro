@@ -1,23 +1,5 @@
 ---
-import EssayPage from '../layouts/EssayPage.astro';
-const nowEntry = Object.values(import.meta.glob('../content/now.md', { eager: true }))[0] as {
-	frontmatter?: { title?: string; description?: string; lastUpdated?: string };
-	default: any;
-};
-const frontmatter = nowEntry.frontmatter ?? {};
-const Content = nowEntry.default;
-const title = frontmatter.title ?? "What I'm up to now";
-const description = frontmatter.description ?? "What I'd tell a friend about what I'm focused on right now.";
-const lastUpdated = frontmatter.lastUpdated ?? '';
+import BuyerEssayPage from "../views/BuyerEssayPage.astro";
 ---
 
-<EssayPage
-	title={title}
-	pageTitle='Now · Hanif Carroll'
-	description={description}
-	meta={lastUpdated ? `Last updated: ${lastUpdated}` : undefined}
-	robots='noindex, follow'
-	bodyClass='hc-now'
->
-	<Content />
-</EssayPage>
+<BuyerEssayPage kind="now" />

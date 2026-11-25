@@ -2,18 +2,20 @@
 import { Image } from 'astro:assets';
 import { getProjectImage } from '../../lib/project-images';
 import { projects } from '../../lib/projects';
+import { getLocale, localizedPath } from '../../i18n';
 
 interface Props {
 	items: { slug: keyof typeof projects; name: string; alt: string; body: string; tags?: string[] }[];
 }
 
 const { items } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 ---
 
 <ul class='home-projects' role='list'>
 	{items.map(({ slug, name, alt, body, tags }) => (
 		<li>
-			<a href={`/projects/${slug}/`}>
+			<a href={localizedPath(`/projects/${slug}/`, locale)}>
 				<Image
 					data-visual
 					src={getProjectImage(projects[slug], 'feature')}

@@ -1,16 +1,16 @@
 import gsap from "gsap";
+import { getDictionary } from "../i18n";
 
 let cleanupHeader: (() => void) | undefined;
 
 function mountHeader() {
   cleanupHeader?.();
 
+  const { nav } = getDictionary(document.documentElement.lang);
   const siteHeader = document.querySelector<HTMLElement>("#siteHeader");
   const toggle = siteHeader?.querySelector<HTMLButtonElement>(".hc-mobile-nav__toggle");
   const panel = siteHeader?.querySelector<HTMLElement>(".hc-mobile-nav__panel");
-  const links = panel?.querySelectorAll<HTMLElement>(
-    ".hc-mobile-nav__link, .hc-mobile-nav__call-link",
-  );
+  const links = panel?.querySelectorAll<HTMLElement>(".hc-mobile-nav__links a");
   const notesMenu = siteHeader?.querySelector<HTMLDetailsElement>("[data-notes-mobile-menu]");
   const notesSummary = notesMenu?.querySelector<HTMLElement>(":scope > summary");
   const notesPanel = notesMenu?.querySelector<HTMLElement>(":scope > .hc-notes-mobile-menu__panel");
@@ -63,7 +63,7 @@ function mountHeader() {
   const closeNotesMenu = (restoreFocus = false, afterClose?: () => void, immediate = false) => {
     if (!notesMenu?.open) {
       document.documentElement.classList.remove("hc-notes-menu-open");
-      notesSummary?.setAttribute("aria-label", "Open table of contents");
+      notesSummary?.setAttribute("aria-label", nav.contentsOpen);
       resetNotesPanel();
       afterClose?.();
       return;
@@ -73,7 +73,7 @@ function mountHeader() {
       notesClosePending = false;
       notesMenu.open = false;
       document.documentElement.classList.remove("hc-notes-menu-open");
-      notesSummary?.setAttribute("aria-label", "Open table of contents");
+      notesSummary?.setAttribute("aria-label", nav.contentsOpen);
       resetNotesPanel();
       if (restoreFocus) notesSummary?.focus({ preventScroll: true });
       afterClose?.();
@@ -142,7 +142,7 @@ function mountHeader() {
     if (open) setHeaderVisible(true);
     if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    toggle.setAttribute("aria-label", open ? nav.closeNav : nav.open);
     panel.setAttribute("aria-hidden", String(!open));
     toggle.classList.toggle("is-open", open);
     siteHeader.classList.toggle("is-menu-open", open);
@@ -178,7 +178,7 @@ function mountHeader() {
       if (!notesMenu.open && notesClosePending) return;
       notesSummary?.setAttribute(
         "aria-label",
-        notesMenu.open ? "Close table of contents" : "Open table of contents",
+        notesMenu.open ? nav.contentsClose : nav.contentsOpen,
       );
       if (notesMenu.open) {
         if (isOpen) setOpenState(false, false, openNotesMenu);

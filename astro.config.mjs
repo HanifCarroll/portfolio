@@ -1,3 +1,4 @@
+import { copyFile } from "node:fs/promises";
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
@@ -37,12 +38,26 @@ function preserveHeadingIds() {
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.hanifcarroll.com",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     react(),
     mdx(),
     sitemap({
+      i18n: { defaultLocale: "en", locales: { en: "en", es: "es" } },
       filter: (page) => !excludedSitemapPaths.some((path) => page.endsWith(path)),
     }),
+    {
+      name: "spanish-pages-404",
+      hooks: {
+        // Cloudflare Pages serves the nearest 404.html with status 404 for an unknown URL.
+        "astro:build:done": ({ dir }) =>
+          copyFile(new URL("es/404/index.html", dir), new URL("es/404.html", dir)),
+      },
+    },
   ],
   vite: {
     plugins: [tailwindcss()],

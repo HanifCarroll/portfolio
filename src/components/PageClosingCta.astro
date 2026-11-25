@@ -1,11 +1,14 @@
 ---
 import { BOOK_CALL_URL } from '../consts';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
 import { closingActionsClass, closingBodyClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, closingUnderlineClass, shellClass } from '../lib/ui';
 
+const locale = getLocale(Astro.currentLocale);
+const { closing, action } = getDictionary(locale);
 const {
-	title = 'Need a website, tool, or automation for your business?',
-	body = 'Tell me about a problem in your business, or book a call. I’ll look at it for free and tell you how I’d fix it and what it would cost.',
-	primaryLabel = 'Email me about a problem',
+	title = closing.title,
+	body = closing.body,
+	primaryLabel = action.emailProblem,
 	location = 'footer_cta'
 } = Astro.props;
 ---
@@ -15,9 +18,9 @@ const {
 		<h2 id='closing-cta-title' class={closingTitleClass}>{title}</h2>
 		<p class={closingBodyClass}>{body}</p>
 		<div class={closingActionsClass}>
-			<a class={closingButtonClass} href='/contact/' data-track-event='email_clicked' data-track-location={location}>{primaryLabel}</a>
-			<a class={closingLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>Book a call</a>
+			<a class={closingButtonClass} href={localizedPath('/contact/', locale)} data-track-event='email_clicked' data-track-location={location}>{primaryLabel}</a>
+			<a class={closingLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>{action.bookCall}</a>
 		</div>
-		<p class='mx-auto mt-8 mb-0 text-base leading-relaxed text-white/80'>Work at an agency? <a class:list={['text-white', closingUnderlineClass]} href='/agencies/'>I also build under your name.</a></p>
+		<p class='mx-auto mt-8 mb-0 text-base leading-relaxed text-white/80'>{closing.agencyPrompt}{' '}<a class:list={['text-white', closingUnderlineClass]} href={localizedPath('/agencies/', locale)}>{closing.agencyLink}</a></p>
 	</div>
 </section>

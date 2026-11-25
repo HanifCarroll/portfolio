@@ -1,10 +1,11 @@
 // Cloudflare Pages Function for the /contact/ form. It hands one plain-text email to the
 // portfolio-contact-mailer Worker through the `MAILER` service binding.
 // The page's script posts with `Accept: application/json` and gets JSON back. Without JavaScript the
-// browser posts the form itself, and gets a 303 to /contact/sent/ or a page that shows the form again,
-// filled with what the visitor typed.
+// browser posts the form itself and gets a 303 to the localized thanks page or a page that shows
+// the form again, filled with what the visitor typed.
+import { getDictionary, getLocale, localizedPath, type Locale } from "../../src/i18n";
 import {
-  CONTACT_COPY,
+  SENT_PATH,
   sendContactEmail,
   validateContact,
   type ContactEnv,
@@ -23,8 +24,6 @@ interface PagesContext {
   env: ContactEnv;
 }
 
-const SENT_PATH = "/contact/sent/";
-
 const wantsJson = (request: Request) =>
   (request.headers.get("Accept") ?? "").includes("application/json");
 
@@ -41,25 +40,33 @@ const fallbackPage = (page: FallbackPage) =>
     headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
   });
 
-const invalid = (request: Request, errors: ContactErrors, values: ContactFormValues) =>
+const invalid = (
+  request: Request,
+  locale: Locale,
+  errors: ContactErrors,
+  values: ContactFormValues,
+) =>
   wantsJson(request)
     ? json({ ok: false, errors }, 400)
-    : fallbackPage({ status: 400, values, errors });
+    : fallbackPage({ status: 400, values, errors, locale });
 
-const failed = (request: Request, values: ContactFormValues) =>
+const failed = (request: Request, locale: Locale, values: ContactFormValues) =>
   wantsJson(request)
-    ? json({ ok: false, error: CONTACT_COPY.failure }, 502)
-    : fallbackPage({ status: 502, values });
+    ? json({ ok: false, error: getDictionary(locale).contact.failure }, 502)
+    : fallbackPage({ status: 502, values, locale });
 
-const sent = (request: Request) =>
+const sent = (request: Request, locale: Locale) =>
   wantsJson(request)
     ? json({ ok: true }, 200)
     : new Response(null, {
         status: 303,
-        headers: { Location: new URL(SENT_PATH, request.url).toString() },
+        headers: { Location: new URL(localizedPath(SENT_PATH, locale), request.url).toString() },
       });
 
 export const onRequestPost = async ({ request, env }: PagesContext) => {
+  // The form sets the locale in its action, so even an unreadable body gets the right language.
+  const locale = getLocale(new URL(request.url).searchParams.get("locale"));
+  const { contact } = getDictionary(locale);
   let fields: FormData;
   try {
     fields = await request.formData();
@@ -67,27 +74,28 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
     // Nothing to refill: an empty form with the errors.
     return invalid(
       request,
+      locale,
       {
-        name: CONTACT_COPY.errors.name,
-        email: CONTACT_COPY.errors.email,
-        message: CONTACT_COPY.errors.message,
+        name: contact.errors.name,
+        email: contact.errors.email,
+        message: contact.errors.message,
       },
       EMPTY_CONTACT_VALUES,
     );
   }
 
-  const result = validateContact(fields);
-  if (!result.ok) return invalid(request, result.errors, submittedValues(fields));
+  const result = validateContact(fields, locale);
+  if (!result.ok) return invalid(request, locale, result.errors, submittedValues(fields));
   // A filled honeypot looks like a normal success and sends nothing.
-  if (result.spam) return sent(request);
+  if (result.spam) return sent(request, locale);
 
-  const delivery = await sendContactEmail(result.value, env);
+  const delivery = await sendContactEmail(result.value, env, locale);
   if (!delivery.ok) {
     // Status only: never the key or the visitor's message.
     const detail = delivery.code ? `${delivery.status} ${delivery.code}` : `${delivery.status}`;
     console.error(`contact form: delivery failed (${detail})`);
-    return failed(request, submittedValues(fields));
+    return failed(request, locale, submittedValues(fields));
   }
 
-  return sent(request);
+  return sent(request, locale);
 };

@@ -1,0 +1,92 @@
+import { EMAIL, SITE_TAGLINE } from "../consts.ts";
+import { CONTACT_LIMITS } from "../lib/contact-fields.ts";
+
+export const en = {
+  locale: { format: "en-US", openGraph: "en_US", label: "English" },
+  nav: {
+    home: "Home",
+    projects: "Projects",
+    work: "How I work",
+    blog: "Blog",
+    guide: "Tools guide",
+    notes: "Notes",
+    agencies: "Agencies",
+    atlas: "Build Atlas",
+    email: "Email",
+    homeLabel: "Hanif Carroll home",
+    primary: "Primary navigation",
+    mobile: "Mobile navigation",
+    open: "Open navigation",
+    closeNav: "Close navigation",
+    job: SITE_TAGLINE,
+    footer: "Footer",
+    footerNav: "Footer navigation",
+    skip: "Skip to content",
+    contents: "Contents",
+    contentsOpen: "Open table of contents",
+    contentsClose: "Close table of contents",
+    contentsMobile: "Mobile table of contents",
+    close: "Close",
+    chapters: "Chapters",
+  },
+  seo: {
+    defaultImageAlt: "Portrait of Hanif Carroll beside the words Freelance Software Engineer.",
+    previewImage: "preview image",
+  },
+  action: {
+    bookCall: "Book a call",
+    bookCallInline: "book a call",
+    emailMe: "Email me",
+    emailProblem: "Email me about a problem",
+    seeProjects: "See projects",
+  },
+  closing: {
+    title: "Need a website, tool, or automation for your business?",
+    body: "Tell me about a problem in your business, or book a call. I’ll look at it for free and tell you how I’d fix it and what it would cost.",
+    agencyPrompt: "Work at an agency?",
+    agencyLink: "I also build under your name.",
+  },
+  service: {
+    general:
+      "I learn how a business works, figure out where technology could help, and build or set up what fits. I’m taking on new projects now.",
+    systemsTitle: "Have a project that needs an engineer?",
+    systemsBody:
+      "I work with small businesses from the first conversation through launch and handoff. I’m taking on new projects now.",
+    caseTitle: "Need something like this for your business?",
+  },
+  price: "Projects start at $500, and I quote a fixed price before I start.",
+  date: { lastUpdated: "Last updated" },
+  contact: {
+    title: "Tell me about a problem in your business | Hanif Carroll",
+    description:
+      "Describe a problem in your business. I'll look at it for free and reply with how I'd fix it and what it would cost.",
+    heading: "Tell me about a problem",
+    intro:
+      "Describe what’s going on in your business in a few sentences. I’ll look at it for free and reply by email with how I’d fix it and what it would cost.",
+    fields: {
+      name: "Your name",
+      email: "Your email",
+      business: "Business name or website (optional)",
+      message: "What’s the problem?",
+    },
+    honeypot: "Leave this field empty",
+    submit: "Send message",
+    sending: "Sending…",
+    directEmail: "You can also email me at",
+    or: "or",
+    errors: {
+      name: "Please enter your name.",
+      email: "Please enter a valid email address.",
+      message: "Please describe the problem.",
+      nameTooLong: `Please keep your name under ${CONTACT_LIMITS.name} characters.`,
+      businessTooLong: `Please keep the business name or website under ${CONTACT_LIMITS.business} characters.`,
+      messageTooLong: `Please keep the message under ${CONTACT_LIMITS.message.toLocaleString("en-US")} characters.`,
+    },
+    successHeading: "Message sent",
+    successBody: "Thanks. I got your message, and I’ll reply by email.",
+    failure: `Your message didn’t send. Please try again, or email me at ${EMAIL}.`,
+    invalidHeading: "Please check the form",
+    failedHeading: "Your message didn’t send",
+    home: "Back to the homepage",
+  },
+};

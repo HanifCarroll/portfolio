@@ -1,6 +1,9 @@
 import { describe, expect, mock, spyOn, test } from "bun:test";
-import { CONTACT_COPY, HONEYPOT_FIELD } from "./contact";
 import { onRequestPost } from "../../functions/api/contact";
+import { getDictionary } from "../i18n";
+import { HONEYPOT_FIELD } from "./contact-fields";
+
+const { contact: CONTACT_COPY } = getDictionary("en");
 
 const valid = {
   name: "Ana",
@@ -9,10 +12,10 @@ const valid = {
   message: "Our quotes take a day.",
 };
 
-const post = (fields: Record<string, string>, json = true) => {
+const post = (fields: Record<string, string>, json = true, query = "") => {
   const body = new FormData();
   for (const [name, value] of Object.entries(fields)) body.set(name, value);
-  return new Request("https://www.hanifcarroll.com/api/contact", {
+  return new Request(`https://www.hanifcarroll.com/api/contact${query}`, {
     method: "POST",
     body,
     headers: json ? { Accept: "application/json" } : {},
@@ -39,6 +42,52 @@ describe("POST /api/contact", () => {
   test("redirects a form post without JavaScript to the sent page", async () => {
     const response = await onRequestPost({ request: post(valid, false), env: stubMailer(200).env });
     expect(response.status).toBe(303);
+    expect(response.headers.get("Location")).toBe("https://www.hanifcarroll.com/contact/sent/");
+  });
+
+  test("a Spanish HTML submission goes to the Spanish thanks page and labels the email", async () => {
+    const mailer = stubMailer(200);
+    const response = await onRequestPost({
+      request: post(valid, false, "?locale=es"),
+      env: mailer.env,
+    });
+    expect(response.status).toBe(303);
+    expect(response.headers.get("Location")).toBe("https://www.hanifcarroll.com/es/contact/sent/");
+    expect(mailer.fetch.mock.calls[0]?.[1]?.body).toContain("Contact form: Spanish (/es/contact/)");
+  });
+
+  test("Spanish validation errors work in JSON and in a refillable HTML form", async () => {
+    const fields = { ...valid, email: "" };
+    const mailer = stubMailer(200);
+    const json = await onRequestPost({
+      request: post(fields, true, "?locale=es"),
+      env: mailer.env,
+    });
+    expect(json.status).toBe(400);
+    expect(await json.json()).toEqual({
+      ok: false,
+      errors: { email: "Ingresá un correo electrónico válido." },
+    });
+
+    const html = await onRequestPost({
+      request: post(fields, false, "?locale=es"),
+      env: mailer.env,
+    });
+    expect(html.status).toBe(400);
+    const body = await html.text();
+    expect(body).toContain('<html lang="es">');
+    expect(body).toContain('action="/api/contact?locale=es" novalidate');
+    expect(body).toContain("Ingresá un correo electrónico válido.");
+    expect(body).toContain(valid.message);
+    expect(body).not.toContain("Your email");
+    expect(mailer.fetch).not.toHaveBeenCalled();
+  });
+
+  test("unknown locale values do not affect the redirect", async () => {
+    const response = await onRequestPost({
+      request: post(valid, false, "?locale=fr"),
+      env: stubMailer(200).env,
+    });
     expect(response.headers.get("Location")).toBe("https://www.hanifcarroll.com/contact/sent/");
   });
 

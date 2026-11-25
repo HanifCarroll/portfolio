@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
+import { deckClass, pageTitleClass, shellClass, textLinkClass } from '../lib/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const { contact } = getDictionary(locale);
+---
+
+<BaseLayout title={`${contact.successHeading} | Hanif Carroll`} description={contact.successBody} robots='noindex, follow' showFooterCta={false}>
+	<section class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']} aria-labelledby='sent-title' data-motion-intro>
+		<h1 id='sent-title' class={pageTitleClass} data-motion='headline'>{contact.successHeading}</h1>
+		<p class:list={[deckClass, 'mt-6']} data-motion-deck>{contact.successBody}</p>
+		<p class='mt-8 mb-0'><a class={textLinkClass} href={localizedPath('/', locale)}>{contact.home}</a></p>
+	</section>
+</BaseLayout>

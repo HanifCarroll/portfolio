@@ -1,8 +1,6 @@
 import { describe, expect, mock, test } from "bun:test";
+import { getDictionary } from "../i18n";
 import {
-  CONTACT_COPY,
-  CONTACT_LIMITS,
-  HONEYPOT_FIELD,
   MAILER_SEND_URL,
   buildContactEmail,
   sendContactEmail,
@@ -10,6 +8,9 @@ import {
   validateContact,
   type ContactMessage,
 } from "./contact";
+import { CONTACT_LIMITS, HONEYPOT_FIELD } from "./contact-fields";
+
+const { contact: CONTACT_COPY } = getDictionary("en");
 
 const form = (fields: Record<string, string>) => {
   const data = new FormData();

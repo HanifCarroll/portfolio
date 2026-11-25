@@ -1,8 +1,12 @@
 import { describe, expect, mock, spyOn, test } from "bun:test";
 import { parse } from "parse5";
 import { onRequestPost } from "../../functions/api/contact";
-import { CONTACT_COPY, CONTACT_EMAIL, HONEYPOT_FIELD } from "./contact";
+import { EMAIL } from "../consts";
+import { getDictionary } from "../i18n";
 import { EMPTY_CONTACT_VALUES, renderContactFallback, submittedValues } from "./contact-fallback";
+import { HONEYPOT_FIELD } from "./contact-fields";
+
+const { contact: CONTACT_COPY } = getDictionary("en");
 
 // Reads the rendered page back with a real HTML parser, so the tests see what a browser sees.
 type Node = {
@@ -63,7 +67,7 @@ const post = (fields: Record<string, string>) => {
 
 describe("renderContactFallback", () => {
   test("refills every field exactly, escaping quotes, angle brackets, ampersands, and </textarea>", () => {
-    const html = renderContactFallback({ status: 502, values });
+    const html = renderContactFallback({ status: 502, values, locale: "en" });
 
     expect(valueOf(html, "name")).toBe(values.name);
     expect(valueOf(html, "email")).toBe(values.email);
@@ -80,7 +84,7 @@ describe("renderContactFallback", () => {
   });
 
   test("posts the same fields back to the function", () => {
-    const html = renderContactFallback({ status: 400, values: EMPTY_CONTACT_VALUES });
+    const html = renderContactFallback({ status: 400, values: EMPTY_CONTACT_VALUES, locale: "en" });
     const [form] = elements(html, "form");
     expect(attr(form!, "method")).toBe("post");
     expect(attr(form!, "action")).toBe("/api/contact");
@@ -107,6 +111,7 @@ describe("renderContactFallback", () => {
   test("the 400 page puts each error beside its field", () => {
     const html = renderContactFallback({
       status: 400,
+      locale: "en",
       values: { ...EMPTY_CONTACT_VALUES, name: "Ana" },
       errors: { email: CONTACT_COPY.errors.email, message: CONTACT_COPY.errors.message },
     });
@@ -123,12 +128,10 @@ describe("renderContactFallback", () => {
   });
 
   test("the 502 page shows the failure above the form and keeps the email fallback", () => {
-    const html = renderContactFallback({ status: 502, values });
+    const html = renderContactFallback({ status: 502, values, locale: "en" });
     expect(html.indexOf(CONTACT_COPY.failure)).toBeGreaterThan(-1);
     expect(html.indexOf(CONTACT_COPY.failure)).toBeLessThan(html.indexOf("<form"));
-    expect(
-      elements(html, "a").some((node) => attr(node, "href") === `mailto:${CONTACT_EMAIL}`),
-    ).toBe(true);
+    expect(elements(html, "a").some((node) => attr(node, "href") === `mailto:${EMAIL}`)).toBe(true);
     expect(html).toContain('<meta name="robots" content="noindex">');
   });
 });

@@ -2,8 +2,10 @@
 // form and it can't go through (a field error or a failed send). It shows the form again, filled
 // with what they typed, so they can fix it or send it again from here. It is a self-contained HTML
 // page: the static /contact/ page can't be refilled without a script.
-import { CONTACT_COPY, CONTACT_EMAIL, CONTACT_LIMITS, HONEYPOT_FIELD } from "./contact";
-import type { ContactErrors, ContactField } from "./contact";
+import { EMAIL, EMAIL_URL } from "../consts";
+import { getDictionary, type Locale } from "../i18n";
+import { contactAction, type ContactErrors, type ContactField } from "./contact";
+import { CONTACT_FIELDS, CONTACT_LIMITS, HONEYPOT_FIELD } from "./contact-fields";
 
 export type ContactFormValues = Record<ContactField | "source", string>;
 
@@ -14,11 +16,6 @@ export const EMPTY_CONTACT_VALUES: ContactFormValues = {
   message: "",
   source: "",
 };
-
-export const FALLBACK_COPY = {
-  invalidHeading: "Please check the form",
-  failedHeading: "Your message didn’t send",
-} as const;
 
 // Values are echoed back so nothing is lost, but never an unbounded amount of it.
 const ECHO_LIMITS: Record<keyof ContactFormValues, number> = {
@@ -51,24 +48,6 @@ export function submittedValues(fields: { get(name: string): unknown }): Contact
     source: read("source"),
   };
 }
-
-const FIELDS: {
-  name: Exclude<ContactField, "message">;
-  label: string;
-  type: string;
-  autocomplete: string;
-  required: boolean;
-}[] = [
-  { name: "name", label: "Your name", type: "text", autocomplete: "name", required: true },
-  { name: "email", label: "Your email", type: "email", autocomplete: "email", required: true },
-  {
-    name: "business",
-    label: "Business name or website (optional)",
-    type: "text",
-    autocomplete: "organization",
-    required: false,
-  },
-];
 
 const errorLine = (name: ContactField, errors: ContactErrors) =>
   errors[name] ? `<p class="error" id="contact-${name}-error">${escapeHtml(errors[name])}</p>` : "";
@@ -104,26 +83,33 @@ export interface FallbackPage {
   status: 400 | 502;
   values: ContactFormValues;
   errors?: ContactErrors;
+  locale: Locale;
 }
 
 // The newline after <textarea> is dropped by the HTML parser, so a message that starts with a line
 // break keeps it.
 /** The 400 page (errors beside their fields) or the 502 page (the failure above the form). */
-export function renderContactFallback({ status, values, errors = {} }: FallbackPage): string {
-  const heading = status === 400 ? FALLBACK_COPY.invalidHeading : FALLBACK_COPY.failedHeading;
+export function renderContactFallback({
+  status,
+  values,
+  errors = {},
+  locale,
+}: FallbackPage): string {
+  const { contact } = getDictionary(locale);
+  const heading = status === 400 ? contact.invalidHeading : contact.failedHeading;
   const alert =
-    status === 502 ? `<p class="alert" role="alert">${escapeHtml(CONTACT_COPY.failure)}</p>` : "";
+    status === 502 ? `<p class="alert" role="alert">${escapeHtml(contact.failure)}</p>` : "";
 
-  const inputs = FIELDS.map(
-    ({ name, label, type, autocomplete, required }) => `<div>
-<label for="contact-${name}">${escapeHtml(label)}</label>
+  const inputs = CONTACT_FIELDS.map(
+    ({ name, type, autocomplete, required }) => `<div>
+<label for="contact-${name}">${escapeHtml(contact.fields[name])}</label>
 <input id="contact-${name}" name="${name}" type="${type}" autocomplete="${autocomplete}"${required ? " required" : ""} maxlength="${CONTACT_LIMITS[name]}" value="${escapeHtml(values[name])}"${describedBy(name, errors)}>
 ${errorLine(name, errors)}
 </div>`,
   ).join("\n");
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${locale}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,22 +121,22 @@ ${errorLine(name, errors)}
 <main>
 <h1>${escapeHtml(heading)}</h1>
 ${alert}
-<form method="post" action="/api/contact">
+<form method="post" action="${contactAction(locale)}"${locale === "es" ? " novalidate" : ""}>
 ${inputs}
 <div>
-<label for="contact-message">What’s the problem?</label>
+<label for="contact-message">${escapeHtml(contact.fields.message)}</label>
 <textarea id="contact-message" name="message" rows="7" required maxlength="${CONTACT_LIMITS.message}"${describedBy("message", errors)}>
 ${escapeHtml(values.message)}</textarea>
 ${errorLine("message", errors)}
 </div>
 <div class="trap" aria-hidden="true">
-<label for="contact-${HONEYPOT_FIELD}">Leave this field empty</label>
+<label for="contact-${HONEYPOT_FIELD}">${escapeHtml(contact.honeypot)}</label>
 <input id="contact-${HONEYPOT_FIELD}" type="text" name="${HONEYPOT_FIELD}" tabindex="-1" autocomplete="off" value="">
 </div>
 <input type="hidden" name="source" value="${escapeHtml(values.source)}">
-<div><button type="submit">Send message</button></div>
+<div><button type="submit">${escapeHtml(contact.submit)}</button></div>
 </form>
-<p class="more">You can also email me at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>
+<p class="more">${escapeHtml(contact.directEmail)} <a href="${EMAIL_URL}">${EMAIL}</a>.</p>
 </main>
 </body>
 </html>`;
