@@ -1,0 +1,145 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import decisionPacket from "@src/assets/img/projects/product-usage-scoring-routing/decision-packet.png";
+import policy from "@src/assets/img/projects/product-usage-scoring-routing/policy.png";
+import { buttonClass, textLinkClass } from "@src/lib/ui";
+
+export const demoUrl = "https://pusr-web-preview.pusr-web.workers.dev";
+export const repoUrl = "https://github.com/HanifCarroll/product-usage-scoring-routing";
+
+export const shippedRows = [
+  {
+    label: "Cola semanal",
+    title: "Las dos políticas asignan las mismas cuentas de forma distinta",
+    body: "Con 120 cuentas ficticias y la misma capacidad semanal, se obtienen resultados distintos y explicables con la política de reglas y con el puntaje combinado simple.",
+  },
+  {
+    label: "Registro de decisión por cuenta",
+    title: "Podés ver por qué se asignó cada cuenta",
+    body: "Para cada cuenta podés consultar su identidad, la cronología de eventos del producto, los puntajes de adecuación, uso e intención, las condiciones evaluadas, las alternativas descartadas, el responsable, el SLA y el estado en el CRM.",
+  },
+  {
+    label: "Configuración ajustable",
+    title: "La cola se vuelve a calcular al cambiar la intención o la capacidad",
+    body: "Podés cambiar el mínimo de intención para la adquisición o la capacidad semanal de atención humana y ver qué cuentas entran o salen de la cola.",
+  },
+  {
+    label: "Sincronización limitada con HubSpot",
+    title: "Con una acción aprobada se crea una sola tarea de prueba",
+    body: "Al aprobar una acción, el sistema crea una única tarea de seguimiento en una cuenta de prueba dedicada de HubSpot. No contacta a nadie, no envía correos y no expone secretos.",
+  },
+];
+
+<CaseSection title="El problema con la cola semanal de ventas">
+El problema inicial es de ingresos, no de tecnología. Hay datos sobre el uso del producto: inicios de sesión, incidentes, páginas de precios y documentos de seguridad. Aun así, los equipos de ventas y éxito del cliente pueden recibir la cola semanal tarde, con demasiadas señales poco útiles, con más cuentas de las que pueden atender o sin saber por qué están ahí.
+
+Cuando el equipo revisa una cuenta asignada, por lo general no puede responder cuatro preguntas básicas: ¿por qué entró en la cola?, ¿quién tiene que actuar?, ¿en cuánto tiempo? y ¿qué cambió desde la semana pasada? Si hay un solo puntaje y no se puede revisar cómo se calculó, el equipo tiene que confiar en la asignación sin poder verificarla.
+
+En este caso muestro otra forma de asignar cuentas cada semana y explicar cada decisión. Uso datos ficticios para que un posible cliente pueda revisar el método sin confundirlo con resultados de una empresa real.
+
+</CaseSection>
+
+<CaseSection title="Qué se pierde al combinar todo en un solo puntaje">
+  <DecisionBlock title="Separar las señales antes de asignar puntajes">
+    Si una cuenta encaja con el producto, cuánto lo usa y qué intención de compra tiene son tres preguntas distintas. Si se combinan en un número, no se puede ver qué señal determinó la asignación ni qué priorizó el negocio por sobre otras opciones.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar reglas además de puntajes para asignar cuentas">
+    El puntaje se usa para ordenar las cuentas. Las condiciones determinan qué acción corresponde. Las reglas explícitas distinguen entre interés manifestado, asistencia de ventas para adquirir un cliente, monitoreo, autoservicio, revisión manual y expansión. En cada caso se puede ver quién es responsable y qué plazo de atención (SLA) le corresponde.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Las mismas cuentas con dos políticas">
+En la demo se procesan las mismas 120 cuentas ficticias con un puntaje combinado simple y con una política de reglas explicables. Las dos usan la misma capacidad semanal de atención humana. Podés ver la diferencia en la cola.
+
+Con la capacidad predeterminada de 12, las 12 cuentas asignadas por el puntaje simple tienen un resultado positivo ficticio. Por eso el rendimiento es del 100 %. Con una muestra tan chica, las cifras de precisión y rendimiento no alcanzan para evaluar la política. Con la política de reglas, podés ver las acciones para cada situación, las condiciones que impiden asignar una cuenta, quién responde por cada acción, los SLA y las alternativas descartadas, y entender la decisión.
+
+</CaseSection>
+
+<CaseSection title="La política simple de referencia">
+La política `combined_score_naive_v1` es una referencia simple. Combina la adecuación, el uso del producto y la intención de compra en un solo número parecido a un promedio ponderado. Después asigna a una cola general de ventas cualquier cuenta que supere un único umbral. No hay condiciones que bloqueen la asignación, no se distingue entre posibles clientes y clientes actuales y no hay acciones diferenciadas.
+
+</CaseSection>
+
+<CaseSection title="Podés comprobar por qué se asignó cada cuenta" media>
+Con la política de reglas se calculan tres puntajes separados de 0 a 100 por cuenta y se evalúan condiciones visibles antes de asignarla. En el registro de decisión podés ver la identidad, la cronología de eventos del producto, los puntos desglosados de cada puntaje, qué condiciones cumplió y cuáles no, la mejor alternativa descartada, el responsable, el SLA y el estado actual en el CRM.
+
+<ImagePlate image={decisionPacket} alt="Registro de decisión de una cuenta con la cronología de eventos del producto, puntajes de adecuación, uso e intención de compra, condiciones evaluadas, responsable, SLA y alternativa descartada" />
+
+</CaseSection>
+
+<CaseSection title="Dos valores que podés cambiar" media>
+Podés cambiar solo dos valores permitidos: el mínimo de intención para la adquisición y la capacidad semanal de atención humana. Cambiar la capacidad altera el orden de prioridad de la cola, pero no cambia qué cuentas cumplen los requisitos. Las cuentas que cumplen los requisitos y exceden la capacidad figuran como postergadas. En la vista de la política podés ver el efecto del mínimo de intención y la capacidad del equipo.
+
+<ImagePlate image={policy} alt="Vista de la política con las tres dimensiones evaluadas, la fórmula de comparación simple y la tabla que se actualiza al comparar las mismas 120 cuentas ficticias" />
+
+</CaseSection>
+
+<CaseSection title="Una escritura limitada en HubSpot">
+La demo incluye una sola escritura externa con alcance limitado. En el registro de decisión de una cuenta designada aparece la acción «Approve and sync» para crear una única tarea ficticia de seguimiento en una cuenta de prueba dedicada para desarrolladores de HubSpot. El sistema no envía mensajes de contacto ni correos y tampoco modifica datos reales de clientes.
+
+La sincronización es idempotente y se puede rastrear con el identificador de ejecución. Se resuelve la identidad, se registran los puntajes y se elige una acción. El proceso recuperable crea o actualiza una empresa, un contacto y una asociación ficticios, y crea una sola tarea. Con un adaptador local simulado podés usar la demo completa sin credenciales. La versión de producción, con controles adicionales de seguridad, ejecuta el mismo proceso en Cloudflare con el adaptador real de HubSpot.
+
+El 14 de agosto de 2026 se verificó el adaptador real de principio a fin en la cuenta de prueba dedicada para desarrolladores de HubSpot, solo con datos ficticios. Se sincronizaron la cuenta designada como registro de empresa con las propiedades `usage_routing`, el contacto asociado y una sola tarea de seguimiento. Al repetir la ejecución se obtuvieron los mismos identificadores externos sin duplicar registros ni tareas. En esa cuenta de prueba hay una tarjeta de solo lectura en el registro de empresa. Consulta los últimos puntajes, señales y condiciones en un endpoint autenticado de Cloudflare que bloquea el acceso si la firma no es válida.
+
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Separar el cálculo de puntajes de Cloudflare y HubSpot">
+    Las funciones de cálculo y asignación son puras, se comprueban con pruebas tabulares y no importan código de Cloudflare ni de HubSpot. Todos los datos en los límites del sistema se validan en tiempo de ejecución. Las fechas y horas se guardan en UTC con formato ISO 8601 y se muestran según la configuración regional de quien consulta.
+  </DecisionBlock>
+
+  <DecisionBlock title="Ejecutar la sincronización con reintentos">
+    La aprobación y la sincronización se ejecutan con Cloudflare Workflows sobre datos de estado en D1. Se conservan los registros de las ejecuciones y las señales. El proceso es idempotente y admite reintentos. Después de recargar la página, se puede recuperar una ejecución completada con su identificador opaco.
+  </DecisionBlock>
+
+  <DecisionBlock title="Guardar el registro de CRM en HubSpot">
+    La decisión y la ejecución se procesan en Cloudflare. El destino de los registros de CRM es HubSpot. La tarjeta consulta los últimos puntajes, señales y condiciones en un endpoint autenticado de Cloudflare. Así se mantiene el vínculo entre el registro del CRM y la decisión.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Todos los datos son ficticios">
+Todas las personas, empresas, dominios, eventos y resultados de la demo son ficticios. Northfield Software y su producto Northfield Incident Management solo sirven para generar señales de uso verosímiles. En los datos de contactos ficticios del CRM no hay direcciones de correo. Cada contacto se identifica por nombre y por un identificador único de persona, así que no se escribe ninguna dirección de correo en HubSpot.
+
+Los puntajes, las condiciones y los resultados se definieron con criterio experto como hipótesis para la demo.
+
+</CaseSection>
+
+<CaseSection title="Mi función">
+Diseñé y desarrollé todo el sistema como proyecto independiente: el concepto de producto, la política de puntajes y asignación, la interfaz de la cola semanal y de los registros de decisión, los controles ajustables, la ejecución con Cloudflare Workers, D1 y Workflows, y la integración limitada con HubSpot con su tarjeta y su adaptador local simulado.
+
+El resultado es una demo disponible sin inicio de sesión que un posible cliente puede revisar de principio a fin. Puede ver desde un dato de uso sin procesar hasta una asignación explicada con un responsable y un SLA, y una sola escritura limitada e idempotente en HubSpot.
+
+</CaseSection>
+
+<CaseSection title="Qué se puede ver en la demo">
+  <ProofRows rows={shippedRows}>
+    En la demo podés ver cómo se usan los datos de uso del producto para decidir acciones comerciales y operar en HubSpot sin depender de un puntaje único que no se pueda explicar. También podés consultar todas las limitaciones.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Probá la demo">
+En la demo podés ver cómo se procesan las mismas 120 cuentas ficticias con las dos políticas, consultar los registros de decisión y cambiar la intención y la capacidad. El código es público e incluye la especificación, el proceso recuperable, el adaptador de HubSpot y todas las pruebas.
+
+  <a class={buttonClass()} href={demoUrl} target="_blank" rel="noopener noreferrer">
+    Abrir la demo
+  </a>
+
+  <a class={textLinkClass} href={repoUrl} target="_blank" rel="noopener noreferrer">
+    Ver el código fuente en GitHub
+    <span>&rarr;</span>
+  </a>
+
+  <p>
+    Si los datos de uso del producto o de los clientes llegan tarde a HubSpot o llegan sin contexto suficiente, puedo revisar un proceso y mandarte un informe con los puntos donde se pierde información, los riesgos y el cambio más chico que te serviría.
+  </p>
+
+  <a class={buttonClass()} href="mailto:hanif@hanifcarroll.com?subject=GTM%20systems%20assessment" rel="noopener noreferrer">
+    Pedir una evaluación escrita de tus sistemas comerciales
+  </a>
+</CaseSection>

@@ -1,0 +1,79 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import voxPrismaticFeature from "@src/assets/img/projects/vox-prismatic-feature.png";
+
+export const shippedRows = [
+  {
+    label: "Procesamiento de transcripciones",
+    title: "Podés generar borradores revisables a partir de grabaciones largas",
+    body: "El sistema divide las transcripciones en partes, extrae ideas que se podrían usar y genera borradores para que una persona los revise.",
+  },
+  {
+    label: "Control del estilo",
+    title: "Una persona aprueba cada publicación",
+    body: "Conservé los pasos de revisión y aprobación en vez de dejar la publicación a cargo de un generador de contenido genérico.",
+  },
+  {
+    label: "Operación",
+    title: "Podés programar publicaciones desde el mismo sistema",
+    body: "Con estructuras para empezar cada texto, controles de programación y manejo de husos horarios, se puede usar el producto para el trabajo de publicación.",
+  },
+  {
+    label: "Visibilidad del proceso",
+    title: "Podés ver cómo avanzan las tareas largas con IA",
+    body: "Con las actualizaciones en tiempo real podés ver en qué etapa está el trabajo mientras se ejecuta el proceso con IA.",
+  },
+];
+
+<CaseSection title="Por qué armé la herramienta">
+Desarrollé un producto de publicación para generar borradores a partir de grabaciones largas y revisarlos antes de publicar.
+
+Los equipos de contenido pueden grabar horas de material útil y después demorar las publicaciones porque las ideas quedan en transcripciones largas. Reutilizar ese material a mano lleva tiempo, mantener el mismo estilo en cada publicación es difícil y hace falta criterio para decidir qué partes conviene compartir.
+
+</CaseSection>
+
+<CaseSection title="Para qué sirve Vox Prismatic">
+Con Vox Prismatic podés generar borradores de publicaciones a partir de transcripciones largas. Una persona sigue a cargo de revisarlos y programarlos antes de publicar.
+
+El proceso tenía que extraer fragmentos útiles, conservar la forma de expresarse de quien habló y permitir usar los borradores en el resto del trabajo de publicación.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Usar las transcripciones para generar borradores revisables">
+    Antes de publicar, hay que extraer material de la transcripción, darle forma y revisarlo.
+  </DecisionBlock>
+
+  <DecisionBlock title="Mostrar el avance mientras se ejecutan las tareas largas">
+    En las actualizaciones podés ver en qué etapa está la transcripción. Con los controles de revisión y programación podés seguir trabajando con el borrador después de recibir la respuesta de IA.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Una persona revisa el contenido antes de programarlo" media>
+En la interfaz se ve cómo se extraen ideas de una transcripción larga y se generan borradores. Una persona decide por separado qué programar.
+
+<ImagePlate image={voxPrismaticFeature} alt="Interfaz de Vox Prismatic para transformar contenido con IA" />
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Dividir las transcripciones largas en partes que se puedan procesar">
+    El sistema divide las transcripciones largas, extrae ideas que se podrían usar y genera borradores para que alguien los revise, sin tener que buscar ideas a mano por toda la transcripción.
+  </DecisionBlock>
+
+  <DecisionBlock title="Programar los borradores aprobados">
+    Con estructuras para empezar cada texto, controles de programación, publicación según el huso horario y actualizaciones de avance, podés pasar de generar un borrador a usarlo en un proceso de publicación.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué desarrollé">
+  <ProofRows rows={shippedRows}>
+    <p>
+      Reemplacé el proceso manual de pasar de una transcripción a una publicación por un sistema para extraer material, redactar borradores, revisarlos y programarlos.
+    </p>
+  </ProofRows>
+</CaseSection>

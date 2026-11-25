@@ -1,0 +1,109 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import { textLinkClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Búsqueda en el historial",
+    title: "Podés buscar en sesiones anteriores con agentes",
+    body: "El código genera un índice que se puede borrar a partir de las transcripciones locales. Los archivos originales siguen siendo el registro de referencia.",
+  },
+  {
+    label: "Varios agentes",
+    title: "Podés buscar en los historiales de varios agentes con una sola consulta",
+    body: "Se pueden importar archivos de Codex, OMP, Pi y Claude. Cada resultado indica qué agente lo generó.",
+  },
+  {
+    label: "Evidencia",
+    title: "Podés abrir la evidencia de cada resultado",
+    body: "Los resultados se agrupan por sesión. Incluyen la fuente, el tipo de evento, el archivo, el número de línea, el proyecto y el fragmento necesarios para revisar la transcripción original.",
+  },
+  {
+    label: "Registros estructurados",
+    title: "Podés ver la evidencia de las decisiones y los impedimentos",
+    body: "Durante la indexación, se extraen decisiones, tareas, datos, preguntas pendientes e impedimentos y se guardan en registros estables. Cada registro incluye referencias a las líneas de la transcripción que lo respaldan.",
+  },
+  {
+    label: "Controles de estado",
+    title: "Podés comprobar si el índice está actualizado",
+    body: "Con los comandos de diagnóstico podés ver archivos pendientes, índices desactualizados, el estado del servicio en segundo plano, las comprobaciones de la base de datos, la integridad de la búsqueda y las fuentes duplicadas.",
+  },
+];
+
+<CaseSection title="Era difícil encontrar decisiones útiles en sesiones anteriores">
+El historial de trabajo con agentes contiene información útil.
+
+Las decisiones, la evidencia, los impedimentos y los próximos pasos estaban dentro de archivos locales de transcripciones. Un resumen podía servir, pero era difícil confiar en él sin poder consultar la sesión original.
+
+</CaseSection>
+
+<CaseSection title="Agregué una búsqueda con referencias al historial de agentes">
+Agent Recall es una herramienta local de línea de comandos que indexa archivos de sesiones de Codex, OMP, Pi y Claude. Las personas y los agentes pueden buscar una decisión, un comando, un impedimento o un dato anterior y después revisar la línea exacta de la transcripción que respalda el resultado.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Volver a generar el índice a partir de los archivos originales">
+    El índice de búsqueda se puede borrar y volver a generar a partir de las transcripciones originales. Las referencias fijadas se guardan por separado para que sigan disponibles después de volver a generar el índice.
+  </DecisionBlock>
+
+  <DecisionBlock title="Incluir la evidencia de cada resultado">
+    El resultado de los comandos de búsqueda y consulta incluye el agente de origen, la sesión, el tipo de evento, el archivo, el número de línea y el fragmento. Así, otra persona u otro agente pueden revisar el registro original.
+  </DecisionBlock>
+
+  <DecisionBlock title="Indicar si el índice está actualizado">
+    El proceso en segundo plano espera a que los archivos activos dejen de cambiar, informa qué archivos están pendientes y gestiona los bloqueos temporales de la base de datos. Podés ver si el índice no existe, está desactualizado o bloqueado, o funciona bien.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo consultar la fuente de cada resultado">
+En la línea de comandos, los resultados se agrupan por sesión y muestran los datos de la fuente. Otras herramientas pueden solicitar la misma información como datos estructurados.
+
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Importar los eventos útiles para el trabajo futuro">
+    El código de importación lee cada línea de la transcripción y admite registros de Codex, OMP, Pi y Claude. Conserva eventos útiles de usuarios, asistentes, comandos y herramientas. Elimina duplicados y omite las líneas con formato inválido sin interrumpir el resto de la importación.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar un índice local que se pueda volver a generar">
+    En SQLite se guardan sesiones, eventos, el estado de los archivos de origen, los registros de búsqueda, los recuerdos y su evidencia. Durante la importación, se omiten los archivos que no cambiaron y se agrupan las escrituras para que sea práctico actualizar archivos grandes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Darles a los agentes formas precisas de consultar el contexto">
+    Podés acotar la búsqueda por proyecto, carpeta, tipo de evento, fecha, frase o términos relacionados. Con otros comandos podés consultar un recuerdo, ver qué cambió desde una comprobación anterior o cargar contexto relacionado con referencias a sus fuentes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Actualizar el índice en segundo plano">
+    El proceso de actualización se puede ejecutar una vez o de forma continua como servicio en segundo plano de macOS. Puede limitar el trabajo por proyecto y fecha, esperar a que los archivos activos dejen de cambiar y reintentar ante bloqueos temporales. Si la actualización no termina, el índice figura como desactualizado.
+  </DecisionBlock>
+
+  <DecisionBlock title="Eliminar secretos antes de indexar">
+    El código lee y escribe archivos locales. Antes de indexar, elimina valores con formatos comunes de tokens, claves, cookies, datos de autorización, cadenas de conexión y claves privadas.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué desarrollé">
+  <ProofRows rows={shippedRows}>
+    En el desarrollo con ayuda de IA, para reutilizar lo que quedó registrado hace falta mantener el control en la computadora, poder buscar rápido y guardar referencias a las fuentes que otro agente pueda revisar.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Qué cubren las pruebas">
+En el repositorio hay pruebas de indexación, referencias de búsqueda, el texto de ayuda, la configuración predeterminada del servicio en segundo plano, el proceso de actualización, las vistas de actividad reciente, las referencias fijadas, los recuerdos, el seguimiento de cambios, los recursos relacionados y lo que ocurre si falta la base de datos.
+
+También hay pruebas de búsquedas representativas de agentes y comprobaciones de que se eliminen claves de API comunes, claves privadas, secretos de webhooks, cookies, cadenas de conexión y valores con formato de contraseña antes de indexar.
+
+</CaseSection>
+
+<CaseSection title="Código fuente">
+  <p>El proyecto es público y podés instalarlo como herramienta de línea de comandos en Rust.</p>
+  <a class={textLinkClass} href="https://github.com/HanifCarroll/agent-recall" target="_blank" rel="noopener noreferrer">
+    Ver el repositorio en GitHub
+    <span>&rarr;</span>
+  </a>
+</CaseSection>

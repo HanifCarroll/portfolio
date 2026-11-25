@@ -1,0 +1,100 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import { textLinkClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Interfaz de búsqueda",
+    title: "Podés buscar desde una sola interfaz en vez de abrir varias pestañas a mano",
+    body: "Podés filtrar por portal, pegar una URL de búsqueda, iniciar un análisis asincrónico, filtrar resultados, ordenar por precio y desplegar cada aviso para ver los datos extraídos, la evidencia del lavarropas y las fotos.",
+  },
+  {
+    label: "Evidencia del modelo",
+    title: "Podés consultar la evidencia de cada resultado",
+    body: "En cada resultado pueden aparecer los datos extraídos, la evidencia más clara de un lavarropas, las fotos de la galería, el nivel de confianza del modelo y el aviso original.",
+  },
+  {
+    label: "Evaluación",
+    title: "Comparé la clasificación de cada aviso con sus etiquetas",
+    body: "En el conjunto validado de datos de prueba hubo 53 aciertos de 55, sin falsos positivos de lavarropas dentro del departamento ni de lavadero compartido.",
+  },
+  {
+    label: "Control de costos",
+    title: "Reduje las consultas al modelo de la segunda pasada",
+    body: "Al seleccionar qué fotos volver a analizar, reduje de unas 969 a 247 las comprobaciones de imágenes en la segunda pasada. El mejor resultado medido por aviso se mantuvo en 53 de 55.",
+  },
+  {
+    label: "Código abierto",
+    title: "El proyecto quedó disponible públicamente",
+    body: "En el repositorio público están la interfaz en TanStack Start, la herramienta de línea de comandos en Bun, el código de extracción por portal, los análisis de búsquedas, las pruebas básicas de funcionamiento y los scripts de evaluación con datos de prueba.",
+  },
+];
+
+<CaseSection title="Por qué armé Apartment Finder">
+Los sitios de avisos de departamentos suelen registrar un lavarropas dentro del departamento y un lavadero compartido en el edificio como si fueran el mismo servicio.
+
+Armé Apartment Finder para analizar avisos reales de alquiler, extraer la evidencia y mostrar qué departamentos probablemente tienen un lavarropas dentro de la unidad.
+
+</CaseSection>
+
+<CaseSection title="De un clasificador de fotos a una aplicación">
+La primera versión era un clasificador de fotos de departamentos que se ejecutaba desde la línea de comandos.
+
+Con la versión más completa podés configurar una búsqueda en un portal o pegar su URL, encontrar y analizar avisos y comparar los resultados sin abrir a mano la galería de cada aviso.
+
+</CaseSection>
+
+<CaseSection title="Cómo evité revisar avisos que no servían">
+Quería resolver un solo problema: no perder tiempo con avisos en los que «lavarropas» significa un lavadero compartido en el edificio y no un lavarropas dentro del departamento.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Mostrar la evidencia de cada clasificación con IA">
+    En vez de mostrar solo un sí o un no, la interfaz incluye las descripciones extraídas, los datos del aviso, las galerías de fotos, la evidencia del lavarropas, el nivel de confianza y los enlaces a la fuente. Así podés comprobar el resultado.
+  </DecisionBlock>
+
+  <DecisionBlock title="Reducir el tiempo de búsqueda frente a la revisión manual">
+    Podés usar filtros, pegar URL, ver el avance parcial del análisis, filtrar resultados, ordenar por precio, desplegar filas y ampliar imágenes para revisar muchos avisos rápido.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Una sola interfaz para todo el análisis">
+Desde la misma pantalla podés iniciar una búsqueda y revisar los resultados. El sistema incluye la búsqueda, la extracción de datos y la clasificación de los avisos.
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Extraje evidencia de avisos de varios portales">
+    El sistema obtiene resultados de búsquedas en los portales, extrae galerías y datos de avisos, lee los metadatos de Airbnb sobre lavarropas y puede usar como alternativa los datos de extracción guardados en caché para repetir un análisis.
+  </DecisionBlock>
+
+  <DecisionBlock title="Armé una clasificación en dos pasadas">
+    Para la primera pasada uso un modelo de visión más barato. Para las fotos ambiguas o con mayor riesgo de error, el sistema hace una segunda consulta con un modelo más capaz antes de generar un resumen por aviso.
+  </DecisionBlock>
+
+  <DecisionBlock title="Reduje el costo sin perder precisión">
+    Definí una sola regla para elegir hasta las k fotos prioritarias para la segunda pasada y medí el efecto de distintos límites. De forma predeterminada, el sistema vuelve a analizar hasta 6 fotos por aviso. Eso redujo las comprobaciones de imágenes de unas 969 a 247 y mantuvo el mejor resultado medido por aviso en 53 de 55. Al comparar los límites, comprobé por qué 6 era el valor predeterminado adecuado: con 8 se comprobaban 82 imágenes más en la segunda pasada sin ganar precisión, mientras que con 4 y 3 se empezaban a perder casos positivos.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usé los mismos servicios para los comandos, la interfaz y las evaluaciones">
+    La interfaz en TanStack Start y la herramienta de línea de comandos en Bun usan los mismos servicios de búsqueda y análisis de avisos. Así, los scripts comprueban la misma lógica que se usa en el producto.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué quedó disponible">
+  <ProofRows rows={shippedRows}>
+    En Apartment Finder muestro cómo convertí una decisión específica de una búsqueda real en un producto con IA. Incluye extracción, clasificación, una interfaz para revisar resultados, evidencia de la evaluación y mediciones del equilibrio entre el costo de los modelos y la precisión.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Código fuente">
+  <p>El proyecto es de código abierto. Incluye la interfaz en TanStack Start, la herramienta de línea de comandos en Bun, los scripts de extracción y los datos de prueba para evaluar los resultados.</p>
+  <a class={textLinkClass} href="https://github.com/HanifCarroll/apartment-finder" target="_blank" rel="noopener noreferrer">
+    Ver el repositorio en GitHub
+    <span>&rarr;</span>
+  </a>
+</CaseSection>
