@@ -6,9 +6,11 @@ import '../styles/notes.css';
 
 const title = 'Notes';
 const description =
-	'Notes on what I’ve learned from building products, working independently, learning, training, and trying to live an intentional life.';
+	'Notes on what I’ve learned from building products, running my own business, working with AI, learning, and trying to live an intentional life.';
 
-const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
+const publicSections = sections
+	.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title))
+	.map((section) => ({ ...section, entries: section.entries.filter((entry) => !('hidden' in entry && entry.hidden)) }));
 
 ---
 

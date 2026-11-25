@@ -9,13 +9,14 @@ const navLinks = [
 	{ href: '/how-i-work/', label: 'How I work' },
 	{ href: '/blog/', label: 'Blog' },
 	{ href: '/notes/', label: 'Notes' },
-	{ href: '/atlas/', label: 'Build Atlas' },
 ];
 const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
 
 const { pathname } = Astro.url;
 const { isNotes = false, isAtlas = false } = Astro.props;
-const publicSections = sections.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title));
+const publicSections = sections
+	.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title))
+	.map((section) => ({ ...section, entries: section.entries.filter((entry) => !('hidden' in entry && entry.hidden)) }));
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
 const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
 const headerCtaLabel = 'Book a call';

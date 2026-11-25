@@ -55,7 +55,66 @@ export default [
       {
         title: "Visible effort raises expectations for the result",
         body: [
-          "Showing the work behind a result can make a wait feel more valuable, but it also makes a poor result more disappointing. Operational transparency helps only when the outcome justifies the attention it draws.",
+          "Showing the work behind a result can make a wait feel more valuable, but it also makes a poor result more disappointing. So show the work only when the result is good enough to justify the extra attention.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "business-and-independent-work",
+    title: "Business and independent work",
+    purpose:
+      "What I'm learning from running my own business.",
+    entries: [
+      {
+        title: "Work on what changes the outcome",
+        body: [
+          "The work you find comfortable isn't always the work most likely to change your situation. Improving a product may be useful, but sometimes finding clients or delivering for the people already paying you matters more.",
+        ],
+      },
+      {
+        title: "Use free audits to help and learn",
+        body: [
+          "A small free audit can help someone while giving you practice finding and explaining problems. It also gives people an example of how you think and may show them other work they want help with.",
+        ],
+      },
+      {
+        title: "Focusing on one kind of customer makes each conversation more useful",
+        slug: "a-narrow-customer-group-creates-knowledge-that-compounds",
+        body: [
+          "When you focus on one kind of buyer, every conversation teaches you something you can use in the next one. Over time, you develop better questions, examples, content, offers, and a clearer sense of the problems that recur.",
+        ],
+      },
+      {
+        title: "Give consulting a smaller first step",
+        body: [
+          "A paid diagnostic can make consulting easier to buy because the client pays for a clear first decision instead of committing to a large implementation. They get a map of the current system, the steps that cost the most time or money, the risks, and the choices for what to do next. You learn enough about their situation to propose a larger project responsibly.",
+        ],
+      },
+      {
+        title: "Use one specialty as a way into the rest of the business",
+        slug: "use-specialization-as-a-way-into-the-wider-operation",
+        body: [
+          "Specializing in one platform can give a buyer a concrete reason to start working with you. The first project may be about that platform, but it can also show you the surrounding processes and the other problems worth solving.",
+        ],
+      },
+      {
+        title: "Learn your customers' language from their communities",
+        slug: "learn-the-markets-language-from-practitioner-communities",
+        body: [
+          "Communities where people in the same trade talk to each other show you how they describe their problems, which constraints they face, and which practical resources they look for or make themselves. Repeated complaints can suggest a useful tool or resource you can create.",
+        ],
+      },
+      {
+        title: "Answer “What are you working on?” specifically",
+        body: [
+          "A specific answer gives the other person something they can connect to a problem, a person, or a reason to follow up. A vague category may sound flexible, but it gives them very little to work with.",
+        ],
+      },
+      {
+        title: "Use small public tools to show how you think",
+        body: [
+          "A small public tool can solve a real problem and show how you think. People can inspect the job it handles, the limits you chose, and your explanation of when it is useful. They can try the result instead of relying on a description of your abilities.",
         ],
       },
     ],
@@ -63,7 +122,7 @@ export default [
   {
     slug: "working-with-ai",
     title: "Working with AI",
-    purpose: "How I design and work with agent-assisted systems.",
+    purpose: "How I build and work with AI tools and agents.",
     entries: [
       {
         title: "Constrain the parts handled by AI",
@@ -84,15 +143,17 @@ export default [
         ],
       },
       {
-        title: "The human remains the executive",
+        title: "You still make the decisions",
+        slug: "the-human-remains-the-executive",
         body: [
           "Agents can carry out tasks and return information, but you still set the goals, choose the direction, and make the decisions. The agent can be software, another person, or you working in a different role. What matters is the distinction between setting direction and carrying out the work.",
         ],
       },
       {
-        title: "Leave judgment in the loop",
+        title: "Keep judgment where the answer depends on the situation",
+        slug: "leave-judgment-in-the-loop",
         body: [
-          "Turn the parts of a workflow with predictable answers into fixed rules. Leave judgment in the parts where the right answer depends on the goal and the situation. Trying to force that judgment into selectors and simple rules makes the workflow brittle.",
+          "Turn the parts of a workflow with predictable answers into fixed rules. Leave judgment in the parts where the right answer depends on the goal and the situation. Forcing that judgment into fixed rules makes the workflow break whenever a case doesn't fit them.",
         ],
       },
       {
@@ -117,62 +178,6 @@ export default [
         title: "Understand the workflow before automating it",
         body: [
           "Write down a workflow and use it enough to understand the steps, handoffs, and decisions before you build tools for it. Repeating the process shows which parts recur, which parts can become code, and which decisions still need judgment. Starting with the tool can lock you into the wrong structure before you understand the job.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "business-and-independent-work",
-    title: "Business and independent work",
-    purpose:
-      "What I'm learning while trying to build an independent practice without treating a temporary offer or customer group as permanent.",
-    entries: [
-      {
-        title: "Work on what changes the outcome",
-        body: [
-          "The work you find comfortable isn't always the work most likely to change your situation. Improving a product may be useful, but sometimes finding clients, applying for work, or delivering for the people already paying you matters more.",
-        ],
-      },
-      {
-        title: "Use free audits to help and learn",
-        body: [
-          "A small free audit can help someone while giving you practice finding and explaining problems. It also gives people an example of how you think and may uncover implementation work they want help with.",
-        ],
-      },
-      {
-        title: "A narrow customer group creates knowledge that compounds",
-        body: [
-          "When you focus on one kind of buyer, every conversation teaches you something you can use in the next one. Over time, you develop better questions, examples, content, offers, and a clearer sense of the problems that recur.",
-        ],
-      },
-      {
-        title: "Give consulting a smaller first step",
-        body: [
-          "A paid diagnostic can make consulting easier to buy because the client pays for a clear first decision instead of committing to a large implementation. They get a map of the current system, its expensive bottlenecks, the risks, and the choices for what to do next. You learn enough about their situation to propose a larger project responsibly.",
-        ],
-      },
-      {
-        title: "Use specialization as a way into the wider operation",
-        body: [
-          "Specializing in one platform can give a buyer a concrete reason to start working with you. The first project may be about that platform, but it can also show you the surrounding processes and the other problems worth solving.",
-        ],
-      },
-      {
-        title: "Learn the market's language from practitioner communities",
-        body: [
-          "Practitioner communities show you how people describe their problems, which constraints they face, and which practical resources they look for or make themselves. Repeated complaints can suggest a useful tool or resource you can create.",
-        ],
-      },
-      {
-        title: "Answer “What are you working on?” specifically",
-        body: [
-          "A specific answer gives the other person something they can connect to a problem, a person, or a reason to follow up. A vague category may sound flexible, but it gives them very little to work with.",
-        ],
-      },
-      {
-        title: "Use small public tools to show how you think",
-        body: [
-          "A small public tool can solve a real problem and show how you think. People can inspect the job it handles, the limits you chose, and your explanation of when it is useful. They can try the result instead of relying on a description of your abilities.",
         ],
       },
     ],
@@ -234,7 +239,7 @@ export default [
       {
         title: "Use interviews when the note is too thin",
         body: [
-          "An atomic note can hold the main idea without enough detail for a post or essay. Read the note, its sources, and related notes first. If the examples, boundaries, or meaning are still missing, use a short interview to collect them instead of asking AI to fill the gaps.",
+          "A short note can hold the main idea without enough detail for a post or essay. Read the note, its sources, and related notes first. If the examples, boundaries, or meaning are still missing, use a short interview to collect them instead of asking AI to fill the gaps.",
         ],
       },
       {
@@ -347,6 +352,7 @@ export default [
       },
       {
         title: "A relationship ending does not make it a failure",
+        hidden: true,
         body: [
           "A relationship does not lose its value when it ends. Good and difficult experiences still shape both people, and ending may be the right response when the relationship stops working.",
         ],
@@ -360,12 +366,14 @@ export default [
       },
       {
         title: "People committed to growth recognize each other",
+        hidden: true,
         body: [
           "A desire to learn and change can make another person stand out quickly. When growth matters to you, meeting someone who approaches life the same way creates recognition because that orientation is both important and uncommon.",
         ],
       },
       {
         title: "Supporting someone does not require preferring their decision",
+        hidden: true,
         body: [
           "You can prefer one option while recognizing that the choice belongs to the other person. Support means respecting their authority over their own life and remaining caring regardless of which option they choose.",
         ],
