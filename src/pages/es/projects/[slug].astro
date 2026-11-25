@@ -1,0 +1,9 @@
+---
+import ProjectCaseStudyPage from '../../../views/ProjectCaseStudyPage.astro';
+import { getCaseStudyPaths, type CaseStudyPageProps } from '../../../lib/project-paths';
+
+type Props = CaseStudyPageProps;
+export const getStaticPaths = () => getCaseStudyPaths('es');
+---
+
+<ProjectCaseStudyPage {...Astro.props} />

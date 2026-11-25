@@ -1,0 +1,49 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import desarmaderoFeature from "@src/assets/img/projects/desarmadero-feature.png";
+import ventasScreen from "@src/assets/img/projects/desarmadero-operations-ventas.png";
+import mapaScreen from "@src/assets/img/projects/desarmadero-operations-mapa.png";
+
+<CaseSection title="La situación inicial">
+
+Desarmadero La Torre tiene un stock grande de repuestos que cambia todo el tiempo. Para saber si había un repuesto, los clientes tenían que llamar o ir al local. El personal pasaba el día respondiendo las mismas preguntas sobre disponibilidad.
+
+</CaseSection>
+
+<CaseSection title="Qué encontré">
+
+Los clientes ya pedían los repuestos por marca, modelo y año. Podía organizar el catálogo con esos mismos datos. El personal necesitaba una forma simple de actualizar las publicaciones, no un sistema de inventario complejo que no iba a usar.
+
+</CaseSection>
+
+<CaseSection title="Qué desarrollé" media>
+
+Armé un catálogo público. Los clientes podían buscar por marca, modelo y año, ver fotos y consultar por un repuesto en particular. El personal lo actualizaba con un formulario corto.
+
+<ImagePlate image={desarmaderoFeature} alt="Catálogo de Desarmadero La Torre con filtros para buscar repuestos" />
+
+Después, el dueño me consultó por la gestión del desarmadero: las ventas en el mostrador, los pagos en caja, las órdenes de desarme y la ubicación de los vehículos entre 301 lugares de estacionamiento. El personal registraba parte de esa información en papel, WhatsApp y Excel. El resto lo sabía de memoria. Con lo que averigüé en una llamada, escribí una especificación y armé un prototipo interactivo para probar el trabajo de ventas, caja y desarme. Todavía podés [probar el prototipo](https://desarmadero.pages.dev/) con la contraseña `asado`.
+
+<div class="mt-3 mb-0 grid gap-4 md:grid-cols-2">
+  <ImagePlate
+    image={ventasScreen}
+    alt="Pantalla de ventas del prototipo con cliente, vehículo, repuestos y resumen del pedido que se actualiza al editarlo"
+  />
+  <ImagePlate
+    image={mapaScreen}
+    alt="Plano del desarmadero con 301 lugares de estacionamiento y búsqueda por patente"
+  />
+</div>
+
+</CaseSection>
+
+<CaseSection title="Qué pasó después">
+
+Después del catálogo, el dueño volvió para un segundo proyecto. Probó el prototipo, pero no encargó el desarrollo del sistema completo.
+
+También podés leer [cómo armé el prototipo de gestión](/es/projects/desarmadero-operations-prototype/).
+
+</CaseSection>

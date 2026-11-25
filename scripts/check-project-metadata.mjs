@@ -12,6 +12,18 @@ const localProjectFiles = readdirSync(projectsDir)
   .filter((file) => file.endsWith(".json"))
   .sort();
 
+const spanishCopy = JSON.parse(readFileSync(join(root, "src/lib/projects.es.json"), "utf8"));
+const detailCopyFields = [
+  "client",
+  "service",
+  "role",
+  "heroAlt",
+  "seoTitle",
+  "seoDescription",
+  "liveCtaLabel",
+  "liveStatusLabel",
+  "repositoryCtaLabel",
+];
 const errors = [];
 
 const toAssetPath = (value) => {
@@ -49,6 +61,24 @@ for (const file of localProjectFiles) {
     errors.push(`${file}: missing case study at ${expectedPath}.`);
   }
 
+  const spanishPage = project.customPage
+    ? join(root, "src/pages/es/projects", `${slug}.astro`)
+    : join(caseStudiesDir, "es", `${slug}.mdx`);
+  const translation = spanishCopy[slug];
+  const requiredCopy = existsSync(spanishPage)
+    ? ["title", "description", ...detailCopyFields.filter((field) => Boolean(project[field]))]
+    : ["title", "description"];
+  for (const field of requiredCopy) {
+    if (typeof translation?.[field] !== "string" || !translation[field].trim()) {
+      errors.push(`${file}: missing Spanish ${field} in projects.es.json.`);
+    }
+  }
+  for (const field of Object.keys(translation ?? {})) {
+    if (field !== "title" && field !== "description" && !detailCopyFields.includes(field)) {
+      errors.push(`${file}: unexpected field ${field} in projects.es.json.`);
+    }
+  }
+
   const framedImage = `@src/assets/img/projects/framed/${slug}.png`;
   if (project.images?.hero !== framedImage || project.images?.feature !== framedImage) {
     errors.push(`${file}: images.hero and images.feature must use "${framedImage}".`);
@@ -80,6 +110,11 @@ for (const file of localProjectFiles) {
       errors.push(`${file}: relatedLinks.${index}.label must be a non-empty string.`);
     }
   }
+}
+
+for (const slug of Object.keys(spanishCopy)) {
+  if (!localProjectFiles.includes(`${slug}.json`))
+    errors.push(`Orphan Spanish project metadata for ${slug}.`);
 }
 
 if (errors.length > 0) {

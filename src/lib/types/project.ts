@@ -28,6 +28,23 @@ export type ProjectTrackGroup = "supporting_product_proof" | "mvp_and_validation
 
 export type ProjectDetailVariant = "product" | "workflow" | "launch_site";
 
+/** Rendered copy can be translated without duplicating URLs, technologies, or assets. */
+export type ProjectTranslation = Pick<Project, "title" | "description"> &
+  Partial<
+    Pick<
+      Project,
+      | "seoTitle"
+      | "seoDescription"
+      | "client"
+      | "service"
+      | "role"
+      | "heroAlt"
+      | "liveCtaLabel"
+      | "liveStatusLabel"
+      | "repositoryCtaLabel"
+    >
+  >;
+
 export interface Project {
   slug: string;
   title: string;

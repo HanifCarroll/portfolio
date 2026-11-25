@@ -1,0 +1,126 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import mapaScreen from "@src/assets/img/projects/desarmadero-operations-mapa.png";
+import { imagePlateClass, imagePlateImageClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Relevamiento",
+    title: "Documenté el proceso después de una llamada",
+    body: "Antes, el personal explicaba el proceso de palabra y manejaba parte de la información en papel, WhatsApp o de memoria. Escribí los requisitos de producto (PRD) y la especificación funcional.",
+  },
+  {
+    label: "Prototipo",
+    title: "El cliente pudo probar cada parte del proceso",
+    body: "En el prototipo de SvelteKit se podían registrar ventas en mostrador, habilitar órdenes desde caja, asignar desarmes y buscar vehículos en el plano. El personal de desarme podía usarlo desde el celular.",
+  },
+  {
+    label: "Validación",
+    title: "El cliente pudo revisar el proceso antes del presupuesto",
+    body: "Antes de hablar del presupuesto completo y las etapas del desarrollo, el cliente pudo comprobar si la aplicación coincidía con la forma de trabajar del desarmadero.",
+  },
+  {
+    label: "Documentos",
+    title: "Publiqué los documentos del proyecto",
+    body: "Publiqué la transcripción de la llamada, los requisitos de producto, la especificación funcional, la demo, los datos ficticios de prueba y las capturas del prototipo.",
+  },
+];
+
+<CaseSection title="De una llamada a un prototipo interactivo">
+  Después de una llamada con el dueño de un desarmadero, escribí los requisitos del producto y una especificación funcional. También armé un prototipo de gestión que se podía probar online.
+
+  El dueño ya me había contratado para hacer un catálogo de repuestos con buscador. Esta vez quería gestionar todo el desarmadero. Con el prototipo, pudo probar el proceso antes del desarrollo completo y definir mejor qué necesitaba para la etapa siguiente.
+</CaseSection>
+
+<CaseSection title="Cómo trabajaban en el desarmadero" media wideMedia>
+  El primer proyecto fue un catálogo de repuestos con buscador. Los clientes podían consultar qué había en stock antes de llamar.
+
+  Para el segundo proyecto, el dueño quería gestionar las ventas en mostrador, los pagos en caja y las órdenes de desarme, asignar el trabajo y encontrar vehículos entre 301 lugares de estacionamiento. En ese momento el personal usaba presupuestos en papel, WhatsApp y Excel. Para saber dónde estaba estacionado un auto, tenía que acordarse o preguntarle a alguien.
+
+<figure class={imagePlateClass}>
+  <a href="/images/projects/desarmadero-operations-current-state.svg" data-image-link>
+    <img
+      src="/images/projects/desarmadero-operations-current-state.svg"
+      width="1440"
+      height="1016"
+      loading="lazy"
+      class={imagePlateImageClass}
+      alt="Diagrama del proceso anterior según la llamada. El personal de mostrador imprime dos copias. En caja cobran y archivan una copia. El personal de mostrador manda la otra al equipo de desarme. Inferí los pasos de búsqueda del vehículo y extracción."
+    />
+  </a>
+</figure>
+
+</CaseSection>
+
+<CaseSection title="Armé el prototipo antes de presupuestar" media wideMedia>
+  <DecisionBlock title="Cómo se genera la orden de desarme">
+    Primero averigüé cómo trabaja el personal. En mostrador pueden vender un repuesto antes de que alguien lo saque del vehículo. Por eso, en el prototipo el proceso de desarme empieza con una venta.
+  </DecisionBlock>
+
+  <DecisionBlock title="Por qué hice primero el prototipo">
+    En vez de pasar directamente a un presupuesto, hice un prototipo funcional. El cliente pudo probar la aplicación y comprobar si yo había entendido cómo trabajaba el desarmadero.
+  </DecisionBlock>
+
+<figure class={imagePlateClass}>
+  <a href="/images/projects/desarmadero-operations-target-state.svg" data-image-link>
+    <img
+      src="/images/projects/desarmadero-operations-target-state.svg"
+      width="1440"
+      height="1016"
+      loading="lazy"
+      class={imagePlateImageClass}
+      alt="Diagrama de la primera etapa propuesta. El sistema genera una orden cuando se registra una venta. En caja confirman la seña o el pago total. El encargado asigna el trabajo y la persona que hace el desarme usa el plano para encontrar el vehículo. Después saca el repuesto y registra el trabajo."
+    />
+  </a>
+</figure>
+
+</CaseSection>
+
+<CaseSection title="Qué hace cada persona en el prototipo" media>
+  El vendedor registra la venta, el personal de caja confirma el pago y el encargado de desarme asigna el trabajo. Quien hace el desarme solo ve las órdenes que necesita.
+
+  <ImagePlate image={mapaScreen} alt="Plano del desarmadero con 301 lugares de estacionamiento y búsqueda por patente" />
+</CaseSection>
+
+<CaseSection title="Tres reglas del prototipo">
+  <DecisionBlock title="La orden de desarme aparece después del pago">
+    La persona que hace el desarme no puede ver la orden hasta que en caja registran una seña o el pago total. El personal ya trabajaba con esa regla antes del prototipo.
+  </DecisionBlock>
+
+  <DecisionBlock title="Búsqueda por patente en el plano">
+    El personal puede buscar un vehículo por patente en el plano de los 301 lugares de estacionamiento, sin que nadie tenga que acordarse de dónde lo estacionaron.
+  </DecisionBlock>
+
+  <DecisionBlock title="Controles distintos para cada función">
+    El administrador, el vendedor, el personal de caja, el encargado de desarme y la persona que desarma usan solo los controles que necesitan para su trabajo. No tienen que compartir una sola pantalla de administración con todos los controles.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué le entregué al cliente">
+  <ProofRows rows={shippedRows}>
+    <p>
+      En el ejemplo público muestro cómo documenté lo que me contaron en la llamada y la información que manejaban en distintas herramientas. Después armé un prototipo interactivo a partir de la especificación.
+    </p>
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Demo y código fuente">
+  Publiqué el prototipo como ejemplo de mi trabajo sin datos que identifiquen al cliente.
+
+  Demo: <a href="https://desarmadero.pages.dev/" target="_blank" rel="noopener noreferrer">desarmadero.pages.dev</a>. Contraseña: `asado`.
+
+  Repositorio: <a href="https://github.com/HanifCarroll/desarmadero" target="_blank" rel="noopener noreferrer">github.com/HanifCarroll/desarmadero</a>.
+
+  Ahí podés consultar la transcripción original de la llamada, los requisitos del producto, la especificación funcional, las capturas, los datos ficticios de prueba y el código del prototipo.
+</CaseSection>
+
+<CaseSection title="Por qué hago primero un prototipo">
+  Este es el tipo de trabajo que mejor hago: conozco cómo funciona un negocio nuevo para mí, organizo el producto según el trabajo del equipo y uso el software para que el cliente pueda decidir qué conviene desarrollar.
+
+  En vez de revisar requisitos abstractos, el cliente pudo probar el proceso y opinar sobre lo que convenía incluir en el desarrollo.
+</CaseSection>

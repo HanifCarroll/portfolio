@@ -30,6 +30,62 @@ export const es = {
     close: "Cerrar",
     chapters: "Capítulos",
   },
+  projectArchive: {
+    description:
+      "Proyectos para negocios chicos, además de aplicaciones y productos que desarrollé: sitios web, herramientas, automatizaciones y funciones de IA.",
+    intro:
+      "Proyectos para clientes y productos propios. En cada caso explico cuál era el problema, qué decidí y qué entregué.",
+    technologies: "Tecnologías que usé:",
+    groups: {
+      "small-business-work": {
+        label: "Proyectos para negocios chicos",
+        description: "Sitios web, tiendas online y herramientas de gestión para negocios chicos.",
+      },
+      "client-product-work": {
+        label: "Startups y productos",
+        description:
+          "Trabajos que hice con fundadores, desde publicar una aplicación hasta mantenerla y mejorarla después.",
+      },
+      "products-experiments": {
+        label: "Productos y experimentos",
+        description:
+          "Productos propios y prototipos que hice para probar ideas con software que ya se puede usar.",
+      },
+    },
+  },
+  projectDetail: {
+    project: "Proyecto",
+    breadcrumb: "Ubicación en el sitio",
+    engagement: "Tipo de trabajo",
+    responsibility: "Mi responsabilidad",
+    role: "Mi función",
+    status: "Estado",
+    year: "Año",
+    liveDemo: "Demo disponible",
+    liveProduct: "Producto disponible",
+    tryDemo: "Probá la demo",
+    visitProduct: "Visitá el producto",
+    repository: "Ver el repositorio",
+    visual: "Imagen del proyecto",
+    facts: "Datos del proyecto",
+    builtWith: "Tecnologías que usé",
+    technologies: "Tecnologías principales",
+    feedback: "Opinión del cliente",
+    workingTogether: "Qué dice el cliente",
+  },
+  imageViewer: {
+    expanded: "Imagen ampliada",
+    close: "Cerrar la imagen",
+    view: "Vista de la imagen",
+    fit: "Ajustar a la pantalla",
+    full: "Tamaño original",
+    zoomOut: "Reducir la imagen",
+    zoomIn: "Ampliar la imagen",
+    zoom: "Nivel de ampliación",
+    original: "Abrir la imagen original",
+    scroll: "Imagen. Desplazate para verla completa cuando está ampliada",
+    preview: "Ampliar",
+  },
   seo: {
     defaultImageAlt:
       "Retrato de Hanif Carroll junto al texto en inglés Freelance Software Engineer.",

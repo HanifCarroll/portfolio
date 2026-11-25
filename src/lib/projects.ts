@@ -1,4 +1,15 @@
-import type { Project } from "./types/project";
+import type { Locale } from "../i18n";
+import spanishCopy from "./projects.es.json";
+import type { Project, ProjectTranslation } from "./types/project";
+
+const translations: Record<string, ProjectTranslation> = spanishCopy;
+
+export function localizeProject(project: Project, locale: Locale): Project {
+  if (locale === "en") return project;
+  const translation = translations[project.slug];
+  if (!translation) throw new Error(`Missing Spanish project metadata for "${project.slug}".`);
+  return { ...project, ...translation };
+}
 
 const projectModules = import.meta.glob("./projects/*.json", {
   eager: true,
