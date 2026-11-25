@@ -70,6 +70,15 @@ The renderer draws the status bar on every phone. For a public website, set `saf
 
 Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/framed/<slug>.png`. Point both `images.hero` and `images.feature` at that PNG, and give any other case-study images their own keys. Every frame uses the same transparent 1440×900 canvas and fits the entire screenshot without stretching it.
 
+### Contact form
+
+The `/contact/` form sends one plain-text email through Cloudflare Email Sending, in two pieces:
+
+- `functions/api/contact.ts` is a Pages Function. It validates the form (rules in `src/lib/contact.ts`), drops honeypot spam, and hands the subject, body, and reply-to address to the mailer through a service binding named `MAILER`.
+- `workers/contact-mailer/` is the `portfolio-contact-mailer` Worker. It holds the `send_email` binding and sets the sender and recipient from its own `wrangler.toml` vars. It has no public URL and is reachable only through the binding.
+
+The Pages build doesn't deploy the mailer. Deploy it with `bunx wrangler deploy` from `workers/contact-mailer/`. The Pages project needs a service binding named `MAILER` that points at `portfolio-contact-mailer`, set for both Production and Preview. Run the tests with `bun run contact:test`.
+
 ### Deployment
 
 The site is deployed as a static Astro site on Cloudflare Pages. In the Cloudflare Pages project, use:

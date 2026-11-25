@@ -1,4 +1,5 @@
-// Cloudflare Pages Function for the /contact/ form. It sends one plain-text email through Resend.
+// Cloudflare Pages Function for the /contact/ form. It hands one plain-text email to the
+// portfolio-contact-mailer Worker through the `MAILER` service binding.
 // The page's script posts with `Accept: application/json` and gets JSON back. Without JavaScript the
 // browser posts the form itself, and gets a 303 to /contact/sent/ or a small HTML page.
 import {
@@ -104,7 +105,8 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
   const delivery = await sendContactEmail(result.value, env);
   if (!delivery.ok) {
     // Status only: never the key or the visitor's message.
-    console.error(`contact form: delivery failed (${delivery.status})`);
+    const detail = delivery.code ? `${delivery.status} ${delivery.code}` : `${delivery.status}`;
+    console.error(`contact form: delivery failed (${detail})`);
     return failed(request);
   }
 

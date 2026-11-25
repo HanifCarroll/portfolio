@@ -2,10 +2,8 @@ import { describe, expect, mock, test } from "bun:test";
 import {
   CONTACT_COPY,
   CONTACT_LIMITS,
-  DEFAULT_CONTACT_FROM,
-  DEFAULT_CONTACT_TO,
   HONEYPOT_FIELD,
-  RESEND_EMAILS_URL,
+  MAILER_SEND_URL,
   buildContactEmail,
   sendContactEmail,
   stripLineBreaks,
@@ -106,12 +104,10 @@ describe("stripLineBreaks", () => {
 });
 
 describe("buildContactEmail", () => {
-  test("uses the default addresses and lists every field", () => {
-    expect(buildContactEmail(message, {})).toEqual({
-      from: DEFAULT_CONTACT_FROM,
-      to: [DEFAULT_CONTACT_TO],
-      reply_to: "ana@example.com",
+  test("builds the subject, reply-to, and a body listing every field", () => {
+    expect(buildContactEmail(message)).toEqual({
       subject: "Website message from Ana Pérez",
+      replyTo: "ana@example.com",
       text: [
         "Name: Ana Pérez",
         "Email: ana@example.com",
@@ -124,78 +120,89 @@ describe("buildContactEmail", () => {
     });
   });
 
-  test("reads the addresses from the environment", () => {
-    const email = buildContactEmail(message, {
-      CONTACT_TO: "inbox@example.com",
-      CONTACT_FROM: "Site <site@example.com>",
-    });
-    expect(email.to).toEqual(["inbox@example.com"]);
-    expect(email.from).toBe("Site <site@example.com>");
+  test("never names a sender or recipient: the mailer sets both", () => {
+    const email = buildContactEmail(message) as unknown as Record<string, unknown>;
+    expect(Object.keys(email).sort()).toEqual(["replyTo", "subject", "text"]);
   });
 
   test("strips line breaks from the subject and reply-to", () => {
-    const email = buildContactEmail(
-      { ...message, name: "Ana\r\nBcc: x@example.com", email: "ana@example.com\nBcc: y" },
-      {},
-    );
+    const email = buildContactEmail({
+      ...message,
+      name: "Ana\r\nBcc: x@example.com",
+      email: "ana@example.com\nBcc: y",
+    });
     expect(email.subject).toBe("Website message from Ana Bcc: x@example.com");
-    expect(email.reply_to).toBe("ana@example.com Bcc: y");
+    expect(email.replyTo).toBe("ana@example.com Bcc: y");
   });
 
   test("leaves out the source line when the form doesn't know it", () => {
-    const email = buildContactEmail({ ...message, business: "", source: "" }, {});
+    const email = buildContactEmail({ ...message, business: "", source: "" });
     expect(email.text).toContain("Business: Not given");
     expect(email.text).not.toContain("Came from");
   });
+
+  test("the longest valid message fits the mailer's 8,000-character cap", () => {
+    const email = buildContactEmail({
+      name: "a".repeat(CONTACT_LIMITS.name),
+      email: `${"e".repeat(240)}@example.com`,
+      business: "b".repeat(CONTACT_LIMITS.business),
+      message: "m".repeat(CONTACT_LIMITS.message),
+      source: "/".repeat(CONTACT_LIMITS.source),
+    });
+    expect(email.text.length).toBeLessThanOrEqual(8000);
+    expect(email.subject.length).toBeLessThanOrEqual(300);
+  });
 });
 
+const mailer = (response: () => Response | Promise<Response>) => {
+  const fetch = mock(async (_input: string, _init?: RequestInit) => response());
+  return { binding: { fetch }, fetch };
+};
+
 describe("sendContactEmail", () => {
-  test("posts one JSON email to Resend with the key as a bearer token", async () => {
-    const fetcher = mock(async () => new Response("{}", { status: 200 }));
-    const result = await sendContactEmail(
-      message,
-      { RESEND_API_KEY: "re_test" },
-      fetcher as unknown as typeof fetch,
-    );
+  test("posts one JSON email to the mailer binding", async () => {
+    const { binding, fetch } = mailer(() => Response.json({ ok: true }));
+    const result = await sendContactEmail(message, { MAILER: binding });
 
     expect(result).toEqual({ ok: true });
-    expect(fetcher).toHaveBeenCalledTimes(1);
-    const [url, init] = fetcher.mock.calls[0] as unknown as [string, RequestInit];
-    expect(url).toBe(RESEND_EMAILS_URL);
-    expect(init.method).toBe("POST");
-    expect(init.headers).toEqual({
-      Authorization: "Bearer re_test",
-      "Content-Type": "application/json",
-    });
-    expect(JSON.parse(init.body as string)).toEqual(buildContactEmail(message, {}));
+    expect(fetch).toHaveBeenCalledTimes(1);
+    const [url, init] = fetch.mock.calls[0]!;
+    expect(url).toBe(MAILER_SEND_URL);
+    expect(init?.method).toBe("POST");
+    expect(init?.headers).toEqual({ "Content-Type": "application/json" });
+    expect(JSON.parse(init?.body as string)).toEqual(buildContactEmail(message));
   });
 
-  test("doesn't call Resend without a key", async () => {
-    const fetcher = mock(async () => new Response("{}"));
-    const result = await sendContactEmail(message, {}, fetcher as unknown as typeof fetch);
-    expect(result).toEqual({ ok: false, status: "missing-key" });
-    expect(fetcher).not.toHaveBeenCalled();
+  test("fails without calling anything when the binding is missing", async () => {
+    expect(await sendContactEmail(message, {})).toEqual({ ok: false, status: "missing-binding" });
   });
 
-  test("reports Resend's status when it refuses", async () => {
-    const fetcher = mock(async () => new Response("{}", { status: 422 }));
-    const result = await sendContactEmail(
-      message,
-      { RESEND_API_KEY: "re_test" },
-      fetcher as unknown as typeof fetch,
+  test("reports the mailer's status and E_ code when it refuses", async () => {
+    const { binding } = mailer(() =>
+      Response.json({ ok: false, code: "E_SENDER_NOT_VERIFIED" }, { status: 502 }),
     );
-    expect(result).toEqual({ ok: false, status: 422 });
+    expect(await sendContactEmail(message, { MAILER: binding })).toEqual({
+      ok: false,
+      status: 502,
+      code: "E_SENDER_NOT_VERIFIED",
+    });
   });
 
-  test("reports a network failure", async () => {
-    const fetcher = mock(async () => {
+  test("treats any non-200 answer as a failure and drops codes that aren't E_ codes", async () => {
+    const { binding } = mailer(() => Response.json({ code: "ana@example.com" }, { status: 201 }));
+    expect(await sendContactEmail(message, { MAILER: binding })).toEqual({
+      ok: false,
+      status: 201,
+    });
+  });
+
+  test("reports a binding that throws", async () => {
+    const { binding } = mailer(() => {
       throw new Error("offline");
     });
-    const result = await sendContactEmail(
-      message,
-      { RESEND_API_KEY: "re_test" },
-      fetcher as unknown as typeof fetch,
-    );
-    expect(result).toEqual({ ok: false, status: "network" });
+    expect(await sendContactEmail(message, { MAILER: binding })).toEqual({
+      ok: false,
+      status: "network",
+    });
   });
 });

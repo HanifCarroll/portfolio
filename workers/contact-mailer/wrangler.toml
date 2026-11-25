@@ -1,0 +1,16 @@
+# The contact form's mailer. It has no public URL: the portfolio Pages project reaches it only
+# through a service binding named MAILER. Deploy with `bunx wrangler deploy` from this folder.
+name = "portfolio-contact-mailer"
+main = "index.ts"
+compatibility_date = "2026-11-20"
+workers_dev = false
+preview_urls = false
+
+[[send_email]]
+name = "EMAIL"
+allowed_sender_addresses = ["website@mail.hanifcarroll.com"]
+
+[vars]
+CONTACT_FROM_ADDRESS = "website@mail.hanifcarroll.com"
+CONTACT_FROM_NAME = "Hanif Carroll website"
+CONTACT_TO = "hanif@hanifcarroll.com"

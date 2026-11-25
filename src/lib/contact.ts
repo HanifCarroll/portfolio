@@ -1,10 +1,10 @@
 // The contact form's rules, shared by the /contact/ page script and the Pages Function
-// in functions/api/contact.ts. Keep it free of browser and Cloudflare globals.
+// in functions/api/contact.ts. Keep it free of browser and Cloudflare globals. The mailer Worker
+// (workers/contact-mailer/) re-checks what it receives on its own.
 
 export const CONTACT_EMAIL = "hanif@hanifcarroll.com";
-export const DEFAULT_CONTACT_TO = CONTACT_EMAIL;
-export const DEFAULT_CONTACT_FROM = "Hanif Carroll website <hanif@newsletter.hanifcarroll.com>";
-export const RESEND_EMAILS_URL = "https://api.resend.com/emails";
+/** The portfolio-contact-mailer Worker, reached through the Pages service binding `MAILER`. */
+export const MAILER_SEND_URL = "https://mailer/send";
 
 /** The hidden field real visitors leave empty. */
 export const HONEYPOT_FIELD = "contact_url";
@@ -97,21 +97,23 @@ export function validateContact(fields: FieldSource): ContactValidation {
   return Object.keys(errors).length > 0 ? { ok: false, errors } : { ok: true, spam: false, value };
 }
 
-export interface ContactEnv {
-  RESEND_API_KEY?: string;
-  CONTACT_TO?: string;
-  CONTACT_FROM?: string;
+/** The service binding to the mailer Worker. Only `fetch` is used. */
+export interface MailerBinding {
+  fetch(input: string, init?: RequestInit): Promise<Response>;
 }
 
-export interface ResendEmail {
-  from: string;
-  to: string[];
-  reply_to: string;
+export interface ContactEnv {
+  MAILER?: MailerBinding;
+}
+
+/** What the mailer accepts. The Worker sets the sender and recipient from its own vars. */
+export interface MailerRequest {
   subject: string;
   text: string;
+  replyTo: string;
 }
 
-export function buildContactEmail(message: ContactMessage, env: ContactEnv): ResendEmail {
+export function buildContactEmail(message: ContactMessage): MailerRequest {
   const lines = [
     `Name: ${message.name}`,
     `Email: ${message.email}`,
@@ -121,32 +123,40 @@ export function buildContactEmail(message: ContactMessage, env: ContactEnv): Res
   lines.push("", "Message:", message.message);
 
   return {
-    from: stripLineBreaks(env.CONTACT_FROM?.trim() || DEFAULT_CONTACT_FROM),
-    to: [stripLineBreaks(env.CONTACT_TO?.trim() || DEFAULT_CONTACT_TO)],
-    reply_to: stripLineBreaks(message.email),
     subject: `Website message from ${stripLineBreaks(message.name)}`,
     text: lines.join("\n"),
+    replyTo: stripLineBreaks(message.email),
   };
 }
 
-export type SendResult = { ok: true } | { ok: false; status: number | "missing-key" | "network" };
+export type SendResult =
+  | { ok: true }
+  | { ok: false; status: number | "missing-binding" | "network"; code?: string };
 
-/** Sends one plain-text email through Resend. Never logs or returns the key or the message. */
+const CODE_PATTERN = /^E_[A-Z0-9_]{1,60}$/;
+
+/** Hands one email to the mailer Worker. Never logs or returns the visitor's message. */
 export async function sendContactEmail(
   message: ContactMessage,
   env: ContactEnv,
-  fetcher: typeof fetch = fetch,
 ): Promise<SendResult> {
-  const key = env.RESEND_API_KEY?.trim();
-  if (!key) return { ok: false, status: "missing-key" };
+  const mailer = env.MAILER;
+  if (!mailer) return { ok: false, status: "missing-binding" };
 
   try {
-    const response = await fetcher(RESEND_EMAILS_URL, {
+    const response = await mailer.fetch(MAILER_SEND_URL, {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify(buildContactEmail(message, env)),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(buildContactEmail(message)),
     });
-    return response.ok ? { ok: true } : { ok: false, status: response.status };
+    if (response.status === 200) return { ok: true };
+
+    const body = (await response.json().catch(() => ({}))) as { code?: unknown };
+    const code =
+      typeof body.code === "string" && CODE_PATTERN.test(body.code) ? body.code : undefined;
+    return code
+      ? { ok: false, status: response.status, code }
+      : { ok: false, status: response.status };
   } catch {
     return { ok: false, status: "network" };
   }
