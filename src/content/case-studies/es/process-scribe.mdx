@@ -1,0 +1,89 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import processOverview from "@src/assets/img/projects/process-scribe/process-overview.png";
+import clarificationQuestions from "@src/assets/img/projects/process-scribe/clarification-questions.png";
+import { resourceLinksClass } from "@src/lib/ui";
+
+<CaseSection title="Para qué sirve Senda">
+En una entrevista, pocas veces alguien cuenta un proceso en orden y con todos los detalles. Puede explicar qué pasa y mencionar una excepción más adelante, o no aclarar el orden de dos pasos. Con un diagrama es más fácil hablar de lo que falta si quien lo revisa puede ver qué se dijo en la entrevista y qué queda por responder.
+
+Armé Senda como herramienta independiente para relevar procesos. Una persona y un agente pueden usarla para armar, a partir de una entrevista, un modelo BPMN que se pueda revisar. BPMN es un formato estándar para describir procesos con diagramas. Los ejemplos y las entrevistas de esta página son ficticios.
+
+Un agente de modelado existente puede usar un conjunto reutilizable de instrucciones para definir los límites del proceso, las actividades y los eventos, las responsabilidades y los traspasos, el orden y las condiciones de los pasos, y los detalles de respaldo. El método se basa en el capítulo 5 de _Fundamentals of Business Process Management_. El agente interpreta el material y propone cambios. Para usar Senda no necesitás un modelo ni una clave de proveedor específicos de la herramienta.
+
+Senda se ejecuta en Cloudflare Workers, con proyectos privados y conexiones para agentes. Las capturas muestran la aplicación local en funcionamiento.
+
+  <nav className={resourceLinksClass} aria-label="Recursos del proyecto Senda">
+    <a href="https://senda.hanifcarroll.com/">Visitá Senda</a>
+    <a href="https://github.com/HanifCarroll/Senda">Código fuente</a>
+    <a href="https://github.com/HanifCarroll/Senda/blob/main/docs/architecture.md">Arquitectura</a>
+  </nav>
+</CaseSection>
+
+<CaseSection title="Preguntar por lo que falta en vez de adivinar" media>
+En el ejemplo chico, la persona entrevistada dice que hay que «cobrar una seña y programar el proyecto». No dice qué se hace primero. En el borrador, el orden queda sin definir y aparece una pregunta.
+
+En la aplicación de proyectos privados, una persona puede guardar una respuesta como fuente nueva. La pregunta sigue visible hasta que el agente de modelado interpreta la respuesta y actualiza el modelo con evidencia. El navegador detecta cuando el agente guarda una revisión. Quien revisa el proceso también puede abrir versiones anteriores.
+
+En la vista de revisión se ven el diagrama y las citas textuales de las fuentes. Podés buscar un paso y abrir su evidencia. La evidencia está contraída al principio para que se pueda leer el proceso con facilidad.
+
+  <div class="max-w-xl">
+    <ImagePlate image={clarificationQuestions} alt="Preguntas en Senda sobre datos que faltan en una entrevista ficticia" caption="En el borrador inicial se puede revisar qué datos faltan y pedir aclaraciones." />
+  </div>
+</CaseSection>
+
+<CaseSection title="Separar el proceso actual del plan">
+Cada proyecto distingue el proceso actual (As-is) del plan (To-be). Para empezar el plan, una persona elige una revisión guardada del proceso actual y agrega un documento de diseño. El sistema copia ese diagrama como versión inicial no confirmada. Después guarda por separado las fuentes, las preguntas y el historial de revisiones del plan.
+
+Las afirmaciones y aprobaciones del proceso actual no se dan por válidas para el plan. Los cambios posteriores al modelo actual no modifican la versión de partida del plan. Así, quien lo revisa puede ver con qué versión se empezó y evaluar la propuesta por separado.
+
+</CaseSection>
+
+<CaseSection title="Conectar un agente a un proyecto privado">
+Amplié el mismo código que usa la herramienta local de línea de comandos para admitir proyectos asociados a una cuenta en la aplicación web. La persona elige a qué proyecto le da acceso al agente mediante una autorización por OAuth. El agente puede consultar fuentes y preguntas y proponer revisiones por MCP. Para seguir el método puede descargar las instrucciones de relevamiento.
+
+  <DecisionBlock title="Dar acceso solo al proyecto que elige el dueño">
+    Antes de abrir un proyecto, el servicio comprueba quién es el dueño y si le dio acceso explícito al agente. Cuando desconectás agentes, el sistema elimina sus permisos y revoca los tokens de acceso y renovación que ya existían. Las herramientas del agente no pueden registrar la aprobación de una persona.
+  </DecisionBlock>
+
+  <DecisionBlock title="Guardar el modelo y sus fuentes juntos">
+    Cada afirmación indica las citas que la respaldan y los identificadores de los elementos del diagrama. Cuando se agregan revisiones, el sistema conserva intactas las transcripciones y las respuestas a las preguntas de aclaración. En Cloudflare, los registros de revisiones se guardan en D1 y las versiones inmutables del modelo se guardan en R2 privado. El código publica el modelo y la evidencia juntos con una escritura condicional. Las ediciones que ya no corresponden a la última versión, los lotes inválidos y las referencias inválidas a la evidencia no pueden dejar una actualización a medias. La herramienta local guarda sus revisiones en SQLite.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar una biblioteca de modelado para el diagrama">
+    Usé Miragon para las operaciones de BPMN, la validación, la disposición de los elementos y la visualización. En Senda agregué la evidencia de las fuentes, el estado de las aclaraciones, las revisiones y la revisión del diagrama. La herramienta de línea de comandos y los paquetes para revisar sin conexión siguen disponibles.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo consultar un proceso grande" media>
+El ejemplo ficticio más grande describe el proceso de incorporación de un cliente con cinco funciones internas y el cliente. Incluye trabajo en paralelo, recordatorios de pago, condiciones para desistir y pedir un reembolso, correcciones y entrega. La vista general ocupa poco espacio. Quien revisa puede abrir el detalle de cada parte sin dejar de ver los intercambios externos necesarios para entenderla.
+
+<ImagePlate
+  image={processOverview}
+  alt="Vista general en Senda del proceso ficticio de incorporación de un cliente con funciones internas y un cliente"
+  caption="En el ejemplo ficticio de incorporación de un cliente, los intercambios externos se ven tanto en la vista general como en los detalles."
+/>
+
+Podés exportar el modelo guardado como archivo BPMN completo con una mejor distribución de los elementos. Los archivos de cada vista conservan los participantes externos que aparecen en ella y se identifican como parciales. El sistema conserva el XML original guardado. Probé las exportaciones en un editor de BPMN independiente. El aspecto y la compatibilidad con los participantes externos pueden variar entre editores.
+
+</CaseSection>
+
+<CaseSection title="Cómo elegí la disposición del diagrama">
+En el ejemplo más grande, comparé la disposición actual con un adaptador experimental que usa ELK, un motor de disposición de grafos. Encontré un problema en mi implementación: trataba como obstáculos las franjas de los carriles intermedios. Al corregirlo pasé de dos cruces a uno en la vista general sin agrandar el diagrama. Las cinco vistas de detalle siguieron sin cruces.
+
+Con la alternativa basada en ELK no quedaban cruces en la vista general, pero el diagrama era más alto y tenía recorridos más largos y traspasos hacia atrás. También aparecían cruces en algunas vistas de detalle. Conservé la versión corregida del motor que ya usaba y dejé ELK como opción experimental. Solo comparé un modelo ficticio con un adaptador de alcance acotado, no todos los procesos ni todos los motores de disposición.
+
+</CaseSection>
+
+<CaseSection title="Qué comprobé">
+En el ejemplo ficticio más grande, las preguntas abiertas pasan de siete a cero en tres rondas de aclaraciones preparadas de antemano. Los doce casos para revisión humana siguen sin aprobarse. En el sitio publicado, comprobé el inicio de sesión por correo. Después usé el SDK oficial del cliente de MCP para modificar el modelo actual y un plan separado. Comprobé que se guardara una respuesta de aclaración, que las exportaciones BPMN coincidieran, que el modelo actual no cambiara al trabajar en el plan y que el acceso del agente se revocara de inmediato. Todavía no probé clientes comerciales de agentes.
+
+Estas pruebas comprueban la implementación, la evidencia y el guardado de datos. No miden qué puede extraer la IA por su cuenta ni demuestran que un modelo represente con precisión un proceso real. Las comprobaciones de estructura tampoco permiten saber si el diagrama está completo o si es claro para la persona que lo va a leer. Para evaluar la calidad del relevamiento en la práctica, hace falta una transcripción real y una revisión con las personas que hacen el trabajo.
+
+Los enlaces de inicio de sesión se envían con Cloudflare Email Service y solo se pueden usar una vez. Antes de iniciar sesión, la persona ve una página de confirmación. Probé esos pasos con una casilla real, comprobé que no se pudiera reutilizar un enlace y confirmé que la cuenta existente y sus proyectos As-is y To-be siguieran intactos.
+
+</CaseSection>

@@ -72,6 +72,7 @@ export const es = {
     technologies: "Tecnologías principales",
     feedback: "Opinión del cliente",
     workingTogether: "Qué dice el cliente",
+    swipeCapture: "Deslizá para leer la captura completa",
   },
   imageViewer: {
     expanded: "Imagen ampliada",

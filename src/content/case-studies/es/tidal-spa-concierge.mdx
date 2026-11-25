@@ -1,0 +1,297 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import DeviceGrid from "@src/components/case-study/DeviceGrid.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import guestHomeMobile from "@src/assets/img/projects/tidal-spa-concierge/guest-home-mobile.webp";
+import decisionPolicy from "@src/assets/img/projects/tidal-spa-concierge/decision-policy.webp";
+import decisionPolicyMobile from "@src/assets/img/projects/tidal-spa-concierge/decision-policy-mobile.webp";
+import systemOwnership from "@src/assets/img/projects/tidal-spa-concierge/system-ownership.webp";
+import systemOwnershipMobile from "@src/assets/img/projects/tidal-spa-concierge/system-ownership-mobile.webp";
+import calBooking from "@src/assets/img/projects/tidal-spa-concierge/cal-booking.webp";
+import tallyIntake from "@src/assets/img/projects/tidal-spa-concierge/tally-intake.webp";
+import staffOperations from "@src/assets/img/projects/tidal-spa-concierge/staff-operations.webp";
+import serviceCatalog from "@src/assets/img/projects/tidal-spa-concierge/service-catalog.webp";
+import makeScenarios from "@src/assets/img/projects/tidal-spa-concierge/make-scenarios.webp";
+import makeServiceEligibility from "@src/assets/img/projects/tidal-spa-concierge/make-service-eligibility.webp";
+import conciergeRealChat from "@src/assets/img/projects/tidal-spa-concierge/concierge-real-chat.webp";
+import bookingConfirmationEmail from "@src/assets/img/projects/tidal-spa-concierge/booking-confirmation-email.webp";
+import bookingConfirmationEmailMobile from "@src/assets/img/projects/tidal-spa-concierge/booking-confirmation-email-mobile.webp";
+import staffVisitRecord from "@src/assets/img/projects/tidal-spa-concierge/staff-visit-record.webp";
+import staffOperationsMobile from "@src/assets/img/projects/tidal-spa-concierge/staff-operations-mobile.webp";
+import serviceCatalogMobile from "@src/assets/img/projects/tidal-spa-concierge/service-catalog-mobile.webp";
+import staffVisitRecordMobile from "@src/assets/img/projects/tidal-spa-concierge/staff-visit-record-mobile.webp";
+import aftercareEmail from "@src/assets/img/projects/tidal-spa-concierge/aftercare-email.webp";
+import aftercareEmailMobile from "@src/assets/img/projects/tidal-spa-concierge/aftercare-email-mobile.webp";
+import feedbackForm from "@src/assets/img/projects/tidal-spa-concierge/feedback-form.webp";
+import feedbackFormMobile from "@src/assets/img/projects/tidal-spa-concierge/feedback-form-mobile.webp";
+import ownerAlert from "@src/assets/img/projects/tidal-spa-concierge/owner-alert.webp";
+import ownerAlertMobile from "@src/assets/img/projects/tidal-spa-concierge/owner-alert-mobile.webp";
+import { resourceLinksClass } from "@src/lib/ui";
+
+export const guestScreens = [
+  {
+    image: guestHomeMobile,
+    alt: "Inicio del sitio de Tidal Spa en celular con un botón flotante sobre la sección de ayuda para elegir un servicio",
+    label: "Sitio en celular",
+    title: "Los clientes pueden abrir el chat desde cualquier página en el celular",
+    caption: "El botón flotante sigue visible cuando el cliente consulta los servicios, sin tapar la página.",
+    frame: "mobile",
+  },
+];
+
+export const conciergeScreens = [
+  {
+    image: conciergeRealChat,
+    alt: "Chat publicado de Tidal Spa con una recomendación de masaje de 60 minutos antes de las opciones de reserva y ayuda del personal",
+    label: "Chat publicado",
+    title: "Los clientes ven un servicio recomendado antes de ingresar sus datos de contacto",
+    caption: "Después de ver la recomendación de Tidal Massage, el cliente puede reservar o pedir ayuda al personal. También puede cambiar sus respuestas.",
+    frame: "desktop",
+    width: "compact",
+  },
+];
+
+export const ruleScreens = [
+  {
+    image: decisionPolicy,
+    mobileImage: decisionPolicyMobile,
+    alt: "Diagrama de recomendación con 20 servicios activos, filtros obligatorios y un orden calculado con IA solo entre opciones válidas para devolver un servicio aprobado",
+    label: "Reglas de recomendación",
+    title: "Primero se aplican las reglas del spa y después se ordenan las opciones con IA",
+    caption: "Solo se consideran servicios activos que coinciden con la duración y el objetivo del cliente.",
+    frame: "desktop",
+  },
+];
+
+export const systemScreens = [
+  {
+    image: systemOwnership,
+    mobileImage: systemOwnershipMobile,
+    alt: "Diagrama de cómo se envían las respuestas del cliente desde Typebot a Make y a las herramientas del spa",
+    label: "Función de cada herramienta",
+    title: "Con Make se registra cada acción del cliente en el turno",
+    caption: "Con los datos del chat, la reserva y los formularios se actualiza el turno que consulta el personal en Airtable.",
+    frame: "desktop",
+  },
+];
+
+export const bookingScreens = [
+  {
+    image: calBooking,
+    alt: "Página de reserva de Salt Cave en Cal.com con un servicio de 45 minutos, fechas en el calendario y horarios disponibles",
+    label: "Reserva con Cal.com",
+    title: "Los clientes ven los horarios disponibles en Cal.com",
+    caption: "Desde el chat se abre el grupo de reservas que corresponde al servicio recomendado y a su duración.",
+    frame: "desktop",
+  },
+  {
+    image: tallyIntake,
+    alt: "Formulario de Tally previo a un turno de Salt Cave Reset con campos sobre objetivos de la visita y zonas en las que se quiere trabajar",
+    label: "Formulario previo en Tally",
+    title: "El cliente no tiene que volver a ingresar los datos de la reserva",
+    caption: "El sistema identifica el turno con datos de la reserva que no se muestran. El cliente contesta solo lo que el personal necesita para prepararse.",
+    frame: "desktop",
+  },
+];
+
+export const confirmationScreens = [
+  {
+    image: bookingConfirmationEmail,
+    mobileImage: bookingConfirmationEmailMobile,
+    alt: "Vista previa de la plantilla actual de confirmación de reserva con datos de un turno de ejemplo y un enlace al formulario previo",
+    label: "Plantilla de correo previo a la visita",
+    title: "El cliente recibe en la confirmación un pedido para completar el formulario previo",
+    caption: "En el correo ya están los datos del turno, seguidos del enlace al formulario previo.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+];
+
+export const staffScreens = [
+  {
+    image: staffOperations,
+    mobileImage: staffOperationsMobile,
+    alt: "Panel publicado de Airtable con próximas visitas y turnos sin formulario previo",
+    label: "Operación diaria",
+    title: "El personal puede ver qué está listo y qué falta",
+    caption: "En el panel actual, el personal ve las próximas visitas y puede consultar por separado los turnos sin formulario previo.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+  {
+    image: serviceCatalog,
+    mobileImage: serviceCatalogMobile,
+    alt: "Catálogo publicado de servicios en Airtable con reglas editables para recomendar y reservar",
+    label: "Catálogo de servicios",
+    title: "El spa puede cambiar servicios sin rehacer el chat",
+    caption: "El personal actualiza el catálogo en Airtable. Para la siguiente recomendación, el sistema consulta los datos actualizados.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+  {
+    image: staffVisitRecord,
+    mobileImage: staffVisitRecordMobile,
+    alt: "Registro de una visita con el formulario previo del cliente y los campos que el personal completa después del turno",
+    label: "Registro de la visita",
+    title: "El personal usa el mismo registro antes y después del turno",
+    caption: "Antes de la visita, el personal puede consultar las respuestas del formulario previo. Después puede completar los campos de notas e indicaciones de cuidado.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+];
+
+export const automationScreens = [
+  {
+    image: makeScenarios,
+    alt: "Lista de escenarios de Make con una automatización distinta para cada evento del spa",
+    label: "Escenarios de Make",
+    title: "Cada escenario de Make lleva el nombre del evento que lo inicia",
+    caption: "Con nombres como «Booking Created» y «Visit Completed», el personal puede identificar la automatización que busca sin abrirla.",
+    frame: "desktop",
+  },
+  {
+    image: makeServiceEligibility,
+    alt: "Escenario de Make que recibe una consulta de Typebot, carga los servicios activos de Airtable que cumplen las reglas y devuelve una recomendación estructurada",
+    label: "Filtro de servicios",
+    title: "Se aplican las reglas obligatorias antes de ordenar las opciones con IA",
+    caption: "Antes de enviar opciones a DeepSeek, Make carga solo los servicios activos con la duración elegida.",
+    frame: "desktop",
+  },
+];
+
+export const followUpScreens = [
+  {
+    image: aftercareEmail,
+    mobileImage: aftercareEmailMobile,
+    alt: "Vista previa de la plantilla actual de correo posterior a la visita con indicaciones de cuidado de ejemplo",
+    label: "Plantilla de correo de cuidados posteriores",
+    title: "El cliente recibe las indicaciones que anotó el personal",
+    caption: "Cuando el personal marca la visita como completada, el sistema envía las indicaciones que escribió el personal y un enlace al formulario de opinión.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+  {
+    image: feedbackForm,
+    mobileImage: feedbackFormMobile,
+    alt: "Formulario publicado de Tally con preguntas sobre la visita y si el cliente quiere una respuesta del personal",
+    label: "Formulario de opinión",
+    title: "El formulario es breve y el cliente puede pedir una respuesta",
+    caption: "En Tally se guarda la calificación y si el cliente quiere que el personal se comunique con él.",
+    frame: "desktop",
+    mobileScrollable: true,
+    width: "contained",
+  },
+  {
+    image: ownerAlert,
+    mobileImage: ownerAlertMobile,
+    alt: "Vista previa de la plantilla actual de aviso al dueño para una visita de ejemplo que recibió dos puntos de cinco",
+    label: "Plantilla de aviso al dueño",
+    title: "El dueño recibe directamente los comentarios que requieren atención",
+    caption: "En el aviso figuran la visita y los comentarios del cliente. El dueño puede responder desde el correo.",
+    frame: "desktop",
+    mobileScrollable: true,
+  },
+];
+
+export const shippedRows = [
+  {
+    label: "Elección del cliente",
+    title: "El cliente recibe una recomendación acorde al tiempo que tiene",
+    body: "El sistema compara lo que pidió el cliente y el tiempo que tiene con los servicios activos antes de devolver una recomendación.",
+  },
+  {
+    label: "Registro del turno",
+    title: "La recomendación queda guardada en el turno",
+    body: "El servicio elegido queda asociado al turno. El personal lo ve cuando se prepara para la visita y cuando manda el seguimiento.",
+  },
+  {
+    label: "Gestión del spa",
+    title: "El personal puede editar el catálogo sin rehacer el chat",
+    body: "El personal cambia un servicio en Airtable. Make consulta el registro actualizado la próxima vez que alguien pide una recomendación.",
+  },
+  {
+    label: "Límite para la publicación",
+    title: "El plan gratis de Typebot admite 200 chats por mes",
+    body: "Para atender más chats haría falta un plan pago de Typebot u otra herramienta que use la misma automatización de Make.",
+  },
+];
+
+<CaseSection title="Con muchos servicios para elegir, los clientes postergaban la reserva">
+Armé Tidal después de que una persona que trabaja en consultoría de operaciones me contara qué pasa cuando un spa ofrece decenas de tratamientos. Muchas veces, los visitantes no saben cuál elegir y postergan la reserva. Usé un spa ficticio y un catálogo de 20 servicios para probar un proceso de reserva guiada.
+
+El tratamiento elegido tenía que quedar asociado al turno después de que terminara la conversación. El personal necesitaba un solo registro en Airtable para saber por qué se recomendó ese tratamiento y si ya se habían completado el formulario previo y el seguimiento.
+
+</CaseSection>
+
+<CaseSection title="Cómo se usan las herramientas juntas" media>
+Los clientes empiezan en el sitio del spa y usan Typebot para describir qué necesitan. Make consulta el catálogo en Airtable y le pide al modelo de IA DeepSeek que ordene solo los servicios que cumplen los requisitos. Las reservas se hacen en Cal.com y las respuestas de los formularios se cargan en Tally. Con Make se adjuntan al turno que gestiona el personal en Airtable.
+
+  <DeviceGrid screens={systemScreens} stacked />
+</CaseSection>
+
+<CaseSection title="Qué tratamientos cumplen las reglas del spa" media>
+DeepSeek solo podía seleccionar servicios aprobados en Airtable. El servicio elegido tenía que coincidir con el objetivo del cliente y con el tiempo exacto que tenía disponible.
+
+  <DecisionBlock title="Filtrar el catálogo antes de enviar opciones a la IA">
+    En Airtable se registra si cada servicio está activo o retirado y cuál es su grupo de reservas. Make filtra los servicios que no coinciden con la duración elegida. Después DeepSeek ordena las opciones restantes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Dejar las reglas de servicio y de reserva fuera del constructor del chat">
+    En Typebot se muestran las preguntas y la respuesta. Make consulta el catálogo actual de Airtable y devuelve un tratamiento que cumple las condiciones. En Cal.com figuran los horarios. El spa puede cambiar la conversación sin modificar esas reglas.
+  </DecisionBlock>
+
+  <DeviceGrid screens={ruleScreens} stacked />
+</CaseSection>
+
+<CaseSection title="Los clientes pueden pedir ayuda desde el sitio del spa" media wideMedia>
+El chat está dentro de un sitio completo para el spa, junto con el catálogo de 20 servicios. Si un visitante no sabe cuál elegir, puede pedir ayuda directamente con un botón flotante.
+
+Los visitantes describen qué quieren y cuánto tiempo tienen. Si hace falta, en Typebot se muestra una pregunta más sobre la experiencia que prefieren. El visitante ve un servicio recomendado antes de que se le pidan sus datos de contacto. El pedido de datos aparece solo después de que el visitante elige reservar o pedir ayuda al personal.
+
+  <DeviceGrid screens={guestScreens} stacked />
+  <DeviceGrid screens={conciergeScreens} stacked />
+</CaseSection>
+
+<CaseSection title="El calendario de reservas corresponde al servicio recomendado" media>
+Los 20 servicios se distribuyen en seis grupos de reservas de Cal.com para no crear 20 tipos de evento distintos. Desde el chat se abre el grupo del servicio recomendado. En el enlace de reserva se incluyen el nombre y la duración del servicio. En Cal.com, el cliente ve los horarios disponibles y se guarda el turno cuando reserva.
+
+Después de la reserva, los datos del turno se pasan a Tally sin que aparezcan como preguntas. El cliente contesta solo lo que el personal necesita para prepararse.
+
+  <DeviceGrid screens={bookingScreens} />
+  <DeviceGrid screens={confirmationScreens} stacked />
+</CaseSection>
+
+<CaseSection title="El personal organiza el día desde una lista en Airtable" media>
+En la pantalla inicial de Airtable aparecen los turnos de hoy. En otra vista, el personal puede consultar los turnos sin formulario previo o con seguimiento pendiente. Antes de la visita, el personal abre el registro del turno. Después agrega notas y, cuando hace falta, actualiza los servicios en el catálogo.
+
+Cuando el personal marca una visita como completada, Make envía por correo las indicaciones de cuidado registradas y el formulario de opinión. En Airtable se registra si se envió cada mensaje.
+
+  <DeviceGrid screens={staffScreens} stacked />
+</CaseSection>
+
+<CaseSection title="Hay una automatización de Make para cada evento" media>
+Cuando el cliente reserva, se crea el turno en Airtable y se envía el correo de preparación. Cuando completa el formulario previo, se actualiza el mismo registro. Cuando el personal completa la visita, se envían las indicaciones de cuidado y el formulario de opinión. Si el cliente pide que se comuniquen con él, se notifica al dueño.
+
+Para recomendar un servicio se usa otra automatización de Make. Typebot envía las respuestas del cliente. Make filtra el catálogo de Airtable y devuelve el servicio recomendado.
+
+  <DeviceGrid screens={automationScreens} />
+  <DeviceGrid screens={followUpScreens} stacked />
+</CaseSection>
+
+<CaseSection title="Qué pude comprobar con el prototipo">
+  <ProofRows rows={shippedRows}>
+    <p>
+      En el prototipo terminado, el servicio recomendado quedaba asociado al turno desde la reserva hasta el seguimiento después de la visita. El personal podía gestionar la visita sin volver a la transcripción del chat.
+    </p>
+  </ProofRows>
+
+  <nav class={resourceLinksClass} aria-label="Recursos del proyecto">
+    <a href="https://spa-concierge-prototype.pages.dev/" target="_blank" rel="noopener noreferrer">Prototipo para probar</a>
+    <a href="https://spa-concierge-prototype.pages.dev/system" target="_blank" rel="noopener noreferrer">Cómo funciona el sistema</a>
+    <a href="https://github.com/HanifCarroll/spa-concierge-prototype" target="_blank" rel="noopener noreferrer">Código fuente en GitHub</a>
+  </nav>
+
+</CaseSection>

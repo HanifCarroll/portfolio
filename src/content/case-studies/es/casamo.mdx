@@ -1,0 +1,91 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import casamoComparison from "@src/assets/img/projects/casamo/comparison-desktop.png";
+import casamoEvidence from "@src/assets/img/projects/casamo/evidence-desktop.png";
+
+<CaseSection title="Por qué armé Casamo">
+Quería un lavarropas dentro de mi departamento. Como nómada digital, reservaba departamentos por varias semanas. Prefería lavar la ropa en casa en vez de salir para usar un lavadero compartido.
+
+En un aviso de Airbnb podía figurar un lavarropas sin aclarar si estaba dentro del departamento o si era de uso compartido en el edificio. Tenía que abrir cada aviso y revisar las fotos para averiguarlo.
+
+Armé una herramienta chica para buscar en Airbnb y analizar las fotos con IA en busca de un lavarropas dentro del departamento. Después quise poder buscar otros detalles que me importaban para elegir dónde vivir.
+
+Así armé Casamo. Los viajeros ingresan un destino o enlaces a avisos e indican sus requisitos. El sistema revisa avisos de Airbnb y Booking.com y guarda una lista de opciones con evidencia de los datos del aviso, las fotos y las reseñas. Los viajeros pueden revisar las opciones, verlas en un mapa y compararlas antes de volver a Airbnb o Booking.com para reservar.
+
+Casamo es un producto independiente que ya está disponible. Como ingeniero de producto con IA, me ocupo de la estrategia de producto, el diseño, el desarrollo, las pruebas y la operación. Después de usarlo yo mismo y pedirles a otras personas que lo probaran, cambié algunas ideas que tenía sobre cómo debía funcionar.
+
+</CaseSection>
+
+<CaseSection title="Cómo muestro la evidencia de cada resultado" media>
+Los datos del aviso, las fotos y las reseñas pueden aportar distintos tipos de evidencia. Que un servicio figure en el aviso no confirma que funcione bien. Si falta algún dato, quizás no se pueda verificar un requisito. Armé el informe para que los viajeros puedan ver las fuentes de cada resultado y qué falta verificar.
+
+En el informe de ejemplo, el aviso de un alojamiento indica que tiene wifi, pero no sabemos a qué velocidad funciona. En Casamo ese dato aparece como declarado en el aviso, con una sugerencia para pedirle al anfitrión una prueba de velocidad reciente. Para el aire acondicionado, el informe incluye un fragmento de la reseña de un huésped y enlaces a la reseña completa y al texto original.
+
+<ImagePlate
+  image={casamoEvidence}
+  alt="Detalle de un aviso de ejemplo con wifi declarado, una reseña que menciona el aire acondicionado y una pregunta sugerida sobre la velocidad de internet"
+  caption="Informe de ejemplo guardado con los servicios que figuran en el aviso, la evidencia aportada por huéspedes y las preguntas para el anfitrión."
+/>
+</CaseSection>
+
+<CaseSection title="Cómo cambié la lista a partir de las pruebas">
+Al principio quería que elegir fuera lo más simple posible: recomendar un departamento y ofrecer dos alternativas.
+
+Las personas que probaron Casamo querían comparar más opciones para confiar en que la búsqueda había sido completa. Me pareció razonable: elegir un alojamiento puede implicar gastar miles de dólares y comprometerse por semanas.
+
+Amplié la lista y finalmente fijé un objetivo de entre cinco y diez opciones. Quería que cada persona tuviera suficientes opciones para elegir con su propio criterio, sin volver a lo que yo quería evitar: abrir decenas de pestañas y pasar horas comparándolas.
+
+También cambié qué pasa si hay menos opciones. Al principio, si había demasiado pocos alojamientos que cumplían los requisitos, no se mostraba ningún informe. Ahora el sistema muestra los resultados que cumplen, aunque haya uno solo. Cada búsqueda usa un crédito. Si menos de cinco alojamientos cumplen los requisitos, el sistema devuelve el crédito. Un informe más corto todavía puede ser útil, aunque no tenga tantas opciones como quería ofrecer.
+
+</CaseSection>
+
+<CaseSection title="Cómo hice más fácil abrir la comparación">
+En el informe había una vista de lista y otra de mapa. La tabla de comparación estaba debajo de la lista. Para llegar a la tabla, había que pasar por todos los alojamientos que se querían comparar.
+
+Pasé la comparación a una vista propia, al mismo nivel que la lista y el mapa. Quien quiere comparar puede abrir la tabla directamente y ver los alojamientos uno al lado del otro.
+
+<ImagePlate
+  image={casamoComparison}
+  alt="Informe de ejemplo con accesos a Lista, Mapa y Comparar encima de una tabla para comparar alojamientos"
+  caption="La comparación tiene una vista propia junto a la lista y el mapa. Las prioridades del viajero aparecen antes de los datos generales de cada alojamiento."
+/>
+</CaseSection>
+
+<CaseSection title="Los viajeros pueden salir mientras se ejecuta la búsqueda">
+Durante la búsqueda, el sistema recopila avisos y compara los datos, las reseñas y las fotos con los requisitos del viajero. Antes mostraba el progreso y los resultados a medida que se obtenían, pero quienes probaron Casamo se quejaban de la demora. Pensé que la pantalla de progreso les daba la impresión de que tenían que quedarse mirando. Cambié el mensaje para avisarles que les mandaría un correo cuando el informe estuviera listo. Quería que supieran que podían irse y hacer otra cosa.
+
+Las búsquedas se ejecutan en segundo plano con Cloudflare Workflows, sin depender de la solicitud del navegador. En D1 se guarda el estado de la búsqueda y de la cuenta. En R2 se guardan la evidencia y los archivos del informe. Si hay un reintento, el sistema reutiliza el trabajo de las etapas que ya se guardaron. El informe terminado queda en la cuenta del viajero. El correo de aviso se pone en una cola aparte.
+
+</CaseSection>
+
+<CaseSection title="Cómo separé el tiempo de espera del tiempo de búsqueda">
+Más adelante, cuando agregué una cola para las búsquedas que esperaban capacidad, tuve que corregir cuándo empezaba a contar el tiempo de búsqueda. El contador empezaba apenas la aplicación aceptaba la solicitud, así que el tiempo de espera podía restarle tiempo a la búsqueda.
+
+Puse límites de tiempo separados para la espera y la ejecución, y usé la programación de tareas que ya ofrecía Cloudflare. Cuando empieza a ejecutarse una búsqueda en cola, dispone de todo su tiempo de búsqueda. Si espera demasiado, la aplicación la cancela y devuelve el crédito. Si una búsqueda empieza justo cuando vence su plazo de espera, solo puede ocurrir una de dos cosas: que empiece la búsqueda o que se cancele y se devuelva el crédito.
+
+Lo probé en el entorno de pruebas. Habilité una sola búsqueda a la vez e inicié dos con el proceso habitual de un usuario autenticado. La segunda quedó en cola y después empezó automáticamente con todo su tiempo disponible. Las dos terminaron con un informe guardado y un crédito usado por búsqueda. Con pruebas automatizadas comprobé que una búsqueda no pudiera empezar y vencer a la vez, ni devolver el mismo crédito dos veces.
+
+</CaseSection>
+
+<CaseSection title="Un buscador de alquileres para Buenos Aires">
+También armé un buscador de alquileres en Buenos Aires para quienes todavía no juntaron enlaces a avisos. El sistema busca en Zonaprop y Argenprop, guarda los filtros en una URL de búsqueda que se puede compartir y conserva los resultados cuando termina la solicitud del navegador.
+
+Los adaptadores de cada portal devuelven datos estructurados de los avisos y las URL de las fotos. Si falla un portal, el sistema sigue mostrando los resultados del otro con un aviso. Preferí mostrar un resultado parcial útil antes que ocultar toda la búsqueda. El sistema conserva las monedas y los textos originales de cada portal. Que un alojamiento esté anunciado no confirma que siga disponible.
+
+Al bloquear descargas innecesarias de imágenes, fuentes, archivos multimedia y rastreadores, el navegador tiene menos trabajo al obtener los avisos. Conservé los datos estructurados de las galerías que necesita la interfaz. En el [caso de BA Eventos](/es/projects/ba-eventos/) detallo el resultado de uso de Browserbase para los dos productos.
+
+</CaseSection>
+
+<CaseSection title="Qué está disponible y qué probé">
+En Casamo ya podés crear una cuenta, guardar informes y pagar por el acceso. El trabajo incluye la interfaz para los clientes, las integraciones con avisos e IA, las búsquedas que se pueden recuperar, los créditos, el despliegue y la operación. Sigo invitando a amigos a probarlo y tengo en cuenta sus comentarios junto con mi propia experiencia.
+
+La prueba que describí arriba comprobó la espera en cola, la finalización y el uso de créditos para dos búsquedas en el entorno de pruebas. No mide la exactitud de los datos de los avisos, los resultados de las reservas ni el funcionamiento con mucha carga. En el informe de ejemplo podés ver cómo se muestran las fuentes y qué datos quedan sin confirmar. El informe no permite comprobar el estado actual del alojamiento.
+
+En el <a href="/projects/apartment-finder/" hreflang="en">prototipo anterior de Apartment Finder</a> evalué por separado la clasificación de lavarropas. Esos resultados corresponden a datos de prueba de esa tarea específica y no establecen la exactitud de Casamo para otros requisitos de viajeros.
+
+Podés [ver un viaje de ejemplo](https://casamo.app/sample-trip) o [probar Casamo](https://casamo.app).
+
+</CaseSection>

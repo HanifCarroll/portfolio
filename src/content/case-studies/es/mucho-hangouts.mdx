@@ -1,0 +1,81 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import muchoHangoutsFeature from "@src/assets/img/projects/mucho-hangouts-feature.png";
+
+export const shippedRows = [
+  {
+    label: "Estabilidad",
+    title: "Los usuarios podían coordinarse con menos problemas",
+    body: "Después de las correcciones en los mensajes y las notificaciones, los usuarios se frustraban menos al coordinar actividades cotidianas.",
+  },
+  {
+    label: "Ritmo de trabajo",
+    title: "El equipo tenía criterios más claros para el trabajo nuevo",
+    body: "Con criterios de tipado para el backend y el frontend, los desarrolladores junior tenían menos decisiones que tomar sin una referencia.",
+  },
+  {
+    label: "Continuidad del desarrollo",
+    title: "El equipo siguió publicando cambios mientras mejoraba la estabilidad",
+    body: "El equipo no tuvo que hacer una pausa larga para corregir el código.",
+  },
+  {
+    label: "Dirección técnica",
+    title: "El equipo dependía menos de arreglos puntuales",
+    body: "Con revisiones de código, programación en pareja y dirección técnica, el equipo pudo desarrollar funciones con menos arreglos puntuales.",
+  },
+];
+
+<CaseSection title="El problema y mi función">
+Mucho Hangouts era un producto de eventos sociales que ya estaba en uso. Tenía problemas recurrentes con los mensajes, las notificaciones y el proceso de publicación. Mejoramos la estabilidad de esas funciones centrales sin que el equipo dejara de publicar cambios.
+
+Trabajé como director de tecnología a tiempo parcial en un equipo de cinco personas. Acompañé a dos desarrolladores junior con revisiones de código, programación en pareja y patrones reutilizables de frontend. Combiné la dirección técnica con correcciones en el producto existente.
+
+</CaseSection>
+
+<CaseSection title="Por qué no reescribimos el producto">
+Los usuarios dependían de los mensajes y las notificaciones para coordinar actividades cotidianas. No podíamos corregir el código sin tener en cuenta cómo se usaba el producto. El equipo necesitaba mejorar el código sin dejar de publicar funciones.
+
+La idea era corregir primero los fallos que afectaban a los usuarios y al trabajo del equipo, y después definir cómo aplicar esas soluciones en otros casos.
+
+</CaseSection>
+
+<CaseSection title="Qué cambié">
+  <DecisionBlock title="Empezar por los fallos que afectaban a los usuarios">
+    Me concentré en los límites de la API, el estado de la aplicación, las interacciones de autenticación y el funcionamiento en tiempo real. Los fallos en esas áreas interrumpían el uso de la aplicación y demoraban la entrega de cambios.
+  </DecisionBlock>
+
+  <DecisionBlock title="Centralizar el inicio de sesión y el acceso a los datos">
+    Centralicé la autenticación y el acceso al estado del servidor, mantuve la misma instancia de QueryClient entre renderizados y asocié el registro y la desconexión de los sockets con el usuario autenticado. Cuando la API devolvía una respuesta de acceso no autorizado, el código borraba el estado de la sesión y de la caché desde un solo lugar, sin hacer un borrado general en localStorage.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar las correcciones como referencia para el equipo">
+    Con revisiones de código, programación en pareja y dirección técnica cotidiana, definimos formas más claras de desarrollar, revisar y ampliar el producto a partir de correcciones puntuales.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo mejoré de a poco el tipado del backend">
+El backend ya usaba TypeScript, pero había muchos tipos poco específicos y era difícil entender los límites entre servicios. Reemplacé los tipos poco específicos de los servicios por tipos explícitos. Incorporé contratos compartidos con Zod y validación de solicitudes en tiempo de ejecución para las API de autenticación y usuarios.
+
+Los cambios fueron graduales. Otras personas trabajaban en el código, todavía no habíamos completado el tipado estricto y no validábamos todas las API. Decidimos mejorar los límites que el equipo modificaba con más frecuencia, sin cambiar los procesos existentes ni detener la entrega de funciones.
+
+</CaseSection>
+
+<CaseSection title="Cómo corregimos los mensajes en el producto en uso" media>
+El equipo publicó correcciones de mensajes y notificaciones en el producto existente mientras seguía trabajando en las otras funciones previstas.
+
+<ImagePlate image={muchoHangoutsFeature} alt="Interfaz de Mucho Hangouts para eventos sociales" />
+
+</CaseSection>
+
+<CaseSection title="Los resultados">
+  <ProofRows rows={shippedRows}>
+    <p>
+      Los usuarios pudieron usar las funciones sociales principales con menos problemas. El equipo aplicó criterios más claros al trabajo nuevo y siguió publicando cambios mientras mejoraba la estabilidad.
+    </p>
+  </ProofRows>
+</CaseSection>

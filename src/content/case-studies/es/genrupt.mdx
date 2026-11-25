@@ -1,0 +1,96 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import genruptAgentAccess from "@src/assets/img/projects/genrupt/agent-access.png";
+import genruptAplusSetup from "@src/assets/img/projects/genrupt/aplus-project-setup.png";
+import genruptMarketAnalysis from "@src/assets/img/projects/genrupt/market-analysis.png";
+import genruptBatchEdit from "@src/assets/img/projects/genrupt/genrupt-batch-edit.png";
+import genruptAplusWorkflow from "@src/assets/img/projects/genrupt/genrupt-aplus-workflow.png";
+import genruptCreativeVariations from "@src/assets/img/projects/genrupt/genrupt-creative-variations.png";
+
+export const shippedRows = [
+  {
+    label: "Cuentas pagas",
+    title: "Los equipos podían suscribirse, compartir una cuenta y comprar créditos",
+    body: "Los vendedores podían trabajar con facturación por organización, saldos de créditos y actualizaciones de pagos.",
+  },
+  {
+    label: "Recuperación",
+    title: "Los procesos de generación contemplaban los reintentos y los fallos",
+    body: "Las reservas de créditos, las tareas en segundo plano y la liquidación idempotente de costos mantenían los saldos de las cuentas actualizados según el trabajo de generación.",
+  },
+  {
+    label: "Acceso de agentes",
+    title: "Los agentes externos podían ejecutar operaciones aprobadas para vendedores",
+    body: "Configuré el acceso a ciertos procesos con OAuth y MCP según la organización. Los resultados se podían consultar de forma asincrónica.",
+  },
+];
+
+<CaseSection title="Qué necesitaba Genrupt para atender a equipos que pagaban">
+Con Genrupt, los vendedores de Amazon ya podían generar imágenes y videos con IA. Para atender a equipos que pagaban, Genrupt necesitaba cuentas compartidas por organización, suscripciones y un registro de créditos que siguiera siendo correcto cuando se ejecutaban varias tareas a la vez o había que reintentar una solicitud a un proveedor.
+
+Me incorporé como ingeniero de producto con IA y trabajé directamente con el fundador. Me ocupé del editor de imágenes, la facturación, los créditos, el procesamiento en segundo plano, los procesos para vendedores y el acceso de agentes externos. Ayudé a implementar las funciones que propuso el fundador: análisis de mercado, extracción de reseñas, generación de publicaciones de productos y creación de contenido A+.
+
+Mientras Genrupt atendía a clientes que pagaban, seguíamos agregando funciones. Cada proceso nuevo tenía que usar los mismos controles de cuentas, permisos y tareas.
+
+</CaseSection>
+
+<CaseSection title="Cómo hice editable el texto de las imágenes generadas">
+Armé un editor que detecta texto con reconocimiento óptico de caracteres (OCR), lo convierte en capas editables y aplica una técnica de reconstrucción de imagen (inpainting) para borrar el texto original. La detección y el borrado tenían que funcionar juntos. Aunque la capa de texto fuera correcta, al vendedor le servía de poco si quedaban marcas en el fondo de la imagen.
+
+Evalué modelos que alojé en RunPod y elegí proveedores según su tiempo de respuesta y la calidad del borrado. Revisé tanto el resultado que iba a editar el vendedor como el tiempo de procesamiento.
+
+</CaseSection>
+
+<CaseSection title="La interfaz para generar y editar contenido">
+En la interfaz de Next.js, los vendedores podían generar imágenes, revisarlas, volver a generarlas, editarlas por lotes y crear contenido A+. Con las capas editables podían cambiar el texto de una imagen generada sin volver a crearla. También podían editar varias imágenes juntas, deshacer cambios y exportar las imágenes para seguir trabajando con ellas.
+
+Los vendedores podían ver el estado de las tareas que demoraban, reintentarlas y recuperarlas cuando fallaban. La interfaz usaba los mismos controles de organizaciones, facturación y tareas que describo abajo. Así, el trabajo de edición quedaba asociado con las tareas que se ejecutaban y los cargos correspondientes.
+
+</CaseSection>
+
+<CaseSection title="Cómo mantuve correctos los saldos de créditos">
+  <DecisionBlock title="Reservar créditos para evitar que dos solicitudes superen el saldo">
+    Dos solicitudes simultáneas pueden leer el mismo saldo antes de que se descuente el primer cargo. Usé reservas atómicas y bloqueos de filas en PostgreSQL para evitar que la generación consumiera más créditos de los disponibles. También liberé las reservas cuando fallaba una tarea.
+  </DecisionBlock>
+
+  <DecisionBlock title="Cobrar una sola vez aunque haya un reintento">
+    Pasé la generación de imágenes a tareas en segundo plano con pg-boss. Para los videos, reutilicé la tarea del proveedor en cada reintento y liquidé el costo de forma idempotente. Repetir una solicitud no generaba otro cargo por el mismo trabajo.
+  </DecisionBlock>
+
+Para las tareas largas de imágenes, videos, guiones gráficos y otros procesos para vendedores, vinculé el seguimiento y la recuperación de tareas con los saldos de créditos y los estados de facturación correspondientes.
+
+</CaseSection>
+
+<CaseSection title="El mismo sistema de facturación para todos los procesos" media>
+Las variaciones de imágenes, la edición por lotes y el contenido A+ usaban los mismos sistemas de cuentas, facturación, créditos y tareas en segundo plano. Desarrollé tanto las funciones para los vendedores como los controles para cobrarlas y recuperar las tareas si fallaban.
+
+  <div className="mt-3 mb-0 grid gap-4 md:grid-cols-2">
+    <ImagePlate image={genruptCreativeVariations} alt="Interfaz de Genrupt para generar, revisar, volver a generar y editar variantes de imágenes de productos" />
+    <ImagePlate image={genruptBatchEdit} alt="Edición por lotes en Genrupt con una sola instrucción para varias imágenes de productos generadas" />
+    <ImagePlate image={genruptAplusWorkflow} alt="Proceso de Genrupt para generar contenido A+ estructurado a partir de la información de un producto" />
+  </div>
+</CaseSection>
+
+<CaseSection title="Cómo habilité el acceso de agentes de IA" media>
+Habilité el acceso al análisis de mercado y a la generación de publicaciones de Amazon mediante Model Context Protocol (MCP). Configuré OAuth y los permisos por organización para asociar cada solicitud con la cuenta del cliente. Con un conjunto de herramientas seleccionadas y resultados asincrónicos, los agentes podían iniciar operaciones aprobadas y consultar el resultado sin gestionar las tareas internas de la aplicación.
+
+  <div className="mt-3 mb-0 grid gap-4 md:grid-cols-2">
+    <ImagePlate image={genruptAgentAccess} alt="Diagrama del acceso de agentes externos a los procesos aprobados de Genrupt" />
+    <ImagePlate image={genruptAplusSetup} alt="Pantalla de configuración de un proyecto de contenido A+ en Genrupt" />
+    <ImagePlate image={genruptMarketAnalysis} alt="Pantalla de análisis de mercado de Genrupt para vendedores" />
+  </div>
+</CaseSection>
+
+<CaseSection title="Qué se publicó">
+  <ProofRows rows={shippedRows}>
+    Este trabajo ayudó a Genrupt a atender a sus primeros 200 clientes que pagaban. Trabajé junto al fundador para lograr ese resultado. Mi aporte fue el desarrollo que describo acá.
+  </ProofRows>
+
+En las capturas podés ver las funciones publicadas. Arriba describo el trabajo con OCR y reconstrucción de imágenes, los controles de créditos, la reutilización de tareas del proveedor y la integración con MCP. Expliqué los criterios que usé para elegir modelos, sin incluir una comparación numérica. Podés [visitar Genrupt](https://genrupt.com/) para ver el producto.
+
+</CaseSection>

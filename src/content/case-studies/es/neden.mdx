@@ -1,0 +1,108 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import wordLookup from "@src/assets/img/projects/neden/word-lookup.png";
+import subtitleControls from "@src/assets/img/projects/neden/subtitle-controls.png";
+
+<CaseSection title="Aprendé un idioma con las series que ya mirás">
+Neden es un reproductor de video para computadora que podés usar para aprender un idioma. Podés mostrar el diálogo original junto a una traducción, hacer clic en una palabra del subtítulo para ver su significado o seleccionar una frase para pausar el video y abrir una explicación al lado. Podés hacer más preguntas en la misma conversación.
+
+Diseñé el producto y desarrollé el reproductor en Qt Quick, la API alojada, el sitio web y los paquetes de instalación. También hice un complemento para hacer las mismas consultas en IINA, un reproductor para Mac. El complemento usa TypeScript y un programa auxiliar en Swift.
+
+</CaseSection>
+
+<CaseSection title="Un reproductor para estudiar">
+  <DecisionBlock title="Aprendé con los subtítulos">
+    Podés ver dos pistas de subtítulos a la vez, buscar en la transcripción, volver a escuchar la línea actual y continuar desde donde dejaste el video. Si pasás el cursor sobre una palabra del subtítulo, aparece su significado. Cuando consultás una frase, primero ves una traducción y después una explicación de cada palabra pronunciada en esa frase.
+  </DecisionBlock>
+
+  <DecisionBlock title="Tarjetas de estudio en el reproductor">
+    Podés guardar tus consultas en tarjetas locales y repasarlas más adelante. Si recordás una tarjeta, el próximo repaso se programa para más adelante que el anterior. Si no la recordás, se vuelve a mostrar a los diez minutos. Podés exportar las tarjetas como TSV.
+  </DecisionBlock>
+
+  <DecisionBlock title="Consultas en varios idiomas">
+    Para buscar palabras, el código usa un catálogo validado de idiomas, conserva los caracteres Unicode y usa segmentación nativa para las escrituras que no separan palabras con espacios. Las comprobaciones cubren textos en árabe, chino, japonés, hindi y persa, y textos escritos con caracteres cirílicos y latinos.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Herramientas para subtítulos">
+  <DecisionBlock title="Corregí la sincronización entre dos pistas">
+    El reproductor comprueba desfases de hasta dos minutos y desajustes comunes por diferencias en la cantidad de fotogramas por segundo. El código ajusta la sincronización y descarta las coincidencias ambiguas. También podés marcar puntos de sincronización a mano. Ninguna pista cambia hasta que confirmás.
+  </DecisionBlock>
+
+  <DecisionBlock title="Traducí con IA sin generar archivos incompletos">
+    El sistema conserva los tiempos de cada subtítulo, manda ocho a la vez junto con las líneas de diálogo cercanas y comprueba la secuencia que devuelve el modelo. La pista completa solo se carga si se traducen todos los lotes. Si cancelás o la respuesta no tiene el formato esperado, no queda un archivo parcial.
+  </DecisionBlock>
+
+  <DecisionBlock title="Buscá subtítulos y usá los que vienen en el video">
+    El reproductor busca y descarga subtítulos de proveedores, con límites de tamaño y comprobaciones en cada descarga. También extrae pistas de subtítulos de archivos Matroska y MP4 con las bibliotecas de FFmpeg incluidas. El código elimina los estilos y conserva los tiempos.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo consultar palabras y frases en IINA" media>
+En el complemento para IINA, si hacés clic en una palabra, se abre una ficha chica sobre el video. Podés elegir Google Cloud Translation o Microsoft Translator y usar tu propia clave. Google devuelve una traducción. El diccionario de inglés de Microsoft puede devolver alternativas. Si no hay una entrada, devuelve una traducción.
+
+Cuando seleccionás una frase, se abre el panel lateral de IA. La instrucción le pide al modelo el significado natural, una explicación de las palabras seleccionadas y, si sirve, una explicación gramatical. El modelo recibe como contexto toda la línea del subtítulo y las líneas cercanas.
+
+En la escena de la captura, la consulta de «bozuk» devuelve «broken» («roto»). En la expresión «moralin bozuk», el sentido se acerca más a sentirse desanimado.
+
+<ImagePlate image={wordLookup} alt="Ficha de significado de Neden sobre un subtítulo en turco en IINA" />
+</CaseSection>
+
+<CaseSection title="Cómo se muestran las respuestas mientras mirás un video">
+  <DecisionBlock title="Un programa en Swift para mostrar respuestas por partes en IINA">
+    Con la API HTTP de IINA que revisé, no podía mostrar la respuesta a medida que llegaba. Hice un programa auxiliar en Swift que recibe la respuesta por partes y pasa el texto al panel hecho en TypeScript. Probé el comportamiento con respuestas divididas en partes, conexiones interrumpidas y solicitudes que excedían el tiempo de espera.
+  </DecisionBlock>
+
+  <DecisionBlock title="Descartar las respuestas que llegan tarde">
+    Al iniciar una explicación, el código guarda la selección, el subtítulo y el contexto cercano tal como estaban en ese momento, e identifica a quién corresponde la solicitud. Una selección nueva, un cambio de pista, un salto a otra parte del video u otro video pueden hacer que la respuesta en curso ya no corresponda. El código impide que una respuesta tardía reemplace la actual. Si detenés la generación, la respuesta parcial se muestra como incompleta.
+  </DecisionBlock>
+
+  <DecisionBlock title="Un segundo proveedor si el primero tarda">
+    Si activás la alternativa, el sistema hace una solicitud a un segundo proveedor después de cinco segundos sin respuesta. Una vez que empieza a llegar texto, no cambia de proveedor. Podés cambiar el orden de los dos proveedores y se te avisa que ambos intentos podrían generar cargos.
+  </DecisionBlock>
+
+  <DecisionBlock title="Pausá, seguí mirando y volvé a escuchar una línea">
+    Al seleccionar una frase, el video se pausa para que puedas leer la explicación. Podés escuchar la misma frase varias veces para familiarizarte con cómo suena. Cada vez que apretás el botón de repetición, se reproduce una vez la línea seleccionada y el video vuelve a donde estabas en el episodio. Podés cerrar el panel para seguir mirando y volver a abrirlo para continuar la conversación.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Subtítulos originales y traducidos" media>
+Podés mostrar el diálogo original junto a una traducción y seleccionar palabras o frases del subtítulo original. Podés elegir e intercambiar las pistas, ajustar su aspecto e incluir la traducción en el contexto que recibe la IA. El sistema guarda las pistas que elegiste para cada video.
+
+<ImagePlate
+  image={subtitleControls}
+  alt="Controles de subtítulos de Neden en IINA con la pista original y la secundaria seleccionadas"
+/>
+
+Las capturas muestran el complemento instalado durante un episodio de Leyla ile Mecnun, con subtítulos en turco y en inglés.
+
+</CaseSection>
+
+<CaseSection title="Privacidad y claves de API">
+Las solicitudes se envían directamente a los proveedores que configuró el estudiante. Para consultar el significado de una palabra, se manda esa palabra. Para explicar una frase, se mandan la selección, la línea de subtítulos, el contexto de las líneas cercanas y los mensajes de la conversación. No se suben el video ni el archivo completo de subtítulos.
+
+Neden guarda las claves de los proveedores y de los servicios de subtítulos en el almacén de credenciales del sistema operativo, sin guardarlas como texto plano si ese almacén no está disponible. Cada clave queda asociada al origen de su API. En el complemento para IINA, el programa en Swift recibe las claves por canales privados entre procesos. Así no quedan como argumentos de comandos.
+
+También desarrollé un plan con IA alojada que solo está disponible por invitación. El usuario inicia sesión en el navegador. El código guarda los tokens de renovación en el llavero, procesa el pago con Stripe y verifica sus webhooks. Antes de cada solicitud a un proveedor, reserva parte del cupo de la cuenta en un Durable Object para que las solicitudes simultáneas no puedan superarlo.
+
+Limité cómo se muestran las respuestas del modelo y agregué validaciones para los archivos de subtítulos y los mensajes de la interfaz.
+
+</CaseSection>
+
+<CaseSection title="Instaladores y pruebas">
+Armé instaladores para macOS, Windows y Ubuntu. Al generar un paquete, el proceso registra la revisión del código fuente y comprueba los archivos fuente con versiones fijadas y los avisos de las dependencias. Una prueba básica de integración continua instala el paquete y comprueba los píxeles del video decodificado. Un modo alternativo de OpenGL por software corrigió fallos de video con algunos controladores gráficos de Windows.
+
+Las pruebas automatizadas cubren el complemento para IINA, la API alojada y el reproductor de escritorio. Incluyen comprobaciones de la interfaz nativa y un ejecutor de escenarios que usa la interfaz real de QML con un servicio simulado de IA.
+
+</CaseSection>
+
+<CaseSection title="Sitio web y código fuente">
+Visitá el [sitio de Neden](https://neden.hanifcarroll.com/) para ver cómo funciona y descargar la aplicación.
+
+El [código fuente está en GitHub](https://github.com/HanifCarroll/Neden): el reproductor en Qt Quick, el complemento para IINA en TypeScript, el programa en Swift que recibe las respuestas por partes y la API alojada.
+
+</CaseSection>

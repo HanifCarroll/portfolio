@@ -70,6 +70,7 @@ export const en = {
     technologies: "Core technologies",
     feedback: "Client feedback",
     workingTogether: "Working together",
+    swipeCapture: "Swipe to read the full capture",
   },
   imageViewer: {
     expanded: "Expanded image",

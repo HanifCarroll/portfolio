@@ -1,0 +1,156 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import DeviceGrid from "@src/components/case-study/DeviceGrid.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import teacherCreateReading from "@src/assets/img/projects/palabruno-teacher-create-reading.png";
+import teacherGroups from "@src/assets/img/projects/palabruno-teacher-groups.png";
+import teacherRecentShares from "@src/assets/img/projects/palabruno-teacher-recent-shares.png";
+import teacherStudents from "@src/assets/img/projects/palabruno-teacher-students.png";
+import learnerReader from "@src/assets/img/projects/palabruno-reader-current.png";
+import learnerExpression from "@src/assets/img/projects/palabruno-reader-expression.png";
+
+export const shippedRows = [
+  {
+    label: "Primeros compradores",
+    title: "Elegí probar la oferta primero con docentes particulares",
+    body: "Los docentes ya preparaban material y se lo mandaban a sus estudiantes. Con el plan Teacher podían pagar por un espacio para preparar lecturas, gestionar estudiantes y grupos, y compartir material.",
+  },
+  {
+    label: "Pagos",
+    title: "Los planes Premium y Teacher se pagan por separado",
+    body: "Las suscripciones a Premium se procesan con RevenueCat a través de Apple y Google. Los pagos de Teacher se procesan con Stripe en el sitio web.",
+  },
+  {
+    label: "Publicación en tiendas",
+    title: "La primera versión se publicó en las dos tiendas de aplicaciones",
+    body: "También se publicaron un sitio, los precios, las páginas legales, las capturas, las notas de la versión y las fichas en las tiendas.",
+  },
+  {
+    label: "Entrega al fundador",
+    title: "El fundador podía gestionar el producto después de la publicación",
+    body: "La entrega incluyó el backend compartido, el material para las tiendas, los pasos de publicación y la documentación del producto.",
+  },
+];
+
+export const teacherScreens = [
+  {
+    image: teacherCreateReading,
+    alt: "Pantalla de Palabruno donde un docente puede crear una lectura en español",
+    label: "Creación de textos",
+    title: "Los docentes pueden crear lecturas del nivel de su clase a partir de apuntes",
+    caption: "Pueden elegir un tema, un nivel y una extensión, y convertir el material de clase en ejercicios de lectura en español.",
+  },
+  {
+    image: teacherStudents,
+    alt: "Lista de estudiantes de Palabruno con sus datos y el estado de sus invitaciones",
+    label: "Lista de estudiantes",
+    title: "Los docentes pueden consultar los datos de sus estudiantes junto a las herramientas de lectura",
+    caption: "Desde el mismo espacio donde preparan las lecturas, pueden ver nombres, estados de invitación y qué falta hacer.",
+  },
+  {
+    image: teacherGroups,
+    alt: "Grupos de estudiantes en Palabruno para clases recurrentes",
+    label: "Grupos de estudiantes",
+    title: "Los docentes pueden organizar a sus estudiantes por clase",
+    caption: "Pueden agrupar estudiantes para las clases recurrentes y compartir cada lectura con el grupo que corresponda.",
+  },
+  {
+    image: teacherRecentShares,
+    alt: "Historial de lecturas compartidas en Palabruno",
+    label: "Historial de envíos",
+    title: "Los docentes pueden ver qué mandaron y cuándo",
+    caption: "En el historial pueden consultar las lecturas que asignaron por correo, por enlace o por WhatsApp.",
+  },
+];
+
+export const learnerScreens = [
+  {
+    image: learnerReader,
+    alt: "Lector web de Palabruno con una ficha de vocabulario dentro del texto",
+    label: "Ayuda con la lectura",
+    title: "Los estudiantes pueden consultar una palabra sin salir del texto",
+    caption: "Pueden seleccionar una palabra para ver la traducción, la pronunciación y la explicación gramatical sin cerrar la lectura.",
+  },
+  {
+    image: learnerExpression,
+    alt: "Lector web de Palabruno con una explicación de una expresión fija dentro del texto",
+    label: "Ayuda con expresiones",
+    title: "Los estudiantes pueden consultar expresiones, no solo palabras",
+    caption: "Pueden leer explicaciones en contexto de expresiones como «me di cuenta de» sin perder la concentración.",
+  },
+];
+
+<CaseSection title="Del primer prototipo a una versión paga">
+Palabruno empezó como un prototipo de lector de español. Los estudiantes podían tocar una palabra para consultar la traducción, la gramática y la pronunciación sin salir del texto. El fundador necesitaba ayuda para decidir qué incluir en un producto pago y publicarlo.
+
+Trabajé directamente con el fundador como ingeniero de producto con IA. Trabajé en el alcance y en cómo iban a usar el producto los estudiantes y los docentes, además del desarrollo del lector con IA, los pagos y la entrega de los materiales de publicación. El trabajo incluyó publicar el producto en iOS, Android y la web.
+
+</CaseSection>
+
+<CaseSection title="Por qué elegí primero a los docentes particulares">
+Los docentes particulares ya preparaban material de clase y se lo mandaban a sus estudiantes. Los elegí como primeros compradores para probar la oferta y definí un espacio web para preparar lecturas, gestionar estudiantes y grupos, y compartir material. El fundador podía poner a prueba esa hipótesis después de publicar el producto.
+
+Los estudiantes necesitaban un lector para el celular donde pudieran leer, guardar textos y consultar explicaciones en contexto. Los docentes necesitaban preparar y repartir material de clase. Mantuve separadas las dos interfaces, con un backend compartido.
+
+Para la primera versión también necesitábamos pagos reales y preparar las aplicaciones para las tiendas. Los comentarios que recibimos al final afectaron la experiencia de uso, los precios, los textos legales, el rendimiento y las capturas. Por eso, el trabajo también incluyó la publicación.
+
+</CaseSection>
+
+<CaseSection title="Aplicaciones separadas para estudiantes y docentes">
+Los docentes usan un espacio web en React y los estudiantes usan apps en React Native y Expo. Los docentes pueden crear lecturas, gestionar estudiantes y grupos, y compartir material. Los estudiantes pueden consultar palabras y expresiones dentro de la lectura.
+
+La arquitectura web actual usa TanStack Router y un cliente compartido de TanStack Query. En el límite de las rutas de la aplicación, el código mantiene los datos del usuario autenticado y su estado de acceso. Las tablas grandes del panel y de administración usan TanStack Table para paginar y seleccionar filas. La obtención de datos y la actualización de la caché se manejan aparte del estado de presentación de cada tabla.
+
+</CaseSection>
+
+<CaseSection title="Cómo asocié cada explicación con la palabra seleccionada">
+Cuando un estudiante tocaba una palabra o una expresión, el lector tenía que mostrar la explicación correspondiente. Una ficha que se leyera bien podía ser incorrecta para el texto seleccionado.
+
+Armé un compilador para el lector. Combiné procesamiento del lenguaje natural (NLP), reglas lingüísticas y generación con restricciones mediante un modelo de lenguaje (LLM) para producir palabras y expresiones que se podían tocar y fichas de ayuda contextual. Usé el análisis lingüístico y las reglas de estructura junto con las explicaciones que generaba el modelo.
+
+Antes de publicar las fichas generadas, el código comprobaba que fueran válidas. Si una ficha era inválida, se podía generar de nuevo sin descartar las fichas válidas ni repetir todo el proceso. Con pruebas de regresión comprobé que los cambios posteriores no afectaran el contenido de las fichas ni su correspondencia con la palabra o expresión seleccionada.
+
+</CaseSection>
+
+<CaseSection title="Cómo recuperé tareas largas después de un fallo">
+Implementé procesos de texto que guardaban el progreso y permitían recuperarlo ante un fallo. Para una lectura que demoraba en procesarse, necesitaba poder recuperar el estado aunque terminara la solicitud del navegador que había iniciado la tarea.
+
+Registré cuánto demoraba cada etapa y cuánto costaba usar los modelos en cada una. Así podía revisar en qué etapa se concentraban el tiempo de procesamiento y el gasto. Así podía diagnosticar problemas en la etapa que necesitaba atención, además de usar las pruebas de regresión del lector.
+
+</CaseSection>
+
+<CaseSection title="Pagos, publicación y entrega">
+  <DecisionBlock title="Elegir el medio de pago según el cliente">
+    Los estudiantes pagan la suscripción a Premium con Apple o Google mediante RevenueCat. Los docentes pagan el plan Teacher con Stripe en el sitio web, donde preparan sus clases. El backend compartido usa Supabase.
+  </DecisionBlock>
+
+  <DecisionBlock title="Entregarle al fundador los pasos de publicación y la documentación">
+    Preparé el sitio público, los precios y las páginas legales, las fichas y capturas para las tiendas, la documentación de publicación y las notas de entrega. El fundador podía gestionar el producto y seguir probando la oferta para docentes particulares después de que terminara mi trabajo.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué se publicó y qué quedó sin comprobar">
+  <ProofRows rows={shippedRows}>
+    La primera versión se publicó en iOS, Android y la web, con opciones pagas para estudiantes y docentes. Las apps móviles ya no están disponibles: las retiraron de las tiendas después de la publicación.
+  </ProofRows>
+
+A partir de la publicación, el fundador podía comprobar si los docentes particulares pagarían por el espacio de trabajo. Acá documento la implementación y la publicación. Este caso no incluye mediciones de cuántos docentes contrataron el plan, cuántos siguieron usándolo ni qué aprendieron los estudiantes. Abajo se ven las funciones publicadas. Arriba describo el compilador del lector y cómo hice recuperable el procesamiento.
+
+</CaseSection>
+
+<CaseSection title="El espacio de trabajo de los docentes" media wideMedia>
+  En estas pantallas se ven las funciones principales: crear una lectura, gestionar estudiantes, organizar grupos y compartir material.
+
+  <DeviceGrid screens={teacherScreens} />
+
+</CaseSection>
+
+<CaseSection title="El lector para estudiantes" media wideMedia>
+  Los estudiantes pueden leer textos en español, consultar explicaciones en contexto y volver a su biblioteca de textos guardados.
+
+  <DeviceGrid screens={learnerScreens} />
+
+</CaseSection>
