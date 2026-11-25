@@ -22,8 +22,8 @@ If most customers already find you through Instagram or Google Maps, a one-page 
 ## Popular choices
 
 - **Squarespace**: Polished templates for a studio, restaurant, or portfolio where photos matter. The Basic plan costs $19 a month billed yearly, or $25 billed monthly, after a 14-day free trial.
-- **Wix**: Many templates and add-ons, with a drag-and-drop editor. It fits an owner who wants to place everything by hand. The free plan doesn't let you use your own domain. The Light plan, the cheapest that does, costs $17 a month billed yearly.
-- **Shopify**: Built for selling products online. It fits a shop more than a service business. The Basic plan costs $29 a month billed yearly, or $39 billed monthly. After a 3-day free trial, most plans cost $1 a month for the first 3 months.
+- **Wix**: Many templates and add-ons, with a drag-and-drop editor. It fits an owner who wants to place everything by hand. On the free plan, you can't use your own domain. The Light plan, the cheapest that does, costs $17 a month billed yearly.
+- **Shopify**: Built for selling products online. It fits a shop more than a service business. The Basic plan costs $29 a month billed yearly, or $39 billed monthly. After a 3-day free trial, most plans start at $1 a month for the first 3 months.
 - **WordPress.com**: The hosted version of WordPress, the software behind many websites. The free plan uses a wordpress.com address. The Personal plan, the cheapest with your own domain, costs $4 a month billed yearly (renewing at $5), or $9 billed monthly. Yearly plans include a free domain for the first year.
 
 Prices as of November 2026.
@@ -31,7 +31,7 @@ Prices as of November 2026.
 ## What to watch for
 
 - **Moving away later.** Most builders don't let you take your design to another service. You can usually copy your text and photos, but you rebuild the pages.
-- **Add-ons that charge each month.** Booking, forms, and online stores often cost extra on top of the plan.
+- **Add-ons with their own monthly price.** Booking, forms, and online stores often cost extra on top of the plan.
 - **Who owns the domain.** Register your domain (your web address) in an account you control, so you keep it if you change builders or designers.
 - **Speed on phones.** Large photos and many add-ons make pages slow on a phone. Open your site on your own phone over mobile data and check.
 

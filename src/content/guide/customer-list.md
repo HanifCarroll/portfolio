@@ -24,7 +24,7 @@ If you have a few regular customers and you remember them all, a spreadsheet is 
 - **HubSpot**: A CRM with a contact list and deals, plus paid plans that add email marketing and more. The free plan covers up to 2 users. The Starter plan costs $20 per user a month, with a discount for new customers that starts at $7 per user a month billed yearly or $10 billed monthly. Tax is extra.
 - **Pipedrive**: Shows each quote or deal as a card that moves through stages. It fits a business that sends many quotes. There is no free plan, only a 14-day trial. The Lite plan costs $14 per user a month billed yearly.
 - **Zoho CRM**: A CRM with plans for small teams. The free plan covers up to 3 users and allows 10 exports. The Standard plan costs $14 per user a month billed yearly, or $20 billed monthly. Local taxes are extra.
-- **A shared spreadsheet**: Google Sheets or Excel with one row per customer. It costs nothing extra and fits a small team that updates it every day.
+- **A shared spreadsheet**: Google Sheets or Excel with one row per customer. It costs nothing extra if you already use Google Sheets or Excel, and fits a small team that updates it every day.
 
 Prices as of November 2026.
 

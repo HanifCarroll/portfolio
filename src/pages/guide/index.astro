@@ -7,7 +7,7 @@ import { deckClass, pageTitleClass, sectionHeadingClass, shellClass, titleHoverC
 
 const headingClass = `${sectionHeadingClass} text-[clamp(2rem,3.6vw,3rem)]`;
 const description =
-	'Plain explanations of the tools a small business runs on, from booking and payments to passwords. Find your problem, then read what solves it, the popular choices, and what to watch for.';
+	'Plain explanations of the tools small businesses use, from booking and payments to passwords. Find your problem, then read what solves it, the popular choices, and what to watch for.';
 const entries = (await getCollection('guide')).sort((a, b) => a.data.title.localeCompare(b.data.title));
 const byId = new Map(entries.map((entry) => [entry.id, entry]));
 const problemGroups = guideGroups

@@ -15,7 +15,7 @@ Your data is everything you or your customers put into an app: customer names an
 - You want to switch to a cheaper or better app and don't know if you can bring your records.
 - You pay for an app and don't know how to download what you've put in it.
 - Your accountant asks for a year of sales or invoices.
-- An app you use closes, raises its price, or changes its plans.
+- The company behind an app you use shuts it down, raises the price, or changes the plans.
 
 ## Popular choices
 
@@ -25,9 +25,9 @@ Your data is everything you or your customers put into an app: customer names an
 
 ## What to watch for
 
-- **Exports that leave things out.** Some exports include contacts but not notes, attachments, or history. Open a test export and check it.
+- **Incomplete exports.** Some exports include contacts but not notes, attachments, or history. Open a test export and check it.
 - **Exports only on paid plans.** Some apps limit exports on cheaper plans.
-- **Formats other apps can't read.** A spreadsheet file (CSV) is the easiest to move. A PDF report is hard to import anywhere.
+- **Formats other apps can't import.** A spreadsheet file (CSV) is the easiest to move. A PDF report is hard to import anywhere.
 - **Who owns the account.** If the account is in an employee's or former designer's name, you may need their help to export.
 
 ## What I can help with

@@ -3,7 +3,7 @@ export const guideGroups = [
   {
     id: "get-found",
     title: "Get found and win customers",
-    description: "Tools for showing up in searches and letting customers book or buy.",
+    description: "Tools for appearing in search results and letting customers book or buy.",
   },
   {
     id: "get-paid",

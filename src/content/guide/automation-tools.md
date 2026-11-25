@@ -31,7 +31,7 @@ Prices as of November 2026.
 ## What to watch for
 
 - **Price per task.** These tools often charge for each step they run, so you may need a higher plan when an automation runs many times a day.
-- **Silent failures.** If an app changes or a password expires, an automation can stop, and you won't see a message unless you set one up. Turn on error emails and read them.
+- **Automations that stop without a warning.** If an app changes or a password expires, an automation can stop, and you won't get a message unless you set one up. Turn on error emails and read them.
 - **Who can change it.** Keep a short note of what each automation does, so someone else can fix it if the person who built it leaves.
 
 ## What I can help with

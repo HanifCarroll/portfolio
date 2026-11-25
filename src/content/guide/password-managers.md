@@ -8,7 +8,7 @@ description: "What a password manager is, when a small business needs one, popul
 
 ## What it is
 
-A password manager is an app that stores your passwords in an encrypted vault. Encrypted means the app scrambles the passwords so nobody can read them without your main password. The app creates a long, different password for each account and fills it in when you sign in. Business plans let you share some passwords with your team and remove a person's access in one step.
+A password manager is an app that stores your passwords in an encrypted vault. Encrypted means the app stores the passwords in a coded form that nobody can read without your main password. The app creates a long, different password for each account and fills it in when you sign in. With a business plan, you can share some passwords with your team and remove a person from the vault when they leave. Removing them stops them from getting passwords from the vault, but it doesn't change the passwords they already saw or sign them out of those accounts.
 
 ## When you need it
 
@@ -29,7 +29,7 @@ Prices as of November 2026.
 
 - **Your main password.** If you forget the main password, most password managers can't recover your vault. Store a recovery kit somewhere safe, such as on paper in a locked drawer.
 - **Two-factor sign-in.** Turn on two-factor sign-in for the password manager itself.
-- **Shared vaults.** Share only the accounts each person needs, so removing one person doesn't mean changing every password.
+- **When someone leaves.** Remove them from the vault, then change the password of each shared account they used. Share only the accounts each person needs, so you have fewer passwords to change.
 - **Price per user.** Business plans charge for each person, so count who needs access.
 
 ## What I can help with

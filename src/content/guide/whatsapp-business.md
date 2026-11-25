@@ -16,15 +16,15 @@ For larger teams, Meta also sells the WhatsApp Business Platform. Software compa
 
 - You use your personal WhatsApp number for the business, and personal and customer chats are mixed.
 - You type the same prices and opening hours into each new chat.
-- You track orders or bookings in WhatsApp chats and lose track of which ones are done.
+- You track orders or bookings in WhatsApp chats and can't tell which ones are done.
 - Customers message you after hours and don't know when you'll reply.
 
 If several people need to answer the same number at the same time, look at an app built on the WhatsApp Business Platform instead.
 
 ## Popular choices
 
-- **WhatsApp Business app**: Free to download and use, with some paid features. It runs on one phone plus up to four linked devices, such as a computer. It fits a business with one or two people answering.
-- **WhatsApp Business Platform**: Meta's paid service for connecting WhatsApp to other software. You usually use it through another company's app. Meta charges for each message a business sends that reaches the customer, at a rate that depends on the type of message and the customer's country. Meta doesn't charge for messages customers send to you.
+- **WhatsApp Business app**: Free to download and use, with some paid features. You can use it on one phone plus up to four linked devices, such as a computer. It fits a business with one or two people answering.
+- **WhatsApp Business Platform**: Meta's paid service for connecting WhatsApp to other software. You usually use it through another company's app. Meta charges for each delivered template message and service reply, at a rate set by the message type and the country code of the customer's phone number. Messages customers send you are free. Replies written by Meta's own AI agent are charged by usage instead.
 
 Prices as of November 2026.
 
@@ -32,7 +32,7 @@ Prices as of November 2026.
 
 - **Moving your number.** You can move your existing number to the Business app, but read WhatsApp's instructions first and back up your chats.
 - **Orders kept only in chats.** Labels make chats easier to sort, but a chat is not an order list. If you take many orders, copy them into a list or an order app every day.
-- **Cost of messages on the Platform.** The Business Platform charges for each message that reaches a customer, so check the rates for your customers' country before you plan reminders or promotions.
+- **Cost of messages on the Platform.** Meta charges for each delivered template message and service reply, at a rate set by the message type and the country code of the customer's phone number. Messages customers send you are free, and replies written by Meta's own AI agent are charged by usage instead. Check the rates before you plan reminders or promotions.
 
 ## What I can help with
 

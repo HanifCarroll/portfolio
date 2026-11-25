@@ -50,7 +50,7 @@ export const guideProblems = [
   {
     text: "I track orders and bookings on paper or in WhatsApp",
     group: "day-to-day",
-    entries: ["whatsapp-business", "online-booking"],
+    entries: ["online-booking"],
   },
   {
     text: "I use my personal WhatsApp number for the business",
