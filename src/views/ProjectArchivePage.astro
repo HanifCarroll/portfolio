@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArchiveProjectRow from '../components/ArchiveProjectRow.astro';
+import { getProjectCards } from '../lib/project-cards';
+import { deckClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
+import {
+	DELISTED_PROJECT_SLUGS,
+	NESTED_PROJECT_SLUGS,
+	PROJECT_ARCHIVE_GROUPS,
+} from '../lib/project-curation';
+
+const locale = getLocale(Astro.currentLocale);
+const { projectArchive, nav } = getDictionary(locale);
+const title = nav.projects;
+const { description, intro } = projectArchive;
+const projects = getProjectCards(locale);
+const projectBySlug = new Map(projects.map((project) => [project.slug, project]));
+
+const selectProjects = (slugs: readonly string[]) =>
+	slugs.map((slug) => {
+		const project = projectBySlug.get(slug);
+		if (!project) throw new Error(`Missing project metadata for "${slug}".`);
+		return project;
+	});
+
+const allCategorizedSlugs = PROJECT_ARCHIVE_GROUPS.flatMap((group) => group.slugs);
+const duplicateSlugs = allCategorizedSlugs.filter(
+	(slug, index) => allCategorizedSlugs.indexOf(slug) !== index,
+);
+if (duplicateSlugs.length > 0) {
+	throw new Error(
+		`Projects archive contains duplicate slugs: ${[...new Set(duplicateSlugs)].join(', ')}`,
+	);
+}
+
+const delistedSet = new Set<string>([...DELISTED_PROJECT_SLUGS, ...NESTED_PROJECT_SLUGS]);
+const categorizedSlugSet = new Set<string>(allCategorizedSlugs);
+const uncategorizedProjects = projects.filter(
+	(project) => !categorizedSlugSet.has(project.slug) && !delistedSet.has(project.slug),
+);
+if (uncategorizedProjects.length > 0) {
+	throw new Error(
+		`Projects need an archive group or delist tier: ${uncategorizedProjects.map((project) => project.slug).join(', ')}`,
+	);
+}
+
+const groups = PROJECT_ARCHIVE_GROUPS.map((group) => ({
+	id: group.id,
+	...projectArchive.groups[group.id],
+	projects: selectProjects(group.slugs),
+}));
+
+const archiveJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	description,
+	url: new URL(localizedPath('/projects/', locale), Astro.site).toString(),
+};
+---
+
+<BaseLayout
+	title={`${title} | Hanif Carroll`}
+	description={description}
+	jsonLd={archiveJsonLd}
+	showFooterCta={false}
+>
+	<div class:list={[shellClass, 'pb-8']}>
+		<header class='pt-12 pb-[clamp(4rem,8vw,6rem)] lg:pt-20'>
+			<h1 class={pageTitleClass}>{title}</h1>
+			<p class:list={[deckClass, 'mt-6']}>{intro}</p>
+		</header>
+
+		{groups.map((group) => (
+			<section id={group.id} class='scroll-mt-24 pb-[clamp(6rem,12vw,10rem)]' aria-labelledby={`${group.id}-title`}>
+				<div class='mb-[clamp(2rem,5vw,3.5rem)]'>
+					<h2 id={`${group.id}-title`} class={sectionHeadingClass}>{group.label}</h2>
+					<p class:list={[deckClass, 'mt-4']}>{group.description}</p>
+				</div>
+				<ol class='m-0 grid list-none gap-x-8 gap-y-16 p-0 md:grid-cols-2 md:gap-y-[5.5rem]'>
+					{group.projects.map((project) => (
+						<ArchiveProjectRow project={project} />
+					))}
+				</ol>
+			</section>
+		))}
+	</div>
+</BaseLayout>

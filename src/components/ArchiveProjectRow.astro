@@ -2,16 +2,20 @@
 import { Image } from 'astro:assets';
 import type { ProjectCard } from '@src/lib/project-cards';
 import { itemTitleClass, metaClass, titleHoverClass } from '@src/lib/ui';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
 interface Props {
 	project: ProjectCard;
 }
 
 const { project } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const { projectArchive } = getDictionary(locale);
+const path = localizedPath(`/projects/${project.slug}/`, locale);
 const visibleTags = project.tags.slice(0, 3);
 ---
 
 <li>
-	<a class:list={['group grid gap-2 text-inherit no-underline']} href={`/projects/${project.slug}/`}>
+	<a class:list={['group grid gap-2 text-inherit no-underline']} href={path} hreflang={locale === 'es' && !path.startsWith('/es/') ? 'en' : undefined}>
 		<Image
 			class='mb-2 block h-auto w-full'
 			src={project.image}
@@ -23,6 +27,6 @@ const visibleTags = project.tags.slice(0, 3);
 		/>
 		<h3 class:list={[itemTitleClass, titleHoverClass, 'md:text-[2.25rem]']}>{project.name}</h3>
 		<p class='m-0 max-w-[36rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink-muted'>{project.description}</p>
-		<p class:list={[metaClass, 'mt-1']}><span class='sr-only'>Technologies used: </span>{visibleTags.join(' · ')}</p>
+		<p class:list={[metaClass, 'mt-1']}><span class='sr-only'>{projectArchive.technologies}{' '}</span>{visibleTags.join(' · ')}</p>
 	</a>
 </li>

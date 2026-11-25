@@ -1,7 +1,8 @@
 import type { Project } from "@src/lib/types/project";
 import type { ImageMetadata } from "astro";
 import { getProjectImage } from "./project-images";
-import { getAllProjects } from "@src/lib/projects";
+import { getAllProjects, localizeProject } from "@src/lib/projects";
+import type { Locale } from "../i18n";
 import { getProjectTrackMeta } from "./project-tracks";
 
 export interface ProjectCard {
@@ -53,10 +54,12 @@ const parseYear = (value: string) => {
   return Number.isNaN(numeric) ? 0 : numeric;
 };
 
-export const projects: ProjectCard[] = getAllProjects()
-  .map(toCard)
-  .sort((a, b) => {
-    const trackDifference = getProjectTrackMeta(a.track).rank - getProjectTrackMeta(b.track).rank;
-    if (trackDifference !== 0) return trackDifference;
-    return parseYear(b.year) - parseYear(a.year);
-  });
+export function getProjectCards(locale: Locale): ProjectCard[] {
+  return getAllProjects()
+    .map((project) => toCard(localizeProject(project, locale)))
+    .sort((a, b) => {
+      const trackDifference = getProjectTrackMeta(a.track).rank - getProjectTrackMeta(b.track).rank;
+      if (trackDifference !== 0) return trackDifference;
+      return parseYear(b.year) - parseYear(a.year);
+    });
+}

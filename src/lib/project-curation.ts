@@ -2,8 +2,6 @@
 export const PROJECT_ARCHIVE_GROUPS = [
   {
     id: "small-business-work",
-    label: "Small-business work",
-    description: "Websites, stores, and operations tools for small businesses.",
     slugs: [
       "desarmadero-la-torre",
       "online-store-conversion-review",
@@ -15,15 +13,10 @@ export const PROJECT_ARCHIVE_GROUPS = [
   },
   {
     id: "client-product-work",
-    label: "Startup and product work",
-    description: "Apps built with founders, from launch to ongoing engineering.",
     slugs: ["genrupt", "palabruno", "mucho-hangouts"],
   },
   {
     id: "products-experiments",
-    label: "Products and experiments",
-    description:
-      "Independent products and prototypes built to test an idea through working software.",
     slugs: [
       "casamo",
       "ba-eventos",

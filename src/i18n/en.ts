@@ -29,6 +29,61 @@ export const en = {
     close: "Close",
     chapters: "Chapters",
   },
+  projectArchive: {
+    description:
+      "Work for small businesses, plus apps and products I’ve built: websites, tools, automations, and AI features.",
+    intro:
+      "Client engagements and independent products — the situation, my decisions, and what I delivered.",
+    technologies: "Technologies used:",
+    groups: {
+      "small-business-work": {
+        label: "Small-business work",
+        description: "Websites, stores, and operations tools for small businesses.",
+      },
+      "client-product-work": {
+        label: "Startup and product work",
+        description: "Apps built with founders, from launch to ongoing engineering.",
+      },
+      "products-experiments": {
+        label: "Products and experiments",
+        description:
+          "Independent products and prototypes built to test an idea through working software.",
+      },
+    },
+  },
+  projectDetail: {
+    project: "Project",
+    breadcrumb: "Breadcrumb",
+    engagement: "Engagement",
+    responsibility: "My responsibility",
+    role: "Role",
+    status: "Status",
+    year: "Year",
+    liveDemo: "Live demo",
+    liveProduct: "Live product",
+    tryDemo: "Try live demo",
+    visitProduct: "Visit live product",
+    repository: "View repository",
+    visual: "project visual",
+    facts: "Project facts",
+    builtWith: "Built with",
+    technologies: "Core technologies",
+    feedback: "Client feedback",
+    workingTogether: "Working together",
+  },
+  imageViewer: {
+    expanded: "Expanded image",
+    close: "Close image",
+    view: "Image view",
+    fit: "Fit",
+    full: "Full size",
+    zoomOut: "Zoom out",
+    zoomIn: "Zoom in",
+    zoom: "Image zoom",
+    original: "Open original image",
+    scroll: "Image; scroll to explore when zoomed",
+    preview: "View larger",
+  },
   seo: {
     defaultImageAlt: "Portrait of Hanif Carroll beside the words Freelance Software Engineer.",
     previewImage: "preview image",

@@ -71,6 +71,8 @@ Write Spanish copy with Argentine voseo. Use literal wording, not idioms or figu
 
 For collections, the counterpart to `src/content/<collection>/<slug>.md(x)` belongs at `src/content/<collection>/es/<slug>.md(x)`. Remove the matching item from `src/i18n/deferred.ts` when its Spanish route and content land. Until then, Spanish navigation links to the English version of that content without advertising a Spanish alternate. RSS stays English only. Astro builds `/es/404/` and copies it to `dist/es/404.html` so Cloudflare Pages can serve that body with status 404 for missing Spanish URLs.
 
+The project archive uses `src/lib/projects.es.json` for Spanish titles and descriptions, keyed by the English metadata slug. When publishing a Spanish case study, add its rendered metadata to the same entry. `bun run check:projects` checks both the archive copy and the required fields for published detail pages.
+
 ### Project hero frames
 
 Add a slug to `scripts/frame-device.json`. Set `device` to `phone`, `laptop`, or `laptop+phone`, and set `input` to a raw screenshot relative to `src/assets/img/projects/`. For `laptop+phone`, `input` is the desktop screenshot and `phone` is the mobile screenshot. Use real UI and leave inline case-study images alone.
