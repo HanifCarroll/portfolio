@@ -8,7 +8,7 @@
     "dev:app": "node node_modules/astro/bin/astro.mjs dev --host 127.0.0.1 --port ${PORT:-4321}",
     "dev:direct": "node node_modules/astro/bin/astro.mjs dev",
     "start": "node node_modules/astro/bin/astro.mjs dev",
-    "check:projects": "node scripts/check-project-metadata.mjs",
+    "check:projects": "node scripts/check-project-metadata.mjs && node scripts/check-guide.mjs",
     "check:copy": "node scripts/check-user-facing-copy.mjs",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",

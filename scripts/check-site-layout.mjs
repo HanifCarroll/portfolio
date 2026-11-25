@@ -14,14 +14,16 @@ const routes = [
   "/notes/",
   "/atlas/",
   "/atlas/agent-instructions-file/",
+  "/guide/",
+  "/guide/online-booking/",
   "/now/",
 ];
 const headerLinks = [
   { href: "/projects/", label: "Projects" },
   { href: "/how-i-work/", label: "How I work" },
   { href: "/blog/", label: "Blog" },
+  { href: "/guide/", label: "Tools guide" },
   { href: "/notes/", label: "Notes" },
-  { href: "/atlas/", label: "Build Atlas" },
   { href: "https://cal.com/hanifcarroll/intro", label: "Book a call" },
 ];
 const browser = await chromium.launch({ channel: "chrome", headless: true });

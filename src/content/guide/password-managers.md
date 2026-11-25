@@ -1,0 +1,42 @@
+---
+title: "Password managers"
+group: stay-safe
+summary: "An app that creates and stores a different strong password for every account, and shares them with your team."
+seoTitle: "Password managers for small businesses"
+description: "What a password manager is, when a small business needs one, popular choices, and how to share accounts with your team."
+---
+
+## What it is
+
+A password manager is an app that stores your passwords in an encrypted vault. Encrypted means the app scrambles the passwords so nobody can read them without your main password. The app creates a long, different password for each account and fills it in when you sign in. Business plans let you share some passwords with your team and remove a person's access in one step.
+
+## When you need it
+
+- Your team shares one password for several accounts.
+- You keep passwords in a notebook, a spreadsheet, or a note on your phone.
+- Someone who left the business can still sign in to your accounts.
+- You reset a password each time you need to sign in to an account you rarely use.
+
+## Popular choices
+
+- **Bitwarden**: Open-source, with plans for one person and for teams.
+- **1Password**: Business and team plans with shared vaults.
+- **Apple Passwords and Google Password Manager**: Built into iPhones, Macs, Android phones, and Chrome. They suit one person, with fewer tools for sharing with a team.
+
+## What to watch for
+
+- **Your main password.** If you forget the main password, most password managers can't recover your vault. Store a recovery kit somewhere safe, such as on paper in a locked drawer.
+- **Two-factor sign-in.** Turn on two-factor sign-in for the password manager itself.
+- **Shared vaults.** Share only the accounts each person needs, so removing one person doesn't mean changing every password.
+- **Price per user.** Business plans charge for each person, so count who needs access.
+
+## What I can help with
+
+I can set up a password manager for your team, move your accounts into it, and make sure the business, not one person, owns each account. [Email me about a problem](/contact/).
+
+## Sources
+
+- [Bitwarden](https://bitwarden.com/)
+- [1Password](https://1password.com/)
+- [Apple Passwords](https://support.apple.com/guide/passwords/welcome/mac)
+- [Google Password Manager](https://passwords.google/)

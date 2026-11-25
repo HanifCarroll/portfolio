@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guideGroups, guideTools } from '../../data/guide';
+import { guideProblems } from '../../data/guide-problems';
+import { deckClass, pageTitleClass, sectionHeadingClass, shellClass, titleHoverClass, underlineClass } from '../../lib/ui';
+
+const headingClass = `${sectionHeadingClass} text-[clamp(2rem,3.6vw,3rem)]`;
+const description =
+	'Plain explanations of the tools a small business runs on, from booking and payments to passwords. Find your problem, then read what solves it, the popular choices, and what to watch for.';
+const entries = (await getCollection('guide')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const byId = new Map(entries.map((entry) => [entry.id, entry]));
+const problemGroups = guideGroups
+	.map((group) => ({ ...group, problems: guideProblems.filter((problem) => problem.group === group.id) }))
+	.filter((group) => group.problems.length > 0);
+const groups = guideGroups
+	.map((group) => ({ ...group, entries: entries.filter((entry) => entry.data.group === group.id) }))
+	.filter((group) => group.entries.length > 0);
+---
+
+<BaseLayout title='Business tools guide for small businesses | Hanif Carroll' description={description}>
+	<div class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']}>
+		<header class='pb-[clamp(4rem,8vw,6rem)]'>
+			<h1 class={pageTitleClass}>Business tools guide</h1>
+			<p class:list={[deckClass, 'mt-6 max-w-[40rem]']}>
+				For owners of small businesses who want to know which tools they need and what to watch for. Find your problem in the list below, or browse the tools by what you want to do.
+			</p>
+		</header>
+
+		<section class='mb-[clamp(5rem,10vw,8rem)]' aria-labelledby='problems-title'>
+			<h2 id='problems-title' class:list={[headingClass, 'mb-8']}>Find your problem</h2>
+			<div class='grid gap-x-10 gap-y-10 md:grid-cols-2'>
+				{problemGroups.map((group) => (
+					<div>
+						<h3 class='m-0 font-editorial text-2xl leading-[1.18] font-normal text-ink'>{group.title}</h3>
+						<ul class='m-0 mt-3 grid list-none gap-3 p-0 text-lg leading-[1.5]'>
+							{group.problems.map((problem) => (
+								<li class='text-ink'>
+									{problem.text}
+									<span class='block text-base text-ink-muted'>
+										{problem.entries.map((id, index) => (
+											<>{index > 0 && ' or '}<a class:list={['text-ink', underlineClass]} href={`/guide/${id}/`}>{byId.get(id)!.data.title}</a></>
+										))}
+									</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+			<p class='mt-10 mb-0 max-w-[40rem] text-lg leading-[1.55] text-ink'>
+				Don’t see yours? <a class:list={['text-ink', underlineClass]} href='/contact/'>Tell me about a problem in your business</a>, and I’ll suggest the simplest fix.
+			</p>
+		</section>
+
+		{groups.map((group) => (
+			<section id={group.id} class='mb-[clamp(5rem,10vw,8rem)] scroll-mt-24 last:mb-0' aria-labelledby={`${group.id}-title`}>
+				<div class='mb-8'>
+					<h2 id={`${group.id}-title`} class={headingClass}>{group.title}</h2>
+					<p class='mt-3 mb-0 max-w-[38rem] text-lg leading-[1.55] text-ink-muted'>{group.description}</p>
+				</div>
+				<ul class='m-0 grid list-none gap-7 p-0'>
+					{group.entries.map((entry) => (
+						<li>
+							<a class='group grid items-baseline gap-1 no-underline md:grid-cols-[17rem_minmax(0,1fr)] md:gap-8' href={`/guide/${entry.id}/`}>
+								<span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{entry.data.title}</span>
+								<span class='text-base leading-[1.6] text-ink-muted'>
+									{entry.data.summary}
+									{guideTools(entry.body).length > 0 && <span class='mt-1 block'>{guideTools(entry.body).join(' · ')}</span>}
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		))}
+	</div>
+</BaseLayout>
