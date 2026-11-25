@@ -20,7 +20,7 @@ Diseñé el producto y desarrollé el reproductor en Qt Quick, la API alojada, e
   </DecisionBlock>
 
   <DecisionBlock title="Tarjetas de estudio en el reproductor">
-    Podés guardar tus consultas en tarjetas locales y repasarlas más adelante. Si recordás una tarjeta, el próximo repaso se programa para más adelante que el anterior. Si no la recordás, se vuelve a mostrar a los diez minutos. Podés exportar las tarjetas como TSV.
+    Podés guardar tus consultas en tarjetas locales y repasarlas más adelante. Cada vez que recordás una tarjeta, pasa más tiempo hasta el próximo repaso. Si no la recordás, se vuelve a mostrar a los diez minutos. Podés exportar las tarjetas como TSV.
   </DecisionBlock>
 
   <DecisionBlock title="Consultas en varios idiomas">
@@ -29,11 +29,11 @@ Diseñé el producto y desarrollé el reproductor en Qt Quick, la API alojada, e
 </CaseSection>
 
 <CaseSection title="Herramientas para subtítulos">
-  <DecisionBlock title="Corregí la sincronización entre dos pistas">
+  <DecisionBlock title="Corrección de la sincronización entre dos pistas">
     El reproductor comprueba desfases de hasta dos minutos y desajustes comunes por diferencias en la cantidad de fotogramas por segundo. El código ajusta la sincronización y descarta las coincidencias ambiguas. También podés marcar puntos de sincronización a mano. Ninguna pista cambia hasta que confirmás.
   </DecisionBlock>
 
-  <DecisionBlock title="Traducí con IA sin generar archivos incompletos">
+  <DecisionBlock title="Traducción con IA sin archivos incompletos">
     El sistema conserva los tiempos de cada subtítulo, manda ocho a la vez junto con las líneas de diálogo cercanas y comprueba la secuencia que devuelve el modelo. La pista completa solo se carga si se traducen todos los lotes. Si cancelás o la respuesta no tiene el formato esperado, no queda un archivo parcial.
   </DecisionBlock>
 
@@ -45,7 +45,7 @@ Diseñé el producto y desarrollé el reproductor en Qt Quick, la API alojada, e
 <CaseSection title="Cómo consultar palabras y frases en IINA" media>
 En el complemento para IINA, si hacés clic en una palabra, se abre una ficha chica sobre el video. Podés elegir Google Cloud Translation o Microsoft Translator y usar tu propia clave. Google devuelve una traducción. El diccionario de inglés de Microsoft puede devolver alternativas. Si no hay una entrada, devuelve una traducción.
 
-Cuando seleccionás una frase, se abre el panel lateral de IA. La instrucción le pide al modelo el significado natural, una explicación de las palabras seleccionadas y, si sirve, una explicación gramatical. El modelo recibe como contexto toda la línea del subtítulo y las líneas cercanas.
+Cuando seleccionás una frase, se abre el panel lateral de IA. Le pido al modelo que explique el significado natural, que detalle las palabras seleccionadas y que incluya una explicación gramatical cuando sea útil. El modelo recibe como contexto toda la línea del subtítulo y las líneas cercanas.
 
 En la escena de la captura, la consulta de «bozuk» devuelve «broken» («roto»). En la expresión «moralin bozuk», el sentido se acerca más a sentirse desanimado.
 
@@ -87,7 +87,7 @@ Las solicitudes se envían directamente a los proveedores que configuró el estu
 
 Neden guarda las claves de los proveedores y de los servicios de subtítulos en el almacén de credenciales del sistema operativo, sin guardarlas como texto plano si ese almacén no está disponible. Cada clave queda asociada al origen de su API. En el complemento para IINA, el programa en Swift recibe las claves por canales privados entre procesos. Así no quedan como argumentos de comandos.
 
-También desarrollé un plan con IA alojada que solo está disponible por invitación. El usuario inicia sesión en el navegador. El código guarda los tokens de renovación en el llavero, procesa el pago con Stripe y verifica sus webhooks. Antes de cada solicitud a un proveedor, reserva parte del cupo de la cuenta en un Durable Object para que las solicitudes simultáneas no puedan superarlo.
+También desarrollé un plan con IA alojada que solo está disponible por invitación. El usuario inicia sesión en el navegador. El código guarda los tokens de renovación en el llavero, usa Stripe Checkout para cobrar y verifica sus webhooks. Antes de cada solicitud a un proveedor, reserva parte del cupo de la cuenta en un Durable Object para que las solicitudes simultáneas no puedan superarlo.
 
 Limité cómo se muestran las respuestas del modelo y agregué validaciones para los archivos de subtítulos y los mensajes de la interfaz.
 

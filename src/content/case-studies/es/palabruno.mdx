@@ -20,7 +20,7 @@ export const shippedRows = [
   },
   {
     label: "Pagos",
-    title: "Los planes Premium y Teacher se pagan por separado",
+    title: "Distintos servicios de pago para Premium y Teacher",
     body: "Las suscripciones a Premium se procesan con RevenueCat a través de Apple y Google. Los pagos de Teacher se procesan con Stripe en el sitio web.",
   },
   {
@@ -111,14 +111,14 @@ Cuando un estudiante tocaba una palabra o una expresión, el lector tenía que m
 
 Armé un compilador para el lector. Combiné procesamiento del lenguaje natural (NLP), reglas lingüísticas y generación con restricciones mediante un modelo de lenguaje (LLM) para producir palabras y expresiones que se podían tocar y fichas de ayuda contextual. Usé el análisis lingüístico y las reglas de estructura junto con las explicaciones que generaba el modelo.
 
-Antes de publicar las fichas generadas, el código comprobaba que fueran válidas. Si una ficha era inválida, se podía generar de nuevo sin descartar las fichas válidas ni repetir todo el proceso. Con pruebas de regresión comprobé que los cambios posteriores no afectaran el contenido de las fichas ni su correspondencia con la palabra o expresión seleccionada.
+Antes de publicar las fichas generadas, el código comprobaba que fueran válidas. Si una ficha era inválida, se podía generar de nuevo sin descartar las fichas válidas ni repetir todo el proceso. Con pruebas de regresión revisé los cambios posteriores en el contenido de las fichas y su correspondencia con la palabra o expresión seleccionada.
 
 </CaseSection>
 
 <CaseSection title="Cómo recuperé tareas largas después de un fallo">
 Implementé procesos de texto que guardaban el progreso y permitían recuperarlo ante un fallo. Para una lectura que demoraba en procesarse, necesitaba poder recuperar el estado aunque terminara la solicitud del navegador que había iniciado la tarea.
 
-Registré cuánto demoraba cada etapa y cuánto costaba usar los modelos en cada una. Así podía revisar en qué etapa se concentraban el tiempo de procesamiento y el gasto. Así podía diagnosticar problemas en la etapa que necesitaba atención, además de usar las pruebas de regresión del lector.
+Registré cuánto demoraba cada etapa y cuánto costaba usar los modelos en cada una. Así podía ver en qué etapas se concentraban el tiempo de procesamiento y el gasto. Con esos datos y las pruebas de regresión del lector podía diagnosticar problemas en la etapa que necesitaba atención.
 
 </CaseSection>
 
