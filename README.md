@@ -35,7 +35,8 @@ Use `bun run dev:direct` for the raw Astro server on [http://localhost:4321](htt
 - `bun dev` – start the local dev server through Portless
 - `bun run dev:direct` – start the raw Astro dev server
 - `bun run check:projects` – validate project JSON, case-study pairing, and referenced local assets
-- `bun run build` – type-check and build the static site to `dist/`
+- `bun run check:i18n` – check translation coverage and language metadata after a build
+- `bun run build` – type-check and build the static site to `dist/`, then check copy and translation coverage
 - `bun run preview` – preview the production build locally
 - `bun run lint` / `bun run format:check` – Oxlint and Oxfmt
 - `bun run tuesday:test` – Bun simulation tests
@@ -62,6 +63,12 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 - Project case studies are defined in JSON under `src/lib/projects/` and surfaced through `src/lib/project-cards.ts`.
 - Public images remain in `public/` and are referenced directly by the JSON files and templates.
 
+### Languages
+
+English keeps its existing URLs. Spanish uses the same path and fragment IDs under `/es/`. Astro sets `Astro.currentLocale` from the route, and both language routes render the same view. Shared labels live in `src/i18n/en.ts` and `src/i18n/es.ts`. Keep page-specific translations next to the English copy or in the `es/` folder next to the English Markdown files.
+
+For collections, the counterpart to `src/content/<collection>/<slug>.md(x)` belongs at `src/content/<collection>/es/<slug>.md(x)`. Remove the matching item from `src/i18n/deferred.ts` when its Spanish route and content land. Until then, Spanish navigation links to the English version of that content without advertising a Spanish alternate. RSS stays English only. Astro builds `/es/404/` and copies it to `dist/es/404.html` so Cloudflare Pages can serve that body with status 404 for missing Spanish URLs.
+
 ### Project hero frames
 
 Add a slug to `scripts/frame-device.json`. Set `device` to `phone`, `laptop`, or `laptop+phone`, and set `input` to a raw screenshot relative to `src/assets/img/projects/`. For `laptop+phone`, `input` is the desktop screenshot and `phone` is the mobile screenshot. Use real UI and leave inline case-study images alone.
@@ -72,7 +79,9 @@ Run `node scripts/frame-device.mjs <slug>` to generate `src/assets/img/projects/
 
 ### Contact form
 
-The `/contact/` form sends one plain-text email through Cloudflare Email Sending, in two pieces:
+The `/contact/` and `/es/contact/` forms use one Pages Function. The Spanish form posts to `/api/contact?locale=es` so the function can localize errors even if it cannot read the request body. Spanish success leads to `/es/contact/sent/` with or without JavaScript, and the email identifies the Spanish form. English keeps its inline confirmation with JavaScript and `/contact/sent/` without it.
+
+Each submission sends one plain-text email through Cloudflare Email Sending, in two pieces:
 
 - `functions/api/contact.ts` is a Pages Function. It validates the form (rules in `src/lib/contact.ts`), drops honeypot spam, and hands the subject, body, and reply-to address to the mailer through a service binding named `MAILER`.
 - `workers/contact-mailer/` is the `portfolio-contact-mailer` Worker. It holds the `send_email` binding and sets the sender and recipient from its own `wrangler.toml` vars. It has no public URL and is reachable only through the binding.

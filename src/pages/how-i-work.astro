@@ -1,15 +1,5 @@
 ---
-import EssayPage from '../layouts/EssayPage.astro';
-const entry = Object.values(import.meta.glob('../content/how-i-work.md', { eager: true }))[0] as {
-	frontmatter?: { title?: string; description?: string };
-	default: any;
-};
-const frontmatter = entry.frontmatter ?? {};
-const Content = entry.default;
-const title = frontmatter.title ?? 'How I work';
-const description = frontmatter.description ?? '';
+import BuyerEssayPage from "../views/BuyerEssayPage.astro";
 ---
 
-<EssayPage title={title} pageTitle={`${title} · Hanif Carroll`} description={description} deck={description} bodyClass='hc-how'>
-	<Content />
-</EssayPage>
+<BuyerEssayPage kind="how" />

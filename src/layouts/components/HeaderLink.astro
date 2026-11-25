@@ -6,7 +6,7 @@ type Props = HTMLAttributes<'a'>;
 const { href, class: className, ...props } = Astro.props;
 const hrefPath = href instanceof URL ? href.pathname : typeof href === 'string' ? href : '/';
 const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
-const isActive = normalizePath(Astro.url.pathname).startsWith(normalizePath(hrefPath));
+const isActive = !props.hreflang && normalizePath(Astro.url.pathname).startsWith(normalizePath(hrefPath));
 ---
 
 <a

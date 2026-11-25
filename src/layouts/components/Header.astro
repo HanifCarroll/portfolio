@@ -3,23 +3,29 @@ import HeaderLink from './HeaderLink.astro';
 import { BOOK_CALL_URL } from '../../consts';
 import sections, { noteEntryId } from '../../data/notes';
 import AtlasNav from '../../components/atlas/AtlasNav.astro';
+import { englishPath, getDictionary, getLocale, localizedPath, pairedPaths } from '../../i18n';
 
+const locale = getLocale(Astro.currentLocale);
+const { nav, action } = getDictionary(locale);
 const navLinks = [
-	{ href: '/projects/', label: 'Projects' },
-	{ href: '/how-i-work/', label: 'How I work' },
-	{ href: '/blog/', label: 'Blog' },
-	{ href: '/notes/', label: 'Notes' },
+	{ href: '/projects/', label: nav.projects },
+	{ href: '/how-i-work/', label: nav.work },
+	{ href: '/blog/', label: nav.blog },
+	{ href: '/notes/', label: nav.notes },
 ];
-const mobileNavLinks = [{ href: '/', label: 'Home' }, ...navLinks];
+const mobileNavLinks = [{ href: '/', label: nav.home }, ...navLinks];
 
 const { pathname } = Astro.url;
 const { isNotes = false, isAtlas = false } = Astro.props;
 const publicSections = sections
 	.filter(({ title }) => !['Systems and Attention', 'Health and Training'].includes(title))
 	.map((section) => ({ ...section, entries: section.entries.filter((entry) => !('hidden' in entry && entry.hidden)) }));
-const normalizePath = (value: string) => (value.endsWith('/') ? value : `${value}/`);
-const isActiveLink = (href: string) => href === '/' ? normalizePath(pathname) === '/' : normalizePath(pathname).startsWith(normalizePath(href));
-const headerCtaLabel = 'Book a call';
+const isActiveLink = (href: string) => href === '/' ? englishPath(pathname) === '/' : englishPath(pathname).startsWith(href);
+const headerCtaLabel = action.bookCall;
+const alternates = pairedPaths(pathname);
+const otherLocale = locale === 'en' ? 'es' : 'en';
+const languageLink = alternates && { href: alternates[otherLocale], hreflang: otherLocale, lang: otherLocale };
+const languageLabel = getDictionary(otherLocale).locale.label;
 ---
 
 <header
@@ -29,15 +35,16 @@ const headerCtaLabel = 'Book a call';
 >
 	<div class='hc-header mx-auto flex h-16 w-full max-w-page items-center justify-between gap-6 px-6 md:px-12 lg:h-20'>
 		<a
-			href='/'
+			href={localizedPath('/', locale)}
 			class='whitespace-nowrap text-lg font-bold tracking-[-0.03em] text-ink no-underline transition-colors hover:text-accent-ink focus-visible:text-accent-ink'
-			aria-label='Hanif Carroll home'
+			aria-label={nav.homeLabel}
 		>
 			Hanif Carroll
 		</a>
 
-		<nav class='hidden items-center gap-6 lg:flex' aria-label='Primary navigation'>
-			{navLinks.map((link) => <HeaderLink href={link.href}>{link.label}</HeaderLink>)}
+		<nav class='hidden items-center gap-6 lg:flex' aria-label={nav.primary}>
+			{navLinks.map((link) => <HeaderLink href={localizedPath(link.href, locale)}>{link.label}</HeaderLink>)}
+			{languageLink && <HeaderLink {...languageLink}>{languageLabel}</HeaderLink>}
 			<a
 				class='ml-6 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-md border border-ink bg-ink px-4 py-2 text-base font-medium text-canvas no-underline transition-colors hover:bg-ink-muted focus-visible:bg-ink-muted'
 				href={BOOK_CALL_URL}
@@ -54,14 +61,15 @@ const headerCtaLabel = 'Book a call';
 		</nav>
 
 		<div class='hc-mobile-nav flex items-center gap-1 lg:hidden'>
+			{languageLink && !isNotes && !isAtlas && <HeaderLink {...languageLink}>{languageLabel}</HeaderLink>}
 			{isNotes && <details class='hc-notes-mobile-menu' data-notes-mobile-menu>
-				<summary aria-label='Open table of contents'>
-					<span class='hc-notes-mobile-menu__open'>Contents</span><span class='hc-notes-mobile-menu__close'>Close</span>
+				<summary aria-label={nav.contentsOpen}>
+					<span class='hc-notes-mobile-menu__open'>{nav.contents}</span><span class='hc-notes-mobile-menu__close'>{nav.close}</span>
 					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg>
 				</summary>
 				<div class='hc-notes-mobile-menu__panel'>
-					<p class='hc-notes-toc-label'>Chapters</p>
-					<nav aria-label='Mobile table of contents'>
+					<p class='hc-notes-toc-label'>{nav.chapters}</p>
+					<nav aria-label={nav.contentsMobile}>
 						<ol class='hc-notes-mobile-toc'>
 							{publicSections.map((section, sectionIndex) => (
 								<li>
@@ -76,23 +84,23 @@ const headerCtaLabel = 'Book a call';
 				</div>
 			</details>}
 			{isAtlas && <details class='hc-notes-mobile-menu' data-notes-mobile-menu>
-				<summary aria-label='Open table of contents'>
-					<span class='hc-notes-mobile-menu__open'>Contents</span><span class='hc-notes-mobile-menu__close'>Close</span>
+				<summary aria-label={nav.contentsOpen}>
+					<span class='hc-notes-mobile-menu__open'>{nav.contents}</span><span class='hc-notes-mobile-menu__close'>{nav.close}</span>
 					<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M6 9l6 6 6-6'></path></svg>
 				</summary>
 				<div class='hc-notes-mobile-menu__panel'>
-					<p class='m-0 mb-4 text-base font-medium text-ink-muted'><a class='text-inherit no-underline' href='/atlas/'>Build Atlas</a></p>
+					<p class='m-0 mb-4 text-base font-medium text-ink-muted'><a class='text-inherit no-underline' href={localizedPath('/atlas/', locale)}>{nav.atlas}</a></p>
 					<AtlasNav id='atlas-search-mobile' />
 				</div>
 			</details>}
-			<button class='hc-mobile-nav__toggle' type='button' aria-expanded='false' aria-controls='mobileNavigation' aria-label='Open navigation'>
+			<button class='hc-mobile-nav__toggle' type='button' aria-expanded='false' aria-controls='mobileNavigation' aria-label={nav.open}>
 				<span></span><span></span><span></span>
 			</button>
 			<div class='hc-mobile-nav__panel' id='mobileNavigation' aria-hidden='true'>
-				<nav class='hc-mobile-nav__links' aria-label='Mobile navigation'>
+				<nav class='hc-mobile-nav__links' aria-label={nav.mobile}>
 				{
 					mobileNavLinks.map((link) => (
-						<a class:list={['hc-mobile-nav__link', link.href === '/blog/' && 'mt-4']} href={link.href} aria-current={isActiveLink(link.href) ? 'page' : undefined}>
+						<a class:list={['hc-mobile-nav__link', link.href === '/blog/' && 'mt-4']} href={localizedPath(link.href, locale)} aria-current={isActiveLink(link.href) ? 'page' : undefined}>
 							{link.label}
 						</a>
 					))
@@ -110,8 +118,9 @@ const headerCtaLabel = 'Book a call';
 						<path d='M3 13 13 3M6 3h7v7' />
 					</svg>
 				</a>
+				{languageLink && (isNotes || isAtlas) && <HeaderLink {...languageLink}>{languageLabel}</HeaderLink>}
 				</nav>
-				<p class='hc-mobile-nav__note'>Freelance Software Engineer.</p>
+				<p class='hc-mobile-nav__note'>{nav.job}.</p>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL, EMAIL, EMAIL_URL } from '../consts';
+import { contactAction, SENT_PATH } from '../lib/contact';
+import { CONTACT_FIELDS, CONTACT_LIMITS, HONEYPOT_FIELD } from '../lib/contact-fields';
+import { buttonClass, deckClass, pageTitleClass, sectionHeadingClass, shellClass, underlineClass } from '../lib/ui';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const { contact, price, action } = getDictionary(locale);
+
+const labelClass = 'block text-base font-medium leading-[1.3] text-ink';
+// Form controls keep a border so they read as fields (DESIGN.md exceptions). Focus is an ink outline, never yellow.
+const controlClass =
+	'mt-2 block w-full rounded-lg border border-ink-muted bg-canvas px-4 py-3 font-sans text-[1.125rem] leading-[1.5] text-ink focus:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink aria-invalid:border-ink';
+const errorClass = 'mt-2 mb-0 text-base leading-[1.4] font-medium text-ink empty:hidden';
+---
+
+<BaseLayout title={contact.title} description={contact.description} showFooterCta={false}>
+	{/* One column below lg. At lg the columns split 5:6; at xl the form sits in a 36rem right column, and the email line moves up under the price line in the left column. DOM order stays heading, intro, price, form, email. */}
+	<section
+		class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-12 lg:pt-20 xl:grid-cols-[minmax(0,1fr)_36rem] xl:gap-x-16']}
+		aria-labelledby='contact-title'
+		data-motion-intro
+	>
+		<h1 id='contact-title' class:list={[pageTitleClass, 'lg:col-start-1 lg:row-start-1']} data-motion='headline'>{contact.heading}</h1>
+		<p class:list={[deckClass, 'mt-6 lg:col-start-1 lg:row-start-2 lg:mt-8']} data-motion-deck>{contact.intro}</p>
+		<p class='mt-4 mb-0 max-w-[38rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink text-pretty lg:col-start-1 lg:row-start-3 lg:mt-5' data-motion-intro-item>{price}</p>
+
+		<div class='mt-10 max-w-[36rem] lg:col-start-2 lg:max-w-none lg:row-span-4 lg:row-start-1 lg:mt-3' data-contact-root data-motion-intro-item>
+			{/* Let the Pages Function validate the Spanish form when JS is off so messages don't depend on the browser's language. */}
+			<form method='post' action={contactAction(locale)} novalidate={locale === 'es'} class='grid gap-7' data-contact-form data-contact-sent={locale === 'es' ? localizedPath(SENT_PATH, locale) : undefined}>
+				{CONTACT_FIELDS.map(({ name, type, autocomplete, required }) => (
+					<div>
+						<label class={labelClass} for={`contact-${name}`}>{contact.fields[name]}</label>
+						<input
+							id={`contact-${name}`}
+							class={controlClass}
+							name={name}
+							type={type}
+							autocomplete={autocomplete}
+							required={required}
+							maxlength={CONTACT_LIMITS[name]}
+							aria-describedby={`contact-${name}-error`}
+						/>
+						<p id={`contact-${name}-error`} class={errorClass} data-contact-error={name}></p>
+					</div>
+				))}
+				<div>
+					<label class={labelClass} for='contact-message'>{contact.fields.message}</label>
+					<textarea
+						id='contact-message'
+						class:list={[controlClass, 'min-h-48 resize-y']}
+						name='message'
+						rows='7'
+						required
+						maxlength={CONTACT_LIMITS.message}
+						aria-describedby='contact-message-error'
+					></textarea>
+					<p id='contact-message-error' class={errorClass} data-contact-error='message'></p>
+				</div>
+
+				{/* Real visitors never see or fill this. A filled one marks the message as spam. */}
+				<div class='absolute -left-[9999px] h-px w-px overflow-hidden' aria-hidden='true'>
+					<label for={`contact-${HONEYPOT_FIELD}`}>{contact.honeypot}</label>
+					<input id={`contact-${HONEYPOT_FIELD}`} type='text' name={HONEYPOT_FIELD} tabindex='-1' autocomplete='off' />
+				</div>
+				<input type='hidden' name='source' value='' data-contact-source />
+
+				<div>
+					<p class='mt-0 mb-4 text-base leading-[1.4] font-medium text-ink' role='alert' hidden data-contact-failure>{contact.failure}</p>
+					<button class:list={[buttonClass(), 'w-full cursor-pointer border-0 font-sans focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:w-auto']} type='submit' data-contact-submit>{contact.submit}</button>
+				</div>
+			</form>
+
+			{locale === 'en' && <div hidden tabindex='-1' class='focus:outline-none' data-contact-success>
+				<h2 class={sectionHeadingClass}>{contact.successHeading}</h2>
+				<p class:list={[deckClass, 'mt-6']}>{contact.successBody}</p>
+			</div>}
+		</div>
+
+		<p class='mt-8 mb-0 max-w-[36rem] text-base leading-[1.55] text-ink-muted lg:col-start-1 lg:row-start-4 lg:mt-10 lg:self-start' data-motion-intro-item>
+			{contact.directEmail}{' '}<a class:list={['text-ink', underlineClass]} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='contact_page'>{EMAIL}</a>{' '}{contact.or}{' '}<a class:list={['text-ink', underlineClass]} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='contact_page'>{action.bookCallInline}</a>.
+		</p>
+	</section>
+</BaseLayout>
+
+<script>
+	import { validateContact, type ContactErrors, type ContactField } from '../lib/contact';
+	import { getDictionary, getLocale } from '../i18n';
+
+	const locale = getLocale(document.documentElement.lang);
+	const { contact } = getDictionary(locale);
+
+	const root = document.querySelector<HTMLElement>('[data-contact-root]')!;
+	const form = root.querySelector<HTMLFormElement>('[data-contact-form]')!;
+	const submit = form.querySelector<HTMLButtonElement>('[data-contact-submit]')!;
+	const failure = form.querySelector<HTMLElement>('[data-contact-failure]')!;
+	const success = root.querySelector<HTMLElement>('[data-contact-success]');
+	const sentPath = form.dataset.contactSent;
+	const source = form.querySelector<HTMLInputElement>('[data-contact-source]')!;
+	const fieldNames: ContactField[] = ['name', 'email', 'business', 'message'];
+
+	// Our own messages replace the browser's bubbles once the script runs.
+	form.noValidate = true;
+
+	// The page they came from, when it's a page on this site.
+	try {
+		const referrer = document.referrer ? new URL(document.referrer) : null;
+		if (referrer && referrer.origin === window.location.origin && referrer.pathname !== window.location.pathname) {
+			source.value = referrer.pathname;
+		}
+	} catch {
+		// An unreadable referrer just leaves the source empty.
+	}
+
+	const showErrors = (errors: ContactErrors) => {
+		for (const name of fieldNames) {
+			const control = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
+			const message = form.querySelector<HTMLElement>(`[data-contact-error="${name}"]`);
+			if (!control || !message) continue;
+			message.textContent = errors[name] ?? '';
+			if (errors[name]) control.setAttribute('aria-invalid', 'true');
+			else control.removeAttribute('aria-invalid');
+		}
+		const first = fieldNames.find((name) => errors[name]);
+		if (first) (form.elements.namedItem(first) as HTMLElement | null)?.focus();
+	};
+
+	const setSending = (sending: boolean) => {
+		submit.disabled = sending;
+		submit.textContent = sending ? contact.sending : contact.submit;
+		form.setAttribute('aria-busy', String(sending));
+	};
+
+	form.addEventListener('submit', async (event) => {
+		event.preventDefault();
+		failure.hidden = true;
+
+		const data = new FormData(form);
+		const check = validateContact(data, locale);
+		if (!check.ok) {
+			showErrors(check.errors);
+			return;
+		}
+		showErrors({});
+		setSending(true);
+
+		try {
+			const response = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+			const body = (await response.json().catch(() => ({}))) as { ok?: boolean; errors?: ContactErrors };
+			if (response.ok && body.ok) {
+				window.hcTrackEvent?.('contact_form_submitted', { event_location: 'contact_page', page_source: source.value || undefined });
+				if (sentPath) window.location.assign(sentPath);
+				else if (success) {
+					form.hidden = true;
+					success.hidden = false;
+					success.focus();
+				}
+				return;
+			}
+			if (response.status === 400 && body.errors) {
+				showErrors(body.errors);
+				return;
+			}
+			failure.hidden = false;
+		} catch {
+			failure.hidden = false;
+		} finally {
+			setSending(false);
+		}
+	});
+</script>

@@ -1,5 +1,6 @@
 ---
 import { BOOK_CALL_URL } from '../consts';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
 import { closingActionsClass, closingBodyClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, shellClass } from '../lib/ui';
 
 type Variant = 'general' | 'systemsBuild';
@@ -14,21 +15,14 @@ interface Props {
 
 const { variant = 'general', context = 'blog', location, class: className = '' } = Astro.props as Props;
 
-const offers = {
-	general: {
-		title: 'Need a website, tool, or automation for your business?',
-		body: 'I learn how a business works, figure out where technology could help, and build or set up what fits. I’m taking on new projects now.'
-	},
-	systemsBuild: {
-		title: 'Have a project that needs an engineer?',
-		body: 'I work with small businesses from the first conversation through launch and handoff. I’m taking on new projects now.'
-	}
-} as const;
-
+const locale = getLocale(Astro.currentLocale);
+const { closing, service, action } = getDictionary(locale);
 const isCaseStudy = context === 'case-study';
-const offer = isCaseStudy && variant === 'general'
-	? { title: 'Need something like this for your business?', body: offers.systemsBuild.body }
-	: offers[variant];
+const offer = variant === 'systemsBuild'
+	? { title: service.systemsTitle, body: service.systemsBody }
+	: isCaseStudy
+		? { title: service.caseTitle, body: service.systemsBody }
+		: { title: closing.title, body: service.general };
 ---
 
 <section class:list={[closingClass, className]} data-section='closing-cta' aria-labelledby='service-callout-title' data-motion-group>
@@ -38,23 +32,23 @@ const offer = isCaseStudy && variant === 'general'
 		<div class={closingActionsClass}>
 			<a
 				class={closingButtonClass}
-				href={isCaseStudy ? '/contact/' : BOOK_CALL_URL}
+				href={isCaseStudy ? localizedPath('/contact/', locale) : BOOK_CALL_URL}
 				target={isCaseStudy ? undefined : '_blank'}
 				rel={isCaseStudy ? undefined : 'noopener noreferrer'}
 				data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}
 				data-track-location={`${location}_primary`}
 			>
-				{isCaseStudy ? 'Email me about a problem' : 'Book a call'}
+				{isCaseStudy ? action.emailProblem : action.bookCall}
 			</a>
 			<a
 				class={closingLinkClass}
-				href={isCaseStudy ? BOOK_CALL_URL : '/projects/'}
+				href={isCaseStudy ? BOOK_CALL_URL : localizedPath('/projects/', locale)}
 				target={isCaseStudy ? '_blank' : undefined}
 				rel={isCaseStudy ? 'noopener noreferrer' : undefined}
 				data-track-event={isCaseStudy ? 'book_call_clicked' : 'service_page_clicked'}
 				data-track-location={`${location}_secondary`}
 			>
-				{isCaseStudy ? 'Book a call' : 'See projects'}
+				{isCaseStudy ? action.bookCall : action.seeProjects}
 			</a>
 		</div>
 	</div>

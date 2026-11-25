@@ -1,14 +1,17 @@
 ---
+import { getDictionary } from '../i18n';
+
 interface Props {
 	date: Date;
 }
 
 const { date } = Astro.props;
+const { locale } = getDictionary(Astro.currentLocale);
 ---
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		date.toLocaleDateString(locale.format, {
 			year: 'numeric',
 			month: 'short',
 			day: '2-digit',
