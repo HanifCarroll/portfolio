@@ -1,12 +1,5 @@
 // Remove routes as each translation PR lands. A new English route is not exempt.
-export const deferredPages = [
-  "/projects/",
-  "/projects/one-tuesday/",
-  "/blog/",
-  "/notes/",
-  "/atlas/",
-  "/guide/",
-];
+export const deferredPages = ["/projects/one-tuesday/", "/blog/", "/notes/", "/atlas/", "/guide/"];
 
 export const deferredEntries = {
   "case-studies": [
@@ -14,25 +7,18 @@ export const deferredEntries = {
     "agent-recall",
     "apartment-finder",
     "ba-eventos",
-    "casa-elaria",
     "casamo",
     "codex-telegram-bridge",
-    "desarmadero-la-torre",
-    "desarmadero-operations-prototype",
     "genrupt",
     "job-application-assistant",
     "language-exchange",
     "linkedin-tools",
-    "maximo-interiorismo",
     "mucho-hangouts",
     "neden",
-    "online-store-conversion-review",
     "palabruno",
     "process-scribe",
     "product-usage-scoring-routing",
-    "redwriter-comics",
     "riowell",
-    "sales-funnel-solo-coach",
     "switchboard",
     "tidal-spa-concierge",
     "vox-prismatic",

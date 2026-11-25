@@ -1,0 +1,83 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import redwriterFeature from "@src/assets/img/projects/redwriter-feature.png";
+
+export const shippedRows = [
+  {
+    label: "Portfolio",
+    title: "Los editores podían revisar el trabajo en un solo lugar",
+    body: "Reuní las muestras de trabajo y las recomendaciones en un solo sitio profesional.",
+  },
+  {
+    label: "Revisión editorial",
+    title: "Era más fácil comparar las páginas y las tapas",
+    body: "Organicé las galerías según cómo revisan historietas los editores.",
+  },
+  {
+    label: "Encargos",
+    title: "Los editores podían consultar por un encargo desde el sitio",
+    body: "Después de revisar el trabajo, podían consultar por un encargo sin pedir antes los archivos ni los enlaces.",
+  },
+  {
+    label: "Presentación",
+    title: "El sitio se veía tan profesional como el trabajo del dibujante",
+    body: "Con un sitio prolijo y rápido, los editores tenían más motivos para confiar en el dibujante como colaborador profesional.",
+  },
+];
+
+<CaseSection title="Un solo sitio para revisar el trabajo del dibujante">
+  El dibujante hacía buenos trabajos y los publicaba en distintas redes sociales, pero los editores y las editoriales necesitaban un solo sitio donde revisarlos.
+
+  Armé un sitio donde podían ver y comparar con más facilidad páginas de historietas, tapas y dibujos de personajes.
+</CaseSection>
+
+<CaseSection title="La situación inicial">
+  El trabajo era de buena calidad, pero el dibujante lo mostraba en varios lugares.
+
+  A los editores, las editoriales y quienes querían hacerle un encargo les costaba revisar todo el trabajo.
+</CaseSection>
+
+<CaseSection title="Qué necesitaba el dibujante">
+  Los editores necesitaban un sitio profesional donde ver el trabajo del dibujante y consultarle por un encargo.
+
+  El sitio tenía que cargar rápido y ser fácil de usar para que los visitantes pudieran dedicarse a ver las ilustraciones.
+</CaseSection>
+
+<CaseSection title="Cómo lo organicé">
+  <DecisionBlock title="Galerías para la revisión editorial">
+    Organicé las galerías según cómo miran las historietas los editores. Así podían revisar por separado las páginas en secuencia, las tapas y los dibujos de personajes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Un diseño discreto">
+    Quería que el sitio se viera profesional y que la atención de los visitantes estuviera en el trabajo del dibujante.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="El sitio publicado" media>
+  Con el sitio publicado, el dibujante tenía una presentación más profesional que podía compartir para que los editores revisaran su trabajo.
+
+  <ImagePlate image={redwriterFeature} alt="Sitio de Redwriter Comics con muestras del trabajo del dibujante" />
+</CaseSection>
+
+<CaseSection title="Qué desarrollé">
+  <DecisionBlock title="Cómo revisar el trabajo">
+    Los editores podían revisar el portfolio completo sin tener que pedir archivos ni enlaces a distintas publicaciones.
+  </DecisionBlock>
+
+  <DecisionBlock title="Cómo consultar por un encargo">
+    Después de ver las muestras, los editores podían contactar al dibujante directamente desde el sitio para hablar de un proyecto.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué recibió el dibujante">
+  <ProofRows rows={shippedRows}>
+    <p>
+      Reuní los trabajos que el dibujante ya había hecho públicos en un sitio profesional donde los editores y las editoriales pueden revisarlos y consultar por encargos.
+    </p>
+  </ProofRows>
+</CaseSection>

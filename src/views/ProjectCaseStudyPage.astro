@@ -1,0 +1,199 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCallout from '../components/ServiceCallout.astro';
+import ImageLightbox from '../components/case-study/ImageLightbox.astro';
+import { clientDelivery, type ClientDeliverySlug } from '../data/client-delivery';
+import { jiecTestimonial, testimonials } from '../data/testimonials';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
+import { localizeProject } from '@src/lib/projects';
+import type { CaseStudyPageProps } from '@src/lib/project-paths';
+import { getProjectImage } from '@src/lib/project-images';
+import { DELISTED_PROJECT_SLUGS } from '@src/lib/project-curation';
+import { articleTitleClass, buttonClass, deckClass, sectionHeadingClass, shellClass, textLinkClass } from '@src/lib/ui';
+
+type Props = CaseStudyPageProps;
+const { project: source, caseStudy } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const { nav, projectDetail: labels } = getDictionary(locale);
+const project = localizeProject(source, locale);
+const deliveryEntry = clientDelivery[project.slug as ClientDeliverySlug];
+const delivery = locale === 'es' ? deliveryEntry?.es : deliveryEntry;
+const testimonialsBySlug: Record<string, (typeof testimonials)[number] | undefined> = {
+	genrupt: testimonials.find((item) => item.name === 'Michael Shackelford'),
+	palabruno: testimonials.find((item) => item.name === 'Valentin Zach'),
+	'online-store-conversion-review': jiecTestimonial,
+};
+const testimonial = testimonialsBySlug[project.slug];
+const clientTestimonial = testimonial && (locale === 'es' ? testimonial.es : testimonial);
+const developerToolSlugs = [
+	'acquire',
+	'agent-recall',
+	'apartment-finder',
+	'codex-telegram-bridge',
+	'job-application-assistant',
+	'linkedin-tools',
+];
+const caseStudyVariant = developerToolSlugs.includes(project.slug) ? 'systemsBuild' : 'general';
+const { Content } = await render(caseStudy);
+const heroImage = getProjectImage(project, 'hero');
+const heroWidths = [640, 960, 1280, 1600, 2000].filter((width) => width < heroImage.width);
+heroWidths.push(heroImage.width);
+const seoTitle = project.seoTitle ?? `${project.title} · ${labels.project}`;
+const seoDescription = project.seoDescription ?? project.description;
+const isDelisted = (DELISTED_PROJECT_SLUGS as readonly string[]).includes(project.slug);
+const canonicalUrl = new URL(localizedPath(`/projects/${project.slug}/`, locale), Astro.site).toString();
+const caseStudyJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'CreativeWork',
+	name: project.title,
+	headline: seoTitle,
+	description: seoDescription,
+	url: canonicalUrl,
+	creator: {
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/'
+	},
+	about: [project.client, project.service, ...project.technologies.slice(0, 6)],
+	datePublished: project.year?.split('-')[0]
+};
+
+const caseStudyFacts = project.proofType === 'client'
+	? [
+			{ label: labels.engagement, value: project.service },
+			{ label: labels.responsibility, value: project.role },
+			delivery && { label: labels.status, value: delivery.status },
+			{ label: labels.year, value: project.year },
+		].filter((detail): detail is { label: string; value: string } => Boolean(detail?.value))
+	: [
+			{ label: labels.role, value: project.role },
+			{ label: labels.year, value: project.year },
+			project.liveUrl && { label: labels.status, value: project.liveStatusLabel ?? (project.proofType === 'experiment' ? labels.liveDemo : labels.liveProduct) },
+		].filter((detail): detail is { label: string; value: string } => Boolean(detail));
+const coreTechnologies = project.technologies.slice(0, 6);
+
+const heroActions = [
+	project.liveUrl && {
+		label: project.liveCtaLabel ?? delivery?.liveLabel ?? (project.proofType === 'experiment' ? labels.tryDemo : labels.visitProduct),
+		href: project.liveUrl,
+		trackEvent: 'project_live_site_clicked',
+		trackLocation: 'project_detail_hero',
+		external: true
+	},
+	project.repository && {
+		label: project.repositoryCtaLabel ?? labels.repository,
+		href: project.repository,
+		trackEvent: 'project_repository_clicked',
+		trackLocation: 'project_detail_hero',
+		external: true
+	}
+].filter((action): action is { label: string; href: string; trackEvent: string; trackLocation: string; external: boolean } =>
+	Boolean(action)
+);
+
+// The image lightbox finds its triggers through the cs-project-hero and cs-content hooks.
+const breadcrumbLinkClass = 'group inline-flex items-center gap-[0.4rem] text-ink-muted no-underline transition-colors duration-[160ms] ease-out-soft hover:text-ink focus-visible:text-ink';
+const factLabelClass = 'm-0 text-base leading-[1.3] text-ink-muted';
+---
+
+<BaseLayout
+	title={seoTitle}
+	description={seoDescription}
+	robots={isDelisted ? 'noindex, follow' : undefined}
+	image={heroImage?.src}
+	jsonLd={caseStudyJsonLd}
+	showFooterCta={false}
+>
+	<article class:list={[shellClass, 'pt-9 pb-24 md:pt-14 md:pb-32']}>
+		<nav class='mb-14 flex flex-wrap items-center gap-2 font-sans text-base max-lg:hidden' aria-label={labels.breadcrumb}>
+			<a href={localizedPath('/', locale)} class={breadcrumbLinkClass}>
+				<svg class='shrink-0 transition-transform duration-[240ms] ease-out-soft group-hover:-translate-x-[3px] group-focus-visible:-translate-x-[3px] motion-reduce:transition-none' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M19 12H5'></path><path d='M12 19l-7-7 7-7'></path></svg>
+				Hanif Carroll
+			</a>
+			<span class='text-ink-muted opacity-55' aria-hidden='true'>/</span>
+			<a href={localizedPath('/projects/', locale)} class={breadcrumbLinkClass}>{nav.projects}</a>
+		</nav>
+
+		<header class='mb-[clamp(4rem,8vw,6rem)] grid gap-12' data-motion-intro>
+			<div class='grid max-w-[54rem] content-start gap-6'>
+				<h1 class={articleTitleClass} data-motion='headline'>{project.title}</h1>
+				<p class:list={[deckClass, 'mt-0']} data-motion-deck>{project.description}</p>
+				{
+					heroActions.length > 0 && (
+						<div class='flex flex-wrap items-center gap-x-6 gap-y-3 pt-2' data-motion-intro-item>
+							{
+								heroActions.map((action, index) => (
+									<a
+										class={index === 0 ? buttonClass() : textLinkClass}
+										href={action.href}
+										target={action.external ? '_blank' : undefined}
+										rel={action.external ? 'noopener noreferrer' : undefined}
+										data-track-event={action.trackEvent}
+										data-track-location={action.trackLocation}
+									>
+										{action.label}
+									</a>
+								))
+							}
+						</div>
+					)
+				}
+			</div>
+
+			<figure class='cs-project-hero m-0 w-full'>
+				<Image
+					src={heroImage}
+					alt={project.heroAlt ?? (locale === 'en' ? `${project.title} ${labels.visual}` : `${labels.visual}: ${project.title}`)}
+					widths={heroWidths}
+					sizes='(min-width: 75rem) 1200px, 100vw'
+					loading='eager'
+					class='block h-auto w-full'
+				/>
+			</figure>
+
+			<aside
+				class='grid grid-cols-1 gap-5 font-sans md:grid-cols-[repeat(var(--cs-fact-count),minmax(0,1fr))] md:gap-x-8'
+				aria-label={labels.facts}
+				style={`--cs-fact-count: ${caseStudyFacts.length}`}
+				data-motion-intro-item
+			>
+				{
+					caseStudyFacts.map((detail) => (
+						<div class='grid min-w-0 content-start gap-1'>
+							<p class={factLabelClass}>{detail.label}</p>
+							<strong class='text-lg font-normal leading-[1.4] text-ink'>{detail.value}</strong>
+						</div>
+					))
+				}
+				{
+					coreTechnologies.length > 0 && (
+						<div class='col-span-full grid gap-1'>
+							<p class={factLabelClass}>{labels.builtWith}</p>
+							<ul class='m-0 flex list-none flex-wrap p-0 text-lg leading-[1.4] text-ink' aria-label={labels.technologies}>
+								{coreTechnologies.map((technology) => <li class="not-last:after:mx-[0.55rem] not-last:after:text-ink-muted not-last:after:content-['·']">{technology}</li>)}
+							</ul>
+						</div>
+					)
+				}
+			</aside>
+		</header>
+
+		<div class='cs-content grid'>
+			<Content />
+			{testimonial && clientTestimonial && (
+				<section class='pt-14 pb-6' aria-label={labels.feedback}>
+					<h2 class:list={[sectionHeadingClass, 'text-[clamp(2rem,3.6vw,3rem)]']}>{labels.workingTogether}</h2>
+					<blockquote class='mx-0 mt-6 mb-0 max-w-[48rem]'>
+						<p class='m-0 font-editorial text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.25] text-ink'>{clientTestimonial.quote}</p>
+						<footer class='mt-4'><cite class='text-base uppercase leading-[1.3] tracking-[0.12em] not-italic text-ink-muted'>{testimonial.name} · {clientTestimonial.role}</cite></footer>
+					</blockquote>
+				</section>
+			)}
+		</div>
+
+	</article>
+	<ServiceCallout variant={caseStudyVariant} context='case-study' location={`case_study_${project.slug}`} />
+	<ImageLightbox zoomable={['desarmadero-operations-prototype', 'process-scribe', 'sales-funnel-solo-coach'].includes(project.slug)} />
+</BaseLayout>
