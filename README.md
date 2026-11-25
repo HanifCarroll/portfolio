@@ -67,6 +67,8 @@ The existing `book_call_clicked`, `resume_downloaded`, and `email_clicked` event
 
 English keeps its existing URLs. Spanish uses the same path and fragment IDs under `/es/`. Astro sets `Astro.currentLocale` from the route, and both language routes render the same view. Shared labels live in `src/i18n/en.ts` and `src/i18n/es.ts`. Keep page-specific translations next to the English copy or in the `es/` folder next to the English Markdown files.
 
+Write Spanish copy with Argentine voseo. Use literal wording, not idioms or figurative phrases. Name the person doing the work, or describe what the software does in concrete terms such as `envía`, `guarda`, or `muestra`.
+
 For collections, the counterpart to `src/content/<collection>/<slug>.md(x)` belongs at `src/content/<collection>/es/<slug>.md(x)`. Remove the matching item from `src/i18n/deferred.ts` when its Spanish route and content land. Until then, Spanish navigation links to the English version of that content without advertising a Spanish alternate. RSS stays English only. Astro builds `/es/404/` and copies it to `dist/es/404.html` so Cloudflare Pages can serve that body with status 404 for missing Spanish URLs.
 
 ### Project hero frames

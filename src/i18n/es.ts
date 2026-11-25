@@ -49,13 +49,13 @@ export const es = {
   },
   service: {
     general:
-      "Primero veo cómo funciona tu negocio y dónde te puede ayudar la tecnología. Después desarrollo o configuro lo que necesitás. Ahora estoy tomando proyectos nuevos.",
+      "Primero veo cómo funciona tu negocio y qué podría mejorar con tecnología. Después desarrollo o configuro lo que necesitás. Tengo disponibilidad para proyectos nuevos.",
     systemsTitle: "¿Buscás un ingeniero de software para un proyecto?",
     systemsBody:
-      "Trabajo con negocios chicos desde la primera charla hasta que dejo el proyecto funcionando y listo para que lo use el equipo. Ahora estoy tomando proyectos nuevos.",
+      "Trabajo con negocios chicos desde la primera charla hasta que el equipo puede usar el software que desarrollé o configuré. Tengo disponibilidad para proyectos nuevos.",
     caseTitle: "¿Necesitás algo parecido para tu negocio?",
   },
-  price: "Los proyectos arrancan en USD 500 y te paso un precio cerrado antes de empezar.",
+  price: "El precio mínimo de un proyecto es de USD 500. Te doy un precio fijo antes de empezar.",
   date: { lastUpdated: "Última actualización" },
   contact: {
     title: "Contame qué problema tenés en tu negocio | Hanif Carroll",

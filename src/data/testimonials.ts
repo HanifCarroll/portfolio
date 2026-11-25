@@ -6,7 +6,7 @@ export const fridaTestimonial = {
   es: {
     role: "Cofundadora de Fossil Free Culture NL",
     quote:
-      "Tiene la sensibilidad de un diseñador y desde la primera propuesta se acercó mucho a lo que yo tenía en mente. Con una sola ronda de correcciones quedó tal como lo quería. Pocas veces llego a ese resultado tan rápido con desarrolladores web.",
+      "Tiene la sensibilidad de un diseñador y su primera propuesta ya era muy parecida a lo que yo quería. Le pedí cambios una sola vez y quedó tal como lo quería. Pocas veces consigo ese resultado tan rápido con desarrolladores web.",
   },
 };
 
@@ -18,7 +18,7 @@ export const puntoDePartidaTestimonial = {
   es: {
     role: "Cofundadora de Punto de Partida",
     quote:
-      "Hanif entendió rápido qué necesitábamos para el negocio y qué buscábamos en el diseño. En muy poco tiempo armó un sitio sencillo y funcional. El resultado superó nuestras expectativas.",
+      "Hanif entendió rápido qué necesitábamos para el negocio y qué buscábamos en el diseño. En muy poco tiempo armó un sitio sencillo y funcional. El sitio quedó mejor de lo que esperábamos.",
   },
 };
 
@@ -53,7 +53,7 @@ export const testimonials = [
     es: {
       role: "Fundador y CEO de Genrupt",
       quote:
-        "Hanif me ayudó a crear y mejorar funciones en Genrupt.com. Su trabajo fue clave para preparar la app para que pudiera crecer. Es muy organizado y muy bueno para encontrar formas de hacer las cosas con menos esfuerzo. ¡Además, da gusto trabajar con él!",
+        "Hanif me ayudó a crear y mejorar funciones en Genrupt.com. Su trabajo fue necesario para preparar la app para que pudiera procesar más solicitudes. Es muy organizado y muy bueno para encontrar formas de hacer las cosas con menos esfuerzo. ¡Además, da gusto trabajar con él!",
     },
   },
   {
@@ -75,7 +75,7 @@ export const testimonials = [
     es: {
       role: "Fundador de Zarate Studios",
       quote:
-        "Es confiable, se comunica muy bien y tiene muy buen criterio técnico. Pude contar con él en todo momento, ya fuera para desarrollar proyectos complejos, resolver problemas bajo presión o adaptarse a cambios de prioridades.",
+        "Es confiable, se comunica muy bien y tiene muy buen criterio técnico. Fue confiable en todo momento, ya fuera al desarrollar proyectos complejos, resolver problemas en situaciones exigentes o adaptarse a cambios de prioridades.",
     },
   },
 ];

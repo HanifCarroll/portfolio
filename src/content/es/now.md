@@ -1,8 +1,8 @@
 ---
 title: "Qué estoy haciendo ahora"
 description: >
-  Esta página está inspirada en la idea de Derek Sivers. Es lo que le contaría a
-  un amigo si me preguntara a qué le estoy dedicando mi tiempo ahora.
+  Derek Sivers propuso este tipo de página. Acá cuento lo que le diría a un amigo
+  si me preguntara a qué le estoy dedicando mi tiempo ahora.
 lastUpdated: "2026-11-19"
 ---
 
