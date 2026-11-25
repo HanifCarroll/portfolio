@@ -2,18 +2,7 @@
 export const deferredPages = ["/projects/one-tuesday/", "/blog/", "/notes/", "/atlas/", "/guide/"];
 
 export const deferredEntries = {
-  "case-studies": [
-    "acquire",
-    "agent-recall",
-    "apartment-finder",
-    "codex-telegram-bridge",
-    "job-application-assistant",
-    "language-exchange",
-    "linkedin-tools",
-    "product-usage-scoring-routing",
-    "riowell",
-    "vox-prismatic",
-  ],
+  "case-studies": [],
   blog: [
     "ai-makes-open-source-more-important-not-less",
     "bpm-lifecycle-saas-onboarding",

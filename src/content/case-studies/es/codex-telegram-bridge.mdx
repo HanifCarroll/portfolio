@@ -1,0 +1,91 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import { textLinkClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Herramienta pública de línea de comandos",
+    title: "Es fácil encontrar las acciones remotas más comunes",
+    body: "En la ayuda predeterminada se ven la configuración, el modo remoto, Telegram y Discord, los proyectos, los hilos en espera, las respuestas y las aprobaciones. Los comandos internos de mantenimiento no aparecen.",
+  },
+  {
+    label: "Modo remoto",
+    title: "Las notificaciones remotas solo se envían con el modo remoto activado",
+    body: "Con `/away` activás las notificaciones de Telegram o Discord y se inicia la conexión local necesaria. Con `/back` las desactivás y se borran los mensajes que todavía no se enviaron.",
+  },
+  {
+    label: "Envío de respuestas",
+    title: "Cada respuesta del chat se envía al hilo de Codex correspondiente",
+    body: "El servicio local en segundo plano registra de dónde salió cada mensaje de Telegram o Discord y luego envía la respuesta o aprobación remota al hilo exacto de Codex.",
+  },
+  {
+    label: "Acceso limitado para el agente",
+    title: "Hermes puede consultar y responder sin controlar el envío de mensajes",
+    body: "Con la interfaz opcional, el agente puede consultar hilos, mostrar qué quedó en espera, responder y aprobar. La instalación, el control del servicio en segundo plano, las conexiones de chat, los hilos nuevos y las acciones sobre el archivo quedan fuera de esa interfaz.",
+  },
+  {
+    label: "Complemento de escritorio",
+    title: "Podés controlar el modo remoto desde la barra de menú de macOS",
+    body: "Desde la barra de menú podés activar o desactivar el modo remoto y reparar la conexión local. El complemento consulta el mismo estado que las herramientas de chat.",
+  },
+  {
+    label: "Controles en el repositorio público",
+    title: "El repositorio incluye documentación, integración continua, publicación de versiones y pruebas de seguridad",
+    body: "Las pruebas cubren la interpretación de comandos, los comandos de mantenimiento ocultos, la eliminación de tokens, el envío de respuestas de Telegram al hilo correspondiente, los botones de aprobación, los cambios en datos guardados, la detección de agentes y la lista de herramientas del agente, que limité a propósito.",
+  },
+];
+
+<CaseSection title="Por qué armé la conexión con Telegram y Discord">
+Armé una herramienta de código abierto para seguir trabajando con Codex por Telegram o Discord cuando estoy lejos de la computadora.
+
+Codex puede seguir trabajando cuando me voy, pero su interfaz predeterminada está pensada para usarla desde la app de escritorio. No alcanzaba con mandarme un mensaje. Tenía que poder indicar cuándo había salido, iniciar o reparar el backend compartido en funcionamiento, recibir notificaciones solo de eventos relevantes, responder en el hilo correcto, aprobar acciones y detener el servicio sin problemas al volver.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Enviar notificaciones solo cuando estoy lejos de la computadora">
+    La regla es simple: mientras estoy en la computadora, las notificaciones remotas están desactivadas. Con `/away` activo el envío. Con `/back` lo desactivo y se borran los mensajes pendientes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Enviar cada respuesta a partir de registros locales">
+    En la base de datos local se guardan los estados de los hilos, los mensajes salientes, el historial de envíos, las rutas de respuesta y aprobación, los proyectos seleccionados y el historial de acciones. Cada mensaje remoto incluye una ruta temporal que el servicio local asocia con Codex.
+  </DecisionBlock>
+
+  <DecisionBlock title="Separar el envío de mensajes del acceso del agente">
+    Los mensajes y las respuestas se envían por Telegram o Discord. Hermes tiene una interfaz opcional con pocas funciones para tareas locales de confianza. Puede consultar, responder y aprobar, pero no instalar el servicio en segundo plano, configurar conexiones de chat, procesar actualizaciones ni enviar notificaciones por iniciativa propia.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Elegir proyectos sin adivinar a partir del chat">
+    En la lista de proyectos se guardan carpetas aprobadas con identificadores, etiquetas y alias. Con `/project` elegís el espacio de trabajo actual y con `/new` iniciás una tarea de Codex en esa carpeta registrada.
+  </DecisionBlock>
+
+  <DecisionBlock title="No mostrar secretos en la salida de los comandos">
+    La configuración inicial se guarda con permisos solo para el usuario. El código oculta los tokens del bot en la salida y permite limitar los comandos entrantes a identificadores de usuario autorizados. En la documentación pública explico quién controla los tokens dedicados del bot y qué se conserva en la computadora.
+  </DecisionBlock>
+
+  <DecisionBlock title="Poner las acciones más comunes en la barra de menú">
+    Desde el complemento para macOS podés iniciar y detener el servicio, reparar la conexión, actualizar el estado, abrir la configuración y revisar el estado local.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué quedó disponible">
+  <ProofRows rows={shippedRows}>
+    El estado del modo remoto y de los hilos, las rutas de respuesta, los envíos y la recuperación se gestionan desde la computadora. Los mensajes se transmiten por Telegram o Discord.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Código fuente">
+En el repositorio están la herramienta en Rust, las guías de configuración de Telegram y Discord, la documentación de la interfaz para Hermes, el complemento de barra de menú de macOS, una configuración de ejemplo, controles automatizados, el proceso de publicación de versiones y las pruebas.
+
+  <a class={textLinkClass} href="https://github.com/HanifCarroll/codex-telegram-bridge" target="_blank" rel="noopener noreferrer">
+    Ver el repositorio en GitHub
+    <span>&rarr;</span>
+  </a>
+
+</CaseSection>

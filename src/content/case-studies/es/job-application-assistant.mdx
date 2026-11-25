@@ -1,0 +1,111 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import { textLinkClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Panel de la extensión",
+    title: "Podés revisar avisos, redactar borradores y consultar los PDF y el estado de las postulaciones",
+    body: "En el panel se ven el registro del aviso actual, la URL de origen, los datos del puesto, las notas, los controles de borradores y PDF, si ya hubo una postulación y una lista de avisos con opción de postularse.",
+  },
+  {
+    label: "Backend local",
+    title: "El backend guarda tareas, borradores y postulaciones",
+    body: "El backend incluye rutas para comprobar su estado, volver a indexar el contexto, generar y buscar borradores, consultar postulaciones, cargar el panel y obtener PDF. En SQLite se guardan las tareas, los borradores, los tiempos de ejecución y los registros de postulaciones.",
+  },
+  {
+    label: "Registro para revisión",
+    title: "Podés revisar los motivos de cada borrador",
+    body: "Cada respuesta de Codex incluye el texto para quien se postula, el enfoque, la clasificación del puesto, la estrategia, los proyectos seleccionados y descartados, las decisiones, las afirmaciones, las referencias caused_by y los avisos.",
+  },
+  {
+    label: "Extracción de datos",
+    title: "La instrucción se arma con campos definidos en vez de inferencias sobre toda la página",
+    body: "El modelo de datos de oportunidades rechaza campos desconocidos y quita campos obsoletos de texto libre antes de armar la instrucción. Con las pruebas de extracción también se bloquean patrones generales de inferencia con poca evidencia.",
+  },
+  {
+    label: "Verificación",
+    title: "El repositorio incluye comprobaciones de Python y de la extensión",
+    body: "El script de comprobación ejecuta mypy, pytest, controles de sintaxis de JavaScript para los archivos de la extensión, validación JSON del manifiesto y del esquema de respuesta, y controles de espacios en blanco con git.",
+  },
+];
+
+<CaseSection title="Para qué sirve Job Application Assistant">
+Job Application Assistant es una herramienta local para redactar y registrar postulaciones a empleos.
+
+Combina una extensión de Chrome, un backend de FastAPI, SQLite, información local sobre mis proyectos, generación de borradores con Codex y exportación de cartas de presentación a PDF. El borrador queda vinculado con el aviso original, la evidencia de los proyectos elegidos y el registro de postulaciones.
+
+</CaseSection>
+
+<CaseSection title="Por qué armé la herramienta">
+Para postularme tenía que usar varias herramientas por separado.
+
+El aviso estaba en el portal de empleo. La descripción de mi perfil y los ejemplos de proyectos estaban en archivos locales. Los borradores quedaban en un chat o en un campo de texto. Para convertir una carta de presentación a PDF tenía que usar otra herramienta. También tenía que acordarme de registrar cada postulación. Era fácil dejar de saber qué afirmación había usado para un puesto, cuál era el PDF final y si ya había registrado la postulación.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Guardar los datos sensibles en la computadora">
+    La extensión guarda el estado del navegador en Chrome. El backend guarda las tareas de borrador y los registros de postulaciones en SQLite. Los PDF se guardan en el directorio de ejecución configurado y el contexto generado queda en una caché local. En el README aclaro que los borradores se generan con la cuenta de Codex/OpenAI configurada en la computadora. La aplicación no agrega seguimiento de uso ni consultas a las API de portales de empleo.
+  </DecisionBlock>
+
+  <DecisionBlock title="Extraer los datos del aviso en campos definidos">
+    Para los avisos compatibles, el código genera un OpportunitySnapshot con campos como URL de origen, título, empresa, ubicación, descripción, responsabilidades, requisitos, habilidades, preguntas, contexto de la empresa, contexto del reclutador y avisos de extracción. Si falta un dato, el campo queda sin completar.
+  </DecisionBlock>
+
+  <DecisionBlock title="Incluir los motivos con cada borrador">
+    El backend arma una sola instrucción con los datos del aviso, el perfil local, el CV, los servicios que ofrezco y la evidencia de proyectos. El modelo tiene que devolver JSON con un formato estricto, con el borrador y los campos de auditoría necesarios para comprobar por qué se usó cada afirmación.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Podés consultar la postulación desde el panel lateral">
+El panel lateral de la extensión es la interfaz principal. El registro de postulaciones se consulta desde un panel local aparte.
+
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Adaptadores de la extensión para avisos reales">
+    La extensión admite las estructuras de página de Upwork, Dice, Indeed, ZipRecruiter, Robert Half y LinkedIn. Usa adaptadores por plataforma, selectores estructurados y los datos JSON-LD de tipo JobPosting de Dice cuando están disponibles. Podés revisar los campos en el panel lateral antes de generar un borrador.
+  </DecisionBlock>
+
+  <DecisionBlock title="Un backend local para el contexto y los borradores">
+    El backend indexa el perfil en Markdown, los servicios y la evidencia de proyectos en JSON y el texto del CV en un ContextBundle. Las tareas de borrador se ejecutan de forma asincrónica. El código guarda la solicitud y el resultado en JSON, permite consultar el estado periódicamente y registra los tiempos de cada etapa y del subproceso de Codex.
+  </DecisionBlock>
+
+  <DecisionBlock title="Registrar la postulación en el mismo proceso">
+    Los registros de postulaciones se guardan en SQLite y se eliminan duplicados según la URL de origen normalizada. La extensión puede comprobar si la URL actual ya está registrada. En el panel local podés buscar, filtrar, consultar vistas por fecha, ordenar, pasar de página y abrir los borradores.
+  </DecisionBlock>
+
+  <DecisionBlock title="Guardar las cartas de presentación en PDF">
+    Para exportar un PDF, el código usa el texto del borrador guardado sin reescribirlo y arma un encabezado simple con el PDF del CV configurado. Omite los datos de contacto que tienen formato de teléfono, usa el nombre de la empresa para nombrar el archivo y permite mostrarlo en Finder. Cuando se registra una postulación, archiva la carta enviada.
+  </DecisionBlock>
+
+  <DecisionBlock title="Automatizar partes de la postulación con pasos de revisión">
+    Desde el panel lateral de resultados podés listar los avisos que permiten postularse y abrir las postulaciones seleccionadas en Dice, Indeed y LinkedIn. Las funciones para cada plataforma pueden adjuntar las cartas de presentación en PDF y registrar las postulaciones confirmadas. Las preguntas que el sistema no tiene registradas se responden a mano.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué quedó disponible">
+  <ProofRows rows={shippedRows}>
+    Con Job Application Assistant podés extraer los datos, consultar el contexto, generar borradores y archivos y actualizar el registro de postulaciones. Podés revisar cada parte del proceso en vez de delegar toda la postulación a un agente sin ver qué hizo.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Podés consultar la evidencia de cada borrador">
+Lo útil no es que el sistema pueda escribir una carta de presentación.
+
+Cada borrador queda asociado a los datos del aviso y a la evidencia de proyectos permitida. Podés comprobar cada postulación en el registro y guardar cada PDF generado como parte del mismo proceso local.
+
+</CaseSection>
+
+<CaseSection title="Código fuente">
+  <p>El proyecto es de código abierto. Incluye la extensión de Chrome, el backend de FastAPI, las bases de SQLite, el esquema de respuesta y las pruebas de Python y de la extensión.</p>
+  <a class={textLinkClass} href="https://github.com/HanifCarroll/job-application-assistant" target="_blank" rel="noopener noreferrer">
+    Ver el repositorio en GitHub
+    <span>&rarr;</span>
+  </a>
+</CaseSection>

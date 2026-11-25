@@ -1,0 +1,104 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+
+export const shippedRows = [
+  {
+    label: "Un registro local",
+    title: "Las oportunidades, las postulaciones y el seguimiento comparten un historial",
+    body: "En una sola base de datos local se guardan oportunidades, investigaciones, materiales de postulación, borradores de mensajes, respuestas reutilizables, evidencia, tareas programadas e informes.",
+  },
+  {
+    label: "Trabajo diario",
+    title: "Podés ver qué hacer después en una sola aplicación de escritorio",
+    body: "En la app para macOS podés ver las tareas de hoy, las revisiones, las oportunidades en curso, las fuentes y la configuración. La base de datos sigue siendo el registro de referencia.",
+  },
+  {
+    label: "Aprobaciones",
+    title: "Hay pasos de revisión antes de ejecutar acciones automáticas",
+    body: "La revisión de oportunidades, borradores, materiales, respuestas y envíos finales impide que un agente o el navegador cambien el estado de las oportunidades sin aprobación.",
+  },
+  {
+    label: "Tareas recuperables",
+    title: "Podés revisar o reanudar tareas en segundo plano que se interrumpieron",
+    body: "Un servicio en segundo plano ejecuta las comprobaciones de fuentes, la generación de borradores, la preparación de postulaciones, los contactos y los envíos. Si una tarea se interrumpe, su estado queda visible.",
+  },
+  {
+    label: "Registro de evidencia",
+    title: "Podés comprobar cada decisión importante",
+    body: "Las investigaciones, los puntajes, los materiales de postulación, las respuestas sugeridas, los comprobantes de envío, los informes de fuentes y los impedimentos quedan asociados a la oportunidad, no solo en el historial del chat.",
+  },
+];
+
+<CaseSection title="Por qué armé Acquire">
+Armé una aplicación local para seguir oportunidades de trabajo porque ese proceso no funcionaba bien, aunque ya usaba muchas herramientas.
+
+En los portales de empleo estaban los avisos y en LinkedIn, las postulaciones. Tenía el contexto en notas, los formularios en pestañas del navegador y los borradores en sesiones de chat. En ninguna herramienta podía saber qué tenía que hacer después y si era seguro automatizarlo.
+
+</CaseSection>
+
+<CaseSection title="Para qué sirve Acquire">
+Primero usé Acquire para seguir oportunidades de proyectos. Después lo amplié para consultar fuentes, revisar oportunidades, preparar postulaciones, reutilizar respuestas, redactar mensajes, hacer envíos con ayuda del navegador, consultar la evidencia en orden cronológico y ver las tareas del día desde el escritorio.
+
+Los datos sensibles quedan en la computadora. Hace falta una aprobación antes de que un agente o el navegador puedan ejecutar una acción externa.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Guardar los datos en la computadora">
+    Los datos de las oportunidades se guardan en una base local de SQLite. También hay una herramienta de línea de comandos en Rust con una interfaz estable para oportunidades, eventos, investigaciones, materiales de postulación, respuestas reutilizables, contactos, informes, tareas programadas y la aplicación de escritorio. Los datos sensibles de oportunidades, postulaciones y contactos quedan en la computadora.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar IA para los borradores y la aplicación para guardar los datos">
+    Uso Codex y Playwriter para investigar, asignar puntajes, redactar borradores y ejecutar tareas visibles en el navegador cuando hace falta criterio. El código en Rust guarda el estado, valida datos, modifica colas y registra aprobaciones e informes.
+  </DecisionBlock>
+
+  <DecisionBlock title="Comprobar la evidencia antes de enviar algo">
+    Para enviar la postulación final o un mensaje hacen falta los requisitos previos, los datos aprobados y la evidencia de ejecución. Si falta algo, la acción se detiene en un estado de bloqueo visible y se puede reanudar de forma segura.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="La aplicación de escritorio">
+Uso la app para macOS para el trabajo diario. En la vista Pursuits se pueden consultar postulaciones, contactos, propuestas en plataformas, revisiones de respuestas, el estado de los materiales, la evidencia de envío y el historial de tareas completadas.
+
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Reunir las fuentes de oportunidades en un registro">
+    Desde la aplicación en Rust se pueden gestionar oportunidades, el historial de interacciones, investigaciones, importaciones, controles de duplicados, informes, tareas programadas, notificaciones y consultas de solo lectura en portales de empleo, agencias, reclutadores, Upwork, Wellfound, Glassdoor, LinkedIn, YC, We Work Remotely y Hacker News.
+  </DecisionBlock>
+
+  <DecisionBlock title="Definir cada etapa de una postulación">
+    Para postularse hay una secuencia definida: aceptar la oportunidad, generar los materiales, adjuntar el CV, identificar las preguntas del portal, buscar respuestas reutilizables que correspondan, aprobar las respuestas obligatorias, dar la aprobación final, enviar y confirmar.
+  </DecisionBlock>
+
+  <DecisionBlock title="Reutilizar respuestas aprobadas sin ocultar los cambios">
+    En el banco de respuestas se guardan datos reutilizables y se asocian las preguntas que aparecen en el portal de cada empleador con respuestas aprobadas. Si aparece un campo obligatorio nuevo o cambia uno existente, el código invalida la aprobación de envío y devuelve la oportunidad a revisión en vez de seguir con respuestas desactualizadas.
+  </DecisionBlock>
+
+  <DecisionBlock title="Tomar las decisiones diarias desde la app de escritorio">
+    En la app para macOS podés ver las revisiones de oportunidades, las oportunidades en curso, el estado de las fuentes, las tareas programadas, la configuración de instrucciones, los materiales de postulación, las preguntas, las respuestas, la evidencia de ejecución y los impedimentos. Todo se consulta desde el mismo estado guardado.
+  </DecisionBlock>
+
+  <DecisionBlock title="Ejecutar las tareas en segundo plano con un solo servicio">
+    Pasé a un solo servicio en segundo plano las consultas programadas de fuentes, las colas, la generación de materiales y borradores, el envío de postulaciones, los contactos y las notificaciones. Antes se ejecutaban con tareas separadas de macOS y scripts hechos para casos puntuales.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué desarrollé">
+  <ProofRows rows={shippedRows}>
+    <p>
+      Acquire es el ejemplo más claro del trabajo que quiero hacer más seguido: entender un proceso repartido entre varias herramientas, definir dónde hace falta un control y desarrollar el sistema interno que permita usar el proceso con un volumen mayor de trabajo.
+    </p>
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Cómo se aplica a otros negocios">
+Con Acquire puedo buscar oportunidades de trabajo y seguirlas. El mismo enfoque sirve cuando una empresa que está creciendo ya no puede depender de planillas, bandejas de entrada y lo que recuerda su fundador.
+
+Primero documento el proceso real y defino dónde se guarda su registro. Después automatizo los pasos en los que se puede comprobar qué pasó y recuperar el trabajo ante un impedimento, sin quitarles a las personas la responsabilidad de dar las aprobaciones importantes.
+
+</CaseSection>

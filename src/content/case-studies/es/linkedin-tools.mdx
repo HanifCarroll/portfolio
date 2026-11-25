@@ -1,0 +1,95 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import { textLinkClass } from "@src/lib/ui";
+
+export const shippedRows = [
+  {
+    label: "Responsabilidad de cada proceso",
+    title: "Los procesos en uso se ejecutan desde una sola herramienta de línea de comandos",
+    body: "La exportación de métricas, el registro y la ampliación de datos de avisos, la investigación de equipos de contratación, la investigación en Sales Navigator, los borradores de contacto y el traspaso del seguimiento tienen funciones definidas en la misma herramienta en Bun y TypeScript.",
+  },
+  {
+    label: "Controles de seguridad",
+    title: "Cada envío requiere un borrador revisado y un comprobante",
+    body: "Por cada borrador aprobado, se reserva un intento de envío antes de que se ejecute el código auxiliar del navegador. No se puede reintentar si el envío está preparado o pudo haberse hecho. La reserva del intento solo se libera cuando se confirma que no se envió nada.",
+  },
+  {
+    label: "Evidencia del navegador",
+    title: "La captura empieza antes de cargar la página",
+    body: "Un programa auxiliar para Chrome prepara la captura con DevTools Protocol antes de abrir la página. Conserva solo las respuestas del documento y de los datos del aviso buscado, las procesa en la computadora y comprueba el resultado con lecturas estables de la página.",
+  },
+  {
+    label: "Registro para auditoría",
+    title: "De cada paso externo queda un comprobante",
+    body: "Los paquetes de traspaso para borradores, postulaciones, HubSpot, Instantly y seguimientos incluyen evidencia guardada y condiciones explícitas para detenerse. Los comandos de comprobantes guardan los identificadores externos. La herramienta no hace solicitudes a esos servicios.",
+  },
+  {
+    label: "Migración",
+    title: "Cómo pasé los datos anteriores a la herramienta nueva",
+    body: "Reuní varios procesos de herramientas en Python en una sola herramienta con Bun, TypeScript y SQLite. Usé 30 migraciones de esquema y un informe con cada dato que se proponía conservar del estado anterior.",
+  },
+];
+
+<CaseSection title="Por qué armé la herramienta">
+Armé un conjunto de herramientas con Bun y TypeScript para consultar métricas de LinkedIn, registrar avisos de empleo e investigar en Sales Navigator en modo de solo lectura. Agregué controles para el contacto y una cola local de revisión.
+
+En la primera captura se ve la interfaz original de revisión en Python.
+
+Es fácil hacer una demostración de automatización en el navegador, pero es difícil confiar en los resultados. Necesitaba saber qué podía hacer cada proceso, qué evidencia respaldaba cada paso y cómo comprobar el resultado cuando no se podía confirmar qué había pasado en el navegador.
+
+</CaseSection>
+
+<CaseSection title="Para qué sirve LinkedIn Tools">
+LinkedIn Tools es un proyecto público. En el mismo sistema podés registrar avisos, investigar equipos de contratación, preparar borradores de mensajes y pasar el seguimiento a otra persona o sistema.
+
+En una cola de revisión en SvelteKit, los contactos del equipo de contratación se agrupan por persona para que haya un solo borrador revisable por contacto. El código registra la aprobación antes de habilitar el envío.
+
+</CaseSection>
+
+<CaseSection title="Las decisiones principales de diseño">
+  <DecisionBlock title="Registrar los avisos por etapas">
+    Primero se guardan en SQLite las páginas capturadas en Chrome. Al normalizar los datos se eliminan los duplicados por identificador de aviso de LinkedIn, con una página por transacción. Las ejecuciones son cortas, respetan un límite de tiempo real y se pueden reanudar desde donde se interrumpieron.
+  </DecisionBlock>
+
+  <DecisionBlock title="Clasificar los avisos sin rechazar ninguno">
+    Cada aviso conservado que tiene contactos del equipo de contratación se clasifica como fuerte, posible o débil y queda asociado con la evidencia de esa clasificación. En esa etapa no se rechazan avisos ni se cambia su estado de revisión.
+  </DecisionBlock>
+
+  <DecisionBlock title="Pasar el trabajo a otros sistemas con paquetes de datos">
+    Los paquetes se generan de forma determinista y describen el próximo paso de borrador, postulación, HubSpot, Instantly o seguimiento. Las tareas de seguimiento se programan para 5, 8 y 12 días después del primer mensaje. Si llega una respuesta, se detiene el seguimiento. Si ya hay un comprobante de un seguimiento, se omite esa tarea.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="La investigación es de solo lectura">
+Para registrar cuentas de Sales Navigator se usan pestañas de Chrome de quien hace la consulta. Se guarda un conjunto limitado de evidencia desde la línea de comandos. Se consultan cuentas y búsquedas guardadas, sin enviar mensajes, conectar con nadie ni editar datos.
+
+La exportación semanal de métricas de contenido de los últimos siete días y las comprobaciones de avisos se hacen con Playwriter. El registro de avisos, la ampliación de sus datos y la investigación en Sales Navigator se hacen en pestañas de Chrome de quien hace la consulta.
+
+</CaseSection>
+
+<CaseSection title="Qué quedó disponible">
+  <ProofRows rows={shippedRows}>
+    <p>
+      En LinkedIn Tools se guardan en el mismo sistema el estado, quién puede ejecutar cada acción, la aprobación y la evidencia del navegador. Así es posible comprobar un resultado incierto antes de continuar.
+    </p>
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Cómo se aplica a otros negocios">
+Usaría un proceso parecido en una empresa cuando las planillas, los hilos de chat y los scripts para casos puntuales ya no sean suficientes.
+
+Asignaría un responsable a cada acción, guardaría el estado del proceso, pediría aprobación para acciones irreversibles y registraría evidencia suficiente para saber qué hacer después. Solo dejaría seguir a la automatización cuando se pudiera comprobar qué pasó.
+
+</CaseSection>
+
+<CaseSection title="Código fuente">
+  <p>En el repositorio están la herramienta de línea de comandos en Bun y TypeScript, las migraciones de esquema de SQLite, la cola de revisión, los programas auxiliares para el navegador y las pruebas automatizadas.</p>
+  <a class={textLinkClass} href="https://github.com/HanifCarroll/linkedin-network-run" target="_blank" rel="noopener noreferrer">
+    Ver el repositorio en GitHub
+    <span>&rarr;</span>
+  </a>
+</CaseSection>

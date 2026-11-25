@@ -1,0 +1,119 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import hablabaFeature from "@src/assets/img/projects/hablaba-feature.png";
+import hablabaHostExchangeFlow from "@src/assets/img/projects/hablaba-host-exchange-flow.png";
+
+export const shippedRows = [
+  {
+    label: "Investigación",
+    title: "Definí el producto a partir de tres etapas de investigación",
+    body: "Antes del desarrollo completo hice una entrevista grupal de 90 minutos con tres personas, una encuesta con 11 respuestas y seis sesiones de prueba de uso.",
+  },
+  {
+    label: "Búsqueda de intercambios",
+    title: "En vez de mirar perfiles sin un objetivo, las personas podían buscar encuentros",
+    body: "Podían crear encuentros de a dos o en grupos chicos, o sumarse a ellos. También podían filtrarlos por idioma, barrio, fecha, formato y lugares disponibles.",
+  },
+  {
+    label: "Confianza",
+    title: "Agregué controles de acceso y datos de identidad",
+    body: "Incorporé códigos de invitación, verificación de correo, una guía para completar el perfil, fotos reales, autenticación de dos factores y controles de invitación para administradores para que las personas pudieran participar con más confianza y un propósito claro.",
+  },
+  {
+    label: "Coordinación",
+    title: "Las personas podían organizarse en el mismo intercambio que habían elegido",
+    body: "Con el chat privado en tiempo real y las notificaciones de la app y del navegador, los participantes podían coordinarse sin salir del intercambio.",
+  },
+];
+
+<CaseSection title="Qué es HablaBA">
+HablaBA es una aplicación de intercambio de idiomas por invitación para personas en Buenos Aires que quieren practicar en persona en encuentros más chicos y con un objetivo más claro.
+
+Investigué, diseñé y desarrollé HablaBA como una aplicación web funcional. Las personas pueden registrarse con una invitación, armar su perfil, buscar y crear intercambios o sumarse a ellos, usar el chat privado y recibir notificaciones.
+
+</CaseSection>
+
+<CaseSection title="Qué encontré en la investigación">
+En Buenos Aires ya había apps de intercambio de idiomas y eventos grandes. Faltaba una forma práctica de encontrar un grupo chico, acordar el idioma y el lugar y concretar el encuentro.
+
+Primero hice una entrevista grupal de 90 minutos con tres personas. Después hice una encuesta que recibió 11 respuestas y seis sesiones de prueba de uso. Con esas etapas definí qué convenía hacer: organizar la aplicación alrededor de cada intercambio, limitar el tamaño de los grupos, mostrar el barrio y el horario, y darles a los participantes un solo lugar para coordinarse.
+
+</CaseSection>
+
+<CaseSection title="Dos decisiones que tomé a partir de la investigación">
+  <DecisionBlock title="Organizar la aplicación alrededor de los intercambios y no de los perfiles">
+    Para el prototipo me hice una pregunta simple: ¿qué pasaría si las personas buscaran encuentros concretos para practicar en vez de mirar perfiles?
+
+    En cada intercambio se indican los idiomas, el barrio, la hora de inicio y de fin, si es de a dos o en grupo, el límite de participantes y la descripción. Con esos datos, las personas pueden decidir si el encuentro les sirve antes de sumarse.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar fotos reales para encuentros presenciales">
+    En una propuesta inicial usé avatares generados para que no se pareciera tanto a una app de citas. En las pruebas de uso vi qué se perdía: las personas querían ver con quién podían encontrarse, tanto de a dos como en grupo chico.
+
+    Pasé a usar fotos reales en los perfiles. También incorporé el registro por invitación, la verificación de correo, los pasos para completar el perfil y la autenticación de dos factores optativa.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Primero definí los pasos de quien organiza el encuentro" media wideMedia>
+Antes de desarrollar la aplicación completa, documenté los pasos de quien organiza: elegir el tipo de intercambio y el idioma, definir el horario y el lugar, revisar y confirmar. Así definí el encuentro como la unidad principal de la aplicación antes de cambiar la implementación.
+
+<ImagePlate image={hablabaHostExchangeFlow} alt="Boceto inicial de las pantallas de HablaBA para crear y publicar un intercambio de idiomas" />
+</CaseSection>
+
+<CaseSection title="Las personas buscan intercambios, no perfiles">
+En la vista Explore se puede decidir a partir de los datos del encuentro. Las personas pueden comparar el formato, los idiomas, el barrio, el horario, quién organiza y cuántos lugares quedan sin abrir una lista de perfiles.
+</CaseSection>
+
+<CaseSection title="Los participantes se organizan dentro de cada intercambio">
+  <DecisionBlock title="Coordinar dentro del intercambio">
+    Cuando te sumás, obtenés acceso al chat privado del intercambio. Los participantes pueden conversar sobre los temas, el horario y el encuentro sin abrir otro hilo ni perder los datos originales de la sesión.
+
+    Los mensajes en tiempo real se envían por canales privados de WebSocket. Se envían notificaciones en la app y en el navegador cuando alguien se suma, hay actividad en el chat o se cancela una sesión. Con una señal periódica de actividad, el código evita notificar a quien ya tiene abierto el chat.
+  </DecisionBlock>
+
+  <DecisionBlock title="Registrar el estado de cada intercambio hasta que termine">
+    En el modelo de datos figuran los estados activo, cancelado y completado, junto con el registro de quién se sumó y quién salió.
+
+    Esos estados importan porque la idea es que el grupo concrete un encuentro presencial, no solo que la gente indique que le interesa un evento.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Los participantes pueden concretar un encuentro por chat privado" media>
+Cada intercambio tiene su propio chat para que quienes están interesados puedan coordinar un encuentro concreto. En la captura usé cuentas de muestra y conversaciones ficticias de los datos de desarrollo del repositorio.
+
+<ImagePlate image={hablabaFeature} alt="Chat privado de grupo en HablaBA para coordinar un intercambio de idiomas" />
+</CaseSection>
+
+<CaseSection title="Cómo lo armé">
+  <DecisionBlock title="Reunir el producto en una sola aplicación web">
+    Primero usé una API de Rails 8 con un cliente aparte en React Native y Expo. Después desarrollé un cliente en Flutter y pasé las notificaciones para celular de Expo Push a Firebase Cloud Messaging. Más adelante hice un cliente web aparte en React. Los dos clientes para celular estaban fuera de este repositorio y no son parte del código que se mantiene.
+
+    Al final, reuní el producto que mantengo en una sola app web con Laravel 12, Inertia 2 y Vue 3. Las reglas del producto, las rutas tipadas, las páginas de Vue, los eventos en tiempo real, las colas y la configuración del despliegue quedaron en el mismo lugar.
+
+    El estado de la aplicación se guarda en PostgreSQL. Uso Redis para la caché y la infraestructura en tiempo real. En producción, la aplicación, el proceso que ejecuta las tareas en cola, el servidor de WebSocket, el proxy y los servicios de datos se ejecutan en contenedores separados.
+  </DecisionBlock>
+
+  <DecisionBlock title="Desarrollar también la seguridad de las cuentas y las herramientas de administración">
+    Agregué enlaces de invitación que emiten los administradores, la opción de revocar invitaciones, un formulario para expresar interés con un límite de solicitudes, verificación de correo, recuperación de contraseña, autenticación de dos factores, eliminación de perfiles, notificaciones y temas claro y oscuro.
+
+    Con esas funciones pude pasar de un prototipo interactivo al trabajo necesario para probar una aplicación real para una comunidad.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Qué desarrollé">
+  <ProofRows rows={shippedRows}>
+    HablaBA quedó como una aplicación web funcional con los pasos principales de invitación, búsqueda de intercambios, participación y chat.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="Qué aprendí">
+Las decisiones más importantes las tomé al probar cómo se usaría el producto, no al agregar funciones. Con la investigación dejé de organizar la búsqueda alrededor de los perfiles. Con las pruebas de uso cambié cómo se mostraba la identidad de cada persona. Al desarrollar la aplicación vi que el chat, las notificaciones, las invitaciones y los estados de cada encuentro eran parte del mismo problema de coordinación.
+
+También cambié la arquitectura a medida que definía mejor el producto. Ese historial permite comprobar qué cambié: mantuve los pasos principales de uso mientras reemplazaba la implementación. Después dejé un repositorio público con el sistema final y las decisiones que tomé.
+
+</CaseSection>

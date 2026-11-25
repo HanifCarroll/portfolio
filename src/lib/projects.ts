@@ -3,7 +3,12 @@ import spanishCopy from "./projects.es.json";
 import type { Project, ProjectTranslation } from "./types/project";
 
 const translations: Record<string, ProjectTranslation> = spanishCopy;
-const spanishTechnologyLabels = new Map([["WordPress Custom Theme", "Tema a medida para WordPress"]]);
+const spanishTechnologyLabels = new Map([
+  ["Chrome Extension MV3", "Extensión de Chrome (MV3)"],
+  ["Multiple AI Providers", "Varios proveedores de IA"],
+  ["OpenAI Vision Models", "Modelos de visión de OpenAI"],
+  ["WordPress Custom Theme", "Tema a medida para WordPress"],
+]);
 
 export function localizeProject(project: Project, locale: Locale): Project {
   if (locale === "en") return project;

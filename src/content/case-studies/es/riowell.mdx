@@ -1,0 +1,111 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import movementScreen from "@src/assets/img/projects/riowell-movement.png";
+import recoveryScreen from "@src/assets/img/projects/riowell-recovery.png";
+import mobileScreen from "@src/assets/img/projects/riowell-mobile.png";
+
+export const shippedRows = [
+  {
+    label: "Investigación de fuentes",
+    title: "Armé el contenido del sitio a partir de 50 archivos públicos",
+    body: "Antes de diseñar, guardé y revisé publicaciones, historias destacadas, textos, comentarios y un recorrido de quien fundó el club. Después definí qué iba en cada parte de la página.",
+  },
+  {
+    label: "Desarrollo bilingüe",
+    title: "El mismo sitio está disponible en español y en inglés",
+    body: "La ruta principal en español y la ruta en inglés usan el mismo componente de Astro y textos con tipos definidos, sin duplicar la página.",
+  },
+  {
+    label: "Contacto",
+    title: "WhatsApp quedó como única acción principal",
+    body: "En el sitio, los visitantes pueden resolver las dudas para las que había información pública. Por disponibilidad y precios pueden consultar en el canal que ya usaba el club.",
+  },
+  {
+    label: "Diseño adaptable",
+    title: "Diseñé el sitio para gente que lo iba a abrir sobre todo en el celular",
+    body: "Con un menú de pantalla completa, un botón con solo un ícono en el celular, recortes de imagen elegidos para cada pantalla y espacios que se ajustan al ancho, se puede leer y usar la página larga desde pantallas chicas.",
+  },
+];
+
+<CaseSection title="Por qué armé el sitio antes de presentar la propuesta">
+RIOwell se preparaba para abrir un club de recuperación física y bienestar en Núñez. El negocio tenía una cuenta nueva de Instagram con material útil, pero no un sitio donde se pudiera consultar todo lo que ofrecía.
+
+Armé el sitio para presentarlo como propuesta. Revisé la información pública, definí cómo explicar la oferta del club, diseñé el sitio y publiqué una vista previa adaptable con el español como idioma principal antes de contactar al negocio.
+
+</CaseSection>
+
+<CaseSection title="El club necesitaba explicar su oferta en un solo lugar">
+El club combinaba clases de movimiento en grupos chicos, sauna, crioterapia, masajes, equipos de recuperación física, membresías y un patio para reunirse. En Instagram, esa información estaba repartida entre publicaciones, historias destacadas y un recorrido narrado por el lugar.
+
+Quien pensaba asociarse todavía necesitaba respuestas claras: ¿qué es este lugar?, ¿qué actividad o servicio me conviene? y ¿cómo empiezo?
+
+</CaseSection>
+
+<CaseSection title="Trabajé solo con información pública">
+  <DecisionBlock title="Usar datos del negocio en vez de una plantilla genérica de bienestar">
+    Guardé y revisé 50 archivos públicos. Conservé los textos en español del club y organicé el catálogo de servicios, los tipos de membresía, la información sobre la ubicación, el lenguaje de la marca y los datos que faltaban.
+  </DecisionBlock>
+
+  <DecisionBlock title="Derivar a WhatsApp las consultas sin respuesta">
+    En la información pública no figuraban los precios ni los horarios de las clases. En la propuesta final, los visitantes pueden consultar qué ofrece el club y escribir por WhatsApp para preguntar por esos datos.
+  </DecisionBlock>
+
+  <DecisionBlock title="Combinar imágenes nuevas con datos de las fuentes">
+    Las fotos de las redes no tenían la calidad necesaria para el sitio que quería hacer. Definí un estilo editorial tranquilo para las imágenes y respaldé cada afirmación sobre servicios, membresías y el lugar con información pública.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="El diseño visual">
+Elegí un estilo cálido y sobrio, con una presentación de alta calidad sin adornos llamativos. Usé tipografía editorial grande y mucho espacio para dar una sensación de calma. En la portada, los visitantes ven una propuesta clara y una sola acción.
+
+</CaseSection>
+
+<CaseSection title="Cómo ordené la página para quien piensa asociarse">
+  <DecisionBlock title="Organizar la información en torno a moverse, recuperarse y pertenecer">
+    Primero se presentan esas tres opciones. Después se detallan las clases de movimiento, los servicios de recuperación, la experiencia del club, las membresías y cómo visitarlo. Usé la descripción del lugar de quien fundó el club para ordenar esa información.
+  </DecisionBlock>
+
+  <DecisionBlock title="Mantener WhatsApp como única acción principal">
+    En las primeras versiones repetía demasiadas veces los botones de WhatsApp. En la última revisión los dejé solo en el encabezado, la portada, las membresías y la sección final.
+  </DecisionBlock>
+
+  <DecisionBlock title="Mostrar los datos necesarios para ir al club">
+    En la sección de visita figuran la dirección real, los horarios y datos sobre el transporte. También hay un mapa de Google Maps con carga diferida. Así, los visitantes pueden resolver dudas prácticas antes de escribirle al club.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo presenté las clases de movimiento" media>
+Quería que las clases se vieran accesibles, no centradas en el rendimiento. Usé los cinco tipos de actividad del club, su enfoque en grupos chicos y su propuesta de acompañamiento cercano en un diseño editorial sobrio.
+
+<ImagePlate image={movementScreen} alt="Sección de movimiento de RIOwell con un título editorial y una foto de pilates" />
+</CaseSection>
+
+<CaseSection title="Un estilo más tranquilo para la recuperación" media>
+En la sección de recuperación usé un fondo verde salvia más frío e imágenes más cálidas y con menos luz. Con ese cambio diferencié la recuperación del entrenamiento sin perder la coherencia visual de la marca.
+
+<ImagePlate image={recoveryScreen} alt="Sección de recuperación de RIOwell con una foto de sauna sobre un fondo verde salvia apagado" />
+</CaseSection>
+
+<CaseSection title="Una vista previa funcional con el español como idioma principal">
+  <ProofRows rows={shippedRows}>
+    El resultado es una propuesta de sitio que funciona, no un boceto estático. Lo desplegué en Cloudflare Pages con rutas en dos idiomas, navegación que se ajusta al ancho, animaciones moderadas, contacto por WhatsApp y datos de ubicación.
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="El diseño para celular" media>
+En el celular usé una versión compacta del nombre del club, un menú de tres líneas, un botón de WhatsApp con solo el ícono e imágenes con recortes específicos para ese tamaño. La página larga conserva un estilo tranquilo y se puede leer con facilidad, sin copiar la navegación de computadora a un tamaño más chico.
+
+  <div class="mx-auto w-[min(100%,24rem)]">
+    <ImagePlate image={mobileScreen} alt="Portada de RIOwell en el celular con navegación compacta, fotografía editorial y un botón de WhatsApp con solo el ícono" />
+  </div>
+</CaseSection>
+
+<CaseSection title="El resultado">
+Usé el contenido de Instagram para armar una vista previa pública de un sitio completo. Así pude mostrar un sitio que funcionaba en vez de prometer qué podía desarrollar.
+
+</CaseSection>
