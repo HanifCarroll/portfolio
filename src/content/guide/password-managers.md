@@ -29,7 +29,7 @@ Prices as of November 2026.
 
 - **Your main password.** If you forget the main password, most password managers can't recover your vault. Store a recovery kit somewhere safe, such as on paper in a locked drawer.
 - **Two-factor sign-in.** Turn on two-factor sign-in for the password manager itself.
-- **When someone leaves.** Remove them from the vault, then change the password of each shared account they used. Share only the accounts each person needs, so you have fewer passwords to change.
+- **When someone leaves.** Remove them from the vault, change every shared password they could see in it, and sign them out of any service where a new password doesn't end their session. Share only the accounts each person needs, so you have fewer passwords to change.
 - **Price per user.** Business plans charge for each person, so count who needs access.
 
 ## What I can help with
