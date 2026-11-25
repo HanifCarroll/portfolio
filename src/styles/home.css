@@ -161,7 +161,7 @@
   gap: 2rem;
 }
 
-.home :is(.home-points p, .home-projects p.home-label, figcaption) {
+.home :is(.home-points p, .home-projects p.home-label) {
   margin-top: 0.5rem;
 }
 
@@ -211,8 +211,12 @@
   margin-top: 1.25rem;
 }
 
+.home .home-feedback figure:first-child figcaption {
+  margin-top: 1.5rem;
+}
+
 .home-feedback figure:first-child p {
-  max-width: 44rem;
+  text-wrap: pretty;
 }
 
 .home-writing a {
@@ -353,6 +357,6 @@
   max-width: 44rem;
 }
 
-.home [data-section="help"] .home-more {
+.home :is([data-section="help"], [data-section="process"]) .home-more {
   margin-top: clamp(2.5rem, 5vw, 4rem);
 }

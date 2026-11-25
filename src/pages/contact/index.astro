@@ -21,12 +21,17 @@ const fields = [
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false}>
-	<section class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']} aria-labelledby='contact-title' data-motion-intro>
-		<h1 id='contact-title' class={pageTitleClass} data-motion='headline'>Tell me about a problem</h1>
-		<p class:list={[deckClass, 'mt-6']} data-motion-deck>Describe what’s going on in your business in a few sentences. I’ll look at it for free and reply by email with how I’d fix it and what it would cost.</p>
-		<p class='mt-4 mb-0 max-w-[38rem] text-base leading-[1.55] text-ink-muted' data-motion-intro-item>Projects start at $500, and I quote a fixed price before I start.</p>
+	{/* One column below lg. At lg the form sits in a 36rem right column, and the email line moves up under the price line in the left column. DOM order stays heading, intro, price, form, email. */}
+	<section
+		class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:grid lg:grid-cols-[minmax(0,1fr)_36rem] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-16 lg:pt-20']}
+		aria-labelledby='contact-title'
+		data-motion-intro
+	>
+		<h1 id='contact-title' class:list={[pageTitleClass, 'lg:col-start-1 lg:row-start-1']} data-motion='headline'>Tell me about a problem</h1>
+		<p class:list={[deckClass, 'mt-6 lg:col-start-1 lg:row-start-2 lg:mt-8']} data-motion-deck>Describe what’s going on in your business in a few sentences. I’ll look at it for free and reply by email with how I’d fix it and what it would cost.</p>
+		<p class='mt-4 mb-0 max-w-[38rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink text-pretty lg:col-start-1 lg:row-start-3 lg:mt-5' data-motion-intro-item>Projects start at $500, and I quote a fixed price before I start.</p>
 
-		<div class='mt-[clamp(2.5rem,5vw,4rem)] max-w-[36rem]' data-contact-root data-motion-intro-item>
+		<div class='mt-10 max-w-[36rem] lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-3' data-contact-root data-motion-intro-item>
 			<form method='post' action='/api/contact' class='grid gap-7' data-contact-form>
 				{fields.map(({ name, label, type, autocomplete, required, maxlength }) => (
 					<div>
@@ -75,11 +80,11 @@ const fields = [
 				<h2 class={sectionHeadingClass}>{CONTACT_COPY.successHeading}</h2>
 				<p class:list={[deckClass, 'mt-6']}>{CONTACT_COPY.successBody}</p>
 			</div>
-
-			<p class='mt-10 mb-0 text-base leading-[1.55] text-ink-muted'>
-				You can also email me at <a class:list={['text-ink', underlineClass]} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='contact_page'>{EMAIL}</a> or <a class:list={['text-ink', underlineClass]} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='contact_page'>book a call</a>.
-			</p>
 		</div>
+
+		<p class='mt-8 mb-0 max-w-[36rem] text-base leading-[1.55] text-ink-muted lg:col-start-1 lg:row-start-4 lg:mt-10 lg:self-start' data-motion-intro-item>
+			You can also email me at <a class:list={['text-ink', underlineClass]} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='contact_page'>{EMAIL}</a> or <a class:list={['text-ink', underlineClass]} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='contact_page'>book a call</a>.
+		</p>
 	</section>
 </BaseLayout>
 
