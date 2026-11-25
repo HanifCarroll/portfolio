@@ -13,8 +13,8 @@ export const TUESDAY_SEED = 42;
 
 export const TUESDAY_COMPANY = {
   name: "Meridian Facility Services",
-  description: "a fictional 18-person service company handling about 45 field jobs a week",
-  dayContext: "Bookings, changes, quote requests, and issues arrive throughout each day.",
+  people: 18,
+  weeklyFieldJobs: 45,
 } as const;
 
 export interface TuesdayChapter {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getDictionary, localizedPath, type Locale } from "../../i18n";
 import { getTuesdayCopy, ONE_TUESDAY_PATH } from "../../lib/tuesday-sim/copy";
 import { formatClock, type DayMetrics } from "../../lib/tuesday-sim/engine";
-import { buttonClass } from "../../lib/ui";
+import { buttonClass, headerLinkClass } from "../../lib/ui";
 
 /** Fixed chrome for the experience: where you are, and the exit to prose. */
 export function Hud({ act, onRead, locale }: { act: string; onRead: () => void; locale: Locale }) {
@@ -15,7 +15,7 @@ export function Hud({ act, onRead, locale }: { act: string; onRead: () => void; 
         {act}
       </span>
       <span className="t-hud__actions">
-        <a href={localizedPath(ONE_TUESDAY_PATH, otherLocale)} lang={otherLocale} hrefLang={otherLocale}>
+        <a className={headerLinkClass} href={localizedPath(ONE_TUESDAY_PATH, otherLocale)} lang={otherLocale} hrefLang={otherLocale}>
           {getDictionary(otherLocale).locale.label}
         </a>
         <button type="button" className="t-hud__read" onClick={onRead}>
@@ -58,6 +58,7 @@ export function Interstitial({
   onContinue: () => void;
 }) {
   const { chrome } = getTuesdayCopy(locale);
+  const [droppedText, complaintsText, carriedText] = chrome.counts(metrics);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setVisible(true));
@@ -75,9 +76,9 @@ export function Interstitial({
         {chrome.handled[0]}<strong>{metrics.completed}</strong>{chrome.handled[1]}<strong>{metrics.arrivals}</strong>{chrome.handled[2]}
       </p>
       <p className="t-interstitial__line">
-        <strong>{metrics.dropped}</strong>{chrome.counts[0]}{" "}
-        <strong>{metrics.complaints}</strong>{chrome.counts[1]}{" "}
-        <strong>{metrics.carried}</strong>{chrome.counts[2]}
+        <strong>{metrics.dropped}</strong>{droppedText}{" "}
+        <strong>{metrics.complaints}</strong>{complaintsText}{" "}
+        <strong>{metrics.carried}</strong>{carriedText}
       </p>
       <p className="t-interstitial__punch">{chrome.oldRun}</p>
       <p className="t-interstitial__line">{chrome.next}</p>

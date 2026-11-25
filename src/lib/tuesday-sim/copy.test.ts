@@ -17,7 +17,29 @@ describe("One Tuesday localization", () => {
     expect(es.readouts.map(({ min, max }) => [min, max])).toEqual(
       en.readouts.map(({ min, max }) => [min, max]),
     );
+    for (const { headline, body } of es.readouts) {
+      expect(headline?.trim()).toBeTruthy();
+      expect(body?.trim()).toBeTruthy();
+    }
     expect(es.assumptions.length).toBe(en.assumptions.length);
+  });
+
+  test("uses singular labels only when exactly one request or call is counted", () => {
+    const copy = getTuesdayCopy("es");
+    expect([0, 1, 2].map(copy.actThree.handled)).toEqual(["atendidas", "atendida", "atendidas"]);
+    expect([
+      copy.actThree.forgotten(1), copy.actThree.backlog(1), copy.actThree.angry(1),
+    ]).toEqual(["olvidada", "pendiente", "llamada de un cliente enojado"]);
+    const one = { dropped: 1, complaints: 1, carried: 1 };
+    expect(copy.chrome.counts(one)).toEqual([
+      " solicitud quedó olvidada.", " cliente llamó enojado.", " queda para el día siguiente.",
+    ]);
+    expect(copy.chrome.counts({ dropped: 0, complaints: 2, carried: 0 })).toEqual([
+      " solicitudes quedaron olvidadas.", " clientes llamaron enojados.", " quedan para el día siguiente.",
+    ]);
+    expect(getTuesdayCopy("en").chrome.counts(one)).toEqual([
+      " was forgotten.", " customer called angry.", " rolls into tomorrow.",
+    ]);
   });
 
   test("formats the same times and durations for the two locales", () => {

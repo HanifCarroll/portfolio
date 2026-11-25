@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { headerLinkClass } from '../../lib/ui';
 
 type Props = HTMLAttributes<'a'>;
 
@@ -12,11 +13,7 @@ const isActive = !props.hreflang && normalizePath(Astro.url.pathname).startsWith
 <a
 	href={href}
 	aria-current={isActive ? 'page' : undefined}
-	class:list={[
-		'relative inline-flex min-h-11 items-center whitespace-nowrap py-2 text-base font-normal text-ink-muted no-underline transition-colors duration-150 hover:text-ink focus-visible:text-ink aria-[current=page]:text-ink',
-		'after:absolute after:inset-x-0 after:bottom-1.5 after:h-0.5 after:bg-accent-ink after:opacity-0 after:transition-opacity aria-[current=page]:after:opacity-100',
-		className,
-	]}
+	class:list={[headerLinkClass, className]}
 	{...props}
 >
 	<slot />

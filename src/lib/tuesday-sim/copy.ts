@@ -1,6 +1,10 @@
 import type { Locale } from "../../i18n";
+import { es as siteEs } from "../../i18n/es";
 import type { DayMetrics } from "./engine";
 import { TUESDAY_COMPANY } from "./story";
+
+type OutcomeCounts = Pick<DayMetrics, "dropped" | "complaints" | "carried">;
+const { name, people, weeklyFieldJobs } = TUESDAY_COMPANY;
 
 export const ONE_TUESDAY_PATH = "/projects/one-tuesday/";
 
@@ -11,7 +15,7 @@ const decimalEs = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, max
 const en = {
   title: "One Tuesday, twice",
   kicker: "Interactive project",
-  company: `${TUESDAY_COMPANY.name} is ${TUESDAY_COMPANY.description}. ${TUESDAY_COMPANY.dayContext}`,
+  company: `${name} is a fictional ${people}-person service company handling about ${weeklyFieldJobs} field jobs a week. Bookings, changes, quote requests, and issues arrive throughout each day.`,
   old: "Old Tuesday",
   new: "New Tuesday",
   yes: "Yes",
@@ -71,7 +75,11 @@ const en = {
     acts: ["Act I — The Old Tuesday", "Act II — The Build", "Act III — The New Tuesday", "The Mirror"],
     end: "End of the day",
     handled: ["You handled ", " of ", " requests."],
-    counts: [" were forgotten.", " customers called angry.", " roll into tomorrow."],
+    counts: ({ dropped, complaints, carried }: OutcomeCounts) => [
+      dropped === 1 ? " was forgotten." : " were forgotten.",
+      complaints === 1 ? " customer called angry." : " customers called angry.",
+      carried === 1 ? " rolls into tomorrow." : " roll into tomorrow.",
+    ],
     oldRun: "That was your run through the old workflow.",
     next: "Next, add six workflow changes. In the final comparison, both versions receive the same demand and the operator works continuously. Only the workflow changes.",
     continue: "See what changed",
@@ -130,11 +138,11 @@ const en = {
     savings: (hours: number) => `The redesigned workflow uses ${hours.toFixed(1)} fewer modeled hours on coordination.`,
     oldCaption: "The old workflow under the same demand.",
     newCaption: "The redesigned workflow under the same demand.",
-    handled: "handled",
+    handled: (_count?: number) => "handled",
     waiting: "waiting",
-    forgotten: "forgotten",
-    backlog: "backlog",
-    angry: "angry",
+    forgotten: (_count?: number) => "forgotten",
+    backlog: (_count: number) => "backlog",
+    angry: (_count: number) => "angry",
     skip: "Skip to results",
     verdict: "Same day, both ways:",
     verdictDetail: (before: DayMetrics, after: DayMetrics, hours: number) => `the old workflow handles ${before.completed} of ${before.arrivals}, forgets ${before.dropped}, and carries ${before.carried} into tomorrow. The redesigned workflow handles ${after.completed} of ${after.arrivals}, forgets ${after.dropped}, and uses ${hours.toFixed(1)} fewer modeled hours on coordination.`,
@@ -151,12 +159,12 @@ const en = {
 const es = {
   title: "One Tuesday: el mismo martes dos veces",
   kicker: "Proyecto interactivo",
-  company: `${TUESDAY_COMPANY.name} es una empresa ficticia de servicios con 18 personas que hace unos 45 trabajos en terreno por semana. A lo largo del día llegan reservas, cambios, pedidos de presupuesto y avisos de problemas.`,
+  company: `${name} es una empresa ficticia de servicios con ${people} personas que hace unos ${weeklyFieldJobs} trabajos en campo por semana. A lo largo del día llegan reservas, cambios, pedidos de presupuesto y avisos de problemas.`,
   old: "Antes de los cambios",
   new: "Después de los cambios",
   yes: "Sí",
   no: "No",
-  booking: "Reservá una llamada de 30 minutos para ver si puedo ayudarte",
+  booking: `${siteEs.action.bookCall} de 30 min para ver si puedo ayudarte`,
   duration(minutes: number) {
     const rounded = Math.round(minutes);
     if (rounded < 60) return `${rounded} ${rounded === 1 ? "minuto" : "minutos"}`;
@@ -211,7 +219,11 @@ const es = {
     acts: ["Acto I: antes de los cambios", "Acto II: los cambios", "Acto III: después de los cambios", "Tu negocio"],
     end: "Fin de la jornada",
     handled: ["Atendiste ", " de ", " solicitudes."],
-    counts: [" solicitudes quedaron olvidadas.", " clientes llamaron enojados.", " quedan para el día siguiente."],
+    counts: ({ dropped, complaints, carried }: OutcomeCounts) => [
+      dropped === 1 ? " solicitud quedó olvidada." : " solicitudes quedaron olvidadas.",
+      complaints === 1 ? " cliente llamó enojado." : " clientes llamaron enojados.",
+      carried === 1 ? " queda para el día siguiente." : " quedan para el día siguiente.",
+    ],
     oldRun: "Así fue tu simulación con el proceso original.",
     next: "Ahora incorporá seis cambios. En la comparación final, la demanda es la misma en ambas versiones y la persona a cargo trabaja sin parar. Solo cambia la forma de trabajar.",
     continue: "Mirá qué cambió",
@@ -222,7 +234,7 @@ const es = {
     time: "Hora del día",
     handled: "Atendidas",
     forgotten: "Olvidadas",
-    angry: "Llamadas de clientes enojados",
+    angry: "Llamadas con enojo",
     backlog: "Pendientes",
     busy: "Estás atendiendo una solicitud…",
     free: "Ya podés atender una solicitud",
@@ -237,12 +249,12 @@ const es = {
     kinds: { quote: "presupuesto", booking: "reserva", change: "cambio", issue: "problema" },
     extra: (total: number) => `+${total} más`,
     duplicate: "¿duplicada?",
-    complaint: "llamada de un cliente enojado",
+    complaint: "llamó con enojo",
   },
   actTwo: {
     weeks: "Semanas 1 a 11",
     title: "Seis cambios, uno por uno",
-    compactIntro: "No hace falta rehacer la plataforma. Hay una decisión por semana y abajo podés ver cómo cambia cada cifra.",
+    compactIntro: "No hace falta rehacer la plataforma. Hay una decisión por semana. En las cifras de abajo podés ver el efecto de cada decisión.",
     intro: "No hace falta rehacer la plataforma. Hay una decisión por semana y podés ver en el diagrama qué cambia al aplicar cada una. Seguí bajando.",
     handled: "atendidas",
     forgotten: "olvidadas",
@@ -258,7 +270,7 @@ const es = {
     updates: "les avisamos primero",
     triage: "Clasificación con IA",
     exampleKind: "reserva",
-    exampleTime: "mar. a. m.",
+    exampleTime: "mar. mañana",
     dashboard: "Esta semana",
     dashboardCount: "olvidadas: 0",
   },
@@ -266,15 +278,15 @@ const es = {
     kicker: "Dos simulaciones del mismo martes",
     title: "Cómo sería el mismo día con el sistema nuevo",
     demand: "En las dos simulaciones se usa la misma demanda y la persona a cargo trabaja sin parar en ambos casos. Solo cambia la forma de trabajar.",
-    counts: ({ dropped, carried, complaints }: DayMetrics) => `${dropped} olvidadas · ${carried} para el día siguiente · ${complaints} llamadas de clientes enojados`,
+    counts: ({ dropped, carried, complaints }: DayMetrics) => `${dropped} ${dropped === 1 ? "olvidada" : "olvidadas"} · ${carried} para el día siguiente · ${complaints} ${complaints === 1 ? "llamada de un cliente enojado" : "llamadas de clientes enojados"}`,
     savings: (hours: number) => `En la simulación, con el proceso rediseñado la persona a cargo dedica ${decimalEs.format(hours)} horas menos a la coordinación.`,
     oldCaption: "El proceso original con la misma demanda.",
     newCaption: "El proceso rediseñado con la misma demanda.",
-    handled: "atendidas",
+    handled: (count?: number) => count === 1 ? "atendida" : "atendidas",
     waiting: "en espera",
-    forgotten: "olvidadas",
-    backlog: "pendientes",
-    angry: "llamadas de clientes enojados",
+    forgotten: (count?: number) => count === 1 ? "olvidada" : "olvidadas",
+    backlog: (count: number) => count === 1 ? "pendiente" : "pendientes",
+    angry: (count: number) => count === 1 ? "llamada de un cliente enojado" : "llamadas de clientes enojados",
     skip: "Pasá a los resultados",
     verdict: "El mismo día con los dos procesos:",
     verdictDetail: (before: DayMetrics, after: DayMetrics, hours: number) => `con el proceso original se atienden ${before.completed} de ${before.arrivals} solicitudes, se olvidan ${before.dropped} y quedan ${before.carried} para el día siguiente. Con el proceso rediseñado se atienden ${after.completed} de ${after.arrivals} solicitudes, se olvidan ${after.dropped} y la persona a cargo dedica ${decimalEs.format(hours)} horas menos a la coordinación en la simulación.`,

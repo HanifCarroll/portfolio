@@ -79,12 +79,12 @@ export function ActThree({ compact = false, locale }: { compact?: boolean; local
         <div className="t3-stress__result">
           <div className="t3-stress__col">
             <span className="t3-stress__label">{copy.old}</span>
-            <strong>{copy.count(before.completed, before.arrivals)} {actThree.handled}</strong>
+            <strong>{copy.count(before.completed, before.arrivals)} {actThree.handled(before.completed)}</strong>
             <span>{actThree.counts(before)}</span>
           </div>
           <div className="t3-stress__col">
             <span className="t3-stress__label">{copy.new}</span>
-            <strong>{copy.count(after.completed, after.arrivals)} {actThree.handled}</strong>
+            <strong>{copy.count(after.completed, after.arrivals)} {actThree.handled(after.completed)}</strong>
             <span>{actThree.counts(after)}</span>
           </div>
         </div>
@@ -117,13 +117,13 @@ export function ActThree({ compact = false, locale }: { compact?: boolean; local
 
       <div className="t3-legend" aria-hidden="true">
         <span>
-          <span className="t3-dot t3-dot--done" /> {actThree.handled}
+          <span className="t3-dot t3-dot--done" /> {actThree.handled()}
         </span>
         <span>
           <span className="t3-dot t3-dot--open" /> {actThree.waiting}
         </span>
         <span>
-          <span className="t3-dot t3-dot--dropped" /> {actThree.forgotten}
+          <span className="t3-dot t3-dot--dropped" /> {actThree.forgotten()}
         </span>
       </div>
 
@@ -160,9 +160,12 @@ function DuelPanel({
   const copy = getTuesdayCopy(locale);
   const { actOne, actThree } = copy;
   const metrics = frame?.metrics;
+  const completed = metrics?.completed ?? 0;
+  const dropped = metrics?.dropped ?? 0;
+  const complaints = metrics?.complaints ?? 0;
   const backlog = Math.max(
     0,
-    (metrics?.arrivals ?? 0) - (metrics?.completed ?? 0) - (metrics?.dropped ?? 0),
+    (metrics?.arrivals ?? 0) - completed - dropped,
   );
   return (
     <div className={`t3-panel t3-panel--${tone}`}>
@@ -181,16 +184,16 @@ function DuelPanel({
       </div>
       <div className="t3-panel__stats">
         <span>
-          <strong>{metrics?.completed ?? 0}</strong> {actThree.handled}
+          <strong>{completed}</strong> {actThree.handled(completed)}
         </span>
         <span>
-          <strong>{metrics?.dropped ?? 0}</strong> {actThree.forgotten}
+          <strong>{dropped}</strong> {actThree.forgotten(dropped)}
         </span>
         <span>
-          <strong>{backlog}</strong> {actThree.backlog}
+          <strong>{backlog}</strong> {actThree.backlog(backlog)}
         </span>
         <span>
-          <strong>{metrics?.complaints ?? 0}</strong> {actThree.angry}
+          <strong>{complaints}</strong> {actThree.angry(complaints)}
         </span>
       </div>
     </div>
