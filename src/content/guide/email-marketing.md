@@ -28,9 +28,9 @@ Prices as of November 2026.
 ## What to watch for
 
 - **Permission.** Email only people who agreed to hear from you, and include an unsubscribe link in each email. Many countries have laws about this.
-- **Price by list size.** Most services charge more as your list grows. Remove people who unsubscribe or whose address bounces. Open counts are estimates, because many people read email without loading images, so don't remove someone only because no open was recorded.
+- **Price by list size.** Most services charge more as your list grows. Most services stop sending to people who unsubscribe and to addresses that fail permanently. A full mailbox can cause a temporary failure, so don't remove someone after one failed email. Open counts are estimates, because many people read email without loading images, so don't remove someone only because no open was recorded.
 - **Sending from your domain.** Send from an address on your own domain and follow the service's setup steps for it, so fewer of your emails go to spam folders.
-- **Exporting your list.** Check that you can download your subscriber list if you change services.
+- **Exporting your list.** Check that you can download your subscriber list if you change services, including the list of people who unsubscribed, and import that list into the new service so you don't email them again.
 
 ## What I can help with
 

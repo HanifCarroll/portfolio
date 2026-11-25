@@ -27,7 +27,7 @@ Every tool your business uses has an owner account: the person or email address 
 
 - **Domain first.** Whoever owns your domain decides where your website and email point, so check its owner before anything else. If you don't know where it's registered, search your email for a renewal receipt. For .com and similar endings, ICANN's lookup tool usually shows the registrar, though often not the owner's details. For .ar domains, use the search on NIC Argentina's site.
 - **Admin, not owner.** Some services let you add others as admins while you stay the owner. Give contractors admin or editor access, not ownership.
-- **When someone leaves.** Remove their own logins on the day they leave. If they used a shared owner login, change its password, sign them out of active sessions where the service allows it, and remove their phone, email, and devices from the account's recovery and sign-in options. For daily work, give each person their own named login instead of sharing the owner login.
+- **When someone leaves.** Before you remove anything, sign in to each shared owner account in a separate browser window with a login and second step the business controls, and check that it works. Then turn off their access on the day they leave. If they used a shared owner login, change its password, sign them out of active sessions where the service allows it, and remove their phone, email, and devices from the account's recovery and sign-in options. Move their business files and records to the business before you delete their own named account. For daily work, give each person their own named login instead of sharing the owner login.
 
 ## What I can help with
 

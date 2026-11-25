@@ -29,7 +29,7 @@ Prices as of November 2026.
 
 ## What to watch for
 
-- **Fees on each sale.** Check the payment fee on each order, and any extra fee the provider charges if you use a payment provider other than its own.
+- **Fees on each sale.** Check the payment fee on each order, and any extra fee the store builder charges if you use a payment company other than its own.
 - **Shipping and pickup.** Decide how you'll get orders to customers before you launch, and check that the builder supports it.
 - **Stock in two places.** If you also sell in person, check that your shop and website use the same stock count.
 - **Switching services later.** You can usually export products and orders, but you rebuild the store's design.

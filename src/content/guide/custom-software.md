@@ -35,7 +35,3 @@ If you can do most of your work in a common app, start with it. Compare its subs
 ## What I can help with
 
 I can look at how your business works now and tell you whether an app, an automation, or a small custom tool is the simplest fix. [Email me about a problem](/contact/).
-
-## Sources
-
-This entry describes general options and doesn't rely on facts or prices from any vendor, so it has no sources to list.

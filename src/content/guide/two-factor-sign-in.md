@@ -8,7 +8,7 @@ description: "What two-factor sign-in is, which business accounts need it first,
 
 ## What it is
 
-Two-factor sign-in, also called two-factor authentication or 2FA, means you show who you are in two different ways when you sign in, such as your password plus a code from an app on your phone. The second way is usually a code from an app, a code sent by text message, or a tap on a prompt on your phone. Some services also offer passkeys. A passkey is a sign-in that your phone or computer stores, which you unlock with your fingerprint, face, or screen lock, and it can replace the password. With two-factor sign-in, a stolen password alone isn't enough to sign in. A fake sign-in page can still collect a code you type, so enter codes only on pages you opened yourself.
+Two-factor sign-in, also called two-factor authentication or 2FA, means you show who you are in two different ways when you sign in, such as your password plus a code from an app on your phone. The second way is usually a code from an app, a code sent by text message, or a tap on a prompt on your phone. Some services also offer passkeys. A passkey is a sign-in that your phone or computer stores, which you unlock with your fingerprint, face, or screen lock, and it can replace the password. With two-factor sign-in, a stolen password alone isn't enough to sign in. A fake sign-in page can still collect a code you type, even one you opened from a link. Type codes only in the service's official app or on its real web address, which you type yourself or open from a saved bookmark.
 
 ## When you need it
 
@@ -28,7 +28,7 @@ Start with your email account, because anyone who controls your email can reset 
 
 - **Backup codes.** Save the backup codes each service gives you when you turn on two-factor sign-in, and store them somewhere you can reach without your phone or the account, such as on paper in a locked drawer. Without them, you may lose access to the account if you lose your phone.
 - **Shared accounts.** If staff share an account, give each person their own login where the service allows it, so each has their own second step.
-- **Prompts you didn't start.** Never approve a sign-in prompt or share a code you didn't request.
+- **Prompts and codes.** Never approve a sign-in prompt you didn't start. Never give a sign-in code to anyone, even someone who says they work for the service.
 - **Phone numbers you might lose.** Don't use a staff member's personal phone as the only second step on a business account.
 
 ## What I can help with
