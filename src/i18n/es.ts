@@ -9,6 +9,7 @@ export const es = {
     projects: "Proyectos",
     work: "Cómo trabajo",
     blog: "Blog",
+    guide: "Guía de herramientas",
     notes: "Notas",
     agencies: "Agencias",
     atlas: "Build Atlas",

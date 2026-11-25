@@ -34,4 +34,16 @@ const atlas = defineCollection({
   }),
 });
 
-export const collections = { blog, caseStudies, atlas };
+// Business tools guide for small-business owners. `seoTitle` puts the search phrase first in <title>.
+const guide = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/guide" }),
+  schema: z.object({
+    title: z.string(),
+    group: z.enum(["get-found", "get-paid", "day-to-day", "save-time", "stay-safe", "concepts"]),
+    summary: z.string(),
+    seoTitle: z.string().max(45),
+    description: z.string(),
+  }),
+});
+
+export const collections = { blog, caseStudies, atlas, guide };

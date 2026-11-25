@@ -8,6 +8,7 @@ export const en = {
     projects: "Projects",
     work: "How I work",
     blog: "Blog",
+    guide: "Tools guide",
     notes: "Notes",
     agencies: "Agencies",
     atlas: "Build Atlas",

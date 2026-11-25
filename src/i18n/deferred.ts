@@ -5,6 +5,7 @@ export const deferredPages = [
   "/blog/",
   "/notes/",
   "/atlas/",
+  "/guide/",
 ];
 
 export const deferredEntries = {
@@ -92,5 +93,15 @@ export const deferredEntries = {
     "ui-component-workshop",
     "visual-regression",
     "voice-agents",
+  ],
+  guide: [
+    "automation-tools",
+    "customer-list",
+    "online-booking",
+    "password-managers",
+    "payments-and-point-of-sale",
+    "website-builders",
+    "whatsapp-business",
+    "your-data",
   ],
 } as const;

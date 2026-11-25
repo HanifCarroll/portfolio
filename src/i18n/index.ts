@@ -12,6 +12,7 @@ export const collectionRoutes = {
   "case-studies": "projects",
   blog: "blog",
   atlas: "atlas",
+  guide: "guide",
 } as const;
 export const deferredPaths = new Set([
   ...deferredPages,
