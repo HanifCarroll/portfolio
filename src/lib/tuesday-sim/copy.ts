@@ -216,7 +216,7 @@ const es = {
     intro: "Vas a simular dos veces un martes en esa empresa. La primera vez, las solicitudes están repartidas entre cinco canales y algunas solo quedan en la memoria de una persona. Después vas a incorporar seis cambios en la forma de trabajar, uno por uno.",
     start: "Empezá la jornada",
     preferReader: "¿Preferís leer? Pasá al relato",
-    acts: ["Acto I: antes de los cambios", "Acto II: los cambios", "Acto III: después de los cambios", "Tu negocio"],
+    acts: ["Acto I: antes", "Acto II: cambios", "Acto III: después", "Tu negocio"],
     end: "Fin de la jornada",
     handled: ["Atendiste ", " de ", " solicitudes."],
     counts: ({ dropped, complaints, carried }: OutcomeCounts) => [
@@ -270,7 +270,7 @@ const es = {
     updates: "les avisamos primero",
     triage: "Clasificación con IA",
     exampleKind: "reserva",
-    exampleTime: "mar. mañana",
+    exampleTime: "mar. <12:00",
     dashboard: "Esta semana",
     dashboardCount: "olvidadas: 0",
   },
