@@ -21,10 +21,12 @@ If you take a handful of appointments a week and nobody misses one, a paper diar
 
 ## Popular choices
 
-- **Calendly**: Built for booking meetings and calls. It fits a consultant, coach, or anyone who meets clients one at a time.
-- **Square Appointments**: Booking and card payments from the same company. It fits a salon, barber, or studio that also takes payment at the front desk.
-- **Fresha**: Booking made for salons, barbers, and spas.
-- **Google Calendar appointment schedules**: A booking page built into Google Calendar. It fits you if you already keep your schedule in Google Calendar and need a simple page.
+- **Calendly**: Built for booking meetings and calls. It fits a consultant, coach, or anyone who meets clients one at a time. The free plan includes one type of meeting and one connected calendar. The Standard Plus plan costs $18 per host a month with the yearly discount.
+- **Square Appointments**: Booking and card payments from the same company. It fits a salon, barber, or studio that also takes payment at the front desk. In the U.S., the Square Free plan costs $0 per location and includes a booking site and appointment reminders. Card fees on it are 2.6% + 15¢ in person and 3.3% + 30¢ online. Square Plus costs $49 a month per location and adds no-show fees and booking for several staff members.
+- **Fresha**: Booking made for salons, barbers, and spas, with a public listing where new clients can find you. There is no free plan, only a 7-day trial. The Independent plan costs $19.95 a month for one person, and the Team plan costs $14.95 per team member a month. Fresha also charges a one-time 20% fee, at least $6, for each new client who finds you through its listing.
+- **Google Calendar appointment schedules**: A booking page built into Google Calendar. It fits you if you already keep your schedule in Google Calendar and need a simple page. A free personal Google account can make one booking page. Automatic reminders, payments, and more than one booking page need a paid Google One or Google Workspace plan. Google Workspace Business Standard includes booking pages for $14 per user a month on a yearly commitment.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -39,7 +41,8 @@ I can set up a booking page, connect it to your calendar and website, and move y
 
 ## Sources
 
-- [Calendly](https://calendly.com/)
-- [Square Appointments](https://squareup.com/us/en/appointments)
-- [Fresha](https://www.fresha.com/for-business)
-- [Google Calendar appointment schedules](https://support.google.com/calendar/answer/10729749)
+- [Calendly pricing](https://calendly.com/pricing) (checked November 25, 2026)
+- [Square Appointments pricing](https://squareup.com/us/en/appointments) (checked November 25, 2026)
+- [Fresha pricing](https://www.fresha.com/pricing?lang=en-US) (checked November 25, 2026)
+- [Google Workspace pricing](https://workspace.google.com/pricing) (checked November 25, 2026)
+- [Google Calendar appointment schedules help](https://support.google.com/calendar/answer/16287038) (checked November 25, 2026)

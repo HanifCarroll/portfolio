@@ -19,9 +19,11 @@ A password manager is an app that stores your passwords in an encrypted vault. E
 
 ## Popular choices
 
-- **Bitwarden**: Open-source, with plans for one person and for teams.
-- **1Password**: Business and team plans with shared vaults.
+- **Bitwarden**: Open-source, with plans for one person and for teams. The free plan stores unlimited passwords on any device and can share with one other person. The Teams plan costs $4 per user a month billed yearly.
+- **1Password**: Business and team plans with shared vaults. There is no free plan, only a 14-day trial. The Teams Starter Pack costs $24.95 a month for up to 10 people, billed yearly at $299.40. The Business plan costs $8.99 per user a month billed yearly.
 - **Apple Passwords and Google Password Manager**: Built into iPhones, Macs, Android phones, and Chrome. They suit one person, with fewer tools for sharing with a team.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -36,7 +38,8 @@ I can set up a password manager for your team, move your accounts into it, and m
 
 ## Sources
 
-- [Bitwarden](https://bitwarden.com/)
-- [1Password](https://1password.com/)
+- [Bitwarden pricing](https://bitwarden.com/pricing/) (checked November 25, 2026)
+- [Bitwarden plans](https://bitwarden.com/help/password-manager-plans/) (checked November 25, 2026)
+- [1Password business pricing](https://1password.com/pricing/business) (checked November 25, 2026)
 - [Apple Passwords](https://support.apple.com/guide/passwords/welcome/mac)
 - [Google Password Manager](https://passwords.google/)

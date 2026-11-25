@@ -21,10 +21,12 @@ An automation is worth it when the same steps happen many times a week and the s
 
 ## Popular choices
 
-- **Zapier**: Connects to many common business apps and suits a first automation.
-- **Make**: Shows each automation as a visual map of steps. It fits automations with several branches.
-- **n8n**: Can run on your own server instead of n8n's. It fits you if someone technical can keep that server running.
+- **Zapier**: Connects to many common business apps and suits a first automation. The free plan includes 100 tasks a month for one user, with two steps per automation. The Professional plan starts at $19.99 a month billed yearly, or $29.99 billed monthly.
+- **Make**: Shows each automation as a visual map of steps. It fits automations with several branches. The free plan includes 1,000 credits a month, and most steps use one credit. Paid plans cost less when billed yearly than when billed monthly.
+- **n8n**: Can run on your own server instead of n8n's. It fits you if someone technical can keep that server running. The Community edition is free on your own server, but you can't share workflows or saved sign-ins with other users. On n8n's servers, the Starter plan costs $20 a month billed yearly and includes 2,500 workflow runs.
 - **Built-in automations**: Many business apps include simple automations of their own. Check what your apps already do before you pay for another tool.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -38,6 +40,7 @@ I can find the copying your team does by hand, build automations for it with the
 
 ## Sources
 
-- [Zapier](https://zapier.com/)
-- [Make](https://www.make.com/)
-- [n8n](https://n8n.io/)
+- [Zapier pricing](https://zapier.com/pricing) (checked November 25, 2026)
+- [Make pricing](https://www.make.com/en/pricing) (checked November 25, 2026)
+- [n8n pricing](https://n8n.io/pricing/) (checked November 25, 2026)
+- [n8n Community edition features](https://docs.n8n.io/deploy/host-n8n/community-edition-features) (checked November 25, 2026)

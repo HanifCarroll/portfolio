@@ -21,10 +21,12 @@ If most customers already find you through Instagram or Google Maps, a one-page 
 
 ## Popular choices
 
-- **Squarespace**: Polished templates for a studio, restaurant, or portfolio where photos matter.
-- **Wix**: Many templates and add-ons, with a drag-and-drop editor. It fits an owner who wants to place everything by hand.
-- **Shopify**: Built for selling products online. It fits a shop more than a service business.
-- **WordPress.com**: The hosted version of WordPress, the software behind many websites.
+- **Squarespace**: Polished templates for a studio, restaurant, or portfolio where photos matter. The Basic plan costs $19 a month billed yearly, or $25 billed monthly, after a 14-day free trial.
+- **Wix**: Many templates and add-ons, with a drag-and-drop editor. It fits an owner who wants to place everything by hand. The free plan doesn't let you use your own domain. The Light plan, the cheapest that does, costs $17 a month billed yearly.
+- **Shopify**: Built for selling products online. It fits a shop more than a service business. The Basic plan costs $29 a month billed yearly, or $39 billed monthly. After a 3-day free trial, most plans cost $1 a month for the first 3 months.
+- **WordPress.com**: The hosted version of WordPress, the software behind many websites. The free plan uses a wordpress.com address. The Personal plan, the cheapest with your own domain, costs $4 a month billed yearly (renewing at $5), or $9 billed monthly. Yearly plans include a free domain for the first year.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -39,7 +41,7 @@ I can build a new site or fix the one you have so visitors can call, book, or bu
 
 ## Sources
 
-- [Squarespace](https://www.squarespace.com/)
-- [Wix](https://www.wix.com/)
-- [Shopify](https://www.shopify.com/)
-- [WordPress.com](https://wordpress.com/)
+- [Squarespace pricing](https://www.squarespace.com/pricing) (checked November 25, 2026)
+- [Wix plans](https://www.wix.com/plans) (checked November 25, 2026)
+- [Shopify pricing](https://www.shopify.com/pricing) (checked November 25, 2026)
+- [WordPress.com pricing](https://wordpress.com/pricing/) (checked November 25, 2026)

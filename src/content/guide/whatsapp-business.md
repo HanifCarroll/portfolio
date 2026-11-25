@@ -23,14 +23,16 @@ If several people need to answer the same number at the same time, look at an ap
 
 ## Popular choices
 
-- **WhatsApp Business app**: Free to download, on one phone, plus linked devices such as a computer. It fits a business with one or two people answering.
-- **WhatsApp Business Platform**: Meta's paid service for connecting WhatsApp to other software. You usually use it through another company's app.
+- **WhatsApp Business app**: Free to download and use, with some paid features. It runs on one phone plus up to four linked devices, such as a computer. It fits a business with one or two people answering.
+- **WhatsApp Business Platform**: Meta's paid service for connecting WhatsApp to other software. You usually use it through another company's app. Meta charges for each message a business sends that reaches the customer, at a rate that depends on the type of message and the customer's country. Meta doesn't charge for messages customers send to you.
+
+Prices as of November 2026.
 
 ## What to watch for
 
 - **Moving your number.** You can move your existing number to the Business app, but read WhatsApp's instructions first and back up your chats.
 - **Orders kept only in chats.** Labels make chats easier to sort, but a chat is not an order list. If you take many orders, copy them into a list or an order app every day.
-- **Rules on messages you start.** The Business Platform has its own rules and prices for messages a business sends first. Read them before you plan reminders or promotions.
+- **Cost of messages on the Platform.** The Business Platform charges for each message that reaches a customer, so check the rates for your customers' country before you plan reminders or promotions.
 
 ## What I can help with
 
@@ -38,5 +40,7 @@ I can set up WhatsApp Business with your profile, catalog, and saved replies, or
 
 ## Sources
 
-- [WhatsApp Business app](https://business.whatsapp.com/products/business-app)
-- [WhatsApp Business Platform](https://business.whatsapp.com/products/business-platform)
+- [WhatsApp Business app FAQ](https://faq.whatsapp.com/647349420360876) (checked November 25, 2026)
+- [WhatsApp Business on Google Play](https://play.google.com/store/apps/details?id=com.whatsapp.w4b&hl=en_US) (checked November 25, 2026)
+- [WhatsApp Business on the App Store](https://apps.apple.com/us/app/whatsapp-business/id1386412985) (checked November 25, 2026)
+- [WhatsApp Business Platform pricing](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing) (checked November 25, 2026)

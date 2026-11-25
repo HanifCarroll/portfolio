@@ -21,10 +21,12 @@ If you have a few regular customers and you remember them all, a spreadsheet is 
 
 ## Popular choices
 
-- **HubSpot**: A CRM with a contact list and deals, plus paid plans that add email marketing and more.
-- **Pipedrive**: Shows each quote or deal as a card that moves through stages. It fits a business that sends many quotes.
-- **Zoho CRM**: A CRM with plans for small teams.
+- **HubSpot**: A CRM with a contact list and deals, plus paid plans that add email marketing and more. The free plan covers up to 2 users. The Starter plan costs $20 per user a month, with a discount for new customers that starts at $7 per user a month billed yearly or $10 billed monthly. Tax is extra.
+- **Pipedrive**: Shows each quote or deal as a card that moves through stages. It fits a business that sends many quotes. There is no free plan, only a 14-day trial. The Lite plan costs $14 per user a month billed yearly.
+- **Zoho CRM**: A CRM with plans for small teams. The free plan covers up to 3 users and allows 10 exports. The Standard plan costs $14 per user a month billed yearly, or $20 billed monthly. Local taxes are extra.
 - **A shared spreadsheet**: Google Sheets or Excel with one row per customer. It costs nothing extra and fits a small team that updates it every day.
+
+Prices as of November 2026.
 
 ## What to watch for
 
@@ -39,7 +41,7 @@ I can set up a customer list that fits how you sell, move your existing contacts
 
 ## Sources
 
-- [HubSpot CRM](https://www.hubspot.com/products/crm)
-- [Pipedrive](https://www.pipedrive.com/)
-- [Zoho CRM](https://www.zoho.com/crm/)
+- [HubSpot CRM pricing](https://www.hubspot.com/pricing/crm) (checked November 25, 2026)
+- [Pipedrive pricing](https://www.pipedrive.com/en/pricing) (checked November 25, 2026)
+- [Zoho CRM pricing](https://www.zoho.com/crm/zohocrm-pricing.html) (checked November 25, 2026)
 - [Google Sheets](https://workspace.google.com/products/sheets/)
