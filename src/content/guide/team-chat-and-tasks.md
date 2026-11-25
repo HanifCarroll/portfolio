@@ -19,8 +19,8 @@ A team chat app is like WhatsApp for work, with separate channels for topics suc
 
 ## Popular choices
 
-- **Slack**: Team chat with channels and connections to many other apps. On the free plan, you can see messages and files from the last 90 days. The Pro plan costs $7.25 per user a month when you pay yearly.
-- **Microsoft Teams**: Team chat and video calls, part of Microsoft 365. On the free version, group meetings can last up to 60 minutes with up to 100 people. Teams Essentials costs $4 per user a month paid yearly.
+- **Slack**: Team chat with channels and connections to many other apps. On the free plan, you can see messages and files from the last 90 days, and Slack may permanently delete those more than a year old, so keep records you need somewhere else. The Pro plan costs $7.25 per user a month when you pay yearly.
+- **Microsoft Teams**: Team chat and video calls, part of Microsoft 365. Microsoft's free Teams for home, a personal product rather than a business plan, allows group meetings up to 60 minutes with up to 100 people. Teams Essentials costs $4 per user a month paid yearly.
 - **Google Chat**: Team chat, included in Google Workspace at no extra cost. Business Starter costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
 - **Trello**: Tasks shown as cards on a board, with one column for each stage. The free plan allows up to 10 collaborators per workspace. The Standard plan costs $5 per user a month billed yearly, or $6 billed monthly.
 - **Asana**: Task lists and projects for teams. The free Personal plan allows up to 2 users. The Starter plan costs $10.99 per user a month billed yearly, or $13.49 billed monthly.

@@ -153,7 +153,7 @@ export const guideProblems = [
     entries: ["ai-assistants"],
   },
   {
-    text: "I don’t know if two of my apps can share information",
+    text: "I don’t know if I can connect two of my apps",
     group: "save-time",
     entries: ["connecting-apps"],
   },

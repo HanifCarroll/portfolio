@@ -21,15 +21,15 @@ If you post once or twice a week on one network, the network's own scheduling fe
 ## Popular choices
 
 - **Meta Business Suite**: Meta's own app for scheduling posts on Facebook and Instagram. It is free to use.
-- **Buffer**: A simple scheduler for several networks. The free plan connects up to 3 accounts with 10 scheduled posts each. The Essentials plan costs $5 a month per account, billed yearly at $60.
-- **Later**: A scheduler built around Instagram and visual posts. There is no free plan, only a 14-day trial.
-- **Hootsuite**: A scheduler with tools for larger teams. There is no free plan, only a 14-day trial. The Standard plan costs $99 per user a month billed yearly, or $149 billed monthly.
+- **Buffer**: A simple scheduler for several networks. On the free plan, one user can connect up to 3 channels, such as an Instagram profile or a Facebook page, with 10 scheduled posts each. The Essentials plan costs $5 a month per connected channel, billed yearly at $60 per channel.
+- **Later**: A scheduler for Instagram posts and other visual posts. The pricing page lists a 14-day free trial and no free plan. Paid plans start with Starter.
+- **Hootsuite**: A scheduler with tools for larger teams. The plans page lists a 14-day free trial and no free plan. The Standard plan costs $99 per user a month billed yearly, or $149 billed monthly.
 
 Prices as of November 2026.
 
 ## What to watch for
 
-- **Price by account and user.** Many schedulers charge more for each social account or team member.
+- **Price by channel and user.** Many schedulers charge more for each connected channel or team member.
 - **Post types.** Check that the scheduler can publish the kinds of posts you make, such as Stories or Reels, before you pay for it.
 - **Who owns the accounts.** Connect the business's own social accounts, not a staff member's personal one.
 

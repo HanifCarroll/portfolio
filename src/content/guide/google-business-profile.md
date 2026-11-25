@@ -30,7 +30,7 @@ Prices as of November 2026.
 - **Who manages the listing.** Make the business's own Google account the owner and add staff as managers, so you keep the listing if someone leaves.
 - **Hours on holidays.** Update special hours before holidays, so customers don't arrive while you're closed.
 - **Replying to reviews.** Reply to reviews, both good and bad, in a calm and short way. Other customers read the replies.
-- **Fake reviews.** Don't buy reviews or offer rewards for good ones. Google's rules don't allow fake reviews.
+- **Fake or rewarded reviews.** Don't buy reviews or offer a discount, gift, or other reward for any review, good or bad. Google's rules don't allow fake or rewarded reviews.
 
 ## What I can help with
 

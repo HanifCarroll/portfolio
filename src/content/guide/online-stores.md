@@ -8,7 +8,7 @@ description: "What an online store builder is, when a small business needs one, 
 
 ## What it is
 
-An online store is a website, or a section of your website, where customers see your products with photos and prices, put them in a cart, and pay. A store builder gives you the product pages, the cart, the checkout, and a list of orders to pack and ship.
+An online store is a website, or a section of your website, where customers see your products with photos and prices, put them in a cart, and pay. With a store builder, you get the product pages, the cart, the checkout, and a list of orders to pack and ship.
 
 ## When you need it
 
@@ -21,7 +21,7 @@ If you sell a few items and most customers already message you, a catalog in Wha
 ## Popular choices
 
 - **Shopify**: A store builder for shops of any size. The Basic plan costs $29 a month billed yearly, or $39 billed monthly.
-- **Tiendanube**: A store builder based in Latin America. The free Inicial plan has no limit on products or sales and no transaction fee when customers pay with Pago Nube. Pago Nube itself charges from 2.99% + IVA when it releases your money. Paid plans start with Esencial, with a 7-day free trial.
+- **Tiendanube**: A store builder based in Latin America. On the free Inicial plan in Argentina, Pago Nube is the only payment method. That plan has no limit on products or sales, and Tiendanube charges no transaction fee, but Pago Nube charges from 2.99% + IVA when it releases your money. Paid plans start with Esencial, with a 7-day free trial.
 - **WooCommerce**: A store you add to a WordPress website. The plugin is free, and you pay separately for hosting.
 - **Square Online**: An online store connected to Square's card readers and POS app. Square has renamed it to websites. In the U.S., the Square Free plan costs $0 a month per location, with a fee of 3.3% + 30¢ per online sale. Square Plus costs $49 a month per location, with a fee of 2.9% + 30¢.
 
@@ -29,10 +29,10 @@ Prices as of November 2026.
 
 ## What to watch for
 
-- **Fees on each sale.** Check the payment fee on each order, and any extra fee the builder adds if you use a payment provider other than its own.
-- **Shipping and pickup.** Decide how orders reach customers before you launch, and check that the builder supports it.
+- **Fees on each sale.** Check the payment fee on each order, and any extra fee the provider charges if you use a payment provider other than its own.
+- **Shipping and pickup.** Decide how you'll get orders to customers before you launch, and check that the builder supports it.
 - **Stock in two places.** If you also sell in person, check that your shop and website use the same stock count.
-- **Moving away later.** You can usually export products and orders, but you rebuild the store's design.
+- **Switching services later.** You can usually export products and orders, but you rebuild the store's design.
 
 ## What I can help with
 

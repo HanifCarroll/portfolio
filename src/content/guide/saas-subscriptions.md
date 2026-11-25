@@ -1,14 +1,14 @@
 ---
 title: "SaaS subscriptions"
 group: concepts
-summary: "Software you pay for each month or year and use in a browser or app, instead of buying it once."
-seoTitle: "What SaaS means, for small business owners"
-description: "A plain explanation of SaaS (software as a service) for small business owners, how the pricing usually works, and how to keep costs under control."
+summary: "Software a company runs on its own computers, which you use in a browser or app and usually pay for each month or year."
+seoTitle: "What SaaS means for small business owners"
+description: "A plain explanation of SaaS (software as a service) for small business owners, how the pricing usually works, and how to keep track of what you pay."
 ---
 
 ## What it is
 
-SaaS stands for software as a service. It means software you use in a browser or app and pay for with a subscription, monthly or yearly, instead of buying it once. The company updates it, stores your information, and keeps it running. Most business apps today, from booking to accounting, are SaaS.
+SaaS stands for software as a service. It means software that a company runs on its own computers, which you use in a browser or app. The company updates it, stores your information, and keeps it running. You usually pay with a monthly or yearly subscription, though some SaaS is free or charged by usage. Most business apps today, from booking to accounting, are SaaS.
 
 ## When you need it
 
@@ -32,7 +32,7 @@ SaaS stands for software as a service. It means software you use in a browser or
 
 ## What I can help with
 
-I can review the apps you pay for, find overlaps, and help you move to fewer apps that cover what you need. [Email me about a problem](/contact/).
+I can review the apps you pay for, find overlaps, and help you move to fewer apps for the same tasks. [Email me about a problem](/contact/).
 
 ## Sources
 

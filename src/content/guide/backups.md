@@ -15,21 +15,21 @@ A backup is a separate copy of your files and records that you can restore if th
 - Your business files are on one computer or one phone.
 - You've never tried to get back a deleted file.
 - You rely on an app for your records and have never exported them.
-- You think your shared folder is a backup. If someone deletes a file there, the file disappears from every synced device.
+- You think your shared folder is a backup. If someone deletes a file there, it's deleted on every synced device, and you can usually get it back from the trash or version history only for a limited time.
 
 ## Popular choices
 
 - **Built-in backups**: Time Machine on a Mac and File History on Windows copy your files to an external drive.
-- **Online backup services**: Backblaze and similar services copy a computer's files to their servers. Backblaze Personal Backup has no free plan, only a 15-day trial. It costs $9 a month or $99 a year for unlimited computer backup.
+- **Online backup services**: Backblaze and similar services copy a computer's files to their servers. Backblaze's Personal Backup pages list a 15-day trial and no free plan. It costs $9 a month or $99 a year for unlimited computer backup.
 - **Exports from your apps**: Download your customer list, sales, and invoices from each app on a schedule and save them in a folder you control.
 
 Prices as of November 2026.
 
 ## What to watch for
 
-- **Test a restore.** A backup is useful only if you can get the files back. Restore one file every few months to check.
+- **Test a restore.** A backup is useful only if you can get the files back. Every few months, restore a few files to check, including a file from an online-only folder and one of your app exports, so you know those are in the backup too. If you keep business photos or files only on a phone, back up the phone and check that you can restore from it.
 - **Keep one copy disconnected.** Ransomware can also lock the files on any drive connected to an infected computer.
-- **App data.** Online apps keep their own copies, but they may not let you restore something you deleted by mistake. Export important records yourself.
+- **App data.** Online app providers keep their own copies, but a provider may not let you restore something you deleted by mistake. Export important records yourself.
 
 ## What I can help with
 

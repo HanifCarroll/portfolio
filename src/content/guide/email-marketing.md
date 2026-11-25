@@ -8,7 +8,7 @@ description: "What email marketing software does, when a small business needs it
 
 ## What it is
 
-Email marketing software stores a list of people who agreed to hear from you and sends them the same email at once, such as a newsletter, a new menu, or a sale. It gives you a sign-up form for your website, adds an unsubscribe link to each email, and shows how many people opened each one.
+Email marketing software stores a list of people who agreed to hear from you and sends them the same email at once, such as a newsletter, a new menu, or a sale. You get a sign-up form for your website, an unsubscribe link in each email, and an estimate of how many people opened each one.
 
 ## When you need it
 
@@ -18,19 +18,19 @@ Email marketing software stores a list of people who agreed to hear from you and
 
 ## Popular choices
 
-- **Mailchimp**: Email marketing with templates and sign-up forms. The free plan covers up to 250 contacts and 500 emails a month. Paid plans start with Essentials.
-- **Brevo**: Email marketing with text messages and WhatsApp messages in the same app. The free plan sends up to 300 emails a day. The Starter plan costs $9 a month or $97 a year.
+- **Mailchimp**: Email marketing with templates and sign-up forms. The free plan covers up to 250 contacts and 500 emails a month, with at most 250 a day. Paid plans start with Essentials.
+- **Brevo**: Email marketing. On the free plan, you can send up to 300 emails a day. The Starter plan costs $9 a month or $97 a year.
 - **MailerLite**: A simple editor and sign-up forms for small lists. The free plan covers up to 250 subscribers and 2,500 emails a month. The Comfort plan starts at $12 a month.
-- **Kit**: Email for creators and anyone who sells courses or digital products. The free plan covers up to 10,000 subscribers. The Creator plan costs $39 a month for 1,000 subscribers.
+- **Kit**: Email marketing. The free plan covers up to 10,000 subscribers. The Creator plan costs $39 a month for 1,000 subscribers.
 
 Prices as of November 2026.
 
 ## What to watch for
 
 - **Permission.** Email only people who agreed to hear from you, and include an unsubscribe link in each email. Many countries have laws about this.
-- **Price by list size.** Most services charge more as your list grows, so remove people who never open your emails.
+- **Price by list size.** Most services charge more as your list grows. Remove people who unsubscribe or whose address bounces. Open counts are estimates, because many people read email without loading images, so don't remove someone only because no open was recorded.
 - **Sending from your domain.** Send from an address on your own domain and follow the service's setup steps for it, so fewer of your emails go to spam folders.
-- **Exporting your list.** Check that you can download your subscribers if you change services.
+- **Exporting your list.** Check that you can download your subscriber list if you change services.
 
 ## What I can help with
 

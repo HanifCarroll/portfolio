@@ -19,7 +19,7 @@ Shared file storage keeps your files on a company's servers instead of only on o
 
 ## Popular choices
 
-- **Google Drive**: File storage with Docs and Sheets, part of Google Workspace. Business Starter includes 30 GB of storage per user and costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
+- **Google Drive**: File storage with Docs and Sheets, part of Google Workspace. Business Starter includes 30 GB of storage per user, pooled across the team, and costs $7 per user a month on a yearly plan, or $8.40 on a flexible monthly plan.
 - **Microsoft OneDrive and SharePoint**: File storage with Word and Excel, part of Microsoft 365. Business Basic includes 1 TB of storage per user and costs $7 per user a month paid yearly, or $8.40 with a monthly subscription.
 - **Dropbox**: File storage that works with both Google and Microsoft apps. The free Basic plan includes 2 GB. Business plans start with Standard, and Dropbox's pages show more than one price for it, so check the price for your team size and country.
 

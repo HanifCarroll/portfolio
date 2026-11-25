@@ -18,8 +18,8 @@ An electronic signature, or e-signature, is a way to sign a document on a screen
 
 ## Popular choices
 
-- **DocuSign**: An e-signature service. There is no free plan. The Personal plan, for one user, costs $11 a month on a yearly commitment of $132 and includes 5 envelopes a month. An envelope is one set of documents you send for signing.
-- **Dropbox Sign**: E-signatures from the same company as Dropbox. The free plan includes 3 signature requests a month. The Essentials plan costs $15 a month billed yearly, or $20 billed monthly.
+- **DocuSign**: An e-signature service. The pricing page lists no free plan. The Personal plan, for one user, costs $11 a month on a yearly commitment of $132 and includes 5 envelopes a month. An envelope is one set of documents you send for signing.
+- **Dropbox Sign**: E-signatures from the same company as Dropbox. The free plan includes 3 signature requests a month. The Essentials plan, for one person, costs $15 a month billed yearly, or $20 billed monthly.
 - **Adobe Acrobat Sign**: E-signatures inside Adobe's PDF tools. Acrobat Standard, the cheapest individual plan that includes e-signatures, costs $14.99 a month on a yearly plan billed monthly.
 - **PandaDoc**: Quotes and proposals with e-signatures built in. The free plan includes 5 documents a month with up to 2 recipients each. The Starter plan costs $19 per user a month billed yearly, or $35 billed monthly.
 
@@ -27,10 +27,10 @@ Prices as of November 2026.
 
 ## What to watch for
 
-- **Legal validity.** Countries treat electronic signatures differently. In Argentina, the law separates a digital signature (firma digital) from an electronic signature (firma electrónica), so ask your lawyer or accountant which one a document needs.
+- **Legal validity.** Countries treat electronic signatures differently. In Argentina, Ley 25.506 separates a digital signature (firma digital) from an electronic signature (firma electrónica). Using one of these apps doesn't by itself make a signature a firma digital, and if someone disputes a firma electrónica, the person relying on it has to show it's valid. Ask an Argentine lawyer which type the law requires for a document.
 - **Price by sender.** Many services charge for each person who sends documents, and some limit how many you can send each month.
 - **Templates.** Save your usual contract as a template, so you fill in only the client's details each time.
-- **Keeping signed copies.** Download signed documents to your own files as well as keeping them in the app.
+- **Keeping signed copies.** Download each signed document together with its signing record or completion certificate, and keep both in your own files as well as in the app.
 
 ## What I can help with
 

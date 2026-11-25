@@ -8,7 +8,7 @@ description: "What invoicing and accounting apps do, when a small business needs
 
 ## What it is
 
-An invoicing app creates and sends invoices and records which ones are paid. An accounting app goes further: it records every sale and expense, connects to your bank account, and produces the reports your accountant uses for taxes. Many apps do both.
+An invoicing app creates and sends invoices and records which ones are paid. An accounting app also records every sale and expense, connects to your bank account, and produces the reports your accountant uses for taxes. Many apps do both.
 
 ## When you need it
 
@@ -19,9 +19,9 @@ An invoicing app creates and sends invoices and records which ones are paid. An 
 
 ## Popular choices
 
-- **QuickBooks Online**: Accounting for small businesses, from Intuit. A free tier sends 2 invoices a month and connects 1 bank account. Paid plans start with Simple Start, for one user plus two accountants.
-- **Xero**: Accounting with bank connections and invoicing, used in many countries. The Early plan usually costs $27 a month and includes 20 invoices and 5 bills a month. Xero doesn't charge per user, and taxes are extra.
-- **Zoho Books**: Accounting and invoicing from the same company as Zoho CRM. A free plan is available for one-person and very small businesses. Paid plans start with Standard, priced per organization.
+- **QuickBooks Online**: Accounting for small businesses, from Intuit. On the U.S. site, a free tier lets you send 2 invoices a month and connect 1 bank account. Paid plans start with Simple Start, for one user plus two accountants.
+- **Xero**: Accounting with bank connections and invoicing, used in many countries. On the U.S. site, the Early plan usually costs $27 (USD) a month and includes 20 invoices and 5 bills. Xero doesn't charge per user, and taxes are extra.
+- **Zoho Books**: Accounting and invoicing from the same company as Zoho CRM. On the U.S. site, a free plan is available for one-person and very small businesses, and paid plans start with Standard, priced per organization.
 - **ARCA (formerly AFIP)**: In Argentina, electronic invoices go through ARCA. You can issue them from ARCA's own website or from an accounting app that connects to it. For monotributistas, issuing invoices through ARCA's Comprobantes en línea is free.
 
 Prices as of November 2026.

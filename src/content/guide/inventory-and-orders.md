@@ -23,7 +23,7 @@ If you sell a few products and one person handles all orders, a shared spreadshe
 
 - **Your POS or store builder**: Square, Shopify, and Tiendanube include stock counts. Check what yours does before you add another app. In the U.S., Square's free plan costs $0 a month per location and includes an item list that tracks stock, and Square Plus costs $49 a month per location. Shopify's Basic plan includes inventory tracking for $29 a month billed yearly, or $39 billed monthly.
 - **Zoho Inventory**: Inventory and orders for businesses that sell in several places. The free plan includes 50 orders, 1 user, and 1 location. The Standard plan costs $29 a month per organization billed yearly, or $39 billed monthly, for 500 orders a month, 3 users, and 2 locations.
-- **Sortly**: A simple app for counting items, with photos and barcode scanning. The free plan covers 100 items and 1 user. The Advanced plan costs $49 a month for 500 items and 2 users.
+- **Sortly**: A simple app for counting items. The free plan covers 100 unique items, meaning different products rather than units in stock, and 1 user. The Advanced plan costs $49 a month for 500 unique items and 2 users.
 - **A shared spreadsheet**: Google Sheets or Excel with one row per product.
 
 Prices as of November 2026.

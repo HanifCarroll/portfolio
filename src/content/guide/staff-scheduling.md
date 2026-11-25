@@ -19,10 +19,10 @@ A staff scheduling app is where you build the weekly staff schedule. Each person
 
 ## Popular choices
 
-- **Homebase**: Scheduling and time clocks for shops and restaurants. The free Basic plan covers 1 location and up to 10 employees. The Essentials plan costs $30 a month per location billed monthly, with unlimited employees.
-- **When I Work**: Scheduling, shift swaps, and time clocks. The pricing page lists a free trial and no free plan. Plans start at $2.50 per user a month for one location, and $5 per user a month for several locations.
+- **Homebase**: Scheduling and time clocks for shops and restaurants. The free Basic plan covers 1 location and up to 10 employees. The Essentials plan costs $24 a month per location billed yearly, or $30 billed monthly, with unlimited employees.
+- **When I Work**: Scheduling, shift swaps, and time clocks. The pricing page lists a free trial and no free plan. The Essentials plan costs $2.50 per user a month. The pricing page says plans start at $2.50 per user a month for one location, and $5 for several locations.
 - **Deputy**: Scheduling and time tracking for teams in several locations. The pricing page lists a free trial and no free plan. The Lite plan costs $5 per user a month, with a minimum of $30 a month on monthly plans.
-- **7shifts**: Scheduling made for restaurants. The free Comp plan covers 1 location and up to 15 employees. Paid plans are priced per location each month.
+- **7shifts**: Scheduling made for restaurants. The free Comp plan covers 1 location and up to 15 employees. Paid plans start with Essentials, priced per location each month.
 
 Prices as of November 2026.
 

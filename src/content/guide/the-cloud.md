@@ -2,13 +2,13 @@
 title: "The cloud"
 group: concepts
 summary: "Computers that a company runs in its data centers, which you use over the internet instead of buying your own."
-seoTitle: "What the cloud means, for business owners"
+seoTitle: "What the cloud means for business owners"
 description: "A plain explanation of the cloud for small business owners, what it changes about how you buy software, and what to watch for."
 ---
 
 ## What it is
 
-"The cloud" means computers in a company's data centers that you use over the internet. When you save a file to Google Drive, use an online booking app, or check your bank account in a browser, the software and your information are stored on that company's computers, not on yours.
+"The cloud" means computers in a company's data centers that you use over the internet. When you save a file to Google Drive, use an online booking app, or check your bank account in a browser, the software and your information are stored on that company's computers. Copies can also stay on your own devices when you download or sync files.
 
 ## When you need it
 

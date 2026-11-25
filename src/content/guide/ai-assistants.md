@@ -1,14 +1,14 @@
 ---
 title: "AI assistants for everyday work"
 group: save-time
-summary: "Chat apps such as ChatGPT that draft text, summarize documents, and answer questions from what you type or upload."
+summary: "Chat apps such as ChatGPT where you type a request and get a draft, a summary, or an explanation to check and use."
 seoTitle: "AI assistants for small business owners"
 description: "What AI assistants such as ChatGPT, Claude, and Gemini can do for a small business, when they're worth using, and what to watch for."
 ---
 
 ## What it is
 
-An AI assistant is a chat app where you type a request in plain words and get a written answer. It can draft emails and posts, summarize a long document, translate, turn notes into a table, or explain a topic. The answers come from a language model, a program trained on large amounts of text to predict likely words.
+An AI assistant is a chat app where you type a request in plain words and get a written reply. You can use it to draft emails and posts, summarize a long document, translate, turn notes into a table, or get an explanation of a topic. The replies come from a language model, a program trained on large amounts of text to predict likely words. You check the text before you use it.
 
 ## When you need it
 
@@ -18,17 +18,17 @@ An AI assistant is a chat app where you type a request in plain words and get a 
 
 ## Popular choices
 
-- **ChatGPT**: OpenAI's assistant. There is a free plan, and paid plans include Go, Plus, and Business. Plus costs $20 a month. Business costs $20 per user a month billed yearly, or $25 billed monthly, and OpenAI says it doesn't train its models on Business data by default.
-- **Claude**: Anthropic's assistant. There is a free plan. Pro costs $17 a month billed yearly, or $20 billed monthly. Team costs $20 per user a month billed yearly, or $25 billed monthly, and Anthropic says that by default it doesn't use the inputs or outputs of its business products, such as Team, to train its models.
+- **ChatGPT**: OpenAI's assistant. There is a free plan, and paid plans include Go, Plus, and Business. Plus costs $20 a month. Business starts at $20 per user a month billed yearly, or $25 billed monthly, for a standard seat, and premium seats cost more. OpenAI says it doesn't train its models on Business data by default.
+- **Claude**: Anthropic's assistant. There is a free plan. Pro costs $17 a month billed yearly, or $20 billed monthly. Team starts at $20 per user a month billed yearly, or $25 billed monthly, for a standard seat, and premium seats cost more. Anthropic says that by default it doesn't use the inputs or outputs of its business products, such as Team, to train its models.
 - **Gemini**: Google's assistant, also built into Google Workspace. It is free with a Google account. Google AI Plus costs $4.99 a month. Gemini with Google Workspace starts at $14 per user a month, and Google says it doesn't use your company data to train its models.
-- **Microsoft Copilot**: Microsoft's assistant, also built into Microsoft 365. Copilot Chat is included at no extra cost with eligible Microsoft 365 plans, and Microsoft 365 Copilot is a paid add-on billed yearly. For Microsoft 365 Copilot, Microsoft says prompts and responses aren't used to train its foundation models.
+- **Microsoft Copilot**: Microsoft's assistant, also built into Microsoft 365. Copilot Chat is included at no extra cost with eligible Microsoft 365 plans, and Microsoft 365 Copilot Business is a paid add-on. The offer checked was for yearly billing. For Microsoft 365 Copilot, Microsoft says prompts and responses aren't used to train its foundation models.
 
 Prices as of November 2026.
 
 ## What to watch for
 
-- **Wrong answers.** An AI assistant can state wrong facts in a confident tone. Check prices, dates, laws, and numbers before you send or publish anything.
-- **Private information.** Read the service's privacy settings before you paste customer details, contracts, or financial records into it. Check whether the service can use what you type to improve its models, and turn that setting off if you can.
+- **Wrong answers.** The replies can contain wrong facts and still read as certain. Check prices, dates, laws, and numbers before you send or publish anything.
+- **Private information.** Don't paste identifiable customer details, confidential contracts, or financial records into an AI assistant unless your business has approved that service for that use. Use an example with names and numbers removed instead. Turning off model training doesn't stop the provider from receiving what you paste. Also check whether the service can use what you type to improve its models, and turn that setting off if you can.
 - **Your own wording.** Edit drafts so they read the way you write, especially in messages to customers.
 
 ## What I can help with
