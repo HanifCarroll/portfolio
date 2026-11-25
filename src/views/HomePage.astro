@@ -1,0 +1,279 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Portrait from '../assets/img/hanif-hero-portrait.jpg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BOOK_CALL_URL } from '../consts';
+import FormattedDate from '../components/FormattedDate.astro';
+import HomeProjects from '../components/home/HomeProjects.astro';
+import HomeSection from '../components/home/HomeSection.astro';
+import { fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial } from '../data/testimonials';
+import { getDictionary, getLocale, localizedPath } from '../i18n';
+import '../styles/home.css';
+
+const locale = getLocale(Astro.currentLocale);
+const { action, nav, price, locale: localeCopy } = getDictionary(locale);
+const homePath = localizedPath('/', locale);
+const copy = (en: string, es: string) => locale === 'es' ? es : en;
+const title = copy('Websites, tools, and automations for small businesses | Hanif Carroll', 'Sitios web, herramientas y automatizaciones para negocios chicos | Hanif Carroll');
+const description = copy(
+	'I help small businesses work better with technology, with websites, tools, and automations built around how they work. Based in Buenos Aires, working U.S. Eastern hours.',
+	'Ayudo a negocios chicos a trabajar mejor. Desarrollo sitios web, herramientas y automatizaciones según cómo trabaja cada equipo. Estoy en Buenos Aires y trabajo en el horario de la costa este de Estados Unidos.'
+);
+const socialTitle = copy('Hanif Carroll | Websites, tools, and automations for small businesses', title);
+const socialDescription = copy(
+	'I help small businesses work better with technology, from websites that bring in customers to automating the work a team does by hand.',
+	'Ayudo a negocios chicos a trabajar mejor con tecnología. Desarrollo sitios web para que consigan clientes y automatizo tareas que hoy hacen a mano.'
+);
+const jobTitle = nav.job;
+const homepageJsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Hanif Carroll',
+		url: 'https://www.hanifcarroll.com/',
+		jobTitle,
+		description,
+		sameAs: [
+			'https://github.com/hanifcarroll',
+			'https://linkedin.com/in/hanifcarroll',
+			'https://x.com/hanifcarroll',
+			'https://www.threads.com/@hanifcarroll'
+		],
+		knowsAbout: [
+			copy('Client discovery', 'Entrevistas con clientes'),
+			copy('Workflow analysis', 'Análisis de procesos'),
+			copy('Workflow automation', 'Automatización de procesos'),
+			copy('Small business software', 'Software para negocios chicos'),
+			copy('Business process mapping', 'Mapeo de procesos de negocio'),
+			copy('Prototyping', 'Desarrollo de prototipos'),
+			copy('Website development', 'Desarrollo de sitios web'),
+			copy('Web app development', 'Desarrollo de aplicaciones web'),
+			copy('Custom software', 'Software a medida'),
+			copy('AI features', 'Funciones con IA'),
+			copy('Internal tools', 'Herramientas internas'),
+			copy('Integrations', 'Integraciones'),
+			'TypeScript',
+			'React',
+			'Node.js',
+			'Python'
+		]
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Hanif Carroll',
+		url: new URL(homePath, Astro.site).href,
+		...(locale === 'es' ? { inLanguage: 'es' } : {}),
+		description
+	}
+];
+
+// Spanish teaser titles stay here until the blog translations supply their own titles.
+const featuredPosts: Record<string, string> = {
+	'where-net-promoter-score-came-from': 'Cómo se creó el Net Promoter Score',
+	'spreadsheet-vs-database-internal-tool': 'Planilla o base de datos: cuándo necesitás una herramienta interna',
+	'business-process-mapping-examples': 'Cómo mapear un proceso de negocio: un ejemplo antes y después',
+};
+const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
+const blogPosts = Object.keys(featuredPosts)
+	.map((id) => allPosts.find((post) => post.id === id))
+	.filter((post) => post !== undefined)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const help = [
+	{
+		title: copy('Websites', 'Sitios web'),
+		body: copy('A new site, or changes to the one you have, so more visitors call, book, or buy.', 'Un sitio nuevo o mejoras al que ya tenés para que más personas te llamen, hagan una reserva o compren.')
+	},
+	{
+		title: copy('Tools', 'Herramientas'),
+		body: copy('Simple systems for orders, bookings, quotes, or inventory, instead of paper, spreadsheets, and WhatsApp threads.', 'Sistemas simples para registrar pedidos, reservas, presupuestos o stock sin usar papel, planillas ni chats de WhatsApp.')
+	},
+	{
+		title: copy('Automations', 'Automatizaciones'),
+		body: copy('Your apps and spreadsheets update each other on their own, often with tools you already pay for, so your team stops copying by hand.', 'Tus aplicaciones y planillas se actualizan entre sí para que tu equipo no tenga que copiar datos a mano. Muchas veces alcanza con las herramientas que ya pagás.')
+	}
+];
+
+const work = [
+	{
+		slug: 'desarmadero-la-torre', name: 'Desarmadero La Torre',
+		alt: copy('Desarmadero La Torre’s online parts catalog.', 'Catálogo de repuestos de Desarmadero La Torre.'),
+		body: copy('A parts catalog customers could search before calling. The owner came back to map sales and payments into a working prototype.', 'Un catálogo de repuestos que los clientes podían consultar antes de llamar. Después, el dueño volvió para que armáramos un prototipo funcional para registrar ventas y pagos.')
+	},
+	{
+		slug: 'online-store-conversion-review', name: 'JIEC Labs',
+		alt: copy('The online-store review prepared for JIEC Labs.', 'Revisión de la tienda online de JIEC Labs.'),
+		body: copy("A shopper's review of a skincare store, then the fixes the owner picked, built and launched.", 'Revisé una tienda de productos para el cuidado de la piel como si fuera un cliente. Después implementé y publiqué las mejoras que eligió el dueño.')
+	},
+	{
+		slug: 'sales-funnel-solo-coach', name: copy('Solo coach', 'Coach independiente'),
+		alt: copy('The sales funnel planned for a solo coach.', 'Proceso de venta que diseñé para una coach independiente.'),
+		body: copy("A step-by-step plan that connected a coach's posts, emails, and offers. A week later her courses were on sale.", 'Le preparé a una coach un plan para que quienes veían sus publicaciones pudieran anotarse para recibir sus correos y conocer sus cursos y servicios. Una semana después, sus cursos ya se podían comprar.')
+	},
+	{
+		slug: 'casa-elaria', name: 'Casa Elaria',
+		alt: copy('The Casa Elaria beauty storefront.', 'Tienda de productos de belleza de Casa Elaria.'),
+		body: copy('A storefront that tested demand before the brand bought inventory.', 'Una tienda online para que los fundadores midieran el interés de los visitantes antes de comprar stock.')
+	},
+	{
+		slug: 'maximo-interiorismo', name: 'Maximo Interiorismo',
+		alt: copy('Interiors featured on Maximo Interiorismo’s portfolio site.', 'Ambientes que muestra el sitio de Maximo Interiorismo.'),
+		body: copy('A portfolio site for an interior designer.', 'Un sitio para mostrar el trabajo de un diseñador de interiores.')
+	}
+];
+
+const process = [
+	{ title: copy('Tell me about it', 'Contame qué pasa'), body: copy('By email or on a call.', 'Por correo o en una llamada.') },
+	{ title: copy('I take a free look', 'Reviso el problema gratis'), body: copy('I look at how the work happens now, then tell you how I’d fix it and what it would cost.', 'Veo cómo trabajan hoy. Después te cuento cómo resolvería el problema y cuánto costaría.') },
+	{ title: copy('I build it', 'Desarrollo la solución'), body: copy('Then I set it up with your team and show you how it works.', 'Después la configuro con tu equipo y les muestro cómo funciona.') }
+];
+
+const apps = [
+	{
+		slug: 'palabruno', name: 'Palabruno',
+		alt: copy('Palabruno’s Spanish reader on desktop and mobile.', 'Lector de español de Palabruno en la computadora y el celular.'),
+		body: copy('A Spanish-reading app launched on iOS, Android, and web in under two months.', 'Una app para leer en español que publicamos en iOS, Android y la web en menos de dos meses.')
+	},
+	{
+		slug: 'genrupt', name: 'Genrupt',
+		alt: copy('Genrupt’s project grid for Amazon sellers.', 'Vista de proyectos de Genrupt para vendedores de Amazon.'),
+		body: copy('AI tools and billing for a startup’s first 200 paying customers.', 'Herramientas con inteligencia artificial y un sistema de cobro para los primeros 200 clientes pagos de una startup.')
+	},
+	{
+		slug: 'ba-eventos', name: 'BA Eventos',
+		alt: copy('BA Eventos on a phone.', 'BA Eventos en un celular.'),
+		body: copy('One search for Buenos Aires events, by mood, neighborhood, and time.', 'Un buscador de eventos en Buenos Aires para encontrar un plan según lo que tengas ganas de hacer, el barrio y el horario.')
+	},
+	{
+		slug: 'casamo', name: 'Casamo',
+		alt: copy('Casamo’s homepage on a desktop display.', 'Página de inicio de Casamo en la computadora.'),
+		body: copy('Checks Airbnb and Booking.com listings against what a traveler needs.', 'Con Casamo, podés comprobar si un alojamiento de Airbnb o Booking.com cumple tus requisitos.')
+	}
+];
+
+const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].map((testimonial) => {
+	const { role, quote } = locale === 'es' ? testimonial.es : testimonial;
+	return { quote: `“${quote}”`, credit: `${testimonial.name} · ${role}` };
+});
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	socialTitle={socialTitle}
+	socialDescription={socialDescription}
+	jsonLd={homepageJsonLd}
+	footerCtaLocation='home_blog_footer'
+>
+	<div class='home'>
+		<section class='home-hero' data-section='hero' aria-labelledby='hero-title'>
+			<div class='home-shell'>
+				<Image class='home-portrait' data-visual src={Portrait} alt='Hanif Carroll' width={132} height={165} densities={[1, 2, 3]} quality={90} fit='cover' loading='eager' />
+				<p class='home-label'>Hanif Carroll · {jobTitle}</p>
+				<h1 id='hero-title'>{copy('I help small businesses', 'Ayudo a negocios chicos')}{' '}<br />{copy('work', 'a trabajar')}{' '}<em>{copy('better', 'mejor')}</em>{' '}{copy('with technology', 'con tecnología')}</h1>
+				<p class='home-deck' data-deck>{copy('I build websites that bring in customers, tools that fit how you work, and automations for the tasks your team still does by hand.', 'Hago sitios web para que consigas más clientes, herramientas para tu forma de trabajar y automatizaciones para las tareas que tu equipo todavía hace a mano.')}</p>
+				<div class='home-actions' data-cta>
+					<a class='home-primary' href={localizedPath('/contact/', locale)} data-track-event='email_clicked' data-track-location='home_hero'>{action.emailProblem}</a>
+					<a class='home-link' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>{action.bookCall}</a>
+				</div>
+			</div>
+		</section>
+
+		<HomeSection name='help' title={copy('What I build', 'Qué hago')}>
+			<ul class='home-points' role='list'>
+				{help.map(({ title, body }) => (
+					<li>
+						<h3>{title}</h3>
+						<p>{body}</p>
+					</li>
+				))}
+			</ul>
+			<p class='home-more'>{copy('Not sure which you need? Tell me about a problem in your business, and I’ll suggest the simplest fix.', '¿No sabés qué necesitás? Contame qué problema tenés en tu negocio y te propongo la solución más simple.')}</p>
+		</HomeSection>
+
+		<HomeSection name='work' id='projects' title={copy('Work for small businesses', 'Proyectos para negocios chicos')}>
+			<HomeProjects items={work} />
+		</HomeSection>
+
+		<HomeSection name='feedback' title={copy('What clients say', 'Qué dicen mis clientes')}>
+			<div class='home-feedback'>
+				{feedback.map(({ quote, credit }) => (
+					<figure>
+						<blockquote><p>{quote}</p></blockquote>
+						<figcaption class='home-label'>{credit}</figcaption>
+					</figure>
+				))}
+			</div>
+		</HomeSection>
+
+		<HomeSection name='process' title={copy('How we’d work together', 'Cómo trabajaríamos juntos')} intro={copy('You can start with just one problem.', 'Podés empezar con un solo problema.')}>
+			<ol class='home-points' role='list'>
+				{process.map(({ title, body }, index) => (
+					<li>
+						<span class='home-step' aria-hidden='true'>{(index + 1).toLocaleString(localeCopy.format)}</span>
+						<h3>{title}</h3>
+						<p>{body}</p>
+					</li>
+				))}
+			</ol>
+			<p class='home-more'>{price}</p>
+		</HomeSection>
+
+		<HomeSection name='apps' title={copy('I also build apps and products', 'También desarrollo apps y productos')} intro={copy('I’ve built apps with founders, and I run two products of my own.', 'Desarrollé apps con fundadores y hoy gestiono dos productos propios.')}>
+			<HomeProjects items={apps} />
+			<p class='home-more'><a class='home-link' href={localizedPath('/projects/', locale)}>{copy('See all projects', 'Ver todos los proyectos')}</a></p>
+		</HomeSection>
+
+		<HomeSection name='about' title={copy('About me', 'Sobre mí')}>
+			<p>{copy('I’m Hanif, a freelance software engineer in Buenos Aires, and I’ve been building software since 2017. I worked at ', 'Soy Hanif, ingeniero de software independiente en Buenos Aires. Desarrollo software desde 2017. Trabajé en ')}<a class='home-link' href='https://www.8base.com/' target='_blank' rel='noopener noreferrer'>8base</a>, <a class='home-link' href='https://www.capgemini.com/' target='_blank' rel='noopener noreferrer'>Capgemini</a>{copy(', and ', ' y ')}<a class='home-link' href='https://www.leagueapps.com/' target='_blank' rel='noopener noreferrer'>LeagueApps</a>{copy(' before starting HC Studio. What I enjoy most is working together to understand how people actually work and then decide what’s worth building. Outside of work, I like to ', ' antes de fundar HC Studio. Lo que más disfruto es entender cómo trabaja cada equipo y decidir juntos qué conviene desarrollar. Fuera del trabajo me gusta ')}<a class='home-link' href='https://www.youtube.com/shorts/sQZoQeXo53o' data-lifting-video-trigger>{copy('lift weights', 'levantar pesas')}</a>{copy(' and have merienda in cozy coffee shops.', ' y merendar en cafés tranquilos.')}</p>
+			<div class='home-more'>
+				<a class='home-link' href={localizedPath('/how-i-work/', locale)}>{nav.work}</a>
+				<a class='home-link' href={localizedPath('/notes/', locale)}>{copy('Read my notes', 'Leé mis notas')}</a>
+			</div>
+		</HomeSection>
+
+		<HomeSection name='writing' id='blog' title={copy('Writing', 'Artículos')}>
+			<ol class='home-writing' role='list'>
+				{blogPosts.map((post) => (
+					<li>
+						<a href={localizedPath(`/blog/${post.id}/`, locale)} hreflang={locale === 'es' ? 'en' : undefined}>
+							<h3>{copy(post.data.title, featuredPosts[post.id]!)}</h3>
+							<FormattedDate date={post.data.pubDate} />
+						</a>
+					</li>
+				))}
+			</ol>
+			<p class='home-more'><a class='home-link' href={localizedPath('/blog/', locale)}>{copy('More posts', 'Más artículos')}</a></p>
+		</HomeSection>
+	</div>
+
+	<dialog class='hc-home-video-modal' aria-label={copy('Lifting weights video', 'Video de levantamiento de pesas')} data-lifting-video-modal>
+		<div class='hc-home-video-modal__surface'>
+			<form method='dialog'>
+				<button class='hc-home-video-modal__close' type='submit' aria-label={copy('Close video', 'Cerrar el video')}>
+					<svg viewBox='0 0 24 24' aria-hidden='true'><path d='m6 6 12 12M18 6 6 18'></path></svg>
+				</button>
+			</form>
+			<iframe class='hc-home-video-modal__frame' title={copy('Hanif Carroll lifting weights', 'Hanif Carroll levantando pesas')} allow='autoplay; encrypted-media; picture-in-picture' allowfullscreen data-lifting-video-frame></iframe>
+		</div>
+	</dialog>
+</BaseLayout>
+
+<script>
+	const videoTrigger = document.querySelector<HTMLAnchorElement>('[data-lifting-video-trigger]')!;
+	const videoModal = document.querySelector<HTMLDialogElement>('[data-lifting-video-modal]')!;
+	const videoFrame = document.querySelector<HTMLIFrameElement>('[data-lifting-video-frame]')!;
+
+	videoTrigger.addEventListener('click', (event) => {
+		event.preventDefault();
+		videoFrame.src = 'https://www.youtube-nocookie.com/embed/sQZoQeXo53o?autoplay=1';
+		videoModal.showModal();
+	});
+
+	videoModal.addEventListener('close', () => {
+		videoFrame.removeAttribute('src');
+		videoTrigger.focus();
+	});
+</script>

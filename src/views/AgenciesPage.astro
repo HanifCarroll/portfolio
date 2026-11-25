@@ -1,0 +1,76 @@
+---
+import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { testimonials } from '../data/testimonials';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getDictionary, getLocale } from '../i18n';
+import { closingActionsClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, metaClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const { action } = getDictionary(locale);
+const testimonial = testimonials.find(({ name }) => name === 'Markis Zarate')!;
+const { quote, role } = locale === 'es' ? testimonial.es : testimonial;
+const copy = {
+	en: {
+		title: 'Builds for agencies',
+		description: 'I build websites and web apps for agencies, delivered under the agency’s name.',
+		intro: 'I build websites and web apps for agencies that sell them but don’t have developers of their own. I work under your name, so your client deals with your team, and I handle the build from your designs through launch.',
+		services: 'What I take on',
+		items: [
+			'Building sites and apps from your designs',
+			'Fixing or extending a site that’s already live',
+			'Adding a feature or integration to a client’s project',
+		],
+		hours: 'I’m based in Buenos Aires and work U.S. Eastern hours, so I’m online when you and your clients are.',
+		closing: 'Have a build you need help with?',
+	},
+	es: {
+		title: 'Desarrollo para agencias',
+		description: 'Desarrollo sitios y aplicaciones web para agencias y los entrego a nombre de tu agencia.',
+		intro: 'Desarrollo sitios y aplicaciones web para agencias que los venden pero no tienen desarrolladores propios. Trabajo a nombre de tu agencia. Tu cliente sigue tratando con tu equipo y yo me ocupo de implementar tus diseños y publicar el sitio o la aplicación.',
+		services: 'En qué te puedo ayudar',
+		items: [
+			'Desarrollar sitios y aplicaciones a partir de tus diseños',
+			'Arreglar o ampliar un sitio que ya está publicado',
+			'Agregar una función o integración al proyecto de un cliente',
+		],
+		hours: 'Estoy en Buenos Aires y trabajo en el horario de la costa este de Estados Unidos. Así estoy disponible a la misma hora que vos y tus clientes.',
+		closing: '¿Necesitás ayuda con el desarrollo de un proyecto?',
+	},
+}[locale];
+---
+
+<BaseLayout
+	title={`${copy.title} | Hanif Carroll`}
+	description={copy.description}
+	showFooterCta={false}
+>
+	<div class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']}>
+		<article class='text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink-muted [&>:is(p,ul)]:max-w-[38rem]'>
+			<h1 class={pageTitleClass}>{copy.title}</h1>
+			<p class='mt-6 mb-0'>{copy.intro}</p>
+
+			<h2 class:list={[sectionHeadingClass, 'mt-[clamp(4rem,8vw,6rem)]']}>{copy.services}</h2>
+			<ul class='mt-6 mb-0 list-disc space-y-2 pl-5'>
+				{copy.items.map((item) => <li>{item}</li>)}
+			</ul>
+			<p class='mt-8 mb-0'>{copy.hours}</p>
+
+			<blockquote class='mx-0 mt-[clamp(4rem,8vw,6rem)] mb-0 max-w-[48rem]'>
+				<p class='m-0 font-editorial text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.25] text-ink'>“{quote}”</p>
+				<footer class='mt-4'>
+					<cite class:list={[metaClass, 'block not-italic']}>{testimonial.name} · {role}</cite>
+				</footer>
+			</blockquote>
+		</article>
+	</div>
+
+	<section class={closingClass} data-section='closing-cta' aria-labelledby='closing-cta-title'>
+		<div class={shellClass}>
+			<h2 id='closing-cta-title' class={closingTitleClass}>{copy.closing}</h2>
+			<div class={closingActionsClass}>
+				<a class={closingButtonClass} href={EMAIL_URL} data-track-event='email_clicked' data-track-location='agencies'>{action.emailMe}</a>
+				<a class={closingLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='agencies'>{action.bookCall}</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import EssayPage from '../layouts/EssayPage.astro';
+import { getDictionary, getLocale } from '../i18n';
+import * as howEn from '../content/how-i-work.md';
+import * as howEs from '../content/es/how-i-work.md';
+import * as nowEn from '../content/now.md';
+import * as nowEs from '../content/es/now.md';
+
+interface Props {
+	kind: 'how' | 'now';
+}
+
+const { kind } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const dictionary = getDictionary(locale);
+const entry = { how: { en: howEn, es: howEs }, now: { en: nowEn, es: nowEs } }[kind][locale];
+const { Content, frontmatter: { title, description, lastUpdated } } = entry;
+const isNow = kind === 'now';
+const updateDate = isNow && lastUpdated && locale === 'es'
+	? new Date(lastUpdated).toLocaleDateString(dictionary.locale.format, { dateStyle: 'long', timeZone: 'UTC' })
+	: lastUpdated;
+const pageTitle = isNow ? (locale === 'es' ? 'Ahora' : 'Now') : title;
+---
+
+<EssayPage
+	title={title}
+	pageTitle={`${pageTitle} · Hanif Carroll`}
+	description={description}
+	deck={isNow ? undefined : description}
+	meta={isNow && updateDate ? `${dictionary.date.lastUpdated}: ${updateDate}` : undefined}
+	robots={isNow ? 'noindex, follow' : undefined}
+	bodyClass={`hc-${kind}`}
+>
+	<Content />
+</EssayPage>
