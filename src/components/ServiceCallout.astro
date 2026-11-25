@@ -1,5 +1,5 @@
 ---
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import { closingActionsClass, closingBodyClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, shellClass } from '../lib/ui';
 
 type Variant = 'general' | 'systemsBuild';
@@ -38,7 +38,7 @@ const offer = isCaseStudy && variant === 'general'
 		<div class={closingActionsClass}>
 			<a
 				class={closingButtonClass}
-				href={isCaseStudy ? EMAIL_URL : BOOK_CALL_URL}
+				href={isCaseStudy ? '/contact/' : BOOK_CALL_URL}
 				target={isCaseStudy ? undefined : '_blank'}
 				rel={isCaseStudy ? undefined : 'noopener noreferrer'}
 				data-track-event={isCaseStudy ? 'email_clicked' : 'book_call_clicked'}

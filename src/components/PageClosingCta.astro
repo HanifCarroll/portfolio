@@ -1,5 +1,5 @@
 ---
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import { closingActionsClass, closingBodyClass, closingButtonClass, closingClass, closingLinkClass, closingTitleClass, closingUnderlineClass, shellClass } from '../lib/ui';
 
 const {
@@ -15,7 +15,7 @@ const {
 		<h2 id='closing-cta-title' class={closingTitleClass}>{title}</h2>
 		<p class={closingBodyClass}>{body}</p>
 		<div class={closingActionsClass}>
-			<a class={closingButtonClass} href={EMAIL_URL} data-track-event='email_clicked' data-track-location={location}>{primaryLabel}</a>
+			<a class={closingButtonClass} href='/contact/' data-track-event='email_clicked' data-track-location={location}>{primaryLabel}</a>
 			<a class={closingLinkClass} href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location={location}>Book a call</a>
 		</div>
 		<p class='mx-auto mt-8 mb-0 text-base leading-relaxed text-white/80'>Work at an agency? <a class:list={['text-white', closingUnderlineClass]} href='/agencies/'>I also build under your name.</a></p>

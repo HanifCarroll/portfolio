@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-hero-portrait.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import FormattedDate from '../components/FormattedDate.astro';
 import HomeProjects from '../components/home/HomeProjects.astro';
 import HomeSection from '../components/home/HomeSection.astro';
@@ -162,7 +162,7 @@ const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].
 				<h1 id='hero-title'>I help small businesses <br />work <em>better</em> with technology</h1>
 				<p class='home-deck' data-deck>I build websites that bring in customers, tools that fit how you work, and automations for the tasks your team still does by hand.</p>
 				<div class='home-actions' data-cta>
-					<a class='home-primary' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_hero'>Email me about a problem</a>
+					<a class='home-primary' href='/contact/' data-track-event='email_clicked' data-track-location='home_hero'>Email me about a problem</a>
 					<a class='home-link' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a call</a>
 				</div>
 			</div>

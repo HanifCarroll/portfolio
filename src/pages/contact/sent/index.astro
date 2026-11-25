@@ -1,0 +1,14 @@
+---
+// Where the form lands without JavaScript, after the Pages Function sends the message.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { CONTACT_COPY } from '../../../lib/contact';
+import { deckClass, pageTitleClass, shellClass, textLinkClass } from '../../../lib/ui';
+---
+
+<BaseLayout title='Message sent | Hanif Carroll' description={CONTACT_COPY.successBody} robots='noindex, follow' showFooterCta={false}>
+	<section class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']} aria-labelledby='sent-title' data-motion-intro>
+		<h1 id='sent-title' class={pageTitleClass} data-motion='headline'>{CONTACT_COPY.successHeading}</h1>
+		<p class:list={[deckClass, 'mt-6']} data-motion-deck>{CONTACT_COPY.successBody}</p>
+		<p class='mt-8 mb-0'><a class={textLinkClass} href='/'>Back to the homepage</a></p>
+	</section>
+</BaseLayout>
