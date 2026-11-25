@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import type { Locale } from "../../i18n";
+import { getTuesdayCopy } from "../../lib/tuesday-sim/copy";
 import { configFor, formatClock, type DayMetrics, type Job } from "../../lib/tuesday-sim/engine";
 import { TUESDAY_SEED } from "../../lib/tuesday-sim/story";
 import { useLiveSession } from "./useLiveSession";
@@ -7,22 +9,8 @@ import { useLiveSession } from "./useLiveSession";
 const TIME_SCALE = 9;
 const TIME_SCALE_COMPACT = 18;
 
-const CHANNEL_LABELS: Record<string, string> = {
-  inbox: "Inbox",
-  phone: "Phone",
-  text: "Texts",
-  walkin: "Walk-ins",
-  sticky: "Sticky notes",
-};
-
-const ACTION_VERBS: Record<Job["kind"], string> = {
-  quote: "Quoting",
-  booking: "Booking",
-  change: "Re-scheduling",
-  issue: "Forwarding",
-};
-
 interface ActOneProps {
+  locale: Locale;
   active: boolean;
   onDayEnd: (metrics: DayMetrics) => void;
   onSkip: () => void;
@@ -35,7 +23,8 @@ interface ActOneProps {
  * requests one at a time. Compact: the always-on operator works the same day
  * and still falls behind. Either way, the day is unwinnable.
  */
-export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProps) {
+export function ActOne({ locale, active, onDayEnd, onSkip, compact = false }: ActOneProps) {
+  const { actOne } = getTuesdayCopy(locale);
   const config = useMemo(() => configFor(new Set()), []);
   const { frame, handle, finishNow } = useLiveSession(
     config,
@@ -91,24 +80,24 @@ export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProp
   const backlog = frame
     ? frame.jobs.filter((j) => j.status === "open" || j.status === "handling").length
     : 0;
-  const channels = Object.entries(CHANNEL_LABELS);
+  const channels = Object.entries(actOne.channels);
   const metrics = frame?.metrics;
 
   return (
-    <div className="t1-stage" aria-label="Act 1: run the old Tuesday">
+    <div className="t1-stage" aria-label={actOne.stage}>
       <div className="t1-hud">
-        <div className="t1-hud__clock" aria-label="Time of day">
-          {formatClock(frame?.time ?? 0)}
+        <div className="t1-hud__clock" aria-label={actOne.time}>
+          {formatClock(frame?.time ?? 0, locale)}
         </div>
         <div className="t1-hud__stats">
-          <span>Handled {metrics?.completed ?? 0}</span>
-          <span className="t1-hud__bad">Forgotten {metrics?.dropped ?? 0}</span>
-          <span className="t1-hud__bad">Angry calls {metrics?.complaints ?? 0}</span>
-          <span>Backlog {backlog}</span>
+          <span>{actOne.handled} {metrics?.completed ?? 0}</span>
+          <span className="t1-hud__bad">{actOne.forgotten} {metrics?.dropped ?? 0}</span>
+          <span className="t1-hud__bad">{actOne.angry} {metrics?.complaints ?? 0}</span>
+          <span>{actOne.backlog} {backlog}</span>
         </div>
         {!compact && (
           <div className={`t1-hud__lock ${operatorBusy ? "is-busy" : ""}`}>
-            {operatorBusy ? "You’re tied up…" : "You’re free — take a request"}
+            {operatorBusy ? actOne.busy : actOne.free}
           </div>
         )}
         <button
@@ -119,26 +108,16 @@ export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProp
             finishNow();
           }}
         >
-          Skip the day
+          {actOne.skip}
         </button>
       </div>
 
       {!started && (
         <div className="t1-brief" role="note">
           <p>
-            {compact ? (
-              <>
-                Requests come in through five places at once.{" "}
-                <strong>Watch the operator fall behind.</strong> The day runs about 30 seconds —
-                skip it in the top right.
-              </>
-            ) : (
-              <>
-                Requests come in through five places at once.{" "}
-                <strong>Click one to deal with it.</strong> You can only handle one at a time. Get
-                to 6:12&nbsp;PM — or skip the day in the top right.
-              </>
-            )}
+            {actOne.demand}{" "}
+            <strong>{compact ? actOne.compactAction : actOne.action}</strong>{" "}
+            {compact ? actOne.compactNote : actOne.note}
           </p>
         </div>
       )}
@@ -158,12 +137,13 @@ export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProp
                   <JobCard
                     key={job.id}
                     job={job}
+                    locale={locale}
                     time={frame?.time ?? 0}
                     ghost={ghosts.get(job.id)}
                     onClick={() => handleJobClick(job)}
                   />
                 ))}
-                {extra > 0 && <div className="t1-more">+{extra} more</div>}
+                {extra > 0 && <div className="t1-more">{actOne.extra(extra)}</div>}
               </div>
             </div>
           );
@@ -175,15 +155,18 @@ export function ActOne({ active, onDayEnd, onSkip, compact = false }: ActOneProp
 
 function JobCard({
   job,
+  locale,
   time,
   ghost,
   onClick,
 }: {
   job: Job;
+  locale: Locale;
   time: number;
   ghost?: "dropped" | "complaint";
   onClick: () => void;
 }) {
+  const { actOne } = getTuesdayCopy(locale);
   const age = time - job.arrivedAt;
   const urgent = job.status === "open" && age > 180;
   const handling = job.status === "handling";
@@ -202,13 +185,13 @@ function JobCard({
     <button type="button" className={classes.join(" ")} onClick={onClick} disabled={handling}>
       <span className="t1-card__customer">{job.customer}</span>
       <span className="t1-card__meta">
-        <span className={`t1-chip t1-chip--${job.kind}`}>{job.kind}</span>
-        {job.isDuplicate && <span className="t1-chip t1-chip--dup">duplicate?</span>}
-        {ghost === "complaint" && <span className="t1-chip t1-chip--angry">angry call</span>}
+        <span className={`t1-chip t1-chip--${job.kind}`}>{actOne.kinds[job.kind]}</span>
+        {job.isDuplicate && <span className="t1-chip t1-chip--dup">{actOne.duplicate}</span>}
+        {ghost === "complaint" && <span className="t1-chip t1-chip--angry">{actOne.complaint}</span>}
       </span>
       {handling && (
         <span className="t1-card__progress" style={{ "--progress": progress } as CSSProperties}>
-          {ACTION_VERBS[job.kind]}…
+          {actOne.actions[job.kind]}…
         </span>
       )}
     </button>

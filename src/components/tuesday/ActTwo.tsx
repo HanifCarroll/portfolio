@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { configFor, runDay, type InterventionId } from "../../lib/tuesday-sim/engine";
-import { TUESDAY_RESULTS, TUESDAY_SEED } from "../../lib/tuesday-sim/story";
-import { CHAPTERS, CREW } from "./content";
+import type { Locale } from "../../i18n";
+import { getTuesdayCopy } from "../../lib/tuesday-sim/copy";
+import { configFor, runDay, type DayMetrics, type InterventionId } from "../../lib/tuesday-sim/engine";
+import { getTuesdayStory, TUESDAY_CREW, TUESDAY_RESULTS, TUESDAY_SEED } from "../../lib/tuesday-sim/story";
 
 /**
  * Act 2 — The Build. A scrollytelling track: each chapter scrolls in, applies
@@ -9,7 +10,9 @@ import { CHAPTERS, CREW } from "./content";
  * channels collapse into a front door, loose cards crystallize into the
  * record, edges light up. The metrics strip recomputes from the model.
  */
-export function ActTwo({ compact = false }: { compact?: boolean }) {
+export function ActTwo({ compact = false, locale }: { compact?: boolean; locale: Locale }) {
+  const { actTwo } = getTuesdayCopy(locale);
+  const { chapters } = getTuesdayStory(locale);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [applied, setApplied] = useState<ReadonlySet<InterventionId>>(new Set());
   const [justApplied, setJustApplied] = useState<InterventionId | null>(null);
@@ -38,14 +41,14 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
   // down builds the system, scrolling back up unbuilds it. CSS transitions
   // run the reversal.
   useEffect(() => {
-    const next = new Set<InterventionId>(CHAPTERS.slice(0, activeIndex + 1).map((c) => c.id));
+    const next = new Set<InterventionId>(chapters.slice(0, activeIndex + 1).map((c) => c.id));
     setApplied((previous) => {
       const unchanged = next.size === previous.size && [...next].every((id) => previous.has(id));
       if (unchanged) return previous;
-      if (activeIndex >= 0) setJustApplied(CHAPTERS[activeIndex].id);
+      if (activeIndex >= 0) setJustApplied(chapters[activeIndex].id);
       return next;
     });
-  }, [activeIndex]);
+  }, [activeIndex, chapters]);
 
   useEffect(() => {
     if (!justApplied) return;
@@ -53,12 +56,10 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
     return () => window.clearTimeout(timeout);
   }, [justApplied]);
 
-  const baseline = TUESDAY_RESULTS.before;
   const current = useMemo(() => runDay(configFor(applied), TUESDAY_SEED), [applied]);
-  const finalDay = TUESDAY_RESULTS.after;
-  const chapter = activeIndex >= 0 ? CHAPTERS[activeIndex] : null;
+  const chapter = activeIndex >= 0 ? chapters[activeIndex] : null;
 
-  const appliedClasses = CHAPTERS.map((c) => (applied.has(c.id) ? `sm-on--${c.id}` : "")).join(" ");
+  const appliedClasses = chapters.map((c) => (applied.has(c.id) ? `sm-on--${c.id}` : "")).join(" ");
 
   // Small screens skip the pinned scroll track entirely: the chapters read
   // as a normal page, with the final numbers at the end.
@@ -66,13 +67,11 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
     return (
       <section className="t2 t2--static">
         <div className="t2-card t2-card--intro">
-          <p className="t2-card__week">Weeks 1–11</p>
-          <h3 className="t2-card__title">Six changes, one at a time</h3>
-          <p className="t2-card__body">
-            No platform rewrite. One decision per week, each one visible in the numbers below.
-          </p>
+          <p className="t2-card__week">{actTwo.weeks}</p>
+          <h3 className="t2-card__title">{actTwo.title}</h3>
+          <p className="t2-card__body">{actTwo.compactIntro}</p>
         </div>
-        {CHAPTERS.map((chapter) => (
+        {chapters.map((chapter) => (
           <div className="t2-card" key={chapter.id}>
             <p className="t2-card__week">{chapter.week}</p>
             <h3 className="t2-card__title">{chapter.title}</h3>
@@ -84,33 +83,7 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
             <p className="t2-card__note is-visible">{chapter.stageNote}</p>
           </div>
         ))}
-        <div className="t2-metrics" role="status">
-          <Metric label="handled" before={baseline.completed} after={finalDay.completed} />
-          <Metric
-            label="forgotten"
-            before={baseline.dropped}
-            after={finalDay.dropped}
-            good="down"
-          />
-          <Metric
-            label="angry calls"
-            before={baseline.complaints}
-            after={finalDay.complaints}
-            good="down"
-          />
-          <Metric
-            label="avg wait"
-            before={`${Math.round(baseline.avgWaitMinutes)}m`}
-            after={`${Math.round(finalDay.avgWaitMinutes)}m`}
-            good="down"
-          />
-          <Metric
-            label="coordination"
-            before={`${(baseline.manualMinutes / 60).toFixed(1)}h`}
-            after={`${(finalDay.manualMinutes / 60).toFixed(1)}h`}
-            good="down"
-          />
-        </div>
+        <Metrics after={TUESDAY_RESULTS.after} locale={locale} />
       </section>
     );
   }
@@ -119,7 +92,7 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
     <section
       className="t2"
       ref={sectionRef}
-      style={{ "--chapter-count": CHAPTERS.length } as CSSProperties}
+      style={{ "--chapter-count": chapters.length } as CSSProperties}
     >
       <div className="t2-sticky">
         <div className="t2-layout">
@@ -128,7 +101,7 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
               <div className="t2-card" key={chapter.id}>
                 <p className="t2-card__week">{chapter.week}</p>
                 <h3 className="t2-card__title">{chapter.title}</h3>
-                {(compact && chapter.bodyCompact ? chapter.bodyCompact : chapter.body).map(
+                {chapter.body.map(
                   (paragraph) => (
                     <p key={paragraph} className="t2-card__body">
                       {paragraph}
@@ -141,17 +114,13 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
               </div>
             ) : (
               <div className="t2-card t2-card--intro">
-                <p className="t2-card__week">Weeks 1–11</p>
-                <h3 className="t2-card__title">Six changes, one at a time</h3>
-                <p className="t2-card__body">
-                  {compact
-                    ? "No platform rewrite. One decision per week, each one visible in the numbers below. Keep scrolling."
-                    : "No platform rewrite. One decision per week, each one visible on the map as it lands. Keep scrolling."}
-                </p>
+                <p className="t2-card__week">{actTwo.weeks}</p>
+                <h3 className="t2-card__title">{actTwo.title}</h3>
+                <p className="t2-card__body">{actTwo.intro}</p>
               </div>
             )}
             <div className="t2-progress" aria-hidden="true">
-              {CHAPTERS.map((c, i) => (
+              {chapters.map((c, i) => (
                 <span
                   key={c.id}
                   className={`t2-dot ${applied.has(c.id) ? "is-done" : ""} ${i === activeIndex ? "is-current" : ""}`}
@@ -164,43 +133,31 @@ export function ActTwo({ compact = false }: { compact?: boolean }) {
             className={`t2-map ${appliedClasses} ${justApplied ? `sm-just--${justApplied}` : ""}`}
             aria-hidden="true"
           >
-            <SystemMap />
+            <SystemMap locale={locale} />
           </div>
 
-          <div className="t2-metrics" role="status">
-            <Metric label="handled" before={baseline.completed} after={current.completed} />
-            <Metric
-              label="forgotten"
-              before={baseline.dropped}
-              after={current.dropped}
-              good="down"
-            />
-            <Metric
-              label="angry calls"
-              before={baseline.complaints}
-              after={current.complaints}
-              good="down"
-            />
-            <Metric
-              label="avg wait"
-              before={`${Math.round(baseline.avgWaitMinutes)}m`}
-              after={`${Math.round(current.avgWaitMinutes)}m`}
-              good="down"
-            />
-            <Metric
-              label="coordination"
-              before={`${(baseline.manualMinutes / 60).toFixed(1)}h`}
-              after={`${(current.manualMinutes / 60).toFixed(1)}h`}
-              good="down"
-            />
-          </div>
+          <Metrics after={current} locale={locale} />
         </div>
       </div>
 
-      {CHAPTERS.map((c, i) => (
+      {chapters.map((c, i) => (
         <div key={c.id} className="t2-sentinel" data-sentinel={i} aria-hidden="true" />
       ))}
     </section>
+  );
+}
+
+function Metrics({ after, locale }: { after: DayMetrics; locale: Locale }) {
+  const { actTwo, minutesShort, hoursShort } = getTuesdayCopy(locale);
+  const before = TUESDAY_RESULTS.before;
+  return (
+    <div className="t2-metrics" role="status">
+      <Metric label={actTwo.handled} before={before.completed} after={after.completed} />
+      <Metric label={actTwo.forgotten} before={before.dropped} after={after.dropped} good="down" />
+      <Metric label={actTwo.angry} before={before.complaints} after={after.complaints} good="down" />
+      <Metric label={actTwo.average} before={minutesShort(before.avgWaitMinutes)} after={minutesShort(after.avgWaitMinutes)} good="down" />
+      <Metric label={actTwo.coordination} before={hoursShort(before.manualMinutes)} after={hoursShort(after.manualMinutes)} good="down" />
+    </div>
   );
 }
 
@@ -236,7 +193,8 @@ function Metric({
  * The diorama. Every element is positioned absolutely and transformed by CSS
  * classes derived from the applied set — the map itself is the state.
  */
-function SystemMap() {
+function SystemMap({ locale }: { locale: Locale }) {
+  const { actTwo } = getTuesdayCopy(locale);
   const mapRef = useRef<HTMLDivElement | null>(null);
   const customersRef = useRef<HTMLDivElement | null>(null);
   // The customer edge ends where the chip actually is, measured in map
@@ -287,15 +245,15 @@ function SystemMap() {
       </div>
 
       <div className="sm-channels">
-        {["Email", "Phone", "Text", "Walk-in", "Sticky"].map((label, i) => (
+        {actTwo.channels.map((label, i) => (
           <span key={label} className={`sm-chip sm-channel sm-channel--${i}`}>
             {label}
           </span>
         ))}
       </div>
       <div className="sm-frontdoor">
-        <span className="sm-node__label">Front door</span>
-        <span className="sm-node__sub">every request, one queue</span>
+        <span className="sm-node__label">{actTwo.intake}</span>
+        <span className="sm-node__sub">{actTwo.queue}</span>
       </div>
 
       <div className="sm-loose">
@@ -310,13 +268,13 @@ function SystemMap() {
         ))}
       </div>
       <div className="sm-record">
-        <span className="sm-node__label">Job record</span>
+        <span className="sm-node__label">{actTwo.record}</span>
         <span className="sm-record__grid">
           {Array.from({ length: 8 }, (_, i) => (
             <span key={i} />
           ))}
         </span>
-        <span className="sm-node__sub">one per job · everyone reads it</span>
+        <span className="sm-node__sub">{actTwo.shared}</span>
       </div>
 
       <svg className="sm-edges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -330,27 +288,27 @@ function SystemMap() {
       </svg>
 
       <div className="sm-crew">
-        {CREW.map((name, i) => (
+        {TUESDAY_CREW.map((name, i) => (
           <span key={name} className={`sm-chip sm-crew__member sm-crew__member--${i}`}>
             {name}
           </span>
         ))}
       </div>
       <div className="sm-customers" ref={customersRef}>
-        <span className="sm-node__label">Customers</span>
-        <span className="sm-node__sub">hear from us first</span>
+        <span className="sm-node__label">{actTwo.customers}</span>
+        <span className="sm-node__sub">{actTwo.updates}</span>
       </div>
 
       <div className="sm-ai">
-        <span className="sm-node__label">AI triage</span>
+        <span className="sm-node__label">{actTwo.triage}</span>
         <span className="sm-ai__card">
-          <span className="sm-chip">booking</span>
-          <span className="sm-chip">Tue AM</span>
+          <span className="sm-chip">{actTwo.exampleKind}</span>
+          <span className="sm-chip">{actTwo.exampleTime}</span>
         </span>
       </div>
 
       <div className="sm-dash">
-        <span className="sm-node__label">This week</span>
+        <span className="sm-node__label">{actTwo.dashboard}</span>
         <span className="sm-dash__bars">
           <span style={{ height: "40%" }} />
           <span style={{ height: "65%" }} />
@@ -358,7 +316,7 @@ function SystemMap() {
           <span style={{ height: "80%" }} />
           <span style={{ height: "72%" }} />
         </span>
-        <span className="sm-dash__zero">forgotten: 0</span>
+        <span className="sm-dash__zero">{actTwo.dashboardCount}</span>
       </div>
     </div>
   );

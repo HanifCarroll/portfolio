@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { Locale } from "../../i18n";
+import { getTuesdayCopy } from "../../lib/tuesday-sim/copy";
+import { TUESDAY_COMPANY } from "../../lib/tuesday-sim/story";
 import type { DayMetrics } from "../../lib/tuesday-sim/engine";
 import { trackTuesdayEvent } from "./analytics";
 import { ActOne } from "./ActOne";
@@ -22,14 +25,15 @@ const READER_ANCHORS: Record<string, string> = {
  * acts. The full prose version lives in the page itself for readers,
  * crawlers, reduced-motion users, and small screens.
  */
-export default function TuesdayExperience() {
+export default function TuesdayExperience({ locale }: { locale: Locale }) {
+  const copy = getTuesdayCopy(locale);
   const [mode, setMode] = useState<Mode>("experience");
   const [compact, setCompact] = useState(
     () =>
       window.matchMedia("(max-width: 900px)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
-  const [actLabel, setActLabel] = useState("Meridian Facility Services");
+  const [actLabel, setActLabel] = useState<string>(TUESDAY_COMPANY.name);
   const [visibleSection, setVisibleSection] = useState<string | null>(null);
   const [dayOne, setDayOne] = useState<DayMetrics | null>(null);
   const [dayOneDone, setDayOneDone] = useState(false);
@@ -177,15 +181,15 @@ export default function TuesdayExperience() {
 
   return (
     <div className="t-root">
-      <Hud act={actLabel} onRead={read} />
+      <Hud act={actLabel} onRead={read} locale={locale} />
 
-      <Intro onStart={handleStart} onRead={read} />
+      <Intro onStart={handleStart} onRead={read} locale={locale} />
 
       <section
         id="tuesday-act-1"
         className="t-section"
-        data-tuesday-act="Act I — The Old Tuesday"
-        aria-label="Act 1: the old Tuesday"
+        data-tuesday-act={copy.chrome.acts[0]}
+        aria-label={copy.actOne.section}
       >
         <div className="t1-track">
           <div className="t1-pin">
@@ -194,26 +198,28 @@ export default function TuesdayExperience() {
               onDayEnd={handleDayEnd}
               onSkip={() => trackTuesdayEvent("interactive_case_study_day_skipped")}
               compact={compact}
+              locale={locale}
             />
           </div>
         </div>
       </section>
 
-      <div id="tuesday-act-2" data-tuesday-act="Act II — The Build">
-        <ActTwo compact={compact} />
+      <div id="tuesday-act-2" data-tuesday-act={copy.chrome.acts[1]}>
+        <ActTwo compact={compact} locale={locale} />
       </div>
 
-      <div id="tuesday-act-3" data-tuesday-act="Act III — The New Tuesday">
-        <ActThree compact={compact} />
+      <div id="tuesday-act-3" data-tuesday-act={copy.chrome.acts[2]}>
+        <ActThree compact={compact} locale={locale} />
       </div>
 
-      <div id="tuesday-mirror" data-tuesday-act="The Mirror">
-        <Mirror />
+      <div id="tuesday-mirror" data-tuesday-act={copy.chrome.acts[3]}>
+        <Mirror locale={locale} />
       </div>
 
       {interstitial && dayOne && (
         <Interstitial
           metrics={dayOne}
+          locale={locale}
           onContinue={() => {
             setInterstitial(false);
             scrollToId("tuesday-act-2");
