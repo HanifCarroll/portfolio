@@ -21,9 +21,9 @@ const fields = [
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false}>
-	{/* One column below lg. At lg the form sits in a 36rem right column, and the email line moves up under the price line in the left column. DOM order stays heading, intro, price, form, email. */}
+	{/* One column below lg. At lg the columns split 5:6; at xl the form sits in a 36rem right column, and the email line moves up under the price line in the left column. DOM order stays heading, intro, price, form, email. */}
 	<section
-		class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:grid lg:grid-cols-[minmax(0,1fr)_36rem] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-16 lg:pt-20']}
+		class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-12 lg:pt-20 xl:grid-cols-[minmax(0,1fr)_36rem] xl:gap-x-16']}
 		aria-labelledby='contact-title'
 		data-motion-intro
 	>
@@ -31,7 +31,7 @@ const fields = [
 		<p class:list={[deckClass, 'mt-6 lg:col-start-1 lg:row-start-2 lg:mt-8']} data-motion-deck>Describe what’s going on in your business in a few sentences. I’ll look at it for free and reply by email with how I’d fix it and what it would cost.</p>
 		<p class='mt-4 mb-0 max-w-[38rem] text-[clamp(1.125rem,2vw,1.25rem)] leading-[1.55] text-ink text-pretty lg:col-start-1 lg:row-start-3 lg:mt-5' data-motion-intro-item>Projects start at $500, and I quote a fixed price before I start.</p>
 
-		<div class='mt-10 max-w-[36rem] lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-3' data-contact-root data-motion-intro-item>
+		<div class='mt-10 max-w-[36rem] lg:col-start-2 lg:max-w-none lg:row-span-4 lg:row-start-1 lg:mt-3' data-contact-root data-motion-intro-item>
 			<form method='post' action='/api/contact' class='grid gap-7' data-contact-form>
 				{fields.map(({ name, label, type, autocomplete, required, maxlength }) => (
 					<div>
