@@ -15,7 +15,7 @@ const locale = getLocale(Astro.currentLocale);
 const { action, nav, price, locale: localeCopy } = getDictionary(locale);
 const homePath = localizedPath('/', locale);
 const copy = (en: string, es: string) => locale === 'es' ? es : en;
-const title = copy('Websites, tools, and automations for small businesses | Hanif Carroll', 'Sitios web, herramientas y automatizaciones para negocios | Hanif Carroll');
+const title = copy('Websites, tools, and automations for small businesses | Hanif Carroll', 'Sitios web, herramientas y automatizaciones para negocios chicos | Hanif Carroll');
 const description = copy(
 	'I help small businesses work better with technology, with websites, tools, and automations built around how they work. Based in Buenos Aires, working U.S. Eastern hours.',
 	'Ayudo a negocios chicos a trabajar mejor. Desarrollo sitios web, herramientas y automatizaciones según cómo trabaja cada equipo. Estoy en Buenos Aires y trabajo en el horario de la costa este de Estados Unidos.'
@@ -221,7 +221,7 @@ const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].
 			<p class='home-more'>{price}</p>
 		</HomeSection>
 
-		<HomeSection name='apps' title={copy('I also build apps and products', 'También desarrollo apps y productos')} intro={copy('I’ve built apps with founders, and I run two products of my own.', 'Desarrollé apps con fundadores y tengo dos productos propios.')}>
+		<HomeSection name='apps' title={copy('I also build apps and products', 'También desarrollo apps y productos')} intro={copy('I’ve built apps with founders, and I run two products of my own.', 'Desarrollé apps con fundadores y hoy gestiono dos productos propios.')}>
 			<HomeProjects items={apps} />
 			<p class='home-more'><a class='home-link' href={localizedPath('/projects/', locale)}>{copy('See all projects', 'Ver todos los proyectos')}</a></p>
 		</HomeSection>

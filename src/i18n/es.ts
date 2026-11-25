@@ -88,6 +88,6 @@ export const es = {
     failure: `No se pudo enviar tu mensaje. Intentá de nuevo o escribime a ${EMAIL}.`,
     invalidHeading: "Revisá el formulario",
     failedHeading: "No se pudo enviar tu mensaje",
-    home: "Volver al inicio",
+    home: "Volvé al inicio",
   },
 } satisfies typeof en;

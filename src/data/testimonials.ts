@@ -6,7 +6,7 @@ export const fridaTestimonial = {
   es: {
     role: "Cofundadora de Fossil Free Culture NL",
     quote:
-      "Tiene la sensibilidad de un diseñador y su primera propuesta ya era muy parecida a lo que yo quería. Le pedí cambios una sola vez y quedó tal como lo quería. Pocas veces consigo ese resultado tan rápido con desarrolladores web.",
+      "Tiene la sensibilidad de un diseñador y su primera propuesta ya era muy parecida a lo que yo quería. Después de una sola revisión con correcciones, quedó tal como la quería. Pocas veces consigo ese resultado tan rápido con desarrolladores web.",
   },
 };
 
@@ -18,7 +18,7 @@ export const puntoDePartidaTestimonial = {
   es: {
     role: "Cofundadora de Punto de Partida",
     quote:
-      "Hanif entendió rápido qué necesitábamos para el negocio y qué buscábamos en el diseño. En muy poco tiempo armó un sitio sencillo y funcional. El sitio quedó mejor de lo que esperábamos.",
+      "Hanif entendió rápido qué necesitábamos para el negocio y qué buscábamos en el diseño. En muy poco tiempo armó el sitio web prolijo y funcional que necesitábamos. El sitio quedó mejor de lo que esperábamos.",
   },
 };
 
@@ -29,7 +29,8 @@ export const jiecTestimonial = {
     "I really liked how the process was organized and feel like I got great value from the project.",
   es: {
     role: "JIEC Labs",
-    quote: "Me gustó mucho cómo organizó el trabajo y siento que el proyecto me resultó muy útil.",
+    quote:
+      "Me gustó mucho cómo se organizó el trabajo y siento que obtuve mucho a cambio de lo que invertí en el proyecto.",
   },
 };
 
@@ -42,7 +43,7 @@ export const testimonials = [
     es: {
       role: "Diseñadora de producto sénior en LeagueApps",
       quote:
-        "Sugirió mejoras en cómo pasábamos los diseños al equipo de desarrollo para que pudiéramos trabajar mejor. En las revisiones hacía preguntas que ayudaban a entender mejor el diseño e implementó mis diseños de Figma para que fueran útiles para nuestros usuarios.",
+        "Sugirió mejoras en la forma de entregar los diseños al equipo de desarrollo para que el proceso fuera más eficiente. Durante las revisiones de diseño hizo preguntas de seguimiento muy acertadas. También implementó mis diseños de Figma para que pudiéramos ofrecerles mejoras útiles a nuestros usuarios.",
     },
   },
   {
@@ -53,7 +54,7 @@ export const testimonials = [
     es: {
       role: "Fundador y CEO de Genrupt",
       quote:
-        "Hanif me ayudó a crear y mejorar funciones en Genrupt.com. Su trabajo fue necesario para preparar la app para que pudiera procesar más solicitudes. Es muy organizado y muy bueno para encontrar formas de hacer las cosas con menos esfuerzo. ¡Además, da gusto trabajar con él!",
+        "Hanif me ayudó a desarrollar y optimizar funciones en Genrupt.com. Su trabajo fue fundamental para que la app estuviera preparada para un mayor volumen de uso. Es muy organizado y muy bueno para encontrar formas de hacer las cosas con menos esfuerzo. ¡Además, da gusto trabajar con él!",
     },
   },
   {
@@ -64,7 +65,7 @@ export const testimonials = [
     es: {
       role: "Cliente de Palabruno",
       quote:
-        "Contraté a Hanif para un proyecto que incluía una aplicación web y una app para el celular para profesores y estudiantes de español. Avanzamos bien y publicamos la app en App Store y Play Store. Da gusto trabajar con él y estuvo muy atento durante todo el proyecto. También aportó muchas observaciones útiles e ideas para la aplicación. Recomiendo trabajar con él.",
+        "Contraté a Hanif para un proyecto que incluía una aplicación web y una app para el celular para profesores y estudiantes de español. Avanzamos bien y publicamos la app en App Store y Play Store. Da mucho gusto trabajar con él y respondió rápido durante todo el proyecto. También aportó muchas observaciones valiosas e ideas para la aplicación. Recomiendo trabajar con él.",
     },
   },
   {
