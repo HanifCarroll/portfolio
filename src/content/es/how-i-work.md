@@ -19,7 +19,7 @@ Cuando se repite el mismo error, dejo de pedir otra corrección y busco la causa
 
 Ahora escribir código cuesta poco. Con un agente, corregir lo que causó el error suele llevar casi el mismo tiempo que hacer un arreglo rápido. Si el error se repite, corregirlo varias veces suele costar más que resolver la causa.
 
-Eso no significa preparar el sistema para un volumen que todavía no tiene. En las pruebas de carga de [Genrupt](/projects/genrupt/), el plan que generó el agente incluía más infraestructura de la que necesitábamos. Dejé una sola base de datos y un servicio de almacenamiento. Un solo servidor puede procesar muchas solicitudes. Antes de agregar otro, prefiero revisar si nuestro código demora las respuestas.
+Eso no significa preparar el sistema para un volumen que todavía no tiene. En las pruebas de carga de [Genrupt](/es/projects/genrupt/), el plan que generó el agente incluía más infraestructura de la que necesitábamos. Dejé una sola base de datos y un servicio de almacenamiento. Un solo servidor puede procesar muchas solicitudes. Antes de agregar otro, prefiero revisar si nuestro código demora las respuestas.
 
 ## Pruebo en el producto real <!-- heading-id: i-test-in-the-real-product -->
 
@@ -29,13 +29,13 @@ También reviso qué comprobó realmente el agente. Cuando leo un resumen que pa
 
 ## Pruebo las funciones con IA a partir de errores reales <!-- heading-id: i-test-ai-features-against-real-failures -->
 
-En [Palabruno](/projects/palabruno/), una app para leer en español, el fundador me mandó un documento con muchos ejemplos de grupos de palabras mal armados o mal traducidos. Lo más rápido habría sido corregir esos ejemplos. Pero si solo corregíamos los casos que él había encontrado, el lector podía dar otro resultado incorrecto cuando el fundador probara el próximo texto.
+En [Palabruno](/es/projects/palabruno/), una app para leer en español, el fundador me mandó un documento con muchos ejemplos de grupos de palabras mal armados o mal traducidos. Lo más rápido habría sido corregir esos ejemplos. Pero si solo corregíamos los casos que él había encontrado, el lector podía dar otro resultado incorrecto cuando el fundador probara el próximo texto.
 
 Convertimos cada ejemplo en un caso de prueba con una etiqueta, agrupamos los errores según el patrón gramatical que los causaba y corregimos un patrón entero por vez. Después de cada cambio repetimos todas las pruebas y probamos el lector con un conjunto de textos reales de estructura menos regular. Así podíamos comprobar si el lector daba los resultados que el fundador esperaba también con otros textos.
 
 El diseño cambió después de esas pruebas. Al principio, el sistema hacía una sola consulta grande a un modelo para separar las palabras, analizar la gramática, generar las explicaciones y corregir el resultado. Cada vez se usaban más reglas para corregir la respuesta del modelo. Ahora el sistema separa el texto en palabras y un analizador gramatical genera una estructura posible. El sistema aplica reglas para delimitar cada frase y hace una consulta más pequeña al modelo para generar una explicación por vez. Un validador comprueba el resultado. Cada paso se puede probar por separado. El modelo solo genera las explicaciones.
 
-En [Casamo](/projects/casamo/), antes de cambiar el modelo que analiza fotos de alojamientos, armamos un conjunto de fotos reales con etiquetas para probarlo. También empiezo a medir el costo de las funciones con IA temprano, porque necesito saber cuánto me cuesta la IA por usuario antes de fijar límites o precios razonables.
+En [Casamo](/es/projects/casamo/), antes de cambiar el modelo que analiza fotos de alojamientos, armamos un conjunto de fotos reales con etiquetas para probarlo. También empiezo a medir el costo de las funciones con IA temprano, porque necesito saber cuánto me cuesta la IA por usuario antes de fijar límites o precios razonables.
 
 ## Me pregunto para qué sirve cada parte <!-- heading-id: i-question-what-each-part-is-for -->
 

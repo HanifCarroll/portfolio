@@ -1,0 +1,76 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import requestInbox from "@src/assets/img/projects/switchboard/request-inbox.png";
+import investigationReview from "@src/assets/img/projects/switchboard/investigation-review.png";
+import { resourceLinksClass } from "@src/lib/ui";
+
+<CaseSection title="Cómo verificar un cambio que pide un cliente antes de aplicarlo">
+Diseñé, desarrollé y desplegué Switchboard en AWS como demo con datos ficticios. Un cliente ficticio pide cambiar dónde recibe su sistema las notificaciones de eventos. Enviar esos eventos al destino equivocado podría exponer datos o interrumpir un servicio.
+
+Armé un agente en Python y LangGraph que consulta los registros de clientes y las políticas de la empresa, y genera un informe con evidencia. El código de la aplicación controla la aprobación, la ejecución y la verificación de la entrega.
+
+Los registros de la empresa y los sistemas de los clientes son ficticios. Para investigar, el sistema consulta un modelo real mediante Amazon Bedrock. Para verificar la entrega, envía eventos ficticios firmados entre puntos de conexión controlados en AWS.
+
+  <nav className={resourceLinksClass} aria-label="Recursos del proyecto Switchboard">
+    <a href="https://switchboard.hanifcarroll.com/">Probar la demo</a>
+    <a href="https://github.com/HanifCarroll/Switchboard">Código fuente</a>
+    <a href="https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md">Arquitectura</a>
+  </nav>
+</CaseSection>
+
+<CaseSection title="Qué puede hacer el agente de IA y qué no" media>
+El agente obtiene tickets, registros de clientes, integraciones y políticas mediante herramientas cuyo código comprueba el rol del empleado y los clientes que tiene asignados. La identidad del empleado se obtiene del contexto confiable de la aplicación, no de los argumentos con los que el modelo llama a las herramientas.
+
+El modelo devuelve un informe estructurado. En otra llamada, un modelo revisa la interpretación de las políticas. El código de la aplicación compara las referencias y el cambio propuesto con los registros. Se permite una sola revisión del informe. Si después de la revisión sigue sin pasar la validación, no se publica.
+
+Así, el modelo puede investigar, pero el código de la aplicación controla la autorización y los cambios. Si una política impide el cambio, ese es un resultado válido de la investigación. Si falla una llamada al proveedor, es un fallo operativo.
+
+  <ImagePlate image={investigationReview} alt="Informe de Switchboard con comprobaciones de los datos del cliente, evidencia y aprobación requerida" caption="Informe de ejemplo de un caso de prueba ficticio preparado de antemano." />
+</CaseSection>
+
+<CaseSection title="Cada aprobación corresponde a un cambio específico">
+  <DecisionBlock title="Otro empleado autorizado tiene que aprobar el cambio">
+    Una propuesta para el entorno de producción ficticio necesita la aprobación de otro responsable técnico asignado al cliente. Antes de aplicar el cambio, el código vuelve a comprobar los permisos, la aprobación, el horario permitido para el cambio y la versión de la configuración. Un cambio posterior a la investigación puede invalidar la propuesta.
+  </DecisionBlock>
+
+  <DecisionBlock title="Guardar el cambio y su comprobante juntos">
+    La actualización de la integración y el comprobante de ejecución se guardan en una sola transacción de DynamoDB. Si se repite la operación, el sistema devuelve el comprobante guardado. Para verificar la entrega, el código comprueba el destino activo y su versión, y valida el identificador del evento y el hash de los datos que devuelve el receptor.
+  </DecisionBlock>
+
+Si vence el plazo de verificación de la entrega, no se confirma el resultado porque el evento podría haber llegado. Si la entrega falla o no se puede confirmar, alguien tiene que intervenir. La propuesta no autoriza revertir el cambio automáticamente.
+
+</CaseSection>
+
+<CaseSection title="Cómo se recupera el trabajo después de un fallo parcial">
+Usé Step Functions para coordinar el proceso, SQS para enviar las tareas de investigación y DynamoDB para guardar el progreso y los resultados. La aplicación guarda cada tarea antes de enviarla. Si falla el inicio del proceso, se puede recuperar la tarea con un reintento o un proceso de mantenimiento.
+
+Los procesos de ejecución adquieren bloqueos temporales para impedir que una tarea duplicada inicie otra investigación mientras hay una en curso. Si falla la publicación de una propuesta, el sistema puede reutilizar el resultado validado que ya guardó. Si hay un fallo antes de guardar ese resultado, una llamada al modelo todavía puede repetirse. La cola entrega cada tarea al menos una vez, por eso los cambios que aplica la aplicación son idempotentes.
+
+Las llamadas de retorno usan los comprobantes de acciones guardados. Un proceso de mantenimiento recupera las que no se completaron. El visitante puede volver a abrir la URL de una ejecución guardada en el navegador y recuperar su estado. Hay una forma distinta de recuperar el trabajo según dónde falle, sin reiniciar todo el proceso ante cualquier error.
+
+</CaseSection>
+
+<CaseSection title="Despliegue y monitoreo">
+El sitio de Next.js y la API de FastAPI se ejecutan en Lambda detrás de CloudFront. Definí el despliegue con AWS SAM y CloudFormation. En cada publicación se comprueba el funcionamiento del sitio y de la API. Si fallan los controles de estado, se restaura el despliegue anterior.
+
+Configuré alarmas en CloudWatch para errores de funciones, la antigüedad de los mensajes en cola, los mensajes en la cola de fallos y los procesos que fallan o superan el tiempo permitido. Uso trazas de X-Ray y registros estructurados para diagnosticar fallos, sin agregar las instrucciones que recibe el modelo ni los registros de clientes a los atributos de las trazas. En el [documento público de arquitectura](https://github.com/HanifCarroll/Switchboard/blob/main/docs/architecture.md) podés ver cómo implementé esas decisiones.
+
+</CaseSection>
+
+<CaseSection title="Qué muestra la demo y cuáles son sus límites" media>
+El resultado es una demo pública donde podés revisar todo el proceso: investigación, aprobación, ejecución y verificación de la entrega. Cada visitante tiene un espacio de trabajo aislado y puede elegir entre tres perfiles ficticios ya configurados. Alex, ingeniero de implementación, se ocupa de las solicitudes de Acme. Priya, responsable técnica, revisa las propuestas de Acme que cumplen los requisitos. Ben, especialista de soporte, investiga las solicitudes de Globex con acceso limitado. No necesitás iniciar sesión con una cuenta de trabajo para usar esos perfiles. Cuando cambiás de perfil, conservás el mismo espacio de trabajo. El servidor verifica el rol seleccionado y los clientes asignados antes de cada acción.
+
+El repositorio incluye pruebas deterministas y escenarios de evaluación. Eso no demuestra una tasa de aciertos medida para el modelo. En la demo se ve una integración controlada en AWS con datos ficticios. No demuestra que un cliente la haya usado en producción ni qué resultados habría obtenido el personal.
+
+<ImagePlate
+  image={requestInbox}
+  alt="Bandeja de solicitudes de Switchboard con solicitudes listas para investigar, pendientes de aprobación y aprobadas para ejecutar"
+/>
+
+[Probá Switchboard](https://switchboard.hanifcarroll.com/) para ver cómo se aprueba un cambio válido o investigar un destino que no es seguro. En el [repositorio](https://github.com/HanifCarroll/Switchboard) podés revisar la autorización, los comprobantes, los reintentos y las pruebas.
+
+</CaseSection>

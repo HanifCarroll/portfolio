@@ -1,0 +1,96 @@
+---
+---
+
+import CaseSection from "@src/components/case-study/CaseSection.astro";
+import DecisionBlock from "@src/components/case-study/DecisionBlock.astro";
+import ImagePlate from "@src/components/case-study/ImagePlate.astro";
+import ProofRows from "@src/components/case-study/ProofRows.astro";
+import baEventosEventDetail from "@src/assets/img/projects/ba-eventos-event-detail.png";
+
+export const shippedRows = [
+  {
+    label: "Cobertura del catálogo",
+    title: "Podés buscar en un catálogo con datos de seis fuentes",
+    body: "En un registro anterior del catálogo había más de 9.200 registros de eventos, más de 1.250 eventos próximos y más de 1.500 lugares. Esas cifras corresponden a ese momento, no al catálogo actual.",
+  },
+  {
+    label: "Recomendaciones verificables",
+    title: "Las recomendaciones se generan con datos del catálogo",
+    body: "El sistema obtiene candidatos con dos métodos de búsqueda y filtros estructurados. Con evaluaciones de regresión compruebo que las recomendaciones se basen en el catálogo y que las preguntas siguientes se relacionen con los eventos correctos.",
+  },
+  {
+    label: "Mantenimiento del catálogo",
+    title: "Puedo mejorar los datos sin rehacer el producto",
+    body: "Las importaciones automáticas y las herramientas de calidad de datos permiten identificar lugares que coinciden, ampliar las descripciones y corregir registros en el catálogo que usa el buscador público.",
+  },
+  {
+    label: "Inicio rápido de la búsqueda",
+    title: "Podés empezar con un toque o una frase",
+    body: "Podés dictar una pregunta o elegir una opción para esta noche, este fin de semana o una recomendación sorpresa.",
+  },
+];
+
+<CaseSection title="Dónde se anuncian los eventos">
+Los eventos de Buenos Aires se anuncian en publicaciones de redes sociales, sitios de venta de entradas, páginas de los lugares y grupos de chat. Los datos cambian seguido y cada fuente describe los eventos de forma distinta.
+
+BA Eventos es un producto independiente. Soy su dueño y lo gestiono como ingeniero de producto con IA. Desarrollé la interfaz en SvelteKit, la importación de eventos, las herramientas de búsqueda y las funciones de chat. Así podés pedir un plan según lo que tengas ganas de hacer, el barrio o el horario y ver opciones de un solo catálogo con datos revisados.
+
+</CaseSection>
+
+<CaseSection title="Preparar el catálogo antes de agregar IA">
+  <DecisionBlock title="Preparar primero los datos de los eventos">
+    Antes de que las búsquedas pudieran devolver resultados útiles, había que normalizar los datos importados, identificar lugares que coincidían y mejorar las descripciones.
+  </DecisionBlock>
+
+  <DecisionBlock title="Usar IA para interpretar la pregunta sin inventar la respuesta">
+    La búsqueda semántica permite procesar pedidos descriptivos como «jazz romántico en Palermo». La búsqueda por palabras clave conserva los nombres exactos. Antes de combinar el orden de los resultados, el sistema aplica las mismas restricciones de lugar, fecha, barrio y categoría en ambas búsquedas. Si un requisito se puede resolver con un filtro estructurado, uso ese filtro en vez de depender solo de la similitud.
+  </DecisionBlock>
+</CaseSection>
+
+<CaseSection title="Cómo relaciono las preguntas siguientes con los eventos correctos">
+Para responder a una pregunta como «¿dónde queda el segundo?», hace falta saber qué vio la persona. Guardo los identificadores de los eventos y el orden en que aparecieron en las respuestas anteriores. Después vuelvo a cargar los datos correspondientes del catálogo. Si falta un registro o lo retiraron, el sistema lo excluye y no vuelve a numerar los demás eventos sin avisar.
+
+Para saber si un evento está guardado, el sistema consulta la cuenta autenticada en vez de usar un dato enviado por el cliente web. Si la persona no inició sesión o no se puede hacer la consulta, el estado queda como desconocido. Así separo el contexto de la conversación que usa el modelo de los datos oficiales de los eventos y de la cuenta.
+
+Armé evaluaciones de regresión para comprobar que las recomendaciones se basaran en el catálogo y que las preguntas siguientes se refirieran a los eventos correctos. Las pruebas cubren referencias inválidas, cambios en registros del catálogo y descripciones que no respaldan un criterio solicitado. Comprueban casos específicos de fallo, no la tasa general de aciertos del modelo.
+
+</CaseSection>
+
+<CaseSection title="Podés volver al mismo lugar del chat">
+El chat en SvelteKit muestra las respuestas a medida que se generan, guarda las conversaciones y permite reintentar o recuperar la operación. Cuando abrís el detalle de un evento, el sistema conserva la conversación y la posición en la página. Podés revisar el lugar o el enlace de compra de entradas y volver a la misma lista.
+
+En la interfaz podés usar las tarjetas y las páginas de detalle para decidir. El asistente procesa el pedido en el chat. Con las dos cosas en la misma interfaz, podés revisar un evento real en vez de depender solo del texto generado.
+
+</CaseSection>
+
+<CaseSection title="Cómo reduje el costo de recopilar datos de eventos">
+Algunas fuentes requieren un navegador para completar sus verificaciones. Otras se pueden consultar por HTTP o con Cloudflare Browser Rendering. Mantuve Browserbase para las consultas protegidas de Passline, limité el uso del proxy a los dominios necesarios y bloqueé imágenes, fuentes, archivos multimedia y rastreadores innecesarios. Si una consulta simplificada del detalle falla, el sistema puede reintentar una vez con el perfil estándar.
+
+En los reintentos de una misma importación, el sistema reutiliza los datos que ya obtuvo. También cierra las sesiones de navegador antes de procesar los datos con la base de datos y la IA. Así no repite una consulta paga del navegador si falla una etapa posterior. Las consultas diarias para actualizar el catálogo no reutilizan los datos de esos reintentos.
+
+Con estos cambios y los que hice al obtener datos en [Casamo](/es/projects/casamo/), el uso total de Browserbase quedó dentro del límite del plan.
+
+</CaseSection>
+
+<CaseSection title="Cómo empezar una búsqueda">
+Podés escribir o dictar una pregunta, o elegir una opción para esta noche, este fin de semana o una recomendación sorpresa. El mismo buscador funciona si empezás por un género, un barrio, una fecha o lo que tengas ganas de hacer.
+
+</CaseSection>
+
+<CaseSection title="Qué está disponible">
+  <ProofRows rows={shippedRows}>
+    <p>
+      El buscador que ves es solo una parte de BA Eventos. Con los datos importados, los lugares identificados, los registros corregidos y la búsqueda, el sistema puede generar una respuesta en lenguaje natural basada en el catálogo. La cobertura del catálogo y la calidad de las recomendaciones dependen de los datos de origen y de los resultados de la búsqueda.
+    </p>
+  </ProofRows>
+</CaseSection>
+
+<CaseSection title="La página de cada evento" media>
+En cada página de evento podés ver la imagen, la fecha, el lugar, el precio, la descripción y el enlace de compra de entradas.
+
+<ImagePlate
+  image={baEventosEventDetail}
+  alt="Página de un evento en BA Eventos con imagen, fecha, lugar, precio, descripción y enlace de compra de entradas"
+/>
+
+</CaseSection>
