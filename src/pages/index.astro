@@ -3,11 +3,11 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Portrait from '../assets/img/hanif-hero-portrait.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BOOK_CALL_URL, EMAIL_URL } from '../consts';
+import { BOOK_CALL_URL } from '../consts';
 import FormattedDate from '../components/FormattedDate.astro';
 import HomeProjects from '../components/home/HomeProjects.astro';
 import HomeSection from '../components/home/HomeSection.astro';
-import { jiecTestimonial } from '../data/testimonials';
+import { fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial } from '../data/testimonials';
 import '../styles/home.css';
 
 const title = 'Websites, tools, and automations for small businesses | Hanif Carroll';
@@ -109,7 +109,7 @@ const work = [
 
 const process = [
 	{ title: 'Tell me about it', body: 'By email or on a call.' },
-	{ title: 'Agree on a fix', body: 'I look at how the work happens now and suggest a fix with a clear scope and price.' },
+	{ title: 'I take a free look', body: 'I look at how the work happens now, then tell you how I’d fix it and what it would cost.' },
 	{ title: 'I build it', body: 'Then I set it up with your team and show you how it works.' }
 ];
 
@@ -140,17 +140,10 @@ const apps = [
 	}
 ];
 
-const feedback = [
-	{ quote: `“${jiecTestimonial.quote}”`, credit: `${jiecTestimonial.name} · ${jiecTestimonial.role}` },
-	{
-		quote: '“Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. The result exceeded our expectations.”',
-		credit: 'Monica Londoño · Co-founder, Punto de Partida'
-	},
-	{
-		quote: '“He is really organized and great at finding ways to make things more efficient. He is also a pleasure to work with!”',
-		credit: 'Michael Shackelford · Founder & CEO, Genrupt'
-	}
-];
+const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].map(({ name, role, quote }) => ({
+	quote: `“${quote}”`,
+	credit: `${name} · ${role}`
+}));
 ---
 
 <BaseLayout
@@ -169,7 +162,7 @@ const feedback = [
 				<h1 id='hero-title'>I help small businesses <br />work <em>better</em> with technology</h1>
 				<p class='home-deck' data-deck>I build websites that bring in customers, tools that fit how you work, and automations for the tasks your team still does by hand.</p>
 				<div class='home-actions' data-cta>
-					<a class='home-primary' href={EMAIL_URL} data-track-event='email_clicked' data-track-location='home_hero'>Email me about a problem</a>
+					<a class='home-primary' href='/contact/' data-track-event='email_clicked' data-track-location='home_hero'>Email me about a problem</a>
 					<a class='home-link' href={BOOK_CALL_URL} target='_blank' rel='noopener noreferrer' data-track-event='book_call_clicked' data-track-location='home_hero'>Book a call</a>
 				</div>
 			</div>
@@ -191,6 +184,17 @@ const feedback = [
 			<HomeProjects items={work} />
 		</HomeSection>
 
+		<HomeSection name='feedback' title='What clients say'>
+			<div class='home-feedback'>
+				{feedback.map(({ quote, credit }) => (
+					<figure>
+						<blockquote><p>{quote}</p></blockquote>
+						<figcaption class='home-label'>{credit}</figcaption>
+					</figure>
+				))}
+			</div>
+		</HomeSection>
+
 		<HomeSection name='process' title='How we’d work together' intro='You can start with just one problem.'>
 			<ol class='home-points' role='list'>
 				{process.map(({ title, body }, index) => (
@@ -201,22 +205,12 @@ const feedback = [
 					</li>
 				))}
 			</ol>
+			<p class='home-more'>Projects start at $500, and I quote a fixed price before I start.</p>
 		</HomeSection>
 
 		<HomeSection name='apps' title='I also build apps and products' intro='I’ve built apps with founders, and I run two products of my own.'>
 			<HomeProjects items={apps} />
 			<p class='home-more'><a class='home-link' href='/projects/'>See all projects</a></p>
-		</HomeSection>
-
-		<HomeSection name='feedback' title='What clients say'>
-			<div class='home-feedback'>
-				{feedback.map(({ quote, credit }) => (
-					<figure>
-						<blockquote><p>{quote}</p></blockquote>
-						<figcaption class='home-label'>{credit}</figcaption>
-					</figure>
-				))}
-			</div>
 		</HomeSection>
 
 		<HomeSection name='about' title='About me'>

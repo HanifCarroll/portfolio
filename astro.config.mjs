@@ -12,6 +12,7 @@ const isDev = process.env.NODE_ENV === "development";
 const siteDomain = isDev ? "localhost" : "hanifcarroll.com";
 const excludedSitemapPaths = [
   "/now/",
+  "/contact/sent/",
   ...DELISTED_PROJECT_SLUGS.map((slug) => `/projects/${slug}/`),
 ];
 

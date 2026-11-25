@@ -1,3 +1,17 @@
+export const fridaTestimonial = {
+  name: "Frida Paes Leão",
+  role: "Co-founder, Fossil Free Culture NL",
+  quote:
+    "He has a designer’s sensitivity, and his first proposal was already very close to what I had in mind. After one round of corrections, it was exactly right. I rarely get there this quickly with web developers.",
+};
+
+export const puntoDePartidaTestimonial = {
+  name: "Monica Londoño",
+  role: "Co-founder, Punto de Partida",
+  quote:
+    "Hanif quickly understood our needs, both from a business and aesthetic perspective, and translated them into a clean, functional website in no time. The result exceeded our expectations.",
+};
+
 export const jiecTestimonial = {
   name: "Joshua Hamer",
   role: "JIEC Labs",
