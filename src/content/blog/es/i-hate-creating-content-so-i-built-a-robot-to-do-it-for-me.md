@@ -1,7 +1,7 @@
 ---
 title: "Armé un robot para crear contenido porque odio hacerlo"
 pubDate: "2025-08-19"
-description: "Cómo automaticé mi proceso de creación de contenido con un flujo funcional con IA que convierte transcripciones de llamadas en publicaciones listas para programar."
+description: "Cómo automaticé mi proceso de creación de contenido con un flujo con IA escrito en estilo de programación funcional que convierte transcripciones de llamadas en publicaciones listas para programar."
 hidden: true
 ctaVariant: systemsBuild
 ---
@@ -36,7 +36,7 @@ Dividí el proceso en cinco etapas, con una revisión humana antes de generar la
 2.  **Revisión de ideas**: es la primera revisión humana. Reviso rápido las ideas que se extrajeron con IA. Apruebo las que coinciden con mi experiencia y rechazo las que no.
 3.  **Generación de publicaciones**: el sistema usa las ideas aprobadas en un prompt más elaborado para generar con IA publicaciones adaptadas a LinkedIn y X.
 4.  **Revisión de publicaciones**: es la segunda revisión humana. Reviso los borradores generados, hago los ajustes finales que hagan falta y los apruebo para que se programen.
-5.  **Programación de publicaciones**: por último, el sistema manda todas las publicaciones aprobadas directamente a la **[API de Postiz](https://postiz.com)** para programarlas sin copiar y pegar nada a mano.
+5.  **Programación de publicaciones**: por último, el sistema manda todas las publicaciones aprobadas directamente a la **[API de Postiz (en inglés)](https://postiz.com)** para programarlas sin copiar y pegar nada a mano.
 
 En este video podés ver todo el proceso, desde que se procesa una transcripción sin editar hasta que se programan las publicaciones finales.
 

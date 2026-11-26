@@ -23,7 +23,7 @@ Otra podría cuestionar las abstracciones innecesarias, tratar los cambios rever
 
 ¿Cuál es mejor?
 
-La primera podría tener todo el sentido para una persona que desarrolla software en una empresa de la lista Fortune 500, donde muchos equipos trabajan en los mismos sistemas y un cambio chico puede tener consecuencias mucho después de que su autor haya dejado de trabajar ahí.
+La primera podría ser la indicada para alguien que desarrolla software en una empresa de la lista Fortune 500, donde muchos equipos trabajan en los mismos sistemas y un cambio chico puede tener consecuencias mucho después de que su autor haya dejado de trabajar ahí.
 
 La segunda podría ser justo lo que necesita alguien que desarrolla un proyecto personal por su cuenta.
 
@@ -75,9 +75,9 @@ Imaginate que descargás una habilidad llamada launch-product.
 
 Una versión sigue el enfoque de respuesta directa y se enfoca en la oferta, la conversión y las pruebas de distintas formas de generar más demanda.
 
-Otra sigue un enfoque de marketing de marca y le da más importancia a distinguirse, llegar a un público amplio y entender qué recuerdan los compradores con el tiempo.
+Otra sigue un enfoque de marketing de marca y le da más importancia a distinguirse, a llegar a un público amplio y a lo que recuerdan los compradores con el tiempo.
 
-Una tercera parte de la idea de que el marketing funciona mejor cuando te ganás la atención y la confianza de un público más chico y bien definido.
+Una tercera versión parte de la idea de que el marketing funciona mejor cuando te ganás la atención y la confianza de un público más chico y bien definido.
 
 Tres profesionales excelentes en marketing podrían escribir esas habilidades y aun así recomendar acciones totalmente distintas para el mismo producto.
 
@@ -89,7 +89,7 @@ También adopto la forma de pensar de una escuela de marketing.
 
 Lo que parecía un conjunto de técnicas de marketing también incluía una teoría sobre cómo funciona el marketing.
 
-## Las ideas tienen que estar a la vista antes de instalar <!-- heading-id: making-the-hidden-layer-visible -->
+## Mostrá las ideas antes de la instalación <!-- heading-id: making-the-hidden-layer-visible -->
 
 No hace falta decidir dónde debería quedar la doctrina para usar esta distinción de una forma útil.
 

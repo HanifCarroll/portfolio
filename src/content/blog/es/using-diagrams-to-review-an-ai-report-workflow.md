@@ -12,7 +12,7 @@ Casamo analiza varias propiedades a la vez. Cuando termina de analizarlas, orden
 
 Para ver el sistema completo antes de leer funciones individuales, le pedí a un agente que dibujara el proceso de generación de informes en BPMN y en Excalidraw, además de un diagrama de arquitectura. En parte quería comparar formatos, pero los diagramas también me sirvieron para empezar a revisar la eficiencia del proceso. En la primera revisión, el agente había revisado el código directamente. Le pedí que empezara de nuevo por los diagramas: que revisara el diseño, anotara qué trabajo podía ser innecesario y verificara cada posibilidad en el código.
 
-A partir de esa revisión hice dos cambios. Ahora los informes finales se preparan en paralelo y, durante el escaneo, ya no se vuelve a leer la evidencia guardada si no cambió. En una prueba de rendimiento sin conexión, el segundo cambio redujo un 30 % las lecturas del almacenamiento y un 26 % las sentencias de base de datos. Al revisar el código también descarté algunos cambios que parecían necesarios al ver los diagramas.
+A partir de esa revisión se hicieron dos cambios. Ahora los informes finales se preparan en paralelo y, durante el escaneo, ya no se vuelve a leer la evidencia guardada si no cambió. En una prueba de rendimiento sin conexión, el segundo cambio redujo un 30 % las lecturas del almacenamiento y un 26 % las sentencias de base de datos. Al revisar el código, el agente también descartó algunos cambios que parecían necesarios al ver los diagramas.
 
 ## Qué se veía en los diagramas <!-- heading-id: what-the-drawings-showed -->
 
@@ -40,7 +40,7 @@ El diagrama de arquitectura me llevó a hacer otra pregunta. Había muchas flech
 
 ## La preparación final se hacía de a una propiedad por vez <!-- heading-id: final-preparation-ran-one-pick-at-a-time -->
 
-En el código vi que, durante la preparación de los informes, se ejecutaba una tarea por vez. Un planificador seleccionaba la siguiente tarea de recorrido a pie o de informe, el coordinador la ejecutaba y, recién cuando terminaba, el planificador seleccionaba otra. Así que, aunque todos los análisis de propiedades terminaran al mismo tiempo, los informes se preparaban uno después del otro.
+El agente comprobó en el código que, durante la preparación de los informes, se ejecutaba una tarea por vez. Un planificador seleccionaba la siguiente tarea de recorrido a pie o de informe, el coordinador la ejecutaba y, recién cuando terminaba, el planificador seleccionaba otra. Así que, aunque todos los análisis de propiedades terminaran al mismo tiempo, los informes se preparaban uno después del otro.
 
 Parte de esa espera es necesaria. Casamo publica un informe completo con una selección fija de propiedades. Para publicarlo, hay que esperar a que estén listas todas. Pero preparar el informe de una propiedad nunca dependió de otra.
 
@@ -73,17 +73,17 @@ Ahora, durante la planificación, el sistema consulta directamente el registro d
 
 Solo se guarda en caché la evidencia que nunca cambia. Para los datos que sí pueden cambiar, como qué ejecución tomó una tarea o cuándo se puede volver a intentar, el sistema consulta la base de datos en cada lectura. La asignación de una tarea a una ejecución puede haber vencido desde la última lectura.
 
-## Los cambios que descarté <!-- heading-id: what-didnt-turn-into-a-fix -->
+## Qué cambios se descartaron <!-- heading-id: what-didnt-turn-into-a-fix -->
 
-Al revisar el código descarté algunos cambios que parecían necesarios al ver los diagramas. En el diagrama del proceso parecía que el coordinador consultaba el estado todo el tiempo. En realidad, espera a que los Workflows hijos notifiquen que terminaron y solo consulta cada tanto para detectar notificaciones perdidas. No había consultas constantes que eliminar.
+El agente descartó en la revisión del código algunos cambios que parecían necesarios al ver los diagramas. En el diagrama del proceso parecía que el coordinador consultaba el estado todo el tiempo. En realidad, espera a que los Workflows hijos notifiquen que terminaron y solo consulta cada tanto para detectar notificaciones perdidas. No había consultas constantes que eliminar.
 
 El paso contraído del análisis de propiedades daba a entender que se hacía una auditoría completa de cada propiedad antes de poder descartarla con una verificación rápida. En el código, la evidencia que se recopila de una propiedad ya depende de lo que se encontró hasta ese momento. Vale la pena revisar por separado cómo se procesan las propiedades cuyos precios todavía no se pueden comparar.
 
-El envío de correos ya estaba separado de la publicación del informe. Los Workers separados, los Workflows hijos, la base de datos y el almacenamiento de objetos tienen cada uno una función clara. No encontré nada en el código que indicara que convenía unirlos o que la base de datos limitara el rendimiento.
+El envío de correos ya estaba separado de la publicación del informe. Los Workers separados, los Workflows hijos, la base de datos y el almacenamiento de objetos tienen cada uno una función clara. No había nada en el código que indicara que convenía unirlos o que la base de datos limitara el rendimiento.
 
 ## La prueba de rendimiento sin conexión <!-- heading-id: the-offline-benchmark -->
 
-Probé el cambio de reutilización de evidencia con una propiedad ficticia de Airbnb, con cuatro fotos, el primer paso del análisis completo y dos grupos de fotos pendientes de analizar. Después de una ejecución de calentamiento, ejecuté cinco ciclos de planificación con cada versión. Usé Cloudflare D1/R2 en local, sin servicios ni modelos externos.
+En la prueba se evaluó el cambio de reutilización de evidencia con una propiedad ficticia de Airbnb que tenía cuatro fotos, el primer paso del análisis ya completado y dos grupos de fotos pendientes de analizar. Después de una ejecución de calentamiento, se hicieron cinco ciclos de planificación con cada versión. Se usó Cloudflare D1/R2 en local, sin servicios ni modelos externos.
 
 | Medida                          | Antes  | Después | Reducción |
 | ------------------------------- | -----: | ------: | --------: |
@@ -97,4 +97,4 @@ Las dos versiones terminaron con la misma evidencia y los mismos registros de ta
 
 Al empezar por los diagramas, cambiaron las preguntas de la revisión. Si empezás por el código, revisás una función por vez, y ninguno de los dos problemas se veía en una sola función. Solo podés ver que la preparación se hace en serie si seguís el trabajo desde el análisis de las propiedades hasta la publicación. Y solo notás las lecturas repetidas si observás cuántas veces pasa la misma evidencia por la misma conexión.
 
-También era fácil sacar conclusiones de más a partir de los diagramas. Descarté varios cambios cuando el agente revisó el código. Algunas esperas y lecturas nuevas que parecían innecesarias tenían un motivo: para publicar hay que esperar a que estén listas todas las propiedades, y en cada lectura hay que verificar qué ejecución tiene asignada la tarea. Usé los diagramas para decidir qué buscar y el código para decidir qué cambiar.
+También era fácil sacar conclusiones de más a partir de los diagramas. Varios cambios que parecían necesarios quedaron descartados cuando el agente revisó el código. Algunas esperas y lecturas nuevas que parecían innecesarias tenían un motivo: para publicar hay que esperar a que estén listas todas las propiedades, y en cada lectura hay que verificar qué ejecución tiene asignada la tarea. A partir de los diagramas se definió qué buscar. Con la revisión del código se determinó qué cambiar.
