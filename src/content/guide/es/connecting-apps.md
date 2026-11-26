@@ -26,7 +26,7 @@ Una API (interfaz de programación de aplicaciones) es un conjunto de reglas que
 
 ## Qué revisar <!-- heading-id: what-to-watch-for -->
 
-- **Integraciones que envían menos datos de los que esperás.** «Se conecta con Google Sheets» puede significar que podés hacer una sola exportación, no que la planilla se actualiza con cada nueva venta. Revisá qué datos se envían y con qué frecuencia.
+- **Integraciones que envían menos datos de los que esperás.** «Se conecta con Google Sheets» puede referirse a una exportación puntual, sin que la planilla se actualice con cada venta nueva. Revisá qué datos se envían y con qué frecuencia.
 - **API solo en planes más caros.** Algunos proveedores dan acceso a la API solo en los planes más caros.
 - **Quién mantiene la conexión.** Cualquier conexión puede dejar de funcionar si cambia una de las aplicaciones. Definí quién la revisa y quién la arregla.
 

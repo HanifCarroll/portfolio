@@ -27,7 +27,7 @@ Precios a noviembre de 2026.
 
 ## Qué revisar <!-- heading-id: what-to-watch-for -->
 
-- **Probá restaurar archivos.** Una copia de seguridad solo sirve si podés recuperar los archivos. Cada unos meses, restaurá algunos para comprobarlo. Incluí un archivo de una carpeta que solo está online y una exportación de una de tus aplicaciones, así sabés que también están en la copia. Si guardás fotos o archivos del negocio solo en un celular, hacé una copia de seguridad del celular y comprobá que puedas restaurar datos desde esa copia.
+- **Probá restaurar archivos.** Una copia de seguridad solo sirve si podés recuperar los archivos. Cada pocos meses, restaurá algunos archivos para comprobarlo. Incluí un archivo de una carpeta que solo está online y una exportación de una de tus aplicaciones, así sabés que también están en la copia. Si guardás fotos o archivos del negocio solo en un celular, hacé una copia de seguridad del celular y comprobá que puedas restaurar datos desde esa copia.
 - **Dejá una copia desconectada.** El ransomware también puede bloquear los archivos de cualquier disco conectado a una computadora infectada.
 - **Datos de las aplicaciones.** Los proveedores de aplicaciones online guardan sus propias copias, pero un proveedor podría no permitirte recuperar algo que borraste por error. Exportá vos los registros importantes.
 

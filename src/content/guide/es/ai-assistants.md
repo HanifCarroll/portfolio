@@ -33,7 +33,7 @@ Precios a noviembre de 2026.
 
 ## En qué puedo ayudarte <!-- heading-id: what-i-can-help-with -->
 
-Puedo configurar un asistente de IA para tu equipo con opciones seguras o incorporarlo en un paso de tu trabajo. Por ejemplo, puede generar borradores de respuestas a solicitudes de presupuesto para que los revises. [Contame por correo sobre un problema](/es/contact/).
+Puedo configurar un asistente de IA para tu equipo con opciones seguras o incorporarlo en un paso de tu trabajo. Por ejemplo, podés usarlo para generar borradores de respuestas a solicitudes de presupuesto y después revisarlos. [Contame por correo sobre un problema](/es/contact/).
 
 ## Fuentes <!-- heading-id: sources -->
 
