@@ -963,6 +963,26 @@
   border-radius: 2px 2px 0 0;
 }
 
+/* Give the intake and record separate columns, and split the bottom row
+   between triage, the dashboard, and customers on narrow desktop screens. */
+@media (900px < width <= 1100px) {
+  .sm-frontdoor {
+    right: 60%;
+  }
+
+  .sm-ai {
+    right: 57%;
+  }
+
+  .sm-ai__card {
+    flex-wrap: wrap;
+  }
+
+  .sm-customers {
+    max-width: 23%;
+  }
+}
+
 .sm-dash__zero {
   font-family: var(--hc-font-mono);
   font-size: var(--hc-type-caption);

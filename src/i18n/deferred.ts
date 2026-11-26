@@ -1,5 +1,5 @@
 // Remove routes as each translation PR lands. A new English route is not exempt.
-export const deferredPages = ["/blog/", "/notes/", "/atlas/", "/guide/"];
+export const deferredPages = ["/blog/", "/notes/", "/atlas/"];
 
 export const deferredEntries = {
   "case-studies": [],
@@ -63,11 +63,9 @@ export const deferredEntries = {
   guide: [
     "account-ownership",
     "ai-assistants",
-    "automation-tools",
     "backups",
     "connecting-apps",
     "custom-software",
-    "customer-list",
     "domain-and-email",
     "e-signatures",
     "email-marketing",
@@ -75,10 +73,7 @@ export const deferredEntries = {
     "google-business-profile",
     "inventory-and-orders",
     "invoicing-and-accounting",
-    "online-booking",
     "online-stores",
-    "password-managers",
-    "payments-and-point-of-sale",
     "saas-subscriptions",
     "shared-files",
     "social-media-scheduling",
@@ -86,8 +81,5 @@ export const deferredEntries = {
     "team-chat-and-tasks",
     "the-cloud",
     "two-factor-sign-in",
-    "website-builders",
-    "whatsapp-business",
-    "your-data",
   ],
 } as const;

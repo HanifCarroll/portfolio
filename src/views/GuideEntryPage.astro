@@ -1,0 +1,51 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import { getGuideGroups, guideCopy } from '../data/guide';
+import { guideProblems } from '../data/guide-problems';
+import { getLocale, localizedPath } from '../i18n';
+import type { GuideTopic } from '../lib/guide-paths';
+import { articleTitleClass, deckClass, metaClass, shellClass, titleHoverClass, underlineClass } from '../lib/ui';
+
+interface Props { topic: GuideTopic; prev?: GuideTopic; next?: GuideTopic }
+const { topic: { entry, slug }, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const locale = getLocale(Astro.currentLocale);
+const copy = guideCopy[locale];
+const guidePath = localizedPath('/guide/', locale);
+const group = getGuideGroups(locale).find(({ id }) => id === entry.data.group)!;
+const problems = guideProblems.filter((problem) => (problem.entries as readonly string[]).includes(slug));
+---
+
+<BaseLayout title={`${entry.data.seoTitle} | Hanif Carroll`} description={entry.data.description}>
+	<div class:list={[shellClass, 'pt-12 pb-[clamp(6rem,12vw,10rem)] lg:pt-20']}>
+		<article class='max-w-[44rem]'>
+			<p class:list={[metaClass, 'mb-4']}><a class='text-inherit no-underline hover:text-ink' href={guidePath}>{copy.title}</a> · {group.title}</p>
+			<header class='mb-12'>
+				<h1 class={articleTitleClass}>{entry.data.title}</h1>
+				<p class:list={[deckClass, 'mt-6']}>{entry.data.summary}</p>
+			</header>
+			<section class='mb-12' aria-labelledby='problems-title'>
+				<h2 id='problems-title' class='m-0 mb-3 font-editorial text-[clamp(1.75rem,2.6vw,2.25rem)] font-normal leading-[1.1] tracking-[-0.02em] text-ink'>{copy.problems}</h2>
+				<ul class='m-0 list-disc pl-6 font-editorial text-[1.2rem] leading-[1.65] text-ink marker:text-ink-muted'>
+					{problems.map((problem) => <li class='my-1'>{locale === 'es' ? problem.textEs : problem.text}</li>)}
+				</ul>
+			</section>
+			<Prose
+				class:list={[
+					'max-w-none font-editorial text-[1.2rem] leading-[1.65] text-ink',
+					'prose-p:text-ink prose-li:text-ink prose-li:my-1 prose-strong:font-bold',
+					'prose-headings:font-editorial prose-h2:mt-14 prose-h2:mb-3 prose-h2:text-[clamp(1.75rem,2.6vw,2.25rem)] prose-h2:font-normal prose-h2:leading-[1.1] prose-h2:tracking-[-0.02em]',
+				]}
+			>
+				<Content />
+			</Prose>
+			<p class='mt-12 mb-0 font-sans text-base'><a class:list={['text-ink', underlineClass]} href={guidePath}>{copy.allTopics}</a></p>
+			<nav class='mt-[clamp(4rem,8vw,6rem)] grid gap-8 font-sans text-base sm:grid-cols-2' aria-label={copy.pagination}>
+				{prev ? <a class='group no-underline' href={prev.href} hreflang={prev.hreflang}><span class='block text-ink-muted'>{copy.previous}{prev.hreflang && copy.fallback}</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{prev.title}</span></a> : <span />}
+				{next && <a class='group no-underline sm:text-right' href={next.href} hreflang={next.hreflang}><span class='block text-ink-muted'>{copy.next}{next.hreflang && copy.fallback}</span><span class:list={['font-editorial text-2xl leading-[1.18] text-ink', titleHoverClass]}>{next.title}</span></a>}
+			</nav>
+		</article>
+	</div>
+</BaseLayout>
