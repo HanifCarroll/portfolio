@@ -24,7 +24,7 @@ Si varias personas necesitan responder desde el mismo número al mismo tiempo, b
 ## Opciones populares <!-- heading-id: popular-choices -->
 
 - **Aplicación WhatsApp Business**: Se puede descargar y usar gratis, con algunas funciones pagas. Podés usarla en un celular y hasta cuatro dispositivos vinculados, como una computadora. Sirve para un negocio donde responde una o dos personas.
-- **WhatsApp Business Platform**: El servicio pago de Meta para conectar WhatsApp a otros programas. Por lo general lo usás a través de la aplicación de otra empresa. Meta cobra por cada mensaje de plantilla y cada respuesta de servicio que se entrega. La tarifa depende del tipo de mensaje y del código de país del número de teléfono del cliente. Los mensajes que te mandan tus clientes son gratis. En cambio, Meta cobra según el uso por las respuestas que redacta su propio agente de IA.
+- **WhatsApp Business Platform**: El servicio pago de Meta para conectar WhatsApp a otros programas. Por lo general lo usás a través de la aplicación de otra empresa. Meta cobra por cada mensaje de plantilla entregado y por cada respuesta de servicio entregada. La tarifa depende del tipo de mensaje y del código de país del número de teléfono del cliente. Los mensajes que te mandan tus clientes son gratis. En cambio, Meta cobra según el uso por las respuestas que redacta su propio agente de IA.
 
 Precios a noviembre de 2026.
 
@@ -32,7 +32,7 @@ Precios a noviembre de 2026.
 
 - **Cómo pasar tu número.** Podés pasar el número que ya usás a WhatsApp Business, pero primero leé las instrucciones de WhatsApp y hacé una copia de seguridad de tus chats.
 - **Pedidos registrados solo en los chats.** Las etiquetas simplifican el orden de los chats, pero un chat no es una lista de pedidos. Si tomás muchos pedidos, copialos a una lista o a una aplicación de pedidos todos los días.
-- **Costo de los mensajes en WhatsApp Business Platform.** Meta cobra por cada mensaje de plantilla y cada respuesta de servicio que se entrega. La tarifa depende del tipo de mensaje y del código de país del número de teléfono del cliente. Los mensajes que te mandan tus clientes son gratis. En cambio, Meta cobra según el uso por las respuestas que redacta su propio agente de IA. Revisá las tarifas antes de planear recordatorios o promociones.
+- **Costo de los mensajes en WhatsApp Business Platform.** Meta cobra por cada mensaje de plantilla entregado y por cada respuesta de servicio entregada. La tarifa depende del tipo de mensaje y del código de país del número de teléfono del cliente. Los mensajes que te mandan tus clientes son gratis. En cambio, Meta cobra según el uso por las respuestas que redacta su propio agente de IA. Revisá las tarifas antes de planear recordatorios o promociones.
 
 ## En qué puedo ayudarte <!-- heading-id: what-i-can-help-with -->
 

@@ -18,7 +18,7 @@ export interface GuideTopic {
 export async function getGuideCatalog(locale: Locale): Promise<GuideTopic[]> {
   const entries = await getCollection("guide");
   const byId = new Map(entries.map((entry) => [entry.id, entry]));
-  // Preserve the English catalog order and previous/next neighbors in both languages.
+  // Start in English title order so article pagination keeps the same neighbors in both languages.
   return entries
     .filter((entry) => !entry.id.startsWith("es/"))
     .sort((a, b) => a.data.title.localeCompare(b.data.title))

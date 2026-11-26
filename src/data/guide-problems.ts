@@ -4,7 +4,7 @@
 export const guideProblems = [
   {
     text: "My website doesn’t bring in customers",
-    textEs: "Mi sitio web no me trae clientes",
+    textEs: "No consigo clientes a través de mi sitio web",
     group: "get-found",
     entries: ["website-builders"],
   },

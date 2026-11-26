@@ -84,7 +84,7 @@ export const guideCopy = {
     contactBefore: "¿No encontrás tu problema? ",
     contactLink: "Contame sobre un problema en tu negocio",
     contactAfter: " y te propongo la solución más simple.",
-    problems: "Problemas que podés resolver",
+    problems: "Problemas que resuelve",
     allTopics: "Todos los temas de la guía",
     pagination: "Tema anterior y tema siguiente",
     previous: "← Anterior",

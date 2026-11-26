@@ -16,7 +16,11 @@ const problemGroups = guideGroups
 	.map((group) => ({ ...group, problems: guideProblems.filter((problem) => problem.group === group.id) }))
 	.filter((group) => group.problems.length > 0);
 const groups = guideGroups
-	.map((group) => ({ ...group, entries: entries.filter(({ entry }) => entry.data.group === group.id) }))
+	.map((group) => {
+		const topics = entries.filter(({ entry }) => entry.data.group === group.id);
+		if (locale === 'es') topics.sort((a, b) => a.title.localeCompare(b.title, 'es-AR'));
+		return { ...group, entries: topics };
+	})
 	.filter((group) => group.entries.length > 0);
 ---
 

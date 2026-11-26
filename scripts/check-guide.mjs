@@ -19,6 +19,8 @@ const spanishFiles = readdirSync(spanishDir).filter((file) => file.endsWith(".md
 const spanishSlugs = new Set(spanishFiles.map((file) => basename(file, ".md")));
 const sections = Object.entries(guideSections);
 const externalLinks = (raw) => [...raw.matchAll(/\]\((https?:\/\/[^)]+)\)/g)].map((match) => match[1]);
+// For every translation batch, manually compare billing intervals and units with English.
+// This only checks amounts and percentages, not what each charge covers.
 const charges = (raw, locale) => [...raw.matchAll(locale === "en"
   ? /\$(\d+(?:[.,]\d+)*)|(\d+)¢|(\d+(?:\.\d+)*)%/g
   : /USD\s+(\d+(?:[.,]\d+)*)|(\d+(?:,\d+)*)\s*%/g

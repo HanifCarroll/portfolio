@@ -30,9 +30,9 @@ Precios a noviembre de 2026.
 
 ## Qué revisar <!-- heading-id: what-to-watch-for -->
 
-- **Precio por usuario.** La mayoría de los CRM cobra por cada persona que inicia sesión, así que el costo mensual sube cuando crece el equipo.
+- **Precio por usuario.** La mayoría de los proveedores de CRM cobra por cada persona que inicia sesión, así que el costo mensual sube cuando crece el equipo.
 - **Límites de los planes gratis.** Los planes gratis suelen limitar los contactos o las funciones. El plan siguiente puede costar mucho más.
-- **Quién actualiza la lista.** Un CRM solo sirve si tu equipo registra cada llamada y cada presupuesto. Elegí el más simple que tu equipo vaya a usar.
+- **Nadie la actualiza.** Un CRM solo sirve si tu equipo registra cada llamada y cada presupuesto. Elegí el más simple que tu equipo vaya a usar.
 - **Cómo exportar tus contactos.** Comprobá que puedas descargar todos los contactos y todas las notas en una planilla.
 
 ## En qué puedo ayudarte <!-- heading-id: what-i-can-help-with -->

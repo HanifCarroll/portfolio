@@ -27,7 +27,7 @@ Precios a noviembre de 2026.
 
 ## Qué revisar <!-- heading-id: what-to-watch-for -->
 
-- **Tu contraseña principal.** Si te olvidás de la contraseña principal, con la mayoría de los gestores no vas a poder recuperar la bóveda. Guardá un kit de recuperación en un lugar seguro, por ejemplo, en papel dentro de un cajón con llave.
+- **Tu contraseña principal.** Si te olvidás de la contraseña principal, la mayoría de los proveedores no puede recuperar la bóveda por vos. Guardá un kit de recuperación en un lugar seguro, por ejemplo, en papel dentro de un cajón con llave.
 - **Inicio de sesión con dos factores.** Activá el inicio de sesión con dos factores en el propio gestor de contraseñas.
 - **Qué hacer cuando alguien deja el negocio.** Quitale el acceso a la bóveda, cambiá todas las contraseñas compartidas que podía consultar y cerrá sus sesiones en los servicios donde cambiar la contraseña no cierra la sesión. Compartí con cada persona solo las cuentas que necesita, así tenés menos contraseñas que cambiar.
 - **Precio por usuario.** Los planes para empresas cobran por persona, así que contá cuántas necesitan acceso.
