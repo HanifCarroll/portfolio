@@ -110,6 +110,7 @@ export const en = {
     preview: "View larger",
   },
   seo: {
+    defaultImage: "/img/social-card-small-businesses-2026.jpg",
     defaultImageAlt: "Portrait of Hanif Carroll beside the words Freelance Software Engineer.",
     previewImage: "preview image",
   },
