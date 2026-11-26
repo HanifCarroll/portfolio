@@ -1,8 +1,2 @@
 // Archive copy for published posts that still link to English.
-export const deferredBlogCopy: Record<string, { title: string; description: string }> = {
-	'reliable-ai-workflows': { title: 'Cómo aprendés a armar flujos de trabajo confiables con IA a partir de las fallas', description: 'Entendés mejor cómo hacer confiable un flujo de trabajo con IA cuando revisás una ejecución fallida y detectás qué decisión, aprobación o condición de detención llegó demasiado tarde.' },
-	'spreadsheet-vs-database-internal-tool': { title: 'Planilla o base de datos: cuándo un negocio en crecimiento necesita una herramienta interna', description: 'Decidí si te conviene seguir con tu planilla, agregar controles, usar un CRM, un sistema de stock o una plataforma de gestión del trabajo, o desarrollar software a medida.' },
-	'using-diagrams-to-review-an-ai-report-workflow': { title: 'Cómo ayudar a los agentes de IA a detectar trabajo innecesario con diagramas', description: 'Le pedí a un agente que dibujara el flujo de generación de informes de Casamo. Después usé esos diagramas para decidir dónde buscar trabajo innecesario en el código.' },
-	'what-are-you-really-installing-when-you-install-a-skill': { title: '¿Qué instalás realmente cuando instalás una habilidad de agente?', description: 'Las habilidades de agente incluyen capacidades prácticas y criterios sobre qué es un buen trabajo. Deberías poder ver los criterios de una habilidad antes de instalarla.' },
-	'where-net-promoter-score-came-from': { title: 'Cómo se creó el Net Promoter Score', description: '¿Alguna vez te preguntaste de dónde salió el término Net Promoter Score (NPS)? Yo sí, así que decidí investigarlo.' },
-};
+export const deferredBlogCopy: Record<string, { title: string; description: string }> = {};
