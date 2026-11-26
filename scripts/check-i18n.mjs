@@ -1,8 +1,9 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { parse } from "parse5";
+import { atlasProblems, atlasSections } from "../src/data/atlas.ts";
 import { deferredEntries, deferredPages } from "../src/i18n/deferred.ts";
-import { collectionRoutes, deferredPaths, dictionaries } from "../src/i18n/index.ts";
+import { collectionRoutes, deferredPaths, dictionaries, englishPath, localizedPath } from "../src/i18n/index.ts";
 import { getPublicNotes } from "../src/lib/notes.ts";
 
 const errors = [];
@@ -175,6 +176,88 @@ for (const locale of ["en", "es"]) {
     }
   } catch (error) {
     errors.push(`${route}: ${error.message}`);
+  }
+}
+// The same catalog drives Atlas links in the index, both menus, and article pagination.
+const atlasEntryPath = /^\/(?:es\/)?atlas\/[^/]+\/$/;
+const atlasLinks = (node) => elements(node, (el) => el.tagName === "a" && atlasEntryPath.test(attr(el, "href")));
+const atlasProseLinks = (node) => elements(node, (el) => attr(el, "class")?.split(/\s+/).includes("atlas-prose"))
+  .flatMap((prose) => elements(prose, (el) => el.tagName === "a" && attr(el, "href")));
+const atlasText = (node) => node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(atlasText).join("");
+const hrefs = (links) => links.map((link) => attr(link, "href"));
+const sameList = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const atlasPaths = [...pages.keys()].filter((path) => path.startsWith("/atlas/") && atlasEntryPath.test(path));
+const atlasDocument = (path) => parse(readFileSync(pages.get(path), "utf8"));
+
+for (const locale of ["en", "es"]) {
+  const indexPath = localizedPath("/atlas/", locale);
+  if (!pages.has(indexPath)) continue;
+  const index = atlasDocument(indexPath);
+  const articles = atlasPaths.map((path) => localizedPath(path, locale));
+  const localArticles = articles.filter((path) => locale === "en" || path.startsWith("/es/"));
+  const entries = atlasSections.flatMap(({ id }) => elements(index, (el) => el.tagName === "section" && attr(el, "id") === id).flatMap(atlasLinks));
+  const order = hrefs(entries);
+  const { atlas, nav } = dictionaries[locale];
+  if (!sameList([...order].sort(), [...articles].sort())) errors.push(`${indexPath} has incorrect catalog entries`);
+  const problemLinks = elements(index, (el) => attr(el, "aria-labelledby") === "problems-title").flatMap(atlasLinks);
+  if (!sameList(hrefs(problemLinks), atlasProblems.flatMap(({ entries }) => entries.map((id) => localizedPath(`/atlas/${id}/`, locale))))) {
+    errors.push(`${indexPath} has incorrect problem links`);
+  }
+  function verifyLinks(links, page) {
+    for (const link of links) {
+      const path = attr(link, "href");
+      const fallback = locale === "es" && path.startsWith("/atlas/");
+      if (!pages.has(path) || localizedPath(path, locale) !== path ||
+          attr(link, "hreflang") !== (fallback ? "en" : undefined) ||
+          atlasText(link).includes(nav.englishFallback) !== fallback) {
+        errors.push(`${page} has an incorrect Atlas destination or fallback label: ${path}`);
+      }
+    }
+  }
+  verifyLinks([...entries, ...problemLinks], indexPath);
+  for (const page of [indexPath, ...localArticles]) {
+    if (!pages.has(page)) continue;
+    const doc = page === indexPath ? index : atlasDocument(page);
+    const menus = elements(doc, (el) => attr(el, "data-atlas-nav-root") !== undefined);
+    if (menus.length !== 2) errors.push(`${page} needs a desktop and mobile Atlas menu`);
+    for (const menu of menus) {
+      const links = atlasLinks(menu);
+      const current = links.filter((link) => attr(link, "aria-current") === "page");
+      const [input] = elements(menu, (el) => el.tagName === "input");
+      if (!sameList(hrefs(links), order) || !sameList(hrefs(current), page === indexPath ? [] : [page]) ||
+          attr(input, "placeholder") !== atlas.searchPlaceholder) {
+        errors.push(`${page} has incorrect Atlas navigation or search copy`);
+      }
+      verifyLinks(links, page);
+    }
+    if (page === indexPath) continue;
+    const [article] = elements(doc, (el) => el.tagName === "article");
+    if (!article) {
+      errors.push(`${page} needs an Atlas article`);
+      continue;
+    }
+    const pagination = elements(article, (el) => el.tagName === "nav" && attr(el, "aria-label") === atlas.paginationLabel).flatMap(atlasLinks);
+    const position = order.indexOf(page);
+    if (!sameList(hrefs(pagination), [order[position - 1], order[position + 1]].filter(Boolean)) ||
+        attr(article, "data-atlas-copy") !== atlas.copy || attr(article, "data-atlas-copied") !== atlas.copied) {
+      errors.push(`${page} has incorrect Atlas pagination or copy-button labels`);
+    }
+    verifyLinks(pagination, page);
+    const proseLinks = atlasProseLinks(article);
+    if (locale === "es" && pages.has(englishPath(page))) {
+      const sourceLinks = hrefs(atlasProseLinks(atlasDocument(englishPath(page))));
+      const expected = sourceLinks.map((href) => href.replace(/^\/[^?#]*/, (path) =>
+        pages.has(englishPath(path)) ? localizedPath(path, locale) : path,
+      ));
+      if (!sameList(hrefs(proseLinks), expected)) errors.push(`${page} has Atlas prose links that differ from its English source`);
+    }
+    for (const link of proseLinks.filter((el) => atlasEntryPath.test(attr(el, "href")))) {
+      const path = attr(link, "href");
+      const fallback = locale === "es" && path === englishPath(path);
+      if (!pages.has(path) || path !== localizedPath(path, locale) || atlasText(link).endsWith(nav.englishFallback) !== fallback) {
+        errors.push(`${page} has an incorrect Atlas article link: ${path}`);
+      }
+    }
   }
 }
 for (const route of deferredPages) {

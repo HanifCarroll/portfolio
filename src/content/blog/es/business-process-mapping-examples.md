@@ -39,7 +39,7 @@ Un mapa útil incluye suficientes detalles para responder nueve preguntas:
 8. **Esperas y fallas:** ¿dónde puede quedar en espera el trabajo, perderse, duplicarse o pasar incompleto al siguiente paso?
 9. **Registro:** ¿dónde debería buscar alguien quién es responsable ahora, cuál es el estado y qué hay que hacer después?
 
-La lista es parecida a la definición práctica de la [American Society for Quality](https://asq.org/quality-resources/process-analysis-tools), que indica que un diagrama de flujo puede incluir entradas y resultados, decisiones, personas, tiempos y mediciones. En su [guía sobre el mapeo de procesos](https://www.ibm.com/think/topics/process-mapping), IBM también recomienda mostrar quién se ocupa de cada tarea y los plazos previstos, y después validar el mapa con quienes hacen el trabajo antes de proponer cambios.
+La lista es parecida a la definición práctica de la [American Society for Quality (en inglés)](https://asq.org/quality-resources/process-analysis-tools), que indica que un diagrama de flujo puede incluir entradas y resultados, decisiones, personas, tiempos y mediciones. En su [guía sobre el mapeo de procesos (en inglés)](https://www.ibm.com/think/topics/process-mapping), IBM también recomienda mostrar quién se ocupa de cada tarea y los plazos previstos, y después validar el mapa con quienes hacen el trabajo antes de proponer cambios.
 
 No hace falta usar toda la notación de Business Process Model and Notation para que el mapa sea útil. Para la mayoría de las conversaciones sobre el trabajo alcanza con rectángulos para las tareas, rombos para las decisiones, flechas para el orden y carriles para las responsabilidades. El objetivo es poder hablar de cómo se trabaja, no impresionar a nadie con la notación.
 
@@ -56,7 +56,7 @@ Mapeá un flujo cuando se repita el mismo problema operativo y todavía no esté
 
 En vez de empezar por toda la empresa, elegí un flujo que se repita y cuyo inicio y resultado puedas identificar: de una solicitud a un trabajo agendado, de un interesado a una propuesta firmada, de una solicitud de compra a una orden aprobada o de un trabajo terminado a una factura.
 
-La [guía actual de Atlassian para mapear procesos](https://www.atlassian.com/work-management/project-management/process-mapping) recomienda entrevistar a quienes hacen el trabajo para que el mapa represente el proceso real en vez de la versión oficial. Si solo dibujás el procedimiento escrito, no vas a encontrar esa planilla privada, ese mensaje de chat o esa excepción que alguien se acuerda de aplicar para que el trabajo pueda continuar.
+La [guía actual de Atlassian para mapear procesos (en inglés)](https://www.atlassian.com/work-management/project-management/process-mapping) recomienda entrevistar a quienes hacen el trabajo para que el mapa represente el proceso real en vez de la versión oficial. Si solo dibujás el procedimiento escrito, no vas a encontrar esa planilla privada, ese mensaje de chat o esa excepción que alguien se acuerda de aplicar para que el trabajo pueda continuar.
 
 ## Ejemplo del proceso de servicio actual <!-- heading-id: business-process-mapping-example-the-current-service-workflow -->
 
@@ -141,7 +141,7 @@ Después, considerá agregar:
 - avisos de estado para clientes
 - informes automáticos
 
-El orden importa porque al automatizar una regla podés aplicarla más rápido, pero eso no corrige una regla en la que el equipo todavía no está de acuerdo. En su [método para mapear procesos](https://www.ibm.com/think/topics/process-mapping), IBM recomienda probar los cambios con un grupo más chico antes de aplicarlos a más gente. Así, un negocio que está creciendo puede evitar comprar o construir algo a partir de una suposición que no probó.
+El orden importa porque al automatizar una regla podés aplicarla más rápido, pero eso no corrige una regla en la que el equipo todavía no está de acuerdo. En su [método para mapear procesos (en inglés)](https://www.ibm.com/think/topics/process-mapping), IBM recomienda probar los cambios con un grupo más chico antes de aplicarlos a más gente. Así, un negocio que está creciendo puede evitar comprar o construir algo a partir de una suposición que no probó.
 
 ## Una plantilla para mapear procesos <!-- heading-id: a-process-mapping-template-you-can-use -->
 

@@ -35,6 +35,7 @@ export const atlasSections = [
 // A second way in, by the problem the reader has. Slugs are checked against the collection at build time.
 export const atlasProblems = [
   {
+    id: "works",
     title: "Know it works",
     entries: [
       "property-based-testing",
@@ -45,6 +46,7 @@ export const atlasProblems = [
     ],
   },
   {
+    id: "quality",
     title: "Keep bad code out",
     entries: [
       "architecture-checks",
@@ -55,36 +57,42 @@ export const atlasProblems = [
     ],
   },
   {
+    id: "data",
     title: "Keep data correct",
     entries: ["schema-validation", "database-migrations", "typed-errors", "state-machines"],
   },
   {
+    id: "release",
     title: "Ship safely",
     entries: ["feature-flags", "canaries", "git-hooks-and-ci", "infrastructure-from-code"],
   },
   {
+    id: "observe",
     title: "See what’s happening",
     entries: ["telemetry", "canaries", "llm-tracing", "product-analytics"],
   },
   {
+    id: "ai",
     title: "Make AI features reliable",
     entries: ["llm-evals", "llm-tracing", "document-parsing", "agent-security-scanner"],
   },
   {
+    id: "agents",
     title: "Give agents context and limits",
     entries: ["agent-instructions-file", "agent-skills", "specs-and-plans", "agent-sandbox"],
   },
   {
+    id: "assistants",
     title: "Let AI assistants use your product",
     entries: ["mcp-server", "authentication", "agent-security-scanner"],
   },
-  { title: "Charge for it", entries: ["payments", "background-jobs", "transactional-email"] },
-];
+  { id: "charge", title: "Charge for it", entries: ["payments", "background-jobs", "transactional-email"] },
+] as const;
 
-/** Tool names are the bold labels in an entry's "Popular choices" list. */
-export const atlasTools = (body = "") =>
+/** Tool names are the bold labels in an entry's popular choices list. */
+export const atlasTools = (body = "", heading = "## Popular choices") =>
   [
-    ...(body.split("## Popular choices")[1]?.split("\n## ")[0] ?? "").matchAll(
+    ...(body.split(heading)[1]?.split("\n## ")[0] ?? "").matchAll(
       /^- \*\*(.+?)\*\*/gm,
     ),
   ].map((match) => match[1]);
