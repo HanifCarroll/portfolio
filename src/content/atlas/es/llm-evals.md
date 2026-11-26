@@ -19,7 +19,7 @@ Las evals cumplen en las funciones de IA la misma función que las pruebas en el
 ## Opciones populares <!-- heading-id: popular-choices -->
 
 - **DeepEval**: framework de estilo pytest para evaluar aplicaciones con LLM. Tiene métricas de retrieval en RAG, alucinaciones, uso de herramientas, tareas completadas por agentes y conversaciones de varios turnos.
-- **Promptfoo**: evals definidas por configuración que se ejecutan desde la línea de comandos y permiten comparar prompts y modelos. También permite hacer red-teaming de seguridad.
+- **Promptfoo**: evals definidas por configuración que se ejecutan desde la línea de comandos y permiten comparar prompts y modelos al mostrar sus resultados uno junto al otro. También permite hacer red-teaming de seguridad.
 - **Langfuse / Braintrust**: ejecutá evals con datasets junto con tus [traces](/es/atlas/llm-tracing/) para convertir fallas de producción en casos de prueba.
 - **Suites de prompt injection**: conjuntos de casos de evaluación con instrucciones maliciosas ocultas en documentos, páginas web o resultados de herramientas para comprobar que el modelo no las siga. Podés generarlas con Promptfoo.
 - **Conjuntos de prueba fijos**: guardá las entradas, incluidos los documentos recuperados y los resultados de herramientas. Así, cuando vuelvas a ejecutar las pruebas, vas a evaluar el cambio en el prompt o modelo y no cambios en los datos.

@@ -1,7 +1,7 @@
 ---
 title: "Pagos y facturación"
 section: code
-summary: "Cobrá, gestioná suscripciones y sincronizá tu aplicación con lo que pagó cada cliente."
+summary: "Procesa cobros, gestiona suscripciones y sincroniza tu aplicación con lo que pagó cada cliente."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

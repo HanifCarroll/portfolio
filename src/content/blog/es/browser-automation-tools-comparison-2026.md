@@ -31,7 +31,7 @@ Los tiempos se midieron de distintas maneras. Chrome y Playwriter midieron cuán
 
 ## Qué probé <!-- heading-id: what-i-tested -->
 
-Hice la misma tarea con cada herramienta en la [página principal de Wikipedia (en inglés)](https://en.wikipedia.org/wiki/Main_Page), sin cambiar el sitio:
+Hice la misma tarea con cada herramienta en Wikipedia en inglés. En todos los casos usé la [página principal (en inglés)](https://en.wikipedia.org/wiki/Main_Page), sin cambiar el sitio:
 
 1. Abrir Wikipedia y confirmar la URL y el título.
 2. Encontrar el campo de búsqueda.

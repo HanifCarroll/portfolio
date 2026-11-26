@@ -12,12 +12,12 @@ Un fuzzer se parece a las [pruebas basadas en propiedades](/es/atlas/property-ba
 
 ## Cuándo lo necesitás <!-- heading-id: when-you-need-it -->
 
-- Tu código procesa entradas que no controlás: archivos subidos, texto de usuarios, webhooks o protocolos de red.
+- Tu código parsea entradas que no controlás: archivos subidos, texto de usuarios, webhooks o protocolos de red.
 - Exponés una API y querés saber qué pasa si alguien hace solicitudes que tu cliente nunca haría.
 - Descubrís que el bug que te informaron se debe a una entrada poco común que nadie pensó probar.
 - Un agente escribió un parser o un validador y sus pruebas solo cubren los casos que consideró.
 
-Ese último caso es el que más importa cuando los agentes escriben código. Escriben pruebas para las entradas que tuvieron en cuenta. Con un fuzzer podés encontrar entradas que ni vos ni el agente consideraron.
+Ese último caso es el que más importa cuando los agentes escriben código. Escriben pruebas para las entradas que tuvieron en cuenta. Un fuzzer encuentra las entradas que ni vos ni el agente consideraron.
 
 ## Opciones populares <!-- heading-id: popular-choices -->
 
@@ -28,18 +28,18 @@ Fuzzers a nivel de código (prueban directamente una función):
 - **Go native fuzzing**: incluido en `go test -fuzz`. No hay nada que instalar.
 - **cargo-fuzz**: la herramienta estándar de fuzzing para Rust.
 - **libFuzzer**: fuzzer de LLVM para C y C++ guiado por cobertura, que se ejecuta dentro del proceso. Está incluido en Clang, así que para definir un fuzz target necesitás una sola función y una opción del compilador.
-- **AFL++**: la opción más completa para C, C++ y binarios compilados. Da buenos resultados en benchmarks de fuzzing.
+- **AFL++**: una herramienta potente para C, C++ y binarios compilados. Da buenos resultados en benchmarks de fuzzing.
 
 Fuzzers para API (prueban un servicio en ejecución a través de HTTP):
 
 - **Schemathesis**: genera solicitudes a partir de un esquema de OpenAPI o GraphQL, incluidos casos límite y flujos con estado. Se ejecuta desde la CLI, pytest o CI. Es la opción más fácil para empezar si tenés una especificación de OpenAPI.
-- **RESTler**: fuzzer de Microsoft para APIs REST con estado. Aprende qué solicitudes dependen de otras, como crear un recurso antes de eliminarlo.
+- **RESTler**: fuzzer de Microsoft para APIs REST que mantiene el estado entre solicitudes. Detecta qué solicitudes dependen de otras, por ejemplo, crear un recurso antes de eliminarlo.
 - **WuppieFuzz**: fuzzer de TNO para APIs REST, basado en LibAFL. Genera secuencias de solicitudes a partir de una especificación de OpenAPI y usa la cobertura para detectar bugs en partes del código a las que cuesta llegar.
 
 Fuzzing continuo:
 
-- **OSS-Fuzz**: servicio gratis de Google que ejecuta fuzzing en proyectos de código abierto a toda hora y registra bugs.
+- **OSS-Fuzz**: servicio gratis de Google que ejecuta fuzzing en proyectos de código abierto de forma continua y registra bugs.
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->
 
-> Agregá fuzz testing a este proyecto. Identificá las funciones que procesan o validan entradas no confiables y escribí un fuzz target para cada una con [Jazzer.js / Atheris / Go native fuzzing]. Si el proyecto tiene una especificación de OpenAPI, agregá también una ejecución de Schemathesis contra el servidor local. Agregá a CI un job corto de fuzzing con un límite de tiempo, programá una ejecución nocturna más larga y guardá las entradas que provoquen caídas como pruebas de regresión.
+> Agregá fuzz testing a este proyecto. Identificá las funciones que parsean o validan entradas no confiables y escribí un fuzz target para cada una con [Jazzer.js / Atheris / Go native fuzzing]. Si el proyecto tiene una especificación de OpenAPI, agregá también una ejecución de Schemathesis contra el servidor local. Agregá a CI un job corto de fuzzing con un límite de tiempo, programá una ejecución nocturna más larga y guardá las entradas que provoquen caídas como pruebas de regresión.

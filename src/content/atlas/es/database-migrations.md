@@ -1,7 +1,7 @@
 ---
 title: "Base de datos y migraciones"
 section: code
-summary: "Guardá los datos de tu aplicación y modificá su estructura de forma segura a medida que la aplicación crece."
+summary: "Guarda los datos de tu aplicación y modifica su estructura de forma segura a medida que la aplicación crece."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

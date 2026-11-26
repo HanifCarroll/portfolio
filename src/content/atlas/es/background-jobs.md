@@ -1,7 +1,7 @@
 ---
 title: "Background jobs y workflows durables"
 section: code
-summary: "Ejecutá tareas lentas o de varios pasos fuera de la solicitud y volvé a intentar las que fallen para que el trabajo se complete igual."
+summary: "Ejecuta tareas lentas o de varios pasos fuera de la solicitud, con reintentos para que se completen aunque algo falle."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->
@@ -12,7 +12,7 @@ Algunas tareas no deberían ejecutarse mientras un usuario espera que cargue una
 
 - Una solicitud supera el tiempo límite porque ejecuta demasiadas tareas.
 - Hay que ejecutar tareas en horarios programados, como importaciones nocturnas o correos de recordatorio.
-- Un proceso tiene varios pasos que llaman a servicios externos y, si falla a mitad de camino, deja el sistema en un estado incorrecto.
+- Un proceso tiene varios pasos que llaman a servicios externos y, si falla en un paso intermedio, deja el sistema en un estado incorrecto.
 - Una ejecución de un agente de IA tarda minutos, no segundos.
 
 La mayoría de los bugs acá se debe a los reintentos. Suponé que cada paso puede ejecutarse más de una vez y hacelo idempotente, es decir, seguro de repetir: verificá si ya se mandó el correo o ya se hizo el cobro antes de hacerlo de nuevo.
@@ -20,9 +20,9 @@ La mayoría de los bugs acá se debe a los reintentos. Suponé que cada paso pue
 ## Opciones populares <!-- heading-id: popular-choices -->
 
 - **Trigger.dev**: background jobs y tareas largas en TypeScript de código abierto, con reintentos, programación y un dashboard.
-- **Inngest**: funciones durables que se activan por eventos. Cada paso se puede reintentar y se guarda. Se ejecutan en tu plataforma serverless actual.
+- **Inngest**: funciones durables que se activan por eventos. Inngest reintenta los pasos que fallan y guarda el progreso de cada uno. Las funciones se ejecutan en tu plataforma serverless actual.
 - **Cloudflare Workflows and Queues**: workflows durables de varios pasos y colas de mensajes incluidos en Cloudflare Workers.
-- **Temporal**: la opción más completa para ejecuciones durables. Se usa para procesos complejos y críticos para el negocio.
+- **Temporal**: una herramienta potente para ejecuciones durables. Se usa para procesos complejos y críticos para el negocio.
 - **BullMQ**: cola de jobs para Node.js que usa Redis. Es simple y fácil de entender si ya usás Redis.
 - **Graphile Worker**: cola de jobs que se ejecuta en Postgres, así que no necesitás otro servicio.
 

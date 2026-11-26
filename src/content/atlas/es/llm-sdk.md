@@ -21,7 +21,7 @@ Llamar directamente a la API de cada proveedor sirve para un prototipo. Se compl
 - **Vercel AI SDK**: kit de herramientas de código abierto para TypeScript con una sola API para varios proveedores de LLM, entre ellos OpenAI, Anthropic, Google, DeepSeek y modelos abiertos. Incluye generación de texto, salida estructurada, tool calling, agentes y hooks de UI para chats.
 - **OpenAI Agents SDK**: framework de OpenAI para agentes con herramientas, transferencia de tareas entre agentes, guardrails y tracing. Está disponible para TypeScript y Python.
 - **Mastra**: framework de agentes en TypeScript con workflows, memoria, RAG y evals incorporados.
-- **LiteLLM**: SDK de Python y servidor proxy que ofrece más de 100 proveedores con el formato de API de OpenAI. Sirve como gateway central para registrar costos y aplicar límites de solicitudes.
+- **LiteLLM**: SDK de Python y servidor proxy que ofrece acceso a al menos 100 proveedores con el formato de API de OpenAI. Sirve como gateway central para registrar costos y aplicar límites de solicitudes.
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->
 

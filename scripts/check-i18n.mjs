@@ -181,6 +181,8 @@ for (const locale of ["en", "es"]) {
 // The same catalog drives Atlas links in the index, both menus, and article pagination.
 const atlasEntryPath = /^\/(?:es\/)?atlas\/[^/]+\/$/;
 const atlasLinks = (node) => elements(node, (el) => el.tagName === "a" && atlasEntryPath.test(attr(el, "href")));
+const atlasProseLinks = (node) => elements(node, (el) => attr(el, "class")?.split(/\s+/).includes("atlas-prose"))
+  .flatMap((prose) => elements(prose, (el) => el.tagName === "a" && attr(el, "href")));
 const atlasText = (node) => node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(atlasText).join("");
 const hrefs = (links) => links.map((link) => attr(link, "href"));
 const sameList = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -241,8 +243,15 @@ for (const locale of ["en", "es"]) {
       errors.push(`${page} has incorrect Atlas pagination or copy-button labels`);
     }
     verifyLinks(pagination, page);
-    const proseAtlasLinks = elements(article, (el) => attr(el, "class")?.split(/\s+/).includes("atlas-prose")).flatMap(atlasLinks);
-    for (const link of proseAtlasLinks) {
+    const proseLinks = atlasProseLinks(article);
+    if (locale === "es" && pages.has(englishPath(page))) {
+      const sourceLinks = hrefs(atlasProseLinks(atlasDocument(englishPath(page))));
+      const expected = sourceLinks.map((href) => href.replace(/^\/[^?#]*/, (path) =>
+        pages.has(englishPath(path)) ? localizedPath(path, locale) : path,
+      ));
+      if (!sameList(hrefs(proseLinks), expected)) errors.push(`${page} has Atlas prose links that differ from its English source`);
+    }
+    for (const link of proseLinks.filter((el) => atlasEntryPath.test(attr(el, "href")))) {
       const path = attr(link, "href");
       const fallback = locale === "es" && path === englishPath(path);
       if (!pages.has(path) || path !== localizedPath(path, locale) || atlasText(link).endsWith(nav.englishFallback) !== fallback) {

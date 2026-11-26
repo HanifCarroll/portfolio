@@ -19,7 +19,7 @@ Los escáneres detectan texto duplicado, no significado duplicado. Si la misma r
 ## Opciones populares <!-- heading-id: popular-choices -->
 
 - **Knip**: detecta archivos, exports y dependencias sin uso en proyectos de JavaScript y TypeScript.
-- **jscpd**: detecta código copiado y pegado en más de 150 lenguajes.
+- **jscpd**: detecta código copiado y pegado en al menos 150 lenguajes.
 - **ast-grep**: busca patrones estructurales. Sirve para detectar la misma lógica escrita de maneras un poco distintas.
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->

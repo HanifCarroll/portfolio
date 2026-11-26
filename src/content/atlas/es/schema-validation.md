@@ -1,7 +1,7 @@
 ---
 title: "Validación de esquemas en runtime"
 section: code
-summary: "Verificá que los datos que entran a tu aplicación tengan la estructura que esperás en el momento en que llegan."
+summary: "Verifica que los datos que entran a tu aplicación tengan la estructura que esperás en el momento en que llegan."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

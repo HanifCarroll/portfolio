@@ -19,7 +19,7 @@ Las verificaciones automáticas detectan buena parte de los problemas, pero no t
 
 - **axe-core**: motor de Deque para verificar automáticamente la accesibilidad web. Ejecutalo en CI con Playwright, Jest o herramientas similares. La mayoría de las otras herramientas se basan en él.
 - **Storybook a11y addon**: ejecuta axe en cada story para verificar cada componente en cada estado.
-- **Pa11y**: herramienta de línea de comandos que verifica una lista de URLs. Sirve para hacer una verificación rápida de un sitio en CI.
+- **Pa11y**: herramienta de línea de comandos que verifica una lista de URLs. Sirve como control rápido en CI para bloquear cambios si falla la verificación del sitio.
 - **Lighthouse**: auditoría incluida en Chrome que genera, entre otras cosas, un puntaje de accesibilidad.
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->

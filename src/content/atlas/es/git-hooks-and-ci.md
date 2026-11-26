@@ -1,7 +1,7 @@
 ---
 title: "Git hooks y controles de CI"
 section: guardrails
-summary: "Ejecutá tus verificaciones automáticamente antes de cada commit y merge para que no se incorpore código que falla."
+summary: "Ejecutan tus verificaciones automáticamente antes de cada commit y merge para que no se incorpore código que falla."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

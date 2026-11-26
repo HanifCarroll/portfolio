@@ -1,7 +1,7 @@
 ---
 title: "Headless browser y scraping"
 section: code
-summary: "Cargá y controlá páginas web reales desde el código para recopilar datos o completar tareas en sitios sin API."
+summary: "Carga y controla páginas web reales desde el código para recopilar datos o completar tareas en sitios sin API."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->
@@ -14,7 +14,7 @@ Un headless browser es un motor de navegador real que controlás desde tu códig
 - Tu producto o agente tiene que completar pasos en otro sitio.
 - Una solicitud HTTP simple devuelve una página vacía porque el contenido se genera con JavaScript.
 
-Los scrapers fallan cuando cambian los sitios, así que preparate para eso. Guardá la página original junto con los datos extraídos, validá esos datos con un [esquema](/es/atlas/schema-validation/) y configurá una alerta si de golpe bajan los resultados. Respetá los términos y los límites de solicitudes de cada sitio. Para agentes que trabajan en tu navegador con la sesión iniciada, mirá [esta comparación](/es/blog/browser-automation-tools-comparison-2026/).
+Los scrapers fallan cuando cambian los sitios, así que preparate para eso. Guardá la página original junto con los datos extraídos, validá esos datos con un [esquema](/es/atlas/schema-validation/) y configurá una alerta si hay una caída repentina en la cantidad de resultados. Respetá los términos y los límites de solicitudes de cada sitio. Para agentes que trabajan en tu navegador con la sesión iniciada, mirá [esta comparación](/es/blog/browser-automation-tools-comparison-2026/).
 
 ## Opciones populares <!-- heading-id: popular-choices -->
 

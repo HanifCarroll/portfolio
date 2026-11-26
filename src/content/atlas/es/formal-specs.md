@@ -1,7 +1,7 @@
 ---
 title: "Especificaciones formales y verificación"
 section: tests
-summary: "Definí cómo debe comportarse un flujo y usá un verificador que recorra todos los caminos en busca de reglas que no se cumplen."
+summary: "Define cómo debe comportarse un flujo. Un verificador recorre todos los caminos en busca de reglas que no se cumplen."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

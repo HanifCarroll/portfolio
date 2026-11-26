@@ -10,7 +10,7 @@ const current = englishPath(Astro.url.pathname).match(/^\/atlas\/([^/]+)/)?.[1];
 const { problems, sections } = await getAtlasCatalog(locale);
 ---
 
-<div data-atlas-nav-root>
+<div data-atlas-nav-root data-atlas-fold-accents={locale === 'es' || undefined}>
 	<label class='sr-only' for={id}>{copy.searchLabel}</label>
 	<input
 		id={id}
@@ -51,13 +51,20 @@ const { problems, sections } = await getAtlasCatalog(locale);
 	document.querySelectorAll<HTMLElement>('[data-atlas-nav-root]').forEach((root) => {
 		const input = root.querySelector<HTMLInputElement>('[data-atlas-search]')!;
 		const empty = root.querySelector<HTMLElement>('[data-atlas-empty]')!;
+		const foldAccents = root.hasAttribute('data-atlas-fold-accents');
+		const normalize = (value: string) => {
+			const lower = value.toLowerCase();
+			// Fold Spanish accents and diaereses without changing ñ into n.
+			return foldAccents ? lower.normalize('NFD').replace(/[\u0301\u0308]/g, '').normalize('NFC') : lower;
+		};
 		input.addEventListener('input', () => {
-			const terms = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+			const terms = normalize(input.value).trim().split(/\s+/).filter(Boolean);
 			let shown = 0;
 			root.querySelectorAll<HTMLElement>('[data-atlas-group]').forEach((group) => {
 				let groupShown = 0;
 				group.querySelectorAll<HTMLElement>('[data-atlas-item]').forEach((item) => {
-					const match = terms.every((term) => item.dataset.search!.includes(term));
+					const indexed = normalize(item.dataset.search!);
+					const match = terms.every((term) => indexed.includes(term));
 					item.hidden = !match;
 					if (match) groupShown++;
 				});

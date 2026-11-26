@@ -1,7 +1,7 @@
 ---
 title: "Máquina de estados o statechart"
 section: code
-summary: "Expresá la lógica compleja como estados y transiciones explícitos en vez de repartirla entre varias flags."
+summary: "Expresa la lógica compleja como estados y transiciones explícitos en vez de repartirla entre varias flags."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

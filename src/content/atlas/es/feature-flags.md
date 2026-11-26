@@ -1,7 +1,7 @@
 ---
 title: "Feature flags"
 section: production
-summary: "Activá y desactivá funciones sin hacer otro deploy y habilitalas primero para unos pocos usuarios."
+summary: "Permiten activar y desactivar funciones sin hacer otro deploy y habilitarlas primero para unos pocos usuarios."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

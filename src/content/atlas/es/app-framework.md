@@ -13,7 +13,7 @@ Un framework de aplicación ya incluye la estructura de una aplicación: página
 - Estás empezando una aplicación web o móvil nueva.
 - Tu aplicación actual tiene muchas páginas que conectaste a mano y volvés a implementar las rutas y la carga de datos una y otra vez.
 
-Si usás agentes, te conviene más que antes elegir un framework conocido. Los agentes tienen muchos más ejemplos de código con frameworks populares, así que cometen menos errores al usarlos. Las convenciones de esos frameworks sirven para definir dónde va cada parte del código.
+Si usás agentes, te conviene más que antes elegir un framework conocido. Los agentes tienen muchos más ejemplos de código con frameworks populares, así que cometen menos errores al usarlos. Las convenciones de esos frameworks les indican a los agentes dónde va cada parte del código.
 
 ## Opciones populares <!-- heading-id: popular-choices -->
 

@@ -1,7 +1,7 @@
 ---
 title: "Pruebas de componentes y end-to-end"
 section: tests
-summary: "Probá la interfaz en un navegador real, desde componentes individuales hasta recorridos de usuario completos."
+summary: "Prueban la interfaz en un navegador real, desde componentes individuales hasta recorridos de usuario completos."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

@@ -14,11 +14,11 @@ Con la autenticación verificás la identidad de un usuario mediante contraseña
 - Necesitás equipos, roles o invitaciones.
 - Tu producto expone una API o un servidor MCP donde otras aplicaciones o agentes inician sesión.
 
-No dejes que un agente escriba la autenticación desde cero. Es fácil cometer errores difíciles de detectar y esos errores pueden salir caros. Elegí una biblioteca y pedile al agente que la integre.
+No dejes que un agente escriba la autenticación desde cero. Es fácil cometer errores difíciles de detectar y esos errores tienen un costo alto. Elegí una biblioteca y pedile al agente que la integre.
 
 ## Opciones populares <!-- heading-id: popular-choices -->
 
-- **Better Auth**: biblioteca de autenticación en TypeScript que no depende de un framework. Tiene más de 50 plugins, incluidos passkeys, 2FA, organizaciones, un proveedor OAuth y autenticación de MCP. Se ejecuta en tu aplicación con tu propia base de datos.
+- **Better Auth**: biblioteca de autenticación en TypeScript que no depende de un framework. Tiene al menos 50 plugins, incluidos passkeys, 2FA, organizaciones, un proveedor OAuth y autenticación de MCP. Se ejecuta en tu aplicación con tu propia base de datos.
 - **Clerk**: autenticación alojada con una interfaz de inicio de sesión ya armada y gestión de usuarios. Es la opción más rápida de configurar y se vuelve paga a medida que crece el uso.
 - **Auth.js**: la opción de código abierto que existe desde hace años. Antes se llamaba NextAuth.
 - **Supabase Auth**: viene incluido en Supabase si ese es tu backend.

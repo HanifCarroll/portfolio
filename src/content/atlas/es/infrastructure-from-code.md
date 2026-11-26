@@ -1,7 +1,7 @@
 ---
-title: "Infraestructura como código"
+title: "Infraestructura desde el código"
 section: production
-summary: "Declará bases de datos, colas y servicios en el código para ejecutar la misma configuración en local y en la nube."
+summary: "Declara bases de datos, colas y servicios en el código para que la misma configuración se ejecute en local y en la nube."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

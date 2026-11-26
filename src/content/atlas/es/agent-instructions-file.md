@@ -25,4 +25,4 @@ Mantené el archivo corto y actualizado. Poné ahí los datos que no suelen camb
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->
 
-> Escribí un AGENTS.md para este repositorio. Incluí los comandos exactos para instalar, ejecutar, probar, hacer lint y verificar tipos, una explicación breve de dónde están los archivos, las funciones auxiliares y los componentes compartidos que hay que reutilizar, y las convenciones que seguimos. Que tenga menos de [150] líneas. Cada vez que te corrija algo que se pueda repetir, proponé un cambio en este archivo.
+> Escribí un AGENTS.md para este repositorio. Incluí los comandos exactos para instalar, ejecutar, probar, hacer lint y verificar tipos, una explicación breve de dónde están los archivos, las funciones auxiliares y los componentes compartidos que hay que reutilizar, y las convenciones que seguimos. Que tenga menos de [150] líneas. Cada vez que te corrija algo que se pueda repetir, proponé qué agregar a este archivo.

@@ -1,7 +1,7 @@
 ---
 title: "Correo transaccional"
 section: production
-summary: "Mandá los correos que genera tu aplicación, como enlaces de inicio de sesión, recibos y alertas, para que lleguen a sus destinatarios."
+summary: "Manda los correos que genera tu aplicación, como enlaces de inicio de sesión, recibos y alertas, para que lleguen a sus destinatarios."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->
