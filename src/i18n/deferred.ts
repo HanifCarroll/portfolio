@@ -1,17 +1,9 @@
 // Remove routes as each translation PR lands. A new English route is not exempt.
-export const deferredPages = ["/blog/", "/notes/", "/atlas/"];
+export const deferredPages = ["/atlas/"];
 
 export const deferredEntries = {
   "case-studies": [],
   blog: [
-    "ai-makes-open-source-more-important-not-less",
-    "bpm-lifecycle-saas-onboarding",
-    "browser-automation-tools-comparison-2026",
-    "business-process-mapping-examples",
-    "choosing-a-backend-in-2026",
-    "dont-let-the-llm-decide-what-a-word-is",
-    "expensive-tokens-reward-good-architecture",
-    "give-ai-agents-tools-to-verify-their-own-work",
     "i-hate-creating-content-so-i-built-a-robot-to-do-it-for-me",
     "reliable-ai-workflows",
     "spreadsheet-vs-database-internal-tool",

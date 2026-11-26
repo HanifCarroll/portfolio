@@ -1,9 +1,9 @@
 ---
-const { headings } = Astro.props;
+const { headings, label } = Astro.props;
 const toc = (headings || []).filter((heading: any) => heading.depth === 2);
 ---
 
-<nav class='toc' aria-label='Contents'>
+<nav class='toc' aria-label={label}>
 	<ul class='m-0 list-none p-0 font-sans text-base'>
 		{
 			toc.map((heading: any) => (

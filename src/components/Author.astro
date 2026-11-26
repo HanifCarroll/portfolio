@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import Ava from '@src/assets/img/hanif-author-portrait.jpg';
+import { getLocale } from '../i18n';
+const spanish = getLocale(Astro.currentLocale) === 'es';
 ---
 
 <div class='not-prose flex items-center gap-4 font-sans text-base leading-[1.35]'>
@@ -11,6 +13,6 @@ import Ava from '@src/assets/img/hanif-author-portrait.jpg';
 		<a href='https://github.com/hanifcarroll' class='block text-ink no-underline decoration-accent decoration-2 underline-offset-[0.18em] hover:underline focus-visible:underline' target='_blank' rel='noopener noreferrer'>
 			Hanif Carroll
 		</a>
-		<span class='block text-ink-muted'>Freelance Software Engineer</span>
+		<span class='block text-ink-muted'>{spanish ? 'Ingeniero de software independiente' : 'Freelance Software Engineer'}</span>
 	</div>
 </div>
