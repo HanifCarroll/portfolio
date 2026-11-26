@@ -460,11 +460,12 @@ export const ASSUMPTIONS: readonly Assumption[] = [
 ];
 
 /** Formats a sim-minute offset as a clock time, e.g. 8:47 AM. */
-export function formatClock(simMinute: number): string {
+export function formatClock(simMinute: number, locale: "en" | "es" = "en"): string {
   const absolute = DAY_START_MINUTE + simMinute;
   const hour24 = Math.floor(absolute / 60) % 24;
-  const minute = absolute % 60;
+  const minute = String(absolute % 60).padStart(2, "0");
+  if (locale === "es") return `${String(hour24).padStart(2, "0")}:${minute}`;
   const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
   const suffix = hour24 < 12 ? "AM" : "PM";
-  return `${hour12}:${String(minute).padStart(2, "0")} ${suffix}`;
+  return `${hour12}:${minute} ${suffix}`;
 }

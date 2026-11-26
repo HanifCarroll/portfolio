@@ -53,6 +53,7 @@
 
 .t-hud__actions {
   display: flex;
+  align-items: center;
   gap: var(--hc-space-2);
 }
 
@@ -170,8 +171,30 @@
     height: 100svh;
   }
 
+  .t-hud {
+    flex-wrap: wrap;
+  }
+
   .t-hud__brand {
     display: none;
+  }
+
+  .t-hud__act {
+    flex: 1 1 9rem;
+  }
+
+  .t-hud:lang(es) {
+    column-gap: var(--hc-space-2);
+    padding-inline: var(--hc-space-3);
+  }
+
+  .t-hud__act:lang(es) {
+    flex-basis: auto;
+    white-space: nowrap;
+  }
+
+  .t-hud__actions {
+    flex-shrink: 0;
   }
 
   .t1-hud {

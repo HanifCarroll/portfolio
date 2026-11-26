@@ -1,17 +1,20 @@
+import type { Locale } from "../../i18n";
 import {
+  ASSUMPTIONS,
   INTERVENTION_ORDER,
   configFor,
   runDay,
   type InterventionId,
   type StressConfig,
 } from "./engine";
+import { assumptionsEs, chaptersEs, readoutsEs, statementsEs } from "./story.es";
 
 export const TUESDAY_SEED = 42;
 
 export const TUESDAY_COMPANY = {
   name: "Meridian Facility Services",
-  description: "a fictional 18-person service company handling about 45 field jobs a week",
-  dayContext: "Bookings, changes, quote requests, and issues arrive throughout each day.",
+  people: 18,
+  weeklyFieldJobs: 45,
 } as const;
 
 export interface TuesdayChapter {
@@ -122,6 +125,22 @@ export const TUESDAY_MIRROR_READOUTS = [
     body: "These patterns can lead to missed requests and fragile handoffs. The right response may be a process change, software, more capacity, or a combination; the next step is to inspect the real workflow.",
   },
 ] as const;
+
+const englishStory = {
+  chapters: TUESDAY_CHAPTERS,
+  statements: TUESDAY_MIRROR_STATEMENTS,
+  readouts: TUESDAY_MIRROR_READOUTS,
+  assumptions: ASSUMPTIONS,
+};
+
+const spanishStory = {
+  chapters: TUESDAY_CHAPTERS.map(({ id }) => ({ id, ...chaptersEs[id] })),
+  statements: statementsEs,
+  readouts: TUESDAY_MIRROR_READOUTS.map(({ min, max }, i) => ({ min, max, ...readoutsEs[i] })),
+  assumptions: assumptionsEs,
+};
+
+export const getTuesdayStory = (locale: Locale) => (locale === "es" ? spanishStory : englishStory);
 
 export const TUESDAY_CREW = ["Dee", "Marco", "Priya"] as const;
 

@@ -35,6 +35,10 @@ export const underlineClass =
 export const buttonClass = () =>
   "inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-lg bg-ink px-[1.625rem] py-3 text-center text-base font-medium leading-[1.2] text-canvas no-underline transition-colors duration-150 ease-out-soft hover:bg-ink-muted focus-visible:bg-ink-muted disabled:opacity-60";
 
+/** Header links, including the language switch in the interactive HUD. */
+export const headerLinkClass =
+  "relative inline-flex min-h-11 items-center whitespace-nowrap py-2 text-base font-normal text-ink-muted no-underline transition-colors duration-150 hover:text-ink focus-visible:text-ink aria-[current=page]:text-ink after:absolute after:inset-x-0 after:bottom-1.5 after:h-0.5 after:bg-accent-ink after:opacity-0 after:transition-opacity aria-[current=page]:after:opacity-100";
+
 /** Underlined text link that sits beside a button. */
 export const textLinkClass = `inline-flex min-h-11 items-center gap-[0.4rem] text-base text-ink ${underlineClass}`;
 

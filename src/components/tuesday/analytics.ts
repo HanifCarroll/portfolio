@@ -11,6 +11,7 @@ export function trackTuesdayEvent(eventName: string, payload: TuesdayAnalyticsPa
     page_title: document.title,
     page_path: window.location.pathname,
     ...payload,
+    locale: document.documentElement.lang,
   };
 
   analyticsWindow.gtag?.("event", eventName, {

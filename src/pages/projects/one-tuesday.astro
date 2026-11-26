@@ -3,20 +3,20 @@ import { Image } from 'astro:assets';
 import OneTuesdayHero from '../../assets/img/projects/framed/one-tuesday.png';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL, EMAIL_URL } from '../../consts';
-import { getProject } from '../../lib/projects';
-import { ASSUMPTIONS } from '../../lib/tuesday-sim/engine';
-import {
-  TUESDAY_CHAPTERS,
-  TUESDAY_COMPANY,
-  TUESDAY_MIRROR_READOUTS,
-  TUESDAY_MIRROR_STATEMENTS,
-  TUESDAY_RESULTS,
-} from '../../lib/tuesday-sim/story';
+import { getLocale, localizedPath } from '../../i18n';
+import { getProject, localizeProject } from '../../lib/projects';
+import { getTuesdayCopy, ONE_TUESDAY_PATH } from '../../lib/tuesday-sim/copy';
+import { getTuesdayStory, TUESDAY_RESULTS } from '../../lib/tuesday-sim/story';
 import { buttonClass, closingActionsClass, closingButtonClass, closingClass, closingLinkClass, shellClass } from '../../lib/ui';
 import '../../styles/tuesday.css';
 
-const project = getProject('one-tuesday');
-if (!project) throw new Error('Missing project metadata for one-tuesday.');
+const locale = getLocale(Astro.currentLocale);
+const copy = getTuesdayCopy(locale);
+const { reader } = copy;
+const { chapters, statements, readouts, assumptions } = getTuesdayStory(locale);
+const baseProject = getProject('one-tuesday');
+if (!baseProject) throw new Error('Missing project metadata for one-tuesday.');
+const project = localizeProject(baseProject, locale);
 const title = project.seoTitle ?? project.title;
 const description = project.seoDescription ?? project.description;
 const jsonLd = {
@@ -24,21 +24,14 @@ const jsonLd = {
   '@type': 'CreativeWork',
   name: title,
   description,
-  url: project.liveUrl,
+  url: new URL(localizedPath(ONE_TUESDAY_PATH, locale), Astro.site).toString(),
   creator: { '@type': 'Person', name: 'Hanif Carroll', url: 'https://www.hanifcarroll.com/' },
 };
 const { before, after, stressedBefore, stressedAfter } = TUESDAY_RESULTS;
 const handledGain = after.completed - before.completed;
 const carriedReduction = before.carried - after.carried;
 const coordinationReduction = before.manualMinutes - after.manualMinutes;
-const formatDuration = (minutes: number) => {
-  const rounded = Math.round(minutes);
-  if (rounded < 60) return `${rounded} minutes`;
-  const hours = Math.floor(rounded / 60);
-  const remainder = rounded % 60;
-  return remainder === 0 ? `${hours} hours` : `${hours}h ${remainder}m`;
-};
-const formatHours = (minutes: number) => `${(minutes / 60).toFixed(1)} hours`;
+const { duration, hours } = copy;
 
 // Reader mode: generic element rules use :where() so per-section overrides (specificity 0,1,1) win.
 const readerClass = [
@@ -64,22 +57,18 @@ const readerClass = [
   showFooterCta={false}
   bodyClass='page-one-tuesday'
 >
-  <div id='tuesday-experience-root'></div>
+  <div id='tuesday-experience-root' data-locale={locale}></div>
 
   <article id='tuesday-reader' tabindex='-1' class:list={readerClass}>
-    <p class='text-base uppercase leading-[1.3] tracking-[0.12em] text-ink-muted'>Interactive project</p>
-    <h1>One Tuesday, twice</h1>
-    <p class='text-[1.25rem] text-ink-muted'>
-      {TUESDAY_COMPANY.name} is {TUESDAY_COMPANY.description}. {TUESDAY_COMPANY.dayContext}
-    </p>
-    <p class='text-[1.25rem] text-ink-muted'>
-      Follow the same {before.arrivals} requests through two versions of the workflow: first through the original setup, then after six changes.
-    </p>
+    <p class='text-base uppercase leading-[1.3] tracking-[0.12em] text-ink-muted'>{copy.kicker}</p>
+    <h1>{copy.title}</h1>
+    <p class='text-[1.25rem] text-ink-muted'>{copy.company}</p>
+    <p class='text-[1.25rem] text-ink-muted'>{reader.intro(before.arrivals)}</p>
 
     <figure class='cs-project-hero mx-0 my-8'>
       <Image
         src={OneTuesdayHero}
-        alt='Laptop showing the original One Tuesday simulation'
+        alt={reader.heroAlt}
         widths={[640, 960, 1200]}
         sizes='(min-width: 44rem) 41rem, calc(100vw - 3rem)'
         loading='eager'
@@ -88,42 +77,32 @@ const readerClass = [
     </figure>
 
     <div class='my-12 [&_p]:mb-4'>
-      <p>Run the three-part experience to feel the queue, add each change, and compare both workflows under the same demand.</p>
-      <button type='button' class={buttonClass()} data-tuesday-launch disabled>Run the interactive project</button>
+      <p>{reader.launchNote}</p>
+      <button type='button' class={buttonClass()} data-tuesday-launch disabled>{reader.launch}</button>
     </div>
 
-    <h2 id='tuesday-reader-old' tabindex='-1'>The old Tuesday</h2>
-    <p>
-      Requests arrive through email threads, phone calls, texts, walk-ins, and sticky notes. Nobody owns intake, so everyone does it a little.
-    </p>
-    <p>
-      A request gets answered twice or not at all. Finding the status of a job means finding the person who last touched it.
-    </p>
-    <p>
-      Across the nine-and-a-half-hour day, {before.arrivals} requests arrive while the operator works continuously:
-    </p>
+    <h2 id='tuesday-reader-old' tabindex='-1'>{reader.old}</h2>
+    <p>{reader.intake}</p>
+    <p>{reader.status}</p>
+    <p>{reader.day(before.arrivals)}</p>
     <table>
-      <thead><tr><th>Measure</th><th>Old Tuesday</th></tr></thead>
+      <thead><tr><th>{reader.measure}</th><th>{copy.old}</th></tr></thead>
       <tbody>
-        <tr><td>Requests arrived</td><td>{before.arrivals}</td></tr>
-        <tr><td>Handled</td><td>{before.completed}</td></tr>
-        <tr><td>Forgotten entirely</td><td>{before.dropped}</td></tr>
-        <tr><td>Carried into tomorrow</td><td>{before.carried}</td></tr>
-        <tr><td>Duplicate requests</td><td>{before.duplicates}</td></tr>
-        <tr><td>Angry customer calls</td><td>{before.complaints}</td></tr>
-        <tr><td>Average wait for an answer</td><td>{formatDuration(before.avgWaitMinutes)}</td></tr>
-        <tr><td>Operator time on coordination</td><td>{formatHours(before.manualMinutes)}</td></tr>
+        <tr><td>{reader.arrivals}</td><td>{before.arrivals}</td></tr>
+        <tr><td>{reader.handled}</td><td>{before.completed}</td></tr>
+        <tr><td>{reader.forgotten}</td><td>{before.dropped}</td></tr>
+        <tr><td>{reader.carried}</td><td>{before.carried}</td></tr>
+        <tr><td>{reader.duplicates}</td><td>{before.duplicates}</td></tr>
+        <tr><td>{reader.angry}</td><td>{before.complaints}</td></tr>
+        <tr><td>{reader.average}</td><td>{duration(before.avgWaitMinutes)}</td></tr>
+        <tr><td>{reader.manual}</td><td>{hours(before.manualMinutes)}</td></tr>
       </tbody>
     </table>
-    <p>
-      Even with the operator working continuously, the old workflow spends most of the day finding, re-keying, forwarding, and confirming requests.
-    </p>
+    <p>{reader.coordination}</p>
 
-    <h2 id='tuesday-reader-build' tabindex='-1'>Six changes to the workflow</h2>
-    <p>
-      Each change removes one source of repeated work, delay, or uncertainty from the day.
-    </p>
-    {TUESDAY_CHAPTERS.map((chapter) => (
+    <h2 id='tuesday-reader-build' tabindex='-1'>{reader.build}</h2>
+    <p>{reader.changes}</p>
+    {chapters.map((chapter) => (
       <section>
         <h3>{chapter.week}: {chapter.title}</h3>
         {chapter.body.map((paragraph) => <p>{paragraph}</p>)}
@@ -131,40 +110,38 @@ const readerClass = [
       </section>
     ))}
 
-    <h2 id='tuesday-reader-new' tabindex='-1'>The same {before.arrivals} requests, twice</h2>
-    <p>Both runs receive the same {before.arrivals} requests, and both operators work continuously. Only the workflow changes:</p>
+    <h2 id='tuesday-reader-new' tabindex='-1'>{reader.compare(before.arrivals)}</h2>
+    <p>{copy.sameRequests(before.arrivals, ':')}</p>
     <table>
-      <thead><tr><th>Measure</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
+      <thead><tr><th>{reader.measure}</th><th>{copy.old}</th><th>{copy.new}</th></tr></thead>
       <tbody>
-        <tr><td>Handled</td><td>{before.completed}</td><td>{after.completed}</td></tr>
-        <tr><td>Forgotten entirely</td><td>{before.dropped}</td><td>{after.dropped}</td></tr>
-        <tr><td>Carried into tomorrow</td><td>{before.carried}</td><td>{after.carried}</td></tr>
-        <tr><td>Duplicate requests</td><td>{before.duplicates}</td><td>{after.duplicates}</td></tr>
-        <tr><td>Angry customer calls</td><td>{before.complaints}</td><td>{after.complaints}</td></tr>
-        <tr><td>Average wait for an answer</td><td>{formatDuration(before.avgWaitMinutes)}</td><td>{formatDuration(after.avgWaitMinutes)}</td></tr>
-        <tr><td>Operator time on coordination</td><td>{formatHours(before.manualMinutes)}</td><td>{formatHours(after.manualMinutes)}</td></tr>
+        <tr><td>{reader.handled}</td><td>{before.completed}</td><td>{after.completed}</td></tr>
+        <tr><td>{reader.forgotten}</td><td>{before.dropped}</td><td>{after.dropped}</td></tr>
+        <tr><td>{reader.carried}</td><td>{before.carried}</td><td>{after.carried}</td></tr>
+        <tr><td>{reader.duplicates}</td><td>{before.duplicates}</td><td>{after.duplicates}</td></tr>
+        <tr><td>{reader.angry}</td><td>{before.complaints}</td><td>{after.complaints}</td></tr>
+        <tr><td>{reader.average}</td><td>{duration(before.avgWaitMinutes)}</td><td>{duration(after.avgWaitMinutes)}</td></tr>
+        <tr><td>{reader.manual}</td><td>{hours(before.manualMinutes)}</td><td>{hours(after.manualMinutes)}</td></tr>
       </tbody>
     </table>
-    <p>
-      The redesigned workflow handles {handledGain} more requests, carries {carriedReduction} fewer into tomorrow, and spends {formatHours(coordinationReduction)} less on coordination.
-    </p>
+    <p>{reader.comparison(handledGain, carriedReduction, hours(coordinationReduction))}</p>
 
     <div>
-      <h2>The stress test</h2>
-      <p>Double the requests, take the dispatcher out, and disable the scheduling API:</p>
+      <h2>{reader.stress}</h2>
+      <p>{reader.stressSetup}</p>
       <table>
-        <thead><tr><th>Under stress</th><th>Old Tuesday</th><th>New Tuesday</th></tr></thead>
+        <thead><tr><th>{reader.underStress}</th><th>{copy.old}</th><th>{copy.new}</th></tr></thead>
         <tbody>
-          <tr><td>Requests arrived</td><td>{stressedBefore.arrivals}</td><td>{stressedAfter.arrivals}</td></tr>
-          <tr><td>Forgotten entirely</td><td>{stressedBefore.dropped}</td><td>{stressedAfter.dropped}</td></tr>
-          <tr><td>Carried into tomorrow</td><td>{stressedBefore.carried}</td><td>{stressedAfter.carried}</td></tr>
-          <tr><td>Angry customer calls</td><td>{stressedBefore.complaints}</td><td>{stressedAfter.complaints}</td></tr>
+          <tr><td>{reader.arrivals}</td><td>{stressedBefore.arrivals}</td><td>{stressedAfter.arrivals}</td></tr>
+          <tr><td>{reader.forgotten}</td><td>{stressedBefore.dropped}</td><td>{stressedAfter.dropped}</td></tr>
+          <tr><td>{reader.carried}</td><td>{stressedBefore.carried}</td><td>{stressedAfter.carried}</td></tr>
+          <tr><td>{reader.angry}</td><td>{stressedBefore.complaints}</td><td>{stressedAfter.complaints}</td></tr>
         </tbody>
       </table>
 
-      <h2>What drives the simulation</h2>
+      <h2>{reader.assumptions}</h2>
       <dl class='grid gap-4'>
-        {ASSUMPTIONS.map((assumption) => (
+        {assumptions.map((assumption) => (
           <div>
             <dt class='m-0 font-semibold'>{assumption.parameter}</dt>
             <dd class='mt-1 mb-0 ml-0 text-ink-muted'>{assumption.value}</dd>
@@ -173,25 +150,25 @@ const readerClass = [
       </dl>
     </div>
 
-    <h2 id='tuesday-reader-mirror' tabindex='-1'>Which of these problems show up in your business?</h2>
-    <p>Answer Yes or No for each statement.</p>
+    <h2 id='tuesday-reader-mirror' tabindex='-1'>{reader.mirrorQuestion}</h2>
+    <p>{reader.instructions}</p>
     <fieldset class='my-4 flex flex-col gap-2 border-0 p-0' data-tuesday-reader-mirror>
-      <legend class='sr-only'>Problems that show up in your business</legend>
-      {TUESDAY_MIRROR_STATEMENTS.map((statement) => (
+      <legend class='sr-only'>{reader.legend}</legend>
+      {statements.map((statement) => (
         <div class='flex items-center justify-between gap-6 py-3 max-[900px]:flex-col max-[900px]:items-start [&_p]:m-0' data-tuesday-reader-statement>
           <p>{statement}</p>
           <div class='flex shrink-0 gap-2' role='group' aria-label={statement}>
-            <button type='button' class='t4-choice' data-tuesday-reader-answer='yes' aria-pressed='false'>Yes</button>
-            <button type='button' class='t4-choice' data-tuesday-reader-answer='no' aria-pressed='false'>No</button>
+            <button type='button' class='t4-choice' data-tuesday-reader-answer='yes' aria-pressed='false'>{copy.yes}</button>
+            <button type='button' class='t4-choice' data-tuesday-reader-answer='no' aria-pressed='false'>{copy.no}</button>
           </div>
         </div>
       ))}
     </fieldset>
-    <output class='mb-6 block text-base leading-[1.65] text-ink-muted' data-tuesday-reader-total aria-live='polite'>
-      0 of {TUESDAY_MIRROR_STATEMENTS.length} answered
+    <output class='mb-6 block text-base leading-[1.65] text-ink-muted' data-tuesday-reader-total={reader.answered('{answered}', statements.length)} aria-live='polite'>
+      {reader.answered(0, statements.length)}
     </output>
     <div class='mb-6' data-tuesday-reader-readouts role='status' aria-live='polite' hidden>
-      {TUESDAY_MIRROR_READOUTS.map((readout) => (
+      {readouts.map((readout) => (
         <div class='py-2 motion-safe:[&.is-visible]:animate-[t4-result-in_420ms_var(--ease-out-soft)] [&_h3]:mt-0 [&_h3]:mb-2 [&_p]:m-0 [&_p]:text-ink-muted' data-min={readout.min} data-max={readout.max} hidden>
           <h3>{readout.headline}</h3>
           <p>{readout.body}</p>
@@ -203,7 +180,7 @@ const readerClass = [
   <!-- The reader's closing, in the same ink block as the shared closing. -->
   <section class:list={[closingClass, '[body.tuesday-live_&]:hidden']} data-section='closing-cta'>
     <div class={shellClass}>
-      <p class='mx-auto mb-0 max-w-[46rem] font-editorial text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.12] tracking-[-0.02em] text-white text-balance'>If these problems show up in your business, start with the workflow causing the most delay or repeated work.</p>
+      <p class='mx-auto mb-0 max-w-[46rem] font-editorial text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.12] tracking-[-0.02em] text-white text-balance'>{reader.closing}</p>
       <div class={closingActionsClass}>
         <a
           class={closingButtonClass}
@@ -212,13 +189,13 @@ const readerClass = [
           rel='noopener noreferrer'
           data-track-event='book_call_clicked'
           data-track-location='one_tuesday_reader'
-        >Book a 30-minute fit call</a>
+        >{copy.booking}</a>
         <a
           class={closingLinkClass}
           href={EMAIL_URL}
           data-track-event='email_clicked'
           data-track-location='one_tuesday_reader'
-        >Email me about your workflow</a>
+        >{reader.email}</a>
       </div>
     </div>
   </section>
@@ -247,7 +224,7 @@ const readerClass = [
     ]).then(([{ default: TuesdayExperience }, { createElement }, { createRoot }]) => {
       experienceContainer = container;
       experienceRoot = createRoot(container);
-      experienceRoot.render(createElement(TuesdayExperience));
+      experienceRoot.render(createElement(TuesdayExperience, { locale: container.dataset.locale === 'es' ? 'es' : 'en' }));
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
       });
@@ -288,7 +265,7 @@ const readerClass = [
 
       const answered = statements.filter((item) => item.dataset.answer).length;
       const score = statements.filter((item) => item.dataset.answer === 'yes').length;
-      total.value = `${answered} of ${statements.length} answered`;
+      total.value = total.dataset.tuesdayReaderTotal?.replace('{answered}', String(answered)) ?? '';
 
       resultCards.forEach((card) => {
         card.hidden = true;

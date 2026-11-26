@@ -1,5 +1,5 @@
 // Remove routes as each translation PR lands. A new English route is not exempt.
-export const deferredPages = ["/projects/one-tuesday/", "/blog/", "/notes/", "/atlas/", "/guide/"];
+export const deferredPages = ["/blog/", "/notes/", "/atlas/", "/guide/"];
 
 export const deferredEntries = {
   "case-studies": [],
