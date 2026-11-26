@@ -112,8 +112,9 @@ export const es = {
     preview: "Ampliar",
   },
   seo: {
+    defaultImage: "/img/social-card-small-businesses-2026-es.jpg",
     defaultImageAlt:
-      "Retrato de Hanif Carroll junto al texto en inglés Freelance Software Engineer.",
+      "Retrato de Hanif Carroll junto al texto Ingeniero de software independiente.",
     previewImage: "Imagen de vista previa",
   },
   action: {

@@ -23,7 +23,7 @@ const alternates = pairedPaths(Astro.url.pathname);
 const { seo, locale } = getDictionary(Astro.currentLocale);
 
 const { title, socialTitle = title, description, socialDescription = description, image, jsonLd, ogType = 'website', robots } = Astro.props;
-const defaultSocialImage = '/img/social-card-small-businesses-2026.jpg';
+const defaultSocialImage = seo.defaultImage;
 const fallbackImage = image ?? defaultSocialImage;
 const fallbackImageURL = new URL(fallbackImage, Astro.url);
 const isDefaultSocialImage = fallbackImage === defaultSocialImage;
