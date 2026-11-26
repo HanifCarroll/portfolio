@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { render, type CollectionEntry } from 'astro:content';
 import ArticleDefinitions from '../../components/ArticleDefinitions.astro';
 import ImageLightbox from '../../components/case-study/ImageLightbox.astro';
 import Prose from '../../components/Prose.astro';
@@ -10,34 +10,31 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
 import Author from '../../components/Author.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
-import { render } from 'astro:content';
+import { getDictionary, getLocale, localizedPath } from '../../i18n';
+import { getBlogStaticPaths } from '../../lib/blog';
 import { articleTitleClass, headingText, shellClass } from '../../lib/ui';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => !data.hidden);
-	return posts.map((post: any) => ({
-		params: { slug: post.id },
-		props: post
-	}));
-}
-type Props = CollectionEntry<'blog'>;
-const post = Astro.props;
+export const getStaticPaths = () => getBlogStaticPaths('en');
+interface Props { entry: CollectionEntry<'blog'>; slug: string }
+const { entry: post, slug } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const { blog: copy, nav } = getDictionary(locale);
 const {
 	data: { title, subtitle, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant }
 } = post;
 const { Content, headings } = await render(post);
 
-const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
+const canonicalUrl = new URL(localizedPath(`/blog/${slug}/`, locale), Astro.site).toString();
+const isBpm = slug === 'bpm-lifecycle-saas-onboarding';
 const wordCount = post.body?.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length ?? 0;
 const readingMinutes = Math.max(1, Math.round(wordCount / 225));
 const tocHeadings = headings.filter((heading) => heading.depth === 2).map((heading) => ({
   ...heading,
-  text: post.id === 'bpm-lifecycle-saas-onboarding'
-    ? heading.text.replace(/^(\d+\.) Process ([^:]+):.*$/, '$1 $2').replace(/^Quick-Reference:.*$/, 'Quick reference')
-    : heading.text
+  text: !isBpm ? heading.text : locale === 'es'
+    ? heading.text.replace(/^(\d+\. [^:]+):.*$/, '$1')
+    : heading.text.replace(/^(\d+\.) Process ([^:]+):.*$/, '$1 $2').replace(/^Quick-Reference:.*$/, 'Quick reference')
 }));
 const showContents = wordCount >= 1000 && tocHeadings.length >= 3;
-const isBpm = post.id === 'bpm-lifecycle-saas-onboarding';
 // Markdown typography. The wrapper keeps `blog-post-prose` as a hook for the image lightbox.
 const proseClasses = [
 	'blog-post-prose w-full max-w-none font-editorial text-[1.125rem] leading-[1.7] text-ink md:text-[1.375rem] md:leading-[1.55]',
@@ -68,6 +65,7 @@ const blogJsonLd = {
 	headline: title,
 	description,
 	url: canonicalUrl,
+	...(locale === 'es' ? { inLanguage: 'es' } : {}),
 	datePublished: pubDate.toISOString(),
 	dateModified: (updatedDate ?? pubDate).toISOString(),
 	author: {
@@ -97,16 +95,16 @@ const blogJsonLd = {
 						{
 							updatedDate ? (
 								<>
-									Updated <FormattedDate date={updatedDate} />
+									{copy.updated} <FormattedDate date={updatedDate} />
 								</>
 							) : (
 								<>
-									Published <FormattedDate date={pubDate} />
+									{copy.published} <FormattedDate date={pubDate} />
 								</>
 							)
 						}
 						<span aria-hidden='true'>·</span>
-						{readingMinutes} min read
+						{readingMinutes} {copy.read}
 					</div>
 				</div>
 			</div>
@@ -124,8 +122,8 @@ const blogJsonLd = {
 				{
 					showContents && (
 						<details class='blog-post-toc group overflow-hidden'>
-							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink -outline-offset-2 group-open:mb-2'>Contents</summary>
-							<TableOfContent headings={tocHeadings} />
+							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink -outline-offset-2 group-open:mb-2'>{nav.contents}</summary>
+							<TableOfContent headings={tocHeadings} label={nav.contents} />
 						</details>
 					)
 				}
@@ -135,15 +133,15 @@ const blogJsonLd = {
 					</Prose>
 				</article>
 
-				<section class='pt-8' aria-label='About the author'>
+				<section class='pt-8' aria-label={copy.author}>
 					<AboutTheAuthor />
 				</section>
 			</div>
 		</div>
 	</div>
-	<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${post.id}`} />
-{post.id === 'bpm-lifecycle-saas-onboarding' && <ArticleDefinitions />}
-{post.id === 'using-diagrams-to-review-an-ai-report-workflow' && <ImageLightbox imageSelector='.blog-post-prose img' zoomable />}
+	<ServiceCallout variant={ctaVariant} context='blog' location={`blog_${slug}`} />
+{isBpm && <ArticleDefinitions />}
+{slug === 'using-diagrams-to-review-an-ai-report-workflow' && <ImageLightbox imageSelector='.blog-post-prose img' zoomable />}
 </BaseLayout>
 
 <script>

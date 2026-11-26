@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { getBlogCatalog } from '../lib/blog';
 import Portrait from '../assets/img/hanif-hero-portrait.jpg';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BOOK_CALL_URL } from '../consts';
@@ -69,17 +69,8 @@ const homepageJsonLd = [
 	}
 ];
 
-// Spanish teaser titles stay here until the blog translations supply their own titles.
-const featuredPosts: Record<string, string> = {
-	'where-net-promoter-score-came-from': 'Cómo se creó el Net Promoter Score',
-	'spreadsheet-vs-database-internal-tool': 'Planilla o base de datos: cuándo necesitás una herramienta interna',
-	'business-process-mapping-examples': 'Cómo mapear un proceso de negocio: un ejemplo antes y después',
-};
-const allPosts = await getCollection('blog', ({ data }) => !data.hidden);
-const blogPosts = Object.keys(featuredPosts)
-	.map((id) => allPosts.find((post) => post.id === id))
-	.filter((post) => post !== undefined)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPosts = ['where-net-promoter-score-came-from', 'spreadsheet-vs-database-internal-tool', 'business-process-mapping-examples'];
+const blogPosts = (await getBlogCatalog(locale)).filter(({ slug }) => featuredPosts.includes(slug));
 
 const help = [
 	{
@@ -238,9 +229,9 @@ const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].
 			<ol class='home-writing' role='list'>
 				{blogPosts.map((post) => (
 					<li>
-						<a href={localizedPath(`/blog/${post.id}/`, locale)} hreflang={locale === 'es' ? 'en' : undefined}>
-							<h3>{copy(post.data.title, featuredPosts[post.id]!)}</h3>
-							<FormattedDate date={post.data.pubDate} />
+						<a href={post.href} hreflang={post.fallback ? 'en' : undefined}>
+							<h3>{post.title}{post.fallback && nav.englishFallback}</h3>
+							<FormattedDate date={post.entry.data.pubDate} />
 						</a>
 					</li>
 				))}

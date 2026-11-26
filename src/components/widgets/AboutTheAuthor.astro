@@ -1,12 +1,14 @@
 ---
 import Author from '../Author.astro';
 import { metaClass } from '../../lib/ui';
+import { getDictionary } from '../../i18n';
+const { blog } = getDictionary(Astro.currentLocale);
 ---
 
 <div class='grid w-full gap-5'>
-	<p class={metaClass}>About the author</p>
+	<p class={metaClass}>{blog.author}</p>
 	<Author />
 	<p class='m-0 max-w-[36rem] text-lg leading-[1.55] text-ink-muted'>
-		Hanif is a freelance software engineer with 9+ years of experience. He builds websites, tools, and automations for small businesses.
+		{blog.authorBio}
 	</p>
 </div>

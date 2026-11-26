@@ -26,9 +26,11 @@ const {
 const locale = getLocale(Astro.currentLocale);
 const { nav, locale: localeCopy } = getDictionary(locale);
 const currentYear = new Date().getFullYear().toLocaleString(localeCopy.format, { useGrouping: false });
+const atlasHref = localizedPath('/atlas/', locale);
+const atlasFallback = locale === 'es' && atlasHref === '/atlas/';
 const footerLinks = [
 	{ href: localizedPath('/agencies/', locale), label: nav.agencies, external: false },
-	{ href: localizedPath('/atlas/', locale), label: nav.atlas, external: false },
+	{ href: atlasHref, label: nav.atlas + (atlasFallback ? nav.englishFallback : ''), external: false, hreflang: atlasFallback ? 'en' : undefined },
 	{ href: EMAIL_URL, label: nav.email, external: false },
 	{ href: 'https://linkedin.com/in/hanifcarroll', label: 'LinkedIn', external: true },
 	{ href: 'https://github.com/hanifcarroll', label: 'GitHub', external: true },
@@ -93,6 +95,7 @@ const footerLinks = [
 						<a
 							class='text-inherit no-underline transition-colors hover:text-white focus-visible:text-white'
 							href={link.href}
+							hreflang={link.hreflang}
 							target={link.external ? '_blank' : undefined}
 							rel={link.external ? 'noopener noreferrer' : undefined}
 						>

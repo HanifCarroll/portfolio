@@ -1,0 +1,7 @@
+---
+import BlogPostPage from '../../blog/[slug].astro';
+import { getBlogStaticPaths } from '../../../lib/blog';
+export const getStaticPaths = () => getBlogStaticPaths('es');
+---
+
+<BlogPostPage {...Astro.props} />
