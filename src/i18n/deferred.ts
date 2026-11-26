@@ -3,14 +3,7 @@ export const deferredPages = ["/atlas/"];
 
 export const deferredEntries = {
   "case-studies": [],
-  blog: [
-    "i-hate-creating-content-so-i-built-a-robot-to-do-it-for-me",
-    "reliable-ai-workflows",
-    "spreadsheet-vs-database-internal-tool",
-    "using-diagrams-to-review-an-ai-report-workflow",
-    "what-are-you-really-installing-when-you-install-a-skill",
-    "where-net-promoter-score-came-from",
-  ],
+  blog: [],
   atlas: [
     "accessibility-checker",
     "agent-instructions-file",
