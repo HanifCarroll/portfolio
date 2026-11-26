@@ -1,7 +1,7 @@
 ---
 title: "Pruebas basadas en propiedades"
 section: tests
-summary: "Prueba una regla con cientos de entradas generadas en vez de con unas pocas elegidas a mano."
+summary: "Comprueban una regla con cientos de entradas generadas en vez de con unas pocas elegidas a mano."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

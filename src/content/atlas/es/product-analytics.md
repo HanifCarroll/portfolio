@@ -1,7 +1,7 @@
 ---
 title: "Analytics de producto"
 section: production
-summary: "Muestra lo que la gente hace en tu producto para que puedas ver qué funciona."
+summary: "Las herramientas de analytics de producto muestran lo que la gente hace en tu producto para que puedas ver qué funciona."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

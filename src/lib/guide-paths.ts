@@ -1,5 +1,4 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { deferredGuideCopy } from "../data/guide-deferred.es";
 import { guideGroups, guideTools } from "../data/guide";
 import { localizedPath, type Locale } from "../i18n";
 
@@ -27,15 +26,17 @@ export async function getGuideCatalog(locale: Locale): Promise<GuideTopic[]> {
       const spanish = locale === "es" ? byId.get(`es/${slug}`) : undefined;
       const entry = spanish ?? original;
       const fallback = locale === "es" && !spanish;
-      const copy = fallback ? deferredGuideCopy[slug] : undefined;
-      if (fallback && !copy) throw new Error(`Missing Spanish guide catalog copy for ${slug}`);
+      const href = localizedPath(`/guide/${slug}/`, locale);
+      if (fallback !== (locale === "es" && !href.startsWith("/es/"))) {
+        throw new Error(`Spanish guide route is out of sync for ${slug}`);
+      }
       return {
         slug,
         entry,
-        title: copy?.title ?? entry.data.title,
-        summary: copy?.summary ?? entry.data.summary,
-        tools: copy?.tools ?? guideTools(entry.body, spanish ? "es" : "en"),
-        href: localizedPath(`/guide/${slug}/`, locale),
+        title: entry.data.title,
+        summary: entry.data.summary,
+        tools: guideTools(entry.body, spanish ? "es" : "en"),
+        href,
         hreflang: fallback ? "en" : undefined,
       };
     });

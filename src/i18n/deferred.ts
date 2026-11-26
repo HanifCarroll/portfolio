@@ -1,11 +1,9 @@
-// Remove routes as each translation PR lands. A new English route is not exempt.
+// Routing fallbacks are available, but the build requires a Spanish counterpart for every page.
 export const deferredPages: string[] = [];
 
 export const deferredEntries = {
   "case-studies": [],
   blog: [],
-  atlas: [
-    "voice-agents",
-  ],
+  atlas: [],
   guide: [],
 } as const;

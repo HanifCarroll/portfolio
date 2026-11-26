@@ -2,8 +2,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { parse } from "parse5";
 import { atlasProblems, atlasSections } from "../src/data/atlas.ts";
-import { deferredEntries, deferredPages } from "../src/i18n/deferred.ts";
-import { collectionRoutes, deferredPaths, dictionaries, englishPath, localizedPath } from "../src/i18n/index.ts";
+import { collectionRoutes, dictionaries, englishPath, localizedPath } from "../src/i18n/index.ts";
 import { getPublicNotes } from "../src/lib/notes.ts";
 
 const errors = [];
@@ -26,7 +25,6 @@ function checkKeys(en, es, path = "dictionary") {
 checkKeys(dictionaries.en, dictionaries.es);
 
 let entryCount = 0;
-let deferredEntryCount = 0;
 for (const name of Object.keys(collectionRoutes)) {
   const base = `src/content/${name}/`;
   const entries = new Set(
@@ -34,21 +32,14 @@ for (const name of Object.keys(collectionRoutes)) {
       .filter((file) => /\.mdx?$/.test(file))
       .map((file) => file.slice(base.length)),
   );
-  const allowed = new Set(deferredEntries[name]);
   for (const file of entries) {
     if (file.startsWith("es/")) {
       if (!entries.has(file.slice(3))) errors.push(`${base}${file} has no English entry`);
       continue;
     }
     entryCount++;
-    const slug = file.replace(/\.mdx?$/, "");
-    const hasSpanish = entries.has(`es/${file}`);
-    if (allowed.delete(slug)) {
-      deferredEntryCount++;
-      if (hasSpanish) errors.push(`Remove ${name}/${slug} from deferredEntries`);
-    } else if (!hasSpanish) errors.push(`${base}${file} has no Spanish entry`);
+    if (!entries.has(`es/${file}`)) errors.push(`${base}${file} has no Spanish entry`);
   }
-  for (const slug of allowed) errors.push(`Stale deferral: ${name}/${slug}`);
 }
 
 for (const file of files("src/content").filter((file) => /^src\/content\/[^/]+\.md$/.test(file))) {
@@ -61,14 +52,17 @@ if (!existsSync("dist/index.html")) {
   process.exit(1);
 }
 
-const pages = new Map(
-  files("dist")
-    .filter((file) => file.endsWith("/index.html") || file === "dist/404.html")
-    .map((file) => [
-      file === "dist/404.html" ? "/404/" : file.slice(4, -"index.html".length),
-      file,
-    ]),
-);
+const pages = new Map();
+for (const file of files("dist")) {
+  // The Cloudflare fallback is a copy of /es/404/. Check the copy separately below.
+  if (!file.endsWith(".html") || file === "dist/es/404.html") continue;
+  const path = file.slice("dist".length);
+  const route = path.endsWith("/index.html")
+    ? path.slice(0, -"index.html".length)
+    : `${path.slice(0, -".html".length)}/`;
+  if (pages.has(route)) errors.push(`${route} has multiple HTML files`);
+  pages.set(route, file);
+}
 
 function elements(node, test) {
   return [
@@ -96,19 +90,17 @@ for (const [route, file] of pages) {
   }
   const esRoute = `/es${route}`;
   const esFile = pages.get(esRoute);
-  const deferred = deferredPaths.has(route);
-  if (!esFile && !deferred) errors.push(`${route} has no Spanish page`);
-  if (esFile && deferred) errors.push(`Remove ${route} from the deferrals`);
-  const expected = esFile
-    ? { en: `${origin}${route}`, es: `${origin}${esRoute}`, "x-default": `${origin}${route}` }
-    : {};
+  if (!esFile) {
+    errors.push(`${route} has no Spanish page`);
+    continue;
+  }
+  const expected = { en: `${origin}${route}`, es: `${origin}${esRoute}`, "x-default": `${origin}${route}` };
   const enDoc = parse(readFileSync(file, "utf8"));
-  const esDoc = esFile && parse(readFileSync(esFile, "utf8"));
+  const esDoc = parse(readFileSync(esFile, "utf8"));
   for (const [doc, path, lang] of [
     [enDoc, route, "en"],
     [esDoc, esRoute, "es"],
   ]) {
-    if (!doc) continue;
     const [html] = elements(doc, (node) => node.tagName === "html");
     if (attr(html, "lang") !== lang) errors.push(`${path} needs html lang="${lang}"`);
     if (meta(doc, "property", "og:locale") !== dictionaries[lang].locale.openGraph)
@@ -134,31 +126,28 @@ for (const [route, file] of pages) {
         node.tagName === "a" && attr(node, "lang") === other && attr(node, "hreflang") === other,
     );
     if (
-      esFile &&
-      (switches.length === 0 ||
-        switches.some(
-          (link) =>
-            attr(link, "aria-current") || attr(link, "href") !== (lang === "es" ? route : esRoute),
-        ))
+      switches.length === 0 ||
+      switches.some(
+        (link) =>
+          attr(link, "aria-current") || attr(link, "href") !== (lang === "es" ? route : esRoute),
+      )
     ) {
       errors.push(`${path} needs a language link to its counterpart`);
     }
   }
-  if (esDoc) {
-    pairs++;
-    const description = meta(esDoc, "name", "description");
-    if (
-      !title(esDoc) ||
-      title(esDoc) === title(enDoc) ||
-      !description ||
-      description === meta(enDoc, "name", "description")
-    ) {
-      errors.push(`${esRoute} needs its own title and description`);
-    }
-    const spanishIds = new Set(headingIds(esDoc));
-    for (const id of headingIds(enDoc)) {
-      if (!spanishIds.has(id)) errors.push(`${esRoute} is missing heading id #${id}`);
-    }
+  pairs++;
+  const description = meta(esDoc, "name", "description");
+  if (
+    !title(esDoc) ||
+    title(esDoc) === title(enDoc) ||
+    !description ||
+    description === meta(enDoc, "name", "description")
+  ) {
+    errors.push(`${esRoute} needs its own title and description`);
+  }
+  const spanishIds = new Set(headingIds(esDoc));
+  for (const id of headingIds(enDoc)) {
+    if (!spanishIds.has(id)) errors.push(`${esRoute} is missing heading id #${id}`);
   }
 }
 for (const locale of ["en", "es"]) {
@@ -260,10 +249,6 @@ for (const locale of ["en", "es"]) {
     }
   }
 }
-for (const route of deferredPages) {
-  if (!pages.has(route)) errors.push(`Stale deferral: ${route}`);
-}
-
 const spanish404 = pages.get("/es/404/");
 if (
   spanish404 &&
@@ -279,5 +264,5 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `i18n: ${pairs} page pairs; ${deferredPages.length} standalone routes and ${deferredEntryCount}/${entryCount} collection entries explicitly deferred; dictionary keys match.`,
+  `i18n: ${pairs} page pairs; ${entryCount} collection entry pairs; dictionary keys match.`,
 );

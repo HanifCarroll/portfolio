@@ -1,6 +1,5 @@
 import { getCollection } from 'astro:content';
 import { localizedPath, type Locale } from '../i18n';
-import { deferredBlogCopy } from '../data/blog-deferred.es';
 
 export async function getPublishedBlogPosts() {
 	return (await getCollection('blog', ({ id, data }) => !data.hidden && !id.startsWith('es/')))
@@ -16,11 +15,11 @@ export async function getBlogCatalog(locale: Locale) {
 		const entry = byId.get(slug) ?? original;
 		const href = localizedPath(`/blog/${slug}/`, locale);
 		const fallback = locale === 'es' && entry === original;
-		const copy = fallback ? deferredBlogCopy[slug] : entry.data;
-		if (!copy || fallback !== (locale === 'es' && !href.startsWith('/es/'))) {
-			throw new Error(`Spanish blog copy or deferral is out of sync for ${slug}`);
+		if (fallback !== (locale === 'es' && !href.startsWith('/es/'))) {
+			throw new Error(`Spanish blog route is out of sync for ${slug}`);
 		}
-		return { slug, entry, href, fallback, title: copy.title, description: copy.description };
+		const { title, description } = entry.data;
+		return { slug, entry, href, fallback, title, description };
 	});
 }
 
