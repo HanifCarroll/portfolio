@@ -1,8 +1,8 @@
 ---
-title: "No le delegues al modelo de lenguaje la definición de una palabra"
+title: "No dejes que el modelo de lenguaje decida qué cuenta como una palabra"
 subtitle: "Qué decidir en código y qué delegar al modelo"
 pubDate: "2026-05-21"
-description: "Una aplicación de lectura para estudiantes de español me enseñó qué decisiones delegar a un modelo de lenguaje y cuáles dejar en el código. La diferencia es más clara de lo que pensaba."
+description: "Al desarrollar una aplicación de lectura para estudiantes de español, aprendí qué decisiones delegar a un modelo de lenguaje y cuáles dejar en el código. La diferencia es más clara de lo que pensaba."
 hidden: true
 ctaVariant: systemsBuild
 ---
@@ -41,9 +41,9 @@ El primer tipo tiene que ver con la estructura. ¿Dónde termina una parte que p
 
 El segundo tipo tiene que ver con el contenido. Para una frase específica en español, ¿cuál es la explicación breve en inglés más clara para un estudiante de este nivel? Hay más de una respuesta válida. Dos personas que escriben bien podrían redactar fichas distintas y las dos estarían bien.
 
-Los LLM sirven para el contenido. No fallan en todas las decisiones de estructura, pero tienen limitaciones que importan acá: no podés reproducir la respuesta, no podés auditarla y no podés limitarla a una regla con la que un profesor esté de acuerdo.
+Los LLM sirven para el contenido. No siempre dan malos resultados en las decisiones de estructura, pero sí en los aspectos que importan acá: no podés reproducir la respuesta, no podés auditarla y no podés limitarla a una regla con la que un profesor esté de acuerdo.
 
-Las decisiones de estructura se toman en código que podés leer completo: un diccionario de frases conocidas, un analizador gramatical que indica qué palabras dependen de cuáles y una lista ordenada de reglas con nombre. Una vez que fijás esas decisiones, podés mandarle una frase por vez al modelo y pedirle una ficha solo para esa frase. No puede incluir texto que no recibió.
+Las decisiones de estructura se toman en código que podés leer completo: un diccionario de frases conocidas, un analizador gramatical que indica qué palabras dependen de cuáles y una lista ordenada de reglas con nombre. Una vez que fijás esas decisiones, podés mandarle una frase por vez al modelo y pedirle una ficha solo para esa frase. Con los límites ya fijados, el modelo no puede agrupar palabras de frases que se procesan por separado.
 
 ![Diagrama en dos carriles: el código usa un diccionario, gramática y reglas ordenadas para pasar partes de texto ya fijadas a través de un límite de confianza al modelo, que redacta una ficha](/blog/llm-word-boundaries/two-lanes-trust-boundary.png)
 
@@ -87,4 +87,4 @@ Pasá las decisiones de estructura al código, aunque ese código consista en ta
 
 ![Antes: una sola llamada al LLM con demasiadas tareas y reglas de corrección mezcladas. Después: dividir en partes, analizar la gramática, aplicar reglas en orden, fijar límites, generar una ficha con el modelo y validarla](/blog/llm-word-boundaries/before-after-pipeline.png)
 
-El principio es simple, pero aplicarlo lleva trabajo. La mayor parte de lo que reescribí fue código que no parece impresionante en un artículo: un archivo de diccionario, una lista de reglas con nombre y un validador. Pero esos cambios hicieron la diferencia. Sigo usando el LLM para la parte que hace especialmente bien, ahora con límites definidos.
+El principio es simple, pero aplicarlo lleva trabajo. La mayor parte de lo que reescribí fue código que no parece impresionante en un artículo: un archivo de diccionario, una lista de reglas con nombre y un validador. Pero ese código fue lo que más ayudó a resolver el problema. Sigo usando el LLM para la parte que solo un modelo de lenguaje resuelve tan bien. Ahora lo uso con límites definidos.

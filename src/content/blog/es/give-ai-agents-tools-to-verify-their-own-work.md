@@ -17,7 +17,7 @@ Pensá en cómo incorporarías a un desarrollador nuevo. No te quedarías al lad
 - El linter y el verificador de tipos
 - Los entornos de prueba previos a producción
 - Los registros y el monitoreo
-- La aplicación en ejecución para ver qué pasa
+- La posibilidad de ejecutar la aplicación y ver qué pasa
 
 Después revisarías sus decisiones de diseño y la cobertura de las pruebas, no los puntos y coma.
 
@@ -55,7 +55,7 @@ La solución fue agregar un paso que consulta la página de cada evento para com
 
 Los registros son una forma de comprobar resultados. También estoy incorporando estas otras herramientas:
 
-[Compará tres opciones de automatización del navegador](/blog/browser-automation-tools-comparison-2026/) si necesitás decidir cómo va a inspeccionar y usar el navegador un agente.
+[Compará tres opciones de automatización del navegador](/es/blog/browser-automation-tools-comparison-2026/) si necesitás decidir cómo va a inspeccionar y usar el navegador un agente.
 
 | Herramienta | Qué podés comprobar |
 | --- | --- |

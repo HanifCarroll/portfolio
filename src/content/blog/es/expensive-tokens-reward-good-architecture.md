@@ -17,7 +17,7 @@ Hace poco empecé a comparar modelos con pruebas A/B en los agentes de mi flujo 
 
 Empecé para evaluar el costo. Al poco tiempo, también estaba poniendo a prueba qué tan bien había diseñado mi sistema.
 
-Con los experimentos quedó claro algo: un flujo que depende del modelo más caro para todos los pasos es frágil cuando cambian los precios, los límites o las promociones.
+Al hacer las pruebas, vi algo con claridad: un flujo que depende del modelo más caro para todos los pasos es frágil cuando cambian los precios, los límites o las promociones.
 
 «¿Todavía puedo pagarlo?» no es la pregunta que conviene hacerse.
 
@@ -33,7 +33,7 @@ Con una buena arquitectura, tenés opciones.
 
 Con interfaces claras, módulos independientes, tipado fuerte y pruebas que corren en segundos con cada commit, podés usar un modelo más chico y barato para modificar un módulo chico con límites claros. El cambio afecta a menos partes del sistema. Si el resultado es incorrecto, lo sabés en segundos.
 
-Si detectás los errores tan rápido, no necesitás que el modelo produzca el resultado correcto en el primer intento.
+Detectar los errores tan rápido reduce la presión para que el modelo produzca el resultado correcto en el primer intento.
 
 Por eso SOLID, los buenos tipos y las interfaces claras vuelven a importar de una manera que no importaban cuando vos eras la única persona que escribía el código. Los principios que te permiten incorporar a un desarrollador junior a un proyecto también te permiten asignar un ticket a un modelo abierto más chico.
 

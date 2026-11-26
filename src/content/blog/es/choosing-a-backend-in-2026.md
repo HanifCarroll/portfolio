@@ -1,6 +1,6 @@
 ---
 title: "Cómo elegir un backend en 2026: ¿Convex, InsForge o Supabase?"
-description: "Una comparación práctica de tres plataformas de backend para desarrolladores independientes y CTO de startups. Cuándo usar cada una, ejemplos de código y mi opinión después de trabajar con Supabase."
+description: "Una comparación práctica de tres plataformas de backend para desarrolladores independientes y CTO de startups. Cuándo usar cada una, ejemplos de código y mi opinión sincera después de trabajar con Supabase."
 pubDate: 2026-01-15
 hidden: true
 tags: ["backend", "supabase", "convex", "insforge", "comparison"]
@@ -50,7 +50,7 @@ Resumen de las opciones:
 
 ## Supabase: la opción madura <!-- heading-id: supabase-the-mature-choice -->
 
-Supabase se convirtió en la opción más común por un motivo. Con un solo panel podés usar PostgreSQL con una buena interfaz, autenticación, almacenamiento y funciones en tiempo real.
+Supabase se convirtió en la opción de backend por defecto por un motivo. Con un solo panel podés usar PostgreSQL con una buena interfaz, autenticación, almacenamiento y funciones en tiempo real.
 
 ### Ventajas <!-- heading-id: what-it-does-well -->
 
@@ -151,7 +151,7 @@ export const sendEmail = action({
 
 **Esquema en TypeScript.** En vez de escribir migraciones de SQL, definís el esquema en TypeScript y Convex genera todo lo demás. Ya no tenés que preguntar «¿ejecuté esa migración?». El esquema queda en el código y lo versionás con tu aplicación.
 
-**Funciones de IA y RAG incluidas.** Convex incluye búsqueda vectorial y componentes de RAG. Podés guardar embeddings, hacer búsquedas semánticas y agregar funciones de IA sin integrar una base de datos vectorial aparte. Según Convex, el 80 % de las aplicaciones hechas en su plataforma usan IA, y las herramientas están orientadas a ese uso.
+**Funciones de IA y RAG incluidas.** Convex incluye búsqueda vectorial y componentes de RAG. Podés guardar embeddings, hacer búsquedas semánticas y agregar funciones de IA sin integrar una base de datos vectorial aparte. Según Convex, el 80 % de las aplicaciones hechas en su plataforma son aplicaciones de IA, y las herramientas están orientadas a ese uso.
 
 ### Limitaciones <!-- heading-id: where-it-falls-short-1 -->
 
@@ -385,7 +385,7 @@ Desarrollé BA Events con Supabase. Después de publicarlo, llegué a estas conc
 
 **Para mi próximo proyecto:**
 
-Si **depende mucho del tiempo real** (chat, colaboración o actualizaciones inmediatas como función principal), usaría **Convex**. Me interesa que las consultas se actualicen sin configuración adicional. Prefiero dedicar tiempo a las funciones en vez de configurar WebSockets.
+Si **depende mucho del tiempo real** (chat, colaboración o actualizaciones inmediatas como función principal), usaría **Convex**. Me convence que las consultas se actualicen sin configuración adicional. Prefiero dedicar tiempo a las funciones en vez de configurar WebSockets.
 
 Si es una **aplicación CRUD tradicional** con relaciones complejas entre datos, seguiría con **Supabase**. SQL ya se probó en muchas aplicaciones, el ecosistema es enorme y la plataforma hace lo que necesito.
 

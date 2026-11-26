@@ -27,7 +27,7 @@ Mi recomendación:
 | **Cómo lo usa el agente** | Directamente en ChatGPT o Codex | Escribe y ejecuta código que controla Chrome | Envía comandos al navegador desde un script o una terminal |
 | **Qué lee y qué captura** | El texto y los controles de la página, más una captura | El texto y los controles de la página, más una captura que incluye la barra de Playwriter | El texto y los controles de la página, más una captura. También puede agregar etiquetas numeradas |
 
-Los tiempos se midieron de distintas maneras. Chrome y Playwriter midieron cuánto tardaron sus propias acciones. Yo medí agent-browser desde la terminal. En Playwriter, casi todo el tiempo correspondió a la espera mientras cargaba Wikipedia. En agent-browser, casi todo el tiempo correspondió al inicio del navegador y la apertura de la página.
+Los tiempos se midieron de distintas maneras. Chrome y Playwriter midieron cuánto tardaron sus propias acciones. Yo medí agent-browser desde la terminal. En Playwriter, la mayor parte del tiempo correspondió a la espera mientras cargaba Wikipedia. En agent-browser, la mayor parte del tiempo correspondió al inicio del navegador y la apertura de la página.
 
 ## Qué probé <!-- heading-id: what-i-tested -->
 
@@ -116,7 +116,7 @@ ChatGPT Chrome Extension y Playwriter usan tu Chrome. Son las opciones más dire
 
 agent-browser abre otro navegador y no comparte tus sesiones de manera predeterminada. Podés reutilizar un perfil de Chrome o una sesión guardada cuando la tarea lo requiera. Para scripts que corren solos, yo usaría un navegador separado.
 
-[Mirá un sistema en uso con controles para la automatización del navegador.](/projects/linkedin-tools/)
+[Mirá un sistema en uso con controles para la automatización del navegador.](/es/projects/linkedin-tools/)
 
 ## Qué uso ahora <!-- heading-id: what-i-use-now -->
 

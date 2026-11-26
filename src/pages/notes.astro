@@ -1,31 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import sections, { noteEntryId } from '../data/notes';
-import { noteEntriesEs, noteSectionsEs } from '../data/notes.es';
 import { getLocale } from '../i18n';
+import { getPublicNotes } from '../lib/notes';
 import { deckClass, itemTitleClass, pageTitleClass, sectionHeadingClass, shellClass } from '../lib/ui';
 import '../styles/notes.css';
 
-const spanish = getLocale(Astro.currentLocale) === 'es';
+const locale = getLocale(Astro.currentLocale);
+const spanish = locale === 'es';
 const title = spanish ? 'Notas' : 'Notes';
 const description = spanish
 	? 'Notas sobre lo que aprendí al desarrollar productos, dirigir mi propio negocio, trabajar con IA, aprender y tratar de vivir de acuerdo con lo que elijo.'
 	: 'Notes on what I’ve learned from building products, running my own business, working with AI, learning, and trying to live an intentional life.';
 
-const publicSections = sections
-	.filter(({ slug }) => !['systems-and-attention', 'health-and-training'].includes(slug))
-	.map(({ slug, title, entries }) => ({
-		slug,
-		title: spanish ? noteSectionsEs[slug] : title,
-		entries: entries.filter((entry) => !('hidden' in entry && entry.hidden)).map((entry) => {
-			const id = noteEntryId(slug, entry);
-			if (!spanish) return { ...entry, id };
-			const translated = noteEntriesEs[id.slice(slug.length + 1)];
-			if (!translated) throw new Error(`Missing Spanish note: ${id}`);
-			const [title, ...body] = translated;
-			return { id, title, body };
-		}),
-	}));
+const publicSections = getPublicNotes(locale);
 
 ---
 

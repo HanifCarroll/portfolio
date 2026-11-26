@@ -29,6 +29,14 @@ export const es = {
     contentsMobile: "Índice en el celular",
     close: "Cerrar",
     chapters: "Capítulos",
+    englishFallback: " (en inglés)",
+  },
+  blog: {
+    published: "Publicado",
+    updated: "Actualizado",
+    read: "min de lectura",
+    author: "Sobre el autor",
+    authorBio: "Hanif es ingeniero de software independiente y tiene más de 9 años de experiencia. Arma sitios web, herramientas y automatizaciones para negocios chicos.",
   },
   projectArchive: {
     description:

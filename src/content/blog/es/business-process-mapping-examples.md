@@ -15,7 +15,7 @@ Un mapa útil de un proceso de negocio muestra cómo se hace un trabajo desde un
 
 En este artículo, sigo un ejemplo desde la primera solicitud de un cliente hasta el informe semanal de operaciones. Entro en más detalle que en un diagrama de flujo general porque las partes difíciles de un negocio de servicios que está creciendo suelen aparecer entre los pasos: alguien copia una solicitud del correo a una planilla, una aprobación queda pendiente en un chat o una novedad de un trabajo a domicilio nunca se incluye en el informe.
 
-Para mostrar un caso concreto, uso una empresa de servicios ficticia llamada Meridian Facility Services. Es el mismo caso que usé en el [proyecto One Tuesday](/projects/one-tuesday/).
+Para mostrar un caso concreto, uso una empresa de servicios ficticia llamada Meridian Facility Services. Es el mismo caso que usé en el [proyecto One Tuesday](/es/projects/one-tuesday/).
 
 <figure class="workflow-map workflow-editorial">
   <picture>
@@ -131,7 +131,7 @@ En este ejemplo, el cambio útil más chico es un registro compartido por trabaj
 - próxima acción
 - cuándo vence esa acción
 
-Acordá con el equipo qué estados se pueden usar y quién puede cambiarlos. Hagan una prueba corta con ese flujo. El equipo va a detectar pronto qué estados faltan, dónde no se sabe quién es responsable y qué excepciones no quedaron en el diagrama.
+Acordá con el equipo qué estados se pueden usar y quién puede cambiarlos. Probá el flujo así durante un tiempo corto. El equipo va a detectar pronto qué estados faltan, dónde no se sabe quién es responsable y qué excepciones no quedaron en el diagrama.
 
 Después, considerá agregar:
 
@@ -170,8 +170,8 @@ Mantené separados el mapa del proceso actual y el del proceso futuro. Si los me
 
 ## Cómo lo usé en un proyecto para un cliente <!-- heading-id: how-this-connects-to-real-consulting-work -->
 
-Para el [Desarmadero Operations Prototype](/projects/desarmadero-operations-prototype/), en una llamada inicial me describieron cómo funcionaba un desarmadero de autos que usaba hojas de presupuestos en papel, WhatsApp, Excel y lo que cada persona recordaba. Con esa información armé un documento de requisitos de producto, una especificación funcional y un prototipo navegable con vistas por rol para ventas, liberación de pagos, asignación de desarme y búsquedas en el predio.
+Para el [Desarmadero Operations Prototype](/es/projects/desarmadero-operations-prototype/), en una llamada inicial me describieron cómo funcionaba un desarmadero de autos que usaba hojas de presupuestos en papel, WhatsApp, Excel y lo que cada persona recordaba. Con esa información armé un documento de requisitos de producto, una especificación funcional y un prototipo navegable con vistas por rol para ventas, liberación de pagos, asignación de desarme y búsquedas en el predio.
 
 Con el prototipo, el cliente pudo revisar algo concreto antes de decidir el alcance del desarrollo completo.
 
-Si querés experimentar la diferencia entre los dos flujos, [probá el proyecto One Tuesday](/projects/one-tuesday/). Podés ver cómo la empresa ficticia atiende la misma demanda con el flujo anterior y con el rediseñado.
+Si querés experimentar la diferencia entre los dos flujos, [probá el proyecto One Tuesday](/es/projects/one-tuesday/). Podés ver cómo la empresa ficticia atiende la misma demanda con el flujo anterior y con el rediseñado.

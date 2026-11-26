@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { getLocale, localizedPath } from '../../i18n';
+import { getDictionary, getLocale, localizedPath } from '../../i18n';
 import { getBlogCatalog } from '../../lib/blog';
 import { headingText, itemTitleClass, pageTitleClass, shellClass, titleHoverClass } from '../../lib/ui';
 
 const locale = getLocale(Astro.currentLocale);
+const { nav } = getDictionary(locale);
 const title = locale === 'es' ? 'Blog sobre productos, flujos de trabajo e IA' : 'Blog on products, workflows, and AI';
 const description = locale === 'es'
 	? 'Notas prácticas para dueños de negocios chicos sobre software, automatización de flujos de trabajo, IA y las decisiones técnicas para construir sistemas confiables.'
@@ -38,7 +39,7 @@ const archiveJsonLd = {
 				{posts.map((post) => (
 					<li>
 						<a class:list={['group grid items-baseline gap-x-8 gap-y-2 text-inherit no-underline md:grid-cols-[minmax(0,1fr)_auto]']} href={post.href} hreflang={post.fallback ? 'en' : undefined}>
-							<h3 class:list={[itemTitleClass, titleHoverClass]}>{headingText(post.title)}{post.fallback && <span class='font-sans text-base text-ink-muted'> (en inglés)</span>}</h3>
+							<h3 class:list={[itemTitleClass, titleHoverClass]}>{headingText(post.title)}{post.fallback && <span class='font-sans text-base text-ink-muted'>{nav.englishFallback}</span>}</h3>
 							<span class='text-base text-ink-muted tabular-nums'><FormattedDate date={post.entry.data.pubDate} /></span>
 							<p class='m-0 max-w-[40rem] text-lg leading-[1.55] text-ink-muted'>{post.description}</p>
 						</a>

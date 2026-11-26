@@ -230,7 +230,7 @@ const feedback = [fridaTestimonial, jiecTestimonial, puntoDePartidaTestimonial].
 				{blogPosts.map((post) => (
 					<li>
 						<a href={post.href} hreflang={post.fallback ? 'en' : undefined}>
-							<h3>{post.title}{post.fallback && ' (en inglés)'}</h3>
+							<h3>{post.title}{post.fallback && nav.englishFallback}</h3>
 							<FormattedDate date={post.entry.data.pubDate} />
 						</a>
 					</li>

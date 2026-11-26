@@ -28,6 +28,14 @@ export const en = {
     contentsMobile: "Mobile table of contents",
     close: "Close",
     chapters: "Chapters",
+    englishFallback: " (in English)",
+  },
+  blog: {
+    published: "Published",
+    updated: "Updated",
+    read: "min read",
+    author: "About the author",
+    authorBio: "Hanif is a freelance software engineer with 9+ years of experience. He builds websites, tools, and automations for small businesses.",
   },
   projectArchive: {
     description:

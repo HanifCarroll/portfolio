@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { parse } from "parse5";
 import { deferredEntries, deferredPages } from "../src/i18n/deferred.ts";
 import { collectionRoutes, deferredPaths, dictionaries } from "../src/i18n/index.ts";
+import { getPublicNotes } from "../src/lib/notes.ts";
 
 const errors = [];
 const files = (dir) =>
@@ -157,6 +158,23 @@ for (const [route, file] of pages) {
     for (const id of headingIds(enDoc)) {
       if (!spanishIds.has(id)) errors.push(`${esRoute} is missing heading id #${id}`);
     }
+  }
+}
+for (const locale of ["en", "es"]) {
+  const route = locale === "es" ? "/es/notes/" : "/notes/";
+  try {
+    const notes = getPublicNotes(locale);
+    const doc = parse(readFileSync(pages.get(route), "utf8"));
+    const text = (node) => node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(text).join("");
+    const [menu] = elements(doc, (node) => attr(node, "class") === "hc-notes-mobile-toc");
+    const sectionTitles = menu ? elements(menu, (node) => node.tagName === "summary").map((node) => text(node).trim()) : [];
+    const entries = menu ? elements(menu, (node) => node.tagName === "a").map((node) => [attr(node, "href"), text(node).trim()]) : [];
+    if (JSON.stringify(sectionTitles) !== JSON.stringify(notes.map(({ title }) => title)) ||
+        JSON.stringify(entries) !== JSON.stringify(notes.flatMap(({ entries }) => entries.map(({ id, title }) => [`#${id}`, title])))) {
+      errors.push(`${route} has incorrect mobile contents titles or links`);
+    }
+  } catch (error) {
+    errors.push(`${route}: ${error.message}`);
   }
 }
 for (const route of deferredPages) {

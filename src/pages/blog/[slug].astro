@@ -10,7 +10,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from '../../components/widgets/AboutTheAuthor.astro';
 import Author from '../../components/Author.astro';
 import TableOfContent from '../../components/widgets/TableOfContent.astro';
-import { getLocale, localizedPath } from '../../i18n';
+import { getDictionary, getLocale, localizedPath } from '../../i18n';
 import { getBlogStaticPaths } from '../../lib/blog';
 import { articleTitleClass, headingText, shellClass } from '../../lib/ui';
 
@@ -18,9 +18,7 @@ export const getStaticPaths = () => getBlogStaticPaths('en');
 interface Props { entry: CollectionEntry<'blog'>; slug: string }
 const { entry: post, slug } = Astro.props;
 const locale = getLocale(Astro.currentLocale);
-const copy = locale === 'es'
-	? { updated: 'Actualizado', published: 'Publicado', read: 'min de lectura', contents: 'Índice', author: 'Sobre el autor' }
-	: { updated: 'Updated', published: 'Published', read: 'min read', contents: 'Contents', author: 'About the author' };
+const { blog: copy, nav } = getDictionary(locale);
 const {
 	data: { title, subtitle, seoTitle, description, coverImage, pubDate, updatedDate, ctaVariant }
 } = post;
@@ -124,8 +122,8 @@ const blogJsonLd = {
 				{
 					showContents && (
 						<details class='blog-post-toc group overflow-hidden'>
-							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink -outline-offset-2 group-open:mb-2'>{copy.contents}</summary>
-							<TableOfContent headings={tocHeadings} label={copy.contents} />
+							<summary class='cursor-pointer font-sans text-base leading-[1.65] text-ink -outline-offset-2 group-open:mb-2'>{nav.contents}</summary>
+							<TableOfContent headings={tocHeadings} label={nav.contents} />
 						</details>
 					)
 				}

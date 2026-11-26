@@ -62,4 +62,4 @@ También uso el historial de sesiones para consultar decisiones y pruebas anteri
 
 ## Qué estoy aprendiendo <!-- heading-id: what-im-learning -->
 
-Lo que más me interesa es cómo funcionan las organizaciones en la práctica y en qué parte de su trabajo les puede servir el software. Estoy siguiendo una lista de lecturas. Primero leo sobre pensamiento sistémico, después sobre cómo se relacionan las personas, los procesos y los datos. La última parte es sobre arquitectura de software. Voy tomando [notas](/notes/) mientras leo.
+Lo que más me interesa es cómo funcionan las organizaciones en la práctica y en qué parte de su trabajo les puede servir el software. Estoy siguiendo una lista de lecturas. Primero leo sobre pensamiento sistémico, después sobre cómo se relacionan las personas, los procesos y los datos. La última parte es sobre arquitectura de software. Voy tomando [notas](/es/notes/) mientras leo.
