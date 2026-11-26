@@ -1,4 +1,4 @@
-import { copyFile } from "node:fs/promises";
+import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
@@ -50,6 +50,16 @@ export default defineConfig({
       i18n: { defaultLocale: "en", locales: { en: "en", es: "es" } },
       filter: (page) => !excludedSitemapPaths.some((path) => page.endsWith(path)),
     }),
+    {
+      name: "i18n-page-inventory",
+      hooks: {
+        "astro:build:done": async ({ pages }) => {
+          const cache = new URL(".astro/", import.meta.url);
+          await mkdir(cache, { recursive: true });
+          await writeFile(new URL("i18n-pages.json", cache), JSON.stringify(pages.map(({ pathname }) => pathname)));
+        },
+      },
+    },
     {
       name: "spanish-pages-404",
       hooks: {

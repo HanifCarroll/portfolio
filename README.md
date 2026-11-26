@@ -69,7 +69,7 @@ English keeps its existing URLs. Spanish uses the same path and fragment IDs und
 
 Write Spanish copy with Argentine voseo. Use literal wording, not idioms or figurative phrases. Name the person doing the work, or describe what the software does in concrete terms such as `envía`, `guarda`, or `muestra`.
 
-For collections, the counterpart to `src/content/<collection>/<slug>.md(x)` belongs at `src/content/<collection>/es/<slug>.md(x)`. Remove the matching item from `src/i18n/deferred.ts` when its Spanish route and content land. Until then, Spanish navigation links to the English version of that content without advertising a Spanish alternate. RSS stays English only. Astro builds `/es/404/` and copies it to `dist/es/404.html` so Cloudflare Pages can serve that body with status 404 for missing Spanish URLs.
+For collections, the counterpart to `src/content/<collection>/<slug>.md(x)` belongs at `src/content/<collection>/es/<slug>.md(x)`. The build requires a Spanish counterpart for every English page and collection entry, with no exemptions. The routing fallback remains available for future English-only pages: Spanish navigation labels the English link and does not advertise a Spanish alternate. RSS stays English only. Astro builds `/es/404/` and copies it to `dist/es/404.html` so Cloudflare Pages can serve that body with status 404 for missing Spanish URLs.
 
 The project archive uses `src/lib/projects.es.json` for Spanish titles and descriptions, keyed by the English metadata slug. When publishing a Spanish case study, add its rendered metadata to the same entry. `bun run check:projects` checks both the archive copy and the required fields for published detail pages.
 

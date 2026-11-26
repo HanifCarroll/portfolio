@@ -1,7 +1,7 @@
 ---
 title: "Reglas de lint propias y controles de arquitectura"
 section: guardrails
-summary: "Convierte las reglas de tu equipo en verificaciones que hacen fallar el build, con mensajes de error que le indican al agente cómo corregir los problemas."
+summary: "Convierten las reglas de tu equipo en verificaciones que hacen fallar el build, con mensajes de error que le indican al agente cómo corregir los problemas."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

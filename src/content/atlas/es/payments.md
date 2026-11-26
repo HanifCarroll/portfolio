@@ -1,7 +1,7 @@
 ---
 title: "Pagos y facturación"
 section: code
-summary: "Procesa cobros, gestiona suscripciones y sincroniza tu aplicación con lo que pagó cada cliente."
+summary: "Los sistemas de pagos y facturación procesan cobros, gestionan suscripciones y sincronizan tu aplicación con lo que pagó cada cliente."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

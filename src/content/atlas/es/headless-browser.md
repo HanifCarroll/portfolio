@@ -1,7 +1,7 @@
 ---
 title: "Headless browser y scraping"
 section: code
-summary: "Carga y controla páginas web reales desde el código para recopilar datos o completar tareas en sitios sin API."
+summary: "Un headless browser carga y controla páginas web reales desde el código para recopilar datos o completar tareas en sitios sin API."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

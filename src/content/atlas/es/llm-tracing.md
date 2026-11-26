@@ -1,7 +1,7 @@
 ---
 title: "Tracing y gestión de prompts para LLM"
 section: ai
-summary: "Registra cada llamada a un modelo con su prompt, resultado, costo y latencia para que puedas depurar las funciones de IA."
+summary: "El tracing registra cada llamada a un modelo con su prompt, resultado, costo y latencia para que puedas depurar las funciones de IA."
 ---
 
 ## Qué es <!-- heading-id: what-it-is -->

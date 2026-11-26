@@ -1,7 +1,7 @@
 ---
 title: "Errores tipados y efectos"
 section: code
-summary: "Incorpora al tipo de cada función las formas en que puede fallar, para que el código que la llama tenga que manejarlas."
+summary: "Incorporan al tipo de una función las formas en que puede fallar, para que el código que la llama tenga que manejarlas."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->

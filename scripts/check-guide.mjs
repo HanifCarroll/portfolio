@@ -4,7 +4,6 @@ import { readdirSync, readFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { guideGroups, guideSections } from "../src/data/guide.ts";
-import { deferredGuideCopy } from "../src/data/guide-deferred.es.ts";
 import { guideProblems } from "../src/data/guide-problems.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -31,11 +30,7 @@ const charges = (raw, locale) => [...raw.matchAll(locale === "en"
 });
 
 for (const slug of slugs) {
-  if (!spanishSlugs.has(slug) && (!deferredGuideCopy[slug]?.title.trim() || !deferredGuideCopy[slug]?.summary.trim()))
-    errors.push(`${slug}: missing Spanish catalog copy for the English fallback.`);
-}
-for (const slug of Object.keys(deferredGuideCopy)) {
-  if (!slugs.has(slug) || spanishSlugs.has(slug)) errors.push(`${slug}: stale Spanish fallback catalog copy.`);
+  if (!spanishSlugs.has(slug)) errors.push(`${slug}: no Spanish entry.`);
 }
 
 for (const problem of guideProblems) {

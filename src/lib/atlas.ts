@@ -1,7 +1,6 @@
 import { getCollection } from 'astro:content';
 import { atlasProblems, atlasSections, atlasTools } from '../data/atlas';
 import { atlasProblemsEs, atlasSectionsEs } from '../data/atlas.es';
-import { deferredAtlasCopy } from '../data/atlas-deferred.es';
 import { getDictionary, localizedPath, type Locale } from '../i18n';
 
 export const getAtlasSections = (locale: Locale) => atlasSections.map((section) => (
@@ -18,15 +17,15 @@ export async function getAtlasCatalog(locale: Locale) {
 		const entry = spanish ?? original;
 		const href = localizedPath(`/atlas/${id}/`, locale);
 		const fallback = locale === 'es' && !spanish;
-		const copy = fallback ? deferredAtlasCopy[id] : entry.data;
-		if (!copy?.title.trim() || !copy.summary.trim() || fallback !== (locale === 'es' && !href.startsWith('/es/')) || entry.data.section !== original.data.section) {
+		const { title, summary } = entry.data;
+		if (!title.trim() || !summary.trim() || fallback !== (locale === 'es' && !href.startsWith('/es/')) || entry.data.section !== original.data.section) {
 			throw new Error(`Atlas copy, section, or deferral is out of sync for ${id}`);
 		}
 		return {
 			id, entry, href,
-			title: copy.title,
-			linkTitle: copy.title + (fallback ? nav.englishFallback : ''),
-			summary: copy.summary,
+			title,
+			linkTitle: title + (fallback ? nav.englishFallback : ''),
+			summary,
 			tools: spanish
 				? atlasTools(spanish.body, '## Opciones populares').map((tool) => tool
 					.replace(/\[([^\]]+)\]\([^)]+\)/g, (_, label: string) => label.replace(nav.englishFallback, ''))

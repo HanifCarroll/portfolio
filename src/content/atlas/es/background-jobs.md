@@ -1,7 +1,7 @@
 ---
 title: "Background jobs y workflows durables"
 section: code
-summary: "Ejecuta tareas lentas o de varios pasos fuera de la solicitud, con reintentos para que se completen aunque algo falle."
+summary: "Ejecutan tareas lentas o de varios pasos fuera de la solicitud, con reintentos para que se completen aunque algo falle."
 ---
 
 ## Qué son <!-- heading-id: what-it-is -->
