@@ -47,20 +47,23 @@ for (const file of files("src/content").filter((file) => /^src\/content\/[^/]+\.
   if (!existsSync(counterpart)) errors.push(`Missing ${counterpart}`);
 }
 
-if (!existsSync("dist/index.html")) {
+const pageInventory = ".astro/i18n-pages.json";
+if (!existsSync(pageInventory) || !existsSync("dist/index.html")) {
   console.error("Build the site before running check:i18n.");
   process.exit(1);
 }
 
 const pages = new Map();
-for (const file of files("dist")) {
-  // The Cloudflare fallback is a copy of /es/404/. Check the copy separately below.
-  if (!file.endsWith(".html") || file === "dist/es/404.html") continue;
-  const path = file.slice("dist".length);
-  const route = path.endsWith("/index.html")
-    ? path.slice(0, -"index.html".length)
-    : `${path.slice(0, -".html".length)}/`;
-  if (pages.has(route)) errors.push(`${route} has multiple HTML files`);
+for (const pathname of JSON.parse(readFileSync(pageInventory, "utf8"))) {
+  const route = `/${pathname}`.replace(/^\/+/, "/").replace(/\/?$/, "/");
+  // Astro's directory build emits top-level error pages as status-code.html.
+  const output = /^\/(404|500)\/$/.test(route) ? `${route.slice(1, -1)}.html` : `${route.slice(1)}index.html`;
+  const file = join("dist", output);
+  if (existsSync(join("public", output))) errors.push(`${route} is shadowed by public/${output}`);
+  if (!existsSync(file)) {
+    errors.push(`${route} has no generated HTML at ${file}`);
+    continue;
+  }
   pages.set(route, file);
 }
 

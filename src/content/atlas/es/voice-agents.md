@@ -18,11 +18,11 @@ La latencia es la principal restricción de diseño. Cada paso agrega demora, y 
 
 ## Opciones populares <!-- heading-id: popular-choices -->
 
-- **LiveKit**: plataforma WebRTC y Agents SDK de código abierto para aplicaciones de IA con voz y video. LiveKit Cloud ofrece un plan gratuito con alojamiento, créditos de inferencia y un número de teléfono. ChatGPT Advanced Voice funciona en LiveKit Cloud.
+- **LiveKit**: plataforma WebRTC y Agents SDK de código abierto para aplicaciones de IA con voz y video. LiveKit Cloud ofrece un plan gratuito con alojamiento, créditos de inferencia y un número de teléfono. ChatGPT Advanced Voice funciona en esa plataforma.
 - **Pipecat**: framework de Python de código abierto de Daily para alojar tus propios agentes de voz y multimodales. Conecta los pasos de STT, LLM y TTS en un solo pipeline.
 - **Vapi**: plataforma alojada de agentes de voz que te permite elegir los proveedores de STT, LLM y TTS. Es popular entre las agencias que desarrollan agentes telefónicos.
 - **Retell AI**: plataforma alojada con más elementos listos para usar. Incluye plantillas, pruebas de simulación y analytics de llamadas.
 
 ## Qué pedirle a tu agente <!-- heading-id: what-to-tell-your-agent -->
 
-> Desarrollá un agente de voz para [reservar turnos] con [LiveKit Agents / Pipecat]. Usá [proveedores de STT, LLM y TTS], admití interrupciones y limitá las herramientas que puede invocar a [consultar disponibilidad y crear reservas]. Por cada llamada telefónica, registrá la transcripción y las invocaciones de herramientas. Escribí unas pocas conversaciones de prueba con guion que incluyan cancelaciones y pedidos poco claros.
+> Desarrollá un agente de voz para [reservar turnos] con [LiveKit Agents / Pipecat]. Usá [proveedores de STT, LLM y TTS], admití interrupciones y limitá las herramientas que puede invocar a [consultar disponibilidad y crear reservas]. Por cada llamada, registrá la transcripción y las invocaciones de herramientas. Escribí unas pocas conversaciones de prueba con guion que incluyan cancelaciones y pedidos poco claros.
