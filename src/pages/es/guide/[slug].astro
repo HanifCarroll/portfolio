@@ -1,0 +1,10 @@
+---
+import GuideEntryPage from '../../../views/GuideEntryPage.astro';
+import { getGuideStaticPaths } from '../../../lib/guide-paths';
+
+export function getStaticPaths() {
+	return getGuideStaticPaths('es');
+}
+---
+
+<GuideEntryPage {...Astro.props} />
