@@ -159,7 +159,7 @@ const en = {
 const es = {
   title: "One Tuesday: el mismo martes dos veces",
   kicker: "Proyecto interactivo",
-  company: `${name} es una empresa ficticia de servicios con ${people} personas que hace unos ${weeklyFieldJobs} trabajos en campo por semana. A lo largo del día llegan reservas, cambios, pedidos de presupuesto y avisos de problemas.`,
+  company: `${name} es una empresa ficticia de servicios con ${people} personas que hace unos ${weeklyFieldJobs} trabajos a domicilio por semana. A lo largo del día llegan reservas, cambios, pedidos de presupuesto y avisos de problemas.`,
   old: "Antes de los cambios",
   new: "Después de los cambios",
   yes: "Sí",
@@ -270,7 +270,7 @@ const es = {
     updates: "les avisamos primero",
     triage: "Clasificación con IA",
     exampleKind: "reserva",
-    exampleTime: "mar. <12:00",
+    exampleTime: "mar. a la mañana",
     dashboard: "Esta semana",
     dashboardCount: "olvidadas: 0",
   },
