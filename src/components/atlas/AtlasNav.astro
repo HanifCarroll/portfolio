@@ -1,41 +1,43 @@
 ---
 // Entry list with search. Used in the desktop sidebar and the mobile header Contents panel.
-import { getCollection } from 'astro:content';
-import { atlasProblems, atlasSections, atlasTools } from '../../data/atlas';
+import { englishPath, getDictionary, getLocale } from '../../i18n';
+import { getAtlasCatalog } from '../../lib/atlas';
 
 const { id = 'atlas-search' } = Astro.props;
-const current = Astro.url.pathname.match(/^\/atlas\/([^/]+)/)?.[1];
-const entries = (await getCollection('atlas')).sort((a, b) => a.data.title.localeCompare(b.data.title));
-const sections = atlasSections.map((section) => ({ ...section, entries: entries.filter((entry) => entry.data.section === section.id) }));
+const locale = getLocale(Astro.currentLocale);
+const { atlas: copy } = getDictionary(locale);
+const current = englishPath(Astro.url.pathname).match(/^\/atlas\/([^/]+)/)?.[1];
+const { problems, sections } = await getAtlasCatalog(locale);
 ---
 
 <div data-atlas-nav-root>
-	<label class='sr-only' for={id}>Search components and tools</label>
+	<label class='sr-only' for={id}>{copy.searchLabel}</label>
 	<input
 		id={id}
 		type='search'
-		placeholder='Search components or tools…'
+		placeholder={copy.searchPlaceholder}
 		autocomplete='off'
 		class='mb-6 w-full rounded-lg -outline-offset-2 border border-ink-muted bg-canvas px-3 py-2 font-sans text-base text-ink placeholder:text-ink-muted focus:border-ink'
 		data-atlas-search
 	/>
-	<p class='m-0 mb-4 hidden font-sans text-base text-ink-muted' data-atlas-empty>No matches.</p>
-	<nav aria-label='Build Atlas entries'>
+	<p class='m-0 mb-4 hidden font-sans text-base text-ink-muted' data-atlas-empty>{copy.noMatches}</p>
+	<nav aria-label={copy.entriesLabel}>
 		{sections.map((section) => (
 			<div class='mb-6' data-atlas-group>
 				<p class='m-0 mb-1.5 font-sans text-base leading-snug text-ink'>{section.title}</p>
 				<ul class='m-0 list-none p-0'>
 					{section.entries.map((entry) => (
-						<li data-atlas-item data-search={[entry.data.title, entry.data.summary, ...atlasTools(entry.body), ...atlasProblems.filter((problem) => problem.entries.includes(entry.id)).map((problem) => problem.title)].join(' ').toLowerCase()}>
+						<li data-atlas-item data-search={[entry.title, entry.summary, ...entry.tools, ...problems.filter((problem) => problem.entries.includes(entry)).map((problem) => problem.title)].join(' ').toLowerCase()}>
 							<a
 								class:list={[
 									'block py-1.5 pl-4 font-sans text-base leading-snug no-underline -outline-offset-2 transition-colors',
 									entry.id === current ? 'text-ink underline decoration-accent-ink decoration-2 underline-offset-[0.18em]' : 'text-ink-muted hover:text-ink focus-visible:text-ink',
 								]}
-								href={`/atlas/${entry.id}/`}
+								href={entry.href}
+								hreflang={entry.hreflang}
 								aria-current={entry.id === current ? 'page' : undefined}
 							>
-								{entry.data.title}
+								{entry.linkTitle}
 							</a>
 						</li>
 					))}

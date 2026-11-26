@@ -31,7 +31,7 @@ Los tiempos se midieron de distintas maneras. Chrome y Playwriter midieron cuán
 
 ## Qué probé <!-- heading-id: what-i-tested -->
 
-Hice la misma tarea con cada herramienta en la [página principal de Wikipedia en inglés](https://en.wikipedia.org/wiki/Main_Page), sin cambiar el sitio:
+Hice la misma tarea con cada herramienta en la [página principal de Wikipedia (en inglés)](https://en.wikipedia.org/wiki/Main_Page), sin cambiar el sitio:
 
 1. Abrir Wikipedia y confirmar la URL y el título.
 2. Encontrar el campo de búsqueda.
@@ -56,7 +56,7 @@ Ejecuté Playwriter y agent-browser desde la terminal. Usé la extensión de Chr
 | Playwriter | `0.4.0` | Chrome `150.0.0.0` | `$HOME/.bun/bin/playwriter`, sesión `8`, `snapshot()`, controles de Playwright y herramientas de captura |
 | agent-browser | `0.33.0` | Chrome for Testing `148.0.7778.97` | `$HOME/.bun/bin/agent-browser`, sesión `portfolio-comparison-20260727-wikipedia`, limitada a Wikipedia, con controles del navegador y capturas |
 
-Para la prueba de Chrome usé la extensión incluida en vez de un comando de terminal. En la [documentación de Chrome Extension de OpenAI](https://learn.chatgpt.com/docs/chrome-extension) podés consultar los permisos por sitio, el acceso a pestañas abiertas de Chrome y cómo usar `@Chrome`. La [documentación oficial de Playwriter](https://playwriter.dev/) explica la extensión, la línea de comandos, los controles detallados de Chrome y la opción de usar otro navegador. El [repositorio y la documentación de agent-browser](https://github.com/vercel-labs/agent-browser#readme) explican la línea de comandos, cómo ejecutar varios pasos juntos, las capturas con números, las sesiones separadas y las formas de reutilizar sesiones abiertas.
+Para la prueba de Chrome usé la extensión incluida en vez de un comando de terminal. En la [documentación de Chrome Extension de OpenAI (en inglés)](https://learn.chatgpt.com/docs/chrome-extension) podés consultar los permisos por sitio, el acceso a pestañas abiertas de Chrome y cómo usar `@Chrome`. La [documentación oficial de Playwriter (en inglés)](https://playwriter.dev/) explica la extensión, la línea de comandos, los controles detallados de Chrome y la opción de usar otro navegador. El [repositorio y la documentación de agent-browser (en inglés)](https://github.com/vercel-labs/agent-browser#readme) explican la línea de comandos, cómo ejecutar varios pasos juntos, las capturas con números, las sesiones separadas y las formas de reutilizar sesiones abiertas.
 
 ## Resultados <!-- heading-id: results -->
 

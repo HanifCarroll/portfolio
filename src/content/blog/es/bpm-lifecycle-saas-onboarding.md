@@ -167,7 +167,7 @@ Para aplicar el ciclo de BPM a un flujo de trabajo de tu organización, empezá 
 
 ## Referencia del ciclo de BPM <!-- heading-id: bpm-lifecycle-reference -->
 
-Este ejemplo sigue el ciclo de seis etapas descrito en [Fundamentals of Business Process Management](https://doi.org/10.1007/978-3-662-56509-4_1).
+Este ejemplo sigue el ciclo de seis etapas descrito en [Fundamentals of Business Process Management (en inglés)](https://doi.org/10.1007/978-3-662-56509-4_1).
 
 | Etapa | Información principal de partida | Resultados principales | Objetivo |
 | --- | --- | --- | --- |

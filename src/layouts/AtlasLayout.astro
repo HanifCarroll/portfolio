@@ -2,6 +2,7 @@
 // Docs-style shell for Build Atlas. Below lg, the entry list lives in the header's Contents menu instead.
 import BaseLayout from './BaseLayout.astro';
 import AtlasNav from '../components/atlas/AtlasNav.astro';
+import { englishPath, getDictionary, getLocale, localizedPath } from '../i18n';
 import '../styles/notes.css';
 
 interface Props {
@@ -10,14 +11,16 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const isIndex = Astro.url.pathname.replace(/\/$/, '') === '/atlas';
+const locale = getLocale(Astro.currentLocale);
+const { nav } = getDictionary(locale);
+const isIndex = englishPath(Astro.url.pathname) === '/atlas/';
 ---
 
 <BaseLayout title={title} description={description} showFooterCta={false} bodyClass='hc-atlas'>
 	<div class='mx-auto grid w-full max-w-page gap-10 px-6 pb-[clamp(6rem,12vw,10rem)] md:px-12 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16'>
 		<aside class='hidden pt-12 lg:block lg:pt-20'>
 			<div class='sticky top-24 max-h-[calc(100svh-8rem)] overflow-y-auto overscroll-contain pb-8 [scrollbar-width:none]'>
-				<a class='mb-4 block font-editorial text-2xl leading-tight text-ink no-underline -outline-offset-2 decoration-accent decoration-2 underline-offset-[0.18em] hover:underline focus-visible:underline' href='/atlas/' aria-current={isIndex ? 'page' : undefined}>Build Atlas</a>
+				<a class='mb-4 block font-editorial text-2xl leading-tight text-ink no-underline -outline-offset-2 decoration-accent decoration-2 underline-offset-[0.18em] hover:underline focus-visible:underline' href={localizedPath('/atlas/', locale)} aria-current={isIndex ? 'page' : undefined}>{nav.atlas}</a>
 				<AtlasNav />
 			</div>
 		</aside>

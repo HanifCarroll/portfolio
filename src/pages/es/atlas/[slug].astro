@@ -1,0 +1,7 @@
+---
+import AtlasEntry from '../../atlas/[slug].astro';
+import { getAtlasStaticPaths } from '../../../lib/atlas';
+export const getStaticPaths = () => getAtlasStaticPaths('es');
+---
+
+<AtlasEntry {...Astro.props} />
